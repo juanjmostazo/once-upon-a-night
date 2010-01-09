@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<animales>
+  <animal edad="3">perro</animal>
+  <animal edad="2">gato</animal>
+</animales>
+
+<flores>
+  <flor altura="1">margarita</flor>
+  <flor altura="3">petunia</flor>
+</flores>

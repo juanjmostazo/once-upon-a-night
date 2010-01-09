@@ -1,0 +1,31 @@
+vertex_program RimLightingVP cg
+{
+	source RimLighting.cg
+	entry_point main_vp
+	profiles vs_1_1 arbvp1
+	
+	default_params					
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto eyePosition camera_position_object_space
+
+	}
+
+}
+
+fragment_program RimLightingFP cg
+{
+	source RimLighting.cg
+	entry_point main_fp
+	profiles ps_2_0
+	
+	default_params 
+    {
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		
+		param_named ambient float4 0.6 0.6 0.6 1.0
+		param_named rimStrength float4 1 1 1 1
+      } 
+
+}

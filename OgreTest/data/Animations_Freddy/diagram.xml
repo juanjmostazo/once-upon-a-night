@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<diagram>
+  <properties>
+    <Size xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <Width>1024</Width>
+      <Height>1024</Height>
+    </Size>
+  </properties>
+  <node_list>
+    <node id="0" name="Output" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.OutputNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>652</X>
+          <Y>264</Y>
+        </Point>
+      </position>
+      <custom />
+      <port_list>
+        <in_port_list>
+          <port name="in">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+        </in_port_list>
+        <out_port_list />
+      </port_list>
+    </node>
+    <node id="1" name="Transition : Select" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.TransitionSelectNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>478</X>
+          <Y>251</Y>
+        </Point>
+      </position>
+      <custom number_of_animation_in_ports="2" />
+      <port_list>
+        <in_port_list>
+          <port name="select" value="0">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+          <port name="time in" value="0.3">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+          <port name="time out" value="0.3">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+          <port name="animation 0">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+          <port name="animation 1">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+        </in_port_list>
+        <out_port_list>
+          <port name="out">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+        </out_port_list>
+      </port_list>
+    </node>
+    <node id="2" name="Idle" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.AnimationNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>311</X>
+          <Y>292</Y>
+        </Point>
+      </position>
+      <custom />
+      <port_list>
+        <in_port_list>
+          <port name="speed" value="1">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+        </in_port_list>
+        <out_port_list>
+          <port name="out">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+        </out_port_list>
+      </port_list>
+    </node>
+    <node id="3" name="Run" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.AnimationNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>311</X>
+          <Y>343</Y>
+        </Point>
+      </position>
+      <custom />
+      <port_list>
+        <in_port_list>
+          <port name="speed" value="1">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+        </in_port_list>
+        <out_port_list>
+          <port name="out">
+            <user_data>
+              <PortDataType>Animation</PortDataType>
+            </user_data>
+          </port>
+        </out_port_list>
+      </port_list>
+    </node>
+    <node id="4" name="Parameter : RunSpeed" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.ParameterNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>140</X>
+          <Y>343</Y>
+        </Point>
+      </position>
+      <custom parameter="RunSpeed" />
+      <port_list>
+        <in_port_list />
+        <out_port_list>
+          <port name="value" value="1">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+        </out_port_list>
+      </port_list>
+    </node>
+    <node id="5" name="Parameter : CurrentAnimation" type="TecnoFreak.v2.Model.AnimationEngine.Nodes.ParameterNode">
+      <position>
+        <Point xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <X>122</X>
+          <Y>251</Y>
+        </Point>
+      </position>
+      <custom parameter="CurrentAnimation" />
+      <port_list>
+        <in_port_list />
+        <out_port_list>
+          <port name="value" value="0">
+            <user_data>
+              <PortDataType>Number</PortDataType>
+            </user_data>
+          </port>
+        </out_port_list>
+      </port_list>
+    </node>
+  </node_list>
+  <connection_list>
+    <connection node_from="0" port_from="in" node_to="1" port_to="out" />
+    <connection node_from="1" port_from="select" node_to="5" port_to="value" />
+    <connection node_from="1" port_from="animation 0" node_to="2" port_to="out" />
+    <connection node_from="1" port_from="animation 1" node_to="3" port_to="out" />
+    <connection node_from="3" port_from="speed" node_to="4" port_to="value" />
+  </connection_list>
+</diagram>
