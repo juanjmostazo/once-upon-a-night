@@ -1,0 +1,54 @@
+material FreddyMaterial
+{
+
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			
+			vertex_program_ref RimLightingVP
+			{
+			}
+			
+			fragment_program_ref RimLightingFP
+			{
+			}
+			
+			texture_unit textureDiffuse
+			{
+				texture Freddy_diffuse.dds
+				mipmap_bias -1
+			}
+			
+			texture_unit textureNormal
+			{
+				texture Freddy_normals.png
+				mipmap_bias -2
+			}
+			
+			
+			
+			
+		}
+	}
+
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			emissive 0.588235 0.588235 0.588235 1
+
+			texture_unit
+			{
+				texture Freddy_diffuse.dds
+				mipmap_bias -1
+			}
+		}
+
+	}
+
+}
