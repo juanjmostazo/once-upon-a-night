@@ -33,7 +33,10 @@ public:
 private:
 
 	void loadResources();
-	void createScene();
+	void createSceneSet1();
+	void createSceneSet2();
+	void createSceneSet3();
+	void createCamera();
 
 	void updateLogic( const float elapsedSeconds );
 

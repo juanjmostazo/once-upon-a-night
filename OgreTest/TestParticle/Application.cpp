@@ -3,6 +3,11 @@
 #include "OrbitCameraController.h"
 #include <Ogre.h>
 
+#define DISTANCE_TO_FLOOR 20
+#define DISTANCE_TO_ANOTHER 600
+#define ROW_WIDTH 1200
+#define ROW_HEIGHT 400
+
 Application::Application()
 : m_root( NULL )
 , m_window( NULL )
@@ -73,7 +78,11 @@ void Application::initialise()
 
 	loadResources();
 
-	createScene();
+	createSceneSet1();
+	createSceneSet2();
+	createSceneSet3();
+
+	createCamera();
 }
 
 void Application::loadResources()
@@ -91,24 +100,91 @@ void Application::loadResources()
 	resourceManager.initialiseAllResourceGroups();
 }
 
-void Application::createScene()
+void Application::createCamera()
 {
-	Ogre::Entity* groundEntity = m_sceneManager->createEntity( "Ground", "ground.mesh" );
-	Ogre::SceneNode* groundSceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
-	groundSceneNode->attachObject( groundEntity );
-	groundSceneNode->setScale( 500, 1, 500 );
-
-	Ogre::ParticleSystem* particleTest = m_sceneManager->createParticleSystem("particleTest", "Examples/Smoke");
-	Ogre::SceneNode* particleTestSceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
-	particleTestSceneNode->attachObject(particleTest);
-	particleTestSceneNode->setPosition(Ogre::Vector3(0, 1, 0));
-	//particleTestSceneNode->setScale(Ogre::Vector3(0.01, 0.01, 0.01));
-
 	m_cameraController = new OrbitCameraController( m_camera );
-	m_cameraController->setOrientation( -45, -15 );
-	m_cameraController->setDistance( 500 );
+	m_cameraController->setOrientation( -45, -25 );
+	m_cameraController->setDistance( 3000 );
 	m_cameraController->setLookAtPosition( 0, 10, 0 );
 	m_camera->setNearClipDistance( 0.01 );
+}
+
+void Application::createSceneSet1()
+{
+	int sNumber = 0;
+
+	Ogre::Entity* groundEntity = m_sceneManager->createEntity( "Ground1", "ground.mesh" );
+	Ogre::SceneNode* groundSceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	groundSceneNode->attachObject( groundEntity );
+	groundSceneNode->setPosition(Ogre::Vector3(0, 0, DISTANCE_TO_ANOTHER * sNumber * -1));
+	groundSceneNode->setScale( ROW_WIDTH, 1, ROW_HEIGHT );
+
+	Ogre::ParticleSystem* pTest1 = m_sceneManager->createParticleSystem("pFireworks", "Examples/Fireworks");
+	Ogre::SceneNode* pTest1SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest1SceneNode->attachObject(pTest1);
+	pTest1SceneNode->setPosition(Ogre::Vector3(150, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+
+	Ogre::ParticleSystem* pTest2 = m_sceneManager->createParticleSystem("pSmoke1", "Examples/Smoke");
+	Ogre::SceneNode* pTest2SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest2SceneNode->attachObject(pTest2);
+	pTest2SceneNode->setPosition(Ogre::Vector3(-100, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+
+	Ogre::ParticleSystem* pTest3 = m_sceneManager->createParticleSystem("pGreeny", "Examples/GreenyNimbus");
+	Ogre::SceneNode* pTest3SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest3SceneNode->attachObject(pTest3);
+	pTest3SceneNode->setPosition(Ogre::Vector3(-350, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+}
+
+void Application::createSceneSet2()
+{
+	int sNumber = 1;
+
+	Ogre::Entity* groundEntity = m_sceneManager->createEntity( "Ground2", "ground.mesh" );
+	Ogre::SceneNode* groundSceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	groundSceneNode->attachObject( groundEntity );
+	groundSceneNode->setPosition(Ogre::Vector3(0, 0, DISTANCE_TO_ANOTHER * sNumber * -1));
+	groundSceneNode->setScale( ROW_WIDTH, 1, ROW_HEIGHT );
+	
+	Ogre::ParticleSystem* pTest1 = m_sceneManager->createParticleSystem("pFlame", "PEExamples/flame");
+	Ogre::SceneNode* pTest1SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest1SceneNode->attachObject(pTest1);
+	pTest1SceneNode->setPosition(Ogre::Vector3(150, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+	
+	Ogre::ParticleSystem* pTest2 = m_sceneManager->createParticleSystem("pSmoke2", "PEExamples/smoke");
+	Ogre::SceneNode* pTest2SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest2SceneNode->attachObject(pTest2);
+	pTest2SceneNode->setPosition(Ogre::Vector3(-100, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+
+	Ogre::ParticleSystem* pTest3 = m_sceneManager->createParticleSystem("pErruption", "PEExamples/erruption");
+	Ogre::SceneNode* pTest3SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest3SceneNode->attachObject(pTest3);
+	pTest3SceneNode->setPosition(Ogre::Vector3(-350, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+}
+
+void Application::createSceneSet3()
+{
+	int sNumber = 2;
+
+	Ogre::Entity* groundEntity = m_sceneManager->createEntity( "Ground3", "ground.mesh" );
+	Ogre::SceneNode* groundSceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	groundSceneNode->attachObject( groundEntity );
+	groundSceneNode->setPosition(Ogre::Vector3(0, 0, DISTANCE_TO_ANOTHER * sNumber * -1));
+	groundSceneNode->setScale( ROW_WIDTH, 1, ROW_HEIGHT );
+
+	Ogre::ParticleSystem* pTest1 = m_sceneManager->createParticleSystem("pBlast", "PEExamples/blast");
+	Ogre::SceneNode* pTest1SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest1SceneNode->attachObject(pTest1);
+	pTest1SceneNode->setPosition(Ogre::Vector3(150, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+	
+	Ogre::ParticleSystem* pTest2 = m_sceneManager->createParticleSystem("pBlast2", "PEExamples/blast2");
+	Ogre::SceneNode* pTest2SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest2SceneNode->attachObject(pTest2);
+	pTest2SceneNode->setPosition(Ogre::Vector3(-100, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
+
+	Ogre::ParticleSystem* pTest3 = m_sceneManager->createParticleSystem("pFloaty", "PEExamples/floatyGreeny");
+	Ogre::SceneNode* pTest3SceneNode = m_sceneManager->getRootSceneNode()->createChildSceneNode();
+	pTest3SceneNode->attachObject(pTest3);
+	pTest3SceneNode->setPosition(Ogre::Vector3(-350, DISTANCE_TO_FLOOR, DISTANCE_TO_ANOTHER * sNumber * -1));
 }
 
 void Application::go()
@@ -158,7 +234,7 @@ bool Application::keyPressed( const OIS::KeyEvent& e )
 
 bool Application::mouseMoved( const OIS::MouseEvent& e )
 {
-	float distanceFactor = 0.2;
+	float distanceFactor = 1;
 	assert( m_cameraController != NULL );
 
 	bool leftMouseButtonPressed = e.state.buttonDown( OIS::MB_Left );
