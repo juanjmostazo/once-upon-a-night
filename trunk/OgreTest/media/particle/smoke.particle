@@ -4,8 +4,8 @@
 particle_system Examples/Smoke
 {
     	material        	Examples/Smoke
-    	particle_width  	5
-    	particle_height 	5
+    	particle_width  	25
+    	particle_height 	25
     	cull_each       	true
     	quota           	500
     	billboard_type  	point
