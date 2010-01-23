@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestSimple", "TestSimple\Te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestParticle", "TestParticle\TestParticle.vcproj", "{F2F01639-92AF-4C2A-8506-A06E5517676C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlashlightTest", "FlashlightTest\FlashlightTest.vcproj", "{9EFBBC99-1245-4507-A86E-C9682983AE34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -67,6 +69,10 @@ Global
 		{F2F01639-92AF-4C2A-8506-A06E5517676C}.Debug|Win32.Build.0 = Debug|Win32
 		{F2F01639-92AF-4C2A-8506-A06E5517676C}.Release|Win32.ActiveCfg = Release|Win32
 		{F2F01639-92AF-4C2A-8506-A06E5517676C}.Release|Win32.Build.0 = Release|Win32
+		{9EFBBC99-1245-4507-A86E-C9682983AE34}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9EFBBC99-1245-4507-A86E-C9682983AE34}.Debug|Win32.Build.0 = Debug|Win32
+		{9EFBBC99-1245-4507-A86E-C9682983AE34}.Release|Win32.ActiveCfg = Release|Win32
+		{9EFBBC99-1245-4507-A86E-C9682983AE34}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
