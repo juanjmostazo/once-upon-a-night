@@ -209,6 +209,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Loader"
+				>
+				<File
+					RelativePath=".\Src\Loader\Configuration.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -248,6 +256,14 @@
 				</File>
 				<File
 					RelativePath=".\Src\TinyXML\tinyxml.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Loader"
+				>
+				<File
+					RelativePath=".\Src\Loader\Configuration.h"
 					>
 				</File>
 			</Filter>
