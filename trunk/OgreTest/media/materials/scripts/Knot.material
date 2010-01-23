@@ -1,0 +1,15 @@
+material Knot
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+
+			texture_unit
+			{
+				texture Knot.jpg
+			}
+		}
+	}
+}
