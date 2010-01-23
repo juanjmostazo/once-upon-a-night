@@ -173,10 +173,42 @@
 				RelativePath=".\Src\main.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\Src\Input\SimpleInputManager.cpp"
+			<Filter
+				Name="Input"
 				>
-			</File>
+				<File
+					RelativePath=".\Src\Input\FullInputManager.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Logger"
+				>
+				<File
+					RelativePath=".\Src\Logger\Logger.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="TinyXML"
+				>
+				<File
+					RelativePath=".\Src\TinyXML\tinystr.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\TinyXML\tinyxml.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\TinyXML\tinyxmlerror.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\TinyXML\tinyxmlparser.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -188,9 +220,37 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Src\Input\SimpleInputManager.h"
+				RelativePath=".\Src\OUAN.h"
 				>
 			</File>
+			<Filter
+				Name="Input"
+				>
+				<File
+					RelativePath=".\Src\Input\FullInputManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Logger"
+				>
+				<File
+					RelativePath=".\Src\Logger\Logger.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="TinyXML"
+				>
+				<File
+					RelativePath=".\Src\TinyXML\tinystr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\TinyXML\tinyxml.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"

@@ -3,8 +3,7 @@
 
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 
-#include <string>
-#include "Input/SimpleInputManager.h"
+#include "Input/FullInputManager.h"
 
 const int AI_FPS=40;
 const int SKIP_TICKS=1000/AI_FPS;
@@ -37,9 +36,9 @@ namespace Ogre
 	class FrameListener;
 }
 
-class SimpleInputManager;
+class FullInputManager;
 //-- 
-class Application: SimpleInputManager
+class Application: FullInputManager
 {
 public:
 	Application(Ogre::String windowName=DEFAULT_WIN_NAME);
@@ -55,6 +54,8 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	virtual bool buttonPressed( const OIS::JoyStickEvent &e, int button );
+	virtual bool buttonReleased( const OIS::JoyStickEvent &e, int button );
 
 	//Scene configuration
 	virtual void createScene();
