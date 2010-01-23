@@ -16,7 +16,7 @@ public:
 
 private:
 	bool locked;
-    static cLog* _instance;
+    static Logger* _instance;
 };
 
 #endif

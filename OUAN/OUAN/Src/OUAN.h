@@ -1,6 +1,7 @@
 #ifndef __OUAN__H__
 #define __OUAN__H__
 
+#include <map>
 #include <string>
 #include <Ogre.h>
 
