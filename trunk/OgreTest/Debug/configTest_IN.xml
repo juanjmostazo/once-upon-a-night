@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<Configuration>
+<Options>
+<Option key="fullscreen">true</Option>
+<Option key="resolution">1280x1024</Option>
+<Option key="antialiasing level">2</Option>
+<Option key="Window name">My Demo window</Option>
+</Options>
+</Configuration>
