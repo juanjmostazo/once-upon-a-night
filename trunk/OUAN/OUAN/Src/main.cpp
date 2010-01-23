@@ -1,5 +1,4 @@
-#include <Ogre.h>
-#include "Application.h"
+#include "OUAN.h"
 
 // ----------------------------------------------------------------------------
 // Main function, just boots the application object

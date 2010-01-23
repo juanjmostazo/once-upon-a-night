@@ -1,5 +1,4 @@
-#include <Ogre.h>
-#include "Application.h"
+#include "OUAN.h"
 
 Application::Application(Ogre::String windowName)
 : m_root( NULL )
@@ -20,7 +19,7 @@ Application::~Application()
 }
 void Application::cleanUp()
 {
-	SimpleInputManager::finalise();
+	FullInputManager::finalise();
 	SAFEDELETE(m_root);	
 }
 //Application initialization
@@ -47,7 +46,7 @@ void Application::go()
 	while ( continueRunning )
 	{
 		Ogre::WindowEventUtilities::messagePump();
-		SimpleInputManager::capture();
+		FullInputManager::capture();
 
 		//The synchronization method follows the 'Constant Game Speed independent of
 		//Variable FPS' algorithm described on the article by
@@ -112,6 +111,21 @@ bool Application::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	return true;
 }
+
+bool Application::buttonPressed( const OIS::JoyStickEvent& e, int button )
+{
+	//char msg[128];
+	//sprintf(msg, "Button: %i, Device ID: %i", button, e.device->getID());
+	//cLog * log = cLog::Instance();
+	//log->MsgLine(msg);
+
+	return true;
+}
+
+bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
+{
+	return true;
+}
 //------------------------
 // Game setup
 //------------------------
@@ -164,7 +178,7 @@ void Application::setupScene()
 }
 void Application::setupInputSystem()
 {
-	SimpleInputManager::initialise( m_window );
+	FullInputManager::initialise( m_window );
 }
 //------------------------
 //Scene setup
@@ -176,7 +190,7 @@ void Application::createCameras()
 void Application::createViewports()
 {
 	m_viewport = m_root->getAutoCreatedWindow()->addViewport(m_camera);
-	m_viewport->setBackgroundColour(Ogre::ColourValue::Black);
+	m_viewport->setBackgroundColour(Ogre::ColourValue::Blue);
 }
 void Application::createScene()
 {}
