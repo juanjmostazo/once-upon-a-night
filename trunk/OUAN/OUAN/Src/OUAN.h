@@ -6,7 +6,8 @@
 #include <Ogre.h>
 
 #include "Application.h"
-#include "Input/FullInputManager.h"
+#include "Input/ControlInputManager.h"
 #include "Logger/Logger.h"
+#include "Loader/Configuration.h"
 
 #endif

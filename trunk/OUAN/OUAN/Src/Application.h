@@ -3,7 +3,7 @@
 
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 
-#include "Input/FullInputManager.h"
+#include "Input/ControlInputManager.h"
 
 const int AI_FPS=40;
 const int SKIP_TICKS=1000/AI_FPS;
@@ -36,9 +36,9 @@ namespace Ogre
 	class FrameListener;
 }
 
-class FullInputManager;
+class ControlInputManager;
 //-- 
-class Application: FullInputManager
+class Application: ControlInputManager
 {
 public:
 	Application(Ogre::String windowName=DEFAULT_WIN_NAME);

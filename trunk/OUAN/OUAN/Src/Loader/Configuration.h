@@ -29,6 +29,7 @@ class Configuration
 {
 private:
 	TConfigMap configMap;
+
 public:
 	Configuration();
 	~Configuration();

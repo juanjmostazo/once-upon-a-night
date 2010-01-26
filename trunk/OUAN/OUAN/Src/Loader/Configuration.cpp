@@ -43,8 +43,10 @@ bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags
 
 	return true;
 }
+
 bool Configuration::saveToFile(const std::string& fileName, unsigned int flags) const
-{	TiXmlDocument doc;
+{	
+	TiXmlDocument doc;
 	TiXmlDeclaration* decl = new TiXmlDeclaration(XML_DECLARATION_VERSION.c_str(), 
 		XML_DECLARATION_ENCODING.c_str(), XML_DECLARATION_STANDALONE.c_str());  
 	doc.LinkEndChild( decl ); 
@@ -83,7 +85,6 @@ void Configuration::addOptions(const TConfigMap& newMap, bool replaceExisting)
 		if (!hasOption(it->first) || replaceExisting) //Option already exists
 			configMap[it->first]=it->second;
 	}
-
 }
 
 bool Configuration::hasOption(const std::string& key) const
@@ -110,6 +111,7 @@ TConfigMapConstIterator  Configuration::begin() const
 {
 	return configMap.begin();
 }
+
 TConfigMapConstIterator Configuration::end() const
 {
 	return configMap.end();
