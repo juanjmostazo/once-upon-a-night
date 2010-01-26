@@ -1,0 +1,19 @@
+# Resource locations to be added to the 'boostrap' path
+[Bootstrap]
+
+# example: Zip=../media/packs/OgreCore.zip
+
+
+# Resource locations to be added to the default path (does not add
+# subpath)
+[General]
+
+# example: FileSystem=../media
+# example: Zip=../media/packs/cubemap.zip
+
+FileSystem=../Resources
+FileSystem=../Resources/Model
+FileSystem=../Resources/Material
+FileSystem=../Resources/Material/Shader
+FileSystem=../Resources/Material/Texture
+FileSystem=../Resources/Material/Material
