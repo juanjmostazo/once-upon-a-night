@@ -1,0 +1,22 @@
+fragment_program OrangeShader cg
+{
+	source OrangeShader.cg
+	entry_point main_fp
+	profiles ps_1_1 arbfp1
+}
+
+material Orange
+{
+	technique
+	{
+		pass
+		{
+			fragment_program_ref OrangeShader
+			{
+			}
+			texture_unit
+			{
+			}
+		}
+	}
+}
