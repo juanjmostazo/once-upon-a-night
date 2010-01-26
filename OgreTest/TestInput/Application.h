@@ -1,7 +1,7 @@
 #ifndef __APPLICATION__H__
 #define __APPLICATION__H__
 
-#include "FullInputManager.h"
+#include "ControlInputManager.h"
 
 namespace Ogre
 {
@@ -20,7 +20,7 @@ namespace Ogre
 class OrbitCameraController;
 
 class Application
-	: FullInputManager
+	: ControlInputManager
 {
 public:
 	Application();
@@ -32,7 +32,6 @@ public:
 	virtual bool keyPressed( const OIS::KeyEvent& e );
 	virtual bool mouseMoved( const OIS::MouseEvent& e );
 	virtual bool buttonPressed( const OIS::JoyStickEvent &e, int button );
-    virtual bool buttonReleased( const OIS::JoyStickEvent &e, int button );
 
 private:
 

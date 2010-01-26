@@ -182,6 +182,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ControlInputManager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\FullInputManager.cpp"
 				>
 			</File>
@@ -221,6 +225,10 @@
 			</File>
 			<File
 				RelativePath=".\cLog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ControlInputManager.h"
 				>
 			</File>
 			<File
