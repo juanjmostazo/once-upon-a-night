@@ -178,6 +178,10 @@
 				Name="Input"
 				>
 				<File
+					RelativePath=".\Src\Input\ControlInputManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Input\FullInputManager.cpp"
 					>
 				</File>
@@ -235,6 +239,10 @@
 			<Filter
 				Name="Input"
 				>
+				<File
+					RelativePath=".\Src\Input\ControlInputManager.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Input\FullInputManager.h"
 					>
