@@ -1,5 +1,6 @@
 #include "FullInputManager.h"
 #include <OgreRenderWindow.h>
+#include <math.h>
 
 FullInputManager::FullInputManager()
 : m_inputManager( NULL )
@@ -170,7 +171,38 @@ OIS::JoyStick* FullInputManager::getJoystick( unsigned int index ) {
     return 0;
 }
 
+void FullInputManager::getMouseStateRelValues(float* x, float* y, float* z)
+{
+	*x = getMouse()->getMouseState().X.rel;
+	*y = getMouse()->getMouseState().Y.rel;
+	*z = getMouse()->getMouseState().Z.rel;
+}
+
 int FullInputManager::getNumOfJoysticks( void ) {
     // Cast to keep compiler happy ^^
     return (int) m_joysticks.size();
 }
+
+void FullInputManager::getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY){
+	int maxAxis = getJoystick(index)->MAX_AXIS;
+	int errorBorder = maxAxis / 4; //25%
+	OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
+	
+	*leftX = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
+	*leftY = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
+	*rightX = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
+	*rightY = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
+}
+
+float FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int border){
+	float value = 0.0f;
+	float scaleValue = ((float)maxAxis - (float)border) / (float)maxAxis;
+	int absAxeState = abs(axeState);
+
+	if (absAxeState >= border){
+		value = (absAxeState - border) * scaleValue * (axeState < 0 ? 1.0f : -1.0f);
+	} 
+
+	return value;
+}
+

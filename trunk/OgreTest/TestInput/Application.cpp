@@ -29,7 +29,7 @@ Application::~Application()
 {
 	delete m_cameraController;
 
-	FullInputManager::finalise();
+	ControlInputManager::finalise();
 	delete m_root;
 }
 
@@ -60,7 +60,7 @@ void Application::initialise()
 
 	m_viewport->setBackgroundColour( Ogre::ColourValue( 0.5, 0.5, 1 ) );
 
-	FullInputManager::initialise( m_window );
+	ControlInputManager::initialise( m_window );
 
 	loadResources();
 
@@ -113,7 +113,7 @@ void Application::go()
 	{
 		Ogre::WindowEventUtilities::messagePump();
 		
-		FullInputManager::capture();
+		ControlInputManager::capture();
 
 		// Update logic stuff
 		float elapsedSeconds = loopTimer.getMicroseconds() * 1.0 / 1000000;
@@ -214,13 +214,12 @@ bool Application::buttonPressed( const OIS::JoyStickEvent& e, int button )
 	sprintf(msg, "Button: %i, Device ID: %i", button, e.device->getID());
 	cLog * log = cLog::Instance();
 	log->MsgLine(msg);
-	
-	return true;
-}
 
-bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
-{
-	assert( m_cameraController != NULL );
+	float leftX, leftY, rightX, rightY;
+	getJoystickStateAxes(&leftX, &leftY, &rightX, &rightY);
+
+	sprintf(msg, "aLeftX: %f, aLeftY: %f, aRightX: %f, aRightY: %f", leftX, leftY, rightX, rightY);
+	log->MsgLine(msg);	
 
 	return true;
 }

@@ -36,11 +36,16 @@ public:
     virtual OIS::Keyboard* getKeyboard( void );
     virtual OIS::JoyStick* getJoystick( unsigned int index );
 
-    virtual int getNumOfJoysticks( void );
+	virtual void getMouseStateRelValues(float* x, float* y, float* z);
 
-protected:
+    virtual int getNumOfJoysticks( void );
+	virtual void getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY);
+	
+
 	void initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
 	void finalise();
+
+protected:
 	
 	OIS::InputManager* m_inputManager;
 	OIS::Keyboard* m_keyboard;
@@ -49,6 +54,8 @@ protected:
 	std::vector<OIS::JoyStick*> m_joysticks;
     std::vector<OIS::JoyStick*>::iterator it_joystick;
     std::vector<OIS::JoyStick*>::iterator it_joystickEnd;
+
+	float getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
 };
 
 #endif
