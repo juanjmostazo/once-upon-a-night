@@ -5,10 +5,6 @@
 	Name="ConfigLoaderTest"
 	ProjectGUID="{C53E8437-7CD8-4E04-A01D-348EC9E2FEC7}"
 	RootNamespace="ConfigLoaderTest"
-	SccProjectName="Svn"
-	SccAuxPath="Svn"
-	SccLocalPath="Svn"
-	SccProvider="SubversionScc"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -223,6 +219,4 @@
 			>
 		</Filter>
 	</Files>
-	<Globals>
-	</Globals>
 </VisualStudioProject>
