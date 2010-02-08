@@ -52,7 +52,7 @@ material LightShafts
 			    param_named uAttenuation float 0.02
 			    param_named uLightPosition float3 0 0 0
 			    // Light camera/frustum (near+far) clip distance
-			    param_named uLightFarClipDistance float 48
+			    param_named uLightFarClipDistance float 88
 			    param_named_auto Time time
 			}
 
@@ -67,7 +67,7 @@ material LightShafts
 			texture_unit
 			{
 			    tex_address_mode clamp
-			    texture Cookie0.png
+			    texture Cookie1.png
 			}
 
             // Noise texture
@@ -122,7 +122,7 @@ material LightShaftsDepth
 			{
 			    param_named uLightPosition float3 0 50 0
 			    // Light camera/frustum (near+far) clip distance
-			    param_named uLightFarClipDistance float 48
+			    param_named uLightFarClipDistance float 58
 			}
 		}
 	}
