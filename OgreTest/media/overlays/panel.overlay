@@ -1,0 +1,40 @@
+ InfoPanel
+ { 
+       	 container Panel(InfoPanelCenter) 
+         { 
+                
+                 left 0
+                 top 0
+                 width 0.2 
+                 height 0.15
+              
+                 element TextArea(InfoPanelTitle) 
+                 { 
+                         metrics_mode pixels 
+                         left 8 
+                         top 1
+                         font_name BlueHighway
+                         char_height 25 
+                         caption NXOGRE BASIC DEMO
+                 } 
+
+		 element TextArea(InfoPanelFps) 
+                 { 
+                         metrics_mode pixels 
+                         left 5 
+                         top 30 
+                         font_name BlueHighway
+                         char_height 15
+                 } 
+		
+		 element TextArea(InfoPanelNTriangles) 
+                 { 
+                         metrics_mode pixels 
+                         left 5 
+                         top 55 
+                         font_name BlueHighway
+                         char_height 15
+                 } 
+
+	} 
+  } 
