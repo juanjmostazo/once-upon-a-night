@@ -40,7 +40,8 @@ Application::~Application()
 
 bool Application::initialise()
 {
-	m_root = new Ogre::Root("ogre_plugins.txt", "ogre_config.txt", "ogre_log.txt");
+	//m_root = new Ogre::Root("ogre_plugins.txt");
+	m_root = new Ogre::Root();
 	
 	bool configDialogUserContinue = m_root->showConfigDialog();
 	if ( ! configDialogUserContinue )
@@ -52,16 +53,7 @@ bool Application::initialise()
 
 	m_sceneMgr = m_root->createSceneManager(Ogre::ST_GENERIC);
 	
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/fonts","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/overlay","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/nxogre","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/models","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/materials","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/materials/programs","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/materials/scripts","FileSystem");
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media/materials/textures","FileSystem");
-	
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	loadResources();
 	
 	m_camera = m_sceneMgr->createCamera("Camera");
 
@@ -89,8 +81,8 @@ bool Application::initialise()
 
 	m_NXOgreTimeController = NxOgre::TimeController::getSingleton();
 
-	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", "file:media/nxs");
-
+	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
+	
 	m_NXOgreVisualDebugger = m_NXOgreWorld->getVisualDebugger();
 	m_NXOgreVisualDebuggerRenderable = new OGRE3DRenderable(NxOgre::Enums::RenderableType_VisualDebugger);
 	m_NXOgreVisualDebugger->setRenderable(m_NXOgreVisualDebuggerRenderable);
@@ -101,6 +93,35 @@ bool Application::initialise()
 	m_NXOgreControllerManager = new NxOgre::ControllerManager();
 
 	return true;
+}
+
+void Application::loadResources()
+{
+	// You can specify as many locations as you want, or have several resource groups that you
+	// load/unload when you need.
+	// You may also wish to read the resource locations from a configuration file instead of
+	// having them hard-coded.
+	Ogre::ResourceGroupManager& resourceManager = Ogre::ResourceGroupManager::getSingleton();
+
+	Ogre::String secName, typeName, archName;
+	Ogre::ConfigFile cf;
+	cf.load("resources.cfg");
+
+	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+	while (seci.hasMoreElements())
+	{
+		secName = seci.peekNextKey();
+		Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+		Ogre::ConfigFile::SettingsMultiMap::iterator i;
+		for (i = settings->begin(); i != settings->end(); ++i)
+		{
+			typeName = i->first;
+			archName = i->second;
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+		}
+	}
+
+	resourceManager.initialiseAllResourceGroups();
 }
 
 bool Application::setup()
