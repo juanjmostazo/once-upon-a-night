@@ -1,0 +1,793 @@
+material bgui.white
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+		}
+	}
+}
+
+material betagui.transparent
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+			}
+		}
+	}
+}
+
+material betagui.transparent.border
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+			}
+		}
+	}
+}
+
+material bgui.texture
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.pointer.png
+			}
+		}
+	}
+}
+
+material bgui.textureAdd
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend add
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.pointer.png
+			}
+		}
+	}
+}
+
+material bgui.base
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				filtering point point none
+				texture bgui.button-full.png
+			}
+		}
+	}
+}
+
+material bgui.pointer
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 6.4 6.4
+				scroll -0.109375 -0.421875
+			}
+		}
+	}
+}
+
+material bgui.crosshair
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 6.4 6.4
+				scroll 0 -0.421875
+			}
+		}
+	}
+}
+
+material bgui.button
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 -0.421875
+			}
+		}
+	}
+}
+	
+ 
+material bgui.buttonL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 -0.421875
+			}
+		}
+	}
+}
+
+material bgui.buttonR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 -0.421875
+				# -54
+			}
+		}
+	}
+}
+
+material bgui.button-activeL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.button-active
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.button-activeR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 -0.265625
+				# -34
+			}
+		}
+	}
+}
+
+
+material bgui.textinput
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 -0.109375
+			}
+		}
+	}
+}
+	
+ 
+material bgui.textinputL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 -0.109375
+			}
+		}
+	}
+}
+
+material bgui.textinputR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 -0.109375
+			}
+		}
+	}
+}
+
+
+material bgui.textinput-active
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 0.046875
+			}
+		}
+	}
+}
+	
+ 
+material bgui.textinput-activeL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 0.046875
+			}
+		}
+	}
+}
+
+material bgui.textinput-activeR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 0.046875
+			}
+		}
+	}
+}
+
+material bgui.window
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+				scroll -0.484375 0.140625
+			}
+		}
+	}
+}
+
+material bgui.window-active
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+				scroll -0.484375 0.140625
+			}
+		}
+	}
+}
+
+material bgui.window.border
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend add
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+				scroll -0.3125 -0.375
+			}
+		}
+	}
+}
+
+
+material bgui.titlebar
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 128
+				scroll -0.484375 0.140625
+			}
+		}
+	}
+}
+
+material bgui.okay-button
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll 0.203125 -0.421875
+			}
+		}
+	}
+}
+	
+ 
+material bgui.okay-buttonL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll 0.1640625 -0.421875
+			}
+		}
+	}
+}
+
+material bgui.okay-buttonR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll 0.3984375 -0.421875
+			}
+		}
+	}
+}
+
+material bgui.okay-button-activeL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.okay-button-active
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.okay-button-activeR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 -0.265625
+				# -34
+			}
+		}
+	}
+}
+
+material bgui.cancel-button
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit tex
+			{
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll 0.203125 -0.265625
+			}
+		}
+	}
+}
+	
+ 
+material bgui.cancel-buttonL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll 0.1640625 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.cancel-buttonR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll 0.3984375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.cancel-button-activeL
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.4609375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.cancel-button-active
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 128 6.4
+				scroll -0.34375 -0.265625
+			}
+		}
+	}
+}
+
+material bgui.cancel-button-activeR
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			ambient 1 1 1
+			diffuse 1 1 1
+			specular 1 1 1 30
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture_alias tex
+				texture bgui.button-full.png
+				scale 12.8 6.4
+				scroll -0.2265625 -0.265625
+				# -34
+			}
+		}
+	}
+}
+
+material bgui.slidertrack : bgui.texture
+{
+	set_texture_alias tex bgui.slidertrack.png
+}
+ 
+material bgui.slidertrackL : bgui.texture
+{
+	set_texture_alias tex bgui.slidertrackL.png
+}
+
+material bgui.slidertrackR : bgui.texture
+{
+	set_texture_alias tex bgui.slidertrackR.png
+}
