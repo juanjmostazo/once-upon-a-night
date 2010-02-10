@@ -8,6 +8,8 @@
 #include "SimpleInputManager.h"
 #include "OrbitCameraController.h"
 
+#define NXS_PATH "file:../media/nxs"
+
 enum GameGroup
 {
    GROUP_NON_COLLIDABLE,
@@ -32,6 +34,7 @@ class Application : SimpleInputManager, NxOgre::ControllerCallback
 		bool createConvexes();
 
 		void update();
+		void loadResources();
 
 		void updateLogic(const float elapsedSeconds);
 		void updateAnimations(const float elapsedSeconds);
