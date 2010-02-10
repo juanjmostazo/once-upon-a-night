@@ -5,7 +5,7 @@
 using namespace std;
 using namespace Ogre;
 
-void OgSceneLoader::parseDotScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, SceneNode *pAttachNode, const String &sPrependNode)
+void OgSceneLoader::parseOgScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, SceneNode *pAttachNode, const String &sPrependNode)
 {
 	// set up shared object values
 	m_sGroupName = groupName;
@@ -25,9 +25,6 @@ void OgSceneLoader::parseDotScene(const String &SceneName, const String &groupNa
 
 		DataStreamPtr pStream = ResourceGroupManager::getSingleton().
 			openResource( basename, groupName );
-
-		//DataStreamPtr pStream = ResourceGroupManager::getSingleton().
-		//	openResource( SceneName, groupName );
 
 		String data = pStream->getAsString();
 		// Open the .scene File
@@ -54,8 +51,8 @@ void OgSceneLoader::parseDotScene(const String &SceneName, const String &groupNa
 
 	// Validate the File
 	XMLRoot = XMLDoc->RootElement();
-	if( String( XMLRoot->Value()) != "scene"  ) {
-		LogManager::getSingleton().logMessage( "[OgSceneLoader] Error: Invalid .scene File. Missing <scene>" );
+	if( String( XMLRoot->Value()) != "OGITORSCENE"  ) {
+		LogManager::getSingleton().logMessage( "[OgSceneLoader] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
 		delete XMLDoc;      
 		return;
 	}
