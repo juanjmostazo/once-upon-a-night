@@ -130,55 +130,24 @@ void OgSceneLoader::processObject(TiXmlElement *XMLNode)
 	}
 	else if( type.compare("Node Object")==0)
 	{
+		processSceneNode(XMLNode);
 	}
 	else if( type.compare("Light Object")==0)
 	{
+		processLight(XMLNode);
 	}
 	else if( type.compare("Entity Object")==0)
 	{
 		processEntity(XMLNode);
 	}
+	else if( type.compare("Particle Object")==0)
+	{
+		processParticleSystem(XMLNode);
+	}
 	else
 	{
 		LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
 	}
-}
-
-void OgSceneLoader::processNodes(TiXmlElement *XMLNode)
-{
-	TiXmlElement *pElement;
-
-	// Process node (*)
-	pElement = XMLNode->FirstChildElement("node");
-	while(pElement)
-	{
-		processNode(pElement);
-		pElement = pElement->NextSiblingElement("node");
-	}
-
-	//// Process position (?)
-	//pElement = XMLNode->FirstChildElement("position");
-	//if(pElement)
-	//{
-	//	mAttachNode->setPosition(parseVector3(pElement));
-	//	mAttachNode->setInitialState();
-	//}
-
-	//// Process rotation (?)
-	//pElement = XMLNode->FirstChildElement("rotation");
-	//if(pElement)
-	//{
-	//	mAttachNode->setOrientation(parseQuaternion(pElement));
-	//	mAttachNode->setInitialState();
-	//}
-
-	//// Process scale (?)
-	//pElement = XMLNode->FirstChildElement("scale");
-	//if(pElement)
-	//{
-	//	mAttachNode->setScale(parseVector3(pElement));
-	//	mAttachNode->setInitialState();
-	//}
 }
 
 void OgSceneLoader::processResourceLocations(TiXmlElement *XMLNode)
@@ -252,71 +221,114 @@ void OgSceneLoader::processOctree(TiXmlElement *XMLNode)
 	//! @todo Implement this
 }
 
-void OgSceneLoader::processLight(TiXmlElement *XMLNode, SceneNode *pParent)
+void OgSceneLoader::processLight(TiXmlElement *XMLNode)
 {
-	// Process attributes
-	String name = getAttrib(XMLNode, "name");
-	String id = getAttrib(XMLNode, "id");
-
-	// Create the light
-	Light *pLight = mSceneMgr->createLight(name);
-	if(pParent)
-		pParent->attachObject(pLight);
-
-	String sValue = getAttrib(XMLNode, "type");
-	if(sValue == "point")
-		pLight->setType(Light::LT_POINT);
-	else if(sValue == "directional")
-		pLight->setType(Light::LT_DIRECTIONAL);
-	else if(sValue == "spot")
-		pLight->setType(Light::LT_SPOTLIGHT);
-	else if(sValue == "radPoint")
-		pLight->setType(Light::LT_POINT);
-
-	//pLight->setVisible(getAttribBool(XMLNode, "visible", true));
-	pLight->setCastShadows(getAttribBool(XMLNode, "castShadows", true));
 
 	TiXmlElement *pElement;
+	SceneNode *lightNode = 0;
+	Entity *pEntity = 0;
 
-	// Process position (?)
-	pElement = XMLNode->FirstChildElement("position");
-	if(pElement)
-		pLight->setPosition(parseVector3(pElement));
-
-	// Process normal (?)
-	pElement = XMLNode->FirstChildElement("normal");
-	if(pElement)
-		pLight->setDirection(parseVector3(pElement));
-
-	// Process colourDiffuse (?)
-	pElement = XMLNode->FirstChildElement("colourDiffuse");
-	if(pElement)
-		pLight->setDiffuseColour(parseColour(pElement));
-
-	// Process colourSpecular (?)
-	pElement = XMLNode->FirstChildElement("colourSpecular");
-	if(pElement)
-		pLight->setSpecularColour(parseColour(pElement));
-
-	// Process lightRange (?)
-	pElement = XMLNode->FirstChildElement("lightRange");
-	if(pElement)
+	enum LightTypes
 	{
-		if(pLight->getType()==Light::LT_SPOTLIGHT)
+		OGITOR_LT_POINT,
+		OGITOR_LT_DIRECTIONAL,
+		OGITOR_LT_SPOTLIGHT
+	};
+
+	int lighttype;
+	ColourValue diffuse;
+	ColourValue specular;
+	Vector3 direction;
+	bool castshadows;
+	Vector3 lightrange;
+	Vector4 attenuation;
+	Real power;
+
+	//Get Light name
+	String name = getAttrib(XMLNode, "name");
+
+	//Parse and create Scene node
+	processSceneNode(XMLNode);
+
+	// Process PROPERTY (?)
+	pElement = XMLNode->FirstChildElement("PROPERTY");
+	while(pElement)
+	{
+		// Get PropertyName
+		String propertyName = getAttrib(pElement, "id");
+
+		if( propertyName.compare("lighttype")==0)
 		{
-			processLightRange(pElement, pLight);
+			lighttype=parseInt(getAttrib(pElement, "value"));
 		}
+		else if( propertyName.compare("diffuse")==0)
+		{
+			diffuse=parseColour(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("specular")==0)
+		{
+			specular=parseColour(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("direction")==0)
+		{
+			direction=parseVector3(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("castshadows")==0)
+		{
+			castshadows=parseBool(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("lightrange")==0)
+		{
+			lightrange=parseVector3(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("attenuation")==0)
+		{
+			attenuation=parseVector4(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("power")==0)
+		{
+			power=parseFloat(getAttrib(pElement, "value"));
+		}
+		pElement = pElement->NextSiblingElement("PROPERTY");
 	}
 
-	// Process lightAttenuation (?)
-	pElement = XMLNode->FirstChildElement("lightAttenuation");
-	if(pElement)
-		processLightAttenuation(pElement, pLight);
+	// Set light parameters and create it
+	try
+	{
+		// Create the light
+		Light *pLight = mSceneMgr->createLight(name);
 
-	// Process userDataReference (?)
-	//pElement = XMLNode->FirstChildElement("userDataReference");
-	//if(pElement)
-		;//processUserDataReference(pElement, pLight);
+		lightNode=mSceneMgr->getSceneNode(name);
+		lightNode->attachObject(pLight);
+
+		switch(lighttype)
+		{
+			case OGITOR_LT_POINT:
+				pLight->setType(Light::LT_POINT);
+				break;
+			case OGITOR_LT_DIRECTIONAL:
+				pLight->setType(Light::LT_DIRECTIONAL);
+				break;
+			case OGITOR_LT_SPOTLIGHT:
+				pLight->setType(Light::LT_SPOTLIGHT);
+				pLight->setSpotlightRange(Angle(lightrange.x), Angle(lightrange.y), lightrange.z);
+				break;
+			default:
+				LogManager::getSingleton().logMessage("Light "+name+" has unrecognised light type!");
+				break;
+		}
+
+		pLight->setDiffuseColour(diffuse);
+		pLight->setSpecularColour(specular);
+		pLight->setDirection(direction);
+		pLight->setCastShadows(castshadows);
+		pLight->setAttenuation(attenuation.x, attenuation.y, attenuation.z, attenuation.w);
+		pLight->setPowerScale(power);
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" light!");
+	}
 }
 
 void OgSceneLoader::processCamera(TiXmlElement *XMLNode, SceneNode *pParent)
@@ -391,130 +403,73 @@ void OgSceneLoader::processCamera(TiXmlElement *XMLNode, SceneNode *pParent)
 		;//!< @todo Implement the camera user data reference
 }
 
-void OgSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
+void OgSceneLoader::processSceneNode(TiXmlElement *XMLNode)
 {
-	// Construct the node's name
-	String name = m_sPrependNode + getAttrib(XMLNode, "name");
-
-	// Create the scene node
-	SceneNode *pNode;
-	if(name.empty())
-	{
-		// Let Ogre choose the name
-		if(pParent)
-			pNode = pParent->createChildSceneNode();
-		else
-			pNode = mAttachNode->createChildSceneNode();
-	}
-	else
-	{
-		// Provide the name
-		if(pParent)
-			pNode = pParent->createChildSceneNode(name);
-		else
-			pNode = mAttachNode->createChildSceneNode(name);
-	}
-
-	// Process other attributes
-	String id = getAttrib(XMLNode, "id");
-	bool isTarget = getAttribBool(XMLNode, "isTarget");
 
 	TiXmlElement *pElement;
+	String propertyName;
 
-	// Process position (?)
-	pElement = XMLNode->FirstChildElement("position");
-	if(pElement)
-	{
-		pNode->setPosition(parseVector3(pElement));
-		pNode->setInitialState();
-	}
+	SceneNode *pParent;
+	SceneNode *sceneNode = 0;
 
-	// Process rotation (?)
-	pElement = XMLNode->FirstChildElement("rotation");
-	if(pElement)
-	{
-		pNode->setOrientation(parseQuaternion(pElement));
-		pNode->setInitialState();
-	}
+	Vector3 position;
+	Quaternion orientation;
+	Vector3 scale;
+	String autotracktarget="None";
 
-	// Process scale (?)
-	pElement = XMLNode->FirstChildElement("scale");
-	if(pElement)
-	{
-		pNode->setScale(parseVector3(pElement));
-		pNode->setInitialState();
-	}
+	// Get Parent node
+	pParent = getParentSceneNode(XMLNode);
+	
+	//Get SceneNode name
+	String name = getAttrib(XMLNode, "name");
 
-	//// Process lookTarget (?)
-	//pElement = XMLNode->FirstChildElement("lookTarget");
-	//if(pElement)
-	//	processLookTarget(pElement, pNode);
-
-	//// Process trackTarget (?)
-	//pElement = XMLNode->FirstChildElement("trackTarget");
-	//if(pElement)
-	//	processTrackTarget(pElement, pNode);
-
-	// Process node (*)
-	pElement = XMLNode->FirstChildElement("node");
+	// Process PROPERTY (?)
+	pElement = XMLNode->FirstChildElement("PROPERTY");
 	while(pElement)
 	{
-		processNode(pElement, pNode);
-		pElement = pElement->NextSiblingElement("node");
-	}
+		// Get PropertyName
+		String propertyName = getAttrib(pElement, "id");
 
-	// Process entity (*)
-	pElement = XMLNode->FirstChildElement("entity");
-	while(pElement)
+		if( propertyName.compare("position")==0)
+		{
+			position= parseVector3(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("orientation")==0)
+		{
+			orientation= parseQuaternion(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("scale")==0)
+		{
+			scale= parseVector3(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("autotracktarget")==0)
+		{
+			autotracktarget= getAttrib(pElement, "value");
+		}
+		pElement = pElement->NextSiblingElement("PROPERTY");
+	}
+	
+	// Set node parameters and create it
+	try
 	{
-		processEntity(pElement);
-		pElement = pElement->NextSiblingElement("entity");
+		sceneNode = pParent->createChildSceneNode(name);
+		sceneNode->setPosition(position);
+		sceneNode->setOrientation(orientation);
+		sceneNode->setScale(scale);
+		if(autotracktarget.compare("None")!=0)
+		{
+			//TODO test this
+			SceneNode *trackTarget;
+			trackTarget=mSceneMgr->getSceneNode(autotracktarget);
+			sceneNode->setAutoTracking(true,trackTarget);
+		}
+		
 	}
-
-	// Process light (*)
-	pElement = XMLNode->FirstChildElement("light");
-	while(pElement)
+	catch(Ogre::Exception &/*e*/)
 	{
-		processLight(pElement, pNode);
-		pElement = pElement->NextSiblingElement("light");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" node!");
 	}
 
-	// Process camera (*)
-	pElement = XMLNode->FirstChildElement("camera");
-	while(pElement)
-	{
-		processCamera(pElement, pNode);
-		pElement = pElement->NextSiblingElement("camera");
-	}
-
-	// Process particleSystem (*)
-	pElement = XMLNode->FirstChildElement("particleSystem");
-	while(pElement)
-	{
-		processParticleSystem(pElement, pNode);
-		pElement = pElement->NextSiblingElement("particleSystem");
-	}
-
-	// Process billboardSet (*)
-	pElement = XMLNode->FirstChildElement("billboardSet");
-	while(pElement)
-	{
-		processBillboardSet(pElement, pNode);
-		pElement = pElement->NextSiblingElement("billboardSet");
-	}
-
-	// Process plane (*)
-	pElement = XMLNode->FirstChildElement("plane");
-	while(pElement)
-	{
-		processPlane(pElement, pNode);
-		pElement = pElement->NextSiblingElement("plane");
-	}
-
-	// Process userDataReference (?)
-	pElement = XMLNode->FirstChildElement("userDataReference");
-	if(pElement)
-		processUserDataReference(pElement, pNode);
 }
 
 void OgSceneLoader::processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent)
@@ -618,14 +573,10 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 	TiXmlElement *pElement;
 	String propertyName;
 
-	SceneNode *pParent;
 	SceneNode *entityNode = 0;
 	Entity *pEntity = 0;
 
 	String meshfile;
-	Vector3 position;
-	Quaternion orientation;
-	Vector3 scale;
 	bool castshadows;
 	String autotracktarget;
 
@@ -636,8 +587,8 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 	};
 	std::vector<SubEntityInfo> subEntityInfo;
 
-	// Get Parent node
-	pParent=getParentSceneNode(XMLNode);
+	//Parse and create Scene node
+	processSceneNode(XMLNode);
 	
 	//Get Entity name
 	String name = getAttrib(XMLNode, "name");
@@ -665,25 +616,9 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 				subEntityInfo.push_back(blank);
 			}
 		}
-		else if( propertyName.compare("position")==0)
-		{
-			position= parseVector3(getAttrib(pElement, "value"));
-		}
-		else if( propertyName.compare("orientation")==0)
-		{
-			orientation= parseQuaternion(getAttrib(pElement, "value"));
-		}
-		else if( propertyName.compare("scale")==0)
-		{
-			scale= parseVector3(getAttrib(pElement, "value"));
-		}
 		else if( propertyName.compare("castshadows")==0)
 		{
 			castshadows= parseBool(getAttrib(pElement, "value"));
-		}
-		else if( propertyName.compare("autotracktarget")==0)
-		{
-			autotracktarget= getAttrib(pElement, "value");
 		}
 		else if( propertyName.substr(0,9).compare("subentity")==0)
 		{
@@ -714,18 +649,7 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 			
 		}
 
-		entityNode=pParent->createChildSceneNode(name);
-		entityNode->setPosition(position);
-		entityNode->setOrientation(orientation);
-		entityNode->setScale(scale);
-		if(autotracktarget.compare("None")!=0)
-		{
-			//TODO test this
-			SceneNode *trackTarget;
-			trackTarget=mSceneMgr->getSceneNode(autotracktarget);
-			entityNode->setAutoTracking(true,trackTarget);
-		}
-		
+		entityNode=mSceneMgr->getSceneNode(name);
 		entityNode->attachObject(pEntity);
 
 	}
@@ -739,24 +663,55 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 	subEntityInfo.clear();
 }
 
-void OgSceneLoader::processParticleSystem(TiXmlElement *XMLNode, SceneNode *pParent)
+void OgSceneLoader::processParticleSystem(TiXmlElement *XMLNode)
 {
-	// Process attributes
+
+	TiXmlElement *pElement;
+	String propertyName;
+
+	SceneNode *particleSystemNode = 0;
+	ParticleSystem *particleSystem = 0;
+
+	bool castshadows;
+	String particle;
+
+	//Parse and create Scene node
+	processSceneNode(XMLNode);
+	
+	//Get Entity name
 	String name = getAttrib(XMLNode, "name");
-	String id = getAttrib(XMLNode, "id");
-	String file = getAttrib(XMLNode, "file");
 
-	//file="Examples/PurpleFountain";//Ogitor does not get the name right. this is an example
+	// Process PROPERTY (?)
+	pElement = XMLNode->FirstChildElement("PROPERTY");
+	while(pElement)
+	{
+		// Get PropertyName
+		String propertyName = getAttrib(pElement, "id");
 
-	// Create the particle system
+		if( propertyName.compare("particle")==0)
+		{
+			particle=getAttrib(pElement, "value");
+		}
+		else if( propertyName.compare("castshadows")==0)
+		{
+			castshadows=parseBool(getAttrib(pElement, "value"));
+		}
+		pElement = pElement->NextSiblingElement("PROPERTY");
+	}
+	
+	// Set particle system parameters
 	try
 	{
-		ParticleSystem *pParticles = mSceneMgr->createParticleSystem(name, file);
-		pParent->attachObject(pParticles);
+		particleSystem = mSceneMgr->createParticleSystem(name, particle);
+		particleSystemNode=mSceneMgr->getSceneNode(name);
+		particleSystemNode->attachObject(particleSystem);
+
+		particleSystem->setCastShadows(castshadows);
+
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating a particle system!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" particle system!");
 	}
 }
 
@@ -869,30 +824,6 @@ void OgSceneLoader::processClipping(TiXmlElement *XMLNode)
 	Real fFar = getAttribReal(XMLNode, "far", 1);
 }
 
-void OgSceneLoader::processLightRange(TiXmlElement *XMLNode, Light *pLight)
-{
-	// Process attributes
-	Real inner = getAttribReal(XMLNode, "inner");
-	Real outer = getAttribReal(XMLNode, "outer");
-	Real falloff = getAttribReal(XMLNode, "falloff", 1.0);
-
-	// Setup the light range
-	pLight->setSpotlightRange(Angle(inner), Angle(outer), falloff);
-}
-
-void OgSceneLoader::processLightAttenuation(TiXmlElement *XMLNode, Light *pLight)
-{
-	// Process attributes
-	Real range = getAttribReal(XMLNode, "range");
-	Real constant = getAttribReal(XMLNode, "constant");
-	Real linear = getAttribReal(XMLNode, "linear");
-	Real quadratic = getAttribReal(XMLNode, "quadratic");
-
-	// Setup the light attenuation
-	pLight->setAttenuation(range, constant, linear, quadratic);
-}
-
-
 String OgSceneLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
@@ -926,6 +857,11 @@ Vector3 OgSceneLoader::parseVector3(String value)
 	return StringConverter::parseVector3(value);
 }
 
+Vector4 OgSceneLoader::parseVector4(String value)
+{
+	return StringConverter::parseVector4(value);
+}
+
 Quaternion OgSceneLoader::parseQuaternion(String value)
 {
 
@@ -943,9 +879,15 @@ bool OgSceneLoader::parseBool(String value)
 {
 	return StringConverter::parseBool(value);
 }
+
 int OgSceneLoader::parseInt(String value)
 {
 	return StringConverter::parseInt(value);
+}
+
+float OgSceneLoader::parseFloat(String value)
+{
+	return StringConverter::parseReal(value);
 }
 
 Vector3 OgSceneLoader::parseVector3(TiXmlElement *XMLNode)

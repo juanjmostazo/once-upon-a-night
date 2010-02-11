@@ -16,9 +16,9 @@
       <DIRECTORY type="FileSystem" value="../Model"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Particles"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="1"></CAMERASPEED>
+  <CAMERASPEED value="3"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="16.8608 19.5791 12.6863" orientation="0.938361 -0.239409 0.241582 0.0616435"></OPTION>
+    <OPTION id="0" position="-15.3803 12.7632 3.34427" orientation="0.864024 -0.211426 -0.443811 -0.108598"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -92,9 +92,9 @@
   <OBJECT object_id="92623672" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.938383 -0.239415 0.241588 0.0616449"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.864024 -0.211426 -0.443811 -0.108598"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="16.8608 19.5791 12.6863"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-15.3803 12.7632 3.34427"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -109,31 +109,131 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="195989856" name="Light#0" typename="Light Object" parentnode="SceneManager">
+  <OBJECT object_id="259743040" name="Node#4" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-9.59585 2.49907 -3.53132"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="61891536" name="Node#3" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="2.51715 0.526114 -6.4027"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="22827848" name="Node#2" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="5.31905 8.61205 -31.2874"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="439863264" name="Node#0" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-7.79814 2.30196 -8.08459"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="659932224" name="ZNode#0" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-11.409 -7.93238 -18.6093"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="64851836" name="Node#1" typename="Node Object" parentnode="ZNode#0">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="7568591" name="Light#1" typename="Light Object" parentnode="SceneManager">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="diffuse" type="11" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="0 0 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="-0.129176 0.114695 0.984966"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
-    <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="lighttype" type="2" value="2"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="4.34064 3.13093 -13.6185"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.987432 -0.0484563 -0.0718945 -0.132138"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-4.3671 8.47801 -19.1687"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="837611008" name="ogrehead#0" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="903775168" name="Light#0" typename="Light Object" parentnode="Node#3">
+    <PROPERTY id="attenuation" type="10" value="15 1 0.5 0"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="1 1 0 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
+    <PROPERTY id="lighttype" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-7.83094 0.378392 -8.90987"></PROPERTY>
+    <PROPERTY id="power" type="6" value="1"></PROPERTY>
+    <PROPERTY id="specular" type="11" value="1 1 0 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="418469792" name="Light#2" typename="Light Object" parentnode="SceneManager">
+    <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="-0.842219 0.341782 -0.416957"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
+    <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.510086 -0.0433148 -0.840596 -0.177013"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-1.24221 1.7634 -31.7387"></PROPERTY>
+    <PROPERTY id="power" type="6" value="1"></PROPERTY>
+    <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="837611008" name="ogrehead#0" typename="Entity Object" parentnode="Node#0">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ogrehead.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="1.74151 6.80772 -32.0955"></PROPERTY>
+    <PROPERTY id="position" type="9" value="2 8 2"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.1 0.1 0.1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Ogre/Eyes"></PROPERTY>
@@ -149,7 +249,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="735007744" name="dsadas" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="735007744" name="dsadas" typename="Entity Object" parentnode="Node#1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -179,7 +279,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ogrehead.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-0.0564041 3.8147e-006 -0.0762177"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.1 0.1 0.1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Ogre/Eyes"></PROPERTY>
@@ -191,6 +291,32 @@
     <PROPERTY id="subentity3::material" type="7" value="Ogre/Tusks"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="511673344" name="Particle#1" typename="Particle Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="Examples/PurpleFountain"></PROPERTY>
+    <PROPERTY id="position" type="9" value="4.28724 -3.23641 -15.3624"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="63539536" name="Particle#0" typename="Particle Object" parentnode="Node#4">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="Examples/Swarm"></PROPERTY>
+    <PROPERTY id="position" type="9" value="2.97597 -2.04935 -3.12378"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
