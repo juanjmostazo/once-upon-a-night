@@ -47,7 +47,6 @@ namespace Ogre
 		void processProject(TiXmlElement *XMLNode);
 		void processObject(TiXmlElement *XMLNode);
 
-		void processNodes(TiXmlElement *XMLNode);
 		void processExternals(TiXmlElement *XMLNode);
 		void processEnvironment(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
@@ -55,14 +54,14 @@ namespace Ogre
 		void processUserDataReference(TiXmlElement *XMLNode, SceneNode *pParent = 0);
 		void processUserDataReference(TiXmlElement *XMLNode, Entity *pEntity);
 		void processOctree(TiXmlElement *XMLNode);
-		void processLight(TiXmlElement *XMLNode, SceneNode *pParent = 0);
+		void processLight(TiXmlElement *XMLNode);
 		void processCamera(TiXmlElement *XMLNode, SceneNode *pParent = 0);
 
-		void processNode(TiXmlElement *XMLNode, SceneNode *pParent = 0);
+		void processSceneNode(TiXmlElement *XMLNode);
 		void processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processEntity(TiXmlElement *XMLNode);
-		void processParticleSystem(TiXmlElement *XMLNode, SceneNode *pParent);
+		void processParticleSystem(TiXmlElement *XMLNode);
 		void processBillboardSet(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processPlane(TiXmlElement *XMLNode, SceneNode *pParent);
 
@@ -80,10 +79,12 @@ namespace Ogre
 		bool getAttribBool(TiXmlElement *XMLNode, const String &parameter, bool defaultValue = false);
 
 		Vector3 parseVector3(String value);
+		Vector4 parseVector4(String value);
 		Quaternion parseQuaternion(String value);
 		ColourValue parseColour(String value);
 		bool parseBool(String value);
 		int parseInt(String value);
+		float parseFloat(String value);
 		
 		Vector3 parseVector3(TiXmlElement *XMLNode);
 		Quaternion parseQuaternion(TiXmlElement *XMLNode);
