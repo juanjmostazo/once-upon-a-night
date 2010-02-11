@@ -72,9 +72,9 @@ void OgSceneLoader::parseOgScene(const String &SceneName, const String &groupNam
 void OgSceneLoader::processScene(TiXmlElement *XMLRoot)
 {
 	// Process the scene parameters
-	String version = getAttrib(XMLRoot, "formatVersion", "unknown");
+	String version = getAttrib(XMLRoot, "version", "unknown");
 
-	String message = "[OgSceneLoader] Parsing dotScene file with version " + version;
+	String message = "[OgSceneLoader] Parsing ogScene file with version " + version;
 	//if(XMLRoot->Attribute("ID"))
 	//	message += ", id " + String(XMLRoot->Attribute("ID"));
 	//if(XMLRoot->Attribute("sceneManager"))
@@ -88,52 +88,60 @@ void OgSceneLoader::processScene(TiXmlElement *XMLRoot)
 
 	TiXmlElement *pElement;
 
-	// Process resourceLocations (?)
-	pElement = XMLRoot->FirstChildElement("resourceLocations");
+	// Process PROJECT (?)
+	pElement = XMLRoot->FirstChildElement("PROJECT");
 	if(pElement)
-		processResourceLocations(pElement);
+		processProject(pElement);
 
+	// Process OBJECT (?)
+	pElement = XMLRoot->FirstChildElement("OBJECT");
+	while(pElement)
+	{
+		processObject(pElement);
+		pElement = pElement->NextSiblingElement("OBJECT");
+	}
+		
 
-	// Process environment (?)
-	pElement = XMLRoot->FirstChildElement("environment");
-	if(pElement)
-		processEnvironment(pElement);
+}
 
-
-	// Process nodes (?)
-	pElement = XMLRoot->FirstChildElement("nodes");
-	if(pElement)
-		processNodes(pElement);
-
-	//// Process externals (?)
-	//pElement = XMLRoot->FirstChildElement("externals");
+void OgSceneLoader::processProject(TiXmlElement *XMLNode)
+{
+	//TiXmlElement *pElement;
+	//// Process resourceLocations (?)
+	//pElement = XMLNode->FirstChildElement("resourceLocations");
 	//if(pElement)
-	//	processExternals(pElement);
+	//	processResourceLocations(pElement);
 
-	//// Process terrain (?)
-	//pElement = XMLRoot->FirstChildElement("terrain");
-	//if(pElement)
-	//	processTerrain(pElement);
 
-	//// Process userDataReference (?)
-	//pElement = XMLRoot->FirstChildElement("userDataReference");
+	//// Process environment (?)
+	//pElement = XMLNode->FirstChildElement("environment");
 	//if(pElement)
-	//	processUserDataReference(pElement);
+	//	processEnvironment(pElement);
+}
 
-	//// Process octree (?)
-	//pElement = XMLRoot->FirstChildElement("octree");
-	//if(pElement)
-	//	processOctree(pElement);
-
-	//// Process light (?)
-	//pElement = XMLRoot->FirstChildElement("light");
-	//if(pElement)
-	//	processLight(pElement);
-
-	//// Process camera (?)
-	//pElement = XMLRoot->FirstChildElement("camera");
-	//if(pElement)
-	//	processCamera(pElement);
+void OgSceneLoader::processObject(TiXmlElement *XMLNode)
+{
+	String type = getAttrib(XMLNode, "typename");
+	if( type.compare("SceneManager")==0)
+	{
+	}
+	else if( type.compare("ViewPort Object")==0)
+	{
+	}
+	else if( type.compare("Node Object")==0)
+	{
+	}
+	else if( type.compare("Light Object")==0)
+	{
+	}
+	else if( type.compare("Entity Object")==0)
+	{
+		processEntity(XMLNode);
+	}
+	else
+	{
+		LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
+	}
 }
 
 void OgSceneLoader::processNodes(TiXmlElement *XMLNode)
@@ -215,7 +223,7 @@ void OgSceneLoader::processEnvironment(TiXmlElement *XMLNode)
 	// Process colourAmbient (?)
 	pElement = XMLNode->FirstChildElement("colourAmbient");
 	if(pElement)
-		mSceneMgr->setAmbientLight(parseColour(pElement));
+//		mSceneMgr->setAmbientLight(parseColour(pElement));
 
 	// Process colourBackground (?)
 	//! @todo Set the background colour of all viewports (RenderWindow has to be provided then)
@@ -459,7 +467,7 @@ void OgSceneLoader::processNode(TiXmlElement *XMLNode, SceneNode *pParent)
 	pElement = XMLNode->FirstChildElement("entity");
 	while(pElement)
 	{
-		processEntity(pElement, pNode);
+		processEntity(pElement);
 		pElement = pElement->NextSiblingElement("entity");
 	}
 
@@ -587,42 +595,80 @@ void OgSceneLoader::processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParent
 	}
 }
 
-void OgSceneLoader::processEntity(TiXmlElement *XMLNode, SceneNode *pParent)
+SceneNode* OgSceneLoader::getParentSceneNode(TiXmlElement *XMLNode)
 {
-	// Process attributes
+	// Get Parent node
+	String parentName = getAttrib(XMLNode, "parentnode");
+
+	if(parentName.compare("SceneManager")==0)
+	{
+		return mSceneMgr->getRootSceneNode();
+	}
+	else
+	{
+		return mSceneMgr->getSceneNode(parentName);
+	}
+
+}
+
+void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
+{
+	
+	TiXmlElement *pElement;
+
+	SceneNode *pParent;
+	String propertyName;
+	String meshfile;
+
+	Vector3 position;
+	Quaternion orientation;
+	Vector3 scale;
+
+	// Get Parent node
+	pParent=getParentSceneNode(XMLNode);
+	
+	//Get Entity name
 	String name = getAttrib(XMLNode, "name");
-	//String id = getAttrib(XMLNode, "id");
-	String meshFile = getAttrib(XMLNode, "meshFile");
-	//String materialFile = getAttrib(XMLNode, "materialFile");
-	//bool isStatic = getAttribBool(XMLNode, "static", false);;
-	bool castShadows = getAttribBool(XMLNode, "castShadows", true);
 
-	// TEMP: Maintain a list of static and dynamic objects
-	//if(isStatic)
-	//	staticObjects.push_back(name);
-	//else
-	//	dynamicObjects.push_back(name);
+	// Process PROPERTY (?)
+	pElement = XMLNode->FirstChildElement("PROPERTY");
+	while(pElement)
+	{
+		// Get PropertyName
+		String propertyName = getAttrib(pElement, "id");
 
-	//TiXmlElement *pElement;
-
-	//// Process vertexBuffer (?)
-	//pElement = XMLNode->FirstChildElement("vertexBuffer");
-	//if(pElement)
-	//	;//processVertexBuffer(pElement);
-
-	//// Process indexBuffer (?)
-	//pElement = XMLNode->FirstChildElement("indexBuffer");
-	//if(pElement)
-	//	;//processIndexBuffer(pElement);
-
-	// Create the entity
+		if( propertyName.compare("meshfile")==0)
+		{
+			meshfile= getAttrib(pElement, "value");
+		}
+		else if( propertyName.compare("position")==0)
+		{
+			position= parseVector3(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("orientation")==0)
+		{
+			//orientation= parseQuaternion(getAttrib(pElement, "value");
+		}
+		else if( propertyName.compare("scale")==0)
+		{
+			scale= parseVector3(getAttrib(pElement, "value"));
+		}
+		pElement = pElement->NextSiblingElement("PROPERTY");
+	}
+	LogManager::getSingleton().logMessage("Entity "+name+" loaded:"+meshfile+" "+StringConverter::toString(position)+" "+StringConverter::toString(scale));
+	// Create the entity and its node
 	Entity *pEntity = 0;
+	SceneNode *entityNode = 0;
 	try
 	{
-		MeshManager::getSingleton().load(meshFile, m_sGroupName);
-		pEntity = mSceneMgr->createEntity(name, meshFile);
-		pEntity->setCastShadows(castShadows);
-		pParent->attachObject(pEntity);
+		MeshManager::getSingleton().load(meshfile, m_sGroupName);
+		pEntity = mSceneMgr->createEntity(name, meshfile);
+		entityNode=pParent->createChildSceneNode(name);
+		entityNode->setPosition(position);
+		entityNode->setScale(scale);
+		
+		//pEntity->setCastShadows(castShadows);
+		entityNode->attachObject(pEntity);
 		
 		//if(!materialFile.empty())
 		//	pEntity->setMaterialName(materialFile);
@@ -821,6 +867,52 @@ bool OgSceneLoader::getAttribBool(TiXmlElement *XMLNode, const String &attrib, b
 	return false;
 }
 
+
+Vector3 OgSceneLoader::parseVector3(String value)
+{
+	return StringConverter::parseVector3(value);
+}
+
+Quaternion OgSceneLoader::parseQuaternion(String value)
+{
+	//! @todo Fix this crap!
+
+	Quaternion orientation;
+
+	//if(XMLNode->Attribute("qx"))
+	//{
+	//	orientation.x = StringConverter::parseReal(XMLNode->Attribute("qx"));
+	//	orientation.y = StringConverter::parseReal(XMLNode->Attribute("qy"));
+	//	orientation.z = StringConverter::parseReal(XMLNode->Attribute("qz"));
+	//	orientation.w = StringConverter::parseReal(XMLNode->Attribute("qw"));
+	//}
+	//else if(XMLNode->Attribute("axisX"))
+	//{
+	//	Vector3 axis;
+	//	axis.x = StringConverter::parseReal(XMLNode->Attribute("axisX"));
+	//	axis.y = StringConverter::parseReal(XMLNode->Attribute("axisY"));
+	//	axis.z = StringConverter::parseReal(XMLNode->Attribute("axisZ"));
+	//	Real angle = StringConverter::parseReal(XMLNode->Attribute("angle"));;
+	//	orientation.FromAngleAxis(Ogre::Angle(angle), axis);
+	//}
+	//else if(XMLNode->Attribute("angleX"))
+	//{
+	//	Vector3 axis;
+	//	axis.x = StringConverter::parseReal(XMLNode->Attribute("angleX"));
+	//	axis.y = StringConverter::parseReal(XMLNode->Attribute("angleY"));
+	//	axis.z = StringConverter::parseReal(XMLNode->Attribute("angleZ"));
+	//	//orientation.FromAxes(&axis);
+	//	//orientation.F
+	//}
+
+	return orientation;
+}
+
+ColourValue OgSceneLoader::parseColour(String value)
+{
+	Vector4 color=StringConverter::parseVector4(value);
+	return ColourValue(color.x,color.y,color.z,color.w);
+}
 
 Vector3 OgSceneLoader::parseVector3(TiXmlElement *XMLNode)
 {
