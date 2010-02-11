@@ -86,8 +86,8 @@ void Application::loadResources()
 
 void Application::createScene()
 {
-	DotSceneLoader dotSceneLoader;
-	dotSceneLoader.parseDotScene("TestLevel.xml","General",m_sceneManager,m_sceneManager->getRootSceneNode(),"");
+	OgSceneLoader ogSceneLoader;
+	ogSceneLoader.parseOgScene("TestLevel.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),"");
 
 	m_cameraController = new OrbitCameraController( m_camera );
 	m_cameraController->setOrientation( -45, -45 );

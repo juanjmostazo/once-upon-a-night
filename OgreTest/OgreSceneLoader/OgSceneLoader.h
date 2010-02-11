@@ -44,6 +44,9 @@ namespace Ogre
 	protected:
 		void processScene(TiXmlElement *XMLRoot);
 
+		void processProject(TiXmlElement *XMLNode);
+		void processObject(TiXmlElement *XMLNode);
+
 		void processNodes(TiXmlElement *XMLNode);
 		void processExternals(TiXmlElement *XMLNode);
 		void processEnvironment(TiXmlElement *XMLNode);
@@ -58,7 +61,7 @@ namespace Ogre
 		void processNode(TiXmlElement *XMLNode, SceneNode *pParent = 0);
 		void processLookTarget(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processTrackTarget(TiXmlElement *XMLNode, SceneNode *pParent);
-		void processEntity(TiXmlElement *XMLNode, SceneNode *pParent);
+		void processEntity(TiXmlElement *XMLNode);
 		void processParticleSystem(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processBillboardSet(TiXmlElement *XMLNode, SceneNode *pParent);
 		void processPlane(TiXmlElement *XMLNode, SceneNode *pParent);
@@ -76,10 +79,15 @@ namespace Ogre
 		Real getAttribReal(TiXmlElement *XMLNode, const String &parameter, Real defaultValue = 0);
 		bool getAttribBool(TiXmlElement *XMLNode, const String &parameter, bool defaultValue = false);
 
+		Vector3 parseVector3(String value);
+		Quaternion parseQuaternion(String value);
+		ColourValue parseColour(String value);
+		
 		Vector3 parseVector3(TiXmlElement *XMLNode);
 		Quaternion parseQuaternion(TiXmlElement *XMLNode);
 		ColourValue parseColour(TiXmlElement *XMLNode);
-		
+
+		SceneNode* getParentSceneNode(TiXmlElement *XMLNode);
 
 		SceneManager *mSceneMgr;
 		SceneNode *mAttachNode;

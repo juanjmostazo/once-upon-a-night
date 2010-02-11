@@ -3,7 +3,7 @@
 #include "SimpleInputManager.h"
 
 //DotSceneLoader
-#include "DotSceneLoader.h"
+#include "OgSceneLoader.h"
 
 //TinyXML
 #include "tinyxml.h"
