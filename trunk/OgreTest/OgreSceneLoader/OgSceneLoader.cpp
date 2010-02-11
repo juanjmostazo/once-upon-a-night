@@ -613,16 +613,28 @@ SceneNode* OgSceneLoader::getParentSceneNode(TiXmlElement *XMLNode)
 
 void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 {
-	
+	unsigned int i;
+
 	TiXmlElement *pElement;
+	String propertyName;
 
 	SceneNode *pParent;
-	String propertyName;
-	String meshfile;
+	SceneNode *entityNode = 0;
+	Entity *pEntity = 0;
 
+	String meshfile;
 	Vector3 position;
 	Quaternion orientation;
 	Vector3 scale;
+	bool castshadows;
+	String autotracktarget;
+
+	struct SubEntityInfo
+	{
+		string material;
+		bool visible;
+	};
+	std::vector<SubEntityInfo> subEntityInfo;
 
 	// Get Parent node
 	pParent=getParentSceneNode(XMLNode);
@@ -640,6 +652,18 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 		if( propertyName.compare("meshfile")==0)
 		{
 			meshfile= getAttrib(pElement, "value");
+			//load the mesh file and create entity
+			if (!MeshManager::getSingleton().resourceExists(meshfile))
+			{
+				MeshManager::getSingleton().load(meshfile, m_sGroupName);
+			}
+			pEntity = mSceneMgr->createEntity(name, meshfile);
+
+			SubEntityInfo blank;
+			for (i=0;i<pEntity->getNumSubEntities();i++)
+			{
+				subEntityInfo.push_back(blank);
+			}
 		}
 		else if( propertyName.compare("position")==0)
 		{
@@ -647,43 +671,72 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 		}
 		else if( propertyName.compare("orientation")==0)
 		{
-			//orientation= parseQuaternion(getAttrib(pElement, "value");
+			orientation= parseQuaternion(getAttrib(pElement, "value"));
 		}
 		else if( propertyName.compare("scale")==0)
 		{
 			scale= parseVector3(getAttrib(pElement, "value"));
 		}
+		else if( propertyName.compare("castshadows")==0)
+		{
+			castshadows= parseBool(getAttrib(pElement, "value"));
+		}
+		else if( propertyName.compare("autotracktarget")==0)
+		{
+			autotracktarget= getAttrib(pElement, "value");
+		}
+		else if( propertyName.substr(0,9).compare("subentity")==0)
+		{
+			int index=parseInt(propertyName.substr(9,1));
+
+			if( propertyName.substr(12,8).compare("material")==0)
+			{
+				subEntityInfo[index].material=getAttrib(pElement, "value");
+			}
+			else if( propertyName.substr(12,7).compare("visible")==0)
+			{
+				subEntityInfo[index].visible=parseBool(getAttrib(pElement, "value"));
+			}
+		}
 		pElement = pElement->NextSiblingElement("PROPERTY");
 	}
-	LogManager::getSingleton().logMessage("Entity "+name+" loaded:"+meshfile+" "+StringConverter::toString(position)+" "+StringConverter::toString(scale));
-	// Create the entity and its node
-	Entity *pEntity = 0;
-	SceneNode *entityNode = 0;
+	
+	// Set entity parameters and create its node
 	try
 	{
-		MeshManager::getSingleton().load(meshfile, m_sGroupName);
-		pEntity = mSceneMgr->createEntity(name, meshfile);
+		SubEntity *pSubEntity;
+		pEntity->setCastShadows(castshadows);
+		for(i=0;i<subEntityInfo.size();i++)
+		{
+			pSubEntity=pEntity->getSubEntity(i);
+			pSubEntity->setMaterialName(subEntityInfo[i].material);
+			pSubEntity->setVisible(subEntityInfo[i].visible);
+			
+		}
+
 		entityNode=pParent->createChildSceneNode(name);
 		entityNode->setPosition(position);
+		entityNode->setOrientation(orientation);
 		entityNode->setScale(scale);
+		if(autotracktarget.compare("None")!=0)
+		{
+			//TODO test this
+			SceneNode *trackTarget;
+			trackTarget=mSceneMgr->getSceneNode(autotracktarget);
+			entityNode->setAutoTracking(true,trackTarget);
+		}
 		
-		//pEntity->setCastShadows(castShadows);
 		entityNode->attachObject(pEntity);
-		
-		//if(!materialFile.empty())
-		//	pEntity->setMaterialName(materialFile);
+
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading an entity!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" entity!");
 	}
 
-	// Process userDataReference (?)
-	//pElement = XMLNode->FirstChildElement("userDataReference");
-	//if(pElement)
-	//	processUserDataReference(pElement, pEntity);
+	//LogManager::getSingleton().logMessage("Entity "+name+" loaded");
 
-	
+	subEntityInfo.clear();
 }
 
 void OgSceneLoader::processParticleSystem(TiXmlElement *XMLNode, SceneNode *pParent)
@@ -875,43 +928,24 @@ Vector3 OgSceneLoader::parseVector3(String value)
 
 Quaternion OgSceneLoader::parseQuaternion(String value)
 {
-	//! @todo Fix this crap!
 
-	Quaternion orientation;
-
-	//if(XMLNode->Attribute("qx"))
-	//{
-	//	orientation.x = StringConverter::parseReal(XMLNode->Attribute("qx"));
-	//	orientation.y = StringConverter::parseReal(XMLNode->Attribute("qy"));
-	//	orientation.z = StringConverter::parseReal(XMLNode->Attribute("qz"));
-	//	orientation.w = StringConverter::parseReal(XMLNode->Attribute("qw"));
-	//}
-	//else if(XMLNode->Attribute("axisX"))
-	//{
-	//	Vector3 axis;
-	//	axis.x = StringConverter::parseReal(XMLNode->Attribute("axisX"));
-	//	axis.y = StringConverter::parseReal(XMLNode->Attribute("axisY"));
-	//	axis.z = StringConverter::parseReal(XMLNode->Attribute("axisZ"));
-	//	Real angle = StringConverter::parseReal(XMLNode->Attribute("angle"));;
-	//	orientation.FromAngleAxis(Ogre::Angle(angle), axis);
-	//}
-	//else if(XMLNode->Attribute("angleX"))
-	//{
-	//	Vector3 axis;
-	//	axis.x = StringConverter::parseReal(XMLNode->Attribute("angleX"));
-	//	axis.y = StringConverter::parseReal(XMLNode->Attribute("angleY"));
-	//	axis.z = StringConverter::parseReal(XMLNode->Attribute("angleZ"));
-	//	//orientation.FromAxes(&axis);
-	//	//orientation.F
-	//}
-
-	return orientation;
+	Vector4 orientation=StringConverter::parseVector4(value);
+	return Quaternion(orientation.x,orientation.y,orientation.z,orientation.w);
 }
 
 ColourValue OgSceneLoader::parseColour(String value)
 {
 	Vector4 color=StringConverter::parseVector4(value);
 	return ColourValue(color.x,color.y,color.z,color.w);
+}
+
+bool OgSceneLoader::parseBool(String value)
+{
+	return StringConverter::parseBool(value);
+}
+int OgSceneLoader::parseInt(String value)
+{
+	return StringConverter::parseInt(value);
 }
 
 Vector3 OgSceneLoader::parseVector3(TiXmlElement *XMLNode)

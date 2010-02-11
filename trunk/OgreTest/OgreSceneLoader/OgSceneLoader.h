@@ -82,6 +82,8 @@ namespace Ogre
 		Vector3 parseVector3(String value);
 		Quaternion parseQuaternion(String value);
 		ColourValue parseColour(String value);
+		bool parseBool(String value);
+		int parseInt(String value);
 		
 		Vector3 parseVector3(TiXmlElement *XMLNode);
 		Quaternion parseQuaternion(TiXmlElement *XMLNode);

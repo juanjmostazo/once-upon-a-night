@@ -18,7 +18,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="24.3014 11.5088 -38.6066" orientation="0.406546 -0.0311011 0.91044 0.0696641"></OPTION>
+    <OPTION id="0" position="16.8608 19.5791 12.6863" orientation="0.938361 -0.239409 0.241582 0.0616435"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -92,9 +92,9 @@
   <OBJECT object_id="92623672" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.406546 -0.0311011 0.91044 0.0696641"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.938383 -0.239415 0.241588 0.0616449"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="24.3014 11.5088 -38.6066"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="16.8608 19.5791 12.6863"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -155,7 +155,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ogrehead.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.156435 0 0.987688 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="7.79723 8.35135 -7.49733"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.2 0.2 0.2"></PROPERTY>
@@ -183,8 +183,8 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.1 0.1 0.1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Ogre/Eyes"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="Ogre/Skin"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="Ogre/Tusks"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity2::material" type="7" value="Ogre/Earring"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
