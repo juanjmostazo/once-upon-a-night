@@ -1,0 +1,16 @@
+# Resource locations to be added to the 'boostrap' path
+[Bootstrap]
+
+
+# Resource locations to be added to the default path (does not add
+# subpath)
+[General]
+
+FileSystem=../Resources
+FileSystem=../Resources/Model
+FileSystem=../Resources/Material
+FileSystem=../Resources/Levels
+FileSystem=../Resources/Material/Shader
+FileSystem=../Resources/Material/Texture
+FileSystem=../Resources/Material/Material
+FileSystem=../Resources/Particles
