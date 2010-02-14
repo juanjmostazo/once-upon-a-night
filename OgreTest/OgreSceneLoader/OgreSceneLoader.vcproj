@@ -181,7 +181,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\CameraFirstPersonController.cpp"
+				RelativePath=".\CameraControllerFirstPerson.cpp"
 				>
 			</File>
 			<File
@@ -228,7 +228,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\CameraFirstPersonController.h"
+					RelativePath=".\CameraControllerFirstPerson.h"
 					>
 				</File>
 				<File
