@@ -1,0 +1,18 @@
+
+material Elephant_Surface
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Elephant.jpg
+			}
+		}
+
+	}
+
+}
+
+

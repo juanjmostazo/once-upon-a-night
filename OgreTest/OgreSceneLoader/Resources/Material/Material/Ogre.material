@@ -1,0 +1,235 @@
+vertex_program diffuse_vs cg
+{
+    source general.cg
+    profiles vs_1_1 arbvp1
+    entry_point diffuse_vs
+
+    default_params
+    {
+        param_named_auto wMat world_matrix
+        param_named_auto wvpMat worldviewproj_matrix
+        param_named_auto tvpMat texture_viewproj_matrix 0
+        param_named_auto spotlightDir light_direction_object_space 0
+    }
+}
+
+vertex_program ambient_vs cg
+{
+    source general.cg
+    profiles vs_1_1 arbvp1
+    entry_point ambient_vs
+
+    default_params
+    {
+        param_named_auto wvpMat worldviewproj_matrix
+    }
+}
+
+fragment_program ambient_ps cg
+{
+    source general.cg
+    profiles ps_2_0 arbfp1
+    entry_point ambient_ps
+
+    default_params
+    {
+        param_named_auto ambient ambient_light_colour
+        param_named_auto matDif surface_diffuse_colour
+    }
+}
+
+fragment_program diffuse_ps cg
+{
+    source general.cg
+    profiles ps_2_x arbfp1
+    entry_point diffuse_ps
+
+    default_params
+    {
+        param_named_auto lightDif0 light_diffuse_colour 0
+        param_named_auto lightSpec0 light_specular_colour 0
+        param_named_auto camPos camera_position
+        param_named_auto matShininess surface_shininess
+        param_named_auto matDif surface_diffuse_colour
+        param_named_auto matSpec surface_specular_colour
+        param_named_auto lightPos0 light_position 0
+        param_named_auto lightAtt0 light_attenuation 0
+        param_named_auto iTWMat inverse_transpose_world_matrix
+        param_named_auto spotlightParams spotlight_params 0
+    }
+}
+
+material base_material
+{
+    set $diffuseCol "1 1 1 1"
+    set $specularCol "1 1 1"
+    set $shininess "32"
+
+    technique
+    {
+        pass
+        {
+            illumination_stage ambient
+
+            ambient 1 1 1 1
+            diffuse $diffuseCol
+            specular 0 0 0 0
+            emissive 0 0 0 0
+
+            vertex_program_ref ambient_vs
+            {
+            }
+
+            fragment_program_ref ambient_ps
+            {
+            }
+
+            texture_unit diffuseMap
+            {
+                texture white.png
+            }
+
+            texture_unit aoMap
+            {
+                texture white.png
+            }
+        }
+
+        pass
+        {
+            illumination_stage per_light
+
+            scene_blend add
+            iteration once_per_light
+
+            vertex_program_ref diffuse_vs
+            {
+            }
+
+            fragment_program_ref diffuse_ps
+            {
+            }
+
+            diffuse $diffuseCol
+            specular $specularCol $shininess
+            ambient 0 0 0 0
+
+            texture_unit diffuseMap
+            {
+                texture white.png
+            }
+
+            texture_unit specMap
+            {
+                texture white.png
+            }
+
+            texture_unit normalMap
+            {
+                texture flat_n.png
+            }
+        }
+    }
+}
+
+material Ogre/Earring
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.5 0.5 0
+			diffuse 1 1 0
+
+			texture_unit
+			{
+				texture spheremap.png
+				colour_op_ex add src_texture src_current
+				colour_op_multipass_fallback one one
+				env_map spherical
+			}
+		}
+	}
+}
+material Ogre/Skin : base_material
+{
+
+	set_texture_alias diffuseMap GreenSkin.jpg
+
+}
+material Ogre/Tusks : base_material
+{
+
+	set_texture_alias diffuseMap dirt01.jpg
+
+}
+material Ogre/Eyes : base_material
+{
+
+	set_texture_alias diffuseMap WeirdEye.png
+
+}
+material Cursor/default
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture cursor.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+material Core/StatsBlockBorder/Down
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture ogreborder.png
+			}
+		}
+	}
+}
+material Core/StatsBlockBorder/Up
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture ogreborderUp.png
+			}
+		}
+	}
+}
+
+material grass
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture gras_02.png
+			}
+		}
+	}
+}
