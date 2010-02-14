@@ -1,21 +1,18 @@
-#include "CameraFirstPersonController.h"
+#include "CameraControllerFirstPerson.h"
 
-CameraFirstPersonController::CameraFirstPersonController(void)
+CameraControllerFirstPerson::CameraControllerFirstPerson()
 {
 }
 
-CameraFirstPersonController::~CameraFirstPersonController(void)
+CameraControllerFirstPerson::~CameraControllerFirstPerson()
 {
 }
 
-void CameraFirstPersonController::setCamera(Ogre::Camera* camera)
+void CameraControllerFirstPerson::initialise(Ogre::SceneManager * pSceneManager)
 {
-	Ogre::SceneManager * pSceneManager;
-	pSceneManager=camera->getSceneManager();
 	// Create the camera's top node (which will only handle position).
 	this->cameraNode = pSceneManager->getRootSceneNode()->createChildSceneNode();
-	this->cameraNode->setPosition(-100,30,50);
-
+	
 	// Create the camera's yaw node as a child of camera's top node.
 	this->cameraYawNode = this->cameraNode->createChildSceneNode();
 
@@ -25,17 +22,34 @@ void CameraFirstPersonController::setCamera(Ogre::Camera* camera)
 	// Create the camera's roll node as a child of camera's pitch node
 	// and attach the camera to it.
 	this->cameraRollNode = this->cameraPitchNode->createChildSceneNode();
-	this->cameraRollNode->attachObject(camera);
+
+	//Create the camera's offset node as a child of camera's roll node
+	this->cameraOffsetNode = this->cameraRollNode->createChildSceneNode();
+
 
 }
 
-void CameraFirstPersonController::processMouseInput(const OIS::MouseEvent& e)
+void CameraControllerFirstPerson::setCamera(Ogre::Camera* camera)
+{
+	//TODO FIX THIS CRAP
+	this->camera=camera;
+	this->cameraNode->setPosition(camera->getPosition());
+	this->cameraYawNode->yaw(camera->getOrientation().getYaw());
+	this->cameraPitchNode->pitch(camera->getOrientation().getPitch());
+	this->cameraRollNode->roll(camera->getOrientation().getRoll());
+	this->cameraOffsetNode->setPosition(-camera->getPosition());
+	this->cameraOffsetNode->setOrientation(-camera->getOrientation());
+	this->cameraOffsetNode->attachObject(camera);
+}
+
+void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 {
 	Ogre::Real pitchAngle;
 	Ogre::Real pitchAngleSign;
 
-	float mRotX=-e.state.X.rel*0.4;
-	float mRotY=-e.state.Y.rel*0.4;
+	float mRotX=-e.state.X.rel*0.3;
+	float mRotY=-e.state.Y.rel*0.3;
+
 
 	// Yaws the camera according to the mouse relative movement.
 	cameraYawNode->yaw(Ogre::Angle(mRotX));
@@ -65,7 +79,7 @@ void CameraFirstPersonController::processMouseInput(const OIS::MouseEvent& e)
 
 }
 
-void CameraFirstPersonController::processKeyboardInput(SimpleInputManager* pSimpleInputManager,const float elapsedSeconds,float moveScale,float rotateScale)
+void CameraControllerFirstPerson::processKeyboardInput(SimpleInputManager* pSimpleInputManager,const float elapsedSeconds,float moveScale,float rotateScale)
 {
 	OIS::Keyboard* m_keyboard;
 	m_keyboard=pSimpleInputManager->m_keyboard;
@@ -79,12 +93,12 @@ void CameraFirstPersonController::processKeyboardInput(SimpleInputManager* pSimp
 	// Move camera upwards along to world's Y-axis.
 	if(m_keyboard->isKeyDown(OIS::KC_PGUP))
 		//this->translateVector.y = this->moveScale;
-		cameraNode->setPosition(this->cameraNode->getPosition() + Ogre::Vector3(0, 5, 0));
+		cameraNode->setPosition(this->cameraNode->getPosition() + Ogre::Vector3(0, moveScale, 0));
 
 	// Move camera downwards along to world's Y-axis.
 	if(m_keyboard->isKeyDown(OIS::KC_PGDOWN))
 		//this->translateVector.y = -(this->moveScale);
-		cameraNode->setPosition(this->cameraNode->getPosition() - Ogre::Vector3(0, 5, 0));
+		cameraNode->setPosition(this->cameraNode->getPosition() - Ogre::Vector3(0, moveScale, 0));
 
 	// Move camera forward.
 	if(m_keyboard->isKeyDown(OIS::KC_UP))

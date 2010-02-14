@@ -5,14 +5,12 @@
 using namespace std;
 using namespace Ogre;
 
-void OgSceneLoader::parseOgScene(const String &SceneName, const String &groupName, SceneManager *yourSceneMgr, SceneNode *pAttachNode, const String &sPrependNode)
+void OgSceneLoader::parseOgScene(const String &SceneName, const String &groupName, SceneManager *pSceneMgr, SceneNode *pAttachNode, Viewport *pViewport)
 {
 	// set up shared object values
 	m_sGroupName = groupName;
-	mSceneMgr = yourSceneMgr;
-	m_sPrependNode = sPrependNode;
-	staticObjects.clear();
-	dynamicObjects.clear();
+	mSceneMgr = pSceneMgr;
+	mViewport = pViewport;
 
 	TiXmlDocument   *XMLDoc = 0;
 	TiXmlElement   *XMLRoot;
@@ -73,29 +71,22 @@ void OgSceneLoader::parseOgScene(const String &SceneName, const String &groupNam
 
 void OgSceneLoader::processScene(TiXmlElement *XMLRoot)
 {
+	TiXmlElement *pElement;
+
 	// Process the scene parameters
 	String version = getAttrib(XMLRoot, "version", "unknown");
 
 	String message = "[OgSceneLoader] Parsing ogScene file with version " + version;
-	//if(XMLRoot->Attribute("ID"))
-	//	message += ", id " + String(XMLRoot->Attribute("ID"));
-	//if(XMLRoot->Attribute("sceneManager"))
-	//	message += ", scene manager " + String(XMLRoot->Attribute("sceneManager"));
-	//if(XMLRoot->Attribute("minOgreVersion"))
-	//	message += ", min. Ogre version " + String(XMLRoot->Attribute("minOgreVersion"));
-	//if(XMLRoot->Attribute("author"))
-	//	message += ", author " + String(XMLRoot->Attribute("author"));
 
 	LogManager::getSingleton().logMessage(message);
 
-	TiXmlElement *pElement;
 
-	// Process PROJECT (?)
+	// Process PROJECT
 	pElement = XMLRoot->FirstChildElement("PROJECT");
 	if(pElement)
 		processProject(pElement);
 
-	// Process OBJECT (?)
+	// Process OBJECT
 	pElement = XMLRoot->FirstChildElement("OBJECT");
 	while(pElement)
 	{
@@ -108,27 +99,19 @@ void OgSceneLoader::processScene(TiXmlElement *XMLRoot)
 
 void OgSceneLoader::processProject(TiXmlElement *XMLNode)
 {
-	//TiXmlElement *pElement;
-	//// Process resourceLocations (?)
-	//pElement = XMLNode->FirstChildElement("resourceLocations");
-	//if(pElement)
-	//	processResourceLocations(pElement);
-
-
-	//// Process environment (?)
-	//pElement = XMLNode->FirstChildElement("environment");
-	//if(pElement)
-	//	processEnvironment(pElement);
+	//TODO
 }
 
 void OgSceneLoader::processObject(TiXmlElement *XMLNode)
 {
 	String type = getAttrib(XMLNode, "typename");
-	if( type.compare("SceneManager")==0)
+	if( type.compare("OctreeSceneManager")==0)
 	{
+		processOctreeSceneManager(XMLNode);
 	}
-	else if( type.compare("ViewPort Object")==0)
+	else if( type.compare("Viewport Object")==0)
 	{
+		processViewport(XMLNode);
 	}
 	else if( type.compare("Node Object")==0)
 	{
@@ -141,6 +124,10 @@ void OgSceneLoader::processObject(TiXmlElement *XMLNode)
 	else if( type.compare("Entity Object")==0)
 	{
 		processEntity(XMLNode);
+	}
+	else if( type.compare("Camera Object")==0)
+	{
+		processCamera(XMLNode);
 	}
 	else if( type.compare("Particle Object")==0)
 	{
@@ -161,53 +148,103 @@ void OgSceneLoader::processResourceLocations(TiXmlElement *XMLNode)
 	//TODO
 }
 
-void OgSceneLoader::processExternals(TiXmlElement *XMLNode)
+void OgSceneLoader::processViewportCamera(TiXmlElement *XMLNode)
 {
-	//! @todo Implement this
+	Quaternion orientation;
+	Vector3 position;
+	Vector2 clipdistance;
+	Real fov;
+	int polygonmode;
+	int viewmode;
+
+	//Get Camera properties
+	orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
+	position = getPropertyVector3(XMLNode,"camera::position");
+	clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+	fov = getPropertyReal(XMLNode,"camera::fov");
+	polygonmode = getPropertyInt(XMLNode,"camera::polymode");
+	viewmode = getPropertyInt(XMLNode,"camera::viewmode");
+
+	//Create Camera
+	createCamera("Ogitor",position,orientation,"None",true,clipdistance,fov,polygonmode,viewmode);
 }
 
-void OgSceneLoader::processEnvironment(TiXmlElement *XMLNode)
+void OgSceneLoader::createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies)
 {
-	TiXmlElement *pElement;
+	// Set the Viewport parameters
+	mViewport->setBackgroundColour(colour);
+	mViewport->setOverlaysEnabled(overlays);
+	mViewport->setShadowsEnabled(shadows);
+	mViewport->setSkiesEnabled(skies);
 
-	// Process fog (?)
-	pElement = XMLNode->FirstChildElement("fog");
-	if(pElement)
-		processFog(pElement);
+}
 
-	// Process skyBox (?)
-	pElement = XMLNode->FirstChildElement("skyBox");
-	if(pElement)
-		processSkyBox(pElement);
+void OgSceneLoader::processViewport(TiXmlElement *XMLNode)
+{
+	String name;
+	ColourValue colour;
+	int compositorcount;
+	int index;
+	bool overlays;
+	bool shadows;
+	bool skies;
 
-	// Process skyDome (?)
-	pElement = XMLNode->FirstChildElement("skyDome");
-	if(pElement)
-		processSkyDome(pElement);
+	//Get Viewport name
+	name = getAttrib(XMLNode, "name");
 
-	// Process skyPlane (?)
-	pElement = XMLNode->FirstChildElement("skyPlane");
-	if(pElement)
-		processSkyPlane(pElement);
+	//Get Viewport properties
+	colour = getPropertyColourValue(XMLNode,"colour");
+	compositorcount = getPropertyInt(XMLNode,"compositorcount");
+	index = getPropertyInt(XMLNode,"index");
+	overlays = getPropertyBool(XMLNode,"overlays");
+	shadows = getPropertyBool(XMLNode,"shadows");
+	skies = getPropertyBool(XMLNode,"skies");
 
-	// Process clipping (?)
-	pElement = XMLNode->FirstChildElement("clipping");
-	if(pElement)
-		processClipping(pElement);
+	//Create Viewport
+	createViewport(name,colour,compositorcount,index,overlays,shadows,skies);
 
-	// Process colourAmbient (?)
-	pElement = XMLNode->FirstChildElement("colourAmbient");
-	if(pElement)
-//		mSceneMgr->setAmbientLight(parseColour(pElement));
+	//Process Viewport camera
+	processViewportCamera(XMLNode);
+	
+}
 
-	// Process colourBackground (?)
-	//! @todo Set the background colour of all viewports (RenderWindow has to be provided then)
-	pElement = XMLNode->FirstChildElement("colourBackground");
-	if(pElement)
-		;//mSceneMgr->set(parseColour(pElement));
+void OgSceneLoader::createOctreeSceneManager(String name,ColourValue ambient)
+{
+	try
+	{
+		//Set SceneManager parameters
+		mSceneMgr->setAmbientLight(ColourValue(0.5,0.5,0.5));
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" SceneManager!");
+	}
+}
 
-	// Process userDataReference (?)
-	pElement = XMLNode->FirstChildElement("userDataReference");
+void OgSceneLoader::processOctreeSceneManager(TiXmlElement *XMLNode)
+{
+	String name;
+	ColourValue ambient;
+
+	//Get OctreeSceneManager name
+	name = getAttrib(XMLNode, "name");
+
+	//Get SceneManager properties
+	ambient=getPropertyColourValue(XMLNode,"ambient");
+	//Set SceneManager parameters
+	createOctreeSceneManager(name,ambient);
+
+	//Process SkyBox
+	processSkyBox(XMLNode);
+
+	//Process SkyDome
+	processSkyDome(XMLNode);
+
+	//Process Fog
+	processFog(XMLNode);
+
+	//Process Shadows
+	processShadows(XMLNode);
 
 }
 
@@ -216,12 +253,7 @@ void OgSceneLoader::processTerrain(TiXmlElement *XMLNode)
 	//! @todo Implement this
 }
 
-void OgSceneLoader::processOctree(TiXmlElement *XMLNode)
-{
-	//! @todo Implement this
-}
-
-void OgSceneLoader::processLightSceneNode(TiXmlElement *XMLNode)
+void OgSceneLoader::processSceneNodeNoScale(TiXmlElement *XMLNode)
 {
 	String name;
 	String parentnode;
@@ -239,10 +271,10 @@ void OgSceneLoader::processLightSceneNode(TiXmlElement *XMLNode)
 	orientation = getPropertyQuaternion(XMLNode,"orientation");
 
 	//create SceneNode
-	loadSceneNode(name,parentnode,position,orientation,Vector3(0,0,0),"None");
+	createSceneNode(name,parentnode,position,orientation,Vector3(0,0,0),"None");
 }
 
-void OgSceneLoader::loadLight(String name,int lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power)
+void OgSceneLoader::createLight(String name,int lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power)
 {
 	SceneNode *lightNode=0;
 	Light *pLight=0;
@@ -282,7 +314,7 @@ void OgSceneLoader::loadLight(String name,int lighttype,ColourValue diffuse,Colo
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" Light!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" Light!");
 	}
 }
 
@@ -299,7 +331,7 @@ void OgSceneLoader::processLight(TiXmlElement *XMLNode)
 	Real power;
 
 	//Parse and create Scene node
-	processLightSceneNode(XMLNode);
+	processSceneNodeNoScale(XMLNode);
 
 	//Get Light name
 	name = getAttrib(XMLNode, "name");
@@ -315,83 +347,96 @@ void OgSceneLoader::processLight(TiXmlElement *XMLNode)
 	power = getPropertyReal(XMLNode,"power");
 
 	//Create Light
-	loadLight(name,lighttype,diffuse,specular,direction,castshadows,lightrange,attenuation,power);
+	createLight(name,lighttype,diffuse,specular,direction,castshadows,lightrange,attenuation,power);
 
+}
+
+void OgSceneLoader::createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,int polygonmode,int viewmode)
+{
+
+	SceneNode *cameraNode=0;
+	Camera *pCamera=0;
+	// Set light parameters and create it
+	try
+	{
+		// Create the Camera
+		pCamera = mSceneMgr->createCamera(name);
+
+		//Set Camera Parameters
+		//set polygon mode
+		switch(polygonmode)
+		{
+			case OGITOR_PM_SOLID:
+				pCamera->setPolygonMode(PM_SOLID);
+				break;
+			case OGITOR_PM_POINTS:
+				pCamera->setPolygonMode(PM_POINTS);
+				break;
+			case OGITOR_PM_WIREFRAME:
+				pCamera->setPolygonMode(PM_WIREFRAME);
+				break;
+			default:
+				LogManager::getSingleton().logMessage("Camera "+name+" has unrecognised PolygonMode!");
+				break;
+		}
+		pCamera->setPosition(position);
+		pCamera->setOrientation(orientation);
+		pCamera->setAutoAspectRatio(autoaspectratio);
+		pCamera->setNearClipDistance(clipdistance.x);
+		pCamera->setFarClipDistance(clipdistance.y);
+		
+		//set FOV
+		//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
+		Real AngleFOV=fov*55.0f;
+		if(AngleFOV>180.0) AngleFOV=179.99;
+		else if(AngleFOV<=0) AngleFOV=0.01;
+		pCamera->setFOVy(Angle(AngleFOV));
+
+		//set autotracktarget
+		if(autotracktarget.compare("None")!=0)
+		{
+			//TODO test this
+			SceneNode *trackTarget;
+			trackTarget=mSceneMgr->getSceneNode(autotracktarget);
+			pCamera->setAutoTracking(true,trackTarget);
+		}
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" Camera!");
+	}
 }
 
 void OgSceneLoader::processCamera(TiXmlElement *XMLNode)
 {
-	//// Process attributes
-	//String name = getAttrib(XMLNode, "name");
-	//String id = getAttrib(XMLNode, "id");
-	//Real fov = parseReal(getAttrib(XMLNode, "fov"));
-	//Real aspectRatio = parseReal(getAttrib(XMLNode, "aspectRatio"));
-	//String projectionType = getAttrib(XMLNode, "projectionType", "perspective");
+	String name;
+	String autotracktarget;
+	Quaternion orientation;
+	Vector3 position;
+	bool autoaspectratio;
+	Vector2 clipdistance;
+	Real fov;
+	int polygonmode;
+	int viewmode;
 
-	//// Create the camera
-	//Camera *pCamera = mSceneMgr->createCamera(name);
-	//if(pParent)
-	//	pParent->attachObject(pCamera);
-	//
-	//// Set the field-of-view
-	////! @todo Is this always in degrees?
-	//pCamera->setFOVy(Ogre::Degree(fov));
+	//Get Camera name
+	name = getAttrib(XMLNode, "name");
 
-	//// Set the aspect ratio
-	//pCamera->setAspectRatio(aspectRatio);
-	//
-	//// Set the projection type
-	//if(projectionType == "perspective")
-	//	pCamera->setProjectionType(PT_PERSPECTIVE);
-	//else if(projectionType == "orthographic")
-	//	pCamera->setProjectionType(PT_ORTHOGRAPHIC);
+	//Get Camera properties
+	autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	orientation = getPropertyQuaternion(XMLNode,"orientation");
+	position = getPropertyVector3(XMLNode,"position");
+	autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
+	clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+	fov = getPropertyReal(XMLNode,"fov");
+	polygonmode = getPropertyInt(XMLNode,"polygonmode");
+	viewmode = getPropertyInt(XMLNode,"viewmode");
 
-
-	//TiXmlElement *pElement;
-
-	//// Process clipping (?)
-	//pElement = XMLNode->FirstChildElement("clipping");
-	//if(pElement)
-	//{
-	//	Real nearDist = parseReal(getAttrib(pElement, "near");
-	//	pCamera->setNearClipDistance(nearDist);
-
-	//	Real farDist =  parseReal(getAttrib(pElement, "far");
-	//	pCamera->setFarClipDistance(farDist);
-	//}
-
-	//// Process position (?)
-	//pElement = XMLNode->FirstChildElement("position");
-	//if(pElement)
-	//	pCamera->setPosition(parseVector3(pElement));
-
-	//// Process rotation (?)
-	//pElement = XMLNode->FirstChildElement("rotation");
-	//if(pElement)
-	//	pCamera->setOrientation(parseQuaternion(pElement));
-
-	//// Process normal (?)
-	//pElement = XMLNode->FirstChildElement("normal");
-	//if(pElement)
-	//	;//!< @todo What to do with this element?
-
-	//// Process lookTarget (?)
-	//pElement = XMLNode->FirstChildElement("lookTarget");
-	//if(pElement)
-	//	;//!< @todo Implement the camera look target
-
-	//// Process trackTarget (?)
-	//pElement = XMLNode->FirstChildElement("trackTarget");
-	//if(pElement)
-	//	;//!< @todo Implement the camera track target
-
-	//// Process userDataReference (?)
-	//pElement = XMLNode->FirstChildElement("userDataReference");
-	//if(pElement)
-	//	;//!< @todo Implement the camera user data reference
+	//Create Camera
+	createCamera(name,position,orientation,autotracktarget,autoaspectratio,clipdistance,fov,polygonmode,viewmode);
 }
 
-void OgSceneLoader::loadSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget)
+void OgSceneLoader::createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget)
 {
 
 	SceneNode *pParentSceneNode = 0;
@@ -403,7 +448,7 @@ void OgSceneLoader::loadSceneNode(String name,String parentSceneNodeName,Vector3
 		//Get Parent SceneNode
 		if(parentSceneNodeName.compare("SceneManager")==0)
 		{
-			pParentSceneNode = mSceneMgr->getRootSceneNode();
+			pParentSceneNode = mAttachNode;
 		}
 		else
 		{
@@ -427,7 +472,7 @@ void OgSceneLoader::loadSceneNode(String name,String parentSceneNodeName,Vector3
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" SceneNode!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" SceneNode!");
 	}
 }
 
@@ -453,54 +498,7 @@ void OgSceneLoader::processSceneNode(TiXmlElement *XMLNode)
 	autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
 	//create SceneNode
-	loadSceneNode(name,parentnode,position,orientation,scale,autotracktarget);
-}
-
-void OgSceneLoader::processLookTarget(TiXmlElement *XMLNode)
-{
-	////! @todo Is this correct? Cause I don't have a clue actually
-
-	//// Process attributes
-	//String nodeName = getAttrib(XMLNode, "nodeName");
-
-	//Node::TransformSpace relativeTo = Node::TS_PARENT;
-	//String sValue = getAttrib(XMLNode, "relativeTo");
-	//if(sValue == "local")
-	//	relativeTo = Node::TS_LOCAL;
-	//else if(sValue == "parent")
-	//	relativeTo = Node::TS_PARENT;
-	//else if(sValue == "world")
-	//	relativeTo = Node::TS_WORLD;
-
-	//TiXmlElement *pElement;
-
-	//// Process position (?)
-	//Vector3 position;
-	//pElement = XMLNode->FirstChildElement("position");
-	//if(pElement)
-	//	position = parseVector3(pElement);
-
-	//// Process localDirection (?)
-	//Vector3 localDirection = Vector3::NEGATIVE_UNIT_Z;
-	//pElement = XMLNode->FirstChildElement("localDirection");
-	//if(pElement)
-	//	localDirection = parseVector3(pElement);
-
-	//// Setup the look target
-	//try
-	//{
-	//	if(!nodeName.empty())
-	//	{
-	//		SceneNode *pLookNode = mSceneMgr->getSceneNode(nodeName);
-	//		position = pLookNode->_getDerivedPosition();
-	//	}
-
-	//	pParent->lookAt(position, relativeTo, localDirection);
-	//}
-	//catch(Ogre::Exception &/*e*/)
-	//{
-	//	LogManager::getSingleton().logMessage("[OgSceneLoader] Error processing a look target!");
-	//}
+	createSceneNode(name,parentnode,position,orientation,scale,autotracktarget);
 }
 
 void OgSceneLoader::processTrackTarget(TiXmlElement *XMLNode)
@@ -534,32 +532,32 @@ void OgSceneLoader::processTrackTarget(TiXmlElement *XMLNode)
 	//}
 }
 
-void OgSceneLoader::loadMeshFile(String meshfile)
+void OgSceneLoader::createMeshFile(String meshfile)
 {
 	try
 	{
-		//load the mesh file
+		//Create the mesh file
 		if (!MeshManager::getSingleton().resourceExists(meshfile))
 		{
-			//LogManager::getSingleton().logMessage("[OgSceneLoader] loading "+meshfile+" meshfile");
+			//LogManager::getSingleton().logMessage("[OgSceneLoader] creating "+meshfile+" meshfile");
 			MeshManager::getSingleton().load(meshfile, m_sGroupName);
 		}
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+meshfile+" mesh!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+meshfile+" mesh!");
 	}
 }
 
-void OgSceneLoader::loadEntity(String name,String meshfile,bool castshadows)
+void OgSceneLoader::createEntity(String name,String meshfile,bool castshadows)
 {
 
 	Entity *pEntity = 0;
 	SceneNode *pEntityNode = 0;
 	try
 	{
-		//load meshfile
-		loadMeshFile(meshfile);
+		//Create meshfile
+		createMeshFile(meshfile);
 
 		//create entity and set its parameters
 		pEntity = mSceneMgr->createEntity(name, meshfile);
@@ -575,7 +573,7 @@ void OgSceneLoader::loadEntity(String name,String meshfile,bool castshadows)
 	}
 }
 
-void OgSceneLoader::loadSubEntity(String name,int num,String material,bool visible)
+void OgSceneLoader::createSubEntity(String name,int num,String material,bool visible)
 {
 	SubEntity *pSubEntity = 0;
 	Entity *pEntity = 0;
@@ -620,7 +618,7 @@ void OgSceneLoader::processSubentities(String name,TiXmlElement *XMLNode)
 			material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
 			visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
 			//create SubEntity
-			loadSubEntity(name,i,material,visible);
+			createSubEntity(name,i,material,visible);
 		}
 }
 
@@ -635,21 +633,21 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 	
 	//Get Entity name
 	name = getAttrib(XMLNode, "name");
-	//LogManager::getSingleton().logMessage("[OgSceneLoader] loading "+name+" entity");
+	//LogManager::getSingleton().logMessage("[OgSceneLoader] creating "+name+" entity");
 
 	//Process entity properties
 	meshfile = getPropertyString(XMLNode, "meshfile");
 	castshadows = getPropertyBool(XMLNode, "castshadows");
 	
-	//load Entity
-	loadEntity(name,meshfile,castshadows);
+	//Create Entity
+	createEntity(name,meshfile,castshadows);
 
 	//process Entity's SubEntites
 	processSubentities(name,XMLNode);
 
 }
 
-void OgSceneLoader::loadParticleSystem(String name,String particle,bool castshadows)
+void OgSceneLoader::createParticleSystem(String name,String particle,bool castshadows)
 {
 	ParticleSystem *pParticleSystem = 0;
 	SceneNode *particleSystemNode = 0;
@@ -669,7 +667,7 @@ void OgSceneLoader::loadParticleSystem(String name,String particle,bool castshad
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" ParticleSystem!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" ParticleSystem!");
 	}
 }
 
@@ -684,14 +682,13 @@ void OgSceneLoader::processParticleSystem(TiXmlElement *XMLNode)
 	
 	//Get ParticleSystem name
 	String name = getAttrib(XMLNode, "name");
-	LogManager::getSingleton().logMessage("[OgSceneLoader] loading "+name+" entity");
 
 	//Process ParticleSystem properties
 	particle = getPropertyString(XMLNode, "particle");
 	castshadows = getPropertyBool(XMLNode, "castshadows");
 	
-	//load ParticleSystem
-	loadParticleSystem(name,particle,castshadows);
+	//Create ParticleSystem
+	createParticleSystem(name,particle,castshadows);
 
 }
 
@@ -726,12 +723,12 @@ void OgSceneLoader::processBillboards(String billBoardSetName,TiXmlElement *XMLN
 		texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
 
 		//create Billboards
-		loadBillboard(billBoardSetName,colour,dimensions,position,rotation,texcoordindex,texrect);
+		createBillboard(billBoardSetName,colour,dimensions,position,rotation,texcoordindex,texrect);
 	}
 	
 }
 
-void OgSceneLoader::loadBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect)
+void OgSceneLoader::createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect)
 {
 
 	Billboard *pBillboard = 0;
@@ -758,7 +755,7 @@ void OgSceneLoader::loadBillboard(String billBoardSetName,ColourValue colour,Vec
 	}
 }
 
-void OgSceneLoader::loadBillboardSet(String name,String material,int billboardorigin,int billboardrotationtype,int billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting)
+void OgSceneLoader::createBillboardSet(String name,String material,int billboardorigin,int billboardrotation,int billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting)
 {
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
@@ -835,7 +832,7 @@ void OgSceneLoader::loadBillboardSet(String name,String material,int billboardor
 				break;
 		}
 
-		switch(billboardrotationtype)
+		switch(billboardrotation)
 		{
 			case OGITOR_BBR_TEXCOORD:
 				billBoardSet->setBillboardRotationType(BBR_TEXCOORD);
@@ -851,7 +848,7 @@ void OgSceneLoader::loadBillboardSet(String name,String material,int billboardor
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[OgSceneLoader] Error loading "+name+" BillboardSet!");
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" BillboardSet!");
 	}
 }
 
@@ -860,7 +857,7 @@ void OgSceneLoader::processBillboardSet(TiXmlElement *XMLNode)
 	String name;
 	String material;
 	int billboardorigin;
-	int billboardrotationtype;
+	int billboardrotation;
 	int billboardtype;
 	Real defaultheight;
 	Real defaultwidth;
@@ -873,12 +870,12 @@ void OgSceneLoader::processBillboardSet(TiXmlElement *XMLNode)
 	
 	//Get BillboardSet name
 	name = getAttrib(XMLNode, "name");
-	LogManager::getSingleton().logMessage("[OgSceneLoader] loading "+name+" BillboardSet");
+	//LogManager::getSingleton().logMessage("[OgSceneLoader] creating "+name+" BillboardSet");
 
 	//Process BillboardSet properties
 	material = getPropertyString(XMLNode, "material");
 	billboardorigin = getPropertyInt(XMLNode, "billboardorigin");
-	billboardrotationtype = getPropertyInt(XMLNode, "billboardrotationtype");
+	billboardrotation = getPropertyInt(XMLNode, "billboardrotation");
 	billboardtype = getPropertyInt(XMLNode, "billboardtype");
 	defaultheight = getPropertyReal(XMLNode, "defaultheight");
 	defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
@@ -886,8 +883,8 @@ void OgSceneLoader::processBillboardSet(TiXmlElement *XMLNode)
 	renderdistance = getPropertyReal(XMLNode, "renderdistance");
 	sorting = getPropertyBool(XMLNode, "sorting");
 	
-	//load BillboardSet
-	loadBillboardSet(name,material,billboardorigin,billboardrotationtype,billboardtype,defaultheight,defaultwidth,pointrendering,renderdistance,sorting);
+	//Create BillboardSet
+	createBillboardSet(name,material,billboardorigin,billboardrotation,billboardtype,defaultheight,defaultwidth,pointrendering,renderdistance,sorting);
 
 	//process BillboardSet's Billboards
 	processBillboards(name,XMLNode);
@@ -928,23 +925,29 @@ void OgSceneLoader::processFog(TiXmlElement *XMLNode)
 	//mSceneMgr->setFog(mode, colourDiffuse, expDensity, linearStart, linearEnd);
 }
 
+void OgSceneLoader::createSkyBox(bool active, String material, Real distance)
+{
+	try
+	{
+		// Setup the sky box
+		mSceneMgr->setSkyBox(active, material, distance);
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating SkyBox!");
+	}
+}
+
 void OgSceneLoader::processSkyBox(TiXmlElement *XMLNode)
 {
-	// Process attributes
-//	String material = getAttrib(XMLNode, "material");
-//	Real distance = parseReal(getAttrib(XMLNode, "distance", 5000);
-//	bool drawFirst = getAttribBool(XMLNode, "drawFirst", true);
-//
-//	TiXmlElement *pElement;
-//
-//	// Process rotation (?)
-//	Quaternion rotation = Quaternion::IDENTITY;
-//	pElement = XMLNode->FirstChildElement("rotation");
-//	if(pElement)
-//		rotation = parseQuaternion(pElement);
-//
-//	// Setup the sky box
-//	;//mSceneMgr->setSkyBox(true, material, distance, drawFirst, rotation, m_sGroupName);
+	// Process SkyBox properties
+	bool active = getPropertyBool(XMLNode, "skybox::active");
+	String material = getPropertyString(XMLNode, "skybox::material");
+	Real distance = getPropertyReal(XMLNode, "skybox::distance");
+
+	
+	//Create the SkyBox
+	createSkyBox(active, material, distance);
 }
 
 void OgSceneLoader::processSkyDome(TiXmlElement *XMLNode)
@@ -988,13 +991,8 @@ void OgSceneLoader::processSkyPlane(TiXmlElement *XMLNode)
 	//mSceneMgr->setSkyPlane(true, plane, material, scale, tiling, drawFirst, bow, 1, 1, m_sGroupName);
 }
 
-void OgSceneLoader::processClipping(TiXmlElement *XMLNode)
+void OgSceneLoader::processShadows(TiXmlElement *XMLNode)
 {
-	////! @todo Implement this
-
-	//// Process attributes
-	//Real fNear = parseReal(getAttrib(XMLNode, "near", 0);
-	//Real fFar = parseReal(getAttrib(XMLNode, "far", 1);
 }
 
 String OgSceneLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)

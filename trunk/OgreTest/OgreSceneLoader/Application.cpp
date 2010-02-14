@@ -40,9 +40,11 @@ void Application::initialise()
 	m_viewport = m_window->addViewport( m_camera );
 	m_viewport->setBackgroundColour( ColourValue( 0, 0, 0 ) );
 
-	m_cameraController = new CameraFirstPersonController();
+	m_cameraControllerFirstPerson = new CameraControllerFirstPerson();
+	m_cameraControllerFirstPerson->initialise(m_sceneManager);
 
-	SimpleInputManager::initialise( m_window );
+	//initialize input manager and hide mouse cursor
+	SimpleInputManager::initialise( m_window, false );
 
 	defineResources();
 	
@@ -89,18 +91,14 @@ void Application::loadResources()
 void Application::createScene()
 {
 	
-	m_sceneManager->setAmbientLight(ColourValue(0.5,0.5,0.5));
-	
 	OgSceneLoader ogSceneLoader;
-	ogSceneLoader.parseOgScene("TestLevelPhysix.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),"");
+	ogSceneLoader.parseOgScene("TestLevel.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),m_viewport);
 
-	m_camera->setPosition(0,0,0);
+
 	m_camera->setNearClipDistance( 0.01 );
-	m_cameraController->setCamera(m_camera);
-	//m_cameraController->setOrientation( 0, 0 );
-	//m_cameraController->setDistance( 40 );
-	//m_cameraController->setLookAtPosition( 0, 0, 0 );
+	m_camera->setPosition(-100,30,50);
 
+	m_cameraControllerFirstPerson->setCamera(m_camera);
 }
 
 void Application::go()
@@ -140,7 +138,7 @@ void Application::go()
 void Application::updateLogic( const float elapsedSeconds )
 {
 
-	m_cameraController->processKeyboardInput(this,elapsedSeconds,40,20);
+	m_cameraControllerFirstPerson->processKeyboardInput(this,elapsedSeconds,40,20);
 
 }
 
@@ -149,19 +147,62 @@ void Application::updateGraphics( const float elapsedSeconds )
 
 }
 
+void Application::changeCamera(String camera)
+{
+		Camera * newCamera;
+		
+		if (m_sceneManager->hasCamera(camera))
+		{
+			newCamera=m_sceneManager->getCamera(camera);
+			m_viewport->setCamera(newCamera);
+		}
+}
+
 bool Application::keyPressed( const OIS::KeyEvent& e )
 {
+
 	if ( e.key == OIS::KC_ESCAPE )
 	{
 		m_exitRequested = true;
 	}
-
+	if ( e.key == OIS::KC_0 )
+	{
+		changeCamera("Camera#0");
+	}
+	if ( e.key == OIS::KC_1 )
+	{
+		changeCamera("Camera#1");
+	}
+	if ( e.key == OIS::KC_2 )
+	{
+		changeCamera("Camera#2");
+	}
+	if ( e.key == OIS::KC_3 )
+	{
+		changeCamera("Camera#3");
+	}
+	if ( e.key == OIS::KC_4 )
+	{
+		changeCamera("Camera#4");
+	}
+	if ( e.key == OIS::KC_5 )
+	{
+		changeCamera("Camera#5");
+	}
+	if ( e.key == OIS::KC_8 )
+	{
+		changeCamera("Ogitor");
+	}
+	if ( e.key == OIS::KC_9 )
+	{
+		m_viewport->setCamera(m_camera);
+	}
 	return true;
 }
 
 bool Application::mouseMoved( const OIS::MouseEvent& e )
 {
-	m_cameraController->processMouseInput(e);
+	m_cameraControllerFirstPerson->processMouseInput(e);
 
 	return true;
 }

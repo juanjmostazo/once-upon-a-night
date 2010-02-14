@@ -17,7 +17,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="-1.03582 8.17692 4.80655" orientation="0.998382 -0.0479558 -0.0305038 -0.0014649"></OPTION>
+    <OPTION id="0" position="19.2883 11.9152 -47.5906" orientation="0.372135 -0.105439 0.887196 0.251559"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -79,9 +79,9 @@
     <PROPERTY id="shadows::resolutionmiddle" type="2" value="512"></PROPERTY>
     <PROPERTY id="shadows::resolutionnear" type="2" value="1024"></PROPERTY>
     <PROPERTY id="shadows::technique" type="2" value="37"></PROPERTY>
-    <PROPERTY id="skybox::active" type="12" value="false"></PROPERTY>
-    <PROPERTY id="skybox::distance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="skybox::material" type="7" value=""></PROPERTY>
+    <PROPERTY id="skybox::active" type="12" value="true"></PROPERTY>
+    <PROPERTY id="skybox::distance" type="6" value="250"></PROPERTY>
+    <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
     <PROPERTY id="skydome::material" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -91,11 +91,11 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.998389 -0.0479562 -0.030504 -0.00146491"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.372192 -0.105455 0.887331 0.251597"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-1.03582 8.17692 4.80655"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="19.2883 11.9152 -47.5906"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.0784314 0.466667 0.882353 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
     <PROPERTY id="index" type="2" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -121,6 +121,96 @@
     <PROPERTY id="position" type="9" value="7.01149 6.09864 -31.6417"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="92745752" name="Camera#4" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="0.5"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-1.73243 3.54802 -23.0328"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="893826112" name="Camera#5" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1.99"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-1.70064 3.40506 -22.6799"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="996032576" name="Camera#2" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.00872665 0 0.999962 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="1"></PROPERTY>
+    <PROPERTY id="position" type="9" value="33.1287 22.3458 -111.135"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="559404224" name="Camera#3" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-1.79694 3.48214 -22.9644"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="989989952" name="Camera#0" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="9.85267 2.69663 -16.8523"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="596881024" name="Camera#1" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.561388 0.796852 0.1452 -0.169668"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="2"></PROPERTY>
+    <PROPERTY id="position" type="9" value="34.8262 8.60846 -79.5595"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -194,6 +284,46 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="945280320" name="Particle#0" typename="Particle Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
+    <PROPERTY id="position" type="9" value="25.181 51.1928 -98.746"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="876277952" name="BillboardSet#0" typename="BillboardSet Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
+    <PROPERTY id="billboard0::dimensions" type="8" value="3 3"></PROPERTY>
+    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
+    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboardtype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
+    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="material" type="7" value="grass"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.99863 0 -0.052336 0"></PROPERTY>
+    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
+    <PROPERTY id="position" type="9" value="7.57018 -1.26121 -37.5481"></PROPERTY>
+    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

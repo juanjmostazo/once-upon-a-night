@@ -26,7 +26,7 @@ private:
 	Ogre::Camera* m_camera;
 	Ogre::Viewport* m_viewport;
 
-	CameraFirstPersonController* m_cameraController;
+	CameraControllerFirstPerson* m_cameraControllerFirstPerson;
 
 	bool application_started;
 
@@ -37,7 +37,7 @@ private:
 	void createScene();
 	void updateLogic( const float elapsedSeconds );
 	void updateGraphics( const float elapsedSeconds );
-
+	void changeCamera(String camera);
 
 };
 

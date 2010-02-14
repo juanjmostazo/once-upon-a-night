@@ -17,7 +17,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="-1.03582 8.17692 4.80655" orientation="0.998382 -0.0479558 -0.0305038 -0.0014649"></OPTION>
+    <OPTION id="0" position="-1.03582 8.17692 4.80655" orientation="0.997892 0.0643137 0.00870709 -0.000561844"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -79,9 +79,9 @@
     <PROPERTY id="shadows::resolutionmiddle" type="2" value="512"></PROPERTY>
     <PROPERTY id="shadows::resolutionnear" type="2" value="1024"></PROPERTY>
     <PROPERTY id="shadows::technique" type="2" value="37"></PROPERTY>
-    <PROPERTY id="skybox::active" type="12" value="false"></PROPERTY>
-    <PROPERTY id="skybox::distance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="skybox::material" type="7" value=""></PROPERTY>
+    <PROPERTY id="skybox::active" type="12" value="true"></PROPERTY>
+    <PROPERTY id="skybox::distance" type="6" value="500"></PROPERTY>
+    <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
     <PROPERTY id="skydome::material" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -91,7 +91,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.998389 -0.0479562 -0.030504 -0.00146491"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.997918 0.0643153 0.00870732 -0.000561858"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="-1.03582 8.17692 4.80655"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -112,13 +112,13 @@
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="diffuse" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="1 -1 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="-1 1 -1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
     <PROPERTY id="lighttype" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.888074 0.325058 0.325058 -0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="7.01149 6.09864 -31.6417"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.459701 -0.627963 -0.627963 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="4.66111 22.6377 -28.7987"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
     <CUSTOMPROPERTIES>

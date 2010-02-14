@@ -1,5 +1,5 @@
 //Once Upon a Night
-#include "CameraFirstPersonController.h"
+#include "CameraControllerFirstPerson.h"
 #include "SimpleInputManager.h"
 
 //DotSceneLoader

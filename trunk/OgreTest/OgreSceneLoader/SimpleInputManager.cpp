@@ -23,6 +23,7 @@ void SimpleInputManager::initialise( Ogre::RenderWindow* window, bool showDefaul
 	windowHandleString << windowHandle;
 
 	OIS::ParamList parameters;
+
 	parameters.insert( std::make_pair( std::string( "WINDOW" ), windowHandleString.str() ) );
 	if ( showDefaultMousePointer )
 	{
