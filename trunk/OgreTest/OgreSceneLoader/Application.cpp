@@ -90,7 +90,7 @@ void Application::loadResources()
 
 void Application::createScene()
 {
-	
+
 	OgSceneLoader ogSceneLoader;
 	ogSceneLoader.parseOgScene("TestLevel.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),m_viewport);
 

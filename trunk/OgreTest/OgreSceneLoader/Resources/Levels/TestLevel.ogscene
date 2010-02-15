@@ -17,7 +17,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="19.2883 11.9152 -47.5906" orientation="0.372135 -0.105439 0.887196 0.251559"></OPTION>
+    <OPTION id="0" position="9.36844 10.1117 5.27211" orientation="-0.979244 0.0623329 -0.19247 -0.0123366"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -83,7 +83,7 @@
     <PROPERTY id="skybox::distance" type="6" value="250"></PROPERTY>
     <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
-    <PROPERTY id="skydome::material" type="7" value=""></PROPERTY>
+    <PROPERTY id="skydome::material" type="7" value="Examples/CloudySky"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -91,9 +91,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.372192 -0.105455 0.887331 0.251597"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.979261 0.062334 -0.192473 -0.0123368"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="19.2883 11.9152 -47.5906"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="9.36844 10.1117 5.27211"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.0784314 0.466667 0.882353 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -109,15 +109,15 @@
   </OBJECT>
 
   <OBJECT object_id="475264768" name="Light#0" typename="Light Object" parentnode="SceneManager">
-    <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
+    <PROPERTY id="attenuation" type="10" value="400000 234 1 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="diffuse" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="1 -1 1"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="1 0.0235294 0.0392157 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="0 -1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
-    <PROPERTY id="lighttype" type="2" value="1"></PROPERTY>
+    <PROPERTY id="lightrange" type="9" value="45 70 1"></PROPERTY>
+    <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.888074 0.325058 0.325058 -0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.92388 0.382683 0 -0"></PROPERTY>
     <PROPERTY id="position" type="9" value="7.01149 6.09864 -31.6417"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
@@ -217,12 +217,12 @@
 
   <OBJECT object_id="153233440" name="PJ_ONY#0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="PJ_ONY.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="5.1615 1.44602 -32.719"></PROPERTY>
+    <PROPERTY id="position" type="9" value="4.39966 1.33172 -32.719"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scene_material1"></PROPERTY>
@@ -273,17 +273,38 @@
 
   <OBJECT object_id="877254528" name="ENEMY_TRIPOLLO_DREAMS#0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ENEMY_TRIPOLLO_DREAMS.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-4.32346 -2.48163 -31.5852"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-3.84144 -2.48163 -31.5852"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="884548480" name="ITEM_MAX_HP_RESTORE#0" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="37.1331 3.2411 -44.896"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="NoMaterial"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
