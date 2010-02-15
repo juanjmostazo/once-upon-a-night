@@ -3,6 +3,8 @@
 #include <string.h>
 #include <malloc.h>
 
+using namespace OUAN;
+
 Logger* Logger::_instance = 0;
 
 Logger* Logger::Instance()

@@ -4,19 +4,21 @@
 #define LOG_FILE "log.txt"
 
 #include <windows.h>
-
-class Logger
+namespace OUAN
 {
-public: 
-    static Logger* Instance();
-	void MsgLine(char *msg);
-	void Msg(char *msg);
-	void Lock();
-	void Unlock();
+	class Logger
+	{
+	public: 
+		static Logger* Instance();
+		void MsgLine(char *msg);
+		void Msg(char *msg);
+		void Lock();
+		void Unlock();
 
-private:
-	bool locked;
-    static Logger* _instance;
-};
+	private:
+		bool locked;
+		static Logger* _instance;
+	};
+}
 
 #endif

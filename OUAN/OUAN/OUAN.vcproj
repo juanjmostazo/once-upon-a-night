@@ -58,7 +58,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
@@ -222,6 +222,54 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Core"
+				>
+				<File
+					RelativePath=".\Src\Core\GameRunningState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameStateManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\MainMenuState.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Graphics"
+				>
+				<File
+					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GUI"
+				>
+				<File
+					RelativePath=".\Src\GUI\GUISubsystem.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Logic"
+				>
+				<File
+					RelativePath=".\Src\Logic\GameObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\GameWorldManager.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -230,6 +278,10 @@
 			>
 			<File
 				RelativePath=".\Src\Application.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Src\ConfigKeys.h"
 				>
 			</File>
 			<File
@@ -273,6 +325,70 @@
 				>
 				<File
 					RelativePath=".\Src\Loader\Configuration.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Core"
+				>
+				<File
+					RelativePath=".\Src\Core\GameRunningState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameStateManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\MainMenuState.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Graphics"
+				>
+				<File
+					RelativePath=".\Src\Graphics\RenderSubsystem.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GUI"
+				>
+				<File
+					RelativePath=".\Src\GUI\GUISubsystem.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Logic"
+				>
+				<File
+					RelativePath=".\Src\Logic\GameComponent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\GameObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\GameWorldManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\LightComponent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\PositionComponent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Logic\RenderableComponent.h"
 					>
 				</File>
 			</Filter>

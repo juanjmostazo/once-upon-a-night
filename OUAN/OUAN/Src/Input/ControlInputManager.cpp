@@ -16,7 +16,7 @@ ControlInputManager::~ControlInputManager()
 
 bool ControlInputManager::loadConfig()
 {
-	Configuration config;
+	OUAN::Configuration config;
 	std::string value;
 	bool success;
 
@@ -70,7 +70,7 @@ bool ControlInputManager::loadConfig()
 		success = false;
 	}
 
-	config.~Configuration();
+//	config.~Configuration();
 	return success;
 }
 

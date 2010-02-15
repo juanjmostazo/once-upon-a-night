@@ -4,6 +4,7 @@
 #include "../TinyXML/tinyxml.h"
 #include <iostream>
 
+using namespace OUAN;
 
 Configuration::Configuration()
 {

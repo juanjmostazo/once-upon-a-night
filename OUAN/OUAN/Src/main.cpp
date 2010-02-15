@@ -1,4 +1,5 @@
 #include "OUAN.h"
+#include "Application.h"
 
 // ----------------------------------------------------------------------------
 // Main function, just boots the application object
@@ -14,11 +15,11 @@ int main(int argc, char **argv)
 {
 	try
 	{
-		Application* app=new Application();
+		OUAN::ApplicationPtr app(new OUAN::Application());
 		app->initialise();
+		app->loadInitialState();
 		app->go();
-		app->cleanUp();
-		delete app;
+		app->cleanUp();		
 	}
 	catch(Ogre::Exception& e)
 	{
