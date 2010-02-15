@@ -30,8 +30,9 @@ namespace Ogre
 		Viewport *mViewport;
 		String m_sGroupName;
 
-		void processScene(TiXmlElement *XMLRoot);
+		void processScene(TiXmlElement *XMLNode);
 		void processProject(TiXmlElement *XMLNode);
+		void processObjects(TiXmlElement *XMLNode,String type);
 		void processObject(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
 		void processTerrain(TiXmlElement *XMLNode);
@@ -52,7 +53,6 @@ namespace Ogre
 		void processFog(TiXmlElement *XMLNode);
 		void processSkyBox(TiXmlElement *XMLNode);
 		void processSkyDome(TiXmlElement *XMLNode);
-		void processSkyPlane(TiXmlElement *XMLNode);
 		void processShadows(TiXmlElement *XMLNode);
 
 		void createMeshFile(String meshfile);
@@ -64,9 +64,14 @@ namespace Ogre
 		void createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 		void createBillboardSet(String name,String material,int billboardorigin,int billboardrotation,int billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting);
 		void createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies);
-		void createSkyBox(bool active, String material, Real distance);
 		void createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,int polygonmode, int viewmode);
 		void createOctreeSceneManager(String name,ColourValue ambient);
+		void createResourceLocations();
+		void createSkyBox(bool active, String material, Real distance);
+		void createSkyDome(bool active, String material);
+		void createShadows();
+		void createFog();
+		void createPlane();
 
 		String getAttrib(TiXmlElement *XMLNode, const String &parameter, const String &defaultValue = "");
 
