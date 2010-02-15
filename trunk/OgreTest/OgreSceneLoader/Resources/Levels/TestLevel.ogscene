@@ -17,7 +17,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="9.36844 10.1117 5.27211" orientation="-0.979244 0.0623329 -0.19247 -0.0123366"></OPTION>
+    <OPTION id="0" position="35.3357 49.9464 -96.219" orientation="-0.659136 -0.346446 -0.590599 0.310977"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -91,9 +91,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.979261 0.062334 -0.192473 -0.0123368"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.659293 -0.346529 -0.590739 0.311051"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="9.36844 10.1117 5.27211"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="35.3357 49.9464 -96.219"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.0784314 0.466667 0.882353 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -111,14 +111,14 @@
   <OBJECT object_id="475264768" name="Light#0" typename="Light Object" parentnode="SceneManager">
     <PROPERTY id="attenuation" type="10" value="400000 234 1 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="diffuse" type="11" value="1 0.0235294 0.0392157 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="0 -1 1"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="0.0235294 0.823529 1 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="0 0.224952 0.97437"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="lightrange" type="9" value="45 70 1"></PROPERTY>
     <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.92388 0.382683 0 -0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="7.01149 6.09864 -31.6417"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.993572 -0.113204 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="23 75 -94"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -134,7 +134,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1.73243 3.54802 -23.0328"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-2.94019 28.245 -19.0994"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -149,7 +149,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1.70064 3.40506 -22.6799"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-2.9084 28.1021 -18.7465"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -164,7 +164,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.00872665 0 0.999962 0"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="1"></PROPERTY>
-    <PROPERTY id="position" type="9" value="33.1287 22.3458 -111.135"></PROPERTY>
+    <PROPERTY id="position" type="9" value="31.9209 47.0428 -107.202"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -179,7 +179,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1.79694 3.48214 -22.9644"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-3.0047 28.1792 -19.031"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -194,7 +194,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="9.85267 2.69663 -16.8523"></PROPERTY>
+    <PROPERTY id="position" type="9" value="8.64491 27.3937 -12.9189"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -209,7 +209,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.561388 0.796852 0.1452 -0.169668"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="34.8262 8.60846 -79.5595"></PROPERTY>
+    <PROPERTY id="position" type="9" value="33.6184 33.3055 -75.6261"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -222,7 +222,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="PJ_ONY.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="4.39966 1.33172 -32.719"></PROPERTY>
+    <PROPERTY id="position" type="9" value="3.1919 26.0287 -28.7856"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scene_material1"></PROPERTY>
@@ -253,7 +253,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="NIVEL2_ISLA2.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="5.67076 5.65086 -32.4155"></PROPERTY>
+    <PROPERTY id="position" type="9" value="4.463 30.3479 -28.4821"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="wire_229154215"></PROPERTY>
@@ -278,7 +278,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ENEMY_TRIPOLLO_DREAMS.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-3.84144 -2.48163 -31.5852"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-5.0492 22.2154 -27.6518"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
@@ -295,7 +295,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="37.1331 3.2411 -44.896"></PROPERTY>
+    <PROPERTY id="position" type="9" value="35.9253 27.9381 -40.9626"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="NoMaterial"></PROPERTY>
@@ -316,7 +316,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="25.181 51.1928 -98.746"></PROPERTY>
+    <PROPERTY id="position" type="9" value="23.9732 75.8898 -94.8127"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -341,7 +341,7 @@
     <PROPERTY id="material" type="7" value="grass"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99863 0 -0.052336 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="7.57018 -1.26121 -37.5481"></PROPERTY>
+    <PROPERTY id="position" type="9" value="7.57018 23.0594 -37.5481"></PROPERTY>
     <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
