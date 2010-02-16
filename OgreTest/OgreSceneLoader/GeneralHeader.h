@@ -1,9 +1,9 @@
 //Once Upon a Night
+#include "Trajectory.h"
 #include "CameraControllerFirstPerson.h"
 #include "SimpleInputManager.h"
-
-//DotSceneLoader
 #include "OgSceneLoader.h"
+
 
 //TinyXML
 #include "tinyxml.h"

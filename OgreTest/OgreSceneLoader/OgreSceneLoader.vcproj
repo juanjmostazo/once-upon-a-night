@@ -212,6 +212,10 @@
 				RelativePath=".\tinyxmlparser.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Trajectory.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -249,6 +253,10 @@
 				</File>
 				<File
 					RelativePath=".\tinyxml.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Trajectory.h"
 					>
 				</File>
 			</Filter>

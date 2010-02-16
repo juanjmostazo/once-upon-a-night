@@ -88,6 +88,7 @@ void OgSceneLoader::processScene(TiXmlElement *XMLNode)
 	processObjects(XMLNode,"OctreeSceneManager");
 	processObjects(XMLNode,"Viewport Object");
 	processObjects(XMLNode,"Node Object");
+	processObjects(XMLNode,"Marker Object");
 	processObjects(XMLNode,"Light Object");
 	processObjects(XMLNode,"Entity Object");
 	processObjects(XMLNode,"Camera Object");
@@ -135,6 +136,10 @@ void OgSceneLoader::processObject(TiXmlElement *XMLNode)
 		processViewport(XMLNode);
 	}
 	else if( type.compare("Node Object")==0)
+	{
+		processSceneNode(XMLNode);
+	}
+	else if( type.compare("Marker Object")==0)
 	{
 		processSceneNode(XMLNode);
 	}
@@ -335,9 +340,7 @@ void OgSceneLoader::createLight(String name,int lighttype,ColourValue diffuse,Co
 		pLight->setSpecularColour(specular);
 		pLight->setDirection(direction);
 		pLight->setCastShadows(castshadows);
-		LogManager::getSingleton().logMessage("attenuation :"+StringConverter::toString(attenuation));
-		//TODO FIX THAT
-		//pLight->setAttenuation(attenuation.x, attenuation.y, attenuation.z, attenuation.w);
+		pLight->setAttenuation(attenuation.x, attenuation.y, attenuation.z, attenuation.w);
 		pLight->setPowerScale(power);
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -433,6 +436,33 @@ void OgSceneLoader::createCamera(String name,Vector3 position,Quaternion orienta
 	{
 		LogManager::getSingleton().logMessage("[OgSceneLoader] Error creating "+name+" Camera!");
 	}
+}
+
+void OgSceneLoader::processTrajectory(TiXmlElement *XMLNode)
+{
+	String name;
+	
+	//Get Trajectory name
+	name = getAttrib(XMLNode, "name");
+
+	int i;
+	String node;
+
+	if(trajectory.trajectoryNodes.size()==0)
+	{
+		trajectory.initialise(mSceneMgr);
+	}
+
+	i=0;
+	node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
+	while(node.compare("")!=0)
+	{
+		trajectory.addNode(node);
+		i++;
+		node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
+	}
+
+	
 }
 
 void OgSceneLoader::processCamera(TiXmlElement *XMLNode)
@@ -656,6 +686,9 @@ void OgSceneLoader::processEntity(TiXmlElement *XMLNode)
 
 	//process Entity's SubEntites
 	processSubentities(name,XMLNode);
+
+	//process Entity's Trajectory
+	processTrajectory(XMLNode);
 
 }
 

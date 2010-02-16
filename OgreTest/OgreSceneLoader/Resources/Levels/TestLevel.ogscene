@@ -17,7 +17,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="35.3357 49.9464 -96.219" orientation="-0.659136 -0.346446 -0.590599 0.310977"></OPTION>
+    <OPTION id="0" position="26.5458 25.612 -19.7718" orientation="0.827228 -0.0779674 0.554007 0.0518778"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -91,9 +91,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.659293 -0.346529 -0.590739 0.311051"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.827305 -0.0779746 0.554058 0.0518827"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="35.3357 49.9464 -96.219"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="26.5458 25.612 -19.7718"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.0784314 0.466667 0.882353 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -108,17 +108,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="475264768" name="Light#0" typename="Light Object" parentnode="SceneManager">
-    <PROPERTY id="attenuation" type="10" value="400000 234 1 0"></PROPERTY>
+  <OBJECT object_id="214331488" name="Light#1" typename="Light Object" parentnode="SceneManager">
+    <PROPERTY id="attenuation" type="10" value="25 0.5 0 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="diffuse" type="11" value="0.0235294 0.823529 1 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="0 0.224952 0.97437"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="1 0 0.0156863 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="0 0 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="lightrange" type="9" value="45 70 1"></PROPERTY>
+    <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
     <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.993572 -0.113204 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="23 75 -94"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="1.209 36.9153 -27.4173"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -243,6 +243,9 @@
     <PROPERTY id="subentity7::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="8"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="TrajectoryStart" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Sound" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysX" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -285,6 +288,13 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="Trajectory::0" type="7" value="Marker#0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::1" type="7" value="Marker#1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::2" type="7" value="Marker#2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::3" type="7" value="Marker#3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::4" type="7" value="Marker#4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::5" type="7" value="Marker#5" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Trajectory::6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -345,6 +355,78 @@
     <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="129978328" name="Marker#2" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="2.6534 23.1818 -20.5727"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="51576280" name="Marker#5" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-0.812152 23.6198 -33.6449"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="165807072" name="Marker#4" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="7.29606 24.0871 -32.4873"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="727011904" name="Marker#1" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-2.88351 22.9423 -23.1649"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="880703168" name="Marker#0" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-6.6617 23.1681 -28.2828"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="484420288" name="Marker#3" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="10.2013 23.1234 -26.6925"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
