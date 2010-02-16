@@ -8,6 +8,8 @@
 
 #include "GUI/GUISubsystem.h"
 
+#include "Game/GameWorldManager.h"
+
 #include "Loader/Configuration.h"
 
 using namespace OUAN;
@@ -150,4 +152,8 @@ RenderSubsystemPtr Application::getRenderSubsystem() const
 GUISubsystemPtr Application::getGUISubsystem() const
 {
 	return mGUISubsystem;
+}
+GameWorldManagerPtr Application::getGameWorldManager() const
+{
+	return mGameWorldManager;
 }
