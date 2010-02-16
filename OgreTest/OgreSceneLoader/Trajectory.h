@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#define TIME_PER_NODE 0.5
+#define TIME_PER_NODE 1
 
 class Trajectory
 {
@@ -19,6 +19,7 @@ public:
 
 	void initialise(Ogre::SceneManager *pSceneManager);
 	Ogre::Vector3 getNextPosition( const float elapsedSeconds );
+	Ogre::Quaternion getNextOrientation( const float elapsedSeconds );
 	void restartTrajectory();
 	void addNode(std::string nodeName);
 
