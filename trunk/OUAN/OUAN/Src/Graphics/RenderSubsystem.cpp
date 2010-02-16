@@ -112,7 +112,10 @@ void RenderSubsystem::createViewports()
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 }
 void RenderSubsystem::createScene()
-{}
+{
+
+
+}
 RenderWindow* RenderSubsystem::getWindow() const
 {
 	return mWindow;
