@@ -259,14 +259,26 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Logic"
+				Name="Game"
 				>
 				<File
-					RelativePath=".\Src\Logic\GameObject.cpp"
+					RelativePath=".\Src\Game\Component.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Logic\GameWorldManager.cpp"
+					RelativePath=".\Src\Game\ComponentFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Game\GameObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Game\GameWorldManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Game\OgreComponent.cpp"
 					>
 				</File>
 			</Filter>
@@ -365,30 +377,26 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Logic"
+				Name="Game"
 				>
 				<File
-					RelativePath=".\Src\Logic\GameComponent.h"
+					RelativePath=".\Src\Game\Component.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Logic\GameObject.h"
+					RelativePath=".\Src\Game\ComponentFactory.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Logic\GameWorldManager.h"
+					RelativePath=".\Src\Game\GameObject.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Logic\LightComponent.h"
+					RelativePath=".\Src\Game\GameWorldManager.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Logic\PositionComponent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Src\Logic\RenderableComponent.h"
+					RelativePath=".\Src\Game\OgreComponent.h"
 					>
 				</File>
 			</Filter>

@@ -40,18 +40,31 @@ namespace OUAN
 		typedef boost::shared_ptr<Application> ApplicationPtr;
 
 	//---------------
-	// Logic module-related constants, type definitions and forwarded declarations
+	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
 		class GameObject;
 		class GameWorldManager;
-		class GameComponent;
+		class Component;
 
 		typedef boost::shared_ptr<GameObject> GameObjectPtr;
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
-		typedef boost::shared_ptr<GameComponent> GameComponentPtr;
+		typedef boost::shared_ptr<Component> ComponentPtr;
 
-		typedef std::map<std::string,GameComponentPtr> TComponentContainer;
-		typedef std::map<std::string,GameComponentPtr>::iterator TComponentContainerIterator;
+
+		typedef std::map<std::string,ComponentPtr> TComponentContainer;
+		typedef TComponentContainer::iterator TComponentContainerIterator;
+
+		typedef std::map<std::string,GameObjectPtr> TGameObjectContainer;
+		typedef TGameObjectContainer::iterator TGameObjectContainerIterator;
+
+		const int GAMEOBJECT_ID_ZERO_PADDING=6;
+
+		const std::string COMPONENT_NAME_OGRE="ogreComponent";
+		const std::string COMPONENT_NAME_PHYSICS="physicsComponent";
+		
+		//Component specializations
+		class OgreComponent;
+		typedef boost::shared_ptr<OgreComponent> OgreComponentPtr;
 
 
 

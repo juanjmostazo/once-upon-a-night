@@ -73,6 +73,7 @@ namespace OUAN
 			GameStateManagerPtr getGameStateManager() const;
 			RenderSubsystemPtr getRenderSubsystem() const;
 			GUISubsystemPtr getGUISubsystem() const;
+			GameWorldManagerPtr getGameWorldManager() const;
 			//OUAN::GUISubsystemPtr getGUISubsystem() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 
@@ -90,6 +91,8 @@ namespace OUAN
 			RenderSubsystemPtr mRenderSubsystem;
 			/// Pointer to the GUI subsystem
 			GUISubsystemPtr mGUISubsystem;
+			/// Pointer to the game world manager
+			GameWorldManagerPtr mGameWorldManager;
 
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;
