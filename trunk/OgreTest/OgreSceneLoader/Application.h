@@ -26,6 +26,8 @@ private:
 	Ogre::Camera* m_camera;
 	Ogre::Viewport* m_viewport;
 
+	OgSceneLoader* ogSceneLoader;
+
 	CameraControllerFirstPerson* m_cameraControllerFirstPerson;
 
 	bool application_started;

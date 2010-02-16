@@ -41,6 +41,7 @@ void Application::initialise()
 	m_viewport->setBackgroundColour( ColourValue( 0, 0, 0 ) );
 
 	m_cameraControllerFirstPerson = new CameraControllerFirstPerson();
+	ogSceneLoader = new OgSceneLoader();
 	m_cameraControllerFirstPerson->initialise(m_sceneManager);
 
 	//initialize input manager and hide mouse cursor
@@ -91,9 +92,7 @@ void Application::loadResources()
 void Application::createScene()
 {
 
-	OgSceneLoader ogSceneLoader;
-	ogSceneLoader.parseOgScene("TestLevel.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),m_viewport);
-
+	ogSceneLoader->parseOgScene("TestLevel.ogscene","General",m_sceneManager,m_sceneManager->getRootSceneNode(),m_viewport);
 
 	m_camera->setNearClipDistance( 0.01 );
 	m_camera->setPosition(-100,30,50);
@@ -109,6 +108,7 @@ void Application::go()
 
 	//initialitze application
 	initialise();
+
 
 	//game loop
 	bool continueRunning = true;
@@ -144,6 +144,13 @@ void Application::updateLogic( const float elapsedSeconds )
 
 void Application::updateGraphics( const float elapsedSeconds )
 {
+	SceneNode *pSceneNode;
+	Vector3 movement;
+
+
+	pSceneNode=m_sceneManager->getSceneNode("ENEMY_TRIPOLLO_DREAMS#0");
+	movement=ogSceneLoader->trajectory.getNextPosition(elapsedSeconds);
+	pSceneNode->setPosition(movement);
 
 }
 
@@ -154,6 +161,7 @@ void Application::changeCamera(String camera)
 		if (m_sceneManager->hasCamera(camera))
 		{
 			newCamera=m_sceneManager->getCamera(camera);
+			//m_cameraControllerFirstPerson->setCamera(newCamera);
 			m_viewport->setCamera(newCamera);
 		}
 }
