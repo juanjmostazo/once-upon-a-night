@@ -1,0 +1,51 @@
+
+material scene_material1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
+
+material Scene_Material
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.902 0.055 0.098
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
+
+material scene_material2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.965 0.557 0.318
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+

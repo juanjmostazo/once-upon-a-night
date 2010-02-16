@@ -1,5 +1,6 @@
 #include "RenderSubsystem.h"
 #include "../Loader/Configuration.h"
+#include "../Loader/OgSceneLoader.h"
 
 
 using namespace OUAN;
@@ -113,7 +114,14 @@ void RenderSubsystem::createViewports()
 }
 void RenderSubsystem::createScene()
 {
+	//TODO: load level in GameWorldManager 
+	OgSceneLoader ogSceneLoader;
+	ogSceneLoader.parseOgScene("TestLevel.ogscene","General",mSceneManager,mSceneManager->getRootSceneNode(),mViewport);
 
+	mCamera->setNearClipDistance( 0.01 );
+	mCamera->setPosition(-100,30,50);
+
+	//m_cameraControllerFirstPerson->setCamera(mCamera);
 
 }
 RenderWindow* RenderSubsystem::getWindow() const
