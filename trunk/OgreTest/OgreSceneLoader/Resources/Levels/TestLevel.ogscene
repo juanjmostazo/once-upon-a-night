@@ -91,7 +91,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.827305 -0.0779746 0.554058 0.0518827"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.827228 -0.0779674 0.554007 0.0518778"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="26.5458 25.612 -19.7718"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -109,9 +109,9 @@
   </OBJECT>
 
   <OBJECT object_id="214331488" name="Light#1" typename="Light Object" parentnode="SceneManager">
-    <PROPERTY id="attenuation" type="10" value="25 0.5 0 0"></PROPERTY>
+    <PROPERTY id="attenuation" type="10" value="1000 0.2 0.05 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="diffuse" type="11" value="1 0 0.0156863 1"></PROPERTY>
+    <PROPERTY id="diffuse" type="11" value="0.2 0.545098 1 1"></PROPERTY>
     <PROPERTY id="direction" type="9" value="0 0 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
@@ -364,8 +364,8 @@
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="2.6534 23.1818 -20.5727"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.652058 0.0406368 0.0865615 0.752114"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0.883467 25.8402 -21.1621"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -388,7 +388,7 @@
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.801254 0 0 -0.598325"></PROPERTY>
     <PROPERTY id="position" type="9" value="7.29606 24.0871 -32.4873"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -400,8 +400,8 @@
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-2.88351 22.9423 -23.1649"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.108867 -0.994056 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-2.88351 27.8796 -24.2595"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -424,7 +424,7 @@
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.809314 0.377389 0.407928 0.19022"></PROPERTY>
     <PROPERTY id="position" type="9" value="10.2013 23.1234 -26.6925"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>

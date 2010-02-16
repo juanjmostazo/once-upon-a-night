@@ -64,6 +64,54 @@ Ogre::Vector3 Trajectory::getNextPosition( const float elapsedSeconds )
 	return nextPosition;
 }
 
+Ogre::Quaternion Trajectory::getNextOrientation( const float elapsedSeconds )
+{
+
+	Ogre::Quaternion nextOrientation;
+	Ogre::Quaternion currentNodeOrientation;
+	Ogre::Quaternion nextNodeOrientation;
+	Ogre::SceneNode *pCurrentSceneNode;
+	Ogre::SceneNode *pNextSceneNode;
+	nextOrientation= Ogre::Quaternion(0,0,0);
+	unsigned int nextNode;
+
+	//update Time elapsed since last node change
+	timeElapsedSinceLastNode+=elapsedSeconds;
+
+	//calculate current Node
+	if( timeElapsedSinceLastNode>=TIME_PER_NODE)
+	{
+		timeElapsedSinceLastNode=0;
+		currentNode++;
+		if(currentNode>=trajectoryNodes.size())
+		{
+			currentNode=0;
+		}
+	}
+
+	//calculate next node
+	nextNode=currentNode+1;
+	if(nextNode>=trajectoryNodes.size())
+	{
+		nextNode=0;
+	}
+
+	//calculate next position
+	if (trajectoryNodes.size()>0)
+	{
+		pCurrentSceneNode=pSceneManager->getSceneNode(trajectoryNodes[currentNode]);
+		pNextSceneNode=pSceneManager->getSceneNode(trajectoryNodes[nextNode]);
+
+		currentNodeOrientation=pCurrentSceneNode->getOrientation();
+		nextNodeOrientation=pNextSceneNode->getOrientation();
+
+		nextOrientation=(1.0f-timeElapsedSinceLastNode/TIME_PER_NODE)*currentNodeOrientation+(timeElapsedSinceLastNode/TIME_PER_NODE)*nextNodeOrientation;
+		
+	}	
+	Ogre::LogManager::getSingleton().logMessage("Next position is "+Ogre::StringConverter::toString(nextOrientation));
+	return nextOrientation;
+}
+
 void Trajectory::restartTrajectory()
 {
 	currentNode=0;

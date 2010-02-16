@@ -146,11 +146,14 @@ void Application::updateGraphics( const float elapsedSeconds )
 {
 	SceneNode *pSceneNode;
 	Vector3 movement;
+	Quaternion orientation;
 
 
 	pSceneNode=m_sceneManager->getSceneNode("ENEMY_TRIPOLLO_DREAMS#0");
 	movement=ogSceneLoader->trajectory.getNextPosition(elapsedSeconds);
 	pSceneNode->setPosition(movement);
+	orientation=ogSceneLoader->trajectory.getNextOrientation(elapsedSeconds);
+	pSceneNode->setOrientation(orientation);
 
 }
 
