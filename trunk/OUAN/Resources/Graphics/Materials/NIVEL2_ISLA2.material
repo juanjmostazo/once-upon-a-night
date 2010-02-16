@@ -1,0 +1,85 @@
+
+material wire_229154215
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.898 0.6039 0.8431 1
+			diffuse 0.898 0.6039 0.8431 1
+			specular 0.35 0.35 0.35 1 32
+		}
+
+	}
+
+}
+
+
+
+material wire_086086086
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3373 0.3373 0.3373 1
+			diffuse 0.3373 0.3373 0.3373 1
+			specular 0.35 0.35 0.35 1 32
+		}
+
+	}
+
+}
+
+
+
+material wire_088177026
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3451 0.6941 0.102 1
+			diffuse 0.3451 0.6941 0.102 1
+			specular 0.35 0.35 0.35 1 32
+		}
+
+	}
+
+}
+
+
+
+material ClsBox01Polygon_XSIPOLYCLS_box01polygon
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.4431 0.5255 0.0235 1
+			diffuse 0.4431 0.5255 0.0235 1
+			specular 0.35 0.35 0.35 1 50
+		}
+
+	}
+
+}
+
+
+
+material wire_113134006
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.4431 0.5255 0.0235 1
+			diffuse 0.4431 0.5255 0.0235 1
+			specular 0.35 0.35 0.35 1 50
+		}
+
+	}
+
+}
+
+
