@@ -28,12 +28,15 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	defineResources(config);
 	setupRenderSystem(config);
 	createRenderWindow(config);
+	createVisualDebugger(config);
 	initialiseResourceGroups(config);
 
 }
+
 void RenderSubsystem::cleanUp()
 {
 }
+
 void RenderSubsystem::createRoot(ConfigurationPtr config)
 {
 	std::string pluginsPath=DEFAULT_OGRE_PLUGINS_PATH;
@@ -50,6 +53,7 @@ void RenderSubsystem::createRoot(ConfigurationPtr config)
 	}
 	mRoot.reset(new Ogre::Root(pluginsPath,configPath,logPath));
 }
+
 void RenderSubsystem::defineResources(ConfigurationPtr config)
 {
 	Ogre::String sectionName, typeName, resName;
@@ -76,8 +80,6 @@ void RenderSubsystem::defineResources(ConfigurationPtr config)
 	}
 }
 
-
-
 void RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 {
 	//[TODO - Get rid of config dialog]
@@ -89,6 +91,19 @@ void RenderSubsystem::createRenderWindow(ConfigurationPtr config)
 	mRoot->initialise(true,mWindowName);
 	mWindow=mRoot->getAutoCreatedWindow();
 }
+
+void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
+{
+	/*
+	mNxOgreVisualDebugger = mApp->getPhysicsSubsystem()->getNxOgreWorld()->getVisualDebugger();
+	mNxOgreVisualDebuggerRenderable = new OGRE3DRenderable(NxOgre::Enums::RenderableType_VisualDebugger);
+	mNxOgreVisualDebugger->setRenderable(mNxOgreVisualDebuggerRenderable);
+	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+	mNxOgreVisualDebuggerNode->attachObject(mNxOgreVisualDebuggerRenderable);
+	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);
+	*/
+}
+
 void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
 {
 	std::string mipmapNumber;
@@ -100,6 +115,7 @@ void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(DEFAULT_OGRE_MIPMAPS_NUMBER);
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
+
 void RenderSubsystem::setupScene(ConfigurationPtr config)
 {
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
@@ -116,11 +132,13 @@ void RenderSubsystem::createCameras()
 	mCameraControllerFirstPerson->initialise(mSceneManager);
 	mCameraControllerFirstPerson->setCamera(mCamera);
 }
+
 void RenderSubsystem::createViewports()
 {
 	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCamera);
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 }
+
 void RenderSubsystem::createScene()
 {
 
@@ -130,18 +148,22 @@ RenderWindow* RenderSubsystem::getWindow() const
 {
 	return mWindow;
 }
+
 Camera* RenderSubsystem::getCamera() const
 {
 	return mCamera;
 }
+
 Viewport* RenderSubsystem::getViewport() const
 {
 	return mViewport;
 }
+
 CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
 {
 	return mCameraControllerFirstPerson;
 }
+
 /// Translate/Rotate camera's position with mouse
 void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 {
@@ -152,6 +174,7 @@ bool RenderSubsystem::render()
 {
 	return mRoot->renderOneFrame();
 }
+
 bool RenderSubsystem::isWindowClosed() const
 {
 	return !mWindow || mWindow->isClosed();
@@ -162,6 +185,7 @@ void RenderSubsystem::relativeMoveCam(const int& ratio)
 	if(mCamera)
 		mCamera->moveRelative(mTranslateVector / ratio);
 }
+
 void RenderSubsystem::updateCameraParams(float elapsedTime)
 {
 	mMoveScale = mMoveSpeed   * elapsedTime;
@@ -192,6 +216,7 @@ void RenderSubsystem::translateCam(const TCoordinateAxis& coordAxis)
 	}
 	mTranslateVector=mMoveScale*axisVector;
 }
+
 Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 {
 	return mSceneManager;

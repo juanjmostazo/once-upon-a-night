@@ -9,6 +9,8 @@
 
 #include "GUI/GUISubsystem.h"
 
+#include "Physics/PhysicsSubsystem.h"
+
 #include "Game/GameWorldManager.h"
 
 #include "Loader/Configuration.h"
@@ -37,19 +39,28 @@ void Application::initialise()
 	ApplicationPtr this_ = shared_from_this();
 
 	mExitRequested=false;
+
 	mStateManager.reset(new GameStateManager());
+
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
+	
+	mPhysicsSubsystem.reset(new PhysicsSubsystem());
+	mPhysicsSubsystem->initialise(this_,mConfiguration);
+
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	mRenderSubsystem->initialise(this_,mConfiguration);
+
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->initialise(this_);
+
 	mGameWorldManager.reset( new GameWorldManager);
 	mGameWorldManager->initialise(this_);
+
 	mLevelLoader.reset(new LevelLoader);
 	mLevelLoader->initialise(this_);
 
-	//TODO: Add remaining subsystems (Physics, AI, Audio, etc)
+	//TODO: Add remaining subsystems (AI, Audio, etc)
 
 	setupInputSystem();
 
