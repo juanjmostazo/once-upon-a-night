@@ -67,6 +67,7 @@ void MainMenuState::handleEvents()
 /// @param app	the parent app
 void MainMenuState::update(long elapsedTime)
 {
+
 }
 bool MainMenuState::onQuit(const CEGUI::EventArgs& args)
 {

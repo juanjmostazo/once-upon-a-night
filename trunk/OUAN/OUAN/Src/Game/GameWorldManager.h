@@ -32,12 +32,30 @@ namespace OUAN
 		void cleanUp();
 
 		/// Load global parameters
-		void initialiseGlobalWorldData(/*const TGlobalWorldParameters& worldParams*/);
+		void initialiseGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
 
 		/// Create a game object using the given 'parameters' object
 		/// @param objectParams parameters to initialise the game object and its components
 		/// @return the game object instance that's been created
-		GameObjectPtr createGameObject(/*const TObjectParameters& objectParams*/);
+		GameObjectPtr createGameObject(String name/*const TObjectParameters& objectParams*/);
+
+
+		//Create Ogre component for the game object
+		OgreComponentPtr createOgreComponent(GameObjectPtr gameObject);
+
+		void createMeshFile(String meshfile);
+		void createEntity(String name,String meshfile,bool castshadows);
+		void createSubEntity(String name,int num,String material,bool visible);
+		void createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget);
+		void createLight(String name,Ogre::Light::LightTypes lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power);
+		void createParticleSystem(String name,String particle,bool castshadows);
+		void createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
+		void createBillboardSet(String name,String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting);
+		void createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies);
+		void createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,Ogre::PolygonMode polygonmode, int viewmode);
+		void createOctreeSceneManager(String name,ColourValue ambient);
+		void createSkyBox(bool active, String material, Real distance);
+		void createSkyDome(bool active, String material);
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
@@ -61,7 +79,7 @@ namespace OUAN
 		/// Return the last id value used
 		/// @return last id value used
 		inline unsigned long lastId() {return mNextIdNum;}
-		
+
 	private:
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
@@ -72,10 +90,10 @@ namespace OUAN
 		/// @param value		the value to append to the string
 		/// @return id string
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
-		//[TODO]: Uncomment line with the SceneLoader member object
+		//[TODO]: Uncomment line with the LevelLoader member object
 		// when available (unless it's a singleton?)
 		/// Level file loader
-		//SceneLoaderPtr mLoader;
+		//LevelLoaderPtr mLoader;
 
 		/// Pointer to the main application object
 		ApplicationPtr mApp;

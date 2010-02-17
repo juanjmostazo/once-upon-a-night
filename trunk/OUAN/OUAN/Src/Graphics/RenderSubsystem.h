@@ -18,7 +18,7 @@ namespace OUAN
 		virtual ~RenderSubsystem();
 
 		/// Initialise the subsystem from the options read in the configuration file
-		void initialise (OUAN::ConfigurationPtr config);		
+		void initialise (ApplicationPtr app,OUAN::ConfigurationPtr config);		
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
 
@@ -48,8 +48,8 @@ namespace OUAN
 		/// Create viewports
 		void createViewports();
 
-		/// Translate/Rotate camera's position
-		void moveCamera(const int& relativeX, const int& relativeY);
+		/// Translate/Rotate camera's position with mouse
+		void moveCamera(const OIS::MouseEvent &e);
 
 		/// Render scene at current frame
 		/// @return <b>true</b> if the frame was successfully rendered
@@ -68,6 +68,8 @@ namespace OUAN
 		/// Return read-only pointer to the scene manager
 		/// @return scene manager
 		Ogre::SceneManager* getSceneManager() const;
+
+		CameraControllerFirstPerson* getCameraControllerFirstPerson() const;
 
 		/// Tell if the window has been closed
 		/// @return <b>true</b> if the window has been closed
@@ -88,6 +90,21 @@ namespace OUAN
 		void translateCam(const TCoordinateAxis& coordAxis);
 		
 
+		//Object creators
+		void createMeshFile(String meshfile);
+		Ogre::Entity* createEntity(String name,String meshfile,bool castshadows);
+		void createSubEntity(String name,int num,String material,bool visible);
+		Ogre::SceneNode* createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget);
+		Ogre::Light* createLight(String name,Ogre::Light::LightTypes lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power);
+		Ogre::ParticleSystem* createParticleSystem(String name,String particle,bool castshadows);
+		void createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
+		Ogre::BillboardSet* createBillboardSet(OUAN::String name,OUAN::String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,OUAN::Real defaultheight,OUAN::Real defaultwidth,bool pointrendering,OUAN::Real renderdistance,bool sorting);
+		void createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies);
+		Ogre::Camera* createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,Ogre::PolygonMode polygonmode, int viewmode);
+		void createOctreeSceneManager(String name,ColourValue ambient);
+		void createSkyBox(bool active, String material, Real distance);
+		void createSkyDome(bool active, String material);
+
 	protected:
 		/// the application
 		OUAN::ApplicationPtr mApp;
@@ -105,6 +122,9 @@ namespace OUAN
 
 		/// Main camera
 		Ogre::Camera* mCamera;
+
+		/// Camera Controller
+		CameraControllerFirstPerson* mCameraControllerFirstPerson;
 
 		/// Viewport
 		Ogre::Viewport* mViewport;

@@ -5,12 +5,14 @@
 #include "Core/GameStateManager.h"
 #include "Core/GameState.h"
 #include "Core/MainMenuState.h"
+#include "Core/GameRunningState.h"
 
 #include "GUI/GUISubsystem.h"
 
 #include "Game/GameWorldManager.h"
 
 #include "Loader/Configuration.h"
+#include "Loader/LevelLoader.h"
 
 using namespace OUAN;
 
@@ -32,19 +34,28 @@ void Application::cleanUp()
 //Application initialization
 void Application::initialise()
 {
+	ApplicationPtr this_ = shared_from_this();
+
 	mExitRequested=false;
 	mStateManager.reset(new GameStateManager());
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
-	mRenderSubsystem->initialise(mConfiguration);
-	ApplicationPtr this_ = shared_from_this();
+	mRenderSubsystem->initialise(this_,mConfiguration);
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->initialise(this_);
+	mGameWorldManager.reset( new GameWorldManager);
+	mGameWorldManager->initialise(this_);
+	mLevelLoader.reset(new LevelLoader);
+	mLevelLoader->initialise(this_);
 
 	//TODO: Add remaining subsystems (Physics, AI, Audio, etc)
 
 	setupInputSystem();
+
+	//TODO: Put this in proper location
+	mRenderSubsystem->setupScene(mConfiguration);
+
 }
 //Run the app
 void Application::go()
@@ -133,11 +144,12 @@ bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
 
 void Application::setupInputSystem()
 {
-	FullInputManager::initialise( mRenderSubsystem->getWindow() );
+	//Set mouse pointer non-visible
+	FullInputManager::initialise( mRenderSubsystem->getWindow(), false );
 }
 void Application::loadInitialState()
 {
-	GameStatePtr initialState(new MainMenuState());
+	GameStatePtr initialState(new GameRunningState());
 	ApplicationPtr this_ = shared_from_this();
 	mStateManager->changeState(initialState,this_);
 }
@@ -156,4 +168,8 @@ GUISubsystemPtr Application::getGUISubsystem() const
 GameWorldManagerPtr Application::getGameWorldManager() const
 {
 	return mGameWorldManager;
+}
+LevelLoaderPtr Application::getLevelLoader() const
+{
+	return mLevelLoader;
 }

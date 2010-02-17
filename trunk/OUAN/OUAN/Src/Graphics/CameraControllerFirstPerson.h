@@ -1,22 +1,27 @@
-#pragma once
-#include "GeneralHeader.h"
+#ifndef CAMERACONTROLLERFIRSTPERSON_H
+#define CAMERACONTROLLERFIRSTPERSON_H
+#include "../OUAN.h"
 
-class CameraControllerFirstPerson
+namespace OUAN
 {
-public:
-	CameraControllerFirstPerson();
-	~CameraControllerFirstPerson();
+	class CameraControllerFirstPerson
+	{
+	public:
+		CameraControllerFirstPerson();
+		~CameraControllerFirstPerson();
 
-	void initialise(Ogre::SceneManager * pSceneManager);
-	void setCamera(Ogre::Camera* camera);
-	void processKeyboardInput(SimpleInputManager* pSimpleInputManager,const float elapsedSeconds,float moveScale,float rotateScale);
-	void processMouseInput(const OIS::MouseEvent& e);
+		void initialise(Ogre::SceneManager * pSceneManager);
+		void setCamera(Ogre::Camera* camera);
+		void processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime);
+		void processMouseInput(const OIS::MouseEvent& e);
+	private:
+		Ogre::Camera* camera;
+		Ogre::SceneNode *cameraNode;
+		Ogre::SceneNode *cameraYawNode;
+		Ogre::SceneNode *cameraPitchNode;
+		Ogre::SceneNode *cameraRollNode;
+		Ogre::SceneNode *cameraOffsetNode;
 
-	Ogre::Camera* camera;
-	Ogre::SceneNode *cameraNode;
-	Ogre::SceneNode *cameraYawNode;
-	Ogre::SceneNode *cameraPitchNode;
-	Ogre::SceneNode *cameraRollNode;
-	Ogre::SceneNode *cameraOffsetNode;
-
-};
+	};
+	#endif
+}

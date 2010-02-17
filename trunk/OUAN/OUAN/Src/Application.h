@@ -9,8 +9,8 @@ namespace OUAN
 {
 	/// Main application class which will hold all of the game's
 		/// subsystems.
-		class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
-		{
+	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
+	{
 		public:
 			///Constructor
 			/// @param windowName the name of the window
@@ -74,6 +74,7 @@ namespace OUAN
 			RenderSubsystemPtr getRenderSubsystem() const;
 			GUISubsystemPtr getGUISubsystem() const;
 			GameWorldManagerPtr getGameWorldManager() const;
+			LevelLoaderPtr getLevelLoader() const;
 			//OUAN::GUISubsystemPtr getGUISubsystem() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 
@@ -93,6 +94,8 @@ namespace OUAN
 			GUISubsystemPtr mGUISubsystem;
 			/// Pointer to the game world manager
 			GameWorldManagerPtr mGameWorldManager;
+			/// Pointer to the scene loader
+			LevelLoaderPtr mLevelLoader;
 
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;

@@ -29,6 +29,38 @@ void OgreComponent::setEntity(Ogre::Entity* entity)
 {
 	mEntity=entity;
 }
+Ogre::Camera* OgreComponent::getCamera() const
+{
+	return mCamera;
+}
+void OgreComponent::setCamera(Ogre::Camera* camera)
+{
+	mCamera=camera;
+}
+Ogre::ParticleSystem* OgreComponent::getParticleSystem() const
+{
+	return mParticleSystem;
+}
+void OgreComponent::setParticleSystem(Ogre::ParticleSystem* particleSystem)
+{
+	mParticleSystem=particleSystem;
+}
+Ogre::BillboardSet* OgreComponent::getBillboardSet() const
+{
+	return mBillboardSet;
+}
+void OgreComponent::setBillboardSet(Ogre::BillboardSet* billboardSet)
+{
+	mBillboardSet=billboardSet;
+}
+Ogre::Light* OgreComponent::getLight() const
+{
+	return mLight;
+}
+void OgreComponent::setLight(Ogre::Light* light)
+{
+	mLight=light;
+}
 
 void OgreComponent::update(long elapsedTime)
 {
