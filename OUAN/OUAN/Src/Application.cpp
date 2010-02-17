@@ -180,6 +180,10 @@ GameWorldManagerPtr Application::getGameWorldManager() const
 {
 	return mGameWorldManager;
 }
+PhysicsSubsystemPtr Application::getPhysicsSubsystem() const
+{
+	return mPhysicsSubsystem;
+}
 LevelLoaderPtr Application::getLevelLoader() const
 {
 	return mLevelLoader;
