@@ -8,9 +8,6 @@
 #include <cegui/CEGUI.h>
 #include <OgreCEGUIRenderer.h>
 
-//#include "Application.h"
-//#include "Core/GameStateManager.h"
-//#include "Core/GameState.h"
 #include "ConfigKeys.h"
 #include "Logger/Logger.h"
 
@@ -65,8 +62,7 @@ namespace OUAN
 		typedef boost::shared_ptr<GameObject> GameObjectPtr;
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
-
-
+		
 		typedef std::map<std::string,ComponentPtr> TComponentContainer;
 		typedef TComponentContainer::iterator TComponentContainerIterator;
 
@@ -155,6 +151,23 @@ namespace OUAN
 			GUI_MOUSEUP,
 			GUI_MOUSEMOVE,
 		} TGUIMouseEvent;
+
+		//-------------------------------------
+		//	Physics module-related constants, type definitions and forwarded declarations
+		//-------------------------------------
+
+		class PhysicsSubsystem;
+		typedef boost::shared_ptr<PhysicsSubsystem> PhysicsSubsystemPtr;
+
+		enum GameGroup
+		{
+			GROUP_NON_COLLIDABLE,
+			GROUP_COLLIDABLE_NON_PUSHABLE,
+			GROUP_COLLIDABLE_PUSHABLE,
+		};
+
+		#define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
+		#define NXS_PATH "file:../../../Resources/Graphics/NxModels"
 
 }
 

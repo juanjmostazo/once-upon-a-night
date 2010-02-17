@@ -8,7 +8,7 @@
 namespace OUAN
 {
 	/// Main application class which will hold all of the game's
-		/// subsystems.
+	/// subsystems.
 	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
 	{
 		public:
@@ -73,9 +73,9 @@ namespace OUAN
 			GameStateManagerPtr getGameStateManager() const;
 			RenderSubsystemPtr getRenderSubsystem() const;
 			GUISubsystemPtr getGUISubsystem() const;
+			PhysicsSubsystemPtr getPhysicsSubsystem() const;
 			GameWorldManagerPtr getGameWorldManager() const;
 			LevelLoaderPtr getLevelLoader() const;
-			//OUAN::GUISubsystemPtr getGUISubsystem() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 
 			///Initialise the game state machine
@@ -85,13 +85,14 @@ namespace OUAN
 			bool mExitRequested;
 		protected:
 
-
 			/// Pointer to the game state manager
 			GameStateManagerPtr mStateManager;	
 			/// Pointer to the render subsystem
 			RenderSubsystemPtr mRenderSubsystem;
 			/// Pointer to the GUI subsystem
 			GUISubsystemPtr mGUISubsystem;
+			/// Pointer to the physics subsystem
+			PhysicsSubsystemPtr mPhysicsSubsystem;
 			/// Pointer to the game world manager
 			GameWorldManagerPtr mGameWorldManager;
 			/// Pointer to the scene loader

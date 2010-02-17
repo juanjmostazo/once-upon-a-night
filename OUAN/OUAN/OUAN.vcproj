@@ -40,6 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="$(NXOGRE_DIR)\sdk"
 				PreprocessorDefinitions="OUAN_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -58,8 +59,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -113,6 +115,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(NXOGRE_DIR)\sdk"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
@@ -129,7 +132,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib"
+				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -290,6 +294,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Physics"
+				>
+				<File
+					RelativePath=".\Src\Physics\PhysicsSubsystem.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -413,6 +425,14 @@
 				>
 				<File
 					RelativePath=".\Src\GUI\GUISubsystem.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Physics"
+				>
+				<File
+					RelativePath=".\Src\Physics\PhysicsSubsystem.h"
 					>
 				</File>
 			</Filter>

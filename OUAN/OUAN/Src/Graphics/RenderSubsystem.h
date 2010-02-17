@@ -2,6 +2,9 @@
 #define RENDERSUBSYSTEMH_H
 
 #include "../OUAN.h"
+#include <NxOgre.h>
+#include <NxOgreOGRE3D.h>
+#include <NxOgreAddonCharacterController.h>
 
 namespace OUAN
 {
@@ -33,6 +36,9 @@ namespace OUAN
 		
 		/// Create main window
 		void createRenderWindow(OUAN::ConfigurationPtr config);
+
+		/// Create visual debugger
+		void createVisualDebugger(OUAN::ConfigurationPtr config);
 
 		/// Load resources [TODO: Make this level dependent?]
 		void initialiseResourceGroups(OUAN::ConfigurationPtr config);
@@ -146,6 +152,10 @@ namespace OUAN
 		/// Camera rotation scale
 		Ogre::Degree			mRotScale;
 
+		/// NxOgre Render System
+		NxOgre::VisualDebugger*	mNxOgreVisualDebugger;
+		OGRE3DRenderable*		mNxOgreVisualDebuggerRenderable;
+		Ogre::SceneNode*		mNxOgreVisualDebuggerNode;
 	};
 }
 #endif
