@@ -2,6 +2,7 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
+#include "../Physics/PhysicsSubsystem.h"
 #include "CameraControllerFirstPerson.h"
 
 using namespace OUAN;
@@ -94,14 +95,14 @@ void RenderSubsystem::createRenderWindow(ConfigurationPtr config)
 
 void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
 {
-	/*
+	
 	mNxOgreVisualDebugger = mApp->getPhysicsSubsystem()->getNxOgreWorld()->getVisualDebugger();
 	mNxOgreVisualDebuggerRenderable = new OGRE3DRenderable(NxOgre::Enums::RenderableType_VisualDebugger);
 	mNxOgreVisualDebugger->setRenderable(mNxOgreVisualDebuggerRenderable);
 	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 	mNxOgreVisualDebuggerNode->attachObject(mNxOgreVisualDebuggerRenderable);
 	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);
-	*/
+	
 }
 
 void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
