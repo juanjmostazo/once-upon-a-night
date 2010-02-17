@@ -19,16 +19,10 @@ namespace OUAN
 		///@return factory's instance
 		static ComponentFactory* getInstance();
 
-		///create and return an ogre component
-		/// @param params the params to initialise the component
+		///create and return an void ogre component, to initialise a field use get/set
 		/// @param gameObject the component's parent object
-		/// @param renderSubsystem  pointer to the rendering subsystem,
-		///							which will create everything it needs
-		///							to represent the component
 		/// @return pointer to the newly created Ogre component instance
-		// [TODO: Uncomment this]
-		//ComponentPtr createOgreComponent(TObjectParameters params,GameObjectPtr,RenderSubsystemPtr);
-		
+		OgreComponentPtr ComponentFactory::createOgreComponent(GameObjectPtr gameObject);
 		
 		
 		//create and return a physics component

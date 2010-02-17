@@ -2,6 +2,8 @@
 #include "ControlInputManager.h"
 #include "../Loader/Configuration.h"
 
+using namespace OUAN;
+
 ControlInputManager::ControlInputManager()
 {
 	loadConfig();

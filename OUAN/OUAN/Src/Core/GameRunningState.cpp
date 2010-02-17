@@ -1,6 +1,7 @@
 #include "GameRunningState.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Game/GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -21,6 +22,8 @@ GameRunningState::~GameRunningState()
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
+	//TODO: Do this at proper location
+	mApp->getGameWorldManager()->loadLevel("TestLevel.ogscene");
 }
 
 /// Clean up main menu's resources
@@ -70,8 +73,10 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::update(long elapsedTime)
 {
+
 	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
 	mApp->getRenderSubsystem()->relativeMoveCam();
+
 }
 
 bool GameRunningState::keyPressed( const OIS::KeyEvent& e )
@@ -82,6 +87,6 @@ bool GameRunningState::keyPressed( const OIS::KeyEvent& e )
 }
 bool GameRunningState::mouseMoved(const OIS::MouseEvent &e)
 {
-	mApp->getRenderSubsystem()->moveCamera(e.state.X.rel,e.state.Y.rel);
+	mApp->getRenderSubsystem()->moveCamera(e);
 	return true;
 }

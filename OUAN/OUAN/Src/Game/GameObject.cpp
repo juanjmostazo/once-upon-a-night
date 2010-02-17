@@ -35,6 +35,7 @@ ComponentPtr GameObject::getComponent(const std::string& name)
 	}
 	return ComponentPtr();
 }
+
 const std::string& GameObject::getName() const
 {
 	return mName;

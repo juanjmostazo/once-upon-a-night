@@ -36,7 +36,6 @@ namespace OUAN
 		/// @return			the required component, if present
 		ComponentPtr getComponent(const std::string& name);
 
-
 		/// Return entity name (i.e, its "type" identifier)
 		/// @return name of the entity
 		const std::string& getName() const;

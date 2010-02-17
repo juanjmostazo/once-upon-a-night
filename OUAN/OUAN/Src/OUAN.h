@@ -16,10 +16,24 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "TinyXML/tinyxml.h"
+
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 
 namespace OUAN
 {
+	//-------------------------------------
+	//	Basic Types
+	//-------------------------------------
+	typedef Ogre::String String;
+	typedef Ogre::StringConverter StringConverter;
+	typedef Ogre::Vector2 Vector2;
+	typedef Ogre::Vector3 Vector3;
+	typedef Ogre::Vector4 Vector4;
+	typedef Ogre::Quaternion Quaternion;
+	typedef Ogre::Real Real;
+	typedef Ogre::ColourValue ColourValue;
+
 
 	//-------------------------------------
 	//	Core module-related constants, type definitions and forwarded declarations
@@ -33,6 +47,8 @@ namespace OUAN
 		//forward declarations
 		class GameStateManager;
 		class GameState;
+		class GameRunningState;
+		class MainMenuState;
 		class Application;
 
 		typedef boost::shared_ptr<GameStateManager> GameStateManagerPtr;
@@ -73,7 +89,9 @@ namespace OUAN
 		//-------------------------------------
 
 		class Configuration;
+		class LevelLoader;
 		typedef boost::shared_ptr<Configuration> ConfigurationPtr;
+		typedef boost::shared_ptr<LevelLoader> LevelLoaderPtr;
 
 		///	Type definition for the data structure that'll hold the options:
 		/// an STL map of pairs of strings, representing the key and value, respectively
@@ -116,6 +134,7 @@ namespace OUAN
 		}TCoordinateAxis;
 
 		class RenderSubsystem;
+		class CameraControllerFirstPerson;
 
 		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
 
@@ -137,7 +156,6 @@ namespace OUAN
 			GUI_MOUSEMOVE,
 		} TGUIMouseEvent;
 
-		class MainMenuState;		
 }
 
 

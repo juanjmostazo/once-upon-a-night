@@ -1004,7 +1004,7 @@ public:
 		attribute into the specified type. Very easy, very powerful, but
 		be careful to make sure to call this with the correct type.
 		
-		NOTE: This method doesn't work correctly for 'string' types.
+		NOTE: This method doesn't work correctly for std::string types.
 
 		@return TIXML_SUCCESS, TIXML_WRONG_TYPE, or TIXML_NO_ATTRIBUTE
 	*/

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -222,7 +222,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Loader\OgSceneLoader.cpp"
+					RelativePath=".\Src\Loader\LevelLoader.cpp"
 					>
 				</File>
 			</Filter>
@@ -249,6 +249,10 @@
 			<Filter
 				Name="Graphics"
 				>
+				<File
+					RelativePath=".\Src\Graphics\CameraControllerFirstPerson.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
 					>
@@ -344,7 +348,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Loader\OgSceneLoader.h"
+					RelativePath=".\Src\Loader\LevelLoader.h"
 					>
 				</File>
 			</Filter>
@@ -372,15 +376,11 @@
 				Name="Graphics"
 				>
 				<File
-					RelativePath=".\Src\Graphics\RenderSubsystem.h"
+					RelativePath=".\Src\Graphics\CameraControllerFirstPerson.h"
 					>
 				</File>
-			</Filter>
-			<Filter
-				Name="GUI"
-				>
 				<File
-					RelativePath=".\Src\GUI\GUISubsystem.h"
+					RelativePath=".\Src\Graphics\RenderSubsystem.h"
 					>
 				</File>
 			</Filter>
@@ -405,6 +405,14 @@
 				</File>
 				<File
 					RelativePath=".\Src\Game\OgreComponent.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="GUI"
+				>
+				<File
+					RelativePath=".\Src\GUI\GUISubsystem.h"
 					>
 				</File>
 			</Filter>
