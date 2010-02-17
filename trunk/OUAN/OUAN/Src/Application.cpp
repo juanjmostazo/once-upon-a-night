@@ -44,9 +44,6 @@ void Application::initialise()
 
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
-	
-	mPhysicsSubsystem.reset(new PhysicsSubsystem());
-	mPhysicsSubsystem->initialise(this_,mConfiguration);
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	mRenderSubsystem->initialise(this_,mConfiguration);
@@ -66,6 +63,9 @@ void Application::initialise()
 
 	//TODO: Put this in proper location
 	mRenderSubsystem->setupScene(mConfiguration);
+
+	mPhysicsSubsystem.reset(new PhysicsSubsystem());
+	mPhysicsSubsystem->initialise(this_,mConfiguration);
 
 }
 //Run the app

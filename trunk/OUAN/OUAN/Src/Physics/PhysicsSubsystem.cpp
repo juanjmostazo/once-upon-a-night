@@ -2,6 +2,7 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
+#include "../Graphics/RenderSubsystem.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -44,6 +45,9 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 
 	//Initializing NxOgre::ControllerManager
 	mNxOgreControllerManager = new NxOgre::ControllerManager();
+
+	//Initialise visual debugger
+	app->getRenderSubsystem()->createVisualDebugger(config);
 }
 
 void PhysicsSubsystem::cleanUp()

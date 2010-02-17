@@ -29,7 +29,7 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	defineResources(config);
 	setupRenderSystem(config);
 	createRenderWindow(config);
-	createVisualDebugger(config);
+	//createVisualDebugger(config);
 	initialiseResourceGroups(config);
 
 }
