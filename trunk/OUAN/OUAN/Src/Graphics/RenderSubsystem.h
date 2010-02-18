@@ -97,19 +97,16 @@ namespace OUAN
 		
 
 		//Object creators
-		void createMeshFile(String meshfile);
-		Ogre::Entity* createEntity(String name,String meshfile,bool castshadows);
-		void createSubEntity(String name,int num,String material,bool visible);
-		Ogre::SceneNode* createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget);
-		Ogre::Light* createLight(String name,Ogre::Light::LightTypes lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power);
-		Ogre::ParticleSystem* createParticleSystem(String name,String particle,bool castshadows);
-		void createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
-		Ogre::BillboardSet* createBillboardSet(OUAN::String name,OUAN::String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,OUAN::Real defaultheight,OUAN::Real defaultwidth,bool pointrendering,OUAN::Real renderdistance,bool sorting);
-		void createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies);
-		Ogre::Camera* createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,Ogre::PolygonMode polygonmode, int viewmode);
-		void createOctreeSceneManager(String name,ColourValue ambient);
-		void createSkyBox(bool active, String material, Real distance);
-		void createSkyDome(bool active, String material);
+
+		Ogre::Entity* createEntity(Ogre::String name,TEntityRenderParameters tEntityParameters);
+		Ogre::SceneNode* createSceneNode(Ogre::String name,TSceneNodeRenderParameters tSceneNodeParameters);
+		Ogre::Light* createLight(Ogre::String name,TLightRenderParameters tLightRenderParameters);
+		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TParticleSystemRenderParameters tParticleSystemRenderParameters);
+		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TBillboardSetRenderParameters tBillboardSetRenderParameters);
+		Ogre::Viewport* createViewport(Ogre::String name,TViewportRenderParameters tViewportRenderParameters);
+		Ogre::Camera* createCamera(Ogre::String name,TCameraRenderParameters tCameraRenderParameters);
+		Ogre::SceneManager* createSceneManager(Ogre::String name,TSceneManagerRenderParameters tSceneManagerRenderParameters);
+
 
 	protected:
 		/// the application
@@ -117,6 +114,13 @@ namespace OUAN
 
 		/// Ogre root object
 		boost::shared_ptr<Ogre::Root> mRoot;
+
+		/// Creators not used outside the render subsystem
+		void createSubEntity(Ogre::Entity *pEntity,int num,String material,bool visible);
+		void createMeshFile(String meshfile);
+		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
+		void createSkyBox(bool active, String material, Real distance);
+		void createSkyDome(bool active, String material);
 
 		/// Main window
 		// [IMPORTANT: notice a shared_ptr is not used here, since we don't 'own' the 

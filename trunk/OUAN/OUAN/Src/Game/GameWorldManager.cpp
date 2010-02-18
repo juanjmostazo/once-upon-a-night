@@ -136,26 +136,17 @@ void GameWorldManager::update(long elapsedTime)
 	}
 }
 
-
-void GameWorldManager::createMeshFile(String meshfile)
-{
-	//Create GameObject
-	createGameObject(meshfile);
-	
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createMeshFile(meshfile);
-}
-void GameWorldManager::createEntity(String name,String meshfile,bool castshadows)
+void GameWorldManager::createGameObjectEntity(TEntityParameters tEntityParameters)
 {
 	GameObjectPtr pGameObject;
 	OgreComponentPtr pOgreComponent;
 	Ogre::Entity *pEntity;
 
 	//Create GameObject
-	pGameObject=createGameObject(name);
+	pGameObject=createGameObject(tEntityParameters.name);
 
 	//Initialise Render Component
-	pEntity=mApp->getRenderSubsystem()->createEntity(name,meshfile,castshadows);
+	pEntity=mApp->getRenderSubsystem()->createEntity(tEntityParameters.name,tEntityParameters.tEntityRenderParameters);
 
 	//Create Ogre Component
 	pOgreComponent=createOgreComponent(pGameObject);
@@ -163,92 +154,61 @@ void GameWorldManager::createEntity(String name,String meshfile,bool castshadows
 	//Set Ogre component's Entity
 	pOgreComponent->setEntity(pEntity);
 }
-void GameWorldManager::createSubEntity(String name,int num,String material,bool visible)
+
+void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tSceneNodeParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSubEntity(name,num,material,visible);
+	mApp->getRenderSubsystem()->createSceneNode(tSceneNodeParameters.name,tSceneNodeParameters.tSceneNodeRenderParameters);
 }
-void GameWorldManager::createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget)
+void GameWorldManager::createLight(TLightParameters tLightParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tLightParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSceneNode(name,parentSceneNodeName,position,orientation,scale,autotracktarget);
+	mApp->getRenderSubsystem()->createLight(tLightParameters.name,tLightParameters.tLightRenderParameters);
 }
-void GameWorldManager::createLight(String name,Ogre::Light::LightTypes lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power)
+void GameWorldManager::createParticleSystem(TParticleSystemParameters tParticleSystemParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tParticleSystemParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createLight(name,lighttype,diffuse,specular,direction,castshadows,lightrange,attenuation,power);
+	mApp->getRenderSubsystem()->createParticleSystem(tParticleSystemParameters.name,tParticleSystemParameters.tParticleSystemRenderParameters);
 }
-void GameWorldManager::createParticleSystem(String name,String particle,bool castshadows)
+
+void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tBillboardSetParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createParticleSystem(name,particle,castshadows);
+	mApp->getRenderSubsystem()->createBillboardSet(tBillboardSetParameters.name,tBillboardSetParameters.tBillboardSetRenderParameters);
 }
-void GameWorldManager::createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect)
+void GameWorldManager::createViewport(TViewportParameters tViewportParameters)
 {
 	//Create GameObject
-	createGameObject(billBoardSetName);
+	createGameObject(tViewportParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createBillboard(billBoardSetName,colour,dimensions,position,rotation,texcoordindex,texrect);
+	mApp->getRenderSubsystem()->createViewport(tViewportParameters.name,tViewportParameters.tViewPortRenderParameters);
 }
-void GameWorldManager::createBillboardSet(String name,String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting)
+void GameWorldManager::createCamera(TCameraParameters tCameraParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tCameraParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createBillboardSet(name,material,billboardorigin,billboardrotation,billboardtype,defaultheight,defaultwidth,pointrendering,renderdistance,sorting);
+	mApp->getRenderSubsystem()->createCamera(tCameraParameters.name,tCameraParameters.tCameraRenderParameters);
 }
-void GameWorldManager::createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies)
+void GameWorldManager::createSceneManager(TSceneManagerParameters tSceneManagerParameters)
 {
 	//Create GameObject
-	createGameObject(name);
+	createGameObject(tSceneManagerParameters.name);
 
 	//Initialise Render Component
-	mApp->getRenderSubsystem()->createViewport(name,colour,compositorcount,index,overlays,shadows,skies);
+	mApp->getRenderSubsystem()->createSceneManager(tSceneManagerParameters.name,tSceneManagerParameters.tSceneManagerRenderParameters);
 }
-void GameWorldManager::createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,Ogre::PolygonMode polygonmode, int viewmode)
-{
-	//Create GameObject
-	createGameObject(name);
-
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createCamera(name,position,orientation,autotracktarget,autoaspectratio,clipdistance,fov,polygonmode,viewmode);
-}
-void GameWorldManager::createOctreeSceneManager(String name,ColourValue ambient)
-{
-	//Create GameObject
-	createGameObject(name);
-
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createOctreeSceneManager(name,ambient);
-}
-void GameWorldManager::createSkyBox(bool active, String material, Real distance)
-{
-	//Create GameObject
-	createGameObject("SkyBox");
-
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSkyBox(active, material, distance);
-}
-void GameWorldManager::createSkyDome(bool active, String material)
-{
-	//Create GameObject
-	createGameObject("SkyDome");
-
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSkyDome(active, material);
-}
-

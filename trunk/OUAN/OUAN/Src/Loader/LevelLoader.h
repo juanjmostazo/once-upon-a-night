@@ -37,16 +37,16 @@ namespace OUAN
 		void processSceneNode(TiXmlElement *XMLNode);
 		void processTrackTarget(TiXmlElement *XMLNode);
 		void processEntity(TiXmlElement *XMLNode);
-		void processSubentities(OUAN::String name,TiXmlElement *XMLNode);
+		void processSubentities(std::vector<TSubEntityRenderParameters>  &tSubEntityRenderParameters ,TiXmlElement *XMLNode);
 		void processParticleSystem(TiXmlElement *XMLNode);
 		void processBillboardSet(TiXmlElement *XMLNode);
-		void processBillboards(OUAN::String billBoardSetName,TiXmlElement *XMLNode);
-		void processPlane(TiXmlElement *XMLNode);
-		void processFog(TiXmlElement *XMLNode);
-		void processSkyBox(TiXmlElement *XMLNode);
-		void processSkyDome(TiXmlElement *XMLNode);
-		void processShadows(TiXmlElement *XMLNode);
-		void processTrajectory(TiXmlElement *XMLNode);
+		void processBillboards(std::vector<TBillboardRenderParameters> &tBillboardRenderParameters,TiXmlElement *XMLNode);
+		//TODO: void processPlane(TiXmlElement *XMLNode);
+		//TODO: void processFog(TiXmlElement *XMLNode);
+		TSkyBoxRenderParameters processSkyBox(TiXmlElement *XMLNode);
+		TSkyDomeRenderParameters processSkyDome(TiXmlElement *XMLNode);
+		//TODO: void processShadows(TiXmlElement *XMLNode);
+		//TODO: void processTrajectory(TiXmlElement *XMLNode);
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 

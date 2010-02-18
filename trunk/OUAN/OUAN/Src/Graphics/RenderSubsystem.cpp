@@ -223,30 +223,39 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 	return mSceneManager;
 }
 
-void RenderSubsystem::createViewport(OUAN::String name,OUAN::ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies)
+Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TViewportRenderParameters tViewportRenderParameters)
 {
 	// Set the Viewport parameters
-	mViewport->setBackgroundColour(colour);
-	mViewport->setOverlaysEnabled(overlays);
-	mViewport->setShadowsEnabled(shadows);
-	mViewport->setSkiesEnabled(skies);
+	mViewport->setBackgroundColour(tViewportRenderParameters.colour);
+	mViewport->setOverlaysEnabled(tViewportRenderParameters.overlays);
+	mViewport->setShadowsEnabled(tViewportRenderParameters.shadows);
+	mViewport->setSkiesEnabled(tViewportRenderParameters.skies);
 
+	return mViewport;
 }
 
-void RenderSubsystem::createOctreeSceneManager(OUAN::String name,OUAN::ColourValue ambient)
+Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TSceneManagerRenderParameters tSceneManagerRenderParameters)
 {
 	try
 	{
 		//Set SceneManager parameters
-		mSceneManager->setAmbientLight(ColourValue(0.5,0.5,0.5));
+		mSceneManager->setAmbientLight(tSceneManagerRenderParameters.ambient);
+		//Create SkyBox
+		createSkyBox(tSceneManagerRenderParameters.tSkyBoxRenderParameters.active,
+			tSceneManagerRenderParameters.tSkyBoxRenderParameters.material,
+			tSceneManagerRenderParameters.tSkyBoxRenderParameters.distance);
+		//Create SkyDome
+		createSkyDome(tSceneManagerRenderParameters.tSkyDomeRenderParameters.active,
+			tSceneManagerRenderParameters.tSkyDomeRenderParameters.material);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" SceneManager!");
 	}
+	return mSceneManager;
 }
 
-Light* RenderSubsystem::createLight(OUAN::String name,Ogre::Light::LightTypes lighttype,OUAN::ColourValue diffuse,OUAN::ColourValue specular,OUAN::Vector3 direction,bool castshadows,OUAN::Vector3 lightrange,OUAN::Vector4 attenuation,OUAN::Real power)
+Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TLightRenderParameters tLightRenderParameters)
 {
 	SceneNode *lightNode=0;
 	Light *pLight=0;
@@ -261,13 +270,18 @@ Light* RenderSubsystem::createLight(OUAN::String name,Ogre::Light::LightTypes li
 		lightNode->attachObject(pLight);
 
 		//Set Light Parameters
-		pLight->setType(lighttype);
-		pLight->setDiffuseColour(diffuse);
-		pLight->setSpecularColour(specular);
-		pLight->setDirection(direction);
-		pLight->setCastShadows(castshadows);
-		pLight->setAttenuation(attenuation.x, attenuation.y, attenuation.z, attenuation.w);
-		pLight->setPowerScale(power);
+		pLight->setType(tLightRenderParameters.lighttype);
+		pLight->setDiffuseColour(tLightRenderParameters.diffuse);
+		pLight->setSpecularColour(tLightRenderParameters.specular);
+		pLight->setDirection(tLightRenderParameters.direction);
+		pLight->setCastShadows(tLightRenderParameters.castshadows);
+		pLight->setAttenuation(
+			tLightRenderParameters.attenuation.x, 
+			tLightRenderParameters.attenuation.y, 
+			tLightRenderParameters.attenuation.z, 
+			tLightRenderParameters.attenuation.w);
+
+		pLight->setPowerScale(tLightRenderParameters.power);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -277,7 +291,7 @@ Light* RenderSubsystem::createLight(OUAN::String name,Ogre::Light::LightTypes li
 }
 
 
-Camera* RenderSubsystem::createCamera(OUAN::String name,OUAN::Vector3 position,OUAN::Quaternion orientation,OUAN::String autotracktarget,bool autoaspectratio,OUAN::Vector2 clipdistance,OUAN::Real fov,Ogre::PolygonMode polygonmode,int viewmode)
+Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TCameraRenderParameters tCameraRenderParameters)
 {
 
 	SceneNode *cameraNode=0;
@@ -288,29 +302,29 @@ Camera* RenderSubsystem::createCamera(OUAN::String name,OUAN::Vector3 position,O
 		// Create the Camera
 		pCamera = mSceneManager->createCamera(name);
 
-		pCamera->setPolygonMode(polygonmode);
+		pCamera->setPolygonMode(tCameraRenderParameters.polygonmode);
 		//Set Camera Parameters
 		//set polygon mode
 		
-		pCamera->setPosition(position);
-		pCamera->setOrientation(orientation);
-		pCamera->setAutoAspectRatio(autoaspectratio);
-		pCamera->setNearClipDistance(clipdistance.x);
-		pCamera->setFarClipDistance(clipdistance.y);
+		pCamera->setPosition(tCameraRenderParameters.position);
+		pCamera->setOrientation(tCameraRenderParameters.orientation);
+		pCamera->setAutoAspectRatio(tCameraRenderParameters.autoaspectratio);
+		pCamera->setNearClipDistance(tCameraRenderParameters.clipdistance.x);
+		pCamera->setFarClipDistance(tCameraRenderParameters.clipdistance.y);
 		
 		//set FOV
 		//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
-		Real AngleFOV=fov*55.0f;
-		if(AngleFOV>180.0) AngleFOV=179.99;
-		else if(AngleFOV<=0) AngleFOV=0.01;
-		pCamera->setFOVy(Angle(AngleFOV));
+		Real FOVy=tCameraRenderParameters.FOVy*55.0f;
+		if(FOVy>180.0) FOVy=179.99;
+		else if(FOVy<=0) FOVy=0.01;
+		pCamera->setFOVy(Angle(FOVy));
 
 		//set autotracktarget
-		if(autotracktarget.compare("None")!=0)
+		if(tCameraRenderParameters.autotracktarget.compare("None")!=0)
 		{
 			//TODO test this
 			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(autotracktarget);
+			trackTarget=mSceneManager->getSceneNode(tCameraRenderParameters.autotracktarget);
 			pCamera->setAutoTracking(true,trackTarget);
 		}
 	}
@@ -322,7 +336,7 @@ Camera* RenderSubsystem::createCamera(OUAN::String name,OUAN::Vector3 position,O
 	return pCamera;
 }
 
-SceneNode * RenderSubsystem::createSceneNode(OUAN::String name,OUAN::String parentSceneNodeName,OUAN::Vector3 position,OUAN::Quaternion orientation,OUAN::Vector3 scale,OUAN::String autotracktarget)
+Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TSceneNodeRenderParameters tSceneNodeRenderParameters)
 {
 
 	SceneNode *pParentSceneNode = 0;
@@ -332,27 +346,27 @@ SceneNode * RenderSubsystem::createSceneNode(OUAN::String name,OUAN::String pare
 	try
 	{
 		//Get Parent SceneNode
-		if(parentSceneNodeName.compare("SceneManager")==0)
+		if(tSceneNodeRenderParameters.parentSceneNodeName.compare("SceneManager")==0)
 		{
 			pParentSceneNode = mSceneManager->getRootSceneNode();
 		}
 		else
 		{
-			pParentSceneNode = mSceneManager->getSceneNode(parentSceneNodeName);
+			pParentSceneNode = mSceneManager->getSceneNode(tSceneNodeRenderParameters.parentSceneNodeName);
 		}
 
 		//Create SceneNode
 		sceneNode = pParentSceneNode->createChildSceneNode(name);
 
 		//Set SceneNode parameters
-		sceneNode->setPosition(position);
-		sceneNode->setOrientation(orientation);
-		sceneNode->setScale(scale);
-		if(autotracktarget.compare("None")!=0)
+		sceneNode->setPosition(tSceneNodeRenderParameters.position);
+		sceneNode->setOrientation(tSceneNodeRenderParameters.orientation);
+		sceneNode->setScale(tSceneNodeRenderParameters.scale);
+		if(tSceneNodeRenderParameters.autotracktarget.compare("None")!=0)
 		{
 			//TODO test this
 			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(autotracktarget);
+			trackTarget=mSceneManager->getSceneNode(tSceneNodeRenderParameters.autotracktarget);
 			sceneNode->setAutoTracking(true,trackTarget);
 		}
 	}
@@ -380,19 +394,28 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
-Entity* RenderSubsystem::createEntity(OUAN::String name,OUAN::String meshfile,bool castshadows)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TEntityRenderParameters tEntityRenderParameters)
 {
-
+	unsigned int i;
 	Entity *pEntity = 0;
 	SceneNode *pEntityNode = 0;
 	try
 	{
 		//Create meshfile
-		createMeshFile(meshfile);
+		createMeshFile(tEntityRenderParameters.meshfile);
 
 		//create entity and set its parameters
-		pEntity = mSceneManager->createEntity(name, meshfile);
-		pEntity->setCastShadows(castshadows);
+		pEntity = mSceneManager->createEntity(name, tEntityRenderParameters.meshfile);
+		pEntity->setCastShadows(tEntityRenderParameters.castshadows);
+
+		//set subentities parameters
+		for(i=0;i<tEntityRenderParameters.tSubEntityRenderParameters.size();i++)
+		{
+			createSubEntity(pEntity,
+				i,
+				tEntityRenderParameters.tSubEntityRenderParameters[i].material,
+				tEntityRenderParameters.tSubEntityRenderParameters[i].visible);
+		}
 
 		//attach to Scene Manager
 		pEntityNode=mSceneManager->getSceneNode(name);
@@ -405,16 +428,12 @@ Entity* RenderSubsystem::createEntity(OUAN::String name,OUAN::String meshfile,bo
 	return pEntity;
 }
 
-void RenderSubsystem::createSubEntity(OUAN::String name,int num,OUAN::String material,bool visible)
+void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String material,bool visible)
 {
 	SubEntity *pSubEntity = 0;
-	Entity *pEntity = 0;
 		
 	try
 	{
-		//get the Entity
-		pEntity=mSceneManager->getEntity(name);
-
 		//get the SubEntity
 		pSubEntity=pEntity->getSubEntity(num);
 
@@ -428,7 +447,7 @@ void RenderSubsystem::createSubEntity(OUAN::String name,int num,OUAN::String mat
 	}
 }
 
-ParticleSystem* RenderSubsystem::createParticleSystem(OUAN::String name,OUAN::String particle,bool castshadows)
+Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TParticleSystemRenderParameters tParticleSystemRenderParameters)
 {
 	ParticleSystem *pParticleSystem = 0;
 	SceneNode *particleSystemNode = 0;
@@ -436,14 +455,14 @@ ParticleSystem* RenderSubsystem::createParticleSystem(OUAN::String name,OUAN::St
 	try
 	{
 		// Create ParticleSystem
-		pParticleSystem = mSceneManager->createParticleSystem(name, particle);
+		pParticleSystem = mSceneManager->createParticleSystem(name, tParticleSystemRenderParameters.particle);
 
 		// Attach ParticleSystem to SceneManager
 		particleSystemNode=mSceneManager->getSceneNode(name);
 		particleSystemNode->attachObject(pParticleSystem);
 
 		// Set ParticleSystem parameters
-		pParticleSystem->setCastShadows(castshadows);
+		pParticleSystem->setCastShadows(tParticleSystemRenderParameters.castshadows);
 
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -453,17 +472,13 @@ ParticleSystem* RenderSubsystem::createParticleSystem(OUAN::String name,OUAN::St
 	return pParticleSystem;
 }
 
-void RenderSubsystem::createBillboard(OUAN::String billBoardSetName,OUAN::ColourValue colour,OUAN::Vector2 dimensions,OUAN::Vector3 position,OUAN::Real rotation,int texcoordindex,OUAN::Vector4 texrect)
+void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::ColourValue colour,OUAN::Vector2 dimensions,OUAN::Vector3 position,OUAN::Real rotation,int texcoordindex,OUAN::Vector4 texrect)
 {
 
 	Billboard *pBillboard = 0;
-	BillboardSet *pBillboardSet = 0;
 		
 	try
 	{
-		//get the BillboardSet
-		pBillboardSet=mSceneManager->getBillboardSet(billBoardSetName);
-
 		//create Billboard
 		pBillboard = pBillboardSet->createBillboard(position);
 
@@ -476,11 +491,11 @@ void RenderSubsystem::createBillboard(OUAN::String billBoardSetName,OUAN::Colour
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+billBoardSetName+"'s Billboard!");
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+pBillboardSet->getName()+"'s Billboard!");
 	}
 }
 
-BillboardSet * RenderSubsystem::createBillboardSet(OUAN::String name,OUAN::String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,OUAN::Real defaultheight,OUAN::Real defaultwidth,bool pointrendering,OUAN::Real renderdistance,bool sorting)
+Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TBillboardSetRenderParameters tBillboardSetRenderParameters)
 {
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
@@ -494,15 +509,15 @@ BillboardSet * RenderSubsystem::createBillboardSet(OUAN::String name,OUAN::Strin
 		billBoardSetNode->attachObject(billBoardSet);
 
 		//Set BillboardSet Attributes
-		billBoardSet->setMaterialName(material);
-		billBoardSet->setDefaultHeight(defaultheight);
-		billBoardSet->setDefaultWidth(defaultwidth);
-		billBoardSet->setPointRenderingEnabled(pointrendering);
-		billBoardSet->setRenderingDistance(renderdistance);
-		billBoardSet->setSortingEnabled(sorting);
-		billBoardSet->setBillboardType(billboardtype);
-		billBoardSet->setBillboardOrigin(billboardorigin);
-		billBoardSet->setBillboardRotationType(billboardrotation);
+		billBoardSet->setMaterialName(tBillboardSetRenderParameters.material);
+		billBoardSet->setDefaultHeight(tBillboardSetRenderParameters.defaultheight);
+		billBoardSet->setDefaultWidth(tBillboardSetRenderParameters.defaultwidth);
+		billBoardSet->setPointRenderingEnabled(tBillboardSetRenderParameters.pointrendering);
+		billBoardSet->setRenderingDistance(tBillboardSetRenderParameters.renderdistance);
+		billBoardSet->setSortingEnabled(tBillboardSetRenderParameters.sorting);
+		billBoardSet->setBillboardType(tBillboardSetRenderParameters.billboardtype);
+		billBoardSet->setBillboardOrigin(tBillboardSetRenderParameters.billboardorigin);
+		billBoardSet->setBillboardRotationType(tBillboardSetRenderParameters.billboardrotation);
 
 	}
 	catch(Ogre::Exception &/*e*/)
