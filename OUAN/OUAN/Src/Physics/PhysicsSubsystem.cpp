@@ -46,8 +46,17 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 	//Initializing NxOgre::ControllerManager
 	mNxOgreControllerManager = new NxOgre::ControllerManager();
 
+	mNxOgreScene->getMaterial(0)->setStaticFriction(0.5);
+	mNxOgreScene->getMaterial(0)->setDynamicFriction(0.5);
+	mNxOgreScene->getMaterial(0)->setRestitution(0.1);
+
 	//Initialise visual debugger
 	app->getRenderSubsystem()->createVisualDebugger(config);
+}
+
+void PhysicsSubsystem::update(float elapsedSeconds)
+{
+	mNxOgreTimeController->advance(elapsedSeconds);
 }
 
 void PhysicsSubsystem::cleanUp()
@@ -78,4 +87,14 @@ NxOgre::TimeController* PhysicsSubsystem::getNxOgreTimeController()
 NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 {
 	return mNxOgreControllerManager;
+}
+
+NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
+{
+	return NxOgre::Enums::ControllerAction_None;
+}
+
+NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
+{	
+	return NxOgre::Enums::ControllerAction_None;
 }
