@@ -78,6 +78,7 @@ void Application::go()
 	long nextGameTicks = loopTimer.getMillisecondsCPU();
 	int loops;
 	float interpolation;
+	float elapsedSeconds;
 
 	while ( continueRunning )
 	{
@@ -88,6 +89,7 @@ void Application::go()
 		loops=0;
 		long elapsedTime=0;
 		long currentTime=loopTimer.getMillisecondsCPU();
+
 		while(currentTime>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
 			elapsedTime=currentTime-elapsedTime;
@@ -96,10 +98,15 @@ void Application::go()
 			loops++;
 			currentTime=loopTimer.getMillisecondsCPU();
 		}
+
 		interpolation=float(loopTimer.getMillisecondsCPU()+SKIP_TICKS-nextGameTicks)/float(SKIP_TICKS);
 		//Update graphics stuff
 		//updateGraphics(interpolation);
+		
+		elapsedSeconds = currentTime / 1000.0f;
+		mPhysicsSubsystem->update(elapsedSeconds);
 
+		loopTimer.reset();
 
 		bool windowClosed = mRenderSubsystem->isWindowClosed();
 		continueRunning &= ! windowClosed;

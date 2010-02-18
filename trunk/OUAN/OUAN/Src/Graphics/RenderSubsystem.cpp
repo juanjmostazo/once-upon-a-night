@@ -31,7 +31,6 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	createRenderWindow(config);
 	//createVisualDebugger(config);
 	initialiseResourceGroups(config);
-
 }
 
 void RenderSubsystem::cleanUp()
@@ -94,15 +93,13 @@ void RenderSubsystem::createRenderWindow(ConfigurationPtr config)
 }
 
 void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
-{
-	
+{	
 	mNxOgreVisualDebugger = mApp->getPhysicsSubsystem()->getNxOgreWorld()->getVisualDebugger();
 	mNxOgreVisualDebuggerRenderable = new OGRE3DRenderable(NxOgre::Enums::RenderableType_VisualDebugger);
 	mNxOgreVisualDebugger->setRenderable(mNxOgreVisualDebuggerRenderable);
 	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 	mNxOgreVisualDebuggerNode->attachObject(mNxOgreVisualDebuggerRenderable);
-	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);
-	
+	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);	
 }
 
 void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
@@ -123,6 +120,7 @@ void RenderSubsystem::setupScene(ConfigurationPtr config)
 	createCameras();
 	createViewports();	
 	createScene();
+	createOverlays();
 }
 void RenderSubsystem::createCameras()
 {
@@ -138,6 +136,12 @@ void RenderSubsystem::createViewports()
 {
 	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCamera);
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
+}
+
+void RenderSubsystem::createOverlays()
+{
+	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
+	//mDebugOverlay->show();
 }
 
 void RenderSubsystem::createScene()
@@ -171,8 +175,17 @@ void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 	mCameraControllerFirstPerson->processMouseInput(e);
 }	
 
+void RenderSubsystem::updateVisualDebugger()
+{
+	mNxOgreVisualDebugger->draw();
+	mNxOgreVisualDebuggerNode->needUpdate();
+}
+
 bool RenderSubsystem::render()
 {
+	updateVisualDebugger();
+	updateStats();
+
 	return mRoot->renderOneFrame();
 }
 
@@ -474,7 +487,6 @@ Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TP
 
 void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::ColourValue colour,OUAN::Vector2 dimensions,OUAN::Vector3 position,OUAN::Real rotation,int texcoordindex,OUAN::Vector4 texrect)
 {
-
 	Billboard *pBillboard = 0;
 		
 	try
@@ -551,4 +563,51 @@ void RenderSubsystem::createSkyDome(bool active, OUAN::String material)
 	{
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating SkyDome!");
 	}
+}
+
+void RenderSubsystem::updateStats()
+{
+	static Ogre::String currFps = "Current FPS: ";
+	static Ogre::String avgFps = "Average FPS: ";
+	static Ogre::String bestFps = "Best FPS: ";
+	static Ogre::String worstFps = "Worst FPS: ";
+	static Ogre::String tris = "Triangle Count: ";
+	static Ogre::String batches = "Batch Count: ";
+	
+	// update stats when necessary
+	try {
+		Ogre::OverlayElement* guiAvg = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/AverageFps");
+		Ogre::OverlayElement* guiCurr = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/CurrFps");
+		Ogre::OverlayElement* guiBest = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/BestFps");
+		Ogre::OverlayElement* guiWorst = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/WorstFps");
+
+		const Ogre::RenderTarget::FrameStats& stats = mWindow->getStatistics();
+		guiAvg->setCaption(avgFps + Ogre::StringConverter::toString(stats.avgFPS));
+		guiCurr->setCaption(currFps + Ogre::StringConverter::toString(stats.lastFPS));
+		guiBest->setCaption(bestFps + Ogre::StringConverter::toString(stats.bestFPS)
+			+" "+Ogre::StringConverter::toString(stats.bestFrameTime)+" ms");
+		guiWorst->setCaption(worstFps + Ogre::StringConverter::toString(stats.worstFPS)
+			+" "+Ogre::StringConverter::toString(stats.worstFrameTime)+" ms");
+
+		Ogre::OverlayElement* guiTris = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/NumTris");
+		guiTris->setCaption(tris + Ogre::StringConverter::toString(stats.triangleCount));
+
+		Ogre::OverlayElement* guiBatches = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/NumBatches");
+		guiBatches->setCaption(batches + Ogre::StringConverter::toString(stats.batchCount));
+
+		/////////////////////////
+
+		Ogre::OverlayElement* guiDbg = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/DebugText");
+		guiDbg->setTop(0);
+		/*
+		Ogre::String message = 
+			"Camera Position: x: "+Ogre::StringConverter::toString(camPos.x)+", y: "+Ogre::StringConverter::toString(camPos.y)+", z:"+Ogre::StringConverter::toString(camPos.z) + "\n" + 
+			"Camera orientation: yaw: "+Ogre::StringConverter::toString(camOri.getYaw())+", pitch: "+Ogre::StringConverter::toString(camOri.getPitch())+", roll:"+Ogre::StringConverter::toString(camOri.getRoll()) + "\n" + 
+			"Freddy position: x: "+Ogre::StringConverter::toString(freddyPos.x)+", y: "+Ogre::StringConverter::toString(freddyPos.y)+", z:"+Ogre::StringConverter::toString(freddyPos.z) + "\n" + 
+			"Freddy orientation: yaw: "+Ogre::StringConverter::toString(freddyOri.getYaw())+", pitch: "+Ogre::StringConverter::toString(freddyOri.getPitch())+", roll:"+Ogre::StringConverter::toString(freddyOri.getRoll());
+		*/
+		guiDbg->setCaption("Test Test Test");
+
+	}
+	catch(...) { /* ignore */ }
 }

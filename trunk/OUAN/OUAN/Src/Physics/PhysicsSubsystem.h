@@ -10,7 +10,7 @@ namespace OUAN
 {
 	//This class encapsulates the physics logic
 	//of our game. It uses NxOgre BloodyMess v.1.5.5
-	class PhysicsSubsystem
+	class PhysicsSubsystem : public NxOgre::ControllerCallback
 	{
 	public:
 
@@ -23,6 +23,9 @@ namespace OUAN
 		//Initialize physics subsystem elements
 		virtual void initialise(ApplicationPtr app,OUAN::ConfigurationPtr config);
 
+		// Update physics subsystem elements
+		virtual void update(float elapsedSeconds);
+
 		//Free memory used by the physics subsystem
 		virtual void cleanUp();
 
@@ -32,6 +35,9 @@ namespace OUAN
 		virtual OGRE3DRenderSystem* getNxOgreRenderSystem();
 		virtual NxOgre::TimeController* getNxOgreTimeController();
 		virtual NxOgre::ControllerManager* getNxOgreControllerManager();
+
+		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
+		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other);
 
 	protected:
 		
