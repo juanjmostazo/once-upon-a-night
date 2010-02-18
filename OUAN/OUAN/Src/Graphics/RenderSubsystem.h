@@ -33,7 +33,7 @@ namespace OUAN
 
 		/// Sets up Ogre rendering system
 		void setupRenderSystem(OUAN::ConfigurationPtr config);
-		
+
 		/// Create main window
 		void createRenderWindow(OUAN::ConfigurationPtr config);
 
@@ -53,7 +53,8 @@ namespace OUAN
 		void createCameras();
 		/// Create viewports
 		void createViewports();
-
+		/// Create overlays
+		void createOverlays();
 		/// Translate/Rotate camera's position with mouse
 		void moveCamera(const OIS::MouseEvent &e);
 
@@ -95,7 +96,6 @@ namespace OUAN
 		///						will be translated
 		void translateCam(const TCoordinateAxis& coordAxis);
 		
-
 		//Object creators
 
 		Ogre::Entity* createEntity(Ogre::String name,TEntityRenderParameters tEntityParameters);
@@ -121,6 +121,12 @@ namespace OUAN
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 		void createSkyBox(bool active, String material, Real distance);
 		void createSkyDome(bool active, String material);
+
+		/// Update debug stats
+		void updateStats();
+
+		/// Update visual debugger stuff
+		void updateVisualDebugger();
 
 		/// Main window
 		// [IMPORTANT: notice a shared_ptr is not used here, since we don't 'own' the 
@@ -160,6 +166,9 @@ namespace OUAN
 		NxOgre::VisualDebugger*	mNxOgreVisualDebugger;
 		OGRE3DRenderable*		mNxOgreVisualDebuggerRenderable;
 		Ogre::SceneNode*		mNxOgreVisualDebuggerNode;
+
+		/// Debug Overlay
+		Ogre::Overlay* mDebugOverlay;
 	};
 }
 #endif
