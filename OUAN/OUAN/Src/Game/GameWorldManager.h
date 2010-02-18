@@ -4,6 +4,7 @@
 
 namespace OUAN
 {
+
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
 	class GameWorldManager
@@ -43,19 +44,15 @@ namespace OUAN
 		//Create Ogre component for the game object
 		OgreComponentPtr createOgreComponent(GameObjectPtr gameObject);
 
-		void createMeshFile(String meshfile);
-		void createEntity(String name,String meshfile,bool castshadows);
-		void createSubEntity(String name,int num,String material,bool visible);
-		void createSceneNode(String name,String parentSceneNodeName,Vector3 position,Quaternion orientation,Vector3 scale,String autotracktarget);
-		void createLight(String name,Ogre::Light::LightTypes lighttype,ColourValue diffuse,ColourValue specular,Vector3 direction,bool castshadows,Vector3 lightrange,Vector4 attenuation,Real power);
-		void createParticleSystem(String name,String particle,bool castshadows);
-		void createBillboard(String billBoardSetName,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
-		void createBillboardSet(String name,String material,Ogre::BillboardOrigin billboardorigin,Ogre::BillboardRotationType billboardrotation,Ogre::BillboardType billboardtype,Real defaultheight,Real defaultwidth,bool pointrendering,Real renderdistance,bool sorting);
-		void createViewport(String name,ColourValue colour,int compositorcount,int index,bool overlays,bool shadows,bool skies);
-		void createCamera(String name,Vector3 position,Quaternion orientation,String autotracktarget,bool autoaspectratio,Vector2 clipdistance,Real fov,Ogre::PolygonMode polygonmode, int viewmode);
-		void createOctreeSceneManager(String name,ColourValue ambient);
-		void createSkyBox(bool active, String material, Real distance);
-		void createSkyDome(bool active, String material);
+		void createGameObjectEntity(TEntityParameters tEntityParameters);
+		void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
+		void createLight(TLightParameters tLightParameters);
+		void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
+		void createCamera(TCameraParameters tCameraParameters);
+		void createBillboardSet(TBillboardSetParameters tBillboardSetParameters);
+		void createViewport(TViewportParameters tViewportParameters);
+		void createSceneManager(TSceneManagerParameters tSceneManagerParameters);
+
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list

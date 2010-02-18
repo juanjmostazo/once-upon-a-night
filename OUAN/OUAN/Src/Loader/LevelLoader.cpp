@@ -149,42 +149,37 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 		Ogre::LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
 	}
 }
-
-void LevelLoader::processResourceLocations(TiXmlElement *XMLNode)
-{
-	//TODO
-}
+//
+//void LevelLoader::processResourceLocations(TiXmlElement *XMLNode)
+//{
+//	//TODO
+//}
 
 void LevelLoader::processViewportCamera(TiXmlElement *XMLNode)
 {
-	Quaternion orientation;
-	Vector3 position;
-	Vector2 clipdistance;
-	Real fov;
-	int polygonmode;
-	int viewmode;
+	TCameraParameters tCameraParameters;
+
+	tCameraParameters.name="Viewport#1";
 
 	//Get Camera properties
-	orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
-	position = getPropertyVector3(XMLNode,"camera::position");
-	clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
-	fov = getPropertyReal(XMLNode,"camera::fov");
-	polygonmode = getPropertyInt(XMLNode,"camera::polymode");
-	viewmode = getPropertyInt(XMLNode,"camera::viewmode");
+	tCameraParameters.tCameraRenderParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
+	tCameraParameters.tCameraRenderParameters.position = getPropertyVector3(XMLNode,"camera::position");
+	tCameraParameters.tCameraRenderParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+	tCameraParameters.tCameraRenderParameters.FOVy = getPropertyReal(XMLNode,"camera::fov");
+	tCameraParameters.tCameraRenderParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
 
-	Ogre::PolygonMode ogrePolygonMode;
-
-	//PolygonMode conversion
+		//PolygonMode conversion
+	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
 	switch(polygonmode)
 	{
 			case OGITOR_PM_POINTS:
-				ogrePolygonMode=Ogre::PM_POINTS;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_POINTS;
 				break;
 			case OGITOR_PM_SOLID:
-				ogrePolygonMode=Ogre::PM_SOLID;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_SOLID;
 				break;
 			case OGITOR_PM_WIREFRAME:
-				ogrePolygonMode=Ogre::PM_WIREFRAME;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
 				Ogre::LogManager::getSingleton().logMessage("Viewport Camera has unrecognised Camera Type");
@@ -193,34 +188,28 @@ void LevelLoader::processViewportCamera(TiXmlElement *XMLNode)
 
 
 	//Create Camera
-	pGameWorldManager->createCamera("Ogitor",position,orientation,"None",true,clipdistance,fov,ogrePolygonMode,viewmode);
+	pGameWorldManager->createCamera(tCameraParameters);
 }
 
 
 
 void LevelLoader::processViewport(TiXmlElement *XMLNode)
 {
-	String name;
-	ColourValue colour;
-	int compositorcount;
-	int index;
-	bool overlays;
-	bool shadows;
-	bool skies;
+	TViewportParameters tViewPortParameters;
 
 	//Get Viewport name
-	name = getAttrib(XMLNode, "name");
+	tViewPortParameters.name = getAttrib(XMLNode, "name");
 
 	//Get Viewport properties
-	colour = getPropertyColourValue(XMLNode,"colour");
-	compositorcount = getPropertyInt(XMLNode,"compositorcount");
-	index = getPropertyInt(XMLNode,"index");
-	overlays = getPropertyBool(XMLNode,"overlays");
-	shadows = getPropertyBool(XMLNode,"shadows");
-	skies = getPropertyBool(XMLNode,"skies");
+	tViewPortParameters.tViewPortRenderParameters.colour = getPropertyColourValue(XMLNode,"colour");
+	tViewPortParameters.tViewPortRenderParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
+	tViewPortParameters.tViewPortRenderParameters.index = getPropertyInt(XMLNode,"index");
+	tViewPortParameters.tViewPortRenderParameters.overlays = getPropertyBool(XMLNode,"overlays");
+	tViewPortParameters.tViewPortRenderParameters.shadows = getPropertyBool(XMLNode,"shadows");
+	tViewPortParameters.tViewPortRenderParameters.skies = getPropertyBool(XMLNode,"skies");
 
 	//Create Viewport
-	pGameWorldManager->createViewport(name,colour,compositorcount,index,overlays,shadows,skies);
+	pGameWorldManager->createViewport(tViewPortParameters);
 
 	//Process Viewport camera
 	processViewportCamera(XMLNode);
@@ -229,243 +218,221 @@ void LevelLoader::processViewport(TiXmlElement *XMLNode)
 
 void LevelLoader::processOctreeSceneManager(TiXmlElement *XMLNode)
 {
-	String name;
-	ColourValue ambient;
+	TSceneManagerParameters tSceneManagerParameters;
 
 	//Get OctreeSceneManager name
-	name = getAttrib(XMLNode, "name");
+	tSceneManagerParameters.name = getAttrib(XMLNode, "name");
 
 	//Get SceneManager properties
-	ambient=getPropertyColourValue(XMLNode,"ambient");
-	//Set SceneManager parameters
-	pGameWorldManager->createOctreeSceneManager(name,ambient);
+	tSceneManagerParameters.tSceneManagerRenderParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
 
 	//Process SkyBox
-	processSkyBox(XMLNode);
+	tSceneManagerParameters.tSceneManagerRenderParameters.tSkyBoxRenderParameters=processSkyBox(XMLNode);
 
 	//Process SkyDome
-	processSkyDome(XMLNode);
+	tSceneManagerParameters.tSceneManagerRenderParameters.tSkyDomeRenderParameters=processSkyDome(XMLNode);
 
-	//Process Fog
-	processFog(XMLNode);
+	//TODO: Process Fog
+	//processFog(XMLNode);
 
-	//Process Shadows
-	processShadows(XMLNode);
+	//TODO: Process Shadows
+	//processShadows(XMLNode);
+
+	//Set SceneManager parameters
+	pGameWorldManager->createSceneManager(tSceneManagerParameters);
 
 }
 
-void LevelLoader::processTerrain(TiXmlElement *XMLNode)
-{
-	//! @todo Implement this
-}
+//void LevelLoader::processTerrain(TiXmlElement *XMLNode)
+//{
+//	//! @todo Implement this
+//}
 
 void LevelLoader::processSceneNodeNoScale(TiXmlElement *XMLNode)
 {
-	String name;
-	String parentnode;
-	Vector3 position;
-	Quaternion orientation;
+	TSceneNodeParameters tSceneNodeParameters;
 
 	//Get SceneNode name
-	name = getAttrib(XMLNode, "name");
+	tSceneNodeParameters.name = getAttrib(XMLNode, "name");
 
 	//Get parent SceneNode name
-	parentnode = getAttrib(XMLNode, "parentnode");
+	tSceneNodeParameters.tSceneNodeRenderParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	position = getPropertyVector3(XMLNode,"position");
-	orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tSceneNodeParameters.tSceneNodeRenderParameters.position = getPropertyVector3(XMLNode,"position");
+	tSceneNodeParameters.tSceneNodeRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
 
+	tSceneNodeParameters.tSceneNodeRenderParameters.scale=Vector3(0,0,0);
+	tSceneNodeParameters.tSceneNodeRenderParameters.autotracktarget="None";
+	
 	//create SceneNode
-	pGameWorldManager->createSceneNode(name,parentnode,position,orientation,Vector3(0,0,0),"None");
+	pGameWorldManager->createSceneNode(tSceneNodeParameters);
 }
 
 void LevelLoader::processLight(TiXmlElement *XMLNode)
 {
-	String name;
-	int lighttype;
-	ColourValue diffuse;
-	ColourValue specular;
-	Vector3 direction;
-	bool castshadows;
-	Vector3 lightrange;
-	Vector4 attenuation;
-	Real power;
-	Ogre::Light::LightTypes ogreLightType;
+	TLightParameters tLightParameters;
 
 	//Parse and create Scene node
 	processSceneNodeNoScale(XMLNode);
 
 	//Get Light name
-	name = getAttrib(XMLNode, "name");
+	tLightParameters.name = getAttrib(XMLNode, "name");
 
 	//Get Light properties
-	lighttype = getPropertyInt(XMLNode,"lighttype");
-	diffuse = getPropertyColourValue(XMLNode,"diffuse");
-	specular = getPropertyColourValue(XMLNode,"specular");
-	direction = getPropertyVector3(XMLNode,"direction");
-	castshadows = getPropertyBool(XMLNode,"castshadows");
-	lightrange = getPropertyVector3(XMLNode,"lightrange");
-	attenuation = getPropertyVector4(XMLNode,"attenuation");
-	power = getPropertyReal(XMLNode,"power");
+	
+	tLightParameters.tLightRenderParameters.diffuse = getPropertyColourValue(XMLNode,"diffuse");
+	tLightParameters.tLightRenderParameters.specular = getPropertyColourValue(XMLNode,"specular");
+	tLightParameters.tLightRenderParameters.direction = getPropertyVector3(XMLNode,"direction");
+	tLightParameters.tLightRenderParameters.castshadows = getPropertyBool(XMLNode,"castshadows");
+	tLightParameters.tLightRenderParameters.lightrange = getPropertyVector3(XMLNode,"lightrange");
+	tLightParameters.tLightRenderParameters.attenuation = getPropertyVector4(XMLNode,"attenuation");
+	tLightParameters.tLightRenderParameters.power = getPropertyReal(XMLNode,"power");
 
-	//Lightype conversion
+		//Lightype conversion
+	int lighttype = getPropertyInt(XMLNode,"lighttype");
 	switch(lighttype)
 	{
 			case OGITOR_LT_POINT:
-				ogreLightType=Ogre::Light::LT_POINT;
+				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_POINT;
 				break;
 			case OGITOR_LT_DIRECTIONAL:
-				ogreLightType=Ogre::Light::LT_DIRECTIONAL;
+				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_DIRECTIONAL;
 				break;
 			case OGITOR_LT_SPOTLIGHT:
-				ogreLightType=Ogre::Light::LT_SPOTLIGHT;
+				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("Light "+name+" has unrecognised light type!");
+				Ogre::LogManager::getSingleton().logMessage("Light "+tLightParameters.name+" has unrecognised light type!");
 				break;
 	}
 
 	//Create Light
-	pGameWorldManager->createLight(name,ogreLightType,diffuse,specular,direction,castshadows,lightrange,attenuation,power);
+	pGameWorldManager->createLight(tLightParameters);
 
 }
 
-void LevelLoader::processTrajectory(TiXmlElement *XMLNode)
-{
-	//String name;
-	//
-	////Get Trajectory name
-	//name = getAttrib(XMLNode, "name");
-
-	//int i;
-	//String node;
-
-	//if(trajectory.trajectoryNodes.size()==0)
-	//{
-	//	trajectory.initialise(mSceneManager);
-	//}
-
-	//i=0;
-	//node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
-	//while(node.compare("")!=0)
-	//{
-	//	trajectory.addNode(node);
-	//	i++;
-	//	node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
-	//}
-
-	//
-}
+//void LevelLoader::processTrajectory(TiXmlElement *XMLNode)
+//{
+//	//String name;
+//	//
+//	////Get Trajectory name
+//	//name = getAttrib(XMLNode, "name");
+//
+//	//int i;
+//	//String node;
+//
+//	//if(trajectory.trajectoryNodes.size()==0)
+//	//{
+//	//	trajectory.initialise(mSceneManager);
+//	//}
+//
+//	//i=0;
+//	//node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
+//	//while(node.compare("")!=0)
+//	//{
+//	//	trajectory.addNode(node);
+//	//	i++;
+//	//	node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
+//	//}
+//
+//	//
+//}
 
 void LevelLoader::processCamera(TiXmlElement *XMLNode)
 {
-	String name;
-	String autotracktarget;
-	Quaternion orientation;
-	Vector3 position;
-	bool autoaspectratio;
-	Vector2 clipdistance;
-	Real fov;
-	int polygonmode;
-	Ogre::PolygonMode ogrePolygonMode;
-	int viewmode;
+	TCameraParameters tCameraParameters;
 
 	//Get Camera name
-	name = getAttrib(XMLNode, "name");
+	tCameraParameters.name = getAttrib(XMLNode, "name");
 
 	//Get Camera properties
-	autotracktarget = getPropertyString(XMLNode,"autotracktarget");
-	orientation = getPropertyQuaternion(XMLNode,"orientation");
-	position = getPropertyVector3(XMLNode,"position");
-	autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
-	clipdistance = getPropertyVector2(XMLNode,"clipdistance");
-	fov = getPropertyReal(XMLNode,"fov");
-	polygonmode = getPropertyInt(XMLNode,"polygonmode");
-	viewmode = getPropertyInt(XMLNode,"viewmode");
+	tCameraParameters.tCameraRenderParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tCameraParameters.tCameraRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tCameraParameters.tCameraRenderParameters.position = getPropertyVector3(XMLNode,"position");
+	tCameraParameters.tCameraRenderParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
+	tCameraParameters.tCameraRenderParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+	tCameraParameters.tCameraRenderParameters.FOVy = getPropertyReal(XMLNode,"fov");
+	tCameraParameters.tCameraRenderParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
 
+		//PolygonModeConversion
+	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
 	switch(polygonmode)
 		{
 			case OGITOR_PM_SOLID:
-				ogrePolygonMode=Ogre::PM_SOLID;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_SOLID;
 				break;
 			case OGITOR_PM_POINTS:
-				ogrePolygonMode=Ogre::PM_POINTS;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_POINTS;
 				break;
 			case OGITOR_PM_WIREFRAME:
-				ogrePolygonMode=Ogre::PM_WIREFRAME;
+				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("Camera "+name+" has unrecognised PolygonMode!");
+				Ogre::LogManager::getSingleton().logMessage("Camera "+tCameraParameters.name+" has unrecognised PolygonMode!");
 				break;
 		}
 
 	//Create Camera
-	pGameWorldManager->createCamera(name,position,orientation,autotracktarget,autoaspectratio,clipdistance,fov,ogrePolygonMode,viewmode);
+	pGameWorldManager->createCamera(tCameraParameters);
 }
 
 
 
 void LevelLoader::processSceneNode(TiXmlElement *XMLNode)
 {
-	String name;
-	String parentnode;
-	Vector3 position;
-	Quaternion orientation;
-	Vector3 scale;
-	String autotracktarget;
+	TSceneNodeParameters tSceneNodeParameters;
 
 	//Get SceneNode name
-	name = getAttrib(XMLNode, "name");
+	tSceneNodeParameters.name = getAttrib(XMLNode, "name");
 
 	//Get parent SceneNode name
-	parentnode = getAttrib(XMLNode, "parentnode");
+	tSceneNodeParameters.tSceneNodeRenderParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	position = getPropertyVector3(XMLNode,"position");
-	orientation = getPropertyQuaternion(XMLNode,"orientation");
-	scale = getPropertyVector3(XMLNode,"scale");
-	autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tSceneNodeParameters.tSceneNodeRenderParameters.position = getPropertyVector3(XMLNode,"position");
+	tSceneNodeParameters.tSceneNodeRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tSceneNodeParameters.tSceneNodeRenderParameters.scale = getPropertyVector3(XMLNode,"scale");
+	tSceneNodeParameters.tSceneNodeRenderParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
 	//create SceneNode
-	pGameWorldManager->createSceneNode(name,parentnode,position,orientation,scale,autotracktarget);
+	pGameWorldManager->createSceneNode(tSceneNodeParameters);
 }
 
-void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
-{
+//void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
+//{
+//
+//	//// Setup the track target
+//	//try
+//	//{
+//	//	SceneNode *pTrackNode = mSceneManager->getSceneNode(nodeName);
+//	//	pParent->setAutoTracking(true, pTrackNode, localDirection, offset);
+//	//}
+//	//catch(Ogre::Exception &/*e*/)
+//	//{
+//	//	LogManager::getSingleton().logMessage("[LevelLoader] Error processing a track target!");
+//	//}
+//}
 
-	//// Setup the track target
-	//try
-	//{
-	//	SceneNode *pTrackNode = mSceneManager->getSceneNode(nodeName);
-	//	pParent->setAutoTracking(true, pTrackNode, localDirection, offset);
-	//}
-	//catch(Ogre::Exception &/*e*/)
-	//{
-	//	LogManager::getSingleton().logMessage("[LevelLoader] Error processing a track target!");
-	//}
-}
-
-void LevelLoader::processSubentities(String name,TiXmlElement *XMLNode)
+void LevelLoader::processSubentities(std::vector<TSubEntityRenderParameters> &tSubEntityRenderParameters,TiXmlElement *XMLNode)
 {
 		int i;
 
-		String material;
-		bool visible;
+		TSubEntityRenderParameters currentSubEntityRenderParameters;
  
 		//process and load all Entity's SubEntites
 		i=0;
 		while(true)
 		{
 			//Process SubEntity
-			material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
-			visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
+			currentSubEntityRenderParameters.material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
+			currentSubEntityRenderParameters.visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
 
 			//there is no more sub entities
-			if(material.compare("")==0) break;
+			if(currentSubEntityRenderParameters.material.compare("")==0) break;
 
 			//create SubEntity
-			pGameWorldManager->createSubEntity(name,i,material,visible);
+			tSubEntityRenderParameters.push_back(currentSubEntityRenderParameters);
 
 			i++;
 		}
@@ -473,235 +440,219 @@ void LevelLoader::processSubentities(String name,TiXmlElement *XMLNode)
 
 void LevelLoader::processEntity(TiXmlElement *XMLNode)
 {
-	String name;
-	String meshfile;
-	bool castshadows;
+	TEntityParameters tEntityParameters;
 
 	//Process the entity scene node
 	processSceneNode(XMLNode);
 	
 	//Get Entity name
-	name = getAttrib(XMLNode, "name");
+	tEntityParameters.name = getAttrib(XMLNode, "name");
 	//LogManager::getSingleton().logMessage("[LevelLoader] creating "+name+" entity");
 
 	//Process entity properties
-	meshfile = getPropertyString(XMLNode, "meshfile");
-	castshadows = getPropertyBool(XMLNode, "castshadows");
-	
-	//Create Entity
-	pGameWorldManager->createEntity(name,meshfile,castshadows);
+	tEntityParameters.tEntityRenderParameters.meshfile = getPropertyString(XMLNode, "meshfile");
+	tEntityParameters.tEntityRenderParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
 
 	//process Entity's SubEntites
-	processSubentities(name,XMLNode);
+	processSubentities(tEntityParameters.tEntityRenderParameters.tSubEntityRenderParameters,XMLNode);
 
-	//process Entity's Trajectory
-	processTrajectory(XMLNode);
+	//process Entity's Trajectory 
+	//processTrajectory(XMLNode);//TODO
+
+	
+	//Create Entity
+	pGameWorldManager->createGameObjectEntity(tEntityParameters);
+
 
 }
 
 void LevelLoader::processParticleSystem(TiXmlElement *XMLNode)
 {
 
-	OUAN::String particle;
-	bool castshadows;
+	TParticleSystemParameters tParticleSystemParameters;
 
 	//Process the entity scene node
 	processSceneNode(XMLNode);
 	
 	//Get ParticleSystem name
-	String name = getAttrib(XMLNode, "name");
+	tParticleSystemParameters.name = getAttrib(XMLNode, "name");
 
 	//Process ParticleSystem properties
-	particle = getPropertyString(XMLNode, "particle");
-	castshadows = getPropertyBool(XMLNode, "castshadows");
+	tParticleSystemParameters.tParticleSystemRenderParameters.particle = getPropertyString(XMLNode, "particle");
+	tParticleSystemParameters.tParticleSystemRenderParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
 	
 	//Create ParticleSystem
-	pGameWorldManager->createParticleSystem(name,particle,castshadows);
+	pGameWorldManager->createParticleSystem(tParticleSystemParameters);
 
 }
 
-void LevelLoader::processBillboards(OUAN::String billBoardSetName,TiXmlElement *XMLNode)
+void LevelLoader::processBillboards(std::vector<TBillboardRenderParameters> &tBillboardRenderParameters,TiXmlElement *XMLNode)
 {
 
 	int i;
-	int billboardcount;
-	ColourValue colour;
-	Vector2 dimensions;
-	Vector3 position;
-	Real rotation;
-	int texcoordindex;
-	Vector4 texrect;
-	
+	TBillboardRenderParameters currentTBillboardRenderParameters;
+
 	//get the number of BillboardSet's Billboards
-	billboardcount=getPropertyInt(XMLNode,"billboardcount");
+	int billboardcount=getPropertyInt(XMLNode,"billboardcount");
 
 	//process and load all BillboardSet's Billboards
 	for(i=0;i<billboardcount;i++)
 	{
 		//Process Billboards
-		colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
-		dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
-		position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
-		rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
-		texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
-		texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
+		currentTBillboardRenderParameters.colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
+		currentTBillboardRenderParameters.dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
+		currentTBillboardRenderParameters.position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
+		currentTBillboardRenderParameters.rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
+		currentTBillboardRenderParameters.texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
+		currentTBillboardRenderParameters.texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
 
-		//create Billboards
-		pGameWorldManager->createBillboard(billBoardSetName,colour,dimensions,position,rotation,texcoordindex,texrect);
+		tBillboardRenderParameters.push_back(currentTBillboardRenderParameters);
 	}
 	
 }
 
 void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 {
-	String name;
-	String material;
-	int billboardorigin;
-	int billboardrotation;
-	int billboardtype;
-	Real defaultheight;
-	Real defaultwidth;
-	bool pointrendering;
-	Real renderdistance;
-	bool sorting;
-	Ogre::BillboardRotationType ogreBillboardRotationType;
-	Ogre::BillboardType ogreBillboardType;
-	Ogre::BillboardOrigin ogreBillboardOrigin;
+	TBillboardSetParameters tBillboardSetParameters;
 
 	//Process the BillboardSet scene node
 	processSceneNode(XMLNode);
 	
 	//Get BillboardSet name
-	name = getAttrib(XMLNode, "name");
+	tBillboardSetParameters.name = getAttrib(XMLNode, "name");
 	//LogManager::getSingleton().logMessage("[LevelLoader] creating "+name+" BillboardSet");
 
 	//Process BillboardSet properties
-	material = getPropertyString(XMLNode, "material");
-	billboardorigin = getPropertyInt(XMLNode, "billboardorigin");
-	billboardrotation = getPropertyInt(XMLNode, "billboardrotation");
-	billboardtype = getPropertyInt(XMLNode, "billboardtype");
-	defaultheight = getPropertyReal(XMLNode, "defaultheight");
-	defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
-	pointrendering = getPropertyBool(XMLNode, "pointrendering");
-	renderdistance = getPropertyReal(XMLNode, "renderdistance");
-	sorting = getPropertyBool(XMLNode, "sorting");
+	tBillboardSetParameters.tBillboardSetRenderParameters.material = getPropertyString(XMLNode, "material");
+	tBillboardSetParameters.tBillboardSetRenderParameters.defaultheight = getPropertyReal(XMLNode, "defaultheight");
+	tBillboardSetParameters.tBillboardSetRenderParameters.defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
+	tBillboardSetParameters.tBillboardSetRenderParameters.pointrendering = getPropertyBool(XMLNode, "pointrendering");
+	tBillboardSetParameters.tBillboardSetRenderParameters.renderdistance = getPropertyReal(XMLNode, "renderdistance");
+	tBillboardSetParameters.tBillboardSetRenderParameters.sorting = getPropertyBool(XMLNode, "sorting");
 
+		//BillboardType Conversion
+	int billboardtype = getPropertyInt(XMLNode, "billboardtype");
 	switch(billboardtype)
 	{
 		case OGITOR_BBT_ORIENTED_COMMON:
-			ogreBillboardType=Ogre::BBT_ORIENTED_COMMON;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
 			break;
 		case OGITOR_BBT_ORIENTED_SELF:
-			ogreBillboardType=Ogre::BBT_ORIENTED_SELF;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_ORIENTED_SELF;
 			break;
 		case OGITOR_BBT_PERPENDICULAR_COMMON:
-			ogreBillboardType=Ogre::BBT_PERPENDICULAR_COMMON;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_PERPENDICULAR_COMMON;
 			break;
 		case OGITOR_BBT_PERPENDICULAR_SELF:
-			ogreBillboardType=Ogre::BBT_PERPENDICULAR_SELF;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_PERPENDICULAR_SELF;
 			break;
 		case OGITOR_BBT_POINT:
-			ogreBillboardType=Ogre::BBT_POINT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_POINT;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard "+name+" has unrecognised BillboardType!");
+			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardType!");
 			break;
 	}
-
+		//BillboardOrigin Conversion
+	int billboardorigin = getPropertyInt(XMLNode, "billboardorigin");
 	switch(billboardorigin)
 	{
 		case OGITOR_BBO_BOTTOM_CENTER:
-			ogreBillboardOrigin=Ogre::BBO_BOTTOM_CENTER;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_CENTER;
 			break;
 		case OGITOR_BBO_BOTTOM_LEFT:
-			ogreBillboardOrigin=Ogre::BBO_BOTTOM_LEFT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_LEFT;
 			break;
 		case OGITOR_BBO_BOTTOM_RIGHT:
-			ogreBillboardOrigin=Ogre::BBO_BOTTOM_RIGHT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_RIGHT;
 			break;
 		case OGITOR_BBO_CENTER:
-			ogreBillboardOrigin=Ogre::BBO_CENTER;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER;
 			break;
 		case OGITOR_BBO_CENTER_LEFT:
-			ogreBillboardOrigin=Ogre::BBO_CENTER_LEFT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER_LEFT;
 			break;
 		case OGITOR_BBO_CENTER_RIGHT:
-			ogreBillboardOrigin=Ogre::BBO_CENTER_RIGHT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER_RIGHT;
 			break;
 		case OGITOR_BBO_TOP_CENTER:
-			ogreBillboardOrigin=Ogre::BBO_TOP_CENTER;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_CENTER;
 			break;
 		case OGITOR_BBO_TOP_LEFT:
-			ogreBillboardOrigin=Ogre::BBO_TOP_LEFT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_LEFT;
 			break;
 		case OGITOR_BBO_TOP_RIGHT:
-			ogreBillboardOrigin=Ogre::BBO_TOP_RIGHT;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard "+name+" has unrecognised BillboardOrigin!");
+			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardOrigin!");
 			break;
 	}
 
+	//Billboard Rotation Conversion
+	int billboardrotation = getPropertyInt(XMLNode, "billboardrotation");
 	switch(billboardrotation)
 	{
 		case OGITOR_BBR_TEXCOORD:
-			ogreBillboardRotationType=Ogre::BBR_TEXCOORD;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardrotation=Ogre::BBR_TEXCOORD;
 			break;
 		case OGITOR_BBR_VERTEX:
-			ogreBillboardRotationType=Ogre::BBR_VERTEX;
+			tBillboardSetParameters.tBillboardSetRenderParameters.billboardrotation=Ogre::BBR_VERTEX;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard "+name+" has unrecognised BillboardRotationType!");
+			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardRotationType!");
 			break;
 	}
-	
-	//Create BillboardSet
-	pGameWorldManager->createBillboardSet(name,material,ogreBillboardOrigin,ogreBillboardRotationType,ogreBillboardType,defaultheight,defaultwidth,pointrendering,renderdistance,sorting);
 
 	//process BillboardSet's Billboards
-	processBillboards(name,XMLNode);
+	processBillboards(tBillboardSetParameters.tBillboardSetRenderParameters.tBillboardRenderParameters,XMLNode);
+
+	
+	//Create BillboardSet
+	pGameWorldManager->createBillboardSet(tBillboardSetParameters);
+
+
 }
 
 
 
-void LevelLoader::processPlane(TiXmlElement *XMLNode)
+//void LevelLoader::processPlane(TiXmlElement *XMLNode)
+//{
+//
+//}
+//
+//void LevelLoader::processFog(TiXmlElement *XMLNode)
+//{
+//
+//}
+
+TSkyBoxRenderParameters LevelLoader::processSkyBox(TiXmlElement *XMLNode)
 {
-
-}
-
-void LevelLoader::processFog(TiXmlElement *XMLNode)
-{
-
-}
-
-void LevelLoader::processSkyBox(TiXmlElement *XMLNode)
-{
+	TSkyBoxRenderParameters tSkyBoxRenderParameters;
 	// Process SkyBox properties
-	bool active = getPropertyBool(XMLNode, "skybox::active");
-	String material = getPropertyString(XMLNode, "skybox::material");
-	Real distance = getPropertyReal(XMLNode, "skybox::distance");
+	tSkyBoxRenderParameters.active = getPropertyBool(XMLNode, "skybox::active");
+	tSkyBoxRenderParameters.material = getPropertyString(XMLNode, "skybox::material");
+	tSkyBoxRenderParameters.distance = getPropertyReal(XMLNode, "skybox::distance");
 
-	
-	//Create the SkyBox
-	pGameWorldManager->createSkyBox(active, material, distance);
+	return tSkyBoxRenderParameters;
 }
 
 
 
-void LevelLoader::processSkyDome(TiXmlElement *XMLNode)
+TSkyDomeRenderParameters LevelLoader::processSkyDome(TiXmlElement *XMLNode)
 {
+	TSkyDomeRenderParameters tSkyDomeRenderParameters;
 	// Process SkyDome properties
-	bool active = getPropertyBool(XMLNode, "skydome::active");
-	String material = getPropertyString(XMLNode, "skydome::material");
+	tSkyDomeRenderParameters.active = getPropertyBool(XMLNode, "skydome::active");
+	tSkyDomeRenderParameters.material = getPropertyString(XMLNode, "skydome::material");
 	
-	//Create the SkyDome
-	pGameWorldManager->createSkyDome(active, material);
+	return tSkyDomeRenderParameters;
 }
 
-void LevelLoader::processShadows(TiXmlElement *XMLNode)
-{
-
-}
+//void LevelLoader::processShadows(TiXmlElement *XMLNode)
+//{
+//
+//}
 
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {

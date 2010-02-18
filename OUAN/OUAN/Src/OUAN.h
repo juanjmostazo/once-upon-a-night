@@ -78,8 +78,6 @@ namespace OUAN
 		class OgreComponent;
 		typedef boost::shared_ptr<OgreComponent> OgreComponentPtr;
 
-
-
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
@@ -169,6 +167,164 @@ namespace OUAN
 		#define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../../Resources/Graphics/NxModels"
 
+
+	//GameObject Creation Parameters Structs
+
+	//TODO: Add Physix and other Subsystems parameters to the structs
+
+	struct TSubEntityRenderParameters
+	{
+		String material;
+		bool visible;
+	};
+
+	struct TEntityRenderParameters
+	{
+		String meshfile;
+		bool castshadows;
+		std::vector<TSubEntityRenderParameters> tSubEntityRenderParameters;
+	};
+
+	struct TLightRenderParameters
+	{
+		Ogre::Light::LightTypes lighttype;
+		ColourValue diffuse;
+		ColourValue specular;
+		Vector3 direction;
+		bool castshadows;
+		Vector3 lightrange;
+		Vector4 attenuation;
+		Real power;
+	};
+
+	struct TSceneNodeRenderParameters
+	{
+		String parentSceneNodeName;
+		Vector3 position;
+		Quaternion orientation;
+		Vector3 scale;
+		String autotracktarget;
+	};
+
+	struct TCameraRenderParameters
+	{
+		Vector3 position;
+		Quaternion orientation;
+		String autotracktarget;
+		bool autoaspectratio;
+		Vector2 clipdistance;
+		Real FOVy;
+		Ogre::PolygonMode polygonmode;
+		int viewmode;
+	};
+
+	struct TParticleSystemRenderParameters
+	{
+		String particle;
+		bool castshadows;
+	};
+
+	struct TBillboardRenderParameters
+	{
+		ColourValue colour;
+		Vector2 dimensions;
+		Vector3 position;
+		Real rotation;
+		int texcoordindex;
+		Vector4 texrect;
+	};
+
+	struct TBillboardSetRenderParameters
+	{
+		String material;
+		Ogre::BillboardOrigin billboardorigin;
+		Ogre::BillboardRotationType billboardrotation;
+		Ogre::BillboardType billboardtype;
+		Real defaultheight;
+		Real defaultwidth;
+		bool pointrendering;
+		Real renderdistance;
+		bool sorting;
+		std::vector<TBillboardRenderParameters> tBillboardRenderParameters;
+	};
+
+	struct TViewportRenderParameters
+	{
+		ColourValue colour;
+		int compositorcount;
+		int index;
+		bool overlays;
+		bool shadows;
+		bool skies;
+	};
+
+	struct TSkyBoxRenderParameters
+	{
+		bool active;
+		String material;
+		Real distance;
+	};
+
+	struct TSkyDomeRenderParameters
+	{
+		bool active;
+		String material;
+	};
+
+	struct TSceneManagerRenderParameters
+	{
+		ColourValue ambient;
+		TSkyBoxRenderParameters tSkyBoxRenderParameters;
+		TSkyDomeRenderParameters tSkyDomeRenderParameters;
+	};
+
+	struct TParticleSystemParameters
+	{
+		String name;
+		TParticleSystemRenderParameters tParticleSystemRenderParameters;
+	};
+
+	struct TSceneNodeParameters
+	{
+		String name;
+		TSceneNodeRenderParameters tSceneNodeRenderParameters;
+	};
+
+	struct TEntityParameters
+	{
+		String name;
+		TEntityRenderParameters tEntityRenderParameters;
+	};
+
+	struct TLightParameters
+	{
+		String name;
+		TLightRenderParameters tLightRenderParameters;
+	};
+
+	struct TCameraParameters
+	{
+		String name;
+		TCameraRenderParameters tCameraRenderParameters;
+	};
+
+	struct TBillboardSetParameters
+	{
+		String name;
+		TBillboardSetRenderParameters tBillboardSetRenderParameters;
+	};
+
+	struct TSceneManagerParameters
+	{
+		String name;
+		TSceneManagerRenderParameters tSceneManagerRenderParameters;
+	};
+
+	struct TViewportParameters
+	{
+		String name;
+		TViewportRenderParameters tViewPortRenderParameters;
+	};
 }
 
 
