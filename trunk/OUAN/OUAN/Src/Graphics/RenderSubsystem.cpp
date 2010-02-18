@@ -141,7 +141,7 @@ void RenderSubsystem::createViewports()
 void RenderSubsystem::createOverlays()
 {
 	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
-	//mDebugOverlay->show();
+	mDebugOverlay->show();
 }
 
 void RenderSubsystem::createScene()
