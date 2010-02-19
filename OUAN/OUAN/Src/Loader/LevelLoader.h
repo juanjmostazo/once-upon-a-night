@@ -37,14 +37,14 @@ namespace OUAN
 		void processSceneNode(TiXmlElement *XMLNode);
 		void processTrackTarget(TiXmlElement *XMLNode);
 		void processEntity(TiXmlElement *XMLNode);
-		void processSubentities(std::vector<TSubEntityRenderParameters>  &tSubEntityRenderParameters ,TiXmlElement *XMLNode);
+		void processSubentities(std::vector<TRenderComponentSubEntityParameters>  &TRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
 		void processParticleSystem(TiXmlElement *XMLNode);
 		void processBillboardSet(TiXmlElement *XMLNode);
-		void processBillboards(std::vector<TBillboardRenderParameters> &tBillboardRenderParameters,TiXmlElement *XMLNode);
+		void processBillboards(std::vector<TRenderComponentBillboardParameters> &TRenderComponentBillboardParameters,TiXmlElement *XMLNode);
 		//TODO: void processPlane(TiXmlElement *XMLNode);
 		//TODO: void processFog(TiXmlElement *XMLNode);
-		TSkyBoxRenderParameters processSkyBox(TiXmlElement *XMLNode);
-		TSkyDomeRenderParameters processSkyDome(TiXmlElement *XMLNode);
+		TRenderComponentSkyBoxParameters processSkyBox(TiXmlElement *XMLNode);
+		TRenderComponentSkyDomeParameters processSkyDome(TiXmlElement *XMLNode);
 		//TODO: void processShadows(TiXmlElement *XMLNode);
 		//TODO: void processTrajectory(TiXmlElement *XMLNode);
 

@@ -42,7 +42,7 @@ namespace OUAN
 
 
 		//Create Ogre component for the game object
-		OgreComponentPtr createOgreComponent(GameObjectPtr gameObject);
+		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
 
 		void createGameObjectEntity(TEntityParameters tEntityParameters);
 		void createSceneNode(TSceneNodeParameters tSceneNodeParameters);

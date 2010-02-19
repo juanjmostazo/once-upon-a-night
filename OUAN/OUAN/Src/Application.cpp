@@ -12,6 +12,7 @@
 #include "Physics/PhysicsSubsystem.h"
 
 #include "Game/GameWorldManager.h"
+#include "Game/ComponentFactory.h"
 
 #include "Loader/Configuration.h"
 #include "Loader/LevelLoader.h"
@@ -39,6 +40,8 @@ void Application::initialise()
 	ApplicationPtr this_ = shared_from_this();
 
 	mExitRequested=false;
+
+	ComponentFactory::getInstance()->initialise(this_);
 
 	mStateManager.reset(new GameStateManager());
 
