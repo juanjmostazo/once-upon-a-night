@@ -71,12 +71,31 @@ namespace OUAN
 
 		const int GAMEOBJECT_ID_ZERO_PADDING=6;
 
-		const std::string COMPONENT_NAME_OGRE="ogreComponent";
+		const std::string COMPONENT_NAME_OGRE="RenderComponent";
 		const std::string COMPONENT_NAME_PHYSICS="physicsComponent";
 		
 		//Component specializations
-		class OgreComponent;
-		typedef boost::shared_ptr<OgreComponent> OgreComponentPtr;
+
+
+			//Render Components
+			class RenderComponent;
+			typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
+			class RenderComponentBillboardSet;
+			typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
+			class RenderComponentCamera;
+			typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
+			class RenderComponentEntity;
+			typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
+			class RenderComponentLight;
+			typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
+			class RenderComponentParticleSystem;
+			typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
+			class RenderComponentSceneManager;
+			typedef boost::shared_ptr<RenderComponentSceneManager> RenderComponentSceneManagerPtr;
+			class RenderComponentSceneNode;
+			typedef boost::shared_ptr<RenderComponentSceneNode> RenderComponentSceneNodePtr;
+			class RenderComponentViewport;
+			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
@@ -172,20 +191,24 @@ namespace OUAN
 
 	//TODO: Add Physix and other Subsystems parameters to the structs
 
-	struct TSubEntityRenderParameters
+	struct TRenderComponentParameters
+	{
+	};
+
+	struct TRenderComponentSubEntityParameters : TRenderComponentParameters 
 	{
 		String material;
 		bool visible;
 	};
 
-	struct TEntityRenderParameters
+	struct TRenderComponentEntityParameters : TRenderComponentParameters 
 	{
 		String meshfile;
 		bool castshadows;
-		std::vector<TSubEntityRenderParameters> tSubEntityRenderParameters;
+		std::vector<TRenderComponentSubEntityParameters> TRenderComponentSubEntityParameters;
 	};
 
-	struct TLightRenderParameters
+	struct TRenderComponentLightParameters : TRenderComponentParameters 
 	{
 		Ogre::Light::LightTypes lighttype;
 		ColourValue diffuse;
@@ -197,7 +220,7 @@ namespace OUAN
 		Real power;
 	};
 
-	struct TSceneNodeRenderParameters
+	struct TRenderComponentSceneNodeParameters : TRenderComponentParameters 
 	{
 		String parentSceneNodeName;
 		Vector3 position;
@@ -206,7 +229,7 @@ namespace OUAN
 		String autotracktarget;
 	};
 
-	struct TCameraRenderParameters
+	struct TRenderComponentCameraParameters : TRenderComponentParameters 
 	{
 		Vector3 position;
 		Quaternion orientation;
@@ -218,13 +241,13 @@ namespace OUAN
 		int viewmode;
 	};
 
-	struct TParticleSystemRenderParameters
+	struct TRenderComponentParticleSystemParameters : TRenderComponentParameters 
 	{
 		String particle;
 		bool castshadows;
 	};
 
-	struct TBillboardRenderParameters
+	struct TRenderComponentBillboardParameters : TRenderComponentParameters 
 	{
 		ColourValue colour;
 		Vector2 dimensions;
@@ -234,7 +257,7 @@ namespace OUAN
 		Vector4 texrect;
 	};
 
-	struct TBillboardSetRenderParameters
+	struct TRenderComponentBillboardSetParameters : TRenderComponentParameters 
 	{
 		String material;
 		Ogre::BillboardOrigin billboardorigin;
@@ -245,10 +268,10 @@ namespace OUAN
 		bool pointrendering;
 		Real renderdistance;
 		bool sorting;
-		std::vector<TBillboardRenderParameters> tBillboardRenderParameters;
+		std::vector<TRenderComponentBillboardParameters> TRenderComponentBillboardParameters;
 	};
 
-	struct TViewportRenderParameters
+	struct TRenderComponentViewportParameters : TRenderComponentParameters 
 	{
 		ColourValue colour;
 		int compositorcount;
@@ -258,72 +281,72 @@ namespace OUAN
 		bool skies;
 	};
 
-	struct TSkyBoxRenderParameters
+	struct TRenderComponentSkyBoxParameters : TRenderComponentParameters 
 	{
 		bool active;
 		String material;
 		Real distance;
 	};
 
-	struct TSkyDomeRenderParameters
+	struct TRenderComponentSkyDomeParameters : TRenderComponentParameters 
 	{
 		bool active;
 		String material;
 	};
 
-	struct TSceneManagerRenderParameters
+	struct TRenderComponentSceneManagerParameters : TRenderComponentParameters 
 	{
 		ColourValue ambient;
-		TSkyBoxRenderParameters tSkyBoxRenderParameters;
-		TSkyDomeRenderParameters tSkyDomeRenderParameters;
+		TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
+		TRenderComponentSkyDomeParameters TRenderComponentSkyDomeParameters;
 	};
 
 	struct TParticleSystemParameters
 	{
 		String name;
-		TParticleSystemRenderParameters tParticleSystemRenderParameters;
+		TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters;
 	};
 
 	struct TSceneNodeParameters
 	{
 		String name;
-		TSceneNodeRenderParameters tSceneNodeRenderParameters;
+		TRenderComponentSceneNodeParameters TRenderComponentSceneNodeParameters;
 	};
 
 	struct TEntityParameters
 	{
 		String name;
-		TEntityRenderParameters tEntityRenderParameters;
+		TRenderComponentEntityParameters TRenderComponentEntityParameters;
 	};
 
 	struct TLightParameters
 	{
 		String name;
-		TLightRenderParameters tLightRenderParameters;
+		TRenderComponentLightParameters TRenderComponentLightParameters;
 	};
 
 	struct TCameraParameters
 	{
 		String name;
-		TCameraRenderParameters tCameraRenderParameters;
+		TRenderComponentCameraParameters TRenderComponentCameraParameters;
 	};
 
 	struct TBillboardSetParameters
 	{
 		String name;
-		TBillboardSetRenderParameters tBillboardSetRenderParameters;
+		TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters;
 	};
 
 	struct TSceneManagerParameters
 	{
 		String name;
-		TSceneManagerRenderParameters tSceneManagerRenderParameters;
+		TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters;
 	};
 
 	struct TViewportParameters
 	{
 		String name;
-		TViewportRenderParameters tViewPortRenderParameters;
+		TRenderComponentViewportParameters TRenderComponentViewportParameters;
 	};
 }
 

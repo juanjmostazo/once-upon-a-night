@@ -1,9 +1,8 @@
 #include "Component.h"
 using namespace OUAN;
-Component::Component(const std::string& name,const std::string& family)
+Component::Component(const std::string& name)
 :mName(name)
 {
-	mFamily=family.empty()?name:family;
 	mParent.reset();
 }
 

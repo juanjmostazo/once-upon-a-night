@@ -13,7 +13,7 @@ namespace OUAN
 		/// which will serve as some sort of identifier for its parent
 		/// gameObject and further siblings
 		/// @param name component name
-		Component(const std::string& name, const std::string& family="");
+		Component(const std::string& name);
 		/// Destructor
 		virtual ~Component();
 
@@ -29,10 +29,6 @@ namespace OUAN
 		/// @return component's family name
 		const std::string& getFamily() const;
 
-		/// set the name of the component's family
-		/// @param name name of the component's family
-		void setFamily(const std::string& name);
-
 		/// set the component's parent GameObject
 		/// @param parent the parent GameObject
 		void setParent(GameObjectPtr parent);
@@ -40,10 +36,9 @@ namespace OUAN
 		/// TODO: Read on Observer pattern to implement this
 		//void registerEventCallback(const std::string& EventType, void (GameComponent::*fptr)(EventParams,GameObject));
 		virtual void update(long elapsedTime)=0;
+
 	protected:
 
-		/// Component family name
-		std::string mFamily;
 		/// Component name
 		std::string mName;
 		/// parent GameObject

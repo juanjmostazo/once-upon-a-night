@@ -98,14 +98,14 @@ namespace OUAN
 		
 		//Object creators
 
-		Ogre::Entity* createEntity(Ogre::String name,TEntityRenderParameters tEntityParameters);
-		Ogre::SceneNode* createSceneNode(Ogre::String name,TSceneNodeRenderParameters tSceneNodeParameters);
-		Ogre::Light* createLight(Ogre::String name,TLightRenderParameters tLightRenderParameters);
-		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TParticleSystemRenderParameters tParticleSystemRenderParameters);
-		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TBillboardSetRenderParameters tBillboardSetRenderParameters);
-		Ogre::Viewport* createViewport(Ogre::String name,TViewportRenderParameters tViewportRenderParameters);
-		Ogre::Camera* createCamera(Ogre::String name,TCameraRenderParameters tCameraRenderParameters);
-		Ogre::SceneManager* createSceneManager(Ogre::String name,TSceneManagerRenderParameters tSceneManagerRenderParameters);
+		Ogre::Entity* createEntity(Ogre::String name,TRenderComponentEntityParameters tEntityParameters);
+		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentSceneNodeParameters tSceneNodeParameters);
+		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
+		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
+		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
+		Ogre::Viewport* createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
+		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
+		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters);
 
 
 	protected:

@@ -236,30 +236,30 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 	return mSceneManager;
 }
 
-Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TViewportRenderParameters tViewportRenderParameters)
+Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters)
 {
 	// Set the Viewport parameters
-	mViewport->setBackgroundColour(tViewportRenderParameters.colour);
-	mViewport->setOverlaysEnabled(tViewportRenderParameters.overlays);
-	mViewport->setShadowsEnabled(tViewportRenderParameters.shadows);
-	mViewport->setSkiesEnabled(tViewportRenderParameters.skies);
+	mViewport->setBackgroundColour(TRenderComponentViewportParameters.colour);
+	mViewport->setOverlaysEnabled(TRenderComponentViewportParameters.overlays);
+	mViewport->setShadowsEnabled(TRenderComponentViewportParameters.shadows);
+	mViewport->setSkiesEnabled(TRenderComponentViewportParameters.skies);
 
 	return mViewport;
 }
 
-Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TSceneManagerRenderParameters tSceneManagerRenderParameters)
+Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters)
 {
 	try
 	{
 		//Set SceneManager parameters
-		mSceneManager->setAmbientLight(tSceneManagerRenderParameters.ambient);
+		mSceneManager->setAmbientLight(TRenderComponentSceneManagerParameters.ambient);
 		//Create SkyBox
-		createSkyBox(tSceneManagerRenderParameters.tSkyBoxRenderParameters.active,
-			tSceneManagerRenderParameters.tSkyBoxRenderParameters.material,
-			tSceneManagerRenderParameters.tSkyBoxRenderParameters.distance);
+		createSkyBox(TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.active,
+			TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.material,
+			TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.distance);
 		//Create SkyDome
-		createSkyDome(tSceneManagerRenderParameters.tSkyDomeRenderParameters.active,
-			tSceneManagerRenderParameters.tSkyDomeRenderParameters.material);
+		createSkyDome(TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters.active,
+			TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters.material);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -268,7 +268,7 @@ Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TScen
 	return mSceneManager;
 }
 
-Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TLightRenderParameters tLightRenderParameters)
+Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters)
 {
 	SceneNode *lightNode=0;
 	Light *pLight=0;
@@ -283,18 +283,18 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TLightRenderParamete
 		lightNode->attachObject(pLight);
 
 		//Set Light Parameters
-		pLight->setType(tLightRenderParameters.lighttype);
-		pLight->setDiffuseColour(tLightRenderParameters.diffuse);
-		pLight->setSpecularColour(tLightRenderParameters.specular);
-		pLight->setDirection(tLightRenderParameters.direction);
-		pLight->setCastShadows(tLightRenderParameters.castshadows);
+		pLight->setType(TRenderComponentLightParameters.lighttype);
+		pLight->setDiffuseColour(TRenderComponentLightParameters.diffuse);
+		pLight->setSpecularColour(TRenderComponentLightParameters.specular);
+		pLight->setDirection(TRenderComponentLightParameters.direction);
+		pLight->setCastShadows(TRenderComponentLightParameters.castshadows);
 		pLight->setAttenuation(
-			tLightRenderParameters.attenuation.x, 
-			tLightRenderParameters.attenuation.y, 
-			tLightRenderParameters.attenuation.z, 
-			tLightRenderParameters.attenuation.w);
+			TRenderComponentLightParameters.attenuation.x, 
+			TRenderComponentLightParameters.attenuation.y, 
+			TRenderComponentLightParameters.attenuation.z, 
+			TRenderComponentLightParameters.attenuation.w);
 
-		pLight->setPowerScale(tLightRenderParameters.power);
+		pLight->setPowerScale(TRenderComponentLightParameters.power);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -304,7 +304,7 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TLightRenderParamete
 }
 
 
-Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TCameraRenderParameters tCameraRenderParameters)
+Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters)
 {
 
 	SceneNode *cameraNode=0;
@@ -315,29 +315,29 @@ Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TCameraRenderParam
 		// Create the Camera
 		pCamera = mSceneManager->createCamera(name);
 
-		pCamera->setPolygonMode(tCameraRenderParameters.polygonmode);
+		pCamera->setPolygonMode(TRenderComponentCameraParameters.polygonmode);
 		//Set Camera Parameters
 		//set polygon mode
 		
-		pCamera->setPosition(tCameraRenderParameters.position);
-		pCamera->setOrientation(tCameraRenderParameters.orientation);
-		pCamera->setAutoAspectRatio(tCameraRenderParameters.autoaspectratio);
-		pCamera->setNearClipDistance(tCameraRenderParameters.clipdistance.x);
-		pCamera->setFarClipDistance(tCameraRenderParameters.clipdistance.y);
+		pCamera->setPosition(TRenderComponentCameraParameters.position);
+		pCamera->setOrientation(TRenderComponentCameraParameters.orientation);
+		pCamera->setAutoAspectRatio(TRenderComponentCameraParameters.autoaspectratio);
+		pCamera->setNearClipDistance(TRenderComponentCameraParameters.clipdistance.x);
+		pCamera->setFarClipDistance(TRenderComponentCameraParameters.clipdistance.y);
 		
 		//set FOV
 		//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
-		Real FOVy=tCameraRenderParameters.FOVy*55.0f;
+		Real FOVy=TRenderComponentCameraParameters.FOVy*55.0f;
 		if(FOVy>180.0) FOVy=179.99;
 		else if(FOVy<=0) FOVy=0.01;
 		pCamera->setFOVy(Angle(FOVy));
 
 		//set autotracktarget
-		if(tCameraRenderParameters.autotracktarget.compare("None")!=0)
+		if(TRenderComponentCameraParameters.autotracktarget.compare("None")!=0)
 		{
 			//TODO test this
 			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(tCameraRenderParameters.autotracktarget);
+			trackTarget=mSceneManager->getSceneNode(TRenderComponentCameraParameters.autotracktarget);
 			pCamera->setAutoTracking(true,trackTarget);
 		}
 	}
@@ -349,7 +349,7 @@ Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TCameraRenderParam
 	return pCamera;
 }
 
-Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TSceneNodeRenderParameters tSceneNodeRenderParameters)
+Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentSceneNodeParameters TRenderComponentSceneNodeParameters)
 {
 
 	SceneNode *pParentSceneNode = 0;
@@ -359,27 +359,27 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TSceneNodeR
 	try
 	{
 		//Get Parent SceneNode
-		if(tSceneNodeRenderParameters.parentSceneNodeName.compare("SceneManager")==0)
+		if(TRenderComponentSceneNodeParameters.parentSceneNodeName.compare("SceneManager")==0)
 		{
 			pParentSceneNode = mSceneManager->getRootSceneNode();
 		}
 		else
 		{
-			pParentSceneNode = mSceneManager->getSceneNode(tSceneNodeRenderParameters.parentSceneNodeName);
+			pParentSceneNode = mSceneManager->getSceneNode(TRenderComponentSceneNodeParameters.parentSceneNodeName);
 		}
 
 		//Create SceneNode
 		sceneNode = pParentSceneNode->createChildSceneNode(name);
 
 		//Set SceneNode parameters
-		sceneNode->setPosition(tSceneNodeRenderParameters.position);
-		sceneNode->setOrientation(tSceneNodeRenderParameters.orientation);
-		sceneNode->setScale(tSceneNodeRenderParameters.scale);
-		if(tSceneNodeRenderParameters.autotracktarget.compare("None")!=0)
+		sceneNode->setPosition(TRenderComponentSceneNodeParameters.position);
+		sceneNode->setOrientation(TRenderComponentSceneNodeParameters.orientation);
+		sceneNode->setScale(TRenderComponentSceneNodeParameters.scale);
+		if(TRenderComponentSceneNodeParameters.autotracktarget.compare("None")!=0)
 		{
 			//TODO test this
 			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(tSceneNodeRenderParameters.autotracktarget);
+			trackTarget=mSceneManager->getSceneNode(TRenderComponentSceneNodeParameters.autotracktarget);
 			sceneNode->setAutoTracking(true,trackTarget);
 		}
 	}
@@ -407,7 +407,7 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
-Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TEntityRenderParameters tEntityRenderParameters)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TRenderComponentEntityParameters TRenderComponentEntityParameters)
 {
 	unsigned int i;
 	Entity *pEntity = 0;
@@ -415,19 +415,19 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TEntityRenderParam
 	try
 	{
 		//Create meshfile
-		createMeshFile(tEntityRenderParameters.meshfile);
+		createMeshFile(TRenderComponentEntityParameters.meshfile);
 
 		//create entity and set its parameters
-		pEntity = mSceneManager->createEntity(name, tEntityRenderParameters.meshfile);
-		pEntity->setCastShadows(tEntityRenderParameters.castshadows);
+		pEntity = mSceneManager->createEntity(name, TRenderComponentEntityParameters.meshfile);
+		pEntity->setCastShadows(TRenderComponentEntityParameters.castshadows);
 
 		//set subentities parameters
-		for(i=0;i<tEntityRenderParameters.tSubEntityRenderParameters.size();i++)
+		for(i=0;i<TRenderComponentEntityParameters.TRenderComponentSubEntityParameters.size();i++)
 		{
 			createSubEntity(pEntity,
 				i,
-				tEntityRenderParameters.tSubEntityRenderParameters[i].material,
-				tEntityRenderParameters.tSubEntityRenderParameters[i].visible);
+				TRenderComponentEntityParameters.TRenderComponentSubEntityParameters[i].material,
+				TRenderComponentEntityParameters.TRenderComponentSubEntityParameters[i].visible);
 		}
 
 		//attach to Scene Manager
@@ -460,7 +460,7 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 }
 
-Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TParticleSystemRenderParameters tParticleSystemRenderParameters)
+Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters)
 {
 	ParticleSystem *pParticleSystem = 0;
 	SceneNode *particleSystemNode = 0;
@@ -468,14 +468,14 @@ Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TP
 	try
 	{
 		// Create ParticleSystem
-		pParticleSystem = mSceneManager->createParticleSystem(name, tParticleSystemRenderParameters.particle);
+		pParticleSystem = mSceneManager->createParticleSystem(name, TRenderComponentParticleSystemParameters.particle);
 
 		// Attach ParticleSystem to SceneManager
 		particleSystemNode=mSceneManager->getSceneNode(name);
 		particleSystemNode->attachObject(pParticleSystem);
 
 		// Set ParticleSystem parameters
-		pParticleSystem->setCastShadows(tParticleSystemRenderParameters.castshadows);
+		pParticleSystem->setCastShadows(TRenderComponentParticleSystemParameters.castshadows);
 
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -507,7 +507,7 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 	}
 }
 
-Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TBillboardSetRenderParameters tBillboardSetRenderParameters)
+Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters)
 {
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
@@ -521,15 +521,15 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TBill
 		billBoardSetNode->attachObject(billBoardSet);
 
 		//Set BillboardSet Attributes
-		billBoardSet->setMaterialName(tBillboardSetRenderParameters.material);
-		billBoardSet->setDefaultHeight(tBillboardSetRenderParameters.defaultheight);
-		billBoardSet->setDefaultWidth(tBillboardSetRenderParameters.defaultwidth);
-		billBoardSet->setPointRenderingEnabled(tBillboardSetRenderParameters.pointrendering);
-		billBoardSet->setRenderingDistance(tBillboardSetRenderParameters.renderdistance);
-		billBoardSet->setSortingEnabled(tBillboardSetRenderParameters.sorting);
-		billBoardSet->setBillboardType(tBillboardSetRenderParameters.billboardtype);
-		billBoardSet->setBillboardOrigin(tBillboardSetRenderParameters.billboardorigin);
-		billBoardSet->setBillboardRotationType(tBillboardSetRenderParameters.billboardrotation);
+		billBoardSet->setMaterialName(TRenderComponentBillboardSetParameters.material);
+		billBoardSet->setDefaultHeight(TRenderComponentBillboardSetParameters.defaultheight);
+		billBoardSet->setDefaultWidth(TRenderComponentBillboardSetParameters.defaultwidth);
+		billBoardSet->setPointRenderingEnabled(TRenderComponentBillboardSetParameters.pointrendering);
+		billBoardSet->setRenderingDistance(TRenderComponentBillboardSetParameters.renderdistance);
+		billBoardSet->setSortingEnabled(TRenderComponentBillboardSetParameters.sorting);
+		billBoardSet->setBillboardType(TRenderComponentBillboardSetParameters.billboardtype);
+		billBoardSet->setBillboardOrigin(TRenderComponentBillboardSetParameters.billboardorigin);
+		billBoardSet->setBillboardRotationType(TRenderComponentBillboardSetParameters.billboardrotation);
 
 	}
 	catch(Ogre::Exception &/*e*/)

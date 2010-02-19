@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -282,17 +282,57 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Game\GameObject.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Src\Game\GameWorldManager.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\Src\Game\OgreComponent.cpp"
+				<Filter
+					Name="GameObject"
 					>
-				</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObject.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="RenderComponent"
+					>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentBillboardSet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentCamera.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentEntity.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentParticleSystem.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneManager.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneNode.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentViewport.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Physics"
@@ -408,17 +448,57 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Game\GameObject.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Src\Game\GameWorldManager.h"
 					>
 				</File>
-				<File
-					RelativePath=".\Src\Game\OgreComponent.h"
+				<Filter
+					Name="GameObject"
 					>
-				</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObject.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="RenderComponent"
+					>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentBillboardSet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentCamera.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentParticleSystem.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneNode.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentViewport.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"

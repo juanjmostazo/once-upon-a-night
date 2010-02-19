@@ -162,24 +162,24 @@ void LevelLoader::processViewportCamera(TiXmlElement *XMLNode)
 	tCameraParameters.name="Viewport#1";
 
 	//Get Camera properties
-	tCameraParameters.tCameraRenderParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
-	tCameraParameters.tCameraRenderParameters.position = getPropertyVector3(XMLNode,"camera::position");
-	tCameraParameters.tCameraRenderParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
-	tCameraParameters.tCameraRenderParameters.FOVy = getPropertyReal(XMLNode,"camera::fov");
-	tCameraParameters.tCameraRenderParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
+	tCameraParameters.TRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
+	tCameraParameters.TRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
+	tCameraParameters.TRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+	tCameraParameters.TRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"camera::fov");
+	tCameraParameters.TRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
 
 		//PolygonMode conversion
 	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
 	switch(polygonmode)
 	{
 			case OGITOR_PM_POINTS:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_POINTS;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
 				break;
 			case OGITOR_PM_SOLID:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_SOLID;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
 				break;
 			case OGITOR_PM_WIREFRAME:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_WIREFRAME;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
 				Ogre::LogManager::getSingleton().logMessage("Viewport Camera has unrecognised Camera Type");
@@ -201,12 +201,12 @@ void LevelLoader::processViewport(TiXmlElement *XMLNode)
 	tViewPortParameters.name = getAttrib(XMLNode, "name");
 
 	//Get Viewport properties
-	tViewPortParameters.tViewPortRenderParameters.colour = getPropertyColourValue(XMLNode,"colour");
-	tViewPortParameters.tViewPortRenderParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
-	tViewPortParameters.tViewPortRenderParameters.index = getPropertyInt(XMLNode,"index");
-	tViewPortParameters.tViewPortRenderParameters.overlays = getPropertyBool(XMLNode,"overlays");
-	tViewPortParameters.tViewPortRenderParameters.shadows = getPropertyBool(XMLNode,"shadows");
-	tViewPortParameters.tViewPortRenderParameters.skies = getPropertyBool(XMLNode,"skies");
+	tViewPortParameters.TRenderComponentViewportParameters.colour = getPropertyColourValue(XMLNode,"colour");
+	tViewPortParameters.TRenderComponentViewportParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
+	tViewPortParameters.TRenderComponentViewportParameters.index = getPropertyInt(XMLNode,"index");
+	tViewPortParameters.TRenderComponentViewportParameters.overlays = getPropertyBool(XMLNode,"overlays");
+	tViewPortParameters.TRenderComponentViewportParameters.shadows = getPropertyBool(XMLNode,"shadows");
+	tViewPortParameters.TRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
 
 	//Create Viewport
 	pGameWorldManager->createViewport(tViewPortParameters);
@@ -224,13 +224,13 @@ void LevelLoader::processOctreeSceneManager(TiXmlElement *XMLNode)
 	tSceneManagerParameters.name = getAttrib(XMLNode, "name");
 
 	//Get SceneManager properties
-	tSceneManagerParameters.tSceneManagerRenderParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
+	tSceneManagerParameters.TRenderComponentSceneManagerParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
 
 	//Process SkyBox
-	tSceneManagerParameters.tSceneManagerRenderParameters.tSkyBoxRenderParameters=processSkyBox(XMLNode);
+	tSceneManagerParameters.TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters=processSkyBox(XMLNode);
 
 	//Process SkyDome
-	tSceneManagerParameters.tSceneManagerRenderParameters.tSkyDomeRenderParameters=processSkyDome(XMLNode);
+	tSceneManagerParameters.TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters=processSkyDome(XMLNode);
 
 	//TODO: Process Fog
 	//processFog(XMLNode);
@@ -256,14 +256,14 @@ void LevelLoader::processSceneNodeNoScale(TiXmlElement *XMLNode)
 	tSceneNodeParameters.name = getAttrib(XMLNode, "name");
 
 	//Get parent SceneNode name
-	tSceneNodeParameters.tSceneNodeRenderParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	tSceneNodeParameters.tSceneNodeRenderParameters.position = getPropertyVector3(XMLNode,"position");
-	tSceneNodeParameters.tSceneNodeRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
 
-	tSceneNodeParameters.tSceneNodeRenderParameters.scale=Vector3(0,0,0);
-	tSceneNodeParameters.tSceneNodeRenderParameters.autotracktarget="None";
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.scale=Vector3(0,0,0);
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.autotracktarget="None";
 	
 	//create SceneNode
 	pGameWorldManager->createSceneNode(tSceneNodeParameters);
@@ -281,26 +281,26 @@ void LevelLoader::processLight(TiXmlElement *XMLNode)
 
 	//Get Light properties
 	
-	tLightParameters.tLightRenderParameters.diffuse = getPropertyColourValue(XMLNode,"diffuse");
-	tLightParameters.tLightRenderParameters.specular = getPropertyColourValue(XMLNode,"specular");
-	tLightParameters.tLightRenderParameters.direction = getPropertyVector3(XMLNode,"direction");
-	tLightParameters.tLightRenderParameters.castshadows = getPropertyBool(XMLNode,"castshadows");
-	tLightParameters.tLightRenderParameters.lightrange = getPropertyVector3(XMLNode,"lightrange");
-	tLightParameters.tLightRenderParameters.attenuation = getPropertyVector4(XMLNode,"attenuation");
-	tLightParameters.tLightRenderParameters.power = getPropertyReal(XMLNode,"power");
+	tLightParameters.TRenderComponentLightParameters.diffuse = getPropertyColourValue(XMLNode,"diffuse");
+	tLightParameters.TRenderComponentLightParameters.specular = getPropertyColourValue(XMLNode,"specular");
+	tLightParameters.TRenderComponentLightParameters.direction = getPropertyVector3(XMLNode,"direction");
+	tLightParameters.TRenderComponentLightParameters.castshadows = getPropertyBool(XMLNode,"castshadows");
+	tLightParameters.TRenderComponentLightParameters.lightrange = getPropertyVector3(XMLNode,"lightrange");
+	tLightParameters.TRenderComponentLightParameters.attenuation = getPropertyVector4(XMLNode,"attenuation");
+	tLightParameters.TRenderComponentLightParameters.power = getPropertyReal(XMLNode,"power");
 
 		//Lightype conversion
 	int lighttype = getPropertyInt(XMLNode,"lighttype");
 	switch(lighttype)
 	{
 			case OGITOR_LT_POINT:
-				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_POINT;
+				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_POINT;
 				break;
 			case OGITOR_LT_DIRECTIONAL:
-				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_DIRECTIONAL;
+				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_DIRECTIONAL;
 				break;
 			case OGITOR_LT_SPOTLIGHT:
-				tLightParameters.tLightRenderParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
+				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
 				break;
 			default:
 				Ogre::LogManager::getSingleton().logMessage("Light "+tLightParameters.name+" has unrecognised light type!");
@@ -347,26 +347,26 @@ void LevelLoader::processCamera(TiXmlElement *XMLNode)
 	tCameraParameters.name = getAttrib(XMLNode, "name");
 
 	//Get Camera properties
-	tCameraParameters.tCameraRenderParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
-	tCameraParameters.tCameraRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-	tCameraParameters.tCameraRenderParameters.position = getPropertyVector3(XMLNode,"position");
-	tCameraParameters.tCameraRenderParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
-	tCameraParameters.tCameraRenderParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
-	tCameraParameters.tCameraRenderParameters.FOVy = getPropertyReal(XMLNode,"fov");
-	tCameraParameters.tCameraRenderParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
+	tCameraParameters.TRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tCameraParameters.TRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tCameraParameters.TRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
+	tCameraParameters.TRenderComponentCameraParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
+	tCameraParameters.TRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+	tCameraParameters.TRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"fov");
+	tCameraParameters.TRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
 
 		//PolygonModeConversion
 	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
 	switch(polygonmode)
 		{
 			case OGITOR_PM_SOLID:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_SOLID;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
 				break;
 			case OGITOR_PM_POINTS:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_POINTS;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
 				break;
 			case OGITOR_PM_WIREFRAME:
-				tCameraParameters.tCameraRenderParameters.polygonmode=Ogre::PM_WIREFRAME;
+				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
 				Ogre::LogManager::getSingleton().logMessage("Camera "+tCameraParameters.name+" has unrecognised PolygonMode!");
@@ -387,13 +387,13 @@ void LevelLoader::processSceneNode(TiXmlElement *XMLNode)
 	tSceneNodeParameters.name = getAttrib(XMLNode, "name");
 
 	//Get parent SceneNode name
-	tSceneNodeParameters.tSceneNodeRenderParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	tSceneNodeParameters.tSceneNodeRenderParameters.position = getPropertyVector3(XMLNode,"position");
-	tSceneNodeParameters.tSceneNodeRenderParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-	tSceneNodeParameters.tSceneNodeRenderParameters.scale = getPropertyVector3(XMLNode,"scale");
-	tSceneNodeParameters.tSceneNodeRenderParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.scale = getPropertyVector3(XMLNode,"scale");
+	tSceneNodeParameters.TRenderComponentSceneNodeParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
 	//create SceneNode
 	pGameWorldManager->createSceneNode(tSceneNodeParameters);
@@ -414,25 +414,25 @@ void LevelLoader::processSceneNode(TiXmlElement *XMLNode)
 //	//}
 //}
 
-void LevelLoader::processSubentities(std::vector<TSubEntityRenderParameters> &tSubEntityRenderParameters,TiXmlElement *XMLNode)
+void LevelLoader::processSubentities(std::vector<TRenderComponentSubEntityParameters> &tRenderComponentSubEntityParameters,TiXmlElement *XMLNode)
 {
 		int i;
 
-		TSubEntityRenderParameters currentSubEntityRenderParameters;
+		TRenderComponentSubEntityParameters currentRenderComponentSubEntityParameters;
  
 		//process and load all Entity's SubEntites
 		i=0;
 		while(true)
 		{
 			//Process SubEntity
-			currentSubEntityRenderParameters.material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
-			currentSubEntityRenderParameters.visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
+			currentRenderComponentSubEntityParameters.material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
+			currentRenderComponentSubEntityParameters.visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
 
 			//there is no more sub entities
-			if(currentSubEntityRenderParameters.material.compare("")==0) break;
+			if(currentRenderComponentSubEntityParameters.material.compare("")==0) break;
 
 			//create SubEntity
-			tSubEntityRenderParameters.push_back(currentSubEntityRenderParameters);
+			tRenderComponentSubEntityParameters.push_back(currentRenderComponentSubEntityParameters);
 
 			i++;
 		}
@@ -450,11 +450,11 @@ void LevelLoader::processEntity(TiXmlElement *XMLNode)
 	//LogManager::getSingleton().logMessage("[LevelLoader] creating "+name+" entity");
 
 	//Process entity properties
-	tEntityParameters.tEntityRenderParameters.meshfile = getPropertyString(XMLNode, "meshfile");
-	tEntityParameters.tEntityRenderParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
+	tEntityParameters.TRenderComponentEntityParameters.meshfile = getPropertyString(XMLNode, "meshfile");
+	tEntityParameters.TRenderComponentEntityParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
 
 	//process Entity's SubEntites
-	processSubentities(tEntityParameters.tEntityRenderParameters.tSubEntityRenderParameters,XMLNode);
+	processSubentities(tEntityParameters.TRenderComponentEntityParameters.TRenderComponentSubEntityParameters,XMLNode);
 
 	//process Entity's Trajectory 
 	//processTrajectory(XMLNode);//TODO
@@ -478,19 +478,19 @@ void LevelLoader::processParticleSystem(TiXmlElement *XMLNode)
 	tParticleSystemParameters.name = getAttrib(XMLNode, "name");
 
 	//Process ParticleSystem properties
-	tParticleSystemParameters.tParticleSystemRenderParameters.particle = getPropertyString(XMLNode, "particle");
-	tParticleSystemParameters.tParticleSystemRenderParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
+	tParticleSystemParameters.TRenderComponentParticleSystemParameters.particle = getPropertyString(XMLNode, "particle");
+	tParticleSystemParameters.TRenderComponentParticleSystemParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
 	
 	//Create ParticleSystem
 	pGameWorldManager->createParticleSystem(tParticleSystemParameters);
 
 }
 
-void LevelLoader::processBillboards(std::vector<TBillboardRenderParameters> &tBillboardRenderParameters,TiXmlElement *XMLNode)
+void LevelLoader::processBillboards(std::vector<TRenderComponentBillboardParameters> &tRenderComponentBillboardParameters,TiXmlElement *XMLNode)
 {
 
 	int i;
-	TBillboardRenderParameters currentTBillboardRenderParameters;
+	TRenderComponentBillboardParameters currentRenderComponentBillboardParameters;
 
 	//get the number of BillboardSet's Billboards
 	int billboardcount=getPropertyInt(XMLNode,"billboardcount");
@@ -499,14 +499,14 @@ void LevelLoader::processBillboards(std::vector<TBillboardRenderParameters> &tBi
 	for(i=0;i<billboardcount;i++)
 	{
 		//Process Billboards
-		currentTBillboardRenderParameters.colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
-		currentTBillboardRenderParameters.dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
-		currentTBillboardRenderParameters.position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
-		currentTBillboardRenderParameters.rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
-		currentTBillboardRenderParameters.texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
-		currentTBillboardRenderParameters.texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
+		currentRenderComponentBillboardParameters.colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
+		currentRenderComponentBillboardParameters.dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
+		currentRenderComponentBillboardParameters.position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
+		currentRenderComponentBillboardParameters.rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
+		currentRenderComponentBillboardParameters.texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
+		currentRenderComponentBillboardParameters.texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
 
-		tBillboardRenderParameters.push_back(currentTBillboardRenderParameters);
+		tRenderComponentBillboardParameters.push_back(currentRenderComponentBillboardParameters);
 	}
 	
 }
@@ -523,31 +523,31 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 	//LogManager::getSingleton().logMessage("[LevelLoader] creating "+name+" BillboardSet");
 
 	//Process BillboardSet properties
-	tBillboardSetParameters.tBillboardSetRenderParameters.material = getPropertyString(XMLNode, "material");
-	tBillboardSetParameters.tBillboardSetRenderParameters.defaultheight = getPropertyReal(XMLNode, "defaultheight");
-	tBillboardSetParameters.tBillboardSetRenderParameters.defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
-	tBillboardSetParameters.tBillboardSetRenderParameters.pointrendering = getPropertyBool(XMLNode, "pointrendering");
-	tBillboardSetParameters.tBillboardSetRenderParameters.renderdistance = getPropertyReal(XMLNode, "renderdistance");
-	tBillboardSetParameters.tBillboardSetRenderParameters.sorting = getPropertyBool(XMLNode, "sorting");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.material = getPropertyString(XMLNode, "material");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.defaultheight = getPropertyReal(XMLNode, "defaultheight");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.pointrendering = getPropertyBool(XMLNode, "pointrendering");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.renderdistance = getPropertyReal(XMLNode, "renderdistance");
+	tBillboardSetParameters.TRenderComponentBillboardSetParameters.sorting = getPropertyBool(XMLNode, "sorting");
 
 		//BillboardType Conversion
 	int billboardtype = getPropertyInt(XMLNode, "billboardtype");
 	switch(billboardtype)
 	{
 		case OGITOR_BBT_ORIENTED_COMMON:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
 			break;
 		case OGITOR_BBT_ORIENTED_SELF:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_ORIENTED_SELF;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_SELF;
 			break;
 		case OGITOR_BBT_PERPENDICULAR_COMMON:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_PERPENDICULAR_COMMON;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_COMMON;
 			break;
 		case OGITOR_BBT_PERPENDICULAR_SELF:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_PERPENDICULAR_SELF;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_SELF;
 			break;
 		case OGITOR_BBT_POINT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardtype=Ogre::BBT_POINT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_POINT;
 			break;
 		default:
 			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardType!");
@@ -558,31 +558,31 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 	switch(billboardorigin)
 	{
 		case OGITOR_BBO_BOTTOM_CENTER:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_CENTER;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_CENTER;
 			break;
 		case OGITOR_BBO_BOTTOM_LEFT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_LEFT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_LEFT;
 			break;
 		case OGITOR_BBO_BOTTOM_RIGHT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_BOTTOM_RIGHT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_RIGHT;
 			break;
 		case OGITOR_BBO_CENTER:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
 			break;
 		case OGITOR_BBO_CENTER_LEFT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER_LEFT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_LEFT;
 			break;
 		case OGITOR_BBO_CENTER_RIGHT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_CENTER_RIGHT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_RIGHT;
 			break;
 		case OGITOR_BBO_TOP_CENTER:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_CENTER;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_CENTER;
 			break;
 		case OGITOR_BBO_TOP_LEFT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_LEFT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_LEFT;
 			break;
 		case OGITOR_BBO_TOP_RIGHT:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
 			break;
 		default:
 			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardOrigin!");
@@ -594,10 +594,10 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 	switch(billboardrotation)
 	{
 		case OGITOR_BBR_TEXCOORD:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardrotation=Ogre::BBR_TEXCOORD;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_TEXCOORD;
 			break;
 		case OGITOR_BBR_VERTEX:
-			tBillboardSetParameters.tBillboardSetRenderParameters.billboardrotation=Ogre::BBR_VERTEX;
+			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
 			break;
 		default:
 			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardRotationType!");
@@ -605,7 +605,7 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 	}
 
 	//process BillboardSet's Billboards
-	processBillboards(tBillboardSetParameters.tBillboardSetRenderParameters.tBillboardRenderParameters,XMLNode);
+	processBillboards(tBillboardSetParameters.TRenderComponentBillboardSetParameters.TRenderComponentBillboardParameters,XMLNode);
 
 	
 	//Create BillboardSet
@@ -626,27 +626,27 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 //
 //}
 
-TSkyBoxRenderParameters LevelLoader::processSkyBox(TiXmlElement *XMLNode)
+TRenderComponentSkyBoxParameters LevelLoader::processSkyBox(TiXmlElement *XMLNode)
 {
-	TSkyBoxRenderParameters tSkyBoxRenderParameters;
+	TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
 	// Process SkyBox properties
-	tSkyBoxRenderParameters.active = getPropertyBool(XMLNode, "skybox::active");
-	tSkyBoxRenderParameters.material = getPropertyString(XMLNode, "skybox::material");
-	tSkyBoxRenderParameters.distance = getPropertyReal(XMLNode, "skybox::distance");
+	TRenderComponentSkyBoxParameters.active = getPropertyBool(XMLNode, "skybox::active");
+	TRenderComponentSkyBoxParameters.material = getPropertyString(XMLNode, "skybox::material");
+	TRenderComponentSkyBoxParameters.distance = getPropertyReal(XMLNode, "skybox::distance");
 
-	return tSkyBoxRenderParameters;
+	return TRenderComponentSkyBoxParameters;
 }
 
 
 
-TSkyDomeRenderParameters LevelLoader::processSkyDome(TiXmlElement *XMLNode)
+TRenderComponentSkyDomeParameters LevelLoader::processSkyDome(TiXmlElement *XMLNode)
 {
-	TSkyDomeRenderParameters tSkyDomeRenderParameters;
+	TRenderComponentSkyDomeParameters TRenderComponentSkyDomeParameters;
 	// Process SkyDome properties
-	tSkyDomeRenderParameters.active = getPropertyBool(XMLNode, "skydome::active");
-	tSkyDomeRenderParameters.material = getPropertyString(XMLNode, "skydome::material");
+	TRenderComponentSkyDomeParameters.active = getPropertyBool(XMLNode, "skydome::active");
+	TRenderComponentSkyDomeParameters.material = getPropertyString(XMLNode, "skydome::material");
 	
-	return tSkyDomeRenderParameters;
+	return TRenderComponentSkyDomeParameters;
 }
 
 //void LevelLoader::processShadows(TiXmlElement *XMLNode)

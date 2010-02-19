@@ -5,8 +5,8 @@
 #include "../Loader/LevelLoader.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "ComponentFactory.h"
-#include "GameObject.h"
-#include "OgreComponent.h"
+#include "GameObject/GameObject.h"
+#include "RenderComponent/RenderComponent.h"
 
 
 #include <iomanip>
@@ -102,13 +102,6 @@ GameObjectPtr GameWorldManager::createGameObject(String name/*const TObjectParam
 	return gameObject ;
 }
 
-OgreComponentPtr GameWorldManager::createOgreComponent(GameObjectPtr gameObject)
-{
-	////Create game object's components
-	OgreComponentPtr ogreComponent = ComponentFactory::getInstance()->createOgreComponent(gameObject);
-	return ogreComponent;
-}
-
 //[TODO: Add other components as they're implemented]
 // Example:
 // if (!objectParams.physicsFile.empty())
@@ -139,20 +132,10 @@ void GameWorldManager::update(long elapsedTime)
 void GameWorldManager::createGameObjectEntity(TEntityParameters tEntityParameters)
 {
 	GameObjectPtr pGameObject;
-	OgreComponentPtr pOgreComponent;
-	Ogre::Entity *pEntity;
 
 	//Create GameObject
 	pGameObject=createGameObject(tEntityParameters.name);
 
-	//Initialise Render Component
-	pEntity=mApp->getRenderSubsystem()->createEntity(tEntityParameters.name,tEntityParameters.tEntityRenderParameters);
-
-	//Create Ogre Component
-	pOgreComponent=createOgreComponent(pGameObject);
-	
-	//Set Ogre component's Entity
-	pOgreComponent->setEntity(pEntity);
 }
 
 void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters)
@@ -160,24 +143,20 @@ void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters
 	//Create GameObject
 	createGameObject(tSceneNodeParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSceneNode(tSceneNodeParameters.name,tSceneNodeParameters.tSceneNodeRenderParameters);
 }
 void GameWorldManager::createLight(TLightParameters tLightParameters)
 {
 	//Create GameObject
 	createGameObject(tLightParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createLight(tLightParameters.name,tLightParameters.tLightRenderParameters);
+
 }
 void GameWorldManager::createParticleSystem(TParticleSystemParameters tParticleSystemParameters)
 {
 	//Create GameObject
 	createGameObject(tParticleSystemParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createParticleSystem(tParticleSystemParameters.name,tParticleSystemParameters.tParticleSystemRenderParameters);
+
 }
 
 void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetParameters)
@@ -185,30 +164,25 @@ void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetP
 	//Create GameObject
 	createGameObject(tBillboardSetParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createBillboardSet(tBillboardSetParameters.name,tBillboardSetParameters.tBillboardSetRenderParameters);
 }
 void GameWorldManager::createViewport(TViewportParameters tViewportParameters)
 {
 	//Create GameObject
 	createGameObject(tViewportParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createViewport(tViewportParameters.name,tViewportParameters.tViewPortRenderParameters);
+
 }
 void GameWorldManager::createCamera(TCameraParameters tCameraParameters)
 {
 	//Create GameObject
 	createGameObject(tCameraParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createCamera(tCameraParameters.name,tCameraParameters.tCameraRenderParameters);
+
 }
 void GameWorldManager::createSceneManager(TSceneManagerParameters tSceneManagerParameters)
 {
 	//Create GameObject
 	createGameObject(tSceneManagerParameters.name);
 
-	//Initialise Render Component
-	mApp->getRenderSubsystem()->createSceneManager(tSceneManagerParameters.name,tSceneManagerParameters.tSceneManagerRenderParameters);
+
 }
