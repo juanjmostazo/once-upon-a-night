@@ -105,7 +105,7 @@ namespace OUAN
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::Viewport* createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
 		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
-		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters);
+		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
 
 	protected:

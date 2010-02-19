@@ -292,6 +292,26 @@
 						RelativePath=".\Src\Game\GameObject\GameObject.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMovable.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMovableEntity.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovable.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableEntity.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectScene.cpp"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="RenderComponent"
@@ -321,7 +341,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneManager.cpp"
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentScene.cpp"
 						>
 					</File>
 					<File
@@ -458,6 +478,26 @@
 						RelativePath=".\Src\Game\GameObject\GameObject.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMovable.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMovableEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovable.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectScene.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="RenderComponent"
@@ -487,7 +527,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneManager.h"
+						RelativePath=".\Src\Game\RenderComponent\RenderComponentScene.h"
 						>
 					</File>
 					<File

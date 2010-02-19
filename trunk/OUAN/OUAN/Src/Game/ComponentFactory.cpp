@@ -9,7 +9,7 @@
 #include "RenderComponent/RenderComponentEntity.h"
 #include "RenderComponent/RenderComponentLight.h"
 #include "RenderComponent/RenderComponentParticleSystem.h"
-#include "RenderComponent/RenderComponentSceneManager.h"
+#include "RenderComponent/RenderComponentScene.h"
 #include "RenderComponent/RenderComponentSceneNode.h"
 #include "RenderComponent/RenderComponentViewport.h"
 
@@ -106,17 +106,17 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 
 	return pRenderComponentParticleSystem;
 }
-RenderComponentSceneManagerPtr ComponentFactory::createRenderComponentSceneManager(GameObjectPtr gameObject,TRenderComponentSceneManagerParameters tRenderComponentSceneManagerParameters)
+RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectPtr gameObject,TRenderComponentSceneParameters tRenderComponentSceneParameters)
 {
 	//Create void Render Component
-	RenderComponentSceneManagerPtr pRenderComponentSceneManager = RenderComponentSceneManagerPtr(new RenderComponentSceneManager()); 
+	RenderComponentScenePtr pRenderComponentScene = RenderComponentScenePtr(new RenderComponentScene()); 
 
-	pRenderComponentSceneManager->setParent(gameObject);
+	pRenderComponentScene->setParent(gameObject);
 
 	//Initialise Render Component
-	pRenderComponentSceneManager->setSceneManager(mApp->getRenderSubsystem()->createSceneManager(gameObject->getName(),tRenderComponentSceneManagerParameters));
+	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->createSceneManager(gameObject->getName(),tRenderComponentSceneParameters));
 
-	return pRenderComponentSceneManager;
+	return pRenderComponentScene;
 }
 RenderComponentSceneNodePtr ComponentFactory::createRenderComponentSceneNode(GameObjectPtr gameObject,TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters)
 {

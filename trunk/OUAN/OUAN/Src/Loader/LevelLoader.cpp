@@ -188,7 +188,7 @@ void LevelLoader::processViewportCamera(TiXmlElement *XMLNode)
 
 
 	//Create Camera
-	pGameWorldManager->createCamera(tCameraParameters);
+//	pGameWorldManager->createCamera(tCameraParameters);
 }
 
 
@@ -209,7 +209,7 @@ void LevelLoader::processViewport(TiXmlElement *XMLNode)
 	tViewPortParameters.TRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
 
 	//Create Viewport
-	pGameWorldManager->createViewport(tViewPortParameters);
+//	pGameWorldManager->createViewport(tViewPortParameters);
 
 	//Process Viewport camera
 	processViewportCamera(XMLNode);
@@ -224,13 +224,13 @@ void LevelLoader::processOctreeSceneManager(TiXmlElement *XMLNode)
 	tSceneManagerParameters.name = getAttrib(XMLNode, "name");
 
 	//Get SceneManager properties
-	tSceneManagerParameters.TRenderComponentSceneManagerParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
+	tSceneManagerParameters.TRenderComponentSceneParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
 
 	//Process SkyBox
-	tSceneManagerParameters.TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters=processSkyBox(XMLNode);
+	tSceneManagerParameters.TRenderComponentSceneParameters.TRenderComponentSkyBoxParameters=processSkyBox(XMLNode);
 
 	//Process SkyDome
-	tSceneManagerParameters.TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters=processSkyDome(XMLNode);
+	tSceneManagerParameters.TRenderComponentSceneParameters.TRenderComponentSkyDomeParameters=processSkyDome(XMLNode);
 
 	//TODO: Process Fog
 	//processFog(XMLNode);
@@ -239,7 +239,7 @@ void LevelLoader::processOctreeSceneManager(TiXmlElement *XMLNode)
 	//processShadows(XMLNode);
 
 	//Set SceneManager parameters
-	pGameWorldManager->createSceneManager(tSceneManagerParameters);
+//	pGameWorldManager->createSceneManager(tSceneManagerParameters);
 
 }
 
@@ -266,7 +266,7 @@ void LevelLoader::processSceneNodeNoScale(TiXmlElement *XMLNode)
 	tSceneNodeParameters.TRenderComponentSceneNodeParameters.autotracktarget="None";
 	
 	//create SceneNode
-	pGameWorldManager->createSceneNode(tSceneNodeParameters);
+//	pGameWorldManager->createSceneNode(tSceneNodeParameters);
 }
 
 void LevelLoader::processLight(TiXmlElement *XMLNode)
@@ -308,7 +308,7 @@ void LevelLoader::processLight(TiXmlElement *XMLNode)
 	}
 
 	//Create Light
-	pGameWorldManager->createLight(tLightParameters);
+//	pGameWorldManager->createLight(tLightParameters);
 
 }
 
@@ -374,12 +374,12 @@ void LevelLoader::processCamera(TiXmlElement *XMLNode)
 		}
 
 	//Create Camera
-	pGameWorldManager->createCamera(tCameraParameters);
+//	pGameWorldManager->createCamera(tCameraParameters);
 }
 
 
 
-void LevelLoader::processSceneNode(TiXmlElement *XMLNode)
+TRenderComponentSceneNodeParameters LevelLoader::processSceneNode(TiXmlElement *XMLNode)
 {
 	TSceneNodeParameters tSceneNodeParameters;
 
@@ -396,7 +396,9 @@ void LevelLoader::processSceneNode(TiXmlElement *XMLNode)
 	tSceneNodeParameters.TRenderComponentSceneNodeParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
 	//create SceneNode
-	pGameWorldManager->createSceneNode(tSceneNodeParameters);
+//	pGameWorldManager->createSceneNode(tSceneNodeParameters);
+
+	return tSceneNodeParameters.TRenderComponentSceneNodeParameters;
 }
 
 //void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
@@ -443,7 +445,7 @@ void LevelLoader::processEntity(TiXmlElement *XMLNode)
 	TEntityParameters tEntityParameters;
 
 	//Process the entity scene node
-	processSceneNode(XMLNode);
+	tEntityParameters.TRenderComponentSceneNodeParameters=processSceneNode(XMLNode);
 	
 	//Get Entity name
 	tEntityParameters.name = getAttrib(XMLNode, "name");
@@ -461,7 +463,7 @@ void LevelLoader::processEntity(TiXmlElement *XMLNode)
 
 	
 	//Create Entity
-	pGameWorldManager->createGameObjectEntity(tEntityParameters);
+	pGameWorldManager->createGameObjectMovableEntity(tEntityParameters);
 
 
 }
@@ -482,7 +484,7 @@ void LevelLoader::processParticleSystem(TiXmlElement *XMLNode)
 	tParticleSystemParameters.TRenderComponentParticleSystemParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
 	
 	//Create ParticleSystem
-	pGameWorldManager->createParticleSystem(tParticleSystemParameters);
+//	pGameWorldManager->createParticleSystem(tParticleSystemParameters);
 
 }
 
@@ -609,7 +611,7 @@ void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
 
 	
 	//Create BillboardSet
-	pGameWorldManager->createBillboardSet(tBillboardSetParameters);
+//	pGameWorldManager->createBillboardSet(tBillboardSetParameters);
 
 
 }
