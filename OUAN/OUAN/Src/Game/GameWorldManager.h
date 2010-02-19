@@ -36,28 +36,30 @@ namespace OUAN
 		void initialiseGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
 
 		/// Create a game object using the given 'parameters' object
+		/// @param gameObject: pointer to the game object to be initialised
 		/// @param objectParams parameters to initialise the game object and its components
-		/// @return the game object instance that's been created
-		GameObjectPtr createGameObject(String name/*const TObjectParameters& objectParams*/);
+		void createGameObject(String name, GameObjectPtr gameObject);
+		void createGameObjectMovable(String name, GameObjectMovablePtr gameObjectMovable);
 
 
 		//Create Ogre component for the game object
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
 
-		void createGameObjectEntity(TEntityParameters tEntityParameters);
-		void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
-		void createLight(TLightParameters tLightParameters);
-		void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
-		void createCamera(TCameraParameters tCameraParameters);
-		void createBillboardSet(TBillboardSetParameters tBillboardSetParameters);
-		void createViewport(TViewportParameters tViewportParameters);
-		void createSceneManager(TSceneManagerParameters tSceneManagerParameters);
+		void createGameObjectMovableEntity(TEntityParameters tEntityParameters);
+		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
+		//void createLight(TLightParameters tLightParameters);
+		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
+		//void createCamera(TCameraParameters tCameraParameters);
+		//void createBillboardSet(TBillboardSetParameters tBillboardSetParameters);
+		//void createViewport(TViewportParameters tViewportParameters);
+		//void createSceneManager(TSceneManagerParameters tSceneManagerParameters);
 
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
-
+		void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
+		bool existsObject(std::string name);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
 
 		/// Update world state

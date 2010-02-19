@@ -6,8 +6,10 @@
 #include "../Graphics/RenderSubsystem.h"
 #include "ComponentFactory.h"
 #include "GameObject/GameObject.h"
+#include "GameObject/GameObjectMovable.h"
+#include "GameObject/GameObjectMovableEntity.h"
 #include "RenderComponent/RenderComponent.h"
-
+#include "RenderComponent/RenderComponentEntity.h"
 
 #include <iomanip>
 #include <sstream>
@@ -83,7 +85,8 @@ std::string GameWorldManager::makeIdString(const std::string& baseString,const i
 	return s;
 	
 }
-GameObjectPtr GameWorldManager::createGameObject(String name/*const TObjectParameters& objectParams*/)
+
+bool GameWorldManager::existsObject(std::string name)
 {
 	GameObjectPtr gameObject;
 	//Get GameObject to add the mesh file
@@ -92,97 +95,125 @@ GameObjectPtr GameWorldManager::createGameObject(String name/*const TObjectParam
 	//If the GameObject doesn't exist, we create a new one
 	if(!gameObject)
 	{
-		gameObject = GameObjectPtr(new GameObject(name,makeIdString(name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
-		addGameObject(gameObject);
-
-		ComponentFactory* factory=ComponentFactory::getInstance();
+		return true;
 	}
-
-
-	return gameObject ;
+	return false;
 }
-
-//[TODO: Add other components as they're implemented]
-// Example:
-// if (!objectParams.physicsFile.empty())
-// {
-//	 ComponentPtr physicsComponent = ComponentFactory::getInstance()->createPhysicsComponent(objectParams,go,mApp->getPhysicsSubsystem());
-// }
-// if (!objectParams.aiFile.empty())
-// {
-//	 ComponentPtr aiComponent = compFactory->createAIComponent(...);
-// }
 
 void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 {
-	if (gameObject.get()) //NULL test for shared pointers
+	if(!existsObject(gameObject->getName()))
 	{
 		mGameObjects[gameObject->getId()]=gameObject;
 	}
 }
 
-void GameWorldManager::update(long elapsedTime)
+void GameWorldManager::addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity)
 {
-	for (TGameObjectContainerIterator it= mGameObjects.begin();it!=mGameObjects.end();++it)
+	if(!existsObject(gameObjectMovableEntity->getName()))
 	{
-		it->second->onUpdate(elapsedTime);
+		mGameObjects[gameObjectMovableEntity->getId()]=gameObjectMovableEntity;
 	}
+	//TODO: add to other maps
 }
 
-void GameWorldManager::createGameObjectEntity(TEntityParameters tEntityParameters)
+void GameWorldManager::createGameObject(String name, GameObjectPtr gameObject)
 {
-	GameObjectPtr pGameObject;
+	gameObject = GameObjectPtr(new GameObject(name,makeIdString(name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	addGameObject(gameObject);
+
+}
+
+void GameWorldManager::createGameObjectMovable(String name, GameObjectMovablePtr gameObjectMovable)
+{
+	GameObjectMovablePtr pGameObjectMovable;
+	pGameObjectMovable = GameObjectMovablePtr(new GameObjectMovable(name,makeIdString(name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	//TODO add to GameObjectMovable map
+	//addGameObject(pGameObjectMovable);
+}
+
+void GameWorldManager::createGameObjectMovableEntity(TEntityParameters tEntityParameters)
+{
+	//TODO: movable entity nonmovable entity instead of this and add to proper gameobject map
+
+	GameObjectMovableEntityPtr pGameObjectMovableEntity;
 
 	//Create GameObject
-	pGameObject=createGameObject(tEntityParameters.name);
+	pGameObjectMovableEntity = GameObjectMovableEntityPtr(
+		new GameObjectMovableEntity(tEntityParameters.name,makeIdString(tEntityParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	factory->createRenderComponentSceneNode(pGameObjectMovableEntity,tEntityParameters.TRenderComponentSceneNodeParameters);
+	factory->createRenderComponentEntity(pGameObjectMovableEntity,tEntityParameters.TRenderComponentEntityParameters);
+
+//[TODO: Add other components as they're implemented]
+// Example:
+//
+//	 ComponentPtr physicsComponent = ComponentFactory::getInstance()->createPhysicsComponent(objectParams,go,mApp->getPhysicsSubsystem());
+//
+//	 ComponentPtr aiComponent = compFactory->createAIComponent(...);
+
+
+	//Add GameObject to GameWorldManager
+	//TODO add to GameObjectMovableEntity map
+	addGameObjectMovableEntity(pGameObjectMovableEntity);
 
 }
-
-void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters)
-{
-	//Create GameObject
-	createGameObject(tSceneNodeParameters.name);
-
-}
-void GameWorldManager::createLight(TLightParameters tLightParameters)
-{
-	//Create GameObject
-	createGameObject(tLightParameters.name);
-
-
-}
-void GameWorldManager::createParticleSystem(TParticleSystemParameters tParticleSystemParameters)
-{
-	//Create GameObject
-	createGameObject(tParticleSystemParameters.name);
-
-
-}
-
-void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetParameters)
-{
-	//Create GameObject
-	createGameObject(tBillboardSetParameters.name);
-
-}
-void GameWorldManager::createViewport(TViewportParameters tViewportParameters)
-{
-	//Create GameObject
-	createGameObject(tViewportParameters.name);
-
-
-}
-void GameWorldManager::createCamera(TCameraParameters tCameraParameters)
-{
-	//Create GameObject
-	createGameObject(tCameraParameters.name);
-
-
-}
-void GameWorldManager::createSceneManager(TSceneManagerParameters tSceneManagerParameters)
-{
-	//Create GameObject
-	createGameObject(tSceneManagerParameters.name);
-
-
-}
+//
+//void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tSceneNodeParameters.name);
+//	//TODO
+//}	
+//void GameWorldManager::createLight(TLightParameters tLightParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tLightParameters.name);
+//
+//	//TODO
+//}
+//void GameWorldManager::createParticleSystem(TParticleSystemParameters tParticleSystemParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tParticleSystemParameters.name);
+//
+//	//TODO
+//}
+//
+//void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tBillboardSetParameters.name);
+//	//TODO
+//}
+//void GameWorldManager::createViewport(TViewportParameters tViewportParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tViewportParameters.name);
+//	//TODO
+//
+//}
+//void GameWorldManager::createCamera(TCameraParameters tCameraParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tCameraParameters.name);
+//	//TODO
+//
+//}
+//void GameWorldManager::createSceneManager(TSceneManagerParameters tSceneManagerParameters)
+//{
+//	//Create GameObject
+//	//createGameObject(tSceneManagerParameters.name);
+//	//TODO
+//
+//}
+//
+//void GameWorldManager::update(long elapsedTime)
+//{
+//	for (TGameObjectContainerIterator it= mGameObjects.begin();it!=mGameObjects.end();++it)
+//	{
+//		it->second->update(elapsedTime);
+//	}
+//}

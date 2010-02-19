@@ -247,19 +247,19 @@ Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderCompone
 	return mViewport;
 }
 
-Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters)
+Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters)
 {
 	try
 	{
 		//Set SceneManager parameters
-		mSceneManager->setAmbientLight(TRenderComponentSceneManagerParameters.ambient);
+		mSceneManager->setAmbientLight(TRenderComponentSceneParameters.ambient);
 		//Create SkyBox
-		createSkyBox(TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.active,
-			TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.material,
-			TRenderComponentSceneManagerParameters.TRenderComponentSkyBoxParameters.distance);
+		createSkyBox(TRenderComponentSceneParameters.TRenderComponentSkyBoxParameters.active,
+			TRenderComponentSceneParameters.TRenderComponentSkyBoxParameters.material,
+			TRenderComponentSceneParameters.TRenderComponentSkyBoxParameters.distance);
 		//Create SkyDome
-		createSkyDome(TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters.active,
-			TRenderComponentSceneManagerParameters.TRenderComponentSkyDomeParameters.material);
+		createSkyDome(TRenderComponentSceneParameters.TRenderComponentSkyDomeParameters.active,
+			TRenderComponentSceneParameters.TRenderComponentSkyDomeParameters.material);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{

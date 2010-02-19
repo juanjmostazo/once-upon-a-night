@@ -56,10 +56,22 @@ namespace OUAN
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
 		class GameObject;
+		class GameObjectMovable;
+		class GameObjectNonMovable;
+		class GameObjectScene;
+		class GameObjectMovableEntity;
+		class GameObjectNonMovableEntity;
+
 		class GameWorldManager;
 		class Component;
 
 		typedef boost::shared_ptr<GameObject> GameObjectPtr;
+		typedef boost::shared_ptr<GameObjectMovable> GameObjectMovablePtr;
+		typedef boost::shared_ptr<GameObjectNonMovable> GameObjectNonMovablePtr;
+		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
+		typedef boost::shared_ptr<GameObjectMovableEntity> GameObjectMovableEntityPtr;
+		typedef boost::shared_ptr<GameObjectNonMovableEntity> GameObjectNonMovableEntityPtr;
+
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
 		
@@ -90,8 +102,8 @@ namespace OUAN
 			typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
 			class RenderComponentParticleSystem;
 			typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
-			class RenderComponentSceneManager;
-			typedef boost::shared_ptr<RenderComponentSceneManager> RenderComponentSceneManagerPtr;
+			class RenderComponentScene;
+			typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
 			class RenderComponentSceneNode;
 			typedef boost::shared_ptr<RenderComponentSceneNode> RenderComponentSceneNodePtr;
 			class RenderComponentViewport;
@@ -294,7 +306,7 @@ namespace OUAN
 		String material;
 	};
 
-	struct TRenderComponentSceneManagerParameters : TRenderComponentParameters 
+	struct TRenderComponentSceneParameters : TRenderComponentParameters 
 	{
 		ColourValue ambient;
 		TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
@@ -317,6 +329,7 @@ namespace OUAN
 	{
 		String name;
 		TRenderComponentEntityParameters TRenderComponentEntityParameters;
+		TRenderComponentSceneNodeParameters TRenderComponentSceneNodeParameters;
 	};
 
 	struct TLightParameters
@@ -340,7 +353,7 @@ namespace OUAN
 	struct TSceneManagerParameters
 	{
 		String name;
-		TRenderComponentSceneManagerParameters TRenderComponentSceneManagerParameters;
+		TRenderComponentSceneParameters TRenderComponentSceneParameters;
 	};
 
 	struct TViewportParameters

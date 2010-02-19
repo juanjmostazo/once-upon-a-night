@@ -34,7 +34,7 @@ namespace OUAN
 		void processCamera(TiXmlElement *XMLNode);
 		void processViewport(TiXmlElement *XMLNode);
 		void processViewportCamera(TiXmlElement *XMLNode);
-		void processSceneNode(TiXmlElement *XMLNode);
+		TRenderComponentSceneNodeParameters processSceneNode(TiXmlElement *XMLNode);
 		void processTrackTarget(TiXmlElement *XMLNode);
 		void processEntity(TiXmlElement *XMLNode);
 		void processSubentities(std::vector<TRenderComponentSubEntityParameters>  &TRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
