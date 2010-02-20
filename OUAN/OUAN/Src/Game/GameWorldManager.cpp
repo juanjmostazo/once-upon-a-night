@@ -93,6 +93,20 @@ void GameWorldManager::unloadLevel()
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
+
+	mGameObjectMovable.clear();
+	mGameObjectMovableEntity.clear();
+	mGameObjectNonMovable.clear();
+	mGameObjectNonMovableEntity.clear();
+	mGameObjectNonMovableLight.clear();
+	mGameObjectNonMovableTerrain.clear();
+	mGameObjectOny.clear();
+	mGameObjectPositional.clear();
+	mGameObjectScene.clear();
+	mGameObjectTripollo.clear();
+
+	//TODO RenderSubsystem CLEAR
+	//PHysycs subsystem clear, etc...
 	//landscape->cleanUp();
 }
 
@@ -104,6 +118,17 @@ void GameWorldManager::initialise(ApplicationPtr app)
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
+
+	mGameObjectMovable.clear();
+	mGameObjectMovableEntity.clear();
+	mGameObjectNonMovable.clear();
+	mGameObjectNonMovableEntity.clear();
+	mGameObjectNonMovableLight.clear();
+	mGameObjectNonMovableTerrain.clear();
+	mGameObjectOny.clear();
+	mGameObjectPositional.clear();
+	mGameObjectScene.clear();
+	mGameObjectTripollo.clear();
 	//landscape.reset() | landscape->initialiseBlank() | ...
 }
 
@@ -115,6 +140,17 @@ void GameWorldManager::cleanUp()
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
+
+	mGameObjectMovable.clear();
+	mGameObjectMovableEntity.clear();
+	mGameObjectNonMovable.clear();
+	mGameObjectNonMovableEntity.clear();
+	mGameObjectNonMovableLight.clear();
+	mGameObjectNonMovableTerrain.clear();
+	mGameObjectOny.clear();
+	mGameObjectPositional.clear();
+	mGameObjectScene.clear();
+	mGameObjectTripollo.clear();
 }
 
 
@@ -122,9 +158,9 @@ void GameWorldManager::initialiseGlobalWorldData( /*const TGlobalWorldParameters
 {
 	// Set ambient light, skybox, etc.It is possible that all
 	// those params end up being part of the "landscape"  object 
-	// Jesus mentioned today (Feb 15th) <---- note: This is done by the createOctreeSceneManager method, as this info is in the Ogitor's file.
-
-}
+	// Jesus mentioned today (Feb 15th) <---- note: This is done by the createGameObjectScene method
+	//TODO: Erase this function
+}	
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
 {
@@ -135,18 +171,9 @@ std::string GameWorldManager::makeIdString(const std::string& baseString,const i
 	
 }
 
-bool GameWorldManager::existsObject(std::string name)
-{
-	//TODO CHECK IF OBJECT EXTISTS!!!
-	return false;
-}
-
 void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 {
-	if(!existsObject(gameObject->getName()))
-	{
-		mGameObjects[gameObject->getId()]=gameObject;
-	}
+	mGameObjects[gameObject->getId()]=gameObject;
 }
 //
 //void GameWorldManager::addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity)
@@ -160,52 +187,41 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 
 void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 {
-	if(!existsObject(pGameObjectOny->getName()))
-	{
-		mGameObjects[pGameObjectOny->getId()]=pGameObjectOny;
+	mGameObjects[pGameObjectOny->getId()]=pGameObjectOny;
 
-		mGameObjectPositional.push_back(pGameObjectOny);
-		mGameObjectMovable.push_back(pGameObjectOny);
-		mGameObjectMovableEntity.push_back(pGameObjectOny);
-		mGameObjectOny.push_back(pGameObjectOny);
-	}
+	mGameObjectPositional.push_back(pGameObjectOny);
+	mGameObjectMovable.push_back(pGameObjectOny);
+	mGameObjectMovableEntity.push_back(pGameObjectOny);
+	mGameObjectOny.push_back(pGameObjectOny);
 }
 
 void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
 {
-	if(!existsObject(pGameObjectTripollo->getName()))
-	{
-		mGameObjects[pGameObjectTripollo->getId()]=pGameObjectTripollo;
 
-		mGameObjectPositional.push_back(pGameObjectTripollo);
-		mGameObjectMovable.push_back(pGameObjectTripollo);
-		mGameObjectMovableEntity.push_back(pGameObjectTripollo);
-		mGameObjectTripollo.push_back(pGameObjectTripollo);
-	}
+	mGameObjects[pGameObjectTripollo->getId()]=pGameObjectTripollo;
+
+	mGameObjectPositional.push_back(pGameObjectTripollo);
+	mGameObjectMovable.push_back(pGameObjectTripollo);
+	mGameObjectMovableEntity.push_back(pGameObjectTripollo);
+	mGameObjectTripollo.push_back(pGameObjectTripollo);
 }
 
 void GameWorldManager::addGameObjectNonMovableTerrain(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain)
 {
-	if(!existsObject(pGameObjectNonMovableTerrain->getName()))
-	{
-		mGameObjects[pGameObjectNonMovableTerrain->getId()]=pGameObjectNonMovableTerrain;
+	mGameObjects[pGameObjectNonMovableTerrain->getId()]=pGameObjectNonMovableTerrain;
 
-		mGameObjectPositional.push_back(pGameObjectNonMovableTerrain);
-		mGameObjectNonMovable.push_back(pGameObjectNonMovableTerrain);
-		mGameObjectNonMovableEntity.push_back(pGameObjectNonMovableTerrain);
-		mGameObjectNonMovableTerrain.push_back(pGameObjectNonMovableTerrain);
-	}
+	mGameObjectPositional.push_back(pGameObjectNonMovableTerrain);
+	mGameObjectNonMovable.push_back(pGameObjectNonMovableTerrain);
+	mGameObjectNonMovableEntity.push_back(pGameObjectNonMovableTerrain);
+	mGameObjectNonMovableTerrain.push_back(pGameObjectNonMovableTerrain);
 }
 void GameWorldManager::addGameObjectNonMovableLight(GameObjectNonMovableLightPtr pGameObjectNonMovableLight)
 {
-	if(!existsObject(pGameObjectNonMovableLight->getName()))
-	{
-		mGameObjects[pGameObjectNonMovableLight->getId()]=pGameObjectNonMovableLight;
+	mGameObjects[pGameObjectNonMovableLight->getId()]=pGameObjectNonMovableLight;
 
-		mGameObjectPositional.push_back(pGameObjectNonMovableLight);
-		mGameObjectNonMovable.push_back(pGameObjectNonMovableLight);
-		mGameObjectNonMovableLight.push_back(pGameObjectNonMovableLight);
-	}
+	mGameObjectPositional.push_back(pGameObjectNonMovableLight);
+	mGameObjectNonMovable.push_back(pGameObjectNonMovableLight);
+	mGameObjectNonMovableLight.push_back(pGameObjectNonMovableLight);
 }
 
 
