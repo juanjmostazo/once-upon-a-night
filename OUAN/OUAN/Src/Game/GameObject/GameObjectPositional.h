@@ -1,7 +1,7 @@
 #ifndef GameObjectPositionalH_H
 #define GameObjectPositionalH_H
 #include "GameObject.h"
-#include "../RenderComponent/RenderComponentSceneNode.h"
+#include "../../Graphics/RenderComponent/RenderComponentSceneNode.h"
 namespace OUAN
 {
 	class GameObjectPositional : public GameObject

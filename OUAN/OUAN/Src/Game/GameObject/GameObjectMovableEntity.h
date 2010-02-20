@@ -1,7 +1,7 @@
 #ifndef GameObjectMovableEntityH_H
 #define GameObjectMovableEntityH_H
 #include "GameObjectMovable.h"
-#include "../RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 namespace OUAN
 {
 	class GameObjectMovableEntity : public GameObjectMovable

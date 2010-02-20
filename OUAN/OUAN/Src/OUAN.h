@@ -62,7 +62,6 @@ namespace OUAN
 
 		//Component specializations
 
-
 			//Render Components
 			class RenderComponent;
 			class TRenderComponentParameters;

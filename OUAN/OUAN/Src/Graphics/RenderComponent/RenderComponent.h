@@ -1,7 +1,7 @@
 #ifndef RenderComponentH_H
 #define RenderComponentH_H
 
-#include "../Component.h"
+#include "../../Component/Component.h"
 namespace OUAN
 {
 	class RenderComponent: public Component
@@ -22,7 +22,6 @@ namespace OUAN
 	public:
 		TRenderComponentParameters();
 		~TRenderComponentParameters();
-
 	};
 }
 

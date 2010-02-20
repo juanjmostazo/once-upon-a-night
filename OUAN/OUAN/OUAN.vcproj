@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -261,6 +261,46 @@
 					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
 					>
 				</File>
+				<Filter
+					Name="RenderComponent"
+					>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentBillboardSet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentCamera.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentEntity.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentParticleSystem.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentSceneNode.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -273,14 +313,6 @@
 			<Filter
 				Name="Game"
 				>
-				<File
-					RelativePath=".\Src\Game\Component.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Src\Game\ComponentFactory.cpp"
-					>
-				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.cpp"
 					>
@@ -333,52 +365,28 @@
 						>
 					</File>
 				</Filter>
-				<Filter
-					Name="RenderComponent"
-					>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponent.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentBillboardSet.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentCamera.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentEntity.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentLight.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentParticleSystem.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentScene.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneNode.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentViewport.cpp"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Physics"
 				>
 				<File
 					RelativePath=".\Src\Physics\PhysicsSubsystem.cpp"
+					>
+				</File>
+				<Filter
+					Name="PhysicsComponent"
+					>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Component"
+				>
+				<File
+					RelativePath=".\Src\Component\Component.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Component\ComponentFactory.cpp"
 					>
 				</File>
 			</Filter>
@@ -475,18 +483,50 @@
 					RelativePath=".\Src\Graphics\RenderSubsystem.h"
 					>
 				</File>
+				<Filter
+					Name="RenderComponent"
+					>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentBillboardSet.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentCamera.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentParticleSystem.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentSceneNode.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Game"
 				>
-				<File
-					RelativePath=".\Src\Game\Component.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Src\Game\ComponentFactory.h"
-					>
-				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.h"
 					>
@@ -539,46 +579,6 @@
 						>
 					</File>
 				</Filter>
-				<Filter
-					Name="RenderComponent"
-					>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponent.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentBillboardSet.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentCamera.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentEntity.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentLight.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentParticleSystem.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentScene.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentSceneNode.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\RenderComponent\RenderComponentViewport.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -593,6 +593,22 @@
 				>
 				<File
 					RelativePath=".\Src\Physics\PhysicsSubsystem.h"
+					>
+				</File>
+				<Filter
+					Name="PhysicsComponent"
+					>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Component"
+				>
+				<File
+					RelativePath=".\Src\Component\Component.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Component\ComponentFactory.h"
 					>
 				</File>
 			</Filter>
