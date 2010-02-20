@@ -21,11 +21,13 @@ namespace OUAN
 		TGameObjectMovableEntityContainer getGameObjectMovableEntity();
 		TGameObjectNonMovableContainer getGameObjectNonMovable();
 		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntity();
+		TGameObjectNonMovableTerrainContainer getGameObjectNonMovableTerrain();
+		TGameObjectNonMovableLightContainer getGameObjectNonMovableLight();
 		TGameObjectOnyContainer getGameObjectOny();
 		TGameObjectPositionalContainer getGameObjectPositional();
 		TGameObjectSceneContainer getGameObjectScene();
 		TGameObjectTripolloContainer getGameObjectTripollo();
-		
+
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
 		void loadLevel (const std::string& levelFileName);
@@ -52,6 +54,9 @@ namespace OUAN
 
 		//void createGameObjectMovableEntity(TGameObjectMovableEntityParameters tGameObjectMovableEntityParameters);
 		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
+		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
+		void createGameObjectNonMovableLight(TGameObjectNonMovableLightParameters tGameObjectNonMovableLightParameters);
+		void createGameObjectNonMovableTerrain(TGameObjectNonMovableTerrainParameters tGameObjectNonMovableTerrainParameters);
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
 		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
@@ -83,7 +88,10 @@ namespace OUAN
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
-		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
+		void addGameObject(GameObjectOnyPtr pGameObjectOny);
+		void addGameObject(GameObjectTripolloPtr pGameObjectTripollo);
+		void addGameObject(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain);
+		void addGameObject(GameObjectNonMovableLightPtr pGameObjectNonMovableLight);
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		bool existsObject(std::string name);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
@@ -117,6 +125,8 @@ namespace OUAN
 		TGameObjectMovableEntityContainer mGameObjectMovableEntity;
 		TGameObjectNonMovableContainer mGameObjectNonMovable;
 		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntity;
+		TGameObjectNonMovableLightContainer mGameObjectNonMovableLight;
+		TGameObjectNonMovableTerrainContainer mGameObjectNonMovableTerrain;
 		TGameObjectOnyContainer mGameObjectOny;
 		TGameObjectPositionalContainer mGameObjectPositional;
 		TGameObjectSceneContainer mGameObjectScene;

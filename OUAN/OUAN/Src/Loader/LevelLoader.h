@@ -33,14 +33,17 @@ namespace OUAN
 		void processGameObjectScene(TiXmlElement *XMLNode);
 		void processGameObjectOny(TiXmlElement *XMLNode);
 		void processGameObjectTripollo(TiXmlElement *XMLNode);
-
+		void processGameObjectNonMovableTerrain(TiXmlElement *XMLNode);
+		void processGameObjectNonMovableLight(TiXmlElement *XMLNode);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
 		TRenderComponentSkyBoxParameters processRenderComponentSkyBox(TiXmlElement *XMLNode);
 		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLNode);
 		TRenderComponentSceneNodeParameters processRenderComponentSceneNode(TiXmlElement *XMLNode);
+		TRenderComponentSceneNodeParameters processRenderComponentSceneNodeNoScale(TiXmlElement *XMLNode);
 		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode);
+		TRenderComponentLightParameters processRenderComponentLight(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
 
 		//void processTerrain(TiXmlElement *XMLNode);

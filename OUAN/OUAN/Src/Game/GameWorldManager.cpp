@@ -10,6 +10,8 @@
 #include "GameObject/GameObjectMovableEntity.h"
 #include "GameObject/GameObjectNonMovable.h"
 #include "GameObject/GameObjectNonMovableEntity.h"
+#include "GameObject/GameObjectNonMovableTerrain.h"
+#include "GameObject/GameObjectNonMovableLight.h"
 #include "GameObject/GameObjectPositional.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectOny.h"
@@ -164,7 +166,7 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 //	//TODO: add to other maps
 //}
 
-void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
+void GameWorldManager::addGameObject(GameObjectOnyPtr pGameObjectOny)
 {
 	if(!existsObject(pGameObjectOny->getName()))
 	{
@@ -176,6 +178,44 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 		mGameObjectOny.push_back(pGameObjectOny);
 	}
 }
+
+void GameWorldManager::addGameObject(GameObjectTripolloPtr pGameObjectTripollo)
+{
+	if(!existsObject(pGameObjectTripollo->getName()))
+	{
+		mGameObjects[pGameObjectTripollo->getId()]=pGameObjectTripollo;
+
+		mGameObjectPositional.push_back(pGameObjectTripollo);
+		mGameObjectMovable.push_back(pGameObjectTripollo);
+		mGameObjectMovableEntity.push_back(pGameObjectTripollo);
+		mGameObjectTripollo.push_back(pGameObjectTripollo);
+	}
+}
+
+void GameWorldManager::addGameObject(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain)
+{
+	if(!existsObject(pGameObjectNonMovableTerrain->getName()))
+	{
+		mGameObjects[pGameObjectNonMovableTerrain->getId()]=pGameObjectNonMovableTerrain;
+
+		mGameObjectPositional.push_back(pGameObjectNonMovableTerrain);
+		mGameObjectNonMovable.push_back(pGameObjectNonMovableTerrain);
+		mGameObjectNonMovableEntity.push_back(pGameObjectNonMovableTerrain);
+		mGameObjectNonMovableTerrain.push_back(pGameObjectNonMovableTerrain);
+	}
+}
+void GameWorldManager::addGameObject(GameObjectNonMovableLightPtr pGameObjectNonMovableLight)
+{
+	if(!existsObject(pGameObjectNonMovableLight->getName()))
+	{
+		mGameObjects[pGameObjectNonMovableLight->getId()]=pGameObjectNonMovableLight;
+
+		mGameObjectPositional.push_back(pGameObjectNonMovableLight);
+		mGameObjectNonMovable.push_back(pGameObjectNonMovableLight);
+		mGameObjectNonMovableLight.push_back(pGameObjectNonMovableLight);
+	}
+}
+
 
 //void GameWorldManager::createGameObject(String name, GameObjectPtr gameObject)
 //{
@@ -210,8 +250,75 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		factory->createRenderComponentEntity(pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters);
 
 	//Add Object to GameWorldManager
-	addGameObjectOny(pGameObjectOny);
+	addGameObject(pGameObjectOny);
 }
+
+void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
+{
+
+	GameObjectTripolloPtr pGameObjectTripollo;
+
+	//Create GameObject
+	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(
+		tGameObjectTripolloParameters.name,makeIdString(tGameObjectTripolloParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentSceneNode
+		factory->createRenderComponentSceneNode(pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentSceneNodeParameters);
+
+		//Create RenderComponentEntity
+		factory->createRenderComponentEntity(pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters);
+
+	//Add Object to GameWorldManager
+	addGameObject(pGameObjectTripollo);
+}
+
+void GameWorldManager::createGameObjectNonMovableTerrain(TGameObjectNonMovableTerrainParameters tGameObjectNonMovableTerrainParameters)
+{
+	GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain;
+
+	//Create GameObject
+	pGameObjectNonMovableTerrain = GameObjectNonMovableTerrainPtr(new GameObjectNonMovableTerrain(
+		tGameObjectNonMovableTerrainParameters.name,makeIdString(tGameObjectNonMovableTerrainParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentSceneNode
+		factory->createRenderComponentSceneNode(pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters);
+
+		//Create RenderComponentEntity
+		factory->createRenderComponentEntity(pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters);
+
+	//Add Object to GameWorldManager
+	addGameObject(pGameObjectNonMovableTerrain);
+
+}
+
+void GameWorldManager::createGameObjectNonMovableLight(TGameObjectNonMovableLightParameters tGameObjectNonMovableLightParameters)
+{
+
+	GameObjectNonMovableLightPtr pGameObjectNonMovableLight;
+
+	//Create GameObject
+	pGameObjectNonMovableLight = GameObjectNonMovableLightPtr(new GameObjectNonMovableLight(
+		tGameObjectNonMovableLightParameters.name,makeIdString(tGameObjectNonMovableLightParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentSceneNode
+		factory->createRenderComponentSceneNode(pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentSceneNodeParameters);
+
+		//Create RenderComponentLight
+		factory->createRenderComponentLight(pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentLightParameters);
+
+	//Add Object to GameWorldManager
+	addGameObject(pGameObjectNonMovableLight);
+}
+
 
 //void GameWorldManager::createGameObjectMovableEntity(TEntityParameters tEntityParameters)
 //{

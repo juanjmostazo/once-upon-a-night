@@ -7,6 +7,8 @@
 #include "../Game/GameObject/GameObjectMovableEntity.h"
 #include "../Game/GameObject/GameObjectNonMovable.h"
 #include "../Game/GameObject/GameObjectNonMovableEntity.h"
+#include "../Game/GameObject/GameObjectNonMovableLight.h"
+#include "../Game/GameObject/GameObjectNonMovableTerrain.h"
 #include "../Game/GameObject/GameObjectPositional.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
@@ -127,6 +129,8 @@ void LevelLoader::processObjects(TiXmlElement *XMLNode, String type)
 String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 {
 	String type = getAttrib(XMLNode, "typename");
+	String name = getAttrib(XMLNode, "name");
+
 	if( type.compare("OctreeSceneManager")==0)
 	{
 		return "GameObjectScene";
@@ -143,20 +147,26 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//{
 	//	processSceneNode(XMLNode);
 	//}
-	//else if( type.compare("Light Object")==0)
-	//{
-	//	processLight(XMLNode);
-	//}
+	else if( type.compare("Light Object")==0)
+	{
+		if(name.substr(0,LOADER_NON_MOVABLE_LIGHT_ID.size()).compare(LOADER_NON_MOVABLE_LIGHT_ID)==0)
+		{
+			return "GameObjectNonMovableLight";
+		}
+	}
 	else if( type.compare("Entity Object")==0)
 	{
-		String name = getAttrib(XMLNode, "name");
-		if(name.substr(0,3).compare(LOADER_ONY_ID)==0)
+		if(name.substr(0,LOADER_ONY_ID.size()).compare(LOADER_ONY_ID)==0)
 		{
 			return "GameObjectOny";
 		}
-		else if(name.substr(0,7).compare(LOADER_TRIPOLLO_ID)==0)
+		else if(name.substr(0,LOADER_TRIPOLLO_ID.size()).compare(LOADER_TRIPOLLO_ID)==0)
 		{
 			return "GameObjectTripollo";
+		}
+		else if(name.substr(0,LOADER_NON_MOVABLE_TERRAIN_ID.size()).compare(LOADER_NON_MOVABLE_TERRAIN_ID)==0)
+		{
+			return "GameObjectNonMovableTerrain";
 		}
 	}
 	//else if( type.compare("Camera Object")==0)
@@ -194,6 +204,14 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	{
 		processGameObjectTripollo(XMLNode);
 	}
+	else if( gameObjectType.compare("GameObjectNonMovableTerrain")==0)
+	{
+		processGameObjectNonMovableTerrain(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectNonMovableLight")==0)
+	{
+		processGameObjectNonMovableLight(XMLNode);
+	}
 	else
 	{
 		Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
@@ -211,6 +229,7 @@ void LevelLoader::processGameObjectScene(TiXmlElement *XMLNode)
 	//cre
 	//pGameWorldManager->createSceneManager(tSceneManagerParameters);
 }
+
 void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 {
 	OUAN::TGameObjectOnyParameters tGameObjectOnyParameters;
@@ -227,10 +246,58 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 	//Create Entity
 	pGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 }
+
 void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 {
+	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
 
+	//Get name
+	tGameObjectTripolloParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectTripolloParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentSceneNode
+	tGameObjectTripolloParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
+
+	//Create Entity
+	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
 }
+
+void LevelLoader::processGameObjectNonMovableTerrain(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectNonMovableTerrainParameters  tGameObjectNonMovableTerrainParameters;
+
+	//Get name
+	tGameObjectNonMovableTerrainParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentSceneNode
+	tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
+
+	//Create Entity
+	pGameWorldManager->createGameObjectNonMovableTerrain(tGameObjectNonMovableTerrainParameters);
+}
+
+void LevelLoader::processGameObjectNonMovableLight(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectNonMovableLightParameters  tGameObjectNonMovableLightParameters;
+
+	//Get name
+	tGameObjectNonMovableLightParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentLight
+	tGameObjectNonMovableLightParameters.tRenderComponentLightParameters=processRenderComponentLight(XMLNode);
+
+	//Get RenderComponentSceneNode
+	tGameObjectNonMovableLightParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNodeNoScale(XMLNode);
+
+	//Create Entity
+	pGameWorldManager->createGameObjectNonMovableLight(tGameObjectNonMovableLightParameters);
+}
+
 
 //
 //void LevelLoader::processResourceLocations(TiXmlElement *XMLNode)
@@ -325,69 +392,6 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 //	//! @todo Implement this
 //}
 
-//void LevelLoader::processSceneNodeNoScale(TiXmlElement *XMLNode)
-//{
-//	TSceneNodeParameters tSceneNodeParameters;
-//
-//	//Get SceneNode name
-//	tSceneNodeParameters.name = getAttrib(XMLNode, "name");
-//
-//	//Get parent SceneNode name
-//	tSceneNodeParameters.TRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
-//
-//	//Get SceneNode parameters
-//	tSceneNodeParameters.TRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
-//	tSceneNodeParameters.TRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-//
-//	tSceneNodeParameters.TRenderComponentSceneNodeParameters.scale=Vector3(0,0,0);
-//	tSceneNodeParameters.TRenderComponentSceneNodeParameters.autotracktarget="None";
-//	
-//	//create SceneNode
-////	pGameWorldManager->createSceneNode(tSceneNodeParameters);
-//}
-//
-//void LevelLoader::processLight(TiXmlElement *XMLNode)
-//{
-//	TLightParameters tLightParameters;
-//
-//	//Parse and create Scene node
-//	processSceneNodeNoScale(XMLNode);
-//
-//	//Get Light name
-//	tLightParameters.name = getAttrib(XMLNode, "name");
-//
-//	//Get Light properties
-//	
-//	tLightParameters.TRenderComponentLightParameters.diffuse = getPropertyColourValue(XMLNode,"diffuse");
-//	tLightParameters.TRenderComponentLightParameters.specular = getPropertyColourValue(XMLNode,"specular");
-//	tLightParameters.TRenderComponentLightParameters.direction = getPropertyVector3(XMLNode,"direction");
-//	tLightParameters.TRenderComponentLightParameters.castshadows = getPropertyBool(XMLNode,"castshadows");
-//	tLightParameters.TRenderComponentLightParameters.lightrange = getPropertyVector3(XMLNode,"lightrange");
-//	tLightParameters.TRenderComponentLightParameters.attenuation = getPropertyVector4(XMLNode,"attenuation");
-//	tLightParameters.TRenderComponentLightParameters.power = getPropertyReal(XMLNode,"power");
-//
-//		//Lightype conversion
-//	int lighttype = getPropertyInt(XMLNode,"lighttype");
-//	switch(lighttype)
-//	{
-//			case OGITOR_LT_POINT:
-//				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_POINT;
-//				break;
-//			case OGITOR_LT_DIRECTIONAL:
-//				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_DIRECTIONAL;
-//				break;
-//			case OGITOR_LT_SPOTLIGHT:
-//				tLightParameters.TRenderComponentLightParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
-//				break;
-//			default:
-//				Ogre::LogManager::getSingleton().logMessage("Light "+tLightParameters.name+" has unrecognised light type!");
-//				break;
-//	}
-//
-//	//Create Light
-////	pGameWorldManager->createLight(tLightParameters);
-//
-//}
 
 //void LevelLoader::processTrajectory(TiXmlElement *XMLNode)
 //{
@@ -472,6 +476,22 @@ TRenderComponentSceneNodeParameters LevelLoader::processRenderComponentSceneNode
 	return tRenderComponentSceneNodeParameters;
 }
 
+TRenderComponentSceneNodeParameters LevelLoader::processRenderComponentSceneNodeNoScale(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters;
+
+	//Get parent SceneNode name
+	tRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+
+	//Get SceneNode parameters
+	tRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
+	tRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tRenderComponentSceneNodeParameters.scale = Vector3(1,1,1);
+	tRenderComponentSceneNodeParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+
+	return tRenderComponentSceneNodeParameters;
+}
+
 //void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
 //{
 //
@@ -523,6 +543,43 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	processRenderComponentSubEntities(tRenderComponentEntityParameters.tRenderComponentSubEntityParameters,XMLNode);
 	
 	return tRenderComponentEntityParameters;
+}
+
+TRenderComponentLightParameters LevelLoader::processRenderComponentLight(TiXmlElement *XMLNode)
+{
+
+	OUAN::TRenderComponentLightParameters tRenderComponentLightParameters;
+
+	//Get Light properties
+	
+	tRenderComponentLightParameters.diffuse = getPropertyColourValue(XMLNode,"diffuse");
+	tRenderComponentLightParameters.specular = getPropertyColourValue(XMLNode,"specular");
+	tRenderComponentLightParameters.direction = getPropertyVector3(XMLNode,"direction");
+	tRenderComponentLightParameters.castshadows = getPropertyBool(XMLNode,"castshadows");
+	tRenderComponentLightParameters.lightrange = getPropertyVector3(XMLNode,"lightrange");
+	tRenderComponentLightParameters.attenuation = getPropertyVector4(XMLNode,"attenuation");
+	tRenderComponentLightParameters.power = getPropertyReal(XMLNode,"power");
+
+		//Lightype conversion
+	int lighttype = getPropertyInt(XMLNode,"lighttype");
+	switch(lighttype)
+	{
+			case OGITOR_LT_POINT:
+				tRenderComponentLightParameters.lighttype=Ogre::Light::LT_POINT;
+				break;
+			case OGITOR_LT_DIRECTIONAL:
+				tRenderComponentLightParameters.lighttype=Ogre::Light::LT_DIRECTIONAL;
+				break;
+			case OGITOR_LT_SPOTLIGHT:
+				tRenderComponentLightParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
+				break;
+			default:
+				Ogre::LogManager::getSingleton().logMessage("Light has unrecognised light type!");
+				break;
+	}
+
+	return tRenderComponentLightParameters;
+
 }
 
 //void LevelLoader::processParticleSystem(TiXmlElement *XMLNode)
