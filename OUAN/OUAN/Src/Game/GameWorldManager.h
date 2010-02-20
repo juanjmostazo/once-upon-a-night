@@ -16,6 +16,15 @@ namespace OUAN
 		/// @param objectId identifier of the object to retrieve
 		/// @return pointer to the object, if found
 		GameObjectPtr getObject(const std::string& objectId);
+
+		TGameObjectMovableContainer getGameObjectMovable();
+		TGameObjectMovableEntityContainer getGameObjectMovableEntity();
+		TGameObjectNonMovableContainer getGameObjectNonMovable();
+		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntity();
+		TGameObjectOnyContainer getGameObjectOny();
+		TGameObjectPositionalContainer getGameObjectPositional();
+		TGameObjectSceneContainer getGameObjectScene();
+		TGameObjectTripolloContainer getGameObjectTripollo();
 		
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -35,17 +44,14 @@ namespace OUAN
 		/// Load global parameters
 		void initialiseGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
 
-		/// Create a game object using the given 'parameters' object
-		/// @param gameObject: pointer to the game object to be initialised
-		/// @param objectParams parameters to initialise the game object and its components
-		void createGameObject(String name, GameObjectPtr gameObject);
-		void createGameObjectMovable(String name, GameObjectMovablePtr gameObjectMovable);
-
-
 		//Create Ogre component for the game object
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
 
-		void createGameObjectMovableEntity(TEntityParameters tEntityParameters);
+		/// Create a game object using the given 'parameters' object
+		/// @param objectParams parameters to initialise the game object and its components
+
+		//void createGameObjectMovableEntity(TGameObjectMovableEntityParameters tGameObjectMovableEntityParameters);
+		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
 		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
@@ -54,13 +60,6 @@ namespace OUAN
 		//void createViewport(TViewportParameters tViewportParameters);
 		//void createSceneManager(TSceneManagerParameters tSceneManagerParameters);
 
-
-		/// Add the game object pointer to the objects List
-		/// @param gameObject pointer to the object to add to the main list
-		void addGameObject(GameObjectPtr gameObject);
-		void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
-		bool existsObject(std::string name);
-		//[TODO]: Do the same with the toAdd/toDelete lists?
 
 		/// Update world state
 		/// @param elapsedTime time since last update
@@ -80,6 +79,15 @@ namespace OUAN
 		inline unsigned long lastId() {return mNextIdNum;}
 
 	private:
+
+		/// Add the game object pointer to the objects List
+		/// @param gameObject pointer to the object to add to the main list
+		void addGameObject(GameObjectPtr gameObject);
+		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
+		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
+		bool existsObject(std::string name);
+		//[TODO]: Do the same with the toAdd/toDelete lists?
+
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
 		/// @param baseString	reference string to make the id
@@ -103,6 +111,16 @@ namespace OUAN
 
 		/// Game objects currently existing in the world
 		TGameObjectContainer mGameObjects;
+
+		/// Game object containers to access specific game object types
+		TGameObjectMovableContainer mGameObjectMovable;
+		TGameObjectMovableEntityContainer mGameObjectMovableEntity;
+		TGameObjectNonMovableContainer mGameObjectNonMovable;
+		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntity;
+		TGameObjectOnyContainer mGameObjectOny;
+		TGameObjectPositionalContainer mGameObjectPositional;
+		TGameObjectSceneContainer mGameObjectScene;
+		TGameObjectTripolloContainer mGameObjectTripollo;
 	
 		// Lists of objects to be created/deleted as a result of an
 		// update frame. 

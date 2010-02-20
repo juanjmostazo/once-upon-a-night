@@ -28,3 +28,11 @@ void Component::setParent(GameObjectPtr parent)
 {
 	mParent=parent;
 }
+
+
+TComponentParameters::TComponentParameters()
+{
+}
+TComponentParameters::~TComponentParameters()
+{
+}

@@ -17,6 +17,22 @@ namespace OUAN
 		Ogre::Light * getLight() const;
 		void setLight(Ogre::Light *);
 	};
+
+	class TRenderComponentLightParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentLightParameters();
+		~TRenderComponentLightParameters();
+
+		Ogre::Light::LightTypes lighttype;
+		ColourValue diffuse;
+		ColourValue specular;
+		Vector3 direction;
+		bool castshadows;
+		Vector3 lightrange;
+		Vector4 attenuation;
+		Real power;
+	};
 }
 
 #endif

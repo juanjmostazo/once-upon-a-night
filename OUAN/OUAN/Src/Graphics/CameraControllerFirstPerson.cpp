@@ -85,8 +85,8 @@ void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime)
 {
 
-	float moveScale=0.6;
-	float rotateScale=0.6;
+	float moveScale=3;
+	float rotateScale=3;
 
 	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);
 
@@ -175,4 +175,5 @@ void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,f
 								cameraPitchNode->getOrientation() *
 								translateVector,
 								Ogre::SceneNode::TS_LOCAL);
+	Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
 }

@@ -18,6 +18,27 @@ namespace OUAN
 		void setEntity(Ogre::Entity *);
 
 	};
+
+	class TRenderComponentSubEntityParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentSubEntityParameters();
+		~TRenderComponentSubEntityParameters();
+
+		String material;
+		bool visible;
+	};
+
+	class TRenderComponentEntityParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentEntityParameters();
+		~TRenderComponentEntityParameters();
+
+		String meshfile;
+		bool castshadows;
+		std::vector<TRenderComponentSubEntityParameters> tRenderComponentSubEntityParameters;
+	};
 }
 
 #endif

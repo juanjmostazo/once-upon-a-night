@@ -19,3 +19,23 @@ void RenderComponentScene::setSceneManager(Ogre::SceneManager* sceneManager)
 }
 
 
+TRenderComponentSceneParameters::TRenderComponentSceneParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentSceneParameters::~TRenderComponentSceneParameters()
+{
+}
+
+TRenderComponentSkyBoxParameters::TRenderComponentSkyBoxParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentSkyBoxParameters::~TRenderComponentSkyBoxParameters()
+{
+}
+
+TRenderComponentSkyDomeParameters::TRenderComponentSkyDomeParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentSkyDomeParameters::~TRenderComponentSkyDomeParameters()
+{
+}

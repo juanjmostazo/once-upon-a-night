@@ -19,3 +19,9 @@ void RenderComponentViewport::setViewport(Ogre::Viewport* viewport)
 {
 	mViewport=viewport;
 }
+TRenderComponentViewportParameters::TRenderComponentViewportParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentViewportParameters::~TRenderComponentViewportParameters()
+{
+}

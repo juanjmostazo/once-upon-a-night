@@ -55,22 +55,94 @@ namespace OUAN
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
-		class GameObject;
-		class GameObjectMovable;
-		class GameObjectNonMovable;
-		class GameObjectScene;
-		class GameObjectMovableEntity;
-		class GameObjectNonMovableEntity;
+
 
 		class GameWorldManager;
 		class Component;
 
+		//Component specializations
+
+
+			//Render Components
+			class RenderComponent;
+			class TRenderComponentParameters;
+			typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
+
+			class RenderComponentBillboardSet;
+			class TRenderComponentBillboardSetParameters;
+			class TRenderComponentBillboardParameters;
+			typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
+
+			class RenderComponentCamera;
+			class TRenderComponentCameraParameters;
+			typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
+
+			class RenderComponentEntity;
+			class TRenderComponentEntityParameters;
+			class TRenderComponentSubEntityParameters;
+			typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
+
+			class RenderComponentLight;
+			class TRenderComponentLightParameters;
+			typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
+
+			class RenderComponentParticleSystem;
+			class TRenderComponentParticleSystemParameters;
+			typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
+
+			class RenderComponentScene;
+			class TRenderComponentSkyDomeParameters;
+			class TRenderComponentSkyBoxParameters;
+			class TRenderComponentSceneParameters;
+			typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
+
+			class RenderComponentSceneNode;
+			class TRenderComponentSceneNodeParameters;
+			typedef boost::shared_ptr<RenderComponentSceneNode> RenderComponentSceneNodePtr;
+
+			class RenderComponentViewport;
+			class TRenderComponentViewportParameters;
+			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
+
+		//Game Object Specializations
+
+		class GameObject;
+		class TGameObjectParameters;
 		typedef boost::shared_ptr<GameObject> GameObjectPtr;
+
+		class GameObjectPositional;
+		class TGameObjectPositionalParameters;
+		typedef boost::shared_ptr<GameObjectPositional> GameObjectPositionalPtr;
+
+		class GameObjectMovable;
+		class TGameObjectMovableParameters;
 		typedef boost::shared_ptr<GameObjectMovable> GameObjectMovablePtr;
+
+		class GameObjectNonMovable;
+		class TGameObjectNonMovableParameters;
 		typedef boost::shared_ptr<GameObjectNonMovable> GameObjectNonMovablePtr;
+
+		class GameObjectScene;
+		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
+
+		class GameObjectMovableEntity;
+		class TGameObjectMovableEntityParameters;
 		typedef boost::shared_ptr<GameObjectMovableEntity> GameObjectMovableEntityPtr;
+
+		class GameObjectNonMovableEntity;
+		class TGameObjectNonMovableEntityParameters;
 		typedef boost::shared_ptr<GameObjectNonMovableEntity> GameObjectNonMovableEntityPtr;
+
+		class GameObjectOny;
+		class TGameObjectOnyParameters;
+		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
+		const std::string LOADER_ONY_ID="ony";
+
+		class GameObjectTripollo;
+		class TGameObjectTripolloParameters;
+		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
+		const std::string LOADER_TRIPOLLO_ID="tripollo";
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
@@ -81,33 +153,21 @@ namespace OUAN
 		typedef std::map<std::string,GameObjectPtr> TGameObjectContainer;
 		typedef TGameObjectContainer::iterator TGameObjectContainerIterator;
 
+		typedef std::vector<GameObjectMovablePtr> TGameObjectMovableContainer;
+		typedef std::vector<GameObjectMovableEntityPtr> TGameObjectMovableEntityContainer;
+		typedef std::vector<GameObjectNonMovablePtr> TGameObjectNonMovableContainer;
+		typedef std::vector<GameObjectNonMovableEntityPtr> TGameObjectNonMovableEntityContainer;
+		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+		typedef std::vector<GameObjectPositionalPtr> TGameObjectPositionalContainer;
+		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
+		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
+
 		const int GAMEOBJECT_ID_ZERO_PADDING=6;
 
 		const std::string COMPONENT_NAME_OGRE="RenderComponent";
 		const std::string COMPONENT_NAME_PHYSICS="physicsComponent";
 		
-		//Component specializations
 
-
-			//Render Components
-			class RenderComponent;
-			typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
-			class RenderComponentBillboardSet;
-			typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
-			class RenderComponentCamera;
-			typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
-			class RenderComponentEntity;
-			typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
-			class RenderComponentLight;
-			typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
-			class RenderComponentParticleSystem;
-			typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
-			class RenderComponentScene;
-			typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
-			class RenderComponentSceneNode;
-			typedef boost::shared_ptr<RenderComponentSceneNode> RenderComponentSceneNodePtr;
-			class RenderComponentViewport;
-			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
@@ -198,169 +258,6 @@ namespace OUAN
 		#define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../../Resources/Graphics/NxModels"
 
-
-	//GameObject Creation Parameters Structs
-
-	//TODO: Add Physix and other Subsystems parameters to the structs
-
-	struct TRenderComponentParameters
-	{
-	};
-
-	struct TRenderComponentSubEntityParameters : TRenderComponentParameters 
-	{
-		String material;
-		bool visible;
-	};
-
-	struct TRenderComponentEntityParameters : TRenderComponentParameters 
-	{
-		String meshfile;
-		bool castshadows;
-		std::vector<TRenderComponentSubEntityParameters> TRenderComponentSubEntityParameters;
-	};
-
-	struct TRenderComponentLightParameters : TRenderComponentParameters 
-	{
-		Ogre::Light::LightTypes lighttype;
-		ColourValue diffuse;
-		ColourValue specular;
-		Vector3 direction;
-		bool castshadows;
-		Vector3 lightrange;
-		Vector4 attenuation;
-		Real power;
-	};
-
-	struct TRenderComponentSceneNodeParameters : TRenderComponentParameters 
-	{
-		String parentSceneNodeName;
-		Vector3 position;
-		Quaternion orientation;
-		Vector3 scale;
-		String autotracktarget;
-	};
-
-	struct TRenderComponentCameraParameters : TRenderComponentParameters 
-	{
-		Vector3 position;
-		Quaternion orientation;
-		String autotracktarget;
-		bool autoaspectratio;
-		Vector2 clipdistance;
-		Real FOVy;
-		Ogre::PolygonMode polygonmode;
-		int viewmode;
-	};
-
-	struct TRenderComponentParticleSystemParameters : TRenderComponentParameters 
-	{
-		String particle;
-		bool castshadows;
-	};
-
-	struct TRenderComponentBillboardParameters : TRenderComponentParameters 
-	{
-		ColourValue colour;
-		Vector2 dimensions;
-		Vector3 position;
-		Real rotation;
-		int texcoordindex;
-		Vector4 texrect;
-	};
-
-	struct TRenderComponentBillboardSetParameters : TRenderComponentParameters 
-	{
-		String material;
-		Ogre::BillboardOrigin billboardorigin;
-		Ogre::BillboardRotationType billboardrotation;
-		Ogre::BillboardType billboardtype;
-		Real defaultheight;
-		Real defaultwidth;
-		bool pointrendering;
-		Real renderdistance;
-		bool sorting;
-		std::vector<TRenderComponentBillboardParameters> TRenderComponentBillboardParameters;
-	};
-
-	struct TRenderComponentViewportParameters : TRenderComponentParameters 
-	{
-		ColourValue colour;
-		int compositorcount;
-		int index;
-		bool overlays;
-		bool shadows;
-		bool skies;
-	};
-
-	struct TRenderComponentSkyBoxParameters : TRenderComponentParameters 
-	{
-		bool active;
-		String material;
-		Real distance;
-	};
-
-	struct TRenderComponentSkyDomeParameters : TRenderComponentParameters 
-	{
-		bool active;
-		String material;
-	};
-
-	struct TRenderComponentSceneParameters : TRenderComponentParameters 
-	{
-		ColourValue ambient;
-		TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
-		TRenderComponentSkyDomeParameters TRenderComponentSkyDomeParameters;
-	};
-
-	struct TParticleSystemParameters
-	{
-		String name;
-		TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters;
-	};
-
-	struct TSceneNodeParameters
-	{
-		String name;
-		TRenderComponentSceneNodeParameters TRenderComponentSceneNodeParameters;
-	};
-
-	struct TEntityParameters
-	{
-		String name;
-		TRenderComponentEntityParameters TRenderComponentEntityParameters;
-		TRenderComponentSceneNodeParameters TRenderComponentSceneNodeParameters;
-	};
-
-	struct TLightParameters
-	{
-		String name;
-		TRenderComponentLightParameters TRenderComponentLightParameters;
-	};
-
-	struct TCameraParameters
-	{
-		String name;
-		TRenderComponentCameraParameters TRenderComponentCameraParameters;
-	};
-
-	struct TBillboardSetParameters
-	{
-		String name;
-		TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters;
-	};
-
-	struct TSceneManagerParameters
-	{
-		String name;
-		TRenderComponentSceneParameters TRenderComponentSceneParameters;
-	};
-
-	struct TViewportParameters
-	{
-		String name;
-		TRenderComponentViewportParameters TRenderComponentViewportParameters;
-	};
 }
 
 

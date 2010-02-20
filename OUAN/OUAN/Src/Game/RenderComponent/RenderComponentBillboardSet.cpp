@@ -18,3 +18,18 @@ void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardS
 {
 	mBillboardSet=billboardSet;
 }
+
+TRenderComponentBillboardSetParameters::TRenderComponentBillboardSetParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentBillboardSetParameters::~TRenderComponentBillboardSetParameters()
+{
+}
+
+TRenderComponentBillboardParameters::TRenderComponentBillboardParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentBillboardParameters::~TRenderComponentBillboardParameters()
+{
+}
+

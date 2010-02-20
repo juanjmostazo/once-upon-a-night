@@ -20,31 +20,45 @@ namespace OUAN
 	protected:
 		GameWorldManagerPtr pGameWorldManager;
 
-
-
-		void processScene(TiXmlElement *XMLNode);
+		//Level .ogscene file Processors
+		void processLevel(TiXmlElement *XMLNode);
 		void processProject(TiXmlElement *XMLNode);
 		void processObjects(TiXmlElement *XMLNode,OUAN::String type);
 		void processObject(TiXmlElement *XMLNode);
+		String getGameObjectType(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
-		void processTerrain(TiXmlElement *XMLNode);
-		void processOctreeSceneManager(TiXmlElement *XMLNode);
-		void processLight(TiXmlElement *XMLNode);
-		void processSceneNodeNoScale(TiXmlElement *XMLNode);
-		void processCamera(TiXmlElement *XMLNode);
-		void processViewport(TiXmlElement *XMLNode);
-		void processViewportCamera(TiXmlElement *XMLNode);
-		TRenderComponentSceneNodeParameters processSceneNode(TiXmlElement *XMLNode);
-		void processTrackTarget(TiXmlElement *XMLNode);
-		void processEntity(TiXmlElement *XMLNode);
-		void processSubentities(std::vector<TRenderComponentSubEntityParameters>  &TRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
-		void processParticleSystem(TiXmlElement *XMLNode);
-		void processBillboardSet(TiXmlElement *XMLNode);
-		void processBillboards(std::vector<TRenderComponentBillboardParameters> &TRenderComponentBillboardParameters,TiXmlElement *XMLNode);
+
+
+		//Game Object Processors
+		void processGameObjectScene(TiXmlElement *XMLNode);
+		void processGameObjectOny(TiXmlElement *XMLNode);
+		void processGameObjectTripollo(TiXmlElement *XMLNode);
+
+
+		//RenderComponent Processors
+		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
+		TRenderComponentSkyBoxParameters processRenderComponentSkyBox(TiXmlElement *XMLNode);
+		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLNode);
+		TRenderComponentSceneNodeParameters processRenderComponentSceneNode(TiXmlElement *XMLNode);
+		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode);
+		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
+
+		//void processTerrain(TiXmlElement *XMLNode);
+		//void processOctreeSceneManager(TiXmlElement *XMLNode);
+		//void processLight(TiXmlElement *XMLNode);
+		//void processSceneNodeNoScale(TiXmlElement *XMLNode);
+		//void processCamera(TiXmlElement *XMLNode);
+		//void processViewport(TiXmlElement *XMLNode);
+		//void processViewportCamera(TiXmlElement *XMLNode);
+
+		//void processTrackTarget(TiXmlElement *XMLNode);
+
+		//void processParticleSystem(TiXmlElement *XMLNode);
+		//void processBillboardSet(TiXmlElement *XMLNode);
+		//void processBillboards(std::vector<TRenderComponentBillboardParameters> &TRenderComponentBillboardParameters,TiXmlElement *XMLNode);
 		//TODO: void processPlane(TiXmlElement *XMLNode);
 		//TODO: void processFog(TiXmlElement *XMLNode);
-		TRenderComponentSkyBoxParameters processSkyBox(TiXmlElement *XMLNode);
-		TRenderComponentSkyDomeParameters processSkyDome(TiXmlElement *XMLNode);
+
 		//TODO: void processShadows(TiXmlElement *XMLNode);
 		//TODO: void processTrajectory(TiXmlElement *XMLNode);
 

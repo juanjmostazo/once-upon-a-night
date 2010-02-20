@@ -18,6 +18,22 @@ namespace OUAN
 		void setCamera(Ogre::Camera *);
 
 	};
+
+	class TRenderComponentCameraParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentCameraParameters();
+		~TRenderComponentCameraParameters();
+
+		Vector3 position;
+		Quaternion orientation;
+		String autotracktarget;
+		bool autoaspectratio;
+		Vector2 clipdistance;
+		Real FOVy;
+		Ogre::PolygonMode polygonmode;
+		int viewmode;
+	};
 }
 
 #endif

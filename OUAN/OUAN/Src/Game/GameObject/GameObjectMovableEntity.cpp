@@ -23,12 +23,9 @@ void GameObjectMovableEntity::setRenderComponentEntity(RenderComponentEntityPtr 
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-RenderComponentSceneNodePtr GameObjectMovableEntity::getRenderComponentSceneNode() const
+TGameObjectMovableEntityParameters::TGameObjectMovableEntityParameters() : TGameObjectMovableParameters()
 {
-	return mRenderComponentSceneNode;
 }
-
-void GameObjectMovableEntity::setRenderComponentSceneNode(RenderComponentSceneNodePtr pRenderComponentSceneNode)
+TGameObjectMovableEntityParameters::~TGameObjectMovableEntityParameters()
 {
-	mRenderComponentSceneNode=pRenderComponentSceneNode;
 }

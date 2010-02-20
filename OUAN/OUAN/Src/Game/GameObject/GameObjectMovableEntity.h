@@ -1,13 +1,14 @@
 #ifndef GameObjectMovableEntityH_H
 #define GameObjectMovableEntityH_H
 #include "GameObjectMovable.h"
+#include "../RenderComponent/RenderComponentEntity.h"
 namespace OUAN
 {
 	class GameObjectMovableEntity : public GameObjectMovable
 	{
 	private:
 		RenderComponentEntityPtr mRenderComponentEntity;
-		RenderComponentSceneNodePtr mRenderComponentSceneNode;
+
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -19,9 +20,16 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
-		RenderComponentSceneNodePtr getRenderComponentSceneNode() const;
-		void setRenderComponentSceneNode(RenderComponentSceneNodePtr pRenderComponentSceneNode);
 
+	};
+
+	class TGameObjectMovableEntityParameters: public TGameObjectMovableParameters
+	{
+	public:
+		TGameObjectMovableEntityParameters();
+		~TGameObjectMovableEntityParameters();
+
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 	};
 }
 #endif

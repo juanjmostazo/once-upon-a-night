@@ -13,3 +13,10 @@ RenderComponent::~RenderComponent()
 void RenderComponent::update(long elapsedTime)
 {
 }
+
+TRenderComponentParameters::TRenderComponentParameters() : TComponentParameters()
+{
+}
+TRenderComponentParameters::~TRenderComponentParameters()
+{
+}

@@ -19,3 +19,9 @@ void RenderComponentParticleSystem::setParticleSystem(Ogre::ParticleSystem* part
 	mParticleSystem=particleSystem;
 }
 
+TRenderComponentParticleSystemParameters::TRenderComponentParticleSystemParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentParticleSystemParameters::~TRenderComponentParticleSystemParameters()
+{
+}

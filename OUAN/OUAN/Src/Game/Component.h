@@ -44,5 +44,13 @@ namespace OUAN
 		/// parent GameObject
 		GameObjectPtr mParent;
 	};
+
+	class TComponentParameters
+	{
+	public:
+		TComponentParameters();
+		~TComponentParameters();
+
+	};
 }
 #endif
