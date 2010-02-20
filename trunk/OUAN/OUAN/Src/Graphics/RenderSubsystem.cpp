@@ -113,6 +113,22 @@ void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
 	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);	
 }
 
+void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
+{
+	Ogre::Plane *plane = new Ogre::Plane;
+	plane->normal = Ogre::Vector3::UNIT_Y;
+	plane->d = 0;
+
+	Ogre::MeshManager::getSingleton().createPlane("debugFloorPlane",
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, *plane,
+		200, 200, 20, 20, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+
+	Ogre::Entity* pPlaneEnt = mSceneManager->createEntity("debugFloorEntity", "debugFloorPlane");
+	pPlaneEnt->setCastShadows(false);
+	pPlaneEnt->setMaterialName("GrassFloor");
+	mSceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(pPlaneEnt);
+}
+
 void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
 {
 	std::string mipmapNumber;

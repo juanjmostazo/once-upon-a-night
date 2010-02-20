@@ -40,6 +40,9 @@ namespace OUAN
 		/// Create visual debugger
 		void createVisualDebugger(OUAN::ConfigurationPtr config);
 
+		/// Create debug floor for physics
+		void createDebugFloor(OUAN::ConfigurationPtr config);
+
 		/// Load resources [TODO: Make this level dependent?]
 		void initialiseResourceGroups(OUAN::ConfigurationPtr config);
 

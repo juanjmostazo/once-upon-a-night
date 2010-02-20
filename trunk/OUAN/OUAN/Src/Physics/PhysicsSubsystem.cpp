@@ -33,7 +33,7 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 	sceneDesc.mGravity = NxOgre::Vec3(0, -9.8f, 0);
 	sceneDesc.mName = "NxOgreScene";
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
-
+	
 	//Initializing NxOgre::TimeController
 	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
@@ -46,12 +46,19 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 	//Initializing NxOgre::ControllerManager
 	mNxOgreControllerManager = new NxOgre::ControllerManager();
 
+	//Initializing scene stuff
+	mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
 	mNxOgreScene->getMaterial(0)->setStaticFriction(0.5);
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(0.5);
 	mNxOgreScene->getMaterial(0)->setRestitution(0.1);
 
 	//Initialise visual debugger
 	app->getRenderSubsystem()->createVisualDebugger(config);
+
+	/**
+	* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
+	*/
+	app->getRenderSubsystem()->createDebugFloor(config);
 }
 
 void PhysicsSubsystem::update(float elapsedSeconds)
@@ -98,3 +105,4 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 {	
 	return NxOgre::Enums::ControllerAction_None;
 }
+
