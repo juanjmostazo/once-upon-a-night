@@ -376,6 +376,18 @@
 				<Filter
 					Name="PhysicsComponent"
 					>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponenet.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovable.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -598,6 +610,18 @@
 				<Filter
 					Name="PhysicsComponent"
 					>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovable.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter

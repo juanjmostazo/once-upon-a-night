@@ -20,6 +20,5 @@ namespace OUAN
 		TGameObjectMovableParameters();
 		~TGameObjectMovableParameters();
 	};
-
 }
 #endif
