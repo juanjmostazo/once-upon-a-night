@@ -79,7 +79,6 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(GameObjec
 	//Initialise Render Component
 	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),tRenderComponentEntityParameters));
 
-	
 	return pRenderComponentEntity;
 }
 RenderComponentLightPtr ComponentFactory::createRenderComponentLight(GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)

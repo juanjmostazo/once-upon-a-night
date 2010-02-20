@@ -88,10 +88,10 @@ namespace OUAN
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
-		void addGameObject(GameObjectOnyPtr pGameObjectOny);
-		void addGameObject(GameObjectTripolloPtr pGameObjectTripollo);
-		void addGameObject(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain);
-		void addGameObject(GameObjectNonMovableLightPtr pGameObjectNonMovableLight);
+		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
+		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
+		void addGameObjectNonMovableTerrain(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain);
+		void addGameObjectNonMovableLight(GameObjectNonMovableLightPtr pGameObjectNonMovableLight);
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		bool existsObject(std::string name);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
