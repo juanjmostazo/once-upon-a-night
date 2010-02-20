@@ -23,7 +23,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="7.6256 13.287 -13.7406" orientation="0.870423 0.0418134 -0.48996 0.0235431"></OPTION>
+    <OPTION id="0" position="-35.2256 42.3107 16.8535" orientation="0.836782 -0.151309 -0.517819 -0.0936244"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -97,9 +97,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.870426 0.0418135 -0.489961 0.0235432"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.836782 -0.151309 -0.517819 -0.0936244"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="7.6256 13.287 -13.7406"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-35.2256 42.3107 16.8535"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -114,19 +114,36 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="141575360" name="Light#0" typename="Light Object" parentnode="SceneManager">
+  <OBJECT object_id="141575360" name="light" typename="Light Object" parentnode="SceneManager">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="diffuse" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="direction" type="9" value="0 0 1"></PROPERTY>
+    <PROPERTY id="direction" type="9" value="-0.5 -0.5 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="lightrange" type="9" value="15 30 1"></PROPERTY>
-    <PROPERTY id="lighttype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="lighttype" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.953021 0.214187 -0.214187 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="38.0382 23.1628 -22.0729"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="392437504" name="tripollo" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ENEMY_TRIPOLLO_DREAMS.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="41.6942 12.0515 -13.6664"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -162,27 +179,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="751548800" name="NIVEL2_ISLA2#0" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="699758912" name="terrain" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="NIVEL2_ISLA2.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="nivel2vacio.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="36.4109 11.2193 -22.6348"></PROPERTY>
+    <PROPERTY id="position" type="9" value="41.2886 19.8084 -28.0624"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wire_229154215"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ClsBox01Polygon_XSIPOLYCLS_box01polygon"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="wire_086086086"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="wire_113134006"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="wire_088177026"></PROPERTY>
-    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity3::material" type="7" value="ClsBox01Polygon_XSIPOLYCLS_box01polygon"></PROPERTY>
-    <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity4::material" type="7" value="wire_113134006"></PROPERTY>
-    <PROPERTY id="subentity4::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="5"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

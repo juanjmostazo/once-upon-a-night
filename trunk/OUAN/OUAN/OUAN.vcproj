@@ -309,6 +309,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableTerrain.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectOny.cpp"
 						>
 					</File>
@@ -504,6 +512,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableTerrain.h"
 						>
 					</File>
 					<File

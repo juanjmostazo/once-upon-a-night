@@ -136,7 +136,7 @@ void RenderSubsystem::createCameras()
 {
 	mCamera= mSceneManager->createCamera(MAIN_CAMERA_NAME);
 	mCamera->setNearClipDistance( 0.01 );
-	mCamera->setPosition(-100,30,50);
+	mCamera->setPosition(0,30,50);
 	mCameraControllerFirstPerson = new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->initialise(mSceneManager);
 	mCameraControllerFirstPerson->setCamera(mCamera);
