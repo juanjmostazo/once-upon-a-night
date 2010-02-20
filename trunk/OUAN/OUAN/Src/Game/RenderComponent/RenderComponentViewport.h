@@ -19,6 +19,20 @@ namespace OUAN
 
 
 	};
+
+	class TRenderComponentViewportParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentViewportParameters();
+		~TRenderComponentViewportParameters();
+
+		ColourValue colour;
+		int compositorcount;
+		int index;
+		bool overlays;
+		bool shadows;
+		bool skies;
+	};
 }
 
 #endif

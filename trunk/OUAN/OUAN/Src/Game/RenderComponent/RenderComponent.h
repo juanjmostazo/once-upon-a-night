@@ -16,6 +16,14 @@ namespace OUAN
 		//void onDoSomething(EventData,emitter, ...);
 		//void onDoSomethingElse(...);
 	};
+
+	class TRenderComponentParameters: public TComponentParameters
+	{
+	public:
+		TRenderComponentParameters();
+		~TRenderComponentParameters();
+
+	};
 }
 
 #endif

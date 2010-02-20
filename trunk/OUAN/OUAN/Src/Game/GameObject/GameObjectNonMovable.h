@@ -1,9 +1,9 @@
 #ifndef GameObjectNonMovableH_H
 #define GameObjectNonMovableH_H
-#include "GameObject.h"
+#include "GameObjectPositional.h"
 namespace OUAN
 {
-	class GameObjectNonMovable : public GameObject
+	class GameObjectNonMovable : public GameObjectPositional
 	{
 		//TODO: Add physics component
 	public:
@@ -11,6 +11,14 @@ namespace OUAN
 		GameObjectNonMovable(const std::string& name, const std::string& id);
 		//Destructor
 		~GameObjectNonMovable();
+
+	};
+
+	class TGameObjectNonMovableParameters : public TGameObjectPositionalParameters
+	{
+	public:
+		TGameObjectNonMovableParameters();
+		~TGameObjectNonMovableParameters();
 
 	};
 }

@@ -1,17 +1,26 @@
 #ifndef GameObjectMovableH_H
 #define GameObjectMovableH_H
-#include "GameObject.h"
+#include "GameObjectPositional.h"
 namespace OUAN
 {
-	class GameObjectMovable : public GameObject
+	class GameObjectMovable : public GameObjectPositional
 	{
 		//TODO: Add physics component
+
 	public:
 		//Constructor
 		GameObjectMovable(const std::string& name, const std::string& id);
 		//Destructor
 		~GameObjectMovable();
+	};
+
+	class TGameObjectMovableParameters : public TGameObjectPositionalParameters
+	{
+	public:
+		TGameObjectMovableParameters();
+		~TGameObjectMovableParameters();
 
 	};
+
 }
 #endif

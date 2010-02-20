@@ -19,6 +19,17 @@ namespace OUAN
 
 
 	};
+
+	class TRenderComponentParticleSystemParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentParticleSystemParameters();
+		~TRenderComponentParticleSystemParameters();
+
+		String particle;
+		bool castshadows;
+	};
+
 }
 
 #endif

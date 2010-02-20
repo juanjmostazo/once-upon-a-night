@@ -19,6 +19,38 @@ namespace OUAN
 
 
 	};
+
+	class TRenderComponentSkyDomeParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentSkyDomeParameters();
+		~TRenderComponentSkyDomeParameters();
+
+		bool active;
+		String material;
+	};
+
+	class TRenderComponentSkyBoxParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentSkyBoxParameters();
+		~TRenderComponentSkyBoxParameters();
+
+		bool active;
+		String material;
+		Real distance;
+	};
+
+	class TRenderComponentSceneParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentSceneParameters();
+		~TRenderComponentSceneParameters();
+
+		ColourValue ambient;
+		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
+		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
+	};
 }
 
 #endif

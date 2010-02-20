@@ -1,6 +1,7 @@
 #ifndef GameObjectSceneH_H
 #define GameObjectSceneH_H
 #include "GameObject.h"
+#include "../RenderComponent/RenderComponentScene.h"
 namespace OUAN
 {
 	class GameObjectScene : public GameObject
@@ -16,6 +17,16 @@ namespace OUAN
 		//get/set
 		RenderComponentScenePtr getRenderComponentScene() const;
 		void setRenderComponentScene(RenderComponentScenePtr pRenderComponentScene);
+	};
+
+	class TGameObjectSceneParameters: public TGameObjectParameters
+	{
+	public:
+		TGameObjectSceneParameters();
+		~TGameObjectSceneParameters();
+
+		TRenderComponentSceneParameters tRenderComponentSceneParameters;
+
 	};
 }
 #endif

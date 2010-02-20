@@ -18,3 +18,9 @@ void RenderComponentCamera::setCamera(Ogre::Camera* camera)
 {
 	mCamera=camera;
 }
+TRenderComponentCameraParameters::TRenderComponentCameraParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentCameraParameters::~TRenderComponentCameraParameters()
+{
+}

@@ -28,5 +28,14 @@ namespace OUAN
 
 		//TODO: Add event-related methods
 	};
+
+	class TGameObjectParameters
+	{
+	public:
+		TGameObjectParameters();
+		~TGameObjectParameters();
+
+		std::string name;
+	};
 }
 #endif

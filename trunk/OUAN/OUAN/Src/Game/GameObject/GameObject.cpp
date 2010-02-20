@@ -28,3 +28,11 @@ const std::string& GameObject::getId() const
 {
 	return mId;
 }
+
+
+TGameObjectParameters::TGameObjectParameters()
+{
+}
+TGameObjectParameters::~TGameObjectParameters()
+{
+}

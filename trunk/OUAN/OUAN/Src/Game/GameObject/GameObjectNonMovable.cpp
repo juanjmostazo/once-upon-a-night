@@ -3,7 +3,7 @@
 using namespace OUAN;
 
 GameObjectNonMovable::GameObjectNonMovable(const std::string& name, const std::string& id)
-:GameObject(name,id)
+:GameObjectPositional(name,id)
 {
 
 }
@@ -11,4 +11,11 @@ GameObjectNonMovable::GameObjectNonMovable(const std::string& name, const std::s
 GameObjectNonMovable::~GameObjectNonMovable()
 {
 
+}
+
+TGameObjectNonMovableParameters::TGameObjectNonMovableParameters() :TGameObjectPositionalParameters()
+{
+}
+TGameObjectNonMovableParameters::~TGameObjectNonMovableParameters()
+{
 }

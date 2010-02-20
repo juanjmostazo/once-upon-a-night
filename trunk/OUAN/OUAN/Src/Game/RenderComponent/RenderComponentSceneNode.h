@@ -18,6 +18,20 @@ namespace OUAN
 		void setSceneNode(Ogre::SceneNode *);
 
 	};
+
+	class TRenderComponentSceneNodeParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentSceneNodeParameters();
+		~TRenderComponentSceneNodeParameters();
+
+		String parentSceneNodeName;
+		Vector3 position;
+		Quaternion orientation;
+		Vector3 scale;
+		String autotracktarget;
+	};
+
 }
 
 #endif

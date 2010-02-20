@@ -21,3 +21,11 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 {
 	mRenderComponentScene=pRenderComponentScene;
 }
+
+
+TGameObjectSceneParameters::TGameObjectSceneParameters() : TGameObjectParameters()
+{
+}
+TGameObjectSceneParameters::~TGameObjectSceneParameters()
+{
+}

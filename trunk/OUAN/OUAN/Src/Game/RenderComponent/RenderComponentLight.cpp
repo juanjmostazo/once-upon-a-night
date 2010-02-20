@@ -19,3 +19,9 @@ void RenderComponentLight::setLight(Ogre::Light* light)
 	mLight=light;
 }
 
+TRenderComponentLightParameters::TRenderComponentLightParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentLightParameters::~TRenderComponentLightParameters()
+{
+}

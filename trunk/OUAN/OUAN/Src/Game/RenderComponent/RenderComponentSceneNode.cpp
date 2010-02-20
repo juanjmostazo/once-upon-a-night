@@ -17,3 +17,11 @@ void RenderComponentSceneNode::setSceneNode(Ogre::SceneNode* sceneNode)
 {
 	mSceneNode=sceneNode;
 }
+
+TRenderComponentSceneNodeParameters::TRenderComponentSceneNodeParameters()
+:TRenderComponentParameters()
+{
+}
+TRenderComponentSceneNodeParameters::~TRenderComponentSceneNodeParameters()
+{
+}

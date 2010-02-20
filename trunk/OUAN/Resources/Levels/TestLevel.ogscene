@@ -23,7 +23,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="7.6256 13.287 -13.7406" orientation="0.944743 0.186856 -0.264222 0.0522654"></OPTION>
+    <OPTION id="0" position="7.6256 13.287 -13.7406" orientation="0.870423 0.0418134 -0.48996 0.0235431"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -97,7 +97,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.944743 0.186856 -0.264222 0.0522654"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.870426 0.0418135 -0.489961 0.0235432"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="7.6256 13.287 -13.7406"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -131,7 +131,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="63539536" name="PJ_ONY#0" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="63539536" name="ony" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>

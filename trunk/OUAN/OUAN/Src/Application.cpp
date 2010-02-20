@@ -92,12 +92,13 @@ void Application::go()
 		loops=0;
 		long elapsedTime=0;
 		long currentTime=loopTimer.getMillisecondsCPU();
-
+		Ogre::LogManager::getSingleton().logMessage("currentTime="+Ogre::StringConverter::toString(currentTime)+" nextGameTicks= "+Ogre::StringConverter::toString(nextGameTicks));
 		while(currentTime>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
+			Ogre::LogManager::getSingleton().logMessage("Update");
 			elapsedTime=currentTime-elapsedTime;
 			mStateManager->getCurrentState()->update(elapsedTime);
-			nextGameTicks+=SKIP_TICKS;
+			//nextGameTicks+=SKIP_TICKS;
 			loops++;
 			currentTime=loopTimer.getMillisecondsCPU();
 		}
@@ -108,9 +109,8 @@ void Application::go()
 		
 		elapsedSeconds = currentTime / 1000.0f;
 		mPhysicsSubsystem->update(elapsedSeconds);
-
+		Ogre::LogManager::getSingleton().logMessage("Render");
 		loopTimer.reset();
-
 		bool windowClosed = mRenderSubsystem->isWindowClosed();
 		continueRunning &= ! windowClosed;
 		bool renderFrameSuccess = mStateManager->getCurrentState()->render();
