@@ -37,9 +37,15 @@ namespace OUAN
 		RenderComponentSceneNodePtr ComponentFactory::createRenderComponentSceneNode(GameObjectPtr gameObject,TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters);
 		RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameObjectPtr gameObject,TRenderComponentViewportParameters tRenderComponentViewportParameters); 
 		
-		
 		//create and return a physics component
-		//ComponentPtr createPhysicsComponent(TObjectParameters,GameObjectPtr,PhysicsSubsystemPtr);
+		PhysicsComponentPtr ComponentFactory::createPhysicsComponent(GameObjectPtr gameObject,TPhysicsComponentParameters tPhysicsComponentParameters);
+		PhysicsComponentMovablePtr ComponentFactory::createPhysicsComponentMovable(GameObjectPtr gameObject,TPhysicsComponentMovableParameters tPhysicsComponentMovableParameters);
+		PhysicsComponentMovableEntityPtr ComponentFactory::createPhysicsComponentMovableEntity(GameObjectPtr gameObject,TPhysicsComponentMovableEntityParameters tPhysicsComponentMovableEntityParameters);
+		PhysicsComponentNonMovablePtr ComponentFactory::createPhysicsComponentNonMovable(GameObjectPtr gameObject,TPhysicsComponentNonMovableParameters tPhysicsComponentNonMovableParameters);
+		PhysicsComponentOnyPtr ComponentFactory::createPhysicsComponentOny(GameObjectPtr gameObject,TPhysicsComponentOnyParameters tPhysicsComponentOnyParameters);
+		PhysicsComponentTripolloPtr ComponentFactory::createPhysicsComponentTripollo(GameObjectPtr gameObject,TPhysicsComponentTripolloParameters tPhysicsComponentTripolloParameters);
+		PhysicsComponentTerrainPtr ComponentFactory::createPhysicsComponentTerrain(GameObjectPtr gameObject,TPhysicsComponentTerrainParameters tPhysicsComponentTerrainParameters);
+
 		//[TODO: Others]
 	};
 }

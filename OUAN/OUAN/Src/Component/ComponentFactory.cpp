@@ -12,6 +12,13 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Physics/PhysicsComponent/PhysicsComponent.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentMovableEntity.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentOny.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentTripollo.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentTerrain.h"
 
 using namespace OUAN;
 
@@ -31,8 +38,6 @@ void ComponentFactory::initialise(ApplicationPtr app)
 {
 	mApp=app;
 }
-
-
 
 RenderComponentPtr ComponentFactory::createRenderComponent(GameObjectPtr gameObject,TRenderComponentParameters tRenderComponentParameters)
 {
@@ -140,4 +145,67 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	pRenderComponentViewport->setViewport(mApp->getRenderSubsystem()->createViewport(gameObject->getName(),tRenderComponentViewportParameters));
 
 	return pRenderComponentViewport;
+}
+
+PhysicsComponentPtr ComponentFactory::createPhysicsComponent(GameObjectPtr gameObject,TPhysicsComponentParameters tPhysicsComponentParameters)
+{
+	PhysicsComponentPtr pPhysicsComponent = PhysicsComponentPtr(new PhysicsComponent()); 
+
+	pPhysicsComponent->setParent(gameObject);	
+
+	return pPhysicsComponent;
+}
+
+PhysicsComponentMovablePtr ComponentFactory::createPhysicsComponentMovable(GameObjectPtr gameObject,TPhysicsComponentMovableParameters tPhysicsComponentMovableParameters)
+{
+	PhysicsComponentMovablePtr pPhysicsComponentMovable = PhysicsComponentMovablePtr(new PhysicsComponentMovable()); 
+
+	pPhysicsComponentMovable->setParent(gameObject);	
+
+	return pPhysicsComponentMovable;
+}
+
+PhysicsComponentMovableEntityPtr ComponentFactory::createPhysicsComponentMovableEntity(GameObjectPtr gameObject,TPhysicsComponentMovableEntityParameters tPhysicsComponentMovableEntityParameters)
+{
+	PhysicsComponentMovableEntityPtr pPhysicsComponentMovableEntity = PhysicsComponentMovableEntityPtr(new PhysicsComponentMovableEntity()); 
+
+	pPhysicsComponentMovableEntity->setParent(gameObject);	
+
+	return pPhysicsComponentMovableEntity;
+}
+
+PhysicsComponentNonMovablePtr ComponentFactory::createPhysicsComponentNonMovable(GameObjectPtr gameObject,TPhysicsComponentNonMovableParameters tPhysicsComponentNonMovableParameters)
+{
+	PhysicsComponentNonMovablePtr pPhysicsComponentNonMovable = PhysicsComponentNonMovablePtr(new PhysicsComponentNonMovable()); 
+
+	pPhysicsComponentNonMovable->setParent(gameObject);	
+
+	return pPhysicsComponentNonMovable;
+}
+
+PhysicsComponentOnyPtr ComponentFactory::createPhysicsComponentOny(GameObjectPtr gameObject,TPhysicsComponentOnyParameters tPhysicsComponentOnyParameters)
+{
+	PhysicsComponentOnyPtr pPhysicsComponentOny = PhysicsComponentOnyPtr(new PhysicsComponentOny()); 
+
+	pPhysicsComponentOny->setParent(gameObject);	
+
+	return pPhysicsComponentOny;
+}
+
+PhysicsComponentTripolloPtr ComponentFactory::createPhysicsComponentTripollo(GameObjectPtr gameObject,TPhysicsComponentTripolloParameters tPhysicsComponentTripolloParameters)
+{
+	PhysicsComponentTripolloPtr pPhysicsComponentTripollo = PhysicsComponentTripolloPtr(new PhysicsComponentTripollo()); 
+
+	pPhysicsComponentTripollo->setParent(gameObject);	
+
+	return pPhysicsComponentTripollo;
+}
+
+PhysicsComponentTerrainPtr ComponentFactory::createPhysicsComponentTerrain(GameObjectPtr gameObject,TPhysicsComponentTerrainParameters tPhysicsComponentTerrainParameters)
+{
+	PhysicsComponentTerrainPtr pPhysicsComponentTerrain = PhysicsComponentTerrainPtr(new PhysicsComponentTerrain()); 
+
+	pPhysicsComponentTerrain->setParent(gameObject);	
+
+	return pPhysicsComponentTerrain;
 }

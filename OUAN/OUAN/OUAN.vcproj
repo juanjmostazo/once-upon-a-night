@@ -388,6 +388,22 @@
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentNonMovable.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentOny.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTerrain.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTripollo.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -620,6 +636,22 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentNonMovable.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentOny.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTerrain.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTripollo.h"
 						>
 					</File>
 				</Filter>
