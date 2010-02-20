@@ -111,6 +111,9 @@ void Application::go()
 		//Update graphics stuff
 		//updateGraphics(interpolation);
 
+		//TESTING worldsceneManager TODO ERASE THIS
+		Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mGameWorldManager->getGameObjectTripollo()[0]->getRenderComponentSceneNode()->getSceneNode()->getPosition()));
+
 		elapsedSeconds = currentTime / 1000.0f;
 		mPhysicsSubsystem->update(elapsedSeconds);
 		Ogre::LogManager::getSingleton().logMessage("Render");

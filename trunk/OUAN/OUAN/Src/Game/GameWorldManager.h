@@ -93,7 +93,6 @@ namespace OUAN
 		void addGameObjectNonMovableTerrain(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain);
 		void addGameObjectNonMovableLight(GameObjectNonMovableLightPtr pGameObjectNonMovableLight);
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
-		bool existsObject(std::string name);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
 
 		/// Generate a unique id string with the following format:
