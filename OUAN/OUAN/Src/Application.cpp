@@ -17,6 +17,10 @@
 #include "Loader/Configuration.h"
 #include "Loader/LevelLoader.h"
 
+
+#include "Game/GameObject/GameObjectTripollo.h"
+#include "Game/RenderComponent/RenderComponentSceneNode.h"
+
 using namespace OUAN;
 
 
@@ -106,7 +110,7 @@ void Application::go()
 		interpolation=float(loopTimer.getMillisecondsCPU()+SKIP_TICKS-nextGameTicks)/float(SKIP_TICKS);
 		//Update graphics stuff
 		//updateGraphics(interpolation);
-		
+
 		elapsedSeconds = currentTime / 1000.0f;
 		mPhysicsSubsystem->update(elapsedSeconds);
 		Ogre::LogManager::getSingleton().logMessage("Render");

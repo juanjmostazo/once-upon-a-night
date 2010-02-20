@@ -137,15 +137,7 @@ std::string GameWorldManager::makeIdString(const std::string& baseString,const i
 
 bool GameWorldManager::existsObject(std::string name)
 {
-	GameObjectPtr gameObject;
-	//Get GameObject to add the mesh file
-	gameObject=getObject(name);
-
-	//If the GameObject doesn't exist, we create a new one
-	if(!gameObject)
-	{
-		return true;
-	}
+	//TODO CHECK IF OBJECT EXTISTS!!!
 	return false;
 }
 
@@ -166,7 +158,7 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 //	//TODO: add to other maps
 //}
 
-void GameWorldManager::addGameObject(GameObjectOnyPtr pGameObjectOny)
+void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 {
 	if(!existsObject(pGameObjectOny->getName()))
 	{
@@ -179,7 +171,7 @@ void GameWorldManager::addGameObject(GameObjectOnyPtr pGameObjectOny)
 	}
 }
 
-void GameWorldManager::addGameObject(GameObjectTripolloPtr pGameObjectTripollo)
+void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
 {
 	if(!existsObject(pGameObjectTripollo->getName()))
 	{
@@ -192,7 +184,7 @@ void GameWorldManager::addGameObject(GameObjectTripolloPtr pGameObjectTripollo)
 	}
 }
 
-void GameWorldManager::addGameObject(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain)
+void GameWorldManager::addGameObjectNonMovableTerrain(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain)
 {
 	if(!existsObject(pGameObjectNonMovableTerrain->getName()))
 	{
@@ -204,7 +196,7 @@ void GameWorldManager::addGameObject(GameObjectNonMovableTerrainPtr pGameObjectN
 		mGameObjectNonMovableTerrain.push_back(pGameObjectNonMovableTerrain);
 	}
 }
-void GameWorldManager::addGameObject(GameObjectNonMovableLightPtr pGameObjectNonMovableLight)
+void GameWorldManager::addGameObjectNonMovableLight(GameObjectNonMovableLightPtr pGameObjectNonMovableLight)
 {
 	if(!existsObject(pGameObjectNonMovableLight->getName()))
 	{
@@ -244,13 +236,15 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create RenderComponentSceneNode
-		factory->createRenderComponentSceneNode(pGameObjectOny,tGameObjectOnyParameters.tRenderComponentSceneNodeParameters);
+		pGameObjectOny->setRenderComponentSceneNode(factory->createRenderComponentSceneNode(
+			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentSceneNodeParameters));
 
 		//Create RenderComponentEntity
-		factory->createRenderComponentEntity(pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters);
+		pGameObjectOny->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
 
 	//Add Object to GameWorldManager
-	addGameObject(pGameObjectOny);
+	addGameObjectOny(pGameObjectOny);
 }
 
 void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
@@ -266,13 +260,16 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create RenderComponentSceneNode
-		factory->createRenderComponentSceneNode(pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentSceneNodeParameters);
+		pGameObjectTripollo->setRenderComponentSceneNode(factory->createRenderComponentSceneNode(
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentSceneNodeParameters));
 
 		//Create RenderComponentEntity
-		factory->createRenderComponentEntity(pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters);
+		pGameObjectTripollo->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters));
+
 
 	//Add Object to GameWorldManager
-	addGameObject(pGameObjectTripollo);
+	addGameObjectTripollo(pGameObjectTripollo);
 }
 
 void GameWorldManager::createGameObjectNonMovableTerrain(TGameObjectNonMovableTerrainParameters tGameObjectNonMovableTerrainParameters)
@@ -287,13 +284,16 @@ void GameWorldManager::createGameObjectNonMovableTerrain(TGameObjectNonMovableTe
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create RenderComponentSceneNode
-		factory->createRenderComponentSceneNode(pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters);
+		pGameObjectNonMovableTerrain->setRenderComponentSceneNode(factory->createRenderComponentSceneNode(
+			pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters));
 
 		//Create RenderComponentEntity
-		factory->createRenderComponentEntity(pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters);
+		pGameObjectNonMovableTerrain->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters));
 
+		Ogre::Entity * r=pGameObjectNonMovableTerrain->getRenderComponentEntity()->getEntity();
 	//Add Object to GameWorldManager
-	addGameObject(pGameObjectNonMovableTerrain);
+	addGameObjectNonMovableTerrain(pGameObjectNonMovableTerrain);
 
 }
 
@@ -310,13 +310,15 @@ void GameWorldManager::createGameObjectNonMovableLight(TGameObjectNonMovableLigh
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create RenderComponentSceneNode
-		factory->createRenderComponentSceneNode(pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentSceneNodeParameters);
+		pGameObjectNonMovableLight->setRenderComponentSceneNode(factory->createRenderComponentSceneNode(
+			pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentSceneNodeParameters));
 
 		//Create RenderComponentLight
-		factory->createRenderComponentLight(pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentLightParameters);
+		pGameObjectNonMovableLight->setRenderComponentLight(factory->createRenderComponentLight(
+			pGameObjectNonMovableLight,tGameObjectNonMovableLightParameters.tRenderComponentLightParameters));
 
 	//Add Object to GameWorldManager
-	addGameObject(pGameObjectNonMovableLight);
+	addGameObjectNonMovableLight(pGameObjectNonMovableLight);
 }
 
 
