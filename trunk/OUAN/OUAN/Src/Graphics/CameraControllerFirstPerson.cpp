@@ -85,7 +85,7 @@ void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime)
 {
 
-	float moveScale=3;
+	float moveScale=30;
 	float rotateScale=3;
 
 	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);

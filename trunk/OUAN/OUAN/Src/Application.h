@@ -81,8 +81,20 @@ namespace OUAN
 			///Initialise the game state machine
 			void loadInitialState();
 
+			/// Set current debug mode
+			/// @param debugMode	mask containing the OR-ed value/values
+			///						for the desired debug modes to use
+			void setDebugMode(int debugMode);
+			/// Retrieve the current debug mode state
+			/// @return debug mode status (enabled, physics info, ...)
+			int getDebugMode() const;
+
 			/// Determine if there has been a request to shut down the app
 			bool mExitRequested;
+
+			/// Used to prevent key repeats from quickly 
+			/// toggling on/off certain actions
+			int mKeyBuffer;
 		protected:
 
 			/// Pointer to the game state manager
@@ -103,6 +115,11 @@ namespace OUAN
 
 			/// Name of the application window
 			std::string mWindowName;
+
+			/// Debug mode mask: depending on its value, 
+			/// certain debug info or rendering modes will be enabled
+			int mDebugMode;
+
 		};
 }
 #endif

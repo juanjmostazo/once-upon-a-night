@@ -40,8 +40,8 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	defineResources(config);
 	setupRenderSystem(config);
 	createRenderWindow(config);
-	//createVisualDebugger(config);
 	initialiseResourceGroups(config);
+	defaultSetupScene(config);
 }
 
 void RenderSubsystem::cleanUp()
@@ -110,7 +110,9 @@ void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
 	mNxOgreVisualDebugger->setRenderable(mNxOgreVisualDebuggerRenderable);
 	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
 	mNxOgreVisualDebuggerNode->attachObject(mNxOgreVisualDebuggerRenderable);
-	mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);	
+	mNxOgreVisualDebugger->setVisualisationMode(mApp->getDebugMode()!=DEBUGMODE_NONE?
+		NxOgre::Enums::VisualDebugger_ShowAll:
+		NxOgre::Enums::VisualDebugger_ShowNone);	
 }
 
 void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
@@ -141,13 +143,13 @@ void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void RenderSubsystem::setupScene(ConfigurationPtr config)
+void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
 {
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 	createCameras();
 	createViewports();	
 	createScene();
-	createOverlays();
+	//createOverlays();
 }
 void RenderSubsystem::createCameras()
 {
@@ -167,7 +169,7 @@ void RenderSubsystem::createViewports()
 
 void RenderSubsystem::createOverlays()
 {
-	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
+	//Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
 }
 
 void RenderSubsystem::createScene()
@@ -209,10 +211,6 @@ void RenderSubsystem::updateVisualDebugger()
 
 bool RenderSubsystem::render()
 {
-	updateVisualDebugger();
-	updateStats();
-	updateDebugInfo();
-
 	return mRoot->renderOneFrame();
 }
 
@@ -644,4 +642,23 @@ void RenderSubsystem::updateDebugInfo()
 		guiDbg->setCaption(debugMessage);
 	}
 	catch(...) { /* ignore */ }
+}
+
+void RenderSubsystem::showDebugOverlay()
+{
+	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
+}
+void RenderSubsystem::hideDebugOverlay()
+{
+	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->hide();
+}
+void RenderSubsystem::showVisualDebugger()
+{
+	if (mNxOgreVisualDebugger)
+		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);		
+}
+void RenderSubsystem::hideVisualDebugger()
+{
+	if (mNxOgreVisualDebugger)
+		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowNone);		
 }

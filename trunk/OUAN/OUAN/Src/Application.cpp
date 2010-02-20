@@ -23,6 +23,8 @@
 using namespace OUAN;
 
 Application::Application(const std::string& windowName) : mWindowName(windowName)
+,mDebugMode(DEBUGMODE_NONE)
+,mKeyBuffer(-1)
 {
 }
 
@@ -65,9 +67,6 @@ void Application::initialise()
 
 	setupInputSystem();
 
-	//TODO: Put this in proper location
-	mRenderSubsystem->setupScene(mConfiguration);
-
 	mPhysicsSubsystem.reset(new PhysicsSubsystem());
 	mPhysicsSubsystem->initialise(this_,mConfiguration);
 
@@ -78,11 +77,10 @@ void Application::go()
 	Ogre::Timer loopTimer;
 	bool continueRunning = true;
 
-	// TODO: Decide for one synchronization method and stick to it
-	long nextGameTicks = loopTimer.getMillisecondsCPU();
+	long nextGameTicks = loopTimer.getMilliseconds();
+	long lastTick=nextGameTicks;
+	long currentTime;
 	int loops;
-	float interpolation;
-	float elapsedSeconds;
 
 	while ( continueRunning )
 	{
@@ -91,38 +89,16 @@ void Application::go()
 
 		//Update logic stuff
 		loops=0;
-		long elapsedTime=0;
-		long currentTime=loopTimer.getMillisecondsCPU();
-		Ogre::LogManager::getSingleton().logMessage("currentTime="+Ogre::StringConverter::toString(currentTime)+" nextGameTicks= "+Ogre::StringConverter::toString(nextGameTicks));
-		while(currentTime>nextGameTicks && loops<MAX_FRAMESKIP)
+
+		while((currentTime=loopTimer.getMilliseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
 			Ogre::LogManager::getSingleton().logMessage("Update");
-			elapsedTime=currentTime-elapsedTime;
-			mStateManager->getCurrentState()->update(elapsedTime);
-			//nextGameTicks+=SKIP_TICKS;
+			mStateManager->getCurrentState()->update(currentTime-lastTick);
+			nextGameTicks+=SKIP_TICKS;
 			loops++;
-			currentTime=loopTimer.getMillisecondsCPU();
+			lastTick=currentTime;
 		}
 
-		interpolation=float(loopTimer.getMillisecondsCPU()+SKIP_TICKS-nextGameTicks)/float(SKIP_TICKS);
-		//Update graphics stuff
-		//updateGraphics(interpolation);
-
-		//TESTING worldsceneManager TODO ERASE THIS
-		Ogre::LogManager::getSingleton().logMessage(
-			Ogre::StringConverter::toString(
-				mGameWorldManager->getGameObjectTripollo()[0]->getRenderComponentSceneNode()->getSceneNode()->getPosition()
-			)
-		);
-
-		mRenderSubsystem->setDebugMessage("HOLA!!");
-
-		//Ogre::LogManager::getSingleton().logMessage("Updating physics");
-		elapsedSeconds = currentTime / 1000.0f;
-		mPhysicsSubsystem->update(elapsedSeconds);
-		loopTimer.reset();
-
-		//Ogre::LogManager::getSingleton().logMessage("Rendering");
 		bool windowClosed = mRenderSubsystem->isWindowClosed();
 		continueRunning &= ! windowClosed;
 		bool renderFrameSuccess = mStateManager->getCurrentState()->render();
@@ -182,10 +158,20 @@ void Application::setupInputSystem()
 }
 void Application::loadInitialState()
 {
-	GameStatePtr initialState(new GameRunningState());
+	//GameStatePtr initialState(new GameRunningState());
+	GameStatePtr initialState(new MainMenuState());
 	ApplicationPtr this_ = shared_from_this();
 	mStateManager->changeState(initialState,this_);
 }
+
+int Application::getDebugMode() const{
+	return mDebugMode;
+}
+void Application::setDebugMode(int debugMode)
+{
+	mDebugMode=debugMode;
+}
+
 GameStateManagerPtr Application::getGameStateManager() const
 {
 	return mStateManager;

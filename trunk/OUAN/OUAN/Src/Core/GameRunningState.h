@@ -25,6 +25,10 @@ namespace OUAN
 		/// Update game according to the current state
 		/// @param app	the parent app
 		void update(long elapsedTime);
+		
+		/// Renders game's visuals to the screen
+		/// @param app the parent app
+		bool render();
 
 		/// Process keyboard press input event.
 		/// @param e	input event

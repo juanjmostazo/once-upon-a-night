@@ -1,6 +1,7 @@
 #include "GameRunningState.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 
 using namespace OUAN;
@@ -24,12 +25,14 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp=app;	
 	//TODO: Do this at proper location
 	mApp->getGameWorldManager()->loadLevel("TestLevel.ogscene");
+	mApp->mKeyBuffer=-1;
+
 }
 
 /// Clean up main menu's resources
 void GameRunningState::cleanUp()
 {
-
+	mApp->mKeyBuffer=-1;
 }
 
 /// pause state
@@ -47,28 +50,7 @@ void GameRunningState::resume()
 /// @param app	the parent application
 void GameRunningState::handleEvents()
 {
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_A))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_NEG_X);
 
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_D))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_POS_X);
-
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_W))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_NEG_Z);
-
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_S))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_POS_Z);
-
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_Q))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_NEG_Y);
-
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_E))
-		mApp->getRenderSubsystem()->translateCam(OUAN::AXIS_POS_Y);
-
-	if(mApp->getKeyboard()->isKeyDown(OIS::KC_LSHIFT))
-		mApp->getRenderSubsystem()->relativeMoveCam();
-	else
-		mApp->getRenderSubsystem()->relativeMoveCam(10);
 }
 
 void GameRunningState::update(long elapsedTime)
@@ -77,16 +59,50 @@ void GameRunningState::update(long elapsedTime)
 	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
 	mApp->getRenderSubsystem()->relativeMoveCam();
 
+	float elapsedSeconds=elapsedTime*0.001f;
+	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+	mApp->mKeyBuffer-=elapsedTime;
+
 }
 
 bool GameRunningState::keyPressed( const OIS::KeyEvent& e )
 {
 	if ( e.key == OIS::KC_ESCAPE )
 		mApp->mExitRequested= true;
+	
+	if (e.key == OIS::KC_G && mApp->mKeyBuffer<0)
+	{
+		if (mApp->getDebugMode()==DEBUGMODE_PHYSICS)
+		{
+			mApp->setDebugMode(DEBUGMODE_NONE);
+			mApp->getRenderSubsystem()->hideDebugOverlay();
+			mApp->getRenderSubsystem()->hideVisualDebugger();
+		}
+		else
+		{
+			mApp->setDebugMode(DEBUGMODE_PHYSICS);
+			mApp->getRenderSubsystem()->showDebugOverlay();
+			mApp->getRenderSubsystem()->showVisualDebugger();
+		}
+		mApp->mKeyBuffer = 500;
+	}
 	return true;
 }
 bool GameRunningState::mouseMoved(const OIS::MouseEvent &e)
 {
 	mApp->getRenderSubsystem()->moveCamera(e);
 	return true;
+}
+
+bool GameRunningState::render()
+{
+	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
+	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
+	{
+		renderSubsystem->updateStats();
+		renderSubsystem->updateDebugInfo();
+		renderSubsystem->showDebugOverlay();
+	}
+	renderSubsystem->updateVisualDebugger();
+	return renderSubsystem->render();
 }
