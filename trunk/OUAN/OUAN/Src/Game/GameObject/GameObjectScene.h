@@ -1,7 +1,7 @@
 #ifndef GameObjectSceneH_H
 #define GameObjectSceneH_H
 #include "GameObject.h"
-#include "../RenderComponent/RenderComponentScene.h"
+#include "../../Graphics/RenderComponent/RenderComponentScene.h"
 namespace OUAN
 {
 	class GameObjectScene : public GameObject

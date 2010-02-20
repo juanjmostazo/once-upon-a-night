@@ -1,7 +1,7 @@
 #ifndef GameObjectNonMovableLightH_H
 #define GameObjectNonMovableLightH_H
 #include "GameObjectNonMovable.h"
-#include "../RenderComponent/RenderComponentLight.h"
+#include "../../Graphics/RenderComponent/RenderComponentLight.h"
 namespace OUAN
 {
 	class GameObjectNonMovableLight : public GameObjectNonMovable

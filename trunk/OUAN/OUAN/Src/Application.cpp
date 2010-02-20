@@ -12,20 +12,17 @@
 #include "Physics/PhysicsSubsystem.h"
 
 #include "Game/GameWorldManager.h"
-#include "Game/ComponentFactory.h"
+#include "Component/ComponentFactory.h"
 
 #include "Loader/Configuration.h"
 #include "Loader/LevelLoader.h"
 
-
 #include "Game/GameObject/GameObjectTripollo.h"
-#include "Game/RenderComponent/RenderComponentSceneNode.h"
+#include "Graphics/RenderComponent/RenderComponentSceneNode.h"
 
 using namespace OUAN;
 
-
-Application::Application(const std::string& windowName)
-:mWindowName(windowName)
+Application::Application(const std::string& windowName) : mWindowName(windowName)
 {
 }
 

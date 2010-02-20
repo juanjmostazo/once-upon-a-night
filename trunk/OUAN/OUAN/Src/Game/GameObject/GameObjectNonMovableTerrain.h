@@ -1,7 +1,7 @@
 #ifndef GameObjectNonMovableTerrainH_H
 #define GameObjectNonMovableTerrainH_H
 #include "GameObjectNonMovableEntity.h"
-#include "../RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 namespace OUAN
 {
 	class GameObjectNonMovableTerrain : public GameObjectNonMovableEntity
