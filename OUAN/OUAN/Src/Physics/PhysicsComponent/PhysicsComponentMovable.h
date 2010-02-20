@@ -4,6 +4,7 @@
 #include "PhysicsComponent.h"
 namespace OUAN
 {
+	// Examples: boxes, barrels... elements which interacts with the entities
 	class PhysicsComponentMovable: public PhysicsComponent
 	{
 	public:
@@ -16,6 +17,8 @@ namespace OUAN
 	public:
 		TPhysicsComponentMovableParameters();
 		~TPhysicsComponentMovableParameters();
+
+		float mass;
 	};
 }
 
