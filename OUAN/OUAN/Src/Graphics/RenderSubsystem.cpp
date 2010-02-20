@@ -34,6 +34,7 @@ RenderSubsystem::~RenderSubsystem()
 void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 {
 	this->mApp=app;
+	this->debugMessage = "";
 
 	createRoot(config);
 	defineResources(config);
@@ -150,8 +151,7 @@ void RenderSubsystem::createViewports()
 
 void RenderSubsystem::createOverlays()
 {
-	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
-	mDebugOverlay->show();
+	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
 }
 
 void RenderSubsystem::createScene()
@@ -195,6 +195,7 @@ bool RenderSubsystem::render()
 {
 	updateVisualDebugger();
 	updateStats();
+	updateDebugInfo();
 
 	return mRoot->renderOneFrame();
 }
@@ -575,6 +576,16 @@ void RenderSubsystem::createSkyDome(bool active, OUAN::String material)
 	}
 }
 
+Ogre::String RenderSubsystem::getDebugMessage()
+{
+	return debugMessage;
+}
+
+void RenderSubsystem::setDebugMessage(Ogre::String debugMessage)
+{
+	this->debugMessage = debugMessage;
+}
+
 void RenderSubsystem::updateStats()
 {
 	static Ogre::String currFps = "Current FPS: ";
@@ -604,20 +615,17 @@ void RenderSubsystem::updateStats()
 
 		Ogre::OverlayElement* guiBatches = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/NumBatches");
 		guiBatches->setCaption(batches + Ogre::StringConverter::toString(stats.batchCount));
+	}
+	catch(...) { /* ignore */ }
+}
 
-		/////////////////////////
-
+void RenderSubsystem::updateDebugInfo()
+{
+	try {
 		Ogre::OverlayElement* guiDbg = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/DebugText");
 		guiDbg->setTop(0);
-		/*
-		Ogre::String message = 
-			"Camera Position: x: "+Ogre::StringConverter::toString(camPos.x)+", y: "+Ogre::StringConverter::toString(camPos.y)+", z:"+Ogre::StringConverter::toString(camPos.z) + "\n" + 
-			"Camera orientation: yaw: "+Ogre::StringConverter::toString(camOri.getYaw())+", pitch: "+Ogre::StringConverter::toString(camOri.getPitch())+", roll:"+Ogre::StringConverter::toString(camOri.getRoll()) + "\n" + 
-			"Freddy position: x: "+Ogre::StringConverter::toString(freddyPos.x)+", y: "+Ogre::StringConverter::toString(freddyPos.y)+", z:"+Ogre::StringConverter::toString(freddyPos.z) + "\n" + 
-			"Freddy orientation: yaw: "+Ogre::StringConverter::toString(freddyOri.getYaw())+", pitch: "+Ogre::StringConverter::toString(freddyOri.getPitch())+", roll:"+Ogre::StringConverter::toString(freddyOri.getRoll());
-		*/
-		guiDbg->setCaption("Test Test Test");
-
+		//Ogre::StringConverter::toString(x);
+		guiDbg->setCaption(debugMessage);
 	}
 	catch(...) { /* ignore */ }
 }

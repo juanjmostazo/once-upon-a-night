@@ -20,7 +20,6 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
-
 	};
 
 	class TGameObjectMovableEntityParameters: public TGameObjectMovableParameters

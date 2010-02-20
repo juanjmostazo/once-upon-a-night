@@ -45,6 +45,7 @@ GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
 {
 	if(!mGameObjects.empty() && mGameObjects.count(objectId)>0)
 		return mGameObjects[objectId];
+
 	return GameObjectPtr();
 }
 
@@ -53,30 +54,37 @@ TGameObjectMovableContainer GameWorldManager::getGameObjectMovable()
 {
 	return mGameObjectMovable;
 }
+
 TGameObjectMovableEntityContainer GameWorldManager::getGameObjectMovableEntity()
 {
 	return mGameObjectMovableEntity;
 }
+
 TGameObjectNonMovableContainer GameWorldManager::getGameObjectNonMovable()
 {
 	return mGameObjectNonMovable;
 }
+
 TGameObjectNonMovableEntityContainer GameWorldManager::getGameObjectNonMovableEntity()
 {
 	return mGameObjectNonMovableEntity;
 }
+
 TGameObjectOnyContainer GameWorldManager::getGameObjectOny()
 {
 	return mGameObjectOny;
 }
+
 TGameObjectPositionalContainer GameWorldManager::getGameObjectPositional()
 {
 	return mGameObjectPositional;
 }
+
 TGameObjectSceneContainer GameWorldManager::getGameObjectScene()
 {
 	return mGameObjectScene;
 }
+
 TGameObjectTripolloContainer GameWorldManager::getGameObjectTripollo()
 {
 	return mGameObjectTripollo;
@@ -197,7 +205,6 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 
 void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
 {
-
 	mGameObjects[pGameObjectTripollo->getId()]=pGameObjectTripollo;
 
 	mGameObjectPositional.push_back(pGameObjectTripollo);
