@@ -22,6 +22,12 @@ namespace OUAN
 	public:
 		TPhysicsComponentParameters();
 		~TPhysicsComponentParameters();
+
+		//'triangle' or 'convex'
+		std::string nxsType; 
+
+		//nxs file name
+		std::string nxsFile; 
 	};
 }
 

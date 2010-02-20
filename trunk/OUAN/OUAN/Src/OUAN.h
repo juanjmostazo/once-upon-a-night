@@ -103,6 +103,35 @@ namespace OUAN
 			class TRenderComponentViewportParameters;
 			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
+			//Physics components
+			class PhysicsComponent;
+			class TPhysicsComponentParameters;
+			typedef boost::shared_ptr<PhysicsComponent> PhysicsComponentPtr;
+
+			class PhysicsComponentMovable;
+			class TPhysicsComponentMovableParameters;
+			typedef boost::shared_ptr<PhysicsComponentMovable> PhysicsComponentMovablePtr;
+
+			class PhysicsComponentMovableEntity;
+			class TPhysicsComponentMovableEntityParameters;
+			typedef boost::shared_ptr<PhysicsComponentMovableEntity> PhysicsComponentMovableEntityPtr;
+
+			class PhysicsComponentNonMovable;
+			class TPhysicsComponentNonMovableParameters;
+			typedef boost::shared_ptr<PhysicsComponentNonMovable> PhysicsComponentNonMovablePtr;
+
+			class PhysicsComponentOny;
+			class TPhysicsComponentOnyParameters;
+			typedef boost::shared_ptr<PhysicsComponentOny> PhysicsComponentOnyPtr;
+
+			class PhysicsComponentTripollo;
+			class TPhysicsComponentTripolloParameters;
+			typedef boost::shared_ptr<PhysicsComponentTripollo> PhysicsComponentTripolloPtr;
+
+			class PhysicsComponentTerrain;
+			class TPhysicsComponentTerrainParameters;
+			typedef boost::shared_ptr<PhysicsComponentTerrain> PhysicsComponentTerrainPtr;
+
 		//Game Object Specializations
 		class GameObject;
 		class TGameObjectParameters;

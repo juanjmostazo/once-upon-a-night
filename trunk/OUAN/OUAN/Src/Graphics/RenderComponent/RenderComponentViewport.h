@@ -16,8 +16,6 @@ namespace OUAN
 
 		Ogre::Viewport * getViewport() const;
 		void setViewport(Ogre::Viewport *);
-
-
 	};
 
 	class TRenderComponentViewportParameters: public TRenderComponentParameters
