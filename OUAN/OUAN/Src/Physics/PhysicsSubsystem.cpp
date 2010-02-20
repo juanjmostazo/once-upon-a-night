@@ -52,13 +52,13 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(0.5);
 	mNxOgreScene->getMaterial(0)->setRestitution(0.1);
 
-	//Initialise visual debugger
+	////Initialise visual debugger
 	app->getRenderSubsystem()->createVisualDebugger(config);
 
-	/**
-	* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
-	*/
-	app->getRenderSubsystem()->createDebugFloor(config);
+	///**
+	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
+	//*/
+	/*app->getRenderSubsystem()->createDebugFloor(config);*/
 }
 
 void PhysicsSubsystem::update(float elapsedSeconds)

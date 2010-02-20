@@ -67,6 +67,9 @@ namespace OUAN
 		/// @param subscriber	callback object containing the function to handle the event
 		void bindEvent(const CEGUI::String& eventName, const std::string& windowName, CEGUI::Event::Subscriber subscriber);
 
+		/// Initialise resource groups
+		void initialiseResourceGroups();
+
 	};
 }
 #endif

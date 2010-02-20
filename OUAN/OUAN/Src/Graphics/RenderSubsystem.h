@@ -47,7 +47,7 @@ namespace OUAN
 		void initialiseResourceGroups(OUAN::ConfigurationPtr config);
 
 		/// Setup the scene [TODO: Make this level dependent?]
-		void setupScene(OUAN::ConfigurationPtr config);
+		void defaultSetupScene(OUAN::ConfigurationPtr config);
 		//Scene configuration methods
 		
 		/// Create the scene, and place initial objects on it
@@ -114,6 +114,22 @@ namespace OUAN
 		Ogre::String getDebugMessage();
 		void setDebugMessage(Ogre::String debugMessage);
 
+		/// Update stats
+		void updateStats();
+
+		/// Update debug info
+		void updateDebugInfo();
+
+		/// Update visual debugger stuff
+		void updateVisualDebugger();
+
+		void showDebugOverlay();
+		void hideDebugOverlay();
+
+		void showVisualDebugger();
+		void hideVisualDebugger();
+
+
 	protected:
 		/// the application
 		OUAN::ApplicationPtr mApp;
@@ -127,15 +143,6 @@ namespace OUAN
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 		void createSkyBox(bool active, String material, Real distance);
 		void createSkyDome(bool active, String material);
-
-		/// Update stats
-		void updateStats();
-
-		/// Update debug info
-		void updateDebugInfo();
-
-		/// Update visual debugger stuff
-		void updateVisualDebugger();
 
 		/// Main window
 		// [IMPORTANT: notice a shared_ptr is not used here, since we don't 'own' the 

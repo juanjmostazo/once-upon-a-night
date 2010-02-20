@@ -2,6 +2,8 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 
+#include <cegui/CEGUIDefaultResourceProvider.h>
+
 using namespace OUAN;
 CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)
 {
@@ -28,7 +30,7 @@ void GUISubsystem::initialise(ApplicationPtr app)
 		app->getRenderSubsystem()->getSceneManager());
 	mSystem = new CEGUI::System(mRenderer);
 	
-	//TODO: Make layout and resource loading dependant on the game state/level
+	//TODO: Make layout and specific resource loading dependant on the game state/level
 	CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
 	mSystem->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 	mSystem->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
