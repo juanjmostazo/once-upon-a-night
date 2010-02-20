@@ -112,12 +112,20 @@ void Application::go()
 		//updateGraphics(interpolation);
 
 		//TESTING worldsceneManager TODO ERASE THIS
-		Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mGameWorldManager->getGameObjectTripollo()[0]->getRenderComponentSceneNode()->getSceneNode()->getPosition()));
+		Ogre::LogManager::getSingleton().logMessage(
+			Ogre::StringConverter::toString(
+				mGameWorldManager->getGameObjectTripollo()[0]->getRenderComponentSceneNode()->getSceneNode()->getPosition()
+			)
+		);
 
+		mRenderSubsystem->setDebugMessage("HOLA!!");
+
+		//Ogre::LogManager::getSingleton().logMessage("Updating physics");
 		elapsedSeconds = currentTime / 1000.0f;
 		mPhysicsSubsystem->update(elapsedSeconds);
-		Ogre::LogManager::getSingleton().logMessage("Render");
 		loopTimer.reset();
+
+		//Ogre::LogManager::getSingleton().logMessage("Rendering");
 		bool windowClosed = mRenderSubsystem->isWindowClosed();
 		continueRunning &= ! windowClosed;
 		bool renderFrameSuccess = mStateManager->getCurrentState()->render();

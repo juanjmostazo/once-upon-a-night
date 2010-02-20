@@ -107,6 +107,9 @@ namespace OUAN
 		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
 		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
+		/// Getters and setters
+		Ogre::String getDebugMessage();
+		void setDebugMessage(Ogre::String debugMessage);
 
 	protected:
 		/// the application
@@ -122,8 +125,11 @@ namespace OUAN
 		void createSkyBox(bool active, String material, Real distance);
 		void createSkyDome(bool active, String material);
 
-		/// Update debug stats
+		/// Update stats
 		void updateStats();
+
+		/// Update debug info
+		void updateDebugInfo();
 
 		/// Update visual debugger stuff
 		void updateVisualDebugger();
@@ -167,8 +173,8 @@ namespace OUAN
 		OGRE3DRenderable*		mNxOgreVisualDebuggerRenderable;
 		Ogre::SceneNode*		mNxOgreVisualDebuggerNode;
 
-		/// Debug Overlay
-		Ogre::Overlay* mDebugOverlay;
+		/// Debug message, to be written by other subsystems
+		Ogre::String debugMessage;
 	};
 }
 #endif

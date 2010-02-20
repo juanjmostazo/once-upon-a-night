@@ -1,5 +1,5 @@
 #ifndef GameObjectOnyH_H
-#define GameObjectOnyeH_H
+#define GameObjectOnyH_H
 #include "GameObjectMovableEntity.h"
 namespace OUAN
 {
@@ -18,7 +18,6 @@ namespace OUAN
 	public:
 		TGameObjectOnyParameters();
 		~TGameObjectOnyParameters();
-
 	};
 
 }

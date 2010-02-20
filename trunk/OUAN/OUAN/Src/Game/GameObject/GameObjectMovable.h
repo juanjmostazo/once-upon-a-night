@@ -19,7 +19,6 @@ namespace OUAN
 	public:
 		TGameObjectMovableParameters();
 		~TGameObjectMovableParameters();
-
 	};
 
 }
