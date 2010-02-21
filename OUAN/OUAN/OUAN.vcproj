@@ -381,27 +381,31 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovable.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentCharacter.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplex.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentNonMovable.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexMovable.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentOny.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexNonMovable.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTerrain.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimple.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTripollo.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCube.cpp"
 						>
 					</File>
 				</Filter>
@@ -631,27 +635,31 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovable.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentCharacter.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentMovableEntity.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplex.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentNonMovable.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexMovable.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentOny.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexNonMovable.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTerrain.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimple.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentTripollo.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCube.h"
 						>
 					</File>
 				</Filter>

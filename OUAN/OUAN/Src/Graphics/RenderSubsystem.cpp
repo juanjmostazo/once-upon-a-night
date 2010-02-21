@@ -94,7 +94,9 @@ void RenderSubsystem::defineResources(ConfigurationPtr config)
 void RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 {
 	//[TODO - Get rid of config dialog]
-	if(!mRoot->showConfigDialog());
+	if(!mRoot->showConfigDialog()){
+		//TODO: PRINT ERROR
+	}
 }
 
 void RenderSubsystem::createRenderWindow(ConfigurationPtr config)

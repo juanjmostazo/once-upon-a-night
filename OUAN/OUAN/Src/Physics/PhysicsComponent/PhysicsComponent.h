@@ -19,12 +19,6 @@ namespace OUAN
 		//Event handlers
 		//void onDoSomething(EventData,emitter, ...);
 		//void onDoSomethingElse(...);
-
-		virtual NxOgre::Mesh* getMesh();
-		virtual void setMesh(NxOgre::Mesh* mesh);
-
-	private:
-		NxOgre::Mesh* mesh;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters
@@ -32,12 +26,6 @@ namespace OUAN
 	public:
 		TPhysicsComponentParameters();
 		~TPhysicsComponentParameters();
-
-		//'triangle' or 'convex'
-		std::string nxsType; 
-
-		//nxs file name
-		std::string nxsFile; 
 	};
 }
 

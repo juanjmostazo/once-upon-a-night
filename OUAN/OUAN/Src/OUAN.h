@@ -16,6 +16,7 @@
 #include "TinyXML/tinyxml.h"
 
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
+#define _CRT_SECURE_NO_WARNINGS
 
 namespace OUAN
 {
@@ -113,29 +114,33 @@ namespace OUAN
 			class TPhysicsComponentParameters;
 			typedef boost::shared_ptr<PhysicsComponent> PhysicsComponentPtr;
 
-			class PhysicsComponentMovable;
-			class TPhysicsComponentMovableParameters;
-			typedef boost::shared_ptr<PhysicsComponentMovable> PhysicsComponentMovablePtr;
+			class PhysicsComponentCharacter;
+			class TPhysicsComponentCharacterParameters;
+			typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
 
-			class PhysicsComponentMovableEntity;
-			class TPhysicsComponentMovableEntityParameters;
-			typedef boost::shared_ptr<PhysicsComponentMovableEntity> PhysicsComponentMovableEntityPtr;
+			class PhysicsComponentComplex;
+			class TPhysicsComponentComplexParameters;
+			typedef boost::shared_ptr<PhysicsComponentComplex> PhysicsComponentComplexPtr;
 
-			class PhysicsComponentNonMovable;
-			class TPhysicsComponentNonMovableParameters;
-			typedef boost::shared_ptr<PhysicsComponentNonMovable> PhysicsComponentNonMovablePtr;
+			class PhysicsComponentComplexMovable;
+			class TPhysicsComponentComplexMovableParameters;
+			typedef boost::shared_ptr<PhysicsComponentComplexMovable> PhysicsComponentComplexMovablePtr;
 
-			class PhysicsComponentOny;
-			class TPhysicsComponentOnyParameters;
-			typedef boost::shared_ptr<PhysicsComponentOny> PhysicsComponentOnyPtr;
+			class PhysicsComponentComplexNonMovable;
+			class TPhysicsComponentComplexNonMovableParameters;
+			typedef boost::shared_ptr<PhysicsComponentComplexNonMovable> PhysicsComponentComplexNonMovablePtr;
 
-			class PhysicsComponentTripollo;
-			class TPhysicsComponentTripolloParameters;
-			typedef boost::shared_ptr<PhysicsComponentTripollo> PhysicsComponentTripolloPtr;
+			class PhysicsComponentSimple;
+			class TPhysicsComponentSimpleParameters;
+			typedef boost::shared_ptr<PhysicsComponentSimple> PhysicsComponentSimplePtr;
 
-			class PhysicsComponentTerrain;
-			class TPhysicsComponentTerrainParameters;
-			typedef boost::shared_ptr<PhysicsComponentTerrain> PhysicsComponentTerrainPtr;
+			class PhysicsComponentSimpleCapsule;
+			class TPhysicsComponentSimpleCapsuleParameters;
+			typedef boost::shared_ptr<PhysicsComponentSimpleCapsule> PhysicsComponentSimpleCapsulePtr;
+
+			class PhysicsComponentSimpleCube;
+			class TPhysicsComponentSimpleCubeParameters;
+			typedef boost::shared_ptr<PhysicsComponentSimpleCube> PhysicsComponentSimpleCubePtr;
 
 		//Game Object Specializations
 		class GameObject;

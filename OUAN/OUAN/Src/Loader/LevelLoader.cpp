@@ -23,12 +23,13 @@
 #include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentMovableEntity.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentNonMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentOny.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentTripollo.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentTerrain.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
 using namespace OUAN;
 
@@ -284,12 +285,14 @@ void LevelLoader::processGameObjectNonMovableTerrain(TiXmlElement *XMLNode)
 	//Get RenderComponentSceneNode
 	tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
 
+	/****** TO FIX
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentTerrainParameters tmpTerrainParams;
 	tmpTerrainParams.nxsFile="TRIANGLE_nivel2vacio.nxs";
 	tmpTerrainParams.nxsType="TRIANGLE";
 
 	tGameObjectNonMovableTerrainParameters.tPhysicsComponentTerrainParameters=tmpTerrainParams;
+	*/
 
 	//Create Entity
 	pGameWorldManager->createGameObjectNonMovableTerrain(tGameObjectNonMovableTerrainParameters);
