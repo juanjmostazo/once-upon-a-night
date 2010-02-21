@@ -13,12 +13,13 @@
 #include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentMovableEntity.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentNonMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentOny.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentTripollo.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentTerrain.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
 using namespace OUAN;
 
@@ -156,68 +157,65 @@ PhysicsComponentPtr ComponentFactory::createPhysicsComponent(GameObjectPtr gameO
 	return pPhysicsComponent;
 }
 
-PhysicsComponentMovablePtr ComponentFactory::createPhysicsComponentMovable(GameObjectPtr gameObject,TPhysicsComponentMovableParameters tPhysicsComponentMovableParameters)
+PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters)
 {
-	PhysicsComponentMovablePtr pPhysicsComponentMovable = PhysicsComponentMovablePtr(new PhysicsComponentMovable()); 
+	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
 
-	pPhysicsComponentMovable->setParent(gameObject);	
+	pPhysicsComponentCharacter->setParent(gameObject);	
 
-	return pPhysicsComponentMovable;
+	return pPhysicsComponentCharacter;
 }
 
-PhysicsComponentMovableEntityPtr ComponentFactory::createPhysicsComponentMovableEntity(GameObjectPtr gameObject,TPhysicsComponentMovableEntityParameters tPhysicsComponentMovableEntityParameters)
+PhysicsComponentComplexPtr ComponentFactory::createPhysicsComponentComplex(GameObjectPtr gameObject,TPhysicsComponentComplexParameters tPhysicsComponentComplexParameters)
 {
-	PhysicsComponentMovableEntityPtr pPhysicsComponentMovableEntity = PhysicsComponentMovableEntityPtr(new PhysicsComponentMovableEntity()); 
+	PhysicsComponentComplexPtr pPhysicsComponentComplex = PhysicsComponentComplexPtr(new PhysicsComponentComplex()); 
 
-	pPhysicsComponentMovableEntity->setParent(gameObject);	
+	pPhysicsComponentComplex->setParent(gameObject);	
 
-	return pPhysicsComponentMovableEntity;
+	return pPhysicsComponentComplex;
 }
 
-PhysicsComponentNonMovablePtr ComponentFactory::createPhysicsComponentNonMovable(GameObjectPtr gameObject,TPhysicsComponentNonMovableParameters tPhysicsComponentNonMovableParameters)
+PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComplexMovable(GameObjectPtr gameObject,TPhysicsComponentComplexMovableParameters tPhysicsComponentComplexMovableParameters)
 {
-	PhysicsComponentNonMovablePtr pPhysicsComponentNonMovable = PhysicsComponentNonMovablePtr(new PhysicsComponentNonMovable()); 
+	PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable = PhysicsComponentComplexMovablePtr(new PhysicsComponentComplexMovable()); 
 
-	pPhysicsComponentNonMovable->setParent(gameObject);	
+	pPhysicsComponentComplexMovable->setParent(gameObject);	
 
-	return pPhysicsComponentNonMovable;
+	return pPhysicsComponentComplexMovable;
 }
 
-PhysicsComponentOnyPtr ComponentFactory::createPhysicsComponentOny(GameObjectPtr gameObject,TPhysicsComponentOnyParameters tPhysicsComponentOnyParameters)
+PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentComplexNonMovable(GameObjectPtr gameObject,TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters)
 {
-	PhysicsComponentOnyPtr pPhysicsComponentOny = PhysicsComponentOnyPtr(new PhysicsComponentOny()); 
+	PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable = PhysicsComponentComplexNonMovablePtr(new PhysicsComponentComplexNonMovable()); 
 
-	pPhysicsComponentOny->setParent(gameObject);	
+	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
 
-	return pPhysicsComponentOny;
+	return pPhysicsComponentComplexNonMovable;
 }
 
-PhysicsComponentTripolloPtr ComponentFactory::createPhysicsComponentTripollo(GameObjectPtr gameObject,TPhysicsComponentTripolloParameters tPhysicsComponentTripolloParameters)
+PhysicsComponentSimplePtr ComponentFactory::createPhysicsComponentSimple(GameObjectPtr gameObject,TPhysicsComponentSimpleParameters tPhysicsComponentSimpleParameters)
 {
-	PhysicsComponentTripolloPtr pPhysicsComponentTripollo = PhysicsComponentTripolloPtr(new PhysicsComponentTripollo()); 
+	PhysicsComponentSimplePtr pPhysicsComponentSimple = PhysicsComponentSimplePtr(new PhysicsComponentSimple()); 
 
-	pPhysicsComponentTripollo->setParent(gameObject);	
+	pPhysicsComponentSimple->setParent(gameObject);	
 
-	return pPhysicsComponentTripollo;
+	return pPhysicsComponentSimple;
 }
 
-PhysicsComponentTerrainPtr ComponentFactory::createPhysicsComponentTerrain(GameObjectPtr gameObject,TPhysicsComponentTerrainParameters tPhysicsComponentTerrainParameters)
+PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters)
 {
-	PhysicsComponentTerrainPtr pPhysicsComponentTerrain = PhysicsComponentTerrainPtr(new PhysicsComponentTerrain()); 
+	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule()); 
 
-	pPhysicsComponentTerrain->setParent(gameObject);
+	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 
-	NxOgre::ArchiveResourceIdentifier identifier;
-	identifier.setArchive(("nxs:" + tPhysicsComponentTerrainParameters.nxsFile).c_str());
+	return pPhysicsComponentSimpleCapsule;
+}
 
-	Ogre::LogManager::getSingleton().logMessage("Trying to load: 'nxs:" + tPhysicsComponentTerrainParameters.nxsFile + "'");
+PhysicsComponentSimpleCubePtr ComponentFactory::createPhysicsComponentSimpleCube(GameObjectPtr gameObject,TPhysicsComponentSimpleCubeParameters tPhysicsComponentSimpleCubeParameters)
+{
+	PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube = PhysicsComponentSimpleCubePtr(new PhysicsComponentSimpleCube()); 
 
-	pPhysicsComponentTerrain->setMesh(NxOgre::MeshManager::getSingleton()->load(identifier));	
+	pPhysicsComponentSimpleCube->setParent(gameObject);	
 
-	if (tPhysicsComponentTerrainParameters.nxsType.compare("TRIANGLE") == 0){
-		NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(pPhysicsComponentTerrain->getMesh());
-		triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
-	}
-
-	return pPhysicsComponentTerrain;
+	return pPhysicsComponentSimpleCube;
 }

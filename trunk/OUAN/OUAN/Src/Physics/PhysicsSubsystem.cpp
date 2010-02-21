@@ -7,12 +7,13 @@
 #include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "PhysicsComponent/PhysicsComponent.h"
-#include "PhysicsComponent/PhysicsComponentMovable.h"
-#include "PhysicsComponent/PhysicsComponentMovableEntity.h"
-#include "PhysicsComponent/PhysicsComponentNonMovable.h"
-#include "PhysicsComponent/PhysicsComponentOny.h"
-#include "PhysicsComponent/PhysicsComponentTerrain.h"
-#include "PhysicsComponent/PhysicsComponentTripollo.h"
+#include "PhysicsComponent/PhysicsComponentCharacter.h"
+#include "PhysicsComponent/PhysicsComponentComplex.h"
+#include "PhysicsComponent/PhysicsComponentComplexMovable.h"
+#include "PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "PhysicsComponent/PhysicsComponentSimple.h"
+#include "PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "PhysicsComponent/PhysicsComponentSimpleCube.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -89,7 +90,6 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
 	/*app->getRenderSubsystem()->createDebugFloor(config);*/
-
 	/*
 	for(unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectNonMovableTerrain().size(); i++){
 		LogManager::getSingleton().logMessage("Looping in terrain " + i);
