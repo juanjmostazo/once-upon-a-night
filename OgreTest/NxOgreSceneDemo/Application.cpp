@@ -59,7 +59,7 @@ bool Application::initialise()
 
 	m_cameraOrbitController = new OrbitCameraController( m_camera );
 	m_cameraOrbitController->setOrientation( -45, -45 );
-	m_cameraOrbitController->setDistance( 2 );
+	m_cameraOrbitController->setDistance( 8 );
 	m_cameraOrbitController->setLookAtPosition( 0, 0.5, 0 );
 	m_camera->setNearClipDistance( 0.01 );
 
@@ -152,12 +152,12 @@ bool Application::createCharacter()
 	m_runAnimation->setEnabled( true );
 
 	NxOgre::ControllerDescription desc;
-	desc.mPosition.set(0,2,0);
+	desc.mPosition.set(0,10,0);
 	desc.mCallback = this;
-	
+
 	m_NXOgreControllerRenderable = m_NXOgreRenderSystem->createPointRenderable(m_character);
 	m_NXOgreController = m_NXOgreControllerManager->createCapsuleController(desc, NxOgre::Vec2(1,3), m_NXOgreScene, m_NXOgreControllerRenderable );
-
+	
 	return true;
 }
 
@@ -167,7 +167,9 @@ bool Application::createBasicScenary()
 	m_NXOgreRenderSystem->createBody(new NxOgre::Box(1, 1, 1),NxOgre::Vec3(0, 1.5, 5),"cube.1m.mesh");
 	m_NXOgreRenderSystem->createBody(new NxOgre::Box(1, 1, 1),NxOgre::Vec3(0, 2.5, 5),"cube.1m.mesh");
 	m_NXOgreRenderSystem->createBody(new NxOgre::Box(1, 1, 1),NxOgre::Vec3(0, 3.5, 5),"cube.1m.mesh");
-	m_NXOgreRenderSystem->createBody(new NxOgre::Box(1, 1, 1),NxOgre::Vec3(0, 4.5, 5),"cube.1m.mesh");
+	m_NXOgreRenderSystem->createBody(new NxOgre::Box(1, 1, 1),NxOgre::Vec3(0, 12.5, 5),"cube.1m.mesh");
+
+	//m_NXOgreRenderSystem->createBody(new NxOgre::Capsule(2, 4),NxOgre::Vec3(0, 25, 5),"cube.1m.mesh");
 
 	m_NXOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
 
