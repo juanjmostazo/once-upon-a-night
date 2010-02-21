@@ -2,6 +2,10 @@
 #define PhysicsComponentH_H
 
 #include "../../Component/Component.h"
+#include <NxOgre.h>
+#include <NxOgreOGRE3D.h>
+#include <NxOgreAddonCharacterController.h>
+
 namespace OUAN
 {
 	class PhysicsComponent : public Component
@@ -15,6 +19,12 @@ namespace OUAN
 		//Event handlers
 		//void onDoSomething(EventData,emitter, ...);
 		//void onDoSomethingElse(...);
+
+		virtual NxOgre::Mesh* getMesh();
+		virtual void setMesh(NxOgre::Mesh* mesh);
+
+	private:
+		NxOgre::Mesh* mesh;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters

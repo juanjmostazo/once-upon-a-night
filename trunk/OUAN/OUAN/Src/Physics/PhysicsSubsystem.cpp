@@ -2,7 +2,17 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectNonMovableTerrain.h"
+#include "../Game/GameObject/GameObjectOny.h"
+#include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "PhysicsComponent/PhysicsComponent.h"
+#include "PhysicsComponent/PhysicsComponentMovable.h"
+#include "PhysicsComponent/PhysicsComponentMovableEntity.h"
+#include "PhysicsComponent/PhysicsComponentNonMovable.h"
+#include "PhysicsComponent/PhysicsComponentOny.h"
+#include "PhysicsComponent/PhysicsComponentTerrain.h"
+#include "PhysicsComponent/PhysicsComponentTripollo.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -23,28 +33,48 @@ PhysicsSubsystem::~PhysicsSubsystem()
 
 void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
+	LogManager::getSingleton().logMessage("Initializing physics subsystem");
 	this->mApp=app;
+	this->mConfig=config;
+
+	//Initializing NxOgre::TimeController
+	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
 	//Initializing NxOgre::World
 	mNxOgreWorld = NxOgre::World::createWorld();
+
+	//Loading NXS resources
+	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
+}
+
+void PhysicsSubsystem::resetLevel()
+{
+	delete mNxOgreControllerManager;
+	delete mNxOgreRenderSystem;
+	
+	if (mNxOgreScene != NULL){
+		mNxOgreWorld->destroyScene(mNxOgreScene);
+	}
+}
+
+void PhysicsSubsystem::initialiseLevel(std::string sceneName)
+{
+	LogManager::getSingleton().logMessage("Initializing physics for level ...");
 	
 	//Initializing NxOgre::Scene
 	NxOgre::SceneDescription sceneDesc;
 	sceneDesc.mGravity = NxOgre::Vec3(0, -9.8f, 0);
-	sceneDesc.mName = "NxOgreScene";
+	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
-	
-	//Initializing NxOgre::TimeController
-	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
 	//Initializing Ogre3DRenderSystem
 	mNxOgreRenderSystem = new OGRE3DRenderSystem(mNxOgreScene);
 
-	//Loading NXS resources
-	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
-
 	//Initializing NxOgre::ControllerManager
 	mNxOgreControllerManager = new NxOgre::ControllerManager();
+
+	//Initializing NxOgre::TimeController
+	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
 	//Initializing scene stuff
 	mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
@@ -52,13 +82,21 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(0.5);
 	mNxOgreScene->getMaterial(0)->setRestitution(0.1);
 
-	////Initialise visual debugger
-	app->getRenderSubsystem()->createVisualDebugger(config);
+	//Initializing visual debugger
+	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
 	/*app->getRenderSubsystem()->createDebugFloor(config);*/
+
+	/*
+	for(unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectNonMovableTerrain().size(); i++){
+		LogManager::getSingleton().logMessage("Looping in terrain " + i);
+	}
+	*/
+
+	LogManager::getSingleton().logMessage("Initialization of physics for level finished");
 }
 
 void PhysicsSubsystem::update(float elapsedSeconds)

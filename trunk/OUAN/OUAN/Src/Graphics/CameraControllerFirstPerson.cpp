@@ -175,5 +175,5 @@ void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,f
 								cameraPitchNode->getOrientation() *
 								translateVector,
 								Ogre::SceneNode::TS_LOCAL);
-	Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
+	//Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
 }

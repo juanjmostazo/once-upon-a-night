@@ -77,6 +77,7 @@ namespace OUAN
 			GameWorldManagerPtr getGameWorldManager() const;
 			LevelLoaderPtr getLevelLoader() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
+			ConfigurationPtr getConfiguration() const;
 
 			///Initialise the game state machine
 			void loadInitialState();

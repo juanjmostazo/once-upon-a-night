@@ -23,9 +23,20 @@ void GameObjectNonMovableTerrain::setRenderComponentEntity(RenderComponentEntity
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
+PhysicsComponentTerrainPtr GameObjectNonMovableTerrain::getPhysicsComponentTerrain() const
+{
+	return mPhysicsComponentTerrain;
+}
+
+void GameObjectNonMovableTerrain::setPhysicsComponentTerrain(PhysicsComponentTerrainPtr pPhysicsComponentTerrain)
+{
+	mPhysicsComponentTerrain=pPhysicsComponentTerrain;
+}
+
 TGameObjectNonMovableTerrainParameters::TGameObjectNonMovableTerrainParameters() : TGameObjectNonMovableEntityParameters()
 {
 }
+
 TGameObjectNonMovableTerrainParameters::~TGameObjectNonMovableTerrainParameters()
 {
 }

@@ -27,6 +27,8 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->loadLevel("TestLevel.ogscene");
 	mApp->mKeyBuffer=-1;
 
+	mApp->getPhysicsSubsystem()->resetLevel();
+	mApp->getPhysicsSubsystem()->initialiseLevel("TestLevel");
 }
 
 /// Clean up main menu's resources

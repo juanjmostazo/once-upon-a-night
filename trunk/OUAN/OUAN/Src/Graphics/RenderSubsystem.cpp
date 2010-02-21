@@ -117,6 +117,7 @@ void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
 
 void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
 {
+	//Initializing main floor
 	Ogre::Plane *plane = new Ogre::Plane;
 	plane->normal = Ogre::Vector3::UNIT_Y;
 	plane->d = 0;
