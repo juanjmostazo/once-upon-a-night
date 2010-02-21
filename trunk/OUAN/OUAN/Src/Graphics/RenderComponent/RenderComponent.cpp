@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 RenderComponent::RenderComponent(const std::string& name)
-:Component(name.empty()?COMPONENT_NAME_OGRE:name)
+:Component(COMPONENT_NAME_RENDER)
 {
 }
 

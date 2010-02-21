@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentComplexMovable::PhysicsComponentComplexMovable(const std::string& name)
-:PhysicsComponentComplex(name.empty()?COMPONENT_NAME_OGRE:name)
+:PhysicsComponentComplex(COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE)
 {
 }
 

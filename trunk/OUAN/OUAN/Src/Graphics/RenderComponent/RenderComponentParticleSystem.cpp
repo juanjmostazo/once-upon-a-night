@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 RenderComponentParticleSystem::RenderComponentParticleSystem(const std::string& name)
-:RenderComponent(name.empty()?COMPONENT_NAME_OGRE:name)
+:RenderComponent(COMPONENT_NAME_RENDER_PARTICLE_SYSTEM)
 {
 }
 RenderComponentParticleSystem::~RenderComponentParticleSystem()

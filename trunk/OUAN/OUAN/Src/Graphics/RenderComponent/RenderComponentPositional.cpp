@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 RenderComponentPositional::RenderComponentPositional(const std::string& name)
-:RenderComponent(name.empty()?COMPONENT_NAME_OGRE:name)
+:RenderComponent(COMPONENT_NAME_RENDER_POSITIONAL)
 {
 }
 RenderComponentPositional::~RenderComponentPositional()

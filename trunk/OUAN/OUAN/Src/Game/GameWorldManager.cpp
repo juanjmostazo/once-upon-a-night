@@ -20,6 +20,11 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
 #include <iomanip>
 #include <sstream>
@@ -310,8 +315,8 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponentTerrain
-		//pGameObjectTerrain->setPhysicsComponentTerrain(factory->createPhysicsComponentTerrain(
-		//	pGameObjectTerrain,tGameObjectTerrainParameters.tPhysicsComponentTerrainParameters));
+		pGameObjectTerrain->setPhysicsComponentComplexNonMovable(factory->createPhysicsComponentComplexNonMovable(
+			pGameObjectTerrain,tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters));
 
 		Ogre::Entity * r=pGameObjectTerrain->getRenderComponentEntity()->getEntity();
 

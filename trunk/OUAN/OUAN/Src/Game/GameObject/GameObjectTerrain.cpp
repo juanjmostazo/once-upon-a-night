@@ -33,6 +33,17 @@ RenderComponentPositionalPtr GameObjectTerrain::getRenderComponentPositional() c
 	return mRenderComponentPositional;
 }
 
+void GameObjectTerrain::setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+{
+	mPhysicsComponentComplexNonMovable=pPhysicsComponentComplexNonMovable;
+}
+
+PhysicsComponentComplexNonMovablePtr GameObjectTerrain::getPhysicsComponentComplexNonMovable()
+{
+	return mPhysicsComponentComplexNonMovable;
+}
+
+
 TGameObjectTerrainParameters::TGameObjectTerrainParameters() : TGameObjectParameters()
 {
 }

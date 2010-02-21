@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
 
 namespace OUAN
 {
@@ -14,6 +15,8 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Physics information
+		PhysicsComponentComplexNonMovablePtr mPhysicsComponentComplexNonMovable;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -36,6 +39,12 @@ namespace OUAN
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
+
+		/// Set physics component
+		void setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable);
+
+		/// Get physics component
+		PhysicsComponentComplexNonMovablePtr getPhysicsComponentComplexNonMovable();
 	};
 
 	class TGameObjectTerrainParameters: public TGameObjectParameters
@@ -49,6 +58,9 @@ namespace OUAN
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
+
+		///Physics parameters
+		TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters;
 	};
 }
 #endif

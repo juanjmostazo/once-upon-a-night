@@ -57,14 +57,12 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::update(long elapsedTime)
 {
-
 	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
 	mApp->getRenderSubsystem()->relativeMoveCam();
 
 	float elapsedSeconds=elapsedTime*0.001f;
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 	mApp->mKeyBuffer-=elapsedTime;
-
 }
 
 bool GameRunningState::keyPressed( const OIS::KeyEvent& e )

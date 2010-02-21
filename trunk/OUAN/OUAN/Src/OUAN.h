@@ -61,7 +61,6 @@ namespace OUAN
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
 
-
 		class GameWorldManager;
 		class Component;
 
@@ -180,16 +179,26 @@ namespace OUAN
 		typedef std::map<std::string,ComponentPtr> TComponentContainer;
 		typedef TComponentContainer::iterator TComponentContainerIterator;
 
-
-
-
-
 		const int GAMEOBJECT_ID_ZERO_PADDING=6;
 
-		const std::string COMPONENT_NAME_OGRE="RenderComponent";
-		const std::string COMPONENT_NAME_PHYSICS="physicsComponent";
+		const std::string COMPONENT_NAME_PHYSICS="PhysicsComponent";
+		const std::string COMPONENT_NAME_PHYSICS_CHARACTER="PhysicsComponentCharacter";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX="PhysicsComponentComplex";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexMovable";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexNonMovable";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CUBE="PhysicsComponentSimpleCube";
 		
-
+		const std::string COMPONENT_NAME_RENDER="RenderComponent";
+		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
+		const std::string COMPONENT_NAME_RENDER_CAMERA="RenderComponentCamera";
+		const std::string COMPONENT_NAME_RENDER_ENTITY="RenderComponentEntity";
+		const std::string COMPONENT_NAME_RENDER_LIGHT="RenderComponentLight";
+		const std::string COMPONENT_NAME_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
+		const std::string COMPONENT_NAME_RENDER_POSITIONAL="RenderComponentPositional";
+		const std::string COMPONENT_NAME_RENDER_SCENE="RenderComponentScene";
+		const std::string COMPONENT_NAME_RENDER_VIEWPORT="RenderComponentViewport";
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations

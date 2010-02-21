@@ -165,6 +165,7 @@ PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComple
 
 PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentComplexNonMovable(GameObjectPtr gameObject,TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters)
 {
+	// Get SceneNode from gameObject->getComponent(COMPONENT_NAME_RENDER_POSITIONAL);
 	PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable = PhysicsComponentComplexNonMovablePtr(new PhysicsComponentComplexNonMovable()); 
 
 	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
