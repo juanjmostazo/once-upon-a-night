@@ -102,7 +102,7 @@ namespace OUAN
 		//Object creators
 
 		Ogre::Entity* createEntity(Ogre::String name,TRenderComponentEntityParameters tEntityParameters);
-		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentSceneNodeParameters tSceneNodeParameters);
+		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
 		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
@@ -122,12 +122,19 @@ namespace OUAN
 
 		/// Update visual debugger stuff
 		void updateVisualDebugger();
-
-		void showDebugOverlay();
-		void hideDebugOverlay();
-
+		// Control visual debugger's visibility
+		/// Turn on visual debugger
 		void showVisualDebugger();
+		/// Turn off visual debugger
 		void hideVisualDebugger();
+
+		/// Turn on debug overlay's visibility
+		void showDebugOverlay();
+		/// Turn off debug overlay's visibility
+		void hideDebugOverlay();
+		
+		/// Display HUD
+		void showHUD();
 
 
 	protected:

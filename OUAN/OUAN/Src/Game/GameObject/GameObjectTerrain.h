@@ -1,28 +1,26 @@
-#ifndef GameObjectTripolloH_H
-#define GameObjectTripolloH_H
+#ifndef GameObjectTerrainH_H
+#define GameObjectTerrainH_H
 #include "GameObject.h"
-#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+
 namespace OUAN
 {
-	/// Class modelling a particular enemy type
-	class GameObjectTripollo : public GameObject
+	/// Class to hold terrain information
+	class GameObjectTerrain : public GameObject
 	{
 	private:
-		/// Visual component
+		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
-		/// Positional component
+		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 
+		//TODO: think what happens when world changes with the rendercomponent
 	public:
-		/// Constructor
-		/// @param name name of the game object, specific to this class
-		/// @param id unique id of the game object
-		GameObjectTripollo(const std::string& name, const std::string& id);
-
+		//Constructor
+		GameObjectTerrain(const std::string& name, const std::string& id);
 		//Destructor
-		~GameObjectTripollo();
-
+		~GameObjectTerrain();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -39,23 +37,18 @@ namespace OUAN
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 	};
-	
-	/// Information data structure to carry around data between the
-	/// level loader and the "GameObjectTripollo"
-	class TGameObjectTripolloParameters: public TGameObjectParameters
+
+	class TGameObjectTerrainParameters: public TGameObjectParameters
 	{
 	public:
-		/// Default constructor
-		TGameObjectTripolloParameters();
-		/// Default destructor
-		~TGameObjectTripolloParameters();
-
+		TGameObjectTerrainParameters();
+		~TGameObjectTerrainParameters();
+		
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
-
 	};
-
 }
 #endif

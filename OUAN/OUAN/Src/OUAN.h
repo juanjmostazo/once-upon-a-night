@@ -101,9 +101,9 @@ namespace OUAN
 			class TRenderComponentSceneParameters;
 			typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
 
-			class RenderComponentSceneNode;
-			class TRenderComponentSceneNodeParameters;
-			typedef boost::shared_ptr<RenderComponentSceneNode> RenderComponentSceneNodePtr;
+			class RenderComponentPositional;
+			class TRenderComponentPositionalParameters;
+			typedef boost::shared_ptr<RenderComponentPositional> RenderComponentPositionalPtr;
 
 			class RenderComponentViewport;
 			class TRenderComponentViewportParameters;
@@ -138,47 +138,30 @@ namespace OUAN
 		typedef std::map<std::string,GameObjectPtr> TGameObjectContainer;
 		typedef TGameObjectContainer::iterator TGameObjectContainerIterator;
 
-		class GameObjectPositional;
-		class TGameObjectPositionalParameters;
-		typedef boost::shared_ptr<GameObjectPositional> GameObjectPositionalPtr;
-		typedef std::vector<GameObjectPositionalPtr> TGameObjectPositionalContainer;
-
-		class GameObjectMovable;
-		class TGameObjectMovableParameters;
-		typedef boost::shared_ptr<GameObjectMovable> GameObjectMovablePtr;
-		typedef std::vector<GameObjectMovablePtr> TGameObjectMovableContainer;
-
-		class GameObjectNonMovable;
-		class TGameObjectNonMovableParameters;
-		typedef boost::shared_ptr<GameObjectNonMovable> GameObjectNonMovablePtr;
-		typedef std::vector<GameObjectNonMovablePtr> TGameObjectNonMovableContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPositionalContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectMovableContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectNonMovableContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectMovableEntityContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectNonMovableEntityContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
 
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
+		const std::string LOADER_SCENE="scene";
 
-		class GameObjectMovableEntity;
-		class TGameObjectMovableEntityParameters;
-		typedef boost::shared_ptr<GameObjectMovableEntity> GameObjectMovableEntityPtr;
-		typedef std::vector<GameObjectMovableEntityPtr> TGameObjectMovableEntityContainer;
+		class GameObjectTerrain;
+		class TGameObjectTerrainParameters;
+		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
+		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
+		const std::string LOADER_TERRAIN_ID="terrain";
 
-		class GameObjectNonMovableEntity;
-		class TGameObjectNonMovableEntityParameters;
-		typedef boost::shared_ptr<GameObjectNonMovableEntity> GameObjectNonMovableEntityPtr;
-		typedef std::vector<GameObjectNonMovableEntityPtr> TGameObjectNonMovableEntityContainer;
-
-		class GameObjectNonMovableTerrain;
-		class TGameObjectNonMovableTerrainParameters;
-		typedef boost::shared_ptr<GameObjectNonMovableTerrain> GameObjectNonMovableTerrainPtr;
-		typedef std::vector<GameObjectNonMovableTerrainPtr> TGameObjectNonMovableTerrainContainer;
-		const std::string LOADER_NON_MOVABLE_TERRAIN_ID="terrain";
-
-		class GameObjectNonMovableLight;
-		class TGameObjectNonMovableLightParameters;
-		typedef boost::shared_ptr<GameObjectNonMovableLight> GameObjectNonMovableLightPtr;
-		typedef std::vector<GameObjectNonMovableLightPtr> TGameObjectNonMovableLightContainer;
-		const std::string LOADER_NON_MOVABLE_LIGHT_ID="light";
+		class GameObjectLight;
+		class TGameObjectLightParameters;
+		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
+		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
+		const std::string LOADER_LIGHT_ID="light";
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;

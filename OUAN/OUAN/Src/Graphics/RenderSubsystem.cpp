@@ -12,7 +12,7 @@
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
-#include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
+#include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 
 using namespace OUAN;
@@ -377,7 +377,7 @@ Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCa
 	return pCamera;
 }
 
-Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters)
+Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
 {
 
 	SceneNode *pParentSceneNode = 0;
@@ -387,27 +387,27 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 	try
 	{
 		//Get Parent SceneNode
-		if(tRenderComponentSceneNodeParameters.parentSceneNodeName.compare("SceneManager")==0)
+		if(tRenderComponentPositionalParameters.parentSceneNodeName.compare("SceneManager")==0)
 		{
 			pParentSceneNode = mSceneManager->getRootSceneNode();
 		}
 		else
 		{
-			pParentSceneNode = mSceneManager->getSceneNode(tRenderComponentSceneNodeParameters.parentSceneNodeName);
+			pParentSceneNode = mSceneManager->getSceneNode(tRenderComponentPositionalParameters.parentSceneNodeName);
 		}
 
 		//Create SceneNode
 		sceneNode = pParentSceneNode->createChildSceneNode(name);
 
 		//Set SceneNode parameters
-		sceneNode->setPosition(tRenderComponentSceneNodeParameters.position);
-		sceneNode->setOrientation(tRenderComponentSceneNodeParameters.orientation);
-		sceneNode->setScale(tRenderComponentSceneNodeParameters.scale);
-		if(tRenderComponentSceneNodeParameters.autotracktarget.compare("None")!=0)
+		sceneNode->setPosition(tRenderComponentPositionalParameters.position);
+		sceneNode->setOrientation(tRenderComponentPositionalParameters.orientation);
+		sceneNode->setScale(tRenderComponentPositionalParameters.scale);
+		if(tRenderComponentPositionalParameters.autotracktarget.compare("None")!=0)
 		{
 			//TODO test this
 			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(tRenderComponentSceneNodeParameters.autotracktarget);
+			trackTarget=mSceneManager->getSceneNode(tRenderComponentPositionalParameters.autotracktarget);
 			sceneNode->setAutoTracking(true,trackTarget);
 		}
 	}
@@ -664,4 +664,9 @@ void RenderSubsystem::hideVisualDebugger()
 {
 	if (mNxOgreVisualDebugger)
 		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowNone);		
+}
+void RenderSubsystem::showHUD()
+{
+	Ogre::OverlayManager::getSingleton().getByName("OUAN/HUDOverlay")->show();
+
 }

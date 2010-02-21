@@ -3,13 +3,8 @@
 #include "../Game/GameWorldManager.h"
 #include "../Component/Component.h"
 #include "../Game/GameObject/GameObject.h"
-#include "../Game/GameObject/GameObjectMovable.h"
-#include "../Game/GameObject/GameObjectMovableEntity.h"
-#include "../Game/GameObject/GameObjectNonMovable.h"
-#include "../Game/GameObject/GameObjectNonMovableEntity.h"
-#include "../Game/GameObject/GameObjectNonMovableLight.h"
-#include "../Game/GameObject/GameObjectNonMovableTerrain.h"
-#include "../Game/GameObject/GameObjectPositional.h"
+#include "../Game/GameObject/GameObjectLight.h"
+#include "../Game/GameObject/GameObjectTerrain.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
@@ -20,7 +15,7 @@
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
-#include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
+#include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
@@ -157,9 +152,9 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//}
 	else if( type.compare("Light Object")==0)
 	{
-		if(name.substr(0,LOADER_NON_MOVABLE_LIGHT_ID.size()).compare(LOADER_NON_MOVABLE_LIGHT_ID)==0)
+		if(name.substr(0,LOADER_LIGHT_ID.size()).compare(LOADER_LIGHT_ID)==0)
 		{
-			return "GameObjectNonMovableLight";
+			return "GameObjectLight";
 		}
 	}
 	else if( type.compare("Entity Object")==0)
@@ -172,9 +167,9 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 		{
 			return "GameObjectTripollo";
 		}
-		else if(name.substr(0,LOADER_NON_MOVABLE_TERRAIN_ID.size()).compare(LOADER_NON_MOVABLE_TERRAIN_ID)==0)
+		else if(name.substr(0,LOADER_TERRAIN_ID.size()).compare(LOADER_TERRAIN_ID)==0)
 		{
-			return "GameObjectNonMovableTerrain";
+			return "GameObjectTerrain";
 		}
 	}
 	//else if( type.compare("Camera Object")==0)
@@ -212,13 +207,13 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	{
 		processGameObjectTripollo(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectNonMovableTerrain")==0)
+	else if( gameObjectType.compare("GameObjectTerrain")==0)
 	{
-		processGameObjectNonMovableTerrain(XMLNode);
+		processGameObjectTerrain(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectNonMovableLight")==0)
+	else if( gameObjectType.compare("GameObjectLight")==0)
 	{
-		processGameObjectNonMovableLight(XMLNode);
+		processGameObjectLight(XMLNode);
 	}
 	else
 	{
@@ -248,8 +243,8 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 	//Get RenderComponentEntity
 	tGameObjectOnyParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
 
-	//Get RenderComponentSceneNode
-	tGameObjectOnyParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
+	//Get RenderComponentPositional
+	tGameObjectOnyParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Create Entity
 	pGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
@@ -265,52 +260,52 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	//Get RenderComponentEntity
 	tGameObjectTripolloParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
 
-	//Get RenderComponentSceneNode
-	tGameObjectTripolloParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
+	//Get RenderComponentPositional
+	tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Create Entity
 	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
 }
 
-void LevelLoader::processGameObjectNonMovableTerrain(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 {
-	OUAN::TGameObjectNonMovableTerrainParameters  tGameObjectNonMovableTerrainParameters;
+	OUAN::TGameObjectTerrainParameters  tGameObjectTerrainParameters;
 
 	//Get name
-	tGameObjectNonMovableTerrainParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectTerrainParameters.name = getAttrib(XMLNode, "name");
 
 	//Get RenderComponentEntity
-	tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
 
-	//Get RenderComponentSceneNode
-	tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
+	//Get RenderComponentPositional
+	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	/*
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentComplexNonMovableParameters tmpComponent;
 	
-	tGameObjectNonMovableTerrainParameters.tPhysicsComponentTerrainParameters=tmpTerrainParams;
+	tGameObjectTerrainParameters.tPhysicsComponentTerrainParameters=tmpTerrainParams;
 	*/
 
 	//Create Entity
-	pGameWorldManager->createGameObjectNonMovableTerrain(tGameObjectNonMovableTerrainParameters);
+	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
 }
 
-void LevelLoader::processGameObjectNonMovableLight(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectLight(TiXmlElement *XMLNode)
 {
-	OUAN::TGameObjectNonMovableLightParameters  tGameObjectNonMovableLightParameters;
+	OUAN::TGameObjectLightParameters  tGameObjectLightParameters;
 
 	//Get name
-	tGameObjectNonMovableLightParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectLightParameters.name = getAttrib(XMLNode, "name");
 
 	//Get RenderComponentLight
-	tGameObjectNonMovableLightParameters.tRenderComponentLightParameters=processRenderComponentLight(XMLNode);
+	tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(XMLNode);
 
-	//Get RenderComponentSceneNode
-	tGameObjectNonMovableLightParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNodeNoScale(XMLNode);
+	//Get RenderComponentPositional
+	tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
 
 	//Create Entity
-	pGameWorldManager->createGameObjectNonMovableLight(tGameObjectNonMovableLightParameters);
+	pGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
 }
 
 
@@ -475,36 +470,36 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 
 
 
-TRenderComponentSceneNodeParameters LevelLoader::processRenderComponentSceneNode(TiXmlElement *XMLNode)
+TRenderComponentPositionalParameters LevelLoader::processRenderComponentPositional(TiXmlElement *XMLNode)
 {
-	OUAN::TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters;
+	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 	//Get parent SceneNode name
-	tRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+	tRenderComponentPositionalParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	tRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
-	tRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-	tRenderComponentSceneNodeParameters.scale = getPropertyVector3(XMLNode,"scale");
-	tRenderComponentSceneNodeParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tRenderComponentPositionalParameters.position = getPropertyVector3(XMLNode,"position");
+	tRenderComponentPositionalParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tRenderComponentPositionalParameters.scale = getPropertyVector3(XMLNode,"scale");
+	tRenderComponentPositionalParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
-	return tRenderComponentSceneNodeParameters;
+	return tRenderComponentPositionalParameters;
 }
 
-TRenderComponentSceneNodeParameters LevelLoader::processRenderComponentSceneNodeNoScale(TiXmlElement *XMLNode)
+TRenderComponentPositionalParameters LevelLoader::processRenderComponentPositionalNoScale(TiXmlElement *XMLNode)
 {
-	OUAN::TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters;
+	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 	//Get parent SceneNode name
-	tRenderComponentSceneNodeParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+	tRenderComponentPositionalParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
 
 	//Get SceneNode parameters
-	tRenderComponentSceneNodeParameters.position = getPropertyVector3(XMLNode,"position");
-	tRenderComponentSceneNodeParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-	tRenderComponentSceneNodeParameters.scale = Vector3(1,1,1);
-	tRenderComponentSceneNodeParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tRenderComponentPositionalParameters.position = getPropertyVector3(XMLNode,"position");
+	tRenderComponentPositionalParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tRenderComponentPositionalParameters.scale = Vector3(1,1,1);
+	tRenderComponentPositionalParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 
-	return tRenderComponentSceneNodeParameters;
+	return tRenderComponentPositionalParameters;
 }
 
 //void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
