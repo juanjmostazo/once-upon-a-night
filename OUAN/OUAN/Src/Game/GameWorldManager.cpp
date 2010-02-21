@@ -314,10 +314,14 @@ void GameWorldManager::createGameObjectNonMovableTerrain(TGameObjectNonMovableTe
 		pGameObjectNonMovableTerrain->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tRenderComponentEntityParameters));
 
+		//Create PhysicsComponentTerrain
+		pGameObjectNonMovableTerrain->setPhysicsComponentTerrain(factory->createPhysicsComponentTerrain(
+			pGameObjectNonMovableTerrain,tGameObjectNonMovableTerrainParameters.tPhysicsComponentTerrainParameters));
+
 		Ogre::Entity * r=pGameObjectNonMovableTerrain->getRenderComponentEntity()->getEntity();
+
 	//Add Object to GameWorldManager
 	addGameObjectNonMovableTerrain(pGameObjectNonMovableTerrain);
-
 }
 
 void GameWorldManager::createGameObjectNonMovableLight(TGameObjectNonMovableLightParameters tGameObjectNonMovableLightParameters)

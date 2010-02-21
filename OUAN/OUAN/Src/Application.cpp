@@ -54,22 +54,21 @@ void Application::initialise()
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	mRenderSubsystem->initialise(this_,mConfiguration);
 
+	mPhysicsSubsystem.reset(new PhysicsSubsystem());
+	mPhysicsSubsystem->initialise(this_, mConfiguration);
+
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->initialise(this_);
 
-	mGameWorldManager.reset( new GameWorldManager);
+	mGameWorldManager.reset(new GameWorldManager());
 	mGameWorldManager->initialise(this_);
 
-	mLevelLoader.reset(new LevelLoader);
+	mLevelLoader.reset(new LevelLoader());
 	mLevelLoader->initialise(this_);
 
 	//TODO: Add remaining subsystems (AI, Audio, etc)
 
 	setupInputSystem();
-
-	mPhysicsSubsystem.reset(new PhysicsSubsystem());
-	mPhysicsSubsystem->initialise(this_,mConfiguration);
-
 }
 //Run the app
 void Application::go()
@@ -92,7 +91,7 @@ void Application::go()
 
 		while((currentTime=loopTimer.getMilliseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
-			Ogre::LogManager::getSingleton().logMessage("Update");
+			//Ogre::LogManager::getSingleton().logMessage("Update");
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
 			nextGameTicks+=SKIP_TICKS;
 			loops++;
@@ -195,4 +194,8 @@ PhysicsSubsystemPtr Application::getPhysicsSubsystem() const
 LevelLoaderPtr Application::getLevelLoader() const
 {
 	return mLevelLoader;
+}
+ConfigurationPtr Application::getConfiguration() const
+{
+	return mConfiguration;
 }

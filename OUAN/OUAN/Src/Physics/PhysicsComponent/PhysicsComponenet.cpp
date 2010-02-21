@@ -14,6 +14,14 @@ void PhysicsComponent::update(long elapsedTime)
 {
 }
 
+NxOgre::Mesh* PhysicsComponent::getMesh(){
+	return mesh;
+}
+
+void PhysicsComponent::setMesh(NxOgre::Mesh* mesh){
+	this->mesh = mesh;
+}
+
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {
 }

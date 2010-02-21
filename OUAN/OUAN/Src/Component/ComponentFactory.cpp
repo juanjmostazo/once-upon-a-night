@@ -205,7 +205,19 @@ PhysicsComponentTerrainPtr ComponentFactory::createPhysicsComponentTerrain(GameO
 {
 	PhysicsComponentTerrainPtr pPhysicsComponentTerrain = PhysicsComponentTerrainPtr(new PhysicsComponentTerrain()); 
 
-	pPhysicsComponentTerrain->setParent(gameObject);	
+	pPhysicsComponentTerrain->setParent(gameObject);
+
+	NxOgre::ArchiveResourceIdentifier identifier;
+	identifier.setArchive(("nxs:" + tPhysicsComponentTerrainParameters.nxsFile).c_str());
+
+	Ogre::LogManager::getSingleton().logMessage("Trying to load: 'nxs:" + tPhysicsComponentTerrainParameters.nxsFile + "'");
+
+	pPhysicsComponentTerrain->setMesh(NxOgre::MeshManager::getSingleton()->load(identifier));	
+
+	if (tPhysicsComponentTerrainParameters.nxsType.compare("TRIANGLE") == 0){
+		NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(pPhysicsComponentTerrain->getMesh());
+		triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+	}
 
 	return pPhysicsComponentTerrain;
 }
