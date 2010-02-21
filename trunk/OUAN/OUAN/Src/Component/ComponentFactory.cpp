@@ -12,12 +12,9 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
-//#include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-//#include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
-//#include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
