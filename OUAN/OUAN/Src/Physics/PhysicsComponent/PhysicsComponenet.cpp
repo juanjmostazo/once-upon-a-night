@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponent::PhysicsComponent(const std::string& name)
-:Component(name.empty()?COMPONENT_NAME_OGRE:name)
+:Component(COMPONENT_NAME_PHYSICS)
 {
 }
 

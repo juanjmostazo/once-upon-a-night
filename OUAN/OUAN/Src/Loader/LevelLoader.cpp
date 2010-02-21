@@ -280,12 +280,10 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	/*
 	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentComplexNonMovableParameters tmpComponent;
-	
-	tGameObjectTerrainParameters.tPhysicsComponentTerrainParameters=tmpTerrainParams;
-	*/
+	TPhysicsComponentComplexNonMovableParameters tmpPhysicsComponent;
+	tmpPhysicsComponent.nxsFile = "TRIANGLE_nivel2vacio.nxs";
+	tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters = tmpPhysicsComponent;
 
 	//Create Entity
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);

@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 RenderComponentViewport::RenderComponentViewport(const std::string& name)
-:RenderComponent(name.empty()?COMPONENT_NAME_OGRE:name)
+:RenderComponent(COMPONENT_NAME_RENDER_VIEWPORT)
 {
 }
 
