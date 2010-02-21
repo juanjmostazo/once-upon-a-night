@@ -9,7 +9,6 @@
 #include <OgreCEGUIRenderer.h>
 
 #include "ConfigKeys.h"
-#include "Logger/Logger.h"
 
 #include <boost/shared_ptr.hpp>
 

@@ -1,9 +1,11 @@
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 
-#define LOG_FILE "log.txt"
+#define LOG_FILE "custom_log.txt"
 
+#include "../OUAN.h"
 #include <windows.h>
+
 namespace OUAN
 {
 	class Logger

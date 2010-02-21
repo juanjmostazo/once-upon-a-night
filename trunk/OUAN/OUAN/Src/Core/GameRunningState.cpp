@@ -105,7 +105,9 @@ bool GameRunningState::render()
 		renderSubsystem->updateDebugInfo();
 		renderSubsystem->showDebugOverlay();
 	}
+
 	renderSubsystem->updateVisualDebugger();
-	renderSubsystem->showHUD();
+	//TODO: IT BREAKS THE APP HERE
+	//renderSubsystem->showHUD();
 	return renderSubsystem->render();
 }

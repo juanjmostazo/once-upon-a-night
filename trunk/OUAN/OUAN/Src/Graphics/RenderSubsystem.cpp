@@ -668,5 +668,4 @@ void RenderSubsystem::hideVisualDebugger()
 void RenderSubsystem::showHUD()
 {
 	Ogre::OverlayManager::getSingleton().getByName("OUAN/HUDOverlay")->show();
-
 }
