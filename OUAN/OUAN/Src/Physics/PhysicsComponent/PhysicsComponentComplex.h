@@ -4,7 +4,7 @@
 #include "PhysicsComponent.h"
 namespace OUAN
 {
-	// Examples: boxes, barrels... elements which interacts with the entities
+	// Complex physics elements, geometry is specified in a nxs file
 	class PhysicsComponentComplex: public PhysicsComponent
 	{
 	public:
@@ -18,6 +18,7 @@ namespace OUAN
 		TPhysicsComponentComplexParameters();
 		~TPhysicsComponentComplexParameters();
 
+		// Name of the physics nxs file related to the given object mesh
 		std::string nxsFile;
 	};
 }

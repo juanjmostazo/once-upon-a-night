@@ -4,6 +4,8 @@
 #include "PhysicsComponentComplex.h"
 namespace OUAN
 {
+	// Complex elements which have physics but can NOT be moved, shape will be TriangleMesh
+	// Examples: Terrain, rocks, walls, etc.
 	class PhysicsComponentComplexNonMovable: public PhysicsComponentComplex
 	{
 	public:
@@ -16,9 +18,6 @@ namespace OUAN
 	public:
 		TPhysicsComponentComplexNonMovableParameters();
 		~TPhysicsComponentComplexNonMovableParameters();
-
-		int radius;
-		int height;
 	};
 }
 

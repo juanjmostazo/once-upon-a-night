@@ -4,6 +4,7 @@
 #include "PhysicsComponent.h"
 namespace OUAN
 {
+	// Simple physics elements which interact with other elements
 	class PhysicsComponentSimple: public PhysicsComponent
 	{
 	public:
