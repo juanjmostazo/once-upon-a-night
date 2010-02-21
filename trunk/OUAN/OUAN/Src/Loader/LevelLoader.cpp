@@ -285,12 +285,10 @@ void LevelLoader::processGameObjectNonMovableTerrain(TiXmlElement *XMLNode)
 	//Get RenderComponentSceneNode
 	tGameObjectNonMovableTerrainParameters.tRenderComponentSceneNodeParameters=processRenderComponentSceneNode(XMLNode);
 
-	/****** TO FIX
+	/*
 	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentTerrainParameters tmpTerrainParams;
-	tmpTerrainParams.nxsFile="TRIANGLE_nivel2vacio.nxs";
-	tmpTerrainParams.nxsType="TRIANGLE";
-
+	TPhysicsComponentComplexNonMovableParameters tmpComponent;
+	
 	tGameObjectNonMovableTerrainParameters.tPhysicsComponentTerrainParameters=tmpTerrainParams;
 	*/
 

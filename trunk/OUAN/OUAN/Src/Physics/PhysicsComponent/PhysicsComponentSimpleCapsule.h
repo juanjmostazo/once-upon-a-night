@@ -4,6 +4,8 @@
 #include "PhysicsComponentSimple.h"
 namespace OUAN
 {
+	// Simple physics elements whose shape is a capsule
+	// Example: Barrels, trees?, etc.
 	class PhysicsComponentSimpleCapsule: public PhysicsComponentSimple
 	{
 	public:
@@ -17,9 +19,8 @@ namespace OUAN
 		TPhysicsComponentSimpleCapsuleParameters();
 		~TPhysicsComponentSimpleCapsuleParameters();
 
-		int x;
-		int y;
-		int z;
+		float radius;
+		float height;
 	};
 }
 

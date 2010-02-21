@@ -4,6 +4,8 @@
 #include "PhysicsComponentSimple.h"
 namespace OUAN
 {
+	// Simple physics elements whose shape is a cube
+	// Example: Boxes, etc.
 	class PhysicsComponentSimpleCube: public PhysicsComponentSimple
 	{
 	public:
@@ -16,9 +18,10 @@ namespace OUAN
 	public:
 		TPhysicsComponentSimpleCubeParameters();
 		~TPhysicsComponentSimpleCubeParameters();
-
-		int radius;
-		int height;
+		
+		float lengthX;
+		float lengthY;
+		float lengthZ;
 	};
 }
 

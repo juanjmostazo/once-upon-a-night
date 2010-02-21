@@ -4,6 +4,8 @@
 #include "PhysicsComponentComplex.h"
 namespace OUAN
 {
+	// Complex elements which can be moved, shape will be Convex
+	// Examples: Diamods, weapons, etc.
 	class PhysicsComponentComplexMovable: public PhysicsComponentComplex
 	{
 	public:
@@ -16,9 +18,6 @@ namespace OUAN
 	public:
 		TPhysicsComponentComplexMovableParameters();
 		~TPhysicsComponentComplexMovableParameters();
-
-		int radius;
-		int height;
 	};
 }
 
