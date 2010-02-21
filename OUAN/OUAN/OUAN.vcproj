@@ -615,14 +615,6 @@
 						>
 					</File>
 				</Filter>
-				<Filter
-					Name="Logger"
-					>
-					<File
-						RelativePath=".\Src\Logger\Logger.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Component"
@@ -633,6 +625,14 @@
 				</File>
 				<File
 					RelativePath=".\Src\Component\ComponentFactory.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Logger"
+				>
+				<File
+					RelativePath=".\Src\Logger\Logger.h"
 					>
 				</File>
 			</Filter>
