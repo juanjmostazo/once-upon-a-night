@@ -10,7 +10,7 @@
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
-#include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
+#include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
@@ -120,17 +120,17 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 
 	return pRenderComponentScene;
 }
-RenderComponentSceneNodePtr ComponentFactory::createRenderComponentSceneNode(GameObjectPtr gameObject,TRenderComponentSceneNodeParameters tRenderComponentSceneNodeParameters)
+RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(GameObjectPtr gameObject,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
 {
 	//Create void Render Component
-	RenderComponentSceneNodePtr pRenderComponentSceneNode = RenderComponentSceneNodePtr(new RenderComponentSceneNode()); 
+	RenderComponentPositionalPtr pRenderComponentPositional = RenderComponentPositionalPtr(new RenderComponentPositional()); 
 
-	pRenderComponentSceneNode->setParent(gameObject);	
+	pRenderComponentPositional->setParent(gameObject);	
 
 	//Initialise Render Component
-	pRenderComponentSceneNode->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentSceneNodeParameters));
+	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
 
-	return pRenderComponentSceneNode;
+	return pRenderComponentPositional;
 }
 RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameObjectPtr gameObject,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {

@@ -106,5 +106,6 @@ bool GameRunningState::render()
 		renderSubsystem->showDebugOverlay();
 	}
 	renderSubsystem->updateVisualDebugger();
+	renderSubsystem->showHUD();
 	return renderSubsystem->render();
 }

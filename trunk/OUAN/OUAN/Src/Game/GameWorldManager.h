@@ -21,8 +21,8 @@ namespace OUAN
 		TGameObjectMovableEntityContainer getGameObjectMovableEntity();
 		TGameObjectNonMovableContainer getGameObjectNonMovable();
 		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntity();
-		TGameObjectNonMovableTerrainContainer getGameObjectNonMovableTerrain();
-		TGameObjectNonMovableLightContainer getGameObjectNonMovableLight();
+		TGameObjectTerrainContainer getGameObjectTerrain();
+		TGameObjectLightContainer getGameObjectLight();
 		TGameObjectOnyContainer getGameObjectOny();
 		TGameObjectPositionalContainer getGameObjectPositional();
 		TGameObjectSceneContainer getGameObjectScene();
@@ -55,8 +55,8 @@ namespace OUAN
 		//void createGameObjectMovableEntity(TGameObjectMovableEntityParameters tGameObjectMovableEntityParameters);
 		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
 		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
-		void createGameObjectNonMovableLight(TGameObjectNonMovableLightParameters tGameObjectNonMovableLightParameters);
-		void createGameObjectNonMovableTerrain(TGameObjectNonMovableTerrainParameters tGameObjectNonMovableTerrainParameters);
+		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
+		void createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters);
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
 		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
@@ -90,8 +90,8 @@ namespace OUAN
 		void addGameObject(GameObjectPtr gameObject);
 		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
 		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
-		void addGameObjectNonMovableTerrain(GameObjectNonMovableTerrainPtr pGameObjectNonMovableTerrain);
-		void addGameObjectNonMovableLight(GameObjectNonMovableLightPtr pGameObjectNonMovableLight);
+		void addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain);
+		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
 
@@ -124,8 +124,8 @@ namespace OUAN
 		TGameObjectMovableEntityContainer mGameObjectMovableEntity;
 		TGameObjectNonMovableContainer mGameObjectNonMovable;
 		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntity;
-		TGameObjectNonMovableLightContainer mGameObjectNonMovableLight;
-		TGameObjectNonMovableTerrainContainer mGameObjectNonMovableTerrain;
+		TGameObjectLightContainer mGameObjectLight;
+		TGameObjectTerrainContainer mGameObjectTerrain;
 		TGameObjectOnyContainer mGameObjectOny;
 		TGameObjectPositionalContainer mGameObjectPositional;
 		TGameObjectSceneContainer mGameObjectScene;

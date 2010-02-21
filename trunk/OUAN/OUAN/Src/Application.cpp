@@ -18,7 +18,7 @@
 #include "Loader/LevelLoader.h"
 
 #include "Game/GameObject/GameObjectTripollo.h"
-#include "Graphics/RenderComponent/RenderComponentSceneNode.h"
+#include "Graphics/RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
 

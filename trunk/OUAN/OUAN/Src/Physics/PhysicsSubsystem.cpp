@@ -2,7 +2,7 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
-#include "../Game/GameObject/GameObjectNonMovableTerrain.h"
+#include "../Game/GameObject/GameObjectTerrain.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -91,7 +91,7 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 	//*/
 	/*app->getRenderSubsystem()->createDebugFloor(config);*/
 	/*
-	for(unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectNonMovableTerrain().size(); i++){
+	for(unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrain().size(); i++){
 		LogManager::getSingleton().logMessage("Looping in terrain " + i);
 	}
 	*/

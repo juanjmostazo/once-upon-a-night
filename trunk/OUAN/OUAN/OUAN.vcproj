@@ -289,11 +289,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.cpp"
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPositional.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentSceneNode.cpp"
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.cpp"
 						>
 					</File>
 					<File
@@ -325,27 +325,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectMovable.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectMovableEntity.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovable.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableEntity.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableLight.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableTerrain.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectLight.cpp"
 						>
 					</File>
 					<File
@@ -353,11 +333,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectPositional.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectScene.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrain.cpp"
 						>
 					</File>
 					<File
@@ -453,14 +433,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Logger"
-				>
-				<File
-					RelativePath=".\Src\Logger\Logger.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="TinyXML"
 				>
 				<File
@@ -543,11 +515,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.h"
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPositional.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentSceneNode.h"
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.h"
 						>
 					</File>
 					<File
@@ -571,27 +543,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectMovable.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectMovableEntity.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovable.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableEntity.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableLight.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectNonMovableTerrain.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectLight.h"
 						>
 					</File>
 					<File
@@ -599,11 +551,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectPositional.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectScene.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrain.h"
 						>
 					</File>
 					<File
@@ -660,6 +612,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCube.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Logger"
+					>
+					<File
+						RelativePath=".\Src\Logger\Logger.h"
 						>
 					</File>
 				</Filter>
