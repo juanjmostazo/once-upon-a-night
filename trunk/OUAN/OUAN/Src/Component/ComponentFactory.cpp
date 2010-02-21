@@ -12,12 +12,12 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentSceneNode.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
-#include "../Physics/PhysicsComponent/PhysicsComponent.h"
+//#include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
+//#include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
+//#include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
@@ -148,15 +148,6 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	return pRenderComponentViewport;
 }
 
-PhysicsComponentPtr ComponentFactory::createPhysicsComponent(GameObjectPtr gameObject,TPhysicsComponentParameters tPhysicsComponentParameters)
-{
-	PhysicsComponentPtr pPhysicsComponent = PhysicsComponentPtr(new PhysicsComponent()); 
-
-	pPhysicsComponent->setParent(gameObject);	
-
-	return pPhysicsComponent;
-}
-
 PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters)
 {
 	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
@@ -164,15 +155,6 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	pPhysicsComponentCharacter->setParent(gameObject);	
 
 	return pPhysicsComponentCharacter;
-}
-
-PhysicsComponentComplexPtr ComponentFactory::createPhysicsComponentComplex(GameObjectPtr gameObject,TPhysicsComponentComplexParameters tPhysicsComponentComplexParameters)
-{
-	PhysicsComponentComplexPtr pPhysicsComponentComplex = PhysicsComponentComplexPtr(new PhysicsComponentComplex()); 
-
-	pPhysicsComponentComplex->setParent(gameObject);	
-
-	return pPhysicsComponentComplex;
 }
 
 PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComplexMovable(GameObjectPtr gameObject,TPhysicsComponentComplexMovableParameters tPhysicsComponentComplexMovableParameters)
@@ -191,15 +173,6 @@ PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentCom
 	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
 
 	return pPhysicsComponentComplexNonMovable;
-}
-
-PhysicsComponentSimplePtr ComponentFactory::createPhysicsComponentSimple(GameObjectPtr gameObject,TPhysicsComponentSimpleParameters tPhysicsComponentSimpleParameters)
-{
-	PhysicsComponentSimplePtr pPhysicsComponentSimple = PhysicsComponentSimplePtr(new PhysicsComponentSimple()); 
-
-	pPhysicsComponentSimple->setParent(gameObject);	
-
-	return pPhysicsComponentSimple;
 }
 
 PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters)

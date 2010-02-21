@@ -110,17 +110,9 @@ namespace OUAN
 			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
 			//Physics components
-			class PhysicsComponent;
-			class TPhysicsComponentParameters;
-			typedef boost::shared_ptr<PhysicsComponent> PhysicsComponentPtr;
-
 			class PhysicsComponentCharacter;
 			class TPhysicsComponentCharacterParameters;
 			typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
-
-			class PhysicsComponentComplex;
-			class TPhysicsComponentComplexParameters;
-			typedef boost::shared_ptr<PhysicsComponentComplex> PhysicsComponentComplexPtr;
 
 			class PhysicsComponentComplexMovable;
 			class TPhysicsComponentComplexMovableParameters;
@@ -129,10 +121,6 @@ namespace OUAN
 			class PhysicsComponentComplexNonMovable;
 			class TPhysicsComponentComplexNonMovableParameters;
 			typedef boost::shared_ptr<PhysicsComponentComplexNonMovable> PhysicsComponentComplexNonMovablePtr;
-
-			class PhysicsComponentSimple;
-			class TPhysicsComponentSimpleParameters;
-			typedef boost::shared_ptr<PhysicsComponentSimple> PhysicsComponentSimplePtr;
 
 			class PhysicsComponentSimpleCapsule;
 			class TPhysicsComponentSimpleCapsuleParameters;
