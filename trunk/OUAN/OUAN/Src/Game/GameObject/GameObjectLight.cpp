@@ -3,7 +3,7 @@
 using namespace OUAN;
 
 GameObjectLight::GameObjectLight(const std::string& name, const std::string& id)
-:GameObject(GAME_OBJECT_NAME_LIGHT,id)
+:GameObject(name,id)
 {
 
 }

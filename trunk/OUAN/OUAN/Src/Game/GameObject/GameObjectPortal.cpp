@@ -3,7 +3,7 @@
 using namespace OUAN;
 
 GameObjectPortal::GameObjectPortal(const std::string& name, const std::string& id)
-:GameObject(GAME_OBJECT_NAME_PORTAL,id)
+:GameObject(name,id)
 {
 
 }
