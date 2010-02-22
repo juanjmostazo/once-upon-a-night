@@ -57,6 +57,11 @@ namespace OUAN
 		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
 		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
 		void createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters);
+		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
+		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
+		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
+		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
+
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
 		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
@@ -92,6 +97,10 @@ namespace OUAN
 		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
 		void addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain);
 		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
+		void addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP);
+		void addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP);
+		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
+		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
 
