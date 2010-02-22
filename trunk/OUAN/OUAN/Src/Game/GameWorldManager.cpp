@@ -49,45 +49,49 @@ GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
 	return GameObjectPtr();
 }
 
-
-TGameObjectMovableContainer GameWorldManager::getGameObjectMovable()
+TGameObjectMovableContainer GameWorldManager::getGameObjectMovableContainer()
 {
 	return mGameObjectMovable;
 }
 
-TGameObjectMovableEntityContainer GameWorldManager::getGameObjectMovableEntity()
+TGameObjectMovableEntityContainer GameWorldManager::getGameObjectMovableEntityContainer()
 {
 	return mGameObjectMovableEntity;
 }
 
-TGameObjectNonMovableContainer GameWorldManager::getGameObjectNonMovable()
+TGameObjectNonMovableContainer GameWorldManager::getGameObjectNonMovableContainer()
 {
 	return mGameObjectNonMovable;
 }
 
-TGameObjectNonMovableEntityContainer GameWorldManager::getGameObjectNonMovableEntity()
+TGameObjectNonMovableEntityContainer GameWorldManager::getGameObjectNonMovableEntityContainer()
 {
 	return mGameObjectNonMovableEntity;
 }
 
-TGameObjectOnyContainer GameWorldManager::getGameObjectOny()
+TGameObjectOnyContainer GameWorldManager::getGameObjectOnyContainer()
 {
 	return mGameObjectOny;
 }
 
-TGameObjectPositionalContainer GameWorldManager::getGameObjectPositional()
+TGameObjectPositionalContainer GameWorldManager::getGameObjectPositionalContainer()
 {
 	return mGameObjectPositional;
 }
 
-TGameObjectSceneContainer GameWorldManager::getGameObjectScene()
+TGameObjectSceneContainer GameWorldManager::getGameObjectSceneContainer()
 {
 	return mGameObjectScene;
 }
 
-TGameObjectTripolloContainer GameWorldManager::getGameObjectTripollo()
+TGameObjectTripolloContainer GameWorldManager::getGameObjectTripolloContainer()
 {
 	return mGameObjectTripollo;
+}
+
+TGameObjectTerrainContainer GameWorldManager::getGameObjectTerrainContainer()
+{
+	return mGameObjectTerrain;
 }
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)

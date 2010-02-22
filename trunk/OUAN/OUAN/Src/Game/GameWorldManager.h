@@ -17,16 +17,16 @@ namespace OUAN
 		/// @return pointer to the object, if found
 		GameObjectPtr getObject(const std::string& objectId);
 
-		TGameObjectMovableContainer getGameObjectMovable();
-		TGameObjectMovableEntityContainer getGameObjectMovableEntity();
-		TGameObjectNonMovableContainer getGameObjectNonMovable();
-		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntity();
-		TGameObjectTerrainContainer getGameObjectTerrain();
-		TGameObjectLightContainer getGameObjectLight();
-		TGameObjectOnyContainer getGameObjectOny();
-		TGameObjectPositionalContainer getGameObjectPositional();
-		TGameObjectSceneContainer getGameObjectScene();
-		TGameObjectTripolloContainer getGameObjectTripollo();
+		TGameObjectMovableContainer getGameObjectMovableContainer();
+		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
+		TGameObjectNonMovableContainer getGameObjectNonMovableContainer();
+		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntityContainer();
+		TGameObjectTerrainContainer getGameObjectTerrainContainer();
+		TGameObjectLightContainer getGameObjectLightContainer();
+		TGameObjectOnyContainer getGameObjectOnyContainer();
+		TGameObjectPositionalContainer getGameObjectPositionalContainer();
+		TGameObjectSceneContainer getGameObjectSceneContainer();
+		TGameObjectTripolloContainer getGameObjectTripolloContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
