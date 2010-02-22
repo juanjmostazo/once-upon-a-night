@@ -1,0 +1,42 @@
+// Ogre overlay scripts
+OUAN/HUDOverlay
+{
+	zorder 500
+	// Stats block
+	container Panel(OUAN/HealthPanel)
+	{
+		metrics_mode pixels
+		horz_align left
+		vert_align top
+		left 5 
+		top 5
+		width 160
+		height 128
+		transparent true
+
+		container Panel(OUAN/Health)
+		{
+			metrics_mode pixels
+			left 0.1 
+			top 0.25
+			width 128
+			height 128
+			material OUAN/Hud/Health
+		}
+		    
+		element TextArea(OUAN/NumLives)
+		{
+			metrics_mode pixels
+			
+			horz_align right
+			vert_align center
+			width 90
+			height 30
+			font_name FunnyPages
+			char_height 64
+			caption x3
+			colour_top 0.6 0 0.6
+			colour_bottom 0.6 0 0.6
+		}
+	}
+}
