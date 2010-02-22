@@ -11,6 +11,12 @@ namespace OUAN
 	public:
 		PhysicsComponentComplexNonMovable(const std::string& name="");
 		~PhysicsComponentComplexNonMovable();
+
+		void setTriangleGeometry(NxOgre::TriangleGeometry* triangleGeometry);
+		NxOgre::TriangleGeometry* getTriangleGeometry();
+
+	protected:
+		NxOgre::TriangleGeometry* triangleGeometry;
 	};
 
 	class TPhysicsComponentComplexNonMovableParameters: public TPhysicsComponentComplexParameters
