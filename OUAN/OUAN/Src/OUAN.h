@@ -287,7 +287,7 @@ namespace OUAN
 		};
 
 		#define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
-		#define NXS_PATH "file:../../../Resources/Graphics/NxModels"
+		#define NXS_PATH "file:../../Resources/Graphics/NxModels"
 
 }
 

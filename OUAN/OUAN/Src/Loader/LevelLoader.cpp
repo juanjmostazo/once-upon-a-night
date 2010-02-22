@@ -282,7 +282,7 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentComplexNonMovableParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.nxsFile = "TRIANGLE_nivel2vacio.nxs";
+	tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
 	tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters = tmpPhysicsComponent;
 
 	//Create Entity

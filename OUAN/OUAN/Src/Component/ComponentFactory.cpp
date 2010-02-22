@@ -169,11 +169,10 @@ PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentCom
 
 	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
 
-	NxOgre::Mesh* triangleMesh = 
-		NxOgre::MeshManager::getSingleton()->load(("nxs:" + tPhysicsComponentComplexNonMovableParameters.nxsFile).c_str());
-	
-	// TEST
-	//triangleMesh->setName("terrainTestMesh");
+	//Ogre::LogManager::getSingleton().logMessage(NXS_PATH);
+	//Ogre::LogManager::getSingleton().logMessage(tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
+
+	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
 
 	NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(triangleMesh);
 	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);

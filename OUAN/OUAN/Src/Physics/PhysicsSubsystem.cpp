@@ -88,22 +88,19 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 
 	//Initializing terrains
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-
+		/*
 		std::stringstream out;
 		out << i;
 		std::string loopIndex = out.str();
 		LogManager::getSingleton().logMessage("Looping in terrain " + loopIndex);
-
+		*/
 		PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable =
 			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable();
 
-		//LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(physicsComponentComplexNonMovable->getSceneNode()->getPosition()));
-		//LogManager::getSingleton().logMessage(physicsComponentComplexNonMovable->getTriangleGeometry()->getTriangleMesh()->getName().c_str());
-
-		//mNxOgreScene->createSceneGeometry(
-		//	physicsComponentComplexNonMovable->getTriangleGeometry(),
-		//	NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
-		//);
+		mNxOgreScene->createSceneGeometry(
+			physicsComponentComplexNonMovable->getTriangleGeometry(),
+			NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
+		);
 	}
 	
 	///**
