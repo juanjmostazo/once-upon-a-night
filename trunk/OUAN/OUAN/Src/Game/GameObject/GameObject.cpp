@@ -3,8 +3,7 @@
 using namespace OUAN;
 
 GameObject::GameObject(const std::string& name, const std::string& id)
-:mName(name)
-,mId(id)
+:mName(name),mId(id)
 {
 
 }

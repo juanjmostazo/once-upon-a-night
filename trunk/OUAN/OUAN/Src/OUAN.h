@@ -147,31 +147,31 @@ namespace OUAN
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
-		const std::string LOADER_SCENE="scene";
+		const std::string GAME_OBJECT_NAME_SCENE="scene";
 
 		class GameObjectTerrain;
 		class TGameObjectTerrainParameters;
 		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
 		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
-		const std::string LOADER_TERRAIN_ID="terrain";
+		const std::string GAME_OBJECT_NAME_TERRAIN="terrain";
 
 		class GameObjectLight;
 		class TGameObjectLightParameters;
 		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
-		const std::string LOADER_LIGHT_ID="light";
+		const std::string GAME_OBJECT_NAME_LIGHT="light";
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;
 		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
-		const std::string LOADER_ONY_ID="ony";
+		const std::string GAME_OBJECT_NAME_ONY="ony";
 
 		class GameObjectTripollo;
 		class TGameObjectTripolloParameters;
 		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
 		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
-		const std::string LOADER_TRIPOLLO_ID="tripollo";
+		const std::string GAME_OBJECT_NAME_TRIPOLLO="tripollo";
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;

@@ -3,7 +3,7 @@
 using namespace OUAN;
 
 GameObjectOny::GameObjectOny(const std::string& name, const std::string& id)
-:GameObject(name,id)
+:GameObject(GAME_OBJECT_NAME_ONY,id)
 {
 
 }
