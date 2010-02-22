@@ -10,6 +10,10 @@
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectOny.h"
 #include "GameObject/GameObjectTripollo.h"
+#include "GameObject/GameObjectEye.h"
+#include "GameObject/GameObjectItem1UP.h"
+#include "GameObject/GameObjectItemMaxHP.h"
+#include "GameObject/GameObjectPortal.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
@@ -226,6 +230,44 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 	mGameObjectNonMovableEntity.push_back(pGameObjectTerrain);
 	mGameObjectTerrain.push_back(pGameObjectTerrain);
 }
+
+void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
+{
+	mGameObjects[pGameObjectItem1UP->getId()]=pGameObjectItem1UP;
+
+	mGameObjectPositional.push_back(pGameObjectItem1UP);
+	mGameObjectNonMovable.push_back(pGameObjectItem1UP);
+	mGameObjectNonMovableEntity.push_back(pGameObjectItem1UP);
+
+}
+
+void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
+{
+	mGameObjects[pGameObjectItemMaxHP->getId()]=pGameObjectItemMaxHP;
+
+	mGameObjectPositional.push_back(pGameObjectItemMaxHP);
+	mGameObjectNonMovable.push_back(pGameObjectItemMaxHP);
+	mGameObjectNonMovableEntity.push_back(pGameObjectItemMaxHP);
+
+}
+
+void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
+{
+	mGameObjects[pGameObjectPortal->getId()]=pGameObjectPortal;
+
+	mGameObjectPositional.push_back(pGameObjectPortal);
+	mGameObjectNonMovable.push_back(pGameObjectPortal);
+	mGameObjectNonMovableEntity.push_back(pGameObjectPortal);
+}
+
+void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
+{
+	mGameObjects[pGameObjectEye->getId()]=pGameObjectEye;
+
+	mGameObjectPositional.push_back(pGameObjectEye);
+	mGameObjectNonMovable.push_back(pGameObjectEye);
+	mGameObjectNonMovableEntity.push_back(pGameObjectEye);
+}
 void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 {
 	mGameObjects[pGameObjectLight->getId()]=pGameObjectLight;
@@ -296,6 +338,102 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
+}
+
+void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters)
+{
+
+	GameObjectEyePtr pGameObjectEye;
+
+	//Create GameObject
+	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(
+		tGameObjectEyeParameters.name,makeIdString(tGameObjectEyeParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectEye->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectEye->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectEye(pGameObjectEye);
+}
+
+void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
+{
+
+	GameObjectItem1UPPtr pGameObjectItem1UP;
+
+	//Create GameObject
+	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(
+		tGameObjectItem1UPParameters.name,makeIdString(tGameObjectItem1UPParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectItem1UP->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectItem1UP->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectItem1UP(pGameObjectItem1UP);
+}
+
+void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters)
+{
+
+	GameObjectPortalPtr pGameObjectPortal;
+
+	//Create GameObject
+	pGameObjectPortal = GameObjectPortalPtr(new GameObjectPortal(
+		tGameObjectPortalParameters.name,makeIdString(tGameObjectPortalParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectPortal->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectPortal->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectPortal(pGameObjectPortal);
+}
+
+void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters)
+{
+
+	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
+
+	//Create GameObject
+	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(
+		tGameObjectItemMaxHPParameters.name,makeIdString(tGameObjectItemMaxHPParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectItemMaxHP->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectItemMaxHP->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
 }
 
 void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters)

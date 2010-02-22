@@ -173,6 +173,30 @@ namespace OUAN
 		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
 		const std::string GAME_OBJECT_NAME_TRIPOLLO="tripollo";
 
+		class GameObjectPortal;
+		class TGameObjectPortalParameters;
+		typedef boost::shared_ptr<GameObjectPortal> GameObjectPortalPtr;
+		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
+		const std::string GAME_OBJECT_NAME_PORTAL="portal";
+
+		class GameObjectEye;
+		class TGameObjectEyeParameters;
+		typedef boost::shared_ptr<GameObjectEye> GameObjectEyePtr;
+		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
+		const std::string GAME_OBJECT_NAME_EYE="eye";
+
+		class GameObjectItem1UP;
+		class TGameObjectItem1UPParameters;
+		typedef boost::shared_ptr<GameObjectItem1UP> GameObjectItem1UPPtr;
+		typedef std::vector<GameObjectItem1UPPtr> TGameObjecItem1UPContainer;
+		const std::string GAME_OBJECT_NAME_ITEM_1UP="item-1up";
+
+		class GameObjectItemMaxHP;
+		class TGameObjectItemMaxHPParameters;
+		typedef boost::shared_ptr<GameObjectItemMaxHP> GameObjectItemMaxHPPtr;
+		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjecItemMaxHPContainer;
+		const std::string GAME_OBJECT_NAME_ITEM_MAXHP="item-maxhp";
+
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
 		

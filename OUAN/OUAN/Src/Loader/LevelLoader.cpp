@@ -8,6 +8,10 @@
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectItem1UP.h"
+#include "../Game/GameObject/GameObjectItemMaxHP.h"
+#include "../Game/GameObject/GameObjectEye.h"
+#include "../Game/GameObject/GameObjectPortal.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -171,6 +175,22 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 		{
 			return "GameObjectTerrain";
 		}
+		else if(name.substr(0,GAME_OBJECT_NAME_PORTAL.size()).compare(GAME_OBJECT_NAME_PORTAL)==0)
+		{
+			return "GameObjectPortal";
+		}
+		else if(name.substr(0,GAME_OBJECT_NAME_EYE.size()).compare(GAME_OBJECT_NAME_EYE)==0)
+		{
+			return "GameObjectEye";
+		}
+		else if(name.substr(0,GAME_OBJECT_NAME_ITEM_1UP.size()).compare(GAME_OBJECT_NAME_ITEM_1UP)==0)
+		{
+			return "GameObjectItem1UP";
+		}
+		else if(name.substr(0,GAME_OBJECT_NAME_ITEM_MAXHP.size()).compare(GAME_OBJECT_NAME_ITEM_MAXHP)==0)
+		{
+			return "GameObjectItemMaxHP";
+		}
 	}
 	//else if( type.compare("Camera Object")==0)
 	//{
@@ -215,6 +235,22 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	{
 		processGameObjectLight(XMLNode);
 	}
+	else if( gameObjectType.compare("GameObjectEye")==0)
+	{
+		processGameObjectEye(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectItem1UP")==0)
+	{
+		processGameObjectItem1UP(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectItemMaxHP")==0)
+	{
+		processGameObjectItemMaxHP(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectPortal")==0)
+	{
+		processGameObjectPortal(XMLNode);
+	}
 	else
 	{
 		Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
@@ -246,7 +282,7 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectOnyParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	//Create Entity
+	//Create GameObject
 	pGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 }
 
@@ -263,7 +299,7 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	//Create Entity
+	//Create GameObject
 	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
 }
 
@@ -285,7 +321,7 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
 	tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters = tmpPhysicsComponent;
 
-	//Create Entity
+	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
 }
 
@@ -302,8 +338,76 @@ void LevelLoader::processGameObjectLight(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
 
-	//Create Entity
+	//Create GameObject
 	pGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+}
+
+void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectEyeParameters tGameObjectEyeParameters;
+
+	//Get name
+	tGameObjectEyeParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectEyeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
+}
+
+void LevelLoader::processGameObjectItem1UP(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
+
+	//Get name
+	tGameObjectItem1UPParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
+}
+
+void LevelLoader::processGameObjectItemMaxHP(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
+
+	//Get name
+	tGameObjectItemMaxHPParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
+}
+
+void LevelLoader::processGameObjectPortal(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
+
+	//Get name
+	tGameObjectPortalParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectPortalParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
 }
 
 

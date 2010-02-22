@@ -35,6 +35,10 @@ namespace OUAN
 		void processGameObjectTripollo(TiXmlElement *XMLNode);
 		void processGameObjectTerrain(TiXmlElement *XMLNode);
 		void processGameObjectLight(TiXmlElement *XMLNode);
+		void processGameObjectPortal(TiXmlElement *XMLNode);
+		void processGameObjectItemMaxHP(TiXmlElement *XMLNode);
+		void processGameObjectItem1UP(TiXmlElement *XMLNode);
+		void processGameObjectEye(TiXmlElement *XMLNode);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
