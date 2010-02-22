@@ -171,6 +171,9 @@ PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentCom
 
 	NxOgre::Mesh* triangleMesh = 
 		NxOgre::MeshManager::getSingleton()->load(("nxs:" + tPhysicsComponentComplexNonMovableParameters.nxsFile).c_str());
+	
+	// TEST
+	//triangleMesh->setName("terrainTestMesh");
 
 	NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(triangleMesh);
 	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);

@@ -46,6 +46,8 @@ void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr conf
 
 	//Loading NXS resources
 	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
+
+	LogManager::getSingleton().logMessage("[PHYSICS INIT LOAD] Done!");
 }
 
 void PhysicsSubsystem::resetLevel()
@@ -59,9 +61,7 @@ void PhysicsSubsystem::resetLevel()
 }
 
 void PhysicsSubsystem::initialiseLevel(std::string sceneName)
-{
-	LogManager::getSingleton().logMessage("Initializing physics for level ...");
-	
+{	
 	//Initializing NxOgre::Scene
 	NxOgre::SceneDescription sceneDesc;
 	sceneDesc.mGravity = NxOgre::Vec3(0, -9.8f, 0);
@@ -87,19 +87,31 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 
 	//Initializing terrains
-	/*
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrain().size(); i++){
-		//TODO
-		//LogManager::getSingleton().logMessage("Looping in terrain " + i);
-	}
-	*/
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
 
+		std::stringstream out;
+		out << i;
+		std::string loopIndex = out.str();
+		LogManager::getSingleton().logMessage("Looping in terrain " + loopIndex);
+
+		PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable =
+			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable();
+
+		//LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(physicsComponentComplexNonMovable->getSceneNode()->getPosition()));
+		//LogManager::getSingleton().logMessage(physicsComponentComplexNonMovable->getTriangleGeometry()->getTriangleMesh()->getName().c_str());
+
+		//mNxOgreScene->createSceneGeometry(
+		//	physicsComponentComplexNonMovable->getTriangleGeometry(),
+		//	NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
+		//);
+	}
+	
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
 	//app->getRenderSubsystem()->createDebugFloor(config);
 	
-	LogManager::getSingleton().logMessage("Initialization of physics for level finished");
+	LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
 void PhysicsSubsystem::update(float elapsedSeconds)
