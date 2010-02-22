@@ -152,22 +152,22 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//}
 	else if( type.compare("Light Object")==0)
 	{
-		if(name.substr(0,LOADER_LIGHT_ID.size()).compare(LOADER_LIGHT_ID)==0)
+		if(name.substr(0,GAME_OBJECT_NAME_LIGHT.size()).compare(GAME_OBJECT_NAME_LIGHT)==0)
 		{
 			return "GameObjectLight";
 		}
 	}
 	else if( type.compare("Entity Object")==0)
 	{
-		if(name.substr(0,LOADER_ONY_ID.size()).compare(LOADER_ONY_ID)==0)
+		if(name.substr(0,GAME_OBJECT_NAME_ONY.size()).compare(GAME_OBJECT_NAME_ONY)==0)
 		{
 			return "GameObjectOny";
 		}
-		else if(name.substr(0,LOADER_TRIPOLLO_ID.size()).compare(LOADER_TRIPOLLO_ID)==0)
+		else if(name.substr(0,GAME_OBJECT_NAME_TRIPOLLO.size()).compare(GAME_OBJECT_NAME_TRIPOLLO)==0)
 		{
 			return "GameObjectTripollo";
 		}
-		else if(name.substr(0,LOADER_TERRAIN_ID.size()).compare(LOADER_TERRAIN_ID)==0)
+		else if(name.substr(0,GAME_OBJECT_NAME_TERRAIN.size()).compare(GAME_OBJECT_NAME_TERRAIN)==0)
 		{
 			return "GameObjectTerrain";
 		}
