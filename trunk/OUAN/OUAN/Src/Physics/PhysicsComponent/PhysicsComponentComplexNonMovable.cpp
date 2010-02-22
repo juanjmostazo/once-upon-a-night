@@ -10,6 +10,16 @@ PhysicsComponentComplexNonMovable::~PhysicsComponentComplexNonMovable()
 {
 }
 
+NxOgre::TriangleGeometry* PhysicsComponentComplexNonMovable::getTriangleGeometry()
+{
+	return triangleGeometry;
+}
+
+void PhysicsComponentComplexNonMovable::setTriangleGeometry(NxOgre::TriangleGeometry* triangleGeometry)
+{
+	this->triangleGeometry = triangleGeometry;
+}
+
 TPhysicsComponentComplexNonMovableParameters::TPhysicsComponentComplexNonMovableParameters() : TPhysicsComponentComplexParameters()
 {
 }

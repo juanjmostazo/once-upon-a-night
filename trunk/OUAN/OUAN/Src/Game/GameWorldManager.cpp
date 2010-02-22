@@ -290,7 +290,6 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 		pGameObjectTripollo->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters));
 
-
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
 }
@@ -316,9 +315,9 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 
 		//Create PhysicsComponentTerrain
 		pGameObjectTerrain->setPhysicsComponentComplexNonMovable(factory->createPhysicsComponentComplexNonMovable(
-			pGameObjectTerrain,tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters));
-
-		Ogre::Entity * r=pGameObjectTerrain->getRenderComponentEntity()->getEntity();
+			pGameObjectTerrain,
+			tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters,
+			pGameObjectTerrain->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager
 	addGameObjectTerrain(pGameObjectTerrain);

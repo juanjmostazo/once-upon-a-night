@@ -14,6 +14,14 @@ void PhysicsComponent::update(long elapsedTime)
 {
 }
 
+Ogre::SceneNode* PhysicsComponent::getSceneNode(){
+	return sceneNode;
+}
+
+void PhysicsComponent::setSceneNode(Ogre::SceneNode* sceneNode){
+	this->sceneNode = sceneNode;
+}
+
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {
 }

@@ -15,10 +15,13 @@ namespace OUAN
 		~PhysicsComponent();
 
 		virtual void update(long elapsedTime);
-
+		virtual Ogre::SceneNode* getSceneNode();
+		virtual void setSceneNode(Ogre::SceneNode* sceneNode);
 		//Event handlers
 		//void onDoSomething(EventData,emitter, ...);
 		//void onDoSomethingElse(...);
+	protected:
+		Ogre::SceneNode* sceneNode;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters

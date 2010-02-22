@@ -86,16 +86,19 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 	//Initializing visual debugger
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 
-	///**
-	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
-	//*/
-	/*app->getRenderSubsystem()->createDebugFloor(config);*/
+	//Initializing terrains
 	/*
-	for(unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrain().size(); i++){
-		LogManager::getSingleton().logMessage("Looping in terrain " + i);
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrain().size(); i++){
+		//TODO
+		//LogManager::getSingleton().logMessage("Looping in terrain " + i);
 	}
 	*/
 
+	///**
+	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
+	//*/
+	//app->getRenderSubsystem()->createDebugFloor(config);
+	
 	LogManager::getSingleton().logMessage("Initialization of physics for level finished");
 }
 
