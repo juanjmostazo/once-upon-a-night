@@ -206,7 +206,7 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
+		//Ogre::LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
 		return type;
 	}
 	return type;
@@ -253,7 +253,7 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
+		//Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
 	}
 }
 
@@ -599,7 +599,7 @@ TRenderComponentPositionalParameters LevelLoader::processRenderComponentPosition
 	tRenderComponentPositionalParameters.position = getPropertyVector3(XMLNode,"position");
 	tRenderComponentPositionalParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
 	tRenderComponentPositionalParameters.scale = Vector3(1,1,1);
-	tRenderComponentPositionalParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tRenderComponentPositionalParameters.autotracktarget = "None";
 
 	return tRenderComponentPositionalParameters;
 }
@@ -937,7 +937,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 
 	if(!found)
 	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error parsing "+attrib_name+" attribute!");
+		//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error parsing "+attrib_name+" attribute!");
 	}
 	return result;
 }

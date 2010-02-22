@@ -3,7 +3,7 @@
 using namespace OUAN;
 
 GameObjectScene::GameObjectScene(const std::string& name, const std::string& id)
-:GameObject(GAME_OBJECT_NAME_SCENE,id)
+:GameObject(name,id)
 {
 
 }
