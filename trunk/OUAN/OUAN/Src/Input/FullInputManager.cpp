@@ -2,6 +2,8 @@
 #include <OgreRenderWindow.h>
 #include <math.h>
 
+using namespace OUAN;
+
 FullInputManager::FullInputManager()
 : m_inputManager( NULL )
 , m_keyboard( NULL )

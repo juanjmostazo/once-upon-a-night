@@ -8,54 +8,57 @@ namespace Ogre
 	class RenderWindow;
 }
 
-class FullInputManager
-	: public OIS::MouseListener
-	, public OIS::KeyListener
-	, public OIS::JoyStickListener
+namespace OUAN
 {
-public:
-	FullInputManager();
-	virtual ~FullInputManager();
 
-	void capture();
+	class FullInputManager
+		: public OIS::MouseListener
+		, public OIS::KeyListener
+		, public OIS::JoyStickListener
+	{
+	public:
+		FullInputManager();
+		virtual ~FullInputManager();
 
-	virtual bool mouseMoved( const OIS::MouseEvent& e );
-	virtual bool mousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID button );
-	virtual bool mouseReleased( const OIS::MouseEvent& e, OIS::MouseButtonID button );
+		void capture();
 
-	virtual bool keyPressed( const OIS::KeyEvent& e );
-	virtual bool keyReleased( const OIS::KeyEvent& e );
+		virtual bool mouseMoved( const OIS::MouseEvent& e );
+		virtual bool mousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID button );
+		virtual bool mouseReleased( const OIS::MouseEvent& e, OIS::MouseButtonID button );
 
-	virtual bool povMoved( const OIS::JoyStickEvent &e, int pov );
-    virtual bool axisMoved( const OIS::JoyStickEvent &e, int axis );
-    virtual bool sliderMoved( const OIS::JoyStickEvent &e, int sliderID );
-    virtual bool buttonPressed( const OIS::JoyStickEvent &e, int button );
-    virtual bool buttonReleased( const OIS::JoyStickEvent &e, int button );
+		virtual bool keyPressed( const OIS::KeyEvent& e );
+		virtual bool keyReleased( const OIS::KeyEvent& e );
 
-	virtual OIS::Mouse*    getMouse( void );
-    virtual OIS::Keyboard* getKeyboard( void );
-    virtual OIS::JoyStick* getJoystick( unsigned int index );
+		virtual bool povMoved( const OIS::JoyStickEvent &e, int pov );
+		virtual bool axisMoved( const OIS::JoyStickEvent &e, int axis );
+		virtual bool sliderMoved( const OIS::JoyStickEvent &e, int sliderID );
+		virtual bool buttonPressed( const OIS::JoyStickEvent &e, int button );
+		virtual bool buttonReleased( const OIS::JoyStickEvent &e, int button );
 
-	virtual void getMouseStateRelValues(float* x, float* y, float* z);
+		virtual OIS::Mouse*    getMouse( void );
+		virtual OIS::Keyboard* getKeyboard( void );
+		virtual OIS::JoyStick* getJoystick( unsigned int index );
 
-    virtual int getNumOfJoysticks( void );
-	virtual void getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY);
-	
+		virtual void getMouseStateRelValues(float* x, float* y, float* z);
 
-	void initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
-	void finalise();
+		virtual int getNumOfJoysticks( void );
+		virtual void getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY);
+		
 
-protected:
-	
-	OIS::InputManager* m_inputManager;
-	OIS::Keyboard* m_keyboard;
-	OIS::Mouse* m_mouse;
+		virtual void initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
+		virtual void finalise();
 
-	std::vector<OIS::JoyStick*> m_joysticks;
-    std::vector<OIS::JoyStick*>::iterator it_joystick;
-    std::vector<OIS::JoyStick*>::iterator it_joystickEnd;
+	protected:
+		
+		OIS::InputManager* m_inputManager;
+		OIS::Keyboard* m_keyboard;
+		OIS::Mouse* m_mouse;
 
-	float getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
-};
+		std::vector<OIS::JoyStick*> m_joysticks;
+		std::vector<OIS::JoyStick*>::iterator it_joystick;
+		std::vector<OIS::JoyStick*>::iterator it_joystickEnd;
 
+		float getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
+	};
+}
 #endif

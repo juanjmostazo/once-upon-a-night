@@ -204,7 +204,12 @@ CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() c
 void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 {
 	mCameraControllerFirstPerson->processMouseInput(e);
-}	
+}
+
+void RenderSubsystem::moveCamera(float xRel, float yRel, float zRel)
+{
+	mCameraControllerFirstPerson->processRelativeMotion(xRel,yRel);
+}
 
 void RenderSubsystem::updateVisualDebugger()
 {
@@ -222,10 +227,31 @@ bool RenderSubsystem::isWindowClosed() const
 	return !mWindow || mWindow->isClosed();
 }
 
-void RenderSubsystem::relativeMoveCam(const int& ratio)
+void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
 {
-	if(mCamera)
-		mCamera->moveRelative(mTranslateVector / ratio);
+	Ogre::Vector3 unitTranslationVector;
+	switch (worldCoordinateAxis)
+	{
+		case AXIS_NEG_X:
+			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_X;
+			break;
+		case AXIS_POS_X:
+			unitTranslationVector=Ogre::Vector3::UNIT_X;
+			break;
+		case AXIS_NEG_Z:
+			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Z;
+			break;
+		case AXIS_POS_Z:
+			unitTranslationVector=Ogre::Vector3::UNIT_Z;
+			break;
+		case AXIS_NEG_Y:
+			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Y;
+			break;
+		case AXIS_POS_Y:
+			unitTranslationVector=Ogre::Vector3::UNIT_Y;
+			break;
+	}
+	mCameraControllerFirstPerson->processSimpleTranslation(unitTranslationVector);
 }
 
 void RenderSubsystem::updateCameraParams(float elapsedTime)
@@ -235,28 +261,6 @@ void RenderSubsystem::updateCameraParams(float elapsedTime)
 	mTranslateVector = Ogre::Vector3::ZERO;
 
 	mCameraControllerFirstPerson->processKeyboardInput(mApp->getKeyboard(),elapsedTime);
-}
-
-void RenderSubsystem::translateCam(const TCoordinateAxis& coordAxis)
-{
-	Vector3 axisVector;
-	switch(coordAxis)
-	{
-		case AXIS_NEG_X: axisVector=Ogre::Vector3::NEGATIVE_UNIT_X;
-			break;
-		case AXIS_POS_X: axisVector=Ogre::Vector3::UNIT_X;
-			break;
-		case AXIS_NEG_Z: axisVector=Ogre::Vector3::NEGATIVE_UNIT_Z;
-			break;
-		case AXIS_POS_Z: axisVector=Ogre::Vector3::UNIT_Z;
-			break;
-		case AXIS_NEG_Y: axisVector=Ogre::Vector3::NEGATIVE_UNIT_Y;
-			break;
-		case AXIS_POS_Y: axisVector=Ogre::Vector3::UNIT_Y;
-			break;
-		default:break;
-	}
-	mTranslateVector=mMoveScale*axisVector;
 }
 
 Ogre::SceneManager* RenderSubsystem::getSceneManager() const

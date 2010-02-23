@@ -58,8 +58,18 @@ namespace OUAN
 		void createViewports();
 		/// Create overlays
 		void createOverlays();
+
 		/// Translate/Rotate camera's position with mouse
 		void moveCamera(const OIS::MouseEvent &e);
+		/// Translate/Rotate camera's position according to the given relative translations
+		/// @param xRel	relative translation along the X Axis
+		/// @param yRel	relative translation along the Y Axis
+		/// @param zRel relative translation along the Z Axis
+		void moveCamera(float xRel, float yRel, float zRel);
+
+		/// Translate camera according to the given coordinate axis
+		/// @param worldCoordinateAxis
+		void translateCamera(TCoordinateAxis worldCoordinateAxis);
 
 		/// Render scene at current frame
 		/// @return <b>true</b> if the frame was successfully rendered
@@ -84,20 +94,11 @@ namespace OUAN
 		/// Tell if the window has been closed
 		/// @return <b>true</b> if the window has been closed
 		bool isWindowClosed() const;
-
-		/// Change camera position at relative increments
-		/// @param ratio scaling ratio to increase/decrease speed
-		void relativeMoveCam(const int& ratio=1);
 		
 		/// Update the parameters that control the camera's
 		/// movement
 		/// @param	elapsedTime	time since last frame was processed
 		void updateCameraParams(float elapsedTime);
-
-		/// Translate camera position according to a given coordinate axis
-		/// @param	coordAxis	coordinate axis in whose direction the camera position
-		///						will be translated
-		void translateCam(const TCoordinateAxis& coordAxis);
 		
 		//Object creators
 

@@ -35,7 +35,7 @@ void Application::cleanUp()
 {
 	mGUISubsystem->cleanUp();
 	mRenderSubsystem->cleanUp();
-	FullInputManager::finalise();
+	ControlInputManager::finalise();
 }
 //Application initialization
 void Application::initialise()
@@ -85,6 +85,8 @@ void Application::go()
 	{
 		Ogre::WindowEventUtilities::messagePump();
 		FullInputManager::capture();
+		
+		mStateManager->getCurrentState()->handleEvents();
 
 		//Update logic stuff
 		loops=0;
@@ -153,7 +155,7 @@ bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
 void Application::setupInputSystem()
 {
 	//Set mouse pointer non-visible
-	FullInputManager::initialise( mRenderSubsystem->getWindow(), false );
+	ControlInputManager::initialise( mRenderSubsystem->getWindow(), false );
 }
 void Application::loadInitialState()
 {
