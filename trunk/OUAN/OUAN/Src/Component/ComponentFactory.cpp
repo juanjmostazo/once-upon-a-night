@@ -57,7 +57,6 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 	//Initialise Render Component
 	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),tRenderComponentBillboardSetParameters));
 
-
 	return pRenderComponentBillboardSetPtr;
 }
 RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)

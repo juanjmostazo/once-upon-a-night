@@ -1,0 +1,13 @@
+material grassbillboard
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture gras_02.png
+			}
+		}
+	}
+}

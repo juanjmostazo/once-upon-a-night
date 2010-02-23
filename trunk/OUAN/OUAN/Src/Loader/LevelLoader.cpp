@@ -4,6 +4,8 @@
 #include "../Component/Component.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectLight.h"
+#include "../Game/GameObject/GameObjectBillboardSet.h"
+#include "../Game/GameObject/GameObjectParticleSystem.h"
 #include "../Game/GameObject/GameObjectTerrain.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
@@ -196,14 +198,14 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//{
 	//	processCamera(XMLNode);
 	//}
-	//else if( type.compare("Particle Object")==0)
-	//{
-	//	processParticleSystem(XMLNode);
-	//}
-	//else if( type.compare("BillboardSet Object")==0)
-	//{
-	//	processBillboardSet(XMLNode);
-	//}
+	else if( type.compare("Particle Object")==0)
+	{
+		return "GameObjectParticleSystem";
+	}
+	else if( type.compare("BillboardSet Object")==0)
+	{
+		return "GameObjectBillboardSet";
+	}
 	else
 	{
 		//Ogre::LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
@@ -234,6 +236,14 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	else if( gameObjectType.compare("GameObjectLight")==0)
 	{
 		processGameObjectLight(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectParticleSystem")==0)
+	{
+		processGameObjectParticleSystem(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectBillboardSet")==0)
+	{
+		processGameObjectBillboardSet(XMLNode);
 	}
 	else if( gameObjectType.compare("GameObjectEye")==0)
 	{
@@ -340,6 +350,39 @@ void LevelLoader::processGameObjectLight(TiXmlElement *XMLNode)
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+}
+
+void LevelLoader::processGameObjectParticleSystem(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectParticleSystemParameters  tGameObjectParticleSystemParameters;
+
+	//Get name
+	tGameObjectParticleSystemParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentParticleSystem
+	tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
+}
+void LevelLoader::processGameObjectBillboardSet(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
+
+	//Get name
+	tGameObjectBillboardSetParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentBillboardSet
+	tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
 }
 
 void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
@@ -694,154 +737,130 @@ TRenderComponentLightParameters LevelLoader::processRenderComponentLight(TiXmlEl
 
 }
 
-//void LevelLoader::processParticleSystem(TiXmlElement *XMLNode)
-//{
-//
-//	TParticleSystemParameters tParticleSystemParameters;
-//
-//	//Process the entity scene node
-//	processSceneNode(XMLNode);
-//	
-//	//Get ParticleSystem name
-//	tParticleSystemParameters.name = getAttrib(XMLNode, "name");
-//
-//	//Process ParticleSystem properties
-//	tParticleSystemParameters.TRenderComponentParticleSystemParameters.particle = getPropertyString(XMLNode, "particle");
-//	tParticleSystemParameters.TRenderComponentParticleSystemParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
-//	
-//	//Create ParticleSystem
-////	pGameWorldManager->createParticleSystem(tParticleSystemParameters);
-//
-//}
-//
-//void LevelLoader::processBillboards(std::vector<TRenderComponentBillboardParameters> &tRenderComponentBillboardParameters,TiXmlElement *XMLNode)
-//{
-//
-//	int i;
-//	TRenderComponentBillboardParameters currentRenderComponentBillboardParameters;
-//
-//	//get the number of BillboardSet's Billboards
-//	int billboardcount=getPropertyInt(XMLNode,"billboardcount");
-//
-//	//process and load all BillboardSet's Billboards
-//	for(i=0;i<billboardcount;i++)
-//	{
-//		//Process Billboards
-//		currentRenderComponentBillboardParameters.colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
-//		currentRenderComponentBillboardParameters.dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
-//		currentRenderComponentBillboardParameters.position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
-//		currentRenderComponentBillboardParameters.rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
-//		currentRenderComponentBillboardParameters.texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
-//		currentRenderComponentBillboardParameters.texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
-//
-//		tRenderComponentBillboardParameters.push_back(currentRenderComponentBillboardParameters);
-//	}
-//	
-//}
-//
-//void LevelLoader::processBillboardSet(TiXmlElement *XMLNode)
-//{
-//	TBillboardSetParameters tBillboardSetParameters;
-//
-//	//Process the BillboardSet scene node
-//	processSceneNode(XMLNode);
-//	
-//	//Get BillboardSet name
-//	tBillboardSetParameters.name = getAttrib(XMLNode, "name");
-//	//LogManager::getSingleton().logMessage("[LevelLoader] creating "+name+" BillboardSet");
-//
-//	//Process BillboardSet properties
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.material = getPropertyString(XMLNode, "material");
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.defaultheight = getPropertyReal(XMLNode, "defaultheight");
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.pointrendering = getPropertyBool(XMLNode, "pointrendering");
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.renderdistance = getPropertyReal(XMLNode, "renderdistance");
-//	tBillboardSetParameters.TRenderComponentBillboardSetParameters.sorting = getPropertyBool(XMLNode, "sorting");
-//
-//		//BillboardType Conversion
-//	int billboardtype = getPropertyInt(XMLNode, "billboardtype");
-//	switch(billboardtype)
-//	{
-//		case OGITOR_BBT_ORIENTED_COMMON:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
-//			break;
-//		case OGITOR_BBT_ORIENTED_SELF:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_SELF;
-//			break;
-//		case OGITOR_BBT_PERPENDICULAR_COMMON:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_COMMON;
-//			break;
-//		case OGITOR_BBT_PERPENDICULAR_SELF:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_SELF;
-//			break;
-//		case OGITOR_BBT_POINT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_POINT;
-//			break;
-//		default:
-//			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardType!");
-//			break;
-//	}
-//		//BillboardOrigin Conversion
-//	int billboardorigin = getPropertyInt(XMLNode, "billboardorigin");
-//	switch(billboardorigin)
-//	{
-//		case OGITOR_BBO_BOTTOM_CENTER:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_CENTER;
-//			break;
-//		case OGITOR_BBO_BOTTOM_LEFT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_LEFT;
-//			break;
-//		case OGITOR_BBO_BOTTOM_RIGHT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_RIGHT;
-//			break;
-//		case OGITOR_BBO_CENTER:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
-//			break;
-//		case OGITOR_BBO_CENTER_LEFT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_LEFT;
-//			break;
-//		case OGITOR_BBO_CENTER_RIGHT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_RIGHT;
-//			break;
-//		case OGITOR_BBO_TOP_CENTER:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_CENTER;
-//			break;
-//		case OGITOR_BBO_TOP_LEFT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_LEFT;
-//			break;
-//		case OGITOR_BBO_TOP_RIGHT:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
-//			break;
-//		default:
-//			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardOrigin!");
-//			break;
-//	}
-//
-//	//Billboard Rotation Conversion
-//	int billboardrotation = getPropertyInt(XMLNode, "billboardrotation");
-//	switch(billboardrotation)
-//	{
-//		case OGITOR_BBR_TEXCOORD:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_TEXCOORD;
-//			break;
-//		case OGITOR_BBR_VERTEX:
-//			tBillboardSetParameters.TRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
-//			break;
-//		default:
-//			Ogre::LogManager::getSingleton().logMessage("Billboard "+tBillboardSetParameters.name+" has unrecognised BillboardRotationType!");
-//			break;
-//	}
-//
-//	//process BillboardSet's Billboards
-//	processBillboards(tBillboardSetParameters.TRenderComponentBillboardSetParameters.TRenderComponentBillboardParameters,XMLNode);
-//
-//	
-//	//Create BillboardSet
-////	pGameWorldManager->createBillboardSet(tBillboardSetParameters);
-//
-//
-//}
+TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentParticleSystem(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 
+	//Process ParticleSystem properties
+	tRenderComponentParticleSystemParameters.particle = getPropertyString(XMLNode, "particle");
+	tRenderComponentParticleSystemParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
+	
+	return tRenderComponentParticleSystemParameters;
+}
+TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillboardSet(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
+
+	//Process BillboardSet properties
+	tRenderComponentBillboardSetParameters.material = getPropertyString(XMLNode, "material");
+	tRenderComponentBillboardSetParameters.defaultheight = getPropertyReal(XMLNode, "defaultheight");
+	tRenderComponentBillboardSetParameters.defaultwidth = getPropertyReal(XMLNode, "defaultwidth");
+	tRenderComponentBillboardSetParameters.pointrendering = getPropertyBool(XMLNode, "pointrendering");
+	tRenderComponentBillboardSetParameters.renderdistance = getPropertyReal(XMLNode, "renderdistance");
+	tRenderComponentBillboardSetParameters.sorting = getPropertyBool(XMLNode, "sorting");
+
+		//BillboardType Conversion
+	int billboardtype = getPropertyInt(XMLNode, "billboardtype");
+	switch(billboardtype)
+	{
+		case OGITOR_BBT_ORIENTED_COMMON:
+			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
+			break;
+		case OGITOR_BBT_ORIENTED_SELF:
+			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_SELF;
+			break;
+		case OGITOR_BBT_PERPENDICULAR_COMMON:
+			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_COMMON;
+			break;
+		case OGITOR_BBT_PERPENDICULAR_SELF:
+			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_PERPENDICULAR_SELF;
+			break;
+		case OGITOR_BBT_POINT:
+			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_POINT;
+			break;
+		default:
+			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardType!");
+			break;
+	}
+		//BillboardOrigin Conversion
+	int billboardorigin = getPropertyInt(XMLNode, "billboardorigin");
+	switch(billboardorigin)
+	{
+		case OGITOR_BBO_BOTTOM_CENTER:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_CENTER;
+			break;
+		case OGITOR_BBO_BOTTOM_LEFT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_LEFT;
+			break;
+		case OGITOR_BBO_BOTTOM_RIGHT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_BOTTOM_RIGHT;
+			break;
+		case OGITOR_BBO_CENTER:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
+			break;
+		case OGITOR_BBO_CENTER_LEFT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_LEFT;
+			break;
+		case OGITOR_BBO_CENTER_RIGHT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER_RIGHT;
+			break;
+		case OGITOR_BBO_TOP_CENTER:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_CENTER;
+			break;
+		case OGITOR_BBO_TOP_LEFT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_LEFT;
+			break;
+		case OGITOR_BBO_TOP_RIGHT:
+			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
+			break;
+		default:
+			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardOrigin!");
+			break;
+	}
+
+	//Billboard Rotation Conversion
+	int billboardrotation = getPropertyInt(XMLNode, "billboardrotation");
+	switch(billboardrotation)
+	{
+		case OGITOR_BBR_TEXCOORD:
+			tRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_TEXCOORD;
+			break;
+		case OGITOR_BBR_VERTEX:
+			tRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
+			break;
+		default:
+			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardRotationType!");
+			break;
+	}
+
+	//process BillboardSet's Billboards
+	processRenderComponentBillboards(tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters,XMLNode);
+
+	return tRenderComponentBillboardSetParameters;
+}
+
+void LevelLoader::processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode)
+{
+	int i;
+	OUAN::TRenderComponentBillboardParameters currentTRenderComponentBillboardParameters;
+
+	//get the number of BillboardSet's Billboards
+	int billboardcount=getPropertyInt(XMLNode,"billboardcount");
+
+	//process and load all BillboardSet's Billboards
+	for(i=0;i<billboardcount;i++)
+	{
+		//Process Billboards
+		currentTRenderComponentBillboardParameters.colour=getPropertyColourValue(XMLNode,"billboard"+StringConverter::toString(i)+"::colour");
+		currentTRenderComponentBillboardParameters.dimensions=getPropertyVector2(XMLNode,"billboard"+StringConverter::toString(i)+"::dimensions");
+		currentTRenderComponentBillboardParameters.position=getPropertyVector3(XMLNode,"billboard"+StringConverter::toString(i)+"::position");
+		currentTRenderComponentBillboardParameters.rotation=getPropertyReal(XMLNode,"billboard"+StringConverter::toString(i)+"::rotation");
+		currentTRenderComponentBillboardParameters.texcoordindex=getPropertyInt(XMLNode,"billboard"+StringConverter::toString(i)+"::texcoordindex");
+		currentTRenderComponentBillboardParameters.texrect=getPropertyVector4(XMLNode,"billboard"+StringConverter::toString(i)+"::texrect");
+
+		tRenderComponentBillboardParameters.push_back(currentTRenderComponentBillboardParameters);
+	}
+}
 
 
 //void LevelLoader::processPlane(TiXmlElement *XMLNode)
@@ -864,8 +883,6 @@ TRenderComponentSkyBoxParameters LevelLoader::processRenderComponentSkyBox(TiXml
 
 	return TRenderComponentSkyBoxParameters;
 }
-
-
 
 TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiXmlElement *XMLNode)
 {
