@@ -7,6 +7,8 @@
 #include "GameObject/GameObject.h"
 #include "GameObject/GameObjectTerrain.h"
 #include "GameObject/GameObjectLight.h"
+#include "GameObject/GameObjectBillboardSet.h"
+#include "GameObject/GameObjectParticleSystem.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectOny.h"
 #include "GameObject/GameObjectTripollo.h"
@@ -14,6 +16,7 @@
 #include "GameObject/GameObjectItem1UP.h"
 #include "GameObject/GameObjectItemMaxHP.h"
 #include "GameObject/GameObjectPortal.h"
+
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
@@ -98,14 +101,43 @@ TGameObjectTerrainContainer GameWorldManager::getGameObjectTerrainContainer()
 	return mGameObjectTerrain;
 }
 
+TGameObjectBillboardSetContainer GameWorldManager::getGameObjectBillboardSetContainer()
+{
+	return mGameObjectBillboardSet;
+}
+
+TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystemContainer()
+{
+	return mGameObjectParticleSystem;
+}
+
+TGameObjectPhysicsCharacter GameWorldManager::geTGameObjectPhysicsCharacter()
+{
+	return mGameObjectPhysicsCharacter;
+}
+
+TGameObjectPhysicsComplexMovable GameWorldManager::geTGameObjectPhysicsComplexMovable()
+{
+	return mGameObjectPhysicsComplexMovable;
+}
+
+TGameObjectPhysicsComplexNonMovable GameWorldManager::geTGameObjectPhysicsComplexNonMovable()
+{
+	return mGameObjectPhysicsComplexNonMovable;
+}
+
+TGameObjectPhysicsSimple GameWorldManager::geTGameObjectPhysicsSimple()
+{
+	return mGameObjectPhysicsSimple;
+}
+
 void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 }
 
-void GameWorldManager::unloadLevel()
+void GameWorldManager::clearContainers()
 {
-	mNextIdNum=0;//reset id counter ??
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
@@ -115,12 +147,25 @@ void GameWorldManager::unloadLevel()
 	mGameObjectNonMovable.clear();
 	mGameObjectNonMovableEntity.clear();
 	mGameObjectLight.clear();
+	mGameObjectParticleSystem.clear();
+	mGameObjectBillboardSet.clear();
 	mGameObjectTerrain.clear();
 	mGameObjectOny.clear();
 	mGameObjectPositional.clear();
 	mGameObjectScene.clear();
 	mGameObjectTripollo.clear();
 
+	mGameObjectPhysicsCharacter.clear();
+	mGameObjectPhysicsComplexMovable.clear();
+	mGameObjectPhysicsComplexNonMovable.clear();
+	mGameObjectPhysicsSimple.clear();
+}
+
+void GameWorldManager::unloadLevel()
+{
+	mNextIdNum=0;//reset id counter ??
+
+	clearContainers();
 	//TODO RenderSubsystem CLEAR
 	//PHysycs subsystem clear, etc...
 	//landscape->cleanUp();
@@ -131,20 +176,9 @@ void GameWorldManager::initialise(ApplicationPtr app)
 {
 	mNextIdNum=0;
 	mApp=app;
-	mGameObjects.clear();
-	mGameObjectsToAdd.clear();
-	mGameObjectsToDelete.clear();
 
-	mGameObjectMovable.clear();
-	mGameObjectMovableEntity.clear();
-	mGameObjectNonMovable.clear();
-	mGameObjectNonMovableEntity.clear();
-	mGameObjectLight.clear();
-	mGameObjectTerrain.clear();
-	mGameObjectOny.clear();
-	mGameObjectPositional.clear();
-	mGameObjectScene.clear();
-	mGameObjectTripollo.clear();
+	clearContainers();
+
 	//landscape.reset() | landscape->initialiseBlank() | ...
 }
 
@@ -153,20 +187,8 @@ void GameWorldManager::cleanUp()
 	// Careful with how game objects
 	// (well, their components)
 	// will free their resources!!
-	mGameObjects.clear();
-	mGameObjectsToAdd.clear();
-	mGameObjectsToDelete.clear();
 
-	mGameObjectMovable.clear();
-	mGameObjectMovableEntity.clear();
-	mGameObjectNonMovable.clear();
-	mGameObjectNonMovableEntity.clear();
-	mGameObjectLight.clear();
-	mGameObjectTerrain.clear();
-	mGameObjectOny.clear();
-	mGameObjectPositional.clear();
-	mGameObjectScene.clear();
-	mGameObjectTripollo.clear();
+	clearContainers();
 }
 
 
@@ -184,7 +206,6 @@ std::string GameWorldManager::makeIdString(const std::string& baseString,const i
 	ostr<<"_"<<std::setw(padding)<<std::setfill('0')<<value;
 	std::string s(ostr.str());
 	return s;
-	
 }
 
 void GameWorldManager::addGameObject(GameObjectPtr gameObject)
@@ -228,6 +249,9 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 	mGameObjectPositional.push_back(pGameObjectTerrain);
 	mGameObjectNonMovable.push_back(pGameObjectTerrain);
 	mGameObjectNonMovableEntity.push_back(pGameObjectTerrain);
+
+	mGameObjectPhysicsComplexNonMovable.push_back(pGameObjectTerrain);
+
 	mGameObjectTerrain.push_back(pGameObjectTerrain);
 }
 
@@ -275,6 +299,24 @@ void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 	mGameObjectPositional.push_back(pGameObjectLight);
 	mGameObjectNonMovable.push_back(pGameObjectLight);
 	mGameObjectLight.push_back(pGameObjectLight);
+}
+
+void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet)
+{
+	mGameObjects[pGameObjectBillboardSet->getId()]=pGameObjectBillboardSet;
+
+	mGameObjectPositional.push_back(pGameObjectBillboardSet);
+	mGameObjectNonMovable.push_back(pGameObjectBillboardSet);
+	mGameObjectBillboardSet.push_back(pGameObjectBillboardSet);
+}
+
+void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem)
+{
+	mGameObjects[pGameObjectParticleSystem->getId()]=pGameObjectParticleSystem;
+
+	mGameObjectPositional.push_back(pGameObjectParticleSystem);
+	mGameObjectNonMovable.push_back(pGameObjectParticleSystem);
+	mGameObjectParticleSystem.push_back(pGameObjectParticleSystem);
 }
 
 
@@ -487,6 +529,52 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 
 	//Add Object to GameWorldManager
 	addGameObjectLight(pGameObjectLight);
+}
+
+void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters)
+{
+	GameObjectBillboardSetPtr pGameObjectBillboardSet;
+
+	//Create GameObject
+	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(
+		tGameObjectBillboardSetParameters.name,makeIdString(tGameObjectBillboardSetParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectBillboardSet->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentBillboardSet
+		pGameObjectBillboardSet->setRenderComponentBillboardSet(factory->createRenderComponentBillboardSet(
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectBillboardSet(pGameObjectBillboardSet);
+}
+
+void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters)
+{
+	GameObjectParticleSystemPtr pGameObjectParticleSystem;
+
+	//Create GameObject
+	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(
+		tGameObjectParticleSystemParameters.name,makeIdString(tGameObjectParticleSystemParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectParticleSystem->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentParticleSystem
+		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectParticleSystem(pGameObjectParticleSystem);
 }
 
 

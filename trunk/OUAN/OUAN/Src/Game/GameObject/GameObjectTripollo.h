@@ -33,7 +33,7 @@ namespace OUAN
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
-		void setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity);
+		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
 		/// Return positional component 
 		/// @return positional component

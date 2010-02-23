@@ -23,9 +23,9 @@ void GameObjectPortal::setRenderComponentEntity(RenderComponentEntityPtr pRender
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectPortal::getRenderComponentPositional() const

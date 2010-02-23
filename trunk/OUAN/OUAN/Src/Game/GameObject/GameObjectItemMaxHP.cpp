@@ -23,9 +23,9 @@ void GameObjectItemMaxHP::setRenderComponentEntity(RenderComponentEntityPtr pRen
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectItemMaxHP::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectItemMaxHP::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectItemMaxHP::getRenderComponentPositional() const

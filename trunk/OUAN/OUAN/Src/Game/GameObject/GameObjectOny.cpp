@@ -12,9 +12,9 @@ GameObjectOny::~GameObjectOny()
 {
 
 }
-void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectOny::getRenderComponentPositional() const
