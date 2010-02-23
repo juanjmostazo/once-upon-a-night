@@ -23,10 +23,17 @@ namespace OUAN
 		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntityContainer();
 		TGameObjectTerrainContainer getGameObjectTerrainContainer();
 		TGameObjectLightContainer getGameObjectLightContainer();
+		TGameObjectParticleSystemContainer getGameObjectParticleSystemContainer();
+		TGameObjectBillboardSetContainer getGameObjectBillboardSetContainer();
 		TGameObjectOnyContainer getGameObjectOnyContainer();
 		TGameObjectPositionalContainer getGameObjectPositionalContainer();
 		TGameObjectSceneContainer getGameObjectSceneContainer();
 		TGameObjectTripolloContainer getGameObjectTripolloContainer();
+
+		TGameObjectPhysicsCharacter geTGameObjectPhysicsCharacter();
+		TGameObjectPhysicsComplexMovable geTGameObjectPhysicsComplexMovable();
+		TGameObjectPhysicsComplexNonMovable geTGameObjectPhysicsComplexNonMovable();
+		TGameObjectPhysicsSimple geTGameObjectPhysicsSimple();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -56,6 +63,8 @@ namespace OUAN
 		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
 		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
 		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
+		void createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters);
+		void createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters);
 		void createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters);
 		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
 		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
@@ -97,10 +106,13 @@ namespace OUAN
 		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
 		void addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain);
 		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
+		void addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem);
+		void addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet);
 		void addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP);
 		void addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP);
 		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
 		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
+
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
 
@@ -134,12 +146,21 @@ namespace OUAN
 		TGameObjectNonMovableContainer mGameObjectNonMovable;
 		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntity;
 		TGameObjectLightContainer mGameObjectLight;
+		TGameObjectParticleSystemContainer mGameObjectParticleSystem;
+		TGameObjectBillboardSetContainer mGameObjectBillboardSet;
 		TGameObjectTerrainContainer mGameObjectTerrain;
 		TGameObjectOnyContainer mGameObjectOny;
 		TGameObjectPositionalContainer mGameObjectPositional;
 		TGameObjectSceneContainer mGameObjectScene;
 		TGameObjectTripolloContainer mGameObjectTripollo;
-	
+
+		TGameObjectPhysicsCharacter mGameObjectPhysicsCharacter;
+		TGameObjectPhysicsComplexMovable mGameObjectPhysicsComplexMovable;
+		TGameObjectPhysicsComplexNonMovable mGameObjectPhysicsComplexNonMovable;
+		TGameObjectPhysicsSimple mGameObjectPhysicsSimple;
+
+		void clearContainers();
+
 		// Lists of objects to be created/deleted as a result of an
 		// update frame. 
 		// Addition/Deletion will be effective just before the next

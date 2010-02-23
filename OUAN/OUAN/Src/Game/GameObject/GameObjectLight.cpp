@@ -22,9 +22,9 @@ void GameObjectLight::setRenderComponentLight(RenderComponentLightPtr pRenderCom
 {
 	mRenderComponentLight=pRenderComponentLight;
 }
-void GameObjectLight::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectLight::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() const

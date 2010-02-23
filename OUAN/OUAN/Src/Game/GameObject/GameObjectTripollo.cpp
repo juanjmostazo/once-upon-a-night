@@ -13,9 +13,9 @@ GameObjectTripollo::~GameObjectTripollo()
 
 }
 
-void GameObjectTripollo::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectTripollo::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectTripollo::getRenderComponentPositional() const

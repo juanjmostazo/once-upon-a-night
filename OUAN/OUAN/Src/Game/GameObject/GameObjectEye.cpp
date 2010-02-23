@@ -23,9 +23,9 @@ void GameObjectEye::setRenderComponentEntity(RenderComponentEntityPtr pRenderCom
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectEye::setRenderComponentPositional(RenderComponentPositionalPtr pPositionalEntity)
+void GameObjectEye::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	mRenderComponentPositional=pPositionalEntity;
+	mRenderComponentPositional=pRenderComponentPositional;
 }
 
 RenderComponentPositionalPtr GameObjectEye::getRenderComponentPositional() const

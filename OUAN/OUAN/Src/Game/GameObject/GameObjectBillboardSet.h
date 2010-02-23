@@ -1,32 +1,32 @@
-#ifndef GameObjectLightH_H
-#define GameObjectLightH_H
+#ifndef GameObjectBillboardSetH_H
+#define GameObjectBillboardSetH_H
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Graphics/RenderComponent/RenderComponentLight.h"
+#include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 namespace OUAN
 {
 	/// Models a light source object
-	class GameObjectLight : public GameObject
+	class GameObjectBillboardSet : public GameObject
 	{
 	private:
 		/// Holds the information related to visual rendering
-		RenderComponentLightPtr mRenderComponentLight;
+		RenderComponentBillboardSetPtr mRenderComponentBillboardSet;
 		/// Holds information related to the object's position in space
 		RenderComponentPositionalPtr mRenderComponentPositional;
 
 	public:
 		//Constructor
-		GameObjectLight(const std::string& name, const std::string& id);
+		GameObjectBillboardSet(const std::string& name, const std::string& id);
 		//Destructor
-		~GameObjectLight();
+		~GameObjectBillboardSet();
 
 		/// Get light component
 		/// @return light component
-		RenderComponentLightPtr getRenderComponentLight() const;
+		RenderComponentBillboardSetPtr getRenderComponentBillboardSet() const;
 
 		/// Set light component
 		/// @param pRenderComponentLight the light component to set
-		void setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight);
+		void setRenderComponentBillboardSet(RenderComponentBillboardSetPtr pRenderComponentBillboardSet);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -40,17 +40,17 @@ namespace OUAN
 	};
 
 	/// Transport object carrying around data from the level loader
-	/// to the light object
-	class TGameObjectLightParameters: public TGameObjectParameters
+	/// to the BillboardSet object
+	class TGameObjectBillboardSetParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectLightParameters();
+		TGameObjectBillboardSetParameters();
 		/// Default destructor
-		~TGameObjectLightParameters();
+		~TGameObjectBillboardSetParameters();
 
 		/// Light-specific parameters
-		TRenderComponentLightParameters tRenderComponentLightParameters;
+		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
 		/// Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 

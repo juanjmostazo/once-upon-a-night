@@ -36,6 +36,7 @@ namespace OUAN
 		~TGameObjectParameters();
 
 		std::string name;
+		std::string id;
 	};
 }
 #endif

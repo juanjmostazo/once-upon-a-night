@@ -1,32 +1,32 @@
-#ifndef GameObjectLightH_H
-#define GameObjectLightH_H
+#ifndef GameObjectParticleSystemH_H
+#define GameObjectParticleSystemH_H
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Graphics/RenderComponent/RenderComponentLight.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 namespace OUAN
 {
 	/// Models a light source object
-	class GameObjectLight : public GameObject
+	class GameObjectParticleSystem : public GameObject
 	{
 	private:
 		/// Holds the information related to visual rendering
-		RenderComponentLightPtr mRenderComponentLight;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystem;
 		/// Holds information related to the object's position in space
 		RenderComponentPositionalPtr mRenderComponentPositional;
 
 	public:
 		//Constructor
-		GameObjectLight(const std::string& name, const std::string& id);
+		GameObjectParticleSystem(const std::string& name, const std::string& id);
 		//Destructor
-		~GameObjectLight();
+		~GameObjectParticleSystem();
 
 		/// Get light component
 		/// @return light component
-		RenderComponentLightPtr getRenderComponentLight() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystem() const;
 
 		/// Set light component
 		/// @param pRenderComponentLight the light component to set
-		void setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight);
+		void setRenderComponentParticleSystem(RenderComponentParticleSystemPtr pRenderComponentParticleSystem);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -40,17 +40,17 @@ namespace OUAN
 	};
 
 	/// Transport object carrying around data from the level loader
-	/// to the light object
-	class TGameObjectLightParameters: public TGameObjectParameters
+	/// to the ParticleSystem object
+	class TGameObjectParticleSystemParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectLightParameters();
+		TGameObjectParticleSystemParameters();
 		/// Default destructor
-		~TGameObjectLightParameters();
+		~TGameObjectParticleSystemParameters();
 
 		/// Light-specific parameters
-		TRenderComponentLightParameters tRenderComponentLightParameters;
+		TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 		/// Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 

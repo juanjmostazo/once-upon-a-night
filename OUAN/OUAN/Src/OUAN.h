@@ -143,6 +143,12 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectNonMovableEntityContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
 
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacter;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexMovable;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexNonMovable;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimple;
+
+
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
@@ -160,6 +166,18 @@ namespace OUAN
 		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
 		const std::string GAME_OBJECT_NAME_LIGHT="light";
+
+		class GameObjectBillboardSet;
+		class TGameObjectBillboardSetParameters;
+		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
+		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
+		const std::string GAME_OBJECT_NAME_BILLBOARDSET="billboard";
+
+		class GameObjectParticleSystem;
+		class TGameObjectParticleSystemParameters;
+		typedef boost::shared_ptr<GameObjectParticleSystem> GameObjectParticleSystemPtr;
+		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
+		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="particle";
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;
