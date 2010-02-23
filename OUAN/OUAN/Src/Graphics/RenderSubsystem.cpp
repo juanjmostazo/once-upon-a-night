@@ -542,6 +542,8 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 
 Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
 {
+	int i;
+
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
 	try
@@ -563,6 +565,18 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		billBoardSet->setBillboardType(tRenderComponentBillboardSetParameters.billboardtype);
 		billBoardSet->setBillboardOrigin(tRenderComponentBillboardSetParameters.billboardorigin);
 		billBoardSet->setBillboardRotationType(tRenderComponentBillboardSetParameters.billboardrotation);
+
+		// Create BillboardSet's Billboards
+		for(i=0;i<tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.size();i++)
+		{
+			createBillboard(billBoardSet,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].colour,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].dimensions,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].position,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].rotation,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].texcoordindex,
+				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].texrect);
+		}
 
 	}
 	catch(Ogre::Exception &/*e*/)

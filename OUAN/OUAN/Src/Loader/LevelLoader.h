@@ -35,6 +35,8 @@ namespace OUAN
 		void processGameObjectTripollo(TiXmlElement *XMLNode);
 		void processGameObjectTerrain(TiXmlElement *XMLNode);
 		void processGameObjectLight(TiXmlElement *XMLNode);
+		void processGameObjectParticleSystem(TiXmlElement *XMLNode);
+		void processGameObjectBillboardSet(TiXmlElement *XMLNode);
 		void processGameObjectPortal(TiXmlElement *XMLNode);
 		void processGameObjectItemMaxHP(TiXmlElement *XMLNode);
 		void processGameObjectItem1UP(TiXmlElement *XMLNode);
@@ -48,7 +50,10 @@ namespace OUAN
 		TRenderComponentPositionalParameters processRenderComponentPositionalNoScale(TiXmlElement *XMLNode);
 		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode);
 		TRenderComponentLightParameters processRenderComponentLight(TiXmlElement *XMLNode);
+		TRenderComponentParticleSystemParameters processRenderComponentParticleSystem(TiXmlElement *XMLNode);
+		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
+		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
 
 		//void processTerrain(TiXmlElement *XMLNode);
 		//void processOctreeSceneManager(TiXmlElement *XMLNode);

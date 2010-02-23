@@ -23,7 +23,7 @@
     </RESOURCEDIRECTORIES>
   <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="0">
-    <OPTION id="0" position="96.8732 31.8762 -28.5849" orientation="0.745451 -0.030074 0.665339 0.0268791"></OPTION>
+    <OPTION id="0" position="116.237 31.7339 -28.6779" orientation="-0.898994 0.107374 -0.421594 -0.0503859"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -97,9 +97,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.745475 -0.030075 0.66536 0.0268799"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.899008 0.107376 -0.4216 -0.0503867"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="96.8732 31.8762 -28.5849"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="116.237 31.7339 -28.6779"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -321,6 +321,46 @@
     <PROPERTY id="subentity0::material" type="7" value="Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="743736064" name="Particle#0" typename="Particle Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
+    <PROPERTY id="position" type="9" value="64.6843 44.3808 -38.8187"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="5249184" name="BillboardSet#0" typename="BillboardSet Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
+    <PROPERTY id="billboard0::dimensions" type="8" value="10 10"></PROPERTY>
+    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
+    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboardtype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
+    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="material" type="7" value="grassbillboard"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
+    <PROPERTY id="position" type="9" value="97.4129 17.5021 -46.7057"></PROPERTY>
+    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

@@ -171,13 +171,13 @@ namespace OUAN
 		class TGameObjectBillboardSetParameters;
 		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
 		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
-		const std::string GAME_OBJECT_NAME_BILLBOARDSET="billboard";
+		const std::string GAME_OBJECT_NAME_BILLBOARDSET="BillboardSet";
 
 		class GameObjectParticleSystem;
 		class TGameObjectParticleSystemParameters;
 		typedef boost::shared_ptr<GameObjectParticleSystem> GameObjectParticleSystemPtr;
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
-		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="particle";
+		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="Particle";
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;
