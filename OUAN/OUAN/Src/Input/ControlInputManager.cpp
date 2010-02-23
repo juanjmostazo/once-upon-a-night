@@ -1,12 +1,12 @@
+#include <sstream>
 #include <stdlib.h>
 #include "ControlInputManager.h"
-#include "../Loader/Configuration.h"
 
 using namespace OUAN;
 
 ControlInputManager::ControlInputManager()
 {
-	loadConfig();
+
 }
 
 ControlInputManager::~ControlInputManager()
@@ -16,12 +16,29 @@ ControlInputManager::~ControlInputManager()
 
 //////////////////////////////////////////////////////////////
 
+void ControlInputManager::initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer)
+{
+	FullInputManager::initialise(window,showDefaultMousePointer);
+	loadConfig();
+}
+
+void ControlInputManager::finalise()
+{
+	FullInputManager::finalise();
+}
+
+//////////////////////////////////////////////////////////////
+
 bool ControlInputManager::loadConfig()
 {
-	OUAN::Configuration config;
+	Configuration config;
 	std::string value;
 	bool success;
 
+	// Load key mappings for mouse-keyboard input
+	loadDefaultInputConfig(DEFAULTINPUT_CFG);
+
+	// Same for a pad
 	if (config.loadFromFile(PSXPAD_CFG))
 	{
 		config.getOption("DEFAULT_PAD_ID", value); 
@@ -76,110 +93,191 @@ bool ControlInputManager::loadConfig()
 	return success;
 }
 
+void ControlInputManager::readOption(Configuration cfg,const std::string& key, int& value)
+{
+	std::string strValue;
+	std::istringstream valueReader;
+	cfg.getOption(key,strValue);
+	valueReader.str(strValue);
+	valueReader>>std::hex>>value;
+}
+
+OIS::MouseButtonID ControlInputManager::convertMouseButtonId(TInputCfgMouseButtonMapper inputCfgMouseButtonId)
+{
+	switch(inputCfgMouseButtonId)
+	{
+	case INPUTCFG_MOUSEBUTTON_LEFT:
+		return OIS::MB_Left;
+	case INPUTCFG_MOUSEBUTTON_RIGHT:
+		return OIS::MB_Right;
+	case INPUTCFG_MOUSEBUTTON_MIDDLE:
+		return OIS::MB_Middle;
+	case INPUTCFG_MOUSEBUTTON_MB3:
+		return OIS::MB_Button3;
+	case INPUTCFG_MOUSEBUTTON_MB4:
+		return OIS::MB_Button4;
+	case INPUTCFG_MOUSEBUTTON_MB5:
+		return OIS::MB_Button5;
+	case INPUTCFG_MOUSEBUTTON_MB6:
+		return OIS::MB_Button6;
+	case INPUTCFG_MOUSEBUTTON_MB7:
+		return OIS::MB_Button7;
+	default:
+		return OIS::MB_Left;
+	}
+}
+
+bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePath)
+{
+	Configuration config;
+	if (config.loadFromFile(configFilePath))
+	{
+		readOption(config,KEY_MENU,mDefaultInputData.keyMenu);
+		readOption(config,KEY_PAUSE,mDefaultInputData.keyPause);
+
+		readOption(config,KEY_USEWEAPON,mDefaultInputData.keyUseWeapon);
+		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon);
+		readOption(config,KEY_ACTION,mDefaultInputData.keyAction);
+		readOption(config,KEY_JUMP,mDefaultInputData.keyJump);
+		readOption(config,KEY_WALK,mDefaultInputData.keyWalk);
+
+		readOption(config,KEY_FORWARD,mDefaultInputData.keyForward);			
+		readOption(config,KEY_BACKWARDS,mDefaultInputData.keyBackwards);
+		readOption(config,KEY_LEFT,mDefaultInputData.keyLeft);
+		readOption(config,KEY_RIGHT,mDefaultInputData.keyRight);
+
+		readOption(config,KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget);
+		readOption(config,KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft);
+		readOption(config,KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight);
+
+		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
+		readOption(config,KEY_DEBUG,mDefaultInputData.keyDebug);
+		
+		return true;
+	}
+	else
+	{
+		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyReloadWeapon=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyForward=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyJump=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyLeft=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyMenu=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyPause=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRight=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRotateLeft=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRotateRight=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyWalk=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyUseWeapon=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebug=OIS::KC_UNASSIGNED;
+		return false;
+	}
+}
+
+
 //////////////////////////////////////////////////////////////
+
+bool ControlInputManager::isPressed(int padButton, int defaultInputKey)
+{
+	bool isKeyboardKey= defaultInputKey>0;
+	bool isMouseButton = defaultInputKey<0;
+	bool isValidJoystickButton = getJoystick(defaultPadId) && padButton>=0; //Ensure there is a joystick and the button is valid
+	return 
+		(isValidJoystickButton && getJoystick(defaultPadId)->getJoyStickState().buttonDown(padButton))
+		||(isKeyboardKey && getKeyboard()->isKeyDown(static_cast<OIS::KeyCode>(defaultInputKey)))
+		|| (isMouseButton && getMouse()->getMouseState().buttonDown(
+		convertMouseButtonId(static_cast<TInputCfgMouseButtonMapper>(defaultInputKey))));
+}
 
 bool ControlInputManager::isPressedMenu()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padSelect) ||
-		getKeyboard()->isKeyDown(OIS::KC_ESCAPE);
+	return isPressed(padSelect,mDefaultInputData.keyMenu);
 }
 
 bool ControlInputManager::isPressedPause()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padStart) ||
-		getKeyboard()->isKeyDown(OIS::KC_RETURN);
+	return isPressed(padStart,mDefaultInputData.keyPause);
 }
 
 //////////////////////////////////////////////////////////////
 
 bool ControlInputManager::isPressedJump()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padX) ||
-		getKeyboard()->isKeyDown(OIS::KC_SPACE);
+	return isPressed(padX,mDefaultInputData.keyJump);
 }
 
 bool ControlInputManager::isPressedDoAction()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padCircle) ||
-		getMouse()->getMouseState().buttonDown(OIS::MB_Right);
+	return isPressed(padCircle,mDefaultInputData.keyAction);
 }
 
 bool ControlInputManager::isPressedUseWeapon()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padSquare) ||
-		getMouse()->getMouseState().buttonDown(OIS::MB_Left);
+	return isPressed(padSquare,mDefaultInputData.keyUseWeapon);
 }
 
 bool ControlInputManager::isPressedWeaponAction()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padTriangle) ||
-		getKeyboard()->isKeyDown(OIS::KC_R);
+	return isPressed(padTriangle,mDefaultInputData.keyReloadWeapon);
 }
 
 //////////////////////////////////////////////////////////////
 
 bool ControlInputManager::isPressedGoForward()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padUp) ||
-		getKeyboard()->isKeyDown(OIS::KC_W);
+	return isPressed(padUp,mDefaultInputData.keyForward);
 }
 
 bool ControlInputManager::isPressedGoBack()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padDown) ||
-		getKeyboard()->isKeyDown(OIS::KC_S);
+	return isPressed(padDown,mDefaultInputData.keyBackwards);
 }
 
 bool ControlInputManager::isPressedGoLeft()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padLeft) ||
-		getKeyboard()->isKeyDown(OIS::KC_A);
+	return isPressed(padLeft, mDefaultInputData.keyLeft);
 }
 
 bool ControlInputManager::isPressedGoRight()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padRight) ||
-		getKeyboard()->isKeyDown(OIS::KC_D);
+	return isPressed(padRight,mDefaultInputData.keyRight);
 }
 
 //////////////////////////////////////////////////////////////
 
 bool ControlInputManager::isPressedWalk()
-{
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padR1) ||
-		getKeyboard()->isKeyDown(OIS::KC_E);
+{ 
+	return isPressed(padR1,mDefaultInputData.keyWalk);
 }
 
 bool ControlInputManager::isPressedAutoPoint()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padL1) ||
-		getKeyboard()->isKeyDown(OIS::KC_Q);
+	return isPressed(padL1,mDefaultInputData.keyAutoTarget);
 }
 
 bool ControlInputManager::isPressedRotateLeft()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padL2) ||
-		getKeyboard()->isKeyDown(OIS::KC_Z);
+	return isPressed(padL2,mDefaultInputData.keyRotateLeft);
 }
 
 bool ControlInputManager::isPressedRotateRight()
 {
-	return 
-		getJoystick(defaultPadId)->getJoyStickState().buttonDown(padR2) ||
-		getKeyboard()->isKeyDown(OIS::KC_X);
+	return isPressed(padR2,mDefaultInputData.keyRotateRight);
+}
+
+//////////////////////////////////////////////////////////////
+
+bool ControlInputManager::isPressedQuickExit()
+{
+	return isPressed(-1,mDefaultInputData.keyQuickExit);
+}
+
+bool ControlInputManager::isPressedToggleDebug()
+{
+	return isPressed(-1,mDefaultInputData.keyDebug);
 }
 
 //////////////////////////////////////////////////////////////

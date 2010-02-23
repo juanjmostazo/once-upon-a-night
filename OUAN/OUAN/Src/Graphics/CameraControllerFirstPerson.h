@@ -13,7 +13,9 @@ namespace OUAN
 		void initialise(Ogre::SceneManager * pSceneManager);
 		void setCamera(Ogre::Camera* camera);
 		void processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime);
+		void processSimpleTranslation(const Ogre::Vector3& translationVector);
 		void processMouseInput(const OIS::MouseEvent& e);
+		void processRelativeMotion(float xRel, float yRel);
 	private:
 		Ogre::Camera* camera;
 		Ogre::SceneNode *cameraNode;

@@ -48,29 +48,13 @@ void GameRunningState::resume()
 
 }
 
-/// process input events
-/// @param app	the parent application
 void GameRunningState::handleEvents()
 {
-
-}
-
-void GameRunningState::update(long elapsedTime)
-{
-	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
-	mApp->getRenderSubsystem()->relativeMoveCam();
-
-	float elapsedSeconds=elapsedTime*0.001f;
-	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
-	mApp->mKeyBuffer-=elapsedTime;
-}
-
-bool GameRunningState::keyPressed( const OIS::KeyEvent& e )
-{
-	if ( e.key == OIS::KC_ESCAPE )
-		mApp->mExitRequested= true;
-	
-	if (e.key == OIS::KC_G && mApp->mKeyBuffer<0)
+	if (mApp->isPressedQuickExit())
+	{
+		mApp->mExitRequested=true;
+	}
+	if (mApp->isPressedToggleDebug() && mApp->mKeyBuffer<0)
 	{
 		if (mApp->getDebugMode()==DEBUGMODE_PHYSICS)
 		{
@@ -86,12 +70,52 @@ bool GameRunningState::keyPressed( const OIS::KeyEvent& e )
 		}
 		mApp->mKeyBuffer = 500;
 	}
-	return true;
+
+	// TODO: Correct this checks so that they perform their supposed functions
+	// i.e, move the player character, instead of translating the camera
+	// At the moment they're just here so we can move around the scene in the initial
+	// stages of development.
+	if (mApp->isPressedGoForward())
+	{
+		mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_Z); //For some reason, axis seem inverted :S
+	}
+	if (mApp->isPressedGoBack())
+	{
+		mApp->getRenderSubsystem()->translateCamera(AXIS_POS_Z);
+	}
+	if (mApp->isPressedGoLeft())
+	{
+		mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_X);
+	}
+	if (mApp->isPressedGoRight())
+	{
+		mApp->getRenderSubsystem()->translateCamera(AXIS_POS_X);
+	}
+
+	//[TODO: This will also have to be refactored somehow as soon as
+	// a camera manager system has been implemented. 
+	// The render subsystem shouldn't move cameras at this point: it will
+	// all be managed internally from the body of a hypothetic CameraComponent
+	// 
+	// The main idea would be something like:
+	// - Poll mouse/joystick right axis using the mApp methods inherited
+	//   from ControlInputManager and retrieve the relative increments
+	// - Then ask the gameWorldManager to update the current active camera accordingly,
+	//	 or switch to the user-controlled camera mode and then update that one, whatever.
+	//   The current active camera would be a GameObject using a CameraComponent.
+	//]
+	float xRel,yRel,zRel;	
+	mApp->getMouseStateRelValues(&xRel,&yRel,&zRel);
+	mApp->getRenderSubsystem()->moveCamera(xRel,yRel,zRel);
 }
-bool GameRunningState::mouseMoved(const OIS::MouseEvent &e)
+
+void GameRunningState::update(long elapsedTime)
 {
-	mApp->getRenderSubsystem()->moveCamera(e);
-	return true;
+	//mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
+	
+	float elapsedSeconds=elapsedTime*0.001f;
+	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+	mApp->mKeyBuffer-=elapsedTime;
 }
 
 bool GameRunningState::render()

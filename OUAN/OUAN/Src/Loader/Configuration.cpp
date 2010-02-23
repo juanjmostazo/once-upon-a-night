@@ -31,7 +31,7 @@ bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags
 	
 	configMap.clear();
 
-	for (elementPtr=rootHandle.FirstChild(XML_ELEMENT_OPTIONS.c_str()).FirstChild().Element();elementPtr!=NULL;
+	for (elementPtr=rootHandle.FirstChild(XML_ELEMENT_OPTIONS.c_str()).FirstChild(XML_ELEMENT_OPTION.c_str()).Element();elementPtr!=NULL;
 			elementPtr=elementPtr->NextSiblingElement())
 	{
 		if(elementPtr->Attribute(XML_ELEMENT_OPTION_ATTRIBUTE_KEY.c_str()))

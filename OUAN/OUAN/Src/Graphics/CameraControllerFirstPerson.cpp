@@ -47,12 +47,15 @@ void CameraControllerFirstPerson::setCamera(Ogre::Camera* camera)
 
 void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 {
+	processRelativeMotion(e.state.X.rel,e.state.Y.rel);
+}
+void CameraControllerFirstPerson::processRelativeMotion(float xRel, float yRel)
+{
 	Ogre::Real pitchAngle;
 	Ogre::Real pitchAngleSign;
 
-	float mRotX=-e.state.X.rel*0.3;
-	float mRotY=-e.state.Y.rel*0.3;
-
+	float mRotX=-xRel*0.3;
+	float mRotY=-yRel*0.3;
 
 	// Yaws the camera according to the mouse relative movement.
 	cameraYawNode->yaw(Ogre::Angle(mRotX));
@@ -73,13 +76,12 @@ void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 		if (pitchAngleSign > 0)
 			// Set orientation to 90 degrees on X-axis.
 			cameraPitchNode->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
-																   Ogre::Math::Sqrt(0.5f), 0, 0));
+			Ogre::Math::Sqrt(0.5f), 0, 0));
 		else if (pitchAngleSign < 0)
 			// Sets orientation to -90 degrees on X-axis.
 			cameraPitchNode->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
-																   -Ogre::Math::Sqrt(0.5f), 0, 0));
+			-Ogre::Math::Sqrt(0.5f), 0, 0));
 	}
-
 }
 
 void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime)
@@ -176,4 +178,20 @@ void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,f
 								translateVector,
 								Ogre::SceneNode::TS_LOCAL);
 	//Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
+}
+void CameraControllerFirstPerson::processSimpleTranslation(const Ogre::Vector3& translationVector)
+{
+	float moveScale=0.1f;
+	Ogre::Vector3 translation = moveScale*translationVector;
+	// Translates the camera according to the translate vector which is
+	// controlled by the keyboard arrows.
+	//
+	// NOTE: We multiply the mTranslateVector by the cameraPitchNode's
+	// orientation quaternion and the cameraYawNode's orientation
+	// quaternion to translate the camera accoding to the camera's
+	// orientation around the Y-axis and the X-axis.
+	cameraNode->translate(cameraYawNode->getOrientation() *
+		cameraPitchNode->getOrientation() *
+		translation,
+		Ogre::SceneNode::TS_LOCAL);
 }

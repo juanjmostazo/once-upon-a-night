@@ -30,15 +30,6 @@ namespace OUAN
 		/// @param app the parent app
 		bool render();
 
-		/// Process keyboard press input event.
-		/// @param e	input event
-		/// @return <b>true</b> if event was handled correctly
-		bool keyPressed( const OIS::KeyEvent& e );
-		/// Process a mouse motion input event.
-		/// @param e	input event
-		/// @return <b>true</b> if event was handled correctly
-		bool mouseMoved(const OIS::MouseEvent &e);
-
 		/// Default constructor
 		GameRunningState();
 		/// Destructor

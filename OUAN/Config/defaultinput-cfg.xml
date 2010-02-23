@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<Configuration>
+	<Options>
+		<!-- Escape -->
+		<Option key="Menu">0x01</Option>
+		<!-- Return -->
+		<Option key="Pause">0x1C</Option>
+		<!-- W -->
+		<Option key="Forward">0x11</Option>
+		<!-- S -->
+		<Option key="Backwards">0x1F</Option>
+		<!-- A -->
+		<Option key="Left">0x1E</Option>
+		<!-- D -->		
+		<Option key="Right">0x20</Option>
+		<!-- Space -->		
+		<Option key="Jump">0x39</Option>
+		<!-- Right mouse button -->		
+		<Option key="Action">-0x02</Option>
+		<!-- R -->		
+		<Option key="Reload">0x13</Option>
+		<!-- Left mouse button -->		
+		<Option key="UseWeapon">-0x01</Option>
+		<!-- E -->		
+		<Option key="Walk">0x12</Option>
+		<!-- Z -->		
+		<Option key="LRotate">0x2C</Option>
+		<!-- X -->		
+		<Option key="RRotate">0x2D</Option>
+		<!-- Q -->		
+		<Option key="AutoTarget">0x10</Option>
+		<!-- F11 -->
+		<Option key="Debug">0x57</Option>
+		<!-- F12 -->		
+		<Option key="QuickExit">0x58</Option>
+	</Options>
+</Configuration>
