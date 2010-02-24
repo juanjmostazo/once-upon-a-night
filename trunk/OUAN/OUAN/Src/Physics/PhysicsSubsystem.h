@@ -72,7 +72,7 @@ namespace OUAN
 		virtual void initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 		virtual void initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
 		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
-		virtual void initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube);
+		virtual void initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		virtual void updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
 		virtual void updateGameObjectTripollo(float elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);

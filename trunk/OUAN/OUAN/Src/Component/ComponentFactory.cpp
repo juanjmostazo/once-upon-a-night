@@ -16,7 +16,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 
 using namespace OUAN;
 
@@ -144,44 +144,53 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	return pRenderComponentViewport;
 }
 
-PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = 
 		PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
 
 	pPhysicsComponentCharacter->setParent(gameObject);	
-
-	pPhysicsComponentCharacter->setSceneNode(renderComponentPositional->getSceneNode());
-
+	pPhysicsComponentCharacter->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentCharacter->setMass(tPhysicsComponentCharacterParameters.mass);
+	pPhysicsComponentCharacter->setDensity(tPhysicsComponentCharacterParameters.density);
 	pPhysicsComponentCharacter->setNxOgreSize(
-		NxOgre::Vec2(tPhysicsComponentCharacterParameters.radius, tPhysicsComponentCharacterParameters.height));
+		NxOgre::Vec2(	tPhysicsComponentCharacterParameters.radius, 
+						tPhysicsComponentCharacterParameters.height));
 
 	NxOgre::ControllerDescription mNxOgreControllerDescription;
-	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(renderComponentPositional->getSceneNode()->getPosition()));
+	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
 	return pPhysicsComponentCharacter;
 }
 
-PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex = 
 		PhysicsComponentComplexConvexPtr(new PhysicsComponentComplexConvex()); 
 
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
+	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
+	pPhysicsComponentComplexConvex->setDensity(tPhysicsComponentComplexConvexParameters.density);
+
+	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
+		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
+
+	pPhysicsComponentComplexConvex->setNxOgreConvex(new NxOgre::Convex(convexMesh));
 
 	return pPhysicsComponentComplexConvex;
 }
 
-PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {	
 	PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle = 
 		PhysicsComponentComplexTrianglePtr(new PhysicsComponentComplexTriangle()); 
 
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
-
-	//Ogre::LogManager::getSingleton().logMessage(NXS_PATH);
-	//Ogre::LogManager::getSingleton().logMessage(tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
+	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentComplexTriangle->setMass(tPhysicsComponentComplexTriangleParameters.mass);
+	pPhysicsComponentComplexTriangle->setDensity(tPhysicsComponentComplexTriangleParameters.density);
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
@@ -190,27 +199,39 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 
 	pPhysicsComponentComplexTriangle->setNxOgreTriangleGeometry(triangleGeometry);
-	pPhysicsComponentComplexTriangle->setSceneNode(renderComponentPositional->getSceneNode());
 
 	return pPhysicsComponentComplexTriangle;
 }
 
-PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = 
 		PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule()); 
 
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
+	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentSimpleCapsule->setMass(tPhysicsComponentSimpleCapsuleParameters.mass);
+	pPhysicsComponentSimpleCapsule->setDensity(tPhysicsComponentSimpleCapsuleParameters.density);
+	pPhysicsComponentSimpleCapsule->setNxOgreSize(
+		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
+						tPhysicsComponentSimpleCapsuleParameters.height));
 
 	return pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentSimpleCubePtr ComponentFactory::createPhysicsComponentSimpleCube(GameObjectPtr gameObject,TPhysicsComponentSimpleCubeParameters tPhysicsComponentSimpleCubeParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(GameObjectPtr gameObject,TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
-	PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube = 
-		PhysicsComponentSimpleCubePtr(new PhysicsComponentSimpleCube()); 
+	PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox = 
+		PhysicsComponentSimpleBoxPtr(new PhysicsComponentSimpleBox()); 
 
-	pPhysicsComponentSimpleCube->setParent(gameObject);	
-
-	return pPhysicsComponentSimpleCube;
+	pPhysicsComponentSimpleBox->setParent(gameObject);	
+	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentSimpleBox->setMass(tPhysicsComponentSimpleBoxParameters.mass);
+	pPhysicsComponentSimpleBox->setDensity(tPhysicsComponentSimpleBoxParameters.density);
+	pPhysicsComponentSimpleBox->setNxOgreSize(
+		NxOgre::Vec3(	tPhysicsComponentSimpleBoxParameters.lengthX,
+						tPhysicsComponentSimpleBoxParameters.lengthY,
+						tPhysicsComponentSimpleBoxParameters.lengthZ));
+	
+	return pPhysicsComponentSimpleBox;
 }

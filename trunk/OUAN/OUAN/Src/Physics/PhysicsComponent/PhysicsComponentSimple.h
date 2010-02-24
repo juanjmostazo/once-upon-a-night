@@ -10,6 +10,12 @@ namespace OUAN
 	public:
 		PhysicsComponentSimple(const std::string& name="");
 		~PhysicsComponentSimple();
+
+		OGRE3DBody* getNxOgreBody();
+		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
+
+	protected:
+		OGRE3DBody* mNxOgreBody;
 	};
 
 	class TPhysicsComponentSimpleParameters: public TPhysicsComponentParameters

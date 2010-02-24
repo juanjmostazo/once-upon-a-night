@@ -10,6 +10,9 @@ namespace OUAN
 	public:
 		PhysicsComponentComplex(const std::string& name="");
 		~PhysicsComponentComplex();
+
+	protected:
+
 	};
 
 	class TPhysicsComponentComplexParameters: public TPhysicsComponentParameters

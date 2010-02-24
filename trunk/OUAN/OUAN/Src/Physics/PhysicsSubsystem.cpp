@@ -14,7 +14,7 @@
 #include "PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "PhysicsComponent/PhysicsComponentSimple.h"
 #include "PhysicsComponent/PhysicsComponentSimpleCapsule.h"
-#include "PhysicsComponent/PhysicsComponentSimpleCube.h"
+#include "PhysicsComponent/PhysicsComponentSimpleBox.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -193,25 +193,40 @@ void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPt
 
 void PhysicsSubsystem::initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
 {
-
+	pPhysicsComponentComplexConvex->setNxOgreBody(
+		mNxOgreRenderSystem->createBody(
+			pPhysicsComponentComplexConvex->getNxOgreConvex(),
+			pPhysicsComponentComplexConvex->getSceneNode()->getPosition(),
+			pPhysicsComponentComplexConvex->getSceneNode()));
 }
 
 void PhysicsSubsystem::initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
 	mNxOgreScene->createSceneGeometry(
 		pPhysicsComponentComplexTriangle->getNxOgreTriangleGeometry(),
-		NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentComplexTriangle->getSceneNode()->getPosition()))
-	);
+		NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentComplexTriangle->getSceneNode()->getPosition())));
 }
 
 void PhysicsSubsystem::initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
-
+	pPhysicsComponentSimpleCapsule->setNxOgreBody(
+		mNxOgreRenderSystem->createBody(
+			new NxOgre::Capsule(	pPhysicsComponentSimpleCapsule->getNxOgreSize().x,
+									pPhysicsComponentSimpleCapsule->getNxOgreSize().y),
+			pPhysicsComponentSimpleCapsule->getSceneNode()->getPosition(),
+			pPhysicsComponentSimpleCapsule->getSceneNode()));
 }
 
-void PhysicsSubsystem::initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube)
+void PhysicsSubsystem::initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-
+	pPhysicsComponentSimpleBox->setNxOgreBody(
+		mNxOgreRenderSystem->createBody(
+			new NxOgre::Box(	pPhysicsComponentSimpleBox->getNxOgreSize().x,
+			pPhysicsComponentSimpleBox->getNxOgreSize().y,
+			pPhysicsComponentSimpleBox->getNxOgreSize().z),
+			pPhysicsComponentSimpleBox->getSceneNode()->getPosition(),
+			pPhysicsComponentSimpleBox->getSceneNode()));
+	
 }
 
 void PhysicsSubsystem::updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
