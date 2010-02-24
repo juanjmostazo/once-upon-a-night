@@ -33,6 +33,16 @@ RenderComponentEntityPtr GameObjectOny::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
+void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+{
+	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+}
+
+PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
+{
+	return mPhysicsComponentCharacter;
+}
+
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
 }

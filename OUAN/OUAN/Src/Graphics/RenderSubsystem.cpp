@@ -567,7 +567,7 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		billBoardSet->setBillboardRotationType(tRenderComponentBillboardSetParameters.billboardrotation);
 
 		// Create BillboardSet's Billboards
-		for(i=0;i<tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.size();i++)
+		for(unsigned int i=0;i<tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.size();i++)
 		{
 			createBillboard(billBoardSet,
 				tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[i].colour,

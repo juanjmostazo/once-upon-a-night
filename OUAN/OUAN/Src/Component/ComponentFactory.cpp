@@ -146,16 +146,27 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 
 PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr renderComponentPositional)
 {
-	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
+	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = 
+		PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
 
 	pPhysicsComponentCharacter->setParent(gameObject);	
+
+	pPhysicsComponentCharacter->setSceneNode(renderComponentPositional->getSceneNode());
+
+	pPhysicsComponentCharacter->setNxOgreSize(
+		NxOgre::Vec2(tPhysicsComponentCharacterParameters.radius, tPhysicsComponentCharacterParameters.height));
+
+	NxOgre::ControllerDescription mNxOgreControllerDescription;
+	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(renderComponentPositional->getSceneNode()->getPosition()));
+	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
 	return pPhysicsComponentCharacter;
 }
 
 PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComplexMovable(GameObjectPtr gameObject,TPhysicsComponentComplexMovableParameters tPhysicsComponentComplexMovableParameters,RenderComponentPositionalPtr renderComponentPositional)
 {
-	PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable = PhysicsComponentComplexMovablePtr(new PhysicsComponentComplexMovable()); 
+	PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable = 
+		PhysicsComponentComplexMovablePtr(new PhysicsComponentComplexMovable()); 
 
 	pPhysicsComponentComplexMovable->setParent(gameObject);	
 
@@ -164,19 +175,21 @@ PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComple
 
 PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentComplexNonMovable(GameObjectPtr gameObject,TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters,RenderComponentPositionalPtr renderComponentPositional)
 {	
-	PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable = PhysicsComponentComplexNonMovablePtr(new PhysicsComponentComplexNonMovable()); 
+	PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable = 
+		PhysicsComponentComplexNonMovablePtr(new PhysicsComponentComplexNonMovable()); 
 
 	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
 
 	//Ogre::LogManager::getSingleton().logMessage(NXS_PATH);
 	//Ogre::LogManager::getSingleton().logMessage(tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
 
-	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
+	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
+		tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
 
 	NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(triangleMesh);
 	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 
-	pPhysicsComponentComplexNonMovable->setTriangleGeometry(triangleGeometry);
+	pPhysicsComponentComplexNonMovable->setNxOgreTriangleGeometry(triangleGeometry);
 	pPhysicsComponentComplexNonMovable->setSceneNode(renderComponentPositional->getSceneNode());
 
 	return pPhysicsComponentComplexNonMovable;
@@ -184,7 +197,8 @@ PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentCom
 
 PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr renderComponentPositional)
 {
-	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule()); 
+	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = 
+		PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule()); 
 
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 
@@ -193,7 +207,8 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 
 PhysicsComponentSimpleCubePtr ComponentFactory::createPhysicsComponentSimpleCube(GameObjectPtr gameObject,TPhysicsComponentSimpleCubeParameters tPhysicsComponentSimpleCubeParameters,RenderComponentPositionalPtr renderComponentPositional)
 {
-	PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube = PhysicsComponentSimpleCubePtr(new PhysicsComponentSimpleCube()); 
+	PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube = 
+		PhysicsComponentSimpleCubePtr(new PhysicsComponentSimpleCube()); 
 
 	pPhysicsComponentSimpleCube->setParent(gameObject);	
 

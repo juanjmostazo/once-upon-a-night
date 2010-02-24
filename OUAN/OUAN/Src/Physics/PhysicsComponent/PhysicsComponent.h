@@ -29,6 +29,9 @@ namespace OUAN
 	public:
 		TPhysicsComponentParameters();
 		~TPhysicsComponentParameters();
+
+		float mass;
+		float density;
 	};
 }
 

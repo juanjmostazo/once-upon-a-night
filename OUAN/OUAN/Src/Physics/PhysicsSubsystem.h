@@ -67,6 +67,12 @@ namespace OUAN
 
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
+
+		virtual void initialisePhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
+		virtual void initialisePhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable);
+		virtual void initialisePhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable);
+		virtual void initialisePhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule);
+		virtual void initialisePhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube);
 	};
 }
 #endif
