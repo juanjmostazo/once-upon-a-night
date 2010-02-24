@@ -32,8 +32,8 @@ namespace OUAN
 		TGameObjectEyeContainer getGameObjectEyeContainer();
 
 		TGameObjectPhysicsCharacter geTGameObjectPhysicsCharacter();
-		TGameObjectPhysicsComplexMovable geTGameObjectPhysicsComplexMovable();
-		TGameObjectPhysicsComplexNonMovable geTGameObjectPhysicsComplexNonMovable();
+		TGameObjectPhysicsComplexConvex geTGameObjectPhysicsComplexConvex();
+		TGameObjectPhysicsComplexTriangle geTGameObjectPhysicsComplexTriangle();
 		TGameObjectPhysicsSimple geTGameObjectPhysicsSimple();
 
 		/// Load level from the given file
@@ -157,8 +157,8 @@ namespace OUAN
 		TGameObjectEyeContainer mGameObjectEye;
 
 		TGameObjectPhysicsCharacter mGameObjectPhysicsCharacter;
-		TGameObjectPhysicsComplexMovable mGameObjectPhysicsComplexMovable;
-		TGameObjectPhysicsComplexNonMovable mGameObjectPhysicsComplexNonMovable;
+		TGameObjectPhysicsComplexConvex mGameObjectPhysicsComplexConvex;
+		TGameObjectPhysicsComplexTriangle mGameObjectPhysicsComplexTriangle;
 		TGameObjectPhysicsSimple mGameObjectPhysicsSimple;
 
 		void clearContainers();

@@ -69,8 +69,8 @@ namespace OUAN
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
 		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
-		virtual void initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable);
-		virtual void initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable);
+		virtual void initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
+		virtual void initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
 		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
 		virtual void initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube);
 

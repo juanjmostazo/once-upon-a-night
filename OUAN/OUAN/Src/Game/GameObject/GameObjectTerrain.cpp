@@ -33,14 +33,14 @@ RenderComponentPositionalPtr GameObjectTerrain::getRenderComponentPositional() c
 	return mRenderComponentPositional;
 }
 
-void GameObjectTerrain::setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+void GameObjectTerrain::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
-	mPhysicsComponentComplexNonMovable=pPhysicsComponentComplexNonMovable;
+	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
 }
 
-PhysicsComponentComplexNonMovablePtr GameObjectTerrain::getPhysicsComponentComplexNonMovable()
+PhysicsComponentComplexTrianglePtr GameObjectTerrain::getPhysicsComponentComplexTriangle()
 {
-	return mPhysicsComponentComplexNonMovable;
+	return mPhysicsComponentComplexTriangle;
 }
 
 

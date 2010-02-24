@@ -26,8 +26,8 @@
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
@@ -343,11 +343,11 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentComplexNonMovableParameters tmpPhysicsComponent;
+	TPhysicsComponentComplexTriangleParameters tmpPhysicsComponent;
 	tmpPhysicsComponent.mass=0;
 	tmpPhysicsComponent.density=0;
 	tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
-	tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters = tmpPhysicsComponent;
+	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = tmpPhysicsComponent;
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
