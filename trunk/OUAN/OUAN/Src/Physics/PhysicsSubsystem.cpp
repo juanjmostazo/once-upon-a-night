@@ -67,7 +67,7 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 	sceneDesc.mGravity = NxOgre::Vec3(0, -9.8f, 0);
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
-
+	
 	//Initializing Ogre3DRenderSystem
 	mNxOgreRenderSystem = new OGRE3DRenderSystem(mNxOgreScene);
 
@@ -88,19 +88,14 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 
 	//Initializing terrains
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-		/*
-		std::stringstream out;
-		out << i;
-		std::string loopIndex = out.str();
-		LogManager::getSingleton().logMessage("Looping in terrain " + loopIndex);
-		*/
-		PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable =
-			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable();
+		initialisePhysicsComponentComplexNonMovable(
+			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable());
+	}
 
-		mNxOgreScene->createSceneGeometry(
-			physicsComponentComplexNonMovable->getTriangleGeometry(),
-			NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
-		);
+	//Initializing Ony
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
+		initialisePhysicsComponentCharacter(
+			mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]->getPhysicsComponentCharacter());
 	}
 	
 	///**
@@ -113,6 +108,7 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 
 void PhysicsSubsystem::update(float elapsedSeconds)
 {
+	
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
 
@@ -146,6 +142,44 @@ NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 	return mNxOgreControllerManager;
 }
 
+void PhysicsSubsystem::initialisePhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+{
+	// TOFIX Next piece of code should be in ComponentFactory::createPhysicsComponentCharacter
+	NxOgre::ControllerDescription mNxOgreControllerDescription = physicsComponentCharacter->getNxOgreControllerDescription(); 
+	mNxOgreControllerDescription.mCallback = this;
+	physicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
+
+	physicsComponentCharacter->setNxOgreController(
+		mNxOgreControllerManager->createCapsuleController(
+			physicsComponentCharacter->getNxOgreControllerDescription(), 
+			physicsComponentCharacter->getNxOgreSize(), 
+			mNxOgreScene, 
+			mNxOgreRenderSystem->createPointRenderable(physicsComponentCharacter->getSceneNode())));
+}
+
+void PhysicsSubsystem::initialisePhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable)
+{
+
+}
+
+void PhysicsSubsystem::initialisePhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable)
+{
+	mNxOgreScene->createSceneGeometry(
+		physicsComponentComplexNonMovable->getNxOgreTriangleGeometry(),
+		NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
+	);
+}
+
+void PhysicsSubsystem::initialisePhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule)
+{
+
+}
+
+void PhysicsSubsystem::initialisePhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube)
+{
+
+}
+
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	return NxOgre::Enums::ControllerAction_None;
@@ -155,4 +189,3 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 {	
 	return NxOgre::Enums::ControllerAction_None;
 }
-

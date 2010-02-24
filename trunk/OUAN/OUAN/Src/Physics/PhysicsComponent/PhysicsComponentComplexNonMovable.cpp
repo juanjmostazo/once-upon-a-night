@@ -10,14 +10,14 @@ PhysicsComponentComplexNonMovable::~PhysicsComponentComplexNonMovable()
 {
 }
 
-NxOgre::TriangleGeometry* PhysicsComponentComplexNonMovable::getTriangleGeometry()
+NxOgre::TriangleGeometry* PhysicsComponentComplexNonMovable::getNxOgreTriangleGeometry()
 {
-	return triangleGeometry;
+	return mNxOgreTriangleGeometry;
 }
 
-void PhysicsComponentComplexNonMovable::setTriangleGeometry(NxOgre::TriangleGeometry* triangleGeometry)
+void PhysicsComponentComplexNonMovable::setNxOgreTriangleGeometry(NxOgre::TriangleGeometry* pNxOgreTriangleGeometry)
 {
-	this->triangleGeometry = triangleGeometry;
+	mNxOgreTriangleGeometry = pNxOgreTriangleGeometry;
 }
 
 TPhysicsComponentComplexNonMovableParameters::TPhysicsComponentComplexNonMovableParameters() : TPhysicsComponentComplexParameters()

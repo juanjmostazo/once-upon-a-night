@@ -229,6 +229,9 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 	mGameObjectPositional.push_back(pGameObjectOny);
 	mGameObjectMovable.push_back(pGameObjectOny);
 	mGameObjectMovableEntity.push_back(pGameObjectOny);
+
+	mGameObjectPhysicsCharacter.push_back(pGameObjectOny);
+
 	mGameObjectOny.push_back(pGameObjectOny);
 }
 
@@ -353,6 +356,12 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		//Create RenderComponentEntity
 		pGameObjectOny->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
+
+		//Create PhysicsComponent
+		pGameObjectOny->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectOny->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
@@ -497,7 +506,7 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 		pGameObjectTerrain->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
 
-		//Create PhysicsComponentTerrain
+		//Create PhysicsComponent
 		pGameObjectTerrain->setPhysicsComponentComplexNonMovable(factory->createPhysicsComponentComplexNonMovable(
 			pGameObjectTerrain,
 			tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters,

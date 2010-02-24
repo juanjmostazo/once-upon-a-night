@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+
 namespace OUAN
 {
 	/// Main character game object
@@ -13,7 +15,8 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component data
 		RenderComponentPositionalPtr mRenderComponentPositional;
-
+		/// Physics information
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 
 	public:
 		//Constructor
@@ -39,6 +42,11 @@ namespace OUAN
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
+		/// Set physics component
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+
+		/// Get physics component
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 	};
 
 	/// Carries data between the level loader and the object factories
@@ -55,6 +63,9 @@ namespace OUAN
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
+
+		///Physics parameters
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 	};
 
 }
