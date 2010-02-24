@@ -65,7 +65,7 @@ namespace OUAN
 		virtual ~ControlInputManager();
 
 		/// Load configuration
-		void initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
+		void init( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
 		/// Clear resources
 		void finalise();
 

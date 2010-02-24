@@ -21,13 +21,13 @@ namespace OUAN
 		~PhysicsSubsystem();
 		
 		//Initialize physics subsystem elements
-		virtual void initialise(ApplicationPtr app,OUAN::ConfigurationPtr config);
+		virtual void init(ApplicationPtr app,OUAN::ConfigurationPtr config);
 
 		//Reset physics level elements
 		virtual void resetLevel();
 
 		//Initialize physics level elements
-		virtual void initialiseLevel(std::string sceneName);
+		virtual void initLevel(std::string sceneName);
 
 		// Update physics subsystem elements
 		virtual void update(float elapsedSeconds);
@@ -68,11 +68,11 @@ namespace OUAN
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
-		virtual void initialisePhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
-		virtual void initialisePhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable);
-		virtual void initialisePhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable);
-		virtual void initialisePhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule);
-		virtual void initialisePhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube);
+		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
+		virtual void initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable);
+		virtual void initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable);
+		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule);
+		virtual void initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube);
 	};
 }
 #endif

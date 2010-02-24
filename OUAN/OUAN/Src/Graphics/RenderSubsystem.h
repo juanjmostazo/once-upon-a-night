@@ -20,8 +20,8 @@ namespace OUAN
 		/// Destructor
 		virtual ~RenderSubsystem();
 
-		/// Initialise the subsystem from the options read in the configuration file
-		void initialise (ApplicationPtr app,OUAN::ConfigurationPtr config);		
+		/// init the subsystem from the options read in the configuration file
+		void init (ApplicationPtr app,OUAN::ConfigurationPtr config);		
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
 
@@ -44,7 +44,7 @@ namespace OUAN
 		void createDebugFloor(OUAN::ConfigurationPtr config);
 
 		/// Load resources [TODO: Make this level dependent?]
-		void initialiseResourceGroups(OUAN::ConfigurationPtr config);
+		void initResourceGroups(OUAN::ConfigurationPtr config);
 
 		/// Setup the scene [TODO: Make this level dependent?]
 		void defaultSetupScene(OUAN::ConfigurationPtr config);

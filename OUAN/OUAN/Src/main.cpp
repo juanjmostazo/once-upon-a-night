@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	try
 	{
 		OUAN::ApplicationPtr app(new OUAN::Application());
-		app->initialise();
+		app->init();
 		app->loadInitialState();
 		app->go();
 		app->cleanUp();		

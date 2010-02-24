@@ -37,7 +37,7 @@ using namespace OUAN;
 LevelLoader::LevelLoader(){}
 LevelLoader::~LevelLoader(){}
 
-void LevelLoader::initialise(OUAN::ApplicationPtr app)
+void LevelLoader::init(OUAN::ApplicationPtr app)
 {
 	this->pGameWorldManager=app->getGameWorldManager();
 }
@@ -317,6 +317,14 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
+	//TO DO --- GET PHYSICS INFO FROM LOADER
+	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
+	tmpPhysicsComponent.mass=25;
+	tmpPhysicsComponent.density=1;
+	tmpPhysicsComponent.radius=4;
+	tmpPhysicsComponent.height=4;
+	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
+
 	//Create GameObject
 	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
 }
@@ -408,6 +416,13 @@ void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
+	//TO DO --- GET PHYSICS INFO FROM LOADER
+	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
+	tmpPhysicsComponent.mass=25;
+	tmpPhysicsComponent.density=1;
+	tmpPhysicsComponent.radius=4;
+	tmpPhysicsComponent.height=4;
+	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
 	//Create GameObject
 	pGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
 }
@@ -570,7 +585,7 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 //
 //	//if(trajectory.trajectoryNodes.size()==0)
 //	//{
-//	//	trajectory.initialise(mSceneManager);
+//	//	trajectory.init(mSceneManager);
 //	//}
 //
 //	//i=0;

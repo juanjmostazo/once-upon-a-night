@@ -96,6 +96,11 @@ TGameObjectTripolloContainer GameWorldManager::getGameObjectTripolloContainer()
 	return mGameObjectTripollo;
 }
 
+TGameObjectEyeContainer GameWorldManager::getGameObjectEyeContainer()
+{
+	return mGameObjectEye;
+
+}
 TGameObjectTerrainContainer GameWorldManager::getGameObjectTerrainContainer()
 {
 	return mGameObjectTerrain;
@@ -154,6 +159,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectPositional.clear();
 	mGameObjectScene.clear();
 	mGameObjectTripollo.clear();
+	mGameObjectEye.clear();
 
 	mGameObjectPhysicsCharacter.clear();
 	mGameObjectPhysicsComplexMovable.clear();
@@ -171,15 +177,15 @@ void GameWorldManager::unloadLevel()
 	//landscape->cleanUp();
 }
 
-/// Initialise object
-void GameWorldManager::initialise(ApplicationPtr app)
+/// init object
+void GameWorldManager::init(ApplicationPtr app)
 {
 	mNextIdNum=0;
 	mApp=app;
 
 	clearContainers();
 
-	//landscape.reset() | landscape->initialiseBlank() | ...
+	//landscape.reset() | landscape->initBlank() | ...
 }
 
 void GameWorldManager::cleanUp()
@@ -192,7 +198,7 @@ void GameWorldManager::cleanUp()
 }
 
 
-void GameWorldManager::initialiseGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/)
+void GameWorldManager::initGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/)
 {
 	// Set ambient light, skybox, etc.It is possible that all
 	// those params end up being part of the "landscape"  object 
@@ -242,6 +248,9 @@ void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTr
 	mGameObjectPositional.push_back(pGameObjectTripollo);
 	mGameObjectMovable.push_back(pGameObjectTripollo);
 	mGameObjectMovableEntity.push_back(pGameObjectTripollo);
+
+	mGameObjectPhysicsCharacter.push_back(pGameObjectTripollo);
+
 	mGameObjectTripollo.push_back(pGameObjectTripollo);
 }
 
@@ -294,6 +303,10 @@ void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 	mGameObjectPositional.push_back(pGameObjectEye);
 	mGameObjectNonMovable.push_back(pGameObjectEye);
 	mGameObjectNonMovableEntity.push_back(pGameObjectEye);
+
+	mGameObjectPhysicsCharacter.push_back(pGameObjectEye);
+
+	mGameObjectEye.push_back(pGameObjectEye);
 }
 void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 {
@@ -387,6 +400,12 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 		pGameObjectTripollo->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters));
 
+		//Create PhysicsComponent
+		pGameObjectTripollo->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectTripollo,
+			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectTripollo->getRenderComponentPositional()));
+
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
 }
@@ -410,6 +429,12 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 		//Create RenderComponentEntity
 		pGameObjectEye->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityParameters));
+
+		//Create PhysicsComponent
+		pGameObjectEye->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectEye,
+			tGameObjectEyeParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectEye->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager
 	addGameObjectEye(pGameObjectEye);

@@ -16,9 +16,9 @@ ControlInputManager::~ControlInputManager()
 
 //////////////////////////////////////////////////////////////
 
-void ControlInputManager::initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer)
+void ControlInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer)
 {
-	FullInputManager::initialise(window,showDefaultMousePointer);
+	FullInputManager::init(window,showDefaultMousePointer);
 	loadConfig();
 }
 

@@ -30,9 +30,9 @@ namespace OUAN
 
 		std::vector<CEGUI::Event::Connection> mConnections;
 	public:
-		/// Initialise CEGUI
+		/// init CEGUI
 		/// @param app	the application
-		void initialise(OUAN::ApplicationPtr app);
+		void init(OUAN::ApplicationPtr app);
 		/// Draw the GUI
 		/// @param app	the application
 		/// void renderGUI(OUAN::ApplicationPtr app);
@@ -67,8 +67,8 @@ namespace OUAN
 		/// @param subscriber	callback object containing the function to handle the event
 		void bindEvent(const CEGUI::String& eventName, const std::string& windowName, CEGUI::Event::Subscriber subscriber);
 
-		/// Initialise resource groups
-		void initialiseResourceGroups();
+		/// init resource groups
+		void initResourceGroups();
 
 	};
 }

@@ -45,7 +45,7 @@ namespace OUAN
 		virtual void getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY);
 		
 
-		virtual void initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
+		virtual void init( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
 		virtual void finalise();
 
 	protected:

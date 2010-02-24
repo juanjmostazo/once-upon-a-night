@@ -10,7 +10,7 @@ namespace OUAN
 		CameraControllerFirstPerson();
 		~CameraControllerFirstPerson();
 
-		void initialise(Ogre::SceneManager * pSceneManager);
+		void init(Ogre::SceneManager * pSceneManager);
 		
 		void processSimpleTranslation(const Ogre::Vector3& translationVector);
 		void processMouseInput(const OIS::MouseEvent& e);

@@ -1,5 +1,6 @@
 #ifndef GameObjectItem1UPH_H
 #define GameObjectItem1UPH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"

@@ -29,6 +29,7 @@ namespace OUAN
 		TGameObjectPositionalContainer getGameObjectPositionalContainer();
 		TGameObjectSceneContainer getGameObjectSceneContainer();
 		TGameObjectTripolloContainer getGameObjectTripolloContainer();
+		TGameObjectEyeContainer getGameObjectEyeContainer();
 
 		TGameObjectPhysicsCharacter geTGameObjectPhysicsCharacter();
 		TGameObjectPhysicsComplexMovable geTGameObjectPhysicsComplexMovable();
@@ -44,20 +45,20 @@ namespace OUAN
 		/// and so on)
 		void unloadLevel();
 
-		/// Initialise object
+		/// init object
 		/// @param pointer to the application object
-		void initialise(ApplicationPtr app);
+		void init(ApplicationPtr app);
 		/// Free resources
 		void cleanUp();
 
 		/// Load global parameters
-		void initialiseGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
+		void initGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
 
 		//Create Ogre component for the game object
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
 
 		/// Create a game object using the given 'parameters' object
-		/// @param objectParams parameters to initialise the game object and its components
+		/// @param objectParams parameters to init the game object and its components
 
 		//void createGameObjectMovableEntity(TGameObjectMovableEntityParameters tGameObjectMovableEntityParameters);
 		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
@@ -153,6 +154,7 @@ namespace OUAN
 		TGameObjectPositionalContainer mGameObjectPositional;
 		TGameObjectSceneContainer mGameObjectScene;
 		TGameObjectTripolloContainer mGameObjectTripollo;
+		TGameObjectEyeContainer mGameObjectEye;
 
 		TGameObjectPhysicsCharacter mGameObjectPhysicsCharacter;
 		TGameObjectPhysicsComplexMovable mGameObjectPhysicsComplexMovable;

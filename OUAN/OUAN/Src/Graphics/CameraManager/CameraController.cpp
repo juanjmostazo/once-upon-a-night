@@ -10,7 +10,7 @@ CameraController::~CameraController()
 {
 }
 
-void CameraController::initialise(Ogre::SceneManager * pSceneManager)
+void CameraController::init(Ogre::SceneManager * pSceneManager)
 {
 	mCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
 }

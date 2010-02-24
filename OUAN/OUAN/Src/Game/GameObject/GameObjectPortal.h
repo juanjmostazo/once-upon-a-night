@@ -1,5 +1,6 @@
 #ifndef GameObjectPortalH_H
 #define GameObjectPortalH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"

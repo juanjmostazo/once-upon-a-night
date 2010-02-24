@@ -16,7 +16,7 @@ FullInputManager::~FullInputManager()
 {
 }
 
-void FullInputManager::initialise( Ogre::RenderWindow* window, bool showDefaultMousePointer )
+void FullInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer )
 {
 	size_t windowHandle = 0;
 	window->getCustomAttribute( "WINDOW", &windowHandle );

@@ -1,6 +1,8 @@
 #ifndef GAMEOBJECTH_H
 #define GAMEOBJECTH_H
+
 #include "../../OUAN.h"
+
 namespace OUAN
 {
 	class GameObject{

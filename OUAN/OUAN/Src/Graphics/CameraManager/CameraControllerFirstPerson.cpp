@@ -11,7 +11,7 @@ CameraControllerFirstPerson::~CameraControllerFirstPerson()
 {
 }
 
-void CameraControllerFirstPerson::initialise(Ogre::SceneManager * pSceneManager)
+void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
 {
 	// Create the camera's top node (which will only handle position).
 	this->cameraNode = pSceneManager->getRootSceneNode()->createChildSceneNode();

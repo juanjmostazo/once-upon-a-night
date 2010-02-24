@@ -9,7 +9,7 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void initialise(Ogre::SceneManager* pSceneManager,Ogre::Viewport* pViewport);
+		void init(Ogre::SceneManager* pSceneManager,Ogre::Viewport* pViewport);
 
 		/// Free resources
 		void cleanUp();

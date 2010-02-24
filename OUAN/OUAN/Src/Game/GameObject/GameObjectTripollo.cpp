@@ -34,9 +34,20 @@ RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
+void GameObjectTripollo::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+{
+	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+}
+
+PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter()
+{
+	return mPhysicsComponentCharacter;
+}
+
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
 {
 }
+
 TGameObjectTripolloParameters::~TGameObjectTripolloParameters()
 {
 }

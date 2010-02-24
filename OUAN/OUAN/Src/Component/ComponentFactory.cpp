@@ -32,7 +32,7 @@ ComponentFactory* ComponentFactory::getInstance()
 	}
 }
 
-void ComponentFactory::initialise(ApplicationPtr app)
+void ComponentFactory::init(ApplicationPtr app)
 {
 	mApp=app;
 }
@@ -54,7 +54,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 
 	pRenderComponentBillboardSetPtr->setParent(gameObject);	
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),tRenderComponentBillboardSetParameters));
 
 	return pRenderComponentBillboardSetPtr;
@@ -66,7 +66,7 @@ RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjec
 
 	pRenderComponentCameraPtr->setParent(gameObject);	
 
-	//Initialise Render Component
+	//init Render Component
 	//pRenderComponentCameraPtr->setCamera(mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters));
 	return pRenderComponentCameraPtr;
 }
@@ -78,7 +78,7 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(GameObjec
 
 	pRenderComponentEntity->setParent(gameObject);	
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),tRenderComponentEntityParameters));
 
 	return pRenderComponentEntity;
@@ -90,7 +90,7 @@ RenderComponentLightPtr ComponentFactory::createRenderComponentLight(GameObjectP
 
 	pRenderComponentLight->setParent(gameObject);
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentLight->setLight(mApp->getRenderSubsystem()->createLight(gameObject->getName(),tRenderComponentLightParameters));
 
 	return pRenderComponentLight;
@@ -102,7 +102,7 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 
 	pRenderComponentParticleSystem->setParent(gameObject);
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentParticleSystem->setParticleSystem(mApp->getRenderSubsystem()->createParticleSystem(gameObject->getName(),tRenderComponentParticleSystemParameters));
 
 	return pRenderComponentParticleSystem;
@@ -114,7 +114,7 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 
 	pRenderComponentScene->setParent(gameObject);
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->createSceneManager(gameObject->getName(),tRenderComponentSceneParameters));
 
 	return pRenderComponentScene;
@@ -126,7 +126,7 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	pRenderComponentPositional->setParent(gameObject);	
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
 
 	return pRenderComponentPositional;
@@ -138,7 +138,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 
 	pRenderComponentViewport->setParent(gameObject);
 
-	//Initialise Render Component
+	//init Render Component
 	pRenderComponentViewport->setViewport(mApp->getRenderSubsystem()->createViewport(gameObject->getName(),tRenderComponentViewportParameters));
 
 	return pRenderComponentViewport;

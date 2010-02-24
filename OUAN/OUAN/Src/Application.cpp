@@ -38,13 +38,13 @@ void Application::cleanUp()
 	ControlInputManager::finalise();
 }
 //Application initialization
-void Application::initialise()
+void Application::init()
 {
 	ApplicationPtr this_ = shared_from_this();
 
 	mExitRequested=false;
 
-	ComponentFactory::getInstance()->initialise(this_);
+	ComponentFactory::getInstance()->init(this_);
 
 	mStateManager.reset(new GameStateManager());
 
@@ -52,19 +52,19 @@ void Application::initialise()
 	//mConfiguration->loadFromFile("something")
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
-	mRenderSubsystem->initialise(this_,mConfiguration);
+	mRenderSubsystem->init(this_,mConfiguration);
 
 	mPhysicsSubsystem.reset(new PhysicsSubsystem());
-	mPhysicsSubsystem->initialise(this_, mConfiguration);
+	mPhysicsSubsystem->init(this_, mConfiguration);
 
 	mGUISubsystem.reset(new GUISubsystem());
-	mGUISubsystem->initialise(this_);
+	mGUISubsystem->init(this_);
 
 	mGameWorldManager.reset(new GameWorldManager());
-	mGameWorldManager->initialise(this_);
+	mGameWorldManager->init(this_);
 
 	mLevelLoader.reset(new LevelLoader());
-	mLevelLoader->initialise(this_);
+	mLevelLoader->init(this_);
 
 	//TODO: Add remaining subsystems (AI, Audio, etc)
 
@@ -155,7 +155,7 @@ bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
 void Application::setupInputSystem()
 {
 	//Set mouse pointer non-visible
-	ControlInputManager::initialise( mRenderSubsystem->getWindow(), false );
+	ControlInputManager::init( mRenderSubsystem->getWindow(), false );
 }
 void Application::loadInitialState()
 {

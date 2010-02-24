@@ -8,7 +8,7 @@ namespace OUAN
 	///State corresponding to the game's main menu
 	class MainMenuState: public GameState{
 	public:
-		/// Initialise main menu's resources
+		/// init main menu's resources
 		void init(ApplicationPtr app);
 
 		/// Clean up main menu's resources

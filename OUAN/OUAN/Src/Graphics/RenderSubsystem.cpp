@@ -32,7 +32,7 @@ RenderSubsystem::~RenderSubsystem()
 {
 }
 
-void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
+void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 {
 	this->mApp=app;
 	this->debugMessage = "";
@@ -41,10 +41,10 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	defineResources(config);
 	setupRenderSystem(config);
 	createRenderWindow(config);
-	initialiseResourceGroups(config);
+	initResourceGroups(config);
 	defaultSetupScene(config);
 
-	//TODO: Erase this and initialise  viewport from level loader
+	//TODO: Erase this and init  viewport from level loader
 	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCameraManager->getActiveCamera());
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
@@ -143,7 +143,7 @@ void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
 	mSceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(pPlaneEnt);
 }
 
-void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
+void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 {
 	std::string mipmapNumber;
 	if(config.get() && config->hasOption(CONFIG_KEYS_OGRE_DEFAULT_MIPMAPS_NUMBER))
@@ -161,9 +161,9 @@ void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
 
 	mCameraManager = new CameraManager();
 
-	mCameraManager->initialise(mSceneManager,mViewport);
+	mCameraManager->init(mSceneManager,mViewport);
 
-	//TODO: Erase this and initialise camera from level loader
+	//TODO: Erase this and init camera from level loader
 	OUAN::TRenderComponentCameraParameters tCameraParams;
 	tCameraParams.position= Vector3(0,30,50);
 	tCameraParams.orientation = Quaternion(1,0,0,0);
@@ -513,8 +513,6 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 
 Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
 {
-	unsigned int i;
-
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
 	try

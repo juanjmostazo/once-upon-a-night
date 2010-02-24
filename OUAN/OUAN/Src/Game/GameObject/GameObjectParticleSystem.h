@@ -1,8 +1,10 @@
 #ifndef GameObjectParticleSystemH_H
 #define GameObjectParticleSystemH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+
 namespace OUAN
 {
 	/// Models a light source object

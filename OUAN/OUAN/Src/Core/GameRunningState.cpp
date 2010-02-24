@@ -19,7 +19,7 @@ GameRunningState::~GameRunningState()
 
 }
 
-/// Initialise main menu's resources
+/// init main menu's resources
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
@@ -28,7 +28,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->mKeyBuffer=-1;
 
 	mApp->getPhysicsSubsystem()->resetLevel();
-	mApp->getPhysicsSubsystem()->initialiseLevel("TestLevel");
+	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
 }
 
 /// Clean up main menu's resources

@@ -21,7 +21,7 @@ MainMenuState::~MainMenuState()
 
 }
 
-/// Initialise main menu's resources
+/// init main menu's resources
 void MainMenuState::init(ApplicationPtr app)
 {
 	mApp=app;	

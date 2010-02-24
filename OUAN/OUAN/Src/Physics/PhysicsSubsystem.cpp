@@ -5,6 +5,7 @@
 #include "../Game/GameObject/GameObjectTerrain.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectEye.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "PhysicsComponent/PhysicsComponent.h"
 #include "PhysicsComponent/PhysicsComponentCharacter.h"
@@ -32,7 +33,7 @@ PhysicsSubsystem::~PhysicsSubsystem()
 
 }
 
-void PhysicsSubsystem::initialise(ApplicationPtr app,OUAN::ConfigurationPtr config)
+void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
 	LogManager::getSingleton().logMessage("Initializing physics subsystem");
 	this->mApp=app;
@@ -60,7 +61,7 @@ void PhysicsSubsystem::resetLevel()
 	}
 }
 
-void PhysicsSubsystem::initialiseLevel(std::string sceneName)
+void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
 	//Initializing NxOgre::Scene
 	NxOgre::SceneDescription sceneDesc;
@@ -88,14 +89,26 @@ void PhysicsSubsystem::initialiseLevel(std::string sceneName)
 
 	//Initializing terrains
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-		initialisePhysicsComponentComplexNonMovable(
+		initPhysicsComponentComplexNonMovable(
 			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable());
 	}
 
 	//Initializing Ony
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
-		initialisePhysicsComponentCharacter(
+		initPhysicsComponentCharacter(
 			mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]->getPhysicsComponentCharacter());
+	}
+
+	//Initializing Tripollos
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
+		initPhysicsComponentCharacter(
+			mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]->getPhysicsComponentCharacter());
+	}
+
+	//Initializing Eyes
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
+		initPhysicsComponentCharacter(
+			mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
 	}
 	
 	///**
@@ -142,7 +155,7 @@ NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 	return mNxOgreControllerManager;
 }
 
-void PhysicsSubsystem::initialisePhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
 {
 	// TOFIX Next piece of code should be in ComponentFactory::createPhysicsComponentCharacter
 	NxOgre::ControllerDescription mNxOgreControllerDescription = physicsComponentCharacter->getNxOgreControllerDescription(); 
@@ -157,12 +170,12 @@ void PhysicsSubsystem::initialisePhysicsComponentCharacter(PhysicsComponentChara
 			mNxOgreRenderSystem->createPointRenderable(physicsComponentCharacter->getSceneNode())));
 }
 
-void PhysicsSubsystem::initialisePhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable)
 {
 
 }
 
-void PhysicsSubsystem::initialisePhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable)
 {
 	mNxOgreScene->createSceneGeometry(
 		physicsComponentComplexNonMovable->getNxOgreTriangleGeometry(),
@@ -170,12 +183,12 @@ void PhysicsSubsystem::initialisePhysicsComponentComplexNonMovable(PhysicsCompon
 	);
 }
 
-void PhysicsSubsystem::initialisePhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule)
+void PhysicsSubsystem::initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule)
 {
 
 }
 
-void PhysicsSubsystem::initialisePhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube)
+void PhysicsSubsystem::initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube)
 {
 
 }
