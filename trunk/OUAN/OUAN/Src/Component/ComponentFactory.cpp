@@ -13,8 +13,8 @@
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
@@ -163,36 +163,36 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	return pPhysicsComponentCharacter;
 }
 
-PhysicsComponentComplexMovablePtr ComponentFactory::createPhysicsComponentComplexMovable(GameObjectPtr gameObject,TPhysicsComponentComplexMovableParameters tPhysicsComponentComplexMovableParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr renderComponentPositional)
 {
-	PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable = 
-		PhysicsComponentComplexMovablePtr(new PhysicsComponentComplexMovable()); 
+	PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex = 
+		PhysicsComponentComplexConvexPtr(new PhysicsComponentComplexConvex()); 
 
-	pPhysicsComponentComplexMovable->setParent(gameObject);	
+	pPhysicsComponentComplexConvex->setParent(gameObject);	
 
-	return pPhysicsComponentComplexMovable;
+	return pPhysicsComponentComplexConvex;
 }
 
-PhysicsComponentComplexNonMovablePtr ComponentFactory::createPhysicsComponentComplexNonMovable(GameObjectPtr gameObject,TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters,RenderComponentPositionalPtr renderComponentPositional)
+PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr renderComponentPositional)
 {	
-	PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable = 
-		PhysicsComponentComplexNonMovablePtr(new PhysicsComponentComplexNonMovable()); 
+	PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle = 
+		PhysicsComponentComplexTrianglePtr(new PhysicsComponentComplexTriangle()); 
 
-	pPhysicsComponentComplexNonMovable->setParent(gameObject);	
+	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 
 	//Ogre::LogManager::getSingleton().logMessage(NXS_PATH);
-	//Ogre::LogManager::getSingleton().logMessage(tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
+	//Ogre::LogManager::getSingleton().logMessage(tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
-		tPhysicsComponentComplexNonMovableParameters.nxsFile.c_str());
+		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
 
 	NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(triangleMesh);
 	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 
-	pPhysicsComponentComplexNonMovable->setNxOgreTriangleGeometry(triangleGeometry);
-	pPhysicsComponentComplexNonMovable->setSceneNode(renderComponentPositional->getSceneNode());
+	pPhysicsComponentComplexTriangle->setNxOgreTriangleGeometry(triangleGeometry);
+	pPhysicsComponentComplexTriangle->setSceneNode(renderComponentPositional->getSceneNode());
 
-	return pPhysicsComponentComplexNonMovable;
+	return pPhysicsComponentComplexTriangle;
 }
 
 PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr renderComponentPositional)

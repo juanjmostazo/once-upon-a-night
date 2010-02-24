@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 
 namespace OUAN
 {
@@ -17,7 +17,7 @@ namespace OUAN
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexNonMovablePtr mPhysicsComponentComplexNonMovable;
+		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -42,10 +42,10 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable);
+		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
 
 		/// Get physics component
-		PhysicsComponentComplexNonMovablePtr getPhysicsComponentComplexNonMovable();
+		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
 	};
 
 	class TGameObjectItemMaxHPParameters: public TGameObjectParameters
@@ -61,7 +61,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters;
+		TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
 	};
 }
 #endif

@@ -33,14 +33,14 @@ RenderComponentPositionalPtr GameObjectPortal::getRenderComponentPositional() co
 	return mRenderComponentPositional;
 }
 
-void GameObjectPortal::setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+void GameObjectPortal::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
-	mPhysicsComponentComplexNonMovable=pPhysicsComponentComplexNonMovable;
+	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
 }
 
-PhysicsComponentComplexNonMovablePtr GameObjectPortal::getPhysicsComponentComplexNonMovable()
+PhysicsComponentComplexTrianglePtr GameObjectPortal::getPhysicsComponentComplexTriangle()
 {
-	return mPhysicsComponentComplexNonMovable;
+	return mPhysicsComponentComplexTriangle;
 }
 
 

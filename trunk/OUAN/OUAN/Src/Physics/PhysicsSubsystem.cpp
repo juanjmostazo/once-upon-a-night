@@ -10,8 +10,8 @@
 #include "PhysicsComponent/PhysicsComponent.h"
 #include "PhysicsComponent/PhysicsComponentCharacter.h"
 #include "PhysicsComponent/PhysicsComponentComplex.h"
-#include "PhysicsComponent/PhysicsComponentComplexMovable.h"
-#include "PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "PhysicsComponent/PhysicsComponentSimple.h"
 #include "PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "PhysicsComponent/PhysicsComponentSimpleCube.h"
@@ -89,8 +89,8 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 	//Initializing terrains
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-		initPhysicsComponentComplexNonMovable(
-			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexNonMovable());
+		initPhysicsComponentComplexTriangle(
+			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
 	}
 
 	//Initializing Ony
@@ -191,16 +191,16 @@ void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPt
 			mNxOgreRenderSystem->createPointRenderable(pPhysicsComponentCharacter->getSceneNode())));
 }
 
-void PhysicsSubsystem::initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
 {
 
 }
 
-void PhysicsSubsystem::initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
 	mNxOgreScene->createSceneGeometry(
-		pPhysicsComponentComplexNonMovable->getNxOgreTriangleGeometry(),
-		NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentComplexNonMovable->getSceneNode()->getPosition()))
+		pPhysicsComponentComplexTriangle->getNxOgreTriangleGeometry(),
+		NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentComplexTriangle->getSceneNode()->getPosition()))
 	);
 }
 

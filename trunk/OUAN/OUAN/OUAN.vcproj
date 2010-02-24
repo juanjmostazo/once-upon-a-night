@@ -421,11 +421,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexMovable.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexConvex.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexNonMovable.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexTriangle.cpp"
 						>
 					</File>
 					<File
@@ -699,11 +699,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexMovable.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexConvex.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexNonMovable.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexTriangle.h"
 						>
 					</File>
 					<File

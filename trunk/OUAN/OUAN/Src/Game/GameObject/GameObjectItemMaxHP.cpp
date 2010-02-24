@@ -33,14 +33,14 @@ RenderComponentPositionalPtr GameObjectItemMaxHP::getRenderComponentPositional()
 	return mRenderComponentPositional;
 }
 
-void GameObjectItemMaxHP::setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+void GameObjectItemMaxHP::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
-	mPhysicsComponentComplexNonMovable=pPhysicsComponentComplexNonMovable;
+	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
 }
 
-PhysicsComponentComplexNonMovablePtr GameObjectItemMaxHP::getPhysicsComponentComplexNonMovable()
+PhysicsComponentComplexTrianglePtr GameObjectItemMaxHP::getPhysicsComponentComplexTriangle()
 {
-	return mPhysicsComponentComplexNonMovable;
+	return mPhysicsComponentComplexTriangle;
 }
 
 

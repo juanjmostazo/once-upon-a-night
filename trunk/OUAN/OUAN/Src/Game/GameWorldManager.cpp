@@ -28,8 +28,8 @@
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexMovable.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
 
@@ -121,14 +121,14 @@ TGameObjectPhysicsCharacter GameWorldManager::geTGameObjectPhysicsCharacter()
 	return mGameObjectPhysicsCharacter;
 }
 
-TGameObjectPhysicsComplexMovable GameWorldManager::geTGameObjectPhysicsComplexMovable()
+TGameObjectPhysicsComplexConvex GameWorldManager::geTGameObjectPhysicsComplexConvex()
 {
-	return mGameObjectPhysicsComplexMovable;
+	return mGameObjectPhysicsComplexConvex;
 }
 
-TGameObjectPhysicsComplexNonMovable GameWorldManager::geTGameObjectPhysicsComplexNonMovable()
+TGameObjectPhysicsComplexTriangle GameWorldManager::geTGameObjectPhysicsComplexTriangle()
 {
-	return mGameObjectPhysicsComplexNonMovable;
+	return mGameObjectPhysicsComplexTriangle;
 }
 
 TGameObjectPhysicsSimple GameWorldManager::geTGameObjectPhysicsSimple()
@@ -162,8 +162,8 @@ void GameWorldManager::clearContainers()
 	mGameObjectEye.clear();
 
 	mGameObjectPhysicsCharacter.clear();
-	mGameObjectPhysicsComplexMovable.clear();
-	mGameObjectPhysicsComplexNonMovable.clear();
+	mGameObjectPhysicsComplexConvex.clear();
+	mGameObjectPhysicsComplexTriangle.clear();
 	mGameObjectPhysicsSimple.clear();
 }
 
@@ -262,7 +262,7 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 	mGameObjectNonMovable.push_back(pGameObjectTerrain);
 	mGameObjectNonMovableEntity.push_back(pGameObjectTerrain);
 
-	mGameObjectPhysicsComplexNonMovable.push_back(pGameObjectTerrain);
+	mGameObjectPhysicsComplexTriangle.push_back(pGameObjectTerrain);
 
 	mGameObjectTerrain.push_back(pGameObjectTerrain);
 }
@@ -532,9 +532,9 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
-		pGameObjectTerrain->setPhysicsComponentComplexNonMovable(factory->createPhysicsComponentComplexNonMovable(
+		pGameObjectTerrain->setPhysicsComponentComplexTriangle(factory->createPhysicsComponentComplexTriangle(
 			pGameObjectTerrain,
-			tGameObjectTerrainParameters.tPhysicsComponentComplexNonMovableParameters,
+			tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters,
 			pGameObjectTerrain->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager

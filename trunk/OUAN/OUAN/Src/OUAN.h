@@ -113,13 +113,13 @@ namespace OUAN
 			class TPhysicsComponentCharacterParameters;
 			typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
 
-			class PhysicsComponentComplexMovable;
-			class TPhysicsComponentComplexMovableParameters;
-			typedef boost::shared_ptr<PhysicsComponentComplexMovable> PhysicsComponentComplexMovablePtr;
+			class PhysicsComponentComplexConvex;
+			class TPhysicsComponentComplexConvexParameters;
+			typedef boost::shared_ptr<PhysicsComponentComplexConvex> PhysicsComponentComplexConvexPtr;
 
-			class PhysicsComponentComplexNonMovable;
-			class TPhysicsComponentComplexNonMovableParameters;
-			typedef boost::shared_ptr<PhysicsComponentComplexNonMovable> PhysicsComponentComplexNonMovablePtr;
+			class PhysicsComponentComplexTriangle;
+			class TPhysicsComponentComplexTriangleParameters;
+			typedef boost::shared_ptr<PhysicsComponentComplexTriangle> PhysicsComponentComplexTrianglePtr;
 
 			class PhysicsComponentSimpleCapsule;
 			class TPhysicsComponentSimpleCapsuleParameters;
@@ -145,8 +145,8 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
 
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacter;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexMovable;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexNonMovable;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvex;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangle;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimple;
 
 
@@ -227,8 +227,8 @@ namespace OUAN
 		const std::string COMPONENT_NAME_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_NAME_PHYSICS_CHARACTER="PhysicsComponentCharacter";
 		const std::string COMPONENT_NAME_PHYSICS_COMPLEX="PhysicsComponentComplex";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexMovable";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexNonMovable";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CUBE="PhysicsComponentSimpleCube";
