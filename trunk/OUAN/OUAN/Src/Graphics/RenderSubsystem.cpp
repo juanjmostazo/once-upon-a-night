@@ -3,17 +3,18 @@
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
 #include "../Physics/PhysicsSubsystem.h"
-#include "CameraControllerFirstPerson.h"
+#include "CameraManager/CameraManager.h"
+#include "CameraManager/CameraControllerFirstPerson.h"
 
-#include "../Graphics/RenderComponent/RenderComponent.h"
-#include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
-#include "../Graphics/RenderComponent/RenderComponentCamera.h"
-#include "../Graphics/RenderComponent/RenderComponentEntity.h"
-#include "../Graphics/RenderComponent/RenderComponentLight.h"
-#include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
-#include "../Graphics/RenderComponent/RenderComponentScene.h"
-#include "../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "RenderComponent/RenderComponent.h"
+#include "RenderComponent/RenderComponentBillboardSet.h"
+#include "RenderComponent/RenderComponentCamera.h"
+#include "RenderComponent/RenderComponentEntity.h"
+#include "RenderComponent/RenderComponentLight.h"
+#include "RenderComponent/RenderComponentParticleSystem.h"
+#include "RenderComponent/RenderComponentScene.h"
+#include "RenderComponent/RenderComponentPositional.h"
+#include "RenderComponent/RenderComponentViewport.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -21,7 +22,7 @@ using namespace Ogre;
 RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
 , mSceneManager( NULL )
-, mCamera( NULL ) 
+, mCameraManager( NULL ) 
 , mViewport( NULL )
 , mWindowName(windowName)
 {
@@ -42,6 +43,14 @@ void RenderSubsystem::initialise(ApplicationPtr app,ConfigurationPtr config)
 	createRenderWindow(config);
 	initialiseResourceGroups(config);
 	defaultSetupScene(config);
+
+	//TODO: Erase this and initialise  viewport from level loader
+	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCameraManager->getActiveCamera());
+	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
+
+	mCameraManager->getActiveCamera()->setNearClipDistance(0.01);
+	mCameraManager->getActiveCamera()->setPosition(Vector3(0,30,50));
+	mCameraManager->mCameraControllerFirstPerson->setCamera(mCameraManager->getActiveCamera());
 }
 
 void RenderSubsystem::cleanUp()
@@ -149,25 +158,25 @@ void RenderSubsystem::initialiseResourceGroups(ConfigurationPtr config)
 void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
 {
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
-	createCameras();
-	createViewports();	
+
+	mCameraManager = new CameraManager();
+
+	mCameraManager->initialise(mSceneManager,mViewport);
+
+	//TODO: Erase this and initialise camera from level loader
+	OUAN::TRenderComponentCameraParameters tCameraParams;
+	tCameraParams.position= Vector3(0,30,50);
+	tCameraParams.orientation = Quaternion(1,0,0,0);
+	tCameraParams.autoaspectratio=true;
+	tCameraParams.FOVy=1;
+	tCameraParams.autotracktarget="None";
+	tCameraParams.clipdistance=Vector2(0.01,1000);
+	tCameraParams.polygonmode=Ogre::PM_SOLID;
+	tCameraParams.viewmode=0;
+	//mCameraManager->createCamera("GameCamera",tCameraParams);
+
 	createScene();
 	//createOverlays();
-}
-void RenderSubsystem::createCameras()
-{
-	mCamera= mSceneManager->createCamera(MAIN_CAMERA_NAME);
-	mCamera->setNearClipDistance( 0.01 );
-	mCamera->setPosition(0,30,50);
-	mCameraControllerFirstPerson = new CameraControllerFirstPerson();
-	mCameraControllerFirstPerson->initialise(mSceneManager);
-	mCameraControllerFirstPerson->setCamera(mCamera);
-}
-
-void RenderSubsystem::createViewports()
-{
-	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCamera);
-	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 }
 
 void RenderSubsystem::createOverlays()
@@ -185,9 +194,9 @@ RenderWindow* RenderSubsystem::getWindow() const
 	return mWindow;
 }
 
-Camera* RenderSubsystem::getCamera() const
+CameraManager* RenderSubsystem::getCameraManager() const
 {
-	return mCamera;
+	return mCameraManager;
 }
 
 Viewport* RenderSubsystem::getViewport() const
@@ -195,20 +204,20 @@ Viewport* RenderSubsystem::getViewport() const
 	return mViewport;
 }
 
-CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
-{
-	return mCameraControllerFirstPerson;
-}
+//CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
+//{
+//	return mCameraControllerFirstPerson;
+//}
 
 /// Translate/Rotate camera's position with mouse
 void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 {
-	mCameraControllerFirstPerson->processMouseInput(e);
+	mCameraManager->mCameraControllerFirstPerson->processMouseInput(e);
 }
 
 void RenderSubsystem::moveCamera(float xRel, float yRel, float zRel)
 {
-	mCameraControllerFirstPerson->processRelativeMotion(xRel,yRel);
+	mCameraManager->mCameraControllerFirstPerson->processRelativeMotion(xRel,yRel);
 }
 
 void RenderSubsystem::updateVisualDebugger()
@@ -251,7 +260,7 @@ void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
 			unitTranslationVector=Ogre::Vector3::UNIT_Y;
 			break;
 	}
-	mCameraControllerFirstPerson->processSimpleTranslation(unitTranslationVector);
+	mCameraManager->mCameraControllerFirstPerson->processSimpleTranslation(unitTranslationVector);
 }
 
 void RenderSubsystem::updateCameraParams(float elapsedTime)
@@ -260,7 +269,9 @@ void RenderSubsystem::updateCameraParams(float elapsedTime)
 	mRotScale  = mRotateSpeed * elapsedTime;
 	mTranslateVector = Ogre::Vector3::ZERO;
 
-	mCameraControllerFirstPerson->processKeyboardInput(mApp->getKeyboard(),elapsedTime);
+	mCameraManager->processInput(mApp->getKeyboard(),elapsedTime);
+	mCameraManager->update(elapsedTime);
+
 }
 
 Ogre::SceneManager* RenderSubsystem::getSceneManager() const
@@ -337,49 +348,9 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 }
 
 
-Ogre::Camera* RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+void RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
-
-	SceneNode *cameraNode=0;
-	Camera *pCamera=0;
-	// Set light parameters and create it
-	try
-	{
-		// Create the Camera
-		pCamera = mSceneManager->createCamera(name);
-
-		pCamera->setPolygonMode(tRenderComponentCameraParameters.polygonmode);
-		//Set Camera Parameters
-		//set polygon mode
-		
-		pCamera->setPosition(tRenderComponentCameraParameters.position);
-		pCamera->setOrientation(tRenderComponentCameraParameters.orientation);
-		pCamera->setAutoAspectRatio(tRenderComponentCameraParameters.autoaspectratio);
-		pCamera->setNearClipDistance(tRenderComponentCameraParameters.clipdistance.x);
-		pCamera->setFarClipDistance(tRenderComponentCameraParameters.clipdistance.y);
-		
-		//set FOV
-		//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
-		Real FOVy=tRenderComponentCameraParameters.FOVy*55.0f;
-		if(FOVy>180.0) FOVy=179.99;
-		else if(FOVy<=0) FOVy=0.01;
-		pCamera->setFOVy(Angle(FOVy));
-
-		//set autotracktarget
-		if(tRenderComponentCameraParameters.autotracktarget.compare("None")!=0)
-		{
-			//TODO test this
-			SceneNode *trackTarget;
-			trackTarget=mSceneManager->getSceneNode(tRenderComponentCameraParameters.autotracktarget);
-			pCamera->setAutoTracking(true,trackTarget);
-		}
-	}
-	catch(Ogre::Exception &/*e*/)
-	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Camera!");
-	}
-
-	return pCamera;
+	mCameraManager->createCamera(name,tRenderComponentCameraParameters);
 }
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
@@ -542,7 +513,7 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 
 Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
 {
-	int i;
+	unsigned int i;
 
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;

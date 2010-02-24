@@ -52,10 +52,7 @@ namespace OUAN
 		
 		/// Create the scene, and place initial objects on it
 		void createScene();
-		/// Create cameras
-		void createCameras();
-		/// Create viewports
-		void createViewports();
+
 		/// Create overlays
 		void createOverlays();
 
@@ -78,9 +75,11 @@ namespace OUAN
 		/// Return read-only pointer to the main window
 		/// @return main window
 		Ogre::RenderWindow* getWindow() const;
+
 		/// Return read-only pointer to the camera
 		/// @return camera
-		Ogre::Camera* getCamera() const;
+		CameraManager* getCameraManager() const;
+
 		/// Return read-only pointer to the viewport
 		/// @return viewport
 		Ogre::Viewport* getViewport() const;
@@ -88,8 +87,6 @@ namespace OUAN
 		/// Return read-only pointer to the scene manager
 		/// @return scene manager
 		Ogre::SceneManager* getSceneManager() const;
-
-		CameraControllerFirstPerson* getCameraControllerFirstPerson() const;
 
 		/// Tell if the window has been closed
 		/// @return <b>true</b> if the window has been closed
@@ -108,7 +105,7 @@ namespace OUAN
 		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::Viewport* createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
-		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
+		void createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
 		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
 		/// Getters and setters
@@ -160,11 +157,8 @@ namespace OUAN
 		/// Scene manager
 		Ogre::SceneManager* mSceneManager;
 
-		/// Main camera
-		Ogre::Camera* mCamera;
-
-		/// Camera Controller
-		CameraControllerFirstPerson* mCameraControllerFirstPerson;
+		/// Camera Manager
+		CameraManager* mCameraManager;
 
 		/// Viewport
 		Ogre::Viewport* mViewport;

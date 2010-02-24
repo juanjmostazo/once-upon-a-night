@@ -1,5 +1,5 @@
 #include "CameraControllerFirstPerson.h"
-#include "../Input/FullInputManager.h"
+#include "../../Input/FullInputManager.h"
 
 using namespace OUAN;
 
@@ -29,20 +29,22 @@ void CameraControllerFirstPerson::initialise(Ogre::SceneManager * pSceneManager)
 	//Create the camera's offset node as a child of camera's roll node
 	this->cameraOffsetNode = this->cameraRollNode->createChildSceneNode();
 
+	mCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
+
 
 }
 
-void CameraControllerFirstPerson::setCamera(Ogre::Camera* camera)
+void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 {
 	//TODO FIX THIS CRAP
-	this->camera=camera;
-	this->cameraNode->setPosition(camera->getPosition());
-	this->cameraYawNode->yaw(camera->getOrientation().getYaw());
-	this->cameraPitchNode->pitch(camera->getOrientation().getPitch());
-	this->cameraRollNode->roll(camera->getOrientation().getRoll());
-	this->cameraOffsetNode->setPosition(-camera->getPosition());
-	this->cameraOffsetNode->setOrientation(-camera->getOrientation());
-	this->cameraOffsetNode->attachObject(camera);
+	this->mCamera=pCamera;
+	this->cameraNode->setPosition(mCamera->getPosition());
+	this->cameraYawNode->yaw(mCamera->getOrientation().getYaw());
+	this->cameraPitchNode->pitch(mCamera->getOrientation().getPitch());
+	this->cameraRollNode->roll(mCamera->getOrientation().getRoll());
+	this->cameraOffsetNode->setPosition(-mCamera->getPosition());
+	this->cameraOffsetNode->setOrientation(-mCamera->getOrientation());
+	this->cameraOffsetNode->attachObject(mCamera);
 }
 
 void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
@@ -84,7 +86,7 @@ void CameraControllerFirstPerson::processRelativeMotion(float xRel, float yRel)
 	}
 }
 
-void CameraControllerFirstPerson::processKeyboardInput(OIS::Keyboard* keyboard,float elapsedTime)
+void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,float elapsedTime)
 {
 
 	float moveScale=30;
