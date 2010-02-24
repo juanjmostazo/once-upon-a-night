@@ -19,16 +19,16 @@ namespace OUAN
 		virtual Ogre::SceneNode* getSceneNode();
 		virtual void setSceneNode(Ogre::SceneNode* sceneNode);
 		
-		virtual float getMass();
-		virtual void setMass(float pNxOgreMass);
+		virtual double getMass();
+		virtual void setMass(double pNxOgreMass);
 
-		virtual float getDensity();
-		virtual void setDensity(float pNxOgreDensity);
+		virtual double getDensity();
+		virtual void setDensity(double pNxOgreDensity);
 
 	protected:
 		Ogre::SceneNode* mSceneNode;
-		float mNxOgreMass;
-		float mNxOgreDensity;
+		double mNxOgreMass;
+		double mNxOgreDensity;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters
@@ -37,8 +37,8 @@ namespace OUAN
 		TPhysicsComponentParameters();
 		~TPhysicsComponentParameters();
 
-		float mass;
-		float density;
+		double mass;
+		double density;
 	};
 }
 

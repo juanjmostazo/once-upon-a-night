@@ -25,9 +25,9 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters();
 		~TPhysicsComponentSimpleBoxParameters();
 		
-		float lengthX;
-		float lengthY;
-		float lengthZ;
+		double lengthX;
+		double lengthY;
+		double lengthZ;
 	};
 }
 

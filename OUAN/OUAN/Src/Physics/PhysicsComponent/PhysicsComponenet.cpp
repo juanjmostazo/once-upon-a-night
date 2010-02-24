@@ -25,22 +25,22 @@ void PhysicsComponent::setSceneNode(Ogre::SceneNode* pSceneNode){
 	mSceneNode = pSceneNode;
 }
 
-float PhysicsComponent::getMass()
+double PhysicsComponent::getMass()
 {
 	return mNxOgreMass;
 }
 
-void PhysicsComponent::setMass(float pNxOgreMass)
+void PhysicsComponent::setMass(double pNxOgreMass)
 {
 	mNxOgreMass=pNxOgreMass;
 }
 
-float PhysicsComponent::getDensity()
+double PhysicsComponent::getDensity()
 {
 	return mNxOgreDensity;
 }
 
-void PhysicsComponent::setDensity(float pNxOgreDensity)
+void PhysicsComponent::setDensity(double pNxOgreDensity)
 {
 	mNxOgreDensity=pNxOgreDensity;
 }

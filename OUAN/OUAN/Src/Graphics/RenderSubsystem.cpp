@@ -215,7 +215,7 @@ void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 	mCameraManager->mCameraControllerFirstPerson->processMouseInput(e);
 }
 
-void RenderSubsystem::moveCamera(float xRel, float yRel, float zRel)
+void RenderSubsystem::moveCamera(double xRel, double yRel, double zRel)
 {
 	mCameraManager->mCameraControllerFirstPerson->processRelativeMotion(xRel,yRel);
 }
@@ -263,7 +263,7 @@ void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
 	mCameraManager->mCameraControllerFirstPerson->processSimpleTranslation(unitTranslationVector);
 }
 
-void RenderSubsystem::updateCameraParams(float elapsedTime)
+void RenderSubsystem::updateCameraParams(double elapsedTime)
 {
 	mMoveScale = mMoveSpeed   * elapsedTime;
 	mRotScale  = mRotateSpeed * elapsedTime;

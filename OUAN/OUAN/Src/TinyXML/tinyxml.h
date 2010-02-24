@@ -22,7 +22,6 @@ must not be misrepresented as being the original software.
 distribution.
 */
 
-
 #ifndef TINYXML_INCLUDED
 #define TINYXML_INCLUDED
 
@@ -989,12 +988,12 @@ public:
 	int QueryIntAttribute( const char* name, int* _value ) const;
 	/// QueryDoubleAttribute examines the attribute - see QueryIntAttribute().
 	int QueryDoubleAttribute( const char* name, double* _value ) const;
-	/// QueryFloatAttribute examines the attribute - see QueryIntAttribute().
-	int QueryFloatAttribute( const char* name, float* _value ) const {
+	/// QuerydoubleAttribute examines the attribute - see QueryIntAttribute().
+	int QuerydoubleAttribute( const char* name, double* _value ) const {
 		double d;
 		int result = QueryDoubleAttribute( name, &d );
 		if ( result == TIXML_SUCCESS ) {
-			*_value = (float)d;
+			*_value = (double)d;
 		}
 		return result;
 	}

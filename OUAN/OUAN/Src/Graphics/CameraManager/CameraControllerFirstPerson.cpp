@@ -51,13 +51,13 @@ void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 {
 	processRelativeMotion(e.state.X.rel,e.state.Y.rel);
 }
-void CameraControllerFirstPerson::processRelativeMotion(float xRel, float yRel)
+void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel)
 {
 	Ogre::Real pitchAngle;
 	Ogre::Real pitchAngleSign;
 
-	float mRotX=-xRel*0.3;
-	float mRotY=-yRel*0.3;
+	double mRotX=-xRel*0.3;
+	double mRotY=-yRel*0.3;
 
 	// Yaws the camera according to the mouse relative movement.
 	cameraYawNode->yaw(Ogre::Angle(mRotX));
@@ -86,11 +86,11 @@ void CameraControllerFirstPerson::processRelativeMotion(float xRel, float yRel)
 	}
 }
 
-void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,float elapsedTime)
+void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,double elapsedTime)
 {
 	// THIS PARAMS MUST BE SET WITHIN AN EXNTERN FILE
-	float moveScale=60;
-	float rotateScale=5;
+	double moveScale=60;
+	double rotateScale=5;
 
 	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);
 
@@ -183,7 +183,7 @@ void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,float ela
 }
 void CameraControllerFirstPerson::processSimpleTranslation(const Ogre::Vector3& translationVector)
 {
-	float moveScale=0.1f;
+	double moveScale=0.1f;
 	Ogre::Vector3 translation = moveScale*translationVector;
 	// Translates the camera according to the translate vector which is
 	// controlled by the keyboard arrows.

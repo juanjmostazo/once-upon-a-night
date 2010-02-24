@@ -33,8 +33,8 @@ namespace OUAN
 		TPhysicsComponentCharacterParameters();
 		~TPhysicsComponentCharacterParameters();
 
-		float radius;
-		float height;
+		double radius;
+		double height;
 	};
 }
 

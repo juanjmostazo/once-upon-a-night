@@ -80,6 +80,8 @@ bool ControlInputManager::loadConfig()
 	} 
 	else 
 	{
+		//LogManager::getSingleton().logMessage(PSXPAD_CFG + " COULD NOT BE LOADED!");
+
 		defaultPadId = -1;
 		padSelect = -1, padStart = -1;
 		padUp = -1, padDown = -1, padLeft = -1, padRight = -1;
@@ -158,6 +160,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 	}
 	else
 	{
+		//LogManager::getSingleton().logMessage(configFilePath + " COULD NOT BE LOADED!");
+
 		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
@@ -289,12 +293,12 @@ bool ControlInputManager::isPressedToggleDebugPhysics()
 
 //////////////////////////////////////////////////////////////
 
-void ControlInputManager::getMouseStateRelValues(float* x, float* y, float* z)
+void ControlInputManager::getMouseStateRelValues(double* x, double* y, double* z)
 {
 	FullInputManager::getMouseStateRelValues(x, y, z);
 }
 
-void ControlInputManager::getJoystickStateAxes(float* leftX, float* leftY, float* rightX, float* rightY)
+void ControlInputManager::getJoystickStateAxes(double* leftX, double* leftY, double* rightX, double* rightY)
 {
 	FullInputManager::getJoystickStateAxes(defaultPadId, leftX, leftY, rightX, rightY);
 }

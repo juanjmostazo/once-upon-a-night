@@ -173,7 +173,7 @@ OIS::JoyStick* FullInputManager::getJoystick( unsigned int index ) {
     return 0;
 }
 
-void FullInputManager::getMouseStateRelValues(float* x, float* y, float* z)
+void FullInputManager::getMouseStateRelValues(double* x, double* y, double* z)
 {
 	*x = getMouse()->getMouseState().X.rel;
 	*y = getMouse()->getMouseState().Y.rel;
@@ -185,7 +185,7 @@ int FullInputManager::getNumOfJoysticks( void ) {
     return (int) m_joysticks.size();
 }
 
-void FullInputManager::getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY){
+void FullInputManager::getJoystickStateAxes(unsigned int index, double* leftX, double* leftY, double* rightX, double* rightY){
 	int maxAxis = getJoystick(index)->MAX_AXIS;
 	int errorBorder = maxAxis / 4; //25%
 	OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
@@ -196,9 +196,9 @@ void FullInputManager::getJoystickStateAxes(unsigned int index, float* leftX, fl
 	*rightY = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
 }
 
-float FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int border){
-	float value = 0.0f;
-	float scaleValue = ((float)maxAxis - (float)border) / (float)maxAxis;
+double FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int border){
+	double value = 0.0f;
+	double scaleValue = ((double)maxAxis - (double)border) / (double)maxAxis;
 	int absAxeState = abs(axeState);
 
 	if (absAxeState >= border){

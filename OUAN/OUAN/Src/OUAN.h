@@ -278,9 +278,9 @@ namespace OUAN
 				const std::string DEFAULT_OGRE_PLUGINS_PATH="../../Config/plugins.cfg";
 		#endif	
 
-		const float DEFAULT_MOVE_SPEED = 1;
-		const float DEFAULT_ROTATE_SPEED=0.3f;
-		const float MOUSE_MOVE_ROTATION_INCREMENT=0.1f;
+		const double DEFAULT_MOVE_SPEED = 1;
+		const double DEFAULT_ROTATE_SPEED=0.3f;
+		const double MOUSE_MOVE_ROTATION_INCREMENT=0.1f;
 
 		typedef enum
 		{
@@ -351,9 +351,8 @@ namespace OUAN
 			GROUP_COLLIDABLE_PUSHABLE,
 		};
 
-		#define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
+		#define GROUP_COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../Resources/Graphics/NxModels"
-
 }
 
 

@@ -62,7 +62,7 @@ namespace OUAN
 		/// @param xRel	relative translation along the X Axis
 		/// @param yRel	relative translation along the Y Axis
 		/// @param zRel relative translation along the Z Axis
-		void moveCamera(float xRel, float yRel, float zRel);
+		void moveCamera(double xRel, double yRel, double zRel);
 
 		/// Translate camera according to the given coordinate axis
 		/// @param worldCoordinateAxis
@@ -95,7 +95,7 @@ namespace OUAN
 		/// Update the parameters that control the camera's
 		/// movement
 		/// @param	elapsedTime	time since last frame was processed
-		void updateCameraParams(float elapsedTime);
+		void updateCameraParams(double elapsedTime);
 		
 		//Object creators
 
