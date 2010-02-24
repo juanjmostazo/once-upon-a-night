@@ -121,7 +121,28 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 void PhysicsSubsystem::update(float elapsedSeconds)
 {
-	
+	//Updating Ony
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
+		updateGameObjectOny(elapsedSeconds,
+			mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]);
+	}
+
+	//Updating Tripollos
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
+		updateGameObjectTripollo(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]);
+	}
+
+	//Updating Eyes
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
+		updateGameObjectEye(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]);
+	}
+
+	/*
+	std::stringstream out;
+	out << elapsedSeconds;
+	std::string elapsedTime = out.str();
+	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
+	*/
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
 
@@ -152,45 +173,84 @@ NxOgre::TimeController* PhysicsSubsystem::getNxOgreTimeController()
 
 NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 {
-	return mNxOgreControllerManager;
+	return mNxOgreControllerManager;	
 }
 
-void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	// TOFIX Next piece of code should be in ComponentFactory::createPhysicsComponentCharacter
-	NxOgre::ControllerDescription mNxOgreControllerDescription = physicsComponentCharacter->getNxOgreControllerDescription(); 
+	NxOgre::ControllerDescription mNxOgreControllerDescription = pPhysicsComponentCharacter->getNxOgreControllerDescription(); 
 	mNxOgreControllerDescription.mCallback = this;
-	physicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
+	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
-	physicsComponentCharacter->setNxOgreController(
+	pPhysicsComponentCharacter->setNxOgreController(
 		mNxOgreControllerManager->createCapsuleController(
-			physicsComponentCharacter->getNxOgreControllerDescription(), 
-			physicsComponentCharacter->getNxOgreSize(), 
+			pPhysicsComponentCharacter->getNxOgreControllerDescription(), 
+			pPhysicsComponentCharacter->getNxOgreSize(), 
 			mNxOgreScene, 
-			mNxOgreRenderSystem->createPointRenderable(physicsComponentCharacter->getSceneNode())));
+			mNxOgreRenderSystem->createPointRenderable(pPhysicsComponentCharacter->getSceneNode())));
 }
 
-void PhysicsSubsystem::initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable)
 {
 
 }
 
-void PhysicsSubsystem::initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable)
+void PhysicsSubsystem::initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
 {
 	mNxOgreScene->createSceneGeometry(
-		physicsComponentComplexNonMovable->getNxOgreTriangleGeometry(),
-		NxOgre::Matrix44(NxOgre::Vec3(physicsComponentComplexNonMovable->getSceneNode()->getPosition()))
+		pPhysicsComponentComplexNonMovable->getNxOgreTriangleGeometry(),
+		NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentComplexNonMovable->getSceneNode()->getPosition()))
 	);
 }
 
-void PhysicsSubsystem::initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule)
+void PhysicsSubsystem::initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
 
 }
 
-void PhysicsSubsystem::initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube)
+void PhysicsSubsystem::initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube)
 {
 
+}
+
+void PhysicsSubsystem::updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
+{
+	unsigned int collisionFlags = COLLIDABLE_MASK;
+
+	pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->move(
+		mNxOgreScene->getGravity() * 0.001f,
+		COLLIDABLE_MASK,
+		0.001f,
+		collisionFlags,
+		1.0f
+	);
+}
+
+void PhysicsSubsystem::updateGameObjectTripollo(float elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo)
+{
+	unsigned int collisionFlags = COLLIDABLE_MASK;
+
+	pGameObjectTripollo->getPhysicsComponentCharacter()->getNxOgreController()->move(
+		mNxOgreScene->getGravity() * 0.001f,
+		COLLIDABLE_MASK,
+		0.001f,
+		collisionFlags,
+		1.0f
+		);
+}
+
+void PhysicsSubsystem::updateGameObjectEye(float elapsedSeconds, GameObjectEyePtr pGameObjectEye)
+{
+	unsigned int collisionFlags = COLLIDABLE_MASK;
+
+	pGameObjectEye->getPhysicsComponentCharacter()->getNxOgreController()->move(
+		mNxOgreScene->getGravity() * 0.001f,
+		COLLIDABLE_MASK,
+		0.001f,
+		collisionFlags,
+		1.0f
+		);
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)

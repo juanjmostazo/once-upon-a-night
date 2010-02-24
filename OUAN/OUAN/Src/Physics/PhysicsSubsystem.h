@@ -68,11 +68,15 @@ namespace OUAN
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
-		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
-		virtual void initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr physicsComponentComplexMovable);
-		virtual void initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr physicsComponentComplexNonMovable);
-		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr physicsComponentSimpleCapsule);
-		virtual void initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr physicsComponentSimpleCube);
+		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+		virtual void initPhysicsComponentComplexMovable(PhysicsComponentComplexMovablePtr pPhysicsComponentComplexMovable);
+		virtual void initPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable);
+		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
+		virtual void initPhysicsComponentSimpleCube(PhysicsComponentSimpleCubePtr pPhysicsComponentSimpleCube);
+
+		virtual void updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
+		virtual void updateGameObjectTripollo(float elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);
+		virtual void updateGameObjectEye(float elapsedSeconds, GameObjectEyePtr pGameObjectEye);
 	};
 }
 #endif

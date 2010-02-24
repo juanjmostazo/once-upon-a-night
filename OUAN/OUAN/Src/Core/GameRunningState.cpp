@@ -70,7 +70,7 @@ void GameRunningState::handleEvents()
 			mApp->getRenderSubsystem()->hideDebugOverlay();
 		}
 		
-		mApp->mKeyBuffer = 500;
+		mApp->mKeyBuffer = 500000;
 	}
 	else if (mApp->isPressedToggleDebugPhysics() && mApp->mKeyBuffer<0)
 	{
@@ -88,7 +88,7 @@ void GameRunningState::handleEvents()
 			mApp->getRenderSubsystem()->hideVisualDebugger();
 		}
 
-		mApp->mKeyBuffer = 500;
+		mApp->mKeyBuffer = 500000;
 	}
 
 	// TODO: Correct this checks so that they perform their supposed functions
@@ -131,9 +131,9 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::update(long elapsedTime)
 {
-	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
+	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.000001);
 	
-	float elapsedSeconds=elapsedTime*0.001f;
+	float elapsedSeconds=elapsedTime*0.000001f;
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 	mApp->mKeyBuffer-=elapsedTime;
 }

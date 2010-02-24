@@ -76,7 +76,7 @@ void Application::go()
 	Ogre::Timer loopTimer;
 	bool continueRunning = true;
 
-	long nextGameTicks = loopTimer.getMilliseconds();
+	long nextGameTicks = loopTimer.getMicroseconds();
 	long lastTick=nextGameTicks;
 	long currentTime;
 	int loops;
@@ -91,7 +91,7 @@ void Application::go()
 		//Update logic stuff
 		loops=0;
 
-		while((currentTime=loopTimer.getMilliseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
+		while((currentTime=loopTimer.getMicroseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
 			//Ogre::LogManager::getSingleton().logMessage("Update");
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
