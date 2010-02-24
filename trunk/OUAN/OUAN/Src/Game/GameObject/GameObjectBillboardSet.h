@@ -1,8 +1,10 @@
 #ifndef GameObjectBillboardSetH_H
 #define GameObjectBillboardSetH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
+
 namespace OUAN
 {
 	/// Models a light source object

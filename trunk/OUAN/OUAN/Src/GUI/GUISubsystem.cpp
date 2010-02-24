@@ -22,7 +22,7 @@ CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)
 		return CEGUI::LeftButton;
 	}
 }
-void GUISubsystem::initialise(ApplicationPtr app)
+void GUISubsystem::init(ApplicationPtr app)
 {
 	//TODO: Use a Configuration/script to config the GUI subsystem
 	mRenderer=new CEGUI::OgreCEGUIRenderer(app->getRenderSubsystem()->getWindow(),

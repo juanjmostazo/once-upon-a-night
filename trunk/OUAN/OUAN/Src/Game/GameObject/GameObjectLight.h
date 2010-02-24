@@ -1,8 +1,10 @@
 #ifndef GameObjectLightH_H
 #define GameObjectLightH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
+
 namespace OUAN
 {
 	/// Models a light source object

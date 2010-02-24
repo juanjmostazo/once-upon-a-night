@@ -9,7 +9,7 @@ namespace OUAN
 		CameraController();
 		~CameraController();
 
-		virtual void initialise(Ogre::SceneManager * pSceneManager);
+		virtual void init(Ogre::SceneManager * pSceneManager);
 
 		//virtual void setCamera(Ogre::Camera * pCamera);
 

@@ -33,16 +33,15 @@ RenderComponentPositionalPtr GameObjectEye::getRenderComponentPositional() const
 	return mRenderComponentPositional;
 }
 
-void GameObjectEye::setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable)
+void GameObjectEye::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
-	mPhysicsComponentComplexNonMovable=pPhysicsComponentComplexNonMovable;
+	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentComplexNonMovablePtr GameObjectEye::getPhysicsComponentComplexNonMovable()
+PhysicsComponentCharacterPtr GameObjectEye::getPhysicsComponentCharacter()
 {
-	return mPhysicsComponentComplexNonMovable;
+	return mPhysicsComponentCharacter;
 }
-
 
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()
 {

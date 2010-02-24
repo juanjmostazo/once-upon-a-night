@@ -12,7 +12,7 @@ namespace OUAN
 		LevelLoader();
 		virtual ~LevelLoader();
 
-		void initialise(OUAN::ApplicationPtr app);
+		void init(OUAN::ApplicationPtr app);
 
 		void loadLevel(String SceneName,String resourceGroupName="General");
 

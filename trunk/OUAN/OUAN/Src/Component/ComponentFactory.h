@@ -22,7 +22,7 @@ namespace OUAN
 		///@return factory's instance
 		static ComponentFactory* getInstance();
 
-		void initialise(ApplicationPtr app);
+		void init(ApplicationPtr app);
 
 		//create and return a render component
 		/// @param gameObject the component's parent object and render component parameters

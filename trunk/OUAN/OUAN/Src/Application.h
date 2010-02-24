@@ -18,10 +18,10 @@ namespace OUAN
 			/// Destructor
 			virtual ~Application();
 
-			/// Load configuration and initialise all subsystems and global
+			/// Load configuration and init all subsystems and global
 			/// resources
 			/// [TODO] Add optional command line string parameter
-			virtual void initialise();
+			virtual void init();
 
 			/// Run application
 			virtual void go();
@@ -79,7 +79,7 @@ namespace OUAN
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 			ConfigurationPtr getConfiguration() const;
 
-			///Initialise the game state machine
+			///init the game state machine
 			void loadInitialState();
 
 			/// Set current debug mode

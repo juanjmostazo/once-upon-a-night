@@ -17,7 +17,7 @@ namespace OUAN
 	public:
 		///Destructor
 		virtual ~GameState();
-		/// Initialise the game's resources for the current state
+		/// init the game's resources for the current state
 		virtual void init(ApplicationPtr app)=0;
 		/// Free those game resources specific to the current state
 		virtual void cleanUp()=0;

@@ -1,9 +1,10 @@
 #ifndef GameObjectEyeH_H
 #define GameObjectEyeH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexNonMovable.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 
 namespace OUAN
 {
@@ -16,7 +17,7 @@ namespace OUAN
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexNonMovablePtr mPhysicsComponentComplexNonMovable;
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -41,10 +42,10 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexNonMovable(PhysicsComponentComplexNonMovablePtr pPhysicsComponentComplexNonMovable);
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 
 		/// Get physics component
-		PhysicsComponentComplexNonMovablePtr getPhysicsComponentComplexNonMovable();
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 	};
 
 	class TGameObjectEyeParameters: public TGameObjectParameters
@@ -60,7 +61,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexNonMovableParameters tPhysicsComponentComplexNonMovableParameters;
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 	};
 }
 #endif

@@ -1,5 +1,6 @@
 #ifndef GameObjectItemMaxHPH_H
 #define GameObjectItemMaxHPH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"

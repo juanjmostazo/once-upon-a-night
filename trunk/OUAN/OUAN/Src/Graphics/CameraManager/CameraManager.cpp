@@ -13,7 +13,7 @@ CameraManager::~CameraManager()
 {
 }
 
-void CameraManager::initialise(Ogre::SceneManager* pSceneManager,Ogre::Viewport * pViewport)
+void CameraManager::init(Ogre::SceneManager* pSceneManager,Ogre::Viewport * pViewport)
 {
 	this->mSceneManager=pSceneManager;
 	this->mViewport=pViewport;
@@ -21,7 +21,7 @@ void CameraManager::initialise(Ogre::SceneManager* pSceneManager,Ogre::Viewport 
 	clear();
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
-	mCameraControllerFirstPerson->initialise(pSceneManager);
+	mCameraControllerFirstPerson->init(pSceneManager);
 
 	activeCameraController=mCameraControllerFirstPerson;
 }

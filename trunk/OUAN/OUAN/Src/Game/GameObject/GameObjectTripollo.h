@@ -1,8 +1,11 @@
 #ifndef GameObjectTripolloH_H
 #define GameObjectTripolloH_H
+
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
@@ -13,6 +16,8 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Physics information
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 
 	public:
 		/// Constructor
@@ -38,6 +43,12 @@ namespace OUAN
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
+
+		/// Set physics component
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+
+		/// Get physics component
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 	};
 	
 	/// Information data structure to carry around data between the
@@ -52,9 +63,12 @@ namespace OUAN
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
+		///Physics parameters
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 	};
 
 }

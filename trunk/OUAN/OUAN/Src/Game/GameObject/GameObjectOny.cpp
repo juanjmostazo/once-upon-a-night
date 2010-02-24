@@ -46,6 +46,7 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
 }
+
 TGameObjectOnyParameters::~TGameObjectOnyParameters()
 {
 }
