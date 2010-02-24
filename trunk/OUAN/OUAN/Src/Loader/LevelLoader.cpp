@@ -319,7 +319,7 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=25;
+	tmpPhysicsComponent.mass=30;
 	tmpPhysicsComponent.density=1;
 	tmpPhysicsComponent.radius=4;
 	tmpPhysicsComponent.height=4;
@@ -418,7 +418,7 @@ void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
 
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=25;
+	tmpPhysicsComponent.mass=10;
 	tmpPhysicsComponent.density=1;
 	tmpPhysicsComponent.radius=4;
 	tmpPhysicsComponent.height=4;
