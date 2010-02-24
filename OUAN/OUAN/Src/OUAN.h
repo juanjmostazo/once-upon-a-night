@@ -292,9 +292,31 @@ namespace OUAN
 		}TCoordinateAxis;
 
 		class RenderSubsystem;
-		class CameraControllerFirstPerson;
+		
 
 		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
+
+		///Camera Manager
+		class CameraManager;
+		class CameraController;
+		class CameraControllerFirstPerson;
+		//class CameraControllerThirdPerson;
+		//class CameraControllerFixedFirstPerson;
+		//class CameraControllerFixedThirdPerson;
+		//class CameraControllerTrajectory;
+
+		typedef std::map<std::string,TRenderComponentCameraParameters> TCameraParamsContainer;
+		typedef TCameraParamsContainer::iterator TCameraParamsContainerIterator;
+
+		typedef enum 
+		{
+			CAMERA_FIXED_FIRST_PERSON,
+			CAMERA_FIXED_THIRD_PERSON,
+			CAMERA_FIRST_PERSON,
+			CAMERA_THIRD_PERSON,
+			CAMERA_TRAJECTORY
+		}TCameraControllerType;
+
 
 		//-------------------------------------
 		//	GUI module-related constants, type definitions and forwarded declarations

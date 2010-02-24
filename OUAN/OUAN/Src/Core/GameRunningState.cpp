@@ -111,7 +111,7 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::update(long elapsedTime)
 {
-	//mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
+	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.001);
 	
 	float elapsedSeconds=elapsedTime*0.001f;
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);

@@ -56,18 +56,13 @@ namespace OUAN
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
 
 		//void processTerrain(TiXmlElement *XMLNode);
-		//void processOctreeSceneManager(TiXmlElement *XMLNode);
-		//void processLight(TiXmlElement *XMLNode);
-		//void processSceneNodeNoScale(TiXmlElement *XMLNode);
+
 		//void processCamera(TiXmlElement *XMLNode);
 		//void processViewport(TiXmlElement *XMLNode);
 		//void processViewportCamera(TiXmlElement *XMLNode);
 
 		//void processTrackTarget(TiXmlElement *XMLNode);
 
-		//void processParticleSystem(TiXmlElement *XMLNode);
-		//void processBillboardSet(TiXmlElement *XMLNode);
-		//void processBillboards(std::vector<TRenderComponentBillboardParameters> &TRenderComponentBillboardParameters,TiXmlElement *XMLNode);
 		//TODO: void processPlane(TiXmlElement *XMLNode);
 		//TODO: void processFog(TiXmlElement *XMLNode);
 
@@ -100,7 +95,6 @@ namespace OUAN
 			OGITOR_BBT_ORIENTED_SELF,
 			OGITOR_BBT_PERPENDICULAR_COMMON,
 			OGITOR_BBT_PERPENDICULAR_SELF,
-
 		};
 
 		enum BillboardOriginTypes

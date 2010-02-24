@@ -254,10 +254,6 @@
 				Name="Graphics"
 				>
 				<File
-					RelativePath=".\Src\Graphics\CameraControllerFirstPerson.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
 					>
 				</File>
@@ -298,6 +294,38 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="CameraManager"
+					>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraController.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFirstPerson.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedThirdPerson.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerTrajectory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraManager.cpp"
 						>
 					</File>
 				</Filter>
@@ -504,10 +532,6 @@
 				Name="Graphics"
 				>
 				<File
-					RelativePath=".\Src\Graphics\CameraControllerFirstPerson.h"
-					>
-				</File>
-				<File
 					RelativePath=".\Src\Graphics\RenderSubsystem.h"
 					>
 				</File>
@@ -548,6 +572,38 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="CameraManager"
+					>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraController.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFirstPerson.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedThirdPerson.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerTrajectory.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraManager.h"
 						>
 					</File>
 				</Filter>
