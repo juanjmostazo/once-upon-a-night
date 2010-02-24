@@ -33,9 +33,11 @@ namespace OUAN
 
 		bool onQuit(const CEGUI::EventArgs& args);
 		bool onNew(const CEGUI::EventArgs& args);
+		bool onTest(const CEGUI::EventArgs& args);
 	private:
 		CEGUI::Event::Connection mOnQuitConnection;
 		CEGUI::Event::Connection mOnNewConnection;
+		CEGUI::Event::Connection mOnTestConnection;
 	};
 }
 #endif

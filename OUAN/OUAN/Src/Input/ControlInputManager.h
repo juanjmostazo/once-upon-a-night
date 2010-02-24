@@ -26,7 +26,8 @@ namespace OUAN
 	const std::string KEY_AUTOTARGET = "AutoTarget";
 
 	const std::string KEY_QUICKEXIT = "QuickExit";
-	const std::string KEY_DEBUG = "Debug";
+	const std::string KEY_DEBUG_PERFORMANCE = "DebugPerformance";
+	const std::string KEY_DEBUG_PHYSICS = "DebugPhysics";
 
 	/// Since some of OIS' key codes and mouse button ids
 	/// overlap, negative numbers will be used in the
@@ -55,7 +56,7 @@ namespace OUAN
 		int keyForward,keyBackwards,keyLeft,keyRight;
 		int keyJump,keyAction,keyReloadWeapon,keyUseWeapon;
 		int keyWalk,keyRotateLeft,keyRotateRight,keyAutoTarget;
-		int keyQuickExit, keyDebug;
+		int keyQuickExit, keyDebugPerformance, keyDebugPhysics;
 	} TDefaultInputData;
 
 	class ControlInputManager : public FullInputManager
@@ -92,8 +93,10 @@ namespace OUAN
 
 		/// Convenience method to provide a quick exit key (essentially for debugging purposes)
 		bool isPressedQuickExit();
-		/// Convenience method to enable debug mode
-		bool isPressedToggleDebug();
+		/// Convenience method to enable performance debug mode
+		bool isPressedToggleDebugPerformance();
+		/// Convenience method to enable physics debug mode
+		bool isPressedToggleDebugPhysics();
 
 		void getMouseStateRelValues(
 			float*, float*, float*);			// Mouse x, y, z coordinate values

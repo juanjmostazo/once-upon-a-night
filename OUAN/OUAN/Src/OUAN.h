@@ -40,11 +40,12 @@ namespace OUAN
 		const int MAX_FRAMESKIP=5;
 
 		const int DEBUGMODE_NONE=0;
-		const int DEBUGMODE_PHYSICS=1;
-		const int DEBUGMODE_WIREFRAME=2;
+		const int DEBUGMODE_PERFORMANCE=1;
+		const int DEBUGMODE_PHYSICS=2;
+		const int DEBUGMODE_WIREFRAME=3;
 		const int DEBUGMODE_POINTS=4;
 
-		const std::string DEFAULT_WIN_NAME="Demo Application";
+		const std::string DEFAULT_WIN_NAME="OUAN";
 
 		//forward declarations
 		class GameStateManager;
