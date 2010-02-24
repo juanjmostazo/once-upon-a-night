@@ -88,9 +88,9 @@ void CameraControllerFirstPerson::processRelativeMotion(float xRel, float yRel)
 
 void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,float elapsedTime)
 {
-
-	float moveScale=30;
-	float rotateScale=3;
+	// THIS PARAMS MUST BE SET WITHIN AN EXNTERN FILE
+	float moveScale=60;
+	float rotateScale=5;
 
 	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);
 

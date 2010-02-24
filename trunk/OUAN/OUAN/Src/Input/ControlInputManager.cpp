@@ -151,7 +151,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		readOption(config,KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight);
 
 		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
-		readOption(config,KEY_DEBUG,mDefaultInputData.keyDebug);
+		readOption(config,KEY_DEBUG_PERFORMANCE,mDefaultInputData.keyDebugPerformance);
+		readOption(config,KEY_DEBUG_PHYSICS,mDefaultInputData.keyDebugPhysics);
 		
 		return true;
 	}
@@ -172,7 +173,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		mDefaultInputData.keyWalk=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyUseWeapon=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyDebug=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebugPerformance=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebugPhysics=OIS::KC_UNASSIGNED;
 		return false;
 	}
 }
@@ -275,9 +277,14 @@ bool ControlInputManager::isPressedQuickExit()
 	return isPressed(-1,mDefaultInputData.keyQuickExit);
 }
 
-bool ControlInputManager::isPressedToggleDebug()
+bool ControlInputManager::isPressedToggleDebugPerformance()
 {
-	return isPressed(-1,mDefaultInputData.keyDebug);
+	return isPressed(-1,mDefaultInputData.keyDebugPerformance);
+}
+
+bool ControlInputManager::isPressedToggleDebugPhysics()
+{
+	return isPressed(-1,mDefaultInputData.keyDebugPhysics);
 }
 
 //////////////////////////////////////////////////////////////

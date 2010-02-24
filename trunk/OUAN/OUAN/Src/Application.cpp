@@ -84,7 +84,7 @@ void Application::go()
 	while ( continueRunning )
 	{
 		Ogre::WindowEventUtilities::messagePump();
-		FullInputManager::capture();
+		ControlInputManager::capture();
 		
 		mStateManager->getCurrentState()->handleEvents();
 

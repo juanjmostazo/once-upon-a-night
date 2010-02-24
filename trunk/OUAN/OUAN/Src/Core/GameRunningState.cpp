@@ -52,22 +52,42 @@ void GameRunningState::handleEvents()
 {
 	if (mApp->isPressedQuickExit())
 	{
+		//Ogre::LogManager::getSingleton().logMessage("isPressedQuickExit IN");
 		mApp->mExitRequested=true;
 	}
-	if (mApp->isPressedToggleDebug() && mApp->mKeyBuffer<0)
+	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
 	{
-		if (mApp->getDebugMode()==DEBUGMODE_PHYSICS)
+		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleDebugPerformance IN");
+		if (mApp->getDebugMode()!=DEBUGMODE_PERFORMANCE)
+		{
+			mApp->setDebugMode(DEBUGMODE_PERFORMANCE);
+			mApp->getRenderSubsystem()->hideVisualDebugger();
+			mApp->getRenderSubsystem()->showDebugOverlay();
+		}
+		else
 		{
 			mApp->setDebugMode(DEBUGMODE_NONE);
 			mApp->getRenderSubsystem()->hideDebugOverlay();
-			mApp->getRenderSubsystem()->hideVisualDebugger();
 		}
-		else
+		
+		mApp->mKeyBuffer = 500;
+	}
+	else if (mApp->isPressedToggleDebugPhysics() && mApp->mKeyBuffer<0)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleDebugPhysics IN");
+		if (mApp->getDebugMode()!=DEBUGMODE_PHYSICS)
 		{
 			mApp->setDebugMode(DEBUGMODE_PHYSICS);
 			mApp->getRenderSubsystem()->showDebugOverlay();
 			mApp->getRenderSubsystem()->showVisualDebugger();
 		}
+		else 
+		{
+			mApp->setDebugMode(DEBUGMODE_NONE);
+			mApp->getRenderSubsystem()->hideDebugOverlay();
+			mApp->getRenderSubsystem()->hideVisualDebugger();
+		}
+
 		mApp->mKeyBuffer = 500;
 	}
 
