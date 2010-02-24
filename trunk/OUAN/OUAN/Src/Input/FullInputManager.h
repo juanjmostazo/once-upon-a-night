@@ -39,10 +39,10 @@ namespace OUAN
 		virtual OIS::Keyboard* getKeyboard( void );
 		virtual OIS::JoyStick* getJoystick( unsigned int index );
 
-		virtual void getMouseStateRelValues(float* x, float* y, float* z);
+		virtual void getMouseStateRelValues(double* x, double* y, double* z);
 
 		virtual int getNumOfJoysticks( void );
-		virtual void getJoystickStateAxes(unsigned int index, float* leftX, float* leftY, float* rightX, float* rightY);
+		virtual void getJoystickStateAxes(unsigned int index, double* leftX, double* leftY, double* rightX, double* rightY);
 		
 
 		virtual void init( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
@@ -58,7 +58,7 @@ namespace OUAN
 		std::vector<OIS::JoyStick*>::iterator it_joystick;
 		std::vector<OIS::JoyStick*>::iterator it_joystickEnd;
 
-		float getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
+		double getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
 	};
 }
 #endif

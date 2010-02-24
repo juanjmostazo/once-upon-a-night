@@ -2,12 +2,15 @@
 #define PHYSICSSUBSYSTEMH_H
 
 #include "../OUAN.h"
+#include "../Loader/Configuration.h"
 #include <NxOgre.h>
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
 
 namespace OUAN
 {
+	const std::string PHYSICS_CFG="../../Config/physics-cfg.xml";
+
 	//This class encapsulates the physics logic
 	//of our game. It uses NxOgre BloodyMess v.1.5.5
 	class PhysicsSubsystem : public NxOgre::ControllerCallback
@@ -30,7 +33,7 @@ namespace OUAN
 		virtual void initLevel(std::string sceneName);
 
 		// Update physics subsystem elements
-		virtual void update(float elapsedSeconds);
+		virtual void update(double elapsedSeconds);
 
 		//Free memory used by the physics subsystem
 		virtual void cleanUp();
@@ -47,6 +50,15 @@ namespace OUAN
 
 	protected:
 		
+		/// param read from config file, gravity force
+		NxOgre::Vec3 mGravity;
+
+		/// param read from config file, applied to move()
+		double mDisplacementScale;
+
+		/// param read from config file, applied to move()
+		double mMinDistance;
+
 		/// the application
 		OUAN::ApplicationPtr mApp;
 
@@ -68,15 +80,18 @@ namespace OUAN
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
+		/// Load params from config file
+		virtual bool loadConfig();
+
 		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 		virtual void initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 		virtual void initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
 		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
 		virtual void initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
-		virtual void updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
-		virtual void updateGameObjectTripollo(float elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);
-		virtual void updateGameObjectEye(float elapsedSeconds, GameObjectEyePtr pGameObjectEye);
+		virtual void updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
+		virtual void updateGameObjectTripollo(double elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);
+		virtual void updateGameObjectEye(double elapsedSeconds, GameObjectEyePtr pGameObjectEye);
 	};
 }
 #endif

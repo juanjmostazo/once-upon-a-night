@@ -99,10 +99,10 @@ namespace OUAN
 		bool isPressedToggleDebugPhysics();
 
 		void getMouseStateRelValues(
-			float*, float*, float*);			// Mouse x, y, z coordinate values
+			double*, double*, double*);			// Mouse x, y, z coordinate values
 
 		void getJoystickStateAxes(
-			float*, float*, float*, float*);	// Joystick left and right axes values (from -1 to 1)
+			double*, double*, double*, double*);	// Joystick left and right axes values (from -1 to 1)
 		
 	protected:
 		/// Parse configuration files for the input device button mappings

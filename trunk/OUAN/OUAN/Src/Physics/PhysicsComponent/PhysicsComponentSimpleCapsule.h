@@ -25,8 +25,8 @@ namespace OUAN
 		TPhysicsComponentSimpleCapsuleParameters();
 		~TPhysicsComponentSimpleCapsuleParameters();
 
-		float radius;
-		float height;
+		double radius;
+		double height;
 	};
 }
 

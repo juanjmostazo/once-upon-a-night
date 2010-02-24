@@ -6,13 +6,13 @@
 
 using namespace OUAN;
 
-
 /// Default constructor
 GameRunningState::GameRunningState()
 :GameState()
 {
 
 }
+
 /// Destructor
 GameRunningState::~GameRunningState()
 {
@@ -124,16 +124,16 @@ void GameRunningState::handleEvents()
 	//	 or switch to the user-controlled camera mode and then update that one, whatever.
 	//   The current active camera would be a GameObject using a CameraComponent.
 	//]
-	float xRel,yRel,zRel;	
+	double xRel,yRel,zRel;	
 	mApp->getMouseStateRelValues(&xRel,&yRel,&zRel);
 	mApp->getRenderSubsystem()->moveCamera(xRel,yRel,zRel);
 }
 
 void GameRunningState::update(long elapsedTime)
 {
-	mApp->getRenderSubsystem()->updateCameraParams((float)elapsedTime*0.000001);
+	mApp->getRenderSubsystem()->updateCameraParams((double)elapsedTime*0.000001);
 	
-	float elapsedSeconds=elapsedTime*0.000001f;
+	double elapsedSeconds=elapsedTime*0.000001f;
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 	mApp->mKeyBuffer-=elapsedTime;
 }

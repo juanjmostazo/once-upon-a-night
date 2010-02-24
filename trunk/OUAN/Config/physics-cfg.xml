@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<Configuration>
+	<Options>
+		<Option key="GRAVITY_X">0</Option>
+		<Option key="GRAVITY_Y">-9.8</Option>
+		<Option key="GRAVITY_Z">0</Option>
+		<Option key="DISPLACEMENT_SCALE">0.001</Option>
+		<Option key="MIN_DISTANCE">0.001</Option>		
+	</Options>
+</Configuration>

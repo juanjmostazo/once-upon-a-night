@@ -36,8 +36,11 @@ PhysicsSubsystem::~PhysicsSubsystem()
 void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
 	LogManager::getSingleton().logMessage("Initializing physics subsystem");
-	this->mApp=app;
-	this->mConfig=config;
+
+	loadConfig();
+
+	mApp=app;
+	mConfig=config;
 
 	//Initializing NxOgre::TimeController
 	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
@@ -65,7 +68,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
 	//Initializing NxOgre::Scene
 	NxOgre::SceneDescription sceneDesc;
-	sceneDesc.mGravity = NxOgre::Vec3(0, -9.8f, 0);
+	sceneDesc.mGravity = mGravity;
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
 	
@@ -119,7 +122,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
-void PhysicsSubsystem::update(float elapsedSeconds)
+void PhysicsSubsystem::update(double elapsedSeconds)
 {
 	//Updating Ony
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
@@ -149,6 +152,50 @@ void PhysicsSubsystem::update(float elapsedSeconds)
 void PhysicsSubsystem::cleanUp()
 {
 
+}
+
+bool PhysicsSubsystem::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	if (config.loadFromFile(PHYSICS_CFG))
+	{
+		double gravityX, gravityY, gravityZ;
+
+		config.getOption("GRAVITY_X", value); 
+		gravityX = atof(value.c_str());
+
+		config.getOption("GRAVITY_Y", value); 
+		gravityY = atof(value.c_str());
+
+		config.getOption("GRAVITY_Z", value); 
+		gravityZ = atof(value.c_str());
+
+		mGravity = NxOgre::Vec3(gravityX, gravityY, gravityZ);
+
+		config.getOption("DISPLACEMENT_SCALE", value); 
+		mDisplacementScale = atof(value.c_str());
+
+		config.getOption("MIN_DISTANCE", value); 
+		mMinDistance = atof(value.c_str());
+
+		success = true;
+	} 
+	else 
+	{
+		//LogManager::getSingleton().logMessage(PHYSICS_CFG + " COULD NOT BE LOADED!");
+
+		mGravity = NxOgre::Vec3(0,0,0);
+		mDisplacementScale = 0;
+		mMinDistance = 0;
+
+		success = false;
+	}
+
+	//	config.~Configuration();
+	return success;
 }
 
 NxOgre::World* PhysicsSubsystem::getNxOgreWorld()
@@ -229,43 +276,38 @@ void PhysicsSubsystem::initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPt
 	
 }
 
-void PhysicsSubsystem::updateGameObjectOny(float elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
+void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
 {
-	unsigned int collisionFlags = COLLIDABLE_MASK;
+	//void move(const Vec3& displacement, unsigned int activeGroups, double minDistance, unsigned int& collisionFlags, Real sharpness=1.0f);
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->move(
-		mNxOgreScene->getGravity() * 0.001f,
-		COLLIDABLE_MASK,
-		0.001f,
-		collisionFlags,
-		1.0f
-	);
+		mGravity * mDisplacementScale,
+		GROUP_COLLIDABLE_MASK,
+		mMinDistance,
+		collisionFlags);
 }
 
-void PhysicsSubsystem::updateGameObjectTripollo(float elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo)
+void PhysicsSubsystem::updateGameObjectTripollo(double elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo)
 {
-	unsigned int collisionFlags = COLLIDABLE_MASK;
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	pGameObjectTripollo->getPhysicsComponentCharacter()->getNxOgreController()->move(
-		mNxOgreScene->getGravity() * 0.001f,
-		COLLIDABLE_MASK,
-		0.001f,
-		collisionFlags,
-		1.0f
-		);
+		mGravity * mDisplacementScale,
+		GROUP_COLLIDABLE_MASK,
+		mMinDistance,
+		collisionFlags);
 }
 
-void PhysicsSubsystem::updateGameObjectEye(float elapsedSeconds, GameObjectEyePtr pGameObjectEye)
+void PhysicsSubsystem::updateGameObjectEye(double elapsedSeconds, GameObjectEyePtr pGameObjectEye)
 {
-	unsigned int collisionFlags = COLLIDABLE_MASK;
-
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+	
 	pGameObjectEye->getPhysicsComponentCharacter()->getNxOgreController()->move(
-		mNxOgreScene->getGravity() * 0.001f,
-		COLLIDABLE_MASK,
-		0.001f,
-		collisionFlags,
-		1.0f
-		);
+		mGravity * mDisplacementScale,
+		GROUP_COLLIDABLE_MASK,
+		mMinDistance,
+		collisionFlags);
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
