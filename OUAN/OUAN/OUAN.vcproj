@@ -433,11 +433,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleBox.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCube.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.cpp"
 						>
 					</File>
 				</Filter>
@@ -711,11 +711,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleBox.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCube.h"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.h"
 						>
 					</File>
 				</Filter>

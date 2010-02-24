@@ -11,6 +11,16 @@ namespace OUAN
 	public:
 		PhysicsComponentComplexConvex(const std::string& name="");
 		~PhysicsComponentComplexConvex();
+
+		NxOgre::Convex* getNxOgreConvex();
+		void setNxOgreConvex(NxOgre::Convex* pNxOgreConvex);
+
+		OGRE3DBody* getNxOgreBody();
+		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
+
+	protected:
+		NxOgre::Convex* mNxOgreConvex;
+		OGRE3DBody* mNxOgreBody;
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters

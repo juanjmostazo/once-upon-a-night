@@ -21,7 +21,7 @@ namespace OUAN
 		void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
 		NxOgre::ControllerDescription getNxOgreControllerDescription();
 
-	private:
+	protected:
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;

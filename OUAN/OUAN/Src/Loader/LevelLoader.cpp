@@ -30,7 +30,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentSimpleCube.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 
 using namespace OUAN;
 

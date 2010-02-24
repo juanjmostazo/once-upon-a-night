@@ -11,6 +11,12 @@ namespace OUAN
 	public:
 		PhysicsComponentSimpleCapsule(const std::string& name="");
 		~PhysicsComponentSimpleCapsule();
+
+		NxOgre::Vec2 getNxOgreSize();
+		void setNxOgreSize(NxOgre::Vec2 pNxOgreSize);
+
+	protected:
+		NxOgre::Vec2 mNxOgreSize;
 	};
 
 	class TPhysicsComponentSimpleCapsuleParameters: public TPhysicsComponentSimpleParameters

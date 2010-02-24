@@ -125,9 +125,9 @@ namespace OUAN
 			class TPhysicsComponentSimpleCapsuleParameters;
 			typedef boost::shared_ptr<PhysicsComponentSimpleCapsule> PhysicsComponentSimpleCapsulePtr;
 
-			class PhysicsComponentSimpleCube;
-			class TPhysicsComponentSimpleCubeParameters;
-			typedef boost::shared_ptr<PhysicsComponentSimpleCube> PhysicsComponentSimpleCubePtr;
+			class PhysicsComponentSimpleBox;
+			class TPhysicsComponentSimpleBoxParameters;
+			typedef boost::shared_ptr<PhysicsComponentSimpleBox> PhysicsComponentSimpleBoxPtr;
 
 		//Game Object Specializations
 		class GameObject;
@@ -231,7 +231,7 @@ namespace OUAN
 		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CUBE="PhysicsComponentSimpleCube";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CUBE="PhysicsComponentSimpleBox";
 		
 		const std::string COMPONENT_NAME_RENDER="RenderComponent";
 		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
