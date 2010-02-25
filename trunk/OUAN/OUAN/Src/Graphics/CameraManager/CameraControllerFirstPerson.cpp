@@ -3,7 +3,7 @@
 
 using namespace OUAN;
 
-CameraControllerFirstPerson::CameraControllerFirstPerson()
+CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 {
 }
 
@@ -51,6 +51,7 @@ void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 {
 	processRelativeMotion(e.state.X.rel,e.state.Y.rel);
 }
+
 void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel)
 {
 	Ogre::Real pitchAngle;
@@ -86,102 +87,103 @@ void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel
 	}
 }
 
-void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,double elapsedTime)
-{
-	// THIS PARAMS MUST BE SET WITHIN AN EXNTERN FILE
-	double moveScale=60;
-	double rotateScale=5;
+//void CameraControllerFirstPerson::processInput(OIS::Keyboard* keyboard,double elapsedTime)
+//{
+//	// THIS PARAMS MUST BE SET WITHIN AN EXNTERN FILE
+//	double moveScale=60;
+//	double rotateScale=5;
+//
+//	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);
+//
+//	moveScale=moveScale*elapsedTime;
+//	rotateScale=rotateScale*elapsedTime;
+//
+//
+//	// Move camera upwards along to world's Y-axis.
+//	if(keyboard->isKeyDown(OIS::KC_PGUP))
+//		//this->translateVector.y = this->moveScale;
+//		cameraNode->setPosition(this->cameraNode->getPosition() + Ogre::Vector3(0, moveScale, 0));
+//
+//	// Move camera downwards along to world's Y-axis.
+//	if(keyboard->isKeyDown(OIS::KC_PGDOWN))
+//		//this->translateVector.y = -(this->moveScale);
+//		cameraNode->setPosition(this->cameraNode->getPosition() - Ogre::Vector3(0, moveScale, 0));
+//
+//	// Move camera forward.
+//	if(keyboard->isKeyDown(OIS::KC_UP))
+//		translateVector.z = -(moveScale);
+//
+//	// Move camera backward.
+//	if(keyboard->isKeyDown(OIS::KC_DOWN))
+//		translateVector.z = moveScale;
+//
+//	// Move camera left.
+//	if(keyboard->isKeyDown(OIS::KC_LEFT))
+//		translateVector.x = -(moveScale);
+//
+//	// Move camera right.
+//	if(keyboard->isKeyDown(OIS::KC_RIGHT))
+//		translateVector.x = moveScale;
+//
+//	// Rotate camera left.
+//	if(keyboard->isKeyDown(OIS::KC_Q))
+//		cameraYawNode->yaw(Ogre::Angle(rotateScale));
+//
+//	// Rotate camera right.
+//	if(keyboard->isKeyDown(OIS::KC_D))
+//		cameraYawNode->yaw(Ogre::Angle(-(rotateScale)));
+//
+//	// Strip all yaw rotation on the camera.
+//	if(keyboard->isKeyDown(OIS::KC_A))
+//		cameraYawNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//
+//	// Rotate camera upwards.
+//	if(keyboard->isKeyDown(OIS::KC_Z))
+//		cameraPitchNode->pitch(Ogre::Angle(rotateScale));
+//
+//	// Rotate camera downwards.
+//	if(keyboard->isKeyDown(OIS::KC_S))
+//		cameraPitchNode->pitch(Ogre::Angle(-(rotateScale)));
+//
+//	// Strip all pitch rotation on the camera.
+//	if(keyboard->isKeyDown(OIS::KC_E))
+//		cameraPitchNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//
+//	// Tilt camera on the left.
+//	if(keyboard->isKeyDown(OIS::KC_L))
+//		cameraRollNode->roll(Ogre::Angle(-(rotateScale)));
+//
+//	// Tilt camera on the right.
+//	if(keyboard->isKeyDown(OIS::KC_M))
+//		cameraRollNode->roll(Ogre::Angle(rotateScale));
+//
+//	// Strip all tilt applied to the camera.
+//	if(keyboard->isKeyDown(OIS::KC_P))
+//		cameraRollNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//
+//	// Strip all rotation to the camera.
+//	if(keyboard->isKeyDown(OIS::KC_O))
+//	{
+//		cameraYawNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//		cameraPitchNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//		cameraRollNode->setOrientation(Ogre::Quaternion::IDENTITY);
+//	}
+//
+//	// Translates the camera according to the translate vector which is
+//	// controlled by the keyboard arrows.
+//	//
+//	// NOTE: We multiply the mTranslateVector by the cameraPitchNode's
+//	// orientation quaternion and the cameraYawNode's orientation
+//	// quaternion to translate the camera accoding to the camera's
+//	// orientation around the Y-axis and the X-axis.
+//	cameraNode->translate(cameraYawNode->getOrientation() *
+//								cameraPitchNode->getOrientation() *
+//								translateVector,
+//								Ogre::SceneNode::TS_LOCAL);
+//	//Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
+//}
 
-	Ogre::Vector3 translateVector= Ogre::Vector3(0,0,0);
-
-	moveScale=moveScale*elapsedTime;
-	rotateScale=rotateScale*elapsedTime;
-
-
-	// Move camera upwards along to world's Y-axis.
-	if(keyboard->isKeyDown(OIS::KC_PGUP))
-		//this->translateVector.y = this->moveScale;
-		cameraNode->setPosition(this->cameraNode->getPosition() + Ogre::Vector3(0, moveScale, 0));
-
-	// Move camera downwards along to world's Y-axis.
-	if(keyboard->isKeyDown(OIS::KC_PGDOWN))
-		//this->translateVector.y = -(this->moveScale);
-		cameraNode->setPosition(this->cameraNode->getPosition() - Ogre::Vector3(0, moveScale, 0));
-
-	// Move camera forward.
-	if(keyboard->isKeyDown(OIS::KC_UP))
-		translateVector.z = -(moveScale);
-
-	// Move camera backward.
-	if(keyboard->isKeyDown(OIS::KC_DOWN))
-		translateVector.z = moveScale;
-
-	// Move camera left.
-	if(keyboard->isKeyDown(OIS::KC_LEFT))
-		translateVector.x = -(moveScale);
-
-	// Move camera right.
-	if(keyboard->isKeyDown(OIS::KC_RIGHT))
-		translateVector.x = moveScale;
-
-	// Rotate camera left.
-	if(keyboard->isKeyDown(OIS::KC_Q))
-		cameraYawNode->yaw(Ogre::Angle(rotateScale));
-
-	// Rotate camera right.
-	if(keyboard->isKeyDown(OIS::KC_D))
-		cameraYawNode->yaw(Ogre::Angle(-(rotateScale)));
-
-	// Strip all yaw rotation on the camera.
-	if(keyboard->isKeyDown(OIS::KC_A))
-		cameraYawNode->setOrientation(Ogre::Quaternion::IDENTITY);
-
-	// Rotate camera upwards.
-	if(keyboard->isKeyDown(OIS::KC_Z))
-		cameraPitchNode->pitch(Ogre::Angle(rotateScale));
-
-	// Rotate camera downwards.
-	if(keyboard->isKeyDown(OIS::KC_S))
-		cameraPitchNode->pitch(Ogre::Angle(-(rotateScale)));
-
-	// Strip all pitch rotation on the camera.
-	if(keyboard->isKeyDown(OIS::KC_E))
-		cameraPitchNode->setOrientation(Ogre::Quaternion::IDENTITY);
-
-	// Tilt camera on the left.
-	if(keyboard->isKeyDown(OIS::KC_L))
-		cameraRollNode->roll(Ogre::Angle(-(rotateScale)));
-
-	// Tilt camera on the right.
-	if(keyboard->isKeyDown(OIS::KC_M))
-		cameraRollNode->roll(Ogre::Angle(rotateScale));
-
-	// Strip all tilt applied to the camera.
-	if(keyboard->isKeyDown(OIS::KC_P))
-		cameraRollNode->setOrientation(Ogre::Quaternion::IDENTITY);
-
-	// Strip all rotation to the camera.
-	if(keyboard->isKeyDown(OIS::KC_O))
-	{
-		cameraYawNode->setOrientation(Ogre::Quaternion::IDENTITY);
-		cameraPitchNode->setOrientation(Ogre::Quaternion::IDENTITY);
-		cameraRollNode->setOrientation(Ogre::Quaternion::IDENTITY);
-	}
-
-	// Translates the camera according to the translate vector which is
-	// controlled by the keyboard arrows.
-	//
-	// NOTE: We multiply the mTranslateVector by the cameraPitchNode's
-	// orientation quaternion and the cameraYawNode's orientation
-	// quaternion to translate the camera accoding to the camera's
-	// orientation around the Y-axis and the X-axis.
-	cameraNode->translate(cameraYawNode->getOrientation() *
-								cameraPitchNode->getOrientation() *
-								translateVector,
-								Ogre::SceneNode::TS_LOCAL);
-	//Ogre::LogManager::getSingleton().logMessage("Processing camera keyboard");
-}
-void CameraControllerFirstPerson::processSimpleTranslation(const Ogre::Vector3& translationVector)
+void CameraControllerFirstPerson::processSimpleTranslation(Ogre::Vector3 translationVector)
 {
 	double moveScale=0.1f;
 	Ogre::Vector3 translation = moveScale*translationVector;

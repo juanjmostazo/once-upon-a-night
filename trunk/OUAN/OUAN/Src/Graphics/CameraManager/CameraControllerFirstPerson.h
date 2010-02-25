@@ -12,7 +12,7 @@ namespace OUAN
 
 		void init(Ogre::SceneManager * pSceneManager);
 		
-		void processSimpleTranslation(const Ogre::Vector3& translationVector);
+		void processSimpleTranslation(Ogre::Vector3 translationVector);
 		void processMouseInput(const OIS::MouseEvent& e);
 		void processRelativeMotion(double xRel, double yRel);
 

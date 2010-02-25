@@ -80,9 +80,6 @@ namespace OUAN
 		/// @return camera
 		CameraManager* getCameraManager() const;
 
-		/// Return read-only pointer to the viewport
-		/// @return viewport
-		Ogre::Viewport* getViewport() const;
 
 		/// Return read-only pointer to the scene manager
 		/// @return scene manager
@@ -139,9 +136,6 @@ namespace OUAN
 		/// the application
 		OUAN::ApplicationPtr mApp;
 
-		/// Ogre root object
-		boost::shared_ptr<Ogre::Root> mRoot;
-
 		/// Creators not used outside the render subsystem
 		void createSubEntity(Ogre::Entity *pEntity,int num,String material,bool visible);
 		void createMeshFile(String meshfile);
@@ -149,19 +143,20 @@ namespace OUAN
 		void createSkyBox(bool active, String material, Real distance);
 		void createSkyDome(bool active, String material);
 
+
+		/// Ogre root object
+		RootPtr mRoot;
+
+		/// Scene manager
+		Ogre::SceneManager* mSceneManager;
+
 		/// Main window
 		// [IMPORTANT: notice a shared_ptr is not used here, since we don't 'own' the 
 		// window]
 		Ogre::RenderWindow* mWindow;
 
-		/// Scene manager
-		Ogre::SceneManager* mSceneManager;
-
 		/// Camera Manager
 		CameraManager* mCameraManager;
-
-		/// Viewport
-		Ogre::Viewport* mViewport;
 
 		/// Window name
 		std::string mWindowName;

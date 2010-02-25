@@ -9,7 +9,7 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void init(Ogre::SceneManager* pSceneManager,Ogre::Viewport* pViewport);
+		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager);
 
 		/// Free resources
 		void cleanUp();
@@ -29,19 +29,26 @@ namespace OUAN
 
 		void update(long elapsedTime);
 
-		//TODO: change keyboard to FullInputManager
-		void processInput(OIS::Keyboard *keyboard,long elapsedTime);
 
-		CameraControllerFirstPerson * mCameraControllerFirstPerson;
+		void processMouseInput(const OIS::MouseEvent &e);
+		void processRelativeMotion(double xRel,double yRel);
+		void processSimpleTranslation(Ogre::Vector3 unitTranslationVector);
+
+		/// Return read-only pointer to the viewport
+		/// @return viewport
+		Ogre::Viewport* getViewport() const;
 
 	private:
 		/// Scene manager
 		Ogre::SceneManager* mSceneManager;
+		/// Viewport
 		Ogre::Viewport* mViewport;
+
 
 		TCameraParamsContainer mCameraInitialParams;
 
-		CameraControllerFirstPerson * activeCameraController;
+		CameraController * activeCameraController;
+		CameraControllerFirstPerson * mCameraControllerFirstPerson;
 
 		//CameraControllerThirdPerson * mCameraControllerThirdPerson;
 		//CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;

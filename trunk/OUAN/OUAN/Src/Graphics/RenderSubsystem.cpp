@@ -21,9 +21,7 @@ using namespace Ogre;
 
 RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
-, mSceneManager( NULL )
 , mCameraManager( NULL ) 
-, mViewport( NULL )
 , mWindowName(windowName)
 {
 }
@@ -44,13 +42,10 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	initResourceGroups(config);
 	defaultSetupScene(config);
 
-	//TODO: Erase this and init  viewport from level loader
-	mViewport= mRoot->getAutoCreatedWindow()->addViewport(mCameraManager->getActiveCamera());
-	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
+	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
-	mCameraManager->getActiveCamera()->setNearClipDistance(0.01);
-	mCameraManager->getActiveCamera()->setPosition(Vector3(0,30,50));
-	mCameraManager->mCameraControllerFirstPerson->setCamera(mCameraManager->getActiveCamera());
+	mCameraManager = new CameraManager();
+	mCameraManager->init(mRoot,mSceneManager);
 }
 
 void RenderSubsystem::cleanUp()
@@ -157,11 +152,6 @@ void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 
 void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
 {
-	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
-
-	mCameraManager = new CameraManager();
-
-	mCameraManager->init(mSceneManager,mViewport);
 
 	//TODO: Erase this and init camera from level loader
 	OUAN::TRenderComponentCameraParameters tCameraParams;
@@ -199,11 +189,6 @@ CameraManager* RenderSubsystem::getCameraManager() const
 	return mCameraManager;
 }
 
-Viewport* RenderSubsystem::getViewport() const
-{
-	return mViewport;
-}
-
 //CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
 //{
 //	return mCameraControllerFirstPerson;
@@ -212,12 +197,12 @@ Viewport* RenderSubsystem::getViewport() const
 /// Translate/Rotate camera's position with mouse
 void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 {
-	mCameraManager->mCameraControllerFirstPerson->processMouseInput(e);
+	mCameraManager->processMouseInput(e);
 }
 
 void RenderSubsystem::moveCamera(double xRel, double yRel, double zRel)
 {
-	mCameraManager->mCameraControllerFirstPerson->processRelativeMotion(xRel,yRel);
+	mCameraManager->processRelativeMotion(xRel,yRel);
 }
 
 void RenderSubsystem::updateVisualDebugger()
@@ -260,7 +245,7 @@ void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
 			unitTranslationVector=Ogre::Vector3::UNIT_Y;
 			break;
 	}
-	mCameraManager->mCameraControllerFirstPerson->processSimpleTranslation(unitTranslationVector);
+	mCameraManager->processSimpleTranslation(unitTranslationVector);
 }
 
 void RenderSubsystem::updateCameraParams(double elapsedTime)
@@ -269,7 +254,6 @@ void RenderSubsystem::updateCameraParams(double elapsedTime)
 	mRotScale  = mRotateSpeed * elapsedTime;
 	mTranslateVector = Ogre::Vector3::ZERO;
 
-	mCameraManager->processInput(mApp->getKeyboard(),elapsedTime);
 	mCameraManager->update(elapsedTime);
 
 }
@@ -281,13 +265,13 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 
 Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {
-	// Set the Viewport parameters
-	mViewport->setBackgroundColour(tRenderComponentViewportParameters.colour);
-	mViewport->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
-	mViewport->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
-	mViewport->setSkiesEnabled(tRenderComponentViewportParameters.skies);
+	//// Set the Viewport parameters
+	//mViewport->setBackgroundColour(tRenderComponentViewportParameters.colour);
+	//mViewport->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
+	//mViewport->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
+	//mViewport->setSkiesEnabled(tRenderComponentViewportParameters.skies);
 
-	return mViewport;
+	return mCameraManager->getViewport();
 }
 
 Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TRenderComponentSceneParameters tRenderComponentSceneParameters)
