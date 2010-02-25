@@ -391,7 +391,6 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 
 void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
 {
-
 	GameObjectTripolloPtr pGameObjectTripollo;
 
 	//Create GameObject

@@ -29,6 +29,10 @@
 		<Option key="RRotate">0x2D</Option>
 		<!-- Q -->		
 		<Option key="AutoTarget">0x10</Option>
+		<!-- F08 -->
+		<Option key="ChangeCamera">0x42</Option>
+		<!-- F09 -->
+		<Option key="ChangeCameraController">0x43</Option>
 		<!-- F10 -->
 		<Option key="DebugPerformance">0x44</Option>
 		<!-- F11 -->

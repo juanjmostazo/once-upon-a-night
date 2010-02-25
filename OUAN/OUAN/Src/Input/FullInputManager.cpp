@@ -14,6 +14,7 @@ FullInputManager::FullInputManager()
 
 FullInputManager::~FullInputManager()
 {
+
 }
 
 void FullInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer )

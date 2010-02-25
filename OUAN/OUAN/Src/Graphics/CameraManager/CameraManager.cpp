@@ -8,9 +8,11 @@ using namespace Ogre;
 
 CameraManager::CameraManager()
 {
+
 }
 CameraManager::~CameraManager()
 {
+
 }
 
 void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
@@ -137,8 +139,8 @@ void CameraManager::setActiveCamera(std::string name)
 	{
 		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" does not exist!");
 	}
-
 }
+
 std::string CameraManager::getActiveCameraName()
 {
 	return activeCameraController->getCamera()->getName();
@@ -187,10 +189,12 @@ void CameraManager::processMouseInput(const OIS::MouseEvent &e)
 {
 	activeCameraController->processMouseInput(e);
 }
+
 void CameraManager::processRelativeMotion(double xRel,double yRel)
 {
 	activeCameraController->processRelativeMotion(xRel,yRel);
-}	
+}
+
 void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector)
 {
 	activeCameraController->processSimpleTranslation(unitTranslationVector);
