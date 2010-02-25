@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectItemMaxHP::GameObjectItemMaxHP(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectItemMaxHP::GameObjectItemMaxHP(const std::string& name)
+:GameObject(name)
 {
 
 }

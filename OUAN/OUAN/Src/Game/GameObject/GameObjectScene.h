@@ -12,7 +12,7 @@ namespace OUAN
 		RenderComponentScenePtr mRenderComponentScene;
 	public:
 		//Constructor
-		GameObjectScene(const std::string& name, const std::string& id);
+		GameObjectScene(const std::string& name);
 		//Destructor
 		~GameObjectScene();
 

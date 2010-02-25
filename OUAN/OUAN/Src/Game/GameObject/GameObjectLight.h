@@ -18,7 +18,7 @@ namespace OUAN
 
 	public:
 		//Constructor
-		GameObjectLight(const std::string& name, const std::string& id);
+		GameObjectLight(const std::string& name);
 		//Destructor
 		~GameObjectLight();
 

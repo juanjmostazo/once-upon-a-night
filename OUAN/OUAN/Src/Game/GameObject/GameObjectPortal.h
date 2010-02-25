@@ -22,7 +22,7 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectPortal(const std::string& name, const std::string& id);
+		GameObjectPortal(const std::string& name);
 		//Destructor
 		~GameObjectPortal();
 		/// Return render component entity 

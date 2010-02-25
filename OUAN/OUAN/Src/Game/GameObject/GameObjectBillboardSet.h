@@ -18,7 +18,7 @@ namespace OUAN
 
 	public:
 		//Constructor
-		GameObjectBillboardSet(const std::string& name, const std::string& id);
+		GameObjectBillboardSet(const std::string& name);
 		//Destructor
 		~GameObjectBillboardSet();
 

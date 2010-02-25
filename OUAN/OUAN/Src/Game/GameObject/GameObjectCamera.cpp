@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectCamera::GameObjectCamera(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectCamera::GameObjectCamera(const std::string& name)
+:GameObject(name)
 {
 
 }

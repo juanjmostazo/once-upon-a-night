@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectBillboardSet::GameObjectBillboardSet(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectBillboardSet::GameObjectBillboardSet(const std::string& name)
+:GameObject(name)
 {
 
 }

@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectParticleSystem::GameObjectParticleSystem(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectParticleSystem::GameObjectParticleSystem(const std::string& name)
+:GameObject(name)
 {
 
 }

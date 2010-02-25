@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectLight::GameObjectLight(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectLight::GameObjectLight(const std::string& name)
+:GameObject(name)
 {
 
 }

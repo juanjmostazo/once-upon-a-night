@@ -23,7 +23,7 @@ namespace OUAN
 		//Constructor
 		/// @param name	name of the object, specific to the class
 		/// @param id	unique identifier of the instance
-		GameObjectOny(const std::string& name, const std::string& id);
+		GameObjectOny(const std::string& name);
 		//Destructor
 		~GameObjectOny();
 

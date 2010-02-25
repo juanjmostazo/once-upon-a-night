@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectOny::GameObjectOny(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectOny::GameObjectOny(const std::string& name)
+:GameObject(name)
 {
 
 }
