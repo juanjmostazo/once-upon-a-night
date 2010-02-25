@@ -102,7 +102,7 @@ namespace OUAN
 		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::Viewport* createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
-		void createCamera(Ogre::String name,TRenderComponentCameraParameters TRenderComponentCameraParameters);
+		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
 		/// Getters and setters

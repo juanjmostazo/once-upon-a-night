@@ -41,6 +41,7 @@ namespace OUAN
 		void processGameObjectItemMaxHP(TiXmlElement *XMLNode);
 		void processGameObjectItem1UP(TiXmlElement *XMLNode);
 		void processGameObjectEye(TiXmlElement *XMLNode);
+		void processGameObjectCamera(TiXmlElement *XMLNode);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
@@ -52,12 +53,12 @@ namespace OUAN
 		TRenderComponentLightParameters processRenderComponentLight(TiXmlElement *XMLNode);
 		TRenderComponentParticleSystemParameters processRenderComponentParticleSystem(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
+		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
 
 		//void processTerrain(TiXmlElement *XMLNode);
 
-		//void processCamera(TiXmlElement *XMLNode);
 		//void processViewport(TiXmlElement *XMLNode);
 		//void processViewportCamera(TiXmlElement *XMLNode);
 

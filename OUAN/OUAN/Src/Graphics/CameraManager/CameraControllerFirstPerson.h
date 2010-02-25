@@ -17,7 +17,7 @@ namespace OUAN
 		void processRelativeMotion(double xRel, double yRel);
 
 		void processInput(OIS::Keyboard* keyboard,double elapsedTime);
-		void setCamera(Ogre::Camera* camera);
+		void setCamera(Ogre::Camera * pCamera);
 
 	private:
 		Ogre::SceneNode *cameraNode;

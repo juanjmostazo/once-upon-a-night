@@ -19,6 +19,7 @@ void CameraController::setCamera(Camera * pCamera)
 {
 	mCamera=pCamera;
 }
+
 Camera * CameraController::getCamera()
 {
 	return mCamera;

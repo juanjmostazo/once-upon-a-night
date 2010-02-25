@@ -14,7 +14,7 @@ namespace OUAN
 		/// Free resources
 		void cleanUp();
 
-		void createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		Ogre::Camera *  createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 
 		void clear();
 

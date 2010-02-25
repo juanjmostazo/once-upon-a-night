@@ -168,6 +168,12 @@ namespace OUAN
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
 		const std::string GAME_OBJECT_NAME_LIGHT="light";
 
+		class GameObjectCamera;
+		class TGameObjectCameraParameters;
+		typedef boost::shared_ptr<GameObjectCamera> GameObjectCameraPtr;
+		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
+		const std::string GAME_OBJECT_NAME_Camera="Camera";
+
 		class GameObjectBillboardSet;
 		class TGameObjectBillboardSetParameters;
 		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
@@ -267,6 +273,7 @@ namespace OUAN
 
 		const int DEFAULT_OGRE_MIPMAPS_NUMBER=5;
 		const std::string MAIN_CAMERA_NAME="Camera";
+		const std::string RUNNING_CAMERA_NAME="Camera#0";
 		// Default path constants
 		const std::string DEFAULT_OGRE_RESOURCES_PATH="../../Config/resources.cfg";
 		const std::string DEFAULT_OGRE_CONFIG_PATH  = "../../Config/ogre.cfg";

@@ -67,7 +67,7 @@ RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjec
 	pRenderComponentCameraPtr->setParent(gameObject);	
 
 	//init Render Component
-	//pRenderComponentCameraPtr->setCamera(mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters));
+	pRenderComponentCameraPtr->setCamera(mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters));
 	return pRenderComponentCameraPtr;
 }
 
