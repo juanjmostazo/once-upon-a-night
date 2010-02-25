@@ -309,6 +309,9 @@ namespace OUAN
 		typedef std::map<std::string,TRenderComponentCameraParameters> TCameraParamsContainer;
 		typedef TCameraParamsContainer::iterator TCameraParamsContainerIterator;
 
+		/// Ogre root object
+		typedef boost::shared_ptr<Ogre::Root> RootPtr;
+
 		typedef enum 
 		{
 			CAMERA_FIXED_FIRST_PERSON,

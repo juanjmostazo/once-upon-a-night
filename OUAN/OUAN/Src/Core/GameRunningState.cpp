@@ -19,7 +19,7 @@ GameRunningState::~GameRunningState()
 
 }
 
-/// init main menu's resources
+/// init game running state's resources
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	

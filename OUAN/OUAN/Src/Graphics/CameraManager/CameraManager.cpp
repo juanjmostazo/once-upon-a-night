@@ -13,10 +13,9 @@ CameraManager::~CameraManager()
 {
 }
 
-void CameraManager::init(Ogre::SceneManager* pSceneManager,Ogre::Viewport * pViewport)
+void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 {
 	this->mSceneManager=pSceneManager;
-	this->mViewport=pViewport;
 
 	clear();
 
@@ -24,6 +23,21 @@ void CameraManager::init(Ogre::SceneManager* pSceneManager,Ogre::Viewport * pVie
 	mCameraControllerFirstPerson->init(pSceneManager);
 
 	activeCameraController=mCameraControllerFirstPerson;
+
+	//TODO: Erase this and init viewport from level loader
+	mViewport= pRoot->getAutoCreatedWindow()->addViewport(activeCameraController->getCamera());
+	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
+
+	//TODO: erase this and do it from level loader
+	activeCameraController->getCamera()->setNearClipDistance(0.01);
+	activeCameraController->getCamera()->setPosition(Vector3(0,30,50));
+
+	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
+}
+
+Viewport* CameraManager::getViewport() const
+{
+	return mViewport;
 }
 
 
@@ -63,7 +77,6 @@ void CameraManager::createCamera(std::string name,TRenderComponentCameraParamete
 	{
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Camera!");
 	}
-
 }
 
 void CameraManager::setCameraParameters(Camera * pCamera,TRenderComponentCameraParameters tRenderComponentCameraParameters)
@@ -170,12 +183,20 @@ void CameraManager::resetActiveCameraPosition()
 	setCameraParameters(pCamera,initialParameters);
 }
 
-void CameraManager::processInput(OIS::Keyboard *keyboard,long elapsedTime)
-{
-	activeCameraController->processInput(keyboard,elapsedTime);
-}
-
 void CameraManager::update(long elapsedTime)
 {
 	activeCameraController->update(elapsedTime);
+}
+
+void CameraManager::processMouseInput(const OIS::MouseEvent &e)
+{
+	activeCameraController->processMouseInput(e);
+}
+void CameraManager::processRelativeMotion(double xRel,double yRel)
+{
+	activeCameraController->processRelativeMotion(xRel,yRel);
+}	
+void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector)
+{
+	activeCameraController->processSimpleTranslation(unitTranslationVector);
 }

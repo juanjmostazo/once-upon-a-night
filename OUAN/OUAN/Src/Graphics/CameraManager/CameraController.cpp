@@ -15,21 +15,31 @@ void CameraController::init(Ogre::SceneManager * pSceneManager)
 	mCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
 }
 
-//void CameraController::setCamera(Camera * pCamera)
-//{
-//	mCamera=pCamera;
-//}
+void CameraController::setCamera(Camera * pCamera)
+{
+	mCamera=pCamera;
+}
 Camera * CameraController::getCamera()
 {
 	return mCamera;
 }
+
 void CameraController::update(long elapsedTime)
 {
 
 }
 
-//TODO: change keyboard to FullInputManager
-void CameraController::processInput(OIS::Keyboard *keyboard,long elapsedTime)
+void CameraController::processMouseInput(const OIS::MouseEvent &e)
+{
+
+}
+
+void CameraController::processRelativeMotion(double xRel,double yRel)
+{
+
+}
+
+void CameraController::processSimpleTranslation(Ogre::Vector3 translationVector)
 {
 
 }

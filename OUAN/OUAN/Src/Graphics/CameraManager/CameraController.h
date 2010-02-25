@@ -11,14 +11,14 @@ namespace OUAN
 
 		virtual void init(Ogre::SceneManager * pSceneManager);
 
-		//virtual void setCamera(Ogre::Camera * pCamera);
+		virtual void setCamera(Ogre::Camera * pCamera);
 
 		Ogre::Camera * getCamera();
 
 		virtual void update(long elapsedTime);
-
-		//TODO: change keyboard to FullInputManager
-		virtual void processInput(OIS::Keyboard *keyboard,long elapsedTime);
+		virtual void processMouseInput(const OIS::MouseEvent &e);
+		virtual void processRelativeMotion(double xRel,double yRel);
+		virtual void processSimpleTranslation(Ogre::Vector3 translationVector);
 
 	protected:
 		Ogre::Camera *mCamera;
