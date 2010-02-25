@@ -18,7 +18,7 @@ namespace OUAN
 
 	public:
 		//Constructor
-		GameObjectParticleSystem(const std::string& name, const std::string& id);
+		GameObjectParticleSystem(const std::string& name);
 		//Destructor
 		~GameObjectParticleSystem();
 

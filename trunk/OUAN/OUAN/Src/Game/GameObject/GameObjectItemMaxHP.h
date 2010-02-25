@@ -22,7 +22,7 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectItemMaxHP(const std::string& name, const std::string& id);
+		GameObjectItemMaxHP(const std::string& name);
 		//Destructor
 		~GameObjectItemMaxHP();
 		/// Return render component entity 

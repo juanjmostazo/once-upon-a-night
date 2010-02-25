@@ -23,7 +23,7 @@ namespace OUAN
 		/// Constructor
 		/// @param name name of the game object, specific to this class
 		/// @param id unique id of the game object
-		GameObjectTripollo(const std::string& name, const std::string& id);
+		GameObjectTripollo(const std::string& name);
 
 		//Destructor
 		~GameObjectTripollo();

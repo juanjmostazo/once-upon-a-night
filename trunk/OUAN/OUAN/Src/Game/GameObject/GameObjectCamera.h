@@ -15,7 +15,7 @@ namespace OUAN
 
 	public:
 		//Constructor
-		GameObjectCamera(const std::string& name, const std::string& id);
+		GameObjectCamera(const std::string& name);
 		//Destructor
 		~GameObjectCamera();
 

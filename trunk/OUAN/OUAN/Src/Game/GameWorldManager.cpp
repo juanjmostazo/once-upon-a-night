@@ -220,21 +220,21 @@ std::string GameWorldManager::makeIdString(const std::string& baseString,const i
 
 void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 {
-	mGameObjects[gameObject->getId()]=gameObject;
+	mGameObjects[gameObject->getName()]=gameObject;
 }
 //
 //void GameWorldManager::addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity)
 //{
 //	if(!existsObject(gameObjectMovableEntity->getName()))
 //	{
-//		mGameObjects[gameObjectMovableEntity->getId()]=gameObjectMovableEntity;
+//		mGameObjects[gameObjectMovableEntity->getName()]=gameObjectMovableEntity;
 //	}
 //	//TODO: add to other maps
 //}
 
 void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 {
-	mGameObjects[pGameObjectOny->getId()]=pGameObjectOny;
+	mGameObjects[pGameObjectOny->getName()]=pGameObjectOny;
 
 	mGameObjectPositional.push_back(pGameObjectOny);
 	mGameObjectMovable.push_back(pGameObjectOny);
@@ -247,7 +247,7 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 
 void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
 {
-	mGameObjects[pGameObjectTripollo->getId()]=pGameObjectTripollo;
+	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
 
 	mGameObjectPositional.push_back(pGameObjectTripollo);
 	mGameObjectMovable.push_back(pGameObjectTripollo);
@@ -260,7 +260,7 @@ void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTr
 
 void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain)
 {
-	mGameObjects[pGameObjectTerrain->getId()]=pGameObjectTerrain;
+	mGameObjects[pGameObjectTerrain->getName()]=pGameObjectTerrain;
 
 	mGameObjectPositional.push_back(pGameObjectTerrain);
 	mGameObjectNonMovable.push_back(pGameObjectTerrain);
@@ -273,7 +273,7 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 
 void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
 {
-	mGameObjects[pGameObjectItem1UP->getId()]=pGameObjectItem1UP;
+	mGameObjects[pGameObjectItem1UP->getName()]=pGameObjectItem1UP;
 
 	mGameObjectPositional.push_back(pGameObjectItem1UP);
 	mGameObjectNonMovable.push_back(pGameObjectItem1UP);
@@ -283,7 +283,7 @@ void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem
 
 void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
 {
-	mGameObjects[pGameObjectItemMaxHP->getId()]=pGameObjectItemMaxHP;
+	mGameObjects[pGameObjectItemMaxHP->getName()]=pGameObjectItemMaxHP;
 
 	mGameObjectPositional.push_back(pGameObjectItemMaxHP);
 	mGameObjectNonMovable.push_back(pGameObjectItemMaxHP);
@@ -293,7 +293,7 @@ void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObject
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
 {
-	mGameObjects[pGameObjectPortal->getId()]=pGameObjectPortal;
+	mGameObjects[pGameObjectPortal->getName()]=pGameObjectPortal;
 
 	mGameObjectPositional.push_back(pGameObjectPortal);
 	mGameObjectNonMovable.push_back(pGameObjectPortal);
@@ -302,7 +302,7 @@ void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal
 
 void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 {
-	mGameObjects[pGameObjectEye->getId()]=pGameObjectEye;
+	mGameObjects[pGameObjectEye->getName()]=pGameObjectEye;
 
 	mGameObjectPositional.push_back(pGameObjectEye);
 	mGameObjectNonMovable.push_back(pGameObjectEye);
@@ -314,7 +314,7 @@ void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 }
 void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 {
-	mGameObjects[pGameObjectLight->getId()]=pGameObjectLight;
+	mGameObjects[pGameObjectLight->getName()]=pGameObjectLight;
 
 	mGameObjectPositional.push_back(pGameObjectLight);
 	mGameObjectNonMovable.push_back(pGameObjectLight);
@@ -323,7 +323,7 @@ void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 
 void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet)
 {
-	mGameObjects[pGameObjectBillboardSet->getId()]=pGameObjectBillboardSet;
+	mGameObjects[pGameObjectBillboardSet->getName()]=pGameObjectBillboardSet;
 
 	mGameObjectPositional.push_back(pGameObjectBillboardSet);
 	mGameObjectNonMovable.push_back(pGameObjectBillboardSet);
@@ -332,7 +332,7 @@ void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGame
 
 void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem)
 {
-	mGameObjects[pGameObjectParticleSystem->getId()]=pGameObjectParticleSystem;
+	mGameObjects[pGameObjectParticleSystem->getName()]=pGameObjectParticleSystem;
 
 	mGameObjectPositional.push_back(pGameObjectParticleSystem);
 	mGameObjectNonMovable.push_back(pGameObjectParticleSystem);
@@ -342,7 +342,7 @@ void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr p
 
 void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera)
 {
-	mGameObjects[pGameObjectCamera->getId()]=pGameObjectCamera;
+	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
 }
 
 
@@ -366,8 +366,7 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 	GameObjectOnyPtr pGameObjectOny;
 
 	//Create GameObject
-	pGameObjectOny = GameObjectOnyPtr(new GameObjectOny(
-		tGameObjectOnyParameters.name,makeIdString(tGameObjectOnyParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectOny = GameObjectOnyPtr(new GameObjectOny(tGameObjectOnyParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -396,8 +395,7 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 	GameObjectTripolloPtr pGameObjectTripollo;
 
 	//Create GameObject
-	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(
-		tGameObjectTripolloParameters.name,makeIdString(tGameObjectTripolloParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -426,8 +424,7 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 	GameObjectEyePtr pGameObjectEye;
 
 	//Create GameObject
-	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(
-		tGameObjectEyeParameters.name,makeIdString(tGameObjectEyeParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(tGameObjectEyeParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -456,8 +453,7 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 	GameObjectItem1UPPtr pGameObjectItem1UP;
 
 	//Create GameObject
-	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(
-		tGameObjectItem1UPParameters.name,makeIdString(tGameObjectItem1UPParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(tGameObjectItem1UPParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -480,8 +476,7 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 	GameObjectPortalPtr pGameObjectPortal;
 
 	//Create GameObject
-	pGameObjectPortal = GameObjectPortalPtr(new GameObjectPortal(
-		tGameObjectPortalParameters.name,makeIdString(tGameObjectPortalParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectPortal = GameObjectPortalPtr(new GameObjectPortal(tGameObjectPortalParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -504,8 +499,7 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
 
 	//Create GameObject
-	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(
-		tGameObjectItemMaxHPParameters.name,makeIdString(tGameObjectItemMaxHPParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(tGameObjectItemMaxHPParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -527,8 +521,7 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 	GameObjectTerrainPtr pGameObjectTerrain;
 
 	//Create GameObject
-	pGameObjectTerrain = GameObjectTerrainPtr(new GameObjectTerrain(
-		tGameObjectTerrainParameters.name,makeIdString(tGameObjectTerrainParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectTerrain = GameObjectTerrainPtr(new GameObjectTerrain(tGameObjectTerrainParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -556,8 +549,7 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 	GameObjectCameraPtr pGameObjectCamera;
 
 	//Create GameObject
-	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(
-		tGameObjectCameraParameters.name,makeIdString(tGameObjectCameraParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(tGameObjectCameraParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -576,8 +568,7 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 	GameObjectLightPtr pGameObjectLight;
 
 	//Create GameObject
-	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(
-		tGameObjectLightParameters.name,makeIdString(tGameObjectLightParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(tGameObjectLightParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -599,8 +590,7 @@ void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParam
 	GameObjectBillboardSetPtr pGameObjectBillboardSet;
 
 	//Create GameObject
-	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(
-		tGameObjectBillboardSetParameters.name,makeIdString(tGameObjectBillboardSetParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(tGameObjectBillboardSetParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -622,8 +612,7 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 	GameObjectParticleSystemPtr pGameObjectParticleSystem;
 
 	//Create GameObject
-	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(
-		tGameObjectParticleSystemParameters.name,makeIdString(tGameObjectParticleSystemParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();

@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectTripollo::GameObjectTripollo(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectTripollo::GameObjectTripollo(const std::string& name)
+:GameObject(name)
 {
 
 }

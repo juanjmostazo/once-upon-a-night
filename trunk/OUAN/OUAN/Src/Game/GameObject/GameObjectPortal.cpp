@@ -2,8 +2,8 @@
 
 using namespace OUAN;
 
-GameObjectPortal::GameObjectPortal(const std::string& name, const std::string& id)
-:GameObject(name,id)
+GameObjectPortal::GameObjectPortal(const std::string& name)
+:GameObject(name)
 {
 
 }
