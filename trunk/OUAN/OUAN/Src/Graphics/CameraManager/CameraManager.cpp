@@ -199,3 +199,13 @@ void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector
 {
 	activeCameraController->processSimpleTranslation(unitTranslationVector);
 }
+
+void CameraManager::changeCamera()
+{
+
+}
+
+void CameraManager::changeCameraController()
+{
+
+}

@@ -92,13 +92,13 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedToggleChangeCamera() && mApp->mKeyBuffer<0)
 	{
-		
+		mApp->getRenderSubsystem()->changeCamera();
 
 		mApp->mKeyBuffer = 500000;
 	}
 	else if (mApp->isPressedToggleChangeCameraController() && mApp->mKeyBuffer<0)
 	{
-
+		mApp->getRenderSubsystem()->changeCameraController();
 
 		mApp->mKeyBuffer = 500000;
 	}

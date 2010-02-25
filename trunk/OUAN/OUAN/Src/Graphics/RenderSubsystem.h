@@ -131,6 +131,11 @@ namespace OUAN
 		/// Display HUD
 		void showHUD();
 
+		/// Activates next camera
+		void changeCamera();
+		/// Activates next camera controller type
+		void changeCameraController();
+
 
 	protected:
 		/// the application

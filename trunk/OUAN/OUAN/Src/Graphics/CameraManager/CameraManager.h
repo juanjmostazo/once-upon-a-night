@@ -38,6 +38,12 @@ namespace OUAN
 		/// @return viewport
 		Ogre::Viewport* getViewport() const;
 
+		/// Activates next camera
+		void changeCamera();
+		/// Activates next camera controller type
+		void changeCameraController();
+
+
 	private:
 		/// Scene manager
 		Ogre::SceneManager* mSceneManager;

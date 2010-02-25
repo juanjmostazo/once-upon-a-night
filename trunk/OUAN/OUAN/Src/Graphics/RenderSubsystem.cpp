@@ -632,3 +632,13 @@ void RenderSubsystem::showHUD()
 {
 	Ogre::OverlayManager::getSingleton().getByName("OUAN/HUDOverlay")->show();
 }
+
+void RenderSubsystem::changeCamera()
+{
+	mCameraManager->changeCamera();
+}
+
+void RenderSubsystem::changeCameraController()
+{
+	mCameraManager->changeCameraController();
+}
