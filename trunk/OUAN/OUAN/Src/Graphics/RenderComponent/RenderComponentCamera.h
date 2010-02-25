@@ -8,14 +8,14 @@ namespace OUAN
 	class RenderComponentCamera: public RenderComponent
 	{
 	private:
-		//Ogre::Camera * mCamera;
+		Ogre::Camera * mCamera;
 	public:
 
 		RenderComponentCamera(const std::string& name="");
 		~RenderComponentCamera();
 
-		//Ogre::Camera * getCamera() const;
-		//void setCamera(Ogre::Camera *);
+		Ogre::Camera * getCamera() const;
+		void setCamera(Ogre::Camera *);
 
 	};
 

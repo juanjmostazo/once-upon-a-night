@@ -14,6 +14,7 @@
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectPortal.h"
+#include "../Game/GameObject/GameObjectCamera.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -194,10 +195,10 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 			return "GameObjectItemMaxHP";
 		}
 	}
-	//else if( type.compare("Camera Object")==0)
-	//{
-	//	processCamera(XMLNode);
-	//}
+	else if( type.compare("Camera Object")==0)
+	{
+		return "GameObjectCamera";
+	}
 	else if( type.compare("Particle Object")==0)
 	{
 		return "GameObjectParticleSystem";
@@ -260,6 +261,10 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	else if( gameObjectType.compare("GameObjectPortal")==0)
 	{
 		processGameObjectPortal(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectCamera")==0)
+	{
+		processGameObjectCamera(XMLNode);
 	}
 	else
 	{
@@ -351,6 +356,20 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
+}
+
+void LevelLoader::processGameObjectCamera(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
+
+	//Get name
+	tGameObjectCameraParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentCamera
+	tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
 }
 
 void LevelLoader::processGameObjectLight(TiXmlElement *XMLNode)
@@ -600,43 +619,39 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 //	//
 //}
 
-//void LevelLoader::processCamera(TiXmlElement *XMLNode)
-//{
-//	TCameraParameters tCameraParameters;
-//
-//	//Get Camera name
-//	tCameraParameters.name = getAttrib(XMLNode, "name");
-//
-//	//Get Camera properties
-//	tCameraParameters.TRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
-//	tCameraParameters.TRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-//	tCameraParameters.TRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
-//	tCameraParameters.TRenderComponentCameraParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
-//	tCameraParameters.TRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
-//	tCameraParameters.TRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"fov");
-//	tCameraParameters.TRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
-//
-//		//PolygonModeConversion
-//	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
-//	switch(polygonmode)
-//		{
-//			case OGITOR_PM_SOLID:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
-//				break;
-//			case OGITOR_PM_POINTS:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
-//				break;
-//			case OGITOR_PM_WIREFRAME:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
-//				break;
-//			default:
-//				Ogre::LogManager::getSingleton().logMessage("Camera "+tCameraParameters.name+" has unrecognised PolygonMode!");
-//				break;
-//		}
-//
-//	//Create Camera
-////	pGameWorldManager->createCamera(tCameraParameters);
-//}
+TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
+
+	//Get Camera properties
+	tRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
+	tRenderComponentCameraParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
+	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+	tRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"fov");
+	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
+
+		//PolygonModeConversion
+	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
+	switch(polygonmode)
+		{
+			case OGITOR_PM_SOLID:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
+				break;
+			case OGITOR_PM_POINTS:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
+				break;
+			case OGITOR_PM_WIREFRAME:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
+				break;
+			default:
+				Ogre::LogManager::getSingleton().logMessage("Camera has unrecognised PolygonMode!");
+				break;
+		}
+
+	return tRenderComponentCameraParameters;
+}
 
 
 

@@ -46,6 +46,7 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	mCameraManager = new CameraManager();
 	mCameraManager->init(mRoot,mSceneManager);
+
 }
 
 void RenderSubsystem::cleanUp()
@@ -153,17 +154,7 @@ void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
 {
 
-	//TODO: Erase this and init camera from level loader
-	OUAN::TRenderComponentCameraParameters tCameraParams;
-	tCameraParams.position= Vector3(0,30,50);
-	tCameraParams.orientation = Quaternion(1,0,0,0);
-	tCameraParams.autoaspectratio=true;
-	tCameraParams.FOVy=1;
-	tCameraParams.autotracktarget="None";
-	tCameraParams.clipdistance=Vector2(0.01,1000);
-	tCameraParams.polygonmode=Ogre::PM_SOLID;
-	tCameraParams.viewmode=0;
-	//mCameraManager->createCamera("GameCamera",tCameraParams);
+
 
 	createScene();
 	//createOverlays();
@@ -332,9 +323,9 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 }
 
 
-void RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+Ogre::Camera * RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
-	mCameraManager->createCamera(name,tRenderComponentCameraParameters);
+	return mCameraManager->createCamera(name,tRenderComponentCameraParameters);
 }
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)

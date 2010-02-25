@@ -28,10 +28,6 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 	mViewport= pRoot->getAutoCreatedWindow()->addViewport(activeCameraController->getCamera());
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
-	//TODO: erase this and do it from level loader
-	activeCameraController->getCamera()->setNearClipDistance(0.01);
-	activeCameraController->getCamera()->setPosition(Vector3(0,30,50));
-
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 }
 
@@ -48,35 +44,34 @@ void CameraManager::cleanUp()
 	delete mCameraControllerFirstPerson;
 }
 
-void CameraManager::createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+Ogre::Camera*  CameraManager::createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
-	//Copy camera initial parameters
-	mCameraInitialParams[name].autoaspectratio=tRenderComponentCameraParameters.autoaspectratio;
-	mCameraInitialParams[name].autotracktarget=tRenderComponentCameraParameters.autotracktarget;
-	mCameraInitialParams[name].clipdistance=tRenderComponentCameraParameters.clipdistance;
-	mCameraInitialParams[name].FOVy=tRenderComponentCameraParameters.FOVy;
-	mCameraInitialParams[name].orientation=tRenderComponentCameraParameters.orientation;
-	mCameraInitialParams[name].polygonmode=tRenderComponentCameraParameters.polygonmode;
-	mCameraInitialParams[name].position=tRenderComponentCameraParameters.position;
-	mCameraInitialParams[name].viewmode=tRenderComponentCameraParameters.viewmode;
-
 	Camera *pCamera=0;
 	// Set Camera parameters and create it
 	try
 	{
+		//Copy camera initial parameters
+		mCameraInitialParams[name].autoaspectratio=tRenderComponentCameraParameters.autoaspectratio;
+		mCameraInitialParams[name].autotracktarget=tRenderComponentCameraParameters.autotracktarget;
+		mCameraInitialParams[name].clipdistance=tRenderComponentCameraParameters.clipdistance;
+		mCameraInitialParams[name].FOVy=tRenderComponentCameraParameters.FOVy;
+		mCameraInitialParams[name].orientation=tRenderComponentCameraParameters.orientation;
+		mCameraInitialParams[name].polygonmode=tRenderComponentCameraParameters.polygonmode;
+		mCameraInitialParams[name].position=tRenderComponentCameraParameters.position;
+		mCameraInitialParams[name].viewmode=tRenderComponentCameraParameters.viewmode;
+	
 		// Create the Camera
 		pCamera = mSceneManager->createCamera(name);
 
 		//Set Camera Parameters
 		setCameraParameters(pCamera,tRenderComponentCameraParameters);
 
-		//Make the camera active
-		setActiveCamera(name);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Camera!");
 	}
+	return pCamera;
 }
 
 void CameraManager::setCameraParameters(Camera * pCamera,TRenderComponentCameraParameters tRenderComponentCameraParameters)

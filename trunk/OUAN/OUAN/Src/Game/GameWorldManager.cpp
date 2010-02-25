@@ -16,8 +16,10 @@
 #include "GameObject/GameObjectItem1UP.h"
 #include "GameObject/GameObjectItemMaxHP.h"
 #include "GameObject/GameObjectPortal.h"
+#include "GameObject/GameObjectCamera.h"
 
 #include "../Graphics/RenderSubsystem.h"
+#include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -139,6 +141,8 @@ TGameObjectPhysicsSimple GameWorldManager::geTGameObjectPhysicsSimple()
 void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
 	mApp->getLevelLoader()->loadLevel(levelFileName);
+
+	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 }
 
 void GameWorldManager::clearContainers()
@@ -333,6 +337,12 @@ void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr p
 	mGameObjectPositional.push_back(pGameObjectParticleSystem);
 	mGameObjectNonMovable.push_back(pGameObjectParticleSystem);
 	mGameObjectParticleSystem.push_back(pGameObjectParticleSystem);
+}
+
+
+void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera)
+{
+	mGameObjects[pGameObjectCamera->getId()]=pGameObjectCamera;
 }
 
 
@@ -539,6 +549,25 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 
 	//Add Object to GameWorldManager
 	addGameObjectTerrain(pGameObjectTerrain);
+}
+
+void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters)
+{
+	GameObjectCameraPtr pGameObjectCamera;
+
+	//Create GameObject
+	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(
+		tGameObjectCameraParameters.name,makeIdString(tGameObjectCameraParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentCamera
+		pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
+			pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectCamera(pGameObjectCamera);
 }
 
 void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)
