@@ -155,7 +155,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
 		readOption(config,KEY_DEBUG_PERFORMANCE,mDefaultInputData.keyDebugPerformance);
 		readOption(config,KEY_DEBUG_PHYSICS,mDefaultInputData.keyDebugPhysics);
-		
+		readOption(config,KEY_CHANGE_CAMERA_CONTROLLER,mDefaultInputData.keyChangeCameraController);
+		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
 		return true;
 	}
 	else
@@ -179,6 +180,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyDebugPerformance=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyDebugPhysics=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeCamera=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
 		return false;
 	}
 }
@@ -290,6 +293,17 @@ bool ControlInputManager::isPressedToggleDebugPhysics()
 {
 	return isPressed(-1,mDefaultInputData.keyDebugPhysics);
 }
+
+bool ControlInputManager::isPressedToggleChangeCamera()
+{
+	return isPressed(-1,mDefaultInputData.keyChangeCamera);
+}
+
+bool ControlInputManager::isPressedToggleChangeCameraController()
+{
+	return isPressed(-1,mDefaultInputData.keyChangeCameraController);
+}
+
 
 //////////////////////////////////////////////////////////////
 

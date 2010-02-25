@@ -90,7 +90,18 @@ void GameRunningState::handleEvents()
 
 		mApp->mKeyBuffer = 500000;
 	}
+	else if (mApp->isPressedToggleChangeCamera() && mApp->mKeyBuffer<0)
+	{
+		
 
+		mApp->mKeyBuffer = 500000;
+	}
+	else if (mApp->isPressedToggleChangeCameraController() && mApp->mKeyBuffer<0)
+	{
+
+
+		mApp->mKeyBuffer = 500000;
+	}
 	// TODO: Correct this checks so that they perform their supposed functions
 	// i.e, move the player character, instead of translating the camera
 	// At the moment they're just here so we can move around the scene in the initial
