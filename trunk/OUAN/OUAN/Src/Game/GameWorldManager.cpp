@@ -17,6 +17,8 @@
 #include "GameObject/GameObjectItemMaxHP.h"
 #include "GameObject/GameObjectPortal.h"
 #include "GameObject/GameObjectCamera.h"
+#include "GameObject/GameObjectVolumeBox.h"
+#include "GameObject/GameObjectVolumeCapsule.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -352,6 +354,19 @@ void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera
 	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
 }
 
+void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox)
+{
+	mGameObjects[pGameObjectVolumeBox->getName()]=pGameObjectVolumeBox;
+
+	mGameObjectPhysicsVolume.push_back(pGameObjectVolumeBox);
+}
+
+void GameWorldManager::addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule)
+{
+	mGameObjects[pGameObjectVolumeCapsule->getName()]=pGameObjectVolumeCapsule;
+
+	mGameObjectPhysicsVolume.push_back(pGameObjectVolumeCapsule);
+}
 
 //void GameWorldManager::createGameObject(String name, GameObjectPtr gameObject)
 //{
@@ -546,24 +561,6 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 	addGameObjectTerrain(pGameObjectTerrain);
 }
 
-void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters)
-{
-	GameObjectCameraPtr pGameObjectCamera;
-
-	//Create GameObject
-	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(tGameObjectCameraParameters.name));
-	
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-		//Create RenderComponentCamera
-		pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
-			pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
-
-	//Add Object to GameWorldManager
-	addGameObjectCamera(pGameObjectCamera);
-}
-
 void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)
 {
 	GameObjectLightPtr pGameObjectLight;
@@ -630,6 +627,79 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 	addGameObjectParticleSystem(pGameObjectParticleSystem);
 }
 
+void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters)
+{
+	GameObjectCameraPtr pGameObjectCamera;
+
+	//Create GameObject
+	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(tGameObjectCameraParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create RenderComponentCamera
+	pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
+		pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectCamera(pGameObjectCamera);
+}
+
+void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters)
+{
+	GameObjectVolumeBoxPtr pGameObjectVolumeBox;
+
+	//Create GameObject
+	pGameObjectVolumeBox = GameObjectVolumeBoxPtr(new GameObjectVolumeBox(tGameObjectVolumeBoxParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentPositional
+		pGameObjectVolumeBox->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectVolumeBox->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters));
+
+		//Create PhysicsComponent
+		pGameObjectVolumeBox->setPhysicsComponentVolumeBox(factory->createPhysicsComponentVolumeBox(
+			pGameObjectVolumeBox,
+			tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters,
+			pGameObjectVolumeBox->getRenderComponentPositional()));
+
+	//Add Object to GameWorldManager
+	addGameObjectVolumeBox(pGameObjectVolumeBox);
+}
+
+void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters)
+{
+	GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule;
+
+	//Create GameObject
+	pGameObjectVolumeCapsule = GameObjectVolumeCapsulePtr(new GameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create RenderComponentPositional
+	pGameObjectVolumeCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
+		pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentEntity
+	pGameObjectVolumeCapsule->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters));
+
+	//Create PhysicsComponent
+	pGameObjectVolumeCapsule->setPhysicsComponentVolumeCapsule(factory->createPhysicsComponentVolumeCapsule(
+		pGameObjectVolumeCapsule,
+		tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
+		pGameObjectVolumeCapsule->getRenderComponentPositional()));
+
+	//Add Object to GameWorldManager
+	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
+}
 
 //void GameWorldManager::createGameObjectMovableEntity(TEntityParameters tEntityParameters)
 //{
