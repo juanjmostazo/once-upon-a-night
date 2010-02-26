@@ -11,7 +11,7 @@ namespace OUAN
 		Ogre::BillboardSet * mBillboardSet;
 	public:
 
-		RenderComponentBillboardSet(const std::string& name="");
+		RenderComponentBillboardSet(const std::string& type="");
 		~RenderComponentBillboardSet();
 
 		Ogre::BillboardSet * getBillboardSet() const;

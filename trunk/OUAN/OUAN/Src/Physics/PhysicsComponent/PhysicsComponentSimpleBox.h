@@ -9,7 +9,7 @@ namespace OUAN
 	class PhysicsComponentSimpleBox: public PhysicsComponentSimple
 	{
 	public:
-		PhysicsComponentSimpleBox(const std::string& name="");
+		PhysicsComponentSimpleBox(const std::string& type="");
 		~PhysicsComponentSimpleBox();
 
 		NxOgre::Vec3 getNxOgreSize();

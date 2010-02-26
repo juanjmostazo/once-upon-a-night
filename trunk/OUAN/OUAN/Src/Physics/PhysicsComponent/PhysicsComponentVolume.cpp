@@ -1,8 +1,8 @@
 #include "PhysicsComponentVolume.h"
 using namespace OUAN;
 
-PhysicsComponentVolume::PhysicsComponentVolume(const std::string& name)
-:PhysicsComponent(COMPONENT_NAME_PHYSICS_VOLUME)
+PhysicsComponentVolume::PhysicsComponentVolume(const std::string& type)
+:PhysicsComponent(COMPONENT_TYPE_PHYSICS_VOLUME)
 {
 
 }

@@ -11,7 +11,7 @@ namespace OUAN
 		Ogre::SceneNode * mSceneNode;
 	public:
 
-		RenderComponentPositional(const std::string& name="");
+		RenderComponentPositional(const std::string& type="");
 		~RenderComponentPositional();
 
 		Ogre::SceneNode * getSceneNode() const;

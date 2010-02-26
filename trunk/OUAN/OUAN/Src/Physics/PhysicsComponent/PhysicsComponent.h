@@ -11,7 +11,7 @@ namespace OUAN
 	class PhysicsComponent : public Component
 	{
 	public:
-		PhysicsComponent(const std::string& name="");
+		PhysicsComponent(const std::string& type="");
 		~PhysicsComponent();
 
 		virtual void update(long elapsedTime);

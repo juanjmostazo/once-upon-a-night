@@ -11,7 +11,7 @@ namespace OUAN
 		Ogre::Entity * mEntity;
 	public:
 
-		RenderComponentEntity(const std::string& name="");
+		RenderComponentEntity(const std::string& type="");
 		~RenderComponentEntity();
 
 		Ogre::Entity * getEntity() const;

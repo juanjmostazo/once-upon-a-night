@@ -1,8 +1,8 @@
 #include "RenderComponentParticleSystem.h"
 using namespace OUAN;
 
-RenderComponentParticleSystem::RenderComponentParticleSystem(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_PARTICLE_SYSTEM)
+RenderComponentParticleSystem::RenderComponentParticleSystem(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_PARTICLE_SYSTEM)
 {
 }
 RenderComponentParticleSystem::~RenderComponentParticleSystem()

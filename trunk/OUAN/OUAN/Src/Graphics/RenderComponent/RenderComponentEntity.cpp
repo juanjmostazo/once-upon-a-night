@@ -1,8 +1,8 @@
 #include "RenderComponentEntity.h"
 using namespace OUAN;
 
-RenderComponentEntity::RenderComponentEntity(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_ENTITY)
+RenderComponentEntity::RenderComponentEntity(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_ENTITY)
 {
 }
 RenderComponentEntity::~RenderComponentEntity()

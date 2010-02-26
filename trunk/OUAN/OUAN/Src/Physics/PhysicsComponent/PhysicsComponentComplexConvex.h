@@ -8,7 +8,7 @@ namespace OUAN
 	class PhysicsComponentComplexConvex: public PhysicsComponentComplex
 	{
 	public:
-		PhysicsComponentComplexConvex(const std::string& name="");
+		PhysicsComponentComplexConvex(const std::string& type="");
 		~PhysicsComponentComplexConvex();
 
 		NxOgre::Convex* getNxOgreConvex();

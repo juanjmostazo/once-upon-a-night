@@ -106,15 +106,15 @@ namespace OUAN
 		class TRenderComponentViewportParameters;
 		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
-		const std::string COMPONENT_NAME_RENDER="RenderComponent";
-		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
-		const std::string COMPONENT_NAME_RENDER_CAMERA="RenderComponentCamera";
-		const std::string COMPONENT_NAME_RENDER_ENTITY="RenderComponentEntity";
-		const std::string COMPONENT_NAME_RENDER_LIGHT="RenderComponentLight";
-		const std::string COMPONENT_NAME_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
-		const std::string COMPONENT_NAME_RENDER_POSITIONAL="RenderComponentPositional";
-		const std::string COMPONENT_NAME_RENDER_SCENE="RenderComponentScene";
-		const std::string COMPONENT_NAME_RENDER_VIEWPORT="RenderComponentViewport";
+		const std::string COMPONENT_TYPE_RENDER="RenderComponent";
+		const std::string COMPONENT_TYPE_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
+		const std::string COMPONENT_TYPE_RENDER_CAMERA="RenderComponentCamera";
+		const std::string COMPONENT_TYPE_RENDER_ENTITY="RenderComponentEntity";
+		const std::string COMPONENT_TYPE_RENDER_LIGHT="RenderComponentLight";
+		const std::string COMPONENT_TYPE_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
+		const std::string COMPONENT_TYPE_RENDER_POSITIONAL="RenderComponentPositional";
+		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
+		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 
 		//Physics components
 		class PhysicsComponentCharacter;
@@ -145,17 +145,17 @@ namespace OUAN
 		class TPhysicsComponentVolumeBoxParameters;
 		typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
 
-		const std::string COMPONENT_NAME_PHYSICS="PhysicsComponent";
-		const std::string COMPONENT_NAME_PHYSICS_CHARACTER="PhysicsComponentCharacter";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX="PhysicsComponentComplex";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME="PhysicsComponentVolume";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
+		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
+		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
+		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX="PhysicsComponentComplex";
+		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
+		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
+		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE="PhysicsComponentSimple";
+		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
+		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME="PhysicsComponentVolume";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -252,21 +252,21 @@ namespace OUAN
 		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
 		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
 		
-		const std::string GAME_OBJECT_NAME="object";
-		const std::string GAME_OBJECT_NAME_SCENE="scene";
-		const std::string GAME_OBJECT_NAME_TERRAIN="terrain";
-		const std::string GAME_OBJECT_NAME_LIGHT="light";
-		const std::string GAME_OBJECT_NAME_CAMERA="Camera";
-		const std::string GAME_OBJECT_NAME_BILLBOARDSET="BillboardSet";
-		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="Particle";
-		const std::string GAME_OBJECT_NAME_ONY="ony";
-		const std::string GAME_OBJECT_NAME_TRIPOLLO="tripollo";
-		const std::string GAME_OBJECT_NAME_PORTAL="portal";
-		const std::string GAME_OBJECT_NAME_EYE="eye";
-		const std::string GAME_OBJECT_NAME_ITEM_1UP="item-1up";
-		const std::string GAME_OBJECT_NAME_ITEM_MAXHP="item-maxhp";
-		const std::string GAME_OBJECT_NAME_VOLUMEBOX="volume-box";
-		const std::string GAME_OBJECT_NAME_VOLUMECAPSULE="volume-capsule";
+		const std::string GAME_OBJECT_TYPE="object";
+		const std::string GAME_OBJECT_TYPE_SCENE="scene";
+		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";
+		const std::string GAME_OBJECT_TYPE_LIGHT="light";
+		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
+		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
+		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
+		const std::string GAME_OBJECT_TYPE_ONY="ony";
+		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
+		const std::string GAME_OBJECT_TYPE_PORTAL="portal";
+		const std::string GAME_OBJECT_TYPE_EYE="eye";
+		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item-1up";
+		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="item-maxhp";
+		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
+		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";
 
 		///////////////////////////////////////////////////////////////////
 

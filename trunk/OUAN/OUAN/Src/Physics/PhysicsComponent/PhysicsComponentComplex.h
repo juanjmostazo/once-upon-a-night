@@ -8,7 +8,7 @@ namespace OUAN
 	class PhysicsComponentComplex: public PhysicsComponent
 	{
 	public:
-		PhysicsComponentComplex(const std::string& name="");
+		PhysicsComponentComplex(const std::string& type="");
 		~PhysicsComponentComplex();
 
 	protected:

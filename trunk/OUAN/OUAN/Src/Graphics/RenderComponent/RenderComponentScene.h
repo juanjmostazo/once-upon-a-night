@@ -11,13 +11,11 @@ namespace OUAN
 		Ogre::SceneManager * mSceneManager;
 	public:
 
-		RenderComponentScene(const std::string& name="");
+		RenderComponentScene(const std::string& type="");
 		~RenderComponentScene();
 
 		Ogre::SceneManager * getSceneManager() const;
 		void setSceneManager(Ogre::SceneManager *);
-
-
 	};
 
 	class TRenderComponentSkyDomeParameters: public TRenderComponentParameters

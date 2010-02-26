@@ -8,7 +8,7 @@ namespace OUAN
 	class PhysicsComponentComplexTriangle: public PhysicsComponentComplex
 	{
 	public:
-		PhysicsComponentComplexTriangle(const std::string& name="");
+		PhysicsComponentComplexTriangle(const std::string& type="");
 		~PhysicsComponentComplexTriangle();
 
 		void setNxOgreTriangleGeometry(NxOgre::TriangleGeometry* pNxOgreTriangleGeometry);

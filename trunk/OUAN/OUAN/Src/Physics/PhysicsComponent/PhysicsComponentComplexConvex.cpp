@@ -1,8 +1,8 @@
 #include "PhysicsComponentComplexConvex.h"
 using namespace OUAN;
 
-PhysicsComponentComplexConvex::PhysicsComponentComplexConvex(const std::string& name)
-:PhysicsComponentComplex(COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE)
+PhysicsComponentComplexConvex::PhysicsComponentComplexConvex(const std::string& type)
+:PhysicsComponentComplex(COMPONENT_TYPE_PHYSICS_COMPLEX_MOVABLE)
 {
 
 }

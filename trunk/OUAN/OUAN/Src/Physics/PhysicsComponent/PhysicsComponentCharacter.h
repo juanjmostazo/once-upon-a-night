@@ -9,7 +9,7 @@ namespace OUAN
 	class PhysicsComponentCharacter: public PhysicsComponent
 	{
 	public:
-		PhysicsComponentCharacter(const std::string& name="");
+		PhysicsComponentCharacter(const std::string& type="");
 		~PhysicsComponentCharacter();
 
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);

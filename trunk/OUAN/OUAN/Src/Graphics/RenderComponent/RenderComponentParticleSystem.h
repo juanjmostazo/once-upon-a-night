@@ -11,13 +11,11 @@ namespace OUAN
 		Ogre::ParticleSystem * mParticleSystem;
 	public:
 
-		RenderComponentParticleSystem(const std::string& name="");
+		RenderComponentParticleSystem(const std::string& type="");
 		~RenderComponentParticleSystem();
 
 		Ogre::ParticleSystem * getParticleSystem() const;
 		void setParticleSystem(Ogre::ParticleSystem *);
-
-
 	};
 
 	class TRenderComponentParticleSystemParameters: public TRenderComponentParameters

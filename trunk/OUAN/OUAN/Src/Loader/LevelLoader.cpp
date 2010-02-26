@@ -159,38 +159,38 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	//}
 	else if( type.compare("Light Object")==0)
 	{
-		if(name.substr(0,GAME_OBJECT_NAME_LIGHT.size()).compare(GAME_OBJECT_NAME_LIGHT)==0)
+		if(name.substr(0,GAME_OBJECT_TYPE_LIGHT.size()).compare(GAME_OBJECT_TYPE_LIGHT)==0)
 		{
 			return "GameObjectLight";
 		}
 	}
 	else if( type.compare("Entity Object")==0)
 	{
-		if(name.substr(0,GAME_OBJECT_NAME_ONY.size()).compare(GAME_OBJECT_NAME_ONY)==0)
+		if(name.substr(0,GAME_OBJECT_TYPE_ONY.size()).compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
 			return "GameObjectOny";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_TRIPOLLO.size()).compare(GAME_OBJECT_NAME_TRIPOLLO)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_TRIPOLLO.size()).compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
 			return "GameObjectTripollo";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_TERRAIN.size()).compare(GAME_OBJECT_NAME_TERRAIN)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_TERRAIN.size()).compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{
 			return "GameObjectTerrain";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_PORTAL.size()).compare(GAME_OBJECT_NAME_PORTAL)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_PORTAL.size()).compare(GAME_OBJECT_TYPE_PORTAL)==0)
 		{
 			return "GameObjectPortal";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_EYE.size()).compare(GAME_OBJECT_NAME_EYE)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_EYE.size()).compare(GAME_OBJECT_TYPE_EYE)==0)
 		{
 			return "GameObjectEye";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_ITEM_1UP.size()).compare(GAME_OBJECT_NAME_ITEM_1UP)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_1UP.size()).compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 		{
 			return "GameObjectItem1UP";
 		}
-		else if(name.substr(0,GAME_OBJECT_NAME_ITEM_MAXHP.size()).compare(GAME_OBJECT_NAME_ITEM_MAXHP)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_MAXHP.size()).compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
 		{
 			return "GameObjectItemMaxHP";
 		}

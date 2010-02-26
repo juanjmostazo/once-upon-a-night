@@ -1,8 +1,8 @@
 #include "PhysicsComponentSimpleBox.h"
 using namespace OUAN;
 
-PhysicsComponentSimpleBox::PhysicsComponentSimpleBox(const std::string& name)
-:PhysicsComponentSimple(COMPONENT_NAME_PHYSICS_SIMPLE_BOX)
+PhysicsComponentSimpleBox::PhysicsComponentSimpleBox(const std::string& type)
+:PhysicsComponentSimple(COMPONENT_TYPE_PHYSICS_SIMPLE_BOX)
 {
 
 }

@@ -11,12 +11,11 @@ namespace OUAN
 		Ogre::Camera * mCamera;
 	public:
 
-		RenderComponentCamera(const std::string& name="");
+		RenderComponentCamera(const std::string& type="");
 		~RenderComponentCamera();
 
 		Ogre::Camera * getCamera() const;
 		void setCamera(Ogre::Camera *);
-
 	};
 
 	class TRenderComponentCameraParameters: public TRenderComponentParameters

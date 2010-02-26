@@ -1,8 +1,8 @@
 #include "RenderComponentPositional.h"
 using namespace OUAN;
 
-RenderComponentPositional::RenderComponentPositional(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_POSITIONAL)
+RenderComponentPositional::RenderComponentPositional(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_POSITIONAL)
 {
 }
 RenderComponentPositional::~RenderComponentPositional()

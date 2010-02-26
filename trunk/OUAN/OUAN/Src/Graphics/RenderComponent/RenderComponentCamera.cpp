@@ -1,8 +1,8 @@
 #include "RenderComponentCamera.h"
 using namespace OUAN;
 
-RenderComponentCamera::RenderComponentCamera(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_CAMERA)
+RenderComponentCamera::RenderComponentCamera(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_CAMERA)
 {
 }
 RenderComponentCamera::~RenderComponentCamera()

@@ -1,8 +1,8 @@
 #include "PhysicsComponentSimpleCapsule.h"
 using namespace OUAN;
 
-PhysicsComponentSimpleCapsule::PhysicsComponentSimpleCapsule(const std::string& name)
-:PhysicsComponentSimple(COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE)
+PhysicsComponentSimpleCapsule::PhysicsComponentSimpleCapsule(const std::string& type)
+:PhysicsComponentSimple(COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE)
 {
 
 }

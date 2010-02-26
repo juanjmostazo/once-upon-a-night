@@ -1,8 +1,8 @@
 #include "RenderComponentViewport.h"
 using namespace OUAN;
 
-RenderComponentViewport::RenderComponentViewport(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_VIEWPORT)
+RenderComponentViewport::RenderComponentViewport(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_VIEWPORT)
 {
 }
 
