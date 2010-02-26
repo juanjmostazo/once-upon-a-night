@@ -53,6 +53,15 @@ namespace OUAN
 		/// param read from config file, gravity force
 		NxOgre::Vec3 mGravity;
 
+		/// param
+		double mStaticFriction;
+		
+		/// param
+		double mDynamicFriction;
+
+		/// param
+		double mRestitution;
+
 		/// param read from config file, applied to move()
 		double mDisplacementScale;
 

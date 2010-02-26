@@ -444,6 +444,18 @@
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolume.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeCapsule.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -724,6 +736,18 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimpleCapsule.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolume.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeCapsule.h"
 						>
 					</File>
 				</Filter>

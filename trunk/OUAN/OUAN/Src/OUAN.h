@@ -129,6 +129,14 @@ namespace OUAN
 			class TPhysicsComponentSimpleBoxParameters;
 			typedef boost::shared_ptr<PhysicsComponentSimpleBox> PhysicsComponentSimpleBoxPtr;
 
+			class PhysicsComponentVolumeCapsule;
+			class TPhysicsComponentVolumeCapsuleParameters;
+			typedef boost::shared_ptr<PhysicsComponentVolumeCapsule> PhysicsComponentVolumeCapsulePtr;
+
+			class PhysicsComponentVolumeBox;
+			class TPhysicsComponentVolumeBoxParameters;
+			typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
+
 		//Game Object Specializations
 		class GameObject;
 		class TGameObjectParameters;
@@ -148,7 +156,7 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvex;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangle;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimple;
-
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolume;
 
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
@@ -237,8 +245,11 @@ namespace OUAN
 		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
 		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CUBE="PhysicsComponentSimpleBox";
-		
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME="PhysicsComponentVolume";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
+
 		const std::string COMPONENT_NAME_RENDER="RenderComponent";
 		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
 		const std::string COMPONENT_NAME_RENDER_CAMERA="RenderComponentCamera";

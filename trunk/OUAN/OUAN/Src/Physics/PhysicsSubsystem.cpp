@@ -83,9 +83,9 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 	//Initializing scene stuff
 	mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
-	mNxOgreScene->getMaterial(0)->setStaticFriction(0.5);
-	mNxOgreScene->getMaterial(0)->setDynamicFriction(0.5);
-	mNxOgreScene->getMaterial(0)->setRestitution(0.1);
+	mNxOgreScene->getMaterial(0)->setStaticFriction(mStaticFriction);
+	mNxOgreScene->getMaterial(0)->setDynamicFriction(mDynamicFriction);
+	mNxOgreScene->getMaterial(0)->setRestitution(mRestitution);
 
 	//Initializing visual debugger
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
@@ -175,6 +175,15 @@ bool PhysicsSubsystem::loadConfig()
 
 		mGravity = NxOgre::Vec3(gravityX, gravityY, gravityZ);
 
+		config.getOption("STATIC_FRICTION", value); 
+		mStaticFriction = atof(value.c_str());
+
+		config.getOption("DYNAMIC_FRICTION", value); 
+		mDynamicFriction = atof(value.c_str());
+
+		config.getOption("RESTITUTION", value); 
+		mRestitution = atof(value.c_str());
+
 		config.getOption("DISPLACEMENT_SCALE", value); 
 		mDisplacementScale = atof(value.c_str());
 
@@ -188,6 +197,9 @@ bool PhysicsSubsystem::loadConfig()
 		//LogManager::getSingleton().logMessage(PHYSICS_CFG + " COULD NOT BE LOADED!");
 
 		mGravity = NxOgre::Vec3(0,0,0);
+		mStaticFriction = 0;
+		mDynamicFriction = 0;
+		mRestitution = 0;
 		mDisplacementScale = 0;
 		mMinDistance = 0;
 
