@@ -8,7 +8,7 @@ namespace OUAN
 	class PhysicsComponentVolume: public PhysicsComponent
 	{
 	public:
-		PhysicsComponentVolume(const std::string& name="");
+		PhysicsComponentVolume(const std::string& type="");
 		~PhysicsComponentVolume();
 
 		NxOgre::Volume* getNxOgreVolume();

@@ -9,24 +9,24 @@ namespace OUAN
 	class Component
 	{
 	public:
-		/// Constructor. It receives the name of the component,
+		/// Constructor. It receives the type of the component,
 		/// which will serve as some sort of identifier for its parent
 		/// gameObject and further siblings
-		/// @param name component name
-		Component(const std::string& name);
+		/// @param type component type
+		Component(const std::string& type);
 		/// Destructor
 		virtual ~Component();
 
-		/// Return component name
-		/// @return component name
-		const std::string& getName() const;
+		/// Return component type
+		/// @return component type
+		const std::string& getType() const;
 		
-		/// set the name of the component
-		/// @param name name of the component
-		void setName(const std::string& name);
+		/// set the type of the component
+		/// @param type type of the component
+		void setType(const std::string& type);
 
-		/// Return component's family name
-		/// @return component's family name
+		/// Return component's family type
+		/// @return component's family type
 		const std::string& getFamily() const;
 
 		/// set the component's parent GameObject
@@ -39,8 +39,8 @@ namespace OUAN
 
 	protected:
 
-		/// Component name
-		std::string mName;
+		/// Component type
+		std::string mType;
 		/// parent GameObject
 		GameObjectPtr mParent;
 	};

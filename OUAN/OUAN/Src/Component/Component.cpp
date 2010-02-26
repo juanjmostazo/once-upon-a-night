@@ -1,7 +1,7 @@
 #include "Component.h"
 using namespace OUAN;
-Component::Component(const std::string& name)
-:mName(name)
+Component::Component(const std::string& type)
+:mType(type)
 {
 	mParent.reset();
 }
@@ -10,16 +10,16 @@ Component::~Component()
 {}
 
 
-const std::string& Component::getName() const
+const std::string& Component::getType() const
 {
-	return mName;
+	return mType;
 }
 
-/// set the name of the component
-/// @param name name of the component
-void Component::setName(const std::string& name)
+/// set the type of the component
+/// @param type type of the component
+void Component::setType(const std::string& type)
 {
-	mName=name;
+	mType=type;
 }
 
 /// set the component's parent GameObject

@@ -1,8 +1,8 @@
 #include "PhysicsComponentCharacter.h"
 using namespace OUAN;
 
-PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& name)
-:PhysicsComponent(COMPONENT_NAME_PHYSICS_CHARACTER)
+PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
+:PhysicsComponent(COMPONENT_TYPE_PHYSICS_CHARACTER)
 {
 
 }

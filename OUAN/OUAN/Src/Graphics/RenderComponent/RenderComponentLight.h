@@ -11,7 +11,7 @@ namespace OUAN
 		Ogre::Light * mLight;
 	public:
 
-		RenderComponentLight(const std::string& name="");
+		RenderComponentLight(const std::string& type="");
 		~RenderComponentLight();
 
 		Ogre::Light * getLight() const;

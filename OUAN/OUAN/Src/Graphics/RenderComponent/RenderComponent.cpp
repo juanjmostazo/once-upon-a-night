@@ -1,8 +1,8 @@
 #include "RenderComponent.h"
 using namespace OUAN;
 
-RenderComponent::RenderComponent(const std::string& name)
-:Component(COMPONENT_NAME_RENDER)
+RenderComponent::RenderComponent(const std::string& type)
+:Component(COMPONENT_TYPE_RENDER)
 {
 }
 

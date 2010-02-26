@@ -11,7 +11,7 @@ namespace OUAN
 		Ogre::Viewport * mViewport;
 	public:
 
-		RenderComponentViewport(const std::string& name="");
+		RenderComponentViewport(const std::string& type="");
 		~RenderComponentViewport();
 
 		Ogre::Viewport * getViewport() const;

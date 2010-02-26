@@ -7,7 +7,7 @@ namespace OUAN
 	class RenderComponent: public Component
 	{
 	public:
-		RenderComponent(const std::string& name="");
+		RenderComponent(const std::string& type="");
 		~RenderComponent();
 
 		virtual void update(long elapsedTime);

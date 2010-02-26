@@ -8,7 +8,7 @@ namespace OUAN
 	class PhysicsComponentSimple: public PhysicsComponent
 	{
 	public:
-		PhysicsComponentSimple(const std::string& name="");
+		PhysicsComponentSimple(const std::string& type="");
 		~PhysicsComponentSimple();
 
 		OGRE3DBody* getNxOgreBody();

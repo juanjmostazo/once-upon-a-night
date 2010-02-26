@@ -1,8 +1,8 @@
 #include "PhysicsComponentVolumeBox.h"
 using namespace OUAN;
 
-PhysicsComponentVolumeBox::PhysicsComponentVolumeBox(const std::string& name)
-:PhysicsComponentVolume(COMPONENT_NAME_PHYSICS_VOLUME_BOX)
+PhysicsComponentVolumeBox::PhysicsComponentVolumeBox(const std::string& type)
+:PhysicsComponentVolume(COMPONENT_TYPE_PHYSICS_VOLUME_BOX)
 {
 
 }

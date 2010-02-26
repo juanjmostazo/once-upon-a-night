@@ -1,8 +1,8 @@
 #include "RenderComponentScene.h"
 using namespace OUAN;
 
-RenderComponentScene::RenderComponentScene(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_SCENE)
+RenderComponentScene::RenderComponentScene(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_SCENE)
 {
 }
 RenderComponentScene::~RenderComponentScene()

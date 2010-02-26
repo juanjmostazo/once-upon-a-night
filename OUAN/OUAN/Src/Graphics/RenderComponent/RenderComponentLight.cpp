@@ -1,8 +1,8 @@
 #include "RenderComponentLight.h"
 using namespace OUAN;
 
-RenderComponentLight::RenderComponentLight(const std::string& name)
-:RenderComponent(COMPONENT_NAME_RENDER_LIGHT)
+RenderComponentLight::RenderComponentLight(const std::string& type)
+:RenderComponent(COMPONENT_TYPE_RENDER_LIGHT)
 {
 }
 RenderComponentLight::~RenderComponentLight()
