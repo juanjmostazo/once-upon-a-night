@@ -73,6 +73,8 @@ namespace OUAN
 		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
 		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
+		void createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters);
+		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
 
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
@@ -116,6 +118,8 @@ namespace OUAN
 		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
 		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
+		void addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox);
+		void addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule);
 
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
