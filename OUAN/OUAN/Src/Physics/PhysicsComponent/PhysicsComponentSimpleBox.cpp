@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentSimpleBox::PhysicsComponentSimpleBox(const std::string& name)
-:PhysicsComponentSimple(COMPONENT_NAME_PHYSICS_SIMPLE_CUBE)
+:PhysicsComponentSimple(COMPONENT_NAME_PHYSICS_SIMPLE_BOX)
 {
 
 }

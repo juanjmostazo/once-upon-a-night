@@ -4,8 +4,7 @@
 #include "PhysicsComponentComplex.h"
 namespace OUAN
 {
-	// Complex elements which can be moved, shape will be Convex
-	// Examples: Diamods, weapons, etc.
+	// Complex elements with low detail, shape will be Convex
 	class PhysicsComponentComplexConvex: public PhysicsComponentComplex
 	{
 	public:

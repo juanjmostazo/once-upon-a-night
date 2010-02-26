@@ -5,7 +5,6 @@
 namespace OUAN
 {
 	// Complex elements which have physics but can NOT be moved, shape will be TriangleMesh
-	// Examples: Terrain, rocks, walls, etc.
 	class PhysicsComponentComplexTriangle: public PhysicsComponentComplex
 	{
 	public:
