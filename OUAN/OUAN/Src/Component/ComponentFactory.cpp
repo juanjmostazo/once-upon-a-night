@@ -17,6 +17,8 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 
 using namespace OUAN;
 
@@ -234,4 +236,37 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 						tPhysicsComponentSimpleBoxParameters.lengthZ));
 	
 	return pPhysicsComponentSimpleBox;
+}
+
+PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeCapsule(GameObjectPtr gameObject,TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+{
+	PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule = 
+		PhysicsComponentVolumeCapsulePtr(new PhysicsComponentVolumeCapsule()); 
+
+	pPhysicsComponentVolumeCapsule->setParent(gameObject);	
+	pPhysicsComponentVolumeCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentVolumeCapsule->setMass(tPhysicsComponentVolumeCapsuleParameters.mass);
+	pPhysicsComponentVolumeCapsule->setDensity(tPhysicsComponentVolumeCapsuleParameters.density);
+	pPhysicsComponentVolumeCapsule->setNxOgreSize(
+		NxOgre::Vec2(	tPhysicsComponentVolumeCapsuleParameters.radius,
+		tPhysicsComponentVolumeCapsuleParameters.height));
+
+	return pPhysicsComponentVolumeCapsule;
+}
+
+PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(GameObjectPtr gameObject,TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+{
+	PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox = 
+		PhysicsComponentVolumeBoxPtr(new PhysicsComponentVolumeBox()); 
+
+	pPhysicsComponentVolumeBox->setParent(gameObject);	
+	pPhysicsComponentVolumeBox->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentVolumeBox->setMass(tPhysicsComponentVolumeBoxParameters.mass);
+	pPhysicsComponentVolumeBox->setDensity(tPhysicsComponentVolumeBoxParameters.density);
+	pPhysicsComponentVolumeBox->setNxOgreSize(
+		NxOgre::Vec3(	tPhysicsComponentVolumeBoxParameters.lengthX,
+		tPhysicsComponentVolumeBoxParameters.lengthY,
+		tPhysicsComponentVolumeBoxParameters.lengthZ));
+
+	return pPhysicsComponentVolumeBox;
 }

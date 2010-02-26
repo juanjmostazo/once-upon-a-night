@@ -35,6 +35,7 @@ namespace OUAN
 		TGameObjectPhysicsComplexConvex geTGameObjectPhysicsComplexConvex();
 		TGameObjectPhysicsComplexTriangle geTGameObjectPhysicsComplexTriangle();
 		TGameObjectPhysicsSimple geTGameObjectPhysicsSimple();
+		TGameObjectPhysicsVolume geTGameObjectPhysicsVolume();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -162,6 +163,7 @@ namespace OUAN
 		TGameObjectPhysicsComplexConvex mGameObjectPhysicsComplexConvex;
 		TGameObjectPhysicsComplexTriangle mGameObjectPhysicsComplexTriangle;
 		TGameObjectPhysicsSimple mGameObjectPhysicsSimple;
+		TGameObjectPhysicsSimple mGameObjectPhysicsVolume;
 
 		void clearContainers();
 
