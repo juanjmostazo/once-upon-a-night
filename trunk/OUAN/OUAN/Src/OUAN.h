@@ -65,77 +65,99 @@ namespace OUAN
 		class GameWorldManager;
 		class Component;
 
-		//Component specializations
+		//Render Components
+		class RenderComponent;
+		class TRenderComponentParameters;
+		typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
 
-			//Render Components
-			class RenderComponent;
-			class TRenderComponentParameters;
-			typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
+		class RenderComponentBillboardSet;
+		class TRenderComponentBillboardSetParameters;
+		class TRenderComponentBillboardParameters;
+		typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
 
-			class RenderComponentBillboardSet;
-			class TRenderComponentBillboardSetParameters;
-			class TRenderComponentBillboardParameters;
-			typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
+		class RenderComponentCamera;
+		class TRenderComponentCameraParameters;
+		typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
 
-			class RenderComponentCamera;
-			class TRenderComponentCameraParameters;
-			typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
+		class RenderComponentEntity;
+		class TRenderComponentEntityParameters;
+		class TRenderComponentSubEntityParameters;
+		typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
 
-			class RenderComponentEntity;
-			class TRenderComponentEntityParameters;
-			class TRenderComponentSubEntityParameters;
-			typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
+		class RenderComponentLight;
+		class TRenderComponentLightParameters;
+		typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
 
-			class RenderComponentLight;
-			class TRenderComponentLightParameters;
-			typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
+		class RenderComponentParticleSystem;
+		class TRenderComponentParticleSystemParameters;
+		typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
 
-			class RenderComponentParticleSystem;
-			class TRenderComponentParticleSystemParameters;
-			typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
+		class RenderComponentScene;
+		class TRenderComponentSkyDomeParameters;
+		class TRenderComponentSkyBoxParameters;
+		class TRenderComponentSceneParameters;
+		typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
 
-			class RenderComponentScene;
-			class TRenderComponentSkyDomeParameters;
-			class TRenderComponentSkyBoxParameters;
-			class TRenderComponentSceneParameters;
-			typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
+		class RenderComponentPositional;
+		class TRenderComponentPositionalParameters;
+		typedef boost::shared_ptr<RenderComponentPositional> RenderComponentPositionalPtr;
 
-			class RenderComponentPositional;
-			class TRenderComponentPositionalParameters;
-			typedef boost::shared_ptr<RenderComponentPositional> RenderComponentPositionalPtr;
+		class RenderComponentViewport;
+		class TRenderComponentViewportParameters;
+		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
-			class RenderComponentViewport;
-			class TRenderComponentViewportParameters;
-			typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
+		const std::string COMPONENT_NAME_RENDER="RenderComponent";
+		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
+		const std::string COMPONENT_NAME_RENDER_CAMERA="RenderComponentCamera";
+		const std::string COMPONENT_NAME_RENDER_ENTITY="RenderComponentEntity";
+		const std::string COMPONENT_NAME_RENDER_LIGHT="RenderComponentLight";
+		const std::string COMPONENT_NAME_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
+		const std::string COMPONENT_NAME_RENDER_POSITIONAL="RenderComponentPositional";
+		const std::string COMPONENT_NAME_RENDER_SCENE="RenderComponentScene";
+		const std::string COMPONENT_NAME_RENDER_VIEWPORT="RenderComponentViewport";
 
-			//Physics components
-			class PhysicsComponentCharacter;
-			class TPhysicsComponentCharacterParameters;
-			typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
+		//Physics components
+		class PhysicsComponentCharacter;
+		class TPhysicsComponentCharacterParameters;
+		typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
 
-			class PhysicsComponentComplexConvex;
-			class TPhysicsComponentComplexConvexParameters;
-			typedef boost::shared_ptr<PhysicsComponentComplexConvex> PhysicsComponentComplexConvexPtr;
+		class PhysicsComponentComplexConvex;
+		class TPhysicsComponentComplexConvexParameters;
+		typedef boost::shared_ptr<PhysicsComponentComplexConvex> PhysicsComponentComplexConvexPtr;
 
-			class PhysicsComponentComplexTriangle;
-			class TPhysicsComponentComplexTriangleParameters;
-			typedef boost::shared_ptr<PhysicsComponentComplexTriangle> PhysicsComponentComplexTrianglePtr;
+		class PhysicsComponentComplexTriangle;
+		class TPhysicsComponentComplexTriangleParameters;
+		typedef boost::shared_ptr<PhysicsComponentComplexTriangle> PhysicsComponentComplexTrianglePtr;
 
-			class PhysicsComponentSimpleCapsule;
-			class TPhysicsComponentSimpleCapsuleParameters;
-			typedef boost::shared_ptr<PhysicsComponentSimpleCapsule> PhysicsComponentSimpleCapsulePtr;
+		class PhysicsComponentSimpleCapsule;
+		class TPhysicsComponentSimpleCapsuleParameters;
+		typedef boost::shared_ptr<PhysicsComponentSimpleCapsule> PhysicsComponentSimpleCapsulePtr;
 
-			class PhysicsComponentSimpleBox;
-			class TPhysicsComponentSimpleBoxParameters;
-			typedef boost::shared_ptr<PhysicsComponentSimpleBox> PhysicsComponentSimpleBoxPtr;
+		class PhysicsComponentSimpleBox;
+		class TPhysicsComponentSimpleBoxParameters;
+		typedef boost::shared_ptr<PhysicsComponentSimpleBox> PhysicsComponentSimpleBoxPtr;
 
-			class PhysicsComponentVolumeCapsule;
-			class TPhysicsComponentVolumeCapsuleParameters;
-			typedef boost::shared_ptr<PhysicsComponentVolumeCapsule> PhysicsComponentVolumeCapsulePtr;
+		class PhysicsComponentVolumeCapsule;
+		class TPhysicsComponentVolumeCapsuleParameters;
+		typedef boost::shared_ptr<PhysicsComponentVolumeCapsule> PhysicsComponentVolumeCapsulePtr;
 
-			class PhysicsComponentVolumeBox;
-			class TPhysicsComponentVolumeBoxParameters;
-			typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
+		class PhysicsComponentVolumeBox;
+		class TPhysicsComponentVolumeBoxParameters;
+		typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
+
+		const std::string COMPONENT_NAME_PHYSICS="PhysicsComponent";
+		const std::string COMPONENT_NAME_PHYSICS_CHARACTER="PhysicsComponentCharacter";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX="PhysicsComponentComplex";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
+		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
+		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME="PhysicsComponentVolume";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
+		const std::string COMPONENT_NAME_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
+
+		///////////////////////////////////////////////////////////////////
 
 		//Game Object Specializations
 		class GameObject;
@@ -158,77 +180,95 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimple;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolume;
 
+		///////////////////////////////////////////////////////////////////
+
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
-		const std::string GAME_OBJECT_NAME_SCENE="scene";
 
 		class GameObjectTerrain;
 		class TGameObjectTerrainParameters;
 		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
 		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
-		const std::string GAME_OBJECT_NAME_TERRAIN="terrain";
-
+		
 		class GameObjectLight;
 		class TGameObjectLightParameters;
 		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
-		const std::string GAME_OBJECT_NAME_LIGHT="light";
-
+		
 		class GameObjectCamera;
 		class TGameObjectCameraParameters;
 		typedef boost::shared_ptr<GameObjectCamera> GameObjectCameraPtr;
 		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
-		const std::string GAME_OBJECT_NAME_Camera="Camera";
 
 		class GameObjectBillboardSet;
 		class TGameObjectBillboardSetParameters;
 		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
 		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
-		const std::string GAME_OBJECT_NAME_BILLBOARDSET="BillboardSet";
-
+		
 		class GameObjectParticleSystem;
 		class TGameObjectParticleSystemParameters;
 		typedef boost::shared_ptr<GameObjectParticleSystem> GameObjectParticleSystemPtr;
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
-		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="Particle";
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;
 		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
-		const std::string GAME_OBJECT_NAME_ONY="ony";
-
+		
 		class GameObjectTripollo;
 		class TGameObjectTripolloParameters;
 		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
 		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
-		const std::string GAME_OBJECT_NAME_TRIPOLLO="tripollo";
-
+		
 		class GameObjectPortal;
 		class TGameObjectPortalParameters;
 		typedef boost::shared_ptr<GameObjectPortal> GameObjectPortalPtr;
 		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
-		const std::string GAME_OBJECT_NAME_PORTAL="portal";
-
+		
 		class GameObjectEye;
 		class TGameObjectEyeParameters;
 		typedef boost::shared_ptr<GameObjectEye> GameObjectEyePtr;
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
-		const std::string GAME_OBJECT_NAME_EYE="eye";
 
 		class GameObjectItem1UP;
 		class TGameObjectItem1UPParameters;
 		typedef boost::shared_ptr<GameObjectItem1UP> GameObjectItem1UPPtr;
 		typedef std::vector<GameObjectItem1UPPtr> TGameObjecItem1UPContainer;
-		const std::string GAME_OBJECT_NAME_ITEM_1UP="item-1up";
 
 		class GameObjectItemMaxHP;
 		class TGameObjectItemMaxHPParameters;
 		typedef boost::shared_ptr<GameObjectItemMaxHP> GameObjectItemMaxHPPtr;
 		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjecItemMaxHPContainer;
+		
+		class GameObjectVolumeBox;
+		class TGameObjectVolumeBoxParameters;
+		typedef boost::shared_ptr<GameObjectVolumeBox> GameObjectVolumeBoxPtr;
+		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
+		
+		class GameObjectVolumeCapsule;
+		class TGameObjectVolumeCapsuleParameters;
+		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
+		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
+		
+		const std::string GAME_OBJECT_NAME="object";
+		const std::string GAME_OBJECT_NAME_SCENE="scene";
+		const std::string GAME_OBJECT_NAME_TERRAIN="terrain";
+		const std::string GAME_OBJECT_NAME_LIGHT="light";
+		const std::string GAME_OBJECT_NAME_CAMERA="Camera";
+		const std::string GAME_OBJECT_NAME_BILLBOARDSET="BillboardSet";
+		const std::string GAME_OBJECT_NAME_PARTICLESYSTEM="Particle";
+		const std::string GAME_OBJECT_NAME_ONY="ony";
+		const std::string GAME_OBJECT_NAME_TRIPOLLO="tripollo";
+		const std::string GAME_OBJECT_NAME_PORTAL="portal";
+		const std::string GAME_OBJECT_NAME_EYE="eye";
+		const std::string GAME_OBJECT_NAME_ITEM_1UP="item-1up";
 		const std::string GAME_OBJECT_NAME_ITEM_MAXHP="item-maxhp";
+		const std::string GAME_OBJECT_NAME_VOLUMEBOX="volume-box";
+		const std::string GAME_OBJECT_NAME_VOLUMECAPSULE="volume-capsule";
+
+		///////////////////////////////////////////////////////////////////
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
@@ -237,28 +277,6 @@ namespace OUAN
 		typedef TComponentContainer::iterator TComponentContainerIterator;
 
 		const int GAMEOBJECT_ID_ZERO_PADDING=6;
-
-		const std::string COMPONENT_NAME_PHYSICS="PhysicsComponent";
-		const std::string COMPONENT_NAME_PHYSICS_CHARACTER="PhysicsComponentCharacter";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX="PhysicsComponentComplex";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
-		const std::string COMPONENT_NAME_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE="PhysicsComponentSimple";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME="PhysicsComponentVolume";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
-		const std::string COMPONENT_NAME_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
-
-		const std::string COMPONENT_NAME_RENDER="RenderComponent";
-		const std::string COMPONENT_NAME_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
-		const std::string COMPONENT_NAME_RENDER_CAMERA="RenderComponentCamera";
-		const std::string COMPONENT_NAME_RENDER_ENTITY="RenderComponentEntity";
-		const std::string COMPONENT_NAME_RENDER_LIGHT="RenderComponentLight";
-		const std::string COMPONENT_NAME_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
-		const std::string COMPONENT_NAME_RENDER_POSITIONAL="RenderComponentPositional";
-		const std::string COMPONENT_NAME_RENDER_SCENE="RenderComponentScene";
-		const std::string COMPONENT_NAME_RENDER_VIEWPORT="RenderComponentViewport";
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations

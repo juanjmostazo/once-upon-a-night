@@ -34,6 +34,8 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 
 #include <iomanip>
 #include <sstream>
@@ -138,10 +140,14 @@ TGameObjectPhysicsSimple GameWorldManager::geTGameObjectPhysicsSimple()
 	return mGameObjectPhysicsSimple;
 }
 
+TGameObjectPhysicsSimple GameWorldManager::geTGameObjectPhysicsVolume()
+{
+	return mGameObjectPhysicsVolume;
+}
+
 void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
 	mApp->getLevelLoader()->loadLevel(levelFileName);
-
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 }
 
@@ -169,6 +175,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectPhysicsComplexConvex.clear();
 	mGameObjectPhysicsComplexTriangle.clear();
 	mGameObjectPhysicsSimple.clear();
+	mGameObjectPhysicsVolume.clear();
 }
 
 void GameWorldManager::unloadLevel()
@@ -419,7 +426,6 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 
 void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters)
 {
-
 	GameObjectEyePtr pGameObjectEye;
 
 	//Create GameObject
@@ -448,7 +454,6 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 
 void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
 {
-
 	GameObjectItem1UPPtr pGameObjectItem1UP;
 
 	//Create GameObject
@@ -471,7 +476,6 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 
 void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters)
 {
-
 	GameObjectPortalPtr pGameObjectPortal;
 
 	//Create GameObject
@@ -494,7 +498,6 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 
 void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters)
 {
-
 	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
 
 	//Create GameObject
@@ -563,7 +566,6 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 
 void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)
 {
-
 	GameObjectLightPtr pGameObjectLight;
 
 	//Create GameObject

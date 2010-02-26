@@ -400,6 +400,14 @@
 						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectVolumeBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectVolumeCapsule.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -684,6 +692,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectVolumeBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectVolumeCapsule.h"
 						>
 					</File>
 				</Filter>
