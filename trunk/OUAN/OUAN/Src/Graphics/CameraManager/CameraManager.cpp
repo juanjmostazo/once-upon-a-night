@@ -212,6 +212,8 @@ void CameraManager::changeCamera()
 		it=mCameraInitialParams.begin();
 	}
 
+	resetActiveCameraPosition();
+
 	setActiveCamera(it->first);
 }
 

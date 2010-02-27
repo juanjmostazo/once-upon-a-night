@@ -31,11 +31,6 @@ void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
 
 void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 {
-	//re-set parameters to the old camera
-	mCamera->setPosition(cameraNode->getPosition());
-	mCamera->yaw(cameraYawNode->getOrientation().getYaw());
-	mCamera->pitch(cameraPitchNode->getOrientation().getPitch());
-	mCamera->roll(cameraRollNode->getOrientation().getRoll());
 
 	//reset controller first person nodes
 	this->cameraNode->resetToInitialState();
@@ -55,7 +50,7 @@ void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 
 	//set position and rotation of new camera to zero
 	mCamera->setPosition(0,0,0);
-	mCamera->setOrientation(Ogre::Quaternion(1,0,0,0));
+	mCamera->setOrientation(Ogre::Quaternion::IDENTITY);
 
 	//attach new camera to roll node
 	this->cameraRollNode->attachObject(mCamera);
