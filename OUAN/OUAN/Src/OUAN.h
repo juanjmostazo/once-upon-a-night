@@ -173,92 +173,93 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectMovableEntityContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectNonMovableEntityContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
+		
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacterContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvexContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangleContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeContainer;
 
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacter;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvex;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangle;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimple;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolume;
-
-		///////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
 
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
-		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 
 		class GameObjectTerrain;
 		class TGameObjectTerrainParameters;
 		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
-		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
-		
+
 		class GameObjectLight;
 		class TGameObjectLightParameters;
 		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
-		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
-		
+
 		class GameObjectCamera;
 		class TGameObjectCameraParameters;
 		typedef boost::shared_ptr<GameObjectCamera> GameObjectCameraPtr;
-		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
 
 		class GameObjectBillboardSet;
 		class TGameObjectBillboardSetParameters;
 		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
-		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
-		
+
 		class GameObjectParticleSystem;
 		class TGameObjectParticleSystemParameters;
 		typedef boost::shared_ptr<GameObjectParticleSystem> GameObjectParticleSystemPtr;
-		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
 
 		class GameObjectOny;
 		class TGameObjectOnyParameters;
 		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
-		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
-		
+
 		class GameObjectTripollo;
 		class TGameObjectTripolloParameters;
 		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
-		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
-		
+
 		class GameObjectPortal;
 		class TGameObjectPortalParameters;
 		typedef boost::shared_ptr<GameObjectPortal> GameObjectPortalPtr;
-		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
-		
+
 		class GameObjectEye;
 		class TGameObjectEyeParameters;
 		typedef boost::shared_ptr<GameObjectEye> GameObjectEyePtr;
-		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
 
 		class GameObjectItem1UP;
 		class TGameObjectItem1UPParameters;
 		typedef boost::shared_ptr<GameObjectItem1UP> GameObjectItem1UPPtr;
-		typedef std::vector<GameObjectItem1UPPtr> TGameObjecItem1UPContainer;
 
 		class GameObjectItemMaxHP;
 		class TGameObjectItemMaxHPParameters;
 		typedef boost::shared_ptr<GameObjectItemMaxHP> GameObjectItemMaxHPPtr;
-		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjecItemMaxHPContainer;
-		
+
 		class GameObjectVolumeBox;
 		class TGameObjectVolumeBoxParameters;
 		typedef boost::shared_ptr<GameObjectVolumeBox> GameObjectVolumeBoxPtr;
-		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
-		
+
 		class GameObjectVolumeCapsule;
 		class TGameObjectVolumeCapsuleParameters;
 		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
-		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
 		
+		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
+		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
+		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
+		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
+		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
+		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
+		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
+		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
+		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
+		typedef std::vector<GameObjectItem1UPPtr> TGameObjecItem1UPContainer;
+		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjecItemMaxHPContainer;
+		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
+		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
+
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="scene";
 		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";
 		const std::string GAME_OBJECT_TYPE_LIGHT="light";
-		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
-		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
-		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
+		const std::string GAME_OBJECT_TYPE_CAMERA="camera";
+		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="billboard-set";
+		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="particle-system";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="portal";
