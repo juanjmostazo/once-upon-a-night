@@ -96,6 +96,9 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+	// INIT CHARACTERS
+
 	//Initializing Ony
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
 		initPhysicsComponentCharacter(
@@ -114,6 +117,15 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 			mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////
+	// INIT VOLUMES
+
+	//Initializing VolumeBoxes
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
+	//	initPhysicsComponentVolumeBox(
+	//		mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
+	//}
+
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
@@ -285,7 +297,6 @@ void PhysicsSubsystem::initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPt
 			pPhysicsComponentSimpleBox->getNxOgreSize().z),
 			pPhysicsComponentSimpleBox->getSceneNode()->getPosition(),
 			pPhysicsComponentSimpleBox->getSceneNode()));
-	
 }
 
 void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny)

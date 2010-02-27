@@ -30,12 +30,14 @@ namespace OUAN
 		TGameObjectSceneContainer getGameObjectSceneContainer();
 		TGameObjectTripolloContainer getGameObjectTripolloContainer();
 		TGameObjectEyeContainer getGameObjectEyeContainer();
+		TGameObjectVolumeBoxContainer getGameObjectVolumeBoxContainer();
+		TGameObjectVolumeCapsuleContainer getGameObjectVolumeCapsuleContainer();
 
-		TGameObjectPhysicsCharacter geTGameObjectPhysicsCharacter();
-		TGameObjectPhysicsComplexConvex geTGameObjectPhysicsComplexConvex();
-		TGameObjectPhysicsComplexTriangle geTGameObjectPhysicsComplexTriangle();
-		TGameObjectPhysicsSimple geTGameObjectPhysicsSimple();
-		TGameObjectPhysicsVolume geTGameObjectPhysicsVolume();
+		TGameObjectPhysicsCharacterContainer getGameObjectPhysicsCharacterContainer();
+		TGameObjectPhysicsComplexConvexContainer getGameObjectPhysicsComplexConvexContainer();
+		TGameObjectPhysicsComplexTriangleContainer getGameObjectPhysicsComplexTriangleContainer();
+		TGameObjectPhysicsSimpleContainer getGameObjectPhysicsSimpleContainer();
+		TGameObjectPhysicsVolumeContainer getGameObjectPhysicsVolumeContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -149,25 +151,27 @@ namespace OUAN
 		TGameObjectContainer mGameObjects;
 
 		/// Game object containers to access specific game object types
-		TGameObjectMovableContainer mGameObjectMovable;
-		TGameObjectMovableEntityContainer mGameObjectMovableEntity;
-		TGameObjectNonMovableContainer mGameObjectNonMovable;
-		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntity;
-		TGameObjectLightContainer mGameObjectLight;
-		TGameObjectParticleSystemContainer mGameObjectParticleSystem;
-		TGameObjectBillboardSetContainer mGameObjectBillboardSet;
-		TGameObjectTerrainContainer mGameObjectTerrain;
-		TGameObjectOnyContainer mGameObjectOny;
-		TGameObjectPositionalContainer mGameObjectPositional;
-		TGameObjectSceneContainer mGameObjectScene;
-		TGameObjectTripolloContainer mGameObjectTripollo;
-		TGameObjectEyeContainer mGameObjectEye;
+		TGameObjectMovableContainer mGameObjectMovableContainer;
+		TGameObjectMovableEntityContainer mGameObjectMovableEntityContainer;
+		TGameObjectNonMovableContainer mGameObjectNonMovableContainer;
+		TGameObjectNonMovableEntityContainer mGameObjectNonMovableEntityContainer;
+		TGameObjectLightContainer mGameObjectLightContainer;
+		TGameObjectParticleSystemContainer mGameObjectParticleSystemContainer;
+		TGameObjectBillboardSetContainer mGameObjectBillboardSetContainer;
+		TGameObjectTerrainContainer mGameObjectTerrainContainer;
+		TGameObjectOnyContainer mGameObjectOnyContainer;
+		TGameObjectPositionalContainer mGameObjectPositionalContainer;
+		TGameObjectSceneContainer mGameObjectSceneContainer;
+		TGameObjectTripolloContainer mGameObjectTripolloContainer;
+		TGameObjectEyeContainer mGameObjectEyeContainer;
+		TGameObjectVolumeBoxContainer mGameObjectVolumeBoxContainer;
+		TGameObjectVolumeCapsuleContainer mGameObjectVolumeCapsuleContainer;
 
-		TGameObjectPhysicsCharacter mGameObjectPhysicsCharacter;
-		TGameObjectPhysicsComplexConvex mGameObjectPhysicsComplexConvex;
-		TGameObjectPhysicsComplexTriangle mGameObjectPhysicsComplexTriangle;
-		TGameObjectPhysicsSimple mGameObjectPhysicsSimple;
-		TGameObjectPhysicsSimple mGameObjectPhysicsVolume;
+		TGameObjectPhysicsCharacterContainer mGameObjectPhysicsCharacterContainer;
+		TGameObjectPhysicsComplexConvexContainer mGameObjectPhysicsComplexConvexContainer;
+		TGameObjectPhysicsComplexTriangleContainer mGameObjectPhysicsComplexTriangleContainer;
+		TGameObjectPhysicsSimpleContainer mGameObjectPhysicsSimpleContainer;
+		TGameObjectPhysicsVolumeContainer mGameObjectPhysicsVolumeContainer;
 
 		void clearContainers();
 
