@@ -674,6 +674,9 @@ void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters 
 		pGameObjectVolumeBox->setRenderComponentEntity(factory->createRenderComponentEntity(
 			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters));
 
+		//Make RenderComponentEntity not visible
+		pGameObjectVolumeBox->getRenderComponentEntity()->setVisible(false);
+
 		//Create PhysicsComponent
 		pGameObjectVolumeBox->setPhysicsComponentVolumeBox(factory->createPhysicsComponentVolumeBox(
 			pGameObjectVolumeBox,
@@ -694,106 +697,23 @@ void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsulePar
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
-	//Create RenderComponentPositional
-	pGameObjectVolumeCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
-		pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters));
+		//Create RenderComponentPositional
+		pGameObjectVolumeCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters));
 
-	//Create RenderComponentEntity
-	pGameObjectVolumeCapsule->setRenderComponentEntity(factory->createRenderComponentEntity(
-		pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters));
+		//Create RenderComponentEntity
+		pGameObjectVolumeCapsule->setRenderComponentEntity(factory->createRenderComponentEntity(
+			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters));
 
-	//Create PhysicsComponent
-	pGameObjectVolumeCapsule->setPhysicsComponentVolumeCapsule(factory->createPhysicsComponentVolumeCapsule(
-		pGameObjectVolumeCapsule,
-		tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
-		pGameObjectVolumeCapsule->getRenderComponentPositional()));
+		//Make RenderComponentEntity not visible
+		pGameObjectVolumeCapsule->getRenderComponentEntity()->setVisible(false);
+
+		//Create PhysicsComponent
+		pGameObjectVolumeCapsule->setPhysicsComponentVolumeCapsule(factory->createPhysicsComponentVolumeCapsule(
+			pGameObjectVolumeCapsule,
+			tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
+			pGameObjectVolumeCapsule->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
 }
-
-//void GameWorldManager::createGameObjectMovableEntity(TEntityParameters tEntityParameters)
-//{
-//	//TODO: movable entity nonmovable entity instead of this and add to proper gameobject map
-//
-//	GameObjectMovableEntityPtr pGameObjectMovableEntity;
-//
-//	//Create GameObject
-//	pGameObjectMovableEntity = GameObjectMovableEntityPtr(
-//		new GameObjectMovableEntity(tEntityParameters.name,makeIdString(tEntityParameters.name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
-//
-//	ComponentFactory* factory=ComponentFactory::getInstance();
-//
-//	factory->createRenderComponentPositional(pGameObjectMovableEntity,tEntityParameters.TRenderComponentPositionalParameters);
-//	factory->createRenderComponentEntity(pGameObjectMovableEntity,tEntityParameters.TRenderComponentEntityParameters);
-//
-////[TODO: Add other components as they're implemented]
-//// Example:
-////
-////	 ComponentPtr physicsComponent = ComponentFactory::getInstance()->createPhysicsComponent(objectParams,go,mApp->getPhysicsSubsystem());
-////
-////	 ComponentPtr aiComponent = compFactory->createAIComponent(...);
-//
-//
-//	//Add GameObject to GameWorldManager
-//	//TODO add to GameObjectMovableEntity map
-//	addGameObjectMovableEntity(pGameObjectMovableEntity);
-//
-//}
-//
-//void GameWorldManager::createSceneNode(TSceneNodeParameters tSceneNodeParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tSceneNodeParameters.name);
-//	//TODO
-//}	
-//void GameWorldManager::createLight(TLightParameters tLightParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tLightParameters.name);
-//
-//	//TODO
-//}
-//void GameWorldManager::createParticleSystem(TParticleSystemParameters tParticleSystemParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tParticleSystemParameters.name);
-//
-//	//TODO
-//}
-//
-//void GameWorldManager::createBillboardSet(TBillboardSetParameters tBillboardSetParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tBillboardSetParameters.name);
-//	//TODO
-//}
-//void GameWorldManager::createViewport(TViewportParameters tViewportParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tViewportParameters.name);
-//	//TODO
-//
-//}
-//void GameWorldManager::createCamera(TCameraParameters tCameraParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tCameraParameters.name);
-//	//TODO
-//
-//}
-//void GameWorldManager::createSceneManager(TSceneManagerParameters tSceneManagerParameters)
-//{
-//	//Create GameObject
-//	//createGameObject(tSceneManagerParameters.name);
-//	//TODO
-//
-//}
-//
-//void GameWorldManager::update(long elapsedTime)
-//{
-//	for (TGameObjectContainerIterator it= mGameObjects.begin();it!=mGameObjects.end();++it)
-//	{
-//		it->second->update(elapsedTime);
-//	}
-//}
