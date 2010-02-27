@@ -202,7 +202,17 @@ void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector
 
 void CameraManager::changeCamera()
 {
+	TCameraParamsContainerIterator it;
 
+	it = mCameraInitialParams.find(getActiveCameraName());
+	it++;
+
+	if( it==mCameraInitialParams.end())
+	{
+		it=mCameraInitialParams.begin();
+	}
+
+	setActiveCamera(it->first);
 }
 
 void CameraManager::changeCameraController()

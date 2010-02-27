@@ -26,24 +26,39 @@ void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
 	// and attach the camera to it.
 	this->cameraRollNode = this->cameraPitchNode->createChildSceneNode();
 
-	//Create the camera's offset node as a child of camera's roll node
-	this->cameraOffsetNode = this->cameraRollNode->createChildSceneNode();
-
 	mCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
 }
 
 void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 {
-	this->cameraOffsetNode->detachAllObjects();
-	//TODO FIX THIS CRAP
+	//re-set parameters to the old camera
+	mCamera->setPosition(cameraNode->getPosition());
+	mCamera->yaw(cameraYawNode->getOrientation().getYaw());
+	mCamera->pitch(cameraPitchNode->getOrientation().getPitch());
+	mCamera->roll(cameraRollNode->getOrientation().getRoll());
+
+	//reset controller first person nodes
+	this->cameraNode->resetToInitialState();
+	this->cameraYawNode->resetToInitialState();
+	this->cameraPitchNode->resetToInitialState();
+	this->cameraRollNode->resetToInitialState();
+	this->cameraRollNode->detachAllObjects();
+
+	//set camera
 	this->mCamera=pCamera;
+
+	//set parameters of the new camera to the nodes
 	this->cameraNode->setPosition(mCamera->getPosition());
 	this->cameraYawNode->yaw(mCamera->getOrientation().getYaw());
 	this->cameraPitchNode->pitch(mCamera->getOrientation().getPitch());
 	this->cameraRollNode->roll(mCamera->getOrientation().getRoll());
-	this->cameraOffsetNode->setPosition(-mCamera->getPosition());
-	this->cameraOffsetNode->setOrientation(-mCamera->getOrientation());
-	this->cameraOffsetNode->attachObject(mCamera);
+
+	//set position and rotation of new camera to zero
+	mCamera->setPosition(0,0,0);
+	mCamera->setOrientation(Ogre::Quaternion(1,0,0,0));
+
+	//attach new camera to roll node
+	this->cameraRollNode->attachObject(mCamera);
 }
 
 void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
