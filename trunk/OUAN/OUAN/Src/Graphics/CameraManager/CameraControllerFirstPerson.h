@@ -24,7 +24,6 @@ namespace OUAN
 		Ogre::SceneNode *cameraYawNode;
 		Ogre::SceneNode *cameraPitchNode;
 		Ogre::SceneNode *cameraRollNode;
-		Ogre::SceneNode *cameraOffsetNode;
 
 	};
 	#endif
