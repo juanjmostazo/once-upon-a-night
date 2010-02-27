@@ -2,10 +2,21 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectTerrain.h"
+#include "../Game/GameObject/GameObjectLight.h"
+#include "../Game/GameObject/GameObjectBillboardSet.h"
+#include "../Game/GameObject/GameObjectParticleSystem.h"
+#include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Game/GameObject/GameObjectEye.h"
+#include "../Game/GameObject/GameObjectItem1UP.h"
+#include "../Game/GameObject/GameObjectItemMaxHP.h"
+#include "../Game/GameObject/GameObjectPortal.h"
+#include "../Game/GameObject/GameObjectCamera.h"
+#include "../Game/GameObject/GameObjectVolumeBox.h"
+#include "../Game/GameObject/GameObjectVolumeCapsule.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "PhysicsComponent/PhysicsComponent.h"
 #include "PhysicsComponent/PhysicsComponentCharacter.h"
@@ -15,9 +26,10 @@
 #include "PhysicsComponent/PhysicsComponentSimple.h"
 #include "PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "PhysicsComponent/PhysicsComponentVolumeCapsule.h"
+#include "PhysicsComponent/PhysicsComponentVolumeBox.h"
 
 using namespace OUAN;
-using namespace Ogre;
 
 PhysicsSubsystem::PhysicsSubsystem()
 {
@@ -35,7 +47,7 @@ PhysicsSubsystem::~PhysicsSubsystem()
 
 void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
-	LogManager::getSingleton().logMessage("Initializing physics subsystem");
+	Ogre::LogManager::getSingleton().logMessage("Initializing physics subsystem");
 
 	loadConfig();
 
@@ -51,7 +63,7 @@ void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 	//Loading NXS resources
 	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
 
-	LogManager::getSingleton().logMessage("[PHYSICS INIT LOAD] Done!");
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS INIT LOAD] Done!");
 }
 
 void PhysicsSubsystem::resetLevel()
@@ -120,18 +132,24 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	//////////////////////////////////////////////////////////////////////////////////
 	// INIT VOLUMES
 
-	//Initializing VolumeBoxes
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
-	//	initPhysicsComponentVolumeBox(
-	//		mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
-	//}
+	//Initializing volume boxes
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
+		initPhysicsComponentVolumeBox(
+			mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer()[i]->getPhysicsComponentVolumeBox());
+	}
+
+	//Initializing volume capsules
+	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer().size(); i++){
+		initPhysicsComponentVolumeCapsule(
+			mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer()[i]->getPhysicsComponentVolumeCapsule());
+	}
 
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
 	//app->getRenderSubsystem()->createDebugFloor(config);
 	
-	LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
@@ -156,7 +174,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::stringstream out;
 	out << elapsedSeconds;
 	std::string elapsedTime = out.str();
-	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
+	Ogre::Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
@@ -206,7 +224,7 @@ bool PhysicsSubsystem::loadConfig()
 	} 
 	else 
 	{
-		//LogManager::getSingleton().logMessage(PHYSICS_CFG + " COULD NOT BE LOADED!");
+		//Ogre::LogManager::getSingleton().logMessage(PHYSICS_CFG + " COULD NOT BE LOADED!");
 
 		mGravity = NxOgre::Vec3(0,0,0);
 		mStaticFriction = 0;
@@ -293,10 +311,33 @@ void PhysicsSubsystem::initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPt
 	pPhysicsComponentSimpleBox->setNxOgreBody(
 		mNxOgreRenderSystem->createBody(
 			new NxOgre::Box(	pPhysicsComponentSimpleBox->getNxOgreSize().x,
-			pPhysicsComponentSimpleBox->getNxOgreSize().y,
-			pPhysicsComponentSimpleBox->getNxOgreSize().z),
+								pPhysicsComponentSimpleBox->getNxOgreSize().y,
+								pPhysicsComponentSimpleBox->getNxOgreSize().z),
 			pPhysicsComponentSimpleBox->getSceneNode()->getPosition(),
 			pPhysicsComponentSimpleBox->getSceneNode()));
+}
+
+void PhysicsSubsystem::initPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule)
+{
+	pPhysicsComponentVolumeCapsule->setNxOgreVolume(
+		mNxOgreScene->createVolume(
+			new NxOgre::Capsule(	pPhysicsComponentVolumeCapsule->getNxOgreSize().x,
+									pPhysicsComponentVolumeCapsule->getNxOgreSize().y),
+			NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentVolumeCapsule->getSceneNode()->getPosition())),
+			this, 
+			NxOgre::Enums::VolumeCollisionType_All));
+}
+
+void PhysicsSubsystem::initPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
+{
+	pPhysicsComponentVolumeBox->setNxOgreVolume(
+		mNxOgreScene->createVolume(
+			new NxOgre::Box(	pPhysicsComponentVolumeBox->getNxOgreSize().x,
+								pPhysicsComponentVolumeBox->getNxOgreSize().y,
+								pPhysicsComponentVolumeBox->getNxOgreSize().z),
+			NxOgre::Matrix44(NxOgre::Vec3(pPhysicsComponentVolumeBox->getSceneNode()->getPosition())),
+			this, 
+			NxOgre::Enums::VolumeCollisionType_All));
 }
 
 void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
@@ -333,12 +374,38 @@ void PhysicsSubsystem::updateGameObjectEye(double elapsedSeconds, GameObjectEyeP
 		collisionFlags);
 }
 
+//////////////////////////////////////////////////////////////////
+// General physics callbacks
+
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent)
+{
+	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called!");
+}
+
+bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
+{
+	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
+	return true;
+}
+
+void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
+{
+	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onContact called!");
+}
+
+//////////////////////////////////////////////////////////////////
+// Specific physics character callbacks
+
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
+	//Too many log entries, maybe bacause of the TriangleMesh Terrain
+	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
 	return NxOgre::Enums::ControllerAction_None;
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
 {	
+	Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onController called!");
 	return NxOgre::Enums::ControllerAction_None;
 }

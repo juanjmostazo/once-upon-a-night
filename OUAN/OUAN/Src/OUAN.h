@@ -248,8 +248,8 @@ namespace OUAN
 		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
 		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
-		typedef std::vector<GameObjectItem1UPPtr> TGameObjecItem1UPContainer;
-		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjecItemMaxHPContainer;
+		typedef std::vector<GameObjectItem1UPPtr> TGameObjectItem1UPContainer;
+		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjectItemMaxHPContainer;
 		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
 		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
 

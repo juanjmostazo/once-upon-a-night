@@ -13,7 +13,7 @@ namespace OUAN
 
 	//This class encapsulates the physics logic
 	//of our game. It uses NxOgre BloodyMess v.1.5.5
-	class PhysicsSubsystem : public NxOgre::ControllerCallback
+	class PhysicsSubsystem : public NxOgre::Callback, public NxOgre::ControllerCallback
 	{
 	public:
 
@@ -45,6 +45,13 @@ namespace OUAN
 		virtual NxOgre::TimeController* getNxOgreTimeController();
 		virtual NxOgre::ControllerManager* getNxOgreControllerManager();
 
+		//General physics callbacks
+		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+			NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent);
+		virtual bool onHitEvent(const NxOgre::RaycastHit& raycastHit);
+		virtual void onContact(const NxOgre::ContactPair& contactPair);
+
+		//Specific physics character callbacks
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
 		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other);
 
@@ -97,6 +104,8 @@ namespace OUAN
 		virtual void initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
 		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
 		virtual void initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
+		virtual void initPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule);
+		virtual void initPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
 
 		virtual void updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
 		virtual void updateGameObjectTripollo(double elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);

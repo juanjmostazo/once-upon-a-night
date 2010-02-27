@@ -1,6 +1,4 @@
-
 #include "GameWorldManager.h"
-
 #include "../Application.h"
 #include "../Loader/LevelLoader.h"
 #include "../Component/ComponentFactory.h"
@@ -19,7 +17,6 @@
 #include "GameObject/GameObjectCamera.h"
 #include "GameObject/GameObjectVolumeBox.h"
 #include "GameObject/GameObjectVolumeCapsule.h"
-
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
@@ -120,6 +117,16 @@ TGameObjectBillboardSetContainer GameWorldManager::getGameObjectBillboardSetCont
 TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystemContainer()
 {
 	return mGameObjectParticleSystemContainer;
+}
+
+TGameObjectVolumeBoxContainer GameWorldManager::getGameObjectVolumeBoxContainer()
+{
+	return mGameObjectVolumeBoxContainer;
+}
+
+TGameObjectVolumeCapsuleContainer GameWorldManager::getGameObjectVolumeCapsuleContainer()
+{
+	return mGameObjectVolumeCapsuleContainer;
 }
 
 TGameObjectPhysicsCharacterContainer GameWorldManager::getGameObjectPhysicsCharacterContainer()
