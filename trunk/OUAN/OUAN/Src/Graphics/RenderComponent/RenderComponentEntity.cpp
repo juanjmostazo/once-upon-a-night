@@ -19,6 +19,12 @@ void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 	mEntity=entity;
 }
 
+void RenderComponentEntity::setVisible(bool visible)
+{
+	mEntity->setVisible(visible);
+}
+
+
 TRenderComponentEntityParameters::TRenderComponentEntityParameters() : TRenderComponentParameters()
 {
 }

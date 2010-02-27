@@ -157,6 +157,18 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
 
+		//Logic Components
+		class LogicComponent;
+		class TLogicComponentParameters;
+		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
+
+		class LogicComponentEvent;
+		class TLogicComponentEventParameters;
+		typedef boost::shared_ptr<LogicComponentEvent> LogicComponentEventPtr;
+
+		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
+		const std::string COMPONENT_TYPE_LOGIC_EVENT="LogicComponentEvent";
+
 		///////////////////////////////////////////////////////////////////
 
 		//Game Object Specializations

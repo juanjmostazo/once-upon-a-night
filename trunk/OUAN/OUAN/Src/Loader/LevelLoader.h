@@ -28,7 +28,6 @@ namespace OUAN
 		String getGameObjectType(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
 
-
 		//Game Object Processors
 		void processGameObjectScene(TiXmlElement *XMLNode);
 		void processGameObjectOny(TiXmlElement *XMLNode);
@@ -42,6 +41,8 @@ namespace OUAN
 		void processGameObjectItem1UP(TiXmlElement *XMLNode);
 		void processGameObjectEye(TiXmlElement *XMLNode);
 		void processGameObjectCamera(TiXmlElement *XMLNode);
+		void processGameObjectVolumeBox(TiXmlElement *XMLNode);
+		void processGameObjectVolumeCapsule(TiXmlElement *XMLNode);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);

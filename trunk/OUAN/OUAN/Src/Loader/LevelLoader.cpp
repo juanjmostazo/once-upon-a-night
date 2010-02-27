@@ -15,6 +15,8 @@
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Game/GameObject/GameObjectCamera.h"
+#include "../Game/GameObject/GameObjectVolumeBox.h"
+#include "../Game/GameObject/GameObjectVolumeCapsule.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -194,6 +196,14 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 		{
 			return "GameObjectItemMaxHP";
 		}
+		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMEBOX.size()).compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
+		{
+			return "GameObjectVolumeBox";
+		}
+		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMECAPSULE.size()).compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
+		{
+			return "GameObjectVolumeCapsule";
+		}
 	}
 	else if( type.compare("Camera Object")==0)
 	{
@@ -265,6 +275,14 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	else if( gameObjectType.compare("GameObjectCamera")==0)
 	{
 		processGameObjectCamera(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectVolumeBox")==0)
+	{
+		processGameObjectVolumeBox(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectVolumeCapsule")==0)
+	{
+		processGameObjectVolumeCapsule(XMLNode);
 	}
 	else
 	{
@@ -497,6 +515,48 @@ void LevelLoader::processGameObjectPortal(TiXmlElement *XMLNode)
 	pGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
 }
 
+void LevelLoader::processGameObjectVolumeBox(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters;
+
+	//Get name
+	tGameObjectVolumeBoxParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Get PhysicsComponentVolumeBox
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthX=10;
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthY=10;
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthZ=10;
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
+}
+
+void LevelLoader::processGameObjectVolumeCapsule(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters;
+
+	//Get name
+	tGameObjectVolumeCapsuleParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentEntity
+	tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+
+	//Get RenderComponentPositional
+	tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+
+	//Get PhysicsComponentVolumeCapsule
+	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters.height=10;
+	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters.radius=10;
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
+}
 
 //
 //void LevelLoader::processResourceLocations(TiXmlElement *XMLNode)

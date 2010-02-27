@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -478,6 +478,22 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Logic"
+				>
+				<Filter
+					Name="LogicComponent"
+					>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEvent.cpp"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -787,6 +803,22 @@
 					RelativePath=".\Src\Logger\Logger.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="Logic"
+				>
+				<Filter
+					Name="LogicComponent"
+					>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEvent.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
