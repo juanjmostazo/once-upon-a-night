@@ -1042,7 +1042,7 @@ TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeB
 
 	//Get Component properties
 	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLNode, "mass");
-	Vector3 length=getPropertyVector3(XMLNode, "Scale");
+	Vector3 length=getPropertyVector3(XMLNode, "scale");
 	tPhysicsComponentVolumeBoxParameters.lengthX=length.x;
 	tPhysicsComponentVolumeBoxParameters.lengthY=length.y;
 	tPhysicsComponentVolumeBoxParameters.lengthZ=length.z;
