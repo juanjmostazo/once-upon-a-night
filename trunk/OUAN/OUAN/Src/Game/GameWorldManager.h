@@ -32,6 +32,7 @@ namespace OUAN
 		TGameObjectEyeContainer getGameObjectEyeContainer();
 		TGameObjectVolumeBoxContainer getGameObjectVolumeBoxContainer();
 		TGameObjectVolumeCapsuleContainer getGameObjectVolumeCapsuleContainer();
+		TGameObjectViewportContainer getGameObjectViewportContainer();
 
 		TGameObjectPhysicsCharacterContainer getGameObjectPhysicsCharacterContainer();
 		TGameObjectPhysicsComplexConvexContainer getGameObjectPhysicsComplexConvexContainer();
@@ -77,6 +78,7 @@ namespace OUAN
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
 		void createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters);
 		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
+		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
 
 		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
 		//void createLight(TLightParameters tLightParameters);
@@ -122,6 +124,7 @@ namespace OUAN
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
 		void addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox);
 		void addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule);
+		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
@@ -172,6 +175,7 @@ namespace OUAN
 		TGameObjectPhysicsComplexTriangleContainer mGameObjectPhysicsComplexTriangleContainer;
 		TGameObjectPhysicsSimpleContainer mGameObjectPhysicsSimpleContainer;
 		TGameObjectPhysicsVolumeContainer mGameObjectPhysicsVolumeContainer;
+		TGameObjectViewportContainer mGameObjectViewportContainer;
 
 		void clearContainers();
 

@@ -88,6 +88,10 @@ namespace OUAN
 		class TRenderComponentLightParameters;
 		typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
 
+		class RenderComponentViewport;
+		class TRenderComponentViewportParameters;
+		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
+
 		class RenderComponentParticleSystem;
 		class TRenderComponentParticleSystemParameters;
 		typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
@@ -249,7 +253,11 @@ namespace OUAN
 		class GameObjectVolumeCapsule;
 		class TGameObjectVolumeCapsuleParameters;
 		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
-		
+
+		class GameObjectViewport;
+		class TGameObjectViewportParameters;
+		typedef boost::shared_ptr<GameObjectViewport> GameObjectViewportPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
@@ -264,6 +272,7 @@ namespace OUAN
 		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjectItemMaxHPContainer;
 		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
 		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
+		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="scene";
@@ -280,6 +289,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="item-maxhp";
 		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
 		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";
+		const std::string GAME_OBJECT_TYPE_VIEWPORT="viewport";
 
 		///////////////////////////////////////////////////////////////////
 
