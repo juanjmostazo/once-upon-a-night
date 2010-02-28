@@ -24,7 +24,7 @@
   <CAMERASPEED value="8"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="46.8558 57.6679 -133.675" orientation="0.0564606 -0.00509705 0.994303 0.0902683"></OPTION>
+    <OPTION id="1" position="46.8558 57.6679 -133.675" orientation="-0.0605284 0.00794227 -0.989595 -0.130288"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,7 +98,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.0564611 -0.0050971 0.994311 0.0902691"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.0605284 0.00794227 -0.989595 -0.130288"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="46.8558 57.6679 -133.675"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -236,6 +236,9 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -253,6 +256,9 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -287,6 +293,9 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -304,6 +313,7 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -356,6 +366,9 @@
     <PROPERTY id="subentity7::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="8"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="1.5" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -413,6 +426,8 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="nxsFile" type="7" value="nxs:CONVEX_nivel2vacio.nxs" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
