@@ -104,10 +104,14 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 	//Initializing terrains
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-		initPhysicsComponentComplexConvex(
-			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexConvex());
+		initPhysicsComponentComplexTriangle(
+			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
 	}
-
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
+	//	initPhysicsComponentComplexConvex(
+	//		mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexConvex());
+	//}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	// INIT CHARACTERS
 
@@ -282,15 +286,14 @@ void PhysicsSubsystem::initPhysicsComponentCharacter(PhysicsComponentCharacterPt
 
 void PhysicsSubsystem::initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
 {
-	NxOgre::RigidBodyDescription mNxOgreRigidBodyDescription = NxOgre::RigidBodyDescription();
-	mNxOgreRigidBodyDescription.mMass = 0;
-
+	//NxOgre::RigidBodyDescription mNxOgreRigidBodyDescription = NxOgre::RigidBodyDescription();
+	//mNxOgreRigidBodyDescription.mMass = 0;
+	
 	pPhysicsComponentComplexConvex->setNxOgreBody(
 		mNxOgreRenderSystem->createBody(
 		pPhysicsComponentComplexConvex->getNxOgreConvex(),
 		pPhysicsComponentComplexConvex->getSceneNode()->getPosition(),
 		pPhysicsComponentComplexConvex->getSceneNode()));
-
 	/*
 	pPhysicsComponentComplexConvex->setNxOgreBody(
 		mNxOgreRenderSystem->createBody(
