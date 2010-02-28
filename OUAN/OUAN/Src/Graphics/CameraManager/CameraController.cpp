@@ -35,7 +35,7 @@ void CameraController::processMouseInput(const OIS::MouseEvent &e)
 
 }
 
-void CameraController::processRelativeMotion(double xRel,double yRel)
+void CameraController::processRelativeMotion(double xRel,double yRel,double zRel)
 {
 
 }

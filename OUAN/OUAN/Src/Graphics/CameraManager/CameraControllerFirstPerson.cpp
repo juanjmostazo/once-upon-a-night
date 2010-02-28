@@ -58,22 +58,26 @@ void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 
 void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
 {
-	processRelativeMotion(e.state.X.rel,e.state.Y.rel);
+	processRelativeMotion(e.state.X.rel,e.state.Y.rel,e.state.Z.rel);
 }
 
-void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel)
+void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel, double zRel)
 {
 	Ogre::Real pitchAngle;
 	Ogre::Real pitchAngleSign;
 
 	double mRotX=-xRel*0.3;
 	double mRotY=-yRel*0.3;
+	double mRotZ=zRel*0.3;
 
 	// Yaws the camera according to the mouse relative movement.
 	cameraYawNode->yaw(Ogre::Angle(mRotX));
 
 	// Pitches the camera according to the mouse relative movement.
 	cameraPitchNode->pitch(Ogre::Angle(mRotY));
+
+	// Go forward or back using mouse wheel
+	processSimpleTranslation(Ogre::Vector3::NEGATIVE_UNIT_Z * mRotZ);
 
 	// Angle of rotation around the X-axis.
 	pitchAngle = (2 * Ogre::Degree(Ogre::Math::ACos(this->cameraPitchNode->getOrientation().w)).valueDegrees());

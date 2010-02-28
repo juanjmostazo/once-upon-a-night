@@ -108,21 +108,21 @@ void GameRunningState::handleEvents()
 	// stages of development.
 	if (mApp->isPressedGoForward())
 	{
-		mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_Z); //For some reason, axis seem inverted :S
+		//mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_Z); //For some reason, axis seem inverted :S
 	}
 	if (mApp->isPressedGoBack())
 	{
-		mApp->getRenderSubsystem()->translateCamera(AXIS_POS_Z);
+		//mApp->getRenderSubsystem()->translateCamera(AXIS_POS_Z);
 	}
 	if (mApp->isPressedGoLeft())
 	{
-		mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_X);
+		//mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_X);
 	}
 	if (mApp->isPressedGoRight())
 	{
-		mApp->getRenderSubsystem()->translateCamera(AXIS_POS_X);
+		//mApp->getRenderSubsystem()->translateCamera(AXIS_POS_X);
 	}
-
+	
 	//[TODO: This will also have to be refactored somehow as soon as
 	// a camera manager system has been implemented. 
 	// The render subsystem shouldn't move cameras at this point: it will
