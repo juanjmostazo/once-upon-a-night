@@ -425,7 +425,7 @@
 					Name="PhysicsComponent"
 					>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponenet.cpp"
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponent.cpp"
 						>
 					</File>
 					<File

@@ -415,7 +415,39 @@ namespace OUAN
 
 		#define GROUP_COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../Resources/Graphics/NxModels"
-}
 
+		//-------------------------------------
+		//  Movements masks
+		//-------------------------------------
+
+		bool isPressedMenu();			// Go to main menu
+		bool isPressedPause();			// Go to pause menu
+
+		bool isPressedJump();			// Jump
+		bool isPressedDoAction();		// Perform an action
+		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
+		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
+
+		bool isPressedGoForward();		// Go forward
+		bool isPressedGoBack();			// Go back
+		bool isPressedGoLeft();			// Go to left
+		bool isPressedGoRight();		// Go to right
+
+		bool isPressedWalk();			// Walk mode
+		bool isPressedAutoPoint();		// Automatic pointer
+		bool isPressedRotateLeft();		// Rotate color to left
+		bool isPressedRotateRight();	// Rotate color to right
+
+		const int MOV_NOWHERE = 0;
+		const int MOV_GO_FORWARD = 1;
+		const int MOV_GO_BACK = 2;
+		const int MOV_GO_LEFT = 4;
+		const int MOV_GO_RIGHT = 8;
+		const int MOV_JUMP = 16;
+		const int MOV_WALK = 32;
+
+		const int MOV_FORWARD_OR_BACK = MOV_GO_FORWARD | MOV_GO_BACK;
+		const int MOV_LEFT_OR_RIGHT = MOV_GO_LEFT | MOV_GO_RIGHT;
+}
 
 #endif

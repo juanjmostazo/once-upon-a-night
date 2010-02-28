@@ -173,7 +173,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
 		updateGameObjectEye(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]);
 	}
-
 	/*
 	std::stringstream out;
 	out << elapsedSeconds;
@@ -223,6 +222,9 @@ bool PhysicsSubsystem::loadConfig()
 
 		config.getOption("MIN_DISTANCE", value); 
 		mMinDistance = atof(value.c_str());
+
+		config.getOption("MOVEMENT_UNITS", value); 
+		mMovementUnits = atof(value.c_str());
 
 		success = true;
 	} 
@@ -357,11 +359,36 @@ void PhysicsSubsystem::initPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPt
 
 void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny)
 {
-	//void move(const Vec3& displacement, unsigned int activeGroups, double minDistance, unsigned int& collisionFlags, Real sharpness=1.0f);
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+	int movementFlags = pGameObjectOny->getMovementFlags();
+
+	// Displacement vector
+	NxOgre::Vec3 mDisplacement(0,0,0);
+
+	// Movement forces
+	if (movementFlags > 0)
+	{
+		if ((movementFlags & MOV_FORWARD_OR_BACK) > 0)
+		{
+			mDisplacement.z += mMovementUnits;
+			mDisplacement.z *= ((movementFlags & MOV_GO_FORWARD) > 0) ? 1 : -1;
+		}
+
+		if ((movementFlags & MOV_LEFT_OR_RIGHT) > 0)
+		{
+			mDisplacement.x += mMovementUnits;
+			mDisplacement.x *= ((movementFlags & MOV_GO_LEFT) > 0) ? 1 : -1;
+		}
+	}
+
+	// Apply gravity force to displacement
+	mDisplacement += mGravity;
+
+	// Scale displacement at the end
+	mDisplacement *= mDisplacementScale;
 
 	pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->move(
-		mGravity * mDisplacementScale,
+		mDisplacement,
 		GROUP_COLLIDABLE_MASK,
 		mMinDistance,
 		collisionFlags);

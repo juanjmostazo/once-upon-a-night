@@ -5,13 +5,24 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name)
 {
-
+	mMovementFlags = MOV_NOWHERE;
 }
 
 GameObjectOny::~GameObjectOny()
 {
 
 }
+
+int GameObjectOny::getMovementFlags() const
+{
+	return mMovementFlags;
+}
+
+void GameObjectOny::setMovementFlags(int pMovementFlags)
+{
+	mMovementFlags=pMovementFlags;
+}
+
 void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -45,8 +56,10 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectOnyParameters::~TGameObjectOnyParameters()
 {
+
 }
