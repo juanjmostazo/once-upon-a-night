@@ -498,6 +498,18 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="Event"
+				>
+				<File
+					RelativePath=".\Src\Event\Event.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Event\EventManager.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -827,6 +839,18 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="Event"
+				>
+				<File
+					RelativePath=".\Src\Event\Event.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Event\EventManager.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
