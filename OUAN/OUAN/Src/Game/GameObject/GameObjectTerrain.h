@@ -4,7 +4,8 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
+//#include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 
 namespace OUAN
 {
@@ -17,7 +18,8 @@ namespace OUAN
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
+		//PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
+		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -42,10 +44,12 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
+		//void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
+		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 
 		/// Get physics component
-		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
+		//PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
+		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex();
 	};
 
 	class TGameObjectTerrainParameters: public TGameObjectParameters
@@ -61,7 +65,8 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
+		//TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
+		TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 	};
 }
 #endif

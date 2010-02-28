@@ -318,7 +318,6 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
 	tmpPhysicsComponent.mass=50;
-	tmpPhysicsComponent.density=1;
 	tmpPhysicsComponent.radius=1.5;
 	tmpPhysicsComponent.height=8;
 	tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
@@ -343,7 +342,6 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
 	tmpPhysicsComponent.mass=30;
-	tmpPhysicsComponent.density=1;
 	tmpPhysicsComponent.radius=4;
 	tmpPhysicsComponent.height=4;
 	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
@@ -366,11 +364,12 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentComplexTriangleParameters tmpPhysicsComponent;
+	//TPhysicsComponentComplexTriangleParameters tmpPhysicsComponent;
+	TPhysicsComponentComplexConvexParameters tmpPhysicsComponent;
 	tmpPhysicsComponent.mass=0;
-	tmpPhysicsComponent.density=0;
-	tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
-	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = tmpPhysicsComponent;
+	//tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
+	tmpPhysicsComponent.nxsFile = "nxs:CONVEX_nivel2vacio.nxs";
+	tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = tmpPhysicsComponent;
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
@@ -456,7 +455,6 @@ void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
 	//TO DO --- GET PHYSICS INFO FROM LOADER
 	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
 	tmpPhysicsComponent.mass=10;
-	tmpPhysicsComponent.density=1;
 	tmpPhysicsComponent.radius=4;
 	tmpPhysicsComponent.height=4;
 	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;

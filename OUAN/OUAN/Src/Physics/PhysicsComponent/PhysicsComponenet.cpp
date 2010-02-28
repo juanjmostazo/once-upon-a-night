@@ -35,16 +35,6 @@ void PhysicsComponent::setMass(double pNxOgreMass)
 	mNxOgreMass=pNxOgreMass;
 }
 
-double PhysicsComponent::getDensity()
-{
-	return mNxOgreDensity;
-}
-
-void PhysicsComponent::setDensity(double pNxOgreDensity)
-{
-	mNxOgreDensity=pNxOgreDensity;
-}
-
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {
 
