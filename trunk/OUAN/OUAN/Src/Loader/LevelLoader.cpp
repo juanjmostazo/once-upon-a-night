@@ -356,7 +356,8 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Get PhysicsComponentComplexConvex
-	tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(XMLNode);
+	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(XMLNode);
+	//tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(XMLNode);
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
