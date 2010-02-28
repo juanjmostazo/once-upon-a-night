@@ -3,6 +3,7 @@
 #include "../Graphics/RenderSubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectOny.h"
 
 using namespace OUAN;
 
@@ -102,27 +103,44 @@ void GameRunningState::handleEvents()
 
 		mApp->mKeyBuffer = 500000;
 	}
-	// TODO: Correct this checks so that they perform their supposed functions
-	// i.e, move the player character, instead of translating the camera
-	// At the moment they're just here so we can move around the scene in the initial
-	// stages of development.
+	
+	///////////////////////////////////////////////////////////
+	// ONY: TYPE OF MOVEMENT
+	int movementFlags = 0;
+
 	if (mApp->isPressedGoForward())
 	{
-		//mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_Z); //For some reason, axis seem inverted :S
+		movementFlags |= MOV_GO_FORWARD;	
 	}
+
 	if (mApp->isPressedGoBack())
 	{
-		//mApp->getRenderSubsystem()->translateCamera(AXIS_POS_Z);
+		movementFlags |= MOV_GO_BACK;
 	}
+
 	if (mApp->isPressedGoLeft())
 	{
-		//mApp->getRenderSubsystem()->translateCamera(AXIS_NEG_X);
+		movementFlags |= MOV_GO_LEFT;
 	}
+
 	if (mApp->isPressedGoRight())
 	{
-		//mApp->getRenderSubsystem()->translateCamera(AXIS_POS_X);
+		movementFlags |= MOV_GO_RIGHT;
 	}
-	
+
+	if (mApp->isPressedJump())
+	{
+		movementFlags |= MOV_JUMP;
+	}
+
+	if (mApp->isPressedWalk())
+	{
+		movementFlags |= MOV_WALK;
+	}
+
+	//Access to [0] because there's only one Ony, otherwise it should be a loop
+	mApp->getGameWorldManager()->getGameObjectOnyContainer()[0]->setMovementFlags(movementFlags);
+
 	//[TODO: This will also have to be refactored somehow as soon as
 	// a camera manager system has been implemented. 
 	// The render subsystem shouldn't move cameras at this point: it will

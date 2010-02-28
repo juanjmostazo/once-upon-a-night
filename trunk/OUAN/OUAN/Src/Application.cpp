@@ -83,18 +83,15 @@ void Application::go()
 
 	while ( continueRunning )
 	{
-		Ogre::WindowEventUtilities::messagePump();
-		ControlInputManager::capture();
-		
-		mStateManager->getCurrentState()->handleEvents();
-
-		//Update logic stuff
 		loops=0;
-
 		while((currentTime=loopTimer.getMicroseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
 		{
-			//Ogre::LogManager::getSingleton().logMessage("Update");
+			Ogre::WindowEventUtilities::messagePump();
+			ControlInputManager::capture();
+
+			mStateManager->getCurrentState()->handleEvents();
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
+
 			nextGameTicks+=SKIP_TICKS;
 			loops++;
 			lastTick=currentTime;

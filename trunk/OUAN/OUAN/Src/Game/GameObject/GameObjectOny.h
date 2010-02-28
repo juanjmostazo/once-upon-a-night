@@ -12,6 +12,8 @@ namespace OUAN
 	class GameObjectOny : public GameObject
 	{
 	private:
+		/// Entity movement flags, will be updated every frame
+		int mMovementFlags;
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component data
@@ -26,6 +28,12 @@ namespace OUAN
 		GameObjectOny(const std::string& name);
 		//Destructor
 		~GameObjectOny();
+
+		/// Return movement flags
+		int getMovementFlags() const;
+
+		/// Set movement flags
+		void setMovementFlags(int mMovementFlags);
 
 		/// Return render component entity 
 		/// @return render component entity

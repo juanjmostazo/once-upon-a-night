@@ -75,6 +75,9 @@ namespace OUAN
 		/// param read from config file, applied to move()
 		double mMinDistance;
 
+		/// param read from config file, applied to move()
+		double mMovementUnits;
+
 		/// the application
 		OUAN::ApplicationPtr mApp;
 
