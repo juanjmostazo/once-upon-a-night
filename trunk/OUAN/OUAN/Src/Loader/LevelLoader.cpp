@@ -315,13 +315,9 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectOnyParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=50;
-	tmpPhysicsComponent.radius=1.5;
-	tmpPhysicsComponent.height=8;
-	tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
-
+	//Get PhysicsComponentCharacter
+	tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(XMLNode);
+	
 	//Create GameObject
 	pGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 }
@@ -337,14 +333,10 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	tGameObjectTripolloParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
 
 	//Get RenderComponentPositional
-	tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(XMLNode);
 
-	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=30;
-	tmpPhysicsComponent.radius=4;
-	tmpPhysicsComponent.height=4;
-	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
+	//Get PhysicsComponentCharacter
+	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(XMLNode);
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
@@ -363,13 +355,8 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	//TO DO --- GET PHYSICS INFO FROM LOADER
-	//TPhysicsComponentComplexTriangleParameters tmpPhysicsComponent;
-	TPhysicsComponentComplexConvexParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=0;
-	//tmpPhysicsComponent.nxsFile = "nxs:TRIANGLE_nivel2vacio.nxs";
-	tmpPhysicsComponent.nxsFile = "nxs:CONVEX_nivel2vacio.nxs";
-	tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = tmpPhysicsComponent;
+	//Get PhysicsComponentComplexConvex
+	tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(XMLNode);
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
@@ -452,12 +439,9 @@ void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
 	//Get RenderComponentPositional
 	tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
-	//TO DO --- GET PHYSICS INFO FROM LOADER
-	TPhysicsComponentCharacterParameters tmpPhysicsComponent;
-	tmpPhysicsComponent.mass=10;
-	tmpPhysicsComponent.radius=4;
-	tmpPhysicsComponent.height=4;
-	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = tmpPhysicsComponent;
+	//Get PhysicsComponentCharacter
+	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(XMLNode);
+	
 	//Create GameObject
 	pGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
 }
@@ -527,9 +511,7 @@ void LevelLoader::processGameObjectVolumeBox(TiXmlElement *XMLNode)
 	tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Get PhysicsComponentVolumeBox
-	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthX=10;
-	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthY=10;
-	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters.lengthZ=10;
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(XMLNode);
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
@@ -992,10 +974,95 @@ TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiX
 	return TRenderComponentSkyDomeParameters;
 }
 
-//void LevelLoader::processShadows(TiXmlElement *XMLNode)
-//{
-//
-//}
+TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+	//Get Component properties
+	tPhysicsComponentCharacterParameters.mass= getPropertyReal(XMLNode, "mass");
+	tPhysicsComponentCharacterParameters.radius= getPropertyReal(XMLNode, "radius");
+	tPhysicsComponentCharacterParameters.height= getPropertyReal(XMLNode, "height");
+
+	return tPhysicsComponentCharacterParameters;
+
+}
+
+TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
+
+	//Get Component properties
+	tPhysicsComponentComplexConvexParameters.mass= getPropertyReal(XMLNode, "mass");
+	tPhysicsComponentComplexConvexParameters.nxsFile = getPropertyString(XMLNode, "nxsFile");
+
+	return tPhysicsComponentComplexConvexParameters;
+}
+
+TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
+
+	//Get Component properties
+	tPhysicsComponentComplexTriangleParameters.mass= getPropertyReal(XMLNode, "mass");
+	tPhysicsComponentComplexTriangleParameters.nxsFile = getPropertyString(XMLNode, "nxsFile");
+
+	return tPhysicsComponentComplexTriangleParameters;
+}
+
+TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleBox(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+	//Get Component properties
+	tPhysicsComponentSimpleBoxParameters.mass=getPropertyReal(XMLNode, "mass");
+	Vector3 length=getPropertyVector3(XMLNode, "length");
+	tPhysicsComponentSimpleBoxParameters.lengthX=length.x;
+	tPhysicsComponentSimpleBoxParameters.lengthY=length.y;
+	tPhysicsComponentSimpleBoxParameters.lengthZ=length.z;
+
+	return tPhysicsComponentSimpleBoxParameters;
+
+}
+
+TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
+	//Get Component properties
+	tPhysicsComponentSimpleCapsuleParameters.mass= getPropertyReal(XMLNode, "mass");
+	tPhysicsComponentSimpleCapsuleParameters.radius= getPropertyReal(XMLNode, "radius");
+	tPhysicsComponentSimpleCapsuleParameters.height= getPropertyReal(XMLNode, "height");
+
+	return tPhysicsComponentSimpleCapsuleParameters;
+}
+
+TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLNode, "mass");
+	Vector3 length=getPropertyVector3(XMLNode, "Scale");
+	tPhysicsComponentVolumeBoxParameters.lengthX=length.x;
+	tPhysicsComponentVolumeBoxParameters.lengthY=length.y;
+	tPhysicsComponentVolumeBoxParameters.lengthZ=length.z;
+
+	return tPhysicsComponentVolumeBoxParameters;
+
+}
+
+TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode)
+{
+	TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLNode, "mass");
+	tPhysicsComponentVolumeCapsuleParameters.radius= getPropertyReal(XMLNode, "radius");
+	tPhysicsComponentVolumeCapsuleParameters.height= getPropertyReal(XMLNode, "height");
+
+	return tPhysicsComponentVolumeCapsuleParameters;
+}
+
+
 
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {
