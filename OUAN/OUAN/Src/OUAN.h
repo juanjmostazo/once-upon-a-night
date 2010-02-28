@@ -293,6 +293,12 @@ namespace OUAN
 
 		///////////////////////////////////////////////////////////////////
 
+		// Event manager-related constants, typedefs and forwarded declarations
+		class Event;
+		typedef boost::shared_ptr<Event> EventPtr;
+
+		///////////////////////////////////////////////////////////////////
+
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
 		typedef boost::shared_ptr<Component> ComponentPtr;
 		
