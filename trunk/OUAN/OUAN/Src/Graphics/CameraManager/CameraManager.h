@@ -31,7 +31,7 @@ namespace OUAN
 
 
 		void processMouseInput(const OIS::MouseEvent &e);
-		void processRelativeMotion(double xRel,double yRel);
+		void processRelativeMotion(double xRel,double yRel,double zRel);
 		void processSimpleTranslation(Ogre::Vector3 unitTranslationVector);
 
 		/// Return read-only pointer to the viewport

@@ -190,9 +190,9 @@ void CameraManager::processMouseInput(const OIS::MouseEvent &e)
 	activeCameraController->processMouseInput(e);
 }
 
-void CameraManager::processRelativeMotion(double xRel,double yRel)
+void CameraManager::processRelativeMotion(double xRel,double yRel,double zRel)
 {
-	activeCameraController->processRelativeMotion(xRel,yRel);
+	activeCameraController->processRelativeMotion(xRel,yRel,zRel);
 }
 
 void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector)

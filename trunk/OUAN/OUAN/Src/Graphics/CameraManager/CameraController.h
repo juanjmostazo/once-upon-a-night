@@ -17,7 +17,7 @@ namespace OUAN
 
 		virtual void update(long elapsedTime);
 		virtual void processMouseInput(const OIS::MouseEvent &e);
-		virtual void processRelativeMotion(double xRel,double yRel);
+		virtual void processRelativeMotion(double xRel,double yRel,double zRel);
 		virtual void processSimpleTranslation(Ogre::Vector3 translationVector);
 
 	protected:

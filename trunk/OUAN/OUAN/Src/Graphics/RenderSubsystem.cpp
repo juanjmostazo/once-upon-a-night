@@ -192,7 +192,7 @@ void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
 
 void RenderSubsystem::moveCamera(double xRel, double yRel, double zRel)
 {
-	mCameraManager->processRelativeMotion(xRel,yRel);
+	mCameraManager->processRelativeMotion(xRel,yRel,zRel);
 }
 
 void RenderSubsystem::updateVisualDebugger()

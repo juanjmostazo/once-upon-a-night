@@ -14,7 +14,7 @@ namespace OUAN
 		
 		void processSimpleTranslation(Ogre::Vector3 translationVector);
 		void processMouseInput(const OIS::MouseEvent& e);
-		void processRelativeMotion(double xRel, double yRel);
+		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 		void processInput(OIS::Keyboard* keyboard,double elapsedTime);
 		void setCamera(Ogre::Camera * pCamera);
