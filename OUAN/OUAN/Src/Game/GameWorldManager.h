@@ -175,6 +175,7 @@ namespace OUAN
 		TGameObjectPhysicsComplexTriangleContainer mGameObjectPhysicsComplexTriangleContainer;
 		TGameObjectPhysicsSimpleContainer mGameObjectPhysicsSimpleContainer;
 		TGameObjectPhysicsVolumeContainer mGameObjectPhysicsVolumeContainer;
+
 		TGameObjectViewportContainer mGameObjectViewportContainer;
 
 		void clearContainers();
