@@ -22,13 +22,9 @@ namespace OUAN
 		virtual double getMass();
 		virtual void setMass(double pNxOgreMass);
 
-		virtual double getDensity();
-		virtual void setDensity(double pNxOgreDensity);
-
 	protected:
 		Ogre::SceneNode* mSceneNode;
 		double mNxOgreMass;
-		double mNxOgreDensity;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters
@@ -38,7 +34,6 @@ namespace OUAN
 		~TPhysicsComponentParameters();
 
 		double mass;
-		double density;
 	};
 }
 

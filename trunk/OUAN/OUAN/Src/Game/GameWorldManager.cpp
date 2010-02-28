@@ -284,7 +284,8 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 	mGameObjectNonMovableContainer.push_back(pGameObjectTerrain);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTerrain);
 
-	mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrain);
+	//mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrain);
+	mGameObjectPhysicsComplexConvexContainer.push_back(pGameObjectTerrain);
 
 	mGameObjectTerrainContainer.push_back(pGameObjectTerrain);
 }
@@ -563,9 +564,15 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
+		/*
 		pGameObjectTerrain->setPhysicsComponentComplexTriangle(factory->createPhysicsComponentComplexTriangle(
 			pGameObjectTerrain,
 			tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters,
+			pGameObjectTerrain->getRenderComponentPositional()));
+		*/
+		pGameObjectTerrain->setPhysicsComponentComplexConvex(factory->createPhysicsComponentComplexConvex(
+			pGameObjectTerrain,
+			tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters,
 			pGameObjectTerrain->getRenderComponentPositional()));
 
 	//Add Object to GameWorldManager

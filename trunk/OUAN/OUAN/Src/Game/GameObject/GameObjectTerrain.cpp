@@ -32,7 +32,7 @@ RenderComponentPositionalPtr GameObjectTerrain::getRenderComponentPositional() c
 {
 	return mRenderComponentPositional;
 }
-
+/*
 void GameObjectTerrain::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
 	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
@@ -42,7 +42,16 @@ PhysicsComponentComplexTrianglePtr GameObjectTerrain::getPhysicsComponentComplex
 {
 	return mPhysicsComponentComplexTriangle;
 }
+*/
+void GameObjectTerrain::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
+{
+	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
+}
 
+PhysicsComponentComplexConvexPtr GameObjectTerrain::getPhysicsComponentComplexConvex()
+{
+	return mPhysicsComponentComplexConvex;
+}
 
 TGameObjectTerrainParameters::TGameObjectTerrainParameters() : TGameObjectParameters()
 {

@@ -154,7 +154,6 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	pPhysicsComponentCharacter->setParent(gameObject);	
 	pPhysicsComponentCharacter->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentCharacter->setMass(tPhysicsComponentCharacterParameters.mass);
-	pPhysicsComponentCharacter->setDensity(tPhysicsComponentCharacterParameters.density);
 	pPhysicsComponentCharacter->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentCharacterParameters.radius, 
 						tPhysicsComponentCharacterParameters.height));
@@ -174,7 +173,6 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
-	pPhysicsComponentComplexConvex->setDensity(tPhysicsComponentComplexConvexParameters.density);
 
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
@@ -192,7 +190,6 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentComplexTriangle->setMass(tPhysicsComponentComplexTriangleParameters.mass);
-	pPhysicsComponentComplexTriangle->setDensity(tPhysicsComponentComplexTriangleParameters.density);
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
@@ -213,7 +210,6 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleCapsule->setMass(tPhysicsComponentSimpleCapsuleParameters.mass);
-	pPhysicsComponentSimpleCapsule->setDensity(tPhysicsComponentSimpleCapsuleParameters.density);
 	pPhysicsComponentSimpleCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
 						tPhysicsComponentSimpleCapsuleParameters.height));
@@ -229,7 +225,6 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 	pPhysicsComponentSimpleBox->setParent(gameObject);	
 	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleBox->setMass(tPhysicsComponentSimpleBoxParameters.mass);
-	pPhysicsComponentSimpleBox->setDensity(tPhysicsComponentSimpleBoxParameters.density);
 	pPhysicsComponentSimpleBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentSimpleBoxParameters.lengthX,
 						tPhysicsComponentSimpleBoxParameters.lengthY,
@@ -246,7 +241,6 @@ PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeC
 	pPhysicsComponentVolumeCapsule->setParent(gameObject);	
 	pPhysicsComponentVolumeCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentVolumeCapsule->setMass(tPhysicsComponentVolumeCapsuleParameters.mass);
-	pPhysicsComponentVolumeCapsule->setDensity(tPhysicsComponentVolumeCapsuleParameters.density);
 	pPhysicsComponentVolumeCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentVolumeCapsuleParameters.radius,
 		tPhysicsComponentVolumeCapsuleParameters.height));
@@ -262,7 +256,6 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 	pPhysicsComponentVolumeBox->setParent(gameObject);	
 	pPhysicsComponentVolumeBox->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentVolumeBox->setMass(tPhysicsComponentVolumeBoxParameters.mass);
-	pPhysicsComponentVolumeBox->setDensity(tPhysicsComponentVolumeBoxParameters.density);
 	pPhysicsComponentVolumeBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentVolumeBoxParameters.lengthX,
 		tPhysicsComponentVolumeBoxParameters.lengthY,
