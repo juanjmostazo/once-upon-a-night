@@ -17,6 +17,7 @@
 #include "GameObject/GameObjectCamera.h"
 #include "GameObject/GameObjectVolumeBox.h"
 #include "GameObject/GameObjectVolumeCapsule.h"
+#include "GameObject/GameObjectViewport.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
@@ -117,6 +118,11 @@ TGameObjectBillboardSetContainer GameWorldManager::getGameObjectBillboardSetCont
 TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystemContainer()
 {
 	return mGameObjectParticleSystemContainer;
+}
+
+TGameObjectViewportContainer GameWorldManager::getGameObjectViewportContainer()
+{
+	return mGameObjectViewportContainer;
 }
 
 TGameObjectVolumeBoxContainer GameWorldManager::getGameObjectVolumeBoxContainer()
@@ -378,6 +384,14 @@ void GameWorldManager::addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGa
 	mGameObjectVolumeCapsuleContainer.push_back(pGameObjectVolumeCapsule);
 
 	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectVolumeCapsule);
+}
+
+void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
+{
+	mGameObjects[pGameObjectViewport->getName()]=pGameObjectViewport;
+
+	mGameObjectViewportContainer.push_back(pGameObjectViewport);
+
 }
 
 //void GameWorldManager::createGameObject(String name, GameObjectPtr gameObject)
@@ -722,4 +736,22 @@ void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsulePar
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
+}
+
+void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters)
+{
+	GameObjectViewportPtr pGameObjectViewport;
+
+	//Create GameObject
+	pGameObjectViewport = GameObjectViewportPtr(new GameObjectViewport(tGameObjectViewportParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create RenderComponentViewport
+	pGameObjectViewport->setRenderComponentViewport(factory->createRenderComponentViewport(
+			pGameObjectViewport,tGameObjectViewportParameters.tRenderComponentViewportParameters));
+
+	//Add Object to GameWorldManager
+	addGameObjectViewport(pGameObjectViewport);
 }
