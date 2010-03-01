@@ -1,6 +1,8 @@
 #include "CameraManager.h"
 #include "CameraController.h"
 #include "CameraControllerFirstPerson.h"
+#include "CameraControllerFixedThirdPerson.h"
+#include "CameraControllerThirdPerson.h"
 #include "../RenderComponent/RenderComponentCamera.h"
 
 using namespace OUAN;
@@ -23,14 +25,20 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->init(pSceneManager);
+	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
+	mCameraControllerThirdPerson->init(pSceneManager);
+	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
+	mCameraControllerFixedThirdPerson->init(pSceneManager);
 
-	activeCameraController=mCameraControllerFirstPerson;
+	activeCameraController=mCameraControllerThirdPerson;
 
-	//TODO: Erase this and init viewport from level loader
-	mViewport= pRoot->getAutoCreatedWindow()->addViewport(activeCameraController->getCamera());
+	Ogre::Camera * pCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
+
+	mViewport= pRoot->getAutoCreatedWindow()->addViewport(pCamera);
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
+
 }
 
 Viewport* CameraManager::getViewport() const
@@ -151,8 +159,10 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 	switch(tCameraControllerType)
 	{
 		case CAMERA_FIXED_FIRST_PERSON:
+			activeCameraController=mCameraControllerFirstPerson;
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
+			activeCameraController=mCameraControllerThirdPerson;
 			break;
 		case CAMERA_FIRST_PERSON:
 			break;
@@ -219,5 +229,18 @@ void CameraManager::changeCamera()
 
 void CameraManager::changeCameraController()
 {
+	switch(activeCameraController->getControllerType())
+	{
+		case CAMERA_FIXED_FIRST_PERSON:
+			activeCameraController=mCameraControllerThirdPerson;
+			break;
+		case CAMERA_FIXED_THIRD_PERSON:
+			activeCameraController=mCameraControllerFirstPerson;
+			break;
+	}
+}
 
+void CameraManager::setCameraTarget(Ogre::SceneNode * target)
+{
+	mCameraControllerThirdPerson->setTarget(target);
 }

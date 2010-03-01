@@ -12,6 +12,7 @@ namespace OUAN
 		virtual void init(Ogre::SceneManager * pSceneManager);
 
 		virtual void setCamera(Ogre::Camera * pCamera);
+		virtual TCameraControllerType getControllerType();
 
 		Ogre::Camera * getCamera();
 
@@ -19,6 +20,7 @@ namespace OUAN
 		virtual void processMouseInput(const OIS::MouseEvent &e);
 		virtual void processRelativeMotion(double xRel,double yRel,double zRel);
 		virtual void processSimpleTranslation(Ogre::Vector3 translationVector);
+		virtual void setTarget(Ogre::SceneNode * target);
 
 	protected:
 		Ogre::Camera *mCamera;

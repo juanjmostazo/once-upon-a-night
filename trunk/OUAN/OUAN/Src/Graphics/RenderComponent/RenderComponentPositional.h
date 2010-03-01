@@ -2,12 +2,13 @@
 #define RenderComponentPositionalH_H
 
 #include "RenderComponent.h"
-
+#include "../RenderSubsystem.h"
 namespace OUAN
 {
 	class RenderComponentPositional: public RenderComponent
 	{
 	private:
+		RenderSubsystemPtr mRenderSubsystem;
 		Ogre::SceneNode * mSceneNode;
 	public:
 
@@ -15,7 +16,12 @@ namespace OUAN
 		~RenderComponentPositional();
 
 		Ogre::SceneNode * getSceneNode() const;
-		void setSceneNode(Ogre::SceneNode *);		
+		void setSceneNode(Ogre::SceneNode *);	
+
+		RenderSubsystemPtr getRenderSubsystem() const;
+		void setRenderSubsystem(RenderSubsystemPtr renderSubsystem);
+
+		void setAsCameraTarget();
 	};
 
 	class TRenderComponentPositionalParameters: public TRenderComponentParameters

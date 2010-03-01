@@ -9,6 +9,12 @@ namespace OUAN
 		CameraControllerFixedThirdPerson();
 		~CameraControllerFixedThirdPerson();
 
+		void update(long elapsedTime);
+		void setTarget(Ogre::SceneNode * target);
+
+		TCameraControllerType getControllerType();
+	private:
+		Ogre::SceneNode * target;
 	};
 }
 

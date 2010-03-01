@@ -9,3 +9,8 @@ CameraControllerFixedFirstPerson::CameraControllerFixedFirstPerson() : CameraCon
 CameraControllerFixedFirstPerson::~CameraControllerFixedFirstPerson()
 {
 }
+
+TCameraControllerType CameraControllerFixedFirstPerson::getControllerType()
+{
+	return OUAN::CAMERA_FIXED_FIRST_PERSON;
+}

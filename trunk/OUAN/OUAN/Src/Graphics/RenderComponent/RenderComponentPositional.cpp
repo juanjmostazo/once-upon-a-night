@@ -18,6 +18,21 @@ void RenderComponentPositional::setSceneNode(Ogre::SceneNode* sceneNode)
 	mSceneNode=sceneNode;
 }
 
+RenderSubsystemPtr RenderComponentPositional::getRenderSubsystem() const
+{
+	return mRenderSubsystem;
+}
+
+void RenderComponentPositional::setRenderSubsystem(RenderSubsystemPtr renderSubsystem)
+{
+	mRenderSubsystem=renderSubsystem;
+}
+
+void RenderComponentPositional::setAsCameraTarget()
+{
+	mRenderSubsystem->setCameraTarget(this);
+}
+
 TRenderComponentPositionalParameters::TRenderComponentPositionalParameters()
 :TRenderComponentParameters()
 {

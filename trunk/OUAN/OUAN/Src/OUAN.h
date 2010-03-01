@@ -366,10 +366,10 @@ namespace OUAN
 		class CameraManager;
 		class CameraController;
 		class CameraControllerFirstPerson;
-		//class CameraControllerThirdPerson;
-		//class CameraControllerFixedFirstPerson;
-		//class CameraControllerFixedThirdPerson;
-		//class CameraControllerTrajectory;
+		class CameraControllerThirdPerson;
+		class CameraControllerFixedFirstPerson;
+		class CameraControllerFixedThirdPerson;
+		class CameraControllerTrajectory;
 
 		typedef std::map<std::string,TRenderComponentCameraParameters> TCameraParamsContainer;
 		typedef TCameraParamsContainer::iterator TCameraParamsContainerIterator;
@@ -379,6 +379,7 @@ namespace OUAN
 
 		typedef enum 
 		{
+			CAMERA_NONE,
 			CAMERA_FIXED_FIRST_PERSON,
 			CAMERA_FIXED_THIRD_PERSON,
 			CAMERA_FIRST_PERSON,

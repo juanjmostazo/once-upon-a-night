@@ -25,8 +25,6 @@ void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
 	// Create the camera's roll node as a child of camera's pitch node
 	// and attach the camera to it.
 	this->cameraRollNode = this->cameraPitchNode->createChildSceneNode();
-
-	mCamera=pSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
 }
 
 void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
@@ -115,4 +113,9 @@ void CameraControllerFirstPerson::processSimpleTranslation(Ogre::Vector3 transla
 		cameraPitchNode->getOrientation() *
 		translation,
 		Ogre::SceneNode::TS_LOCAL);
+}
+
+TCameraControllerType CameraControllerFirstPerson::getControllerType()
+{
+	return OUAN::CAMERA_FIRST_PERSON;
 }

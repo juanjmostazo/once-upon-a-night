@@ -93,6 +93,10 @@ namespace OUAN
 		/// movement
 		/// @param	elapsedTime	time since last frame was processed
 		void updateCameraParams(double elapsedTime);
+
+		/// Set target for camera manager
+		/// @param	renderComponentPositional is the RenderComponentPositional which we will set as the camera's target
+		void setCameraTarget(RenderComponentPositional * renderComponentPositional);
 		
 		//Object creators
 
@@ -101,9 +105,9 @@ namespace OUAN
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
 		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
-		Ogre::Viewport* createViewport(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
+		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
 		Ogre::Camera* createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
-		Ogre::SceneManager* createSceneManager(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
+		Ogre::SceneManager* setSceneParameters(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
 		/// Getters and setters
 		Ogre::String getDebugMessage();
