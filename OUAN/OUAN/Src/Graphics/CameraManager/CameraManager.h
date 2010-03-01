@@ -43,7 +43,10 @@ namespace OUAN
 		/// Activates next camera controller type
 		void changeCameraController();
 
+		//Sets camera target
+		void setCameraTarget(Ogre::SceneNode * target);
 
+		TCameraControllerType getControllerType();
 	private:
 		/// Scene manager
 		Ogre::SceneManager* mSceneManager;
@@ -55,9 +58,9 @@ namespace OUAN
 
 		CameraController * activeCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
+		CameraControllerThirdPerson * mCameraControllerThirdPerson;
+		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 
-		//CameraControllerThirdPerson * mCameraControllerThirdPerson;
-		//CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 		//CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 		//CameraControllerTrajectory * mCameraControllerTrajectory;
 

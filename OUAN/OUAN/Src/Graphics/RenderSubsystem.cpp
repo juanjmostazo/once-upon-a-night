@@ -253,7 +253,7 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 	return mSceneManager;
 }
 
-Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
+Ogre::Viewport* RenderSubsystem::setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {
 	//// Set the Viewport parameters
 	mCameraManager->getViewport()->setBackgroundColour(tRenderComponentViewportParameters.colour);
@@ -264,7 +264,7 @@ Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderCompone
 	return mCameraManager->getViewport();
 }
 
-Ogre::SceneManager * RenderSubsystem::createSceneManager(Ogre::String name,TRenderComponentSceneParameters tRenderComponentSceneParameters)
+Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRenderComponentSceneParameters tRenderComponentSceneParameters)
 {
 	try
 	{
@@ -640,4 +640,9 @@ void RenderSubsystem::changeCamera()
 void RenderSubsystem::changeCameraController()
 {
 	mCameraManager->changeCameraController();
+}
+
+void RenderSubsystem::setCameraTarget(RenderComponentPositional * renderComponentPositional)
+{
+	mCameraManager->setCameraTarget(renderComponentPositional->getSceneNode());
 }

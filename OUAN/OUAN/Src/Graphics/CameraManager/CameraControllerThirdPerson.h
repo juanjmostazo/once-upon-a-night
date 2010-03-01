@@ -9,6 +9,16 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
+		void update(long elapsedTime);
+		void processMouseInput(const OIS::MouseEvent &e);
+		void processRelativeMotion(double xRel,double yRel,double zRel);
+
+		void setTarget(Ogre::SceneNode * target);
+
+		TCameraControllerType getControllerType();
+	private:
+		Ogre::SceneNode * target;
+
 	};
 }
 

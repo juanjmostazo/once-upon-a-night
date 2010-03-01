@@ -19,6 +19,7 @@ namespace OUAN
 		void processInput(OIS::Keyboard* keyboard,double elapsedTime);
 		void setCamera(Ogre::Camera * pCamera);
 
+		TCameraControllerType getControllerType();
 	private:
 		Ogre::SceneNode *cameraNode;
 		Ogre::SceneNode *cameraYawNode;

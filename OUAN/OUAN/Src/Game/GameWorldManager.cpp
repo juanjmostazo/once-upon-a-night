@@ -164,6 +164,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
+	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 }
 
 void GameWorldManager::clearContainers()
@@ -432,6 +433,9 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 			pGameObjectOny,
 			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectOny->getRenderComponentPositional()));
+
+	//Set Ony as camera target
+	pGameObjectOny->getRenderComponentPositional()->setAsCameraTarget();
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);

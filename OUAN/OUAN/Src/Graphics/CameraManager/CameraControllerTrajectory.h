@@ -9,6 +9,7 @@ namespace OUAN
 		CameraControllerTrajectory();
 		~CameraControllerTrajectory();
 
+			TCameraControllerType getControllerType();
 	};
 }
 

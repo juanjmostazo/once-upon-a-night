@@ -117,7 +117,7 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 	pRenderComponentScene->setParent(gameObject);
 
 	//init Render Component
-	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->createSceneManager(gameObject->getName(),tRenderComponentSceneParameters));
+	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->setSceneParameters(gameObject->getName(),tRenderComponentSceneParameters));
 
 	return pRenderComponentScene;
 }
@@ -130,6 +130,7 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	//init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
+	pRenderComponentPositional->setRenderSubsystem(mApp->getRenderSubsystem());
 
 	return pRenderComponentPositional;
 }
@@ -141,7 +142,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	pRenderComponentViewport->setParent(gameObject);
 
 	//init Render Component
-	pRenderComponentViewport->setViewport(mApp->getRenderSubsystem()->createViewport(gameObject->getName(),tRenderComponentViewportParameters));
+	pRenderComponentViewport->setViewport(mApp->getRenderSubsystem()->setViewportParameters(gameObject->getName(),tRenderComponentViewportParameters));
 
 	return pRenderComponentViewport;
 }
