@@ -86,7 +86,7 @@
     <PROPERTY id="shadows::resolutionmiddle" type="2" value="512"></PROPERTY>
     <PROPERTY id="shadows::resolutionnear" type="2" value="1024"></PROPERTY>
     <PROPERTY id="shadows::technique" type="2" value="37"></PROPERTY>
-    <PROPERTY id="skybox::active" type="12" value="true"></PROPERTY>
+    <PROPERTY id="skybox::active" type="12" value="false"></PROPERTY>
     <PROPERTY id="skybox::distance" type="6" value="500"></PROPERTY>
     <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
@@ -102,7 +102,7 @@
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="46.8558 57.6679 -133.675"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.0588235 0.101961 0.721569 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
     <PROPERTY id="index" type="2" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
