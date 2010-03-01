@@ -234,6 +234,18 @@
 				Name="Core"
 				>
 				<File
+					RelativePath=".\Src\Core\ExtrasState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameOptionsState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GamePausedState.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\GameRunningState.cpp"
 					>
 				</File>
@@ -246,7 +258,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\InGameMenuState.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\MainMenuState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\ProfileSelectState.cpp"
 					>
 				</File>
 			</Filter>
@@ -568,6 +588,18 @@
 				Name="Core"
 				>
 				<File
+					RelativePath=".\Src\Core\ExtrasState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameOptionsState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GamePausedState.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\GameRunningState.h"
 					>
 				</File>
@@ -580,7 +612,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\InGameMenuState.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\MainMenuState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\ProfileSelectState.h"
 					>
 				</File>
 			</Filter>

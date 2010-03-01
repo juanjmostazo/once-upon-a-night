@@ -26,21 +26,21 @@ void MainMenuState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	std::string mainMenuLayout;
-	mApp->getGUISubsystem()->createGUI("ogregui.layout");
+	mApp->getGUISubsystem()->createGUI("OUAN_MainMenu.layout");
 
 	//TODO: Refactor this to a container of connections, so
 	//the cleanup function can disconnect a full batch of conns.
 
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OgreGuiDemo/TabCtrl/Page1/QuitButton",
+		"OUAN/TabCtrl/Page1/QuitButton",
 		CEGUI::Event::Subscriber(&MainMenuState::onQuit,this));
 
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OgreGuiDemo/TabCtrl/Page1/NewButton",
+		"OUAN/TabCtrl/Page1/PlayButton",
 		CEGUI::Event::Subscriber(&MainMenuState::onNew,this));
 
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OgreGuiDemo/TabCtrl/Page1/LoadButton",
+		"OUAN/TabCtrl/Page1/OptionsButton",
 		CEGUI::Event::Subscriber(&MainMenuState::onTest,this));
 
 	//app->getConfiguration()->getOption(MAIN_MENU_LAYOUT,mainMenuLayout)
@@ -69,6 +69,7 @@ void MainMenuState::resume()
 /// @param app	the parent application
 void MainMenuState::handleEvents()
 {
+
 }
 
 /// Update game according to the current state
