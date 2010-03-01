@@ -17,6 +17,7 @@
 #include "../Game/GameObject/GameObjectCamera.h"
 #include "../Game/GameObject/GameObjectVolumeBox.h"
 #include "../Game/GameObject/GameObjectVolumeCapsule.h"
+#include "../Game/GameObject/GameObjectViewport.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -147,10 +148,10 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	{
 		return "GameObjectScene";
 	}
-	//else if( type.compare("Viewport Object")==0)
-	//{
-	//	processViewport(XMLNode);
-	//}
+	else if( type.compare("Viewport Object")==0)
+	{
+		return "GameObjectViewport";
+	}
 	//else if( type.compare("Node Object")==0)
 	//{
 	//	processSceneNode(XMLNode);
@@ -283,6 +284,10 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	else if( gameObjectType.compare("GameObjectVolumeCapsule")==0)
 	{
 		processGameObjectVolumeCapsule(XMLNode);
+	}
+	else if( gameObjectType.compare("GameObjectViewport")==0)
+	{
+		processGameObjectViewport(XMLNode);
 	}
 	else
 	{
@@ -532,11 +537,24 @@ void LevelLoader::processGameObjectVolumeCapsule(TiXmlElement *XMLNode)
 	tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Get PhysicsComponentVolumeCapsule
-	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters.height=10;
-	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters.radius=10;
+	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(XMLNode);
 
 	//Create GameObject
 	pGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
+}
+
+void LevelLoader::processGameObjectViewport(TiXmlElement *XMLNode)
+{
+	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
+
+	//Get name
+	tGameObjectViewportParameters.name = getAttrib(XMLNode, "name");
+
+	//Get RenderComponentViewport
+	tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(XMLNode);
+
+	//Create GameObject
+	pGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 }
 
 //
@@ -580,31 +598,22 @@ void LevelLoader::processGameObjectVolumeCapsule(TiXmlElement *XMLNode)
 //	//Create Camera
 ////	pGameWorldManager->createCamera(tCameraParameters);
 //}
-//
-//
-//
-//void LevelLoader::processViewport(TiXmlElement *XMLNode)
-//{
-//	TViewportParameters tViewPortParameters;
-//
-//	//Get Viewport name
-//	tViewPortParameters.name = getAttrib(XMLNode, "name");
-//
-//	//Get Viewport properties
-//	tViewPortParameters.TRenderComponentViewportParameters.colour = getPropertyColourValue(XMLNode,"colour");
-//	tViewPortParameters.TRenderComponentViewportParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
-//	tViewPortParameters.TRenderComponentViewportParameters.index = getPropertyInt(XMLNode,"index");
-//	tViewPortParameters.TRenderComponentViewportParameters.overlays = getPropertyBool(XMLNode,"overlays");
-//	tViewPortParameters.TRenderComponentViewportParameters.shadows = getPropertyBool(XMLNode,"shadows");
-//	tViewPortParameters.TRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
-//
-//	//Create Viewport
-////	pGameWorldManager->createViewport(tViewPortParameters);
-//
-//	//Process Viewport camera
-//	processViewportCamera(XMLNode);
-//	
-//}
+
+TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentViewportParameters tRenderComponentViewportParameters;
+
+	//Get Viewport properties
+	tRenderComponentViewportParameters.colour = getPropertyColourValue(XMLNode,"colour");
+	tRenderComponentViewportParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
+	tRenderComponentViewportParameters.index = getPropertyInt(XMLNode,"index");
+	tRenderComponentViewportParameters.overlays = getPropertyBool(XMLNode,"overlays");
+	tRenderComponentViewportParameters.shadows = getPropertyBool(XMLNode,"shadows");
+	tRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
+
+	return tRenderComponentViewportParameters;
+	
+}
 
 TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLNode)
 {

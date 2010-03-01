@@ -256,10 +256,10 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 Ogre::Viewport* RenderSubsystem::createViewport(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {
 	//// Set the Viewport parameters
-	//mViewport->setBackgroundColour(tRenderComponentViewportParameters.colour);
-	//mViewport->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
-	//mViewport->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
-	//mViewport->setSkiesEnabled(tRenderComponentViewportParameters.skies);
+	mCameraManager->getViewport()->setBackgroundColour(tRenderComponentViewportParameters.colour);
+	mCameraManager->getViewport()->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
+	mCameraManager->getViewport()->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
+	mCameraManager->getViewport()->setSkiesEnabled(tRenderComponentViewportParameters.skies);
 
 	return mCameraManager->getViewport();
 }
