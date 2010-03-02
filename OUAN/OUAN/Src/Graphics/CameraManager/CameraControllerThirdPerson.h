@@ -10,7 +10,6 @@ namespace OUAN
 		~CameraControllerThirdPerson();
 
 		void update(long elapsedTime);
-		void processMouseInput(const OIS::MouseEvent &e);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 		void setTarget(Ogre::SceneNode * target);
@@ -18,6 +17,28 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 	private:
 		Ogre::SceneNode * target;
+		Ogre::Vector3 distance;
+
+		//camera relative rotation to target's X axe
+		double rotX;
+		//camera relative rotation to target's Y axe
+		double rotY;
+
+		//minimum and maximum rotation to target's X axe
+		double minRotX;
+		double maxRotX;
+
+		//camera position speed
+		double speed;
+
+		//camera speed when it returns to initial position
+		double returningspeed;
+
+		//in order to determine if target has moved
+		Ogre::Vector3 lastTargetPosition;
+
+		void returningToInitialPosition();
+
 
 	};
 }
