@@ -139,18 +139,18 @@ void LevelLoader::processObjects(TiXmlElement *XMLNode, String type)
 	}
 }
 
-String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
+std::string LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 {
 	String type = getAttrib(XMLNode, "typename");
 	String name = getAttrib(XMLNode, "name");
 
 	if( type.compare("OctreeSceneManager")==0)
 	{
-		return "GameObjectScene";
+		return GAME_OBJECT_TYPE_SCENE;
 	}
 	else if( type.compare("Viewport Object")==0)
 	{
-		return "GameObjectViewport";
+		return GAME_OBJECT_TYPE_VIEWPORT;
 	}
 	//else if( type.compare("Node Object")==0)
 	//{
@@ -164,59 +164,59 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	{
 		if(name.substr(0,GAME_OBJECT_TYPE_LIGHT.size()).compare(GAME_OBJECT_TYPE_LIGHT)==0)
 		{
-			return "GameObjectLight";
+			return GAME_OBJECT_TYPE_LIGHT;
 		}
 	}
 	else if( type.compare("Entity Object")==0)
 	{
 		if(name.substr(0,GAME_OBJECT_TYPE_ONY.size()).compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			return "GameObjectOny";
+			return GAME_OBJECT_TYPE_ONY;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_TRIPOLLO.size()).compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
-			return "GameObjectTripollo";
+			return GAME_OBJECT_TYPE_TRIPOLLO;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_TERRAIN.size()).compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{
-			return "GameObjectTerrain";
+			return GAME_OBJECT_TYPE_TERRAIN;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_PORTAL.size()).compare(GAME_OBJECT_TYPE_PORTAL)==0)
 		{
-			return "GameObjectPortal";
+			return GAME_OBJECT_TYPE_PORTAL;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_EYE.size()).compare(GAME_OBJECT_TYPE_EYE)==0)
 		{
-			return "GameObjectEye";
+			return GAME_OBJECT_TYPE_EYE;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_1UP.size()).compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 		{
-			return "GameObjectItem1UP";
+			return GAME_OBJECT_TYPE_ITEM_1UP;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_MAXHP.size()).compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
 		{
-			return "GameObjectItemMaxHP";
+			return GAME_OBJECT_TYPE_ITEM_MAXHP;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMEBOX.size()).compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
 		{
-			return "GameObjectVolumeBox";
+			return GAME_OBJECT_TYPE_VOLUMEBOX;
 		}
 		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMECAPSULE.size()).compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
 		{
-			return "GameObjectVolumeCapsule";
+			return GAME_OBJECT_TYPE_VOLUMECAPSULE;
 		}
 	}
 	else if( type.compare("Camera Object")==0)
 	{
-		return "GameObjectCamera";
+		return GAME_OBJECT_TYPE_CAMERA;
 	}
 	else if( type.compare("Particle Object")==0)
 	{
-		return "GameObjectParticleSystem";
+		return GAME_OBJECT_TYPE_PARTICLESYSTEM;
 	}
 	else if( type.compare("BillboardSet Object")==0)
 	{
-		return "GameObjectBillboardSet";
+		return GAME_OBJECT_TYPE_BILLBOARDSET;
 	}
 	else
 	{
@@ -229,63 +229,63 @@ String LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 void LevelLoader::processObject(TiXmlElement *XMLNode)
 {
 	String gameObjectType=getGameObjectType(XMLNode);
-	if( gameObjectType.compare("GameObjectScene")==0)
+	if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
 	{
 		processGameObjectScene(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectOny")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		processGameObjectOny(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectTripollo")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 	{
 		processGameObjectTripollo(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectTerrain")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 	{
 		processGameObjectTerrain(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectLight")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
 	{
 		processGameObjectLight(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectParticleSystem")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
 	{
 		processGameObjectParticleSystem(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectBillboardSet")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
 	{
 		processGameObjectBillboardSet(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectEye")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_EYE)==0)
 	{
 		processGameObjectEye(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectItem1UP")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 	{
 		processGameObjectItem1UP(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectItemMaxHP")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
 	{
 		processGameObjectItemMaxHP(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectPortal")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
 	{
 		processGameObjectPortal(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectCamera")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
 	{
 		processGameObjectCamera(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectVolumeBox")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
 	{
 		processGameObjectVolumeBox(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectVolumeCapsule")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
 	{
 		processGameObjectVolumeCapsule(XMLNode);
 	}
-	else if( gameObjectType.compare("GameObjectViewport")==0)
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
 	{
 		processGameObjectViewport(XMLNode);
 	}

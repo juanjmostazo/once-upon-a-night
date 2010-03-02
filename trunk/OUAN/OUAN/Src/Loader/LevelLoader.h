@@ -25,7 +25,7 @@ namespace OUAN
 		void processProject(TiXmlElement *XMLNode);
 		void processObjects(TiXmlElement *XMLNode,OUAN::String type);
 		void processObject(TiXmlElement *XMLNode);
-		String getGameObjectType(TiXmlElement *XMLNode);
+		std::string getGameObjectType(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
 
 		//Game Object Processors
