@@ -31,7 +31,7 @@ void CameraController::update(long elapsedTime)
 
 void CameraController::processMouseInput(const OIS::MouseEvent &e)
 {
-
+	processRelativeMotion(e.state.X.rel,e.state.Y.rel,e.state.Z.rel);
 }
 
 void CameraController::processRelativeMotion(double xRel,double yRel,double zRel)

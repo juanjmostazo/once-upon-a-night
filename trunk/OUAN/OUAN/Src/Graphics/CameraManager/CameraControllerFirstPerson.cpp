@@ -54,11 +54,6 @@ void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
 	this->cameraRollNode->attachObject(mCamera);
 }
 
-void CameraControllerFirstPerson::processMouseInput(const OIS::MouseEvent& e)
-{
-	processRelativeMotion(e.state.X.rel,e.state.Y.rel,e.state.Z.rel);
-}
-
 void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel, double zRel)
 {
 	Ogre::Real pitchAngle;
