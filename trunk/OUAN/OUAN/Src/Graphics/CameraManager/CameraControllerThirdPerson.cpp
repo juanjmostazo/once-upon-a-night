@@ -16,6 +16,8 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 
 	maxRotX=50;
 	minRotX=-50;
+
+	cameraMoved=false;
 }
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
@@ -30,7 +32,7 @@ void CameraControllerThirdPerson::update(long elapsedTime)
 	newTargetPosition=target->getPosition();
 
 	//If target has moved we return the camera position to the back of the target
-	if(newTargetPosition!=lastTargetPosition)
+	if(newTargetPosition!=lastTargetPosition && !cameraMoved)
 	{
 		returningToInitialPosition();
 	}
@@ -61,10 +63,12 @@ void CameraControllerThirdPerson::processRelativeMotion(double xRel,double yRel,
 	//process Relative Motion
 	if(xRel==0 && yRel==0) 
 	{
+		cameraMoved=false;
 		return;
 	}
 	else
 	{
+		cameraMoved=true;
 		rotY-=xRel*speed;
 		rotX-=yRel*speed;
 	}

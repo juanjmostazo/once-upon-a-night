@@ -37,6 +37,9 @@ namespace OUAN
 		//in order to determine if target has moved
 		Ogre::Vector3 lastTargetPosition;
 
+		//true if camera has been moved this frame
+		bool cameraMoved;
+
 		void returningToInitialPosition();
 
 
