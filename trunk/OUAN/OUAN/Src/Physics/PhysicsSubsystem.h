@@ -84,6 +84,9 @@ namespace OUAN
 		/// param read from config file, applied to move()
 		double mTurnDegreesPerSecond;
 
+		/// param read from config file, applid to jump
+		double mInitialJumpSpeed;
+
 		/// the application
 		OUAN::ApplicationPtr mApp;
 

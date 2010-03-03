@@ -10,6 +10,7 @@
 		<Option key="DISPLACEMENT_SCALE">1</Option>
 		<Option key="MIN_DISTANCE">0.001</Option>
 		<Option key="MOVEMENT_UNITS_PER_SECOND">20</Option>		
-		<Option key="TURN_DEGREES_PER_SECOND">360</Option>		
+		<Option key="TURN_DEGREES_PER_SECOND">360</Option>	
+		<Option key="INITIAL_JUMP_SPEED">50</Option>			
 	</Options>
 </Configuration>
