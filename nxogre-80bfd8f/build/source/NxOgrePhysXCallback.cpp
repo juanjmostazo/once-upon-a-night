@@ -50,6 +50,9 @@ PhysXCallback::~PhysXCallback()
 {
 }
 
+/***
+* OUAN HACK
+*/
 void PhysXCallback::onTrigger(NxShape& triggerShape, NxShape& physxCollisionShape, NxTriggerFlag status)
 {
  
@@ -62,14 +65,33 @@ void PhysXCallback::onTrigger(NxShape& triggerShape, NxShape& physxCollisionShap
  
  Shape* collision_shape = 0;
  RigidBody* collision_body = 0;
+ void* controller;
+
+ bool isCharacter = false;
 
  if (physxCollisionShape.userData)
  {
-  collision_shape = pointer_representive_cast<Shape>(physxCollisionShape.userData);
-  collision_body  = pointer_parent_cast<RigidBody>(physxCollisionShape.userData);
+	if (size_t(physxCollisionShape.userData) == 'CCTS')
+	{
+		isCharacter = true;
+		controller = (void*)physxCollisionShape.userData;
+	}
+	else
+	{
+		isCharacter = false;
+		collision_shape = pointer_representive_cast<Shape>(physxCollisionShape.userData);
+		collision_body  = pointer_parent_cast<RigidBody>(physxCollisionShape.userData);
+	}
  }
  
- volume->getVolumeCallback()->onVolumeEvent(volume, volume_shape, collision_body, collision_shape, status);
+ if (isCharacter)
+ {
+	volume->getVolumeCallback()->onVolumeEvent(volume, volume_shape, controller, status);
+ }
+ else
+ {
+	volume->getVolumeCallback()->onVolumeEvent(volume, volume_shape, collision_body, collision_shape, status);	
+ }
  
 }
 

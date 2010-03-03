@@ -28,7 +28,6 @@
 
 #include "NxOgreStable.h"
 #include "NxOgreCommon.h"
-
                                                                                        
 
 namespace NxOgre
@@ -69,6 +68,21 @@ class NxOgrePublicClass Callback
    */
    virtual void onContact(const ContactPair&);
    
+   /**
+   * OUAN HACK
+   */
+   virtual void onVolumeEvent(Volume* volume, Shape* volumeShape, void* controller, unsigned int collisionEvent);
+
+   /**
+   *
+   */
+   //virtual bool onHitEvent(const CharacterRaycastHit&);
+
+   /**
+   *
+   */
+   //virtual void onContact(const CharacterContactPair&);
+
    /** \brief A class is using the callback.
    */
    void increaseReference();
