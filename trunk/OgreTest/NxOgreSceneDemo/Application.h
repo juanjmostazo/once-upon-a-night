@@ -19,7 +19,7 @@ enum GameGroup
 
 #define COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 
-class Application : SimpleInputManager, NxOgre::ControllerCallback
+class Application : SimpleInputManager, NxOgre::ControllerCallback, public NxOgre::Callback
 {
 	public:
 		Application();
@@ -29,6 +29,7 @@ class Application : SimpleInputManager, NxOgre::ControllerCallback
 		bool setup();
 
 		bool createCharacter();
+		bool createVolume();
 		bool createBasicScenary();
 		bool createTriangleMeshes();
 		bool createConvexes();
@@ -64,10 +65,12 @@ class Application : SimpleInputManager, NxOgre::ControllerCallback
 		NxOgre::ControllerManager* m_NXOgreControllerManager;
 		NxOgre::Controller* m_NXOgreController;
 		OGRE3DPointRenderable* m_NXOgreControllerRenderable;
-
+		
 		Ogre::AnimationState* m_idleAnimation;
 		Ogre::AnimationState* m_runAnimation;
 		int m_movingDirection;
+
+		NxOgre::Volume* m_volume;
 
 		bool m_exitRequested;
 		bool m_showInfo;
@@ -81,5 +84,25 @@ class Application : SimpleInputManager, NxOgre::ControllerCallback
 		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other)
 		{	
 			return NxOgre::Enums::ControllerAction_None;
+		}
+
+		void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, NxOgre::RigidBody* rigidBody, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent)
+		{
+			/*
+			if(collisionEvent == NxOgre::Enums::VolumeCollisionType_OnEnter)
+			{
+				NxOgre::Actor* actor = static_cast<NxOgre::Actor*>(rigidBody);
+				float y =   (9.81 * actor->getMass())				  // counteract gravity
+					+ (-actor->getLinearVelocity().y * actor->getMass())      // counteract vertical velocity
+					+ (10 - actor->getGlobalPosition().y * actor->getMass()); // Add some force to move it to the top
+
+				actor->addForce(NxOgre::Vec3(0, y, 0), NxOgre::Enums::ForceMode_Impulse); 
+			}
+			*/
+		}
+
+		void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, void* controller, unsigned int collisionEvent)
+		{
+
 		}
 };

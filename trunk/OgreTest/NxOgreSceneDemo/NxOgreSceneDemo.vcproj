@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreAddonCharacterController_Debug.lib NxOgreOgre3D_Debug.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
