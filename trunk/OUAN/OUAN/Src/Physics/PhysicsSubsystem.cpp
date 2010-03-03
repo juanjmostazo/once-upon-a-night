@@ -385,6 +385,9 @@ void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyP
 	// Apply gravity force to displacement
 	mDisplacement += mGravity;
 
+	// Move proportional time
+	mDisplacement *= elapsedSeconds;
+
 	// Scale displacement at the end
 	mDisplacement *= mDisplacementScale;
 
@@ -423,7 +426,24 @@ void PhysicsSubsystem::updateGameObjectEye(double elapsedSeconds, GameObjectEyeP
 void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
 	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent)
 {
-	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called!");
+	switch (collisionEvent)
+	{
+		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - ENTER"); 
+			break;
+
+		case NxOgre::Enums::VolumeCollisionType_OnExit: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - EXIT"); 
+			break;
+
+		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - PRESENCE"); 
+			break;
+
+		default: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - UNKNOWN"); 
+			break;
+	}
 }
 
 bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
@@ -435,6 +455,31 @@ bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 {
 	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onContact called!");
+}
+
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+									 void* controller, unsigned int collisionEvent)
+{
+	NxOgre::Controller* characterController = static_cast<NxOgre::Controller*>(controller);
+
+	switch (collisionEvent)
+	{
+		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - ENTER"); 
+			break;
+
+		case NxOgre::Enums::VolumeCollisionType_OnExit: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - EXIT"); 
+			break;
+
+		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - PRESENCE"); 
+			break;
+
+		default: 
+			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - UNKNOWN"); 
+			break;
+	}
 }
 
 //////////////////////////////////////////////////////////////////
