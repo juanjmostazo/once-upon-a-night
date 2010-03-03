@@ -224,8 +224,11 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_DISTANCE", value); 
 		mMinDistance = atof(value.c_str());
 
-		config.getOption("MOVEMENT_UNITS", value); 
-		mMovementUnits = atof(value.c_str());
+		config.getOption("MOVEMENT_UNITS_PER_SECOND", value); 
+		mMovementUnitsPerSecond = atof(value.c_str());
+
+		config.getOption("TURN_DEGREES_PER_SECOND", value); 
+		mTurnDegreesPerSecond = atof(value.c_str());
 
 		success = true;
 	} 
@@ -363,32 +366,34 @@ void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyP
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	int movementFlags = pGameObjectOny->getMovementFlags();
 
-	// Displacement vector
-	NxOgre::Vec3 mDisplacement(0,0,0);
+	// Initial displacement vector: gravity
+	NxOgre::Vec3 mDisplacement(mGravity * elapsedSeconds);
 
 	// Movement forces
 	if (movementFlags > 0)
 	{
 		if ((movementFlags & MOV_FORWARD_OR_BACK) > 0)
-		{
-			mDisplacement.z += mMovementUnits;
-			mDisplacement.z *= ((movementFlags & MOV_GO_FORWARD) > 0) ? 1 : -1;
+		{	
+			double way = ((movementFlags & MOV_GO_FORWARD) > 0) ? 1.0f : -1.0f;
+			mDisplacement += Ogre::Vector3::UNIT_Z * mMovementUnitsPerSecond * way * elapsedSeconds;
 		}
 
 		if ((movementFlags & MOV_LEFT_OR_RIGHT) > 0)
 		{
-			mDisplacement.x += mMovementUnits;
-			mDisplacement.x *= ((movementFlags & MOV_GO_LEFT) > 0) ? 1 : -1;
+			double offsetYaw = ((movementFlags & MOV_GO_LEFT) > 0) ? mTurnDegreesPerSecond : -mTurnDegreesPerSecond;
+			offsetYaw *= elapsedSeconds;
+
+			pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->setDisplayYaw(
+				pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->getDisplayYaw() + offsetYaw);
 		}
+
+		mDisplacement = Ogre::Quaternion(
+			Ogre::Degree(pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->getDisplayYaw()), 
+			Ogre::Vector3::UNIT_Y) * 
+			mDisplacement.as<Ogre::Vector3>();
 	}
 
-	// Apply gravity force to displacement
-	mDisplacement += mGravity;
-
-	// Move proportional time
-	mDisplacement *= elapsedSeconds;
-
-	// Scale displacement at the end
+	// Applying global factor to displacement
 	mDisplacement *= mDisplacementScale;
 
 	pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->move(
