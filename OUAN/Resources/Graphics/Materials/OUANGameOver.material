@@ -1,0 +1,35 @@
+material OUAN/GameOver/Background
+{
+	technique
+	{
+		pass
+		{			
+			scene_blend alpha_blend
+			texture_unit 1
+			{
+				texture scanline.png
+				tex_coord_set 1
+			}			
+			texture_unit 0
+			{
+				texture savedRTT.png
+				tex_coord_set 0
+			}
+
+		}
+	}
+}
+material OUAN/GameOver/TextBox
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture black.png
+			}
+		}
+	}
+}

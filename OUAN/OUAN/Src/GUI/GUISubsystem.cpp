@@ -35,6 +35,18 @@ void GUISubsystem::init(ApplicationPtr app)
 	mSystem->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
 	mSystem->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
 }
+void GUISubsystem::reset(ApplicationPtr app)
+{
+	cleanUp();
+	init(app);
+}
+void GUISubsystem::clearRenderer()
+{
+	if (mRenderer)
+	{
+		mRenderer->setTargetSceneManager(NULL);
+	}
+}
 
 void GUISubsystem::cleanUp()
 {
@@ -44,8 +56,8 @@ void GUISubsystem::cleanUp()
 	{
 		(*connIt)->disconnect();
 	}
-	delete mSystem;
-	delete mRenderer;
+	if (mSystem) delete mSystem;
+	if (mRenderer) delete mRenderer;
 }
 
 void GUISubsystem::injectKeyInput(const TGUIKeyboardEvent& eventType, const OIS::KeyEvent& e)

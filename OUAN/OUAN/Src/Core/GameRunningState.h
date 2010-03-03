@@ -5,6 +5,10 @@
 #include "GameState.h"
 namespace OUAN
 {
+	const std::string OVERLAY_INGAME_HUD = "OUAN/HUDOverlay";
+	const std::string OVERLAY_DEBUG_PANEL = "Core/DebugOverlay";
+	const std::string SAVED_RTT_FILENAME="../../Resources/Graphics/Textures/savedRTT.png";
+
 	///State corresponding to the game's main menu
 	class GameRunningState: public GameState{
 	public:

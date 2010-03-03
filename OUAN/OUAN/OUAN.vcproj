@@ -242,6 +242,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\GameOverState.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\GamePausedState.cpp"
 					>
 				</File>
@@ -593,6 +597,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Core\GameOptionsState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\GameOverState.h"
 					>
 				</File>
 				<File

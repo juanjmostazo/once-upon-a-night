@@ -3,6 +3,7 @@
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
 #include "../Physics/PhysicsSubsystem.h"
+#include "../GUI/GUISubsystem.h"
 #include "CameraManager/CameraManager.h"
 #include "CameraManager/CameraControllerFirstPerson.h"
 #include "RenderComponent/RenderComponent.h"
@@ -50,6 +51,7 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 void RenderSubsystem::cleanUp()
 {
+	clearScene();
 }
 
 void RenderSubsystem::createRoot(ConfigurationPtr config)
@@ -361,9 +363,9 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 			sceneNode->setAutoTracking(true,trackTarget);
 		}
 	}
-	catch(Ogre::Exception &/*e*/)
+	catch(Ogre::Exception &e)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" SceneNode!");
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" SceneNode!: "+e.getDescription());
 	}
 	return sceneNode;
 }
@@ -609,14 +611,6 @@ void RenderSubsystem::updateDebugInfo()
 	catch(...) { /* ignore */ }
 }
 
-void RenderSubsystem::showDebugOverlay()
-{
-	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
-}
-void RenderSubsystem::hideDebugOverlay()
-{
-	Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->hide();
-}
 void RenderSubsystem::showVisualDebugger()
 {
 	if (mNxOgreVisualDebugger)
@@ -626,10 +620,6 @@ void RenderSubsystem::hideVisualDebugger()
 {
 	if (mNxOgreVisualDebugger)
 		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowNone);		
-}
-void RenderSubsystem::showHUD()
-{
-	Ogre::OverlayManager::getSingleton().getByName("OUAN/HUDOverlay")->show();
 }
 
 void RenderSubsystem::changeCamera()
@@ -645,4 +635,59 @@ void RenderSubsystem::changeCameraController()
 void RenderSubsystem::setCameraTarget(RenderComponentPositional * renderComponentPositional)
 {
 	mCameraManager->setCameraTarget(renderComponentPositional->getSceneNode());
+}
+void RenderSubsystem::showOverlay(const std::string& overlayName)
+{
+	Ogre::Overlay* ovl;
+	if (ovl=Ogre::OverlayManager::getSingleton().getByName(overlayName))
+		ovl->show();
+	else LogManager::getSingleton().logMessage("[ShowOverlay] Error loading "+overlayName+" Overlay!");
+}
+void RenderSubsystem::hideOverlay(const std::string& overlayName)
+{
+	Ogre::Overlay* ovl;
+	if (ovl=Ogre::OverlayManager::getSingleton().getByName(overlayName))
+		ovl->hide();
+	else LogManager::getSingleton().logMessage("[ShowOverlay] Error loading "+overlayName+" Overlay!");
+}
+void RenderSubsystem::pauseRendering()
+{
+	Ogre::ControllerManager::getSingleton().setTimeFactor(0);
+}
+void RenderSubsystem::resumeRendering()
+{
+	Ogre::ControllerManager::getSingleton().setTimeFactor(1.0);
+}
+
+void RenderSubsystem::clearScene()
+{
+	mSceneManager->destroyAllCameras(); 
+	mSceneManager->clearScene();
+	mRoot->destroySceneManager(mSceneManager);
+	mWindow->removeAllViewports();
+	//mApp->getGUISubsystem()->clearRenderer();
+	delete mCameraManager;
+}
+void RenderSubsystem::resetScene()
+{
+	clearScene();
+	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
+
+	mCameraManager = new CameraManager();
+	mCameraManager->init(mRoot,mSceneManager);
+}
+
+void RenderSubsystem::captureScene(const std::string& name)
+{
+	Ogre::TexturePtr texture = Ogre::TextureManager::getSingleton().createManual("RttTex",
+		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, mWindow->getWidth(), mWindow->getHeight(), 0, PF_R8G8B8,
+		TU_RENDERTARGET);
+	Ogre::RenderTexture *renderTexture = texture->getBuffer()->getRenderTarget();
+
+	renderTexture->addViewport(mCameraManager->getActiveCamera());
+	renderTexture->getViewport(0)->setClearEveryFrame(true);
+	renderTexture->getViewport(0)->setBackgroundColour(ColourValue::Black);
+	renderTexture->getViewport(0)->setOverlaysEnabled(false);		
+	renderTexture->update();
+	renderTexture->writeContentsToFile(name);
 }
