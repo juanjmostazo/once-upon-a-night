@@ -230,6 +230,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("TURN_DEGREES_PER_SECOND", value); 
 		mTurnDegreesPerSecond = atof(value.c_str());
 
+		config.getOption("INITIAL_JUMP_SPEED", value); 
+		mInitialJumpSpeed = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -242,6 +245,9 @@ bool PhysicsSubsystem::loadConfig()
 		mRestitution = 0;
 		mDisplacementScale = 0;
 		mMinDistance = 0;
+		mMovementUnitsPerSecond = 0;
+		mTurnDegreesPerSecond = 0;
+		mInitialJumpSpeed = 0;
 
 		success = false;
 	}
@@ -372,12 +378,14 @@ void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyP
 	// Movement forces
 	if (movementFlags > 0)
 	{
+		// Advance stuff
 		if ((movementFlags & MOV_FORWARD_OR_BACK) > 0)
 		{	
 			double way = ((movementFlags & MOV_GO_FORWARD) > 0) ? 1.0f : -1.0f;
 			mDisplacement += Ogre::Vector3::UNIT_Z * mMovementUnitsPerSecond * way * elapsedSeconds;
 		}
 
+		// Turn stuff
 		if ((movementFlags & MOV_LEFT_OR_RIGHT) > 0)
 		{
 			double offsetYaw = ((movementFlags & MOV_GO_LEFT) > 0) ? mTurnDegreesPerSecond : -mTurnDegreesPerSecond;
@@ -387,11 +395,31 @@ void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyP
 				pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->getDisplayYaw() + offsetYaw);
 		}
 
+		// Jump stuff
+		if ((movementFlags & MOV_JUMP) > 0 && !pGameObjectOny->isJumping())
+		{
+			Ogre::LogManager::getSingleton().logMessage("Jump!"); 
+			pGameObjectOny->setJumping(true);
+			pGameObjectOny->setJumpTime(0);
+			pGameObjectOny->setJumpSpeed(mInitialJumpSpeed);
+		}
+
+		// Calculates the current displacement from position and angle
 		mDisplacement = Ogre::Quaternion(
 			Ogre::Degree(pGameObjectOny->getPhysicsComponentCharacter()->getNxOgreController()->getDisplayYaw()), 
 			Ogre::Vector3::UNIT_Y) * 
 			mDisplacement.as<Ogre::Vector3>();
 	}
+
+	// If it's jumping, calculate height and apply vertical displacement
+	if (pGameObjectOny->isJumping())
+	{
+		pGameObjectOny->setJumpSpeed(pGameObjectOny->getJumpSpeed() + mGravity.y * pGameObjectOny->getJumpTime());
+		pGameObjectOny->setJumpTime(pGameObjectOny->getJumpTime() + elapsedSeconds);
+		mDisplacement.y += pGameObjectOny->getJumpSpeed() * elapsedSeconds - 0.5f * mGravity.y * elapsedSeconds * elapsedSeconds;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	// Applying global factor to displacement
 	mDisplacement *= mDisplacementScale;
@@ -401,6 +429,11 @@ void PhysicsSubsystem::updateGameObjectOny(double elapsedSeconds, GameObjectOnyP
 		GROUP_COLLIDABLE_MASK,
 		mMinDistance,
 		collisionFlags);
+
+	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
+	{
+		pGameObjectOny->setJumping(false);
+	}
 }
 
 void PhysicsSubsystem::updateGameObjectTripollo(double elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo)

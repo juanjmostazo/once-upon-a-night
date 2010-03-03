@@ -14,6 +14,16 @@ namespace OUAN
 	private:
 		/// Entity movement flags, will be updated every frame
 		int mMovementFlags;
+
+		/// Entity jumping state
+		bool mJumping;
+
+		/// Jump time
+		double mJumpTime;
+
+		/// Jump speed
+		double mJumpSpeed;
+
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component data
@@ -33,7 +43,25 @@ namespace OUAN
 		int getMovementFlags() const;
 
 		/// Set movement flags
-		void setMovementFlags(int mMovementFlags);
+		void setMovementFlags(int pMovementFlags);
+
+		/// Return if the entity is jumping
+		bool isJumping() const;
+
+		/// Set if the entity is jumping
+		void setJumping(bool pJumping);
+
+		/// Return jump time
+		double getJumpTime() const;
+
+		/// Set jump time
+		void setJumpTime(double pJumpTime);
+
+		/// Return jump speed
+		double getJumpSpeed() const;
+
+		/// Set jump speed
+		void setJumpSpeed(double pJumpSpeed);
 
 		/// Return render component entity 
 		/// @return render component entity
