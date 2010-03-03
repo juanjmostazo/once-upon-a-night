@@ -24,9 +24,7 @@
                                                                                        
 
 #include "NxOgreStable.h"
-#include "NxOgreCallback.h"
-
-                                                                                       
+#include "NxOgreCallback.h"                                                                               
 
 namespace NxOgre
 {
@@ -44,7 +42,7 @@ Callback::~Callback()
 
 void Callback::onVolumeEvent(Volume* volume, Shape* volumeShape, RigidBody* rigidBody, Shape* rigidBodyShape, unsigned int collisionEvent)
 {
- // virtual function.
+
 }
 
 bool Callback::onHitEvent(const RaycastHit&)
@@ -54,6 +52,15 @@ bool Callback::onHitEvent(const RaycastHit&)
 
 void Callback::onContact(const ContactPair&)
 {
+
+}
+
+/***
+* OUAN HACK
+*/
+void Callback::onVolumeEvent(Volume* volume, Shape* volumeShape, void* controller, unsigned int collisionEvent)
+{
+
 }
 
 void Callback::increaseReference()

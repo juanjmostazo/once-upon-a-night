@@ -119,7 +119,6 @@ Controller::Controller(const ControllerDescription& desc, const Vec3& size, Poin
  controller_desc.slopeLimit = desc.mSlopeLimit;
  controller_desc.stepOffset = desc.mStepOffset;
  controller_desc.upDirection = NxHeightFieldAxis(int(desc.mUpDirection));
- controller_desc.userData = 0;
  
  mController = mManager->createController(scene->getScene(), controller_desc);
  
@@ -147,7 +146,6 @@ Controller::Controller(const ControllerDescription& desc, const Vec2& size, Poin
  controller_desc.slopeLimit = desc.mSlopeLimit;
  controller_desc.stepOffset = desc.mStepOffset;
  controller_desc.upDirection = NxHeightFieldAxis(int(desc.mUpDirection));
- controller_desc.userData = 0;
  
  mController = mManager->createController(scene->getScene(), controller_desc);
  
