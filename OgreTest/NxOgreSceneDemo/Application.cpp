@@ -134,6 +134,8 @@ bool Application::setup()
 
 	createCharacter();
 
+	createVolume();
+
 	createBasicScenary();
 
 	createTriangleMeshes();
@@ -152,12 +154,18 @@ bool Application::createCharacter()
 	m_runAnimation->setEnabled( true );
 
 	NxOgre::ControllerDescription desc;
-	desc.mPosition.set(0,10,0);
+	desc.mPosition.set(0,3,0);
 	desc.mCallback = this;
 
 	m_NXOgreControllerRenderable = m_NXOgreRenderSystem->createPointRenderable(m_character);
 	m_NXOgreController = m_NXOgreControllerManager->createCapsuleController(desc, NxOgre::Vec2(1,3), m_NXOgreScene, m_NXOgreControllerRenderable );
 	
+	return true;
+}
+
+bool Application::createVolume()
+{
+	m_volume = m_NXOgreScene->createVolume(new NxOgre::Box(2), NxOgre::Matrix44(NxOgre::Vec3(4, 1, 4)), this, NxOgre::Enums::VolumeCollisionType_All);
 	return true;
 }
 
