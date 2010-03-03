@@ -324,7 +324,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="41.3878 24.9965 -49.5744"></PROPERTY>
+    <PROPERTY id="position" type="9" value="34.0465 25.3927 -50.3689"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="NoMaterial"></PROPERTY>
