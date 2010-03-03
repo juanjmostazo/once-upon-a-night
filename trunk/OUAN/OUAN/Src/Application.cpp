@@ -33,6 +33,7 @@ Application::~Application()
 }
 void Application::cleanUp()
 {
+	mPhysicsSubsystem->cleanUp();
 	mGUISubsystem->cleanUp();
 	mRenderSubsystem->cleanUp();
 	ControlInputManager::finalise();

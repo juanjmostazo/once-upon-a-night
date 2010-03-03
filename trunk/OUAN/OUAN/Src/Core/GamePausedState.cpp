@@ -1,6 +1,6 @@
 #include "GamePausedState.h"
 #include "../Application.h"
-#include "../GUI/GUISubsystem.h"
+#include "../Graphics/RenderSubsystem.h"
 #include "GameStateManager.h"
 
 using namespace OUAN;
@@ -22,12 +22,13 @@ GamePausedState::~GamePausedState()
 void GamePausedState::init(ApplicationPtr app)
 {
 	mApp=app;	
+	mApp->mKeyBuffer=-1;
 }
 
 /// Clean up main menu's resources
 void GamePausedState::cleanUp()
 {
-	mApp->getGUISubsystem()->destroyGUI();
+	mApp->mKeyBuffer=-1;
 }
 
 /// pause state
@@ -45,12 +46,27 @@ void GamePausedState::resume()
 /// @param app	the parent application
 void GamePausedState::handleEvents()
 {
-
+	if (mApp && mApp->isPressedPause() && mApp->mKeyBuffer<0)
+	{
+		mApp->getGameStateManager()->popState();
+		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
+		mApp->mKeyBuffer=500000; //0.5s
+	}
 }
 
 /// Update game according to the current state
 /// @param app	the parent app
 void GamePausedState::update(long elapsedTime)
 {
-
+	if (mApp.get() && mApp->mKeyBuffer>=0)
+		mApp->mKeyBuffer-=elapsedTime;
+}
+bool GamePausedState::render()
+{
+	if (mApp.get() && mApp->getRenderSubsystem().get())
+	{
+		mApp->getRenderSubsystem()->showOverlay(OVERLAY_PAUSE_SCREEN);
+		return mApp->getRenderSubsystem()->render();
+	}
+	return false;
 }

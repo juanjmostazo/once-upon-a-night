@@ -68,8 +68,8 @@ void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 
 void PhysicsSubsystem::resetLevel()
 {
-	delete mNxOgreControllerManager;
-	delete mNxOgreRenderSystem;
+	if (mNxOgreControllerManager) delete mNxOgreControllerManager;
+	if (mNxOgreRenderSystem) delete mNxOgreRenderSystem;
 	
 	if (mNxOgreScene != NULL){
 		mNxOgreWorld->destroyScene(mNxOgreScene);
@@ -184,7 +184,8 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 
 void PhysicsSubsystem::cleanUp()
 {
-
+	//resetLevel();
+	mNxOgreWorld->destroyWorld(true);
 }
 
 bool PhysicsSubsystem::loadConfig()

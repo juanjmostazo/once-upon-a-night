@@ -1,0 +1,36 @@
+// Ogre overlay scripts
+OUAN/GameOverOverlay
+{
+	zorder 650
+	// Stats block
+	container Panel(OUAN/GameOver/Background)
+	{
+		left 0
+		top 0
+		width 1
+		height 1
+		material OUAN/GameOver/Background
+		
+			
+			element TextArea(OUAN/GameOver/MainText)
+			{
+				top 0.4
+				left 0.3
+				font_name FunnyPages
+				char_height 0.1
+				caption GAME OVER
+				colour_top 0.6 0.6 0.2
+				colour_bottom 0.6 0.6 0.2
+			}
+			element TextArea(OUAN/GameOver/InfoText)
+			{
+				top 0.5
+				left 0.04
+				font_name FunnyPages
+				char_height 0.04
+				caption Weapon action to return to menu, Jump or pause to restart
+				colour_top 0.6 0.6 0.2
+				colour_bottom 0.6 0.6 0.2
+			}			
+	}
+}

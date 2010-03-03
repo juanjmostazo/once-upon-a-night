@@ -106,6 +106,14 @@ namespace OUAN
 		/// @return last id value used
 		inline unsigned long lastId() {return mNextIdNum;}
 
+		/// Tell if the game over flag is set to true
+		/// @return value of the "game over" flag
+		bool isGameOver() const;
+
+		/// Set the value of the game over flag
+		/// @param gameOver	value to set
+		void setGameOver(bool gameOver);
+
 	private:
 
 		/// Add the game object pointer to the objects List
@@ -186,13 +194,10 @@ namespace OUAN
 		// update cycle
 		TGameObjectContainer mGameObjectsToAdd;
 		TGameObjectContainer mGameObjectsToDelete;
-		
-		//BEWARE!! Delay further analysis on this till
-		// we have the class on terrains and such
-		// For the time being, just render island, etc meshes
-		// as game objects :S	
 
-		//LandscapePtr mLandscape; 
+		bool mGameOver;
+		
+
 	};
 }
 #endif

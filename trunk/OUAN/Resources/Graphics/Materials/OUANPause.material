@@ -1,0 +1,28 @@
+material OUAN/Pause/Background
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture scanline.png
+			}
+		}
+	}
+}
+material OUAN/Pause/TextBox
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture black.png
+			}
+		}
+	}
+}

@@ -38,6 +38,10 @@ namespace OUAN
 		/// void renderGUI(OUAN::ApplicationPtr app);
 		/// Free memory
 		void cleanUp();
+		/// Reset the GUI subsyste, typically in response
+		/// to a render subsystem reset
+		/// @param app the parent application
+		void reset(ApplicationPtr app);
 
 		/// Inject the input system's keyboard event data to CEGUI
 		/// @param eventType	the specific type of key event (e.g keyDown, keyUp)
@@ -69,6 +73,8 @@ namespace OUAN
 
 		/// init resource groups
 		void initResourceGroups();
+
+		void clearRenderer();
 
 	};
 }

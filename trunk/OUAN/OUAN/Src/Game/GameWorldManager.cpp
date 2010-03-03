@@ -165,6 +165,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
+	mGameOver=false;
 }
 
 void GameWorldManager::clearContainers()
@@ -203,13 +204,13 @@ void GameWorldManager::unloadLevel()
 	clearContainers();
 	//TODO RenderSubsystem CLEAR
 	//PHysycs subsystem clear, etc...
-	//landscape->cleanUp();
 }
 
 /// init object
 void GameWorldManager::init(ApplicationPtr app)
 {
 	mNextIdNum=0;
+	mGameOver=false;
 	mApp=app;
 
 	clearContainers();
@@ -758,4 +759,14 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
+}
+
+bool GameWorldManager::isGameOver()const
+{
+	return mGameOver;
+}
+
+void GameWorldManager::setGameOver(bool gameOver)
+{
+	mGameOver=gameOver;
 }

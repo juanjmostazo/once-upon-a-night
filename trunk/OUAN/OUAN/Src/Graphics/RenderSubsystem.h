@@ -8,6 +8,7 @@
 
 namespace OUAN
 {
+
 	/// This class will encapsulate the rendering functionality
 	/// Atm, the rendering engine it's based on is Ogre3D
 	class RenderSubsystem
@@ -127,18 +128,24 @@ namespace OUAN
 		/// Turn off visual debugger
 		void hideVisualDebugger();
 
-		/// Turn on debug overlay's visibility
-		void showDebugOverlay();
-		/// Turn off debug overlay's visibility
-		void hideDebugOverlay();
-		
-		/// Display HUD
-		void showHUD();
-
 		/// Activates next camera
 		void changeCamera();
 		/// Activates next camera controller type
 		void changeCameraController();
+
+		/// Hides the overlay named 'overlayName', if found
+		/// @param overlayName	name of the overlay to hide
+		void hideOverlay(const std::string& overlayName);
+		/// Display the overlay named 'overlayName', if found
+		void showOverlay(const std::string& overlayName);
+
+		void pauseRendering();
+		void resumeRendering();
+
+		void clearScene();
+		void resetScene();
+
+		void captureScene(const std::string& name);
 
 
 	protected:

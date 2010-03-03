@@ -36,7 +36,7 @@ namespace OUAN
 	//	Core module-related constants, type definitions and forwarded declarations
 	//-------------------------------------
 		const int AI_FPS=60;
-		const int SKIP_TICKS=1000/AI_FPS;
+		const int SKIP_TICKS=1000000/AI_FPS;
 		const int MAX_FRAMESKIP=5;
 
 		const int DEBUGMODE_NONE=0;

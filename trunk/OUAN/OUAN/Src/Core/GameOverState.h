@@ -1,18 +1,19 @@
-#ifndef GAMEPAUSEDSTATEH_H
-#define GAMEPAUSEDSTATEH_H
+#ifndef GAMEOVERSTATEH_H
+#define GAMEOVERSTATEH_H
 
 #include "../OUAN.h"
 #include "GameState.h"
 namespace OUAN
 {
-	const std::string OVERLAY_PAUSE_SCREEN="OUAN/PauseOverlay";
-	///State corresponding to the game's extras menu
-	class GamePausedState: public GameState{
+	const std::string OVERLAY_GAMEOVER_SCREEN="OUAN/GameOverOverlay";
+	/// State that'll be loaded when the player's died and exhausted
+	/// all of its lives
+	class GameOverState: public GameState{
 	public:
-		/// init extras screen's resources
+		/// init game over state's resources
 		void init(ApplicationPtr app);
 
-		/// Clean up extras screen's resources
+		/// free game over state's resources
 		void cleanUp();
 
 		/// pause state
@@ -27,14 +28,12 @@ namespace OUAN
 		/// @param app	the parent app
 		void update(long elapsedTime);
 
-		/// Render pause screen to the display device
-		/// @return true if the rendering operation succeeded.
-		bool render();
-
 		/// Default constructor
-		GamePausedState();
+		GameOverState();
 		/// Destructor
-		~GamePausedState();
+		~GameOverState();
+
+		bool render();
 
 	};
 }
