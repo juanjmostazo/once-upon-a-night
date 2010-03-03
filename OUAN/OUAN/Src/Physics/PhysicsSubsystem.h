@@ -51,6 +51,9 @@ namespace OUAN
 		virtual bool onHitEvent(const NxOgre::RaycastHit& raycastHit);
 		virtual void onContact(const NxOgre::ContactPair& contactPair);
 
+		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+			void* controller, unsigned int collisionEvent);
+
 		//Specific physics character callbacks
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
 		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other);
