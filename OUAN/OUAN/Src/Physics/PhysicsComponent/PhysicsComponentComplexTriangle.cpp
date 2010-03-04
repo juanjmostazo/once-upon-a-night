@@ -12,6 +12,16 @@ PhysicsComponentComplexTriangle::~PhysicsComponentComplexTriangle()
 
 }
 
+void PhysicsComponentComplexTriangle::create()
+{
+
+}
+
+void PhysicsComponentComplexTriangle::destroy()
+{
+
+}
+
 NxOgre::TriangleGeometry* PhysicsComponentComplexTriangle::getNxOgreTriangleGeometry()
 {
 	return mNxOgreTriangleGeometry;

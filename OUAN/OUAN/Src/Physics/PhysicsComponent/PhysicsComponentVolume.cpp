@@ -12,6 +12,16 @@ PhysicsComponentVolume::~PhysicsComponentVolume()
 
 }
 
+void PhysicsComponentVolume::create()
+{
+
+}
+
+void PhysicsComponentVolume::destroy()
+{
+
+}
+
 NxOgre::Volume* PhysicsComponentVolume::getNxOgreVolume()
 {
 	return mNxOgreVolume;

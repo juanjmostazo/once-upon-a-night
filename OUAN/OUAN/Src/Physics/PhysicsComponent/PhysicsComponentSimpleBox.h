@@ -12,6 +12,9 @@ namespace OUAN
 		PhysicsComponentSimpleBox(const std::string& type="");
 		~PhysicsComponentSimpleBox();
 
+		virtual void create();
+		virtual void destroy();
+
 		NxOgre::Vec3 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec3 pNxOgreSize);
 

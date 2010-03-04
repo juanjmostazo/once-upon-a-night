@@ -12,6 +12,9 @@ namespace OUAN
 		PhysicsComponentCharacter(const std::string& type="");
 		~PhysicsComponentCharacter();
 
+		virtual void create();
+		virtual void destroy();
+
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		NxOgre::Controller* getNxOgreController();
 

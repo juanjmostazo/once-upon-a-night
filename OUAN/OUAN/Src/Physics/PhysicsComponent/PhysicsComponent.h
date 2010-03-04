@@ -14,6 +14,9 @@ namespace OUAN
 		PhysicsComponent(const std::string& type="");
 		~PhysicsComponent();
 
+		virtual void create();
+		virtual void destroy();
+
 		virtual void update(long elapsedTime);
 
 		virtual Ogre::SceneNode* getSceneNode();

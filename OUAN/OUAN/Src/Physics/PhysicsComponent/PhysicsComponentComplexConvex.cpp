@@ -12,6 +12,16 @@ PhysicsComponentComplexConvex::~PhysicsComponentComplexConvex()
 
 }
 
+void PhysicsComponentComplexConvex::create()
+{
+
+}
+
+void PhysicsComponentComplexConvex::destroy()
+{
+
+}
+
 NxOgre::Convex* PhysicsComponentComplexConvex::getNxOgreConvex()
 {
 	return mNxOgreConvex;

@@ -12,6 +12,16 @@ PhysicsComponentVolumeBox::~PhysicsComponentVolumeBox()
 
 }
 
+void PhysicsComponentVolumeBox::create()
+{
+
+}
+
+void PhysicsComponentVolumeBox::destroy()
+{
+
+}
+
 NxOgre::Vec3 PhysicsComponentVolumeBox::getNxOgreSize()
 {
 	return mNxOgreSize;

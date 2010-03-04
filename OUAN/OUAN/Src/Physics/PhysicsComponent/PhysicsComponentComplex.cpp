@@ -12,6 +12,16 @@ PhysicsComponentComplex::~PhysicsComponentComplex()
 
 }
 
+void PhysicsComponentComplex::create()
+{
+
+}
+
+void PhysicsComponentComplex::destroy()
+{
+
+}
+
 TPhysicsComponentComplexParameters::TPhysicsComponentComplexParameters() : TPhysicsComponentParameters()
 {
 

@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentComplex(const std::string& type="");
 		~PhysicsComponentComplex();
 
+		virtual void create();
+		virtual void destroy();
+
 	protected:
 
 	};

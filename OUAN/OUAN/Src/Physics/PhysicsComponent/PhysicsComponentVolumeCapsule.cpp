@@ -12,6 +12,16 @@ PhysicsComponentVolumeCapsule::~PhysicsComponentVolumeCapsule()
 
 }
 
+void PhysicsComponentVolumeCapsule::create()
+{
+
+}
+
+void PhysicsComponentVolumeCapsule::destroy()
+{
+
+}
+
 NxOgre::Vec2 PhysicsComponentVolumeCapsule::getNxOgreSize()
 {
 	return mNxOgreSize;

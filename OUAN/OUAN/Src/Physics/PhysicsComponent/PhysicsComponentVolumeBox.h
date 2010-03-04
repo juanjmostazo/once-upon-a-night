@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentVolumeBox(const std::string& type="");
 		~PhysicsComponentVolumeBox();
 
+		virtual void create();
+		virtual void destroy();
+
 		NxOgre::Vec3 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec3 pNxOgreSize);
 

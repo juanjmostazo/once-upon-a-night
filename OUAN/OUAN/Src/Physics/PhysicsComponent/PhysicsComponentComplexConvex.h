@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentComplexConvex(const std::string& type="");
 		~PhysicsComponentComplexConvex();
 
+		virtual void create();
+		virtual void destroy();
+
 		NxOgre::Convex* getNxOgreConvex();
 		void setNxOgreConvex(NxOgre::Convex* pNxOgreConvex);
 
