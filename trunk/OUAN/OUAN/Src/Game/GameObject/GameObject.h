@@ -9,7 +9,6 @@ namespace OUAN
 	private:
 		/// GameObject identifier (i.e, "pc_ony")
 		std::string mName;
-
 	public:
 		//Constructor
 		GameObject(const std::string& name);
@@ -23,6 +22,11 @@ namespace OUAN
 		/// Update object
 		virtual void update(long elapsedTime);
 
+		// Sets the GameObject to Dreams
+		virtual void setToDreams();
+		// Sets the GameObject to Nightmares
+		virtual void setToNightmares();
+
 		//TODO: Add event-related methods
 	};
 
@@ -33,6 +37,8 @@ namespace OUAN
 		~TGameObjectParameters();
 
 		std::string name;
+		std::string dreamsName;
+		std::string nightmaresName;
 	};
 }
 #endif

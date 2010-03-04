@@ -387,7 +387,7 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
-Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
 {
 	unsigned int i;
 	Entity *pEntity = 0;
@@ -411,7 +411,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String name,TRenderComponentEn
 		}
 
 		//attach to Scene Manager
-		pEntityNode=mSceneManager->getSceneNode(name);
+		pEntityNode=mSceneManager->getSceneNode(nodeName);
 		pEntityNode->attachObject(pEntity);
 	}
 	catch(Ogre::Exception &/*e*/)

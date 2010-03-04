@@ -67,6 +67,9 @@ namespace OUAN
 		class GameWorldManager;
 		class Component;
 
+		const int DREAMS=0;
+		const int NIGHTMARES=1;
+
 		//Render Components
 		class RenderComponent;
 		class TRenderComponentParameters;

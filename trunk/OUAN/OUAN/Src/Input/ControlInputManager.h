@@ -30,6 +30,7 @@ namespace OUAN
 	const std::string KEY_DEBUG_PHYSICS = "DebugPhysics";
 	const std::string KEY_CHANGE_CAMERA = "ChangeCamera";
 	const std::string KEY_CHANGE_CAMERA_CONTROLLER = "ChangeCameraController";
+	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
 
 	/// Since some of OIS' key codes and mouse button ids
 	/// overlap, negative numbers will be used in the
@@ -60,6 +61,7 @@ namespace OUAN
 		int keyWalk,keyRotateLeft,keyRotateRight,keyAutoTarget;
 		int keyQuickExit, keyDebugPerformance, keyDebugPhysics;
 		int keyChangeCamera, keyChangeCameraController;
+		int keyChangeWorld;
 	} TDefaultInputData;
 
 	class ControlInputManager : public FullInputManager
@@ -104,6 +106,8 @@ namespace OUAN
 		bool isPressedToggleChangeCamera();
 		/// Convenience method to change current camera controller
 		bool isPressedToggleChangeCameraController();
+		/// Convenience method to change current world
+		bool isPressedToggleChangeWorld();
 
 		void getMouseStateRelValues(
 			double*, double*, double*);			// Mouse x, y, z coordinate values
