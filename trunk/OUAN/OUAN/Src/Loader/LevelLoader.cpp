@@ -372,7 +372,8 @@ void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
 	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
 
 	//Get PhysicsComponentComplexConvex
-	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(XMLCustomProperties);
+	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(XMLCustomProperties,
+		tGameObjectTerrainParameters.tRenderComponentEntityParameters.meshfile);
 	//tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(XMLNode);
 
 	//Create GameObject
@@ -1041,24 +1042,24 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 
 }
 
-TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode)
+TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string meshfile)
 {
 	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 
 	//Get Component properties
 	tPhysicsComponentComplexConvexParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplexConvex::mass");
-	tPhysicsComponentComplexConvexParameters.nxsFile = getPropertyString(XMLNode, "PhysicsComponentComplexConvex::nxsFile");
+	tPhysicsComponentComplexConvexParameters.nxsFile = "nxs:CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
 
 	return tPhysicsComponentComplexConvexParameters;
 }
 
-TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode)
+TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string meshfile)
 {
 	TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
 
 	//Get Component properties
 	tPhysicsComponentComplexTriangleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplexTriangle::mass");
-	tPhysicsComponentComplexTriangleParameters.nxsFile = getPropertyString(XMLNode, "PhysicsComponentComplexTriangle::nxsFile");
+	tPhysicsComponentComplexTriangleParameters.nxsFile = "nxs:TRIANGLE_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
 
 	return tPhysicsComponentComplexTriangleParameters;
 }
@@ -1081,6 +1082,7 @@ TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleB
 TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode)
 {
 	TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
+
 	//Get Component properties
 	tPhysicsComponentSimpleCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule::mass");
 	tPhysicsComponentSimpleCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule::radius");
