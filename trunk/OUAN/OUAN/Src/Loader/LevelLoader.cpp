@@ -755,7 +755,7 @@ TRenderComponentPositionalParameters LevelLoader::processRenderComponentPosition
 	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 	//Get parent SceneNode name
-	tRenderComponentPositionalParameters.parentSceneNodeName = getAttrib(XMLNode, "parentnode");
+	tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
 
 	//Get SceneNode parameters
 	tRenderComponentPositionalParameters.position = getPropertyVector3(XMLNode,"position");
