@@ -90,7 +90,7 @@ bool ControlInputManager::loadConfig()
 
 		success = false;
 	}
-
+ 
 //	config.~Configuration();
 	return success;
 }
