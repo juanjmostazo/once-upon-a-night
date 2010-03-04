@@ -114,6 +114,15 @@ namespace OUAN
 		/// @param gameOver	value to set
 		void setGameOver(bool gameOver);
 
+		/// Sets the world to Dreams
+		void setToDreams();
+		/// Sets the world to Nightmares
+		void setToNightmares();
+		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
+		void changeWorld();
+		/// returns NIGHTMARES or DREAMS depending on current world state
+		int getCurrentWorld();
+
 	private:
 
 		/// Add the game object pointer to the objects List
@@ -196,6 +205,9 @@ namespace OUAN
 		TGameObjectContainer mGameObjectsToDelete;
 
 		bool mGameOver;
+
+		// Current world (DREAMS or NIGHTMARES)
+		int world;
 		
 
 	};

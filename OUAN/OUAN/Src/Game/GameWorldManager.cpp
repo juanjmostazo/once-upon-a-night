@@ -45,7 +45,7 @@ using namespace OUAN;
 unsigned long GameWorldManager::mNextIdNum=0;
 GameWorldManager::GameWorldManager()
 {
-
+	world=DREAMS;
 }
 GameWorldManager::~GameWorldManager()
 {
@@ -165,6 +165,9 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
+
+	setToDreams();
+
 	mGameOver=false;
 }
 
@@ -209,6 +212,7 @@ void GameWorldManager::unloadLevel()
 /// init object
 void GameWorldManager::init(ApplicationPtr app)
 {
+	world=DREAMS;
 	mNextIdNum=0;
 	mGameOver=false;
 	mApp=app;
@@ -426,7 +430,8 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectOny->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectOny->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
@@ -456,15 +461,24 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 		pGameObjectTripollo->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntity
-		pGameObjectTripollo->setRenderComponentEntity(factory->createRenderComponentEntity(
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityParameters));
+		//Create RenderComponentEntityDreams
+		pGameObjectTripollo->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntityNightmares
+		pGameObjectTripollo->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters));
 
 		//Create PhysicsComponent
 		pGameObjectTripollo->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
 			pGameObjectTripollo,
 			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTripollo->getRenderComponentPositional()));
+
+	//Initialise as in Dreams world
+	pGameObjectTripollo->setToDreams();
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
@@ -485,7 +499,8 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectEye->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectEye->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectEyeParameters.name,
 			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
@@ -513,7 +528,8 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectItem1UP->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectItem1UP->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
 
 	//Add Object to GameWorldManager
@@ -535,7 +551,8 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectPortal->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectPortal->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectPortalParameters.name,
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters));
 
 	//Add Object to GameWorldManager
@@ -557,7 +574,8 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectItemMaxHP->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectItemMaxHP->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
 
 	//Add Object to GameWorldManager
@@ -579,7 +597,8 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectTerrain->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectTerrain->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectTerrainParameters.name,
 			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
@@ -696,7 +715,8 @@ void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters 
 			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectVolumeBox->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectVolumeBox->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectVolumeBoxParameters.name,
 			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters));
 
 		//Make RenderComponentEntity not visible
@@ -727,7 +747,8 @@ void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsulePar
 			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectVolumeCapsule->setRenderComponentEntity(factory->createRenderComponentEntity(
+		pGameObjectVolumeCapsule->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectVolumeCapsuleParameters.name,
 			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters));
 
 		//Make RenderComponentEntity not visible
@@ -769,4 +790,46 @@ bool GameWorldManager::isGameOver()const
 void GameWorldManager::setGameOver(bool gameOver)
 {
 	mGameOver=gameOver;
+}
+
+
+void GameWorldManager::setToDreams()
+{
+	world=DREAMS;
+
+	TGameObjectContainerIterator it;
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		it->second->setToDreams();
+	}
+
+}
+void GameWorldManager::setToNightmares()
+{
+	world=NIGHTMARES;
+
+	TGameObjectContainerIterator it;
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		it->second->setToNightmares();
+	}
+}
+
+int GameWorldManager::getCurrentWorld()
+{
+	return world;
+}
+
+void GameWorldManager::changeWorld()
+{	
+	if(world==DREAMS)
+	{
+		setToNightmares();
+	}
+	else if(world==NIGHTMARES)
+	{
+		setToDreams();
+	}
 }

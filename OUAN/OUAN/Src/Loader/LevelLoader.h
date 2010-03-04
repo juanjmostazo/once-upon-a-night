@@ -24,14 +24,17 @@ namespace OUAN
 		void processLevel(TiXmlElement *XMLNode);
 		void processProject(TiXmlElement *XMLNode);
 		void processObjects(TiXmlElement *XMLNode,OUAN::String type);
-		void processObject(TiXmlElement *XMLNode);
+		void processObject(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode);
 		std::string getGameObjectType(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
+		TiXmlElement * getGameObjectXMLNode(TiXmlElement *XMLGameObjectsNode,std::string gameObjectName);
+		std::string nightmaresName(std::string dreamsName,std::string gameObjectType);
+		std::string baseName(std::string dreamsName,std::string gameObjectType);
 
 		//Game Object Processors
 		void processGameObjectScene(TiXmlElement *XMLNode);
 		void processGameObjectOny(TiXmlElement *XMLNode);
-		void processGameObjectTripollo(TiXmlElement *XMLNode);
+		void processGameObjectTripollo(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode);
 		void processGameObjectTerrain(TiXmlElement *XMLNode);
 		void processGameObjectLight(TiXmlElement *XMLNode);
 		void processGameObjectParticleSystem(TiXmlElement *XMLNode);

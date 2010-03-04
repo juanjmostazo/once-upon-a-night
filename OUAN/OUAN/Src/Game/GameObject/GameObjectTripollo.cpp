@@ -23,15 +23,37 @@ RenderComponentPositionalPtr GameObjectTripollo::getRenderComponentPositional() 
 	return mRenderComponentPositional;
 }
 
-void GameObjectTripollo::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTripollo::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntity=pRenderComponentEntity;
+	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-
-RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntity() const
+void GameObjectTripollo::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	return mRenderComponentEntity;
+	mRenderComponentEntityNightmares=pRenderComponentEntity;
+}
+
+void GameObjectTripollo::setToDreams()
+{
+		Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO DREAMS");
+	mRenderComponentEntityDreams->setVisible(true);
+	mRenderComponentEntityNightmares->setVisible(false);
+}
+void GameObjectTripollo::setToNightmares()
+{
+		Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO NIGHTMARES");
+	mRenderComponentEntityDreams->setVisible(false);
+	mRenderComponentEntityNightmares->setVisible(true);
+}
+
+RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityDreams() const
+{
+	return mRenderComponentEntityDreams;
+}
+
+RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityNightmares() const
+{
+	return mRenderComponentEntityNightmares;
 }
 
 void GameObjectTripollo::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)

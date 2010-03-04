@@ -139,6 +139,12 @@ void GameRunningState::handleEvents()
 
 		mApp->mKeyBuffer = 500000;
 	}
+	else if (mApp->isPressedToggleChangeWorld() && mApp->mKeyBuffer<0)
+	{
+		mApp->getGameWorldManager()->changeWorld();
+
+		mApp->mKeyBuffer = 500000;
+	}
 	
 	///////////////////////////////////////////////////////////
 	// ONY: TYPE OF MOVEMENT

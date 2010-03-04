@@ -133,7 +133,7 @@ void LevelLoader::processObjects(TiXmlElement *XMLNode, String type)
 		String current_object_type = getAttrib(pElement, "typename");
 		if( type.compare(current_object_type)==0)
 		{
-			processObject(pElement);
+			processObject(pElement,XMLNode);
 		}
 		pElement = pElement->NextSiblingElement("OBJECT");
 	}
@@ -173,7 +173,9 @@ std::string LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 		{
 			return GAME_OBJECT_TYPE_ONY;
 		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_TRIPOLLO.size()).compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+		else if(name.substr(0,GAME_OBJECT_TYPE_TRIPOLLO.size()).compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
+			&& name.substr(GAME_OBJECT_TYPE_TRIPOLLO.size()+1,1).compare("d")==0
+			)
 		{
 			return GAME_OBJECT_TYPE_TRIPOLLO;
 		}
@@ -226,7 +228,7 @@ std::string LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
 	return type;
 }
 
-void LevelLoader::processObject(TiXmlElement *XMLNode)
+void LevelLoader::processObject(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode)
 {
 	String gameObjectType=getGameObjectType(XMLNode);
 	if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
@@ -239,7 +241,7 @@ void LevelLoader::processObject(TiXmlElement *XMLNode)
 	}
 	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 	{
-		processGameObjectTripollo(XMLNode);
+		processGameObjectTripollo(XMLNode,XMLGameObjectsNode);
 	}
 	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 	{
@@ -332,7 +334,7 @@ void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
 
 }
 
-void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode)
 {
 	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
 
@@ -340,10 +342,16 @@ void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode)
 	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_TRIPOLLO);
 
 	//Get name
-	tGameObjectTripolloParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectTripolloParameters.dreamsName = getAttrib(XMLNode, "name");
+	tGameObjectTripolloParameters.nightmaresName = nightmaresName(tGameObjectTripolloParameters.dreamsName,GAME_OBJECT_TYPE_TRIPOLLO);
+	tGameObjectTripolloParameters.name = baseName(tGameObjectTripolloParameters.dreamsName,GAME_OBJECT_TYPE_TRIPOLLO);
+
+	//Get Nightmares XML node
+	TiXmlElement *XMLNodeNightmares =getGameObjectXMLNode(XMLGameObjectsNode,tGameObjectTripolloParameters.nightmaresName);
 
 	//Get RenderComponentEntity
-	tGameObjectTripolloParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(XMLNodeNightmares);
 
 	//Get RenderComponentPositional
 	tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(XMLNode);
@@ -1228,22 +1236,15 @@ TiXmlElement * LevelLoader::parseCustomPropertiesFile(std::string gameObjectType
 {
 	std::ifstream customPropertiesFile;
 	std::string customPropertiesFilePath;
-	;
 
 	customPropertiesFilePath=GAME_OBJECT_PARAMETERS_PATH+gameObjectType+".ctp";
 
 	//Open Ony Custom properties file
-
-	// Open the .ctp File
-	//customPropertiesFile.open(customPropertiesFilePath.c_str());
-
 	XMLCustomPropertiesDocument = new TiXmlDocument(customPropertiesFilePath.c_str());
 
 	if (!XMLCustomPropertiesDocument->LoadFile()){
 		Ogre::LogManager::getSingleton().logMessage("Error reading "+customPropertiesFilePath);
 	} 
-
-	//XMLCustomProperties = XMLCustomPropertiesDocument->RootElement();
 
 	TiXmlHandle docHandle(XMLCustomPropertiesDocument);
 	TiXmlElement *XMLCustomProperties = docHandle.FirstChildElement().Element();
@@ -1255,3 +1256,42 @@ TiXmlElement * LevelLoader::parseCustomPropertiesFile(std::string gameObjectType
 
 	return XMLCustomProperties;
 }
+
+
+TiXmlElement * LevelLoader::getGameObjectXMLNode(TiXmlElement *XMLGameObjectsNode,std::string gameObjectName)
+{
+	TiXmlElement *pElement;
+
+	// Process OBJECTs of selected type
+	pElement = XMLGameObjectsNode->FirstChildElement("OBJECT");
+	while(pElement)
+	{
+		String current_object_name = getAttrib(pElement, "name");
+		if( gameObjectName.compare(current_object_name)==0)
+		{
+			return pElement;
+		}
+		pElement = pElement->NextSiblingElement("OBJECT");
+	}
+	return pElement;
+}
+
+std::string LevelLoader::nightmaresName(std::string dreamsName,std::string gameObjectType)
+{
+	std::string nightmaresName;
+
+	nightmaresName=dreamsName;
+
+	nightmaresName[gameObjectType.size()+1]='n';
+
+	return	nightmaresName;
+}		
+
+std::string LevelLoader::baseName(std::string dreamsName,std::string gameObjectType)
+{
+	std::string baseName;
+
+	baseName=gameObjectType+dreamsName.substr(gameObjectType.size()+2,dreamsName.size()-gameObjectType.size()+2);
+
+	return	baseName;
+}		

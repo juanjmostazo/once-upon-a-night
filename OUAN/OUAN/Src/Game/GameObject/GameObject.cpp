@@ -16,6 +16,15 @@ void GameObject::update(long elapsedTime)
 {
 }
 
+void GameObject::setToDreams()
+{
+	
+}
+void GameObject::setToNightmares()
+{
+
+}
+
 const std::string& GameObject::getName() const
 {
 	return mName;
@@ -23,7 +32,11 @@ const std::string& GameObject::getName() const
 
 TGameObjectParameters::TGameObjectParameters()
 {
+	this->name="";
+	this->dreamsName="";
+	this->nightmaresName="";
 }
 TGameObjectParameters::~TGameObjectParameters()
 {
 }
+
