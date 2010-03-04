@@ -44,10 +44,22 @@ PhysicsComponentVolumeBoxPtr GameObjectVolumeBox::getPhysicsComponentVolumeBox()
 	return mPhysicsComponentVolumeBox;
 }
 
+void GameObjectVolumeBox::setDreamsMode()
+{
+
+}
+
+void GameObjectVolumeBox::setNightmaresMode()
+{
+
+}
+
 TGameObjectVolumeBoxParameters::TGameObjectVolumeBoxParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectVolumeBoxParameters::~TGameObjectVolumeBoxParameters()
 {
+
 }

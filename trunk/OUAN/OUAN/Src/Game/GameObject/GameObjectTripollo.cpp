@@ -33,19 +33,6 @@ void GameObjectTripollo::setRenderComponentEntityNightmares(RenderComponentEntit
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-void GameObjectTripollo::setToDreams()
-{
-		Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO DREAMS");
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityNightmares->setVisible(false);
-}
-void GameObjectTripollo::setToNightmares()
-{
-		Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO NIGHTMARES");
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
-}
-
 RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
@@ -66,10 +53,25 @@ PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter()
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectTripollo::setDreamsMode()
+{
+	Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO DREAMS");
+	mRenderComponentEntityDreams->setVisible(true);
+	mRenderComponentEntityNightmares->setVisible(false);
+}
+void GameObjectTripollo::setNightmaresMode()
+{
+	Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO NIGHTMARES");
+	mRenderComponentEntityDreams->setVisible(false);
+	mRenderComponentEntityNightmares->setVisible(true);
+}
+
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectTripolloParameters::~TGameObjectTripolloParameters()
 {
+
 }

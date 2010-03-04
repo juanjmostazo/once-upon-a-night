@@ -32,9 +32,22 @@ RenderComponentPositionalPtr GameObjectParticleSystem::getRenderComponentPositio
 	return mRenderComponentPositional;
 }
 
+void GameObjectParticleSystem::setDreamsMode()
+{
+
+}
+
+void GameObjectParticleSystem::setNightmaresMode()
+{
+
+}
+
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {
+
 }
+
 TGameObjectParticleSystemParameters::~TGameObjectParticleSystemParameters()
 {
+
 }

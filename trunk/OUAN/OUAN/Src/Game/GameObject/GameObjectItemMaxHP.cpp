@@ -43,11 +43,22 @@ PhysicsComponentComplexTrianglePtr GameObjectItemMaxHP::getPhysicsComponentCompl
 	return mPhysicsComponentComplexTriangle;
 }
 
+void GameObjectItemMaxHP::setDreamsMode()
+{
+
+}
+
+void GameObjectItemMaxHP::setNightmaresMode()
+{
+
+}
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectItemMaxHPParameters::~TGameObjectItemMaxHPParameters()
 {
+
 }

@@ -50,6 +50,11 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
 		//PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex();
+
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	class TGameObjectTerrainParameters: public TGameObjectParameters

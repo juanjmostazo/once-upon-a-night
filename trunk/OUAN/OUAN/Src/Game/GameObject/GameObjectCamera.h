@@ -27,7 +27,10 @@ namespace OUAN
 		/// @param pRenderComponentCamera the Camera component to set
 		void setRenderComponentCamera(RenderComponentCameraPtr pRenderComponentCamera);
 
-
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	/// Transport object carrying around data from the level loader

@@ -478,7 +478,7 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 			pGameObjectTripollo->getRenderComponentPositional()));
 
 	//Initialise as in Dreams world
-	pGameObjectTripollo->setToDreams();
+	pGameObjectTripollo->setDreamsMode();
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
@@ -801,7 +801,7 @@ void GameWorldManager::setToDreams()
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		it->second->setToDreams();
+		it->second->setDreamsMode();
 	}
 
 }
@@ -813,7 +813,7 @@ void GameWorldManager::setToNightmares()
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		it->second->setToNightmares();
+		it->second->setNightmaresMode();
 	}
 }
 

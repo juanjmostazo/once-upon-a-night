@@ -23,10 +23,22 @@ RenderComponentViewportPtr GameObjectViewport::getRenderComponentViewport() cons
 	return mRenderComponentViewport;
 }
 
+void GameObjectViewport::setDreamsMode()
+{
+
+}
+
+void GameObjectViewport::setNightmaresMode()
+{
+
+}
+
 TGameObjectViewportParameters::TGameObjectViewportParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectViewportParameters::~TGameObjectViewportParameters()
 {
+
 }

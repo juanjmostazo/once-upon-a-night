@@ -32,9 +32,22 @@ RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() con
 	return mRenderComponentPositional;
 }
 
+void GameObjectLight::setDreamsMode()
+{
+
+}
+
+void GameObjectLight::setNightmaresMode()
+{
+
+}
+
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {
+
 }
+
 TGameObjectLightParameters::~TGameObjectLightParameters()
 {
+
 }

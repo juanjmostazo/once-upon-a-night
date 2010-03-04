@@ -46,6 +46,11 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentVolumeCapsulePtr getPhysicsComponentVolumeCapsule();
+
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	class TGameObjectVolumeCapsuleParameters: public TGameObjectParameters

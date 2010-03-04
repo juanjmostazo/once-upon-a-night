@@ -54,9 +54,9 @@ namespace OUAN
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 
 		// Sets the GameObject to Dreams
-		virtual void setToDreams();
+		virtual void setDreamsMode();
 		// Sets the GameObject to Nightmares
-		virtual void setToNightmares();
+		virtual void setNightmaresMode();
 	};
 	
 	/// Information data structure to carry around data between the

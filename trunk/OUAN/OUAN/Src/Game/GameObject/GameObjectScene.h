@@ -19,6 +19,11 @@ namespace OUAN
 		//get/set
 		RenderComponentScenePtr getRenderComponentScene() const;
 		void setRenderComponentScene(RenderComponentScenePtr pRenderComponentScene);
+
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	class TGameObjectSceneParameters: public TGameObjectParameters

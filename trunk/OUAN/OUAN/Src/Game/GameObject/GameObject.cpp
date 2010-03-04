@@ -14,13 +14,15 @@ GameObject::~GameObject()
 }
 void GameObject::update(long elapsedTime)
 {
+
 }
 
-void GameObject::setToDreams()
+void GameObject::setDreamsMode()
 {
 	
 }
-void GameObject::setToNightmares()
+
+void GameObject::setNightmaresMode()
 {
 
 }
@@ -36,7 +38,9 @@ TGameObjectParameters::TGameObjectParameters()
 	this->dreamsName="";
 	this->nightmaresName="";
 }
+
 TGameObjectParameters::~TGameObjectParameters()
 {
+
 }
 
