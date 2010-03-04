@@ -83,6 +83,9 @@ namespace OUAN
 		//TODO: void processShadows(TiXmlElement *XMLNode);
 		//TODO: void processTrajectory(TiXmlElement *XMLNode);
 
+		TiXmlElement * parseCustomPropertiesFile(std::string gameObjectType);
+		TiXmlDocument * XMLCustomPropertiesDocument;
+
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 
 		OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name);

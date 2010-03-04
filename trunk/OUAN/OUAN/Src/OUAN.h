@@ -3,6 +3,8 @@
 
 #include <map>
 #include <string>
+#include <iostream>
+#include <fstream>
 #include <Ogre.h>
 #include <ois/OIS.h>
 #include <cegui/CEGUI.h>
@@ -197,6 +199,8 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeContainer;
 
 		////////////////////////////////////////////////////////////////////
+
+		const std::string GAME_OBJECT_PARAMETERS_PATH="../../Resources/Levels/GameObjects/";
 
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
