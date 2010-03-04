@@ -12,6 +12,16 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 }
 
+void PhysicsComponentCharacter::create()
+{
+
+}
+
+void PhysicsComponentCharacter::destroy()
+{
+
+}
+
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)
 {
 	mNxOgreController = pNxOgreController;

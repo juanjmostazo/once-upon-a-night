@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentComplexTriangle(const std::string& type="");
 		~PhysicsComponentComplexTriangle();
 
+		virtual void create();
+		virtual void destroy();
+
 		void setNxOgreTriangleGeometry(NxOgre::TriangleGeometry* pNxOgreTriangleGeometry);
 		NxOgre::TriangleGeometry* getNxOgreTriangleGeometry();
 

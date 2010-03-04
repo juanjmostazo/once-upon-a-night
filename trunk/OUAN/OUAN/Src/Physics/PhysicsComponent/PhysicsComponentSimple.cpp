@@ -12,6 +12,16 @@ PhysicsComponentSimple::~PhysicsComponentSimple()
 
 }
 
+void PhysicsComponentSimple::create()
+{
+
+}
+
+void PhysicsComponentSimple::destroy()
+{
+
+}
+
 OGRE3DBody* PhysicsComponentSimple::getNxOgreBody()
 {
 	return mNxOgreBody;

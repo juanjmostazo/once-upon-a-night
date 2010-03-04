@@ -12,6 +12,16 @@ PhysicsComponent::~PhysicsComponent()
 
 }
 
+void PhysicsComponent::create()
+{
+
+}
+
+void PhysicsComponent::destroy()
+{
+
+}
+
 void PhysicsComponent::update(long elapsedTime)
 {
 

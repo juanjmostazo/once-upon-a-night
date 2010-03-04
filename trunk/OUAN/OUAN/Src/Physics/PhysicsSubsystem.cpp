@@ -94,7 +94,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
 	//Initializing scene stuff
-	mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
+	//mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
 	mNxOgreScene->getMaterial(0)->setStaticFriction(mStaticFriction);
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(mDynamicFriction);
 	mNxOgreScene->getMaterial(0)->setRestitution(mRestitution);
@@ -103,10 +103,10 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 
 	//Initializing terrains
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-		initPhysicsComponentComplexTriangle(
-			mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
+	//	initPhysicsComponentComplexTriangle(
+	//		mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
+	//}
 	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
 	//	initPhysicsComponentComplexConvex(
 	//		mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexConvex());
@@ -116,37 +116,37 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	// INIT CHARACTERS
 
 	//Initializing Ony
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
-		initPhysicsComponentCharacter(
-			mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]->getPhysicsComponentCharacter());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
+	//	initPhysicsComponentCharacter(
+	//		mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]->getPhysicsComponentCharacter());
+	//}
 
 	//Initializing Tripollos
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
-		initPhysicsComponentCharacter(
-			mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]->getPhysicsComponentCharacter());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
+	//	initPhysicsComponentCharacter(
+	//		mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]->getPhysicsComponentCharacter());
+	//}
 
 	//Initializing Eyes
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
-		initPhysicsComponentCharacter(
-			mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
+	//	initPhysicsComponentCharacter(
+	//		mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
+	//}
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	// INIT VOLUMES
 
 	//Initializing volume boxes
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
-		initPhysicsComponentVolumeBox(
-			mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer()[i]->getPhysicsComponentVolumeBox());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
+	//	initPhysicsComponentVolumeBox(
+	//		mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer()[i]->getPhysicsComponentVolumeBox());
+	//}
 
 	//Initializing volume capsules
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer().size(); i++){
-		initPhysicsComponentVolumeCapsule(
-			mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer()[i]->getPhysicsComponentVolumeCapsule());
-	}
+	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer().size(); i++){
+	//	initPhysicsComponentVolumeCapsule(
+	//		mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer()[i]->getPhysicsComponentVolumeCapsule());
+	//}
 
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
@@ -158,6 +158,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 void PhysicsSubsystem::update(double elapsedSeconds)
 {
+	/*
 	//Updating Ony
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
 		updateGameObjectOny(elapsedSeconds,
@@ -173,6 +174,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
 		updateGameObjectEye(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]);
 	}
+	*/
 	/*
 	std::stringstream out;
 	out << elapsedSeconds;

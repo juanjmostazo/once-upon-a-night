@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentVolume(const std::string& type="");
 		~PhysicsComponentVolume();
 
+		virtual void create();
+		virtual void destroy();
+
 		NxOgre::Volume* getNxOgreVolume();
 		void setNxOgreVolume(NxOgre::Volume* pNxOgreVolume);
 

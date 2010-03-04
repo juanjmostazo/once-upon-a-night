@@ -30,14 +30,9 @@ GameRunningState::~GameRunningState()
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
-	
-	//TODO: Do this at proper location
+	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
 	mApp->getGameWorldManager()->loadLevel("TestLevel.ogscene");
 	mApp->mKeyBuffer=-1;
-
-	//mApp->getPhysicsSubsystem()->resetLevel();
-	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
-	
 }
 
 /// Clean up main menu's resources

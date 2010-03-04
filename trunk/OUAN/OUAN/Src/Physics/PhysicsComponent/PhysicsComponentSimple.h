@@ -11,6 +11,9 @@ namespace OUAN
 		PhysicsComponentSimple(const std::string& type="");
 		~PhysicsComponentSimple();
 
+		virtual void create();
+		virtual void destroy();
+
 		OGRE3DBody* getNxOgreBody();
 		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
 

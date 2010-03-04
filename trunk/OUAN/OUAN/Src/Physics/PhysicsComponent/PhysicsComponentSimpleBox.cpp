@@ -12,6 +12,16 @@ PhysicsComponentSimpleBox::~PhysicsComponentSimpleBox()
 
 }
 
+void PhysicsComponentSimpleBox::create()
+{
+
+}
+
+void PhysicsComponentSimpleBox::destroy()
+{
+
+}
+
 NxOgre::Vec3 PhysicsComponentSimpleBox::getNxOgreSize()
 {
 	return mNxOgreSize;
