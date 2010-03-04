@@ -26,6 +26,11 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentViewport
 		void setRenderComponentViewport(RenderComponentViewportPtr pRenderComponentViewport);
+
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters

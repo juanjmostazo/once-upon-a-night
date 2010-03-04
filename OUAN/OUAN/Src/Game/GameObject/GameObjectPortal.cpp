@@ -43,11 +43,22 @@ PhysicsComponentComplexTrianglePtr GameObjectPortal::getPhysicsComponentComplexT
 	return mPhysicsComponentComplexTriangle;
 }
 
+void GameObjectPortal::setDreamsMode()
+{
+
+}
+
+void GameObjectPortal::setNightmaresMode()
+{
+
+}
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectPortalParameters::~TGameObjectPortalParameters()
 {
+
 }

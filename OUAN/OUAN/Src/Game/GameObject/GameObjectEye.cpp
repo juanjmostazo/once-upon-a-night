@@ -43,10 +43,22 @@ PhysicsComponentCharacterPtr GameObjectEye::getPhysicsComponentCharacter()
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectEye::setDreamsMode()
+{
+
+}
+
+void GameObjectEye::setNightmaresMode()
+{
+
+}
+
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectEyeParameters::~TGameObjectEyeParameters()
 {
+
 }

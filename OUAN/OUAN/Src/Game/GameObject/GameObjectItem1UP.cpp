@@ -43,11 +43,22 @@ PhysicsComponentComplexTrianglePtr GameObjectItem1UP::getPhysicsComponentComplex
 	return mPhysicsComponentComplexTriangle;
 }
 
+void GameObjectItem1UP::setDreamsMode()
+{
+
+}
+
+void GameObjectItem1UP::setNightmaresMode()
+{
+
+}
 
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectItem1UPParameters::~TGameObjectItem1UPParameters()
 {
+
 }

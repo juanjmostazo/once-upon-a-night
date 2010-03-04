@@ -23,6 +23,16 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 	mRenderComponentScene=pRenderComponentScene;
 }
 
+void GameObjectScene::setDreamsMode()
+{
+
+}
+
+void GameObjectScene::setNightmaresMode()
+{
+
+}
+
 TGameObjectSceneParameters::TGameObjectSceneParameters() : TGameObjectParameters()
 {
 

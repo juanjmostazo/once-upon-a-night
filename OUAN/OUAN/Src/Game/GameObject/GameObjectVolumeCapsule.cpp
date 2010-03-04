@@ -44,10 +44,22 @@ PhysicsComponentVolumeCapsulePtr GameObjectVolumeCapsule::getPhysicsComponentVol
 	return mPhysicsComponentVolumeCapsule;
 }
 
+void GameObjectVolumeCapsule::setDreamsMode()
+{
+
+}
+
+void GameObjectVolumeCapsule::setNightmaresMode()
+{
+
+}
+
 TGameObjectVolumeCapsuleParameters::TGameObjectVolumeCapsuleParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectVolumeCapsuleParameters::~TGameObjectVolumeCapsuleParameters()
 {
+
 }

@@ -23,9 +23,9 @@ namespace OUAN
 		virtual void update(long elapsedTime);
 
 		// Sets the GameObject to Dreams
-		virtual void setToDreams();
+		virtual void setDreamsMode();
 		// Sets the GameObject to Nightmares
-		virtual void setToNightmares();
+		virtual void setNightmaresMode();
 
 		//TODO: Add event-related methods
 	};

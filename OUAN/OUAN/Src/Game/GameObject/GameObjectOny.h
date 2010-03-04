@@ -84,6 +84,11 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
+
+		// Sets the GameObject to Dreams
+		virtual void setDreamsMode();
+		// Sets the GameObject to Nightmares
+		virtual void setNightmaresMode();
 	};
 
 	/// Carries data between the level loader and the object factories

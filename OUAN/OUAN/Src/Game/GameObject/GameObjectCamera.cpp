@@ -23,9 +23,22 @@ void GameObjectCamera::setRenderComponentCamera(RenderComponentCameraPtr pRender
 	mRenderComponentCamera=pRenderComponentCamera;
 }
 
+void GameObjectCamera::setDreamsMode()
+{
+
+}
+
+void GameObjectCamera::setNightmaresMode()
+{
+
+}
+
 TGameObjectCameraParameters::TGameObjectCameraParameters() : TGameObjectParameters()
 {
+
 }
+
 TGameObjectCameraParameters::~TGameObjectCameraParameters()
 {
+
 }

@@ -53,10 +53,22 @@ PhysicsComponentComplexConvexPtr GameObjectTerrain::getPhysicsComponentComplexCo
 	return mPhysicsComponentComplexConvex;
 }
 */
+void GameObjectTerrain::setDreamsMode()
+{
+
+}
+
+void GameObjectTerrain::setNightmaresMode()
+{
+
+}
+
 TGameObjectTerrainParameters::TGameObjectTerrainParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectTerrainParameters::~TGameObjectTerrainParameters()
 {
+
 }

@@ -34,7 +34,10 @@ RenderComponentPositionalPtr GameObjectBillboardSet::getRenderComponentPositiona
 
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {
+
 }
+
 TGameObjectBillboardSetParameters::~TGameObjectBillboardSetParameters()
 {
+
 }

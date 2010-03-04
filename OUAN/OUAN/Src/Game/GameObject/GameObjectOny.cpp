@@ -87,6 +87,16 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectOny::setDreamsMode()
+{
+
+}
+
+void GameObjectOny::setNightmaresMode()
+{
+
+}
+
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
 
