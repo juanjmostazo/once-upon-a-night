@@ -16,6 +16,8 @@
 
 #include "TinyXML/tinyxml.h"
 
+#include "Event/EventDefs.h"
+
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -301,6 +303,12 @@ namespace OUAN
 		// Event manager-related constants, typedefs and forwarded declarations
 		class Event;
 		typedef boost::shared_ptr<Event> EventPtr;
+
+		class BaseEventHandler;
+		typedef boost::shared_ptr<BaseEventHandler> EventHandlerPtr;
+
+		class EventManager;
+		typedef boost::shared_ptr<EventManager> EventManagerPtr;
 
 		///////////////////////////////////////////////////////////////////
 

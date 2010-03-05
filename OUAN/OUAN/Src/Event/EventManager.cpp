@@ -1,4 +1,5 @@
 #include "EventManager.h"
+#include <algorithm>
 using namespace OUAN;
 EventManager::EventManager()
 {
@@ -16,11 +17,13 @@ void EventManager::dispatchEvents()
 	while(!mEventQueue.empty())
 	{
 		EventPtr evt = removeEvent();
-		//for (HandlersIterator it=handlers.begin();it!=handlers.end();++it)
-		//{
-		//	(*it)->handleEvent(evt);
-		//}
-		
+		if (mEventHandlers.count(evt->getEventType()))
+		{
+			for (TEventHandlerList::iterator it = mEventHandlers[evt->getEventType()].begin();it!=mEventHandlers[evt->getEventType()].begin();++it)
+			{
+				(*it)->handleEvent(evt);				
+			}
+		}
 	}
 }
 EventPtr EventManager::peekEvent() const
@@ -38,4 +41,22 @@ EventPtr EventManager::removeEvent()
 		return result;
 	}
 	return EventPtr();
+}
+void EventManager::registerHandler(EventHandlerPtr handler, TEventType evtType)
+{
+	if (mEventHandlers.count(evtType)==0)
+		mEventHandlers[evtType].clear();
+	mEventHandlers[evtType].push_back(handler);
+}
+void EventManager::unregisterHandler(EventHandlerPtr hdl,TEventType evtType)
+{
+	if (!mEventHandlers.empty() && mEventHandlers.count(evtType))
+	{
+		//look for handler in the list
+		TEventHandlerList::iterator newEnd=remove_if(mEventHandlers[evtType].begin(),
+			mEventHandlers[evtType].end(),EventHandlerComparisonFunctor(hdl));
+		mEventHandlers[evtType].erase(newEnd,mEventHandlers[evtType].end());
+		if (mEventHandlers[evtType].size()==0)
+			mEventHandlers.erase(evtType);
+	}
 }
