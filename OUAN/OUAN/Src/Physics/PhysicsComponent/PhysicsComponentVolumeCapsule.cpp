@@ -14,6 +14,8 @@ PhysicsComponentVolumeCapsule::~PhysicsComponentVolumeCapsule()
 
 void PhysicsComponentVolumeCapsule::create()
 {
+	PhysicsComponentVolume::create();
+
 	setNxOgreVolume(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
 		new NxOgre::Capsule(	getNxOgreSize().x,
@@ -25,7 +27,7 @@ void PhysicsComponentVolumeCapsule::create()
 
 void PhysicsComponentVolumeCapsule::destroy()
 {
-
+	PhysicsComponentVolume::destroy();
 }
 
 NxOgre::Vec2 PhysicsComponentVolumeCapsule::getNxOgreSize()

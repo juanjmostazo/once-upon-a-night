@@ -14,12 +14,12 @@ PhysicsComponentComplex::~PhysicsComponentComplex()
 
 void PhysicsComponentComplex::create()
 {
-
+	PhysicsComponent::create();
 }
 
 void PhysicsComponentComplex::destroy()
-{
-
+{	
+	PhysicsComponent::destroy();
 }
 
 TPhysicsComponentComplexParameters::TPhysicsComponentComplexParameters() : TPhysicsComponentParameters()

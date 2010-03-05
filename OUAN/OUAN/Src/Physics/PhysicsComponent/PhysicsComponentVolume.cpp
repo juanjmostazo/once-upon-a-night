@@ -9,17 +9,17 @@ PhysicsComponentVolume::PhysicsComponentVolume(const std::string& type)
 
 PhysicsComponentVolume::~PhysicsComponentVolume()
 {
-
+	
 }
 
 void PhysicsComponentVolume::create()
 {
-
+	PhysicsComponent::create();
 }
 
 void PhysicsComponentVolume::destroy()
 {
-
+	PhysicsComponent::destroy();
 }
 
 NxOgre::Volume* PhysicsComponentVolume::getNxOgreVolume()

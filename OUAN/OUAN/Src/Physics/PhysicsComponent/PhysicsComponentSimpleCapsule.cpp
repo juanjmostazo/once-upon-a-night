@@ -14,6 +14,8 @@ PhysicsComponentSimpleCapsule::~PhysicsComponentSimpleCapsule()
 
 void PhysicsComponentSimpleCapsule::create()
 {
+	PhysicsComponentSimple::create();
+
 	setNxOgreBody(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 		new NxOgre::Capsule(getNxOgreSize().x,
@@ -24,7 +26,7 @@ void PhysicsComponentSimpleCapsule::create()
 
 void PhysicsComponentSimpleCapsule::destroy()
 {
-
+	PhysicsComponentSimple::destroy();
 }
 
 NxOgre::Vec2 PhysicsComponentSimpleCapsule::getNxOgreSize()

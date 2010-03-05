@@ -57,7 +57,10 @@ void GameObjectEye::update(double elapsedSeconds)
 
 void GameObjectEye::setDreamsMode()
 {
-	mPhysicsComponentCharacter->create();
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
 }
 
 void GameObjectEye::setNightmaresMode()

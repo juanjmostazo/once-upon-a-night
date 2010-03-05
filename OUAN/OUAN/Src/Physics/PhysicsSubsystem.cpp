@@ -188,7 +188,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 void PhysicsSubsystem::cleanUp()
 {
 	//resetLevel();
-	mNxOgreWorld->destroyWorld(true);
+	//mNxOgreWorld->destroyWorld(true);
 }
 
 bool PhysicsSubsystem::loadConfig()

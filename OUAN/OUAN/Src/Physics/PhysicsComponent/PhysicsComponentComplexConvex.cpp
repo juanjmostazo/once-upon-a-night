@@ -14,6 +14,8 @@ PhysicsComponentComplexConvex::~PhysicsComponentComplexConvex()
 
 void PhysicsComponentComplexConvex::create()
 {
+	PhysicsComponentComplex::create();
+
 	setNxOgreBody(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 			getNxOgreConvex(),
@@ -23,7 +25,7 @@ void PhysicsComponentComplexConvex::create()
 
 void PhysicsComponentComplexConvex::destroy()
 {
-
+	PhysicsComponentComplex::destroy();
 }
 
 NxOgre::Convex* PhysicsComponentComplexConvex::getNxOgreConvex()

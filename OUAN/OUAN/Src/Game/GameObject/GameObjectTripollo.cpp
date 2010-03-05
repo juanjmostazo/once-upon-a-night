@@ -67,7 +67,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 void GameObjectTripollo::setDreamsMode()
 {
-	mPhysicsComponentCharacter->create();
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
 
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityNightmares->setVisible(false);

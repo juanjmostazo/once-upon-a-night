@@ -27,7 +27,11 @@ namespace OUAN
 		virtual double getMass();
 		virtual void setMass(double pNxOgreMass);
 
+		virtual bool isInUse();
+		virtual void setInUse(bool pInUse);
+
 	protected:
+		bool mInUse;
 		Ogre::SceneNode* mSceneNode;
 		double mNxOgreMass;
 	};
