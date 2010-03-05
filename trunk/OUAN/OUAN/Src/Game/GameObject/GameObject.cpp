@@ -12,14 +12,15 @@ GameObject::~GameObject()
 {
 
 }
-void GameObject::update(long elapsedTime)
+
+void GameObject::update(double elapsedSeconds)
 {
 
 }
 
 void GameObject::setDreamsMode()
 {
-	
+
 }
 
 void GameObject::setNightmaresMode()

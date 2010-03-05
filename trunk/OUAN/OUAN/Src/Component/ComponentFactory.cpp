@@ -160,6 +160,7 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 						tPhysicsComponentCharacterParameters.height));
 
 	NxOgre::ControllerDescription mNxOgreControllerDescription;
+	mNxOgreControllerDescription.mCallback=mApp->getPhysicsSubsystem().get();
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 

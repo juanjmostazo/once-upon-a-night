@@ -85,6 +85,8 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 
+		/// Update object
+		virtual void update(double elapsedSeconds);
 		// Sets the GameObject to Dreams
 		virtual void setDreamsMode();
 		// Sets the GameObject to Nightmares

@@ -14,7 +14,12 @@ PhysicsComponentSimpleCapsule::~PhysicsComponentSimpleCapsule()
 
 void PhysicsComponentSimpleCapsule::create()
 {
-
+	setNxOgreBody(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
+		new NxOgre::Capsule(getNxOgreSize().x,
+							getNxOgreSize().y),
+		getSceneNode()->getPosition(),
+		getSceneNode()));
 }
 
 void PhysicsComponentSimpleCapsule::destroy()

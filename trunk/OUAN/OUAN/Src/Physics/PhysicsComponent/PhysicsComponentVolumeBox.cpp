@@ -14,7 +14,14 @@ PhysicsComponentVolumeBox::~PhysicsComponentVolumeBox()
 
 void PhysicsComponentVolumeBox::create()
 {
-
+	setNxOgreVolume(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
+		new NxOgre::Box(getNxOgreSize().x,
+						getNxOgreSize().y,
+						getNxOgreSize().z),
+		NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())),
+		Application::getInstance()->getPhysicsSubsystem().get(), 
+		NxOgre::Enums::VolumeCollisionType_All));
 }
 
 void PhysicsComponentVolumeBox::destroy()

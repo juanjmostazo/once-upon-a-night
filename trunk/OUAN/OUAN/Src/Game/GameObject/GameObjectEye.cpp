@@ -43,9 +43,21 @@ PhysicsComponentCharacterPtr GameObjectEye::getPhysicsComponentCharacter()
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectEye::update(double elapsedSeconds)
+{
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+
+	getPhysicsComponentCharacter()->getNxOgreController()->move(
+		Application::getInstance()->getPhysicsSubsystem()->mGravity * 
+			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
+		GROUP_COLLIDABLE_MASK,
+		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+		collisionFlags);
+}
+
 void GameObjectEye::setDreamsMode()
 {
-
+	mPhysicsComponentCharacter->create();
 }
 
 void GameObjectEye::setNightmaresMode()

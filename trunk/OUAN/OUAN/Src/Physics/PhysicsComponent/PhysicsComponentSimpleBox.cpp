@@ -14,7 +14,13 @@ PhysicsComponentSimpleBox::~PhysicsComponentSimpleBox()
 
 void PhysicsComponentSimpleBox::create()
 {
-
+	setNxOgreBody(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
+		new NxOgre::Box(getNxOgreSize().x,
+						getNxOgreSize().y,
+						getNxOgreSize().z),
+		getSceneNode()->getPosition(),
+		getSceneNode()));
 }
 
 void PhysicsComponentSimpleBox::destroy()

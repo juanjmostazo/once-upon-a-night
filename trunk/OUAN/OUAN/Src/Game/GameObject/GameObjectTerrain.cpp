@@ -55,7 +55,7 @@ PhysicsComponentComplexConvexPtr GameObjectTerrain::getPhysicsComponentComplexCo
 */
 void GameObjectTerrain::setDreamsMode()
 {
-
+	mPhysicsComponentComplexTriangle->create();
 }
 
 void GameObjectTerrain::setNightmaresMode()

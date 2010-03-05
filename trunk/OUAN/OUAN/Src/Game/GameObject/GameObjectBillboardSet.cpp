@@ -32,6 +32,16 @@ RenderComponentPositionalPtr GameObjectBillboardSet::getRenderComponentPositiona
 	return mRenderComponentPositional;
 }
 
+void GameObjectBillboardSet::setDreamsMode()
+{
+
+}
+
+void GameObjectBillboardSet::setNightmaresMode()
+{
+
+}
+
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {
 
