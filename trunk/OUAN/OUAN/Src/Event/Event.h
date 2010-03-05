@@ -3,20 +3,50 @@
 #include "../OUAN.h"
 namespace OUAN
 {
+	/// Class to model every in-game event.
 	class Event
 	{
 	private:
+		/// Event priority, used to order the event queue:
+		/// the lower the value, the higher the priority will be.
 		int mPriority;
-		int mEventType; //Replace with enum
+		/// Event type
+		TEventType mEventType;
 	public:
-		Event(int priority,int eventType);
+		///
+		Event(int priority,TEventType eventType);
+
+		/// Return the event priority
+		/// @return event priority
 		int getPriority() const;
-		int getEventType() const;
+
+		/// Return the event type
+		/// @return Event type
+		TEventType getEventType() const;
 	};
+	//------------------------------------
+	/// Functor class used to compare two event pointers
 	class EventComparator
 	{
 	public:
+		/// Compare two events checking their priorities:
+		/// The event with the lower value will have higher priority
 		bool operator()(EventPtr& evt1, EventPtr& evt2);
+	};
+
+	//------------------------------------
+	
+	/// Event class representing a world change.
+	/// At the moment, it serves as a sample of what an event would look like:
+	/// A data container, holding only the essential information required
+	/// so that an event handler can process it.
+	class ChangeWorldEvent: public Event
+	{
+	public:
+		ChangeWorldEvent(bool mDreamWorld);
+		bool isDreamWorld() const;
+	private:
+		bool mDreamWorld;
 	};
 }
 #endif

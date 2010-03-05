@@ -33,6 +33,17 @@ const std::string& GameObject::getName() const
 	return mName;
 }
 
+void GameObject::registerHandlers()
+{
+
+}
+void GameObject::unregisterHandlers()
+{
+
+}
+
+//-------------------------------------------------------
+
 TGameObjectParameters::TGameObjectParameters()
 {
 	this->name="";
