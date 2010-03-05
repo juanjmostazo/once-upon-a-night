@@ -46,7 +46,7 @@ PhysicsComponentVolumeBoxPtr GameObjectVolumeBox::getPhysicsComponentVolumeBox()
 
 void GameObjectVolumeBox::setDreamsMode()
 {
-
+	mPhysicsComponentVolumeBox->create();
 }
 
 void GameObjectVolumeBox::setNightmaresMode()

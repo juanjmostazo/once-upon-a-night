@@ -18,6 +18,9 @@ namespace OUAN
 			/// Destructor
 			virtual ~Application();
 
+			/// Singleton getter
+			static Application* getInstance();
+
 			/// Load configuration and init all subsystems and global
 			/// resources
 			/// [TODO] Add optional command line string parameter
@@ -96,7 +99,10 @@ namespace OUAN
 			/// Used to prevent key repeats from quickly 
 			/// toggling on/off certain actions
 			int mKeyBuffer;
+
 		protected:
+			/// Singleton instance
+			static Application* instance;
 
 			/// Pointer to the game state manager
 			GameStateManagerPtr mStateManager;	

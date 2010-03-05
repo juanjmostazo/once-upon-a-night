@@ -14,7 +14,13 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 void PhysicsComponentCharacter::create()
 {
-
+	setNxOgreController(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
+			getNxOgreControllerDescription(), 
+			getNxOgreSize(), 
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
+				createPointRenderable(getSceneNode())));
 }
 
 void PhysicsComponentCharacter::destroy()

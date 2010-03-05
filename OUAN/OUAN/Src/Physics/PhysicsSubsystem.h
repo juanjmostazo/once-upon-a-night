@@ -58,14 +58,12 @@ namespace OUAN
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
 		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other);
 
-	protected:
-		
 		/// param read from config file, gravity force
 		NxOgre::Vec3 mGravity;
 
 		/// param
 		double mStaticFriction;
-		
+
 		/// param
 		double mDynamicFriction;
 
@@ -84,8 +82,13 @@ namespace OUAN
 		/// param read from config file, applied to move()
 		double mTurnDegreesPerSecond;
 
-		/// param read from config file, applid to jump
+		/// param read from config file, applied to jump
 		double mInitialJumpSpeed;
+
+		/// Load params from config file
+		virtual bool loadConfig();
+
+	protected:
 
 		/// the application
 		OUAN::ApplicationPtr mApp;
@@ -107,21 +110,6 @@ namespace OUAN
 
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
-
-		/// Load params from config file
-		virtual bool loadConfig();
-
-		virtual void initPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
-		virtual void initPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
-		virtual void initPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
-		virtual void initPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
-		virtual void initPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
-		virtual void initPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule);
-		virtual void initPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
-
-		virtual void updateGameObjectOny(double elapsedSeconds, GameObjectOnyPtr pGameObjectOny);
-		virtual void updateGameObjectTripollo(double elapsedSeconds, GameObjectTripolloPtr pGameObjectTripollo);
-		virtual void updateGameObjectEye(double elapsedSeconds, GameObjectEyePtr pGameObjectEye);
 	};
 }
 #endif

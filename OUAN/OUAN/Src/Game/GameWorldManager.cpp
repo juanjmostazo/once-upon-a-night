@@ -43,6 +43,7 @@
 using namespace OUAN;
 
 unsigned long GameWorldManager::mNextIdNum=0;
+
 GameWorldManager::GameWorldManager()
 {
 	world=DREAMS;
@@ -52,10 +53,26 @@ GameWorldManager::~GameWorldManager()
 
 }
 
+void GameWorldManager::update(double elapsedSeconds)
+{
+	//std::stringstream out;
+	//out << elapsedSeconds;
+	//std::string elapsedTimeDebug = out.str();
+	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
+
+	TGameObjectContainerIterator it;
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		it->second->update(elapsedSeconds);
+	}
+}
+
 GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
 {
-	if(!mGameObjects.empty() && mGameObjects.count(objectId)>0)
+	if(!mGameObjects.empty() && mGameObjects.count(objectId)>0){
 		return mGameObjects[objectId];
+	}
 
 	return GameObjectPtr();
 }
@@ -164,10 +181,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
-
-	setToDreams();
-
+	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
 	mGameOver=false;
 }
 
@@ -230,7 +244,6 @@ void GameWorldManager::cleanUp()
 
 	clearContainers();
 }
-
 
 void GameWorldManager::initGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/)
 {
@@ -376,6 +389,9 @@ void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera
 
 void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox)
 {
+	//TODO - FIX THIS
+	pGameObjectVolumeBox->getPhysicsComponentVolumeBox()->setNxOgreSize(NxOgre::Vec3(8,8,4));
+
 	mGameObjects[pGameObjectVolumeBox->getName()]=pGameObjectVolumeBox;
 
 	mGameObjectVolumeBoxContainer.push_back(pGameObjectVolumeBox);
@@ -476,9 +492,6 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 			pGameObjectTripollo,
 			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTripollo->getRenderComponentPositional()));
-
-	//Initialise as in Dreams world
-	pGameObjectTripollo->setDreamsMode();
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
@@ -792,7 +805,6 @@ void GameWorldManager::setGameOver(bool gameOver)
 	mGameOver=gameOver;
 }
 
-
 void GameWorldManager::setToDreams()
 {
 	world=DREAMS;
@@ -803,8 +815,8 @@ void GameWorldManager::setToDreams()
 	{
 		it->second->setDreamsMode();
 	}
-
 }
+
 void GameWorldManager::setToNightmares()
 {
 	world=NIGHTMARES;

@@ -32,6 +32,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp=app;	
 	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
 	mApp->getGameWorldManager()->loadLevel("TestLevel.ogscene");
+	mApp->getGameWorldManager()->setToDreams();
 	mApp->mKeyBuffer=-1;
 }
 
@@ -197,10 +198,17 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::update(long elapsedTime)
 {
-	mApp->getRenderSubsystem()->updateCameraParams((double)elapsedTime*0.000001);
-	
-	double elapsedSeconds=elapsedTime*0.000001f;
+	double elapsedSeconds=(double)elapsedTime * 0.000001f;
+
+	//std::stringstream out;
+	//out << elapsedSeconds;
+	//std::string elapsedTimeDebug = out.str();
+	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
+
+	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
+	mApp->getGameWorldManager()->update(elapsedSeconds);
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+
 	mApp->mKeyBuffer-=elapsedTime;
 
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->isGameOver())

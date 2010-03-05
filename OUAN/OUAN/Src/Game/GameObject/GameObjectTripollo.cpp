@@ -53,15 +53,27 @@ PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter()
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectTripollo::update(double elapsedSeconds)
+{
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+
+	getPhysicsComponentCharacter()->getNxOgreController()->move(
+		Application::getInstance()->getPhysicsSubsystem()->mGravity * 
+			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
+		GROUP_COLLIDABLE_MASK,
+		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+		collisionFlags);
+}
+
 void GameObjectTripollo::setDreamsMode()
 {
-	Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO DREAMS");
+	mPhysicsComponentCharacter->create();
+
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityNightmares->setVisible(false);
 }
 void GameObjectTripollo::setNightmaresMode()
 {
-	Ogre::LogManager::getSingleton().logMessage("TRIPOLLO TO NIGHTMARES");
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 }

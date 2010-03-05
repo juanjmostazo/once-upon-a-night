@@ -26,11 +26,21 @@ Application::Application(const std::string& windowName) : mWindowName(windowName
 ,mDebugMode(DEBUGMODE_NONE)
 ,mKeyBuffer(-1)
 {
+	instance = this;
 }
 
 Application::~Application()
 {
+
 }
+
+Application* Application::instance = NULL;
+
+Application* Application::getInstance()
+{
+	return instance;
+}
+
 void Application::cleanUp()
 {
 	mPhysicsSubsystem->cleanUp();

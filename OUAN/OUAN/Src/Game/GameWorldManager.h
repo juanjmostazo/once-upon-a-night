@@ -91,7 +91,7 @@ namespace OUAN
 
 		/// Update world state
 		/// @param elapsedTime time since last update
-		void update(long elapsedTime);
+		void update(double elapsedSeconds);
 
 		/// [TODO] Add input event handlers
 		/// so that objects using a inputController

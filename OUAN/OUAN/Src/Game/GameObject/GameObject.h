@@ -20,7 +20,7 @@ namespace OUAN
 		const std::string& getName() const;
 
 		/// Update object
-		virtual void update(long elapsedTime);
+		virtual void update(double elapsedSeconds);
 
 		// Sets the GameObject to Dreams
 		virtual void setDreamsMode();
