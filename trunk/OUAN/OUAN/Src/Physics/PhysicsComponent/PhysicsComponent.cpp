@@ -4,7 +4,7 @@ using namespace OUAN;
 PhysicsComponent::PhysicsComponent(const std::string& type)
 :Component(COMPONENT_TYPE_PHYSICS)
 {
-
+	mInUse=false;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -14,17 +14,27 @@ PhysicsComponent::~PhysicsComponent()
 
 void PhysicsComponent::create()
 {
-
+	mInUse=true;
 }
 
 void PhysicsComponent::destroy()
 {
-
+	mInUse=false;
 }
 
 void PhysicsComponent::update(long elapsedTime)
 {
 
+}
+
+bool PhysicsComponent::isInUse()
+{
+	return mInUse;
+}
+
+void PhysicsComponent::setInUse(bool pInUse)
+{
+	mInUse=pInUse;
 }
 
 Ogre::SceneNode* PhysicsComponent::getSceneNode(){

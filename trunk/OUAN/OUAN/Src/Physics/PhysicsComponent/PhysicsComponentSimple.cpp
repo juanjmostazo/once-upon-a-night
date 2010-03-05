@@ -14,12 +14,12 @@ PhysicsComponentSimple::~PhysicsComponentSimple()
 
 void PhysicsComponentSimple::create()
 {
-
+	PhysicsComponent::create();
 }
 
 void PhysicsComponentSimple::destroy()
 {
-
+	PhysicsComponent::destroy();
 }
 
 OGRE3DBody* PhysicsComponentSimple::getNxOgreBody()

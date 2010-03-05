@@ -14,6 +14,8 @@ PhysicsComponentComplexTriangle::~PhysicsComponentComplexTriangle()
 
 void PhysicsComponentComplexTriangle::create()
 {
+	PhysicsComponentComplex::create();
+
 	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
 		getNxOgreTriangleGeometry(),
 		NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
@@ -21,7 +23,7 @@ void PhysicsComponentComplexTriangle::create()
 
 void PhysicsComponentComplexTriangle::destroy()
 {
-
+	PhysicsComponentComplex::destroy();
 }
 
 NxOgre::TriangleGeometry* PhysicsComponentComplexTriangle::getNxOgreTriangleGeometry()

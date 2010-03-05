@@ -14,6 +14,8 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 void PhysicsComponentCharacter::create()
 {
+	PhysicsComponent::create();
+
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
@@ -25,7 +27,7 @@ void PhysicsComponentCharacter::create()
 
 void PhysicsComponentCharacter::destroy()
 {
-
+	PhysicsComponent::destroy();
 }
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)

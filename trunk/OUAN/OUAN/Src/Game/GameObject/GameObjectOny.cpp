@@ -164,7 +164,10 @@ void GameObjectOny::update(double elapsedSeconds)
 
 void GameObjectOny::setDreamsMode()
 {
-	mPhysicsComponentCharacter->create();
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
 }
 
 void GameObjectOny::setNightmaresMode()
