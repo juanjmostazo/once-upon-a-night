@@ -129,14 +129,14 @@ void GameObjectOny::update(double elapsedSeconds)
 			setJumpTime(0);
 			setJumpSpeed(Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed);
 		}
-
+		
 		// Calculates the current displacement from position and angle
 		mDisplacement = Ogre::Quaternion(
 			Ogre::Degree(getPhysicsComponentCharacter()->getNxOgreController()->getDisplayYaw()), 
 			Ogre::Vector3::UNIT_Y) * 
 			mDisplacement.as<Ogre::Vector3>();
 	}
-
+	
 	// If it's jumping, calculate height and apply vertical displacement
 	if (isJumping())
 	{
@@ -144,7 +144,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		setJumpTime(getJumpTime() + elapsedSeconds);
 		mDisplacement.y += getJumpSpeed() * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	}
-
+	
 	////////////////////////////////////////////////////////////////////////////
 
 	// Applying global factor to displacement
