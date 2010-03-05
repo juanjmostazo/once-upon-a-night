@@ -205,9 +205,9 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 
-	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
 	mApp->getGameWorldManager()->update(elapsedSeconds);
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
 
 	mApp->mKeyBuffer-=elapsedTime;
 
