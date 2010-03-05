@@ -203,8 +203,6 @@ namespace OUAN
 
 		////////////////////////////////////////////////////////////////////
 
-		const std::string GAME_OBJECT_PARAMETERS_PATH="../../Resources/Levels/GameObjects/";
-
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
@@ -284,10 +282,10 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="scene";
 		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";
-		const std::string GAME_OBJECT_TYPE_LIGHT="light";
-		const std::string GAME_OBJECT_TYPE_CAMERA="camera";
-		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="billboard-set";
-		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="particle-system";
+		const std::string GAME_OBJECT_TYPE_LIGHT="Light";
+		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
+		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
+		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="portal";
@@ -318,10 +316,19 @@ namespace OUAN
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
 
+		class XMLGameObjectParser;
+		class XMLGameObject;
+		typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
+
 		class Configuration;
 		class LevelLoader;
+
+
 		typedef boost::shared_ptr<Configuration> ConfigurationPtr;
 		typedef boost::shared_ptr<LevelLoader> LevelLoaderPtr;
+
+		const std::string GAME_OBJECT_PARAMETERS_PATH="../../Resources/Levels/GameObjects/";
+		const std::string LEVELS_PATH="../../Resources/Levels/";
 
 		///	Type definition for the data structure that'll hold the options:
 		/// an STL map of pairs of strings, representing the key and value, respectively

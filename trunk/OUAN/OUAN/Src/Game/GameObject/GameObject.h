@@ -28,6 +28,7 @@ namespace OUAN
 		virtual void setNightmaresMode();
 
 		//TODO: Add event-related methods
+
 	};
 
 	class TGameObjectParameters

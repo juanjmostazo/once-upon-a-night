@@ -1,4 +1,5 @@
 #include "LevelLoader.h"
+#include "XMLGameObjectParser.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
 #include "../Component/Component.h"
@@ -43,72 +44,109 @@ LevelLoader::~LevelLoader(){}
 
 void LevelLoader::init(OUAN::ApplicationPtr app)
 {
-	this->pGameWorldManager=app->getGameWorldManager();
+	this->mGameWorldManager=app->getGameWorldManager();
+
+	this->mXMLGameObjectParser.init();
 }
 
-void LevelLoader::loadLevel(String level,String resourceGroupName)
+void LevelLoader::loadLevel(String level)
 {
+	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level);
 
 	//TODO: CLEAR OLD LEVEL FROM GAME WORLD MANAGER
+	mXMLGameObjectParser.clearLevel();
 
-	TiXmlDocument   *XMLDoc = 0;
-	TiXmlElement   *XMLRoot;
+	//Parse Level's GameObjects
+	mXMLGameObjectParser.parseLevel(level);
 
-	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Parsing level "+level);
+	//Process Level's GameObjects
+	processGameObjects();
 
-	// Strip the path
-	Ogre::String basename, path;
-	Ogre::StringUtil::splitFilename(level, basename, path);
+	//We do not need this information anymore so we clear it.
+	mXMLGameObjectParser.clearLevel();
 
-	Ogre::DataStreamPtr pStream = Ogre::ResourceGroupManager::getSingleton().openResource( basename, resourceGroupName );
-
-	String data = pStream->getAsString();
-	// Open the .ogscene File
-	XMLDoc = new TiXmlDocument();
-	XMLDoc->Parse( data.c_str() );
-	pStream->close();
-	pStream.setNull();
-
-	// Validate the File
-	XMLRoot = XMLDoc->RootElement();
-	if( String( XMLRoot->Value()) != "OGITORSCENE"  ) {
-		Ogre::LogManager::getSingleton().logMessage( "[LevelLoader] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
-		delete XMLDoc;      
-		return;
-	}
-
-	// Process the scene
-	processLevel(XMLRoot);
-
-	Ogre::LogManager::getSingleton().logMessage( "[LevelLoader] Done!" );
-
-	// Close the XML File
-	delete XMLDoc;
+	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level+" Done!");
 }
 
-void LevelLoader::processLevel(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjects()
 {
+	XMLGameObjectContainerIterator it;
 
-	// Process the scene parameters
-	String version = getAttrib(XMLNode, "version", "unknown");
+	for(it = mXMLGameObjectParser.XMLGameObjectContainer.begin(); it !=mXMLGameObjectParser.XMLGameObjectContainer.end(); it++)
+	{
+		processGameObject(&it->second);
+	}
 
-	String message = "[LevelLoader] Parsing ogScene file with version " + version;
+}
 
-	//LogManager::getSingleton().logMessage(message);
+void LevelLoader::processGameObject(XMLGameObject* gameObject)
+{
+	String gameObjectType=gameObject->gameObjectType;
 
-	//Process project
-	processProject(XMLNode);
-	
-	//Process scene objects
-	processObjects(XMLNode,"OctreeSceneManager");
-	processObjects(XMLNode,"Viewport Object");
-	processObjects(XMLNode,"Node Object");
-	processObjects(XMLNode,"Marker Object");
-	processObjects(XMLNode,"Light Object");
-	processObjects(XMLNode,"Entity Object");
-	processObjects(XMLNode,"Camera Object");
-	processObjects(XMLNode,"Particle Object");
-	processObjects(XMLNode,"BillboardSet Object");
+	if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		processGameObjectOny(gameObject);
+	}
+	//else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
+	//{
+	//	processGameObjectScene(gameObject);
+	//}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+	{
+		processGameObjectTripollo(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
+	{
+		processGameObjectTerrain(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
+	{
+		processGameObjectLight(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
+	{
+		processGameObjectParticleSystem(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
+	{
+		processGameObjectBillboardSet(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_EYE)==0)
+	{
+		processGameObjectEye(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
+	{
+		processGameObjectItem1UP(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
+	{
+		processGameObjectItemMaxHP(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
+	{
+		processGameObjectPortal(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
+	{
+		processGameObjectCamera(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
+	{
+		processGameObjectVolumeBox(gameObject);
+	}
+	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
+	{
+		processGameObjectVolumeCapsule(gameObject);
+	}
+	//else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+	//{
+	//	processGameObjectViewport(gameObject);
+	//}
+	else
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
+	}
 
 }
 
@@ -122,182 +160,8 @@ void LevelLoader::processProject(TiXmlElement *XMLNode)
 		processProject(pElement);
 }
 
-void LevelLoader::processObjects(TiXmlElement *XMLNode, String type)
-{	
-	TiXmlElement *pElement;
 
-	// Process OBJECTs of selected type
-	pElement = XMLNode->FirstChildElement("OBJECT");
-	while(pElement)
-	{
-		String current_object_type = getAttrib(pElement, "typename");
-		if( type.compare(current_object_type)==0)
-		{
-			processObject(pElement,XMLNode);
-		}
-		pElement = pElement->NextSiblingElement("OBJECT");
-	}
-}
-
-std::string LevelLoader::getGameObjectType(TiXmlElement *XMLNode)
-{
-	String type = getAttrib(XMLNode, "typename");
-	String name = getAttrib(XMLNode, "name");
-
-	if( type.compare("OctreeSceneManager")==0)
-	{
-		return GAME_OBJECT_TYPE_SCENE;
-	}
-	else if( type.compare("Viewport Object")==0)
-	{
-		return GAME_OBJECT_TYPE_VIEWPORT;
-	}
-	//else if( type.compare("Node Object")==0)
-	//{
-	//	processSceneNode(XMLNode);
-	//}
-	//else if( type.compare("Marker Object")==0)
-	//{
-	//	processSceneNode(XMLNode);
-	//}
-	else if( type.compare("Light Object")==0)
-	{
-		if(name.substr(0,GAME_OBJECT_TYPE_LIGHT.size()).compare(GAME_OBJECT_TYPE_LIGHT)==0)
-		{
-			return GAME_OBJECT_TYPE_LIGHT;
-		}
-	}
-	else if( type.compare("Entity Object")==0)
-	{
-		if(name.substr(0,GAME_OBJECT_TYPE_ONY.size()).compare(GAME_OBJECT_TYPE_ONY)==0)
-		{
-			return GAME_OBJECT_TYPE_ONY;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_TRIPOLLO.size()).compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
-			&& name.substr(GAME_OBJECT_TYPE_TRIPOLLO.size()+1,1).compare("d")==0
-			)
-		{
-			return GAME_OBJECT_TYPE_TRIPOLLO;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_TERRAIN.size()).compare(GAME_OBJECT_TYPE_TERRAIN)==0)
-		{
-			return GAME_OBJECT_TYPE_TERRAIN;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_PORTAL.size()).compare(GAME_OBJECT_TYPE_PORTAL)==0)
-		{
-			return GAME_OBJECT_TYPE_PORTAL;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_EYE.size()).compare(GAME_OBJECT_TYPE_EYE)==0)
-		{
-			return GAME_OBJECT_TYPE_EYE;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_1UP.size()).compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
-		{
-			return GAME_OBJECT_TYPE_ITEM_1UP;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_ITEM_MAXHP.size()).compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
-		{
-			return GAME_OBJECT_TYPE_ITEM_MAXHP;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMEBOX.size()).compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
-		{
-			return GAME_OBJECT_TYPE_VOLUMEBOX;
-		}
-		else if(name.substr(0,GAME_OBJECT_TYPE_VOLUMECAPSULE.size()).compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
-		{
-			return GAME_OBJECT_TYPE_VOLUMECAPSULE;
-		}
-	}
-	else if( type.compare("Camera Object")==0)
-	{
-		return GAME_OBJECT_TYPE_CAMERA;
-	}
-	else if( type.compare("Particle Object")==0)
-	{
-		return GAME_OBJECT_TYPE_PARTICLESYSTEM;
-	}
-	else if( type.compare("BillboardSet Object")==0)
-	{
-		return GAME_OBJECT_TYPE_BILLBOARDSET;
-	}
-	else
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Error reading "+type+" OBJECT");
-		return type;
-	}
-	return type;
-}
-
-void LevelLoader::processObject(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode)
-{
-	String gameObjectType=getGameObjectType(XMLNode);
-	if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
-	{
-		processGameObjectScene(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
-	{
-		processGameObjectOny(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
-	{
-		processGameObjectTripollo(XMLNode,XMLGameObjectsNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
-	{
-		processGameObjectTerrain(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
-	{
-		processGameObjectLight(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
-	{
-		processGameObjectParticleSystem(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
-	{
-		processGameObjectBillboardSet(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_EYE)==0)
-	{
-		processGameObjectEye(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
-	{
-		processGameObjectItem1UP(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
-	{
-		processGameObjectItemMaxHP(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
-	{
-		processGameObjectPortal(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
-	{
-		processGameObjectCamera(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
-	{
-		processGameObjectVolumeBox(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
-	{
-		processGameObjectVolumeCapsule(XMLNode);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
-	{
-		processGameObjectViewport(XMLNode);
-	}
-	else
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
-	}
-}
-
-void LevelLoader::processGameObjectScene(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {
 	////Get OctreeSceneManager name
 	//tSceneManagerParameters.name = getAttrib(XMLNode, "name");
@@ -306,308 +170,262 @@ void LevelLoader::processGameObjectScene(TiXmlElement *XMLNode)
 	//tSceneManagerParameters.TRenderComponentSceneParameters.ambient=
 
 	//cre
-	//pGameWorldManager->createSceneManager(tSceneManagerParameters);
+	//mGameWorldManager->createSceneManager(tSceneManagerParameters);
 }
 
-void LevelLoader::processGameObjectOny(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectOnyParameters tGameObjectOnyParameters;
-	
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_ONY);
 
 	//Get name
-	tGameObjectOnyParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectOnyParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectOnyParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectOnyParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectOnyParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectOnyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentCharacter
-	tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(XMLCustomProperties);
+	tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	
 	//Create GameObject
-	pGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
-
+	mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 
 }
 
-void LevelLoader::processGameObjectTripollo(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode)
+void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_TRIPOLLO);
-
 	//Get name
-	tGameObjectTripolloParameters.dreamsName = getAttrib(XMLNode, "name");
-	tGameObjectTripolloParameters.nightmaresName = nightmaresName(tGameObjectTripolloParameters.dreamsName,GAME_OBJECT_TYPE_TRIPOLLO);
-	tGameObjectTripolloParameters.name = baseName(tGameObjectTripolloParameters.dreamsName,GAME_OBJECT_TYPE_TRIPOLLO);
-
-	//Get Nightmares XML node
-	TiXmlElement *XMLNodeNightmares =getGameObjectXMLNode(XMLGameObjectsNode,tGameObjectTripolloParameters.nightmaresName);
+	tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
+	tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
+	tGameObjectTripolloParameters.name = gameObject->name;
+	Ogre::LogManager::getSingleton().logMessage( "[XMLGameObjectParser] Name "+gameObject->name+" DreamsName "+gameObject->dreamsName+"NightmaresName"+gameObject->nightmaresName);
 
 	//Get RenderComponentEntity
-	tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(XMLNode);
-	tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(XMLNodeNightmares);
+	tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+	tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
 
 	//Get RenderComponentPositional
-	tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(XMLNode);
+	tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentCharacter
-	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(XMLCustomProperties);
+	tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
+	mGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
 }
 
-void LevelLoader::processGameObjectTerrain(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTerrainParameters  tGameObjectTerrainParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_TERRAIN);
-
 	//Get name
-	tGameObjectTerrainParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectTerrainParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentComplexConvex
-	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(XMLCustomProperties,
+	tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,
 		tGameObjectTerrainParameters.tRenderComponentEntityParameters.meshfile);
-	//tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(XMLNode);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
+	mGameWorldManager->createGameObjectTerrain(tGameObjectTerrainParameters);
 }
 
-void LevelLoader::processGameObjectCamera(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_CAMERA);
-
 	//Get name
-	tGameObjectCameraParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectCameraParameters.name = gameObject->name;
 
 	//Get RenderComponentCamera
-	tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(XMLNode);
+	tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
 }
 
-void LevelLoader::processGameObjectLight(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectLightParameters  tGameObjectLightParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_LIGHT);
-
 	//Get name
-	tGameObjectLightParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectLightParameters.name = gameObject->name;
 
 	//Get RenderComponentLight
-	tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(XMLNode);
+	tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
+	tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+	mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
 }
 
-void LevelLoader::processGameObjectParticleSystem(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectParticleSystemParameters  tGameObjectParticleSystemParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_PARTICLESYSTEM);
-
 	//Get name
-	tGameObjectParticleSystemParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectParticleSystemParameters.name = gameObject->name;
 
 	//Get RenderComponentParticleSystem
-	tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(XMLNode);
+	tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
+	tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
+	mGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
 }
-void LevelLoader::processGameObjectBillboardSet(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_BILLBOARDSET);
-
 	//Get name
-	tGameObjectBillboardSetParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectBillboardSetParameters.name = gameObject->name;
 
 	//Get RenderComponentBillboardSet
-	tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(XMLNode);
+	tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(XMLNode);
+	tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
+	mGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
 }
 
-void LevelLoader::processGameObjectEye(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectEyeParameters tGameObjectEyeParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_EYE);
-
 	//Get name
-	tGameObjectEyeParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectEyeParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectEyeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectEyeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentCharacter
-	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(XMLCustomProperties);
+	tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	
 	//Create GameObject
-	pGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
+	mGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
 }
 
-void LevelLoader::processGameObjectItem1UP(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_ITEM_1UP);
-
 	//Get name
-	tGameObjectItem1UPParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectItem1UPParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
+	mGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
 }
 
-void LevelLoader::processGameObjectItemMaxHP(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_ITEM_MAXHP);
-
 	//Get name
-	tGameObjectItemMaxHPParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectItemMaxHPParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
+	mGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
 }
 
-void LevelLoader::processGameObjectPortal(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_PORTAL);
-
 	//Get name
-	tGameObjectPortalParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectPortalParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectPortalParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectPortalParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
+	mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
 }
 
-void LevelLoader::processGameObjectVolumeBox(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectVolumeBox(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_VOLUMEBOX);
-
 	//Get name
-	tGameObjectVolumeBoxParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectVolumeBoxParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentVolumeBox
-	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(XMLCustomProperties);
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
+	mGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
 }
 
-void LevelLoader::processGameObjectVolumeCapsule(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectVolumeCapsule(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_VOLUMECAPSULE);
-
 	//Get name
-	tGameObjectVolumeCapsuleParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectVolumeCapsuleParameters.name = gameObject->name;
 
 	//Get RenderComponentEntity
-	tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNode);
+	tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 	//Get RenderComponentPositional
-	tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNode);
+	tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentVolumeCapsule
-	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(XMLCustomProperties);
+	tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(gameObject->XMLNodeCustomProperties);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
+	mGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
 }
 
-void LevelLoader::processGameObjectViewport(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
 
-	//Get Custom Properties
-	TiXmlElement *XMLCustomProperties =parseCustomPropertiesFile(GAME_OBJECT_TYPE_VIEWPORT);
-
 	//Get name
-	tGameObjectViewportParameters.name = getAttrib(XMLNode, "name");
+	tGameObjectViewportParameters.name = gameObject->name;
 
 	//Get RenderComponentViewport
-	tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(XMLNode);
+	tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(gameObject->XMLNodeDreams);
 
 	//Create GameObject
-	pGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 }
 
 //
@@ -649,7 +467,7 @@ void LevelLoader::processGameObjectViewport(TiXmlElement *XMLNode)
 //
 //
 //	//Create Camera
-////	pGameWorldManager->createCamera(tCameraParameters);
+////	mGameWorldManager->createCamera(tCameraParameters);
 //}
 
 TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
@@ -1287,11 +1105,11 @@ std::string LevelLoader::nightmaresName(std::string dreamsName,std::string gameO
 	return	nightmaresName;
 }		
 
-std::string LevelLoader::baseName(std::string dreamsName,std::string gameObjectType)
+std::string LevelLoader::baseName(std::string worldName,std::string gameObjectType)
 {
 	std::string baseName;
 
-	baseName=gameObjectType+dreamsName.substr(gameObjectType.size()+2,dreamsName.size()-gameObjectType.size()+2);
+	baseName=gameObjectType+worldName.substr(gameObjectType.size()+2,worldName.size()-gameObjectType.size()+2);
 
 	return	baseName;
 }		

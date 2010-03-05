@@ -1,9 +1,9 @@
-#ifndef OG_LevelLoader_H
-#define OG_LevelLoader_H
+#ifndef LevelLoaderH_H
+#define LevelLoaderH_H
 
 //OUAN
 #include "../OUAN.h"
-
+#include "XMLGameObjectParser.h"
 namespace OUAN
 {
 	class LevelLoader
@@ -14,39 +14,43 @@ namespace OUAN
 
 		void init(OUAN::ApplicationPtr app);
 
-		void loadLevel(String SceneName,String resourceGroupName="General");
+		void loadLevel(String SceneName);
 
 
 	protected:
-		GameWorldManagerPtr pGameWorldManager;
+		GameWorldManagerPtr mGameWorldManager;
+
+		XMLGameObjectParser mXMLGameObjectParser;
+
+		void processGameObjects();
+		void processGameObject(XMLGameObject *gameObject);
 
 		//Level .ogscene file Processors
-		void processLevel(TiXmlElement *XMLNode);
 		void processProject(TiXmlElement *XMLNode);
-		void processObjects(TiXmlElement *XMLNode,OUAN::String type);
-		void processObject(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode);
+
 		std::string getGameObjectType(TiXmlElement *XMLNode);
 		void processResourceLocations(TiXmlElement *XMLNode);
 		TiXmlElement * getGameObjectXMLNode(TiXmlElement *XMLGameObjectsNode,std::string gameObjectName);
 		std::string nightmaresName(std::string dreamsName,std::string gameObjectType);
-		std::string baseName(std::string dreamsName,std::string gameObjectType);
+		std::string baseName(std::string worldName,std::string gameObjectType);
 
 		//Game Object Processors
-		void processGameObjectScene(TiXmlElement *XMLNode);
-		void processGameObjectOny(TiXmlElement *XMLNode);
-		void processGameObjectTripollo(TiXmlElement *XMLNode,TiXmlElement *XMLGameObjectsNode);
-		void processGameObjectTerrain(TiXmlElement *XMLNode);
-		void processGameObjectLight(TiXmlElement *XMLNode);
-		void processGameObjectParticleSystem(TiXmlElement *XMLNode);
-		void processGameObjectBillboardSet(TiXmlElement *XMLNode);
-		void processGameObjectPortal(TiXmlElement *XMLNode);
-		void processGameObjectItemMaxHP(TiXmlElement *XMLNode);
-		void processGameObjectItem1UP(TiXmlElement *XMLNode);
-		void processGameObjectEye(TiXmlElement *XMLNode);
-		void processGameObjectCamera(TiXmlElement *XMLNode);
-		void processGameObjectVolumeBox(TiXmlElement *XMLNode);
-		void processGameObjectVolumeCapsule(TiXmlElement *XMLNode);
-		void processGameObjectViewport(TiXmlElement *XMLNode);
+		void processGameObjectScene(XMLGameObject* gameObject);
+		void processGameObjectViewport(XMLGameObject* gameObject);
+		void processGameObjectOny(XMLGameObject *gameObject);
+		void processGameObjectTripollo(XMLGameObject* gameObject);
+		void processGameObjectTerrain(XMLGameObject* gameObject);
+		void processGameObjectLight(XMLGameObject* gameObject);
+		void processGameObjectParticleSystem(XMLGameObject* gameObject);
+		void processGameObjectBillboardSet(XMLGameObject* gameObject);
+		void processGameObjectPortal(XMLGameObject* gameObject);
+		void processGameObjectItemMaxHP(XMLGameObject* gameObject);
+		void processGameObjectItem1UP(XMLGameObject* gameObject);
+		void processGameObjectEye(XMLGameObject* gameObject);
+		void processGameObjectCamera(XMLGameObject* gameObject);
+		void processGameObjectVolumeBox(XMLGameObject* gameObject);
+		void processGameObjectVolumeCapsule(XMLGameObject* gameObject);
+
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
