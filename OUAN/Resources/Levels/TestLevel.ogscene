@@ -115,7 +115,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="141575360" name="light" typename="Light Object" parentnode="SceneManager">
+  <OBJECT object_id="141575360" name="Light_d#1" typename="Light Object" parentnode="SceneManager">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="diffuse" type="11" value="1 1 1 1"></PROPERTY>
@@ -132,22 +132,22 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="178655360" name="Camera#4" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="404217664" name="Camera_d#0" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.46561 0.00203164 0.884979 -0.00386145"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.724338 -0.13752 0.663734 0.126014"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="75.6088 29.2039 -63.8138"></PROPERTY>
+    <PROPERTY id="position" type="9" value="93.5192 36.0273 -48.8262"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="314249088" name="Camera#5" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="314249088" name="Camera_d#5" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
@@ -162,22 +162,22 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="727652864" name="Camera#2" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="178655360" name="Camera_d#4" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
-    <PROPERTY id="fov" type="6" value="0.5"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.19016 -0.852446 -0.0592705 -0.483386"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.46561 0.00203164 0.884979 -0.00386145"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="286.92 56.2274 -130.35"></PROPERTY>
+    <PROPERTY id="position" type="9" value="75.6088 29.2039 -63.8138"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="385387744" name="Camera#3" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="385387744" name="Camera_d#3" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
@@ -192,7 +192,22 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="371013536" name="Camera#0" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="727652864" name="Camera_d#2" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="0.5"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.19016 -0.852446 -0.0592705 -0.483386"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="286.92 56.2274 -130.35"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="371013536" name="Camera_d#1" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
@@ -200,69 +215,14 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="2"></PROPERTY>
     <PROPERTY id="position" type="9" value="41.2211 35.6082 2.10477"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="404217664" name="Camera#1" typename="Camera Object" parentnode="SceneManager">
-    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
-    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.724338 -0.13752 0.663734 0.126014"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="93.5192 36.0273 -48.8262"></PROPERTY>
-    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="471724608" name="eye2" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ENEMY_EYE_DREAMS.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="64.3535 26.3436 -45.4402"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="677205760" name="eye1" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ENEMY_EYE_DREAMS.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="56.6124 44.0538 -7.37255"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="225104528" name="item-1up1" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="225104528" name="item-1up_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -279,7 +239,24 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="59633164" name="volume-box#0" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="517105632" name="portal_d#2" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ITEM_PORTAL.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="87.4334 34.9868 3.91385"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="59633164" name="volume-box_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -297,7 +274,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="201940976" name="item-maxhp1" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="201940976" name="item-maxhp_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -318,7 +295,47 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="63539536" name="ony" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="392437504" name="tripollo_d#1" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ENEMY_TRIPOLLO_DREAMS.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="41.6942 45.3411 -13.6664"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="471724608" name="eye_d#2" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ENEMY_EYE_DREAMS.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="64.3535 26.3436 -45.4402"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="63539536" name="ony_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -352,45 +369,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="345988320" name="item-maxhp2" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="75.4705 26.7665 -3.47039"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="NoMaterial"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="Scene_Material"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="Scene_Material"></PROPERTY>
-    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="272896512" name="portal2" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ITEM_PORTAL.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="29.773 30.4087 -15.3917"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Material"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="699758912" name="terrain" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="699758912" name="terrain_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -408,26 +387,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="nxsFile" type="7" value="nxs:TRIANGLE_nivel2vacio.nxs" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="392437504" name="tripollo_d#1" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ENEMY_TRIPOLLO_DREAMS.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="41.6942 45.3411 -13.6664"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -451,14 +410,55 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="517105632" name="portal1" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="677205760" name="eye_d#1" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ENEMY_EYE_DREAMS.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="56.6124 44.0538 -7.37255"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="345988320" name="item-maxhp_d#2" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="75.4705 26.7665 -3.47039"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="NoMaterial"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="272896512" name="portal_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ITEM_PORTAL.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="87.4334 34.9868 3.91385"></PROPERTY>
+    <PROPERTY id="position" type="9" value="29.773 30.4087 -15.3917"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Material"></PROPERTY>
@@ -468,7 +468,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="743736064" name="Particle#0" typename="Particle Object" parentnode="SceneManager">
+  <OBJECT object_id="743736064" name="Particle_d#1" typename="Particle Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -481,7 +481,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="5249184" name="BillboardSet#0" typename="BillboardSet Object" parentnode="SceneManager">
+  <OBJECT object_id="5249184" name="BillboardSet_d#1" typename="BillboardSet Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
     <PROPERTY id="billboard0::dimensions" type="8" value="10 10"></PROPERTY>
