@@ -1,4 +1,5 @@
 #include "GameObjectParticleSystem.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -32,15 +33,28 @@ RenderComponentPositionalPtr GameObjectParticleSystem::getRenderComponentPositio
 	return mRenderComponentPositional;
 }
 
-void GameObjectParticleSystem::setDreamsMode()
+void GameObjectParticleSystem::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
-
-void GameObjectParticleSystem::setNightmaresMode()
+void GameObjectParticleSystem::registerHandlers()
 {
-
+	GameObjectParticleSystemPtr _this =shared_from_this();
 }
+void GameObjectParticleSystem::unregisterHandlers()
+{
+	GameObjectParticleSystemPtr _this =shared_from_this();
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {

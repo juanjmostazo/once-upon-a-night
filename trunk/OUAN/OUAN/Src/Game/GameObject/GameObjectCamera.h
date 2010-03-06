@@ -7,7 +7,7 @@
 namespace OUAN
 {
 	/// Models a Camera source object
-	class GameObjectCamera : public GameObject
+	class GameObjectCamera : public GameObject, public boost::enable_shared_from_this<GameObjectCamera>
 	{
 	private:
 		/// Holds the information related to visual rendering
@@ -27,10 +27,19 @@ namespace OUAN
 		/// @param pRenderComponentCamera the Camera component to set
 		void setRenderComponentCamera(RenderComponentCameraPtr pRenderComponentCamera);
 
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	/// Transport object carrying around data from the level loader

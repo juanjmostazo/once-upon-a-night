@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
-	class GameObjectTripollo : public GameObject
+	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{
 	private:
 		/// Visual component
@@ -55,10 +55,21 @@ namespace OUAN
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+
+		//------------------------------------------------------------------
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 	
 	/// Information data structure to carry around data between the

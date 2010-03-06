@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Main character game object
-	class GameObjectOny : public GameObject
+	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
 	private:
 		/// Entity movement flags, will be updated every frame
@@ -30,6 +30,12 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+
+		/// Health-related information (i.e, current HP and number of lives)
+		//HealthComponentPtr mHealthComponent;
+		
+		/// Weapon wielding component
+		//WeaponComponentPtr mWeaponComponent;
 
 	public:
 		//Constructor
@@ -87,10 +93,22 @@ namespace OUAN
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+
+		//------------------------------------------------------------------
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
+
 	};
 
 	/// Carries data between the level loader and the object factories
@@ -109,7 +127,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;		
 	};
 
 }

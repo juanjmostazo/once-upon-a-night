@@ -1,4 +1,5 @@
 #include "GameObjectCamera.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -23,14 +24,27 @@ void GameObjectCamera::setRenderComponentCamera(RenderComponentCameraPtr pRender
 	mRenderComponentCamera=pRenderComponentCamera;
 }
 
-void GameObjectCamera::setDreamsMode()
+void GameObjectCamera::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
 
-void GameObjectCamera::setNightmaresMode()
+void GameObjectCamera::registerHandlers()
 {
-
+	GameObjectCameraPtr _this =shared_from_this();
+}
+void GameObjectCamera::unregisterHandlers()
+{
+	GameObjectCameraPtr _this =shared_from_this();
 }
 
 TGameObjectCameraParameters::TGameObjectCameraParameters() : TGameObjectParameters()
@@ -42,3 +56,5 @@ TGameObjectCameraParameters::~TGameObjectCameraParameters()
 {
 
 }
+
+

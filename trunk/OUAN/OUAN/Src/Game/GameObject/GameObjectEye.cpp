@@ -1,4 +1,6 @@
 #include "GameObjectEye.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -55,17 +57,40 @@ void GameObjectEye::update(double elapsedSeconds)
 		collisionFlags);
 }
 
-void GameObjectEye::setDreamsMode()
+void GameObjectEye::changeWorld(int world)
 {
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentCharacter->create();
+	case DREAMS:
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
+		break;
+	case NIGHTMARES:
+		break;
+	default:break;
 	}
+
 }
-
-void GameObjectEye::setNightmaresMode()
+void GameObjectEye::registerHandlers()
 {
+	GameObjectEyePtr _this =shared_from_this();
+	registerEventHandler<GameObjectEye,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectEye::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+void GameObjectEye::unregisterHandlers()
+{
+	GameObjectEyePtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectEye,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectEye::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+//-------------------------------------------------------------------------------------------
 
+void GameObjectEye::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+	//...Maybe do something else
 }
 
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()

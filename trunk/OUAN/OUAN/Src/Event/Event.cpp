@@ -35,15 +35,15 @@ int Event::getPriority() const
 
 //----------------------
 
-ChangeWorldEvent::ChangeWorldEvent(bool dreamWorld)
+ChangeWorldEvent::ChangeWorldEvent(int newWorld)
 :Event(EVT_PRIORITY_CHANGEWORLD,EVENT_TYPE_CHANGEWORLD)
-,mDreamWorld(dreamWorld)
+,mNewWorld(newWorld)
 {
 };
 
-bool ChangeWorldEvent::isDreamWorld() const
+int ChangeWorldEvent::getNewWorld() const
 {
-	return mDreamWorld;
+	return mNewWorld;
 }
 
 //----------------------

@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class to hold Eye information
-	class GameObjectEye : public GameObject
+	class GameObjectEye : public GameObject, public boost::enable_shared_from_this<GameObjectEye>
 	{
 	private:
 		/// Visual information
@@ -49,10 +49,21 @@ namespace OUAN
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+
+		/// React to a world change to the given one
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+		
+		//------------------------------------------------------------------
+		///Event handler to process world change events
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	class TGameObjectEyeParameters: public TGameObjectParameters

@@ -31,8 +31,11 @@ void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
+	// Set the initial world before the level loading, and then
+	// just as game objects are created, they're initialized with the correct
+	// world information.
+	mApp->getGameWorldManager()->setWorld(DREAMS);
 	mApp->getGameWorldManager()->loadLevel("TestLevel");
-	mApp->getGameWorldManager()->setDreamsMode();
 	mApp->mKeyBuffer=-1;
 }
 

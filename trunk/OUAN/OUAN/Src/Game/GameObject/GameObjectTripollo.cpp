@@ -1,4 +1,6 @@
 #include "GameObjectTripollo.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -65,20 +67,45 @@ void GameObjectTripollo::update(double elapsedSeconds)
 		collisionFlags);
 }
 
-void GameObjectTripollo::setDreamsMode()
+void GameObjectTripollo::changeWorld(int world)
 {
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentCharacter->create();
-	}
+	case DREAMS:
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
 
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityNightmares->setVisible(false);
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityNightmares->setVisible(false);
+		break;
+	case NIGHTMARES:
+		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntityNightmares->setVisible(true);
+		break;
+	default:break;
+	}
 }
-void GameObjectTripollo::setNightmaresMode()
+//-------------------------------------------------------------------------------------------
+void GameObjectTripollo::registerHandlers()
 {
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
+	GameObjectTripolloPtr _this =shared_from_this();
+	//Subscribe to world change event
+	registerEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+void GameObjectTripollo::unregisterHandlers()
+{
+	GameObjectTripolloPtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+//-------------------------------------------------------------------------------------------
+
+void GameObjectTripollo::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
 }
 
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()

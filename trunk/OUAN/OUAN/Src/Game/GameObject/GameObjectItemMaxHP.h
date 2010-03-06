@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class to hold MaxHP information
-	class GameObjectItemMaxHP : public GameObject
+	class GameObjectItemMaxHP : public GameObject, public boost::enable_shared_from_this<GameObjectItemMaxHP>
 	{
 	private:
 		/// Visual information
@@ -47,10 +47,16 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
 
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
 	};
 
 	class TGameObjectItemMaxHPParameters: public TGameObjectParameters

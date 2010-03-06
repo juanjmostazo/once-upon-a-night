@@ -7,7 +7,7 @@ namespace OUAN
 
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
-	class GameWorldManager
+	class GameWorldManager: public boost::enable_shared_from_this<GameWorldManager>
 	{
 	public:
 		GameWorldManager();
@@ -55,9 +55,6 @@ namespace OUAN
 		/// Free resources
 		void cleanUp();
 
-		/// Load global parameters
-		void initGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/);
-
 		//Create Ogre component for the game object
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
 
@@ -80,23 +77,9 @@ namespace OUAN
 		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
 		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
 
-		//void createSceneNode(TSceneNodeParameters tSceneNodeParameters);
-		//void createLight(TLightParameters tLightParameters);
-		//void createParticleSystem(TParticleSystemParameters tParticleSystemParameters);
-		//void createCamera(TCameraParameters tCameraParameters);
-		//void createBillboardSet(TBillboardSetParameters tBillboardSetParameters);
-		//void createViewport(TViewportParameters tViewportParameters);
-		//void createSceneManager(TSceneManagerParameters tSceneManagerParameters);
-
-
 		/// Update world state
 		/// @param elapsedTime time since last update
 		void update(double elapsedSeconds);
-
-		/// [TODO] Add input event handlers
-		/// so that objects using a inputController
-		/// (i.e, Ony, Free-lookaround cameras)
-		/// can be notified
 
 		/// Return an id value and increment it
 		/// @return id value
@@ -114,14 +97,23 @@ namespace OUAN
 		/// @param gameOver	value to set
 		void setGameOver(bool gameOver);
 
-		/// Sets the world to Dreams
-		void setDreamsMode();
-		/// Sets the world to Nightmares
-		void setNightmaresMode();
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
+
+		/// Change world to the one specified by the passed parameter
+		/// @param currentworld world to change to
+		void setWorld (int newWorld);
 		/// returns NIGHTMARES or DREAMS depending on current world state
 		int getCurrentWorld();
+
+		/// Adds event to the event manager's queue
+		void addEvent(EventPtr event);
+		/// Dispatch all events in the manager's queue
+		void dispatchEvents();
+
+		/// Return event manager
+		/// @return event manager pointer
+		EventManagerPtr getEventManager();
 
 	private:
 
@@ -155,10 +147,6 @@ namespace OUAN
 		/// @param value		the value to append to the string
 		/// @return id string
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
-		//[TODO]: Uncomment line with the LevelLoader member object
-		// when available (unless it's a singleton?)
-		/// Level file loader
-		//LevelLoaderPtr mLoader;
 
 		/// Pointer to the main application object
 		ApplicationPtr mApp;
@@ -208,6 +196,9 @@ namespace OUAN
 
 		// Current world (DREAMS or NIGHTMARES)
 		int world;
+
+		EventManagerPtr mEventManager;
+		GameWorldManagerPtr mThis;
 		
 
 	};

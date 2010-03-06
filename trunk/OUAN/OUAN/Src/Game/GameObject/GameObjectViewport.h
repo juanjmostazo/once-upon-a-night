@@ -7,7 +7,7 @@
 namespace OUAN
 {
 	/// Class to hold Viewport information
-	class GameObjectViewport : public GameObject
+	class GameObjectViewport : public GameObject, public boost::enable_shared_from_this<GameObjectViewport>
 	{
 	private:
 		/// Viewport information
@@ -27,10 +27,19 @@ namespace OUAN
 		/// @param pRenderComponentViewport
 		void setRenderComponentViewport(RenderComponentViewportPtr pRenderComponentViewport);
 
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+
+		//------------------------------------------------------------------
+		//Event handler methods
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters

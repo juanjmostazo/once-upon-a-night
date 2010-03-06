@@ -1,4 +1,6 @@
 #include "GameObjectVolumeBox.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -44,19 +46,41 @@ PhysicsComponentVolumeBoxPtr GameObjectVolumeBox::getPhysicsComponentVolumeBox()
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectVolumeBox::setDreamsMode()
+void GameObjectVolumeBox::changeWorld(int world)
 {
-	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentVolumeBox->create();
+	case DREAMS:
+		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+		{
+			mPhysicsComponentVolumeBox->create();
+		}
+		break;
+	case NIGHTMARES:
+		break;
+	default:break;
 	}
 }
 
-void GameObjectVolumeBox::setNightmaresMode()
+void GameObjectVolumeBox::registerHandlers()
 {
-
+	GameObjectVolumeBoxPtr _this =shared_from_this();
+	registerEventHandler<GameObjectVolumeBox,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeBox::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 
+void GameObjectVolumeBox::unregisterHandlers()
+{
+	GameObjectVolumeBoxPtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectVolumeBox,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeBox::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+
+void GameObjectVolumeBox::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
+//-------------------------------------------------------------------------------------------
 TGameObjectVolumeBoxParameters::TGameObjectVolumeBoxParameters() : TGameObjectParameters()
 {
 

@@ -1,4 +1,5 @@
 #include "GameObjectItem1UP.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -43,15 +44,29 @@ PhysicsComponentComplexTrianglePtr GameObjectItem1UP::getPhysicsComponentComplex
 	return mPhysicsComponentComplexTriangle;
 }
 
-void GameObjectItem1UP::setDreamsMode()
+void GameObjectItem1UP::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
 
-void GameObjectItem1UP::setNightmaresMode()
+void GameObjectItem1UP::registerHandlers()
 {
-
+	GameObjectItem1UPPtr _this =shared_from_this();
 }
+void GameObjectItem1UP::unregisterHandlers()
+{
+	GameObjectItem1UPPtr _this =shared_from_this();
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {

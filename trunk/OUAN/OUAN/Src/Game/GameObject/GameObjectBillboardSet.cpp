@@ -1,4 +1,5 @@
 #include "GameObjectBillboardSet.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -32,15 +33,34 @@ RenderComponentPositionalPtr GameObjectBillboardSet::getRenderComponentPositiona
 	return mRenderComponentPositional;
 }
 
-void GameObjectBillboardSet::setDreamsMode()
+void GameObjectBillboardSet::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
-
-void GameObjectBillboardSet::setNightmaresMode()
+void GameObjectBillboardSet::registerHandlers()
 {
+	GameObjectBillboardSetPtr _this =shared_from_this();
+	//registerEventHandler<GameObjectBillboardSet,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectBillboardSet::processChangeWorld,
+	//	mGameWorldManager->getEventManager());
 
 }
+void GameObjectBillboardSet::unregisterHandlers()
+{
+	GameObjectBillboardSetPtr _this =shared_from_this();
+	//unregisterEventHandler<GameObjectOny,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectOny::processChangeWorld,
+	//	mGameWorldManager->getEventManager());
+
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {
@@ -51,3 +71,4 @@ TGameObjectBillboardSetParameters::~TGameObjectBillboardSetParameters()
 {
 
 }
+

@@ -1,4 +1,5 @@
 #include "GameObjectItemMaxHP.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -43,15 +44,29 @@ PhysicsComponentComplexTrianglePtr GameObjectItemMaxHP::getPhysicsComponentCompl
 	return mPhysicsComponentComplexTriangle;
 }
 
-void GameObjectItemMaxHP::setDreamsMode()
+void GameObjectItemMaxHP::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
 
-void GameObjectItemMaxHP::setNightmaresMode()
+void GameObjectItemMaxHP::registerHandlers()
 {
-
+	GameObjectItemMaxHPPtr _this =shared_from_this();
 }
+void GameObjectItemMaxHP::unregisterHandlers()
+{
+	GameObjectItemMaxHPPtr _this =shared_from_this();
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
