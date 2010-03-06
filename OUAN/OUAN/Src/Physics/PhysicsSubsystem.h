@@ -80,6 +80,9 @@ namespace OUAN
 		double mMovementUnitsPerSecond;
 
 		/// param read from config file, applied to move()
+		double mMovementLimitUnitsPerSecond;
+
+		/// param read from config file, applied to move()
 		double mTurnDegreesPerSecond;
 
 		/// param read from config file, applied to jump
