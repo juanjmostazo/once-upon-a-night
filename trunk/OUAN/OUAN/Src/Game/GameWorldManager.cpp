@@ -805,7 +805,7 @@ void GameWorldManager::setGameOver(bool gameOver)
 	mGameOver=gameOver;
 }
 
-void GameWorldManager::setToDreams()
+void GameWorldManager::setDreamsMode()
 {
 	world=DREAMS;
 
@@ -817,7 +817,7 @@ void GameWorldManager::setToDreams()
 	}
 }
 
-void GameWorldManager::setToNightmares()
+void GameWorldManager::setNightmaresMode()
 {
 	world=NIGHTMARES;
 
@@ -838,10 +838,10 @@ void GameWorldManager::changeWorld()
 {	
 	if(world==DREAMS)
 	{
-		setToNightmares();
+		setNightmaresMode();
 	}
 	else if(world==NIGHTMARES)
 	{
-		setToDreams();
+		setDreamsMode();
 	}
 }
