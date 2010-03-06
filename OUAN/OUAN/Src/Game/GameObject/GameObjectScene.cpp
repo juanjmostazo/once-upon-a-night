@@ -1,4 +1,5 @@
 #include "GameObjectScene.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -23,15 +24,28 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 	mRenderComponentScene=pRenderComponentScene;
 }
 
-void GameObjectScene::setDreamsMode()
+void GameObjectScene::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
-
-void GameObjectScene::setNightmaresMode()
+void GameObjectScene::registerHandlers()
 {
-
+	GameObjectScenePtr _this =shared_from_this();
 }
+void GameObjectScene::unregisterHandlers()
+{
+	GameObjectScenePtr _this =shared_from_this();
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectSceneParameters::TGameObjectSceneParameters() : TGameObjectParameters()
 {

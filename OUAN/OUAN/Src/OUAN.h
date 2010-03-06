@@ -13,6 +13,7 @@
 #include "ConfigKeys.h"
 
 #include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/enable_shared_from_this.hpp>
 
 #include "TinyXML/tinyxml.h"
 
@@ -309,6 +310,9 @@ namespace OUAN
 
 		class EventManager;
 		typedef boost::shared_ptr<EventManager> EventManagerPtr;
+
+		class ChangeWorldEvent;
+		typedef boost::shared_ptr<ChangeWorldEvent> ChangeWorldEventPtr;
 
 		///////////////////////////////////////////////////////////////////
 

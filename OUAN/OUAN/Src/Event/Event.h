@@ -15,6 +15,7 @@ namespace OUAN
 	public:
 		///
 		Event(int priority,TEventType eventType);
+		virtual ~Event(){}
 
 		/// Return the event priority
 		/// @return event priority
@@ -43,10 +44,10 @@ namespace OUAN
 	class ChangeWorldEvent: public Event
 	{
 	public:
-		ChangeWorldEvent(bool mDreamWorld);
-		bool isDreamWorld() const;
+		ChangeWorldEvent(int mNewWorld);
+		int getNewWorld() const;
 	private:
-		bool mDreamWorld;
+		int mNewWorld;
 	};
 }
 #endif

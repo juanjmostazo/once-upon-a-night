@@ -32,6 +32,9 @@ namespace OUAN
 	public:
 		EventManager();
 		virtual ~EventManager();
+		/// Delete all items from the event queue and
+		/// event handlers map
+		void clear();
 		/// Add an event to the queue
 		/// @param evt event to enqueue
 		void addEvent(EventPtr evt);

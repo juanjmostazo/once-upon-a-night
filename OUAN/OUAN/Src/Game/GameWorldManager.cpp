@@ -36,6 +36,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../Event/EventManager.h"
 
 #include <iomanip>
 #include <sstream>
@@ -66,6 +67,7 @@ void GameWorldManager::update(double elapsedSeconds)
 	{
 		it->second->update(elapsedSeconds);
 	}
+	dispatchEvents();
 }
 
 GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
@@ -187,6 +189,10 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 
 void GameWorldManager::clearContainers()
 {
+	for (TGameObjectContainerIterator it=mGameObjects.begin();it!=mGameObjects.end();++it)
+	{
+		it->second->unregisterHandlers();
+	}
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
@@ -232,6 +238,8 @@ void GameWorldManager::init(ApplicationPtr app)
 	mApp=app;
 
 	clearContainers();
+	mThis=shared_from_this();
+	mEventManager.reset(new EventManager());
 
 	//landscape.reset() | landscape->initBlank() | ...
 }
@@ -241,17 +249,9 @@ void GameWorldManager::cleanUp()
 	// Careful with how game objects
 	// (well, their components)
 	// will free their resources!!
-
+	mEventManager->clear();
 	clearContainers();
 }
-
-void GameWorldManager::initGlobalWorldData( /*const TGlobalWorldParameters& worldParams*/)
-{
-	// Set ambient light, skybox, etc.It is possible that all
-	// those params end up being part of the "landscape"  object 
-	// Jesus mentioned today (Feb 15th) <---- note: This is done by the createGameObjectScene method
-	//TODO: Erase this function
-}	
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
 {
@@ -459,6 +459,12 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 	//Set Ony as camera target
 	pGameObjectOny->getRenderComponentPositional()->setAsCameraTarget();
 
+	pGameObjectOny->changeWorld(world);
+
+	//Add reference to this
+	pGameObjectOny->setGameWorldManager(mThis);
+	pGameObjectOny->registerHandlers();
+
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
 }
@@ -492,6 +498,12 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 			pGameObjectTripollo,
 			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTripollo->getRenderComponentPositional()));
+	
+	pGameObjectTripollo->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectTripollo->setGameWorldManager(mThis);
+	pGameObjectTripollo->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
@@ -522,6 +534,12 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 			tGameObjectEyeParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectEye->getRenderComponentPositional()));
 
+	pGameObjectEye->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectEye->setGameWorldManager(mThis);
+	pGameObjectEye->registerHandlers();
+
 	//Add Object to GameWorldManager
 	addGameObjectEye(pGameObjectEye);
 }
@@ -544,6 +562,12 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 		pGameObjectItem1UP->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
+	
+	pGameObjectItem1UP->changeWorld(world);
+	
+	// Add a reference to this
+	pGameObjectItem1UP->setGameWorldManager(mThis);
+	pGameObjectItem1UP->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectItem1UP(pGameObjectItem1UP);
@@ -568,6 +592,12 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 			factory->createRenderComponentEntity(tGameObjectPortalParameters.name,
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters));
 
+	pGameObjectPortal->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectPortal->setGameWorldManager(mThis);
+	pGameObjectPortal->registerHandlers();
+
 	//Add Object to GameWorldManager
 	addGameObjectPortal(pGameObjectPortal);
 }
@@ -590,6 +620,12 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 		pGameObjectItemMaxHP->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+
+	pGameObjectItemMaxHP->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectItemMaxHP->setGameWorldManager(mThis);
+	pGameObjectItemMaxHP->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
@@ -625,6 +661,11 @@ void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGam
 			tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters,
 			pGameObjectTerrain->getRenderComponentPositional()));
 		*/
+	pGameObjectTerrain->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectTerrain->setGameWorldManager(mThis);
+	pGameObjectTerrain->registerHandlers();
 	//Add Object to GameWorldManager
 	addGameObjectTerrain(pGameObjectTerrain);
 }
@@ -646,6 +687,12 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 		//Create RenderComponentLight
 		pGameObjectLight->setRenderComponentLight(factory->createRenderComponentLight(
 			pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
+	
+	pGameObjectLight->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectLight->setGameWorldManager(mThis);
+	pGameObjectLight->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectLight(pGameObjectLight);
@@ -668,6 +715,11 @@ void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParam
 		//Create RenderComponentBillboardSet
 		pGameObjectBillboardSet->setRenderComponentBillboardSet(factory->createRenderComponentBillboardSet(
 			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
+	
+	pGameObjectBillboardSet->changeWorld(world);
+	// Add a reference to this
+	pGameObjectBillboardSet->setGameWorldManager(mThis);
+	pGameObjectBillboardSet->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectBillboardSet(pGameObjectBillboardSet);
@@ -691,6 +743,12 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
 			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
 
+	pGameObjectParticleSystem->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectParticleSystem->setGameWorldManager(mThis);
+	pGameObjectParticleSystem->registerHandlers();
+
 	//Add Object to GameWorldManager
 	addGameObjectParticleSystem(pGameObjectParticleSystem);
 }
@@ -708,6 +766,13 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 	//Create RenderComponentCamera
 	pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
 		pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
+
+
+	pGameObjectCamera->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectCamera->setGameWorldManager(mThis);
+	pGameObjectCamera->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectCamera(pGameObjectCamera);
@@ -740,6 +805,12 @@ void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters 
 			pGameObjectVolumeBox,
 			tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters,
 			pGameObjectVolumeBox->getRenderComponentPositional()));
+	
+	pGameObjectVolumeBox->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectVolumeBox->setGameWorldManager(mThis);
+	pGameObjectVolumeBox->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeBox(pGameObjectVolumeBox);
@@ -772,6 +843,12 @@ void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsulePar
 			pGameObjectVolumeCapsule,
 			tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
 			pGameObjectVolumeCapsule->getRenderComponentPositional()));
+	
+	pGameObjectVolumeCapsule->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectVolumeCapsule->setGameWorldManager(mThis);
+	pGameObjectVolumeCapsule->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
@@ -790,6 +867,12 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 	//Create RenderComponentViewport
 	pGameObjectViewport->setRenderComponentViewport(factory->createRenderComponentViewport(
 			pGameObjectViewport,tGameObjectViewportParameters.tRenderComponentViewportParameters));
+	
+	pGameObjectViewport->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectViewport->setGameWorldManager(mThis);
+	pGameObjectViewport->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
@@ -805,29 +888,12 @@ void GameWorldManager::setGameOver(bool gameOver)
 	mGameOver=gameOver;
 }
 
-void GameWorldManager::setDreamsMode()
+void GameWorldManager::setWorld(int newWorld)
 {
-	world=DREAMS;
-
-	TGameObjectContainerIterator it;
-
-	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
-	{
-		it->second->setDreamsMode();
-	}
+	world=newWorld;
 }
 
-void GameWorldManager::setNightmaresMode()
-{
-	world=NIGHTMARES;
 
-	TGameObjectContainerIterator it;
-
-	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
-	{
-		it->second->setNightmaresMode();
-	}
-}
 
 int GameWorldManager::getCurrentWorld()
 {
@@ -836,12 +902,23 @@ int GameWorldManager::getCurrentWorld()
 
 void GameWorldManager::changeWorld()
 {	
-	if(world==DREAMS)
-	{
-		setNightmaresMode();
-	}
-	else if(world==NIGHTMARES)
-	{
-		setDreamsMode();
-	}
+	if (world==DREAMS)
+		world=NIGHTMARES;
+	else if (world==NIGHTMARES)
+		world=DREAMS;
+	ChangeWorldEventPtr evt= ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	addEvent(evt);
+}
+
+void GameWorldManager::addEvent(OUAN::EventPtr event)
+{
+	mEventManager->addEvent(event);
+}
+void GameWorldManager::dispatchEvents()
+{
+	mEventManager->dispatchEvents();
+}
+EventManagerPtr GameWorldManager::getEventManager()
+{
+	return mEventManager;
 }

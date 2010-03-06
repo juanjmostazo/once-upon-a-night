@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class to hold volume capsule information
-	class GameObjectVolumeCapsule : public GameObject
+	class GameObjectVolumeCapsule : public GameObject, public boost::enable_shared_from_this<GameObjectVolumeCapsule>
 	{
 	private:
 		/// Visual information - ONLY SHOWN IN DEBUG MODE
@@ -47,10 +47,20 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentVolumeCapsulePtr getPhysicsComponentVolumeCapsule();
 
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
+
+		//------------------------------------------------------------------
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	class TGameObjectVolumeCapsuleParameters: public TGameObjectParameters

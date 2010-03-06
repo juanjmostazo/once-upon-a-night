@@ -1,4 +1,6 @@
 #include "GameObjectOny.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -162,19 +164,44 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 }
 
-void GameObjectOny::setDreamsMode()
+void GameObjectOny::changeWorld(int world)
 {
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentCharacter->create();
+	case DREAMS:
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
+		break;
+	case NIGHTMARES:
+		break;
+	default:break;
 	}
 }
 
-void GameObjectOny::setNightmaresMode()
+void GameObjectOny::registerHandlers()
 {
+	GameObjectOnyPtr _this =shared_from_this();
+	registerEventHandler<GameObjectOny,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectOny::processChangeWorld,
+		mGameWorldManager->getEventManager());
 
 }
 
+void GameObjectOny::unregisterHandlers()
+{
+	GameObjectOnyPtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectOny,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectOny::processChangeWorld,
+		mGameWorldManager->getEventManager());
+
+}
+
+
+void GameObjectOny::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
+//------------------------------------------------------------------------------------
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
 

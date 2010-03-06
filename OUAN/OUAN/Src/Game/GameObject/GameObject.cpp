@@ -18,12 +18,7 @@ void GameObject::update(double elapsedSeconds)
 
 }
 
-void GameObject::setDreamsMode()
-{
-
-}
-
-void GameObject::setNightmaresMode()
+void GameObject::changeWorld(int world)
 {
 
 }
@@ -35,11 +30,17 @@ const std::string& GameObject::getName() const
 
 void GameObject::registerHandlers()
 {
-
 }
 void GameObject::unregisterHandlers()
 {
-
+}
+GameWorldManagerPtr GameObject::getGameWorldManager()
+{
+	return mGameWorldManager;
+}
+void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
+{
+	mGameWorldManager=gameWorldManager;
 }
 
 //-------------------------------------------------------

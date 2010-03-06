@@ -19,7 +19,7 @@ void EventManager::dispatchEvents()
 		EventPtr evt = removeEvent();
 		if (mEventHandlers.count(evt->getEventType()))
 		{
-			for (TEventHandlerList::iterator it = mEventHandlers[evt->getEventType()].begin();it!=mEventHandlers[evt->getEventType()].begin();++it)
+			for (TEventHandlerList::iterator it = mEventHandlers[evt->getEventType()].begin();it!=mEventHandlers[evt->getEventType()].end();++it)
 			{
 				(*it)->handleEvent(evt);				
 			}
@@ -59,4 +59,14 @@ void EventManager::unregisterHandler(EventHandlerPtr hdl,TEventType evtType)
 		if (mEventHandlers[evtType].size()==0)
 			mEventHandlers.erase(evtType);
 	}
+}
+void EventManager::clear()
+{
+	while(!mEventQueue.empty())
+		mEventQueue.pop();
+	for (TEventHandlerMap::iterator it=mEventHandlers.begin();it!=mEventHandlers.end();++it)
+	{
+		(it->second).clear();
+	}
+	mEventHandlers.clear();
 }

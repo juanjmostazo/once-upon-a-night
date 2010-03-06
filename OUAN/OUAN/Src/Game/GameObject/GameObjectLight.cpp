@@ -1,4 +1,5 @@
 #include "GameObjectLight.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -32,15 +33,31 @@ RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() con
 	return mRenderComponentPositional;
 }
 
-void GameObjectLight::setDreamsMode()
+void GameObjectLight::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
 
-void GameObjectLight::setNightmaresMode()
+void GameObjectLight::registerHandlers()
 {
-
+	GameObjectLightPtr _this =shared_from_this();
 }
+
+void GameObjectLight::unregisterHandlers()
+{
+	GameObjectLightPtr _this =shared_from_this();
+}
+
+//-------------------------------------------------------------------------------------------
 
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {

@@ -1,4 +1,6 @@
 #include "GameObjectTerrain.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -53,16 +55,37 @@ PhysicsComponentComplexConvexPtr GameObjectTerrain::getPhysicsComponentComplexCo
 	return mPhysicsComponentComplexConvex;
 }
 */
-void GameObjectTerrain::setDreamsMode()
+void GameObjectTerrain::changeWorld(int world)
 {
-	mPhysicsComponentComplexTriangle->create();
+	switch(world)
+	{
+	case DREAMS:
+		mPhysicsComponentComplexTriangle->create();
+		break;
+	case NIGHTMARES:
+		break;
+	default:break;
+	}
+}
+void GameObjectTerrain::registerHandlers()
+{
+	GameObjectTerrainPtr _this =shared_from_this();
+	registerEventHandler<GameObjectTerrain,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrain::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+void GameObjectTerrain::unregisterHandlers()
+{
+	GameObjectTerrainPtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectTerrain,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrain::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 
-void GameObjectTerrain::setNightmaresMode()
+
+void GameObjectTerrain::processChangeWorld(ChangeWorldEventPtr evt)
 {
-
+	changeWorld(evt->getNewWorld());
 }
-
+//-------------------------------------------------------------------------------------------
 TGameObjectTerrainParameters::TGameObjectTerrainParameters() : TGameObjectParameters()
 {
 

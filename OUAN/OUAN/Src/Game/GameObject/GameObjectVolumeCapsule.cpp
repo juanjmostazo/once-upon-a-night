@@ -1,4 +1,6 @@
 #include "GameObjectVolumeCapsule.h"
+#include "../GameWorldManager.h"
+#include "../../Event/Event.h"
 
 using namespace OUAN;
 
@@ -44,19 +46,42 @@ PhysicsComponentVolumeCapsulePtr GameObjectVolumeCapsule::getPhysicsComponentVol
 	return mPhysicsComponentVolumeCapsule;
 }
 
-void GameObjectVolumeCapsule::setDreamsMode()
+void GameObjectVolumeCapsule::changeWorld(int world)
 {
-	if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentVolumeCapsule->create();
+	case DREAMS:
+		if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+		{
+			mPhysicsComponentVolumeCapsule->create();
+		}
+		break;
+	case NIGHTMARES:
+		break;
+	default:break;
 	}
 }
 
-void GameObjectVolumeCapsule::setNightmaresMode()
+void GameObjectVolumeCapsule::registerHandlers()
 {
-	
+	GameObjectVolumeCapsulePtr _this =shared_from_this();
+	registerEventHandler<GameObjectVolumeCapsule,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeCapsule::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 
+void GameObjectVolumeCapsule::unregisterHandlers()
+{
+	GameObjectVolumeCapsulePtr _this =shared_from_this();
+	unregisterEventHandler<GameObjectVolumeCapsule,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeCapsule::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+
+void GameObjectVolumeCapsule::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
+
+//-------------------------------------------------------------------------------------------
 TGameObjectVolumeCapsuleParameters::TGameObjectVolumeCapsuleParameters() : TGameObjectParameters()
 {
 

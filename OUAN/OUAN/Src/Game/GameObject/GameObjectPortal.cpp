@@ -1,4 +1,5 @@
 #include "GameObjectPortal.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -42,16 +43,29 @@ PhysicsComponentComplexTrianglePtr GameObjectPortal::getPhysicsComponentComplexT
 {
 	return mPhysicsComponentComplexTriangle;
 }
-
-void GameObjectPortal::setDreamsMode()
+void GameObjectPortal::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 
 }
-
-void GameObjectPortal::setNightmaresMode()
+//-------------------------------------------------------------------------------------------
+void GameObjectPortal::registerHandlers()
 {
-
+	GameObjectPortalPtr _this =shared_from_this();
 }
+void GameObjectPortal::unregisterHandlers()
+{
+	GameObjectPortalPtr _this =shared_from_this();
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()
 {

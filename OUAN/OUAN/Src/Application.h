@@ -3,7 +3,6 @@
 
 #include "OUAN.h"
 #include "Input/ControlInputManager.h"
-#include <boost/smart_ptr/enable_shared_from_this.hpp>
 
 namespace OUAN
 {

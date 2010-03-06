@@ -8,7 +8,7 @@
 namespace OUAN
 {
 	/// Models a light source object
-	class GameObjectLight : public GameObject
+	class GameObjectLight : public GameObject, public boost::enable_shared_from_this<GameObjectLight>
 	{
 	private:
 		/// Holds the information related to visual rendering
@@ -38,10 +38,16 @@ namespace OUAN
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
-		// Sets the GameObject to Dreams
-		virtual void setDreamsMode();
-		// Sets the GameObject to Nightmares
-		virtual void setNightmaresMode();
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+
+		/// Attach all event handlers for this class.
+		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
+		void registerHandlers();
+		/// Detach all event handlers.
+		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
+		void unregisterHandlers();
 	};
 
 	/// Transport object carrying around data from the level loader
