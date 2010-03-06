@@ -1,0 +1,20 @@
+
+material scared_plant
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture scaredplant_texture.tga
+			}
+		}
+
+	}
+
+}
+
+

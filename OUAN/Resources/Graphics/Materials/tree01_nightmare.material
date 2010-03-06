@@ -1,0 +1,17 @@
+
+material tree01_nightmare
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.7 0.7 0.7 1
+			specular 0.436 0.436 0.436 1 50
+		}
+
+	}
+
+}
+
+
