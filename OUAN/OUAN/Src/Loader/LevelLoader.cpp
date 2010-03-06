@@ -81,83 +81,82 @@ void LevelLoader::processGameObjects()
 
 void LevelLoader::processGameObject(XMLGameObject* gameObject)
 {
-	String gameObjectType=gameObject->gameObjectType;
+	String gameObjectType;
 
-	if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
+	try
 	{
-		processGameObjectOny(gameObject);
+		gameObjectType=gameObject->gameObjectType;
+
+		if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
+		{
+			processGameObjectOny(gameObject);
+		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
+		//{
+		//	processGameObjectScene(gameObject);
+		//}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+		{
+			processGameObjectTripollo(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
+		{
+			processGameObjectTerrain(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
+		{
+			processGameObjectLight(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
+		{
+			processGameObjectParticleSystem(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
+		{
+			processGameObjectBillboardSet(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_EYE)==0)
+		{
+			processGameObjectEye(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
+		{
+			processGameObjectItem1UP(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
+		{
+			processGameObjectItemMaxHP(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
+		{
+			processGameObjectPortal(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
+		{
+			processGameObjectCamera(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
+		{
+			processGameObjectVolumeBox(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
+		{
+			processGameObjectVolumeCapsule(gameObject);
+		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+		//{
+		//	processGameObjectViewport(gameObject);
+		//}
+		else
+		{
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
+		}
 	}
-	//else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
-	//{
-	//	processGameObjectScene(gameObject);
-	//}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+	catch( char * error )
 	{
-		processGameObjectTripollo(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
-	{
-		processGameObjectTerrain(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
-	{
-		processGameObjectLight(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
-	{
-		processGameObjectParticleSystem(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
-	{
-		processGameObjectBillboardSet(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_EYE)==0)
-	{
-		processGameObjectEye(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
-	{
-		processGameObjectItem1UP(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_ITEM_MAXHP)==0)
-	{
-		processGameObjectItemMaxHP(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
-	{
-		processGameObjectPortal(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
-	{
-		processGameObjectCamera(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
-	{
-		processGameObjectVolumeBox(gameObject);
-	}
-	else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
-	{
-		processGameObjectVolumeCapsule(gameObject);
-	}
-	//else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
-	//{
-	//	processGameObjectViewport(gameObject);
-	//}
-	else
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Error reading "+gameObjectType+" OBJECT");
+		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object "+gameObject->name+": "+error);
 	}
 
-}
-
-void LevelLoader::processProject(TiXmlElement *XMLNode)
-{
-	TiXmlElement *pElement;
-
-	// Process PROJECT
-	pElement = XMLNode->FirstChildElement("PROJECT");
-	if(pElement)
-		processProject(pElement);
 }
 
 
@@ -202,7 +201,6 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 	tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
 	tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
 	tGameObjectTripolloParameters.name = gameObject->name;
-	Ogre::LogManager::getSingleton().logMessage( "[XMLGameObjectParser] Name "+gameObject->name+" DreamsName "+gameObject->dreamsName+"NightmaresName"+gameObject->nightmaresName);
 
 	//Get RenderComponentEntity
 	tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
@@ -388,7 +386,7 @@ void LevelLoader::processGameObjectVolumeBox(XMLGameObject* gameObject)
 	tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 	//Get PhysicsComponentVolumeBox
-	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
+	tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->XMLNodeDreams);
 
 	//Create GameObject
 	mGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
@@ -428,48 +426,6 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 }
 
-//
-//void LevelLoader::processResourceLocations(TiXmlElement *XMLNode)
-//{
-//	//TODO
-//}
-
-//void LevelLoader::processViewportCamera(TiXmlElement *XMLNode)
-//{
-//	TCameraParameters tCameraParameters;
-//
-//	tCameraParameters.name="Viewport#1";
-//
-//	//Get Camera properties
-//	tCameraParameters.TRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
-//	tCameraParameters.TRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
-//	tCameraParameters.TRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
-//	tCameraParameters.TRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"camera::fov");
-//	tCameraParameters.TRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
-//
-//		//PolygonMode conversion
-//	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
-//	switch(polygonmode)
-//	{
-//			case OGITOR_PM_POINTS:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
-//				break;
-//			case OGITOR_PM_SOLID:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
-//				break;
-//			case OGITOR_PM_WIREFRAME:
-//				tCameraParameters.TRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
-//				break;
-//			default:
-//				Ogre::LogManager::getSingleton().logMessage("Viewport Camera has unrecognised Camera Type");
-//				break;
-//	}
-//
-//
-//	//Create Camera
-////	mGameWorldManager->createCamera(tCameraParameters);
-//}
-
 TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentViewportParameters tRenderComponentViewportParameters;
@@ -507,39 +463,6 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 	return tRenderComponentSceneParameters;
 }
 
-//void LevelLoader::processTerrain(TiXmlElement *XMLNode)
-//{
-//	//! @todo Implement this
-//}
-
-
-//void LevelLoader::processTrajectory(TiXmlElement *XMLNode)
-//{
-//	//String name;
-//	//
-//	////Get Trajectory name
-//	//name = getAttrib(XMLNode, "name");
-//
-//	//int i;
-//	//String node;
-//
-//	//if(trajectory.trajectoryNodes.size()==0)
-//	//{
-//	//	trajectory.init(mSceneManager);
-//	//}
-//
-//	//i=0;
-//	//node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
-//	//while(node.compare("")!=0)
-//	//{
-//	//	trajectory.addNode(node);
-//	//	i++;
-//	//	node=getPropertyString(XMLNode,"Trajectory::"+StringConverter::toString(i));
-//	//}
-//
-//	//
-//}
-
 TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
@@ -574,8 +497,6 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 	return tRenderComponentCameraParameters;
 }
 
-
-
 TRenderComponentPositionalParameters LevelLoader::processRenderComponentPositional(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
@@ -608,21 +529,6 @@ TRenderComponentPositionalParameters LevelLoader::processRenderComponentPosition
 	return tRenderComponentPositionalParameters;
 }
 
-//void LevelLoader::processTrackTarget(TiXmlElement *XMLNode)
-//{
-//
-//	//// Setup the track target
-//	//try
-//	//{
-//	//	SceneNode *pTrackNode = mSceneManager->getSceneNode(nodeName);
-//	//	pParent->setAutoTracking(true, pTrackNode, localDirection, offset);
-//	//}
-//	//catch(Ogre::Exception &/*e*/)
-//	//{
-//	//	LogManager::getSingleton().logMessage("[LevelLoader] Error processing a track target!");
-//	//}
-//}
-
 void LevelLoader::processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters> &tRenderComponentSubEntityParameters,TiXmlElement *XMLNode)
 {
 		int i;
@@ -634,8 +540,8 @@ void LevelLoader::processRenderComponentSubEntities(std::vector<TRenderComponent
 		while(true)
 		{
 			//Process SubEntity
-			currentRenderComponentSubEntityParameters.material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material");
-			currentRenderComponentSubEntityParameters.visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible");
+			currentRenderComponentSubEntityParameters.material=getPropertyString(XMLNode,"subentity"+StringConverter::toString(i)+"::material",false);
+			currentRenderComponentSubEntityParameters.visible=getPropertyBool(XMLNode,"subentity"+StringConverter::toString(i)+"::visible",false);
 
 			//there is no more sub entities
 			if(currentRenderComponentSubEntityParameters.material.compare("")==0) break;
@@ -708,6 +614,7 @@ TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentPart
 	
 	return tRenderComponentParticleSystemParameters;
 }
+
 TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillboardSet(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
@@ -823,17 +730,6 @@ void LevelLoader::processRenderComponentBillboards(std::vector<TRenderComponentB
 	}
 }
 
-
-//void LevelLoader::processPlane(TiXmlElement *XMLNode)
-//{
-//
-//}
-//
-//void LevelLoader::processFog(TiXmlElement *XMLNode)
-//{
-//
-//}
-
 TRenderComponentSkyBoxParameters LevelLoader::processRenderComponentSkyBox(TiXmlElement *XMLNode)
 {
 	TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
@@ -917,13 +813,13 @@ TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSim
 	return tPhysicsComponentSimpleCapsuleParameters;
 }
 
-TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLNode)
+TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode)
 {
 	TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 	//Get Component properties
-	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLNode, "PhysicsComponentVolumeBox::mass");
-	Vector3 length=getPropertyVector3(XMLNode, "PhysicsComponentVolumeBox::scale");
+	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeBox::mass");
+	Vector3 length=getPropertyVector3(XMLRenderInfoNode, "scale");
 	tPhysicsComponentVolumeBoxParameters.lengthX=length.x;
 	tPhysicsComponentVolumeBoxParameters.lengthY=length.y;
 	tPhysicsComponentVolumeBoxParameters.lengthZ=length.z;
@@ -944,8 +840,6 @@ TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVol
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
 
-
-
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
@@ -954,8 +848,7 @@ String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const
 		return defaultValue;
 }
 
-
-String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attrib_name)
+String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	TiXmlElement *pElement;
 	TiXmlElement *XMLNodeCustomProperties;
@@ -1004,112 +897,50 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 
 	if(!found)
 	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error parsing "+attrib_name+" attribute!");
+		if(logErrors)
+		{
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error parsing "+attrib_name+" attribute!");
+		}
 	}
 	return result;
 }
 
-Vector2 LevelLoader::getPropertyVector2(TiXmlElement *XMLNode, const String &attrib_name)
+Vector2 LevelLoader::getPropertyVector2(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	return StringConverter::parseVector2(getPropertyString(XMLNode,attrib_name));
 }
 
-Vector3 LevelLoader::getPropertyVector3(TiXmlElement *XMLNode, const String &attrib_name)
+Vector3 LevelLoader::getPropertyVector3(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	return StringConverter::parseVector3(getPropertyString(XMLNode,attrib_name));
 }
 
-Vector4 LevelLoader::getPropertyVector4(TiXmlElement *XMLNode, const String &attrib_name)
+Vector4 LevelLoader::getPropertyVector4(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	return StringConverter::parseVector4(getPropertyString(XMLNode,attrib_name));
 }
 
-Quaternion LevelLoader::getPropertyQuaternion(TiXmlElement *XMLNode, const String &attrib_name)
+Quaternion LevelLoader::getPropertyQuaternion(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	return StringConverter::parseQuaternion(getPropertyString(XMLNode,attrib_name));
 }
 
-ColourValue LevelLoader::getPropertyColourValue(TiXmlElement *XMLNode, const String &attrib_name)
+ColourValue LevelLoader::getPropertyColourValue(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	return StringConverter::parseColourValue(getPropertyString(XMLNode,attrib_name));
 }
 
-bool LevelLoader::getPropertyBool(TiXmlElement *XMLNode, const String &attrib_name)
+bool LevelLoader::getPropertyBool(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	 return StringConverter::parseBool(getPropertyString(XMLNode,attrib_name));
 }
 
-int LevelLoader::getPropertyInt(TiXmlElement *XMLNode, const String &attrib_name)
+int LevelLoader::getPropertyInt(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	 return StringConverter::parseInt(getPropertyString(XMLNode,attrib_name));
 }
 
-Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_name)
+Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name));
 }
-
-
-TiXmlElement * LevelLoader::parseCustomPropertiesFile(std::string gameObjectType)
-{
-	std::ifstream customPropertiesFile;
-	std::string customPropertiesFilePath;
-
-	customPropertiesFilePath=GAME_OBJECT_PARAMETERS_PATH+gameObjectType+".ctp";
-
-	//Open Ony Custom properties file
-	XMLCustomPropertiesDocument = new TiXmlDocument(customPropertiesFilePath.c_str());
-
-	if (!XMLCustomPropertiesDocument->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("Error reading "+customPropertiesFilePath);
-	} 
-
-	TiXmlHandle docHandle(XMLCustomPropertiesDocument);
-	TiXmlElement *XMLCustomProperties = docHandle.FirstChildElement().Element();
-	if(!XMLCustomProperties)
-	{
-		Ogre::LogManager::getSingleton().logMessage("Error reading "+customPropertiesFilePath+"FirstElement");
-	}
-
-
-	return XMLCustomProperties;
-}
-
-
-TiXmlElement * LevelLoader::getGameObjectXMLNode(TiXmlElement *XMLGameObjectsNode,std::string gameObjectName)
-{
-	TiXmlElement *pElement;
-
-	// Process OBJECTs of selected type
-	pElement = XMLGameObjectsNode->FirstChildElement("OBJECT");
-	while(pElement)
-	{
-		String current_object_name = getAttrib(pElement, "name");
-		if( gameObjectName.compare(current_object_name)==0)
-		{
-			return pElement;
-		}
-		pElement = pElement->NextSiblingElement("OBJECT");
-	}
-	return pElement;
-}
-
-std::string LevelLoader::nightmaresName(std::string dreamsName,std::string gameObjectType)
-{
-	std::string nightmaresName;
-
-	nightmaresName=dreamsName;
-
-	nightmaresName[gameObjectType.size()+1]='n';
-
-	return	nightmaresName;
-}		
-
-std::string LevelLoader::baseName(std::string worldName,std::string gameObjectType)
-{
-	std::string baseName;
-
-	baseName=gameObjectType+worldName.substr(gameObjectType.size()+2,worldName.size()-gameObjectType.size()+2);
-
-	return	baseName;
-}		

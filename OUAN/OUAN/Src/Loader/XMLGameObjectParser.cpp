@@ -50,7 +50,7 @@ void XMLGameObjectParser::parseCustomProperties(std::string gameObjectType)
 	XMLCustomProperties[gameObjectType] = new TiXmlDocument(customPropertiesFilePath.c_str());
 
 	if (!XMLCustomProperties[gameObjectType]->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("Error reading "+customPropertiesFilePath);
+		Ogre::LogManager::getSingleton().logMessage("[XMLGameObjectParser] Error reading "+customPropertiesFilePath);
 	} 
 }
 
@@ -117,8 +117,6 @@ void XMLGameObjectParser::parseLevelRoot(TiXmlElement *XMLNode)
 	String version = getAttrib(XMLNode, "version", "unknown");
 
 	String message = "[XMLGameObjectParser] Parsing ogScene file with version " + version;
-
-	//LogManager::getSingleton().logMessage(message);
 	
 	//Process scene objects
 	parseGameObjects(XMLNode);
@@ -233,99 +231,3 @@ String XMLGameObjectParser::getAttrib(TiXmlElement *XMLNode, const String &attri
 	else
 		return defaultValue;
 }
-
-
-String XMLGameObjectParser::getPropertyString(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	TiXmlElement *pElement;
-	TiXmlElement *XMLNodeCustomProperties;
-	String propertyName;
-	String result="";
-	bool found=false;
-
-	// Process all PROPERTY of the XML node
-	pElement = XMLNode->FirstChildElement("PROPERTY");
-	while(pElement)
-	{
-		propertyName = getAttrib(pElement, "id");
-
-		//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
-
-		if(propertyName.compare(attrib_name)==0)
-		{
-			// Get the attribute value
-			result = getAttrib(pElement, "value");
-			found=true;
-		}
-		pElement = pElement->NextSiblingElement("PROPERTY");
-	}
-
-	XMLNodeCustomProperties = XMLNode->FirstChildElement("CUSTOMPROPERTIES");
-
-	// Process all CUSTOMPROPERTIES
-	if(XMLNodeCustomProperties)
-	{
-		pElement = XMLNodeCustomProperties->FirstChildElement("PROPERTY");
-		while(pElement)
-		{
-			propertyName = getAttrib(pElement, "id");
-
-			//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
-
-			if(propertyName.compare(attrib_name)==0)
-			{
-				// Get the attribute value
-				result = getAttrib(pElement, "value");
-				found=true;
-			}
-			pElement = pElement->NextSiblingElement("PROPERTY");
-		}
-	}
-
-	if(!found)
-	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error parsing "+attrib_name+" attribute!");
-	}
-	return result;
-}
-
-Vector2 XMLGameObjectParser::getPropertyVector2(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	return StringConverter::parseVector2(getPropertyString(XMLNode,attrib_name));
-}
-
-Vector3 XMLGameObjectParser::getPropertyVector3(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	return StringConverter::parseVector3(getPropertyString(XMLNode,attrib_name));
-}
-
-Vector4 XMLGameObjectParser::getPropertyVector4(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	return StringConverter::parseVector4(getPropertyString(XMLNode,attrib_name));
-}
-
-Quaternion XMLGameObjectParser::getPropertyQuaternion(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	return StringConverter::parseQuaternion(getPropertyString(XMLNode,attrib_name));
-}
-
-ColourValue XMLGameObjectParser::getPropertyColourValue(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	return StringConverter::parseColourValue(getPropertyString(XMLNode,attrib_name));
-}
-
-bool XMLGameObjectParser::getPropertyBool(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	 return StringConverter::parseBool(getPropertyString(XMLNode,attrib_name));
-}
-
-int XMLGameObjectParser::getPropertyInt(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	 return StringConverter::parseInt(getPropertyString(XMLNode,attrib_name));
-}
-
-Real XMLGameObjectParser::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_name)
-{
-	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name));
-}
-

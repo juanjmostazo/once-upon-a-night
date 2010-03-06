@@ -115,9 +115,9 @@ namespace OUAN
 		void setGameOver(bool gameOver);
 
 		/// Sets the world to Dreams
-		void setToDreams();
+		void setDreamsMode();
 		/// Sets the world to Nightmares
-		void setToNightmares();
+		void setNightmaresMode();
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
 		/// returns NIGHTMARES or DREAMS depending on current world state

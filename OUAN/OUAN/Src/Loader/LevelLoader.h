@@ -25,15 +25,6 @@ namespace OUAN
 		void processGameObjects();
 		void processGameObject(XMLGameObject *gameObject);
 
-		//Level .ogscene file Processors
-		void processProject(TiXmlElement *XMLNode);
-
-		std::string getGameObjectType(TiXmlElement *XMLNode);
-		void processResourceLocations(TiXmlElement *XMLNode);
-		TiXmlElement * getGameObjectXMLNode(TiXmlElement *XMLGameObjectsNode,std::string gameObjectName);
-		std::string nightmaresName(std::string dreamsName,std::string gameObjectType);
-		std::string baseName(std::string worldName,std::string gameObjectType);
-
 		//Game Object Processors
 		void processGameObjectScene(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
@@ -50,7 +41,6 @@ namespace OUAN
 		void processGameObjectCamera(XMLGameObject* gameObject);
 		void processGameObjectVolumeBox(XMLGameObject* gameObject);
 		void processGameObjectVolumeCapsule(XMLGameObject* gameObject);
-
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
@@ -73,37 +63,20 @@ namespace OUAN
 		TPhysicsComponentComplexTriangleParameters processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string meshfile);
 		TPhysicsComponentSimpleBoxParameters processPhysicsComponentSimpleBox(TiXmlElement *XMLNode);
 		TPhysicsComponentSimpleCapsuleParameters processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode);
-		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLNode);
+		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode);
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode);
-
-
-		//void processTerrain(TiXmlElement *XMLNode);
-
-		//void processViewport(TiXmlElement *XMLNode);
-		//void processViewportCamera(TiXmlElement *XMLNode);
-
-		//void processTrackTarget(TiXmlElement *XMLNode);
-
-		//TODO: void processPlane(TiXmlElement *XMLNode);
-		//TODO: void processFog(TiXmlElement *XMLNode);
-
-		//TODO: void processShadows(TiXmlElement *XMLNode);
-		//TODO: void processTrajectory(TiXmlElement *XMLNode);
-
-		TiXmlElement * parseCustomPropertiesFile(std::string gameObjectType);
-		TiXmlDocument * XMLCustomPropertiesDocument;
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 
-		OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::Vector2 getPropertyVector2(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::Vector3 getPropertyVector3(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::Vector4 getPropertyVector4(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::Quaternion getPropertyQuaternion(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::ColourValue getPropertyColourValue(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		bool getPropertyBool(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		int getPropertyInt(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-		OUAN::Real getPropertyReal(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
+		OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::Vector2 getPropertyVector2(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::Vector3 getPropertyVector3(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::Vector4 getPropertyVector4(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::Quaternion getPropertyQuaternion(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::ColourValue getPropertyColourValue(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		bool getPropertyBool(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		int getPropertyInt(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
+		OUAN::Real getPropertyReal(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
 
 		enum LightTypes
 		{

@@ -32,7 +32,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp=app;	
 	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
 	mApp->getGameWorldManager()->loadLevel("TestLevel");
-	mApp->getGameWorldManager()->setToDreams();
+	mApp->getGameWorldManager()->setDreamsMode();
 	mApp->mKeyBuffer=-1;
 }
 
