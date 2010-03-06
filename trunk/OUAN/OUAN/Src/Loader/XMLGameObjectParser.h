@@ -14,7 +14,7 @@ namespace OUAN
 			void parseGameObjects(TiXmlElement *XMLNode);
 			void parseGameObject(TiXmlElement *XMLNode);
 			void addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode);
-			void addXMLNodeCustomPropertiess();
+			void addXMLNodeCustomProperties();
 			void setNames();
 
 			//Game Object names processors
@@ -30,7 +30,9 @@ namespace OUAN
 			//Map containing all the GameObject custom properties documents
 			std::map<std::string,TiXmlDocument *> XMLCustomProperties;
 
-			//Parses custom properties for the specifies game object type and adds it to XMLCustomProperties map 
+			//Parse all GameObject's types and its custom properties file .ctp
+			void parseGameObjectTypes();
+			//Parses custom properties file (.ctp) the specifies game object type and adds it to XMLCustomProperties map 
 			void parseCustomProperties(std::string gameObjectType);
 
 			//Returns a node containing the custom properties for the specified game object type

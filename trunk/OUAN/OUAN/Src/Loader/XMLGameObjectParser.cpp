@@ -7,9 +7,19 @@ XMLGameObjectParser::~XMLGameObjectParser(){}
 
 void XMLGameObjectParser::init()
 {
-	unsigned int i;
+	clearLevel();
+}
 
-	this->XMLGameObjectContainer.clear();
+void XMLGameObjectParser::clearLevel()
+{
+	XMLGameObjectContainer.clear();
+	gameObjectTypes.clear();
+	XMLCustomProperties.clear();
+}
+
+void XMLGameObjectParser::parseGameObjectTypes()
+{
+	unsigned int i;
 
 	gameObjectTypes.clear();
 
@@ -33,11 +43,6 @@ void XMLGameObjectParser::init()
 	{
 		parseCustomProperties(gameObjectTypes[i]);
 	}	
-}
-
-void XMLGameObjectParser::clearLevel()
-{
-	XMLGameObjectContainer.clear();
 }
 
 void XMLGameObjectParser::parseCustomProperties(std::string gameObjectType)
@@ -65,6 +70,7 @@ TiXmlElement * XMLGameObjectParser::getXMLCustomProperties(std::string gameObjec
 
 void XMLGameObjectParser::parseLevel(String level)
 {
+
 	std::string fullLevelPath=LEVELS_PATH+level+".ogscene";
 
 	XMLDoc= new TiXmlDocument(fullLevelPath.c_str());
@@ -81,11 +87,15 @@ void XMLGameObjectParser::parseLevel(String level)
 		return;
 	}
 
+	// Parse all GameObjects' types and its custom properties file .ctp
+	parseGameObjectTypes();
+
 	// Process the scene
 	parseLevelRoot(XMLRoot);
 
-	addXMLNodeCustomPropertiess();
+	addXMLNodeCustomProperties();
 
+	// set GameObjects' names
 	setNames();
 
 }
@@ -100,7 +110,7 @@ void XMLGameObjectParser::setNames()
 	}
 }
 
-void XMLGameObjectParser::addXMLNodeCustomPropertiess()
+void XMLGameObjectParser::addXMLNodeCustomProperties()
 {
 	XMLGameObjectContainerIterator it;
 

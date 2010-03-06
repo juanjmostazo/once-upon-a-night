@@ -907,40 +907,40 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 
 Vector2 LevelLoader::getPropertyVector2(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	return StringConverter::parseVector2(getPropertyString(XMLNode,attrib_name));
+	return StringConverter::parseVector2(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 Vector3 LevelLoader::getPropertyVector3(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	return StringConverter::parseVector3(getPropertyString(XMLNode,attrib_name));
+	return StringConverter::parseVector3(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 Vector4 LevelLoader::getPropertyVector4(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	return StringConverter::parseVector4(getPropertyString(XMLNode,attrib_name));
+	return StringConverter::parseVector4(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 Quaternion LevelLoader::getPropertyQuaternion(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	return StringConverter::parseQuaternion(getPropertyString(XMLNode,attrib_name));
+	return StringConverter::parseQuaternion(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 ColourValue LevelLoader::getPropertyColourValue(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	return StringConverter::parseColourValue(getPropertyString(XMLNode,attrib_name));
+	return StringConverter::parseColourValue(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 bool LevelLoader::getPropertyBool(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	 return StringConverter::parseBool(getPropertyString(XMLNode,attrib_name));
+	 return StringConverter::parseBool(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 int LevelLoader::getPropertyInt(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	 return StringConverter::parseInt(getPropertyString(XMLNode,attrib_name));
+	 return StringConverter::parseInt(getPropertyString(XMLNode,attrib_name,logErrors));
 }
 
 Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
-	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name));
+	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name,logErrors));
 }
