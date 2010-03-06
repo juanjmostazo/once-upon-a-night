@@ -102,52 +102,6 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	//Initializing visual debugger
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 
-	//Initializing terrains
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-	//	initPhysicsComponentComplexTriangle(
-	//		mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexTriangle());
-	//}
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTerrainContainer().size(); i++){
-	//	initPhysicsComponentComplexConvex(
-	//		mApp->getGameWorldManager()->getGameObjectTerrainContainer()[i]->getPhysicsComponentComplexConvex());
-	//}
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	// INIT CHARACTERS
-
-	//Initializing Ony
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
-	//	initPhysicsComponentCharacter(
-	//		mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]->getPhysicsComponentCharacter());
-	//}
-
-	//Initializing Tripollos
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
-	//	initPhysicsComponentCharacter(
-	//		mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]->getPhysicsComponentCharacter());
-	//}
-
-	//Initializing Eyes
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
-	//	initPhysicsComponentCharacter(
-	//		mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]->getPhysicsComponentCharacter());
-	//}
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	// INIT VOLUMES
-
-	//Initializing volume boxes
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer().size(); i++){
-	//	initPhysicsComponentVolumeBox(
-	//		mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer()[i]->getPhysicsComponentVolumeBox());
-	//}
-
-	//Initializing volume capsules
-	//for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer().size(); i++){
-	//	initPhysicsComponentVolumeCapsule(
-	//		mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer()[i]->getPhysicsComponentVolumeCapsule());
-	//}
-
 	///**
 	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
 	//*/
@@ -158,24 +112,6 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 void PhysicsSubsystem::update(double elapsedSeconds)
 {
-
-	/*
-	//Updating Ony
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectOnyContainer().size(); i++){
-		updateGameObjectOny(elapsedSeconds,
-			mApp->getGameWorldManager()->getGameObjectOnyContainer()[i]);
-	}
-
-	//Updating Tripollos
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectTripolloContainer().size(); i++){
-		updateGameObjectTripollo(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectTripolloContainer()[i]);
-	}
-
-	//Updating Eyes
-	for (unsigned int i=0; i<mApp->getGameWorldManager()->getGameObjectEyeContainer().size(); i++){
-		updateGameObjectEye(elapsedSeconds,mApp->getGameWorldManager()->getGameObjectEyeContainer()[i]);
-	}
-	*/
 	/*
 	std::stringstream out;
 	out << elapsedSeconds;
@@ -187,6 +123,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 
 void PhysicsSubsystem::cleanUp()
 {
+	//TODO FIX CLEANUP PHYSICS OBJECTS
 	//resetLevel();
 	//mNxOgreWorld->destroyWorld(true);
 }
@@ -229,6 +166,9 @@ bool PhysicsSubsystem::loadConfig()
 
 		config.getOption("MOVEMENT_UNITS_PER_SECOND", value); 
 		mMovementUnitsPerSecond = atof(value.c_str());
+
+		config.getOption("MOVEMENT_LIMIT_UNITS_PER_SECOND", value); 
+		mMovementLimitUnitsPerSecond = atof(value.c_str());
 
 		config.getOption("TURN_DEGREES_PER_SECOND", value); 
 		mTurnDegreesPerSecond = atof(value.c_str());

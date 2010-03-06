@@ -8,9 +8,16 @@ GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name)
 {
 	mMovementFlags = MOV_NOWHERE;
+
 	mJumping = false;
 	mJumpTime = 0;
 	mJumpSpeed = 0;
+
+	mFalling = true;
+	mFallTime = 0;
+	mFallSpeed = 0;
+
+	mOnSurface = false;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -26,6 +33,13 @@ int GameObjectOny::getMovementFlags() const
 void GameObjectOny::setMovementFlags(int pMovementFlags)
 {
 	mMovementFlags=pMovementFlags;
+}
+
+void GameObjectOny::initJump()
+{
+	setJumping(true);
+	setJumpTime(0);
+	setJumpSpeed(Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed);
 }
 
 bool GameObjectOny::isJumping() const
@@ -55,7 +69,63 @@ double GameObjectOny::getJumpSpeed() const
 
 void GameObjectOny::setJumpSpeed(double pJumpSpeed)
 {
-	mJumpSpeed=pJumpSpeed;
+	mJumpSpeed = pJumpSpeed < Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond ?
+		pJumpSpeed : Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+}
+
+void GameObjectOny::initFall()
+{
+	setFalling(true);
+	setFallTime(0);
+	setFallSpeed(0);
+}
+
+bool GameObjectOny::isFalling() const
+{
+	return mFalling;
+}
+
+void GameObjectOny::setFalling(bool pFalling)
+{
+	mFalling=pFalling;
+}
+
+double GameObjectOny::getFallTime() const
+{
+	return mFallTime;
+}
+
+void GameObjectOny::setFallTime(double pFallTime)
+{
+	mFallTime=pFallTime;
+}
+
+double GameObjectOny::getFallSpeed() const
+{
+	return mFallSpeed;
+}
+
+void GameObjectOny::setFallSpeed(double pFallSpeed)
+{
+	mFallSpeed = pFallSpeed < Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond ?
+		pFallSpeed : Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+	
+}
+
+bool GameObjectOny::isOnSurface()
+{
+	return mOnSurface;
+}
+
+void GameObjectOny::setOnSurface(bool pOnSurface)
+{
+	mOnSurface=pOnSurface;
+
+	if (pOnSurface)
+	{
+		setJumping(false);
+		initFall();
+	}
 }
 
 void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -124,13 +194,11 @@ void GameObjectOny::update(double elapsedSeconds)
 		}
 
 		// Jump stuff
-		if ((movementFlags & MOV_JUMP) > 0 && !isJumping())
+		if ((movementFlags & MOV_JUMP) > 0 && !isJumping() && isOnSurface())
 		{
 			Ogre::LogManager::getSingleton().logMessage("Jump!"); 
-			setJumping(true);
-			setJumpTime(0);
-			setJumpSpeed(Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed);
-		}
+			initJump();
+		} 
 		
 		// Calculates the current displacement from position and angle
 		mDisplacement = Ogre::Quaternion(
@@ -139,12 +207,17 @@ void GameObjectOny::update(double elapsedSeconds)
 			mDisplacement.as<Ogre::Vector3>();
 	}
 	
-	// If it's jumping, calculate height and apply vertical displacement
 	if (isJumping())
 	{
 		setJumpSpeed(getJumpSpeed() + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * getJumpTime());
 		setJumpTime(getJumpTime() + elapsedSeconds);
 		mDisplacement.y += getJumpSpeed() * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
+	} 
+	else if (isFalling()) 
+	{
+		setFallSpeed(getFallSpeed() + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * getFallTime());
+		setFallTime(getFallTime() + elapsedSeconds);
+		mDisplacement.y += getFallSpeed() * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -160,7 +233,11 @@ void GameObjectOny::update(double elapsedSeconds)
 
 	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
 	{
-		setJumping(false);
+		setOnSurface(true);
+	}
+	else
+	{
+		setOnSurface(false);
 	}
 }
 
@@ -196,12 +273,13 @@ void GameObjectOny::unregisterHandlers()
 
 }
 
-
 void GameObjectOny::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	changeWorld(evt->getNewWorld());
 }
+
 //------------------------------------------------------------------------------------
+
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
 {
 

@@ -24,6 +24,18 @@ namespace OUAN
 		/// Jump speed
 		double mJumpSpeed;
 
+		/// Entity falling state
+		bool mFalling;
+
+		/// Jump time
+		double mFallTime;
+
+		/// Jump speed
+		double mFallSpeed;
+
+		/// Tells wether the entity is on the Surface
+		bool mOnSurface;
+
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component data
@@ -51,7 +63,10 @@ namespace OUAN
 		/// Set movement flags
 		void setMovementFlags(int pMovementFlags);
 
-		/// Return if the entity is jumping
+		/// Init jump
+		void initJump(); 
+
+		/// Return if theentity is jumping
 		bool isJumping() const;
 
 		/// Set if the entity is jumping
@@ -68,6 +83,33 @@ namespace OUAN
 
 		/// Set jump speed
 		void setJumpSpeed(double pJumpSpeed);
+
+		/// Init fall speed
+		void initFall();
+
+		/// Return if the entity is falling
+		bool isFalling() const;
+
+		/// Set if the entity is falling
+		void setFalling(bool pFalling);
+
+		/// Return fall time
+		double getFallTime() const;
+
+		/// Set fall time
+		void setFallTime(double pFallTime);
+
+		/// Return fall speed
+		double getFallSpeed() const;
+
+		/// Set fall speed
+		void setFallSpeed(double pFallSpeed);
+		
+		/// Return if it's on Surface
+		bool isOnSurface();
+
+		/// Set on Surface
+		void setOnSurface(bool pOnSurface);
 
 		/// Return render component entity 
 		/// @return render component entity
