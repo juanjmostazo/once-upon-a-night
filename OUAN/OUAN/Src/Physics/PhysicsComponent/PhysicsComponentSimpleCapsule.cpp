@@ -28,7 +28,13 @@ void PhysicsComponentSimpleCapsule::create()
 	}
 	else
 	{
-		setNxOgreBody(NULL);	
+		setNxOgreBody(NULL);
+
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
+			new NxOgre::Capsule(getNxOgreSize().x,
+								getNxOgreSize().y),
+			NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+
 		setStatic(true);
 	}
 }

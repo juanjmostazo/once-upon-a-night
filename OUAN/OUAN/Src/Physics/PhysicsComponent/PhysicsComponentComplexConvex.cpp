@@ -28,6 +28,11 @@ void PhysicsComponentComplexConvex::create()
 	else
 	{
 		setNxOgreBody(NULL);
+
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
+			getNxOgreConvex(),
+			NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+
 		setStatic(true);
 	}
 }
