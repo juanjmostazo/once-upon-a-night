@@ -15,22 +15,23 @@ PhysicsComponentSimpleBox::~PhysicsComponentSimpleBox()
 void PhysicsComponentSimpleBox::create()
 {
 	PhysicsComponentSimple::create();
-	
-	/****/
-	//NxOgre::RigidBodyDescription desc = getNxOgreRigidBodyDescription();
-	//desc.mMass = 0;
-	//desc.mDensity = 1;
-	//setNxOgreRigidBodyDescription(desc);
-	/****/
 
-	setNxOgreBody(
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-			new NxOgre::Box(getNxOgreSize().x,
-							getNxOgreSize().y,
-							getNxOgreSize().z),
-			getSceneNode()->getPosition(),
-			getSceneNode(),
-			getNxOgreRigidBodyDescription()));
+	if (getNxOgreRigidBodyDescription().mMass > 0)
+	{
+		setNxOgreBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
+				new NxOgre::Box(getNxOgreSize().x,
+								getNxOgreSize().y,
+								getNxOgreSize().z),
+				getSceneNode()->getPosition(),
+				getSceneNode(),
+				getNxOgreRigidBodyDescription()));
+	}
+	else
+	{
+		setNxOgreBody(NULL);
+		setStatic(true);
+	}
 }
 
 void PhysicsComponentSimpleBox::destroy()
