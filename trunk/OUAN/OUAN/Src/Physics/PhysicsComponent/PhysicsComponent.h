@@ -27,8 +27,17 @@ namespace OUAN
 		virtual bool isInUse();
 		virtual void setInUse(bool pInUse);
 
+		virtual bool isStatic();
+		virtual void setStatic(bool pStatic);
+
 	protected:
+		// Tells if the component is in use or not
 		bool mInUse;
+
+		// Tells if the game entiy is static or can be moved
+		bool mStatic;
+
+		// Related game entity scene node
 		Ogre::SceneNode* mSceneNode;
 	};
 

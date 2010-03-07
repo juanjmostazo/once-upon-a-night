@@ -5,6 +5,7 @@ PhysicsComponent::PhysicsComponent(const std::string& type)
 :Component(COMPONENT_TYPE_PHYSICS)
 {
 	mInUse=false;
+	mStatic=false;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -35,6 +36,16 @@ bool PhysicsComponent::isInUse()
 void PhysicsComponent::setInUse(bool pInUse)
 {
 	mInUse=pInUse;
+}
+
+bool PhysicsComponent::isStatic()
+{
+	return mStatic;
+}
+
+void PhysicsComponent::setStatic(bool pStatic)
+{
+	mStatic=pStatic;
 }
 
 Ogre::SceneNode* PhysicsComponent::getSceneNode(){

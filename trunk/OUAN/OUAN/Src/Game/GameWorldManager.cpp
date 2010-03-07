@@ -587,7 +587,7 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 {
 	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
 	TPhysicsComponentSimpleBoxParameters physicsParams;
-	physicsParams.mass=10;
+	physicsParams.mass=0;
 	physicsParams.lengthX=3;
 	physicsParams.lengthY=5;
 	physicsParams.lengthZ=3;

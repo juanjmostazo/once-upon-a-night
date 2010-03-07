@@ -16,12 +16,20 @@ void PhysicsComponentComplexConvex::create()
 {
 	PhysicsComponentComplex::create();
 	
-	setNxOgreBody(
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-			getNxOgreConvex(),
-			getSceneNode()->getPosition(),
-			getSceneNode(),
-			getNxOgreRigidBodyDescription()));
+	if (getNxOgreRigidBodyDescription().mMass > 0)
+	{
+		setNxOgreBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
+				getNxOgreConvex(),
+				getSceneNode()->getPosition(),
+				getSceneNode(),
+				getNxOgreRigidBodyDescription()));
+	}
+	else
+	{
+		setNxOgreBody(NULL);
+		setStatic(true);
+	}
 }
 
 void PhysicsComponentComplexConvex::destroy()

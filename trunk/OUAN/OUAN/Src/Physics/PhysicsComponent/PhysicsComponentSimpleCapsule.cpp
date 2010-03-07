@@ -16,13 +16,21 @@ void PhysicsComponentSimpleCapsule::create()
 {
 	PhysicsComponentSimple::create();
 	
-	setNxOgreBody(
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-			new NxOgre::Capsule(getNxOgreSize().x,
-								getNxOgreSize().y),
-			getSceneNode()->getPosition(),
-			getSceneNode(),
-			getNxOgreRigidBodyDescription()));
+	if (getNxOgreRigidBodyDescription().mMass > 0)
+	{
+		setNxOgreBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
+				new NxOgre::Capsule(getNxOgreSize().x,
+									getNxOgreSize().y),
+				getSceneNode()->getPosition(),
+				getSceneNode(),
+				getNxOgreRigidBodyDescription()));
+	}
+	else
+	{
+		setNxOgreBody(NULL);	
+		setStatic(true);
+	}
 }
 
 void PhysicsComponentSimpleCapsule::destroy()
