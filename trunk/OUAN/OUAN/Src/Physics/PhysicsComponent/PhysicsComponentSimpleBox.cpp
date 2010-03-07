@@ -30,6 +30,13 @@ void PhysicsComponentSimpleBox::create()
 	else
 	{
 		setNxOgreBody(NULL);
+
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
+			new NxOgre::Box(	getNxOgreSize().x,
+								getNxOgreSize().y,
+								getNxOgreSize().z),
+			NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+
 		setStatic(true);
 	}
 }
