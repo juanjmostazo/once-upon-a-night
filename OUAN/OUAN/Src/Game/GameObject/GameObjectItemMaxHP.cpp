@@ -34,14 +34,14 @@ RenderComponentPositionalPtr GameObjectItemMaxHP::getRenderComponentPositional()
 	return mRenderComponentPositional;
 }
 
-void GameObjectItemMaxHP::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
+void GameObjectItemMaxHP::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
-	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentComplexTrianglePtr GameObjectItemMaxHP::getPhysicsComponentComplexTriangle()
+PhysicsComponentSimpleCapsulePtr GameObjectItemMaxHP::getPhysicsComponentSimpleCapsule()
 {
-	return mPhysicsComponentComplexTriangle;
+	return mPhysicsComponentSimpleCapsule;
 }
 
 void GameObjectItemMaxHP::changeWorld(int world)
@@ -49,6 +49,10 @@ void GameObjectItemMaxHP::changeWorld(int world)
 	switch(world)
 	{
 	case DREAMS:
+		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+		{
+			mPhysicsComponentSimpleCapsule->create();
+		}
 		break;
 	case NIGHTMARES:
 		break;

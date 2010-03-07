@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 
 namespace OUAN
 {
@@ -17,7 +17,7 @@ namespace OUAN
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -42,10 +42,10 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -72,7 +72,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 	};
 }
 #endif

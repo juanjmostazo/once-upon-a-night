@@ -34,20 +34,24 @@ RenderComponentPositionalPtr GameObjectPortal::getRenderComponentPositional() co
 	return mRenderComponentPositional;
 }
 
-void GameObjectPortal::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
+void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentComplexTrianglePtr GameObjectPortal::getPhysicsComponentComplexTriangle()
+PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox()
 {
-	return mPhysicsComponentComplexTriangle;
+	return mPhysicsComponentSimpleBox;
 }
 void GameObjectPortal::changeWorld(int world)
 {
 	switch(world)
 	{
 	case DREAMS:
+		if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->create();
+		}
 		break;
 	case NIGHTMARES:
 		break;
