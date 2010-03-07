@@ -199,8 +199,6 @@ namespace OUAN
 
 		EventManagerPtr mEventManager;
 		GameWorldManagerPtr mThis;
-		
-
 	};
 }
 #endif

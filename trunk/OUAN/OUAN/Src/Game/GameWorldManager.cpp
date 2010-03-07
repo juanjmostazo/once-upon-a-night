@@ -322,6 +322,8 @@ void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem
 	mGameObjectPositionalContainer.push_back(pGameObjectItem1UP);
 	mGameObjectNonMovableContainer.push_back(pGameObjectItem1UP);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItem1UP);
+
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItem1UP);
 }
 
 void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
@@ -331,6 +333,8 @@ void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObject
 	mGameObjectPositionalContainer.push_back(pGameObjectItemMaxHP);
 	mGameObjectNonMovableContainer.push_back(pGameObjectItemMaxHP);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItemMaxHP);
+
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItemMaxHP);
 }
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
@@ -546,6 +550,14 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 
 void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
 {
+	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
+	TPhysicsComponentSimpleCapsuleParameters physicsParams;
+	physicsParams.mass=10;
+	physicsParams.height=1;
+	physicsParams.radius=4;
+	tGameObjectItem1UPParameters.tPhysicsComponentSimpleCapsuleParameters=physicsParams;
+	/**/
+
 	GameObjectItem1UPPtr pGameObjectItem1UP;
 
 	//Create GameObject
@@ -563,6 +575,13 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
 	
+		//Create PhysicsComponent
+		pGameObjectItem1UP->setPhysicsComponentSimpleCapsule(
+			factory->createPhysicsComponentSimpleCapsule(
+				pGameObjectItem1UP, 
+				tGameObjectItem1UPParameters.tPhysicsComponentSimpleCapsuleParameters, 
+				pGameObjectItem1UP->getRenderComponentPositional()));
+
 	pGameObjectItem1UP->changeWorld(world);
 	
 	// Add a reference to this
@@ -575,6 +594,15 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 
 void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters)
 {
+	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
+	TPhysicsComponentSimpleBoxParameters physicsParams;
+	physicsParams.mass=10;
+	physicsParams.lengthX=3;
+	physicsParams.lengthY=5;
+	physicsParams.lengthZ=3;
+	tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=physicsParams;
+	/**/
+
 	GameObjectPortalPtr pGameObjectPortal;
 
 	//Create GameObject
@@ -592,6 +620,13 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 			factory->createRenderComponentEntity(tGameObjectPortalParameters.name,
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters));
 
+		//Create PhysicsComponent
+		pGameObjectPortal->setPhysicsComponentSimpleBox(
+			factory->createPhysicsComponentSimpleBox(
+			pGameObjectPortal, 
+			tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters, 
+			pGameObjectPortal->getRenderComponentPositional()));
+
 	pGameObjectPortal->changeWorld(world);
 
 	// Add a reference to this
@@ -604,6 +639,14 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 
 void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters)
 {
+	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
+	TPhysicsComponentSimpleCapsuleParameters physicsParams;
+	physicsParams.mass=10;
+	physicsParams.height=1;
+	physicsParams.radius=4;
+	tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters=physicsParams;
+	/**/
+
 	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
 
 	//Create GameObject
@@ -620,6 +663,13 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 		pGameObjectItemMaxHP->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+
+		//Create PhysicsComponent
+		pGameObjectItemMaxHP->setPhysicsComponentSimpleCapsule(
+			factory->createPhysicsComponentSimpleCapsule(
+			pGameObjectItemMaxHP, 
+			tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters, 
+			pGameObjectItemMaxHP->getRenderComponentPositional()));
 
 	pGameObjectItemMaxHP->changeWorld(world);
 
@@ -892,8 +942,6 @@ void GameWorldManager::setWorld(int newWorld)
 {
 	world=newWorld;
 }
-
-
 
 int GameWorldManager::getCurrentWorld()
 {

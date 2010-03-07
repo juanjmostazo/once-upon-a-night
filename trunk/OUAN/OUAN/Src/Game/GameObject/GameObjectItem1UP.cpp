@@ -34,14 +34,14 @@ RenderComponentPositionalPtr GameObjectItem1UP::getRenderComponentPositional() c
 	return mRenderComponentPositional;
 }
 
-void GameObjectItem1UP::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
+void GameObjectItem1UP::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
-	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentComplexTrianglePtr GameObjectItem1UP::getPhysicsComponentComplexTriangle()
+PhysicsComponentSimpleCapsulePtr GameObjectItem1UP::getPhysicsComponentSimpleCapsule()
 {
-	return mPhysicsComponentComplexTriangle;
+	return mPhysicsComponentSimpleCapsule;
 }
 
 void GameObjectItem1UP::changeWorld(int world)
@@ -49,6 +49,10 @@ void GameObjectItem1UP::changeWorld(int world)
 	switch(world)
 	{
 	case DREAMS:
+		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+		{
+			mPhysicsComponentSimpleCapsule->create();
+		}
 		break;
 	case NIGHTMARES:
 		break;
