@@ -282,8 +282,9 @@ namespace OUAN
 		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 
+		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
-		const std::string GAME_OBJECT_TYPE_SCENE="scene";
+		const std::string GAME_OBJECT_TYPE_SCENE="SceneManager";
 		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";
 		const std::string GAME_OBJECT_TYPE_LIGHT="Light";
 		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
@@ -297,7 +298,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="item-maxhp";
 		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
 		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";
-		const std::string GAME_OBJECT_TYPE_VIEWPORT="viewport";
+		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
 
 		///////////////////////////////////////////////////////////////////
 

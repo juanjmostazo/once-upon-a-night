@@ -417,23 +417,14 @@ void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectVi
 	mGameObjects[pGameObjectViewport->getName()]=pGameObjectViewport;
 
 	mGameObjectViewportContainer.push_back(pGameObjectViewport);
-
 }
 
-//void GameWorldManager::createGameObject(String name, GameObjectPtr gameObject)
-//{
-//	gameObject = GameObjectPtr(new GameObject(name,makeIdString(name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
-//	addGameObject(gameObject);
-//
-//}
-//
-//void GameWorldManager::createGameObjectMovable(String name, GameObjectMovablePtr gameObjectMovable)
-//{
-//	GameObjectMovablePtr pGameObjectMovable;
-//	pGameObjectMovable = GameObjectMovablePtr(new GameObjectMovable(name,makeIdString(name,GAMEOBJECT_ID_ZERO_PADDING,nextId())));
-//	//TODO add to GameObjectMovable map
-//	//addGameObject(pGameObjectMovable);
-//}
+void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)
+{
+	mGameObjects[pGameObjectScene->getName()]=pGameObjectScene;
+
+	mGameObjectSceneContainer.push_back(pGameObjectScene);
+}
 
 void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters)
 {
@@ -926,6 +917,32 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
+}
+
+void GameWorldManager::createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters)
+{
+
+	GameObjectScenePtr pGameObjectScene;
+
+	//Create GameObject
+	pGameObjectScene = GameObjectScenePtr(new GameObjectScene(tGameObjectSceneParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create RenderComponentViewport
+	pGameObjectScene->setRenderComponentScene(factory->createRenderComponentScene(
+			pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters));
+	
+	pGameObjectScene->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectScene->setGameWorldManager(mThis);
+	pGameObjectScene->registerHandlers();
+
+	//Add Object to GameWorldManager
+	addGameObjectScene(pGameObjectScene);
+
 }
 
 bool GameWorldManager::isGameOver()const
