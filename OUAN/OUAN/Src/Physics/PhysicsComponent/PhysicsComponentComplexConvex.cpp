@@ -20,9 +20,8 @@ void PhysicsComponentComplexConvex::create()
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 			getNxOgreConvex(),
 			getSceneNode()->getPosition(),
-			getSceneNode()//,
-			//getNxOgreRigidBodyDescription()));
-			));
+			getSceneNode(),
+			getNxOgreRigidBodyDescription()));
 }
 
 void PhysicsComponentComplexConvex::destroy()
