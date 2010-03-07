@@ -91,10 +91,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectOny(gameObject);
 		}
-		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
-		//{
-		//	processGameObjectScene(gameObject);
-		//}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
+		{
+			processGameObjectScene(gameObject);
+		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
 			processGameObjectTripollo(gameObject);
@@ -143,10 +143,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectVolumeCapsule(gameObject);
 		}
-		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
-		//{
-		//	processGameObjectViewport(gameObject);
-		//}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+		{
+			processGameObjectViewport(gameObject);
+		}
 		else
 		{
 			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
@@ -162,14 +162,24 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {
-	////Get OctreeSceneManager name
-	//tSceneManagerParameters.name = getAttrib(XMLNode, "name");
+	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
 
-	////Get SceneManager properties
-	//tSceneManagerParameters.TRenderComponentSceneParameters.ambient=
+	try
+	{
+		//Get Scene name
+		tGameObjectSceneParameters.name = gameObject->name;
 
-	//cre
-	//mGameWorldManager->createSceneManager(tSceneManagerParameters);
+		//Get SceneManager properties
+		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->XMLNodeDreams);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
 }
 
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)

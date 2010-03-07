@@ -105,8 +105,23 @@ void XMLGameObjectParser::setNames()
 
 	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
 	{
-		it->second.dreamsName=getDreamsName(it->second.name,it->second.gameObjectType);
-		it->second.nightmaresName=getNightmaresName(it->second.name,it->second.gameObjectType);
+		//special cases
+		if(it->second.gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
+		{
+			it->second.dreamsName=it->second.name;
+			it->second.nightmaresName=it->second.name;
+		}
+		else if(it->second.gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+		{
+			it->second.dreamsName=it->second.name;
+			it->second.nightmaresName=it->second.name;
+		}
+		//default case
+		else
+		{
+			it->second.dreamsName=getDreamsName(it->second.name,it->second.gameObjectType);
+			it->second.nightmaresName=getNightmaresName(it->second.name,it->second.gameObjectType);
+		}
 	}
 }
 
@@ -181,18 +196,39 @@ void XMLGameObjectParser::addXMLGameObjectNode(std::string worldName,std::string
 {
 	std::string baseName;
 
-	baseName=getBaseName(worldName,gameObjectType);
-
-	XMLGameObjectContainer[baseName].name=baseName;
-	XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
-
-	if(isDreams(worldName,gameObjectType))
+	//special cases
+	if(gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
 	{
+		baseName=worldName;
+		XMLGameObjectContainer[baseName].name=baseName;
+		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+
 		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 	}
-	else if(isNightmares(worldName,gameObjectType))
+	else if(gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
 	{
-		XMLGameObjectContainer[baseName].XMLNodeNightmares=XMLNode;
+		baseName=worldName;
+		XMLGameObjectContainer[baseName].name=baseName;
+		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+
+		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+	}
+	//default case
+	else
+	{
+		baseName=getBaseName(worldName,gameObjectType);
+
+		XMLGameObjectContainer[baseName].name=baseName;
+		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+
+		if(isDreams(worldName,gameObjectType))
+		{
+			XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+		}
+		else if(isNightmares(worldName,gameObjectType))
+		{
+			XMLGameObjectContainer[baseName].XMLNodeNightmares=XMLNode;
+		}
 	}
 
 }

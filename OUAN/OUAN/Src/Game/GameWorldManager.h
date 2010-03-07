@@ -61,7 +61,8 @@ namespace OUAN
 		/// Create a game object using the given 'parameters' object
 		/// @param objectParams parameters to init the game object and its components
 
-		//void createGameObjectMovableEntity(TGameObjectMovableEntityParameters tGameObjectMovableEntityParameters);
+		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
+		void createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters);
 		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
 		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
 		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
@@ -75,7 +76,8 @@ namespace OUAN
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
 		void createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters);
 		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
-		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
+
+
 
 		/// Update world state
 		/// @param elapsedTime time since last update
@@ -120,6 +122,8 @@ namespace OUAN
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
+		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
+		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
 		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
 		void addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain);
@@ -133,7 +137,7 @@ namespace OUAN
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
 		void addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox);
 		void addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule);
-		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
+
 
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
 		//[TODO]: Do the same with the toAdd/toDelete lists?
