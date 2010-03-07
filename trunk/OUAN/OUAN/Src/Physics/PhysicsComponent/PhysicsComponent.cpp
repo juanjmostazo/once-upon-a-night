@@ -45,16 +45,6 @@ void PhysicsComponent::setSceneNode(Ogre::SceneNode* pSceneNode){
 	mSceneNode = pSceneNode;
 }
 
-double PhysicsComponent::getMass()
-{
-	return mNxOgreMass;
-}
-
-void PhysicsComponent::setMass(double pNxOgreMass)
-{
-	mNxOgreMass=pNxOgreMass;
-}
-
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {
 

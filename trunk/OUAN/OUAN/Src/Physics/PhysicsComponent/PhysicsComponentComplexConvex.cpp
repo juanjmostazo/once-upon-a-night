@@ -15,12 +15,14 @@ PhysicsComponentComplexConvex::~PhysicsComponentComplexConvex()
 void PhysicsComponentComplexConvex::create()
 {
 	PhysicsComponentComplex::create();
-
+	
 	setNxOgreBody(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 			getNxOgreConvex(),
 			getSceneNode()->getPosition(),
-			getSceneNode()));
+			getSceneNode()//,
+			//getNxOgreRigidBodyDescription()));
+			));
 }
 
 void PhysicsComponentComplexConvex::destroy()
@@ -46,6 +48,16 @@ OGRE3DBody* PhysicsComponentComplexConvex::getNxOgreBody()
 void PhysicsComponentComplexConvex::setNxOgreBody(OGRE3DBody* pNxOgreBody)
 {
 	mNxOgreBody=pNxOgreBody;
+}
+
+NxOgre::RigidBodyDescription PhysicsComponentComplexConvex::getNxOgreRigidBodyDescription()
+{
+	return mNxOgreRigidBodyDescription;
+}
+
+void PhysicsComponentComplexConvex::setNxOgreRigidBodyDescription(NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription)
+{
+	mNxOgreRigidBodyDescription=pNxOgreRigidBodyDescription;
 }
 
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()

@@ -15,6 +15,9 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
+		virtual double getMass();
+		virtual void setMass(double pNxOgreMass);
+
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		NxOgre::Controller* getNxOgreController();
 
@@ -25,6 +28,7 @@ namespace OUAN
 		NxOgre::ControllerDescription getNxOgreControllerDescription();
 
 	protected:
+		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
