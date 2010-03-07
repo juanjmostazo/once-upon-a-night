@@ -21,10 +21,10 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="8"></CAMERASPEED>
+  <CAMERASPEED value="1"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="46.8558 57.6679 -133.675" orientation="-0.0605284 0.00794227 -0.989595 -0.130288"></OPTION>
+    <OPTION id="1" position="-4.27389 25.3448 -42.4076" orientation="0.758088 0.0821682 -0.643184 0.0697523"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.0605284 0.00794227 -0.989595 -0.130288"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.758095 0.082169 -0.64319 0.0697529"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="46.8558 57.6679 -133.675"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-4.27389 25.3448 -42.4076"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.0588235 0.101961 0.721569 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -262,10 +262,10 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="eventzone.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="48.3795 15.6098 -46.4991"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.921794 -0.180025 0.299509 -0.167876"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-8.65657 24.9545 -42.62"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="3.81631 1 4.68591"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="4.59184 8.79473 10"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -280,7 +280,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ITEM_MAX_HP_RESTORE.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.0436192 0 0 -0.999048"></PROPERTY>
     <PROPERTY id="position" type="9" value="34.0465 25.3927 -50.3689"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -400,7 +400,7 @@
     <PROPERTY id="position" type="9" value="41.6942 45.3411 -13.6664"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="grassbillboard"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wire_088177026"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
