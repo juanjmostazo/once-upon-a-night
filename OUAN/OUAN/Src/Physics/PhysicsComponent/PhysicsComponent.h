@@ -23,9 +23,6 @@ namespace OUAN
 
 		virtual Ogre::SceneNode* getSceneNode();
 		virtual void setSceneNode(Ogre::SceneNode* sceneNode);
-		
-		virtual double getMass();
-		virtual void setMass(double pNxOgreMass);
 
 		virtual bool isInUse();
 		virtual void setInUse(bool pInUse);
@@ -33,7 +30,6 @@ namespace OUAN
 	protected:
 		bool mInUse;
 		Ogre::SceneNode* mSceneNode;
-		double mNxOgreMass;
 	};
 
 	class TPhysicsComponentParameters: public TComponentParameters

@@ -17,8 +17,12 @@ namespace OUAN
 		OGRE3DBody* getNxOgreBody();
 		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
 
+		NxOgre::RigidBodyDescription getNxOgreRigidBodyDescription();
+		void setNxOgreRigidBodyDescription(NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription);
+
 	protected:
 		OGRE3DBody* mNxOgreBody;
+		NxOgre::RigidBodyDescription mNxOgreRigidBodyDescription;
 	};
 
 	class TPhysicsComponentSimpleParameters: public TPhysicsComponentParameters

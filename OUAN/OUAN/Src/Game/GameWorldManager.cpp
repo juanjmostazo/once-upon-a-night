@@ -596,7 +596,7 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 {
 	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
 	TPhysicsComponentSimpleBoxParameters physicsParams;
-	physicsParams.mass=10;
+	physicsParams.mass=0;
 	physicsParams.lengthX=3;
 	physicsParams.lengthY=5;
 	physicsParams.lengthZ=3;
@@ -641,7 +641,7 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 {
 	/*TODO, RECEIVE THIS PROPERLY FROM LEVELLOADER*/
 	TPhysicsComponentSimpleCapsuleParameters physicsParams;
-	physicsParams.mass=10;
+	physicsParams.mass=15;
 	physicsParams.height=1;
 	physicsParams.radius=4;
 	tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters=physicsParams;
