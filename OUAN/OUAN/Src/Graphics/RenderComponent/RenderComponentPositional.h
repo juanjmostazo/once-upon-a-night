@@ -18,6 +18,16 @@ namespace OUAN
 		Ogre::SceneNode * getSceneNode() const;
 		void setSceneNode(Ogre::SceneNode *);	
 
+
+		Vector3 getPosition() const;
+		Quaternion getOrientation() const;
+		//values in degrees
+		double getYaw() const;
+		double getPitch() const;
+		double getRoll() const;
+
+
+
 		RenderSubsystemPtr getRenderSubsystem() const;
 		void setRenderSubsystem(RenderSubsystemPtr renderSubsystem);
 

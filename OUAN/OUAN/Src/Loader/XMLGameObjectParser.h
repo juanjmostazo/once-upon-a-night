@@ -57,7 +57,7 @@ namespace OUAN
 			virtual ~XMLGameObjectParser();
 
 			void init();
-			void clearLevel();
+			void clearLevelInfo();
 
 			void parseLevel(String SceneName);
 
