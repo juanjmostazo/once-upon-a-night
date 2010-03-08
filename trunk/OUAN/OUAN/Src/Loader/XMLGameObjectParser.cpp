@@ -8,10 +8,10 @@ XMLGameObjectParser::~XMLGameObjectParser(){}
 
 void XMLGameObjectParser::init()
 {
-	clearLevel();
+	clearLevelInfo();
 }
 
-void XMLGameObjectParser::clearLevel()
+void XMLGameObjectParser::clearLevelInfo()
 {
 	XMLGameObjectContainerIterator it;
 
