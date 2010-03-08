@@ -240,7 +240,7 @@ void CameraManager::changeCameraController()
 	}
 }
 
-void CameraManager::setCameraTarget(Ogre::SceneNode * target)
+void CameraManager::setCameraTarget(RenderComponentPositional * target)
 {
 	mCameraControllerThirdPerson->setTarget(target);
 }

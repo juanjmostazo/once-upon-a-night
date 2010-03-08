@@ -634,7 +634,7 @@ void RenderSubsystem::changeCameraController()
 
 void RenderSubsystem::setCameraTarget(RenderComponentPositional * renderComponentPositional)
 {
-	mCameraManager->setCameraTarget(renderComponentPositional->getSceneNode());
+	mCameraManager->setCameraTarget(renderComponentPositional);
 }
 void RenderSubsystem::showOverlay(const std::string& overlayName)
 {
