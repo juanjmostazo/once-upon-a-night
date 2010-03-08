@@ -178,8 +178,14 @@ namespace OUAN
 		class TLogicComponentEventParameters;
 		typedef boost::shared_ptr<LogicComponentEvent> LogicComponentEventPtr;
 
+		class LogicComponentWorldExistance;
+		class TLogicComponentWorldExistanceParameters;
+		typedef boost::shared_ptr<LogicComponentWorldExistance> LogicComponentWorldExistancePtr;
+
+
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
 		const std::string COMPONENT_TYPE_LOGIC_EVENT="LogicComponentEvent";
+		const std::string COMPONENT_TYPE_LOGIC_WORLD_EXISTANCE="LogicComponentWorldExistance";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -336,6 +342,12 @@ namespace OUAN
 		class Configuration;
 		class LevelLoader;
 
+		//Exception messages
+		const std::string SCENE_NODE_NOT_FOUND="Scene Parameters not found";
+		const std::string VIEWPORT_NODE_NOT_FOUND="Viewport Parameters not found";
+		const std::string DREAMS_NODE_NOT_FOUND="Dreams node does not exist or has wrong name in Ogitor";   
+		const std::string NIGHTMARES_NODE_NOT_FOUND="Nightmares node does not exist or has wrong name in Ogitor";
+		const std::string CUSTOM_PROPERTIES_NODE_NOT_FOUND="Custom Properties node does not exist or has wrong .ctp filename";
 
 		typedef boost::shared_ptr<Configuration> ConfigurationPtr;
 		typedef boost::shared_ptr<LevelLoader> LevelLoaderPtr;

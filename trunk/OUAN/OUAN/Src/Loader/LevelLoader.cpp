@@ -1,5 +1,6 @@
 #include "LevelLoader.h"
 #include "XMLGameObjectParser.h"
+#include "XMLGameObject.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
 #include "../Component/Component.h"
@@ -45,7 +46,6 @@ LevelLoader::~LevelLoader(){}
 void LevelLoader::init(OUAN::ApplicationPtr app)
 {
 	this->mGameWorldManager=app->getGameWorldManager();
-
 	this->mXMLGameObjectParser.init();
 }
 
@@ -54,6 +54,8 @@ void LevelLoader::loadLevel(String level)
 	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level);
 
 	//TODO: CLEAR OLD LEVEL FROM GAME WORLD MANAGER
+
+	//clear parser content
 	mXMLGameObjectParser.clearLevel();
 
 	//Parse Level's GameObjects
@@ -62,7 +64,7 @@ void LevelLoader::loadLevel(String level)
 	//Process Level's GameObjects
 	processGameObjects();
 
-	//We do not need this information anymore so we clear it.
+	//clear information, as we do not need it anymore
 	mXMLGameObjectParser.clearLevel();
 
 	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level+" Done!");
@@ -159,13 +161,15 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 
 }
 
-
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
 
 	try
 	{
+		//Check errors
+		if(!gameObject->XMLNodeDreams) throw SCENE_NODE_NOT_FOUND;
+
 		//Get Scene name
 		tGameObjectSceneParameters.name = gameObject->name;
 
@@ -188,6 +192,10 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 
 	try
 	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
 		//Get name
 		tGameObjectOnyParameters.name = gameObject->name;
 
@@ -217,6 +225,11 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 
 	try
 	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
 		//Get name
 		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
 		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
@@ -248,6 +261,9 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 	try
 	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
 		//Get name
 		tGameObjectTerrainParameters.name = gameObject->name;
 
@@ -277,6 +293,7 @@ void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 
 	try
 	{
+
 		//Get name
 		tGameObjectCameraParameters.name = gameObject->name;
 
@@ -398,17 +415,22 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
+	TiXmlElement *XMLNodeEntity;
 
 	try
 	{
+		//Get World Existance
+		tGameObjectItem1UPParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares,XMLNodeEntity);
+
 		//Get name
 		tGameObjectItem1UPParameters.name = gameObject->name;
 
 		//Get RenderComponentEntity
-		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNodeEntity);
 
 		//Get RenderComponentPositional
-		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNodeEntity);
 	}
 	catch( std::string error )
 	{
@@ -525,6 +547,9 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
 	try
 	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw VIEWPORT_NODE_NOT_FOUND;
+
 		//Get name
 		tGameObjectViewportParameters.name = gameObject->name;
 
@@ -955,6 +980,35 @@ TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVol
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
 
+TLogicComponentWorldExistanceParameters LevelLoader::processLogicComponentWorldExistance(TiXmlElement *XMLNodeDreams,TiXmlElement *XMLNodeNightmares,TiXmlElement * & XMLMainNode)
+{
+	TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		tLogicComponentWorldExistanceParameters.existsInDreams=true;
+		tLogicComponentWorldExistanceParameters.existsInNightmares=true;
+		//If it exists in both worlds we use Dreams parameters for render components
+		XMLMainNode=XMLNodeDreams;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		tLogicComponentWorldExistanceParameters.existsInDreams=true;
+		tLogicComponentWorldExistanceParameters.existsInNightmares=false;
+		XMLMainNode=XMLNodeDreams;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		tLogicComponentWorldExistanceParameters.existsInDreams=false;
+		tLogicComponentWorldExistanceParameters.existsInNightmares=true;
+		XMLMainNode=XMLNodeNightmares;
+	}
+
+	return tLogicComponentWorldExistanceParameters;
+}
+
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
@@ -973,7 +1027,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 
 	if(!XMLNode)
 	{
-		throw std::string("Invalid XML Node");
+		throw std::string("Missing XML Node!");
 	}
 	else
 	{

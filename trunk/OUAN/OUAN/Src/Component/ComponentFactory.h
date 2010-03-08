@@ -46,6 +46,9 @@ namespace OUAN
 		PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeCapsule(GameObjectPtr gameObject,TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional);
 		PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(GameObjectPtr gameObject,TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional);
 
+		//Logic components
+		LogicComponentWorldExistancePtr ComponentFactory::createLogicComponentWorldExistance(TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters);
+
 		//[TODO: Others]
 	};
 }

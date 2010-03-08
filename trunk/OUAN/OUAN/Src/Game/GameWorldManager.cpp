@@ -573,6 +573,11 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 				tGameObjectItem1UPParameters.tPhysicsComponentSimpleCapsuleParameters, 
 				pGameObjectItem1UP->getRenderComponentPositional()));
 
+		//Create LogicComponentWorldExistance
+		pGameObjectItem1UP->setLogicComponentWorldExistance(
+			factory->createLogicComponentWorldExistance(
+			tGameObjectItem1UPParameters.tLogicComponentWorldExistanceParameters));
+
 	pGameObjectItem1UP->changeWorld(world);
 	
 	// Add a reference to this

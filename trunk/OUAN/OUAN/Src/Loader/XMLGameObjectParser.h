@@ -67,17 +67,5 @@ namespace OUAN
 
 	};
 
-	class XMLGameObject
-	{
-	public:
-		std::string name;
-		std::string dreamsName;
-		std::string nightmaresName;
-		std::string gameObjectType;
-		TiXmlElement *XMLNodeDreams;
-		TiXmlElement *XMLNodeNightmares;
-		TiXmlElement *XMLNodeCustomProperties;
-
-	};
 }
 #endif

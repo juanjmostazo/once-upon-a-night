@@ -19,6 +19,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../Logic/LogicComponent/LogicComponentWorldExistance.h"
 
 using namespace OUAN;
 
@@ -274,4 +275,17 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 						tPhysicsComponentVolumeBoxParameters.lengthZ));
 
 	return pPhysicsComponentVolumeBox;
+}
+
+LogicComponentWorldExistancePtr ComponentFactory::createLogicComponentWorldExistance(TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters)
+{
+
+	LogicComponentWorldExistancePtr pLogicComponentWorldExistance =
+		LogicComponentWorldExistancePtr( new LogicComponentWorldExistance());
+
+	pLogicComponentWorldExistance->setExistsInDreams(tLogicComponentWorldExistanceParameters.existsInDreams);
+	pLogicComponentWorldExistance->setExistsInNightmares(tLogicComponentWorldExistanceParameters.existsInNightmares);
+
+	return pLogicComponentWorldExistance;
+
 }
