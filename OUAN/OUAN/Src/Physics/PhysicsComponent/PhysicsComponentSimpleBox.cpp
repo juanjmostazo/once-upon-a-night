@@ -44,6 +44,20 @@ void PhysicsComponentSimpleBox::create()
 void PhysicsComponentSimpleBox::destroy()
 {
 	PhysicsComponentSimple::destroy();
+
+	if (getNxOgreRigidBodyDescription().mMass > 0)
+	{
+		NxOgre::RigidBodyDescription tmpDesc = getNxOgreRigidBodyDescription();
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
+
+		setNxOgreBody(NULL);
+		setNxOgreRigidBodyDescription(tmpDesc);
+	}
+	else
+	{
+		//TODO: STATIC SCENE GEOMETRY CANNOT BE DELETED
+		mInUse=true;
+	}
 }
 
 NxOgre::Vec3 PhysicsComponentSimpleBox::getNxOgreSize()

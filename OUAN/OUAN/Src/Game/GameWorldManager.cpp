@@ -49,6 +49,7 @@ GameWorldManager::GameWorldManager()
 {
 	world=DREAMS;
 }
+
 GameWorldManager::~GameWorldManager()
 {
 
@@ -193,6 +194,7 @@ void GameWorldManager::clearContainers()
 	{
 		it->second->unregisterHandlers();
 	}
+
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
@@ -666,6 +668,11 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 			pGameObjectItemMaxHP, 
 			tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters, 
 			pGameObjectItemMaxHP->getRenderComponentPositional()));
+
+		//Create LogicComponentWorldExistance
+		pGameObjectItemMaxHP->setLogicComponentWorldExistance(
+			factory->createLogicComponentWorldExistance(
+			tGameObjectItemMaxHPParameters.tLogicComponentWorldExistanceParameters));
 
 	pGameObjectItemMaxHP->changeWorld(world);
 

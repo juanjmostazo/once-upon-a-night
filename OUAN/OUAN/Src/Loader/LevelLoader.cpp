@@ -445,8 +445,14 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
+	TiXmlElement *XMLNodeEntity;
+
 	try
 	{
+		//Get World Existance
+		tGameObjectItemMaxHPParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares,XMLNodeEntity);
+
 		//Get name
 		tGameObjectItemMaxHPParameters.name = gameObject->name;
 

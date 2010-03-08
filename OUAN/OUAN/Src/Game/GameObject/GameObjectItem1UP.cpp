@@ -68,7 +68,6 @@ void GameObjectItem1UP::changeWorld(int world)
 			if(mLogicComponentWorldExistance->getExistsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
-
 				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
 				{
 					mPhysicsComponentSimpleCapsule->create();
@@ -77,7 +76,7 @@ void GameObjectItem1UP::changeWorld(int world)
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
 				{
 					mPhysicsComponentSimpleCapsule->destroy();
 				}
@@ -95,7 +94,7 @@ void GameObjectItem1UP::changeWorld(int world)
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
 				{
 					mPhysicsComponentSimpleCapsule->destroy();
 				}
@@ -105,7 +104,6 @@ void GameObjectItem1UP::changeWorld(int world)
 			break;
 		}
 	}
-
 }
 
 void GameObjectItem1UP::processChangeWorld(ChangeWorldEventPtr evt)

@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../../Logic/LogicComponent/LogicComponentWorldExistance.h"
 
 namespace OUAN
 {
@@ -18,6 +19,8 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
+		/// World Existance informacion
+		LogicComponentWorldExistancePtr mLogicComponentWorldExistance;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -46,6 +49,12 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
+		
+		/// Set WorldExistence component
+		void setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance);
+
+		/// Get WorldExistence component
+		LogicComponentWorldExistancePtr getLogicComponentWorldExistance();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -65,6 +74,9 @@ namespace OUAN
 		TGameObjectItemMaxHPParameters();
 		~TGameObjectItemMaxHPParameters();
 		
+		bool existsInDreams;
+		bool existsInNightmares;
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
@@ -73,6 +85,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
+
+		///World Existance Information
+		TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
 	};
 }
 #endif
