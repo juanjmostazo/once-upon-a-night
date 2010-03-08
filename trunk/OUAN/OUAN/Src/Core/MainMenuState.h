@@ -5,6 +5,7 @@
 #include "GameState.h"
 namespace OUAN
 {
+	typedef std::vector<CEGUI::Event::Connection> TGUIConnections;
 	///State corresponding to the game's main menu
 	class MainMenuState: public GameState{
 	public:
@@ -31,13 +32,10 @@ namespace OUAN
 		/// Destructor
 		~MainMenuState();
 
+		bool onPlay(const CEGUI::EventArgs& args);	
+		bool onOptions(const CEGUI::EventArgs& args);
+		bool onExtras (const CEGUI::EventArgs& args);
 		bool onQuit(const CEGUI::EventArgs& args);
-		bool onNew(const CEGUI::EventArgs& args);
-		bool onTest(const CEGUI::EventArgs& args);
-	private:
-		CEGUI::Event::Connection mOnQuitConnection;
-		CEGUI::Event::Connection mOnNewConnection;
-		CEGUI::Event::Connection mOnTestConnection;
 	};
 }
 #endif
