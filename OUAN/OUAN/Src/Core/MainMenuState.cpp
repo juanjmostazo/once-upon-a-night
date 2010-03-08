@@ -5,6 +5,8 @@
 
 #include "GameStateManager.h"
 #include "GameRunningState.h"
+#include "GameOptionsState.h"
+#include "ExtrasState.h"
 
 using namespace OUAN;
 
@@ -25,33 +27,32 @@ MainMenuState::~MainMenuState()
 void MainMenuState::init(ApplicationPtr app)
 {
 	mApp=app;	
-	std::string mainMenuLayout;
+	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
 	mApp->getGUISubsystem()->createGUI("OUAN_MainMenu.layout");
 
-	//TODO: Refactor this to a container of connections, so
-	//the cleanup function can disconnect a full batch of conns.
-
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUAN/TabCtrl/Page1/QuitButton",
+		"OUANMainMenu/Quit",
 		CEGUI::Event::Subscriber(&MainMenuState::onQuit,this));
 
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUAN/TabCtrl/Page1/PlayButton",
-		CEGUI::Event::Subscriber(&MainMenuState::onNew,this));
+		"OUANMainMenu/Play",
+		CEGUI::Event::Subscriber(&MainMenuState::onPlay,this));
 
 	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUAN/TabCtrl/Page1/OptionsButton",
-		CEGUI::Event::Subscriber(&MainMenuState::onTest,this));
+		"OUANMainMenu/Options",
+		CEGUI::Event::Subscriber(&MainMenuState::onOptions,this));
+	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
+		"OUANMainMenu/Extras",
+		CEGUI::Event::Subscriber(&MainMenuState::onExtras,this));
 
-	//app->getConfiguration()->getOption(MAIN_MENU_LAYOUT,mainMenuLayout)
-	//app->getGUISubsystem()->createGUI(mainMenuLayout));
-	//app->getGUISubsystem()->bindEvents();
 }
 
 /// Clean up main menu's resources
 void MainMenuState::cleanUp()
 {
+	//Unsubscribe from events
 	mApp->getGUISubsystem()->destroyGUI();
+	//mApp->getGUISubsystem()->unbindAllEvents();
 }
 
 /// pause state
@@ -85,14 +86,22 @@ bool MainMenuState::onQuit(const CEGUI::EventArgs& args)
 	return true;
 }
 
-bool MainMenuState::onNew(const CEGUI::EventArgs& args)
-{
-	return true;	
-}
-
-bool MainMenuState::onTest(const CEGUI::EventArgs& args)
+bool MainMenuState::onPlay(const CEGUI::EventArgs& args)
 {
 	GameStatePtr nextState(new GameRunningState());
+	mApp->getGameStateManager()->changeState(nextState,mApp);
+	return true;
+}
+
+bool MainMenuState::onOptions(const CEGUI::EventArgs& args)
+{
+	GameStatePtr nextState(new GameOptionsState());
+	mApp->getGameStateManager()->changeState(nextState,mApp);
+	return true;
+}
+bool MainMenuState::onExtras(const CEGUI::EventArgs& args)
+{
+	GameStatePtr nextState(new ExtrasState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
 	return true;
 }

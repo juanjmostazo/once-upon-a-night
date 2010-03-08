@@ -2,7 +2,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 
-#include <cegui/CEGUIDefaultResourceProvider.h>
+#include <algorithm>
 
 using namespace OUAN;
 CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)
@@ -31,8 +31,22 @@ void GUISubsystem::init(ApplicationPtr app)
 	mSystem = new CEGUI::System(mRenderer);
 	
 	//TODO: Make layout and specific resource loading dependant on the game state/level
-	CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"TaharezLookSkin.scheme");
-	mSystem->setDefaultMouseCursor((CEGUI::utf8*)"TaharezLook", (CEGUI::utf8*)"MouseArrow");
+	CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"OUANLookSkin.scheme");
+	mSystem->setDefaultMouseCursor((CEGUI::utf8*)"OUANLook", (CEGUI::utf8*)"MouseArrow");
+	mSystem->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
+}
+void GUISubsystem::loadScheme(std::string schemeName, std::string mouseCursor)
+{
+	try{
+		//TODO: Make layout and specific resource loading dependant on the game state/level
+		if (!CEGUI::SchemeManager::getSingletonPtr()->isSchemePresent((CEGUI::utf8*)schemeName.c_str()))
+			CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)schemeName.c_str());
+	}
+	catch(CEGUI::AlreadyExistsException aece)
+	{
+		// This is already loaded, no need to do it again.
+	}
+	mSystem->setDefaultMouseCursor((CEGUI::utf8*)mouseCursor.c_str(), (CEGUI::utf8*)"MouseArrow");
 	mSystem->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
 }
 void GUISubsystem::reset(ApplicationPtr app)
@@ -50,44 +64,49 @@ void GUISubsystem::clearRenderer()
 
 void GUISubsystem::cleanUp()
 {
-	//Unsubscribe from registered events
-	std::vector<CEGUI::Event::Connection>::iterator connIt;
-	for (connIt=mConnections.begin();connIt!=mConnections.end();++connIt)
-	{
-		(*connIt)->disconnect();
-	}
 	if (mSystem) delete mSystem;
 	if (mRenderer) delete mRenderer;
 }
 
 void GUISubsystem::injectKeyInput(const TGUIKeyboardEvent& eventType, const OIS::KeyEvent& e)
 {
-	switch (eventType)
+	if (mSystem)
 	{
-	case GUI_KEYDOWN:
-		mSystem->injectKeyDown(e.key);
-		mSystem->injectChar(e.text);
-		break;
-	case GUI_KEYUP:
-		mSystem->injectKeyUp(e.key);
-		break;
+		switch (eventType)
+		{
+		case GUI_KEYDOWN:
+			mSystem->injectKeyDown(e.key);
+			mSystem->injectChar(e.text);
+			break;
+		case GUI_KEYUP:
+			mSystem->injectKeyUp(e.key);
+			break;
+		}
+
 	}
 }
 void GUISubsystem::injectMouseInput(const TGUIMouseEvent& eventType, const OIS::MouseButtonID& buttonId, const OIS::MouseEvent& e)
 {
-	switch(eventType)
+	if(mSystem)
 	{
-	case GUI_MOUSEDOWN:
-		mSystem->injectMouseButtonDown(convertMouseButton(buttonId));
-		break;
-	case GUI_MOUSEUP:
-		mSystem->injectMouseButtonUp(convertMouseButton(buttonId));
-		break;
-	case GUI_MOUSEMOVE:
-		mSystem->injectMouseMove(e.state.X.rel,e.state.Y.rel);
-		break;
+		switch(eventType)
+		{
+		case GUI_MOUSEDOWN:
+			mSystem->injectMouseButtonDown(convertMouseButton(buttonId));
+			break;
+		case GUI_MOUSEUP:
+			mSystem->injectMouseButtonUp(convertMouseButton(buttonId));
+			break;
+		case GUI_MOUSEMOVE:
+			mSystem->injectMouseMove(e.state.X.rel,e.state.Y.rel);
+			break;
+		}
 	}
-
+}
+void GUISubsystem::injectTimePulse(float elapsed)
+{
+	if(mSystem)
+		mSystem->injectTimePulse(elapsed);
 }
 void GUISubsystem::createGUI(const std::string& guiLayout)
 {
@@ -109,5 +128,5 @@ void GUISubsystem::bindEvent(const CEGUI::String& eventName, const std::string& 
 {
 	CEGUI::WindowManager *wmgr = CEGUI::WindowManager::getSingletonPtr();
 	CEGUI::Window *triggerWindow = wmgr->getWindow((CEGUI::utf8*)windowName.c_str());	
-	mConnections.push_back(triggerWindow->subscribeEvent(eventName,subscriber));
+	triggerWindow->subscribeEvent(eventName,subscriber);
 }

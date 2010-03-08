@@ -100,6 +100,7 @@ void Application::go()
 			Ogre::WindowEventUtilities::messagePump();
 			ControlInputManager::capture();
 
+			mGUISubsystem->injectTimePulse((currentTime-lastTick)*0.000001);
 			mStateManager->getCurrentState()->handleEvents();
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
 

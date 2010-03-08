@@ -31,6 +31,8 @@ namespace OUAN
 		/// Destructor
 		~GameOptionsState();
 
+		bool onBackToMenu(const CEGUI::EventArgs& args);
+
 	private:
 		ConfigurationPtr mNewConfig;
 	};

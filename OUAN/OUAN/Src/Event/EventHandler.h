@@ -29,7 +29,7 @@ namespace OUAN
 		/// @param other instance to compare
 		/// @return true if 'other' is the same object as this
 		virtual bool equal(const BaseEventHandler& other) const=0;
-	private:
+	protected:
 		/// Process the event
 		/// @param evt event to handle
 		virtual void invoke(const EventPtr evt)=0;
@@ -59,6 +59,13 @@ namespace OUAN
 	template <class T, class TEvent>
 	class EventHandler: public BaseEventHandler
 	{
+	protected:
+		/// Invokes the callback function for the event pointer passed as a parameter
+		/// @param evt	event to process
+		void invoke(const EventPtr evt)
+		{
+			(mInstance.get()->*mCallback)(boost::dynamic_pointer_cast<TEvent>(evt));
+		}
 	public:
 		//DO NOT TAKE THESE ALIASES AWAY FROM HERE, AS THEY HAVE CLASS SCOPE
 		typedef void (T::*TMemberFunction)(boost::shared_ptr<TEvent>);
@@ -69,13 +76,6 @@ namespace OUAN
 		/// @param instance instance of the object that'll respond to the event
 		/// @param memFn	callback function that will process the event
 		EventHandler(TPtr instance, TMemberFunction memFn) : mInstance(instance), mCallback(memFn) {}
-
-		/// Invokes the callback function for the event pointer passed as a parameter
-		/// @param evt	event to process
-		void invoke(const EventPtr evt)
-		{
-			(mInstance.get()->*mCallback)(boost::dynamic_pointer_cast<TEvent>(evt));
-		}
 
 		/// Return the instance
 		/// @return the instance

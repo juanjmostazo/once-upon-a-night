@@ -3,6 +3,8 @@
 #include "../OUAN.h"
 namespace OUAN
 {
+	//typedef std::pair<CEGUI::String,std::string> TGUIEventBinding;
+	//typedef std::vector<TGUIEventBinding> TGUIEventBindingVector;
 
 	/// Convert OIS' mouse button ID to its CEGUI equivalent
 	/// @param buttonId	mouse button ID from OIS
@@ -28,7 +30,8 @@ namespace OUAN
 
 		CEGUI::Window* mGUIWindow;
 
-		std::vector<CEGUI::Event::Connection> mConnections;
+		//TGUIEventBindingVector mBoundEvents;
+		//std::vector<CEGUI::Event::ScopedConnection> mConnections;
 	public:
 		/// init CEGUI
 		/// @param app	the application
@@ -52,6 +55,9 @@ namespace OUAN
 		/// @param buttonid		mouse of the button that triggered the event
 		/// @param e			mouse event data
 		void injectMouseInput(const TGUIMouseEvent& eventType, const OIS::MouseButtonID& buttonId, const OIS::MouseEvent& e);
+		/// Inject the elapsed time in seconds since the last call
+		/// @param elapsed	time in seconds since the last call;
+		void injectTimePulse(float elapsed);
 		
 		//[TODO]void injectJoystickInput();
 
@@ -71,11 +77,15 @@ namespace OUAN
 		/// @param subscriber	callback object containing the function to handle the event
 		void bindEvent(const CEGUI::String& eventName, const std::string& windowName, CEGUI::Event::Subscriber subscriber);
 
+		//void unbindEvent(const CEGUI::String& eventName, const std::string& windowName);
+		//void unbindAllEvents();
+
 		/// init resource groups
 		void initResourceGroups();
 
 		void clearRenderer();
 
+		void loadScheme(std::string schemeName, std::string mouseCursor);
 	};
 }
 #endif

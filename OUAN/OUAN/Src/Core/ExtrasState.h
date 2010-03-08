@@ -31,6 +31,8 @@ namespace OUAN
 		/// Destructor
 		~ExtrasState();
 
+		bool onBackToMenu(const CEGUI::EventArgs& args);
+
 	};
 }
 #endif
