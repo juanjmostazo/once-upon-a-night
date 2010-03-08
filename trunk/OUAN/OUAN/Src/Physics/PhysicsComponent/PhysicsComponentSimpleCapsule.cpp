@@ -45,7 +45,9 @@ void PhysicsComponentSimpleCapsule::destroy()
 
 	if (getNxOgreRigidBodyDescription().mMass > 0)
 	{
-		NxOgre::RigidBodyDescription tmpDesc = getNxOgreRigidBodyDescription();
+		NxOgre::RigidBodyDescription tmpDesc = NxOgre::RigidBodyDescription();
+		tmpDesc.mMass = getNxOgreRigidBodyDescription().mMass;
+
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
 		
 		setNxOgreBody(NULL);
