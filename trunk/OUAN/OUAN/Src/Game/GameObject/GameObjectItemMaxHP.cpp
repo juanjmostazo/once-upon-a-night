@@ -44,22 +44,66 @@ PhysicsComponentSimpleCapsulePtr GameObjectItemMaxHP::getPhysicsComponentSimpleC
 	return mPhysicsComponentSimpleCapsule;
 }
 
+void GameObjectItemMaxHP::setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance)
+{
+	mLogicComponentWorldExistance=pLogicComponentWorldExistance;
+}
+
+LogicComponentWorldExistancePtr GameObjectItemMaxHP::getLogicComponentWorldExistance()
+{
+	return mLogicComponentWorldExistance;
+}
+
 void GameObjectItemMaxHP::changeWorld(int world)
 {
-	switch(world)
+	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
-	case DREAMS:
-		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-		{
-			mPhysicsComponentSimpleCapsule->create();
-		}
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		return;
 	}
-
+	else
+	{
+		switch(world)
+		{
+		case DREAMS:
+			if(mLogicComponentWorldExistance->getExistsInDreams())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->destroy();
+				}
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void GameObjectItemMaxHP::registerHandlers()

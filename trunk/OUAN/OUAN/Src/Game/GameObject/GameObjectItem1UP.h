@@ -14,7 +14,6 @@ namespace OUAN
 	{
 	private:
 		
-
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
