@@ -58,6 +58,10 @@ void GameObjectItem1UP::changeWorld(int world)
 {
 	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
+		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+		{
+			mPhysicsComponentSimpleCapsule->create();
+		}
 		return;
 	}
 	else
