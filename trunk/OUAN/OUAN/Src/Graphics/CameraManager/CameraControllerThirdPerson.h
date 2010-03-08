@@ -12,12 +12,13 @@ namespace OUAN
 		void update(long elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
-		void setTarget(Ogre::SceneNode * target);
+		void setTarget(RenderComponentPositional * target);
 
 		TCameraControllerType getControllerType();
 	private:
-		Ogre::SceneNode * target;
-		Ogre::Vector3 distance;
+		RenderComponentPositional * target;
+		Vector3 distance;
+		double height;
 
 		//camera relative rotation to target's X axe
 		double rotX;
@@ -35,12 +36,13 @@ namespace OUAN
 		double returningspeed;
 
 		//in order to determine if target has moved
-		Ogre::Vector3 lastTargetPosition;
+		Vector3 lastTargetPosition;
 
 		//true if camera has been moved this frame
 		bool cameraMoved;
 
 		void returningToInitialPosition();
+		
 
 
 	};

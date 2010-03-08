@@ -1,4 +1,5 @@
 #include "CameraControllerThirdPerson.h"
+#include "../RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -8,11 +9,12 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	//Set CameraControllerThirdPerson Initial Parameters
 
 	distance=Ogre::Vector3(0,10,-25);
+	height=5;
 	rotX=0;
 	rotY=0;
 
 	speed=0.2;
-	returningspeed=0.2;
+	returningspeed=2.5;
 
 	maxRotX=50;
 	minRotX=-50;
@@ -39,7 +41,7 @@ void CameraControllerThirdPerson::update(long elapsedTime)
 
 	//Calculate Camera position in relation to the target
 	newCameraPosition = distance;
-	newCameraPosition = Quaternion(Ogre::Degree(rotY), Vector3::UNIT_Y) * newCameraPosition;
+	newCameraPosition = Quaternion(Ogre::Degree(rotY+target->getYaw()), Vector3::UNIT_Y) * newCameraPosition;
 	newCameraPosition = Quaternion(Ogre::Degree(rotX), Vector3::UNIT_X) * newCameraPosition;
 
 	//Calculate Camera position in the world
@@ -49,8 +51,7 @@ void CameraControllerThirdPerson::update(long elapsedTime)
 	mCamera->setPosition(newCameraPosition);
 
 	//set camera to look at target
-	mCamera->lookAt(newTargetPosition);
-
+	mCamera->lookAt(newTargetPosition+Vector3(0,height,0));
 
 	lastTargetPosition=newTargetPosition;
 
@@ -85,7 +86,7 @@ void CameraControllerThirdPerson::processRelativeMotion(double xRel,double yRel,
 	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }
-void CameraControllerThirdPerson::setTarget(Ogre::SceneNode * target)
+void CameraControllerThirdPerson::setTarget(RenderComponentPositional * target)
 {
 	this->target=target;
 }

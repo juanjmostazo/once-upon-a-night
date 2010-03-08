@@ -20,7 +20,7 @@ namespace OUAN
 		virtual void processMouseInput(const OIS::MouseEvent &e);
 		virtual void processRelativeMotion(double xRel,double yRel,double zRel);
 		virtual void processSimpleTranslation(Ogre::Vector3 translationVector);
-		virtual void setTarget(Ogre::SceneNode * target);
+		virtual void setTarget(RenderComponentPositional * target);
 
 	protected:
 		Ogre::Camera *mCamera;

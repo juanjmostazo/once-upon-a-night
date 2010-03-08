@@ -1,4 +1,5 @@
 #include "CameraControllerFixedThirdPerson.h"
+#include "../RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
 
@@ -20,7 +21,7 @@ void CameraControllerFixedThirdPerson::update(long elapsedTime)
 	mCamera->lookAt(target->getPosition());
 }
 
-void CameraControllerFixedThirdPerson::setTarget(Ogre::SceneNode * target)
+void CameraControllerFixedThirdPerson::setTarget(RenderComponentPositional * target)
 {
 	this->target=target;
 }

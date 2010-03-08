@@ -1,4 +1,5 @@
 #include "CameraController.h"
+#include "../RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -44,7 +45,7 @@ void CameraController::processSimpleTranslation(Ogre::Vector3 translationVector)
 
 }
 
-void CameraController::setTarget(Ogre::SceneNode * target)
+void CameraController::setTarget(RenderComponentPositional * target)
 {
 
 }

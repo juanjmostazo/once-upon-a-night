@@ -44,7 +44,7 @@ namespace OUAN
 		void changeCameraController();
 
 		//Sets camera target
-		void setCameraTarget(Ogre::SceneNode * target);
+		void setCameraTarget(RenderComponentPositional * target);
 
 		TCameraControllerType getControllerType();
 	private:
