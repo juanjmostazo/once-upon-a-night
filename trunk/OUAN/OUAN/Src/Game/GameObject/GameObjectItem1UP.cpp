@@ -56,47 +56,54 @@ LogicComponentWorldExistancePtr GameObjectItem1UP::getLogicComponentWorldExistan
 
 void GameObjectItem1UP::changeWorld(int world)
 {
-	switch(world)
+	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
-	case DREAMS:
-		if(mLogicComponentWorldExistance->getExistsInDreams())
+		return;
+	}
+	else
+	{
+		switch(world)
 		{
-			mRenderComponentEntity->setVisible(true);
+		case DREAMS:
+			if(mLogicComponentWorldExistance->getExistsInDreams())
+			{
+				mRenderComponentEntity->setVisible(true);
 
-			if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-			{
-				mPhysicsComponentSimpleCapsule->create();
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->create();
+				}
 			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				{
+					mPhysicsComponentSimpleCapsule->destroy();
+				}
+			}
+			break;
+		default:
+			break;
 		}
-		else
-		{
-			mRenderComponentEntity->setVisible(false);
-			if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-			{
-				mPhysicsComponentSimpleCapsule->destroy();
-			}
-		}		
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentWorldExistance->getExistsInNightmares())
-		{
-			mRenderComponentEntity->setVisible(true);
-			if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-			{
-				mPhysicsComponentSimpleCapsule->create();
-			}
-		}
-		else
-		{
-			mRenderComponentEntity->setVisible(false);
-			if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-			{
-				mPhysicsComponentSimpleCapsule->destroy();
-			}
-		}
-		break;
-	default:
-		break;
 	}
 
 }
