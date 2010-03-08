@@ -1,4 +1,5 @@
 #include "XMLGameObjectParser.h"
+#include "XMLGameObject.h"
 
 using namespace OUAN;
 
@@ -12,9 +13,19 @@ void XMLGameObjectParser::init()
 
 void XMLGameObjectParser::clearLevel()
 {
+	XMLGameObjectContainerIterator it;
+
 	XMLGameObjectContainer.clear();
 	gameObjectTypes.clear();
 	XMLCustomProperties.clear();
+
+	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
+	{
+		it->second.XMLNodeDreams=NULL;
+		it->second.XMLNodeNightmares=NULL;
+		it->second.XMLNodeCustomProperties=NULL;
+	}
+
 }
 
 void XMLGameObjectParser::parseGameObjectTypes()

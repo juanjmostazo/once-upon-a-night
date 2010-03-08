@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../../Logic/LogicComponent/LogicComponentWorldExistance.h"
 
 namespace OUAN
 {
@@ -12,12 +13,16 @@ namespace OUAN
 	class GameObjectItem1UP : public GameObject, public boost::enable_shared_from_this<GameObjectItem1UP>
 	{
 	private:
+		
+
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
+		/// World Existance informacion
+		LogicComponentWorldExistancePtr mLogicComponentWorldExistance;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -47,9 +52,19 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
 
+		/// Set WorldExistence component
+		void setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance);
+
+		/// Get WorldExistence component
+		LogicComponentWorldExistancePtr getLogicComponentWorldExistance();
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		//------------------------------------------------------------------
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 
 		/// Attach all event handlers for this class.
 		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
@@ -64,6 +79,9 @@ namespace OUAN
 	public:
 		TGameObjectItem1UPParameters();
 		~TGameObjectItem1UPParameters();
+
+		bool existsInDreams;
+		bool existsInNightmares;
 		
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
@@ -73,6 +91,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
+
+		///World Existance Information
+		TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
 	};
 }
 #endif
