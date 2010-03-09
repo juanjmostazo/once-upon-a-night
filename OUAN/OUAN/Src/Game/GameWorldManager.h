@@ -105,8 +105,12 @@ namespace OUAN
 		/// Change world to the one specified by the passed parameter
 		/// @param currentworld world to change to
 		void setWorld (int newWorld);
+
 		/// returns NIGHTMARES or DREAMS depending on current world state
-		int getCurrentWorld();
+		int getCurrentWorld() const;
+
+		/// gets current Loaded Level
+		std::string getCurrentLevel() const;
 
 		/// Adds event to the event manager's queue
 		void addEvent(EventPtr event);
@@ -198,6 +202,9 @@ namespace OUAN
 		TGameObjectContainer mGameObjectsToDelete;
 
 		bool mGameOver;
+
+		// Current level
+		std::string level;
 
 		// Current world (DREAMS or NIGHTMARES)
 		int world;

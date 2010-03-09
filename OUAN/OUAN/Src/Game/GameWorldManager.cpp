@@ -49,6 +49,7 @@ unsigned long GameWorldManager::mNextIdNum=0;
 GameWorldManager::GameWorldManager()
 {
 	world=DREAMS;
+	level=LEVEL_NONE;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -183,10 +184,15 @@ TGameObjectPhysicsSimpleContainer GameWorldManager::getGameObjectPhysicsVolumeCo
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
+	//Unload current level
+	unloadLevel();
+
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
 	mGameOver=false;
+
+	level=levelFileName;
 }
 
 void GameWorldManager::clearContainers()
@@ -225,11 +231,13 @@ void GameWorldManager::clearContainers()
 
 void GameWorldManager::unloadLevel()
 {
-	mNextIdNum=0;//reset id counter ??
+	mNextIdNum=0;//reset id counter
 
 	clearContainers();
-	//TODO RenderSubsystem CLEAR
-	//PHysycs subsystem clear, etc...
+	mApp->getRenderSubsystem()->clear();
+	//mApp->getPhysicsSubsystem()->clear();
+
+	//TODO: Clear more subsystems
 }
 
 /// init object
@@ -268,15 +276,6 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 {
 	mGameObjects[gameObject->getName()]=gameObject;
 }
-//
-//void GameWorldManager::addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity)
-//{
-//	if(!existsObject(gameObjectMovableEntity->getName()))
-//	{
-//		mGameObjects[gameObjectMovableEntity->getName()]=gameObjectMovableEntity;
-//	}
-//	//TODO: add to other maps
-//}
 
 void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 {
@@ -1051,12 +1050,17 @@ void GameWorldManager::setGameOver(bool gameOver)
 	mGameOver=gameOver;
 }
 
+std::string GameWorldManager::getCurrentLevel() const
+{
+	return level;
+}
+
 void GameWorldManager::setWorld(int newWorld)
 {
 	world=newWorld;
 }
 
-int GameWorldManager::getCurrentWorld()
+int GameWorldManager::getCurrentWorld() const
 {
 	return world;
 }

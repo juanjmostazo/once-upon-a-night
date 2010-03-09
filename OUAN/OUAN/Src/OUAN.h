@@ -73,6 +73,13 @@ namespace OUAN
 		const int DREAMS=0;
 		const int NIGHTMARES=1;
 
+		const std::string LEVEL_NONE="None";
+		const std::string LEVEL_TEST="TestLevel";
+		const std::string LEVEL_SANDBOX="Sandbox";
+		const std::string LEVEL_CLOCK="Clock";
+		const std::string LEVEL_1="Level1";
+		const std::string LEVEL_2="Level2";
+
 		//Render Components
 		class RenderComponent;
 		class TRenderComponentParameters;

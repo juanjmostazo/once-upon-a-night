@@ -29,6 +29,8 @@
 		<Option key="RRotate">0x2D</Option>
 		<!-- Q -->		
 		<Option key="AutoTarget">0x10</Option>
+		<!-- F06 -->
+		<Option key="ChangeLevel">0x40</Option>
 		<!-- F07 -->
 		<Option key="ChangeWorld">0x41</Option>
 		<!-- F08 -->

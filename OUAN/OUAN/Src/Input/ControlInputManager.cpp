@@ -158,6 +158,7 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		readOption(config,KEY_CHANGE_CAMERA_CONTROLLER,mDefaultInputData.keyChangeCameraController);
 		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
 		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
+		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
 		return true;
 	}
 	else
@@ -184,6 +185,7 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		mDefaultInputData.keyChangeCamera=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
 		return false;
 	}
 }
@@ -311,6 +313,10 @@ bool ControlInputManager::isPressedToggleChangeWorld()
 	return isPressed(-1,mDefaultInputData.keyChangeWorld);
 }
 
+bool ControlInputManager::isPressedToggleChangeLevel()
+{
+	return isPressed(-1,mDefaultInputData.keyChangeLevel);
+}
 
 //////////////////////////////////////////////////////////////
 
