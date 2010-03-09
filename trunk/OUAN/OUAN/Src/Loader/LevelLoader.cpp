@@ -161,6 +161,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 
 }
 
+
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
@@ -174,7 +175,7 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 		tGameObjectSceneParameters.name = gameObject->name;
 
 		//Get SceneManager properties
-		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->XMLNodeDreams);
+		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -184,6 +185,29 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 
 	//Create GameObject
 	mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
+}
+
+void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw VIEWPORT_NODE_NOT_FOUND;
+
+		//Get name
+		tGameObjectViewportParameters.name = gameObject->name;
+
+		//Get RenderComponentViewport
+		tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+	//Create GameObject
+	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 }
 
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
@@ -196,14 +220,20 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
-		//Get name
+		//Get names
+		tGameObjectOnyParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectOnyParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectOnyParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectOnyParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectOnyParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectOnyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectOnyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
 		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
@@ -230,17 +260,21 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
-		//Get name
+		//Get names
 		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
 		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectTripolloParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectTripolloParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
 		tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentPositional
-		tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
 		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
@@ -264,14 +298,20 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 		//Check parsing errors
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
-		//Get name
+		//Get names
+		tGameObjectTerrainParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTerrainParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectTerrainParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectTerrainParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectTerrainParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectTerrainParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentComplexConvex
 		tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,
@@ -293,9 +333,14 @@ void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 
 	try
 	{
-
-		//Get name
+		//Get names
+		tGameObjectCameraParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectCameraParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectCameraParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectCameraParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentCamera
 		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->XMLNodeDreams);
@@ -316,14 +361,20 @@ void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
 
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectLightParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectLightParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectLightParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectLightParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentLight
 		tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
+		tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -341,14 +392,20 @@ void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectParticleSystemParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectParticleSystemParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectParticleSystemParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectParticleSystemParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentParticleSystem
 		tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
+		tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -365,14 +422,20 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectBillboardSetParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectBillboardSetParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectBillboardSetParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectBillboardSetParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentBillboardSet
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->XMLNodeDreams);
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -390,14 +453,20 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectEyeParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectEyeParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectEyeParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectEyeParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectEyeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
 		tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
@@ -415,22 +484,23 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
-	TiXmlElement *XMLNodeEntity;
 
 	try
 	{
-		//Get World Existance
-		tGameObjectItem1UPParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
-			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares,XMLNodeEntity);
-
-		//Get name
+		//Get names
+		tGameObjectItem1UPParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectItem1UPParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectItem1UPParameters.name = gameObject->name;
 
+		//Get World Existance
+		tGameObjectItem1UPParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
+
 		//Get RenderComponentEntity
-		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(XMLNodeEntity);
+		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
-		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(XMLNodeEntity);
+		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -445,22 +515,23 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
-	TiXmlElement *XMLNodeEntity;
 
 	try
 	{
+		//Get names
+		tGameObjectItemMaxHPParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectItemMaxHPParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectItemMaxHPParameters.name = gameObject->name;
+
 		//Get World Existance
 		tGameObjectItemMaxHPParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
-			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares,XMLNodeEntity);
-
-		//Get name
-		tGameObjectItemMaxHPParameters.name = gameObject->name;
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -477,14 +548,20 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectPortalParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectPortalParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectPortalParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectPortalParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectPortalParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -501,14 +578,20 @@ void LevelLoader::processGameObjectVolumeBox(XMLGameObject* gameObject)
 	OUAN::TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters;
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectVolumeBoxParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectVolumeBoxParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectVolumeBoxParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectVolumeBoxParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
 		tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->XMLNodeDreams);
@@ -527,14 +610,20 @@ void LevelLoader::processGameObjectVolumeCapsule(XMLGameObject* gameObject)
 	OUAN::TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters;
 	try
 	{
-		//Get name
+		//Get names
+		tGameObjectVolumeCapsuleParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectVolumeCapsuleParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectVolumeCapsuleParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectVolumeCapsuleParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
 		tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 
 		//Get RenderComponentPositional
-		tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeCapsule
 		tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(gameObject->XMLNodeCustomProperties);
@@ -546,29 +635,6 @@ void LevelLoader::processGameObjectVolumeCapsule(XMLGameObject* gameObject)
 	}
 	//Create GameObject
 	mGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
-}
-
-void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeDreams) throw VIEWPORT_NODE_NOT_FOUND;
-
-		//Get name
-		tGameObjectViewportParameters.name = gameObject->name;
-
-		//Get RenderComponentViewport
-		tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(gameObject->XMLNodeDreams);
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-	//Create GameObject
-	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 }
 
 TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
@@ -986,7 +1052,7 @@ TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVol
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
 
-TLogicComponentWorldExistanceParameters LevelLoader::processLogicComponentWorldExistance(TiXmlElement *XMLNodeDreams,TiXmlElement *XMLNodeNightmares,TiXmlElement * & XMLMainNode)
+TLogicComponentWorldExistanceParameters LevelLoader::processLogicComponentWorldExistance(TiXmlElement *XMLNodeDreams,TiXmlElement *XMLNodeNightmares)
 {
 	TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
 	//Object exists both in dreams and nightmares
@@ -994,22 +1060,18 @@ TLogicComponentWorldExistanceParameters LevelLoader::processLogicComponentWorldE
 	{
 		tLogicComponentWorldExistanceParameters.existsInDreams=true;
 		tLogicComponentWorldExistanceParameters.existsInNightmares=true;
-		//If it exists in both worlds we use Dreams parameters for render components
-		XMLMainNode=XMLNodeDreams;
 	}
 	//Object exists only in dreams
 	else if(XMLNodeDreams && !XMLNodeNightmares)
 	{
 		tLogicComponentWorldExistanceParameters.existsInDreams=true;
 		tLogicComponentWorldExistanceParameters.existsInNightmares=false;
-		XMLMainNode=XMLNodeDreams;
 	}
 	//Object exists only in nightmares
 	else if(!XMLNodeDreams && XMLNodeNightmares)
 	{
 		tLogicComponentWorldExistanceParameters.existsInDreams=false;
 		tLogicComponentWorldExistanceParameters.existsInNightmares=true;
-		XMLMainNode=XMLNodeNightmares;
 	}
 
 	return tLogicComponentWorldExistanceParameters;

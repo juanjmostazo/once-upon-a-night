@@ -37,6 +37,8 @@ namespace OUAN
 
 		//in order to determine if target has moved
 		Vector3 lastTargetPosition;
+		Quaternion lastTargetOrientation;
+		bool cameraIsReturning;
 
 		//true if camera has been moved this frame
 		bool cameraMoved;
