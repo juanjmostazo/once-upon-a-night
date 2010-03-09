@@ -14,14 +14,24 @@ GameObjectProvisionalEntity::~GameObjectProvisionalEntity()
 
 }
 
-RenderComponentEntityPtr GameObjectProvisionalEntity::getRenderComponentEntity() const
+void GameObjectProvisionalEntity::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	return mRenderComponentEntity;
+	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectProvisionalEntity::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectProvisionalEntity::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntity=pRenderComponentEntity;
+	mRenderComponentEntityNightmares=pRenderComponentEntity;
+}
+
+RenderComponentEntityPtr GameObjectProvisionalEntity::getRenderComponentEntityDreams() const
+{
+	return mRenderComponentEntityDreams;
+}
+
+RenderComponentEntityPtr GameObjectProvisionalEntity::getRenderComponentEntityNightmares() const
+{
+	return mRenderComponentEntityNightmares;
 }
 
 void GameObjectProvisionalEntity::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -36,38 +46,40 @@ RenderComponentPositionalPtr GameObjectProvisionalEntity::getRenderComponentPosi
 
 void GameObjectProvisionalEntity::changeWorld(int world)
 {
-	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+	switch(world)
 	{
-
-		return;
-	}
-	else
-	{
-		switch(world)
+	case DREAMS:
+		if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 		{
-		case DREAMS:
-			if(mLogicComponentWorldExistance->getExistsInDreams())
-			{
-				mRenderComponentEntity->setVisible(true);
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
-			{
-				mRenderComponentEntity->setVisible(true);
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-			}
-			break;
-		default:
-			break;
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
 		}
+		else if(mLogicComponentWorldExistance->getExistsInDreams()&& !mLogicComponentWorldExistance->getExistsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(true);
+		}
+		else if(!mLogicComponentWorldExistance->getExistsInDreams()&& mLogicComponentWorldExistance->getExistsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(false);
+		}		
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+		}
+		else if(mLogicComponentWorldExistance->getExistsInDreams()&& !mLogicComponentWorldExistance->getExistsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(false);
+		}
+		else if(!mLogicComponentWorldExistance->getExistsInDreams()&& mLogicComponentWorldExistance->getExistsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(true);
+		}		
+		break;
+	default:
+		break;
 	}
 }
 
