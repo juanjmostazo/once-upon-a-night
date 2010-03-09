@@ -76,7 +76,7 @@ namespace OUAN
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
 		void createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters);
 		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
-
+		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
 
 
 		/// Update world state
@@ -137,6 +137,7 @@ namespace OUAN
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
 		void addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox);
 		void addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule);
+		void addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity);
 
 
 		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);

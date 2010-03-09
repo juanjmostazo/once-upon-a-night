@@ -18,6 +18,7 @@
 #include "GameObject/GameObjectVolumeBox.h"
 #include "GameObject/GameObjectVolumeCapsule.h"
 #include "GameObject/GameObjectViewport.h"
+#include "GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
@@ -393,6 +394,15 @@ void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera
 	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
 }
 
+void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity)
+{
+	mGameObjects[pGameObjectProvisionalEntity->getName()]=pGameObjectProvisionalEntity;
+	mGameObjectPositionalContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectNonMovableContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectProvisionalEntity);
+}
+
+
 void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox)
 {
 	//TODO - FIX THIS
@@ -558,7 +568,6 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 
 void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
 {
-
 	GameObjectItem1UPPtr pGameObjectItem1UP;
 
 	//Create GameObject
@@ -991,6 +1000,40 @@ void GameWorldManager::createGameObjectScene(TGameObjectSceneParameters tGameObj
 	//Add Object to GameWorldManager
 	addGameObjectScene(pGameObjectScene);
 
+}
+
+void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters)
+{
+	GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity;
+
+	//Create GameObject
+	pGameObjectProvisionalEntity = GameObjectProvisionalEntityPtr(new GameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponentWorldExistance
+		pGameObjectProvisionalEntity->setLogicComponentWorldExistance(
+			factory->createLogicComponentWorldExistance(
+			tGameObjectProvisionalEntityParameters.tLogicComponentWorldExistanceParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectProvisionalEntity->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.name,
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityParameters));
+
+	pGameObjectProvisionalEntity->changeWorld(world);
+	
+	// Add a reference to this
+	pGameObjectProvisionalEntity->setGameWorldManager(mThis);
+	pGameObjectProvisionalEntity->registerHandlers();
+
+	//Add Object to GameWorldManager
+	addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);
 }
 
 bool GameWorldManager::isGameOver()const
