@@ -54,8 +54,6 @@ void LevelLoader::loadLevel(String level)
 {
 	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level);
 
-	//TODO: CLEAR OLD LEVEL FROM GAME WORLD MANAGER
-
 	//clear parser content
 	mXMLGameObjectParser.clearLevelInfo();
 

@@ -35,6 +35,9 @@ namespace OUAN
 		// Update physics subsystem elements
 		virtual void update(double elapsedSeconds);
 
+		//Clear current physics world
+		virtual void clear();
+
 		//Free memory used by the physics subsystem
 		virtual void cleanUp();
 

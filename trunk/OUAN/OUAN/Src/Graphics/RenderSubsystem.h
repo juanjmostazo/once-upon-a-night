@@ -22,7 +22,8 @@ namespace OUAN
 		virtual ~RenderSubsystem();
 
 		/// init the subsystem from the options read in the configuration file
-		void init (ApplicationPtr app,OUAN::ConfigurationPtr config);		
+		void init (ApplicationPtr app,OUAN::ConfigurationPtr config);
+
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
 
@@ -47,12 +48,8 @@ namespace OUAN
 		/// Load resources [TODO: Make this level dependent?]
 		void initResourceGroups(OUAN::ConfigurationPtr config);
 
-		/// Setup the scene [TODO: Make this level dependent?]
-		void defaultSetupScene(OUAN::ConfigurationPtr config);
-		//Scene configuration methods
-		
-		/// Create the scene, and place initial objects on it
-		void createScene();
+		/// Clear current Scene
+		void clear();
 
 		/// Create overlays
 		void createOverlays();

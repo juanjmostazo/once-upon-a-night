@@ -76,6 +76,11 @@ void PhysicsSubsystem::resetLevel()
 	}
 }
 
+void PhysicsSubsystem::clear()
+{
+	resetLevel();
+}
+
 void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
 	//Initializing NxOgre::Scene

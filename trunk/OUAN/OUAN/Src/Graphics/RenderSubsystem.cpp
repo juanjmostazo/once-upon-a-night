@@ -40,7 +40,6 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	setupRenderSystem(config);
 	createRenderWindow(config);
 	initResourceGroups(config);
-	defaultSetupScene(config);
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
@@ -152,23 +151,19 @@ void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void RenderSubsystem::defaultSetupScene(ConfigurationPtr config)
-{
-
-
-
-	createScene();
-	//createOverlays();
-}
-
 void RenderSubsystem::createOverlays()
 {
 	//Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay")->show();
 }
 
-void RenderSubsystem::createScene()
+void RenderSubsystem::clear()
 {
 
+	/// Clear Scene manager
+	mSceneManager->clearScene();
+
+	/// Clear Camera Manager
+	mCameraManager->clear();
 }
 
 RenderWindow* RenderSubsystem::getWindow() const

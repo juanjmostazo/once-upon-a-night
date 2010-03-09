@@ -115,4 +115,67 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="743736064" name="Camera_d#0" typename="Camera Object" parentnode="SceneManager">
+    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
+    <PROPERTY id="position" type="9" value="43.0711 61.3011 -99.0619"></PROPERTY>
+    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="608966336" name="ony_d#0" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="PJ_ONY.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="40.7475 58.6954 -99.0213"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scene_material1"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity3::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity4::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity4::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity5::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity5::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity6::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity6::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity7::material" type="7" value="scene_material2"></PROPERTY>
+    <PROPERTY id="subentity7::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="8"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="425153344" name="storybook_d#0" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="storybook.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-13.4208 57.1285 227.01"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="storybook"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
 </OGITORSCENE>

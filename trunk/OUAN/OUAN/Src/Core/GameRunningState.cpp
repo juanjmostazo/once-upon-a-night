@@ -30,12 +30,12 @@ GameRunningState::~GameRunningState()
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
-	mApp->getPhysicsSubsystem()->initLevel("TestLevel");
+	mApp->getPhysicsSubsystem()->initLevel(LEVEL_TEST);
 	// Set the initial world before the level loading, and then
 	// just as game objects are created, they're initialized with the correct
 	// world information.
 	mApp->getGameWorldManager()->setWorld(DREAMS);
-	mApp->getGameWorldManager()->loadLevel("TestLevel");
+	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
 	mApp->mKeyBuffer=-1;
 }
 
@@ -144,7 +144,32 @@ void GameRunningState::handleEvents()
 
 		mApp->mKeyBuffer = 500000;
 	}
-	
+	else if (mApp->isPressedToggleChangeLevel() && mApp->mKeyBuffer<0)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
+		if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
+		{
+			mApp->getGameWorldManager()->loadLevel(LEVEL_SANDBOX);
+		}
+		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_SANDBOX)==0)
+		{
+			mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
+		}
+		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
+		{
+			mApp->getGameWorldManager()->loadLevel(LEVEL_1);
+		}
+		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
+		{
+			mApp->getGameWorldManager()->loadLevel(LEVEL_2);
+		}
+		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
+		{
+			mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
+		}
+		mApp->mKeyBuffer = 500000;
+	}
+		
 	///////////////////////////////////////////////////////////
 	// ONY: TYPE OF MOVEMENT
 	int movementFlags = 0;
