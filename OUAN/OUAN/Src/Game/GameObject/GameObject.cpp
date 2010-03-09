@@ -43,6 +43,17 @@ void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
 	mGameWorldManager=gameWorldManager;
 }
 
+void GameObject::setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance)
+{
+	mLogicComponentWorldExistance=pLogicComponentWorldExistance;
+}
+
+LogicComponentWorldExistancePtr GameObject::getLogicComponentWorldExistance()
+{
+	return mLogicComponentWorldExistance;
+}
+
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

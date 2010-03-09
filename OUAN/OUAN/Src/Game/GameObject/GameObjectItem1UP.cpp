@@ -44,16 +44,6 @@ PhysicsComponentSimpleCapsulePtr GameObjectItem1UP::getPhysicsComponentSimpleCap
 	return mPhysicsComponentSimpleCapsule;
 }
 
-void GameObjectItem1UP::setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance)
-{
-	mLogicComponentWorldExistance=pLogicComponentWorldExistance;
-}
-
-LogicComponentWorldExistancePtr GameObjectItem1UP::getLogicComponentWorldExistance()
-{
-	return mLogicComponentWorldExistance;
-}
-
 void GameObjectItem1UP::changeWorld(int world)
 {
 	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())

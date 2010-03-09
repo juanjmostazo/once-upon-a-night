@@ -20,6 +20,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	minRotX=-50;
 
 	cameraMoved=false;
+	cameraIsReturning=false;
 }
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
@@ -28,15 +29,27 @@ CameraControllerThirdPerson::~CameraControllerThirdPerson()
 
 void CameraControllerThirdPerson::update(long elapsedTime)
 {
-	Ogre::Vector3 newCameraPosition;
-	Ogre::Vector3 newTargetPosition;
+	Vector3 newCameraPosition;
+	Vector3 newTargetPosition;
+	Quaternion newTargetOrientation;
 
 	newTargetPosition=target->getPosition();
+	newTargetOrientation=target->getOrientation();
+
+	if(cameraMoved)
+	{
+		cameraIsReturning=false;
+	}
 
 	//If target has moved we return the camera position to the back of the target
-	if(newTargetPosition!=lastTargetPosition && !cameraMoved)
+	if((newTargetPosition!=lastTargetPosition || newTargetOrientation!=lastTargetOrientation) || cameraIsReturning)
 	{
 		returningToInitialPosition();
+		cameraIsReturning=true;
+	}
+	else
+	{
+		cameraIsReturning=false;
 	}
 
 	//Calculate Camera position in relation to the target
@@ -54,7 +67,7 @@ void CameraControllerThirdPerson::update(long elapsedTime)
 	mCamera->lookAt(newTargetPosition+Vector3(0,height,0));
 
 	lastTargetPosition=newTargetPosition;
-
+	lastTargetOrientation=newTargetOrientation;
 }
 
 void CameraControllerThirdPerson::processRelativeMotion(double xRel,double yRel,double zRel)
@@ -102,11 +115,13 @@ void CameraControllerThirdPerson::returningToInitialPosition()
 	if(Ogre::Math::Abs(rotX)<returningspeed)
 	{
 		rotX=0;
+		cameraIsReturning=false;
 	}
 
 	if(Ogre::Math::Abs(rotY)<=returningspeed)
 	{
 		rotY=0;
+		cameraIsReturning=false;
 	}
 
 	//Return camera to initial position

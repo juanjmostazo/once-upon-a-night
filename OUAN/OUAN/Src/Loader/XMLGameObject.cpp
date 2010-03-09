@@ -12,3 +12,27 @@ XMLGameObject::XMLGameObject()
 XMLGameObject::~XMLGameObject()
 {
 }
+
+TiXmlElement * XMLGameObject::getMainXMLNode()
+{
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		//If it exists in both worlds we use Dreams parameters for render components
+		return XMLNodeDreams;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		return XMLNodeDreams;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		return XMLNodeNightmares;
+	}
+	else
+	{
+		return NULL;
+	}
+}
