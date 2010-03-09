@@ -175,11 +175,8 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
-
-	NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription=NxOgre::RigidBodyDescription();
-	pNxOgreRigidBodyDescription.mMass=tPhysicsComponentComplexConvexParameters.mass;
-	pPhysicsComponentComplexConvex->setNxOgreRigidBodyDescription(pNxOgreRigidBodyDescription);
-
+	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
+	
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
 
@@ -195,6 +192,7 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());	
+	pPhysicsComponentComplexTriangle->setMass(tPhysicsComponentComplexTriangleParameters.mass);
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
@@ -214,11 +212,7 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
-	
-	NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription=NxOgre::RigidBodyDescription();
-	pNxOgreRigidBodyDescription.mMass=tPhysicsComponentSimpleCapsuleParameters.mass;
-	pPhysicsComponentSimpleCapsule->setNxOgreRigidBodyDescription(pNxOgreRigidBodyDescription);
-
+	pPhysicsComponentSimpleCapsule->setMass(tPhysicsComponentSimpleCapsuleParameters.mass);
 	pPhysicsComponentSimpleCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
 						tPhysicsComponentSimpleCapsuleParameters.height));
@@ -233,11 +227,7 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 
 	pPhysicsComponentSimpleBox->setParent(gameObject);	
 	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
-	
-	NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription=NxOgre::RigidBodyDescription();
-	pNxOgreRigidBodyDescription.mMass=tPhysicsComponentSimpleBoxParameters.mass;
-	pPhysicsComponentSimpleBox->setNxOgreRigidBodyDescription(pNxOgreRigidBodyDescription);
-
+	pPhysicsComponentSimpleBox->setMass(tPhysicsComponentSimpleBoxParameters.mass);
 	pPhysicsComponentSimpleBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentSimpleBoxParameters.lengthX,
 						tPhysicsComponentSimpleBoxParameters.lengthY,

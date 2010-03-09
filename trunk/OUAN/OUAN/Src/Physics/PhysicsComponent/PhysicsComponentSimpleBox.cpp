@@ -16,8 +16,11 @@ void PhysicsComponentSimpleBox::create()
 {
 	PhysicsComponentSimple::create();
 
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
+		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
+		pDesc.mMass = getMass();
+
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 				new NxOgre::Box(getNxOgreSize().x,
@@ -25,7 +28,7 @@ void PhysicsComponentSimpleBox::create()
 								getNxOgreSize().z),
 				getSceneNode()->getPosition(),
 				getSceneNode(),
-				getNxOgreRigidBodyDescription()));
+				pDesc));
 	}
 	else
 	{
@@ -45,15 +48,10 @@ void PhysicsComponentSimpleBox::destroy()
 {
 	PhysicsComponentSimple::destroy();
 
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
-		NxOgre::RigidBodyDescription tmpDesc = NxOgre::RigidBodyDescription();
-		tmpDesc.mMass = getNxOgreRigidBodyDescription().mMass;
-
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
-
 		setNxOgreBody(NULL);
-		setNxOgreRigidBodyDescription(tmpDesc);
 	}
 	else
 	{

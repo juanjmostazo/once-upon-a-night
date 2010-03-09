@@ -16,14 +16,17 @@ void PhysicsComponentComplexConvex::create()
 {
 	PhysicsComponentComplex::create();
 	
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
+		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
+		pDesc.mMass = getMass();
+
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 				getNxOgreConvex(),
 				getSceneNode()->getPosition(),
 				getSceneNode(),
-				getNxOgreRigidBodyDescription()));
+				pDesc));
 	}
 	else
 	{
@@ -41,15 +44,10 @@ void PhysicsComponentComplexConvex::destroy()
 {
 	PhysicsComponentComplex::destroy();
 
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
-		NxOgre::RigidBodyDescription tmpDesc = NxOgre::RigidBodyDescription();
-		tmpDesc.mMass = getNxOgreRigidBodyDescription().mMass;
-
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
-		
-		setNxOgreBody(NULL);
-		setNxOgreRigidBodyDescription(tmpDesc);
+		setNxOgreBody(NULL);		
 	}
 	else
 	{
@@ -76,16 +74,6 @@ OGRE3DBody* PhysicsComponentComplexConvex::getNxOgreBody()
 void PhysicsComponentComplexConvex::setNxOgreBody(OGRE3DBody* pNxOgreBody)
 {
 	mNxOgreBody=pNxOgreBody;
-}
-
-NxOgre::RigidBodyDescription PhysicsComponentComplexConvex::getNxOgreRigidBodyDescription()
-{
-	return mNxOgreRigidBodyDescription;
-}
-
-void PhysicsComponentComplexConvex::setNxOgreRigidBodyDescription(NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription)
-{
-	mNxOgreRigidBodyDescription=pNxOgreRigidBodyDescription;
 }
 
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()

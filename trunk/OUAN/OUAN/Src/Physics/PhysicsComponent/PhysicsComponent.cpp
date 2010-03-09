@@ -6,6 +6,7 @@ PhysicsComponent::PhysicsComponent(const std::string& type)
 {
 	mInUse=false;
 	mStatic=false;
+	mMass=0;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -54,6 +55,16 @@ Ogre::SceneNode* PhysicsComponent::getSceneNode(){
 
 void PhysicsComponent::setSceneNode(Ogre::SceneNode* pSceneNode){
 	mSceneNode = pSceneNode;
+}
+
+double PhysicsComponent::getMass()
+{
+	return mMass;
+}
+
+void PhysicsComponent::setMass(double pMass)
+{
+	mMass=pMass;
 }
 
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()

@@ -36,6 +36,7 @@ void GameRunningState::init(ApplicationPtr app)
 	// world information.
 	mApp->getGameWorldManager()->setWorld(DREAMS);
 	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
+	
 	mApp->mKeyBuffer=-1;
 }
 
@@ -63,7 +64,6 @@ void GameRunningState::pause()
 /// resume state
 void GameRunningState::resume()
 {
-	
 	mApp->getRenderSubsystem()->resumeRendering();
 }
 
@@ -233,10 +233,9 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 
-	mApp->getGameWorldManager()->update(elapsedSeconds);
+	mApp->getGameWorldManager()->update(elapsedSeconds);	
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
-
 	mApp->mKeyBuffer-=elapsedTime;
 
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->isGameOver())

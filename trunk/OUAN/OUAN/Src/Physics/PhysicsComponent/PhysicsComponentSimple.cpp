@@ -32,16 +32,6 @@ void PhysicsComponentSimple::setNxOgreBody(OGRE3DBody* pNxOgreBody)
 	mNxOgreBody=pNxOgreBody;
 }
 
-NxOgre::RigidBodyDescription PhysicsComponentSimple::getNxOgreRigidBodyDescription()
-{
-	return mNxOgreRigidBodyDescription;
-}
-
-void PhysicsComponentSimple::setNxOgreRigidBodyDescription(NxOgre::RigidBodyDescription pNxOgreRigidBodyDescription)
-{
-	mNxOgreRigidBodyDescription=pNxOgreRigidBodyDescription;
-}
-
 TPhysicsComponentSimpleParameters::TPhysicsComponentSimpleParameters() : TPhysicsComponentParameters()
 {
 
