@@ -41,6 +41,7 @@ namespace OUAN
 		void processGameObjectCamera(XMLGameObject* gameObject);
 		void processGameObjectVolumeBox(XMLGameObject* gameObject);
 		void processGameObjectVolumeCapsule(XMLGameObject* gameObject);
+		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);

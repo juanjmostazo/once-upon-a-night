@@ -35,6 +35,7 @@ void XMLGameObjectParser::parseGameObjectTypes()
 	gameObjectTypes.clear();
 
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCENE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VIEWPORT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TERRAIN);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_LIGHT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CAMERA);
@@ -48,7 +49,21 @@ void XMLGameObjectParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ITEM_MAXHP);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VOLUMEBOX);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VOLUMECAPSULE);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VIEWPORT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NIGHTGOBLIN);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CRYKING);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DRAGON);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_MAGIC_CLOCK);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PILLOW);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FLASHLIGHT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TENTENTIESO);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BEE_BUTTERFLY);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND_TREE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_STORYBOOK);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_HEART);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCARED_PLANT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

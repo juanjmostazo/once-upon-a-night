@@ -20,6 +20,7 @@
 #include "../Game/GameObject/GameObjectVolumeBox.h"
 #include "../Game/GameObject/GameObjectVolumeCapsule.h"
 #include "../Game/GameObject/GameObjectViewport.h"
+#include "../Game/GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -97,6 +98,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectScene(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+		{
+			processGameObjectViewport(gameObject);
+		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
 			processGameObjectTripollo(gameObject);
@@ -145,9 +150,65 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectVolumeCapsule(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_NIGHTGOBLIN)==0)
 		{
-			processGameObjectViewport(gameObject);
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CRYKING)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DRAGON)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_MAGIC_CLOCK)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PILLOW)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TENTENTIESO)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BEE_BUTTERFLY)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMOND_TREE)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_STORYBOOK)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_HEART)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMOND)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCARED_PLANT)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
 		}
 		else
 		{
@@ -248,6 +309,39 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 
 }
+
+void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters;
+
+	try
+	{
+		//Get names
+		tGameObjectProvisionalEntityParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectProvisionalEntityParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectProvisionalEntityParameters.name = gameObject->name;
+
+		//Get World Existance
+		tGameObjectProvisionalEntityParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentEntity
+		tGameObjectProvisionalEntityParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters);
+}
+
 
 void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 {

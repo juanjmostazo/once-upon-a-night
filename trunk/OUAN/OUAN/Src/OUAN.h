@@ -331,6 +331,10 @@ namespace OUAN
 		class TGameObjectScaredPlantParameters;
 		typedef boost::shared_ptr<GameObjectScaredPlant> GameObjectScaredPlantPtr;
 
+		class GameObjectTree;
+		class TGameObjectTreeParameters;
+		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
@@ -359,7 +363,8 @@ namespace OUAN
 		typedef std::vector<GameObjectStorybookPtr> TGameObjectStorybookContainer;
 		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
 		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
-		typedef std::vector<GameObjectScaredPlantPtr> TGameObjecttScaredPlantContainer;
+		typedef std::vector<GameObjectScaredPlantPtr> TGameObjectScaredPlantContainer;
+		typedef std::vector<GameObjectTreePtr> TGameObjectTreeContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -392,6 +397,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
 		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
+		const std::string GAME_OBJECT_TYPE_TREE="tree";
 
 		///////////////////////////////////////////////////////////////////
 
