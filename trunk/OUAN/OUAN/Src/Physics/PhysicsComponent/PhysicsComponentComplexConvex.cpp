@@ -27,16 +27,19 @@ void PhysicsComponentComplexConvex::create()
 				getSceneNode()->getPosition(),
 				getSceneNode(),
 				pDesc));
+
+		setNxOgreKinematicBody(NULL);
 	}
 	else
 	{
-		setNxOgreBody(NULL);
-
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
+		setNxOgreKinematicBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
 			getNxOgreConvex(),
-			NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+			getSceneNode()->getPosition(),
+			getSceneNode()));
 
 		setStatic(true);
+		setNxOgreBody(NULL);
 	}
 }
 
@@ -51,8 +54,8 @@ void PhysicsComponentComplexConvex::destroy()
 	}
 	else
 	{
-		//TODO: STATIC SCENE GEOMETRY CANNOT BE DELETED
-		mInUse=true;
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyKinematicBody(getNxOgreKinematicBody());
+		setNxOgreKinematicBody(NULL);
 	}
 }
 
@@ -74,6 +77,16 @@ OGRE3DBody* PhysicsComponentComplexConvex::getNxOgreBody()
 void PhysicsComponentComplexConvex::setNxOgreBody(OGRE3DBody* pNxOgreBody)
 {
 	mNxOgreBody=pNxOgreBody;
+}
+
+OGRE3DKinematicBody* PhysicsComponentComplexConvex::getNxOgreKinematicBody()
+{
+	return mNxOgreKinematicBody;
+}
+
+void PhysicsComponentComplexConvex::setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody)
+{
+	mNxOgreKinematicBody=pNxOgreKinematicBody;
 }
 
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()

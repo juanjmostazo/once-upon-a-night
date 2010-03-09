@@ -28,17 +28,20 @@ void PhysicsComponentSimpleCapsule::create()
 				getSceneNode()->getPosition(),
 				getSceneNode(),
 				pDesc));
+
+		setNxOgreKinematicBody(NULL);
 	}
 	else
 	{
-		setNxOgreBody(NULL);
-
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
-			new NxOgre::Capsule(getNxOgreSize().x,
+		setNxOgreKinematicBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
+				new NxOgre::Capsule(getNxOgreSize().x,
 								getNxOgreSize().y),
-			NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+				getSceneNode()->getPosition(),
+				getSceneNode()));
 
 		setStatic(true);
+		setNxOgreBody(NULL);
 	}
 }
 
@@ -53,8 +56,8 @@ void PhysicsComponentSimpleCapsule::destroy()
 	}
 	else
 	{
-		//TODO: STATIC SCENE GEOMETRY CANNOT BE DELETED
-		mInUse=true;
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyKinematicBody(getNxOgreKinematicBody());
+		setNxOgreKinematicBody(NULL);
 	}
 }
 

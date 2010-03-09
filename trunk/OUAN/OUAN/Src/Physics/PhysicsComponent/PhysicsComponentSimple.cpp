@@ -32,6 +32,16 @@ void PhysicsComponentSimple::setNxOgreBody(OGRE3DBody* pNxOgreBody)
 	mNxOgreBody=pNxOgreBody;
 }
 
+OGRE3DKinematicBody* PhysicsComponentSimple::getNxOgreKinematicBody()
+{
+	return mNxOgreKinematicBody;
+}
+
+void PhysicsComponentSimple::setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody)
+{
+	mNxOgreKinematicBody=pNxOgreKinematicBody;
+}
+
 TPhysicsComponentSimpleParameters::TPhysicsComponentSimpleParameters() : TPhysicsComponentParameters()
 {
 
