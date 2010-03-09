@@ -421,6 +421,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectProvisionalEntity.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectScene.cpp"
 						>
 					</File>
@@ -780,6 +784,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectPortal.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectProvisionalEntity.h"
 						>
 					</File>
 					<File

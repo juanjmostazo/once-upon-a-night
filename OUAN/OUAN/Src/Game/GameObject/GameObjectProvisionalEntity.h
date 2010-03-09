@@ -1,15 +1,14 @@
-#ifndef GameObjectItem1UPH_H
-#define GameObjectItem1UPH_H
+#ifndef GameObjectProvisionalEntityH_H
+#define GameObjectProvisionalEntityH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 
 namespace OUAN
 {
-	/// Class to hold Item1UP information
-	class GameObjectItem1UP : public GameObject, public boost::enable_shared_from_this<GameObjectItem1UP>
+	/// Class to hold ProvisionalEntity information
+	class GameObjectProvisionalEntity : public GameObject, public boost::enable_shared_from_this<GameObjectProvisionalEntity>
 	{
 	private:
 		
@@ -17,16 +16,14 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
-		/// Physics information
-		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
 
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectItem1UP(const std::string& name);
+		GameObjectProvisionalEntity(const std::string& name);
 		//Destructor
-		~GameObjectItem1UP();
+		~GameObjectProvisionalEntity();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -43,11 +40,6 @@ namespace OUAN
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
-		/// Set physics component
-		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
-
-		/// Get physics component
-		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -65,20 +57,17 @@ namespace OUAN
 		void unregisterHandlers();
 	};
 
-	class TGameObjectItem1UPParameters: public TGameObjectParameters
+	class TGameObjectProvisionalEntityParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectItem1UPParameters();
-		~TGameObjectItem1UPParameters();
-		
+		TGameObjectProvisionalEntityParameters();
+		~TGameObjectProvisionalEntityParameters();
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
-
-		///Physics parameters
-		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
 
 	};
 }
