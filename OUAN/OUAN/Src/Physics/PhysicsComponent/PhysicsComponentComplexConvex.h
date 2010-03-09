@@ -20,9 +20,13 @@ namespace OUAN
 		OGRE3DBody* getNxOgreBody();
 		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
 
+		OGRE3DKinematicBody* getNxOgreKinematicBody();
+		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
+
 	protected:
 		NxOgre::Convex* mNxOgreConvex;
 		OGRE3DBody* mNxOgreBody;
+		OGRE3DKinematicBody* mNxOgreKinematicBody;
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters
