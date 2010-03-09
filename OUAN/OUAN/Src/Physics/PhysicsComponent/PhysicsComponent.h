@@ -30,12 +30,18 @@ namespace OUAN
 		virtual bool isStatic();
 		virtual void setStatic(bool pStatic);
 
+		virtual double getMass();
+		virtual void setMass(double pMass);
+
 	protected:
 		// Tells if the component is in use or not
 		bool mInUse;
 
-		// Tells if the game entiy is static or can be moved
+		// Tells if the game entity is static or can be moved
 		bool mStatic;
+
+		// Mass
+		double mMass;
 
 		// Related game entity scene node
 		Ogre::SceneNode* mSceneNode;

@@ -30,16 +30,6 @@ void PhysicsComponentCharacter::destroy()
 	PhysicsComponent::destroy();
 }
 
-double PhysicsComponentCharacter::getMass()
-{
-	return mNxOgreMass;
-}
-
-void PhysicsComponentCharacter::setMass(double pNxOgreMass)
-{
-	mNxOgreMass=pNxOgreMass;
-}
-
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)
 {
 	mNxOgreController = pNxOgreController;

@@ -16,15 +16,18 @@ void PhysicsComponentSimpleCapsule::create()
 {
 	PhysicsComponentSimple::create();
 	
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
+		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
+		pDesc.mMass = getMass();
+
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
 				new NxOgre::Capsule(getNxOgreSize().x,
 									getNxOgreSize().y),
 				getSceneNode()->getPosition(),
 				getSceneNode(),
-				getNxOgreRigidBodyDescription()));
+				pDesc));
 	}
 	else
 	{
@@ -43,15 +46,10 @@ void PhysicsComponentSimpleCapsule::destroy()
 {
 	PhysicsComponentSimple::destroy();
 
-	if (getNxOgreRigidBodyDescription().mMass > 0)
+	if (getMass() > 0)
 	{
-		NxOgre::RigidBodyDescription tmpDesc = NxOgre::RigidBodyDescription();
-		tmpDesc.mMass = getNxOgreRigidBodyDescription().mMass;
-
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
-		
 		setNxOgreBody(NULL);
-		setNxOgreRigidBodyDescription(tmpDesc);
 	}
 	else
 	{
