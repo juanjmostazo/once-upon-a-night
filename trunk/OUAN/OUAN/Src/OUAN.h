@@ -215,6 +215,14 @@ namespace OUAN
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
 
+		class GameObjectViewport;
+		class TGameObjectViewportParameters;
+		typedef boost::shared_ptr<GameObjectViewport> GameObjectViewportPtr;
+
+		class GameObjectProvisionalEntity;
+		class TGameObjectProvisionalEntityParameters;
+		typedef boost::shared_ptr<GameObjectProvisionalEntity> GameObjectProvisionalEntityPtr;
+
 		class GameObjectTerrain;
 		class TGameObjectTerrainParameters;
 		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
@@ -267,11 +275,64 @@ namespace OUAN
 		class TGameObjectVolumeCapsuleParameters;
 		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
 
-		class GameObjectViewport;
-		class TGameObjectViewportParameters;
-		typedef boost::shared_ptr<GameObjectViewport> GameObjectViewportPtr;
+		class GameObjectNightGoblin;
+		class TGameObjectNightGoblinParameters;
+		typedef boost::shared_ptr<GameObjectNightGoblin> GameObjectNightGoblinPtr;
+
+		class GameObjectCryKing;
+		class TGameObjectCryKingParameters;
+		typedef boost::shared_ptr<GameObjectCryKing> GameObjectCryKingPtr;
+
+		class GameObjectDragon;
+		class TGameObjectDragonParameters;
+		typedef boost::shared_ptr<GameObjectDragon> GameObjectDragonPtr;
+
+		class GameObjectMagicClock;
+		class TGameObjectMagicClockParameters;
+		typedef boost::shared_ptr<GameObjectMagicClock> GameObjectMagicClockPtr;
+
+		class GameObjectPillow;
+		class TGameObjectPillowParameters;
+		typedef boost::shared_ptr<GameObjectPillow> GameObjectPillowPtr;
+
+		class GameObjectFlashlight;
+		class TGameObjectFlashlightParameters;
+		typedef boost::shared_ptr<GameObjectFlashlight> GameObjectFlashlightPtr;
+
+		class GameObjectTententieso;
+		class TGameObjectTententiesoParameters;
+		typedef boost::shared_ptr<GameObjectTententieso> GameObjectTententiesoPtr;
+
+		class GameObjectBee_Butterfly;
+		class TGameObjectBee_ButterflyParameters;
+		typedef boost::shared_ptr<GameObjectBee_Butterfly> GameObjectBee_ButterflyPtr;
+
+		class GameObjectSnakeCreeper_CarnivorousPlant;
+		class TGameObjectSnakeCreeper_CarnivorousPlantParameters;
+		typedef boost::shared_ptr<GameObjectSnakeCreeper_CarnivorousPlant> GameObjectSnakeCreeper_CarnivorousPlantPtr;
+
+		class GameObjectDiamondTree;
+		class TGameObjectDiamondTreeParameters;
+		typedef boost::shared_ptr<GameObjectDiamondTree> GameObjectDiamondTreePtr;
+
+		class GameObjectStorybook;
+		class TGameObjectStorybookParameters;
+		typedef boost::shared_ptr<GameObjectStorybook> GameObjectStorybookPtr;
+
+		class GameObjectHeart;
+		class TGameObjectHeartParameters;
+		typedef boost::shared_ptr<GameObjectHeart> GameObjectHeartPtr;
+
+		class GameObjectDiamond;
+		class TGameObjectDiamondParameters;
+		typedef boost::shared_ptr<GameObjectDiamond> GameObjectDiamondPtr;
+
+		class GameObjectScaredPlant;
+		class TGameObjectScaredPlantParameters;
+		typedef boost::shared_ptr<GameObjectScaredPlant> GameObjectScaredPlantPtr;
 
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
+		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
 		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
@@ -285,7 +346,20 @@ namespace OUAN
 		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjectItemMaxHPContainer;
 		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
 		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
-		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
+		typedef std::vector<GameObjectNightGoblinPtr> TGameObjectNightGoblinContainer;
+		typedef std::vector<GameObjectCryKingPtr> TGameObjectCryKingContainer;
+		typedef std::vector<GameObjectDragonPtr> TGameObjectDragonContainer;
+		typedef std::vector<GameObjectMagicClockPtr> TGameObjectMagicClockContainer;
+		typedef std::vector<GameObjectPillowPtr> TGameObjectPillowContainer;
+		typedef std::vector<GameObjectFlashlightPtr> TGameObjectFlashlightContainer;
+		typedef std::vector<GameObjectTententiesoPtr> TGameObjectTententiesoContainer;
+		typedef std::vector<GameObjectBee_ButterflyPtr> TGameObjectBee_ButterflyContainer;
+		typedef std::vector<GameObjectSnakeCreeper_CarnivorousPlantPtr> TGameObjectSnakeCreeper_CarnivorousPlantContainer;
+		typedef std::vector<GameObjectDiamondTreePtr> TGameObjectDiamondTreeContainer;
+		typedef std::vector<GameObjectStorybookPtr> TGameObjectStorybookContainer;
+		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
+		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
+		typedef std::vector<GameObjectScaredPlantPtr> TGameObjecttScaredPlantContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -297,13 +371,27 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
-		const std::string GAME_OBJECT_TYPE_PORTAL="portal";
+		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
-		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item-1up";
-		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="item-maxhp";
+		const std::string GAME_OBJECT_TYPE_ITEM_1UP="extralive";
+		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="heartbag";
 		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
 		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
+		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="night_goblin";
+		const std::string GAME_OBJECT_TYPE_CRYKING="cry_king";
+		const std::string GAME_OBJECT_TYPE_DRAGON="dragon";
+		const std::string GAME_OBJECT_TYPE_MAGIC_CLOCK="magic_clock";
+		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
+		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
+		const std::string GAME_OBJECT_TYPE_TENTENTIESO="tententieso";
+		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
+		const std::string GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT="snake_creeper%carnivorous_plant";
+		const std::string GAME_OBJECT_TYPE_DIAMOND_TREE="diamond_tree";
+		const std::string GAME_OBJECT_TYPE_STORYBOOK="storybook";
+		const std::string GAME_OBJECT_TYPE_HEART="heart";
+		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
+		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
 
 		///////////////////////////////////////////////////////////////////
 
