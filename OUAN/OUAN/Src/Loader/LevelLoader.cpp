@@ -325,8 +325,17 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 		tGameObjectProvisionalEntityParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
 			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
-		//Get RenderComponentEntity
-		tGameObjectProvisionalEntityParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		if(tGameObjectProvisionalEntityParameters.tLogicComponentWorldExistanceParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+
+		if(tGameObjectProvisionalEntityParameters.tLogicComponentWorldExistanceParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
 
 		//Get RenderComponentPositional
 		tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());

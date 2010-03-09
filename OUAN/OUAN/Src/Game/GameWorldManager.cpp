@@ -1021,10 +1021,15 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntity
-		pGameObjectProvisionalEntity->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.name,
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityParameters));
+		//Create RenderComponentEntity Dreams
+		pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntity Nightmares
+		pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
 
 	pGameObjectProvisionalEntity->changeWorld(world);
 	
