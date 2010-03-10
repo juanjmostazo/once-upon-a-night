@@ -429,7 +429,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTerrain.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrainConvex.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.cpp"
 						>
 					</File>
 					<File
@@ -795,7 +799,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTerrain.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrainConvex.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.h"
 						>
 					</File>
 					<File

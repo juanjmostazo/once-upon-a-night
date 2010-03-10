@@ -1,39 +1,40 @@
-#ifndef GameObjectTerrainH_H
-#define GameObjectTerrainH_H
+#ifndef GameObjectTerrainTriangleH_H
+#define GameObjectTerrainTriangleH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
-//#include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 
 namespace OUAN
 {
 	/// Class to hold terrain information
-	class GameObjectTerrain : public GameObject, public boost::enable_shared_from_this<GameObjectTerrain>
+	class GameObjectTerrainTriangle : public GameObject, public boost::enable_shared_from_this<GameObjectTerrainTriangle>
 	{
 	private:
 		/// Visual information
-		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentEntityPtr mRenderComponentEntityDreams;
+		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
-		//PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectTerrain(const std::string& name);
+		GameObjectTerrainTriangle(const std::string& name);
 		//Destructor
-		~GameObjectTerrain();
+		~GameObjectTerrainTriangle();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntity() const;
+		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
+		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -45,11 +46,9 @@ namespace OUAN
 
 		/// Set physics component
 		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
-		//void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 
 		/// Get physics component
 		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle();
-		//PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -66,21 +65,22 @@ namespace OUAN
 		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
-	class TGameObjectTerrainParameters: public TGameObjectParameters
+	class TGameObjectTerrainTriangleParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectTerrainParameters();
-		~TGameObjectTerrainParameters();
+		TGameObjectTerrainTriangleParameters();
+		~TGameObjectTerrainTriangleParameters();
 		
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
 		TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
-		//TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
+
 	};
 }
 #endif

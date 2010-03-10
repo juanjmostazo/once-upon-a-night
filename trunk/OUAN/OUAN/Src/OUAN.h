@@ -4,7 +4,8 @@
 #include <map>
 #include <string>
 #include <iostream>
-#include <fstream>
+#include <fstream> 
+#include <sys/stat.h>
 #include <Ogre.h>
 #include <ois/OIS.h>
 #include <cegui/CEGUI.h>
@@ -140,6 +141,10 @@ namespace OUAN
 		class TPhysicsComponentCharacterParameters;
 		typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
 
+		class PhysicsComponentComplex;
+		class TPhysicsComponentComplexParameters;
+		typedef boost::shared_ptr<PhysicsComponentComplex> PhysicsComponentComplexPtr;
+
 		class PhysicsComponentComplexConvex;
 		class TPhysicsComponentComplexConvexParameters;
 		typedef boost::shared_ptr<PhysicsComponentComplexConvex> PhysicsComponentComplexConvexPtr;
@@ -236,9 +241,13 @@ namespace OUAN
 		class TGameObjectProvisionalEntityParameters;
 		typedef boost::shared_ptr<GameObjectProvisionalEntity> GameObjectProvisionalEntityPtr;
 
-		class GameObjectTerrain;
-		class TGameObjectTerrainParameters;
-		typedef boost::shared_ptr<GameObjectTerrain> GameObjectTerrainPtr;
+		class GameObjectTerrainTriangle;
+		class TGameObjectTerrainTriangleParameters;
+		typedef boost::shared_ptr<GameObjectTerrainTriangle> GameObjectTerrainTrianglePtr;
+
+		class GameObjectTerrainConvex;
+		class TGameObjectTerrainConvexParameters;
+		typedef boost::shared_ptr<GameObjectTerrainConvex> GameObjectTerrainConvexPtr;
 
 		class GameObjectLight;
 		class TGameObjectLightParameters;
@@ -350,7 +359,8 @@ namespace OUAN
 
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
-		typedef std::vector<GameObjectTerrainPtr> TGameObjectTerrainContainer;
+		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
+		typedef std::vector<GameObjectTerrainTrianglePtr> TGameObjectTerrainTriangleContainer;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
 		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
 		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
@@ -447,6 +457,8 @@ namespace OUAN
 
 		class Configuration;
 		class LevelLoader;
+
+		const std::string DEFAULT_OGRE_RESOURCE_MANAGER_GROUP="General";
 
 		//Exception messages
 		const std::string SCENE_NODE_NOT_FOUND="Scene Parameters not found";
