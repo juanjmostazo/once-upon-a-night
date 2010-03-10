@@ -30,6 +30,9 @@ namespace OUAN
 		/// Detach all event handlers.
 		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
 		void unregisterHandlers();
+
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	class TGameObjectSceneParameters: public TGameObjectParameters

@@ -35,17 +35,30 @@ void GameObjectCamera::changeWorld(int world)
 	default:
 		break;
 	}
+}
+//-------------------------------------------------------------------------------------------
 
+void GameObjectCamera::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
 }
 
 void GameObjectCamera::registerHandlers()
 {
 	GameObjectCameraPtr _this =shared_from_this();
+
+	registerEventHandler<GameObjectCamera,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectCamera::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
+
 void GameObjectCamera::unregisterHandlers()
 {
 	GameObjectCameraPtr _this =shared_from_this();
+
+	unregisterEventHandler<GameObjectCamera,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectCamera::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
+//-------------------------------------------------------------------------------------------
 
 TGameObjectCameraParameters::TGameObjectCameraParameters() : TGameObjectParameters()
 {

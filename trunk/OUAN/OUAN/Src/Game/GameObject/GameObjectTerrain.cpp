@@ -67,24 +67,28 @@ void GameObjectTerrain::changeWorld(int world)
 	default:break;
 	}
 }
+//-------------------------------------------------------------------------------------------
+
+void GameObjectTerrain::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
+
 void GameObjectTerrain::registerHandlers()
 {
 	GameObjectTerrainPtr _this =shared_from_this();
+
 	registerEventHandler<GameObjectTerrain,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrain::processChangeWorld,
 		mGameWorldManager->getEventManager());
 }
 void GameObjectTerrain::unregisterHandlers()
 {
 	GameObjectTerrainPtr _this =shared_from_this();
+
 	unregisterEventHandler<GameObjectTerrain,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrain::processChangeWorld,
 		mGameWorldManager->getEventManager());
 }
 
-
-void GameObjectTerrain::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainParameters::TGameObjectTerrainParameters() : TGameObjectParameters()
 {

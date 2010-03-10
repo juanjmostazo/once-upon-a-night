@@ -88,25 +88,28 @@ void GameObjectTripollo::changeWorld(int world)
 	}
 }
 //-------------------------------------------------------------------------------------------
-void GameObjectTripollo::registerHandlers()
-{
-	GameObjectTripolloPtr _this =shared_from_this();
-	//Subscribe to world change event
-	registerEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-void GameObjectTripollo::unregisterHandlers()
-{
-	GameObjectTripolloPtr _this =shared_from_this();
-	unregisterEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-//-------------------------------------------------------------------------------------------
 
 void GameObjectTripollo::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	changeWorld(evt->getNewWorld());
 }
+
+void GameObjectTripollo::registerHandlers()
+{
+	GameObjectTripolloPtr _this =shared_from_this();
+	
+	registerEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+
+void GameObjectTripollo::unregisterHandlers()
+{
+	GameObjectTripolloPtr _this =shared_from_this();
+
+	unregisterEventHandler<GameObjectTripollo,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTripollo::processChangeWorld,
+		mGameWorldManager->getEventManager());
+}
+//-------------------------------------------------------------------------------------------
 
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
 {

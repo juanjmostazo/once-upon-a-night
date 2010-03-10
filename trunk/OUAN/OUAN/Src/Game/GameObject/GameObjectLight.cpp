@@ -46,15 +46,26 @@ void GameObjectLight::changeWorld(int world)
 	}
 
 }
+//-------------------------------------------------------------------------------------------
+void GameObjectLight::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
 
 void GameObjectLight::registerHandlers()
 {
 	GameObjectLightPtr _this =shared_from_this();
+
+	registerEventHandler<GameObjectLight,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectLight::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 
 void GameObjectLight::unregisterHandlers()
 {
 	GameObjectLightPtr _this =shared_from_this();
+
+	unregisterEventHandler<GameObjectLight,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectLight::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 
 //-------------------------------------------------------------------------------------------

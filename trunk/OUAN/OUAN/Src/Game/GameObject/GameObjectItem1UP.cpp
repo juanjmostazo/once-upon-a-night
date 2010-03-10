@@ -99,6 +99,7 @@ void GameObjectItem1UP::changeWorld(int world)
 		}
 	}
 }
+//-------------------------------------------------------------------------------------------
 
 void GameObjectItem1UP::processChangeWorld(ChangeWorldEventPtr evt)
 {
@@ -108,7 +109,7 @@ void GameObjectItem1UP::processChangeWorld(ChangeWorldEventPtr evt)
 void GameObjectItem1UP::registerHandlers()
 {
 	GameObjectItem1UPPtr _this =shared_from_this();
-	//Subscribe to world change event
+	
 	registerEventHandler<GameObjectItem1UP,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectItem1UP::processChangeWorld,
 		mGameWorldManager->getEventManager());
 
@@ -116,8 +117,8 @@ void GameObjectItem1UP::registerHandlers()
 void GameObjectItem1UP::unregisterHandlers()
 {
 	GameObjectItem1UPPtr _this =shared_from_this();
-	//Subscribe to world change event
-	registerEventHandler<GameObjectItem1UP,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectItem1UP::processChangeWorld,
+	
+	unregisterEventHandler<GameObjectItem1UP,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectItem1UP::processChangeWorld,
 		mGameWorldManager->getEventManager());
 
 }
