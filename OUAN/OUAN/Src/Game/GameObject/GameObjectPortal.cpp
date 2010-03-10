@@ -14,14 +14,24 @@ GameObjectPortal::~GameObjectPortal()
 
 }
 
-RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntityDreams() const
 {
-	return mRenderComponentEntity;
+	return mRenderComponentEntityDreams;
 }
 
-void GameObjectPortal::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectPortal::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
 {
-	mRenderComponentEntity=pRenderComponentEntity;
+	mRenderComponentEntityDreams=pRenderComponentEntityDreams;
+}
+
+RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntityNightmares() const
+{
+	return mRenderComponentEntityNightmares;
+}
+
+void GameObjectPortal::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
+{
+	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
 }
 
 void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -61,43 +71,25 @@ void GameObjectPortal::changeWorld(int world)
 		{
 		case DREAMS:
 			//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
-			if(mLogicComponentWorldExistance->getExistsInDreams())
+
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				//Ogre::LogManager::getSingleton().logMessage("DREAMS IN " + getName());
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				mPhysicsComponentSimpleBox->create();
 			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-			}		
+	
 			break;
 		case NIGHTMARES:
 			//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
+	
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				//Ogre::LogManager::getSingleton().logMessage("NIGHT IN " + getName());
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				mPhysicsComponentSimpleBox->create();
 			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-			}
+
 			break;
 		default:
 			break;

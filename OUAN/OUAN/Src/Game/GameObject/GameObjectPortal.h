@@ -13,7 +13,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual information
-		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentEntityPtr mRenderComponentEntityDreams;
+		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
@@ -27,11 +28,13 @@ namespace OUAN
 		~GameObjectPortal();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntity() const;
+		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
+		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -69,7 +72,8 @@ namespace OUAN
 		~TGameObjectPortalParameters();
 		
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
