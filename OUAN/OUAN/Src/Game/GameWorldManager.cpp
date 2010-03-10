@@ -518,12 +518,12 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 
 		//Create RenderComponentEntityDreams
 		pGameObjectOny->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
+			factory->createRenderComponentEntity(tGameObjectOnyParameters.dreamsName,
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityDreamsParameters));
 
 		//Create RenderComponentEntityNightmares
 		pGameObjectOny->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
+			factory->createRenderComponentEntity(tGameObjectOnyParameters.nightmaresName,
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityNightmaresParameters));
 
 		//Create PhysicsComponent
@@ -692,12 +692,12 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 
 		//Create RenderComponentEntityDreams
 		pGameObjectPortal->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectPortalParameters.name,
+			factory->createRenderComponentEntity(tGameObjectPortalParameters.dreamsName,
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters));
 
 		//Create RenderComponentEntityNightmares
 		pGameObjectPortal->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectPortalParameters.name,
+			factory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters));
 
 		//Create PhysicsComponent
