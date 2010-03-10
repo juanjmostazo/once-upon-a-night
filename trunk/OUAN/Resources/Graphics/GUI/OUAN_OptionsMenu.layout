@@ -25,8 +25,9 @@
             <Window Type="OUANLook/Combobox" Name="OUANOptions/Controls/DeviceSelect" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Select device" />
+                <Property Name="ReadOnly" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.404623,0},{0.212456,0},{0.654623,0},{0.280141,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.404623,0},{0.212456,0},{0.654623,0},{0.421748,0}}" />
                 <Property Name="MaxEditTextLength" Value="1073741823" />
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Controls/Apply" >
@@ -41,85 +42,85 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.636178,0},{0.900624,0},{0.886179,0},{0.968815,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/ForwardBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ForwardBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Forward: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.190935,0},{0.469146,0},{0.349808,0},{0.529146,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/BackwardsBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/BackwardsBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Backwards: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.182298,0},{0.592358,0},{0.347556,0},{0.652358,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/LeftBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/LeftBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Left: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.0731085,0},{0.533578,0},{0.226874,0},{0.593578,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/RightBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RightBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Right: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.317631,0},{0.532118,0},{0.465012,0},{0.592118,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/ReloadBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ReloadBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Reload: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.660195,0},{0.459256,0},{0.819068,0},{0.508382,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/JumpBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/JumpBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Jump: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.665256,0},{0.58978,0},{0.824129,0},{0.638907,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/WeaponBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/WeaponBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Use Weapon: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.54723,0},{0.529834,0},{0.720826,0},{0.577505,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/ActionBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/ActionBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Action: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.763581,0},{0.528161,0},{0.922454,0},{0.578743,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/MenuBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/MenuBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="In-game menu: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.263032,0},{0.734727,0},{0.498228,0},{0.794043,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/PauseBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/PauseBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Pause: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.548165,0},{0.734509,0},{0.724464,0},{0.789458,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/RotateLeftBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RotateLeftBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Weapon left:" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.083107,0},{0.310722,0},{0.248365,0},{0.36276,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/RotateRightBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RotateRightBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Weapon right:" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.770261,0},{0.309056,0},{0.935518,0},{0.359638,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/WalkBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/WalkBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Walk:" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.774294,0},{0.373655,0},{0.939552,0},{0.43006,0}}" />
             </Window>
-            <Window Type="OUANLook/Button" Name="OUANOptions/Controls/AutoTargetBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/AutoTargetBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Auto target:" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

@@ -3,9 +3,6 @@
 #include "../OUAN.h"
 namespace OUAN
 {
-	//typedef std::pair<CEGUI::String,std::string> TGUIEventBinding;
-	//typedef std::vector<TGUIEventBinding> TGUIEventBindingVector;
-
 	/// Convert OIS' mouse button ID to its CEGUI equivalent
 	/// @param buttonId	mouse button ID from OIS
 	/// @return CEGUI's mouse button identifier
@@ -27,9 +24,6 @@ namespace OUAN
 		CEGUI::OgreCEGUIRenderer* mRenderer;
 		/// Pointer to CEGUI's main system object
 		CEGUI::System* mSystem;
-
-		CEGUI::Window* mGUIWindow;
-
 		//TGUIEventBindingVector mBoundEvents;
 		//std::vector<CEGUI::Event::ScopedConnection> mConnections;
 	public:

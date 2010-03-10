@@ -62,8 +62,6 @@ namespace OUAN
 		void unregisterHandlers();
 		
 		//------------------------------------------------------------------
-		///Event handler to process world change events
-		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	class TGameObjectEyeParameters: public TGameObjectParameters

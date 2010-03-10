@@ -211,6 +211,297 @@
       </Layer>
     </StateImagery>
   </WidgetLook>
+  
+  <!--     ***************************************************         OUANLook/ToggleButton      ***************************************************      -->
+  <WidgetLook name="OUANLook/ToggleButton">
+    <PropertyDefinition name="DrawStandardImagery" initialValue="True" redrawOnWrite="true" />
+    <PropertyDefinition name="NormalTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="DisabledTextColour" initialValue="FF7F7F7F" redrawOnWrite="true" />
+    <PropertyDefinition name="VertLabelFormatting" initialValue="CentreAligned" />
+    <PropertyDefinition name="HorzLabelFormatting" initialValue="CentreAligned" />
+    <PropertyDefinition name="NormalImage" initialValue="" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverImage" initialValue="" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedImage" initialValue="" redrawOnWrite="true" />
+    <PropertyDefinition name="DisabledImage" initialValue="" redrawOnWrite="true" />
+    <PropertyDefinition name="VertImageFormatting" initialValue="Stretched" redrawOnWrite="true" />
+    <PropertyDefinition name="HorzImageFormatting" initialValue="Stretched" redrawOnWrite="true" />
+    <ImagerySection name="label">
+      <TextComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUANLook" image="ButtonMiddleNormal" dimension="Height" />
+          </Dim>
+        </Area>
+        <VertFormatProperty name="VertLabelFormatting" />
+        <HorzFormatProperty name="HorzLabelFormatting" />
+      </TextComponent>
+    </ImagerySection>
+    <ImagerySection name="normal">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUANLook" image="ButtonMiddleNormal" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUANLook" image="ButtonLeftNormal" />
+        <Image type="RightEdge" imageset="OUANLook" image="ButtonRightNormal" />
+        <Image type="Background" imageset="OUANLook" image="ButtonMiddleNormal" />
+      </FrameComponent>
+    </ImagerySection>
+    <ImagerySection name="normal_image">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <UnifiedDim scale="1" type="Height" />
+          </Dim>
+        </Area>
+        <ImageProperty name="NormalImage" />
+        <VertFormatProperty name="VertImageFormatting" />
+        <HorzFormatProperty name="HorzImageFormatting" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="normalselected">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUANLook" image="ButtonLeftPushed" />
+        <Image type="RightEdge" imageset="OUANLook" image="ButtonRightPushed" />
+        <Image type="Background" imageset="OUANLook" image="ButtonMiddlePushed" />
+      </FrameComponent>
+    </ImagerySection>	
+    <ImagerySection name="hover">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddleHighlight" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUANLook" image="ButtonLeftHighlight" />
+        <Image type="RightEdge" imageset="OUANLook" image="ButtonRightHighlight" />
+        <Image type="Background" imageset="OUANLook" image="ButtonMiddleHighlight" />
+      </FrameComponent>
+    </ImagerySection>
+    <ImagerySection name="hoverselected">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUANLook" image="ButtonLeftPushed" />
+        <Image type="RightEdge" imageset="OUANLook" image="ButtonRightPushed" />
+        <Image type="Background" imageset="OUANLook" image="ButtonMiddlePushed" />
+      </FrameComponent>
+    </ImagerySection>		
+    <ImagerySection name="hover_image">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddleHighlight" dimension="Height" />
+          </Dim>
+        </Area>
+        <ImageProperty name="HoverImage" />
+        <VertFormatProperty name="VertImageFormatting" />
+        <HorzFormatProperty name="HorzImageFormatting" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="pushed">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUANLook" image="ButtonLeftPushed" />
+        <Image type="RightEdge" imageset="OUANLook" image="ButtonRightPushed" />
+        <Image type="Background" imageset="OUANLook" image="ButtonMiddlePushed" />
+      </FrameComponent>
+    </ImagerySection>
+    <ImagerySection name="pushed_image">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUANLook" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <ImageProperty name="PushedImage" />
+        <VertFormatProperty name="VertImageFormatting" />
+        <HorzFormatProperty name="HorzImageFormatting" />
+      </ImageryComponent>
+    </ImagerySection>
+    <StateImagery name="Normal">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" />
+        <Section section="normal_image" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Hover">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="hover_image" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedNormal">
+      <Layer>
+        <Section section="normalselected" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedHover">
+      <Layer>
+        <Section section="hoverselected" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedPushed">
+      <Layer>
+        <Section section="normalselected" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>	
+    <StateImagery name="SelectedDisabled">
+      <Layer>
+        <Section section="normal">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="select_mark">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="label">
+          <ColourProperty name="DisabledTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>	
+    <StateImagery name="Pushed">
+      <Layer>
+        <Section section="pushed" controlProperty="DrawStandardImagery" />
+        <Section section="pushed_image" />
+        <Section section="label">
+          <ColourProperty name="PushedTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="PushedOff">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="hover_image" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Disabled">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="normal_image" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="label">
+          <ColourProperty name="DisabledTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+  </WidgetLook>
   <!--     ***************************************************         OUANLook/RadioButton     ***************************************************     -->
   <WidgetLook name="OUANLook/RadioButton">
     <PropertyDefinition name="NormalTextColour" initialValue="FF000000" redrawOnWrite="true" />

@@ -106,28 +106,6 @@ void GameObjectVolumeBox::changeWorld(int world)
 }
 //-------------------------------------------------------------------------------------------
 
-void GameObjectVolumeBox::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectVolumeBox::registerHandlers()
-{
-	GameObjectVolumeBoxPtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectVolumeBox,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeBox::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-
-void GameObjectVolumeBox::unregisterHandlers()
-{
-	GameObjectVolumeBoxPtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectVolumeBox,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeBox::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-//-------------------------------------------------------------------------------------------
-
 TGameObjectVolumeBoxParameters::TGameObjectVolumeBoxParameters() : TGameObjectParameters()
 {
 

@@ -28,12 +28,7 @@ const std::string& GameObject::getName() const
 	return mName;
 }
 
-void GameObject::registerHandlers()
-{
-}
-void GameObject::unregisterHandlers()
-{
-}
+
 GameWorldManagerPtr GameObject::getGameWorldManager()
 {
 	return mGameWorldManager;
@@ -53,6 +48,10 @@ LogicComponentWorldExistancePtr GameObject::getLogicComponentWorldExistance()
 	return mLogicComponentWorldExistance;
 }
 
+void GameObject::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
 
 //-------------------------------------------------------
 

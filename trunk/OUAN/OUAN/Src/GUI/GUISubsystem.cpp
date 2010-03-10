@@ -23,17 +23,13 @@ CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)
 	}
 }
 void GUISubsystem::init(ApplicationPtr app)
-{
-	//TODO: Use a Configuration/script to config the GUI subsystem
+{	
 	mRenderer=new CEGUI::OgreCEGUIRenderer(app->getRenderSubsystem()->getWindow(),
 		Ogre::RENDER_QUEUE_OVERLAY,false,3000,
 		app->getRenderSubsystem()->getSceneManager());
 	mSystem = new CEGUI::System(mRenderer);
-	
-	//TODO: Make layout and specific resource loading dependant on the game state/level
-	CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)"OUANLookSkin.scheme");
-	mSystem->setDefaultMouseCursor((CEGUI::utf8*)"OUANLook", (CEGUI::utf8*)"MouseArrow");
-	mSystem->setDefaultFont((CEGUI::utf8*)"BlueHighway-12");
+	//TODO: Refine this method
+	loadScheme("OUANLookSkin.scheme","OUANLook");
 }
 void GUISubsystem::loadScheme(std::string schemeName, std::string mouseCursor)
 {
