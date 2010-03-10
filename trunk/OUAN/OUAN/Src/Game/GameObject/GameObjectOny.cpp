@@ -138,15 +138,26 @@ RenderComponentPositionalPtr GameObjectOny::getRenderComponentPositional() const
 	return mRenderComponentPositional;
 }
 
-void GameObjectOny::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectOny::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
 {
-	mRenderComponentEntity=pRenderComponentEntity;
+	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
 }
 
-RenderComponentEntityPtr GameObjectOny::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectOny::getRenderComponentEntityNightmares() const
 {
-	return mRenderComponentEntity;
+	return mRenderComponentEntityNightmares;
 }
+
+void GameObjectOny::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
+{
+	mRenderComponentEntityDreams=pRenderComponentEntityDreams;
+}
+
+RenderComponentEntityPtr GameObjectOny::getRenderComponentEntityDreams() const
+{
+	return mRenderComponentEntityDreams;
+}
+
 
 void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {

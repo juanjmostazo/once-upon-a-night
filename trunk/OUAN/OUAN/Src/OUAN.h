@@ -454,6 +454,8 @@ namespace OUAN
 		const std::string DREAMS_NODE_NOT_FOUND="Dreams node does not exist or has wrong name in Ogitor";   
 		const std::string NIGHTMARES_NODE_NOT_FOUND="Nightmares node does not exist or has wrong name in Ogitor";
 		const std::string CUSTOM_PROPERTIES_NODE_NOT_FOUND="Custom Properties node does not exist or has wrong .ctp filename";
+		const std::string DREAMS_SHOULD_NOT_EXIST="This object can't have dreams node";  
+		const std::string NIGHTMARES_SHOULD_NOT_EXIST="This object can't have nightmares node";  
 
 		typedef boost::shared_ptr<Configuration> ConfigurationPtr;
 		typedef boost::shared_ptr<LevelLoader> LevelLoaderPtr;

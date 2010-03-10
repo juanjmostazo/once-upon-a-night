@@ -37,7 +37,8 @@ namespace OUAN
 		bool mOnSurface;
 
 		/// Visual component data
-		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentEntityPtr mRenderComponentEntityDreams;
+		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Positional component data
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
@@ -113,11 +114,13 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntity() const;
+		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
+		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -162,7 +165,8 @@ namespace OUAN
 		~TGameObjectOnyParameters();
 		
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

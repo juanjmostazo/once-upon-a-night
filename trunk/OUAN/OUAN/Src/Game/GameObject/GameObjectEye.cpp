@@ -15,14 +15,14 @@ GameObjectEye::~GameObjectEye()
 
 }
 
-RenderComponentEntityPtr GameObjectEye::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectEye::getRenderComponentEntityNightmares() const
 {
-	return mRenderComponentEntity;
+	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectEye::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectEye::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
 {
-	mRenderComponentEntity=pRenderComponentEntity;
+	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
 }
 
 void GameObjectEye::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)

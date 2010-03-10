@@ -22,12 +22,12 @@ namespace OUAN
 		//Destructor
 		~GameObjectBillboardSet();
 
-		/// Get light component
-		/// @return light component
+		/// Get billboardset component
+		/// @return billboardset component
 		RenderComponentBillboardSetPtr getRenderComponentBillboardSet() const;
 
-		/// Set light component
-		/// @param pRenderComponentLight the light component to set
+		/// Set billboardset component
+		/// @param pRenderComponentLight the billboardset component to set
 		void setRenderComponentBillboardSet(RenderComponentBillboardSetPtr pRenderComponentBillboardSet);
 
 		/// Set positional component
@@ -63,7 +63,7 @@ namespace OUAN
 		/// Default destructor
 		~TGameObjectBillboardSetParameters();
 
-		/// Light-specific parameters
+		/// billboardset-specific parameters
 		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
 		/// Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
