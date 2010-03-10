@@ -3,7 +3,8 @@
 #include "../Loader/LevelLoader.h"
 #include "../Component/ComponentFactory.h"
 #include "GameObject/GameObject.h"
-#include "GameObject/GameObjectTerrain.h"
+#include "GameObject/GameObjectTerrainConvex.h"
+#include "GameObject/GameObjectTerrainTriangle.h"
 #include "GameObject/GameObjectLight.h"
 #include "GameObject/GameObjectBillboardSet.h"
 #include "GameObject/GameObjectParticleSystem.h"
@@ -129,9 +130,13 @@ TGameObjectEyeContainer GameWorldManager::getGameObjectEyeContainer()
 	return mGameObjectEyeContainer;
 
 }
-TGameObjectTerrainContainer GameWorldManager::getGameObjectTerrainContainer()
+TGameObjectTerrainConvexContainer GameWorldManager::getGameObjectTerrainConvexContainer()
 {
-	return mGameObjectTerrainContainer;
+	return mGameObjectTerrainConvexContainer;
+}
+TGameObjectTerrainTriangleContainer GameWorldManager::getGameObjectTerrainTriangleContainer()
+{
+	return mGameObjectTerrainTriangleContainer;
 }
 
 TGameObjectBillboardSetContainer GameWorldManager::getGameObjectBillboardSetContainer()
@@ -245,7 +250,8 @@ void GameWorldManager::clearContainers()
 	mGameObjectLightContainer.clear();
 	mGameObjectParticleSystemContainer.clear();
 	mGameObjectBillboardSetContainer.clear();
-	mGameObjectTerrainContainer.clear();
+	mGameObjectTerrainConvexContainer.clear();
+	mGameObjectTerrainTriangleContainer.clear();
 	mGameObjectOnyContainer.clear();
 	mGameObjectPositionalContainer.clear();
 	mGameObjectSceneContainer.clear();
@@ -349,20 +355,36 @@ void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTr
 	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
 }
 
-void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain)
+void GameWorldManager::addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex)
 {
-	mGameObjects[pGameObjectTerrain->getName()]=pGameObjectTerrain;
+	mGameObjects[pGameObjectTerrainConvex->getName()]=pGameObjectTerrainConvex;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTerrain);
-	mGameObjectNonMovableContainer.push_back(pGameObjectTerrain);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTerrain);
+	mGameObjectPositionalContainer.push_back(pGameObjectTerrainConvex);
+	mGameObjectNonMovableContainer.push_back(pGameObjectTerrainConvex);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTerrainConvex);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTerrain);	
-	mGameObjectPhysicsComplexContainer.push_back(pGameObjectTerrain);	
-	mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrain);	
+	mGameObjectPhysicsContainer.push_back(pGameObjectTerrainConvex);	
+	mGameObjectPhysicsComplexContainer.push_back(pGameObjectTerrainConvex);	
+	mGameObjectPhysicsComplexConvexContainer.push_back(pGameObjectTerrainConvex);	
 
-	mGameObjectTerrainContainer.push_back(pGameObjectTerrain);
+	mGameObjectTerrainConvexContainer.push_back(pGameObjectTerrainConvex);
 }
+
+void GameWorldManager::addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle)
+{
+	mGameObjects[pGameObjectTerrainTriangle->getName()]=pGameObjectTerrainTriangle;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectTerrainTriangle);
+	mGameObjectNonMovableContainer.push_back(pGameObjectTerrainTriangle);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTerrainTriangle);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectTerrainTriangle);	
+	mGameObjectPhysicsComplexContainer.push_back(pGameObjectTerrainTriangle);	
+	mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrainTriangle);	
+
+	mGameObjectTerrainTriangleContainer.push_back(pGameObjectTerrainTriangle);
+}
+
 
 void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
 {
@@ -763,48 +785,96 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
 }
 
-void GameWorldManager::createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters)
+void GameWorldManager::createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters)
 {
-	GameObjectTerrainPtr pGameObjectTerrain;
+	GameObjectTerrainConvexPtr pGameObjectTerrainConvex;
 
 	//Create GameObject
-	pGameObjectTerrain = GameObjectTerrainPtr(new GameObjectTerrain(tGameObjectTerrainParameters.name));
+	pGameObjectTerrainConvex = GameObjectTerrainConvexPtr(new GameObjectTerrainConvex(tGameObjectTerrainConvexParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponentWorldExistance
-		pGameObjectTerrain->setLogicComponentWorldExistance(
+		pGameObjectTerrainConvex->setLogicComponentWorldExistance(
 			factory->createLogicComponentWorldExistance(
-			tGameObjectTerrainParameters.tLogicComponentWorldExistanceParameters));
+			tGameObjectTerrainConvexParameters.tLogicComponentWorldExistanceParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectTerrain->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentPositionalParameters));
+		pGameObjectTerrainConvex->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntity
-		pGameObjectTerrain->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectTerrainParameters.name,
-			pGameObjectTerrain,tGameObjectTerrainParameters.tRenderComponentEntityParameters));
-
+		if(pGameObjectTerrainConvex->getLogicComponentWorldExistance()->getExistsInDreams())
+		{
+			//Create RenderComponentEntityDreams
+			pGameObjectTerrainConvex->setRenderComponentEntityDreams(
+				factory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
+				pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
+		}
+		if(pGameObjectTerrainConvex->getLogicComponentWorldExistance()->getExistsInNightmares())
+		{
+			//Create RenderComponentEntityNightmares
+			pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
+				factory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
+				pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
+		}
 		//Create PhysicsComponent
-		pGameObjectTerrain->setPhysicsComponentComplexTriangle(factory->createPhysicsComponentComplexTriangle(
-			pGameObjectTerrain,
-			tGameObjectTerrainParameters.tPhysicsComponentComplexTriangleParameters,
-			pGameObjectTerrain->getRenderComponentPositional()));
-		/*
-		pGameObjectTerrain->setPhysicsComponentComplexConvex(factory->createPhysicsComponentComplexConvex(
-			pGameObjectTerrain,
-			tGameObjectTerrainParameters.tPhysicsComponentComplexConvexParameters,
-			pGameObjectTerrain->getRenderComponentPositional()));
-		*/
-	pGameObjectTerrain->changeWorld(world);
+		pGameObjectTerrainConvex->setPhysicsComponentComplexConvex(factory->createPhysicsComponentComplexConvex(
+			pGameObjectTerrainConvex,
+			tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters,
+			pGameObjectTerrainConvex->getRenderComponentPositional()));
+
+	pGameObjectTerrainConvex->changeWorld(world);
 
 	// Add a reference to this
-	pGameObjectTerrain->setGameWorldManager(mThis);
-	pGameObjectTerrain->registerHandlers();
+	pGameObjectTerrainConvex->setGameWorldManager(mThis);
+	pGameObjectTerrainConvex->registerHandlers();
 	//Add Object to GameWorldManager
-	addGameObjectTerrain(pGameObjectTerrain);
+	addGameObjectTerrainConvex(pGameObjectTerrainConvex);
+}
+
+void GameWorldManager::createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters)
+{
+	GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle;
+
+	//Create GameObject
+	pGameObjectTerrainTriangle = GameObjectTerrainTrianglePtr(new GameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponentWorldExistance
+		pGameObjectTerrainTriangle->setLogicComponentWorldExistance(
+			factory->createLogicComponentWorldExistance(
+			tGameObjectTerrainTriangleParameters.tLogicComponentWorldExistanceParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectTerrainTriangle->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntityDreams
+		pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntityNightmares
+		pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
+
+		//Create PhysicsComponent
+		pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(factory->createPhysicsComponentComplexTriangle(
+			pGameObjectTerrainTriangle,
+			tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters,
+			pGameObjectTerrainTriangle->getRenderComponentPositional()));
+
+	pGameObjectTerrainTriangle->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectTerrainTriangle->setGameWorldManager(mThis);
+	pGameObjectTerrainTriangle->registerHandlers();
+	//Add Object to GameWorldManager
+	addGameObjectTerrainTriangle(pGameObjectTerrainTriangle);
 }
 
 void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)

@@ -21,7 +21,8 @@ namespace OUAN
 		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
 		TGameObjectNonMovableContainer getGameObjectNonMovableContainer();
 		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntityContainer();
-		TGameObjectTerrainContainer getGameObjectTerrainContainer();
+		TGameObjectTerrainConvexContainer getGameObjectTerrainConvexContainer();
+		TGameObjectTerrainTriangleContainer getGameObjectTerrainTriangleContainer();
 		TGameObjectLightContainer getGameObjectLightContainer();
 		TGameObjectParticleSystemContainer getGameObjectParticleSystemContainer();
 		TGameObjectBillboardSetContainer getGameObjectBillboardSetContainer();
@@ -74,7 +75,8 @@ namespace OUAN
 		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
 		void createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters);
 		void createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters);
-		void createGameObjectTerrain(TGameObjectTerrainParameters tGameObjectTerrainParameters);
+		void createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters);
+		void createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters);		
 		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
 		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
 		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
@@ -136,7 +138,8 @@ namespace OUAN
 		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
 		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
-		void addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerrain);
+		void addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex);
+		void addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle);
 		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
 		void addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem);
 		void addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet);
@@ -181,7 +184,8 @@ namespace OUAN
 		TGameObjectLightContainer mGameObjectLightContainer;
 		TGameObjectParticleSystemContainer mGameObjectParticleSystemContainer;
 		TGameObjectBillboardSetContainer mGameObjectBillboardSetContainer;
-		TGameObjectTerrainContainer mGameObjectTerrainContainer;
+		TGameObjectTerrainTriangleContainer mGameObjectTerrainTriangleContainer;
+		TGameObjectTerrainConvexContainer mGameObjectTerrainConvexContainer;
 		TGameObjectOnyContainer mGameObjectOnyContainer;
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
