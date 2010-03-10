@@ -70,6 +70,7 @@ void GameWorldManager::update(double elapsedSeconds)
 	{
 		it->second->update(elapsedSeconds);
 	}
+
 	dispatchEvents();
 }
 
@@ -157,9 +158,19 @@ TGameObjectVolumeCapsuleContainer GameWorldManager::getGameObjectVolumeCapsuleCo
 	return mGameObjectVolumeCapsuleContainer;
 }
 
+TGameObjectPhysicsContainer GameWorldManager::getGameObjectPhysicsContainer()
+{
+	return mGameObjectPhysicsContainer;
+}
+
 TGameObjectPhysicsCharacterContainer GameWorldManager::getGameObjectPhysicsCharacterContainer()
 {
 	return mGameObjectPhysicsCharacterContainer;
+}
+
+TGameObjectPhysicsComplexContainer GameWorldManager::getGameObjectPhysicsComplexContainer()
+{
+	return mGameObjectPhysicsComplexContainer;
 }
 
 TGameObjectPhysicsComplexConvexContainer GameWorldManager::getGameObjectPhysicsComplexConvexContainer()
@@ -177,9 +188,29 @@ TGameObjectPhysicsSimpleContainer GameWorldManager::getGameObjectPhysicsSimpleCo
 	return mGameObjectPhysicsSimpleContainer;
 }
 
-TGameObjectPhysicsSimpleContainer GameWorldManager::getGameObjectPhysicsVolumeContainer()
+TGameObjectPhysicsSimpleBoxContainer GameWorldManager::getGameObjectPhysicsSimpleBoxContainer()
+{
+	return mGameObjectPhysicsSimpleBoxContainer;
+}
+
+TGameObjectPhysicsSimpleCapsuleContainer GameWorldManager::getGameObjectPhysicsSimpleCapsuleContainer()
+{
+	return mGameObjectPhysicsSimpleCapsuleContainer;
+}
+
+TGameObjectPhysicsVolumeContainer GameWorldManager::getGameObjectPhysicsVolumeContainer()
 {
 	return mGameObjectPhysicsVolumeContainer;
+}
+
+TGameObjectPhysicsVolumeBoxContainer GameWorldManager::getGameObjectPhysicsVolumeBoxContainer()
+{
+	return mGameObjectPhysicsVolumeBoxContainer;
+}
+
+TGameObjectPhysicsVolumeCapsuleContainer GameWorldManager::getGameObjectPhysicsVolumeCapsuleContainer()
+{
+	return mGameObjectPhysicsVolumeCapsuleContainer;
 }
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
@@ -285,6 +316,7 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 	mGameObjectMovableContainer.push_back(pGameObjectOny);
 	mGameObjectMovableEntityContainer.push_back(pGameObjectOny);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectOny);
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectOny);
 
 	mGameObjectOnyContainer.push_back(pGameObjectOny);
@@ -298,6 +330,7 @@ void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTr
 	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
 	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
 
 	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
@@ -311,8 +344,9 @@ void GameWorldManager::addGameObjectTerrain(GameObjectTerrainPtr pGameObjectTerr
 	mGameObjectNonMovableContainer.push_back(pGameObjectTerrain);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTerrain);
 
-	mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrain);
-	//mGameObjectPhysicsComplexConvexContainer.push_back(pGameObjectTerrain);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTerrain);	
+	mGameObjectPhysicsComplexContainer.push_back(pGameObjectTerrain);	
+	mGameObjectPhysicsComplexTriangleContainer.push_back(pGameObjectTerrain);	
 
 	mGameObjectTerrainContainer.push_back(pGameObjectTerrain);
 }
@@ -325,7 +359,9 @@ void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem
 	mGameObjectNonMovableContainer.push_back(pGameObjectItem1UP);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItem1UP);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectItem1UP);
 	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItem1UP);
+	mGameObjectPhysicsSimpleCapsuleContainer.push_back(pGameObjectItem1UP);
 }
 
 void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
@@ -336,7 +372,9 @@ void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObject
 	mGameObjectNonMovableContainer.push_back(pGameObjectItemMaxHP);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItemMaxHP);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectItemMaxHP);
 	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectPhysicsSimpleCapsuleContainer.push_back(pGameObjectItemMaxHP);
 }
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
@@ -346,6 +384,10 @@ void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal
 	mGameObjectPositionalContainer.push_back(pGameObjectPortal);
 	mGameObjectNonMovableContainer.push_back(pGameObjectPortal);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectPortal);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectPortal);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectPortal);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectPortal);
 }
 
 void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
@@ -356,6 +398,7 @@ void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 	mGameObjectNonMovableContainer.push_back(pGameObjectEye);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectEye);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectEye);
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectEye);
 
 	mGameObjectEyeContainer.push_back(pGameObjectEye);
@@ -411,7 +454,9 @@ void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObject
 
 	mGameObjectVolumeBoxContainer.push_back(pGameObjectVolumeBox);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectVolumeBox);
 	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectVolumeBox);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectVolumeBox);
 }
 
 void GameWorldManager::addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule)
@@ -420,7 +465,9 @@ void GameWorldManager::addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGa
 
 	mGameObjectVolumeCapsuleContainer.push_back(pGameObjectVolumeCapsule);
 
+	mGameObjectPhysicsContainer.push_back(pGameObjectVolumeCapsule);
 	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectVolumeCapsule);
+	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectVolumeCapsule);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
