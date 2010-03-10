@@ -41,7 +41,7 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
-
+		
 		/// Attach all event handlers for this class.
 		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
 		void registerHandlers();
@@ -50,7 +50,7 @@ namespace OUAN
 		void unregisterHandlers();
 
 		//Event handler methods
-
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	/// Transport object carrying around data from the level loader

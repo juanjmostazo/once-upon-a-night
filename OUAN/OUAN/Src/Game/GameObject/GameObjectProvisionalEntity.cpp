@@ -82,6 +82,7 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 		break;
 	}
 }
+//-------------------------------------------------------------------------------------------
 
 void GameObjectProvisionalEntity::processChangeWorld(ChangeWorldEventPtr evt)
 {
@@ -91,7 +92,7 @@ void GameObjectProvisionalEntity::processChangeWorld(ChangeWorldEventPtr evt)
 void GameObjectProvisionalEntity::registerHandlers()
 {
 	GameObjectProvisionalEntityPtr _this =shared_from_this();
-	//Subscribe to world change event
+	
 	registerEventHandler<GameObjectProvisionalEntity,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectProvisionalEntity::processChangeWorld,
 		mGameWorldManager->getEventManager());
 
@@ -99,8 +100,8 @@ void GameObjectProvisionalEntity::registerHandlers()
 void GameObjectProvisionalEntity::unregisterHandlers()
 {
 	GameObjectProvisionalEntityPtr _this =shared_from_this();
-	//Subscribe to world change event
-	registerEventHandler<GameObjectProvisionalEntity,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectProvisionalEntity::processChangeWorld,
+	
+	unregisterEventHandler<GameObjectProvisionalEntity,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectProvisionalEntity::processChangeWorld,
 		mGameWorldManager->getEventManager());
 
 }

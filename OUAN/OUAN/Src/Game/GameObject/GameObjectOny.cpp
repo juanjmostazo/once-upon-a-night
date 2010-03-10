@@ -256,26 +256,27 @@ void GameObjectOny::changeWorld(int world)
 	default:break;
 	}
 }
+//-------------------------------------------------------------------------------------------
+
+void GameObjectOny::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
 
 void GameObjectOny::registerHandlers()
 {
 	GameObjectOnyPtr _this =shared_from_this();
+
 	registerEventHandler<GameObjectOny,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectOny::processChangeWorld,
 		mGameWorldManager->getEventManager());
-
 }
 
 void GameObjectOny::unregisterHandlers()
 {
 	GameObjectOnyPtr _this =shared_from_this();
+
 	unregisterEventHandler<GameObjectOny,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectOny::processChangeWorld,
 		mGameWorldManager->getEventManager());
-
-}
-
-void GameObjectOny::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
 }
 
 //------------------------------------------------------------------------------------

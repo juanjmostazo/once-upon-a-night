@@ -69,6 +69,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		switch(world)
 		{
 		case DREAMS:
+			
 			if(mLogicComponentWorldExistance->getExistsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
@@ -87,6 +88,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 			}		
 			break;
 		case NIGHTMARES:
+			
 			if(mLogicComponentWorldExistance->getExistsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
@@ -109,15 +111,29 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		}
 	}
 }
+//-------------------------------------------------------------------------------------------
+
+void GameObjectItemMaxHP::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
 
 void GameObjectItemMaxHP::registerHandlers()
 {
 	GameObjectItemMaxHPPtr _this =shared_from_this();
+
+	registerEventHandler<GameObjectItemMaxHP,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectItemMaxHP::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
+
 void GameObjectItemMaxHP::unregisterHandlers()
 {
 	GameObjectItemMaxHPPtr _this =shared_from_this();
+
+	unregisterEventHandler<GameObjectItemMaxHP,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectItemMaxHP::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()

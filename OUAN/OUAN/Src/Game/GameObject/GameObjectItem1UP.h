@@ -53,16 +53,15 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
-		//------------------------------------------------------------------
-		//Event handler methods
-		void processChangeWorld(ChangeWorldEventPtr evt);
-
 		/// Attach all event handlers for this class.
 		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
 		void registerHandlers();
 		/// Detach all event handlers.
 		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
 		void unregisterHandlers();
+
+		//Event handler methods
+		void processChangeWorld(ChangeWorldEventPtr evt);
 	};
 
 	class TGameObjectItem1UPParameters: public TGameObjectParameters

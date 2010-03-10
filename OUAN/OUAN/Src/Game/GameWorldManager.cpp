@@ -854,6 +854,7 @@ void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParam
 			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
 	
 	pGameObjectBillboardSet->changeWorld(world);
+
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(mThis);
 	pGameObjectBillboardSet->registerHandlers();
@@ -1128,9 +1129,14 @@ int GameWorldManager::getCurrentWorld() const
 void GameWorldManager::changeWorld()
 {	
 	if (world==DREAMS)
+	{
 		world=NIGHTMARES;
+	}
 	else if (world==NIGHTMARES)
+	{
 		world=DREAMS;
+	}
+
 	ChangeWorldEventPtr evt= ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	addEvent(evt);
 }

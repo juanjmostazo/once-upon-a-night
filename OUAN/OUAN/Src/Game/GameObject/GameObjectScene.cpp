@@ -37,13 +37,27 @@ void GameObjectScene::changeWorld(int world)
 	}
 
 }
+//-------------------------------------------------------------------------------------------
+
+void GameObjectScene::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeWorld(evt->getNewWorld());
+}
+
 void GameObjectScene::registerHandlers()
 {
 	GameObjectScenePtr _this =shared_from_this();
+
+	registerEventHandler<GameObjectScene,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectScene::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
+
 void GameObjectScene::unregisterHandlers()
 {
 	GameObjectScenePtr _this =shared_from_this();
+
+	unregisterEventHandler<GameObjectScene,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectScene::processChangeWorld,
+		mGameWorldManager->getEventManager());
 }
 //-------------------------------------------------------------------------------------------
 
