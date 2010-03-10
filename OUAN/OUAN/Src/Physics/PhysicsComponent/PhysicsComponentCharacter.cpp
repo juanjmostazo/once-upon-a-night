@@ -28,6 +28,7 @@ void PhysicsComponentCharacter::create()
 void PhysicsComponentCharacter::destroy()
 {
 	PhysicsComponent::destroy();
+	Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->destroyController(getNxOgreController());
 }
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)

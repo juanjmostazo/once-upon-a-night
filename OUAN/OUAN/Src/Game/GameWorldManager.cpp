@@ -68,6 +68,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
 		it->second->update(elapsedSeconds);
 	}
 
@@ -265,9 +266,21 @@ void GameWorldManager::unloadLevel()
 	mNextIdNum=0;//reset id counter
 
 	clearContainers();
-	mApp->getRenderSubsystem()->clear();
-	//mApp->getPhysicsSubsystem()->clear();
 
+	/***
+	* This is done in
+	* void GameRunningState::cleanUp(),
+	* no need to do it here
+	*/
+	
+	/***
+	* IMPORTANT: UNCOMMENTING NEXT LINES
+	* WILL CRASH mVisualDebuggerNode in RenderSubsystem
+	* Why???
+	*/
+
+	//mApp->getRenderSubsystem()->clear();
+	//mApp->getPhysicsSubsystem()->clear();
 	//TODO: Clear more subsystems
 }
 

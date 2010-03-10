@@ -48,17 +48,6 @@ void PhysicsComponentSimpleCapsule::create()
 void PhysicsComponentSimpleCapsule::destroy()
 {
 	PhysicsComponentSimple::destroy();
-
-	if (getMass() > 0)
-	{
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
-		setNxOgreBody(NULL);
-	}
-	else
-	{
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyKinematicBody(getNxOgreKinematicBody());
-		setNxOgreKinematicBody(NULL);
-	}
 }
 
 NxOgre::Vec2 PhysicsComponentSimpleCapsule::getNxOgreSize()

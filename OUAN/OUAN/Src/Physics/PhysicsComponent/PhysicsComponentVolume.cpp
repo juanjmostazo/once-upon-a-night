@@ -20,6 +20,7 @@ void PhysicsComponentVolume::create()
 void PhysicsComponentVolume::destroy()
 {
 	PhysicsComponent::destroy();
+	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->destroyVolume(getNxOgreVolume());
 }
 
 NxOgre::Volume* PhysicsComponentVolume::getNxOgreVolume()
