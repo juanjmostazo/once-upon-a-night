@@ -47,7 +47,7 @@ void GameRunningState::cleanUp()
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	mApp->getGameWorldManager()->unloadLevel();
 	mApp->getGUISubsystem()->cleanUp();
-	mApp->getPhysicsSubsystem()->destroyLevel();
+	mApp->getPhysicsSubsystem()->resetLevel();
 	mApp->getRenderSubsystem()->resetScene();
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;
@@ -233,9 +233,16 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 
+	//Ogre::LogManager::getSingleton().logMessage("Updating Game World Manager");
 	mApp->getGameWorldManager()->update(elapsedSeconds);	
+
+	//Ogre::LogManager::getSingleton().logMessage("Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+
+	//Ogre::LogManager::getSingleton().logMessage("Updating Camera Params");
 	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
+	
+	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
 	mApp->mKeyBuffer-=elapsedTime;
 
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->isGameOver())
@@ -249,6 +256,7 @@ void GameRunningState::update(long elapsedTime)
 bool GameRunningState::render()
 {
 	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
+	
 	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
 	{
 		renderSubsystem->updateStats();
@@ -258,5 +266,6 @@ bool GameRunningState::render()
 
 	renderSubsystem->updateVisualDebugger();
 	renderSubsystem->showOverlay(OVERLAY_INGAME_HUD);
+	
 	return renderSubsystem->render();
 }

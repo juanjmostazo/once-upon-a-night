@@ -100,7 +100,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
-void PhysicsSubsystem::destroyLevel()
+void PhysicsSubsystem::resetLevel()
 {
 	// TODO: Iterate over 
 	// Application::getInstance()->getGameWorldManager()->getGameObjectPhysicsContainer() 

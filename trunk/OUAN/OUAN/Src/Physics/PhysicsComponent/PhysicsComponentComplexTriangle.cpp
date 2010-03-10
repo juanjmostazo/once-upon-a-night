@@ -26,6 +26,9 @@ void PhysicsComponentComplexTriangle::create()
 void PhysicsComponentComplexTriangle::destroy()
 {
 	PhysicsComponentComplex::destroy();
+
+	// This object can not be destroyed
+	mInUse=true; 
 }
 
 NxOgre::TriangleGeometry* PhysicsComponentComplexTriangle::getNxOgreTriangleGeometry()

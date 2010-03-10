@@ -20,6 +20,17 @@ void PhysicsComponentSimple::create()
 void PhysicsComponentSimple::destroy()
 {
 	PhysicsComponent::destroy();
+
+	if (getMass() > 0)
+	{
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyBody(getNxOgreBody());
+		setNxOgreBody(NULL);
+	}
+	else
+	{
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->destroyKinematicBody(getNxOgreKinematicBody());
+		setNxOgreKinematicBody(NULL);
+	}
 }
 
 OGRE3DBody* PhysicsComponentSimple::getNxOgreBody()

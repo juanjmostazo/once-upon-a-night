@@ -45,7 +45,6 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	mCameraManager = new CameraManager();
 	mCameraManager->init(mRoot,mSceneManager);
-
 }
 
 void RenderSubsystem::cleanUp()
@@ -158,7 +157,6 @@ void RenderSubsystem::createOverlays()
 
 void RenderSubsystem::clear()
 {
-
 	/// Clear Scene manager
 	mSceneManager->clearScene();
 
@@ -193,7 +191,7 @@ void RenderSubsystem::moveCamera(double xRel, double yRel, double zRel)
 }
 
 void RenderSubsystem::updateVisualDebugger()
-{
+{	
 	mNxOgreVisualDebugger->draw();
 	mNxOgreVisualDebuggerNode->needUpdate();
 }

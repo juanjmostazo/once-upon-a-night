@@ -92,6 +92,12 @@ void CameraManager::setCameraParameters(Camera * pCamera,TRenderComponentCameraP
 	pCamera->setPosition(tRenderComponentCameraParameters.position);
 	pCamera->setOrientation(tRenderComponentCameraParameters.orientation);
 	pCamera->setAutoAspectRatio(tRenderComponentCameraParameters.autoaspectratio);
+
+	//std::stringstream out;
+	//out << tRenderComponentCameraParameters.clipdistance.x;
+	//std::string clipDistanceX = out.str();
+	//Ogre::LogManager::getSingleton().logMessage("Setting camera near clip distance " + clipDistanceX);
+
 	pCamera->setNearClipDistance(tRenderComponentCameraParameters.clipdistance.x);
 	pCamera->setFarClipDistance(tRenderComponentCameraParameters.clipdistance.y);
 	

@@ -48,17 +48,57 @@ PhysicsComponentVolumeCapsulePtr GameObjectVolumeCapsule::getPhysicsComponentVol
 
 void GameObjectVolumeCapsule::changeWorld(int world)
 {
-	switch(world)
+	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
-	case DREAMS:
 		if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
 		{
 			mPhysicsComponentVolumeCapsule->create();
 		}
-		break;
-	case NIGHTMARES:
-		break;
-	default:break;
+		return;
+	}
+	else
+	{
+		switch(world)
+		{
+		case DREAMS:
+			if(mLogicComponentWorldExistance->getExistsInDreams())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->destroy();
+				}
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
 
