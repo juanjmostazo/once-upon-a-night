@@ -434,6 +434,9 @@ namespace OUAN
 		class EventManager;
 		typedef boost::shared_ptr<EventManager> EventManagerPtr;
 
+		class EventProcessor;
+		typedef boost::shared_ptr<EventProcessor> EventProcessorPtr;
+
 		class ChangeWorldEvent;
 		typedef boost::shared_ptr<ChangeWorldEvent> ChangeWorldEventPtr;
 

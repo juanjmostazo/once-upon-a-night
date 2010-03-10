@@ -39,6 +39,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Event/EventManager.h"
+#include "../Event/EventProcessor.h"
 
 #include <iomanip>
 #include <sstream>
@@ -83,6 +84,11 @@ GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
 	}
 
 	return GameObjectPtr();
+}
+
+TGameObjectContainer GameWorldManager::getAllGameObjects()
+{
+	return mGameObjects;
 }
 
 TGameObjectMovableContainer GameWorldManager::getGameObjectMovableContainer()
@@ -234,11 +240,6 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 
 void GameWorldManager::clearContainers()
 {
-	for (TGameObjectContainerIterator it=mGameObjects.begin();it!=mGameObjects.end();++it)
-	{
-		it->second->unregisterHandlers();
-	}
-
 	mGameObjects.clear();
 	mGameObjectsToAdd.clear();
 	mGameObjectsToDelete.clear();
@@ -301,6 +302,8 @@ void GameWorldManager::init(ApplicationPtr app)
 	clearContainers();
 	mThis=shared_from_this();
 	mEventManager.reset(new EventManager());
+	mEventProcessor.reset(new EventProcessor());
+	mEventProcessor->init(mThis);
 
 	//landscape.reset() | landscape->initBlank() | ...
 }
@@ -312,6 +315,7 @@ void GameWorldManager::cleanUp()
 	// will free their resources!!
 	mEventManager->clear();
 	clearContainers();
+	mEventProcessor->cleanUp();
 }
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
@@ -561,7 +565,6 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(mThis);
-	pGameObjectOny->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
@@ -606,7 +609,6 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 
 	// Add a reference to this
 	pGameObjectTripollo->setGameWorldManager(mThis);
-	pGameObjectTripollo->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectTripollo(pGameObjectTripollo);
@@ -646,7 +648,6 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 
 	// Add a reference to this
 	pGameObjectEye->setGameWorldManager(mThis);
-	pGameObjectEye->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectEye(pGameObjectEye);
@@ -687,7 +688,6 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 	
 	// Add a reference to this
 	pGameObjectItem1UP->setGameWorldManager(mThis);
-	pGameObjectItem1UP->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectItem1UP(pGameObjectItem1UP);
@@ -733,7 +733,6 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 
 	// Add a reference to this
 	pGameObjectPortal->setGameWorldManager(mThis);
-	pGameObjectPortal->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectPortal(pGameObjectPortal);
@@ -779,7 +778,6 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 
 	// Add a reference to this
 	pGameObjectItemMaxHP->setGameWorldManager(mThis);
-	pGameObjectItemMaxHP->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
@@ -828,7 +826,6 @@ void GameWorldManager::createGameObjectTerrainConvex(TGameObjectTerrainConvexPar
 
 	// Add a reference to this
 	pGameObjectTerrainConvex->setGameWorldManager(mThis);
-	pGameObjectTerrainConvex->registerHandlers();
 	//Add Object to GameWorldManager
 	addGameObjectTerrainConvex(pGameObjectTerrainConvex);
 }
@@ -872,7 +869,6 @@ void GameWorldManager::createGameObjectTerrainTriangle(TGameObjectTerrainTriangl
 
 	// Add a reference to this
 	pGameObjectTerrainTriangle->setGameWorldManager(mThis);
-	pGameObjectTerrainTriangle->registerHandlers();
 	//Add Object to GameWorldManager
 	addGameObjectTerrainTriangle(pGameObjectTerrainTriangle);
 }
@@ -904,7 +900,6 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 
 	// Add a reference to this
 	pGameObjectLight->setGameWorldManager(mThis);
-	pGameObjectLight->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectLight(pGameObjectLight);
@@ -937,7 +932,6 @@ void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParam
 
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(mThis);
-	pGameObjectBillboardSet->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectBillboardSet(pGameObjectBillboardSet);
@@ -970,7 +964,6 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 
 	// Add a reference to this
 	pGameObjectParticleSystem->setGameWorldManager(mThis);
-	pGameObjectParticleSystem->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectParticleSystem(pGameObjectParticleSystem);
@@ -1000,7 +993,6 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 
 	// Add a reference to this
 	pGameObjectCamera->setGameWorldManager(mThis);
-	pGameObjectCamera->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectCamera(pGameObjectCamera);
@@ -1043,7 +1035,6 @@ void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters 
 
 	// Add a reference to this
 	pGameObjectVolumeBox->setGameWorldManager(mThis);
-	pGameObjectVolumeBox->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeBox(pGameObjectVolumeBox);
@@ -1086,7 +1077,6 @@ void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsulePar
 
 	// Add a reference to this
 	pGameObjectVolumeCapsule->setGameWorldManager(mThis);
-	pGameObjectVolumeCapsule->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
@@ -1110,7 +1100,7 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 
 	// Add a reference to this
 	pGameObjectViewport->setGameWorldManager(mThis);
-	pGameObjectViewport->registerHandlers();
+
 
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
@@ -1135,7 +1125,6 @@ void GameWorldManager::createGameObjectScene(TGameObjectSceneParameters tGameObj
 
 	// Add a reference to this
 	pGameObjectScene->setGameWorldManager(mThis);
-	pGameObjectScene->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectScene(pGameObjectScene);
@@ -1175,7 +1164,6 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 	
 	// Add a reference to this
 	pGameObjectProvisionalEntity->setGameWorldManager(mThis);
-	pGameObjectProvisionalEntity->registerHandlers();
 
 	//Add Object to GameWorldManager
 	addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);

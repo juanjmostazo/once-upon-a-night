@@ -103,28 +103,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 	}
 }
 //-------------------------------------------------------------------------------------------
-void GameObjectVolumeCapsule::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectVolumeCapsule::registerHandlers()
-{
-	GameObjectVolumeCapsulePtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectVolumeCapsule,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeCapsule::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-
-void GameObjectVolumeCapsule::unregisterHandlers()
-{
-	GameObjectVolumeCapsulePtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectVolumeCapsule,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectVolumeCapsule::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-
-//-------------------------------------------------------------------------------------------
 TGameObjectVolumeCapsuleParameters::TGameObjectVolumeCapsuleParameters() : TGameObjectParameters()
 {
 

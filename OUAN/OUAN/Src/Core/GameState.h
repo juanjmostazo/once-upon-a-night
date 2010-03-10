@@ -75,6 +75,10 @@ namespace OUAN
 		/// @param button	button identifier
 		/// @return <b>true</b> if event was handled correctly
 		virtual bool buttonReleased( const OIS::JoyStickEvent &e, int button );	
+
+		/// Return the application pointer
+		/// @return the application pointer
+		ApplicationPtr getApp() const;
 	};
 }
 

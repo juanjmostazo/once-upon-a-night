@@ -98,27 +98,6 @@ void GameObjectPortal::changeWorld(int world)
 }
 //-------------------------------------------------------------------------------------------
 
-void GameObjectPortal::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectPortal::registerHandlers()
-{
-	GameObjectPortalPtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectPortal,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectPortal::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-void GameObjectPortal::unregisterHandlers()
-{
-	GameObjectPortalPtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectPortal,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectPortal::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-//-------------------------------------------------------------------------------------------
-
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()
 {
 

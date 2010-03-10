@@ -366,8 +366,32 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath=".\Src\GUI\GUIOptionsMenu.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUISubsystem.cpp"
 					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIWindow.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
@@ -551,6 +575,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Event\EventManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Event\EventProcessor.cpp"
 					>
 				</File>
 			</Filter>
@@ -828,8 +856,32 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath=".\Src\GUI\GUIOptionsMenu.h"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUISubsystem.h"
 					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIWindow.h"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
@@ -945,6 +997,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Event\EventManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Event\EventProcessor.h"
 					>
 				</File>
 			</Filter>

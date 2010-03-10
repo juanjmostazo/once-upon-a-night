@@ -46,28 +46,6 @@ void GameObjectParticleSystem::changeWorld(int world)
 	}
 
 }
-//-------------------------------------------------------------------------------------------
-void GameObjectParticleSystem::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectParticleSystem::registerHandlers()
-{
-	GameObjectParticleSystemPtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectParticleSystem,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectParticleSystem::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-
-void GameObjectParticleSystem::unregisterHandlers()
-{
-	GameObjectParticleSystemPtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectParticleSystem,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectParticleSystem::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-//-------------------------------------------------------------------------------------------
 
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {

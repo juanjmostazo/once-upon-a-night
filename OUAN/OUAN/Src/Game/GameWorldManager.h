@@ -17,6 +17,11 @@ namespace OUAN
 		/// @return pointer to the object, if found
 		GameObjectPtr getObject(const std::string& objectId);
 
+		/// Return all game objects
+		/// @return the game object container
+		TGameObjectContainer getAllGameObjects();
+
+
 		TGameObjectMovableContainer getGameObjectMovableContainer();
 		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
 		TGameObjectNonMovableContainer getGameObjectNonMovableContainer();
@@ -226,6 +231,7 @@ namespace OUAN
 		int world;
 
 		EventManagerPtr mEventManager;
+		EventProcessorPtr mEventProcessor;
 		GameWorldManagerPtr mThis;
 	};
 }

@@ -47,3 +47,7 @@ bool GameState::buttonReleased( const OIS::JoyStickEvent &e, int button )
 {
 	return true;
 }
+ApplicationPtr GameState::getApp() const
+{
+	return mApp;
+}

@@ -68,28 +68,6 @@ void GameObjectTerrainConvex::changeWorld(int world)
 	}
 }
 //-------------------------------------------------------------------------------------------
-
-void GameObjectTerrainConvex::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectTerrainConvex::registerHandlers()
-{
-	GameObjectTerrainConvexPtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectTerrainConvex,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrainConvex::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-void GameObjectTerrainConvex::unregisterHandlers()
-{
-	GameObjectTerrainConvexPtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectTerrainConvex,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectTerrainConvex::processChangeWorld,
-		mGameWorldManager->getEventManager());
-}
-
-//-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()
 {
 

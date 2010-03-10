@@ -84,29 +84,6 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 }
 //-------------------------------------------------------------------------------------------
 
-void GameObjectProvisionalEntity::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectProvisionalEntity::registerHandlers()
-{
-	GameObjectProvisionalEntityPtr _this =shared_from_this();
-	
-	registerEventHandler<GameObjectProvisionalEntity,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectProvisionalEntity::processChangeWorld,
-		mGameWorldManager->getEventManager());
-
-}
-void GameObjectProvisionalEntity::unregisterHandlers()
-{
-	GameObjectProvisionalEntityPtr _this =shared_from_this();
-	
-	unregisterEventHandler<GameObjectProvisionalEntity,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectProvisionalEntity::processChangeWorld,
-		mGameWorldManager->getEventManager());
-
-}
-//-------------------------------------------------------------------------------------------
-
 TGameObjectProvisionalEntityParameters::TGameObjectProvisionalEntityParameters() : TGameObjectParameters()
 {
 

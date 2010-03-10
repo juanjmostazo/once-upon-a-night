@@ -46,30 +46,6 @@ void GameObjectBillboardSet::changeWorld(int world)
 	}
 
 }
-//-------------------------------------------------------------------------------------------
-
-void GameObjectBillboardSet::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
-}
-
-void GameObjectBillboardSet::registerHandlers()
-{
-	GameObjectBillboardSetPtr _this =shared_from_this();
-
-	registerEventHandler<GameObjectBillboardSet,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectBillboardSet::processChangeWorld,
-		mGameWorldManager->getEventManager());
-
-}
-void GameObjectBillboardSet::unregisterHandlers()
-{
-	GameObjectBillboardSetPtr _this =shared_from_this();
-
-	unregisterEventHandler<GameObjectBillboardSet,ChangeWorldEvent,EVENT_TYPE_CHANGEWORLD>(_this,&GameObjectBillboardSet::processChangeWorld,
-		mGameWorldManager->getEventManager());
-
-}
-//-------------------------------------------------------------------------------------------
 
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {
