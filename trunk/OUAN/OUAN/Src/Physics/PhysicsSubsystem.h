@@ -26,20 +26,20 @@ namespace OUAN
 		//Initialize physics subsystem elements
 		virtual void init(ApplicationPtr app,OUAN::ConfigurationPtr config);
 
-		//Reset physics level elements
-		virtual void resetLevel();
+		//Destroy and free memory
+		virtual void cleanUp();
 
 		//Initialize physics level elements
 		virtual void initLevel(std::string sceneName);
 
-		// Update physics subsystem elements
-		virtual void update(double elapsedSeconds);
+		//Destroy physics level elements
+		virtual void destroyLevel();
 
-		//Clear current physics world
+		//clear level
 		virtual void clear();
 
-		//Free memory used by the physics subsystem
-		virtual void cleanUp();
+		// Update physics subsystem elements
+		virtual void update(double elapsedSeconds);
 
 		//Getters
 		virtual NxOgre::World* getNxOgreWorld();

@@ -34,11 +34,17 @@ namespace OUAN
 		TGameObjectVolumeCapsuleContainer getGameObjectVolumeCapsuleContainer();
 		TGameObjectViewportContainer getGameObjectViewportContainer();
 
+		TGameObjectPhysicsContainer getGameObjectPhysicsContainer();
 		TGameObjectPhysicsCharacterContainer getGameObjectPhysicsCharacterContainer();
+		TGameObjectPhysicsComplexContainer getGameObjectPhysicsComplexContainer();
 		TGameObjectPhysicsComplexConvexContainer getGameObjectPhysicsComplexConvexContainer();
 		TGameObjectPhysicsComplexTriangleContainer getGameObjectPhysicsComplexTriangleContainer();
 		TGameObjectPhysicsSimpleContainer getGameObjectPhysicsSimpleContainer();
+		TGameObjectPhysicsSimpleBoxContainer getGameObjectPhysicsSimpleBoxContainer();
+		TGameObjectPhysicsSimpleCapsuleContainer getGameObjectPhysicsSimpleCapsuleContainer();
 		TGameObjectPhysicsVolumeContainer getGameObjectPhysicsVolumeContainer();
+		TGameObjectPhysicsVolumeBoxContainer getGameObjectPhysicsVolumeBoxContainer();
+		TGameObjectPhysicsVolumeCapsuleContainer getGameObjectPhysicsVolumeCapsuleContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -184,11 +190,17 @@ namespace OUAN
 		TGameObjectVolumeBoxContainer mGameObjectVolumeBoxContainer;
 		TGameObjectVolumeCapsuleContainer mGameObjectVolumeCapsuleContainer;
 
+		TGameObjectPhysicsContainer mGameObjectPhysicsContainer;
 		TGameObjectPhysicsCharacterContainer mGameObjectPhysicsCharacterContainer;
+		TGameObjectPhysicsComplexContainer mGameObjectPhysicsComplexContainer;
 		TGameObjectPhysicsComplexConvexContainer mGameObjectPhysicsComplexConvexContainer;
 		TGameObjectPhysicsComplexTriangleContainer mGameObjectPhysicsComplexTriangleContainer;
 		TGameObjectPhysicsSimpleContainer mGameObjectPhysicsSimpleContainer;
+		TGameObjectPhysicsSimpleBoxContainer mGameObjectPhysicsSimpleBoxContainer;
+		TGameObjectPhysicsSimpleCapsuleContainer mGameObjectPhysicsSimpleCapsuleContainer;
 		TGameObjectPhysicsVolumeContainer mGameObjectPhysicsVolumeContainer;
+		TGameObjectPhysicsVolumeBoxContainer mGameObjectPhysicsVolumeBoxContainer;
+		TGameObjectPhysicsVolumeCapsuleContainer mGameObjectPhysicsVolumeCapsuleContainer;
 
 		TGameObjectViewportContainer mGameObjectViewportContainer;
 

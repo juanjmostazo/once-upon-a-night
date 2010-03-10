@@ -47,7 +47,7 @@ void GameRunningState::cleanUp()
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	mApp->getGameWorldManager()->unloadLevel();
 	mApp->getGUISubsystem()->cleanUp();
-	mApp->getPhysicsSubsystem()->resetLevel();
+	mApp->getPhysicsSubsystem()->destroyLevel();
 	mApp->getRenderSubsystem()->resetScene();
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;

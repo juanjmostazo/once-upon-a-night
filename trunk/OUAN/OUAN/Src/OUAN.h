@@ -210,11 +210,17 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectNonMovableEntityContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
 		
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacterContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvexContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangleContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleBoxContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleCapsuleContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeBoxContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeCapsuleContainer;
 
 		////////////////////////////////////////////////////////////////////
 

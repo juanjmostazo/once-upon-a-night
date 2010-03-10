@@ -66,19 +66,9 @@ void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS INIT LOAD] Done!");
 }
 
-void PhysicsSubsystem::resetLevel()
+void PhysicsSubsystem::cleanUp()
 {
-	if (mNxOgreControllerManager) delete mNxOgreControllerManager;
-	if (mNxOgreRenderSystem) delete mNxOgreRenderSystem;
-	
-	if (mNxOgreScene != NULL){
-		mNxOgreWorld->destroyScene(mNxOgreScene);
-	}
-}
-
-void PhysicsSubsystem::clear()
-{
-	resetLevel();
+	//TODO
 }
 
 void PhysicsSubsystem::initLevel(std::string sceneName)
@@ -106,13 +96,35 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 	//Initializing visual debugger
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
-
-	///**
-	//* TO REMOVE::: DEBUG FLOOR FOR PHYSICS
-	//*/
-	//app->getRenderSubsystem()->createDebugFloor(config);
 	
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
+}
+
+void PhysicsSubsystem::destroyLevel()
+{
+	// TODO: Iterate over 
+	// Application::getInstance()->getGameWorldManager()->getGameObjectPhysicsContainer() 
+	// and call destroy() method
+
+	if (mNxOgreControllerManager)
+	{
+		delete mNxOgreControllerManager;
+	}
+
+	if (mNxOgreRenderSystem)
+	{
+		delete mNxOgreRenderSystem;
+	}
+	
+	if (mNxOgreScene != NULL)
+	{
+		mNxOgreWorld->destroyScene(mNxOgreScene);
+	}
+}
+
+void PhysicsSubsystem::clear()
+{
+	//TODO
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
@@ -124,13 +136,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	Ogre::Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
 	mNxOgreTimeController->advance(elapsedSeconds);
-}
-
-void PhysicsSubsystem::cleanUp()
-{
-	//TODO FIX CLEANUP PHYSICS OBJECTS
-	//resetLevel();
-	//mNxOgreWorld->destroyWorld(true);
 }
 
 bool PhysicsSubsystem::loadConfig()
