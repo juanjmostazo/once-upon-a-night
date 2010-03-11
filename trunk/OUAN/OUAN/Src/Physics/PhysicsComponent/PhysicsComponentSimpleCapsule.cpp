@@ -22,6 +22,8 @@ void PhysicsComponentSimpleCapsule::create()
 
 	if (getMass() > 0)
 	{
+		setNxOgreKinematicBody(NULL);
+
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
 		pDesc.mMass = getMass();
 
@@ -32,7 +34,7 @@ void PhysicsComponentSimpleCapsule::create()
 				getSceneNode(),
 				pDesc));
 
-		setNxOgreKinematicBody(NULL);
+		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
 	}
 	else
 	{
@@ -45,6 +47,8 @@ void PhysicsComponentSimpleCapsule::create()
 				pCapsule,
 				getSceneNode()->getPosition(),
 				getSceneNode()));
+
+		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
 	}
 }
 

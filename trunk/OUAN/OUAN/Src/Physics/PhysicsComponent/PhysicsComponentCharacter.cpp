@@ -23,6 +23,8 @@ void PhysicsComponentCharacter::create()
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
 				createPointRenderable(getSceneNode())));
+
+	//TODO SET SCENE NODE ORIENTATION SOMEHOW
 }
 
 void PhysicsComponentCharacter::destroy()
