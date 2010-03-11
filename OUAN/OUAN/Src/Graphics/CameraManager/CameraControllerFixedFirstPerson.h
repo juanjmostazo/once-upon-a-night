@@ -10,6 +10,7 @@ namespace OUAN
 		~CameraControllerFixedFirstPerson();
 
 		TCameraControllerType getControllerType();
+
 	};
 }
 

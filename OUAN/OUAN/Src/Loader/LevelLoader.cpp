@@ -89,6 +89,8 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 	{
 		gameObjectType=gameObject->gameObjectType;
 
+		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading GameObject "+gameObject->name);
+
 		if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
 			processGameObjectOny(gameObject);
@@ -454,6 +456,9 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 			//Create GameObject
 			mGameWorldManager->createGameObjectTerrainConvex(tGameObjectTerrainConvexParameters);
+
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexConvex);
+
 		}
 		else if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,complexTriangle))
 		{
@@ -489,6 +494,8 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 			//Create GameObject
 			mGameWorldManager->createGameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters);
+
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexTriangle);
 		}
 		else
 		{
@@ -512,16 +519,10 @@ void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectCameraParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectCameraParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectCameraParameters.name = gameObject->name;
 
-		//Get World Existance
-		tGameObjectCameraParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
-			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
-
 		//Get RenderComponentCamera
-		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->XMLNodeDreams);
+		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -907,8 +908,15 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
 	tRenderComponentCameraParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
 	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
-	tRenderComponentCameraParameters.FOVy = getPropertyReal(XMLNode,"fov");
 	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
+
+	//set FOVy
+	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
+	Real FOVy = getPropertyReal(XMLNode,"fov");
+	FOVy=FOVy*55.0f;
+	if(FOVy>180.0) FOVy=179.99;
+	else if(FOVy<=0) FOVy=0.01;
+	tRenderComponentCameraParameters.FOVy=FOVy;
 
 		//PolygonModeConversion
 	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
@@ -1264,7 +1272,6 @@ TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeB
 	tPhysicsComponentVolumeBoxParameters.lengthZ=length.z;
 
 	return tPhysicsComponentVolumeBoxParameters;
-
 }
 
 TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode)

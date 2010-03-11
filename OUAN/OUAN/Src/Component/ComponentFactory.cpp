@@ -64,13 +64,11 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 }
 RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
-	//Create void Render Component
-	RenderComponentCameraPtr pRenderComponentCameraPtr = RenderComponentCameraPtr(new RenderComponentCamera()); 
+	//Create and init Render Component Camera
+	RenderComponentCameraPtr pRenderComponentCameraPtr = mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters);
 
 	pRenderComponentCameraPtr->setParent(gameObject);	
 
-	//init Render Component
-	pRenderComponentCameraPtr->setCamera(mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters));
 	return pRenderComponentCameraPtr;
 }
 

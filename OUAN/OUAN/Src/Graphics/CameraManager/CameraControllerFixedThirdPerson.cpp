@@ -5,6 +5,7 @@ using namespace OUAN;
 
 CameraControllerFixedThirdPerson::CameraControllerFixedThirdPerson() : CameraController()
 {
+	height=5;
 }
 
 CameraControllerFixedThirdPerson::~CameraControllerFixedThirdPerson()
@@ -18,7 +19,7 @@ TCameraControllerType CameraControllerFixedThirdPerson::getControllerType()
 
 void CameraControllerFixedThirdPerson::update(long elapsedTime)
 {
-	mCamera->lookAt(target->getPosition());
+	mCamera->lookAt(target->getPosition()+Vector3(0,height,0));
 }
 
 void CameraControllerFixedThirdPerson::setTarget(RenderComponentPositional * target)

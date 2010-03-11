@@ -979,11 +979,6 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
-		//Create LogicComponentWorldExistance
-		pGameObjectCamera->setLogicComponentWorldExistance(
-			factory->createLogicComponentWorldExistance(
-			tGameObjectCameraParameters.tLogicComponentWorldExistanceParameters));
-
 		//Create RenderComponentCamera
 		pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
 			pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));

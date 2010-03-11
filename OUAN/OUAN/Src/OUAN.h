@@ -493,7 +493,7 @@ namespace OUAN
 
 		const int DEFAULT_OGRE_MIPMAPS_NUMBER=5;
 		const std::string MAIN_CAMERA_NAME="Camera";
-		const std::string RUNNING_CAMERA_NAME="Camera#0";
+		const std::string RUNNING_CAMERA_NAME="Camera";
 		// Default path constants
 		const std::string DEFAULT_OGRE_RESOURCES_PATH="../../Config/resources.cfg";
 		const std::string DEFAULT_OGRE_CONFIG_PATH  = "../../Config/ogre.cfg";

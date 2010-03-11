@@ -142,6 +142,11 @@ void XMLGameObjectParser::setNames()
 			it->second.dreamsName=it->second.name;
 			it->second.nightmaresName=it->second.name;
 		}
+		else if(it->second.gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
+		{
+			it->second.dreamsName=it->second.name;
+			it->second.nightmaresName=it->second.name;
+		}
 		//default case
 		else
 		{
@@ -232,6 +237,14 @@ void XMLGameObjectParser::addXMLGameObjectNode(std::string worldName,std::string
 		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 	}
 	else if(gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
+	{
+		baseName=worldName;
+		XMLGameObjectContainer[baseName].name=baseName;
+		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+
+		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+	}
+	else if(gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
 	{
 		baseName=worldName;
 		XMLGameObjectContainer[baseName].name=baseName;

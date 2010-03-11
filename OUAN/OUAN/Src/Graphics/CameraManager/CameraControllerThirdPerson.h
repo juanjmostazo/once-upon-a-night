@@ -46,7 +46,6 @@ namespace OUAN
 		void returningToInitialPosition();
 		
 
-
 	};
 }
 
