@@ -1,0 +1,16 @@
+
+material Material2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.392 0.271 0.235 1
+		}
+
+	}
+
+}
+
+
