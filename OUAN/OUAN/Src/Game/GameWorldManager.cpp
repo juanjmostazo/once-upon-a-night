@@ -1227,3 +1227,9 @@ EventManagerPtr GameWorldManager::getEventManager()
 {
 	return mEventManager;
 }
+
+GameObjectOnyPtr GameWorldManager::getGameObjectOny()
+{
+	return mGameObjectOnyContainer[0];
+
+}

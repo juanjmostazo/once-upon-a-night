@@ -31,7 +31,7 @@ namespace OUAN
 
 		void processMouseInput(const OIS::MouseEvent &e);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
-		void processSimpleTranslation(Ogre::Vector3 unitTranslationVector);
+		void processSimpleTranslation(int movementFlags);
 
 		/// Return read-only pointer to the viewport
 		/// @return viewport
@@ -45,7 +45,7 @@ namespace OUAN
 		//Sets camera target
 		void setCameraTarget(RenderComponentPositional * target);
 
-		TCameraControllerType getControllerType();
+		TCameraControllerType getActiveCameraControllerType();
 
 	private:
 		/// GameWorldManager
@@ -62,10 +62,8 @@ namespace OUAN
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
 		CameraControllerThirdPerson * mCameraControllerThirdPerson;
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
+		CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 
-
-
-		//CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 		//CameraControllerTrajectory * mCameraControllerTrajectory;
 		
 	};

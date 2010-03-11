@@ -1,116 +1,106 @@
 #include "CameraControllerFirstPerson.h"
-#include "../../Input/FullInputManager.h"
+#include "../RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
 
 CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 {
+	//Set CameraControllerFirstPerson Initial Parameters
+
+	rotX=0;
+	rotY=0;
+
+	speed=0.5;
+
+	maxRotX=90;
+	minRotX=-90;
+
+	height=5;
+
 }
 
 CameraControllerFirstPerson::~CameraControllerFirstPerson()
 {
 }
 
-void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
-{
-	// Create the camera's top node (which will only handle position).
-	this->cameraNode = pSceneManager->getRootSceneNode()->createChildSceneNode();
-	
-	// Create the camera's yaw node as a child of camera's top node.
-	this->cameraYawNode = this->cameraNode->createChildSceneNode();
-
-	// Create the camera's pitch node as a child of camera's yaw node.
-	this->cameraPitchNode = this->cameraYawNode->createChildSceneNode();
-
-	// Create the camera's roll node as a child of camera's pitch node
-	// and attach the camera to it.
-	this->cameraRollNode = this->cameraPitchNode->createChildSceneNode();
-}
-
-void CameraControllerFirstPerson::setCamera(Ogre::Camera* pCamera)
-{
-
-	//reset controller first person nodes
-	this->cameraNode->resetToInitialState();
-	this->cameraYawNode->resetToInitialState();
-	this->cameraPitchNode->resetToInitialState();
-	this->cameraRollNode->resetToInitialState();
-	this->cameraRollNode->detachAllObjects();
-
-	//set camera
-	this->mCamera=pCamera;
-
-	//set parameters of the new camera to the nodes
-	this->cameraNode->setPosition(mCamera->getPosition());
-	this->cameraYawNode->yaw(mCamera->getOrientation().getYaw());
-	this->cameraPitchNode->pitch(mCamera->getOrientation().getPitch());
-	this->cameraRollNode->roll(mCamera->getOrientation().getRoll());
-
-	//set position and rotation of new camera to zero
-	mCamera->setPosition(0,0,0);
-	mCamera->setOrientation(Ogre::Quaternion::IDENTITY);
-
-	//attach new camera to roll node
-	this->cameraRollNode->attachObject(mCamera);
-}
-
-void CameraControllerFirstPerson::processRelativeMotion(double xRel, double yRel, double zRel)
-{
-	Ogre::Real pitchAngle;
-	Ogre::Real pitchAngleSign;
-
-	double mRotX=-xRel*0.3;
-	double mRotY=-yRel*0.3;
-	double mRotZ=zRel*0.3;
-
-	// Yaws the camera according to the mouse relative movement.
-	cameraYawNode->yaw(Ogre::Angle(mRotX));
-
-	// Pitches the camera according to the mouse relative movement.
-	cameraPitchNode->pitch(Ogre::Angle(mRotY));
-
-	// Go forward or back using mouse wheel
-	processSimpleTranslation(Ogre::Vector3::NEGATIVE_UNIT_Z * mRotZ);
-
-	// Angle of rotation around the X-axis.
-	pitchAngle = (2 * Ogre::Degree(Ogre::Math::ACos(this->cameraPitchNode->getOrientation().w)).valueDegrees());
-
-	// Just to determine the sign of the angle we pick up above, the
-	// value itself does not interest us.
-	pitchAngleSign = cameraPitchNode->getOrientation().x;
-
-	// Limit the pitch between -90 degress and +90 degrees, Quake3-style.
-	if (pitchAngle > 90.0f)
-	{
-		if (pitchAngleSign > 0)
-			// Set orientation to 90 degrees on X-axis.
-			cameraPitchNode->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
-			Ogre::Math::Sqrt(0.5f), 0, 0));
-		else if (pitchAngleSign < 0)
-			// Sets orientation to -90 degrees on X-axis.
-			cameraPitchNode->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
-			-Ogre::Math::Sqrt(0.5f), 0, 0));
-	}
-}
-
-void CameraControllerFirstPerson::processSimpleTranslation(Ogre::Vector3 translationVector)
-{
-	double moveScale=0.1f;
-	Ogre::Vector3 translation = moveScale*translationVector;
-	// Translates the camera according to the translate vector which is
-	// controlled by the keyboard arrows.
-	//
-	// NOTE: We multiply the mTranslateVector by the cameraPitchNode's
-	// orientation quaternion and the cameraYawNode's orientation
-	// quaternion to translate the camera accoding to the camera's
-	// orientation around the Y-axis and the X-axis.
-	cameraNode->translate(cameraYawNode->getOrientation() *
-		cameraPitchNode->getOrientation() *
-		translation,
-		Ogre::SceneNode::TS_LOCAL);
-}
-
 TCameraControllerType CameraControllerFirstPerson::getControllerType()
 {
 	return OUAN::CAMERA_FIRST_PERSON;
+}
+
+void CameraControllerFirstPerson::update(long elapsedTime)
+{
+	Quaternion newCameraOrientation;
+
+	//Set camera position
+	mCamera->setPosition(mCamera->getPosition()+newTranslation);
+
+	mCamera->yaw(Ogre::Angle(rotY));
+	//mCamera->pitch(Ogre::Angle(rotX));
+
+
+}
+
+void CameraControllerFirstPerson::setCamera(Ogre::Camera * pCamera)
+{
+	mCamera=pCamera;
+	rotX=mCamera->getOrientation().getPitch().valueAngleUnits();
+	rotY=mCamera->getOrientation().getYaw().valueAngleUnits();
+}
+
+void CameraControllerFirstPerson::processRelativeMotion(double xRel,double yRel,double zRel)
+{
+	rotY=0;
+	rotX=0;
+
+	//process Relative Motion
+	if(xRel==0 && yRel==0) 
+	{
+		return;
+	}
+	else
+	{
+		rotY-=xRel*speed;
+		//rotX-=yRel*speed;
+	}
+
+	//check if rotation exceeds limits for X axis
+	if(rotX>maxRotX)
+	{
+		rotX=maxRotX;
+	}
+	else if(rotX<minRotX)
+	{
+		rotX=minRotX;
+	}
+
+	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+
+}
+
+void CameraControllerFirstPerson::processSimpleTranslation(int movementFlags)
+{
+	newTranslation=Vector3(0,0,0);
+
+	//Forwand / backwards
+	if ((movementFlags & MOV_FORWARD_OR_BACK) > 0)
+	{	
+		double way = ((movementFlags & MOV_GO_FORWARD) > 0) ? 1.0f : -1.0f;
+		newTranslation -= Ogre::Vector3::UNIT_Z * way;
+	}
+
+	//strafe left / right
+	if ((movementFlags & MOV_LEFT_OR_RIGHT) > 0)
+	{
+		double way = ((movementFlags & MOV_GO_LEFT) > 0) ? 1.0f : -1.0f;
+		newTranslation -= Ogre::Vector3::UNIT_X * way;
+	}
+
+	newTranslation*=speed;
+
+	//Adapt to current Camera orientation
+	//newTranslation = Quaternion(Ogre::Angle(rotX), Vector3::UNIT_X) * newTranslation;
+	newTranslation = Quaternion(mCamera->getOrientation().getYaw(), Vector3::UNIT_Y) * newTranslation;
+
+
 }

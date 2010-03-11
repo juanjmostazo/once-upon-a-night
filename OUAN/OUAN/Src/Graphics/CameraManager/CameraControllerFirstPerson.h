@@ -1,7 +1,6 @@
-#ifndef CAMERACONTROLLERFIRSTPERSON_H
-#define CAMERACONTROLLERFIRSTPERSON_H
+#ifndef CameraControllerFirstPersonH_H
+#define CameraControllerFirstPersonH_H
 #include "CameraController.h"
-
 namespace OUAN
 {
 	class CameraControllerFirstPerson : public CameraController
@@ -10,21 +9,37 @@ namespace OUAN
 		CameraControllerFirstPerson();
 		~CameraControllerFirstPerson();
 
-		void init(Ogre::SceneManager * pSceneManager);
-		
-		void processSimpleTranslation(Ogre::Vector3 translationVector);
+		TCameraControllerType getControllerType();
+
+		void update(long elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
-		void processInput(OIS::Keyboard* keyboard,double elapsedTime);
+		void processSimpleTranslation(int movementFlags);
 		void setCamera(Ogre::Camera * pCamera);
 
-		TCameraControllerType getControllerType();
 	private:
-		Ogre::SceneNode *cameraNode;
-		Ogre::SceneNode *cameraYawNode;
-		Ogre::SceneNode *cameraPitchNode;
-		Ogre::SceneNode *cameraRollNode;
 
+		//camera relative rotation to target's X axe
+		double rotX;
+		//camera relative rotation to target's Y axe
+		double rotY;
+
+		//camera position speed
+		double speed;
+
+		//minimum and maximum rotation to target's X axe
+		double minRotX;
+		double maxRotX;
+
+		//minimum and maximum rotation to target's Y axe
+		double minRotY;
+		double maxRotY;
+
+		//camera height in relation to target
+		double height;
+
+		Vector3 newTranslation;
 	};
-	#endif
 }
+
+#endif

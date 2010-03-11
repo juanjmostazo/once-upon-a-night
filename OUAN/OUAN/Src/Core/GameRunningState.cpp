@@ -6,6 +6,7 @@
 
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Graphics/CameraManager/CameraManager.h"
 #include "../GUI/GUISubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
@@ -136,6 +137,17 @@ void GameRunningState::handleEvents()
 	{
 		mApp->getRenderSubsystem()->changeCameraController();
 
+		if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
+		{
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityDreams()->setVisible(false);
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityNightmares()->setVisible(false);
+		}
+		else
+		{
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityDreams()->setVisible(true);
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityNightmares()->setVisible(true);
+
+		}
 		mApp->mKeyBuffer = 500000;
 	}
 	else if (mApp->isPressedToggleChangeWorld() && mApp->mKeyBuffer<0)
@@ -171,9 +183,8 @@ void GameRunningState::handleEvents()
 	}
 		
 	///////////////////////////////////////////////////////////
-	// ONY: TYPE OF MOVEMENT
+	// ONY (or first person camera): TYPE OF MOVEMENT
 	int movementFlags = 0;
-
 	if (mApp->isPressedGoForward())
 	{
 		movementFlags |= MOV_GO_FORWARD;	
@@ -204,8 +215,15 @@ void GameRunningState::handleEvents()
 		movementFlags |= MOV_WALK;
 	}
 
-	//Access to [0] because there's only one Ony, otherwise it should be a loop
-	mApp->getGameWorldManager()->getGameObjectOnyContainer()[0]->setMovementFlags(movementFlags);
+	if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
+	{
+		mApp->getRenderSubsystem()->getCameraManager()->processSimpleTranslation(movementFlags);
+	}
+	else if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
+	{
+		//Access to [0] because there's only one Ony, otherwise it should be a loop
+		mApp->getGameWorldManager()->getGameObjectOny()->setMovementFlags(movementFlags);
+	}
 
 	//[TODO: This will also have to be refactored somehow as soon as
 	// a camera manager system has been implemented. 
