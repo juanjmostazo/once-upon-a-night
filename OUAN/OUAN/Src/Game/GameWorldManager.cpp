@@ -487,12 +487,8 @@ void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntit
 	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectProvisionalEntity);
 }
 
-
 void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox)
 {
-	//TODO - FIX THIS
-	pGameObjectVolumeBox->getPhysicsComponentVolumeBox()->setNxOgreSize(NxOgre::Vec3(8,8,4));
-
 	mGameObjects[pGameObjectVolumeBox->getName()]=pGameObjectVolumeBox;
 
 	mGameObjectVolumeBoxContainer.push_back(pGameObjectVolumeBox);

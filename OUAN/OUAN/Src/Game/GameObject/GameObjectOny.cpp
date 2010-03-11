@@ -232,15 +232,17 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 
 	////////////////////////////////////////////////////////////////////////////
-
 	// Applying global factor to displacement
 	mDisplacement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 
-	getPhysicsComponentCharacter()->getNxOgreController()->move(
-		mDisplacement,
-		GROUP_COLLIDABLE_MASK,
-		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-		collisionFlags);
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		getPhysicsComponentCharacter()->getNxOgreController()->move(
+			mDisplacement,
+			GROUP_COLLIDABLE_MASK,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+	}
 	
 	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
 	{
@@ -254,13 +256,14 @@ void GameObjectOny::update(double elapsedSeconds)
 
 void GameObjectOny::changeWorld(int world)
 {
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+
 	switch(world)
 	{
 	case DREAMS:
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
 		break;
 	case NIGHTMARES:
 		break;

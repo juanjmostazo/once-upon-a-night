@@ -44,6 +44,7 @@ namespace OUAN
 		const int AI_FPS=60;
 		const int SKIP_TICKS=1000000/AI_FPS;
 		const int MAX_FRAMESKIP=5;
+		const int DEFAULT_KEY_BUFFER=500000;
 
 		const int DEBUGMODE_NONE=0;
 		const int DEBUGMODE_PERFORMANCE=1;

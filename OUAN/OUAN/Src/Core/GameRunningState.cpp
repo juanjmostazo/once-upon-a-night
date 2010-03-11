@@ -74,7 +74,7 @@ void GameRunningState::handleEvents()
 	{
 		//Ogre::LogManager::getSingleton().logMessage("isPressedQuickExit IN");
 		mApp->mExitRequested=true;
-		mApp->mKeyBuffer=500000; //0.5s
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
 	}
 	else if (mApp->isPressedPause() && mApp->mKeyBuffer<0)
 	{
@@ -83,14 +83,14 @@ void GameRunningState::handleEvents()
 		// The reason to use push this time is to prevent unnecessary cleanup and initialisation, since
 		// after the pause the application flow will come back to "GameRunning"
 		mApp->getGameStateManager()->pushState(nextState,mApp);
-		mApp->mKeyBuffer=500000; //0.5s
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
 	}
 	//TODO: REMOVE THIS STATEMENT when we can respond to a collision and simulate
 	// a gameOver event
 	else if(mApp->isPressedAutoPoint() && mApp->mKeyBuffer<0)
 	{
 		mApp->getGameWorldManager()->setGameOver(true);
-		mApp->mKeyBuffer=500000;
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
 	{
@@ -107,7 +107,7 @@ void GameRunningState::handleEvents()
 			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 		}
 		
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleDebugPhysics() && mApp->mKeyBuffer<0)
 	{
@@ -125,13 +125,13 @@ void GameRunningState::handleEvents()
 			mApp->getRenderSubsystem()->hideVisualDebugger();
 		}
 
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeCamera() && mApp->mKeyBuffer<0)
 	{
 		mApp->getRenderSubsystem()->changeCamera();
 
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeCameraController() && mApp->mKeyBuffer<0)
 	{
@@ -148,13 +148,13 @@ void GameRunningState::handleEvents()
 			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityNightmares()->setVisible(true);
 
 		}
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeWorld() && mApp->mKeyBuffer<0)
 	{
 		mApp->getGameWorldManager()->changeWorld();
 
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeLevel() && mApp->mKeyBuffer<0)
 	{
@@ -179,7 +179,7 @@ void GameRunningState::handleEvents()
 		{
 			mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
 		}
-		mApp->mKeyBuffer = 500000;
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 		
 	///////////////////////////////////////////////////////////
