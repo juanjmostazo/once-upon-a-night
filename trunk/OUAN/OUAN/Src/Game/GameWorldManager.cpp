@@ -551,13 +551,13 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		pGameObjectOny->setRenderComponentEntityNightmares(
 			factory->createRenderComponentEntity(tGameObjectOnyParameters.nightmaresName,
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityNightmaresParameters));
-
+		
 		//Create PhysicsComponent
 		pGameObjectOny->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
 			pGameObjectOny,
 			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectOny->getRenderComponentPositional()));
-
+		
 	//Set Ony as camera target
 	pGameObjectOny->getRenderComponentPositional()->setAsCameraTarget();
 

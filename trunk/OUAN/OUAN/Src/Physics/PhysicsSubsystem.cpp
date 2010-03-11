@@ -98,6 +98,12 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	//Initializing visual debugger
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 	
+	//Initializing debug floor
+	//NxOgre::PlaneGeometry* pDebugPlane = new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0));
+	//pDebugPlane->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+	//mNxOgreScene->createSceneGeometry(pDebugPlane, Matrix44_Identity);
+	//mApp->getRenderSubsystem()->createDebugFloor(mConfig);
+
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
@@ -303,7 +309,7 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	//Too many log entries, maybe bacause of the TriangleMesh Terrain
-	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
+	Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
 	return NxOgre::Enums::ControllerAction_None;
 }
 

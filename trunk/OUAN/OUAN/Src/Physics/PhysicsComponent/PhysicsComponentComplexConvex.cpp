@@ -32,14 +32,15 @@ void PhysicsComponentComplexConvex::create()
 	}
 	else
 	{
+		getNxOgreConvex()->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+		setStatic(true);
+		setNxOgreBody(NULL);
+
 		setNxOgreKinematicBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
 			getNxOgreConvex(),
 			getSceneNode()->getPosition(),
 			getSceneNode()));
-
-		setStatic(true);
-		setNxOgreBody(NULL);
 	}
 }
 
