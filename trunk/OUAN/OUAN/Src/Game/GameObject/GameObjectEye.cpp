@@ -49,12 +49,15 @@ void GameObjectEye::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	getPhysicsComponentCharacter()->getNxOgreController()->move(
-		Application::getInstance()->getPhysicsSubsystem()->mGravity * 
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		getPhysicsComponentCharacter()->getNxOgreController()->move(
+			Application::getInstance()->getPhysicsSubsystem()->mGravity * 
 			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-		GROUP_COLLIDABLE_MASK,
-		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-		collisionFlags);
+			GROUP_COLLIDABLE_MASK,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+	}
 }
 
 void GameObjectEye::changeWorld(int world)
@@ -62,12 +65,18 @@ void GameObjectEye::changeWorld(int world)
 	switch(world)
 	{
 	case DREAMS:
+		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->destroy();
+		}
+		mRenderComponentEntityNightmares->setVisible(false);
+		break;
+	case NIGHTMARES:
 		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 		{
 			mPhysicsComponentCharacter->create();
 		}
-		break;
-	case NIGHTMARES:
+		mRenderComponentEntityNightmares->setVisible(true);
 		break;
 	default:break;
 	}

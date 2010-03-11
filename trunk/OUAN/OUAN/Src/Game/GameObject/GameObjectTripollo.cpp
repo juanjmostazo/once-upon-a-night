@@ -59,24 +59,26 @@ void GameObjectTripollo::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	getPhysicsComponentCharacter()->getNxOgreController()->move(
-		Application::getInstance()->getPhysicsSubsystem()->mGravity * 
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		getPhysicsComponentCharacter()->getNxOgreController()->move(
+			Application::getInstance()->getPhysicsSubsystem()->mGravity * 
 			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-		GROUP_COLLIDABLE_MASK,
-		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-		collisionFlags);
+			GROUP_COLLIDABLE_MASK,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+	}
 }
 
 void GameObjectTripollo::changeWorld(int world)
 {
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
 	switch(world)
 	{
 	case DREAMS:
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
-
 		mRenderComponentEntityDreams->setVisible(true);
 		mRenderComponentEntityNightmares->setVisible(false);
 		break;
