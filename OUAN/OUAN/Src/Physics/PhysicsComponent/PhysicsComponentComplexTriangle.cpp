@@ -18,7 +18,9 @@ void PhysicsComponentComplexTriangle::create()
 
 	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
 		getNxOgreTriangleGeometry(),
-		NxOgre::Matrix44(NxOgre::Vec3(getSceneNode()->getPosition())));
+		NxOgre::Matrix44(
+			NxOgre::Vec3(getSceneNode()->getPosition()), 
+			NxOgre::Quat(getSceneNode()->getOrientation())));
 
 	setStatic(true);
 }
