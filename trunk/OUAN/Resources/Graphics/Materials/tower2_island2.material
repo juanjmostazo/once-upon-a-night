@@ -1,0 +1,17 @@
+
+material wire_086086086
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3373 0.3373 0.3373 1
+			diffuse 0.3373 0.3373 0.3373 1
+			specular 0.35 0.35 0.35 1 32
+		}
+
+	}
+
+}
+
+
