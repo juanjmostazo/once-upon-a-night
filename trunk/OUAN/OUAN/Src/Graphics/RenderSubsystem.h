@@ -64,7 +64,7 @@ namespace OUAN
 
 		/// Translate camera according to the given coordinate axis
 		/// @param worldCoordinateAxis
-		void translateCamera(TCoordinateAxis worldCoordinateAxis);
+		//void translateCamera(TCoordinateAxis worldCoordinateAxis);
 
 		/// Render scene at current frame
 		/// @return <b>true</b> if the frame was successfully rendered

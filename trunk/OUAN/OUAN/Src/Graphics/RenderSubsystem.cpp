@@ -207,32 +207,32 @@ bool RenderSubsystem::isWindowClosed() const
 	return !mWindow || mWindow->isClosed();
 }
 
-void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
-{
-	Ogre::Vector3 unitTranslationVector;
-	switch (worldCoordinateAxis)
-	{
-		case AXIS_NEG_X:
-			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_X;
-			break;
-		case AXIS_POS_X:
-			unitTranslationVector=Ogre::Vector3::UNIT_X;
-			break;
-		case AXIS_NEG_Z:
-			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Z;
-			break;
-		case AXIS_POS_Z:
-			unitTranslationVector=Ogre::Vector3::UNIT_Z;
-			break;
-		case AXIS_NEG_Y:
-			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Y;
-			break;
-		case AXIS_POS_Y:
-			unitTranslationVector=Ogre::Vector3::UNIT_Y;
-			break;
-	}
-	mCameraManager->processSimpleTranslation(unitTranslationVector);
-}
+//void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
+//{
+//	Ogre::Vector3 unitTranslationVector;
+//	switch (worldCoordinateAxis)
+//	{
+//		case AXIS_NEG_X:
+//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_X;
+//			break;
+//		case AXIS_POS_X:
+//			unitTranslationVector=Ogre::Vector3::UNIT_X;
+//			break;
+//		case AXIS_NEG_Z:
+//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Z;
+//			break;
+//		case AXIS_POS_Z:
+//			unitTranslationVector=Ogre::Vector3::UNIT_Z;
+//			break;
+//		case AXIS_NEG_Y:
+//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Y;
+//			break;
+//		case AXIS_POS_Y:
+//			unitTranslationVector=Ogre::Vector3::UNIT_Y;
+//			break;
+//	}
+//	mCameraManager->processSimpleTranslation(unitTranslationVector);
+//}
 
 void RenderSubsystem::updateCameraParams(double elapsedTime)
 {

@@ -134,6 +134,9 @@ namespace OUAN
 		/// @return event manager pointer
 		EventManagerPtr getEventManager();
 
+		/// Return GameObjectOny
+		GameObjectOnyPtr getGameObjectOny();
+
 	private:
 
 		/// Add the game object pointer to the objects List

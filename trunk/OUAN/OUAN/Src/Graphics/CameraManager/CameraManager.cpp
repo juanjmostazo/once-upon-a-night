@@ -1,5 +1,6 @@
 #include "CameraManager.h"
 #include "CameraController.h"
+#include "CameraControllerFixedFirstPerson.h"
 #include "CameraControllerFirstPerson.h"
 #include "CameraControllerFixedThirdPerson.h"
 #include "CameraControllerThirdPerson.h"
@@ -31,6 +32,8 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,GameWo
 	mCameraControllerThirdPerson->init(pSceneManager);
 	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
 	mCameraControllerFixedThirdPerson->init(pSceneManager);
+	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
+	mCameraControllerFixedFirstPerson->init(pSceneManager);
 
 	activeCameraController=mCameraControllerThirdPerson;
 
@@ -68,6 +71,11 @@ void CameraManager::cleanUp()
 	clear();
 
 	delete mCameraControllerFirstPerson;
+}
+
+TCameraControllerType CameraManager::getActiveCameraControllerType()
+{
+	return activeCameraController->getControllerType();
 }
 
 RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
@@ -136,7 +144,8 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 	switch(tCameraControllerType)
 	{
 		case CAMERA_FIXED_FIRST_PERSON:
-
+			mCameraControllerFixedFirstPerson->setCamera(activeCameraController->getCamera());
+			activeCameraController=mCameraControllerFixedFirstPerson;
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
 			mCameraControllerFixedThirdPerson->setCamera(activeCameraController->getCamera());
@@ -178,9 +187,9 @@ void CameraManager::processRelativeMotion(double xRel,double yRel,double zRel)
 	activeCameraController->processRelativeMotion(xRel,yRel,zRel);
 }
 
-void CameraManager::processSimpleTranslation(Ogre::Vector3 unitTranslationVector)
+void CameraManager::processSimpleTranslation(int movementFlags)
 {
-	activeCameraController->processSimpleTranslation(unitTranslationVector);
+	activeCameraController->processSimpleTranslation(movementFlags);
 }
 
 void CameraManager::changeCamera()
@@ -208,6 +217,12 @@ void CameraManager::changeCameraController()
 			setCameraType(CAMERA_FIXED_THIRD_PERSON);
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
+			setCameraType(CAMERA_FIXED_FIRST_PERSON);
+			break;
+		case CAMERA_FIXED_FIRST_PERSON:
+			setCameraType(CAMERA_FIRST_PERSON);
+			break;
+		case CAMERA_FIRST_PERSON:
 			setCameraType(CAMERA_THIRD_PERSON);
 			break;
 	}
@@ -217,4 +232,5 @@ void CameraManager::setCameraTarget(RenderComponentPositional * target)
 {
 	mCameraControllerThirdPerson->setTarget(target);
 	mCameraControllerFixedThirdPerson->setTarget(target);
+	mCameraControllerFixedFirstPerson->setTarget(target);
 }

@@ -40,7 +40,7 @@ void CameraController::processRelativeMotion(double xRel,double yRel,double zRel
 
 }
 
-void CameraController::processSimpleTranslation(Ogre::Vector3 translationVector)
+void CameraController::processSimpleTranslation(int movementFlags)
 {
 
 }

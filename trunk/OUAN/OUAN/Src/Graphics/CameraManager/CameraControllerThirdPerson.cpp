@@ -8,7 +8,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 {
 	//Set CameraControllerThirdPerson Initial Parameters
 
-	distance=Ogre::Vector3(0,10,-25);
+	distance=Ogre::Vector3(0,15,-45);
 	height=5;
 	rotX=0;
 	rotY=0;
@@ -72,7 +72,6 @@ void CameraControllerThirdPerson::update(long elapsedTime)
 
 void CameraControllerThirdPerson::processRelativeMotion(double xRel,double yRel,double zRel)
 {
-	Ogre::Matrix3 next_rotation;
 
 	//process Relative Motion
 	if(xRel==0 && yRel==0) 
