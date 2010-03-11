@@ -16,6 +16,10 @@ void PhysicsComponentSimpleCapsule::create()
 {
 	PhysicsComponentSimple::create();
 	
+	NxOgre::Capsule* pCapsule = 
+		new NxOgre::Capsule(getNxOgreSize().x,
+							getNxOgreSize().y);
+
 	if (getMass() > 0)
 	{
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
@@ -23,8 +27,7 @@ void PhysicsComponentSimpleCapsule::create()
 
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-				new NxOgre::Capsule(getNxOgreSize().x,
-									getNxOgreSize().y),
+				pCapsule,
 				getSceneNode()->getPosition(),
 				getSceneNode(),
 				pDesc));
@@ -33,15 +36,15 @@ void PhysicsComponentSimpleCapsule::create()
 	}
 	else
 	{
-		setNxOgreKinematicBody(
-			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
-				new NxOgre::Capsule(getNxOgreSize().x,
-								getNxOgreSize().y),
-				getSceneNode()->getPosition(),
-				getSceneNode()));
-
+		pCapsule->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 		setStatic(true);
 		setNxOgreBody(NULL);
+
+		setNxOgreKinematicBody(
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
+				pCapsule,
+				getSceneNode()->getPosition(),
+				getSceneNode()));
 	}
 }
 

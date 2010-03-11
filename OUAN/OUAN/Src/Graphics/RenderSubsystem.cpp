@@ -130,12 +130,13 @@ void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
 
 	Ogre::MeshManager::getSingleton().createPlane("debugFloorPlane",
 		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, *plane,
-		200, 200, 20, 20, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+		1000, 1000, 20, 20, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
 
 	Ogre::Entity* pPlaneEnt = mSceneManager->createEntity("debugFloorEntity", "debugFloorPlane");
 	pPlaneEnt->setCastShadows(false);
 	pPlaneEnt->setMaterialName("GrassFloor");
-	mSceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(pPlaneEnt);
+	SceneNode * pPlaneNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+	pPlaneNode->attachObject(pPlaneEnt);
 }
 
 void RenderSubsystem::initResourceGroups(ConfigurationPtr config)

@@ -181,7 +181,7 @@ void GameObjectOny::update(double elapsedSeconds)
 
 	// Initial displacement vector: gravity
 	NxOgre::Vec3 mDisplacement(Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds);
-
+	
 	// Movement forces
 	if (movementFlags > 0)
 	{
@@ -230,7 +230,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		setFallTime(getFallTime() + elapsedSeconds);
 		mDisplacement.y += getFallSpeed() * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////////
 
 	// Applying global factor to displacement
@@ -241,7 +241,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		GROUP_COLLIDABLE_MASK,
 		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 		collisionFlags);
-
+	
 	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
 	{
 		setOnSurface(true);
