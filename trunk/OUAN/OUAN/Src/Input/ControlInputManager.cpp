@@ -128,6 +128,30 @@ OIS::MouseButtonID ControlInputManager::convertMouseButtonId(TInputCfgMouseButto
 		return OIS::MB_Left;
 	}
 }
+TInputCfgMouseButtonMapper ControlInputManager::convertMouseButtonId(OIS::MouseButtonID mouseButtonId)
+{
+	switch(mouseButtonId)
+	{
+	case OIS::MB_Left:
+		return INPUTCFG_MOUSEBUTTON_LEFT;
+	case OIS::MB_Right:
+		return INPUTCFG_MOUSEBUTTON_RIGHT;
+	case OIS::MB_Middle:
+		return INPUTCFG_MOUSEBUTTON_MIDDLE;
+	case OIS::MB_Button3:
+		return INPUTCFG_MOUSEBUTTON_MB3;
+	case OIS::MB_Button4:
+		return INPUTCFG_MOUSEBUTTON_MB4;
+	case OIS::MB_Button5:
+		return INPUTCFG_MOUSEBUTTON_MB5;
+	case OIS::MB_Button6:
+		return INPUTCFG_MOUSEBUTTON_MB6;
+	case OIS::MB_Button7:
+		return INPUTCFG_MOUSEBUTTON_MB7;
+	default:
+		return INPUTCFG_MOUSEBUTTON_LEFT;
+	}
+}
 
 bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 {
@@ -328,4 +352,51 @@ void ControlInputManager::getMouseStateRelValues(double* x, double* y, double* z
 void ControlInputManager::getJoystickStateAxes(double* leftX, double* leftY, double* rightX, double* rightY)
 {
 	FullInputManager::getJoystickStateAxes(defaultPadId, leftX, leftY, rightX, rightY);
+}
+
+void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
+{
+	mappings.clear();
+	addPair(KEY_FORWARD,mDefaultInputData.keyForward,padUp,mappings);
+	addPair(KEY_BACKWARDS,mDefaultInputData.keyBackwards,padDown,mappings);
+	addPair(KEY_LEFT,mDefaultInputData.keyLeft,padLeft,mappings);
+	addPair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,mappings);
+
+	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,mappings);
+	addPair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,mappings);
+	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,mappings);
+	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,mappings);
+
+	addPair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,mappings);
+	addPair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,mappings);
+	addPair(KEY_WALK,mDefaultInputData.keyWalk,padR1,mappings);
+	addPair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,mappings);
+
+	addPair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,mappings);
+	addPair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,mappings);
+}
+void ControlInputManager::addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings)
+{
+	std::pair<int,int> mapping;
+	mapping.first=keyboardMapping;
+	mapping.second=psxPadMapping;
+	mappings[keyID]=mapping;
+}
+// Macro to easily add case guards (quick, but a bit hacky)
+#define ADD_CASE(x) case INPUTCFG_MOUSEBUTTON_##x: return MOUSE_BUTTON_NAME_##x
+
+std::string ControlInputManager::getMouseButtonName(int keyCode) const
+{
+	switch(static_cast<TInputCfgMouseButtonMapper>(keyCode))
+	{
+		ADD_CASE(LEFT);
+		ADD_CASE(RIGHT);
+		ADD_CASE(MIDDLE);
+		ADD_CASE(MB3);
+		ADD_CASE(MB4);
+		ADD_CASE(MB5);
+		ADD_CASE(MB6);
+		ADD_CASE(MB7);
+		default: return "";
+	}	
 }
