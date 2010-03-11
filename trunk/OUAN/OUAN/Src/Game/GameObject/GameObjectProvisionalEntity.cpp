@@ -44,23 +44,46 @@ RenderComponentPositionalPtr GameObjectProvisionalEntity::getRenderComponentPosi
 	return mRenderComponentPositional;
 }
 
+void GameObjectProvisionalEntity::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+{
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+}
+
+PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSimpleBox()
+{
+	return mPhysicsComponentSimpleBox;
+}
+
 void GameObjectProvisionalEntity::changeWorld(int world)
 {
 	switch(world)
 	{
+
 	case DREAMS:
 		if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
 		}
 		else if(mLogicComponentWorldExistance->getExistsInDreams()&& !mLogicComponentWorldExistance->getExistsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(true);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
 		}
 		else if(!mLogicComponentWorldExistance->getExistsInDreams()&& mLogicComponentWorldExistance->getExistsInNightmares())
 		{
 			mRenderComponentEntityNightmares->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
 		}		
 		break;
 	case NIGHTMARES:
@@ -68,14 +91,26 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 		{
 			mRenderComponentEntityDreams->setVisible(false);
 			mRenderComponentEntityNightmares->setVisible(true);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
 		}
 		else if(mLogicComponentWorldExistance->getExistsInDreams()&& !mLogicComponentWorldExistance->getExistsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
 		}
 		else if(!mLogicComponentWorldExistance->getExistsInDreams()&& mLogicComponentWorldExistance->getExistsInNightmares())
 		{
 			mRenderComponentEntityNightmares->setVisible(true);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
 		}		
 		break;
 	default:

@@ -344,6 +344,11 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
+		//TODO: EXTRACT PHYSICS PARAMETERS FROM FILE
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.mass=0;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=2;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=6;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=2;
 	}
 	catch( std::string error )
 	{

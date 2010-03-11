@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 
 namespace OUAN
 {
@@ -17,7 +18,8 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
-
+		/// Physics information
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -44,6 +46,11 @@ namespace OUAN
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
+		/// Set physics component
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
+
+		/// Get physics component
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -63,6 +70,8 @@ namespace OUAN
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
+		///Physics parameters
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 	};
 }
 #endif
