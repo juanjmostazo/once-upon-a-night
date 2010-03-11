@@ -481,6 +481,10 @@ void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntit
 	mGameObjectPositionalContainer.push_back(pGameObjectProvisionalEntity);
 	mGameObjectNonMovableContainer.push_back(pGameObjectProvisionalEntity);
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectProvisionalEntity);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectProvisionalEntity);
 }
 
 
@@ -1154,6 +1158,13 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 		pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
 			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
 			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
+
+		//Create PhysicsComponent
+		pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
+			factory->createPhysicsComponentSimpleBox(
+				pGameObjectProvisionalEntity, 
+				tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters,
+				pGameObjectProvisionalEntity->getRenderComponentPositional()));
 
 	pGameObjectProvisionalEntity->changeWorld(world);
 	

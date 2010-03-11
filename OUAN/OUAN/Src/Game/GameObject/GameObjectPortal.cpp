@@ -53,6 +53,7 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox()
 {
 	return mPhysicsComponentSimpleBox;
 }
+
 void GameObjectPortal::changeWorld(int world)
 {
 	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
