@@ -84,7 +84,7 @@
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.54723,0},{0.529834,0},{0.720826,0},{0.577505,0}}" />
             </Window>
-            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/ActionBtn" >
+            <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ActionBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="Text" Value="Action: " />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />

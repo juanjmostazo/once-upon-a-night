@@ -65,6 +65,15 @@ namespace OUAN
 		typedef boost::shared_ptr<GameState> GameStatePtr;
 		typedef boost::shared_ptr<Application> ApplicationPtr;
 
+	//--------
+	//-- Input-related typedefs
+	//-----
+	typedef std::map<std::string,std::pair<int,int>> TControlInputMapping;
+	typedef enum{
+		DEVICE_KEYB_MOUSE=0,
+		DEVICE_PAD_PSX,
+	} TInputDevice;
+
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
@@ -598,7 +607,7 @@ namespace OUAN
 		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
 		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
 
-		bool isPressedGoForward();		// Go forward
+		//bool isPressedGoForward();		// Go forward
 		bool isPressedGoBack();			// Go back
 		bool isPressedGoLeft();			// Go to left
 		bool isPressedGoRight();		// Go to right

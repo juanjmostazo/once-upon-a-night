@@ -209,3 +209,12 @@ double FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int
 	return value;
 }
 
+std::string FullInputManager::getAsString(OIS::KeyCode kc) const
+{
+	std::string keyName="";
+	if (m_keyboard)
+	{
+		keyName=m_keyboard->getAsString(kc);
+	}
+	return keyName;
+}

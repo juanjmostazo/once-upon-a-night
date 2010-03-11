@@ -33,6 +33,35 @@ namespace OUAN
 	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
 	const std::string KEY_CHANGE_LEVEL = "ChangeLevel";
 
+	//TODO: Refactor these out (most likely, to a config file)
+	const std::string PAD_BUTTON_NAME_UP="Up";
+	const std::string PAD_BUTTON_NAME_DOWN="Down";
+	const std::string PAD_BUTTON_NAME_LEFT="Left";
+	const std::string PAD_BUTTON_NAME_RIGHT="Right";
+
+	const std::string PAD_BUTTON_NAME_SQUARE="Square";
+	const std::string PAD_BUTTON_NAME_CIRCLE="Circle";
+	const std::string PAD_BUTTON_NAME_TRIANGLE="Triangle";
+	const std::string PAD_BUTTON_NAME_X="X";
+
+	const std::string PAD_BUTTON_NAME_L1="L1";
+	const std::string PAD_BUTTON_NAME_R1="R1";
+	const std::string PAD_BUTTON_NAME_L2="L2";
+	const std::string PAD_BUTTON_NAME_R2="R2";
+
+	const std::string PAD_BUTTON_NAME_START="Start";
+	const std::string PAD_BUTTON_NAME_SELECT="Select";
+
+	const std::string MOUSE_BUTTON_NAME_LEFT ="MouseLeft";
+	const std::string MOUSE_BUTTON_NAME_RIGHT ="MouseRight";
+	const std::string MOUSE_BUTTON_NAME_MIDDLE ="MouseMiddle";
+
+	const std::string MOUSE_BUTTON_NAME_MB3 ="Mouse03";
+	const std::string MOUSE_BUTTON_NAME_MB4 ="Mouse04";
+	const std::string MOUSE_BUTTON_NAME_MB5 ="Mouse05";
+	const std::string MOUSE_BUTTON_NAME_MB6 ="Mouse06";
+	const std::string MOUSE_BUTTON_NAME_MB7 ="Mouse07";
+
 	/// Since some of OIS' key codes and mouse button ids
 	/// overlap, negative numbers will be used in the
 	/// default input file to represent mouse presses
@@ -64,6 +93,8 @@ namespace OUAN
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
 	} TDefaultInputData;
+
+	typedef std::map<int,std::string> TPadButtonNames;
 
 	class ControlInputManager : public FullInputManager
 	{
@@ -117,6 +148,14 @@ namespace OUAN
 
 		void getJoystickStateAxes(
 			double*, double*, double*, double*);	// Joystick left and right axes values (from -1 to 1)
+
+		/// Fill a dictionary containing the keyboard and pad mappings
+		/// for a set of key ids
+		void getInputMappings (TControlInputMapping& mappings);
+
+		const TPadButtonNames& getPadButtonNames() const;
+		std::string getMouseButtonName(int keyCode) const;
+				TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
 		
 	protected:
 		/// Parse configuration files for the input device button mappings
@@ -140,6 +179,8 @@ namespace OUAN
 		/// @return OIS' mouse button identifier.
 		OIS::MouseButtonID convertMouseButtonId(TInputCfgMouseButtonMapper inputCfgMouseButtonId);
 
+
+
 		/// Convenience method used to reduce massive copy-paste and replace when modifying
 		/// the isPressedSOMEACTION() methods to add configurable keyboard/mouse input
 		/// The default joystick will check the given button is pressed, and depending on the kind of value
@@ -153,6 +194,14 @@ namespace OUAN
 		/// @return true if the given joystick button/ default input key was pressed; false otherwise
 		bool isPressed(int padButton, int defaultInputKey);
 
+		/// Add to the 'mappings' dictionary a new entry for keyID, where its value will be
+		/// a pair consisting of the values given under keyboardMapping and psxPadMapping
+		/// @param keyID			key identifier
+		/// @param keyboardMapping	keycode for the given mapping
+		/// @param psxPadMapping	button id for the given mapping
+		/// @param mappings			dictionary containing the input mappings for the given key identifier
+		void addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings);
+
 		/// Structure holding the values of the keycodes/mouse button ids for all possible in-game input actions 
 		TDefaultInputData mDefaultInputData;
 
@@ -161,6 +210,8 @@ namespace OUAN
 		int padUp, padDown, padLeft, padRight;
 		int padTriangle, padX, padSquare, padCircle;
 		int padL1, padL2, padR1, padR2;
+
+		TPadButtonNames mPadButtonNames;
 	};
 }
 #endif
