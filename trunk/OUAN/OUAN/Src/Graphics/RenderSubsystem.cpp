@@ -44,7 +44,7 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager);
+	mCameraManager->init(mRoot,mSceneManager,mApp->getGameWorldManager());
 }
 
 void RenderSubsystem::cleanUp()
@@ -318,7 +318,7 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 }
 
 
-Ogre::Camera * RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+RenderComponentCameraPtr RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
 	return mCameraManager->createCamera(name,tRenderComponentCameraParameters);
 }
@@ -668,7 +668,7 @@ void RenderSubsystem::resetScene()
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager);
+	mCameraManager->init(mRoot,mSceneManager,mApp->getGameWorldManager());
 }
 
 void RenderSubsystem::captureScene(const std::string& name)

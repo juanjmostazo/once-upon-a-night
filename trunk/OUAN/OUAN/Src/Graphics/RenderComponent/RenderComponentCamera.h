@@ -5,19 +5,6 @@
 
 namespace OUAN
 {
-	class RenderComponentCamera: public RenderComponent
-	{
-	private:
-		Ogre::Camera * mCamera;
-	public:
-
-		RenderComponentCamera(const std::string& type="");
-		~RenderComponentCamera();
-
-		Ogre::Camera * getCamera() const;
-		void setCamera(Ogre::Camera *);
-	};
-
 	class TRenderComponentCameraParameters: public TRenderComponentParameters
 	{
 	public:
@@ -33,6 +20,25 @@ namespace OUAN
 		Ogre::PolygonMode polygonmode;
 		int viewmode;
 	};
+
+	class RenderComponentCamera: public RenderComponent
+	{
+	private:
+		Ogre::Camera * mCamera;
+		TRenderComponentCameraParameters initialParameters;
+	public:
+
+		RenderComponentCamera(const std::string& type="");
+		~RenderComponentCamera();
+
+		Ogre::Camera * getCamera() const;
+		void setCamera(Ogre::Camera *);
+
+		void setCameraParameters(TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		void resetCameraParameters();
+	};
+
+
 }
 
 #endif

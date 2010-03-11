@@ -15,6 +15,8 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 	private:
 		RenderComponentPositional * target;
+
+		double height;
 	};
 }
 

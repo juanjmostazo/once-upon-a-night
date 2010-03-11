@@ -9,12 +9,12 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager);
+		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,GameWorldManagerPtr GameWorldManager);
 
 		/// Free resources
 		void cleanUp();
 
-		Ogre::Camera *  createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		RenderComponentCameraPtr createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 
 		void clear();
 
@@ -28,7 +28,6 @@ namespace OUAN
 		void resetActiveCameraPosition();
 
 		void update(long elapsedTime);
-
 
 		void processMouseInput(const OIS::MouseEvent &e);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
@@ -47,24 +46,27 @@ namespace OUAN
 		void setCameraTarget(RenderComponentPositional * target);
 
 		TCameraControllerType getControllerType();
+
 	private:
-		/// Scene manager
+		/// GameWorldManager
+		GameWorldManagerPtr mGameWorldManager;
+		/// GameWorldManager
 		Ogre::SceneManager* mSceneManager;
 		/// Viewport
 		Ogre::Viewport* mViewport;
 
-
-		TCameraParamsContainer mCameraInitialParams;
+		std::map<std::string,RenderComponentCameraPtr> camera;
+		typedef std::map<std::string,RenderComponentCameraPtr>::iterator TCameraIterator;
 
 		CameraController * activeCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
 		CameraControllerThirdPerson * mCameraControllerThirdPerson;
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 
+
+
 		//CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 		//CameraControllerTrajectory * mCameraControllerTrajectory;
-
-		void setCameraParameters(Ogre::Camera * pCamera,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		
 	};
 }
