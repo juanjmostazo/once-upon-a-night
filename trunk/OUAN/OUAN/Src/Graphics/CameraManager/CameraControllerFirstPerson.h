@@ -19,24 +19,15 @@ namespace OUAN
 
 	private:
 
-		//camera relative rotation to target's X axe
+		//camera relative rotation to X axe
 		double rotX;
-		//camera relative rotation to target's Y axe
+		//camera relative rotation to Y axe
 		double rotY;
 
 		//camera position speed
 		double speed;
-
-		//minimum and maximum rotation to target's X axe
-		double minRotX;
-		double maxRotX;
-
-		//minimum and maximum rotation to target's Y axe
-		double minRotY;
-		double maxRotY;
-
-		//camera height in relation to target
-		double height;
+		//camera rotation speed
+		double rotationSpeed;
 
 		Vector3 newTranslation;
 	};

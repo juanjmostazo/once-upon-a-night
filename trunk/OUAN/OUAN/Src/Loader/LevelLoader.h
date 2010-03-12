@@ -28,6 +28,8 @@ namespace OUAN
 		//Game Object Processors
 		void processGameObjectScene(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
+			//Special function to create a GameObjectCamera using Ogitor's viewport camera
+		void processGameObjectViewportCamera(XMLGameObject* gameObject);
 		void processGameObjectOny(XMLGameObject *gameObject);
 		void processGameObjectTripollo(XMLGameObject* gameObject);
 		void processGameObjectTerrain(XMLGameObject* gameObject);
@@ -54,6 +56,7 @@ namespace OUAN
 		TRenderComponentParticleSystemParameters processRenderComponentParticleSystem(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
+		TRenderComponentCameraParameters processRenderComponentCameraViewport(TiXmlElement *XMLNode);
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
