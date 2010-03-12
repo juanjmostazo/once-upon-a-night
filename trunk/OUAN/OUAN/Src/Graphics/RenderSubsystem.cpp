@@ -44,7 +44,7 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager,mApp->getGameWorldManager());
+	mCameraManager->init(mRoot,mSceneManager);
 }
 
 void RenderSubsystem::cleanUp()
@@ -668,7 +668,7 @@ void RenderSubsystem::resetScene()
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager,mApp->getGameWorldManager());
+	mCameraManager->init(mRoot,mSceneManager);
 }
 
 void RenderSubsystem::captureScene(const std::string& name)
