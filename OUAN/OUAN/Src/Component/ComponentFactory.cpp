@@ -117,6 +117,9 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 
 	//init Render Component
 	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->setSceneParameters(gameObject->getName(),tRenderComponentSceneParameters));
+	
+	//set Sky materials
+	pRenderComponentScene->setSkyMaterials(tRenderComponentSceneParameters);
 
 	return pRenderComponentScene;
 }

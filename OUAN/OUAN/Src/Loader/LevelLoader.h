@@ -46,9 +46,9 @@ namespace OUAN
 		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
 
 		//RenderComponent Processors
-		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLNode);
-		TRenderComponentSkyBoxParameters processRenderComponentSkyBox(TiXmlElement *XMLNode);
-		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLNode);
+		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);
+		TRenderComponentSkyBoxParameters processRenderComponentSkyBox(TiXmlElement *XMLCustomPropertiesNode);
+		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode);
 		TRenderComponentPositionalParameters processRenderComponentPositional(TiXmlElement *XMLNode);
 		TRenderComponentPositionalParameters processRenderComponentPositionalNoScale(TiXmlElement *XMLNode);
 		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode);

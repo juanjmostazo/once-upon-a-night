@@ -233,13 +233,14 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 	try
 	{
 		//Check errors
-		if(!gameObject->XMLNodeDreams) throw SCENE_NODE_NOT_FOUND;
+		if(!gameObject->getMainXMLNode()) throw SCENE_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw SCENE_NODE_NOT_FOUND;
 
 		//Get Scene name
 		tGameObjectSceneParameters.name = gameObject->name;
 
 		//Get SceneManager properties
-		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode());
+		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode(),gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -906,17 +907,17 @@ TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(T
 	
 }
 
-TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLNode)
+TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode)
 {
 	OUAN::TRenderComponentSceneParameters tRenderComponentSceneParameters;
 
-	tRenderComponentSceneParameters.ambient=getPropertyColourValue(XMLNode,"ambient");
+	tRenderComponentSceneParameters.ambient=getPropertyColourValue(XMLOgitorNode,"ambient");
 
 	//Process SkyBox
-	tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters=processRenderComponentSkyBox(XMLNode);
+	tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters=processRenderComponentSkyBox(XMLCustomPropertiesNode);
 
 	//Process SkyDome
-	tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters=processRenderComponentSkyDome(XMLNode);
+	tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters=processRenderComponentSkyDome(XMLCustomPropertiesNode);
 
 	//TODO: Process Fog
 	//processFog(XMLNode);
@@ -935,8 +936,8 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 	tRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
 	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
 	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
-	tRenderComponentCameraParameters.autoaspectratio = getPropertyBool(XMLNode,"autoaspectratio");
-	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+	tRenderComponentCameraParameters.autoaspectratio = false;//getPropertyBool(XMLNode,"autoaspectratio");
+	tRenderComponentCameraParameters.clipdistance = Vector2(0.1,10000);//getPropertyVector2(XMLNode,"clipdistance");
 	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
 
 	//set FOVy
@@ -977,7 +978,7 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewpo
 	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
 	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
 	tRenderComponentCameraParameters.autoaspectratio = false;
-	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+	tRenderComponentCameraParameters.clipdistance = Vector2(0.1,10000);//getPropertyVector2(XMLNode,"camera::clipdistance");
 	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
 
 	//set FOVy
@@ -1242,24 +1243,32 @@ void LevelLoader::processRenderComponentBillboards(std::vector<TRenderComponentB
 	}
 }
 
-TRenderComponentSkyBoxParameters LevelLoader::processRenderComponentSkyBox(TiXmlElement *XMLNode)
+TRenderComponentSkyBoxParameters LevelLoader::processRenderComponentSkyBox(TiXmlElement *XMLCustomPropertiesNode)
 {
 	TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
 	// Process SkyBox properties
-	TRenderComponentSkyBoxParameters.active = getPropertyBool(XMLNode, "skybox::active");
-	TRenderComponentSkyBoxParameters.material = getPropertyString(XMLNode, "skybox::material");
-	TRenderComponentSkyBoxParameters.distance = getPropertyReal(XMLNode, "skybox::distance");
+	TRenderComponentSkyBoxParameters.active = getPropertyBool(XMLCustomPropertiesNode, "RenderComponentSkyBox::active");
+	TRenderComponentSkyBoxParameters.distance = getPropertyReal(XMLCustomPropertiesNode, "RenderComponentSkyBox::distance");
+	// Process SkyBox materials
+	TRenderComponentSkyBoxParameters.materialDreams = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyBox::materialDreams");
+	TRenderComponentSkyBoxParameters.materialNightmares = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyBox::materialNightmares");
+
 
 	return TRenderComponentSkyBoxParameters;
 }
 
-TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiXmlElement *XMLNode)
+TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode)
 {
 	TRenderComponentSkyDomeParameters TRenderComponentSkyDomeParameters;
 	// Process SkyDome properties
-	TRenderComponentSkyDomeParameters.active = getPropertyBool(XMLNode, "skydome::active");
-	TRenderComponentSkyDomeParameters.material = getPropertyString(XMLNode, "skydome::material");
-	
+	TRenderComponentSkyDomeParameters.active = getPropertyBool(XMLCustomPropertiesNode, "RenderComponentSkyDome::active");
+	TRenderComponentSkyDomeParameters.curvature = getPropertyReal(XMLCustomPropertiesNode, "RenderComponentSkyDome::curvature");
+	TRenderComponentSkyDomeParameters.tiling = getPropertyReal(XMLCustomPropertiesNode, "RenderComponentSkyDome::tiling");
+	TRenderComponentSkyDomeParameters.distance = getPropertyReal(XMLCustomPropertiesNode, "RenderComponentSkyDome::distance");
+	// Process SkyDome materials
+	TRenderComponentSkyDomeParameters.materialDreams = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyDome::materialDreams");
+	TRenderComponentSkyDomeParameters.materialNightmares = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyDome::materialNightmares");
+
 	return TRenderComponentSkyDomeParameters;
 }
 

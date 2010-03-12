@@ -45,7 +45,7 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 	tRenderComponentCameraParameters.autotracktarget="None";
 	tRenderComponentCameraParameters.viewmode=0;
 	tRenderComponentCameraParameters.autoaspectratio=false;
-	tRenderComponentCameraParameters.clipdistance=Vector2(0.1,1000);
+	tRenderComponentCameraParameters.clipdistance=Vector2(0.1,10000);
 	tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
 
 	createCamera(OUAN::MAIN_CAMERA_NAME,tRenderComponentCameraParameters);
