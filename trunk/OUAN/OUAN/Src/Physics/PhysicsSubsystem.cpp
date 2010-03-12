@@ -56,7 +56,7 @@ void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 	mConfig=config;
 
 	//Initializing NxOgre::TimeController
-	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
+	//mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
 	//Initializing NxOgre::World
 	mNxOgreWorld = NxOgre::World::createWorld();
@@ -105,8 +105,6 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	//mNxOgreScene->createSceneGeometry(pDebugPlane, Matrix44_Identity);
 	//mApp->getRenderSubsystem()->createDebugFloor(mConfig);
 
-
-
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
@@ -134,6 +132,8 @@ void PhysicsSubsystem::clear()
 
 	//Visual Debugger should be destroyed?
 	//mApp->getRenderSubsystem()->
+
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL DESTROY] Done!");
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
