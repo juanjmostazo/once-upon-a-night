@@ -19,9 +19,8 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,GameWorldManagerPtr GameWorldManager)
+void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 {
-	mGameWorldManager=mGameWorldManager;
 	mSceneManager=pSceneManager;
 
 	clear();
