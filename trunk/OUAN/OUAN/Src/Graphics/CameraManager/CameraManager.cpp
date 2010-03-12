@@ -23,7 +23,8 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 {
 	mSceneManager=pSceneManager;
 
-	clear();
+	//Clear all cameras
+	camera.clear();
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->init(pSceneManager);
@@ -36,6 +37,19 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 
 	activeCameraController=mCameraControllerThirdPerson;
 
+	createMainCamera();
+
+	//Set Default camera to viewport
+	mViewport= pRoot->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
+	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
+
+	//Make it the active camera
+	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
+
+}
+
+void CameraManager::createMainCamera()
+{
 	//Create Main Camera (Default Camera)
 	TRenderComponentCameraParameters tRenderComponentCameraParameters;
 
@@ -49,14 +63,6 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 	tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
 
 	createCamera(OUAN::MAIN_CAMERA_NAME,tRenderComponentCameraParameters);
-
-	//Set Default camera to viewport
-	mViewport= pRoot->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
-	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
-
-	//Make it the active camera
-	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
-
 }
 
 Viewport* CameraManager::getViewport() const
@@ -67,7 +73,8 @@ Viewport* CameraManager::getViewport() const
 
 void CameraManager::cleanUp()
 {
-	clear();
+	//Clear all cameras
+	camera.clear();
 
 	delete mCameraControllerFirstPerson;
 }
@@ -110,7 +117,13 @@ RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderCom
 
 void CameraManager::clear()
 {
+	mSceneManager->destroyAllCameras(); 
+	//Clear all cameras
 	camera.clear();
+	//We guarantee that at least main camera exists
+	createMainCamera();
+	//Make it the active camera
+	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 }
 
 Camera * CameraManager::getActiveCamera()

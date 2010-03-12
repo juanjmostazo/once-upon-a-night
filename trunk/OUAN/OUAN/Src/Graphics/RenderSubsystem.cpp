@@ -585,7 +585,7 @@ void RenderSubsystem::updateDebugInfo()
 void RenderSubsystem::showVisualDebugger()
 {
 	if (mNxOgreVisualDebugger)
-		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);		
+		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);	
 }
 void RenderSubsystem::hideVisualDebugger()
 {

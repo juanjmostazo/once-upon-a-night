@@ -45,6 +45,7 @@ namespace OUAN
 		//Sets camera target
 		void setCameraTarget(RenderComponentPositional * target);
 
+		//Returns active camera controller type
 		TCameraControllerType getActiveCameraControllerType();
 
 	private:
@@ -54,6 +55,9 @@ namespace OUAN
 		Ogre::SceneManager* mSceneManager;
 		/// Viewport
 		Ogre::Viewport* mViewport;
+
+		//Creates main camera, which always exists
+		void createMainCamera();
 
 		std::map<std::string,RenderComponentCameraPtr> camera;
 		typedef std::map<std::string,RenderComponentCameraPtr>::iterator TCameraIterator;
