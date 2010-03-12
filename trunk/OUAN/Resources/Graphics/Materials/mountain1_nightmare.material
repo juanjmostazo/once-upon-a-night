@@ -1,13 +1,12 @@
 
-material scene_material1
+material Material3
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.7 1
-			specular 1 1 1 1 50
+			diffuse 0.145 0.188 0.227 1
 		}
 
 	}
