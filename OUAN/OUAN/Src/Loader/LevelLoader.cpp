@@ -937,7 +937,7 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
 	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
 	tRenderComponentCameraParameters.autoaspectratio = false;//getPropertyBool(XMLNode,"autoaspectratio");
-	tRenderComponentCameraParameters.clipdistance = Vector2(0.1,10000);//getPropertyVector2(XMLNode,"clipdistance");
+	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
 	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
 
 	//set FOVy
@@ -978,7 +978,7 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewpo
 	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
 	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
 	tRenderComponentCameraParameters.autoaspectratio = false;
-	tRenderComponentCameraParameters.clipdistance = Vector2(0.1,10000);//getPropertyVector2(XMLNode,"camera::clipdistance");
+	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
 	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
 
 	//set FOVy

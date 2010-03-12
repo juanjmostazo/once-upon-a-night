@@ -96,9 +96,9 @@
   </OBJECT>
 
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
-    <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
+    <PROPERTY id="camera::clipdistance" type="8" value="1 10000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.28151 0.099636 -0.899633 -0.318573"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.28151 0.0996359 -0.899631 -0.318572"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="81.0852 107.615 -115.579"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -135,7 +135,7 @@
   <OBJECT object_id="178655360" name="Camera#4" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 10000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="1.5"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -150,7 +150,7 @@
   <OBJECT object_id="314249088" name="Camera#5" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 10000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="2"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -165,7 +165,7 @@
   <OBJECT object_id="727652864" name="Camera#2" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 10000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -180,7 +180,7 @@
   <OBJECT object_id="385387744" name="Camera#3" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 10000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="0.5"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -195,7 +195,7 @@
   <OBJECT object_id="371013536" name="Camera#1" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 1000"></PROPERTY>
+    <PROPERTY id="clipdistance" type="8" value="0.1 10000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
