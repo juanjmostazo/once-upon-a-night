@@ -6,7 +6,7 @@
 #include "CameraControllerThirdPerson.h"
 #include "CameraControllerTrajectory.h"
 #include "../RenderComponent/RenderComponentCamera.h"
-#include "../TrajectoryManager/TrajectoryManager.h"
+#include "../../Trajectory/TrajectoryManager.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
 using namespace OUAN;

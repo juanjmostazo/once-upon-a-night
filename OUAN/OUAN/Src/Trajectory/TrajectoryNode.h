@@ -1,7 +1,7 @@
 #ifndef TrajectoryNodeH_H
 #define TrajectoryNodeH_H
 
-#include "../../OUAN.h"
+#include "../OUAN.h"
 
 namespace OUAN
 {

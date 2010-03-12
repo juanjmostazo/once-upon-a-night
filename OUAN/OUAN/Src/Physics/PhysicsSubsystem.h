@@ -19,7 +19,7 @@ namespace OUAN
 
 		//Constructor
 		PhysicsSubsystem();
-
+	
 		//Destructor
 		~PhysicsSubsystem();
 		
