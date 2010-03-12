@@ -26,16 +26,7 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 
 void GameObjectScene::changeWorld(int world)
 {
-	switch(world)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
-
+	mRenderComponentScene->changeWorld(world);
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectSceneParameters::TGameObjectSceneParameters() : TGameObjectParameters()

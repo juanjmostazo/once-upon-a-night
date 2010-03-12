@@ -266,13 +266,16 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	{
 		//Set SceneManager parameters
 		mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
-		//Create SkyBox
-		createSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
-			tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.material,
+		//Set SkyBox
+		mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
+			tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialNightmares,
 			tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
-		//Create SkyDome
-		createSkyDome(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active,
-			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.material);
+		//Set SkyDome
+		mSceneManager->setSkyDome(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active,
+			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.materialDreams,
+			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.curvature,
+			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.tiling,
+			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.distance);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -523,32 +526,6 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" BillboardSet!");
 	}
 	return billBoardSet;
-}
-
-void RenderSubsystem::createSkyBox(bool active, OUAN::String material, OUAN::Real distance)
-{
-	try
-	{
-		// Setup the sky box
-		mSceneManager->setSkyBox(active, material, distance);
-	}
-	catch(Ogre::Exception &/*e*/)
-	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating SkyBox!");
-	}
-}
-
-void RenderSubsystem::createSkyDome(bool active, OUAN::String material)
-{
-	try
-	{
-		// Setup the sky box
-		mSceneManager->setSkyDome(active,material);
-	}
-	catch(Ogre::Exception &/*e*/)
-	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating SkyDome!");
-	}
 }
 
 Ogre::String RenderSubsystem::getDebugMessage()

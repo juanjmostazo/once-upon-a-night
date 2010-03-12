@@ -5,19 +5,6 @@
 
 namespace OUAN
 {
-	class RenderComponentScene: public RenderComponent
-	{
-	private:
-		Ogre::SceneManager * mSceneManager;
-	public:
-
-		RenderComponentScene(const std::string& type="");
-		~RenderComponentScene();
-
-		Ogre::SceneManager * getSceneManager() const;
-		void setSceneManager(Ogre::SceneManager *);
-	};
-
 	class TRenderComponentSkyDomeParameters: public TRenderComponentParameters
 	{
 	public:
@@ -25,7 +12,11 @@ namespace OUAN
 		~TRenderComponentSkyDomeParameters();
 
 		bool active;
-		String material;
+		Real distance;
+		Real curvature;
+		Real tiling;
+		String materialDreams;
+		String materialNightmares;
 	};
 
 	class TRenderComponentSkyBoxParameters: public TRenderComponentParameters
@@ -35,8 +26,10 @@ namespace OUAN
 		~TRenderComponentSkyBoxParameters();
 
 		bool active;
-		String material;
 		Real distance;
+		String materialDreams;
+		String materialNightmares;
+
 	};
 
 	class TRenderComponentSceneParameters: public TRenderComponentParameters
@@ -49,6 +42,28 @@ namespace OUAN
 		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
 		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
 	};
+
+	class RenderComponentScene: public RenderComponent
+	{
+	private:
+		Ogre::SceneManager * mSceneManager;
+		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
+		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
+	public:
+
+		RenderComponentScene(const std::string& type="");
+		~RenderComponentScene();
+
+		Ogre::SceneManager * getSceneManager() const;
+		void setSceneManager(Ogre::SceneManager * sceneManager);
+
+		void setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters);
+
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
+	};
+
 }
 
 #endif

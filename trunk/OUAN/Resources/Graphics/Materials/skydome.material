@@ -1,4 +1,4 @@
-material Examples/CloudySky
+material Examples/CloudySky1
 {
 	technique
 	{
@@ -10,6 +10,24 @@ material Examples/CloudySky
 			texture_unit
 			{
 				texture clouds.jpg
+				scroll_anim 0.15 0
+			}
+		}
+	}
+}
+
+material Examples/CloudySky2
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				texture dirt01.jpg
 				scroll_anim 0.15 0
 			}
 		}

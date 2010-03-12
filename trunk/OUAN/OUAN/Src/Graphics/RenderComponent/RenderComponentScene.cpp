@@ -17,7 +17,58 @@ void RenderComponentScene::setSceneManager(Ogre::SceneManager* sceneManager)
 {
 	mSceneManager=sceneManager;
 }
+void RenderComponentScene::setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters)
+{	
+	this->tRenderComponentSkyDomeParameters=tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters;
+	this->tRenderComponentSkyBoxParameters=tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters;
+}
+void RenderComponentScene::changeWorld(int world)
+{
+	if(mSceneManager->isSkyBoxEnabled())
+	{
+		switch(world)
+		{
+		case DREAMS:
+		//Set SkyBox
+		mSceneManager->setSkyBox(tRenderComponentSkyBoxParameters.active,
+			tRenderComponentSkyBoxParameters.materialDreams,
+			tRenderComponentSkyBoxParameters.distance);
 
+			break;
+		case NIGHTMARES:
+		//Set SkyBox
+		mSceneManager->setSkyBox(tRenderComponentSkyBoxParameters.active,
+			tRenderComponentSkyBoxParameters.materialNightmares,
+			tRenderComponentSkyBoxParameters.distance);
+
+			break;
+		default:break;
+		}
+	}
+	else if(mSceneManager->isSkyDomeEnabled())
+	{
+		switch(world)
+		{
+		case DREAMS:
+		//Set SkyDome
+		mSceneManager->setSkyDome(tRenderComponentSkyDomeParameters.active,
+			tRenderComponentSkyDomeParameters.materialDreams,
+			tRenderComponentSkyDomeParameters.curvature,
+			tRenderComponentSkyDomeParameters.tiling,
+			tRenderComponentSkyDomeParameters.distance);
+			break;
+		case NIGHTMARES:
+		//Set SkyDome
+		mSceneManager->setSkyDome(tRenderComponentSkyDomeParameters.active,
+			tRenderComponentSkyDomeParameters.materialNightmares,
+			tRenderComponentSkyDomeParameters.curvature,
+			tRenderComponentSkyDomeParameters.tiling,
+			tRenderComponentSkyDomeParameters.distance);
+			break;
+		default:break;
+		}
+	}
+}
 
 TRenderComponentSceneParameters::TRenderComponentSceneParameters() : TRenderComponentParameters()
 {

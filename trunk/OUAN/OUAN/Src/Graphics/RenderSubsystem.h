@@ -153,9 +153,6 @@ namespace OUAN
 		void createSubEntity(Ogre::Entity *pEntity,int num,String material,bool visible);
 		void createMeshFile(String meshfile);
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
-		void createSkyBox(bool active, String material, Real distance);
-		void createSkyDome(bool active, String material);
-
 
 		/// Ogre root object
 		RootPtr mRoot;
