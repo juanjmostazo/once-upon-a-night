@@ -74,10 +74,13 @@ namespace OUAN
 		/// @return main window
 		Ogre::RenderWindow* getWindow() const;
 
-		/// Return read-only pointer to the camera
-		/// @return camera
+		/// Return read-only pointer to the camera manager
+		/// @return camera manager
 		CameraManager* getCameraManager() const;
 
+		/// Return read-only pointer to the trajectory manager
+		/// @return trajectory manager
+		TrajectoryManager* getTrajectoryManager() const;
 
 		/// Return read-only pointer to the scene manager
 		/// @return scene manager
@@ -170,6 +173,9 @@ namespace OUAN
 
 		/// Window name
 		std::string mWindowName;
+
+		/// Pointer to the trajectory manager
+		TrajectoryManager* mTrajectoryManager;
 
 		//Attributes used to handle the default
 		//camera movements

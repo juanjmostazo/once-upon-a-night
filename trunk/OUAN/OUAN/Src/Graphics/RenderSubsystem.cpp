@@ -6,6 +6,7 @@
 #include "../GUI/GUISubsystem.h"
 #include "CameraManager/CameraManager.h"
 #include "CameraManager/CameraControllerFirstPerson.h"
+#include "TrajectoryManager/TrajectoryManager.h"
 #include "RenderComponent/RenderComponent.h"
 #include "RenderComponent/RenderComponentBillboardSet.h"
 #include "RenderComponent/RenderComponentCamera.h"
@@ -44,7 +45,10 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager);
+	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
+
+	mTrajectoryManager = new TrajectoryManager();
+	mTrajectoryManager->init(mSceneManager);
 }
 
 void RenderSubsystem::cleanUp()
@@ -163,6 +167,9 @@ void RenderSubsystem::clear()
 
 	/// Clear Camera Manager
 	mCameraManager->clear();
+
+	/// Clear Trajectory Manager
+	mTrajectoryManager->clear();
 }
 
 RenderWindow* RenderSubsystem::getWindow() const
@@ -173,6 +180,10 @@ RenderWindow* RenderSubsystem::getWindow() const
 CameraManager* RenderSubsystem::getCameraManager() const
 {
 	return mCameraManager;
+}
+TrajectoryManager* RenderSubsystem::getTrajectoryManager() const
+{
+	return mTrajectoryManager;
 }
 
 //CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
@@ -645,7 +656,7 @@ void RenderSubsystem::resetScene()
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	mCameraManager = new CameraManager();
-	mCameraManager->init(mRoot,mSceneManager);
+	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 }
 
 void RenderSubsystem::captureScene(const std::string& name)
