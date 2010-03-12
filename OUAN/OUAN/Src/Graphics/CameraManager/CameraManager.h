@@ -9,7 +9,7 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager);
+		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManager * pTrajectoryManager);
 
 		/// Free resources
 		void cleanUp();
@@ -42,8 +42,11 @@ namespace OUAN
 		/// Activates next camera controller type
 		void changeCameraController();
 
-		//Sets camera target
+		//Sets camera target for applicable controllers
 		void setCameraTarget(RenderComponentPositional * target);
+
+		//Sets camera trajectory for trajectory controller
+		void setCameraTrajectory(std::string name);
 
 		//Returns active camera controller type
 		TCameraControllerType getActiveCameraControllerType();
@@ -55,6 +58,8 @@ namespace OUAN
 		Ogre::SceneManager* mSceneManager;
 		/// Viewport
 		Ogre::Viewport* mViewport;
+		/// Trajectory Manager
+		TrajectoryManager * mTrajectoryManager;
 
 		//Creates main camera, which always exists
 		void createMainCamera();
@@ -67,8 +72,7 @@ namespace OUAN
 		CameraControllerThirdPerson * mCameraControllerThirdPerson;
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 		CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
-
-		//CameraControllerTrajectory * mCameraControllerTrajectory;
+		CameraControllerTrajectory * mCameraControllerTrajectory;
 		
 	};
 }

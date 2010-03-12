@@ -460,6 +460,21 @@ namespace OUAN
 
 		const int GAMEOBJECT_ID_ZERO_PADDING=6;
 
+		///////////////////////////////////////////////////////////////////
+
+		//-------------------------------------
+		//	Trajectory module-related constants, type definitions and forwarded declarations
+		//-------------------------------------
+
+		class Trajectory;
+		class TTrajectoryParameters;
+
+		class TrajectoryNode;
+		class TTrajectoryNodeParameters;
+
+		class TrajectoryManager;
+		typedef boost::shared_ptr<TrajectoryManager> TrajectoryManagerPtr;
+
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------

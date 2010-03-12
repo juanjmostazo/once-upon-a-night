@@ -199,7 +199,14 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 	bool found=false;
 
 	String name = getAttrib(XMLNode, "name");
+	String type = getAttrib(XMLNode, "typename");
 	String gameObjectType;
+
+	if(type.compare("Marker Object")==0)
+	{
+		//Not a GameObject
+		return;
+	}
 
 	//Find out game object type
 	for(i=0;i<gameObjectTypes.size();i++)

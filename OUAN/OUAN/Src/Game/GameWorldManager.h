@@ -91,6 +91,8 @@ namespace OUAN
 		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
 		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
 
+		//trajectory Creator
+		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
 
 		/// Update world state
 		/// @param elapsedTime time since last update

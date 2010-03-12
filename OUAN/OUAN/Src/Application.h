@@ -115,6 +115,7 @@ namespace OUAN
 			GameWorldManagerPtr mGameWorldManager;
 			/// Pointer to the scene loader
 			LevelLoaderPtr mLevelLoader;
+	
 
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;

@@ -22,6 +22,8 @@
 #include "GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/TrajectoryManager/TrajectoryManager.h"
+#include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -1179,6 +1181,11 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 
 	//Add Object to GameWorldManager
 	addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);
+}
+
+void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
+{
+	mApp->getRenderSubsystem()->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);
 }
 
 bool GameWorldManager::isGameOver()const

@@ -4,7 +4,9 @@
 #include "CameraControllerFirstPerson.h"
 #include "CameraControllerFixedThirdPerson.h"
 #include "CameraControllerThirdPerson.h"
+#include "CameraControllerTrajectory.h"
 #include "../RenderComponent/RenderComponentCamera.h"
+#include "../TrajectoryManager/TrajectoryManager.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
 using namespace OUAN;
@@ -19,9 +21,10 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
+void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManager * pTrajectoryManager)
 {
 	mSceneManager=pSceneManager;
+	mTrajectoryManager=pTrajectoryManager;
 
 	//Clear all cameras
 	camera.clear();
@@ -34,6 +37,8 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 	mCameraControllerFixedThirdPerson->init(pSceneManager);
 	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
 	mCameraControllerFixedFirstPerson->init(pSceneManager);
+	mCameraControllerTrajectory= new CameraControllerTrajectory();
+	mCameraControllerTrajectory->init(pSceneManager);
 
 	activeCameraController=mCameraControllerThirdPerson;
 
@@ -47,7 +52,23 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager)
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 
 }
-
+void CameraManager::setCameraTrajectory(std::string name)
+{
+	Trajectory * pTrajectory;
+	try
+	{
+		pTrajectory=mTrajectoryManager->getTrajectory(name);
+		if(!pTrajectory) throw "Trajectory "+name+" does not exist";
+		else
+		{
+			mCameraControllerTrajectory->setTrajectory(pTrajectory);
+		}
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("[CameraManager] "+error);
+	}
+}
 void CameraManager::createMainCamera()
 {
 	//Create Main Camera (Default Camera)
@@ -172,6 +193,8 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			activeCameraController=mCameraControllerThirdPerson;
 			break;
 		case CAMERA_TRAJECTORY:
+			mCameraControllerTrajectory->setCamera(activeCameraController->getCamera());
+			activeCameraController=mCameraControllerTrajectory;
 			break;
 		default:
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera type does not exist!");
@@ -235,6 +258,9 @@ void CameraManager::changeCameraController()
 			setCameraType(CAMERA_FIRST_PERSON);
 			break;
 		case CAMERA_FIRST_PERSON:
+			setCameraType(CAMERA_TRAJECTORY);
+			break;
+		case CAMERA_TRAJECTORY:
 			setCameraType(CAMERA_THIRD_PERSON);
 			break;
 	}
