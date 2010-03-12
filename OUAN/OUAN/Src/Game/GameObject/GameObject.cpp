@@ -13,6 +13,11 @@ GameObject::~GameObject()
 
 }
 
+void GameObject::destroy()
+{
+	
+}
+
 void GameObject::update(double elapsedSeconds)
 {
 

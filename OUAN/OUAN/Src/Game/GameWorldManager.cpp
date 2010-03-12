@@ -227,29 +227,6 @@ TGameObjectPhysicsVolumeCapsuleContainer GameWorldManager::getGameObjectPhysicsV
 	return mGameObjectPhysicsVolumeCapsuleContainer;
 }
 
-void GameWorldManager::loadLevel (const std::string& levelFileName)
-{
-	//Unload current level
-	unloadLevel();
-
-	// Set the initial world before the level loading, and then
-	// just as game objects are created, they're initialized with the correct
-	// world information.
-	//Init physicssubsystem
-	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
-
-	//Parse Level File and Create GameObjects
-	mApp->getLevelLoader()->loadLevel(levelFileName);
-
-	//Set Active Camera
-	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
-
-	mGameOver=false;
-
-	level=levelFileName;
-}
-
 void GameWorldManager::clearContainers()
 {
 	mGameObjects.clear();
@@ -280,27 +257,46 @@ void GameWorldManager::clearContainers()
 	mGameObjectPhysicsVolumeContainer.clear();
 }
 
+void GameWorldManager::loadLevel (const std::string& levelFileName)
+{
+	//Unload current level
+	//unloadLevel(); This is done in other point
+
+	// Set the initial world before the level loading, and then
+	// just as game objects are created, they're initialized with the correct
+	// world information.
+	//Init physicssubsystem
+	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
+
+	//Parse Level File and Create GameObjects
+	mApp->getLevelLoader()->loadLevel(levelFileName);
+
+	//Set Active Camera
+	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
+	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
+
+	mGameOver=false;
+
+	level=levelFileName;
+}
+
 void GameWorldManager::unloadLevel()
 {
 	mNextIdNum=0;//reset id counter
 
-	clearContainers();
-
-	/***
-	* This is done in
-	* void GameRunningState::cleanUp(),
-	* no need to do it here
-	*/
-	
-	/***
-	* IMPORTANT: UNCOMMENTING NEXT LINES
-	* WILL CRASH mVisualDebuggerNode in RenderSubsystem
-	* Why???
-	*/
-
 	mApp->getPhysicsSubsystem()->clear();
 	mApp->getRenderSubsystem()->clear();
-	//TODO: Clear more subsystems
+	
+	
+	TGameObjectContainerIterator it;
+	TGameObjectContainer container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
+
+	for(it = container.begin(); it != container.end(); it++)
+	{
+		it->second.get()->~GameObject();
+	}
+
+	clearContainers();
 }
 
 /// init object

@@ -27,6 +27,10 @@ namespace OUAN
 		GameWorldManagerPtr getGameWorldManager();
 		void setGameWorldManager(GameWorldManagerPtr gameWorldManager);
 
+		/// Manages Game Object destruction
+		/// Each game object must take care about their specific components)
+		virtual void destroy();
+
 		/// Return entity name (i.e, its "type" identifier)
 		/// @return name of the entity
 		const std::string& getName() const;
