@@ -161,10 +161,6 @@ void GameRunningState::handleEvents()
 		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
 		if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
 		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_SANDBOX);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_SANDBOX)==0)
-		{
 			mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
 		}
 		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
