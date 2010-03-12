@@ -31,10 +31,7 @@ GameRunningState::~GameRunningState()
 void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
-	mApp->getPhysicsSubsystem()->initLevel(LEVEL_TEST);
-	// Set the initial world before the level loading, and then
-	// just as game objects are created, they're initialized with the correct
-	// world information.
+
 	mApp->getGameWorldManager()->setWorld(DREAMS);
 	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
 	
@@ -48,8 +45,8 @@ void GameRunningState::cleanUp()
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	mApp->getGameWorldManager()->unloadLevel();
 	mApp->getGUISubsystem()->cleanUp();
-	mApp->getPhysicsSubsystem()->resetLevel();
-	mApp->getRenderSubsystem()->resetScene();
+	mApp->getPhysicsSubsystem()->clear();
+	mApp->getRenderSubsystem()->clear();
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;
 }

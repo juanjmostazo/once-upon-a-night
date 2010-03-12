@@ -230,9 +230,19 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Unload current level
 	unloadLevel();
 
+	// Set the initial world before the level loading, and then
+	// just as game objects are created, they're initialized with the correct
+	// world information.
+	//Init physicssubsystem
+	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
+
+	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
+
+	//Set Active Camera
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
+
 	mGameOver=false;
 
 	level=levelFileName;
@@ -286,8 +296,8 @@ void GameWorldManager::unloadLevel()
 	* Why???
 	*/
 
-	mApp->getRenderSubsystem()->clear();
 	mApp->getPhysicsSubsystem()->clear();
+	mApp->getRenderSubsystem()->clear();
 	//TODO: Clear more subsystems
 }
 

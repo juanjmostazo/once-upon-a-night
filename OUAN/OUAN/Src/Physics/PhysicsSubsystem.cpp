@@ -78,6 +78,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	NxOgre::SceneDescription sceneDesc;
 	sceneDesc.mGravity = mGravity;
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
+
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
 	
 	//Initializing Ogre3DRenderSystem
@@ -104,11 +105,14 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 	//mNxOgreScene->createSceneGeometry(pDebugPlane, Matrix44_Identity);
 	//mApp->getRenderSubsystem()->createDebugFloor(mConfig);
 
+
+
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
 }
 
-void PhysicsSubsystem::resetLevel()
+void PhysicsSubsystem::clear()
 {
+	//We destroy the scene, is this needed?
 	// TODO: Iterate over 
 	// Application::getInstance()->getGameWorldManager()->getGameObjectPhysicsContainer() 
 	// and call destroy() method
@@ -127,11 +131,9 @@ void PhysicsSubsystem::resetLevel()
 	{
 		mNxOgreWorld->destroyScene(mNxOgreScene);
 	}
-}
 
-void PhysicsSubsystem::clear()
-{
-	//TODO
+	//Visual Debugger should be destroyed?
+	//mApp->getRenderSubsystem()->
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
