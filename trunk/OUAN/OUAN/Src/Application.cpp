@@ -50,8 +50,7 @@ void Application::cleanUp()
 }
 //Application initialization
 void Application::init()
-{
-	setlocale(LC_ALL,"English");
+{	
 	ApplicationPtr this_ = shared_from_this();
 
 	mExitRequested=false;

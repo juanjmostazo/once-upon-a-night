@@ -1,7 +1,7 @@
 #ifndef TrajectoryManagerH_H
 #define TrajectoryManagerH_H
 
-#include "../../OUAN.h"
+#include "../OUAN.h"
 
 namespace OUAN
 {
