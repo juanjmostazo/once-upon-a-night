@@ -2,6 +2,7 @@
 #include "../RenderComponent/RenderComponentPositional.h"
 
 using namespace OUAN;
+using namespace Ogre;
 
 CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 {
@@ -11,12 +12,7 @@ CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 	rotY=0;
 
 	speed=0.5;
-
-	maxRotX=90;
-	minRotX=-90;
-
-	height=5;
-
+	rotationSpeed=0.2;
 }
 
 CameraControllerFirstPerson::~CameraControllerFirstPerson()
@@ -30,28 +26,24 @@ TCameraControllerType CameraControllerFirstPerson::getControllerType()
 
 void CameraControllerFirstPerson::update(long elapsedTime)
 {
-	Quaternion newCameraOrientation;
+	//Set camera orientation
+	Quaternion yaw(Radian(Degree(rotY)),Vector3::UNIT_Y);
+	Quaternion pitch(Radian(Degree(rotX)),Vector3::UNIT_X);
+	mCamera->setOrientation(yaw * pitch);
 
 	//Set camera position
 	mCamera->setPosition(mCamera->getPosition()+newTranslation);
-
-	mCamera->yaw(Ogre::Angle(rotY));
-	//mCamera->pitch(Ogre::Angle(rotX));
-
-
 }
 
 void CameraControllerFirstPerson::setCamera(Ogre::Camera * pCamera)
 {
 	mCamera=pCamera;
-	rotX=mCamera->getOrientation().getPitch().valueAngleUnits();
-	rotY=mCamera->getOrientation().getYaw().valueAngleUnits();
+	rotX=mCamera->getOrientation().getPitch().valueDegrees();
+	rotY=mCamera->getOrientation().getYaw().valueDegrees();
 }
 
 void CameraControllerFirstPerson::processRelativeMotion(double xRel,double yRel,double zRel)
 {
-	rotY=0;
-	rotX=0;
 
 	//process Relative Motion
 	if(xRel==0 && yRel==0) 
@@ -60,21 +52,9 @@ void CameraControllerFirstPerson::processRelativeMotion(double xRel,double yRel,
 	}
 	else
 	{
-		rotY-=xRel*speed;
-		//rotX-=yRel*speed;
+		rotY-=xRel*rotationSpeed;
+		rotX-=yRel*rotationSpeed;
 	}
-
-	//check if rotation exceeds limits for X axis
-	if(rotX>maxRotX)
-	{
-		rotX=maxRotX;
-	}
-	else if(rotX<minRotX)
-	{
-		rotX=minRotX;
-	}
-
-	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }
 
@@ -99,8 +79,6 @@ void CameraControllerFirstPerson::processSimpleTranslation(int movementFlags)
 	newTranslation*=speed;
 
 	//Adapt to current Camera orientation
-	//newTranslation = Quaternion(Ogre::Angle(rotX), Vector3::UNIT_X) * newTranslation;
-	newTranslation = Quaternion(mCamera->getOrientation().getYaw(), Vector3::UNIT_Y) * newTranslation;
-
-
+	newTranslation = Quaternion(Ogre::Degree(rotX), Vector3::UNIT_X) * newTranslation;
+	newTranslation = Quaternion(Ogre::Degree(rotY), Vector3::UNIT_Y) * newTranslation;
 }

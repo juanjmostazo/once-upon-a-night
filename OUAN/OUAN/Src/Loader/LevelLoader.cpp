@@ -102,6 +102,8 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
 		{
 			processGameObjectViewport(gameObject);
+			//Process Viewport Camera
+			processGameObjectViewportCamera(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
@@ -270,6 +272,28 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 	}
 	//Create GameObject
 	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+}
+
+void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
+
+	try
+	{
+		//Get names
+		tGameObjectCameraParameters.name = "Camera#Viewport";
+
+		//Get RenderComponentCamera
+		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCameraViewport(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
 }
 
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
@@ -943,7 +967,47 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 
 	return tRenderComponentCameraParameters;
 }
+TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewport(TiXmlElement *XMLNode)
+{
 
+	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
+
+	//Get Camera properties
+	tRenderComponentCameraParameters.autotracktarget = "None";
+	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
+	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
+	tRenderComponentCameraParameters.autoaspectratio = false;
+	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
+
+	//set FOVy
+	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
+	Real FOVy = getPropertyReal(XMLNode,"camera::fov");
+	FOVy=FOVy*55.0f;
+	if(FOVy>180.0) FOVy=179.99;
+	else if(FOVy<=0) FOVy=0.01;
+	tRenderComponentCameraParameters.FOVy=FOVy;
+
+		//PolygonModeConversion
+	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
+	switch(polygonmode)
+		{
+			case OGITOR_PM_SOLID:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
+				break;
+			case OGITOR_PM_POINTS:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
+				break;
+			case OGITOR_PM_WIREFRAME:
+				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
+				break;
+			default:
+				Ogre::LogManager::getSingleton().logMessage("Camera has unrecognised PolygonMode!");
+				break;
+		}
+
+	return tRenderComponentCameraParameters;
+}
 TRenderComponentPositionalParameters LevelLoader::processRenderComponentPositional(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
