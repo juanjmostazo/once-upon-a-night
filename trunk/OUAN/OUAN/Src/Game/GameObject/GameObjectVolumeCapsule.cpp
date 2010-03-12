@@ -50,7 +50,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 {
 	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
-		mRenderComponentEntity->setVisible(false);
 		if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
 		{
 			mPhysicsComponentVolumeCapsule->create();
@@ -64,7 +63,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 		case DREAMS:
 			if(mLogicComponentWorldExistance->getExistsInDreams())
 			{
-				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
 				{
 					mPhysicsComponentVolumeCapsule->create();
@@ -72,7 +70,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 			}
 			else
 			{
-				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
 				{
 					mPhysicsComponentVolumeCapsule->destroy();
@@ -82,7 +79,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 		case NIGHTMARES:
 			if(mLogicComponentWorldExistance->getExistsInNightmares())
 			{
-				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
 				{
 					mPhysicsComponentVolumeCapsule->create();
@@ -90,7 +86,6 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 			}
 			else
 			{
-				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
 				{
 					mPhysicsComponentVolumeCapsule->destroy();
