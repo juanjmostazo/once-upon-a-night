@@ -287,7 +287,7 @@ void GameWorldManager::unloadLevel()
 	*/
 
 	mApp->getRenderSubsystem()->clear();
-	//mApp->getPhysicsSubsystem()->clear();
+	mApp->getPhysicsSubsystem()->clear();
 	//TODO: Clear more subsystems
 }
 
