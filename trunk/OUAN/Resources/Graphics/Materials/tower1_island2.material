@@ -1,13 +1,18 @@
 
-material wire_229154215
+material 07-Default
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.898 0.6039 0.8431 1
-			diffuse 0.898 0.6039 0.8431 1
-			specular 0.35 0.35 0.35 1 32
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 10 0
+
+			texture_unit
+			{
+				texture Base Ladrillo.jpg
+			}
 		}
 
 	}
