@@ -33,9 +33,6 @@ namespace OUAN
 		virtual void initLevel(std::string sceneName);
 
 		//Destroy physics level elements
-		virtual void resetLevel();
-
-		//clear level
 		virtual void clear();
 
 		// Update physics subsystem elements
