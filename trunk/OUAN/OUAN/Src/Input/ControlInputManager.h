@@ -171,6 +171,7 @@ namespace OUAN
 
 		std::string getMouseButtonName(int keyCode) const;
 		std::string getAsString(OIS::KeyCode kc) const;
+		std::string getPadButtonName(int button) const;
 		TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
 
 		

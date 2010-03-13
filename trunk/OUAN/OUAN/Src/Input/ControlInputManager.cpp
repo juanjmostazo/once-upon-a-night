@@ -468,37 +468,40 @@ void ControlInputManager::replacePair(std::string keyID,int& keyboardMapping, in
 // on copy-paste without having to declare a function (with the overhead it implies)
 // this is not a function!
 
-#define ADD_CONFIG_ENTRY(var,key) \
+#define ADD_CONFIG_ENTRY(var,key,psx) \
 	convertString.str(""); \
-	convertString<<(var<0?"-0x":"0x")<<std::hex<<std::setfill('0')<<std::setw(2)<<abs(var); \
+	if (psx) \
+		convertString<<var; \
+	else \
+		convertString<<(var<0?"-0x":"0x")<<std::hex<<std::setfill('0')<<std::setw(2)<<abs(var); \
 	c.setOption(key,convertString.str());
 
 void ControlInputManager::saveDefaultInput()
 {
 	Configuration c;
 	std::stringstream convertString;
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_ACTION);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_AUTOTARGET);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyBackwards,KEY_BACKWARDS);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyForward,KEY_FORWARD);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyJump,KEY_JUMP);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyLeft,KEY_LEFT);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyMenu,KEY_MENU);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyPause,KEY_PAUSE);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyReloadWeapon,KEY_RELOADWEAPON);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyRight,KEY_RIGHT);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateLeft,KEY_ROTATELEFT);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateRight,KEY_ROTATERIGHT);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyUseWeapon,KEY_USEWEAPON);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyWalk,KEY_WALK);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_ACTION,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_AUTOTARGET,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyBackwards,KEY_BACKWARDS,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyForward,KEY_FORWARD,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyJump,KEY_JUMP,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyLeft,KEY_LEFT,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyMenu,KEY_MENU,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyPause,KEY_PAUSE,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyReloadWeapon,KEY_RELOADWEAPON,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRight,KEY_RIGHT,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateLeft,KEY_ROTATELEFT,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateRight,KEY_ROTATERIGHT,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyUseWeapon,KEY_USEWEAPON,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyWalk,KEY_WALK,false);
 	// Non-user-configurable keys
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyQuickExit,KEY_QUICKEXIT);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPerformance,KEY_DEBUG_PERFORMANCE);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPhysics,KEY_DEBUG_PHYSICS);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCameraController,KEY_CHANGE_CAMERA_CONTROLLER);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCamera,KEY_CHANGE_CAMERA);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeWorld,KEY_CHANGE_WORLD);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyQuickExit,KEY_QUICKEXIT,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPerformance,KEY_DEBUG_PERFORMANCE,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPhysics,KEY_DEBUG_PHYSICS,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCameraController,KEY_CHANGE_CAMERA_CONTROLLER,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCamera,KEY_CHANGE_CAMERA,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeWorld,KEY_CHANGE_WORLD,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL,false);
 	c.saveToFile(DEFAULTINPUT_CFG);
 }
 
@@ -506,21 +509,52 @@ void ControlInputManager::savePsxInput()
 {
 	Configuration c;
 	std::stringstream convertString;
-	ADD_CONFIG_ENTRY(defaultPadId,DEFAULT_PAD_ID); //THE SEMICOLON HERE ADDS AN EMPTY INSTRUCTION! (Hopefully, it's removed by the compiler)
-	ADD_CONFIG_ENTRY(padUp,PAD_UP);
-	ADD_CONFIG_ENTRY(padDown,PAD_DOWN);
-	ADD_CONFIG_ENTRY(padLeft,PAD_LEFT);
-	ADD_CONFIG_ENTRY(padRight,PAD_RIGHT);
-	ADD_CONFIG_ENTRY(padTriangle,PAD_TRIANGLE);
-	ADD_CONFIG_ENTRY(padCircle,PAD_CIRCLE);
-	ADD_CONFIG_ENTRY(padSquare,PAD_SQUARE);
-	ADD_CONFIG_ENTRY(padX, PAD_X);
-	ADD_CONFIG_ENTRY(padL1, PAD_L1);
-	ADD_CONFIG_ENTRY(padL2, PAD_L2);
-	ADD_CONFIG_ENTRY(padR1, PAD_R1);
-	ADD_CONFIG_ENTRY(padR2, PAD_R2);
-	ADD_CONFIG_ENTRY(padSelect, PAD_SELECT);
-	ADD_CONFIG_ENTRY(padStart, PAD_START);
+	ADD_CONFIG_ENTRY(defaultPadId,DEFAULT_PAD_ID,true); //THE SEMICOLON HERE ADDS AN EMPTY INSTRUCTION! (Hopefully, it's removed by the compiler)
+	ADD_CONFIG_ENTRY(padUp,PAD_UP,true);
+	ADD_CONFIG_ENTRY(padDown,PAD_DOWN,true);
+	ADD_CONFIG_ENTRY(padLeft,PAD_LEFT,true);
+	ADD_CONFIG_ENTRY(padRight,PAD_RIGHT,true);
+	ADD_CONFIG_ENTRY(padTriangle,PAD_TRIANGLE,true);
+	ADD_CONFIG_ENTRY(padCircle,PAD_CIRCLE,true);
+	ADD_CONFIG_ENTRY(padSquare,PAD_SQUARE,true);
+	ADD_CONFIG_ENTRY(padX, PAD_X,true);
+	ADD_CONFIG_ENTRY(padL1, PAD_L1,true);
+	ADD_CONFIG_ENTRY(padL2, PAD_L2,true);
+	ADD_CONFIG_ENTRY(padR1, PAD_R1,true);
+	ADD_CONFIG_ENTRY(padR2, PAD_R2,true);
+	ADD_CONFIG_ENTRY(padSelect, PAD_SELECT,true);
+	ADD_CONFIG_ENTRY(padStart, PAD_START,true);
 	c.saveToFile(PSXPAD_CFG);
 }
 #undef ADD_CONFIG_ENTRY 
+
+#define TEST_PAD_BUTTON(var,key) \
+	if (var==button) \
+	{\
+		mInputTextStrings->getOption(key,padButtonName); \
+		return padButtonName; \
+	}
+std::string ControlInputManager::getPadButtonName(int button) const
+{
+	std::string padButtonName="";
+	TEST_PAD_BUTTON(padUp,PAD_BUTTON_NAME_UP);
+	TEST_PAD_BUTTON(padDown,PAD_BUTTON_NAME_DOWN);
+	TEST_PAD_BUTTON(padLeft,PAD_BUTTON_NAME_LEFT);
+	TEST_PAD_BUTTON(padRight,PAD_BUTTON_NAME_RIGHT);
+
+	TEST_PAD_BUTTON(padSquare,PAD_BUTTON_NAME_SQUARE);
+	TEST_PAD_BUTTON(padCircle,PAD_BUTTON_NAME_CIRCLE);
+	TEST_PAD_BUTTON(padTriangle,PAD_BUTTON_NAME_TRIANGLE);
+	TEST_PAD_BUTTON(padX,PAD_BUTTON_NAME_X);
+
+	TEST_PAD_BUTTON(padL1,PAD_BUTTON_NAME_L1);
+	TEST_PAD_BUTTON(padL2,PAD_BUTTON_NAME_L2);
+	TEST_PAD_BUTTON(padR1,PAD_BUTTON_NAME_R1);
+	TEST_PAD_BUTTON(padR2,PAD_BUTTON_NAME_R2);
+
+	TEST_PAD_BUTTON(padStart,PAD_BUTTON_NAME_START);
+	TEST_PAD_BUTTON(padSelect,PAD_BUTTON_NAME_SELECT);
+	
+	return padButtonName;
+}
+#undef TEST_PAD_BUTTON
