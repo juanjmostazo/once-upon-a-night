@@ -371,9 +371,9 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 
 		//TODO: EXTRACT PHYSICS PARAMETERS FROM FILE
 		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.mass=0;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=2;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=6;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=2;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=5;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=10;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=5;
 	}
 	catch( std::string error )
 	{
