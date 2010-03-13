@@ -1,12 +1,16 @@
 
-material Material3
+material mountain1_texture_n
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			diffuse 0.145 0.188 0.227 1
+
+			texture_unit
+			{
+				texture texture_mountain1_nightmare.dds
+			}
 		}
 
 	}

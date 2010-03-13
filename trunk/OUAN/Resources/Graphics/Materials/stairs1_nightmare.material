@@ -1,13 +1,16 @@
 
-material Scene_Material
+material estairs_texture_n5
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			diffuse 0.239 0.22 0.212 1
-			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture stairs_texture_n.dds
+			}
 		}
 
 	}
