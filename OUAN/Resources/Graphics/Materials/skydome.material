@@ -9,7 +9,7 @@ material Examples/CloudySky1
 
 			texture_unit
 			{
-				texture clouds.jpg
+				texture sky_dreams.dds
 				scroll_anim 0.15 0
 			}
 		}
@@ -27,7 +27,7 @@ material Examples/CloudySky2
 
 			texture_unit
 			{
-				texture dirt01.jpg
+				texture sky_nightmare.dds
 				scroll_anim 0.15 0
 			}
 		}
