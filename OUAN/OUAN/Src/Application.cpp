@@ -116,6 +116,7 @@ void Application::go()
 		continueRunning &= ! mExitRequested;
 	}
 }
+
 //------------------------
 // Input event handling
 //------------------------

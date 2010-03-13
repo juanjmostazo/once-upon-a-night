@@ -103,7 +103,7 @@ void RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 {
 	//[TODO - Get rid of config dialog]
 	if(!mRoot->showConfigDialog()){
-		//TODO: PRINT ERROR
+		mApp->mExitRequested=true;
 	}
 }
 

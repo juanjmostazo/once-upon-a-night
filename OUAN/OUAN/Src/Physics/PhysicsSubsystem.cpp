@@ -48,68 +48,73 @@ PhysicsSubsystem::~PhysicsSubsystem()
 
 void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
-	Ogre::LogManager::getSingleton().logMessage("Initializing physics subsystem");
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL INIT STARTED]");
 
 	loadConfig();
 
 	mApp=app;
 	mConfig=config;
 
-	//Initializing NxOgre::TimeController
-	//mNxOgreTimeController = NxOgre::TimeController::getSingleton();
-
-	//Initializing NxOgre::World
-	mNxOgreWorld = NxOgre::World::createWorld();
-
-	//Loading NXS resources
-	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
-
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS INIT LOAD] Done!");
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL INIT FINISHED]");
 }
 
 void PhysicsSubsystem::cleanUp()
 {
-	//TODO
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP STARTED]");
+
+	clear();
+
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP FINISHED]");
 }
 
 void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
-	//Initializing NxOgre::Scene
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL INIT STARTED]");
+
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating NxOgre::World");
+	mNxOgreWorld = NxOgre::World::createWorld();
+
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Loading nxs resources");
+	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
+
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Setting up scene description");
 	NxOgre::SceneDescription sceneDesc;
 	sceneDesc.mGravity = mGravity;
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating scene");
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
 	
-	//Initializing Ogre3DRenderSystem
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating render system");
 	mNxOgreRenderSystem = new OGRE3DRenderSystem(mNxOgreScene);
 
-	//Initializing NxOgre::ControllerManager
-	mNxOgreControllerManager = new NxOgre::ControllerManager();
-
-	//Initializing NxOgre::TimeController
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating time controller");
 	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
-	//Initializing scene stuff
-	//mNxOgreScene->createSceneGeometry(new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0)), Matrix44_Identity);
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating controller manager");
+	mNxOgreControllerManager = new NxOgre::ControllerManager();
+
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Setting up scene");
 	mNxOgreScene->getMaterial(0)->setStaticFriction(mStaticFriction);
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(mDynamicFriction);
 	mNxOgreScene->getMaterial(0)->setRestitution(mRestitution);
 
-	//Initializing visual debugger
+	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating visual debugger");
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 	
-	//Initializing debug floor
+	//Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating debug floor");
 	//NxOgre::PlaneGeometry* pDebugPlane = new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0));
 	//pDebugPlane->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 	//mNxOgreScene->createSceneGeometry(pDebugPlane, Matrix44_Identity);
 	//mApp->getRenderSubsystem()->createDebugFloor(mConfig);
 
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL LOAD] Done!");
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL INIT FINISHED]");
 }
 
 void PhysicsSubsystem::clear()
 {
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL CLEAR STARTED]");
+
 	//We destroy the scene, is this needed?
 	// TODO: Iterate over 
 	// Application::getInstance()->getGameWorldManager()->getGameObjectPhysicsContainer() 
@@ -117,23 +122,36 @@ void PhysicsSubsystem::clear()
 
 	if (mNxOgreControllerManager)
 	{
+		Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying controller manager");
 		delete mNxOgreControllerManager;
+		mNxOgreControllerManager=0;
 	}
 
 	if (mNxOgreRenderSystem)
 	{
+		Ogre::LogManager::getSingleton().logMessage("PHYSICS: render system");
 		delete mNxOgreRenderSystem;
+		mNxOgreRenderSystem=0;
 	}
 	
-	if (mNxOgreScene != NULL)
-	{
-		mNxOgreWorld->destroyScene(mNxOgreScene);
-	}
-
 	//Visual Debugger should be destroyed?
 	//mApp->getRenderSubsystem()->
 
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL DESTROY] Done!");
+	if (mNxOgreWorld)
+	{
+		if (mNxOgreScene)
+		{
+			Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying scene");
+			mNxOgreWorld->destroyScene(mNxOgreScene);
+			mNxOgreScene=0;
+		}
+
+		Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying world");
+		mNxOgreWorld->destroyWorld();
+		mNxOgreWorld=0;
+	}
+
+	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL CLEAR FINISHED]");
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
@@ -311,7 +329,7 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	//Too many log entries, maybe bacause of the TriangleMesh Terrain
-	Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
+	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
 	return NxOgre::Enums::ControllerAction_None;
 }
 

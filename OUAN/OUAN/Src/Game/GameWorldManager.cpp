@@ -259,8 +259,10 @@ void GameWorldManager::clearContainers()
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
 {
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD STARTED]");
+
 	//Unload current level
-	//unloadLevel(); This is done in other point
+	unloadLevel();
 
 	// Set the initial world before the level loading, and then
 	// just as game objects are created, they're initialized with the correct
@@ -278,15 +280,17 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mGameOver=false;
 
 	level=levelFileName;
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
 
 void GameWorldManager::unloadLevel()
 {
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
+
 	mNextIdNum=0;//reset id counter
 
 	mApp->getPhysicsSubsystem()->clear();
 	mApp->getRenderSubsystem()->clear();
-	
 	
 	TGameObjectContainerIterator it;
 	TGameObjectContainer container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
@@ -297,11 +301,13 @@ void GameWorldManager::unloadLevel()
 	}
 
 	clearContainers();
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD FINISHED]");
 }
 
 /// init object
 void GameWorldManager::init(ApplicationPtr app)
 {
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT STARTED]");
 	world=DREAMS;
 	mNextIdNum=0;
 	mGameOver=false;
@@ -314,16 +320,21 @@ void GameWorldManager::init(ApplicationPtr app)
 	mEventProcessor->init(mThis);
 
 	//landscape.reset() | landscape->initBlank() | ...
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
 }
 
 void GameWorldManager::cleanUp()
 {
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP STARTED]");
+
 	// Careful with how game objects
 	// (well, their components)
 	// will free their resources!!
 	mEventManager->clear();
 	clearContainers();
 	mEventProcessor->cleanUp();
+
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP FINISHED]");
 }
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
