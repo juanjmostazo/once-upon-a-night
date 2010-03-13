@@ -25,10 +25,14 @@ GameOptionsState::~GameOptionsState()
 /// init main menu's resources
 void GameOptionsState::init(ApplicationPtr app)
 {
+	mButtonTextStrings.reset(new Configuration());
+	mButtonTextStrings->loadFromFile(MENUSTRINGS_CFG);
+
 	using namespace CEGUI;
 	mApp=app;		
 	mApp->getGUISubsystem()->createGUI("OUAN_OptionsMenu.layout");
 	bindEvents();
+	
 	//TODO for next revision: Refactor GUI initialization to its own OptionsMenuGUI Class
 	TabControl* ctrl= (TabControl*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/TabCtrl");
 	ctrl->addTab(WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/ControlsTab"));
@@ -47,7 +51,6 @@ void GameOptionsState::init(ApplicationPtr app)
 	slider->setMaxValue(100);
 	slider->setCurrentValue(80);
 	slider->setClickStep(10.0f);
-
 	
 	Combobox* combo=(Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Controls/DeviceSelect");
 	ListboxTextItem* lti = new ListboxTextItem("Mouse 'n' Keyboard",0);
@@ -73,6 +76,7 @@ void GameOptionsState::cleanUp()
 {
 	//mApp->getGUISubsystem()->unbindAllEvents();
 	mApp->getGUISubsystem()->destroyGUI();
+	mButtonTextStrings.reset();
 }
 
 /// pause state
@@ -127,17 +131,21 @@ bool GameOptionsState::keyPressed( const OIS::KeyEvent& e )
 	if (mExpectingPress && mCurrentlyEditedDevice== DEVICE_KEYB_MOUSE && !mCurrentlyEditedMapping.empty())
 	{
 		OIS::KeyCode kc=e.key;
-		std::ostringstream stream;
-		//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
-		CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
-		stream.str("");
-		stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mApp->getAsString(kc);
-		radio->setText((CEGUI::utf8*)stream.str().c_str());		
-		mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)e.key;
-		
-		mCurrentlyEditedMapping="";
-		mExpectingPress=false;
-		radio->setSelected(false);
+		if (!mappingAlreadyFound(kc))
+		{
+			std::ostringstream stream;
+			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
+			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
+			stream.str("");
+			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mApp->getAsString(kc);
+			radio->setText((CEGUI::utf8*)stream.str().c_str());		
+			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)e.key;
+
+			mCurrentlyEditedMapping="";
+			mExpectingPress=false;
+			radio->setSelected(false);
+		}
+
 	}	
 	return true;
 }
@@ -229,7 +237,7 @@ bool GameOptionsState::onApply (const CEGUI::EventArgs& args)
 {
 	if (mApp)
 	{
-		//mApp->replaceConfig(mNewConfig,true);
+		mApp->replaceConfig(mNewConfig,true);
 		mCurrentConfig=mNewConfig;
 		return true;
 	}
@@ -238,6 +246,13 @@ bool GameOptionsState::onApply (const CEGUI::EventArgs& args)
 bool GameOptionsState::onCancel (const CEGUI::EventArgs& args)
 {
 	mNewConfig=mCurrentConfig;
+	mExpectingPress=false;
+	mCurrentlyEditedMapping="";
+	mCurrentlyEditedDevice=DEVICE_KEYB_MOUSE;
+	initTextButtons();
+	CEGUI::Combobox* combo=(CEGUI::Combobox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Controls/DeviceSelect");
+	combo->clearAllSelections();
+	combo->getListboxItemFromIndex(0)->setSelected(true);
 	return true;
 }
 bool GameOptionsState::onDeviceSelectionChanged(const CEGUI::EventArgs& args)
@@ -259,31 +274,34 @@ void GameOptionsState::initButton(const std::string& buttonName, const std::stri
 	std::ostringstream stream;
 	stream.str("");
 	CEGUI::RadioButton* radio = (CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(buttonName);
-	mButtonData[buttonName].buttonText=buttonText;
+	mButtonTextStrings->getOption(buttonText,mButtonData[buttonName].buttonText);
 	mButtonData[buttonName].keyMapping=mappingName;
 	stream.str("");
 	std::string keyName=(mCurrentConfig[mappingName].first<0)
 		?mApp->getMouseButtonName(mCurrentConfig[mappingName].first)
 		:mApp->getAsString(static_cast<OIS::KeyCode>(mCurrentConfig[mappingName].first));
-	stream<<mButtonData[buttonName].buttonText<<keyName;
+	stream<<mButtonData[buttonName].buttonText<<' '<<keyName;
 	radio->setText((CEGUI::utf8*)stream.str().c_str());		
 }
 bool GameOptionsState::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	if (mExpectingPress && mCurrentlyEditedDevice== DEVICE_KEYB_MOUSE && !mCurrentlyEditedMapping.empty())
 	{
-		std::ostringstream stream;
-		//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
-		CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
-		stream.str("");
 		TInputCfgMouseButtonMapper buttonPressed =mApp->convertMouseButtonId(id);
-		stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mApp->getMouseButtonName(buttonPressed);
-		radio->setText((CEGUI::utf8*)stream.str().c_str());		
-		mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)buttonPressed;
+		if (!mappingAlreadyFound(buttonPressed))
+		{
+			std::ostringstream stream;
+			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
+			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
+			stream.str("");
+			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mApp->getMouseButtonName(buttonPressed);
+			radio->setText((CEGUI::utf8*)stream.str().c_str());		
+			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)buttonPressed;
 
-		mCurrentlyEditedMapping="";
-		mExpectingPress=false;
-		radio->setSelected(false);
+			mCurrentlyEditedMapping="";
+			mExpectingPress=false;
+			radio->setSelected(false);
+		}
 	}	
 	return true;
 }
@@ -306,4 +324,18 @@ bool GameOptionsState::onRadioButtonDown(const CEGUI::EventArgs& args)
 		}
 	}
 	return true;
+}
+bool GameOptionsState::mappingAlreadyFound(int code)
+{
+	TControlInputMapping::iterator it=mNewConfig.begin();
+	bool found=false;
+	while (it!=mNewConfig.end() && !found)
+	{
+		if (mCurrentlyEditedDevice==DEVICE_KEYB_MOUSE)
+			found=(it->second.first==code);
+		else if (mCurrentlyEditedDevice==DEVICE_PAD_PSX)
+			found=(it->second.second==code);
+		if (!found) ++it;
+	}
+	return found;
 }

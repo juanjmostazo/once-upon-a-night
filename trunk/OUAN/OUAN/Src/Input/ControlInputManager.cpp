@@ -20,10 +20,12 @@ void ControlInputManager::init( Ogre::RenderWindow* window, bool showDefaultMous
 {
 	FullInputManager::init(window,showDefaultMousePointer);
 	loadConfig();
+	loadStrings();
 }
 
 void ControlInputManager::finalise()
 {
+	mInputTextStrings.reset();
 	FullInputManager::finalise();
 }
 
@@ -41,39 +43,39 @@ bool ControlInputManager::loadConfig()
 	// Same for a pad
 	if (config.loadFromFile(PSXPAD_CFG))
 	{
-		config.getOption("DEFAULT_PAD_ID", value); 
+		config.getOption(DEFAULT_PAD_ID, value); 
 		defaultPadId = atoi(value.c_str());
 
-		config.getOption("PAD_SELECT", value); 
+		config.getOption(PAD_SELECT, value); 
 		padSelect = atoi(value.c_str());
-		config.getOption("PAD_START", value); 
+		config.getOption(PAD_START, value); 
 		padStart = atoi(value.c_str());
 
-		config.getOption("PAD_UP", value); 
+		config.getOption(PAD_UP, value); 
 		padUp = atoi(value.c_str());
-		config.getOption("PAD_DOWN", value); 
+		config.getOption(PAD_DOWN, value); 
 		padDown = atoi(value.c_str());
-		config.getOption("PAD_LEFT", value); 
+		config.getOption(PAD_LEFT, value); 
 		padLeft = atoi(value.c_str());
-		config.getOption("PAD_RIGHT", value); 
+		config.getOption(PAD_RIGHT, value); 
 		padRight = atoi(value.c_str());
 
-		config.getOption("PAD_TRIANGLE", value); 
+		config.getOption(PAD_TRIANGLE, value); 
 		padTriangle = atoi(value.c_str());
-		config.getOption("PAD_X", value); 
+		config.getOption(PAD_X, value); 
 		padX = atoi(value.c_str());
-		config.getOption("PAD_SQUARE", value); 
+		config.getOption(PAD_SQUARE, value); 
 		padSquare = atoi(value.c_str());
-		config.getOption("PAD_CIRCLE", value); 
+		config.getOption(PAD_CIRCLE, value); 
 		padCircle = atoi(value.c_str());
 
-		config.getOption("PAD_L1", value); 
+		config.getOption(PAD_L1, value); 
 		padL1 = atoi(value.c_str());
-		config.getOption("PAD_L2", value); 
+		config.getOption(PAD_L2, value); 
 		padL2 = atoi(value.c_str());
-		config.getOption("PAD_R1", value); 
+		config.getOption(PAD_R1, value); 
 		padR1 = atoi(value.c_str());
-		config.getOption("PAD_R2", value); 
+		config.getOption(PAD_R2, value); 
 		padR2 = atoi(value.c_str());
 
 		success = true;
@@ -93,6 +95,11 @@ bool ControlInputManager::loadConfig()
  
 //	config.~Configuration();
 	return success;
+}
+bool ControlInputManager::loadStrings()
+{
+	mInputTextStrings.reset(new Configuration());
+	return mInputTextStrings->loadFromFile(INPUTSTRINGS_CFG);
 }
 
 void ControlInputManager::readOption(Configuration cfg,const std::string& key, int& value)
@@ -383,7 +390,12 @@ void ControlInputManager::addPair(std::string keyID,int keyboardMapping, int psx
 	mappings[keyID]=mapping;
 }
 // Macro to easily add case guards (quick, but a bit hacky)
-#define ADD_CASE(x) case INPUTCFG_MOUSEBUTTON_##x: return MOUSE_BUTTON_NAME_##x
+#define ADD_CASE(x) case INPUTCFG_MOUSEBUTTON_##x: \
+	{					\
+	std::string option=""; \
+	mInputTextStrings->getOption(MOUSE_BUTTON_NAME_##x,option); \
+	return option; \
+	}
 
 std::string ControlInputManager::getMouseButtonName(int keyCode) const
 {
@@ -400,3 +412,115 @@ std::string ControlInputManager::getMouseButtonName(int keyCode) const
 		default: return "";
 	}	
 }
+#undef ADD_CASE
+
+std::string ControlInputManager::getAsString(OIS::KeyCode kc) const
+{
+	std::string keyCode="";
+	std::string keyName="";
+	std::ostringstream valueWriter;
+	if (m_keyboard)
+	{	
+		valueWriter<<std::hex<<std::setfill('0')<<std::setw(2)<<static_cast<int>(kc);
+		std::string tmp=valueWriter.str();
+		std::transform(tmp.begin(), tmp.end(), tmp.begin(), toupper);
+		keyCode="0x"+tmp;
+		mInputTextStrings->getOption(keyCode,keyName);
+	}
+	return keyName;
+}
+void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool saveToFile)
+{
+	if (!newMapping.empty())
+	{
+		replacePair(KEY_FORWARD,mDefaultInputData.keyForward,padUp,newMapping);
+		replacePair(KEY_BACKWARDS,mDefaultInputData.keyBackwards,padDown,newMapping);
+		replacePair(KEY_LEFT,mDefaultInputData.keyLeft,padLeft,newMapping);
+		replacePair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,newMapping);
+
+		replacePair(KEY_JUMP,mDefaultInputData.keyJump,padX,newMapping);
+		replacePair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,newMapping);
+		replacePair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,newMapping);
+		replacePair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,newMapping);
+
+		replacePair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,newMapping);
+		replacePair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,newMapping);
+		replacePair(KEY_WALK,mDefaultInputData.keyWalk,padR1,newMapping);
+		replacePair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,newMapping);
+
+		replacePair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,newMapping);
+		replacePair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,newMapping);
+	}
+	if (saveToFile)
+	{
+		saveDefaultInput();
+		savePsxInput();
+	}
+}
+void ControlInputManager::replacePair(std::string keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings)
+{
+	keyboardMapping=mappings[keyID].first;
+	psxPadMapping=mappings[keyID].second;
+}
+
+// ...and yet another preprocessor macro for lazy coders: 
+// it just does text replacement on compile time, so I can save time
+// on copy-paste without having to declare a function (with the overhead it implies)
+// this is not a function!
+
+#define ADD_CONFIG_ENTRY(var,key) \
+	convertString.str(""); \
+	convertString<<(var<0?"-0x":"0x")<<std::hex<<std::setfill('0')<<std::setw(2)<<abs(var); \
+	c.setOption(key,convertString.str());
+
+void ControlInputManager::saveDefaultInput()
+{
+	Configuration c;
+	std::stringstream convertString;
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_ACTION);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_AUTOTARGET);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyBackwards,KEY_BACKWARDS);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyForward,KEY_FORWARD);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyJump,KEY_JUMP);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyLeft,KEY_LEFT);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyMenu,KEY_MENU);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyPause,KEY_PAUSE);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyReloadWeapon,KEY_RELOADWEAPON);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRight,KEY_RIGHT);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateLeft,KEY_ROTATELEFT);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateRight,KEY_ROTATERIGHT);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyUseWeapon,KEY_USEWEAPON);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyWalk,KEY_WALK);
+	// Non-user-configurable keys
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyQuickExit,KEY_QUICKEXIT);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPerformance,KEY_DEBUG_PERFORMANCE);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugPhysics,KEY_DEBUG_PHYSICS);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCameraController,KEY_CHANGE_CAMERA_CONTROLLER);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCamera,KEY_CHANGE_CAMERA);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeWorld,KEY_CHANGE_WORLD);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL);
+	c.saveToFile(DEFAULTINPUT_CFG);
+}
+
+void ControlInputManager::savePsxInput()
+{
+	Configuration c;
+	std::stringstream convertString;
+	ADD_CONFIG_ENTRY(defaultPadId,DEFAULT_PAD_ID); //THE SEMICOLON HERE ADDS AN EMPTY INSTRUCTION! (Hopefully, it's removed by the compiler)
+	ADD_CONFIG_ENTRY(padUp,PAD_UP);
+	ADD_CONFIG_ENTRY(padDown,PAD_DOWN);
+	ADD_CONFIG_ENTRY(padLeft,PAD_LEFT);
+	ADD_CONFIG_ENTRY(padRight,PAD_RIGHT);
+	ADD_CONFIG_ENTRY(padTriangle,PAD_TRIANGLE);
+	ADD_CONFIG_ENTRY(padCircle,PAD_CIRCLE);
+	ADD_CONFIG_ENTRY(padSquare,PAD_SQUARE);
+	ADD_CONFIG_ENTRY(padX, PAD_X);
+	ADD_CONFIG_ENTRY(padL1, PAD_L1);
+	ADD_CONFIG_ENTRY(padL2, PAD_L2);
+	ADD_CONFIG_ENTRY(padR1, PAD_R1);
+	ADD_CONFIG_ENTRY(padR2, PAD_R2);
+	ADD_CONFIG_ENTRY(padSelect, PAD_SELECT);
+	ADD_CONFIG_ENTRY(padStart, PAD_START);
+	c.saveToFile(PSXPAD_CFG);
+}
+#undef ADD_CONFIG_ENTRY 

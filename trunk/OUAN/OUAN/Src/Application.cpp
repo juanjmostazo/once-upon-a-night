@@ -210,3 +210,7 @@ ConfigurationPtr Application::getConfiguration() const
 {
 	return mConfiguration;
 }
+ConfigurationPtr Application::getTextStrings() const
+{
+	return mTextStrings;
+}

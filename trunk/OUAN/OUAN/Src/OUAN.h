@@ -68,12 +68,11 @@ namespace OUAN
 	//--------
 	//-- Input-related typedefs
 	//-----
-	typedef std::map<std::string,std::pair<int,int>> TControlInputMapping;
-	typedef enum{
-		DEVICE_KEYB_MOUSE=0,
-		DEVICE_PAD_PSX,
-	} TInputDevice;
-
+		typedef std::map<std::string,std::pair<int,int>> TControlInputMapping;
+		typedef enum{
+			DEVICE_KEYB_MOUSE=0,
+			DEVICE_PAD_PSX,
+		} TInputDevice;
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------

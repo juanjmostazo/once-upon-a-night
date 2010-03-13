@@ -9,7 +9,8 @@ namespace OUAN
 {
 	const std::string PSXPAD_CFG="../../Config/psxpad-cfg.xml";
 	const std::string DEFAULTINPUT_CFG = "../../Config/defaultinput-cfg.xml";
-
+	const std::string INPUTSTRINGS_CFG = "../../Config/input-strings_en.xml";
+	// Config FILE keys
 	const std::string KEY_MENU  = "Menu";
 	const std::string KEY_PAUSE = "Pause";
 	const std::string KEY_FORWARD = "Forward";
@@ -33,34 +34,51 @@ namespace OUAN
 	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
 	const std::string KEY_CHANGE_LEVEL = "ChangeLevel";
 
-	//TODO: Refactor these out (most likely, to a config file)
-	const std::string PAD_BUTTON_NAME_UP="Up";
-	const std::string PAD_BUTTON_NAME_DOWN="Down";
-	const std::string PAD_BUTTON_NAME_LEFT="Left";
-	const std::string PAD_BUTTON_NAME_RIGHT="Right";
+	//...for the PSX file
+	const std::string DEFAULT_PAD_ID="DEFAULT_PAD_ID"; 
+	const std::string PAD_SELECT="PAD_SELECT"; 
+	const std::string PAD_START="PAD_START";
+	const std::string PAD_UP="PAD_UP"; 
+	const std::string PAD_DOWN="PAD_DOWN"; 
+	const std::string PAD_LEFT="PAD_LEFT";
+	const std::string PAD_RIGHT="PAD_RIGHT";
+	const std::string PAD_TRIANGLE="PAD_TRIANGLE";
+	const std::string PAD_SQUARE="PAD_SQUARE";
+	const std::string PAD_CIRCLE="PAD_CIRCLE";
+	const std::string PAD_X="PAD_X";
+	const std::string PAD_L1="PAD_L1";
+	const std::string PAD_R1="PAD_R1";
+	const std::string PAD_L2="PAD_L2";
+	const std::string PAD_R2="PAD_R2";
 
-	const std::string PAD_BUTTON_NAME_SQUARE="Square";
-	const std::string PAD_BUTTON_NAME_CIRCLE="Circle";
-	const std::string PAD_BUTTON_NAME_TRIANGLE="Triangle";
-	const std::string PAD_BUTTON_NAME_X="X";
+	//Text file keys
+	const std::string PAD_BUTTON_NAME_UP="PAD_BUTTON_NAME_UP";
+	const std::string PAD_BUTTON_NAME_DOWN="PAD_BUTTON_NAME_DOWN";
+	const std::string PAD_BUTTON_NAME_LEFT="PAD_BUTTON_NAME_LEFT";
+	const std::string PAD_BUTTON_NAME_RIGHT="PAD_BUTTON_NAME_RIGHT";
 
-	const std::string PAD_BUTTON_NAME_L1="L1";
-	const std::string PAD_BUTTON_NAME_R1="R1";
-	const std::string PAD_BUTTON_NAME_L2="L2";
-	const std::string PAD_BUTTON_NAME_R2="R2";
+	const std::string PAD_BUTTON_NAME_SQUARE="PAD_BUTTON_NAME_SQUARE";
+	const std::string PAD_BUTTON_NAME_CIRCLE="PAD_BUTTON_NAME_CIRCLE";
+	const std::string PAD_BUTTON_NAME_TRIANGLE="PAD_BUTTON_NAME_TRIANGLE";
+	const std::string PAD_BUTTON_NAME_X="PAD_BUTTON_NAME_X";
 
-	const std::string PAD_BUTTON_NAME_START="Start";
-	const std::string PAD_BUTTON_NAME_SELECT="Select";
+	const std::string PAD_BUTTON_NAME_L1="PAD_BUTTON_NAME_L1";
+	const std::string PAD_BUTTON_NAME_R1="PAD_BUTTON_NAME_R1";
+	const std::string PAD_BUTTON_NAME_L2="PAD_BUTTON_NAME_L2";
+	const std::string PAD_BUTTON_NAME_R2="PAD_BUTTON_NAME_R2";
 
-	const std::string MOUSE_BUTTON_NAME_LEFT ="MouseLeft";
-	const std::string MOUSE_BUTTON_NAME_RIGHT ="MouseRight";
-	const std::string MOUSE_BUTTON_NAME_MIDDLE ="MouseMiddle";
+	const std::string PAD_BUTTON_NAME_START="PAD_BUTTON_NAME_START";
+	const std::string PAD_BUTTON_NAME_SELECT="PAD_BUTTON_NAME_SELECT";
 
-	const std::string MOUSE_BUTTON_NAME_MB3 ="Mouse03";
-	const std::string MOUSE_BUTTON_NAME_MB4 ="Mouse04";
-	const std::string MOUSE_BUTTON_NAME_MB5 ="Mouse05";
-	const std::string MOUSE_BUTTON_NAME_MB6 ="Mouse06";
-	const std::string MOUSE_BUTTON_NAME_MB7 ="Mouse07";
+	const std::string MOUSE_BUTTON_NAME_LEFT ="MOUSE_BUTTON_NAME_LEFT";
+	const std::string MOUSE_BUTTON_NAME_RIGHT ="MOUSE_BUTTON_NAME_RIGHT";
+	const std::string MOUSE_BUTTON_NAME_MIDDLE ="MOUSE_BUTTON_NAME_MIDDLE";
+
+	const std::string MOUSE_BUTTON_NAME_MB3 ="MOUSE_BUTTON_NAME_MB3";
+	const std::string MOUSE_BUTTON_NAME_MB4 ="MOUSE_BUTTON_NAME_MB4";
+	const std::string MOUSE_BUTTON_NAME_MB5 ="MOUSE_BUTTON_NAME_MB5";
+	const std::string MOUSE_BUTTON_NAME_MB6 ="MOUSE_BUTTON_NAME_MB6";
+	const std::string MOUSE_BUTTON_NAME_MB7 ="MOUSE_BUTTON_NAME_MB7";
 
 	/// Since some of OIS' key codes and mouse button ids
 	/// overlap, negative numbers will be used in the
@@ -93,8 +111,6 @@ namespace OUAN
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
 	} TDefaultInputData;
-
-	typedef std::map<int,std::string> TPadButtonNames;
 
 	class ControlInputManager : public FullInputManager
 	{
@@ -153,13 +169,20 @@ namespace OUAN
 		/// for a set of key ids
 		void getInputMappings (TControlInputMapping& mappings);
 
-		const TPadButtonNames& getPadButtonNames() const;
 		std::string getMouseButtonName(int keyCode) const;
-				TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
+		std::string getAsString(OIS::KeyCode kc) const;
+		TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
+
+		
+		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
+
+
 		
 	protected:
 		/// Parse configuration files for the input device button mappings
 		bool loadConfig();
+
+		bool loadStrings();
 
 		/// Read as an hexadecimal integer the value of the 'key' parameter 
 		/// on the specified configuration object
@@ -202,6 +225,8 @@ namespace OUAN
 		/// @param mappings			dictionary containing the input mappings for the given key identifier
 		void addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings);
 
+		void replacePair(std::string keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings);
+
 		/// Structure holding the values of the keycodes/mouse button ids for all possible in-game input actions 
 		TDefaultInputData mDefaultInputData;
 
@@ -211,7 +236,12 @@ namespace OUAN
 		int padTriangle, padX, padSquare, padCircle;
 		int padL1, padL2, padR1, padR2;
 
-		TPadButtonNames mPadButtonNames;
+		ConfigurationPtr mInputTextStrings;
+
+		void ControlInputManager::saveDefaultInput();
+		void ControlInputManager::savePsxInput();
+
+
 	};
 }
 #endif
