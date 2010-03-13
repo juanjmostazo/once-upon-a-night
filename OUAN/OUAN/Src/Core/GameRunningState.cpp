@@ -33,7 +33,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp=app;	
 
 	mApp->getGameWorldManager()->setWorld(DREAMS);
-	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
+	mApp->getGameWorldManager()->loadLevel(LEVEL_2);
 	
 	mApp->mKeyBuffer=-1;
 }
