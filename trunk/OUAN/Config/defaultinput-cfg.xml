@@ -23,5 +23,6 @@
         <Option key="Right">0x20</Option>
         <Option key="UseWeapon">-0x01</Option>
         <Option key="Walk">0x12</Option>
+		<Option key="ToggleConsole">0x3F</Option>
     </Options>
 </Configuration>

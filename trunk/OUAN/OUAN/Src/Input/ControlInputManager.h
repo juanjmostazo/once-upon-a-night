@@ -33,6 +33,7 @@ namespace OUAN
 	const std::string KEY_CHANGE_CAMERA_CONTROLLER = "ChangeCameraController";
 	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
 	const std::string KEY_CHANGE_LEVEL = "ChangeLevel";
+	const std::string KEY_TOGGLE_CONSOLE = "ToggleConsole";
 
 	//...for the PSX file
 	const std::string DEFAULT_PAD_ID="DEFAULT_PAD_ID"; 
@@ -110,6 +111,7 @@ namespace OUAN
 		int keyQuickExit, keyDebugPerformance, keyDebugPhysics;
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
+		int keyToggleConsole;
 	} TDefaultInputData;
 
 	class ControlInputManager : public FullInputManager
@@ -158,6 +160,9 @@ namespace OUAN
 		bool isPressedToggleChangeWorld();
 		/// Convenience method to change current level
 		bool isPressedToggleChangeLevel();
+		/// Detect if the 'toggle-console' key has been pressed
+		/// @return true if there has been a 'toggle-console' key press
+		bool isPressedToggleConsole();
 
 		void getMouseStateRelValues(
 			double*, double*, double*);			// Mouse x, y, z coordinate values

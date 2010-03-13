@@ -43,5 +43,7 @@
 		<Option key="DebugPhysics">0x57</Option>
 		<!-- F12 -->		
 		<Option key="QuickExit">0x58</Option>
+		<!-- F5 -->		
+		<Option key="ToggleConsole">0x3F</Option>
 	</Options>
 </Configuration>
