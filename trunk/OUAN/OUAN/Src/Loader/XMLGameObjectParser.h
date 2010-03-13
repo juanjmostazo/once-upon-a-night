@@ -17,6 +17,9 @@ namespace OUAN
 			void addXMLNodeCustomProperties();
 			void setNames();
 
+			//Trajectory Parsing
+			void parseTrajectory(TiXmlElement *XMLNode);
+
 			//Game Object names processors
 			bool isDreams(std::string worldName,std::string gameObjectType);
 			bool isNightmares(std::string worldName,std::string gameObjectType);
@@ -41,16 +44,6 @@ namespace OUAN
 			//Attribute parser
 			OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 
-			//Properties parsers
-			OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::Vector2 getPropertyVector2(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::Vector3 getPropertyVector3(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::Vector4 getPropertyVector4(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::Quaternion getPropertyQuaternion(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::ColourValue getPropertyColourValue(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			bool getPropertyBool(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			int getPropertyInt(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
-			OUAN::Real getPropertyReal(TiXmlElement *XMLNode, const OUAN::String &attrib_name);
 
 		public:
 			XMLGameObjectParser();
@@ -65,6 +58,9 @@ namespace OUAN
 			std::map<std::string,XMLGameObject> XMLGameObjectContainer;
 			typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
 
+			//Map containing all the parsed trajectories
+			//std::map<std::string,TTrajectoryParameters> XMLTrajectoryContainer;
+			//typedef std::map<std::string,TTrajectoryParameters>::iterator XMLTrajectoryContainerIterator;
 	};
 
 }
