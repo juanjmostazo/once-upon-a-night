@@ -193,6 +193,11 @@ void XMLGameObjectParser::parseGameObjects(TiXmlElement *XMLNode)
 	}
 }
 
+void XMLGameObjectParser::parseTrajectory(TiXmlElement *XMLNode)
+{
+	
+}
+
 void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 {
 	unsigned int i;
@@ -205,6 +210,13 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 	if(type.compare("Marker Object")==0)
 	{
 		//Not a GameObject
+
+		//String trajectoryName = getPropertyString(XMLNode,"trajectory::name",false);
+		//if(trajectoryName.compare("")!=0)
+		//{
+		//	//Parse Trajectory
+		//	parseTrajectory(XMLNode);
+		//}
 		return;
 	}
 
@@ -225,7 +237,7 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage( "[XMLGameObjectParser] Game Object "+name+" has unrecognised Game Object Type");
+		Ogre::LogManager::getSingleton().logMessage("[XMLGameObjectParser] Game Object "+name+" has unrecognised Game Object Type");
 	}
 
 }
@@ -323,3 +335,4 @@ String XMLGameObjectParser::getAttrib(TiXmlElement *XMLNode, const String &attri
 	else
 		return defaultValue;
 }
+

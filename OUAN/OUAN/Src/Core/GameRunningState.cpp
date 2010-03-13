@@ -156,22 +156,22 @@ void GameRunningState::handleEvents()
 	else if (mApp->isPressedToggleChangeLevel() && mApp->mKeyBuffer<0)
 	{
 		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
-		if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_1);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_2);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
-		}
+		//if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
+		//{
+		//	mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
+		//}
+		//else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
+		//{
+		//	mApp->getGameWorldManager()->loadLevel(LEVEL_1);
+		//}
+		//else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
+		//{
+		//	mApp->getGameWorldManager()->loadLevel(LEVEL_2);
+		//}
+		//else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
+		//{
+		//	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
+		//}
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 		
