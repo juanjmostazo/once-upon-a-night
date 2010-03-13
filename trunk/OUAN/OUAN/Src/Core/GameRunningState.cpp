@@ -181,12 +181,12 @@ void GameRunningState::handleEvents()
 
 	else if (mApp->isPressedRotateLeft() && mApp->mKeyBuffer<0)
 	{
-		spinRoulette(false);
+		spinRoulette(true);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedRotateRight() && mApp->mKeyBuffer<0)
 	{
-		spinRoulette(true);
+		spinRoulette(false);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 
