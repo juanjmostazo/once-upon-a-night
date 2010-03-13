@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <Configuration>
 	<Options>
+		<!-- Device selection combo items -->
+		<Option key="COMBO_ITEM_DEVICE_MOUSEKEYBOARD">Mouse 'n' Keyboard</Option>
+		<Option key="COMBO_ITEM_DEVICE_PSXPAD">Psx Pad</Option>
 		<!-- Control buttons' names -->
 		<Option key="BUTTON_TEXT_MENU">Menu: </Option>
 		<Option key="BUTTON_TEXT_PAUSE">Pause: </Option>

@@ -2,7 +2,7 @@
 <Configuration>
 	<Options>
 		<Option key="DEFAULT_PAD_ID">0</Option>
-		<Option key="PAD_SELECT_">9</Option>
+		<Option key="PAD_SELECT">9</Option>
 		<Option key="PAD_START">8</Option>
 		<Option key="PAD_UP">12</Option>
 		<Option key="PAD_DOWN">14</Option>

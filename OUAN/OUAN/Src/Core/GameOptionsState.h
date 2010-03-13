@@ -24,6 +24,9 @@ namespace OUAN
 
 	const std::string BUTTON_TEXT_PAUSE="BUTTON_TEXT_PAUSE";
 	const std::string BUTTON_TEXT_INGAME_MENU="BUTTON_TEXT_MENU";
+
+	const std::string COMBO_ITEM_DEVICE_MOUSEKEYBOARD ="COMBO_ITEM_DEVICE_MOUSEKEYBOARD";
+	const std::string COMBO_ITEM_DEVICE_PSXPAD ="COMBO_ITEM_DEVICE_PSXPAD";
 	//---
 	const std::string BUTTON_NAME_FORWARD="OUANOptions/Controls/ForwardBtn";
 	const std::string BUTTON_NAME_BACKWARDS="OUANOptions/Controls/BackwardsBtn";

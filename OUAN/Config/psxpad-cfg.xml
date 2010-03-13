@@ -2,20 +2,20 @@
 <Configuration>
     <!--Config options-->
     <Options>
-        <Option key="DEFAULT_PAD_ID">0x00</Option>
-        <Option key="PAD_CIRCLE">0x00</Option>
-        <Option key="PAD_DOWN">0x00</Option>
-        <Option key="PAD_L1">0x00</Option>
-        <Option key="PAD_L2">0x00</Option>
-        <Option key="PAD_LEFT">0x00</Option>
-        <Option key="PAD_R1">0x00</Option>
-        <Option key="PAD_R2">0x00</Option>
-        <Option key="PAD_RIGHT">0x00</Option>
-        <Option key="PAD_SELECT">0x00</Option>
-        <Option key="PAD_SQUARE">0x00</Option>
-        <Option key="PAD_START">0x00</Option>
-        <Option key="PAD_TRIANGLE">0x00</Option>
-        <Option key="PAD_UP">0x00</Option>
-        <Option key="PAD_X">0x00</Option>
+        <Option key="DEFAULT_PAD_ID">0</Option>
+        <Option key="PAD_CIRCLE">1</Option>
+        <Option key="PAD_DOWN">14</Option>
+        <Option key="PAD_L1">6</Option>
+        <Option key="PAD_L2">4</Option>
+        <Option key="PAD_LEFT">15</Option>
+        <Option key="PAD_R1">7</Option>
+        <Option key="PAD_R2">5</Option>
+        <Option key="PAD_RIGHT">13</Option>
+        <Option key="PAD_SELECT">9</Option>
+        <Option key="PAD_SQUARE">3</Option>
+        <Option key="PAD_START">8</Option>
+        <Option key="PAD_TRIANGLE">0</Option>
+        <Option key="PAD_UP">12</Option>
+        <Option key="PAD_X">2</Option>
     </Options>
 </Configuration>
