@@ -25,6 +25,10 @@ namespace OUAN
 	const int TRANSITION_NFRAMES=2;
 	const float TRANSITION_DURATION=0.5f;
 
+	const double LOG_REFRESH_TIME=10; //IN SECONDS
+	const std::string LOG_NAME="Ogre.log"; //Research Ogre::LogListener class
+	const int CONSOLE_MAX_LINES=20;
+
 	typedef enum 
 	{
 		ROULETTE_TRANSITION_REDGREEN=0,
@@ -59,6 +63,12 @@ namespace OUAN
 		void updateRoulette();		
 		bool isRouletteAnimationFinished();
 		void updateRouletteHUD();
+		
+		void setConsoleVisible(bool visible);
+		void updateConsole();
+		bool isConsoleVisible();
+
+		int mNextLogRefresh;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
@@ -81,6 +91,10 @@ namespace OUAN
 		/// Renders game's visuals to the screen
 		/// @param app the parent app
 		bool render();
+
+		bool onConsoleCloseClicked(const CEGUI::EventArgs& args);
+		void showConsole();
+		void hideConsole();
 
 		/// Default constructor
 		GameRunningState();

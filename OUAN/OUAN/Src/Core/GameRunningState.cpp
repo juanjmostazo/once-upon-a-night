@@ -12,6 +12,8 @@
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
 
+#include <fstream>
+
 using namespace OUAN;
 
 /// Default constructor
@@ -37,13 +39,24 @@ void GameRunningState::init(ApplicationPtr app)
 	
 	mApp->mKeyBuffer=-1;
 	
-	mCurrentRouletteState=ROULETTE_COLOUR_RED;
 	initRouletteData();
+	mCurrentRouletteState=ROULETTE_COLOUR_RED;
+	updateRouletteHUD();
+
+	mApp->getGUISubsystem()->createGUI("OUAN_Console.layout");
+	mApp->getGUISubsystem()->bindEvent(CEGUI::FrameWindow::EventCloseClicked,
+		"OUAN/ConsoleWindow",
+		CEGUI::Event::Subscriber(&GameRunningState::onConsoleCloseClicked,this));
+	mNextLogRefresh=-1;
+	hideConsole();
+	
+	
 }
 
 /// Clean up main menu's resources
 void GameRunningState::cleanUp()
 {
+	mApp->getGUISubsystem()->destroyGUI();
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_INGAME_HUD);
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	mApp->getGameWorldManager()->unloadLevel();
@@ -92,6 +105,7 @@ void GameRunningState::handleEvents()
 	{
 		mApp->getGameWorldManager()->setGameOver(true);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		hideConsole();
 	}
 	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
 	{
@@ -190,6 +204,14 @@ void GameRunningState::handleEvents()
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 
+	else if (mApp->isPressedToggleConsole() && mApp->mKeyBuffer<0)
+	{
+		if (isConsoleVisible())	
+			hideConsole();
+		else showConsole();
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+	}
+
 		
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
@@ -279,6 +301,12 @@ void GameRunningState::update(long elapsedTime)
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
 	updateRoulette();
+	mNextLogRefresh-=elapsedSeconds;
+	if (mNextLogRefresh<=0)
+	{
+		updateConsole();
+		mNextLogRefresh=LOG_REFRESH_TIME;
+	}
 }
 
 bool GameRunningState::render()
@@ -377,6 +405,66 @@ bool GameRunningState::isRouletteAnimationFinished()
 	if (mRouletteData[mCurrentRouletteState].isAnimated)
 	{
 		return mApp->getRenderSubsystem()->isAnimatedTextureFinished(MATERIAL_ROULETTE);
+	}
+	return false;
+}
+bool GameRunningState::onConsoleCloseClicked(const CEGUI::EventArgs& args)
+{
+	hideConsole();
+	return true;
+}
+void GameRunningState::showConsole()
+{
+	setConsoleVisible(true);
+	updateConsole();
+	mNextLogRefresh=LOG_REFRESH_TIME;
+}
+void GameRunningState::hideConsole()
+{
+	setConsoleVisible(false);
+	mNextLogRefresh=-1;
+}
+void GameRunningState::setConsoleVisible(bool visible)
+{
+	CEGUI::Window* console= CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUAN/ConsoleWindow");
+	if (console)
+		console->setVisible(visible);
+}
+
+void GameRunningState::updateConsole()
+{
+	if (isConsoleVisible()){
+		unsigned int nLines=CONSOLE_MAX_LINES;
+		std::ifstream is(LOG_NAME.c_str()); 
+		std::string line; 
+		std::vector<std::string> lines; 
+		while(getline(is, line)) 
+		{ 
+			lines.push_back(line); 
+			if(lines.size() > nLines) 
+				lines.erase(lines.begin()); 
+		} 
+		CEGUI::MultiLineEditbox* textField= static_cast<CEGUI::MultiLineEditbox*>(CEGUI::WindowManager::getSingletonPtr()->
+			getWindow((CEGUI::utf8*)"OUAN/Console"));
+		if (textField)
+		{
+			textField->setText("");
+			std::string s;
+			for (unsigned int i=0;i<lines.size();++i)
+			{
+				s.append(lines.at(i)+"\n");
+			}
+			textField->setText((CEGUI::utf8*)s.c_str());
+			textField->setCaratIndex(textField->getText().length()-1);
+		}
+	}
+}
+bool GameRunningState::isConsoleVisible()
+{
+	if (CEGUI::WindowManager::getSingletonPtr()->isWindowPresent((CEGUI::utf8*)"OUAN/ConsoleWindow"))
+	{
+		CEGUI::Window* console= CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUAN/ConsoleWindow");
+		return console && console->isVisible();
 	}
 	return false;
 }

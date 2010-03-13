@@ -190,6 +190,7 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
 		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
 		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
+		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
 		return true;
 	}
 	else
@@ -217,6 +218,7 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
 		return false;
 	}
 }
@@ -348,6 +350,10 @@ bool ControlInputManager::isPressedToggleChangeLevel()
 {
 	return isPressed(-1,mDefaultInputData.keyChangeLevel);
 }
+bool ControlInputManager::isPressedToggleConsole()
+{
+	return isPressed(-1,mDefaultInputData.keyToggleConsole);
+}
 
 //////////////////////////////////////////////////////////////
 
@@ -463,10 +469,10 @@ void ControlInputManager::replacePair(std::string keyID,int& keyboardMapping, in
 	psxPadMapping=mappings[keyID].second;
 }
 
-// ...and yet another preprocessor macro for lazy coders: 
+// ...and yet another hacky preprocessor macro for lazy coders: 
 // it just does text replacement on compile time, so I can save time
-// on copy-paste without having to declare a function (with the overhead it implies)
-// this is not a function!
+// copy-pasting without having to declare a function (with the overhead it implies)
+// remember: this is not a function!
 
 #define ADD_CONFIG_ENTRY(var,key,psx) \
 	convertString.str(""); \
@@ -502,6 +508,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeCamera,KEY_CHANGE_CAMERA,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeWorld,KEY_CHANGE_WORLD,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleConsole,KEY_TOGGLE_CONSOLE,false);
 	c.saveToFile(DEFAULTINPUT_CFG);
 }
 
