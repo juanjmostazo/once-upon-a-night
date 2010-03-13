@@ -264,6 +264,10 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Unload current level
 	unloadLevel();
 
+	//Set world to dreams
+	setWorld(DREAMS); 
+	//TODO: this should depend on which level is loaded and be determined by levelLoader
+
 	// Set the initial world before the level loading, and then
 	// just as game objects are created, they're initialized with the correct
 	// world information.
@@ -275,7 +279,8 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 
 	//Set Active Camera
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
+	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
+
 
 	mGameOver=false;
 
