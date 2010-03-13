@@ -5,24 +5,25 @@
 #include "GameState.h"
 namespace OUAN
 {
-	//TODO: TAKE ME OUT OF HERE 
-	const std::string BUTTON_TEXT_FORWARD="Forward: ";
-	const std::string BUTTON_TEXT_BACKWARDS="Backwards: ";
-	const std::string BUTTON_TEXT_LEFT="Left: ";
-	const std::string BUTTON_TEXT_RIGHT="Right: ";
+	const std::string MENUSTRINGS_CFG = "../../Config/menu-strings_en.xml";
 
-	const std::string BUTTON_TEXT_JUMP="Jump: ";
-	const std::string BUTTON_TEXT_USEWEAPON="Use weapon: ";
-	const std::string BUTTON_TEXT_ACTION="Action: ";
-	const std::string BUTTON_TEXT_RELOAD="Reload: ";
+	const std::string BUTTON_TEXT_FORWARD="BUTTON_TEXT_FORWARD";
+	const std::string BUTTON_TEXT_BACKWARDS="BUTTON_TEXT_BACKWARDS";
+	const std::string BUTTON_TEXT_LEFT="BUTTON_TEXT_LEFT";
+	const std::string BUTTON_TEXT_RIGHT="BUTTON_TEXT_RIGHT";
 
-	const std::string BUTTON_TEXT_LROTATE="Rot. left: ";
-	const std::string BUTTON_TEXT_RROTATE="Rot. right: ";
-	const std::string BUTTON_TEXT_WALK="Walk: ";
-	const std::string BUTTON_TEXT_AUTOTARGET="Auto-target: ";
+	const std::string BUTTON_TEXT_JUMP="BUTTON_TEXT_JUMP";
+	const std::string BUTTON_TEXT_USEWEAPON="BUTTON_TEXT_USEWEAPON";
+	const std::string BUTTON_TEXT_ACTION="BUTTON_TEXT_ACTION";
+	const std::string BUTTON_TEXT_RELOAD="BUTTON_TEXT_RELOAD";
 
-	const std::string BUTTON_TEXT_PAUSE="Pause: ";
-	const std::string BUTTON_TEXT_INGAME_MENU="Menu: ";
+	const std::string BUTTON_TEXT_LROTATE="BUTTON_TEXT_LROTATE";
+	const std::string BUTTON_TEXT_RROTATE="BUTTON_TEXT_RROTATE";
+	const std::string BUTTON_TEXT_WALK="BUTTON_TEXT_WALK";
+	const std::string BUTTON_TEXT_AUTOTARGET="BUTTON_TEXT_AUTOTARGET";
+
+	const std::string BUTTON_TEXT_PAUSE="BUTTON_TEXT_PAUSE";
+	const std::string BUTTON_TEXT_INGAME_MENU="BUTTON_TEXT_MENU";
 	//---
 	const std::string BUTTON_NAME_FORWARD="OUANOptions/Controls/ForwardBtn";
 	const std::string BUTTON_NAME_BACKWARDS="OUANOptions/Controls/BackwardsBtn";
@@ -99,6 +100,8 @@ namespace OUAN
 		void bindEvents();
 		void initButton(const std::string& buttonName, const std::string& buttonText, 
 			const std::string& mappingName, TButtonDataMapping& buttonData);
+		ConfigurationPtr mButtonTextStrings;
+		bool mappingAlreadyFound(int code);
 	};
 }
 #endif

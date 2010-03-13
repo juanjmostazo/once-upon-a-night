@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<Configuration>
+	<Options>
+		<!-- Control buttons' names -->
+		<Option key="BUTTON_TEXT_MENU">Menu: </Option>
+		<Option key="BUTTON_TEXT_PAUSE">Pause: </Option>
+		<Option key="BUTTON_TEXT_FORWARD">Forward: </Option>
+		<Option key="BUTTON_TEXT_BACKWARDS">Backwards: </Option>
+		<Option key="BUTTON_TEXT_LEFT">Left: </Option>
+		<Option key="BUTTON_TEXT_RIGHT">Right: </Option>
+		<Option key="BUTTON_TEXT_JUMP">Jump: </Option>
+		<Option key="BUTTON_TEXT_ACTION">Action: </Option>
+		<Option key="BUTTON_TEXT_RELOAD">Reload: </Option>		
+		<Option key="BUTTON_TEXT_USEWEAPON">Weapon: </Option>
+		<Option key="BUTTON_TEXT_WALK">Walk: </Option>	
+		<Option key="BUTTON_TEXT_RROTATE">Rotate-R: </Option>			
+		<Option key="BUTTON_TEXT_LROTATE">Rotate-L: </Option>					
+		<Option key="BUTTON_TEXT_AUTOTARGET">Auto-target: </Option>	
+	</Options>
+</Configuration>

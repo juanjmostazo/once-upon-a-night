@@ -13,6 +13,7 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+	configMap.clear();
 }
 
 bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags)
@@ -106,6 +107,12 @@ void Configuration::setOption (const std::string& key, const std::string& value,
 {
 	if (!hasOption(key) || replaceExisting)
 		configMap [key]=value;
+}
+std::string Configuration::operator[](const std::string& key)
+{
+	if (hasOption(key))
+		return configMap[key];
+	return "";
 }
 
 TConfigMapConstIterator  Configuration::begin() const

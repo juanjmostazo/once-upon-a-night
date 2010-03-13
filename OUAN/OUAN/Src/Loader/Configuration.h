@@ -89,6 +89,8 @@ namespace OUAN
 		/// Return const iterator to the end of the options map, so it can be traversed easily
 		/// @return iterator to the end of the options map
 		TConfigMapConstIterator  end() const;
+
+		std::string operator[](const std::string& key);
 	};
 }
 

@@ -47,9 +47,6 @@ namespace OUAN
 
 		virtual void init( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
 		virtual void finalise();
-
-		std::string getAsString(OIS::KeyCode kc) const;
-
 	protected:
 		
 		OIS::InputManager* m_inputManager;

@@ -81,6 +81,8 @@ namespace OUAN
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 			ConfigurationPtr getConfiguration() const;
 
+			ConfigurationPtr getTextStrings() const;
+
 			///init the game state machine
 			void loadInitialState();
 
@@ -126,6 +128,9 @@ namespace OUAN
 			/// Debug mode mask: depending on its value, 
 			/// certain debug info or rendering modes will be enabled
 			int mDebugMode;
+
+			/// Map containing text strings
+			ConfigurationPtr mTextStrings;
 
 		};
 }
