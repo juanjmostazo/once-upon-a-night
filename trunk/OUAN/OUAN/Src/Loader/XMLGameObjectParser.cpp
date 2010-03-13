@@ -219,7 +219,11 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 		//}
 		return;
 	}
-
+	else if(type.compare("Node Object")==0)
+	{
+		//Not a GameObject
+		return;
+	}
 	//Find out game object type
 	for(i=0;i<gameObjectTypes.size();i++)
 	{
