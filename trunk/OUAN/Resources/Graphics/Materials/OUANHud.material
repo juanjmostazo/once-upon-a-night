@@ -15,3 +15,20 @@ material OUAN/Hud/Health
 		}
 	}
 }
+material OUAN/Hud/Roulette
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture roulette_n_red.png
+			}
+		}
+	}
+}

@@ -673,3 +673,28 @@ void RenderSubsystem::captureScene(const std::string& name)
 	renderTexture->update();
 	renderTexture->writeContentsToFile(name);
 }
+void RenderSubsystem::setTextureData (const std::string& materialName, const std::string& textureName, 
+									  bool isAnimated, int numFrames, float duration)
+{
+	MaterialPtr mat = MaterialManager::getSingleton().getByName(materialName);
+	if (!mat.isNull())
+	{
+		if (isAnimated)
+			mat->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setAnimatedTextureName(textureName,numFrames,duration);
+		else
+			mat->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureName(textureName);		
+	}
+	else LogManager::getSingletonPtr()->logMessage("Material name not found. Function RenderSubsystem::setTextureData");
+}
+bool RenderSubsystem::isAnimatedTextureFinished(const std::string& materialName)
+{
+	MaterialPtr mat = MaterialManager::getSingleton().getByName(materialName);
+	if (!mat.isNull())
+	{
+		int currentFrame=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0)->getCurrentFrame();
+		int lastFrame=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0)->getNumFrames()-1;
+		return currentFrame==lastFrame;
+	}
+	else LogManager::getSingletonPtr()->logMessage("Material name not found. Function RenderSubsystem::isAnimatedTextureFinished");
+	return false;
+}

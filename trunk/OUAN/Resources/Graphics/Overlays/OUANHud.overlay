@@ -39,4 +39,25 @@ OUAN/HUDOverlay
 			colour_bottom 0.6 0 0.6
 		}
 	}
+	container Panel(OUAN/RoulettePanel)
+	{
+		metrics_mode pixels
+		horz_align left
+		vert_align top
+		left 680
+		top 5
+		width 160
+		height 128
+		transparent true
+
+		container Panel(OUAN/Roulette)
+		{
+			metrics_mode pixels
+			left 0.1 
+			top 0.25
+			width 128
+			height 128
+			material OUAN/Hud/Roulette
+		}		    
+	}
 }
