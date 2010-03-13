@@ -1,13 +1,17 @@
 
-material wire_088177026
+material bridge
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.3451 0.6941 0.102 1
-			diffuse 0.3451 0.6941 0.102 1
-			specular 0.35 0.35 0.35 1 32
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture bricks001.jpg
+			}
 		}
 
 	}
