@@ -147,6 +147,9 @@ namespace OUAN
 
 		void captureScene(const std::string& name);
 
+		void setTextureData (const std::string& materialName, const std::string& textureName, 
+			bool isAnimated, int numFrames, float duration);
+		bool isAnimatedTextureFinished(const std::string& materialName);
 
 	protected:
 		/// the application

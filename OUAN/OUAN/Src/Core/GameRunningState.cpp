@@ -36,6 +36,9 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->loadLevel(LEVEL_2);
 	
 	mApp->mKeyBuffer=-1;
+	
+	mCurrentRouletteState=ROULETTE_COLOUR_RED;
+	initRouletteData();
 }
 
 /// Clean up main menu's resources
@@ -49,6 +52,7 @@ void GameRunningState::cleanUp()
 	//mApp->getRenderSubsystem()->clear(); Done into mApp->getGameWorldManager()->unloadLevel();
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;
+	mRouletteData.clear();
 }
 
 /// pause state
@@ -174,6 +178,18 @@ void GameRunningState::handleEvents()
 		}
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
+
+	else if (mApp->isPressedRotateLeft() && mApp->mKeyBuffer<0)
+	{
+		spinRoulette(false);
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+	}
+	else if (mApp->isPressedRotateRight() && mApp->mKeyBuffer<0)
+	{
+		spinRoulette(true);
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+	}
+
 		
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
@@ -262,6 +278,7 @@ void GameRunningState::update(long elapsedTime)
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
+	updateRoulette();
 }
 
 bool GameRunningState::render()
@@ -279,4 +296,87 @@ bool GameRunningState::render()
 	renderSubsystem->showOverlay(OVERLAY_INGAME_HUD);
 	
 	return renderSubsystem->render();
+}
+
+void GameRunningState::spinRoulette(bool forward)
+{
+	int increment=forward?1:-1;
+	bool isColourRouletteState=mCurrentRouletteState==ROULETTE_COLOUR_BLUE || 
+		mCurrentRouletteState==ROULETTE_COLOUR_RED || mCurrentRouletteState == ROULETTE_COLOUR_GREEN;
+	if (isColourRouletteState)
+	{	
+		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
+		if (next<0) next+=NUM_ROULETTE_STATES;
+		mCurrentRouletteState=static_cast<TRouletteState>(next);
+		updateRouletteHUD();
+	}	
+}
+void GameRunningState::updateRoulette()
+{
+	bool isLeftTransition = mCurrentRouletteState== ROULETTE_TRANSITION_REDGREEN ||
+		mCurrentRouletteState == ROULETTE_TRANSITION_GREENBLUE || mCurrentRouletteState==ROULETTE_TRANSITION_BLUERED;
+	bool isRightTransition = mCurrentRouletteState==ROULETTE_TRANSITION_REDBLUE ||
+		mCurrentRouletteState == ROULETTE_TRANSITION_BLUEGREEN || mCurrentRouletteState==ROULETTE_TRANSITION_GREENRED;
+	int increment=0;
+	if (isLeftTransition)
+		increment=-2;
+	else if (isRightTransition)
+		increment=2;
+	//---
+	if ((isLeftTransition || isRightTransition) && isRouletteAnimationFinished())
+	{
+		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
+		if (next<0) next+=NUM_ROULETTE_STATES;
+		mCurrentRouletteState=static_cast<TRouletteState>(next);
+
+		updateRouletteHUD();
+	}
+}
+void GameRunningState::updateRouletteHUD()
+{
+	mApp->getRenderSubsystem()->setTextureData(MATERIAL_ROULETTE,mRouletteData[mCurrentRouletteState].textureName,
+		mRouletteData[mCurrentRouletteState].isAnimated, mRouletteData[mCurrentRouletteState].numFrames,
+		mRouletteData[mCurrentRouletteState].duration);
+}
+void GameRunningState::initRouletteData()
+{
+	mRouletteData.clear();
+	mRouletteData[ROULETTE_COLOUR_RED].textureName=TEX_ROULETTE_COLOUR_RED;
+	mRouletteData[ROULETTE_COLOUR_RED].isAnimated=false;
+	mRouletteData[ROULETTE_COLOUR_BLUE].textureName=TEX_ROULETTE_COLOUR_BLUE;
+	mRouletteData[ROULETTE_COLOUR_BLUE].isAnimated=false;
+	mRouletteData[ROULETTE_COLOUR_GREEN].textureName=TEX_ROULETTE_COLOUR_GREEN;
+	mRouletteData[ROULETTE_COLOUR_GREEN].isAnimated=false;
+	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].textureName=TEX_ROULETTE_TRANSITION_BG;
+	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].textureName=TEX_ROULETTE_TRANSITION_GB;
+	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_REDBLUE].textureName=TEX_ROULETTE_TRANSITION_RB;
+	mRouletteData[ROULETTE_TRANSITION_REDBLUE].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_REDBLUE].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_REDBLUE].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_BLUERED].textureName=TEX_ROULETTE_TRANSITION_BR;
+	mRouletteData[ROULETTE_TRANSITION_BLUERED].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_BLUERED].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_BLUERED].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_REDGREEN].textureName=TEX_ROULETTE_TRANSITION_RG;
+	mRouletteData[ROULETTE_TRANSITION_REDGREEN].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_REDGREEN].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_REDGREEN].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_GREENRED].textureName=TEX_ROULETTE_TRANSITION_GR;
+	mRouletteData[ROULETTE_TRANSITION_GREENRED].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_GREENRED].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_GREENRED].duration=TRANSITION_DURATION;
+}
+bool GameRunningState::isRouletteAnimationFinished()
+{
+	if (mRouletteData[mCurrentRouletteState].isAnimated)
+	{
+		return mApp->getRenderSubsystem()->isAnimatedTextureFinished(MATERIAL_ROULETTE);
+	}
+	return false;
 }
