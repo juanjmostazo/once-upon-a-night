@@ -1823,7 +1823,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="773400064" name="tree_n#23" typename="Entity Object" parentnode="Tripollos">
+  <OBJECT object_id="773400064" name="tree_n#23" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2159,7 +2159,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="842646528" name="terrain_d#stairs1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="842646528" name="terrain_d#stairs1" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
