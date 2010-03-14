@@ -263,7 +263,14 @@ void CameraManager::changeCameraController()
 			setCameraType(CAMERA_FIRST_PERSON);
 			break;
 		case CAMERA_FIRST_PERSON:
-			setCameraType(CAMERA_TRAJECTORY);
+			if(!mTrajectoryManager->hasTrajectory("a"))
+			{
+				setCameraType(CAMERA_THIRD_PERSON);
+			}
+			else
+			{
+				setCameraType(CAMERA_TRAJECTORY);
+			}
 			break;
 		case CAMERA_TRAJECTORY:
 			setCameraType(CAMERA_THIRD_PERSON);

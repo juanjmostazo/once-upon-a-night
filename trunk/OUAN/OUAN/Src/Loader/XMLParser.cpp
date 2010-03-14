@@ -19,6 +19,7 @@ void XMLParser::clearLevelInfo()
 	XMLGameObjectContainer.clear();
 	gameObjectTypes.clear();
 	XMLCustomProperties.clear();
+	XMLTrajectoryContainer.clear();
 
 	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
 	{
