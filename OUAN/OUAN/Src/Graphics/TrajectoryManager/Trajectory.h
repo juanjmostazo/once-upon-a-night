@@ -8,14 +8,29 @@ namespace OUAN
 	class Trajectory
 	{
 	private:
+		double totalTime;
+		unsigned int currentNode;
+		std::vector<TrajectoryNode *> trajectoryNodes;
+		Vector3 currentPosition;
+		Quaternion currentOrientation;
 
+		int getNextNode();
+
+		double TIME_PER_NODE;
 	public:
 
 		Trajectory();
 		~Trajectory();
-		
-		std::vector<TrajectoryNode *> trajectoryNodes;
-		int currentNode;
+
+		Quaternion getCurrentOrientation();
+		Vector3 getCurrentPosition();
+
+		void reset();
+
+		void update(double elapsedTime);
+
+		void addTrajectoryNode(Ogre::SceneNode * sceneNode);
+
 	};
 
 	class TTrajectoryParameters

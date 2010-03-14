@@ -11,24 +11,10 @@ namespace OUAN
 
 		TCameraControllerType getControllerType();
 
-		void update(long elapsedTime);
-
-		void setCamera(Ogre::Camera * pCamera);
+		void update(double elapsedTime);
 
 		void setTrajectory(Trajectory * pTrajectory);
 	private:
-
-		//camera relative rotation to X axe
-		double rotX;
-		//camera relative rotation to Y axe
-		double rotY;
-
-		//camera position speed
-		double speed;
-		//camera rotation speed
-		double rotationSpeed;
-
-		Vector3 newTranslation;
 
 		Trajectory * mTrajectory;
 	};

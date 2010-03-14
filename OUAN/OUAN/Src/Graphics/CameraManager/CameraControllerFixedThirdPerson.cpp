@@ -17,7 +17,7 @@ TCameraControllerType CameraControllerFixedThirdPerson::getControllerType()
 	return OUAN::CAMERA_FIXED_THIRD_PERSON;
 }
 
-void CameraControllerFixedThirdPerson::update(long elapsedTime)
+void CameraControllerFixedThirdPerson::update(double elapsedTime)
 {
 	mCamera->lookAt(target->getPosition()+Vector3(0,height,0));
 }

@@ -1,8 +1,10 @@
 #include "LevelLoader.h"
-#include "XMLGameObjectParser.h"
+#include "XMLParser.h"
 #include "XMLGameObject.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
+#include "../Graphics/TrajectoryManager/Trajectory.h"
+#include "../Graphics/TrajectoryManager/TrajectoryNode.h"
 #include "../Component/Component.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectLight.h"
@@ -48,7 +50,7 @@ LevelLoader::~LevelLoader(){}
 void LevelLoader::init(OUAN::ApplicationPtr app)
 {
 	this->mGameWorldManager=app->getGameWorldManager();
-	this->mXMLGameObjectParser.init();
+	this->mXMLParser.init();
 }
 
 void LevelLoader::loadLevel(String level)
@@ -56,16 +58,19 @@ void LevelLoader::loadLevel(String level)
 	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level);
 
 	//clear parser content
-	mXMLGameObjectParser.clearLevelInfo();
+	mXMLParser.clearLevelInfo();
 
 	//Parse Level's GameObjects
-	mXMLGameObjectParser.parseLevel(level);
+	mXMLParser.parseLevel(level);
 
 	//Process Level's GameObjects
 	processGameObjects();
 
+	//Process Level's Trajectories
+	processTrajectories();
+
 	//clear information, as we do not need it anymore
-	mXMLGameObjectParser.clearLevelInfo();
+	mXMLParser.clearLevelInfo();
 
 	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level+" Done!");
 }
@@ -74,7 +79,7 @@ void LevelLoader::processGameObjects()
 {
 	XMLGameObjectContainerIterator it;
 
-	for(it = mXMLGameObjectParser.XMLGameObjectContainer.begin(); it !=mXMLGameObjectParser.XMLGameObjectContainer.end(); it++)
+	for(it = mXMLParser.XMLGameObjectContainer.begin(); it !=mXMLParser.XMLGameObjectContainer.end(); it++)
 	{
 		processGameObject(&it->second);
 	}
@@ -225,6 +230,58 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 
 }
 
+void LevelLoader::processTrajectories()
+{
+	XMLTrajectoryContainerIterator it;
+
+	try
+	{
+		for(it = mXMLParser.XMLTrajectoryContainer.begin(); it !=mXMLParser.XMLTrajectoryContainer.end(); it++)
+		{
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading Trajectory "+it->first);
+
+			processTrajectory(&it->second);
+
+		}
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Trajectory "+it->first+": "+error);
+	}
+
+}
+TTrajectoryNodeParameters LevelLoader::processTrajectoryNode(TiXmlElement *XMLNode)
+{
+	TTrajectoryNodeParameters tTrajectoryNodeParameters;
+
+	//Get Trajectory node name
+	tTrajectoryNodeParameters.nodeName=getAttrib(XMLNode, "name");
+
+	//Get Trajectory Node properties
+	tTrajectoryNodeParameters.position=getPropertyVector3(XMLNode,"position");
+	tTrajectoryNodeParameters.orientation=getPropertyQuaternion(XMLNode,"orientation");
+
+	return tTrajectoryNodeParameters;
+}
+
+void LevelLoader::processTrajectory(XMLTrajectory *pXMLTrajectory)
+{
+	OUAN::TTrajectoryParameters tTrajectoryParameters;
+	unsigned int i;
+
+	//Get Trajectory name
+	tTrajectoryParameters.name=pXMLTrajectory->name;
+
+	//Process Trajectory nodes
+	for(i=0;i<pXMLTrajectory->trajectoryNodes.size();i++)
+	{
+		//Process Trajectory Node
+		tTrajectoryParameters.tTrajectoryNodeParameters.push_back(processTrajectoryNode(pXMLTrajectory->trajectoryNodes[i]));
+	}
+
+	//Create Trajectory 
+	mGameWorldManager->createTrajectory(tTrajectoryParameters);
+}
 
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {

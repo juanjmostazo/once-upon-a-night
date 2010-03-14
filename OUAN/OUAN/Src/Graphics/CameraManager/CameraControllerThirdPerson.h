@@ -9,7 +9,7 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
-		void update(long elapsedTime);
+		void update(double elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 		void setTarget(RenderComponentPositional * target);

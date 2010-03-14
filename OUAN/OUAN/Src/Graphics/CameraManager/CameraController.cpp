@@ -25,7 +25,7 @@ Camera * CameraController::getCamera()
 	return mCamera;
 }
 
-void CameraController::update(long elapsedTime)
+void CameraController::update(double elapsedTime)
 {
 
 }

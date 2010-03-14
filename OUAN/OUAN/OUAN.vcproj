@@ -234,7 +234,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Loader\XMLGameObjectParser.cpp"
+					RelativePath=".\Src\Loader\XMLParser.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Loader\XMLTrajectory.cpp"
 					>
 				</File>
 			</Filter>
@@ -672,7 +676,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Loader\XMLGameObjectParser.h"
+					RelativePath=".\Src\Loader\XMLParser.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Loader\XMLTrajectory.h"
 					>
 				</File>
 			</Filter>

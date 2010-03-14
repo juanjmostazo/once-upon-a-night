@@ -36,7 +36,7 @@ void CameraControllerFixedFirstPerson::setTarget(RenderComponentPositional * tar
 }
 
 
-void CameraControllerFixedFirstPerson::update(long elapsedTime)
+void CameraControllerFixedFirstPerson::update(double elapsedTime)
 {
 	Quaternion newCameraOrientation;
 

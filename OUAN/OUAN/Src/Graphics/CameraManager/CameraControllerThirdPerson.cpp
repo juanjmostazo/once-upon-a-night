@@ -27,7 +27,7 @@ CameraControllerThirdPerson::~CameraControllerThirdPerson()
 {
 }
 
-void CameraControllerThirdPerson::update(long elapsedTime)
+void CameraControllerThirdPerson::update(double elapsedTime)
 {
 	Vector3 newCameraPosition;
 	Vector3 newTargetPosition;
