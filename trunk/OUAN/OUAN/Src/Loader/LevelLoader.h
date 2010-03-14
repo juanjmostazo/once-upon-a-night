@@ -31,6 +31,8 @@ namespace OUAN
 		void processTrajectory(XMLTrajectory *trajectory);
 		TTrajectoryNodeParameters processTrajectoryNode(TiXmlElement *XMLNode);
 
+		double DEFAULT_TIME_TO_NEXT_NODE;
+
 		//Game Object Processors
 		void processGameObjectScene(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
