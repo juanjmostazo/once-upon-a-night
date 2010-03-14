@@ -213,6 +213,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("INITIAL_JUMP_SPEED", value); 
 		mInitialJumpSpeed = atof(value.c_str());
 
+		config.getOption("MIN_ALLOWED_Y", value); 
+		mMinAllowedY = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -228,6 +231,7 @@ bool PhysicsSubsystem::loadConfig()
 		mMovementUnitsPerSecond = 0;
 		mTurnDegreesPerSecond = 0;
 		mInitialJumpSpeed = 0;
+		mMinAllowedY = 0;
 
 		success = false;
 	}

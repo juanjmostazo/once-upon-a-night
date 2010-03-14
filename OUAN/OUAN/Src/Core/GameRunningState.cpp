@@ -100,8 +100,8 @@ void GameRunningState::handleEvents()
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
 	}
-	//TODO: REMOVE THIS STATEMENT when we can respond to a collision and simulate
-	// a gameOver event
+	//TODO: REMOVE THIS STATEMENT when we can respond to a collision 
+	//and simulate a gameOver event
 	else if(mApp->isPressedAutoPoint() && mApp->mKeyBuffer<0)
 	{
 		mApp->getGameWorldManager()->setGameOver(true);

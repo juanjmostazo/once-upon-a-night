@@ -252,6 +252,10 @@ void GameObjectOny::update(double elapsedSeconds)
 	{
 		setOnSurface(false);
 	}
+
+	if (getRenderComponentPositional()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
+		Application::getInstance()->getGameWorldManager()->setGameOver(true);
+	}
 }
 
 void GameObjectOny::changeWorld(int world)
