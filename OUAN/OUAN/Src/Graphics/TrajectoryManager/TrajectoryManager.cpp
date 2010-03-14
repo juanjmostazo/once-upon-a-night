@@ -48,7 +48,9 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 void TrajectoryManager::clear()
 {
 	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories");
-	delete mTrajectory;
+
+	mTrajectory=0;
+
 	trajectoryExists=false;
 	//trajectoryContainer.clear();
 }
