@@ -7,6 +7,7 @@ TrajectoryManager::TrajectoryManager()
 {
 	mSceneManager = 0;
 	mTrajectory = 0;
+	trajectoryExists=false;
 }
 
 TrajectoryManager::~TrajectoryManager()
@@ -40,10 +41,15 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 
 		mTrajectory->addTrajectoryNode(pSceneNode);
 	}
+
+	trajectoryExists=true;
 }
 
 void TrajectoryManager::clear()
 {
+	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories");
+	delete mTrajectory;
+	trajectoryExists=false;
 	//trajectoryContainer.clear();
 }
 
@@ -53,5 +59,5 @@ Trajectory * TrajectoryManager::getTrajectory(std::string name) const
 }
 bool TrajectoryManager::hasTrajectory(std::string name)
 {
-	return true;
+	return trajectoryExists;
 }

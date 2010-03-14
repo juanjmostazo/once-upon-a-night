@@ -14,6 +14,8 @@ namespace OUAN
 		Ogre::SceneManager * mSceneManager;
 		Trajectory * mTrajectory;
 
+		bool trajectoryExists;
+
 	public:
 
 		TrajectoryManager();
