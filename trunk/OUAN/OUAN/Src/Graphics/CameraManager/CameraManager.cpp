@@ -165,6 +165,7 @@ void CameraManager::setActiveCamera(std::string name)
 	{
 		activeCameraController->setCamera(pCamera);
 		mViewport->setCamera(pCamera);
+		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" activated);
 	}
 	else
 	{
@@ -184,22 +185,27 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 		case CAMERA_FIXED_FIRST_PERSON:
 			mCameraControllerFixedFirstPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerFixedFirstPerson;
+			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Fixed First person activated");
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
 			mCameraControllerFixedThirdPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerFixedThirdPerson;
+			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Fixed Third Person activated");
 			break;
 		case CAMERA_FIRST_PERSON:
 			mCameraControllerFirstPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerFirstPerson;
+			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller First Person activated");
 			break;
 		case CAMERA_THIRD_PERSON:
 			mCameraControllerThirdPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerThirdPerson;
+			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Third Person activated");
 			break;
 		case CAMERA_TRAJECTORY:
 			mCameraControllerTrajectory->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerTrajectory;
+			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Trajectory Activated");
 			break;
 		default:
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera type does not exist!");
