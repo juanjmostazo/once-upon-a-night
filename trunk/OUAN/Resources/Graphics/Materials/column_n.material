@@ -1,5 +1,5 @@
 
-material column_texture_n
+material column_n
 {
 	technique
 	{
@@ -9,7 +9,7 @@ material column_texture_n
 
 			texture_unit
 			{
-				texture column_texture_n.dds
+				texture column_n.dds
 			}
 		}
 

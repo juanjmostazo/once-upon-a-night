@@ -1,15 +1,16 @@
 
-material column_d
+material heartbag
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
 
 			texture_unit
 			{
-				texture column_d.dds
+				texture heartbag.dds
 			}
 		}
 
