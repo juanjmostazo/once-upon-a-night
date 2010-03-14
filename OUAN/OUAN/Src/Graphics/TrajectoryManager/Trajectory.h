@@ -31,6 +31,8 @@ namespace OUAN
 
 		void addTrajectoryNode(Ogre::SceneNode * sceneNode);
 
+		std::vector<TrajectoryNode *>  getTrajectoryNodes() const;
+
 	};
 
 	class TTrajectoryParameters

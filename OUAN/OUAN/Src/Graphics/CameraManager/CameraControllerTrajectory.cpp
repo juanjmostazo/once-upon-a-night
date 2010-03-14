@@ -35,5 +35,4 @@ void CameraControllerTrajectory::update(double elapsedTime)
 void CameraControllerTrajectory::setTrajectory(Trajectory * pTrajectory)
 {
 	mTrajectory=pTrajectory;
-	mTrajectory->reset();
 }

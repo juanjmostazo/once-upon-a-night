@@ -6,8 +6,7 @@ using namespace OUAN;
 TrajectoryManager::TrajectoryManager()
 {
 	mSceneManager = 0;
-	mTrajectory = 0;
-	trajectoryExists=false;
+
 }
 
 TrajectoryManager::~TrajectoryManager()
@@ -29,7 +28,7 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 
 	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
 	
-	mTrajectory= new Trajectory();
+	trajectoryContainer[tTrajectoryParameters.name]= new Trajectory();
 
 	for(i=0;i<tTrajectoryParameters.tTrajectoryNodeParameters.size();i++)
 	{
@@ -39,27 +38,48 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 		pSceneNode->setPosition(tTrajectoryParameters.tTrajectoryNodeParameters[i].position);
 		pSceneNode->setOrientation(tTrajectoryParameters.tTrajectoryNodeParameters[i].orientation);
 
-		mTrajectory->addTrajectoryNode(pSceneNode);
+		trajectoryContainer[tTrajectoryParameters.name]->addTrajectoryNode(pSceneNode);
 	}
-
-	trajectoryExists=true;
 }
 
 void TrajectoryManager::clear()
 {
 	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories");
 
-	mTrajectory=0;
-
-	trajectoryExists=false;
-	//trajectoryContainer.clear();
+	trajectoryContainer.clear();
 }
 
-Trajectory * TrajectoryManager::getTrajectory(std::string name) const
+Trajectory * TrajectoryManager::getTrajectoryInstance(std::string name)
 {
-	return mTrajectory;
+	unsigned int i;
+	Trajectory * pTrajectory;
+
+	if(hasTrajectory(name))
+	{
+
+		pTrajectory = new Trajectory();
+
+		for(i=0;i<trajectoryContainer[name]->getTrajectoryNodes().size();i++)
+		{
+			pTrajectory->addTrajectoryNode(trajectoryContainer[name]->getTrajectoryNodes()[i]->getSceneNode());
+		}
+
+		pTrajectory->reset();
+
+		return pTrajectory;
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Trajectory with name "+name+" does not exist.");
+		return NULL;
+	}
 }
+
 bool TrajectoryManager::hasTrajectory(std::string name)
 {
-	return trajectoryExists;
+	TTrajectoryIterator it;
+
+	it=trajectoryContainer.find(name);
+
+	return it!=trajectoryContainer.end();
 }

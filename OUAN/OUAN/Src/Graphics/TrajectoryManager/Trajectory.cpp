@@ -27,6 +27,11 @@ int Trajectory::getNextNode()
 	}
 }
 
+std::vector<TrajectoryNode *>  Trajectory::getTrajectoryNodes() const
+{
+	return trajectoryNodes;
+}
+
 void Trajectory::update(double elapsedTime)
 {
 	unsigned int nextNode;
@@ -52,8 +57,7 @@ void Trajectory::update(double elapsedTime)
 	nextNode=getNextNode();
 
 	//Calculate current orientation
-	currentOrientation= (1-totalTime/TIME_PER_NODE)*trajectoryNodes[currentNode]->getSceneNode()->getOrientation()+
-		(totalTime/TIME_PER_NODE)*trajectoryNodes[nextNode]->getSceneNode()->getOrientation();
+	currentOrientation= Quaternion::Slerp((totalTime/TIME_PER_NODE), trajectoryNodes[currentNode]->getSceneNode()->getOrientation(), trajectoryNodes[nextNode]->getSceneNode()->getOrientation(),true);
 
 	Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
 

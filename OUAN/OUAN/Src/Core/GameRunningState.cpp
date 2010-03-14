@@ -36,7 +36,6 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mApp->getGameWorldManager()->setWorld(DREAMS);
 	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
-	mApp->getRenderSubsystem()->getCameraManager()->setCameraTrajectory("a");	
 
 	mApp->mKeyBuffer=-1;
 	
@@ -190,7 +189,6 @@ void GameRunningState::handleEvents()
 		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
 		{
 			mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
-			mApp->getRenderSubsystem()->getCameraManager()->setCameraTrajectory("a");
 		}
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
