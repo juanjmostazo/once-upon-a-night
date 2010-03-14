@@ -8,13 +8,10 @@ namespace OUAN
 	class TrajectoryManager
 	{
 	private:
-		//std::vector<Trajectory *> trajectoryContainer;
-		//typedef std::map<std::string,Trajectory *>::iterator TTrajectoryIterator;
+		std::map<std::string,Trajectory *> trajectoryContainer;
+		typedef std::map<std::string,Trajectory *>::iterator TTrajectoryIterator;
 
 		Ogre::SceneManager * mSceneManager;
-		Trajectory * mTrajectory;
-
-		bool trajectoryExists;
 
 	public:
 
@@ -25,7 +22,9 @@ namespace OUAN
 		void clear();
 
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
-		Trajectory * getTrajectory(std::string name) const;
+
+		Trajectory * getTrajectoryInstance(std::string name);
+
 		bool hasTrajectory(std::string name);
 
 	};

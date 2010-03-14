@@ -62,7 +62,7 @@ void CameraManager::setCameraTrajectory(std::string name)
 	{
 		if(mTrajectoryManager->hasTrajectory(name))
 		{
-			mCameraControllerTrajectory->setTrajectory(mTrajectoryManager->getTrajectory(name));
+			mCameraControllerTrajectory->setTrajectory(mTrajectoryManager->getTrajectoryInstance(name));
 		}
 		else
 		{
@@ -269,6 +269,7 @@ void CameraManager::changeCameraController()
 			}
 			else
 			{
+				setCameraTrajectory("a");
 				setCameraType(CAMERA_TRAJECTORY);
 			}
 			break;
