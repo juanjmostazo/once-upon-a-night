@@ -1,18 +1,4 @@
 
-material NoMaterial
-{
-	technique
-	{
-		pass
-		{
-		}
-
-	}
-
-}
-
-
-
 material heart
 {
 	technique
@@ -23,7 +9,7 @@ material heart
 
 			texture_unit
 			{
-				texture heart_texture.tga
+				texture heart.dds
 			}
 		}
 
