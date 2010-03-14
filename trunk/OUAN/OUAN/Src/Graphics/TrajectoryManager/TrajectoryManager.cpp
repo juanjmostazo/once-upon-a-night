@@ -6,6 +6,7 @@ using namespace OUAN;
 TrajectoryManager::TrajectoryManager()
 {
 	mSceneManager = 0;
+	mTrajectory = 0;
 }
 
 TrajectoryManager::~TrajectoryManager()
@@ -16,44 +17,41 @@ TrajectoryManager::~TrajectoryManager()
 void TrajectoryManager::init(Ogre::SceneManager * pSceneManager)
 {
 	mSceneManager=pSceneManager;
+
 	clear();
 }
 
 void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
 {
 	unsigned int i;
+	Ogre::SceneNode * pSceneNode;
 
-	trajectory[tTrajectoryParameters.name] = new Trajectory();
+	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
+	
+	mTrajectory= new Trajectory();
 
 	for(i=0;i<tTrajectoryParameters.tTrajectoryNodeParameters.size();i++)
 	{
-		Ogre::SceneNode * sceneNode;
-		TrajectoryNode * trajectoryNode;
+		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory node "+tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
+		pSceneNode=mSceneManager->createSceneNode(tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
 
-		trajectoryNode = new TrajectoryNode();
+		pSceneNode->setPosition(tTrajectoryParameters.tTrajectoryNodeParameters[i].position);
+		pSceneNode->setOrientation(tTrajectoryParameters.tTrajectoryNodeParameters[i].orientation);
 
-		sceneNode=mSceneManager->getSceneNode(tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
-
-		if(!sceneNode)
-		{
-			mSceneManager->createSceneNode(tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
-			sceneNode->setPosition(tTrajectoryParameters.tTrajectoryNodeParameters[i].position);
-			sceneNode->setOrientation(tTrajectoryParameters.tTrajectoryNodeParameters[i].orientation);
-		}
-
-		trajectoryNode->node=sceneNode;
-
-		trajectory[tTrajectoryParameters.name]->trajectoryNodes.push_back(trajectoryNode);
+		mTrajectory->addTrajectoryNode(pSceneNode);
 	}
 }
 
 void TrajectoryManager::clear()
 {
-	trajectory.clear();
+	//trajectoryContainer.clear();
 }
 
-Trajectory * TrajectoryManager::getTrajectory(std::string name)
+Trajectory * TrajectoryManager::getTrajectory(std::string name) const
 {
-	return trajectory[name];
+	return mTrajectory;
 }
-		
+bool TrajectoryManager::hasTrajectory(std::string name)
+{
+	return true;
+}

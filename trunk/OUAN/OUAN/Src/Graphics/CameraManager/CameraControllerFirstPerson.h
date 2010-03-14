@@ -11,7 +11,7 @@ namespace OUAN
 
 		TCameraControllerType getControllerType();
 
-		void update(long elapsedTime);
+		void update(double elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 		void processSimpleTranslation(int movementFlags);

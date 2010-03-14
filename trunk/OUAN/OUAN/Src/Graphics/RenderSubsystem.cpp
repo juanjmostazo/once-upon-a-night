@@ -44,11 +44,13 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
+	mTrajectoryManager = new TrajectoryManager();
+	mTrajectoryManager->init(mSceneManager);
+
 	mCameraManager = new CameraManager();
 	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 
-	mTrajectoryManager = new TrajectoryManager();
-	mTrajectoryManager->init(mSceneManager);
+
 }
 
 void RenderSubsystem::cleanUp()

@@ -3,7 +3,7 @@
 
 //OUAN
 #include "../OUAN.h"
-#include "XMLGameObjectParser.h"
+#include "XMLParser.h"
 namespace OUAN
 {
 	class LevelLoader
@@ -20,10 +20,16 @@ namespace OUAN
 	protected:
 		GameWorldManagerPtr mGameWorldManager;
 
-		XMLGameObjectParser mXMLGameObjectParser;
+		XMLParser mXMLParser;
 
+		//Process GameObjects
 		void processGameObjects();
 		void processGameObject(XMLGameObject *gameObject);
+
+		//ProcessTrajectories
+		void processTrajectories();
+		void processTrajectory(XMLTrajectory *trajectory);
+		TTrajectoryNodeParameters processTrajectoryNode(TiXmlElement *XMLNode);
 
 		//Game Object Processors
 		void processGameObjectScene(XMLGameObject* gameObject);

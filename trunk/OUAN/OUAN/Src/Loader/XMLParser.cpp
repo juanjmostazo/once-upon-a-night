@@ -1,17 +1,18 @@
-#include "XMLGameObjectParser.h"
+#include "XMLParser.h"
 #include "XMLGameObject.h"
+#include "XMLTrajectory.h"
 
 using namespace OUAN;
 
-XMLGameObjectParser::XMLGameObjectParser(){}
-XMLGameObjectParser::~XMLGameObjectParser(){}
+XMLParser::XMLParser(){}
+XMLParser::~XMLParser(){}
 
-void XMLGameObjectParser::init()
+void XMLParser::init()
 {
 	clearLevelInfo();
 }
 
-void XMLGameObjectParser::clearLevelInfo()
+void XMLParser::clearLevelInfo()
 {
 	XMLGameObjectContainerIterator it;
 
@@ -28,7 +29,7 @@ void XMLGameObjectParser::clearLevelInfo()
 
 }
 
-void XMLGameObjectParser::parseGameObjectTypes()
+void XMLParser::parseGameObjectTypes()
 {
 	unsigned int i;
 
@@ -71,7 +72,7 @@ void XMLGameObjectParser::parseGameObjectTypes()
 	}	
 }
 
-void XMLGameObjectParser::parseCustomProperties(std::string gameObjectType)
+void XMLParser::parseCustomProperties(std::string gameObjectType)
 {
 	std::string customPropertiesFilePath;
 
@@ -81,11 +82,11 @@ void XMLGameObjectParser::parseCustomProperties(std::string gameObjectType)
 	XMLCustomProperties[gameObjectType] = new TiXmlDocument(customPropertiesFilePath.c_str());
 
 	if (!XMLCustomProperties[gameObjectType]->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("[XMLGameObjectParser] Error reading "+customPropertiesFilePath);
+		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error reading "+customPropertiesFilePath);
 	} 
 }
 
-TiXmlElement * XMLGameObjectParser::getXMLCustomProperties(std::string gameObjectType)
+TiXmlElement * XMLParser::getXMLCustomProperties(std::string gameObjectType)
 {
 
 	TiXmlHandle docHandle(XMLCustomProperties[gameObjectType]);
@@ -94,7 +95,7 @@ TiXmlElement * XMLGameObjectParser::getXMLCustomProperties(std::string gameObjec
 	return XMLNodeCustomProperties;
 }
 
-void XMLGameObjectParser::parseLevel(String level)
+void XMLParser::parseLevel(String level)
 {
 
 	std::string fullLevelPath=LEVELS_PATH+level+".ogscene";
@@ -102,16 +103,19 @@ void XMLGameObjectParser::parseLevel(String level)
 	XMLDoc= new TiXmlDocument(fullLevelPath.c_str());
 
 	if (!XMLDoc->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("[XMLGameObjectParser] Error reading "+fullLevelPath);
+		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error reading "+fullLevelPath);
 	}
 
 	// Validate the File
 	TiXmlElement * XMLRoot = XMLDoc->RootElement();
 	if( String( XMLRoot->Value()) != "OGITORSCENE"  ) {
-		Ogre::LogManager::getSingleton().logMessage( "[XMLGameObjectParser] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
+		Ogre::LogManager::getSingleton().logMessage( "[XMLParser] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
 		delete XMLDoc;      
 		return;
 	}
+
+	//Set XML Root node
+	XMLRootNode=XMLRoot;
 
 	// Parse all GameObjects' types and its custom properties file .ctp
 	parseGameObjectTypes();
@@ -125,7 +129,7 @@ void XMLGameObjectParser::parseLevel(String level)
 	setNames();
 
 }
-void XMLGameObjectParser::setNames()
+void XMLParser::setNames()
 {
 	XMLGameObjectContainerIterator it;
 
@@ -156,7 +160,7 @@ void XMLGameObjectParser::setNames()
 	}
 }
 
-void XMLGameObjectParser::addXMLNodeCustomProperties()
+void XMLParser::addXMLNodeCustomProperties()
 {
 	XMLGameObjectContainerIterator it;
 
@@ -166,20 +170,20 @@ void XMLGameObjectParser::addXMLNodeCustomProperties()
 	}
 }
 
-void XMLGameObjectParser::parseLevelRoot(TiXmlElement *XMLNode)
+void XMLParser::parseLevelRoot(TiXmlElement *XMLNode)
 {
 
 	// Process the scene parameters
 	String version = getAttrib(XMLNode, "version", "unknown");
 
-	String message = "[XMLGameObjectParser] Parsing ogScene file with version " + version;
+	String message = "[XMLParser] Parsing ogScene file with version " + version;
 	
-	//Process scene objects
-	parseGameObjects(XMLNode);
+	//Process scene elements
+	parseElements(XMLNode);
 
 }
 
-void XMLGameObjectParser::parseGameObjects(TiXmlElement *XMLNode)
+void XMLParser::parseElements(TiXmlElement *XMLNode)
 {
 	TiXmlElement *pElement;
 
@@ -187,18 +191,82 @@ void XMLGameObjectParser::parseGameObjects(TiXmlElement *XMLNode)
 	pElement = XMLNode->FirstChildElement("OBJECT");
 	while(pElement)
 	{
-		parseGameObject(pElement);
+		parseElement(pElement);
 
 		pElement = pElement->NextSiblingElement("OBJECT");
 	}
 }
 
-void XMLGameObjectParser::parseTrajectory(TiXmlElement *XMLNode)
+TiXmlElement * XMLParser::findTrajectoryNode(std::string trajectoryNodeName)
 {
-	
+	TiXmlElement *pElement;
+	String name;
+	String type;
+	bool found=false;
+
+
+	// Find the OBJECT node which contains the trajectoryNode with trajectoryNodeName
+	pElement = XMLRootNode->FirstChildElement("OBJECT");
+	while(pElement)
+	{
+		name = getAttrib(pElement, "name");
+		type = getAttrib(pElement, "typename");
+
+		if(type.compare("Marker Object")==0 && name.compare(trajectoryNodeName)==0)
+		{
+			return pElement;
+		}
+
+		pElement = pElement->NextSiblingElement("OBJECT");
+	}
+
+	if(!found)
+	{
+		throw "trajectory node "+trajectoryNodeName+" not found";
+	}
+	return NULL;
 }
 
-void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
+void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
+{
+	int i;
+	std::string currentTrajectoryNode;
+	String trajectoryName;
+
+	//Get trajectory name
+	trajectoryName = getPropertyString(XMLTrajectoryStartNode,"trajectory::name",false);
+
+ 	try
+	{
+		XMLTrajectoryContainer[trajectoryName].name=trajectoryName;
+
+		//process all Trajectory Nodes
+		i=0;
+		while(true)
+		{
+			//Process Trajectory Node
+
+			//get current trajectory node
+			currentTrajectoryNode=getPropertyString(XMLTrajectoryStartNode,"trajectory::node#"+StringConverter::toString(i),false);
+
+			//if there is no more nodes we end
+			if(currentTrajectoryNode.compare("")==0) break;
+
+			//find current trajectory node
+			XMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findTrajectoryNode(currentTrajectoryNode));
+
+			i++;
+		}
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing trajectory "+trajectoryName+": "+error);	
+		return;
+	}
+
+}
+
+void XMLParser::parseElement(TiXmlElement *XMLNode)
 {
 	unsigned int i;
 	bool found=false;
@@ -209,14 +277,13 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 
 	if(type.compare("Marker Object")==0)
 	{
-		//Not a GameObject
-
-		//String trajectoryName = getPropertyString(XMLNode,"trajectory::name",false);
-		//if(trajectoryName.compare("")!=0)
-		//{
-		//	//Parse Trajectory
-		//	parseTrajectory(XMLNode);
-		//}
+		//Parse Trajectory
+		String trajectoryName = getPropertyString(XMLNode,"trajectory::name",false);
+		if(trajectoryName.compare("")!=0)
+		{
+			//Trajectory start node
+			parseTrajectory(XMLNode);
+		}
 		return;
 	}
 	else if(type.compare("Node Object")==0)
@@ -241,12 +308,12 @@ void XMLGameObjectParser::parseGameObject(TiXmlElement *XMLNode)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[XMLGameObjectParser] Game Object "+name+" has unrecognised Game Object Type");
+		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Game Object "+name+" has unrecognised Game Object Type");
 	}
 
 }
 
-void XMLGameObjectParser::addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode)
+void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode)
 {
 	std::string baseName;
 
@@ -295,16 +362,16 @@ void XMLGameObjectParser::addXMLGameObjectNode(std::string worldName,std::string
 
 }
 
-bool XMLGameObjectParser::isDreams(std::string worldName,std::string gameObjectType)
+bool XMLParser::isDreams(std::string worldName,std::string gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='d';
 }
-bool XMLGameObjectParser::isNightmares(std::string worldName,std::string gameObjectType)
+bool XMLParser::isNightmares(std::string worldName,std::string gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='n';
 }
 
-std::string XMLGameObjectParser::getBaseName(std::string worldName,std::string gameObjectType)
+std::string XMLParser::getBaseName(std::string worldName,std::string gameObjectType)
 {
 	std::string baseName;
 
@@ -314,7 +381,7 @@ std::string XMLGameObjectParser::getBaseName(std::string worldName,std::string g
 }		
 
 
-std::string XMLGameObjectParser::getNightmaresName(std::string baseName,std::string gameObjectType)
+std::string XMLParser::getNightmaresName(std::string baseName,std::string gameObjectType)
 {
 	std::string nightmaresName;
 
@@ -322,7 +389,7 @@ std::string XMLGameObjectParser::getNightmaresName(std::string baseName,std::str
 
 	return	nightmaresName;
 }
-std::string XMLGameObjectParser::getDreamsName(std::string baseName,std::string gameObjectType)
+std::string XMLParser::getDreamsName(std::string baseName,std::string gameObjectType)
 {
 	std::string dreamsName;
 
@@ -332,11 +399,76 @@ std::string XMLGameObjectParser::getDreamsName(std::string baseName,std::string 
 }
 
 
-String XMLGameObjectParser::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
+String XMLParser::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {
 	if(XMLNode->Attribute(attrib.c_str()))
 		return XMLNode->Attribute(attrib.c_str());
 	else
 		return defaultValue;
+}
+
+String XMLParser::getPropertyString(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
+{
+	TiXmlElement *pElement;
+	TiXmlElement *XMLNodeCustomProperties;
+	String propertyName;
+	String result="";
+	bool found=false;
+
+	if(!XMLNode)
+	{
+		throw std::string("Missing XML Node!");
+	}
+	else
+	{
+
+		// Process all PROPERTY of the XML node
+		pElement = XMLNode->FirstChildElement("PROPERTY");
+		while(pElement)
+		{
+			propertyName = getAttrib(pElement, "id");
+
+			//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+
+			if(propertyName.compare(attrib_name)==0)
+			{
+				// Get the attribute value
+				result = getAttrib(pElement, "value");
+				found=true;
+			}
+			pElement = pElement->NextSiblingElement("PROPERTY");
+		}
+
+		XMLNodeCustomProperties = XMLNode->FirstChildElement("CUSTOMPROPERTIES");
+
+		// Process all CUSTOMPROPERTIES
+		if(XMLNodeCustomProperties)
+		{
+			pElement = XMLNodeCustomProperties->FirstChildElement("PROPERTY");
+			while(pElement)
+			{
+				propertyName = getAttrib(pElement, "id");
+
+				//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+
+				if(propertyName.compare(attrib_name)==0)
+				{
+					// Get the attribute value
+					result = getAttrib(pElement, "value");
+					found=true;
+				}
+				pElement = pElement->NextSiblingElement("PROPERTY");
+			}
+		}
+
+		if(!found)
+		{
+			if(logErrors)
+			{
+				throw std::string("Error parsing "+attrib_name+" attribute!");
+			}
+		}
+	}
+	return result;
 }
 

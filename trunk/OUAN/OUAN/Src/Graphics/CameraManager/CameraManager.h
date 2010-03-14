@@ -27,7 +27,7 @@ namespace OUAN
 
 		void resetActiveCameraPosition();
 
-		void update(long elapsedTime);
+		void update(double elapsedTime);
 
 		void processMouseInput(const OIS::MouseEvent &e);
 		void processRelativeMotion(double xRel,double yRel,double zRel);

@@ -16,7 +16,7 @@ namespace OUAN
 
 		Ogre::Camera * getCamera();
 
-		virtual void update(long elapsedTime);
+		virtual void update(double elapsedTime);
 		virtual void processMouseInput(const OIS::MouseEvent &e);
 		virtual void processRelativeMotion(double xRel,double yRel,double zRel);
 		virtual void processSimpleTranslation(int movementFlags);

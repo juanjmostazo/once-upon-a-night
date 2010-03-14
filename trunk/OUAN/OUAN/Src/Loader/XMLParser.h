@@ -1,24 +1,26 @@
-#ifndef XMLGAMEOBJECTPARSERH_H
-#define XMLGAMEOBJECTPARSERH_H
+#ifndef XMLParserH_H
+#define XMLParserH_H
 
 #include "../OUAN.h"
-
+#include "XMLTrajectory.h"
 namespace OUAN
 {
-	class XMLGameObjectParser
+	class XMLParser
 	{
 		protected:
 			TiXmlDocument *XMLDoc;
+			TiXmlElement *XMLRootNode;
 
 			void parseLevelRoot(TiXmlElement *XMLNode);
-			void parseGameObjects(TiXmlElement *XMLNode);
-			void parseGameObject(TiXmlElement *XMLNode);
+			void parseElements(TiXmlElement *XMLNode);
+			void parseElement(TiXmlElement *XMLNode);
 			void addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode);
 			void addXMLNodeCustomProperties();
 			void setNames();
 
 			//Trajectory Parsing
-			void parseTrajectory(TiXmlElement *XMLNode);
+			void parseTrajectory(TiXmlElement *XMLTrajectoryStartNode);
+			TiXmlElement * findTrajectoryNode(std::string trajectoryNodeName);
 
 			//Game Object names processors
 			bool isDreams(std::string worldName,std::string gameObjectType);
@@ -43,24 +45,26 @@ namespace OUAN
 
 			//Attribute parser
 			OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
-
+			
+			//Property string parser
+			OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);
 
 		public:
-			XMLGameObjectParser();
-			virtual ~XMLGameObjectParser();
+			XMLParser();
+			virtual ~XMLParser();
 
 			void init();
 			void clearLevelInfo();
 
 			void parseLevel(String SceneName);
 
-			//Map containing all the parsed objects
+			//Map containing all the parsed game objects
 			std::map<std::string,XMLGameObject> XMLGameObjectContainer;
 			typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
 
 			//Map containing all the parsed trajectories
-			//std::map<std::string,TTrajectoryParameters> XMLTrajectoryContainer;
-			//typedef std::map<std::string,TTrajectoryParameters>::iterator XMLTrajectoryContainerIterator;
+			std::map<std::string,XMLTrajectory> XMLTrajectoryContainer;
+			typedef std::map<std::string,XMLTrajectory>::iterator XMLTrajectoryContainerIterator;
 	};
 
 }

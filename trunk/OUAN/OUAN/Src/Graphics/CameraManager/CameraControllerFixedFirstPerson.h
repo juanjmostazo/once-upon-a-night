@@ -12,7 +12,7 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 		void setTarget(RenderComponentPositional * target);
 
-		void update(long elapsedTime);
+		void update(double elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 	private:

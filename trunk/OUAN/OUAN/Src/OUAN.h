@@ -477,11 +477,13 @@ namespace OUAN
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
-
-		class XMLGameObjectParser;
 		class XMLGameObject;
 		typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
 
+		class XMLTrajectory;
+		typedef std::map<std::string,XMLTrajectory>::iterator XMLTrajectoryContainerIterator;
+
+		class XMLParser;
 		class Configuration;
 		class LevelLoader;
 

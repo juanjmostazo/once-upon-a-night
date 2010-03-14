@@ -24,7 +24,7 @@ TCameraControllerType CameraControllerFirstPerson::getControllerType()
 	return OUAN::CAMERA_FIRST_PERSON;
 }
 
-void CameraControllerFirstPerson::update(long elapsedTime)
+void CameraControllerFirstPerson::update(double elapsedTime)
 {
 	//Set camera orientation
 	Quaternion yaw(Radian(Degree(rotY)),Vector3::UNIT_Y);

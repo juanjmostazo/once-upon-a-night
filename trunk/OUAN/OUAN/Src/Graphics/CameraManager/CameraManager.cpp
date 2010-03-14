@@ -7,6 +7,7 @@
 #include "CameraControllerTrajectory.h"
 #include "../RenderComponent/RenderComponentCamera.h"
 #include "../TrajectoryManager/TrajectoryManager.h"
+#include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
 using namespace OUAN;
@@ -54,14 +55,18 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,Trajec
 }
 void CameraManager::setCameraTrajectory(std::string name)
 {
-	Trajectory * pTrajectory;
+
+	Ogre::LogManager::getSingleton().logMessage("[CameraManager] Setting trajectory "+name+" to trajectory camera");
+
 	try
 	{
-		pTrajectory=mTrajectoryManager->getTrajectory(name);
-		if(!pTrajectory) throw "Trajectory "+name+" does not exist";
+		if(mTrajectoryManager->hasTrajectory(name))
+		{
+			mCameraControllerTrajectory->setTrajectory(mTrajectoryManager->getTrajectory(name));
+		}
 		else
 		{
-			mCameraControllerTrajectory->setTrajectory(pTrajectory);
+			throw "Trajectory "+name+" does not exist";
 		}
 	}
 	catch( std::string error )
@@ -207,7 +212,7 @@ void CameraManager::resetActiveCameraPosition()
 	camera[getActiveCameraName()]->resetCameraParameters();
 }
 
-void CameraManager::update(long elapsedTime)
+void CameraManager::update(double elapsedTime)
 {
 	activeCameraController->update(elapsedTime);
 }
@@ -272,3 +277,4 @@ void CameraManager::setCameraTarget(RenderComponentPositional * target)
 	mCameraControllerFixedThirdPerson->setTarget(target);
 	mCameraControllerFixedFirstPerson->setTarget(target);
 }
+

@@ -9,7 +9,7 @@ namespace OUAN
 		CameraControllerFixedThirdPerson();
 		~CameraControllerFixedThirdPerson();
 
-		void update(long elapsedTime);
+		void update(double elapsedTime);
 		void setTarget(RenderComponentPositional * target);
 
 		TCameraControllerType getControllerType();

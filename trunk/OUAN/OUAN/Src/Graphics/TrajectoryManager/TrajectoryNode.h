@@ -12,21 +12,23 @@ namespace OUAN
 		~TTrajectoryNodeParameters();
 
 		String nodeName;
-
 		Vector3 position;
 		Quaternion orientation;
+
 	};
 
 	class TrajectoryNode
 	{
 	private:
-
+		Ogre::SceneNode * mSceneNode;
 	public:
 
 		TrajectoryNode();
 		~TrajectoryNode();
 		
-		Ogre::SceneNode * node;
+		Ogre::SceneNode * getSceneNode() const;
+		void setSceneNode(Ogre::SceneNode * pSceneNode);
+
 	};
 }
 
