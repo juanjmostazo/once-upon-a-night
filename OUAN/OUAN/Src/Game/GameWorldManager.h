@@ -67,9 +67,6 @@ namespace OUAN
 		/// Free resources
 		void cleanUp();
 
-		//Create Ogre component for the game object
-		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject);
-
 		/// Create a game object using the given 'parameters' object
 		/// @param objectParams parameters to init the game object and its components
 
