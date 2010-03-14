@@ -165,7 +165,7 @@ void CameraManager::setActiveCamera(std::string name)
 	{
 		activeCameraController->setCamera(pCamera);
 		mViewport->setCamera(pCamera);
-		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" activated);
+		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" activated");
 	}
 	else
 	{
