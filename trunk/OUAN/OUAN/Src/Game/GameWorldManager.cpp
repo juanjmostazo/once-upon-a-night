@@ -281,7 +281,6 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
-
 	mGameOver=false;
 
 	level=levelFileName;

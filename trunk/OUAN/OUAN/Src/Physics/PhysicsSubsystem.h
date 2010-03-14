@@ -88,6 +88,9 @@ namespace OUAN
 		/// param read from config file, applied to jump
 		double mInitialJumpSpeed;
 
+		/// param read from config file
+		double mMinAllowedY;
+
 		/// Load params from config file
 		virtual bool loadConfig();
 
