@@ -7,7 +7,7 @@ using namespace OUAN;
 
 void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 {
-	mParentGameState=parentGameState;
+	GUIWindow::initGUI(parentGameState);
 	mParentGameState->getApp()->getInputMappings(mCurrentConfig);
 	mNewConfig=mCurrentConfig;
 	mButtonTextStrings.reset(new Configuration());

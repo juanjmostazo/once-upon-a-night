@@ -2,7 +2,6 @@
 #define GUIOPTIONSMENUH_H
 #include "GUIDefs.h"
 #include "GUIWindow.h"
-#include "../OUAN.h"
 #include "../Input/InputDefs.h"
 
 namespace OUAN
@@ -71,9 +70,6 @@ namespace OUAN
 		std::string mCurrentlyEditedMapping;
 		/// Type of input device
 		TInputDevice mCurrentlyEditedDevice;
-
-		/// Parent state
-		GameStatePtr mParentGameState;
 
 		/// Text strings for the buttons
 		ConfigurationPtr mButtonTextStrings;

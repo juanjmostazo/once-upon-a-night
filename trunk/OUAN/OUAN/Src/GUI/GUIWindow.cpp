@@ -16,9 +16,13 @@ void GUIWindow::init(const std::string& layoutName,CEGUI::Window* sheet)
 }
 void GUIWindow::destroy()
 {
-
+	mSheet=NULL;
 }
 CEGUI::Window* GUIWindow::getSheet() const
 {
 	return mSheet;
+}
+void GUIWindow::initGUI(GameStatePtr parentGameState)
+{
+	mParentGameState=parentGameState;
 }

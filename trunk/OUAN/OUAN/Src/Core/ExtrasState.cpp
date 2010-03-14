@@ -1,6 +1,7 @@
 #include "ExtrasState.h"
 #include "../Application.h"
 #include "../GUI/GUISubsystem.h"
+#include "../GUI/GUIExtrasMenu.h"
 #include "GameStateManager.h"
 
 #include "MainMenuState.h"
@@ -24,15 +25,14 @@ ExtrasState::~ExtrasState()
 void ExtrasState::init(ApplicationPtr app)
 {
 	mApp=app;
-	mApp->getGUISubsystem()->createGUI("OUAN_ExtrasMenu.layout");
-	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUANExtras/Back",
-		CEGUI::Event::Subscriber(&ExtrasState::onBackToMenu,this));
+	mGUI=boost::dynamic_pointer_cast<GUIExtrasMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_EXTRAS));
+	mGUI->initGUI(shared_from_this());
 }
 
 /// Clean up main menu's resources
 void ExtrasState::cleanUp()
 {
+	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 }
 
@@ -60,9 +60,8 @@ void ExtrasState::update(long elapsedTime)
 {
 
 }
-bool ExtrasState::onBackToMenu(const CEGUI::EventArgs& args)
+void ExtrasState::backToMenu()
 {
 	GameStatePtr nextState(new MainMenuState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
-	return true;
 }

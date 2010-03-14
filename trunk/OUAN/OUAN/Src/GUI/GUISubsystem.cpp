@@ -4,7 +4,9 @@
 
 #include "GUIWindow.h"
 #include "GUIOptionsMenu.h"
-
+#include "GUIMainMenu.h"
+#include "GUIConsole.h"
+#include "GUIExtrasMenu.h"
 #include <algorithm>
 
 using namespace OUAN;
@@ -37,7 +39,6 @@ void GUISubsystem::init(ApplicationPtr app)
 void GUISubsystem::loadScheme(std::string schemeName, std::string mouseCursor)
 {
 	try{
-		//TODO: Make layout and specific resource loading dependant on the game state/level
 		if (!CEGUI::SchemeManager::getSingletonPtr()->isSchemePresent((CEGUI::utf8*)schemeName.c_str()))
 			CEGUI::SchemeManager::getSingleton().loadScheme((CEGUI::utf8*)schemeName.c_str());
 	}
@@ -116,6 +117,12 @@ GUIWindowPtr GUISubsystem::createGUI(const std::string& guiLayout)
 		mSystem->setGUISheet(sheet);
 		if (guiLayout.compare(GUI_LAYOUT_OPTIONS)==0)
 			ptr.reset(new GUIOptionsMenu());
+		else if (guiLayout.compare(GUI_LAYOUT_MAINMENU)==0)
+			ptr.reset(new GUIMainMenu());
+		else if (guiLayout.compare(GUI_LAYOUT_EXTRAS)==0)
+			ptr.reset(new GUIExtrasMenu());
+		else if (guiLayout.compare(GUI_LAYOUT_CONSOLE)==0)
+			ptr.reset(new GUIConsole());
 		//Add more inits as needed
 		else ptr.reset(new GUIWindow());
 		ptr->init(guiLayout,sheet);
