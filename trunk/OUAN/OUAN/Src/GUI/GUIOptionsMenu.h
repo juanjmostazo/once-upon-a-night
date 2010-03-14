@@ -1,74 +1,140 @@
 #ifndef GUIOPTIONSMENUH_H
 #define GUIOPTIONSMENUH_H
-#include <cegui/CEGUI.h>
+#include "GUIDefs.h"
+#include "GUIWindow.h"
 #include "../OUAN.h"
+#include "../Input/InputDefs.h"
 
 namespace OUAN
 {
-	typedef enum{
-		DEVICE_KEYB_MOUSE=0,
-		DEVICE_PAD_PSX,
-	} TInputDevice;
+	typedef struct 
+	{
+		std::string keyMapping;
+		std::string buttonText;
+	} TButtonData;
+
+	typedef std::map<std::string, TButtonData> TButtonDataMapping;
+	const std::string MENUSTRINGS_CFG = "../../Config/menu-strings_en.xml";
+
+	// Keys for the button texts
+	const std::string BUTTON_TEXT_FORWARD="BUTTON_TEXT_FORWARD";
+	const std::string BUTTON_TEXT_BACKWARDS="BUTTON_TEXT_BACKWARDS";
+	const std::string BUTTON_TEXT_LEFT="BUTTON_TEXT_LEFT";
+	const std::string BUTTON_TEXT_RIGHT="BUTTON_TEXT_RIGHT";
+
+	const std::string BUTTON_TEXT_JUMP="BUTTON_TEXT_JUMP";
+	const std::string BUTTON_TEXT_USEWEAPON="BUTTON_TEXT_USEWEAPON";
+	const std::string BUTTON_TEXT_ACTION="BUTTON_TEXT_ACTION";
+	const std::string BUTTON_TEXT_RELOAD="BUTTON_TEXT_RELOAD";
+
+	const std::string BUTTON_TEXT_LROTATE="BUTTON_TEXT_LROTATE";
+	const std::string BUTTON_TEXT_RROTATE="BUTTON_TEXT_RROTATE";
+	const std::string BUTTON_TEXT_WALK="BUTTON_TEXT_WALK";
+	const std::string BUTTON_TEXT_AUTOTARGET="BUTTON_TEXT_AUTOTARGET";
+
+	const std::string BUTTON_TEXT_PAUSE="BUTTON_TEXT_PAUSE";
+	const std::string BUTTON_TEXT_INGAME_MENU="BUTTON_TEXT_MENU";
+
+	const std::string COMBO_ITEM_DEVICE_MOUSEKEYBOARD ="COMBO_ITEM_DEVICE_MOUSEKEYBOARD";
+	const std::string COMBO_ITEM_DEVICE_PSXPAD ="COMBO_ITEM_DEVICE_PSXPAD";
+	// Button names in the layout
+	const std::string BUTTON_NAME_FORWARD="OUANOptions/Controls/ForwardBtn";
+	const std::string BUTTON_NAME_BACKWARDS="OUANOptions/Controls/BackwardsBtn";
+	const std::string BUTTON_NAME_LEFT="OUANOptions/Controls/LeftBtn";
+	const std::string BUTTON_NAME_RIGHT="OUANOptions/Controls/RightBtn";
+
+	const std::string BUTTON_NAME_JUMP="OUANOptions/Controls/JumpBtn";
+	const std::string BUTTON_NAME_ACTION="OUANOptions/Controls/ActionBtn";
+	const std::string BUTTON_NAME_USEWEAPON="OUANOptions/Controls/WeaponBtn";
+	const std::string BUTTON_NAME_RELOAD="OUANOptions/Controls/ReloadBtn";
+
+	const std::string BUTTON_NAME_LROTATE="OUANOptions/Controls/RotateLeftBtn";
+	const std::string BUTTON_NAME_RROTATE="OUANOptions/Controls/RotateRightBtn";
+	const std::string BUTTON_NAME_WALK="OUANOptions/Controls/WalkBtn";
+	const std::string BUTTON_NAME_AUTOTARGET="OUANOptions/Controls/AutoTargetBtn";
+
+	const std::string BUTTON_NAME_PAUSE="OUANOptions/Controls/PauseBtn";
+	const std::string BUTTON_NAME_MENU="OUANOptions/Controls/MenuBtn";
 
 	class GUIOptionsMenu: public GUIWindow
 	{
 	private:
-		CEGUI::TabControl* mOptionsControl;
-
-		CEGUI::Combobox* mInputDeviceCombo;
-
-		CEGUI::RadioButton* mForwardKeyButton;
-		CEGUI::RadioButton* mBackwardsKeyButton;
-		CEGUI::RadioButton* mLeftKeyButton;
-		CEGUI::RadioButton* mRightKeyButton;
-		CEGUI::RadioButton* mReloadKeyButton;
-		CEGUI::RadioButton* mWeaponKeyButton;
-		CEGUI::RadioButton* mActionKeyButton;
-		CEGUI::RadioButton* mJumpKeyButton;
-
-		CEGUI::RadioButton* mWalkKeyButton;
-		CEGUI::RadioButton* mAutotargetKeyButton;
-		CEGUI::RadioButton* mLRotateKeyButton;
-		CEGUI::RadioButton* mRRotateKeyButton;
-
-		CEGUI::RadioButton* mPauseKeyButton;
-		CEGUI::RadioButton* mMenuKeyButton;
-
-		CEGUI::PushButton* mApplyKeyButton;
-		CEGUI::PushButton* mResetKeyButton;
+		/// A button has been clicked and the game's
+		/// expecting a press to set a mapping
+		bool mExpectingPress;
+		/// Current input mappings
+		TControlInputMapping mCurrentConfig;
+		/// Modified input mappings
+		TControlInputMapping mNewConfig;
 		
-		CEGUI::PushButton* mBackKeyButton;
-		
+		/// Name of the button for the mapping being edited
 		std::string mCurrentlyEditedMapping;
+		/// Type of input device
 		TInputDevice mCurrentlyEditedDevice;
 
-		// SOUND TAB
-		CEGUI::Slider* mMasterSoundSlider;
-		CEGUI::Slider* mSfxSoundSlider;
-		CEGUI::Slider* mMusicSoundSlider;
-		CEGUI::Checkbox* mMasterSoundDisable;
-		CEGUI::Checkbox* mSfxSoundDisable;
-		CEGUI::Checkbox* mMusicSoundDisable;
-
+		/// Parent state
 		GameStatePtr mParentGameState;
 
-		// Input configurations
-		ConfigurationPtr mOldInputConfig;
-		ConfigurationPtr mNewInputConfig;
-		// Global configurations
-		ConfigurationPtr mOldConfig;
-		ConfigurationPtr mNewConfig;
+		/// Text strings for the buttons
+		ConfigurationPtr mButtonTextStrings;
+		/// Button-name, mapping for every button name
+		TButtonDataMapping mButtonData;
 
+		/// Initialise the tab controller
 		void initTabs();
+		/// Initialise the controls tab window
 		void initControlsTab();
+		/// Initialise the sound tab window
 		void initSoundTab();
+		/// Initialise the graphics tab window
 		void initGraphicsTab();
-		void initVolumeSlider(const std::string& windowName, float maxValue, float defaultValue, float clickStep, CEGUI::Slider* slider);
 
-		// TODO: OPTIONS TAB
+		/// Initialise a volume slider
+		/// @param windowName	name of the slider
+		/// @float maxValue		value corresponding to the slider's max
+		/// @float defaultValue	default value the slider thumb will be at
+		/// @float clickStep	increase/decrease in the value for every click
+		///						on the slider
+		void initVolumeSlider(const std::string& windowName, float maxValue, float defaultValue, float clickStep);
+
+		/// Init a radio button
+		/// @param buttonName Name of the button in the GUI layout file
+		/// @param buttonText key to locate the button's text
+		/// @param mappingName mapping
+		/// @param buttonData Button data map
+		void initButton(const std::string& buttonName, const std::string& buttonText, 
+			const std::string& mappingName, TButtonDataMapping& buttonData);
+		/// Init all the mapping radio buttons
+		void initTextButtons();
+
+		/// Tell if the press under the given code is already
+		/// in use
+		/// @param code code of the input device press
+		/// @return true if the code corresponds to a mapping already
+		///			in use
+		bool mappingAlreadyFound(int code);		
+
+		// EVENT HANDLERS
+		/// Register all event bindings for the GUI
+		void bindEvents();
+
+		bool onBackToMenu(const CEGUI::EventArgs& args);
+		bool onRadioButtonStateChange(const CEGUI::EventArgs& args);
+		bool onApply (const CEGUI::EventArgs& args);
+		bool onCancel (const CEGUI::EventArgs& args);
+		bool onDeviceSelectionChanged(const CEGUI::EventArgs& args);
+		bool onRadioButtonDown(const CEGUI::EventArgs& args);
+
 	public:
-		void init(GameStatePtr parentGameState);
-		void cleanUp();
+		/// Free resources
+		void destroy();
+		/// Initialise the GUI
+		/// @param mParentGameState state owning this window
+		void initGUI(GameStatePtr mParentGameState);
+
+		bool keyPressed( const OIS::KeyEvent& e );
+		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+		bool buttonPressed( const OIS::JoyStickEvent &e, int button );
 	};
 }
 #endif

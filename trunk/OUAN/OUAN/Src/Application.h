@@ -2,6 +2,7 @@
 #define __APPLICATION__H__
 
 #include "OUAN.h"
+#include "GUI/GUIDefs.h"
 #include "Input/ControlInputManager.h"
 
 namespace OUAN
