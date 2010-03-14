@@ -10,7 +10,7 @@ material tree01_d
 
 			texture_unit
 			{
-				texture tree01_d.dds
+				texture tree_01_d.dds
 			}
 		}
 
