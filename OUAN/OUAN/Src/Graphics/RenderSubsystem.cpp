@@ -700,3 +700,16 @@ bool RenderSubsystem::isAnimatedTextureFinished(const std::string& materialName)
 	else LogManager::getSingletonPtr()->logMessage("Material name not found. Function RenderSubsystem::isAnimatedTextureFinished");
 	return false;
 }
+void RenderSubsystem::hideOverlayElement(const std::string& overlayName)
+{
+	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
+	if (overlayElem)
+		overlayElem->hide();
+}
+void RenderSubsystem::showOverlayElement(const std::string& overlayName)
+{
+	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
+	if (overlayElem)
+		overlayElem->show();
+
+}

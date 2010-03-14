@@ -255,6 +255,7 @@ void GameObjectOny::update(double elapsedSeconds)
 
 	if (getRenderComponentPositional()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
 		Application::getInstance()->getGameWorldManager()->setGameOver(true);
+		Application::getInstance()->getGameWorldManager()->setGameBeaten(false);
 	}
 }
 

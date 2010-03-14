@@ -138,6 +138,13 @@ namespace OUAN
 		void hideOverlay(const std::string& overlayName);
 		/// Display the overlay named 'overlayName', if found
 		void showOverlay(const std::string& overlayName);
+		/// Hide the overlay element named as 'overlayName' if found
+		/// @param overlayName name of the overlay element
+		void hideOverlayElement(const std::string& overlayName);
+		/// Display the overlay element named as 'overlayName' if found
+		/// @param overlayName name of the overlay element
+		void showOverlayElement(const std::string& overlayName);
+
 
 		void pauseRendering();
 		void resumeRendering();
