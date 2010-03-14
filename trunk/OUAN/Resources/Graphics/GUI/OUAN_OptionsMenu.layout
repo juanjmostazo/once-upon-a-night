@@ -4,19 +4,6 @@
     <Window Type="DefaultWindow" Name="Root" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="OUANLook/Button" Name="OUANOptions/Back" >
-            <Property Name="Font" Value="BlueHighway-10" />
-            <Property Name="Text" Value="Back to menu" />
-            <Property Name="Tooltip" Value="Return to main menu" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.92,0},{0.7,0},{0.957089,0}}" />
-        </Window>
-        <Window Type="OUANLook/TabControl" Name="OUANOptions/TabCtrl" >
-            <Property Name="TabHeight" Value="{0,19.2613}" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="TabPanePosition" Value="Top" />
-            <Property Name="UnifiedAreaRect" Value="{{0.023438,0},{0.072917,0},{0.984375,0},{0.872917,0}}" />
-        </Window>
         <Window Type="DefaultWindow" Name="OUANOptions/ControlsTab" >
             <Property Name="Font" Value="BlueHighway-10" />
             <Property Name="Text" Value="Controls" />
@@ -269,8 +256,29 @@ The checks on their right sides will inmediately switch them to 0.</Property>
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
         </Window>
+        <Window Type="OUANLook/StaticImage" Name="OUANOptions/Background" >
+            <Property Name="Image" Value="set:OUANLook-BG-NoLogo image:OUAN-BG-NoLogo" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        </Window>
+        <Window Type="OUANLook/Button" Name="OUANOptions/Back" >
+            <Property Name="Font" Value="BlueHighway-10" />
+            <Property Name="Text" Value="Back to menu" />
+            <Property Name="Tooltip" Value="Return to main menu" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.3,0},{0.92,0},{0.7,0},{0.957089,0}}" />
+        </Window>
+        <Window Type="OUANLook/TabControl" Name="OUANOptions/TabCtrl" >
+            <Property Name="TabHeight" Value="{0,19.2613}" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="TabPanePosition" Value="Top" />
+            <Property Name="UnifiedAreaRect" Value="{{0.023438,0},{0.072917,0},{0.984375,0},{0.872917,0}}" />
+        </Window>
         <Window Type="OUANLook/StaticText" Name="OUANOptions/OptionsLabel" >
             <Property Name="Text" Value="OPTIONS" />
+            <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="HorzFormatting" Value="HorzCentred" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
