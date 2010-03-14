@@ -1,0 +1,21 @@
+
+material entry_island2_n
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture entry_little_n.tga
+			}
+		}
+
+	}
+
+}
+
+
