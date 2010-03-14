@@ -3,10 +3,13 @@
 
 #include "../OUAN.h"
 #include "GameState.h"
+#include <boost/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	///State corresponding to the game's extras menu
-	class ExtrasState: public GameState{
+	class ExtrasState: public GameState, public boost::enable_shared_from_this<ExtrasState>{
+	private:
+		GUIExtrasMenuPtr mGUI;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -30,8 +33,7 @@ namespace OUAN
 		ExtrasState();
 		/// Destructor
 		~ExtrasState();
-
-		bool onBackToMenu(const CEGUI::EventArgs& args);
+		void backToMenu();
 
 	};
 }

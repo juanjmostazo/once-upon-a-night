@@ -2,7 +2,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../GUI/GUISubsystem.h"
-
+#include "../GUI/GUIMainMenu.h"
 #include "GameStateManager.h"
 #include "GameRunningState.h"
 #include "GameOptionsState.h"
@@ -28,29 +28,15 @@ void MainMenuState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
-	mApp->getGUISubsystem()->createGUI("OUAN_MainMenu.layout");
-
-	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUANMainMenu/Quit",
-		CEGUI::Event::Subscriber(&MainMenuState::onQuit,this));
-
-	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUANMainMenu/Play",
-		CEGUI::Event::Subscriber(&MainMenuState::onPlay,this));
-
-	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUANMainMenu/Options",
-		CEGUI::Event::Subscriber(&MainMenuState::onOptions,this));
-	mApp->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
-		"OUANMainMenu/Extras",
-		CEGUI::Event::Subscriber(&MainMenuState::onExtras,this));
-
+	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
+	mGUI->initGUI(shared_from_this());
 }
 
 /// Clean up main menu's resources
 void MainMenuState::cleanUp()
 {
 	//Unsubscribe from events
+	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	//mApp->getGUISubsystem()->unbindAllEvents();
 }
@@ -79,29 +65,23 @@ void MainMenuState::update(long elapsedTime)
 {
 
 }
-
-bool MainMenuState::onQuit(const CEGUI::EventArgs& args)
+void MainMenuState::gotoPlay()
 {
-	mApp->mExitRequested=true;
-	return true;
-}
-
-bool MainMenuState::onPlay(const CEGUI::EventArgs& args)
-{
+	//TODO: Change to ProfileSelectState when it's implemented
 	GameStatePtr nextState(new GameRunningState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
-	return true;
 }
-
-bool MainMenuState::onOptions(const CEGUI::EventArgs& args)
+void MainMenuState::gotoOptions()
 {
 	GameStatePtr nextState(new GameOptionsState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
-	return true;
 }
-bool MainMenuState::onExtras(const CEGUI::EventArgs& args)
+void MainMenuState::gotoExtras()
 {
 	GameStatePtr nextState(new ExtrasState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
-	return true;
+}
+void MainMenuState::quit()
+{
+	mApp->mExitRequested=true;
 }

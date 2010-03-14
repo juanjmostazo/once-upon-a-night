@@ -7,7 +7,7 @@ namespace OUAN
 {
 	typedef std::vector<CEGUI::Event::Connection> TGUIConnections;
 	///State corresponding to the game's main menu
-	class MainMenuState: public GameState{
+	class MainMenuState: public GameState, public boost::enable_shared_from_this<MainMenuState>{
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
@@ -26,16 +26,19 @@ namespace OUAN
 		/// Update game according to the current state
 		/// @param app	the parent app
 		void update(long elapsedTime);
+
+		GUIMainMenuPtr mGUI;
+
+		void gotoPlay();
+		void gotoOptions();
+		void gotoExtras();
+		void quit();
 		
 		/// Default constructor
 		MainMenuState();
 		/// Destructor
 		~MainMenuState();
 
-		bool onPlay(const CEGUI::EventArgs& args);	
-		bool onOptions(const CEGUI::EventArgs& args);
-		bool onExtras (const CEGUI::EventArgs& args);
-		bool onQuit(const CEGUI::EventArgs& args);
 	};
 }
 #endif

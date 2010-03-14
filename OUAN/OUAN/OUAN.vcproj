@@ -386,15 +386,20 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath=".\Src\GUI\GUIConsole.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIExtrasMenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIMainMenu.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUIOptionsMenu.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 					<FileConfiguration
 						Name="Release|Win32"
 						ExcludedFromBuild="true"
@@ -411,13 +416,6 @@
 				<File
 					RelativePath=".\Src\GUI\GUIWindow.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 					<FileConfiguration
 						Name="Release|Win32"
 						ExcludedFromBuild="true"
@@ -914,7 +912,19 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath=".\Src\GUI\GUIConsole.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUIDefs.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIExtrasMenu.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIMainMenu.h"
 					>
 				</File>
 				<File

@@ -15,6 +15,13 @@ namespace OUAN
 
 	class GUIOptionsMenu;
 	typedef boost::shared_ptr<GUIOptionsMenu> GUIOptionsMenuPtr;
+
+	class GUIMainMenu;
+	typedef boost::shared_ptr<GUIMainMenu> GUIMainMenuPtr;
+	class GUIExtrasMenu;
+	typedef boost::shared_ptr<GUIExtrasMenu> GUIExtrasMenuPtr;
+	class GUIConsole;
+	typedef boost::shared_ptr<GUIConsole> GUIConsolePtr;
 	/// Keyboard event types
 	typedef enum{
 		GUI_KEYDOWN,
