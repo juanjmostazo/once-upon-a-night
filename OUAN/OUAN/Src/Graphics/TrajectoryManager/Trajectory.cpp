@@ -6,12 +6,20 @@ Trajectory::Trajectory()
 {
 	totalTime=0;
 	currentNode=0;
-	TIME_PER_NODE=3;
+	loopTrajectory=true;
 }
 
 Trajectory::~Trajectory()
 {
 
+}
+bool Trajectory::getLoopTrajectory() const
+{
+	return loopTrajectory;
+}
+void Trajectory::setLoopTrajectory(bool loopTrajectory)
+{
+	this->loopTrajectory=loopTrajectory;
 }
 
 int Trajectory::getNextNode()
@@ -41,13 +49,23 @@ void Trajectory::update(double elapsedTime)
 	Ogre::LogManager::getSingleton().logMessage("Updating trajectory camera "+Ogre::StringConverter::toString(Ogre::Real(totalTime)));
 
 	//Calculate current node
-	if(totalTime>=TIME_PER_NODE)
+	if(totalTime>=trajectoryNodes[currentNode]->getTimeToNextNode())
 	{
 		currentNode++;
 
 		if(currentNode>= trajectoryNodes.size())
 		{
-			currentNode=0;
+			//If we do not want to loop the trajectory we return and leave the camera where it is
+			if (!loopTrajectory)
+			{
+				currentNode=trajectoryNodes.size()-1;
+				return;
+			}
+			else
+			{
+				//We set current node to the starting trajectory node
+				currentNode=0;
+			}
 		}
 
 		totalTime=0;
@@ -57,13 +75,15 @@ void Trajectory::update(double elapsedTime)
 	nextNode=getNextNode();
 
 	//Calculate current orientation
-	currentOrientation= Quaternion::Slerp((totalTime/TIME_PER_NODE), trajectoryNodes[currentNode]->getSceneNode()->getOrientation(), trajectoryNodes[nextNode]->getSceneNode()->getOrientation(),true);
+	currentOrientation= Quaternion::Slerp((totalTime/trajectoryNodes[currentNode]->getTimeToNextNode()), 
+		trajectoryNodes[currentNode]->getSceneNode()->getOrientation(), 
+		trajectoryNodes[nextNode]->getSceneNode()->getOrientation(),true);
 
 	Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
 
 	//Calculate current position
-	currentPosition= (1-totalTime/TIME_PER_NODE)*trajectoryNodes[currentNode]->getSceneNode()->getPosition()+
-		(totalTime/TIME_PER_NODE)*trajectoryNodes[nextNode]->getSceneNode()->getPosition();
+	currentPosition= (1-totalTime/trajectoryNodes[currentNode]->getTimeToNextNode())*trajectoryNodes[currentNode]->getSceneNode()->getPosition()+
+		(totalTime/trajectoryNodes[currentNode]->getTimeToNextNode())*trajectoryNodes[nextNode]->getSceneNode()->getPosition();
 
 	Ogre::LogManager::getSingleton().logMessage("Updating position "+Ogre::StringConverter::toString(currentPosition));
 }
@@ -84,13 +104,14 @@ void Trajectory::reset()
 	currentNode = 0;
 }
 
-void Trajectory::addTrajectoryNode(Ogre::SceneNode * sceneNode)
+void Trajectory::addTrajectoryNode(Ogre::SceneNode * sceneNode, double timeToNextNode)
 {
 	TrajectoryNode * pTrajectoryNode;
 
 	pTrajectoryNode = new TrajectoryNode();
 
 	pTrajectoryNode->setSceneNode(sceneNode);
+	pTrajectoryNode->setTimeToNextNode(timeToNextNode);
 
 	this->trajectoryNodes.push_back(pTrajectoryNode);
 }

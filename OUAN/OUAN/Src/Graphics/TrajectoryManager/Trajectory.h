@@ -14,9 +14,10 @@ namespace OUAN
 		Vector3 currentPosition;
 		Quaternion currentOrientation;
 
+		bool loopTrajectory;
+
 		int getNextNode();
 
-		double TIME_PER_NODE;
 	public:
 
 		Trajectory();
@@ -29,9 +30,12 @@ namespace OUAN
 
 		void update(double elapsedTime);
 
-		void addTrajectoryNode(Ogre::SceneNode * sceneNode);
+		void addTrajectoryNode(Ogre::SceneNode * sceneNode, double timeToNextNode);
 
 		std::vector<TrajectoryNode *>  getTrajectoryNodes() const;
+
+		bool getLoopTrajectory() const;
+		void setLoopTrajectory(bool loopTrajectory);
 
 	};
 

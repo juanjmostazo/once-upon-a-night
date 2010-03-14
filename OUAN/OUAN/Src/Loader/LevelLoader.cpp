@@ -44,7 +44,10 @@
 
 using namespace OUAN;
 
-LevelLoader::LevelLoader(){}
+LevelLoader::LevelLoader()
+{
+	DEFAULT_TIME_TO_NEXT_NODE = 3;
+}
 LevelLoader::~LevelLoader(){}
 
 void LevelLoader::init(OUAN::ApplicationPtr app)
@@ -260,6 +263,18 @@ TTrajectoryNodeParameters LevelLoader::processTrajectoryNode(TiXmlElement *XMLNo
 	//Get Trajectory Node properties
 	tTrajectoryNodeParameters.position=getPropertyVector3(XMLNode,"position");
 	tTrajectoryNodeParameters.orientation=getPropertyQuaternion(XMLNode,"orientation");
+	try
+	{
+		tTrajectoryNodeParameters.timeToNextNode=getPropertyReal(XMLNode,"trajectorynode::time to next node");
+		if(tTrajectoryNodeParameters.timeToNextNode<0)
+		{
+			throw "time to next node must be positive";
+		}
+	}
+	catch( std::string error )
+	{
+		tTrajectoryNodeParameters.timeToNextNode=DEFAULT_TIME_TO_NEXT_NODE;
+	}
 
 	return tTrajectoryNodeParameters;
 }

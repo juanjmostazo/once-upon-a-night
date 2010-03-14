@@ -38,7 +38,7 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 		pSceneNode->setPosition(tTrajectoryParameters.tTrajectoryNodeParameters[i].position);
 		pSceneNode->setOrientation(tTrajectoryParameters.tTrajectoryNodeParameters[i].orientation);
 
-		trajectoryContainer[tTrajectoryParameters.name]->addTrajectoryNode(pSceneNode);
+		trajectoryContainer[tTrajectoryParameters.name]->addTrajectoryNode(pSceneNode,tTrajectoryParameters.tTrajectoryNodeParameters[i].timeToNextNode);
 	}
 }
 
@@ -61,7 +61,9 @@ Trajectory * TrajectoryManager::getTrajectoryInstance(std::string name)
 
 		for(i=0;i<trajectoryContainer[name]->getTrajectoryNodes().size();i++)
 		{
-			pTrajectory->addTrajectoryNode(trajectoryContainer[name]->getTrajectoryNodes()[i]->getSceneNode());
+			pTrajectory->addTrajectoryNode(trajectoryContainer[name]->getTrajectoryNodes()[i]->getSceneNode(),
+				trajectoryContainer[name]->getTrajectoryNodes()[i]->getTimeToNextNode()
+				);
 		}
 
 		pTrajectory->reset();
