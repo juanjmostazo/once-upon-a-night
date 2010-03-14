@@ -46,7 +46,7 @@ void Trajectory::update(double elapsedTime)
 
 	//Calculate total time
 	totalTime+=elapsedTime;
-	Ogre::LogManager::getSingleton().logMessage("Updating trajectory camera "+Ogre::StringConverter::toString(Ogre::Real(totalTime)));
+	//Ogre::LogManager::getSingleton().logMessage("Updating trajectory camera "+Ogre::StringConverter::toString(Ogre::Real(totalTime)));
 
 	//Calculate current node
 	if(totalTime>=trajectoryNodes[currentNode]->getTimeToNextNode())
@@ -79,13 +79,13 @@ void Trajectory::update(double elapsedTime)
 		trajectoryNodes[currentNode]->getSceneNode()->getOrientation(), 
 		trajectoryNodes[nextNode]->getSceneNode()->getOrientation(),true);
 
-	Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
+	//Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
 
 	//Calculate current position
 	currentPosition= (1-totalTime/trajectoryNodes[currentNode]->getTimeToNextNode())*trajectoryNodes[currentNode]->getSceneNode()->getPosition()+
 		(totalTime/trajectoryNodes[currentNode]->getTimeToNextNode())*trajectoryNodes[nextNode]->getSceneNode()->getPosition();
 
-	Ogre::LogManager::getSingleton().logMessage("Updating position "+Ogre::StringConverter::toString(currentPosition));
+	//Ogre::LogManager::getSingleton().logMessage("Updating position "+Ogre::StringConverter::toString(currentPosition));
 }
 
 Quaternion Trajectory::getCurrentOrientation()
