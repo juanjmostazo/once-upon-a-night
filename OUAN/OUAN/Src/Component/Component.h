@@ -32,9 +32,8 @@ namespace OUAN
 		/// set the component's parent GameObject
 		/// @param parent the parent GameObject
 		void setParent(GameObjectPtr parent);
-
-		/// TODO: Read on Observer pattern to implement this
-		//void registerEventCallback(const std::string& EventType, void (GameComponent::*fptr)(EventParams,GameObject));
+		
+		/// Update component
 		virtual void update(long elapsedTime)=0;
 
 	protected:

@@ -1,5 +1,6 @@
 #ifndef GUISUBSYSTEMH_H
 #define GUISUBSYSTEMH_H
+#include "GUIDefs.h"
 #include "../OUAN.h"
 namespace OUAN
 {
@@ -57,7 +58,7 @@ namespace OUAN
 
 		/// Creates GUI from the given CEGUI layout
 		/// @param guiLayout CEGUI layout
-		void createGUI(const std::string& guiLayout);
+		GUIWindowPtr createGUI(const std::string& guiLayout);
 		/// Destroys current GUI
 		void destroyGUI();
 

@@ -8,8 +8,6 @@
 #include <sys/stat.h>
 #include <Ogre.h>
 #include <ois/OIS.h>
-#include <cegui/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
 
 #include "ConfigKeys.h"
 
@@ -65,14 +63,6 @@ namespace OUAN
 		typedef boost::shared_ptr<GameState> GameStatePtr;
 		typedef boost::shared_ptr<Application> ApplicationPtr;
 
-	//--------
-	//-- Input-related typedefs
-	//-----
-		typedef std::map<std::string,std::pair<int,int>> TControlInputMapping;
-		typedef enum{
-			DEVICE_KEYB_MOUSE=0,
-			DEVICE_PAD_PSX,
-		} TInputDevice;
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
@@ -574,25 +564,6 @@ namespace OUAN
 			CAMERA_THIRD_PERSON,
 			CAMERA_TRAJECTORY
 		}TCameraControllerType;
-
-
-		//-------------------------------------
-		//	GUI module-related constants, type definitions and forwarded declarations
-		//-------------------------------------
-		class GUISubsystem;
-		typedef boost::shared_ptr<GUISubsystem> GUISubsystemPtr;
-		/// Keyboard event types
-		typedef enum{
-			GUI_KEYDOWN,
-			GUI_KEYUP,
-		} TGUIKeyboardEvent;
-		
-		/// Mouse event types ([TODO - Incomplete: Mouse wheel events should be added as well]
-		typedef enum{
-			GUI_MOUSEDOWN,
-			GUI_MOUSEUP,
-			GUI_MOUSEMOVE,
-		} TGUIMouseEvent;
 
 		//-------------------------------------
 		//	Physics module-related constants, type definitions and forwarded declarations

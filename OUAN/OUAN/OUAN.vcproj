@@ -390,7 +390,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -414,7 +413,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -645,6 +643,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Input\FullInputManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Input\InputDefs.h"
 					>
 				</File>
 			</Filter>
@@ -912,11 +914,14 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath=".\Src\GUI\GUIDefs.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUIOptionsMenu.h"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"
@@ -932,7 +937,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"

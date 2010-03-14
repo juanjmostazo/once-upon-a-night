@@ -2,6 +2,9 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 
+#include "GUIWindow.h"
+#include "GUIOptionsMenu.h"
+
 #include <algorithm>
 
 using namespace OUAN;
@@ -104,13 +107,20 @@ void GUISubsystem::injectTimePulse(float elapsed)
 	if(mSystem)
 		mSystem->injectTimePulse(elapsed);
 }
-void GUISubsystem::createGUI(const std::string& guiLayout)
+GUIWindowPtr GUISubsystem::createGUI(const std::string& guiLayout)
 {
+	GUIWindowPtr ptr;
 	if (!guiLayout.empty())
 	{
 		CEGUI::Window* sheet = CEGUI::WindowManager::getSingleton().loadWindowLayout(CEGUI::String(guiLayout));
 		mSystem->setGUISheet(sheet);
+		if (guiLayout.compare(GUI_LAYOUT_OPTIONS)==0)
+			ptr.reset(new GUIOptionsMenu());
+		//Add more inits as needed
+		else ptr.reset(new GUIWindow());
+		ptr->init(guiLayout,sheet);
 	}
+	return ptr;
 }
 void GUISubsystem::destroyGUI()
 {

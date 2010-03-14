@@ -1,9 +1,9 @@
 #ifndef __CONTROL_INPUT_MANAGER__H__
 #define __CONTROL_INPUT_MANAGER__H__
 
+#include "InputDefs.h"
 #include "FullInputManager.h"
 #include "../Loader/Configuration.h"
-#include <string>
 
 namespace OUAN
 {

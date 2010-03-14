@@ -1,14 +1,19 @@
 #ifndef GUIWINDOWH_H
 #define GUIWINDOWH_H
-#include <cegui/CEGUI.h>
-class GUIWindow
+#include "GUIDefs.h"
+namespace OUAN
 {
-private:
-	std::string mLayoutName;
-	CEGUI::Window* mSheet;
-public:
-	void init(const std::string& layoutName);
-	void destroy();
-	CEGUI::Window* getSheet() const;
-};
+	class GUIWindow
+	{
+	protected:
+		std::string mLayoutName;
+		CEGUI::Window* mSheet;
+	public:
+		GUIWindow();
+		virtual ~GUIWindow();
+		virtual void init(const std::string& layoutName,CEGUI::Window* sheet);
+		virtual void destroy();
+		CEGUI::Window* getSheet() const;
+	};
+}
 #endif

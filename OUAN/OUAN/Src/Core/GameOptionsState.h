@@ -1,60 +1,16 @@
 #ifndef GAMEOPTIONSSTATEH_H
 #define GAMEOPTIONSSTATEH_H
 
-#include "../OUAN.h"
 #include "GameState.h"
+#include "../OUAN.h"
+#include "../Input/InputDefs.h"
+#include <boost/enable_shared_from_this.hpp>
+
 namespace OUAN
 {
-	const std::string MENUSTRINGS_CFG = "../../Config/menu-strings_en.xml";
-
-	const std::string BUTTON_TEXT_FORWARD="BUTTON_TEXT_FORWARD";
-	const std::string BUTTON_TEXT_BACKWARDS="BUTTON_TEXT_BACKWARDS";
-	const std::string BUTTON_TEXT_LEFT="BUTTON_TEXT_LEFT";
-	const std::string BUTTON_TEXT_RIGHT="BUTTON_TEXT_RIGHT";
-
-	const std::string BUTTON_TEXT_JUMP="BUTTON_TEXT_JUMP";
-	const std::string BUTTON_TEXT_USEWEAPON="BUTTON_TEXT_USEWEAPON";
-	const std::string BUTTON_TEXT_ACTION="BUTTON_TEXT_ACTION";
-	const std::string BUTTON_TEXT_RELOAD="BUTTON_TEXT_RELOAD";
-
-	const std::string BUTTON_TEXT_LROTATE="BUTTON_TEXT_LROTATE";
-	const std::string BUTTON_TEXT_RROTATE="BUTTON_TEXT_RROTATE";
-	const std::string BUTTON_TEXT_WALK="BUTTON_TEXT_WALK";
-	const std::string BUTTON_TEXT_AUTOTARGET="BUTTON_TEXT_AUTOTARGET";
-
-	const std::string BUTTON_TEXT_PAUSE="BUTTON_TEXT_PAUSE";
-	const std::string BUTTON_TEXT_INGAME_MENU="BUTTON_TEXT_MENU";
-
-	const std::string COMBO_ITEM_DEVICE_MOUSEKEYBOARD ="COMBO_ITEM_DEVICE_MOUSEKEYBOARD";
-	const std::string COMBO_ITEM_DEVICE_PSXPAD ="COMBO_ITEM_DEVICE_PSXPAD";
-	//---
-	const std::string BUTTON_NAME_FORWARD="OUANOptions/Controls/ForwardBtn";
-	const std::string BUTTON_NAME_BACKWARDS="OUANOptions/Controls/BackwardsBtn";
-	const std::string BUTTON_NAME_LEFT="OUANOptions/Controls/LeftBtn";
-	const std::string BUTTON_NAME_RIGHT="OUANOptions/Controls/RightBtn";
-
-	const std::string BUTTON_NAME_JUMP="OUANOptions/Controls/JumpBtn";
-	const std::string BUTTON_NAME_ACTION="OUANOptions/Controls/ActionBtn";
-	const std::string BUTTON_NAME_USEWEAPON="OUANOptions/Controls/WeaponBtn";
-	const std::string BUTTON_NAME_RELOAD="OUANOptions/Controls/ReloadBtn";
-
-	const std::string BUTTON_NAME_LROTATE="OUANOptions/Controls/RotateLeftBtn";
-	const std::string BUTTON_NAME_RROTATE="OUANOptions/Controls/RotateRightBtn";
-	const std::string BUTTON_NAME_WALK="OUANOptions/Controls/WalkBtn";
-	const std::string BUTTON_NAME_AUTOTARGET="OUANOptions/Controls/AutoTargetBtn";
-
-	const std::string BUTTON_NAME_PAUSE="OUANOptions/Controls/PauseBtn";
-	const std::string BUTTON_NAME_MENU="OUANOptions/Controls/MenuBtn";
-
-	typedef struct 
+	class GameOptionsState: public GameState, 
+		public boost::enable_shared_from_this<GameOptionsState>
 	{
-		std::string keyMapping;
-		std::string buttonText;
-	} TButtonData;
-
-	typedef std::map<std::string, TButtonData> TButtonDataMapping;
-	///State corresponding to the game options selection menu
-	class GameOptionsState: public GameState{
 	public:
 		/// init game options screen's resources
 		void init(ApplicationPtr app);
@@ -83,28 +39,12 @@ namespace OUAN
 		/// Destructor
 		~GameOptionsState();
 
-		bool onBackToMenu(const CEGUI::EventArgs& args);
-		bool onRadioButtonStateChange(const CEGUI::EventArgs& args);
-		bool onApply (const CEGUI::EventArgs& args);
-		bool onCancel (const CEGUI::EventArgs& args);
-		bool onDeviceSelectionChanged(const CEGUI::EventArgs& args);
-		bool onRadioButtonDown(const CEGUI::EventArgs& args);
+		void backToMenu();
 
 	private:
-		TControlInputMapping mCurrentConfig;
-		TControlInputMapping mNewConfig;
-		bool mExpectingPress;
-		std::string mCurrentlyEditedMapping;
-		TInputDevice mCurrentlyEditedDevice;
 
-		TButtonDataMapping mButtonData;
+		GUIOptionsMenuPtr mGUI;
 
-		void initTextButtons();
-		void bindEvents();
-		void initButton(const std::string& buttonName, const std::string& buttonText, 
-			const std::string& mappingName, TButtonDataMapping& buttonData);
-		ConfigurationPtr mButtonTextStrings;
-		bool mappingAlreadyFound(int code);
 	};
 }
 #endif

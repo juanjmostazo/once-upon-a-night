@@ -2,6 +2,7 @@
 #define GAMESTATEH_H
 
 #include "../OUAN.h"
+#include "../GUI/GUIDefs.h"
 namespace OUAN
 {
 	typedef	boost::shared_ptr<GameState> GameStatePtr;
