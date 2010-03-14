@@ -283,6 +283,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
 	mGameOver=false;
+	mGameBeaten=false;
 
 	level=levelFileName;
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
@@ -1208,6 +1209,15 @@ bool GameWorldManager::isGameOver()const
 void GameWorldManager::setGameOver(bool gameOver)
 {
 	mGameOver=gameOver;
+}
+
+bool GameWorldManager::isGameBeaten() const
+{
+	return mGameBeaten;
+}
+void GameWorldManager::setGameBeaten(bool gameBeaten)
+{
+	mGameBeaten=gameBeaten;
 }
 
 std::string GameWorldManager::getCurrentLevel() const

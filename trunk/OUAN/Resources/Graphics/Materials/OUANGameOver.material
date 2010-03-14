@@ -4,7 +4,6 @@ material OUAN/GameOver/Background
 	{
 		pass
 		{			
-			scene_blend alpha_blend
 			texture_unit 1
 			{
 				texture scanline.png

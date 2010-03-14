@@ -5,6 +5,7 @@
 #include "GameRunningState.h"
 
 #include "../Application.h"
+#include "../Game/GameWorldManager.h"
 #include "../Graphics/RenderSubsystem.h"
 
 
@@ -28,6 +29,16 @@ void GameOverState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	mApp->mKeyBuffer=-1;
+	if (mApp->getGameWorldManager()->isGameBeaten())
+	{
+		mApp->getRenderSubsystem()->showOverlayElement("OUAN/GameOver/Gratz");
+		mApp->getRenderSubsystem()->hideOverlayElement("OUAN/GameOver/GameOver");
+	}
+	else
+	{
+		mApp->getRenderSubsystem()->showOverlayElement("OUAN/GameOver/GameOver");
+		mApp->getRenderSubsystem()->hideOverlayElement("OUAN/GameOver/Gratz");
+	}
 }
 
 /// Clean up main menu's resources

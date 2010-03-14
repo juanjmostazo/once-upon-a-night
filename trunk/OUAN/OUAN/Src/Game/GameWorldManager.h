@@ -111,6 +111,14 @@ namespace OUAN
 		/// @param gameOver	value to set
 		void setGameOver(bool gameOver);
 
+		/// Tell if the game beaten flag is set to true
+		/// @return value of the "game beaten" flag
+		bool isGameBeaten() const;
+
+		/// Set the value of the game beaten flag
+		/// @param gameBeaten value to set
+		void setGameBeaten(bool gameBeaten);
+
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
 
@@ -225,6 +233,8 @@ namespace OUAN
 		TGameObjectContainer mGameObjectsToDelete;
 
 		bool mGameOver;
+		// Besides being over, the game has been beaten
+		bool mGameBeaten;
 
 		// Current level
 		std::string level;
