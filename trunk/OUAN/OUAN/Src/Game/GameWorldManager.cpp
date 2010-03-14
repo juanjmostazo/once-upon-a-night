@@ -264,8 +264,6 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Unload current level
 	unloadLevel();
 
-	//Set world to dreams
-	setWorld(DREAMS); 
 	//TODO: this should depend on which level is loaded and be determined by levelLoader
 
 	// Set the initial world before the level loading, and then
@@ -273,6 +271,9 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	// world information.
 	//Init physicssubsystem
 	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
+
+	//Set world to dreams
+	setWorld(DREAMS); 
 
 	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
