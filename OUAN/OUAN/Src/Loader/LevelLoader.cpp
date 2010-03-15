@@ -263,6 +263,10 @@ TTrajectoryNodeParameters LevelLoader::processTrajectoryNode(TiXmlElement *XMLNo
 	//Get Trajectory Node properties
 	tTrajectoryNodeParameters.position=getPropertyVector3(XMLNode,"position");
 	tTrajectoryNodeParameters.orientation=getPropertyQuaternion(XMLNode,"orientation");
+
+	//Ogitor Markers have an offset of 90 degrees for Y axis rotation
+	tTrajectoryNodeParameters.orientation=tTrajectoryNodeParameters.orientation*Ogre::Quaternion(Ogre::Math::Sqrt(0.5),0,Ogre::Math::Sqrt(0.5),0);
+
 	try
 	{
 		tTrajectoryNodeParameters.timeToNextNode=getPropertyReal(XMLNode,"trajectorynode::time to next node");
