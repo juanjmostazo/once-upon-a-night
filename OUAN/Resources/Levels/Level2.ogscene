@@ -21,10 +21,10 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="8"></CAMERASPEED>
+  <CAMERASPEED value="6"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="153.281 93.4702 27.4548" orientation="-0.733638 0.103861 -0.66494 -0.0940357"></OPTION>
+    <OPTION id="1" position="-344.733 105.763 -117.171" orientation="-0.790008 -0.0050523 -0.613063 0.00399811"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.733656 0.103864 -0.664957 -0.094038"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.790026 -0.00505242 -0.613077 0.0039982"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="153.281 93.4702 27.4548"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-344.733 105.763 -117.171"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -192,6 +192,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="989989952" name="Particles" typename="Node Object" parentnode="Isla1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="694021376" name="Scared Plants" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -204,6 +215,17 @@
   </OBJECT>
 
   <OBJECT object_id="806878848" name="Tripollos" typename="Node Object" parentnode="Isla1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="802880960" name="Billboards" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -1129,8 +1151,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-46.152 71.7438 93.0595"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.612217 0 -0.79069 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-46.152 91.4112 93.0595"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -1227,7 +1249,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ITEM_1UP.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.612217 0 0.79069 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-414.477 72.9096 -116.985"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-407.299 86.9798 -113.842"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
@@ -3649,7 +3671,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.859406 0 0.511293 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-36.3385 71.8611 99.9973"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-23.8428 89.8232 106.782"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -4766,7 +4788,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="ony.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="50 100 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -5638,6 +5660,73 @@
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="402722240" name="Particle_d#0" typename="Particle Object" parentnode="Particles">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="Examples/Aureola"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-188.563 -270.967 -514.452"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="0.5 0.5 0.5"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="475264768" name="BillboardSet_d#1" typename="BillboardSet Object" parentnode="Billboards">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
+    <PROPERTY id="billboard0::dimensions" type="8" value="10 10"></PROPERTY>
+    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
+    <PROPERTY id="billboardrotation" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardtype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="defaultheight" type="6" value="20"></PROPERTY>
+    <PROPERTY id="defaultwidth" type="6" value="20"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="material" type="7" value="grassbillboard"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
+    <PROPERTY id="position" type="9" value="4.65422 71.6568 27.9621"></PROPERTY>
+    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="104678488" name="BillboardSet_d#3" typename="BillboardSet Object" parentnode="Billboards">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
+    <PROPERTY id="billboard0::dimensions" type="8" value="10 10"></PROPERTY>
+    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
+    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
+    <PROPERTY id="billboardrotation" type="2" value="1"></PROPERTY>
+    <PROPERTY id="billboardtype" type="2" value="0"></PROPERTY>
+    <PROPERTY id="defaultheight" type="6" value="20"></PROPERTY>
+    <PROPERTY id="defaultwidth" type="6" value="20"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="material" type="7" value="grassbillboard"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
+    <PROPERTY id="position" type="9" value="25.3013 71.6568 27.9621"></PROPERTY>
+    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

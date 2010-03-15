@@ -178,7 +178,7 @@ void GameRunningState::handleEvents()
 		{
 			mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
 		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
+		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
 		{
 			mApp->getGameWorldManager()->loadLevel(LEVEL_1);
 		}
