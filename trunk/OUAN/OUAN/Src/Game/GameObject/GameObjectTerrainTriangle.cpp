@@ -48,6 +48,7 @@ RenderComponentPositionalPtr GameObjectTerrainTriangle::getRenderComponentPositi
 void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
 	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+	mPhysicsComponentComplexTriangle->create();
 }
 
 PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponentComplexTriangle()
@@ -60,9 +61,12 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 	switch(world)
 	{
 	case DREAMS:
-		mPhysicsComponentComplexTriangle->create();
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityNightmares->setVisible(false);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntityNightmares->setVisible(true);
 		break;
 	default:break;
 	}

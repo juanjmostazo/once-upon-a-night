@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <OGITORSCENE version="2">
   <PROJECT>
     <SCENEMANAGER value="OctreeSceneManager"></SCENEMANAGER>
@@ -21,11 +21,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="2"></CAMERASPEED>
-  <CAMERAPOSITIONS count="1">
-    <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-377.166 80.9246 -119.535" orientation="0.668094 -0.0161422 -0.743692 -0.0176906"></OPTION>
-  </CAMERAPOSITIONS>
+    <CAMERASPEED value="2"></CAMERASPEED>
+    <CAMERAPOSITIONS count="1">
+      <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
+      <OPTION id="1" position="-377.166 80.9246 -119.535" orientation="0.668094 -0.0161422 -0.743692 -0.0176906"></OPTION>
+    </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
       <LAYER id="1" name="Layer 1" visible="false"></LAYER>
@@ -59,11 +59,11 @@
       <LAYER id="29" name="Layer 29" visible="true"></LAYER>
       <LAYER id="30" name="Layer 30" visible="true"></LAYER>
     </LAYERS>
-  <SELECTIONCOLOUR value="1 1 1 1"></SELECTIONCOLOUR>
-  <HIGHLIGHTCOLOUR value="0.909804 0.184314 0.184314 1"></HIGHLIGHTCOLOUR>
-  <GRIDCOLOUR value="0.694118 0.694118 0.694118 1"></GRIDCOLOUR>
-  <GRIDSPACING value="1"></GRIDSPACING>
-  <SNAPANGLE value="0"></SNAPANGLE>
+    <SELECTIONCOLOUR value="1 1 1 1"></SELECTIONCOLOUR>
+    <HIGHLIGHTCOLOUR value="0.909804 0.184314 0.184314 1"></HIGHLIGHTCOLOUR>
+    <GRIDCOLOUR value="0.694118 0.694118 0.694118 1"></GRIDCOLOUR>
+    <GRIDSPACING value="1"></GRIDSPACING>
+    <SNAPANGLE value="0"></SNAPANGLE>
   </PROJECT>
   <OBJECT object_id="955900736" name="SceneManager" typename="OctreeSceneManager">
     <PROPERTY id="ambient" type="11" value="0.5 0.5 0.5 1"></PROPERTY>
@@ -91,10 +91,8 @@
     <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
     <PROPERTY id="skydome::material" type="7" value=""></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
@@ -111,10 +109,8 @@
     <PROPERTY id="placement" type="10" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="shadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="skies" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="736381120" name="Isla2" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -122,10 +118,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="380108032" name="Isla1" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -133,10 +127,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="694021376" name="Scared Plants" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -144,10 +136,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="806878848" name="Tripollos" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -155,10 +145,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="654835648" name="Stairs" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -166,10 +154,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="169560832" name="Mountains" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -177,10 +163,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="203070160" name="Items" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -188,10 +172,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="863582272" name="Trees" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -199,10 +181,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="79012424" name="Ony" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -210,10 +190,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="997283904" name="Lights" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -221,10 +199,8 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="740745216" name="Light_d#2" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -238,10 +214,8 @@
     <PROPERTY id="position" type="9" value="-181.824 272.075 106.219"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="945188736" name="Light_n#0" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -255,10 +229,8 @@
     <PROPERTY id="position" type="9" value="-59.8304 645.409 -488.232"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="272377696" name="Light_d#3" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -272,10 +244,8 @@
     <PROPERTY id="position" type="9" value="-400.92 254.529 -253.552"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="892208640" name="Light_n#1" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -289,10 +259,8 @@
     <PROPERTY id="position" type="9" value="-36.3796 93.4393 115.481"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="737174592" name="Light_d#5" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -306,10 +274,8 @@
     <PROPERTY id="position" type="9" value="-249.544 76.9557 -53.3385"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="649617024" name="Light_d#6" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -323,10 +289,8 @@
     <PROPERTY id="position" type="9" value="-371.821 75.779 -105.453"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="826044480" name="Light_n#4" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -340,10 +304,8 @@
     <PROPERTY id="position" type="9" value="112.562 154.464 81.0208"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="811304064" name="Light_d#7" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -357,10 +319,8 @@
     <PROPERTY id="position" type="9" value="234.838 79.7751 60.2592"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="494460896" name="Light_d#0" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -374,10 +334,8 @@
     <PROPERTY id="position" type="9" value="186.422 327.065 -111.951"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="643879552" name="Light_n#2" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -391,10 +349,8 @@
     <PROPERTY id="position" type="9" value="-81.4698 99.4713 -142.901"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="80385752" name="Light_d#1" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -408,10 +364,8 @@
     <PROPERTY id="position" type="9" value="260.308 213.546 -280.169"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="307473984" name="Light_n#3" typename="Light Object" parentnode="Lights">
     <PROPERTY id="attenuation" type="10" value="100 1 0.5 0"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -425,11 +379,9 @@
     <PROPERTY id="position" type="9" value="22.1192 90.3581 -5.56114"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="249824528" name="tree_n#31" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="249824528" name="tree_n#nnn31" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -442,11 +394,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="39002656" name="tree_n#18" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="39002656" name="tree_n#nnn18" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -459,10 +409,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="623310016" name="terrain_d#stairs2" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -476,11 +424,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="457655584" name="tree_n#29" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="457655584" name="tree_n#nnn29" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -493,10 +439,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="284127328" name="scared_plant_d#10" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -510,10 +454,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="952269056" name="scared_plant_d#8" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -527,10 +469,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="786858752" name="terrain_n#stairs3" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -544,10 +484,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="246436976" name="terrain_d#11" typename="Entity Object" parentnode="Isla2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -561,11 +499,9 @@
     <PROPERTY id="subentity0::material" type="7" value="wire_229154215"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="895504576" name="tree_n#24" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="895504576" name="tree_n#nnn24" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -578,11 +514,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="841792064" name="tree_n#45" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="841792064" name="tree_n#nnn45" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -595,10 +529,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="734916224" name="ony_n#0" typename="Entity Object" parentnode="Ony">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -612,10 +544,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="252082880" name="tripollo_d#3" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -635,10 +565,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="514481024" name="scared_plant_d#3" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -652,10 +580,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="355327008" name="terrain_n#mountain1" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -669,11 +595,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Material3"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="191869872" name="tree_n#39" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="191869872" name="tree_n#nnn39" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -686,11 +610,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="938444160" name="tree_n#50" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="938444160" name="tree_n#nnn50" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -703,10 +625,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="727683392" name="tripollo_n#6" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -726,11 +646,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="786034688" name="tree_n#10" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="786034688" name="tree_n#nnn10" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -743,10 +661,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="644917120" name="tripollo_d#4" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -766,10 +682,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="822260224" name="scared_plant_d#6" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -783,11 +697,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="19745476" name="tree_n#36" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="19745476" name="tree_n#nnn36" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -800,10 +712,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="612048704" name="tripollo_n#3" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -823,11 +733,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="853663744" name="tree_n#15" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="853663744" name="tree_n#nnn15" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -840,10 +748,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="197851488" name="terrain_d#9" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -857,10 +763,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Material1"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="498764000" name="terrain_d#bridge" typename="Entity Object" parentnode="Isla2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -874,11 +778,9 @@
     <PROPERTY id="subentity0::material" type="7" value="wire_088177026"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="410596000" name="tree_n#33" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="410596000" name="tree_n#nn33" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -891,10 +793,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="425153344" name="storybook_d#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -908,10 +808,8 @@
     <PROPERTY id="subentity0::material" type="7" value="storybook"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="315012064" name="tripollo_n#8" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -931,10 +829,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="41596728" name="scared_plant_d#15" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -948,11 +844,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="567766400" name="tree_n#27" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="567766400" name="tree_n#nn27" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -965,11 +859,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="877163008" name="tree_n#40" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="877163008" name="tree_n#nn40" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -982,10 +874,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="57405316" name="terrain_n#stairs5" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -999,11 +889,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="574755072" name="tree_n#7" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="574755072" name="tree_n#nn7" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1016,11 +904,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="961943360" name="tree_n#22" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="961943360" name="tree_n#nn22" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1033,11 +919,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="334971168" name="tree_n#47" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="334971168" name="tree_n#nn47" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1050,11 +934,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="549180544" name="tree_n#55" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="549180544" name="tree_n#nn55" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1067,10 +949,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="272896512" name="scared_plant_d#1" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1084,10 +964,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="154881440" name="tripollo_n#0" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1107,10 +985,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="335947744" name="terrain_d#mountain2" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1124,11 +1000,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Material2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="364909824" name="tree_n#16" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="364909824" name="tree_n#nn16" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1141,10 +1015,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="169225136" name="scared_plant_d#4" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1158,11 +1030,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="787102848" name="tree_n#30" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="787102848" name="tree_n#nn30" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1175,11 +1045,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="730857280" name="tree_n#48" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="730857280" name="tree_n#nn48" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1192,10 +1060,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="227088224" name="storybook_n#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1209,10 +1075,8 @@
     <PROPERTY id="subentity0::material" type="7" value="storybook"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="386761056" name="terrain_d#stairs5" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1226,11 +1090,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="239967040" name="tree_n#8" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="239967040" name="tree_n#nn8" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1243,10 +1105,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="802728384" name="tripollo_d#9" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1266,10 +1126,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="601062080" name="scared_plant_d#13" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1283,10 +1141,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="525193024" name="scared_plant_d#9" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1300,10 +1156,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="68910792" name="terrain_n#stairs2" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1317,10 +1171,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="630970176" name="terrain_d#12" typename="Entity Object" parentnode="Isla2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1334,11 +1186,9 @@
     <PROPERTY id="subentity0::material" type="7" value="wire_086086086"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="997467008" name="tree_n#25" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="997467008" name="tree_n#nn25" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1351,11 +1201,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="103762936" name="tree_n#42" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="103762936" name="tree_n#nn42" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1368,11 +1216,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="593981760" name="tree_n#56" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="593981760" name="tree_n#nn56" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1385,10 +1231,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="611499392" name="tripollo_d#2" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1408,11 +1252,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="488326656" name="tree_n#38" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="488326656" name="tree_n#nn38" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1425,11 +1267,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="516922528" name="tree_n#5" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="516922528" name="tree_n#nn5" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1442,11 +1282,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="67812128" name="tree_n#20" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="67812128" name="tree_n#nn20" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1459,11 +1297,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="340525536" name="tree_n#53" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="340525536" name="tree_n#nn53" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1476,10 +1312,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="867732736" name="tripollo_n#5" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1499,11 +1333,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="122379224" name="tree_n#13" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="122379224" name="tree_n#nn13" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1516,10 +1348,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="606219648" name="scared_plant_d#7" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1533,11 +1363,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="829615168" name="tree_n#35" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="829615168" name="tree_n#nn35" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1550,10 +1378,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="49287392" name="terrain_n#9" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1567,10 +1393,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Material1"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="188940096" name="tripollo_n#2" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1590,11 +1414,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="744865216" name="tree_n#14" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="744865216" name="tree_n#nn14" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1607,10 +1429,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="306405856" name="terrain_d#stairs6" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1624,11 +1444,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="862178368" name="tree_n#32" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="862178368" name="tree_n#nn32" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1641,10 +1459,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="111667224" name="scared_plant_d#14" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1658,11 +1474,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="425428032" name="tree_n#19" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="425428032" name="tree_n#nn19" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1675,10 +1489,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="53468428" name="terrain_d#stairs3" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1692,11 +1504,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="90456856" name="tree_n#28" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="90456856" name="tree_n#nn28" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1709,11 +1519,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="648579328" name="tree_n#41" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="648579328" name="tree_n#nn41" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1726,10 +1534,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="422467744" name="scared_plant_d#11" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1743,10 +1549,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="758842752" name="terrain_n#stairs4" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1760,10 +1564,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="608966336" name="ony_d#0" typename="Entity Object" parentnode="Ony">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1777,10 +1579,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="18616292" name="terrain_d#10" typename="Entity Object" parentnode="Isla2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1796,11 +1596,9 @@
     <PROPERTY id="subentity1::material" type="7" value="wire_113134006"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="773400064" name="tree_n#23" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="773400064" name="tree_n#nn23" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1813,11 +1611,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="815027328" name="tree_n#44" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="815027328" name="tree_n#nn44" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1830,11 +1626,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="624408704" name="tree_n#54" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="624408704" name="tree_n#nn54" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1847,10 +1641,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="114047672" name="tripollo_d#0" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1870,10 +1662,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="949461312" name="scared_plant_d#2" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1887,10 +1677,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="149113424" name="tree_d#0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1904,11 +1692,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="871242432" name="tree_n#51" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="871242432" name="tree_n#nn51" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1921,10 +1707,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="667775488" name="tripollo_n#7" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1944,11 +1728,9 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="657216064" name="tree_n#11" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="657216064" name="tree_n#nn11" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1961,10 +1743,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="765617856" name="tripollo_d#5" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1984,10 +1764,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="736045440" name="scared_plant_d#5" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2001,11 +1779,9 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="221625424" name="tree_n#37" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="221625424" name="tree_n#nn37" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2018,11 +1794,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="166814176" name="tree_n#49" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="166814176" name="tree_n#nn49" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2035,10 +1809,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="562852864" name="terrain_d#stairs4" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2052,11 +1824,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="194036672" name="tree_n#9" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="194036672" name="tree_n#nn9" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2069,10 +1839,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="507644896" name="tripollo_d#8" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2092,10 +1860,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="173924976" name="tripollo_n#9" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2115,10 +1881,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="13458664" name="scared_plant_d#12" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2132,10 +1896,8 @@
     <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="269264832" name="terrain_n#stairs1" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2149,10 +1911,8 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="842646528" name="terrain_d#stairs1" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2166,11 +1926,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="771691008" name="tree_n#26" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="771691008" name="tree_n#nn26" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2183,11 +1941,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="736716800" name="tree_n#43" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="736716800" name="tree_n#nn43" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2200,10 +1956,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="694296064" name="terrain_n#stairs6" typename="Entity Object" parentnode="Stairs">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2217,11 +1971,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="275368512" name="tree_n#6" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="275368512" name="tree_n#nn6" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2234,10 +1986,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="905117952" name="heart_d#0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2251,11 +2001,9 @@
     <PROPERTY id="subentity0::material" type="7" value="heart"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="714499328" name="tree_n#21" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="714499328" name="tree_n#nn21" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2268,11 +2016,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="137668992" name="tree_n#46" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="137668992" name="tree_n#nn46" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2285,11 +2031,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="659138752" name="tree_n#52" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="659138752" name="tree_n#nn52" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2302,10 +2046,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="804528960" name="tripollo_n#4" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2325,10 +2067,8 @@
     <PROPERTY id="subentity3::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="303048800" name="tree_d#clockpiece" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2342,11 +2082,9 @@
     <PROPERTY id="subentity0::material" type="7" value="piece_clock"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="19837032" name="tree_n#12" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="19837032" name="tree_n#nn12" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2359,10 +2097,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="908322368" name="tripollo_d#6" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2382,10 +2118,8 @@
     <PROPERTY id="subentity3::material" type="7" value="tripollo"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="4"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="692892224" name="scared_plant_d#0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2403,10 +2137,8 @@
     <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="229926448" name="terrain_n#mountain2" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2420,11 +2152,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Material2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="664052224" name="tree_n#1" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="664052224" name="tree_n#nn1" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2437,11 +2167,9 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="722312064" name="tree_n#34" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="722312064" name="tree_n#nn34" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2454,10 +2182,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="909146368" name="terrain_d#mountain1" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2471,11 +2197,9 @@
     <PROPERTY id="subentity0::material" type="7" value="Material3"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
-  <OBJECT object_id="861354432" name="tree_n#17" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="861354432" name="tree_n#nn17" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2488,10 +2212,8 @@
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="279580064" name="Marker#1" typename="Marker Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
@@ -2500,10 +2222,8 @@
     <PROPERTY id="orientation" type="13" value="-0.0120084 -0.102007 0.724311 0.68178"></PROPERTY>
     <PROPERTY id="position" type="9" value="-352.292 80.9935 -120.308"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
+    <CUSTOMPROPERTIES></CUSTOMPROPERTIES>
   </OBJECT>
-
   <OBJECT object_id="345988320" name="Marker#0" typename="Marker Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
@@ -2528,5 +2248,4 @@
       <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
-
 </OGITORSCENE>
