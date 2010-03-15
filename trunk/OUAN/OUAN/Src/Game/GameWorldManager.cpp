@@ -1170,15 +1170,20 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntity Dreams
-		pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
-
-		//Create RenderComponentEntity Nightmares
-		pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
+		if(pGameObjectProvisionalEntity->getLogicComponentWorldExistance()->getExistsInDreams())
+		{
+			//Create RenderComponentEntity Dreams
+			pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
+				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
+				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
+		}
+		if(pGameObjectProvisionalEntity->getLogicComponentWorldExistance()->getExistsInNightmares())
+		{
+			//Create RenderComponentEntity Nightmares
+			pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
+				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
+				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
+		}
 
 		//Create PhysicsComponent
 		pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
