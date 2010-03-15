@@ -16,6 +16,8 @@ namespace OUAN
 
 		Ogre::ParticleSystem * getParticleSystem() const;
 		void setParticleSystem(Ogre::ParticleSystem *);
+
+		void setVisible(bool visible);
 	};
 
 	class TRenderComponentParticleSystemParameters: public TRenderComponentParameters
@@ -26,6 +28,7 @@ namespace OUAN
 
 		String particle;
 		bool castshadows;
+		bool visible;
 	};
 
 }

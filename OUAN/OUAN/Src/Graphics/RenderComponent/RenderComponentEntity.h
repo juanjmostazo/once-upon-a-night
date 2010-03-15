@@ -18,8 +18,6 @@ namespace OUAN
 		void setEntity(Ogre::Entity *);
 
 		void setVisible(bool visible);
-
-
 	};
 
 	class TRenderComponentSubEntityParameters: public TRenderComponentParameters

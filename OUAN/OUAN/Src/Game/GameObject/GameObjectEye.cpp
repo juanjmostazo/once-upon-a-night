@@ -80,7 +80,6 @@ void GameObjectEye::changeWorld(int world)
 		break;
 	default:break;
 	}
-
 }
 //-------------------------------------------------------------------------------------------
 
