@@ -311,6 +311,9 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 	{
 		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
 			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - ENTER"); 
+			//TODO AS A EVENT
+			mApp->getGameWorldManager()->setGameOver(true);
+			mApp->getGameWorldManager()->setGameBeaten(true);
 			break;
 
 		case NxOgre::Enums::VolumeCollisionType_OnExit: 
