@@ -405,7 +405,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
-		const std::string GAME_OBJECT_TYPE_ITEM_1UP="extralive";
+		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item_1up";
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="heartbag";
 		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
 		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";

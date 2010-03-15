@@ -609,6 +609,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 		}
 		else
 		{
+			processGameObjectProvisionalEntity(gameObject);
 			throw "Error reading .nxs complex physics file for mesh "+meshfile;
 		}
 	}
