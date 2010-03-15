@@ -56,7 +56,7 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,Trajec
 void CameraManager::setCameraTrajectory(std::string name)
 {
 
-	Ogre::LogManager::getSingleton().logMessage("[CameraManager] Setting trajectory "+name+" to trajectory camera");
+	Ogre::LogManager::getSingleton().logMessage("[Camera Manager] Setting trajectory "+name+" to Camera Controller Trajectory");
 
 	try
 	{
@@ -203,6 +203,8 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Third Person activated");
 			break;
 		case CAMERA_TRAJECTORY:
+			//TODO: ERASE THIS
+			setCameraTrajectory("a");
 			mCameraControllerTrajectory->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerTrajectory;
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Trajectory Activated");
@@ -275,6 +277,7 @@ void CameraManager::changeCameraController()
 			}
 			else
 			{
+				//TODO: ERASE THIS
 				setCameraTrajectory("a");
 				setCameraType(CAMERA_TRAJECTORY);
 			}

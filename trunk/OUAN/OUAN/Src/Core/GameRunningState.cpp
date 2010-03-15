@@ -38,6 +38,8 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->setWorld(DREAMS);
 	mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
 
+	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
+
 	mApp->mKeyBuffer=-1;
 	
 	initRouletteData();
