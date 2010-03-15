@@ -21,10 +21,10 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="20.25"></CAMERASPEED>
+  <CAMERASPEED value="20"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-25.7661 71.4177 22.5652" orientation="0.778438 0.0110325 -0.627561 0.0089172"></OPTION>
+    <OPTION id="1" position="31.4443 1993.67 59.5301" orientation="0.629932 -0.275548 -0.665272 -0.290984"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.778494 0.0110333 -0.627606 0.00891784"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.629939 -0.275551 -0.66528 -0.290987"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-25.7661 71.4177 22.5652"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="31.4443 1993.67 59.5301"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -678,7 +678,7 @@
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.435569 -0.0768026 -0.883247 -0.15574"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.40085 -0.186919 -0.812843 -0.379035"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
     <PROPERTY id="position" type="9" value="-133.281 275.746 -183.072"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
@@ -695,7 +695,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.0101002 -0.00832593 0.636024 0.771558"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="40.7701 1990.36 60.9277"></PROPERTY>
+    <PROPERTY id="position" type="9" value="40.7701 1983.17 59.5294"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -723,7 +723,7 @@
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.0429892 -0.0073869 -0.984618 -0.169188"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.0421818 -0.0111055 -0.966126 -0.254359"></PROPERTY>
     <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
     <PROPERTY id="position" type="9" value="-102.56 487.821 -746.365"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
