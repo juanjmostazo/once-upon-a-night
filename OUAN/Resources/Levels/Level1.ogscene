@@ -98,7 +98,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.989301 0.0769541 -0.123599 -0.0102009"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.989292 0.0769534 -0.123598 -0.0102008"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="63.5678 202.463 -722.161"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -716,7 +716,7 @@
     <PROPERTY id="position" type="9" value="34.3164 197.016 -757.856"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="ClsBox01Polygon_XSIPOLYCLS_box01polygon"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4803,7 +4803,7 @@
     <PROPERTY id="position" type="9" value="34.3164 197.016 -757.856"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="ClsBox01Polygon_XSIPOLYCLS_box01polygon"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
