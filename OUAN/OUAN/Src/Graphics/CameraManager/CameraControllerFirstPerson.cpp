@@ -11,7 +11,7 @@ CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 	rotX=0;
 	rotY=0;
 
-	speed=0.5;
+	speed=1.5;
 	rotationSpeed=0.2;
 }
 
