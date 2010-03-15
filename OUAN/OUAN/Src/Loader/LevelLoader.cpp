@@ -232,7 +232,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object "+gameObject->name+": "+error);
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing Game Object "+gameObject->name+": "+error);
 	}
 
 }

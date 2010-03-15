@@ -10,7 +10,7 @@ material alacena_tower2
 
 			texture_unit
 			{
-				texture alacena.tga
+				texture alacena_n.tga
 			}
 		}
 
