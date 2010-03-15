@@ -10,7 +10,7 @@ material bridge
 
 			texture_unit
 			{
-				texture bricks001.jpg
+				texture bridge.tga
 			}
 		}
 
