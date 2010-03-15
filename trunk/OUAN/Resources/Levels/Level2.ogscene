@@ -24,7 +24,7 @@
   <CAMERASPEED value="20"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="296.578 182.321 30.5922" orientation="0.579261 -0.0252926 -0.813975 -0.0355217"></OPTION>
+    <OPTION id="1" position="50.8619 205.276 -519.945" orientation="-0.0140464 0.00192972 0.99077 0.134812"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.579274 -0.0252932 -0.813993 -0.0355225"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.0140467 0.00192977 0.990792 0.134815"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="296.578 182.321 30.5922"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="50.8619 205.276 -519.945"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -641,7 +641,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="82644120" name="Camera#4" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="82644120" name="Camera#wire" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 20000"></PROPERTY>
@@ -656,37 +656,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="627857280" name="Camera#5" typename="Camera Object" parentnode="SceneManager">
-    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 20000"></PROPERTY>
-    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.793353 0 0.608761 0"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="1"></PROPERTY>
-    <PROPERTY id="position" type="9" value="8.22069 73.6793 21.7391"></PROPERTY>
-    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="4516740" name="Camera#2" typename="Camera Object" parentnode="SceneManager">
-    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 20000"></PROPERTY>
-    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.40085 -0.186919 -0.812843 -0.379035"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-133.281 275.746 -183.072"></PROPERTY>
-    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="270149856" name="Camera#3" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="270149856" name="Camera#top" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 20000"></PROPERTY>
@@ -716,16 +686,16 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="591235072" name="Camera#1" typename="Camera Object" parentnode="SceneManager">
+  <OBJECT object_id="627857280" name="Camera#points" typename="Camera Object" parentnode="SceneManager">
     <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="clipdistance" type="8" value="0.1 20000"></PROPERTY>
     <PROPERTY id="fov" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.0421818 -0.0111055 -0.966126 -0.254359"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-102.56 487.821 -746.365"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.793353 0 0.608761 0"></PROPERTY>
+    <PROPERTY id="polygonmode" type="2" value="1"></PROPERTY>
+    <PROPERTY id="position" type="9" value="8.22069 73.6793 21.7391"></PROPERTY>
     <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
