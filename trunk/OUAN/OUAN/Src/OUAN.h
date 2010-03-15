@@ -356,6 +356,10 @@ namespace OUAN
 		class TGameObjectTreeParameters;
 		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
 
+		class GameObjectClockPiece;
+		class TGameObjectClockPieceParameters;
+		typedef boost::shared_ptr<GameObjectClockPiece> GameObjectClockPiecePtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -387,6 +391,7 @@ namespace OUAN
 		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
 		typedef std::vector<GameObjectScaredPlantPtr> TGameObjectScaredPlantContainer;
 		typedef std::vector<GameObjectTreePtr> TGameObjectTreeContainer;
+		typedef std::vector<GameObjectTreePtr> TGameObjectClockPieceContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -411,7 +416,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_MAGIC_CLOCK="magic_clock";
 		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
-		const std::string GAME_OBJECT_TYPE_TENTENTIESO="tententieso";
+		const std::string GAME_OBJECT_TYPE_TENTENTIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
 		const std::string GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT="snake_creeper%carnivorous_plant";
 		const std::string GAME_OBJECT_TYPE_DIAMOND_TREE="diamond_tree";
@@ -420,7 +425,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
 		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
 		const std::string GAME_OBJECT_TYPE_TREE="tree";
-
+		const std::string GAME_OBJECT_TYPE_CLOCK_PIECE="clock_piece";
 		///////////////////////////////////////////////////////////////////
 
 		// Event manager-related constants, typedefs and forwarded declarations
