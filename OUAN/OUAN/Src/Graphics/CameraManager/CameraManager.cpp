@@ -205,6 +205,7 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 		case CAMERA_TRAJECTORY:
 			//TODO: ERASE THIS
 			setCameraTrajectory("a");
+			mCameraControllerTrajectory->resetTrajectory();
 			mCameraControllerTrajectory->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerTrajectory;
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Trajectory Activated");
@@ -279,6 +280,7 @@ void CameraManager::changeCameraController()
 			{
 				//TODO: ERASE THIS
 				setCameraTrajectory("a");
+				mCameraControllerTrajectory->resetTrajectory();
 				setCameraType(CAMERA_TRAJECTORY);
 			}
 			break;

@@ -24,7 +24,7 @@
   <CAMERASPEED value="6"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="225.966 234.42 -275.761" orientation="-0.0656351 0.0105653 0.985657 0.155114"></OPTION>
+    <OPTION id="1" position="-193.649 248.478 329.843" orientation="-0.489087 0.0214517 0.871185 0.0370209"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.0656536 0.0105683 0.985935 0.155158"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.489087 0.0214517 0.871185 0.0370209"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="225.966 234.42 -275.761"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-193.649 248.478 329.843"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -654,7 +654,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-194.792 72.2515 -63.16"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-194.792 81.5528 -63.16"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -1417,7 +1417,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="129.169 74.0387 -72.3432"></PROPERTY>
+    <PROPERTY id="position" type="9" value="129.169 80.1611 -72.3432"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -1645,7 +1645,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.594823 0 -0.803857 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-5.72024 72.7827 -135.05"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-5.72024 83.2804 -135.05"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -2052,7 +2052,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.793353 0 0.608761 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="184.857 77.0895 55.9841"></PROPERTY>
+    <PROPERTY id="position" type="9" value="184.857 85.5312 55.9841"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -2348,7 +2348,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.254602 0 -0.967046 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="293.057 142.644 39.0412"></PROPERTY>
+    <PROPERTY id="position" type="9" value="293.057 152.231 39.0412"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -2640,7 +2640,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="468.839 77.0416 -44.3584"></PROPERTY>
+    <PROPERTY id="position" type="9" value="468.839 88.6556 -44.3584"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -2996,7 +2996,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="234.829 78.5118 200.389"></PROPERTY>
+    <PROPERTY id="position" type="9" value="234.829 87.8637 200.389"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -4589,7 +4589,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-263.926 76.2594 -156.334"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-263.926 80.6227 -156.334"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -5475,7 +5475,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.608761 0 0.793353 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="55.5844 184.691 -755.909"></PROPERTY>
+    <PROPERTY id="position" type="9" value="55.5844 197.016 -755.909"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -5742,7 +5742,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="816431168" name="Marker#11" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="816431168" name="Marker#11" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5751,46 +5751,82 @@
     <PROPERTY id="position" type="9" value="-91.0806 249.787 -782.471"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="50874356" name="Marker#2" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="317545088" name="Marker#19" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.973379 0 -0.2292 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="29.8991 221.861 431.941"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="50874356" name="Marker#2" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.309017 0 0.951056 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-175.164 86.0533 62.6394"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-173.26 87.7685 65.26"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="651326016" name="Marker#16" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="651326016" name="Marker#16" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.515038 0 0.857167 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="225.983 233.369 -269.9"></PROPERTY>
+    <PROPERTY id="position" type="9" value="168.958 233.369 -239.579"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="565813184" name="Marker#5" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="565813184" name="Marker#5" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.779885 0 0.625923 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.77774 -0.0463862 0.624202 0.0577961"></PROPERTY>
     <PROPERTY id="position" type="9" value="-173.943 116.971 -217.365"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="572649280" name="Marker#4" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="267128528" name="Marker#17" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.00861318 0.160736 0.986959 -0.00140275"></PROPERTY>
+    <PROPERTY id="position" type="9" value="46.3722 247.304 6.46545"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="572649280" name="Marker#4" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5799,70 +5835,108 @@
     <PROPERTY id="position" type="9" value="-96.5846 73.83 -65.348"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="260750144" name="Marker#14" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="901486272" name="Marker#14" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.0922519 0.314867 0.943794 0.0400228"></PROPERTY>
-    <PROPERTY id="position" type="9" value="7.33839 266.016 -726.434"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.779885 0 0.625923 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-16.5614 249.351 -752.468"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="108951080" name="Marker#7" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="439069792" name="Marker#3_2" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.722364 0 0.691513 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.899546 -0.381835 -0.195311 -0.0829044"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-55.1762 72.9055 -39.9874"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="108951080" name="Marker#7" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.516597 -0.0440113 0.851326 0.0802219"></PROPERTY>
     <PROPERTY id="position" type="9" value="-169.326 239.461 -466.372"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="730002752" name="Marker#15" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="775383744" name="Marker#15" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.639439 0 0.768842 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="43.8154 268.686 -713.534"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.58425 0 0.811574 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="42.3128 268.403 -710.97"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="130039368" name="Marker#6" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="51240580" name="Marker#3_1" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.700909 0 0.71325 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.350533 0.198322 0.796646 0.450721"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-35.1062 76.1594 -10.6703"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="130039368" name="Marker#6" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.622408 -0.0950099 0.768609 0.113229"></PROPERTY>
     <PROPERTY id="position" type="9" value="-190.083 157.957 -381.335"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="791222848" name="Marker#1" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="791222848" name="Marker#1" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.516968 0.0920145 -0.838145 -0.147615"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-251.989 134.435 130.559"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.675849 -0.182115 -0.693286 0.171513"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-274.117 150.703 183.307"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="17365032" name="Marker#12" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="17365032" name="Marker#12" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5871,67 +5945,109 @@
     <PROPERTY id="position" type="9" value="-77.1058 254.079 -774.702"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="89053016" name="Marker#9" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="89053016" name="Marker#9" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.229201 0 -0.973379 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-132.51 262.309 -824.04"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-134.862 262.309 -819.322"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="629993600" name="Marker#0" typename="Marker Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.632705 0 -0.774393 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-239.792 265.709 427.119"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="a" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="Marker#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="Marker#1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="Marker#2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="Marker#3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="Marker#4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="Marker#5" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="Marker#6" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="Marker#7" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="Marker#8" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="Marker#9" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="Marker#10" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="Marker#11" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="Marker#12" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="Marker#13" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="Marker#14" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="Marker#15" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="Marker#16" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::time to next node" type="6" value="5" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="970610688" name="Marker#13" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="209082304" name="Marker#0" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.0130895 0 0.999914 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-61.3444 251.391 -771.445"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.601815 0 0.798635 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-254.784 311.97 514.755"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectory::name" type="7" value="a" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#0" type="7" value="Marker#0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#1" type="7" value="Marker#01" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#2" type="7" value="Marker#1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="Marker#2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#4" type="7" value="Marker#3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="Marker#3_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#6" type="7" value="Marker#3_2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#7" type="7" value="Marker#4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#8" type="7" value="Marker#5" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#9" type="7" value="Marker#6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#10" type="7" value="Marker#7" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#11" type="7" value="Marker#8" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#12" type="7" value="Marker#9" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#13" type="7" value="Marker#10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#14" type="7" value="Marker#11" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#15" type="7" value="Marker#12" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#16" type="7" value="Marker#13" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#17" type="7" value="Marker#14" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#18" type="7" value="Marker#15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#19" type="7" value="Marker#16" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#20" type="7" value="Marker#17" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#21" type="7" value="Marker#18" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#22" type="7" value="Marker#19" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="4608296" name="Marker#8" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="384350112" name="Marker#01" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.395781 0.243658 0.878602 -0.10976"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-185.132 247.614 335.005"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="970610688" name="Marker#13" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.612217 0 0.79069 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-58.3588 254.734 -764.831"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="4608296" name="Marker#8" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5940,10 +6056,12 @@
     <PROPERTY id="position" type="9" value="-171.439 251.626 -718.121"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="780755072" name="Marker#10" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="780755072" name="Marker#10" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5952,18 +6070,36 @@
     <PROPERTY id="position" type="9" value="-110.801 251.308 -800.894"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="78310496" name="Marker#3" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="503524896" name="Marker#18" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.442289 0 0.896873 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-81.3943 73.9238 -9.28719"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.464334 0.0655851 0.882554 -0.034506"></PROPERTY>
+    <PROPERTY id="position" type="9" value="200.811 186.341 169.994"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="78310496" name="Marker#3" typename="Marker Object" parentnode="Trajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.263594 -0.17391 -0.919259 -0.235025"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-89.7007 76.3629 24.4883"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::time to next node" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

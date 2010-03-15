@@ -20,6 +20,11 @@ TCameraControllerType CameraControllerTrajectory::getControllerType()
 	return OUAN::CAMERA_TRAJECTORY;
 }
 
+void CameraControllerTrajectory::resetTrajectory()
+{
+	mTrajectory->reset();
+}
+
 void CameraControllerTrajectory::update(double elapsedTime)
 {
 	//update Trajectory
