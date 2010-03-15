@@ -10,7 +10,7 @@ material Examples/CloudySky1
 			texture_unit
 			{
 				texture sky_dreams.dds
-				scroll_anim 0.15 0
+				scroll_anim 0.03 0
 			}
 		}
 	}
@@ -28,7 +28,7 @@ material Examples/CloudySky2
 			texture_unit
 			{
 				texture sky_nightmare.dds
-				scroll_anim 0.15 0
+				scroll_anim 0.03 0
 			}
 		}
 	}
