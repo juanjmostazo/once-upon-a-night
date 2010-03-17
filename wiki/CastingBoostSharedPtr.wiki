@@ -1,9 +1,4 @@
-#summary Code snippet to cast a shared_ptr to a pointer to a subclass.
-
-= Introduction =
-
-To downcast a smart pointer to a base class to its subclasses, we have to use boost::dynamic_pointer_cast.
-
+#summary Casting a shared_ptr to a shared_ptr to a subclass.
 
 = Code example =
 The method GUISubsystem::createGUI() returns a shared pointer to a GUIWindow base class.
