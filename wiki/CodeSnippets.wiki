@@ -1,0 +1,9 @@
+#summary Useful code snippets
+
+= Introduction =
+
+This section will list some code snippets that will probably be useful to us during the development of Once Upon a Night.
+
+
+= Snippets =
+ * [Casting Boost's shared_ptrs]
