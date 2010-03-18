@@ -24,5 +24,6 @@
         <Option key="UseWeapon">-0x01</Option>
         <Option key="Walk">0x12</Option>
 		<Option key="ToggleConsole">0x3F</Option>
+		<Option key="ToggleVolumes">0x3E</Option>
     </Options>
 </Configuration>

@@ -34,6 +34,7 @@ namespace OUAN
 	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
 	const std::string KEY_CHANGE_LEVEL = "ChangeLevel";
 	const std::string KEY_TOGGLE_CONSOLE = "ToggleConsole";
+	const std::string KEY_TOGGLE_VOLUMES = "ToggleVolumes";
 
 	//...for the PSX file
 	const std::string DEFAULT_PAD_ID="DEFAULT_PAD_ID"; 
@@ -111,7 +112,7 @@ namespace OUAN
 		int keyQuickExit, keyDebugPerformance, keyDebugPhysics;
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
-		int keyToggleConsole;
+		int keyToggleConsole, keyToggleVolumes;
 	} TDefaultInputData;
 
 	class ControlInputManager : public FullInputManager
@@ -163,6 +164,9 @@ namespace OUAN
 		/// Detect if the 'toggle-console' key has been pressed
 		/// @return true if there has been a 'toggle-console' key press
 		bool isPressedToggleConsole();
+		/// Detect if the 'toggle-volumes' key has been pressed
+		/// @return true if there has been a 'toggle-volumes' key press
+		bool isPressedToggleVolumes();
 
 		void getMouseStateRelValues(
 			double*, double*, double*);			// Mouse x, y, z coordinate values
@@ -178,16 +182,14 @@ namespace OUAN
 		std::string getAsString(OIS::KeyCode kc) const;
 		std::string getPadButtonName(int button) const;
 		TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
-
 		
 		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
-
-
 		
 	protected:
 		/// Parse configuration files for the input device button mappings
 		bool loadConfig();
 
+		/// TODO COMMENT
 		bool loadStrings();
 
 		/// Read as an hexadecimal integer the value of the 'key' parameter 
@@ -207,8 +209,6 @@ namespace OUAN
 		/// @param inputCfgMouseButtonId default input configuration mouse button id.
 		/// @return OIS' mouse button identifier.
 		OIS::MouseButtonID convertMouseButtonId(TInputCfgMouseButtonMapper inputCfgMouseButtonId);
-
-
 
 		/// Convenience method used to reduce massive copy-paste and replace when modifying
 		/// the isPressedSOMEACTION() methods to add configurable keyboard/mouse input
@@ -246,8 +246,6 @@ namespace OUAN
 
 		void ControlInputManager::saveDefaultInput();
 		void ControlInputManager::savePsxInput();
-
-
 	};
 }
 #endif

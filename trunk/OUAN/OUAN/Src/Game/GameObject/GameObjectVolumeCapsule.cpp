@@ -46,8 +46,18 @@ PhysicsComponentVolumeCapsulePtr GameObjectVolumeCapsule::getPhysicsComponentVol
 	return mPhysicsComponentVolumeCapsule;
 }
 
+void GameObjectVolumeCapsule::changeVisibility()
+{
+	if (mPhysicsComponentVolumeCapsule->isInUse())
+	{
+		mRenderComponentEntity->setVisible(!mRenderComponentEntity->getEntity()->isVisible());
+	}
+}
+
 void GameObjectVolumeCapsule::changeWorld(int world)
 {
+	mRenderComponentEntity->setVisible(false);
+
 	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
 	{
 		if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())

@@ -12,6 +12,8 @@
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
+#include "../Game/GameObject/GameObjectVolumeBox.h"
+#include "../Game/GameObject/GameObjectVolumeCapsule.h"
 
 #include <fstream>
 
@@ -109,7 +111,8 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleDebugPerformance IN");
+		Ogre::LogManager::getSingleton().logMessage("ToggleDebugPerformance key pressed");
+
 		if (mApp->getDebugMode()!=DEBUGMODE_PERFORMANCE)
 		{
 			mApp->setDebugMode(DEBUGMODE_PERFORMANCE);
@@ -126,7 +129,8 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedToggleDebugPhysics() && mApp->mKeyBuffer<0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("isPressedToggleDebugPhysics IN");
+		Ogre::LogManager::getSingleton().logMessage("ToggleDebugPhysics key pressed");
+
 		if (mApp->getDebugMode()!=DEBUGMODE_PHYSICS)
 		{
 			mApp->setDebugMode(DEBUGMODE_PHYSICS);
@@ -144,12 +148,16 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedToggleChangeCamera() && mApp->mKeyBuffer<0)
 	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCamera key pressed");
+
 		mApp->getRenderSubsystem()->changeCamera();
 
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeCameraController() && mApp->mKeyBuffer<0)
 	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
+
 		mApp->getRenderSubsystem()->changeCameraController();
 
 		if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
@@ -167,12 +175,16 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedToggleChangeWorld() && mApp->mKeyBuffer<0)
 	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleChangeWorld key pressed");
+
 		mApp->getGameWorldManager()->changeWorld();
 
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleChangeLevel() && mApp->mKeyBuffer<0)
 	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleChangeLevel key pressed");
+
 		Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
 		if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
 		{
@@ -192,7 +204,6 @@ void GameRunningState::handleEvents()
 		}
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
-
 	else if (mApp->isPressedRotateLeft() && mApp->mKeyBuffer<0)
 	{
 		spinRoulette(true);
@@ -203,16 +214,34 @@ void GameRunningState::handleEvents()
 		spinRoulette(false);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
-
 	else if (mApp->isPressedToggleConsole() && mApp->mKeyBuffer<0)
 	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleConsole key pressed");
+
 		if (mGUI->isVisible())
 			mGUI->hideConsole();
 		else
 			mGUI->showConsole();
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
+	else if (mApp->isPressedToggleVolumes() && mApp->mKeyBuffer<0)
+	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
 
+		TGameObjectVolumeBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer();
+		for(unsigned int i=0; i<cBox.size(); i++)
+		{
+			cBox[i]->changeVisibility();
+		}
+
+		TGameObjectVolumeCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer();
+		for(unsigned int i=0; i<cCapsule.size(); i++)
+		{
+			cCapsule[i]->changeVisibility();
+		}
+
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+	}
 		
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT

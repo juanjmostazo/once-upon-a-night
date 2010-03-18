@@ -119,7 +119,6 @@ namespace OUAN
 			/// Pointer to the scene loader
 			LevelLoaderPtr mLevelLoader;
 	
-
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;
 
@@ -132,7 +131,6 @@ namespace OUAN
 
 			/// Map containing text strings
 			ConfigurationPtr mTextStrings;
-
 		};
 }
 #endif

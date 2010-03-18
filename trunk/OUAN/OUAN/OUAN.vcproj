@@ -400,13 +400,6 @@
 				<File
 					RelativePath=".\Src\GUI\GUIOptionsMenu.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\Src\GUI\GUISubsystem.cpp"
@@ -415,13 +408,6 @@
 				<File
 					RelativePath=".\Src\GUI\GUIWindow.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
