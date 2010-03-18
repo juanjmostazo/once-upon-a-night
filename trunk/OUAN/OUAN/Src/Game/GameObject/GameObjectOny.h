@@ -12,30 +12,7 @@ namespace OUAN
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
 	private:
-		/// Entity movement flags, will be updated every frame
-		int mMovementFlags;
-
-		/// Entity jumping state
-		bool mJumping;
-
-		/// Jump time
-		double mJumpTime;
-
-		/// Jump speed
-		double mJumpSpeed;
-
-		/// Entity falling state
-		bool mFalling;
-
-		/// Jump time
-		double mFallTime;
-
-		/// Jump speed
-		double mFallSpeed;
-
-		/// Tells wether the entity is on the Surface
-		bool mOnSurface;
-
+		
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
@@ -57,60 +34,6 @@ namespace OUAN
 		GameObjectOny(const std::string& name);
 		//Destructor
 		~GameObjectOny();
-
-		/// Return movement flags
-		int getMovementFlags() const;
-
-		/// Set movement flags
-		void setMovementFlags(int pMovementFlags);
-
-		/// Init jump
-		void initJump(); 
-
-		/// Return if theentity is jumping
-		bool isJumping() const;
-
-		/// Set if the entity is jumping
-		void setJumping(bool pJumping);
-
-		/// Return jump time
-		double getJumpTime() const;
-
-		/// Set jump time
-		void setJumpTime(double pJumpTime);
-
-		/// Return jump speed
-		double getJumpSpeed() const;
-
-		/// Set jump speed
-		void setJumpSpeed(double pJumpSpeed);
-
-		/// Init fall speed
-		void initFall();
-
-		/// Return if the entity is falling
-		bool isFalling() const;
-
-		/// Set if the entity is falling
-		void setFalling(bool pFalling);
-
-		/// Return fall time
-		double getFallTime() const;
-
-		/// Set fall time
-		void setFallTime(double pFallTime);
-
-		/// Return fall speed
-		double getFallSpeed() const;
-
-		/// Set fall speed
-		void setFallSpeed(double pFallSpeed);
-		
-		/// Return if it's on Surface
-		bool isOnSurface();
-
-		/// Set on Surface
-		void setOnSurface(bool pOnSurface);
 
 		/// Return render component entity 
 		/// @return render component entity
