@@ -25,10 +25,12 @@ RenderSubsystem::RenderSubsystem(std::string windowName)
 , mCameraManager( NULL ) 
 , mWindowName(windowName)
 {
+	
 }
 
 RenderSubsystem::~RenderSubsystem()
 {
+
 }
 
 void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
@@ -49,8 +51,6 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	mCameraManager = new CameraManager();
 	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
-
-
 }
 
 void RenderSubsystem::cleanUp()
@@ -652,6 +652,7 @@ void RenderSubsystem::clearScene()
 	//mApp->getGUISubsystem()->clearRenderer();
 	delete mCameraManager;
 }
+
 void RenderSubsystem::resetScene()
 {
 	clearScene();
@@ -675,6 +676,7 @@ void RenderSubsystem::captureScene(const std::string& name)
 	renderTexture->update();
 	renderTexture->writeContentsToFile(name);
 }
+
 void RenderSubsystem::setTextureData (const std::string& materialName, const std::string& textureName, 
 									  bool isAnimated, int numFrames, float duration)
 {
@@ -688,6 +690,7 @@ void RenderSubsystem::setTextureData (const std::string& materialName, const std
 	}
 	else LogManager::getSingletonPtr()->logMessage("Material name not found. Function RenderSubsystem::setTextureData");
 }
+
 bool RenderSubsystem::isAnimatedTextureFinished(const std::string& materialName)
 {
 	MaterialPtr mat = MaterialManager::getSingleton().getByName(materialName);
@@ -700,6 +703,7 @@ bool RenderSubsystem::isAnimatedTextureFinished(const std::string& materialName)
 	else LogManager::getSingletonPtr()->logMessage("Material name not found. Function RenderSubsystem::isAnimatedTextureFinished");
 	return false;
 }
+
 void RenderSubsystem::hideOverlayElement(const std::string& overlayName)
 {
 	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);

@@ -2,6 +2,7 @@
 #define PhysicsComponentH_H
 
 #include "../../Component/Component.h"
+#include "../../Game/GameWorldManager.h"
 #include "../../Application.h"
 #include "../PhysicsSubsystem.h"
 #include <NxOgre.h>

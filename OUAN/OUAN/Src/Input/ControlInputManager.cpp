@@ -191,6 +191,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
 		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
 		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
+		readOption(config,KEY_TOGGLE_VOLUMES,mDefaultInputData.keyToggleVolumes);
+
 		return true;
 	}
 	else
@@ -219,6 +221,8 @@ bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePa
 		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyToggleVolumes=OIS::KC_UNASSIGNED;
+
 		return false;
 	}
 }
@@ -350,9 +354,15 @@ bool ControlInputManager::isPressedToggleChangeLevel()
 {
 	return isPressed(-1,mDefaultInputData.keyChangeLevel);
 }
+
 bool ControlInputManager::isPressedToggleConsole()
 {
 	return isPressed(-1,mDefaultInputData.keyToggleConsole);
+}
+
+bool ControlInputManager::isPressedToggleVolumes()
+{
+	return isPressed(-1,mDefaultInputData.keyToggleVolumes);
 }
 
 //////////////////////////////////////////////////////////////
@@ -388,6 +398,7 @@ void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
 	addPair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,mappings);
 	addPair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,mappings);
 }
+
 void ControlInputManager::addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings)
 {
 	std::pair<int,int> mapping;
@@ -395,6 +406,7 @@ void ControlInputManager::addPair(std::string keyID,int keyboardMapping, int psx
 	mapping.second=psxPadMapping;
 	mappings[keyID]=mapping;
 }
+
 // Macro to easily add case guards (quick, but a bit hacky)
 #define ADD_CASE(x) case INPUTCFG_MOUSEBUTTON_##x: \
 	{					\
@@ -435,6 +447,7 @@ std::string ControlInputManager::getAsString(OIS::KeyCode kc) const
 	}
 	return keyName;
 }
+
 void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool saveToFile)
 {
 	if (!newMapping.empty())
@@ -509,6 +522,8 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeWorld,KEY_CHANGE_WORLD,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleConsole,KEY_TOGGLE_CONSOLE,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleVolumes,KEY_TOGGLE_VOLUMES,false);
+
 	c.saveToFile(DEFAULTINPUT_CFG);
 }
 

@@ -145,7 +145,6 @@ namespace OUAN
 		/// @param overlayName name of the overlay element
 		void showOverlayElement(const std::string& overlayName);
 
-
 		void pauseRendering();
 		void resumeRendering();
 

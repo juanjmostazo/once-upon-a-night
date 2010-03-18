@@ -49,6 +49,7 @@ namespace OUAN
 		const int DEBUGMODE_PHYSICS=2;
 		const int DEBUGMODE_WIREFRAME=3;
 		const int DEBUGMODE_POINTS=4;
+		const int DEBUGMODE_VOLUMES=5;
 
 		const std::string DEFAULT_WIN_NAME="OUAN";
 
@@ -518,7 +519,7 @@ namespace OUAN
 		// Default path constants
 		const std::string DEFAULT_OGRE_RESOURCES_PATH="../../Config/resources.cfg";
 		const std::string DEFAULT_OGRE_CONFIG_PATH  = "../../Config/ogre.cfg";
-		const std::string DEFAULT_OGRE_LOG_PATH = "ogre.log";
+		const std::string DEFAULT_OGRE_LOG_PATH = "Ogre.log";
 		//Fetch the plugins file conditionally, depending on whether we're on debug mode or not
 		#ifdef OUAN_DEBUG
 				const std::string DEFAULT_OGRE_PLUGINS_PATH="../../Config/plugins-dbg.cfg";
@@ -542,7 +543,6 @@ namespace OUAN
 
 		class RenderSubsystem;
 		
-
 		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
 
 		///Camera Manager
@@ -590,7 +590,7 @@ namespace OUAN
 		//-------------------------------------
 		//  Movements masks
 		//-------------------------------------
-
+		/*
 		bool isPressedMenu();			// Go to main menu
 		bool isPressedPause();			// Go to pause menu
 
@@ -599,7 +599,7 @@ namespace OUAN
 		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
 		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
 
-		//bool isPressedGoForward();		// Go forward
+		bool isPressedGoForward();		// Go forward
 		bool isPressedGoBack();			// Go back
 		bool isPressedGoLeft();			// Go to left
 		bool isPressedGoRight();		// Go to right
@@ -608,7 +608,7 @@ namespace OUAN
 		bool isPressedAutoPoint();		// Automatic pointer
 		bool isPressedRotateLeft();		// Rotate color to left
 		bool isPressedRotateRight();	// Rotate color to right
-
+		*/
 		const int MOV_NOWHERE = 0;
 		const int MOV_GO_FORWARD = 1;
 		const int MOV_GO_BACK = 2;

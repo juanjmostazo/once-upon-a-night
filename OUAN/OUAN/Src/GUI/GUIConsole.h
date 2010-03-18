@@ -5,7 +5,7 @@
 namespace OUAN
 {
 
-	const double LOG_REFRESH_TIME=10; //IN SECONDS
+	const double LOG_REFRESH_TIME=2; //IN SECONDS
 	const std::string LOG_NAME="Ogre.log"; //Research Ogre::LogListener class
 	const int CONSOLE_MAX_LINES=50;
 

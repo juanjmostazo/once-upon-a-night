@@ -123,12 +123,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		setOnSurface(false);
 	}
 
-	/*
-	if (getRenderComponentPositional()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
+	if (getNxOgreController()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
 		Application::getInstance()->getGameWorldManager()->setGameOver(true);
 		Application::getInstance()->getGameWorldManager()->setGameBeaten(false);
 	}
-	*/
 }
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)

@@ -47,6 +47,9 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentVolumeCapsulePtr getPhysicsComponentVolumeCapsule();
 
+		/// Show or hide the component
+		void changeVisibility();
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
