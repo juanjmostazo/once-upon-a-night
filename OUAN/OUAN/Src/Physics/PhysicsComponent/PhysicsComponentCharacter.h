@@ -15,6 +15,8 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
+		virtual void update(double elapsedSeconds);
+
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		NxOgre::Controller* getNxOgreController();
 
@@ -24,11 +26,39 @@ namespace OUAN
 		void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
 		NxOgre::ControllerDescription getNxOgreControllerDescription();
 
+		void setMovementFlags(int pMovementFlags);
+
 	protected:
 		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
+
+		/// Entity movement flags, will be updated every frame
+		int mMovementFlags;
+
+		// Physics states
+		bool mJumping;
+		bool mFalling;
+		bool mSliding;
+		bool mOnSurface;
+
+		// Physics times
+		double mJumpTime;
+		double mFallTime;
+		double mSlideTime;
+
+		/// Physics speeds
+		double mJumpSpeed;
+		double mFallSpeed;
+		double mSlideSpeed;
+
+		void initJump();
+		void initFall();
+
+		void setJumpSpeed(double pJumpSpeed);
+		void setFallSpeed(double pFallSpeed);
+		void setOnSurface(bool pOnSurface);
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters

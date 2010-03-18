@@ -162,6 +162,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Ogre::Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
+
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
 

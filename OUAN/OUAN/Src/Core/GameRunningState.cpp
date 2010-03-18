@@ -254,7 +254,7 @@ void GameRunningState::handleEvents()
 	else if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
 	{
 		//Access to [0] because there's only one Ony, otherwise it should be a loop
-		mApp->getGameWorldManager()->getGameObjectOny()->setMovementFlags(movementFlags);
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setMovementFlags(movementFlags);
 	}
 
 	//[TODO: This will also have to be refactored somehow as soon as
