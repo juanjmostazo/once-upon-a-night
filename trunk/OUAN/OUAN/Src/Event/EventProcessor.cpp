@@ -79,5 +79,7 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
+	//mApp->getGameWorldManager()->setGameOver(true);
+	//mApp->getGameWorldManager()->setGameBeaten(true);
 	Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger");
 }

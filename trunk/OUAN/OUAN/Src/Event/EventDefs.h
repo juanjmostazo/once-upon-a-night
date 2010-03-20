@@ -1,5 +1,6 @@
 #ifndef EVENTPRIORITIESH_H
 #define EVENTPRIORITIESH_H
+
 namespace OUAN
 {
 	// Event types

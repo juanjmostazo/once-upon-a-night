@@ -1,6 +1,8 @@
 #ifndef EVENTH_H
 #define EVENTH_H
+
 #include "../OUAN.h"
+
 namespace OUAN
 {
 	/// Class to model every in-game event.

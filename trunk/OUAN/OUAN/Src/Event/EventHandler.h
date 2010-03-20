@@ -1,6 +1,8 @@
 #ifndef EVENTHANDLERH_H
 #define EVENTHANDLERH_H
+
 #include "../OUAN.h"
+
 namespace OUAN
 {
 	/// Abstract class to encapsulate an event handler's functionality

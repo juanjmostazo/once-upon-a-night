@@ -1,5 +1,6 @@
 #ifndef EVENTMANAGERH_H
 #define EVENTMANAGERH_H
+
 #include "../OUAN.h"
 #include "Event.h"
 #include "EventHandler.h"

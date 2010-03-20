@@ -19,6 +19,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Event/Event.h"
 #include "PhysicsComponent/PhysicsComponent.h"
 #include "PhysicsComponent/PhysicsComponentCharacter.h"
 #include "PhysicsComponent/PhysicsComponentComplex.h"
@@ -308,42 +309,103 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 
 void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, void* controller, unsigned int collisionEvent)
 {
-	NxOgre::Controller* characterController = static_cast<NxOgre::Controller*>(controller);
+	NxOgre::Controller* cController = static_cast<NxOgre::Controller*>(controller);
 
+	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
 	switch (collisionEvent)
 	{
-		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - ENTER"); 
-			//TODO AS A EVENT
-			mApp->getGameWorldManager()->setGameOver(true);
-			mApp->getGameWorldManager()->setGameBeaten(true);
-			break;
+		case NxOgre::Enums::VolumeCollisionType_OnEnter: collisionType = COLLISION_TYPE_TRIGGER_ENTER; break;
+		case NxOgre::Enums::VolumeCollisionType_OnExit: collisionType = COLLISION_TYPE_TRIGGER_EXIT; break;
+		case NxOgre::Enums::VolumeCollisionType_OnPresence: collisionType = COLLISION_TYPE_TRIGGER_PRESENCE; break;
+		default: collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN; break;
+	}	 
 
-		case NxOgre::Enums::VolumeCollisionType_OnExit: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - EXIT"); 
-			break;
+	CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
+		new CharacterInTriggerEvent(
+			getGameObjectFromController(cController), 
+			getGameObjectFromVolume(volume),
+			collisionType));
 
-		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - PRESENCE"); 
-			break;
-
-		default: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function character-onVolumeEvent called! - UNKNOWN"); 
-			break;
-	}
+	mApp->getGameWorldManager()->addEvent(evt);
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
-	//Too many log entries, maybe bacause of the TriangleMesh Terrain
+	//TODO INVESTIGATE HOW IT WORKS, seems that its called every frame
 	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
-	//return NxOgre::Enums::ControllerAction_None;
-	return NxOgre::Enums::ControllerAction_Push;
+	return NxOgre::Enums::ControllerAction_None;
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
 {	
-	Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onController called!");
-	//return NxOgre::Enums::ControllerAction_None;
-	return NxOgre::Enums::ControllerAction_Push;
+	CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
+		new CharactersCollisionEvent(
+		getGameObjectFromController(controller), 
+		getGameObjectFromController(other)));
+
+	mApp->getGameWorldManager()->addEvent(evt);
+
+	return NxOgre::Enums::ControllerAction_None;
+}
+
+//////////////////////////////////////////////////////////////////
+// Fetch functions
+
+GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* controller)
+{
+	GameObjectPtr object;
+	bool found = false;
+	/*
+	TGameObjectPhysicsCharacterContainer container = 
+		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
+
+	for (unsigned int i=0; !found && i<container.size(); i++)
+	{
+		if (container[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
+		{
+			GameObjectOnyPtr tmpObject = container[i];
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		//TODO else if block
+		//Same with the rest of game objects which hold a PhysicsComponentCharacter
+	}	
+	*/
+	return object;
+}
+
+GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
+{
+	GameObjectPtr object;
+	bool found = false;
+	/*
+	TGameObjectPhysicsVolumeContainer container = 
+		mApp->getGameWorldManager()->getGameObjectPhysicsVolumeContainer();
+
+	for (unsigned int i=0; !found && i<container.size(); i++)
+	{
+		if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0)
+		{
+			GameObjectTriggerBoxPtr tmpObject = container[i];
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0)
+		{
+			GameObjectTriggerCapsulePtr tmpObject = container[i];
+			if (tmpObject->getPhysicsComponentVolumeCapsule()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+	}	
+	*/
+	return object;
 }
