@@ -58,7 +58,6 @@ namespace OUAN
 		/// Process world change event
 		/// @param evt pointer to the event data
 		virtual void processChangeWorld(ChangeWorldEventPtr evt);
-
 	};
 
 	class TGameObjectParameters
@@ -73,7 +72,6 @@ namespace OUAN
 
 		///World Existance Information
 		TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
-
 	};
 }
 #endif

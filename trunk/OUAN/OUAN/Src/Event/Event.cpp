@@ -49,3 +49,47 @@ int ChangeWorldEvent::getNewWorld() const
 }
 
 //----------------------
+
+CharactersCollisionEvent::CharactersCollisionEvent(GameObjectPtr pCharacter1, GameObjectPtr pCharacter2)
+:Event(EVT_PRIORITY_CHARACTERS_COLLISION,EVENT_TYPE_CHARACTERS_COLLISION)
+{
+	mCharacter1=pCharacter1;
+	mCharacter2=pCharacter2;
+};
+
+GameObjectPtr CharactersCollisionEvent::getCharacter1()
+{
+	return mCharacter1;
+}
+
+GameObjectPtr CharactersCollisionEvent::getCharacter2()
+{
+	return mCharacter2;
+}
+
+//----------------------
+
+CharacterInTriggerEvent::CharacterInTriggerEvent(GameObjectPtr pCharacter, GameObjectPtr pTrigger, int pCollisionType)
+:Event(EVT_PRIORITY_CHARACTER_IN_TRIGGER,EVENT_TYPE_CHARACTER_IN_TRIGGER)
+{
+	mCharacter=pCharacter;
+	mTrigger=pTrigger;
+	mCollisionType=pCollisionType;
+};
+
+GameObjectPtr CharacterInTriggerEvent::getCharacter()
+{
+	return mCharacter;
+}
+
+GameObjectPtr CharacterInTriggerEvent::getTrigger()
+{
+	return mTrigger;
+}
+
+int CharacterInTriggerEvent::getCollisionType()
+{
+	return mCollisionType;
+}
+
+//----------------------

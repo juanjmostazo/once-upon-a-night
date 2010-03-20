@@ -20,6 +20,15 @@ namespace OUAN
 		/// Process world change event
 		/// @param evt pointer to the event
 		void processChangeWorld(ChangeWorldEventPtr evt);
+
+		/// Process world change event
+		/// @param evt pointer to the event
+		void processCharactersCollision(CharactersCollisionEventPtr evt);
+
+		/// Process world change event
+		/// @param evt pointer to the event
+		void processCharacterInTrigger(CharacterInTriggerEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();
@@ -37,7 +46,6 @@ namespace OUAN
 			evtManager->registerHandler(eh,eventType);
 		}
 
-
 		/// Generic method to unregister an event handler. It is completely analogous to the register method
 		/// @param instance		the instance that'll invoke the method
 		/// @param callback		the member function that 'instance' will invoke
@@ -48,6 +56,7 @@ namespace OUAN
 			EventHandlerPtr eh = EventHandlerPtr(new EventHandler<T,EventT>(instance,callback));
 			evtManager->unregisterHandler(eh,eventType);
 		}
+
 		/// Pointer to the world Manager: it provides 
 		/// indirect access to the game world's objects
 		GameWorldManagerPtr mWorldManager;	
