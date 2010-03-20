@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentComplexTriangle::PhysicsComponentComplexTriangle(const std::string& type)
-:PhysicsComponentComplex(COMPONENT_TYPE_PHYSICS_COMPLEX_NON_MOVABLE)
+:PhysicsComponentComplex(type)
 {
 
 }

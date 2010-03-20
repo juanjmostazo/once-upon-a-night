@@ -21,6 +21,7 @@ Event::Event(int priority, TEventType eventType)
 :mEventType(eventType)
 ,mPriority(priority)
 {
+
 }
 
 TEventType Event::getEventType() const
@@ -39,6 +40,7 @@ ChangeWorldEvent::ChangeWorldEvent(int newWorld)
 :Event(EVT_PRIORITY_CHANGEWORLD,EVENT_TYPE_CHANGEWORLD)
 ,mNewWorld(newWorld)
 {
+
 };
 
 int ChangeWorldEvent::getNewWorld() const

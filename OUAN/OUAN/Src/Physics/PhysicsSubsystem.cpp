@@ -303,8 +303,10 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onContact called!");
 }
 
-void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-									 void* controller, unsigned int collisionEvent)
+//////////////////////////////////////////////////////////////////
+// Character physics callbacks
+
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, void* controller, unsigned int collisionEvent)
 {
 	NxOgre::Controller* characterController = static_cast<NxOgre::Controller*>(controller);
 
@@ -331,18 +333,17 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 	}
 }
 
-//////////////////////////////////////////////////////////////////
-// Specific physics character callbacks
-
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	//Too many log entries, maybe bacause of the TriangleMesh Terrain
 	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
-	return NxOgre::Enums::ControllerAction_None;
+	//return NxOgre::Enums::ControllerAction_None;
+	return NxOgre::Enums::ControllerAction_Push;
 }
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
 {	
 	Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onController called!");
-	return NxOgre::Enums::ControllerAction_None;
+	//return NxOgre::Enums::ControllerAction_None;
+	return NxOgre::Enums::ControllerAction_Push;
 }

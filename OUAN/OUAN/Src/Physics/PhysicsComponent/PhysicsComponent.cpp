@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponent::PhysicsComponent(const std::string& type)
-:Component(COMPONENT_TYPE_PHYSICS)
+:Component(type)
 {
 	mInUse=false;
 	mStatic=false;

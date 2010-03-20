@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentComplexConvex::PhysicsComponentComplexConvex(const std::string& type)
-:PhysicsComponentComplex(COMPONENT_TYPE_PHYSICS_COMPLEX_MOVABLE)
+:PhysicsComponentComplex(type)
 {
 
 }

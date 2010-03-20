@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentVolumeCapsule::PhysicsComponentVolumeCapsule(const std::string& type)
-:PhysicsComponentVolume(COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE)
+:PhysicsComponentVolume(type)
 {
 
 }
