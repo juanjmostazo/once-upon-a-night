@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib Lua+Lib.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib Lua+Lib.lib"
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -629,6 +629,10 @@
 			<Filter
 				Name="Logic"
 				>
+				<File
+					RelativePath=".\Src\Logic\LogicSubsystem.cpp"
+					>
+				</File>
 				<Filter
 					Name="LogicComponent"
 					>
@@ -1145,6 +1149,10 @@
 			<Filter
 				Name="Logic"
 				>
+				<File
+					RelativePath=".\Src\Logic\LogicSubsystem.h"
+					>
+				</File>
 				<Filter
 					Name="LogicComponent"
 					>
@@ -1193,10 +1201,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
