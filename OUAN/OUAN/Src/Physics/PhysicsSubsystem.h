@@ -116,6 +116,12 @@ namespace OUAN
 
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
+
+		/// Fetch function
+		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
+
+		/// Fetch function
+		GameObjectPtr getGameObjectFromVolume(NxOgre::Volume* Volume);
 	};
 }
 #endif

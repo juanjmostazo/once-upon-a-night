@@ -1259,10 +1259,12 @@ void GameWorldManager::addEvent(OUAN::EventPtr event)
 {
 	mEventManager->addEvent(event);
 }
+
 void GameWorldManager::dispatchEvents()
 {
 	mEventManager->dispatchEvents();
 }
+
 EventManagerPtr GameWorldManager::getEventManager()
 {
 	return mEventManager;
@@ -1271,5 +1273,4 @@ EventManagerPtr GameWorldManager::getEventManager()
 GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 {
 	return mGameObjectOnyContainer[0];
-
 }
