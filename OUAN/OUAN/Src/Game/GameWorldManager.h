@@ -36,8 +36,8 @@ namespace OUAN
 		TGameObjectSceneContainer getGameObjectSceneContainer();
 		TGameObjectTripolloContainer getGameObjectTripolloContainer();
 		TGameObjectEyeContainer getGameObjectEyeContainer();
-		TGameObjectVolumeBoxContainer getGameObjectVolumeBoxContainer();
-		TGameObjectVolumeCapsuleContainer getGameObjectVolumeCapsuleContainer();
+		TGameObjectTriggerBoxContainer getGameObjectTriggerBoxContainer();
+		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer getGameObjectViewportContainer();
 
 		TGameObjectPhysicsContainer getGameObjectPhysicsContainer();
@@ -84,8 +84,8 @@ namespace OUAN
 		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
 		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
-		void createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters);
-		void createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters);
+		void createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters);
+		void createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters);
 		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
 
 		//trajectory Creator
@@ -163,8 +163,8 @@ namespace OUAN
 		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
 		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
-		void addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox);
-		void addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule);
+		void addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox);
+		void addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule);
 		void addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity);
 
 
@@ -206,8 +206,8 @@ namespace OUAN
 		TGameObjectSceneContainer mGameObjectSceneContainer;
 		TGameObjectTripolloContainer mGameObjectTripolloContainer;
 		TGameObjectEyeContainer mGameObjectEyeContainer;
-		TGameObjectVolumeBoxContainer mGameObjectVolumeBoxContainer;
-		TGameObjectVolumeCapsuleContainer mGameObjectVolumeCapsuleContainer;
+		TGameObjectTriggerBoxContainer mGameObjectTriggerBoxContainer;
+		TGameObjectTriggerCapsuleContainer mGameObjectTriggerCapsuleContainer;
 
 		TGameObjectPhysicsContainer mGameObjectPhysicsContainer;
 		TGameObjectPhysicsCharacterContainer mGameObjectPhysicsCharacterContainer;

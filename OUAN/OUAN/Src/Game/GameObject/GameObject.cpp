@@ -2,10 +2,10 @@
 
 using namespace OUAN;
 
-GameObject::GameObject(const std::string& name)
-:mName(name)
+GameObject::GameObject(const std::string& name,const std::string& type)
 {
-
+	mName=name;
+	mType=type;
 }
 
 GameObject::~GameObject()
@@ -33,6 +33,10 @@ const std::string& GameObject::getName() const
 	return mName;
 }
 
+const std::string& GameObject::getType() const
+{
+	return mType;
+}
 
 GameWorldManagerPtr GameObject::getGameWorldManager()
 {

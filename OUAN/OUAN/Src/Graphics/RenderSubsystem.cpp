@@ -277,18 +277,38 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 {
 	try
 	{
+
 		//Set SceneManager parameters
 		mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
-		//Set SkyBox
-		mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
-			tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialNightmares,
-			tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
-		//Set SkyDome
-		mSceneManager->setSkyDome(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active,
-			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.materialDreams,
-			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.curvature,
-			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.tiling,
-			tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.distance);
+
+		if(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active)
+		{
+			//Set SkyBox Dreams
+			mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
+				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialDreams,
+				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
+			//Set SkyBox Nightmares
+			mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
+				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialNightmares,
+				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
+		}
+
+		if(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active)
+		{
+			//Set SkyDome Dreams
+			mSceneManager->setSkyDome(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.materialDreams,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.curvature,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.tiling,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.distance);
+
+			//Set SkyDome Nightmares
+			mSceneManager->setSkyDome(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.materialNightmares,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.curvature,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.tiling,
+				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.distance);
+		}
 	}
 	catch(Ogre::Exception &/*e*/)
 	{

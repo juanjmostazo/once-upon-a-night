@@ -1,5 +1,5 @@
-#ifndef GameObjectVolumeCapsuleH_H
-#define GameObjectVolumeCapsuleH_H
+#ifndef GameObjectTriggerCapsuleH_H
+#define GameObjectTriggerCapsuleH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class to hold volume capsule information
-	class GameObjectVolumeCapsule : public GameObject, public boost::enable_shared_from_this<GameObjectVolumeCapsule>
+	class GameObjectTriggerCapsule : public GameObject, public boost::enable_shared_from_this<GameObjectTriggerCapsule>
 	{
 	private:
 		/// Visual information - ONLY SHOWN IN DEBUG MODE
@@ -22,9 +22,9 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectVolumeCapsule(const std::string& name);
+		GameObjectTriggerCapsule(const std::string& name);
 		//Destructor
-		~GameObjectVolumeCapsule();
+		~GameObjectTriggerCapsule();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -55,11 +55,11 @@ namespace OUAN
 		void changeWorld(int world);
 	};
 
-	class TGameObjectVolumeCapsuleParameters: public TGameObjectParameters
+	class TGameObjectTriggerCapsuleParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectVolumeCapsuleParameters();
-		~TGameObjectVolumeCapsuleParameters();
+		TGameObjectTriggerCapsuleParameters();
+		~TGameObjectTriggerCapsuleParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;

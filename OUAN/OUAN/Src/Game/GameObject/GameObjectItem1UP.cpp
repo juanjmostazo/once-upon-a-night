@@ -4,7 +4,7 @@
 using namespace OUAN;
 
 GameObjectItem1UP::GameObjectItem1UP(const std::string& name)
-:GameObject(name)
+:GameObject(name,GAME_OBJECT_TYPE_ITEM_1UP)
 {
 
 }

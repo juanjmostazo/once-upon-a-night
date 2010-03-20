@@ -1,52 +1,52 @@
-#include "GameObjectVolumeBox.h"
+#include "GameObjectTriggerBox.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
 
-GameObjectVolumeBox::GameObjectVolumeBox(const std::string& name)
-:GameObject(name)
+GameObjectTriggerBox::GameObjectTriggerBox(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_TRIGGERBOX)
 {
 
 }
 
-GameObjectVolumeBox::~GameObjectVolumeBox()
+GameObjectTriggerBox::~GameObjectTriggerBox()
 {
 
 }
 
-void GameObjectVolumeBox::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTriggerBox::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-RenderComponentPositionalPtr GameObjectVolumeBox::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTriggerBox::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-void GameObjectVolumeBox::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTriggerBox::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 
-RenderComponentEntityPtr GameObjectVolumeBox::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectTriggerBox::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectVolumeBox::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
+void GameObjectTriggerBox::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectVolumeBox::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectTriggerBox::getPhysicsComponentVolumeBox()
 {
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectVolumeBox::changeVisibility()
+void GameObjectTriggerBox::changeVisibility()
 {
 	if (mPhysicsComponentVolumeBox->isInUse())
 	{
@@ -54,7 +54,7 @@ void GameObjectVolumeBox::changeVisibility()
 	}
 }
 
-void GameObjectVolumeBox::changeWorld(int world)
+void GameObjectTriggerBox::changeWorld(int world)
 {
 	mRenderComponentEntity->setVisible(false);
 
@@ -111,12 +111,12 @@ void GameObjectVolumeBox::changeWorld(int world)
 }
 //-------------------------------------------------------------------------------------------
 
-TGameObjectVolumeBoxParameters::TGameObjectVolumeBoxParameters() : TGameObjectParameters()
+TGameObjectTriggerBoxParameters::TGameObjectTriggerBoxParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectVolumeBoxParameters::~TGameObjectVolumeBoxParameters()
+TGameObjectTriggerBoxParameters::~TGameObjectTriggerBoxParameters()
 {
 
 }

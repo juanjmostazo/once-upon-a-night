@@ -12,8 +12,8 @@
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
-#include "../Game/GameObject/GameObjectVolumeBox.h"
-#include "../Game/GameObject/GameObjectVolumeCapsule.h"
+#include "../Game/GameObject/GameObjectTriggerBox.h"
+#include "../Game/GameObject/GameObjectTriggerCapsule.h"
 
 #include <fstream>
 
@@ -228,13 +228,13 @@ void GameRunningState::handleEvents()
 	{
 		Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
 
-		TGameObjectVolumeBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectVolumeBoxContainer();
+		TGameObjectTriggerBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
 		for(unsigned int i=0; i<cBox.size(); i++)
 		{
 			cBox[i]->changeVisibility();
 		}
 
-		TGameObjectVolumeCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectVolumeCapsuleContainer();
+		TGameObjectTriggerCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectTriggerCapsuleContainer();
 		for(unsigned int i=0; i<cCapsule.size(); i++)
 		{
 			cCapsule[i]->changeVisibility();

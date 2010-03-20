@@ -4,7 +4,7 @@
 using namespace OUAN;
 
 GameObjectPortal::GameObjectPortal(const std::string& name)
-:GameObject(name)
+:GameObject(name,GAME_OBJECT_TYPE_PORTAL)
 {
 
 }

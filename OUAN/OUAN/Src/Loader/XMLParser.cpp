@@ -49,8 +49,8 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_EYE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ITEM_1UP);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ITEM_MAXHP);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VOLUMEBOX);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_VOLUMECAPSULE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIGGERBOX);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIGGERCAPSULE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NIGHTGOBLIN);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CRYKING);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DRAGON);

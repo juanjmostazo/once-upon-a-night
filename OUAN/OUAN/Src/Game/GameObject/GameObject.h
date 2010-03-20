@@ -10,8 +10,10 @@ namespace OUAN
 {
 	class GameObject{
 	private:
-		/// GameObject identifier (i.e, "pc_ony")
+		/// GameObject identifier (i.e, "tripollo#14")
 		std::string mName;
+		/// GameObject identifier (i.e. GameObjectTripollo)
+		std::string mType;
 	protected:
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
@@ -20,7 +22,7 @@ namespace OUAN
 		LogicComponentWorldExistancePtr mLogicComponentWorldExistance;
 	public:
 		//Constructor
-		GameObject(const std::string& name);
+		GameObject(const std::string& name,const std::string& type);
 		//Destructor
 		~GameObject();
 
@@ -31,9 +33,13 @@ namespace OUAN
 		/// Each game object must take care about their specific components)
 		virtual void destroy();
 
-		/// Return entity name (i.e, its "type" identifier)
-		/// @return name of the entity
+		/// Return Game Object name (i.e, its identifier)
+		/// @return name of the Game Object
 		const std::string& getName() const;
+
+		/// Return Game Object type
+		/// @return type of the Game Object
+		const std::string& getType() const;
 
 		/// Set WorldExistence component
 		void setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance);
