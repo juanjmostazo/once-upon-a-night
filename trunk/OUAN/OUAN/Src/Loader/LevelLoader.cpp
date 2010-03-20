@@ -217,7 +217,11 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE_DREAMS)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE_NIGHTMARES)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}

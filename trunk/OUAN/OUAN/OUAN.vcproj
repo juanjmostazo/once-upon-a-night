@@ -425,6 +425,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBee_Butterfly.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBillboardSet.cpp"
 						>
 					</File>
@@ -433,7 +437,35 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectClockPiece.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCryKing.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDiamond.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDiamondTree.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDragon.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectEye.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectFlashLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectHeart.cpp"
 						>
 					</File>
 					<File
@@ -449,11 +481,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMagicClock.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNightGoblin.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectOny.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectParticleSystem.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPillow.cpp"
 						>
 					</File>
 					<File
@@ -465,7 +509,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectScaredPlant.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper_CarnivorousPlant.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectStoryBook.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTentetieso.cpp"
 						>
 					</File>
 					<File
@@ -474,6 +534,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTreeDreams.cpp"
 						>
 					</File>
 					<File
@@ -823,6 +887,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBee_Butterfly.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBillboardSet.h"
 						>
 					</File>
@@ -831,7 +899,35 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectClockPiece.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCryKing.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDiamond.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDiamondTree.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDragon.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectEye.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectFlashLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectHeart.h"
 						>
 					</File>
 					<File
@@ -847,11 +943,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectMagicClock.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNightGoblin.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectOny.h"
 						>
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectParticleSystem.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPillow.h"
 						>
 					</File>
 					<File
@@ -863,7 +971,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectScaredPlant.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectScene.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper_CarnivorousPlant.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectStoryBook.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTentetieso.h"
 						>
 					</File>
 					<File
@@ -872,6 +996,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTreeNightmares.h"
 						>
 					</File>
 					<File
