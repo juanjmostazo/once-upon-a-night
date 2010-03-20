@@ -185,7 +185,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TENTENTIESO)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TENTETIESO)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}

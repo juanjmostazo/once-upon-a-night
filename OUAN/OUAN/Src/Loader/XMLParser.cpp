@@ -57,7 +57,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_MAGIC_CLOCK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PILLOW);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FLASHLIGHT);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TENTENTIESO);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TENTETIESO);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BEE_BUTTERFLY);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND_TREE);
