@@ -289,13 +289,13 @@ namespace OUAN
 		class TGameObjectItemMaxHPParameters;
 		typedef boost::shared_ptr<GameObjectItemMaxHP> GameObjectItemMaxHPPtr;
 
-		class GameObjectVolumeBox;
-		class TGameObjectVolumeBoxParameters;
-		typedef boost::shared_ptr<GameObjectVolumeBox> GameObjectVolumeBoxPtr;
+		class GameObjectTriggerBox;
+		class TGameObjectTriggerBoxParameters;
+		typedef boost::shared_ptr<GameObjectTriggerBox> GameObjectTriggerBoxPtr;
 
-		class GameObjectVolumeCapsule;
-		class TGameObjectVolumeCapsuleParameters;
-		typedef boost::shared_ptr<GameObjectVolumeCapsule> GameObjectVolumeCapsulePtr;
+		class GameObjectTriggerCapsule;
+		class TGameObjectTriggerCapsuleParameters;
+		typedef boost::shared_ptr<GameObjectTriggerCapsule> GameObjectTriggerCapsulePtr;
 
 		class GameObjectNightGoblin;
 		class TGameObjectNightGoblinParameters;
@@ -375,8 +375,8 @@ namespace OUAN
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
 		typedef std::vector<GameObjectItem1UPPtr> TGameObjectItem1UPContainer;
 		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjectItemMaxHPContainer;
-		typedef std::vector<GameObjectVolumeBoxPtr> TGameObjectVolumeBoxContainer;
-		typedef std::vector<GameObjectVolumeCapsulePtr> TGameObjectVolumeCapsuleContainer;
+		typedef std::vector<GameObjectTriggerBoxPtr> TGameObjectTriggerBoxContainer;
+		typedef std::vector<GameObjectTriggerCapsulePtr> TGameObjectTriggerCapsuleContainer;
 		typedef std::vector<GameObjectNightGoblinPtr> TGameObjectNightGoblinContainer;
 		typedef std::vector<GameObjectCryKingPtr> TGameObjectCryKingContainer;
 		typedef std::vector<GameObjectDragonPtr> TGameObjectDragonContainer;
@@ -398,6 +398,8 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="SceneManager";
 		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";
+		const std::string GAME_OBJECT_TYPE_TERRAINCONVEX="terrain-convex";
+		const std::string GAME_OBJECT_TYPE_TERRAINTRIANGLE="terrain-triangle";
 		const std::string GAME_OBJECT_TYPE_LIGHT="Light";
 		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
 		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
@@ -408,8 +410,8 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
 		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item_1up";
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="heartbag";
-		const std::string GAME_OBJECT_TYPE_VOLUMEBOX="volume-box";
-		const std::string GAME_OBJECT_TYPE_VOLUMECAPSULE="volume-capsule";
+		const std::string GAME_OBJECT_TYPE_TRIGGERBOX="volume-box";
+		const std::string GAME_OBJECT_TYPE_TRIGGERCAPSULE="volume-capsule";
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
 		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="night_goblin";
 		const std::string GAME_OBJECT_TYPE_CRYKING="cry_king";
@@ -427,6 +429,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
 		const std::string GAME_OBJECT_TYPE_TREE="tree";
 		const std::string GAME_OBJECT_TYPE_CLOCK_PIECE="clock_piece";
+		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
 		///////////////////////////////////////////////////////////////////
 
 		// Event manager-related constants, typedefs and forwarded declarations

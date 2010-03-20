@@ -1,5 +1,5 @@
-#ifndef GameObjectVolumeBoxH_H
-#define GameObjectVolumeBoxH_H
+#ifndef GameObjectTriggerBoxH_H
+#define GameObjectTriggerBoxH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
@@ -9,7 +9,7 @@
 namespace OUAN
 {
 	/// Class to hold volume box information
-	class GameObjectVolumeBox : public GameObject, public boost::enable_shared_from_this<GameObjectVolumeBox>
+	class GameObjectTriggerBox : public GameObject, public boost::enable_shared_from_this<GameObjectTriggerBox>
 	{
 	private:
 		/// Visual information - ONLY SHOWN IN DEBUG MODE
@@ -22,9 +22,9 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectVolumeBox(const std::string& name);
+		GameObjectTriggerBox(const std::string& name);
 		//Destructor
-		~GameObjectVolumeBox();
+		~GameObjectTriggerBox();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -56,11 +56,11 @@ namespace OUAN
 
 	};
 
-	class TGameObjectVolumeBoxParameters: public TGameObjectParameters
+	class TGameObjectTriggerBoxParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectVolumeBoxParameters();
-		~TGameObjectVolumeBoxParameters();
+		TGameObjectTriggerBoxParameters();
+		~TGameObjectTriggerBoxParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;

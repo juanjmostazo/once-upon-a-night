@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -477,19 +477,19 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCapsule.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectViewport.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectVolumeBox.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectVolumeCapsule.cpp"
 						>
 					</File>
 				</Filter>
@@ -875,19 +875,19 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCapsule.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.h"
 						>
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectViewport.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectVolumeBox.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectVolumeCapsule.h"
 						>
 					</File>
 				</Filter>

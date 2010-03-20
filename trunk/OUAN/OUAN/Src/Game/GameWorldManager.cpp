@@ -16,8 +16,8 @@
 #include "GameObject/GameObjectItemMaxHP.h"
 #include "GameObject/GameObjectPortal.h"
 #include "GameObject/GameObjectCamera.h"
-#include "GameObject/GameObjectVolumeBox.h"
-#include "GameObject/GameObjectVolumeCapsule.h"
+#include "GameObject/GameObjectTriggerBox.h"
+#include "GameObject/GameObjectTriggerCapsule.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -162,14 +162,14 @@ TGameObjectViewportContainer GameWorldManager::getGameObjectViewportContainer()
 	return mGameObjectViewportContainer;
 }
 
-TGameObjectVolumeBoxContainer GameWorldManager::getGameObjectVolumeBoxContainer()
+TGameObjectTriggerBoxContainer GameWorldManager::getGameObjectTriggerBoxContainer()
 {
-	return mGameObjectVolumeBoxContainer;
+	return mGameObjectTriggerBoxContainer;
 }
 
-TGameObjectVolumeCapsuleContainer GameWorldManager::getGameObjectVolumeCapsuleContainer()
+TGameObjectTriggerCapsuleContainer GameWorldManager::getGameObjectTriggerCapsuleContainer()
 {
-	return mGameObjectVolumeCapsuleContainer;
+	return mGameObjectTriggerCapsuleContainer;
 }
 
 TGameObjectPhysicsContainer GameWorldManager::getGameObjectPhysicsContainer()
@@ -247,8 +247,8 @@ void GameWorldManager::clearContainers()
 	mGameObjectSceneContainer.clear();
 	mGameObjectTripolloContainer.clear();
 	mGameObjectEyeContainer.clear();
-	mGameObjectVolumeBoxContainer.clear();
-	mGameObjectVolumeCapsuleContainer.clear();
+	mGameObjectTriggerBoxContainer.clear();
+	mGameObjectTriggerCapsuleContainer.clear();
 
 	mGameObjectPhysicsCharacterContainer.clear();
 	mGameObjectPhysicsComplexConvexContainer.clear();
@@ -512,26 +512,26 @@ void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntit
 	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectProvisionalEntity);
 }
 
-void GameWorldManager::addGameObjectVolumeBox(GameObjectVolumeBoxPtr pGameObjectVolumeBox)
+void GameWorldManager::addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox)
 {
-	mGameObjects[pGameObjectVolumeBox->getName()]=pGameObjectVolumeBox;
+	mGameObjects[pGameObjectTriggerBox->getName()]=pGameObjectTriggerBox;
 
-	mGameObjectVolumeBoxContainer.push_back(pGameObjectVolumeBox);
+	mGameObjectTriggerBoxContainer.push_back(pGameObjectTriggerBox);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectVolumeBox);
-	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectVolumeBox);
-	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectVolumeBox);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTriggerBox);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectTriggerBox);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectTriggerBox);
 }
 
-void GameWorldManager::addGameObjectVolumeCapsule(GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule)
+void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule)
 {
-	mGameObjects[pGameObjectVolumeCapsule->getName()]=pGameObjectVolumeCapsule;
+	mGameObjects[pGameObjectTriggerCapsule->getName()]=pGameObjectTriggerCapsule;
 
-	mGameObjectVolumeCapsuleContainer.push_back(pGameObjectVolumeCapsule);
+	mGameObjectTriggerCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectVolumeCapsule);
-	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectVolumeCapsule);
-	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectVolumeCapsule);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTriggerCapsule);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectTriggerCapsule);
+	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
@@ -1018,88 +1018,88 @@ void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameO
 	addGameObjectCamera(pGameObjectCamera);
 }
 
-void GameWorldManager::createGameObjectVolumeBox(TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters)
+void GameWorldManager::createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters)
 {
-	GameObjectVolumeBoxPtr pGameObjectVolumeBox;
+	GameObjectTriggerBoxPtr pGameObjectTriggerBox;
 
 	//Create GameObject
-	pGameObjectVolumeBox = GameObjectVolumeBoxPtr(new GameObjectVolumeBox(tGameObjectVolumeBoxParameters.name));
+	pGameObjectTriggerBox = GameObjectTriggerBoxPtr(new GameObjectTriggerBox(tGameObjectTriggerBoxParameters.name));
 
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponentWorldExistance
-		pGameObjectVolumeBox->setLogicComponentWorldExistance(
+		pGameObjectTriggerBox->setLogicComponentWorldExistance(
 			factory->createLogicComponentWorldExistance(
-			tGameObjectVolumeBoxParameters.tLogicComponentWorldExistanceParameters));
+			tGameObjectTriggerBoxParameters.tLogicComponentWorldExistanceParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectVolumeBox->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters));
+		pGameObjectTriggerBox->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTriggerBox,tGameObjectTriggerBoxParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectVolumeBox->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectVolumeBoxParameters.name,
-			pGameObjectVolumeBox,tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters));
+		pGameObjectTriggerBox->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectTriggerBoxParameters.name,
+			pGameObjectTriggerBox,tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters));
 
 		//Make RenderComponentEntity not visible
-		pGameObjectVolumeBox->getRenderComponentEntity()->setVisible(false);
+		pGameObjectTriggerBox->getRenderComponentEntity()->setVisible(false);
 
 		//Create PhysicsComponent
-		pGameObjectVolumeBox->setPhysicsComponentVolumeBox(factory->createPhysicsComponentVolumeBox(
-			pGameObjectVolumeBox,
-			tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters,
-			pGameObjectVolumeBox->getRenderComponentPositional()));
+		pGameObjectTriggerBox->setPhysicsComponentVolumeBox(factory->createPhysicsComponentVolumeBox(
+			pGameObjectTriggerBox,
+			tGameObjectTriggerBoxParameters.tPhysicsComponentVolumeBoxParameters,
+			pGameObjectTriggerBox->getRenderComponentPositional()));
 	
-	pGameObjectVolumeBox->changeWorld(world);
+	pGameObjectTriggerBox->changeWorld(world);
 
 	// Add a reference to this
-	pGameObjectVolumeBox->setGameWorldManager(mThis);
+	pGameObjectTriggerBox->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectVolumeBox(pGameObjectVolumeBox);
+	addGameObjectTriggerBox(pGameObjectTriggerBox);
 }
 
-void GameWorldManager::createGameObjectVolumeCapsule(TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters)
+void GameWorldManager::createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters)
 {
-	GameObjectVolumeCapsulePtr pGameObjectVolumeCapsule;
+	GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule;
 
 	//Create GameObject
-	pGameObjectVolumeCapsule = GameObjectVolumeCapsulePtr(new GameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters.name));
+	pGameObjectTriggerCapsule = GameObjectTriggerCapsulePtr(new GameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters.name));
 
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponentWorldExistance
-		pGameObjectVolumeCapsule->setLogicComponentWorldExistance(
+		pGameObjectTriggerCapsule->setLogicComponentWorldExistance(
 			factory->createLogicComponentWorldExistance(
-			tGameObjectVolumeCapsuleParameters.tLogicComponentWorldExistanceParameters));
+			tGameObjectTriggerCapsuleParameters.tLogicComponentWorldExistanceParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectVolumeCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters));
+		pGameObjectTriggerCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTriggerCapsule,tGameObjectTriggerCapsuleParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentEntity
-		pGameObjectVolumeCapsule->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectVolumeCapsuleParameters.name,
-			pGameObjectVolumeCapsule,tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters));
+		pGameObjectTriggerCapsule->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectTriggerCapsuleParameters.name,
+			pGameObjectTriggerCapsule,tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters));
 
 		//Make RenderComponentEntity not visible
-		pGameObjectVolumeCapsule->getRenderComponentEntity()->setVisible(false);
+		pGameObjectTriggerCapsule->getRenderComponentEntity()->setVisible(false);
 
 		//Create PhysicsComponent
-		pGameObjectVolumeCapsule->setPhysicsComponentVolumeCapsule(factory->createPhysicsComponentVolumeCapsule(
-			pGameObjectVolumeCapsule,
-			tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
-			pGameObjectVolumeCapsule->getRenderComponentPositional()));
+		pGameObjectTriggerCapsule->setPhysicsComponentVolumeCapsule(factory->createPhysicsComponentVolumeCapsule(
+			pGameObjectTriggerCapsule,
+			tGameObjectTriggerCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
+			pGameObjectTriggerCapsule->getRenderComponentPositional()));
 	
-	pGameObjectVolumeCapsule->changeWorld(world);
+	pGameObjectTriggerCapsule->changeWorld(world);
 
 	// Add a reference to this
-	pGameObjectVolumeCapsule->setGameWorldManager(mThis);
+	pGameObjectTriggerCapsule->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectVolumeCapsule(pGameObjectVolumeCapsule);
+	addGameObjectTriggerCapsule(pGameObjectTriggerCapsule);
 }
 
 void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters)

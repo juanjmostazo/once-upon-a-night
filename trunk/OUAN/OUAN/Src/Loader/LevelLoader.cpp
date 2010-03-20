@@ -20,8 +20,8 @@
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Game/GameObject/GameObjectCamera.h"
-#include "../Game/GameObject/GameObjectVolumeBox.h"
-#include "../Game/GameObject/GameObjectVolumeCapsule.h"
+#include "../Game/GameObject/GameObjectTriggerBox.h"
+#include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Game/GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
@@ -153,13 +153,13 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectCamera(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMEBOX)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGERBOX)==0)
 		{
-			processGameObjectVolumeBox(gameObject);
+			processGameObjectTriggerBox(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VOLUMECAPSULE)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE)==0)
 		{
-			processGameObjectVolumeCapsule(gameObject);
+			processGameObjectTriggerCapsule(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_NIGHTGOBLIN)==0)
 		{
@@ -902,31 +902,31 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
 }
 
-void LevelLoader::processGameObjectVolumeBox(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectVolumeBoxParameters tGameObjectVolumeBoxParameters;
+	OUAN::TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters;
 	try
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectVolumeBoxParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectVolumeBoxParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectVolumeBoxParameters.name = gameObject->name;
+		tGameObjectTriggerBoxParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTriggerBoxParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTriggerBoxParameters.name = gameObject->name;
 
 		//Get World Existance
-		tGameObjectVolumeBoxParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+		tGameObjectTriggerBoxParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
 			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
-		tGameObjectVolumeBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
-		tGameObjectVolumeBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectTriggerBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectVolumeBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectTriggerBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -934,34 +934,34 @@ void LevelLoader::processGameObjectVolumeBox(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	mGameWorldManager->createGameObjectVolumeBox(tGameObjectVolumeBoxParameters);
+	mGameWorldManager->createGameObjectTriggerBox(tGameObjectTriggerBoxParameters);
 }
 
-void LevelLoader::processGameObjectVolumeCapsule(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectVolumeCapsuleParameters tGameObjectVolumeCapsuleParameters;
+	OUAN::TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters;
 	try
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectVolumeCapsuleParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectVolumeCapsuleParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectVolumeCapsuleParameters.name = gameObject->name;
+		tGameObjectTriggerCapsuleParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTriggerCapsuleParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTriggerCapsuleParameters.name = gameObject->name;
 
 		//Get World Existance
-		tGameObjectVolumeCapsuleParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
+		tGameObjectTriggerCapsuleParameters.tLogicComponentWorldExistanceParameters=processLogicComponentWorldExistance(
 			gameObject->XMLNodeDreams,gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentEntity
-		tGameObjectVolumeCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
-		tGameObjectVolumeCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectTriggerCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeCapsule
-		tGameObjectVolumeCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(gameObject->XMLNodeCustomProperties);
+		tGameObjectTriggerCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -969,7 +969,7 @@ void LevelLoader::processGameObjectVolumeCapsule(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	mGameWorldManager->createGameObjectVolumeCapsule(tGameObjectVolumeCapsuleParameters);
+	mGameWorldManager->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters);
 }
 
 TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)

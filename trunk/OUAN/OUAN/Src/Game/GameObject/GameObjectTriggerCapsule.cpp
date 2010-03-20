@@ -1,52 +1,52 @@
-#include "GameObjectVolumeCapsule.h"
+#include "GameObjectTriggerCapsule.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
 
-GameObjectVolumeCapsule::GameObjectVolumeCapsule(const std::string& name)
-:GameObject(name)
+GameObjectTriggerCapsule::GameObjectTriggerCapsule(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_TRIGGERCAPSULE)
 {
 
 }
 
-GameObjectVolumeCapsule::~GameObjectVolumeCapsule()
+GameObjectTriggerCapsule::~GameObjectTriggerCapsule()
 {
 
 }
 
-void GameObjectVolumeCapsule::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTriggerCapsule::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-RenderComponentPositionalPtr GameObjectVolumeCapsule::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTriggerCapsule::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-void GameObjectVolumeCapsule::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTriggerCapsule::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 
-RenderComponentEntityPtr GameObjectVolumeCapsule::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectTriggerCapsule::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectVolumeCapsule::setPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule)
+void GameObjectTriggerCapsule::setPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule)
 {
 	mPhysicsComponentVolumeCapsule=pPhysicsComponentVolumeCapsule;
 }
 
-PhysicsComponentVolumeCapsulePtr GameObjectVolumeCapsule::getPhysicsComponentVolumeCapsule()
+PhysicsComponentVolumeCapsulePtr GameObjectTriggerCapsule::getPhysicsComponentVolumeCapsule()
 {
 	return mPhysicsComponentVolumeCapsule;
 }
 
-void GameObjectVolumeCapsule::changeVisibility()
+void GameObjectTriggerCapsule::changeVisibility()
 {
 	if (mPhysicsComponentVolumeCapsule->isInUse())
 	{
@@ -54,7 +54,7 @@ void GameObjectVolumeCapsule::changeVisibility()
 	}
 }
 
-void GameObjectVolumeCapsule::changeWorld(int world)
+void GameObjectTriggerCapsule::changeWorld(int world)
 {
 	mRenderComponentEntity->setVisible(false);
 
@@ -108,12 +108,12 @@ void GameObjectVolumeCapsule::changeWorld(int world)
 	}
 }
 //-------------------------------------------------------------------------------------------
-TGameObjectVolumeCapsuleParameters::TGameObjectVolumeCapsuleParameters() : TGameObjectParameters()
+TGameObjectTriggerCapsuleParameters::TGameObjectTriggerCapsuleParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectVolumeCapsuleParameters::~TGameObjectVolumeCapsuleParameters()
+TGameObjectTriggerCapsuleParameters::~TGameObjectTriggerCapsuleParameters()
 {
 
 }

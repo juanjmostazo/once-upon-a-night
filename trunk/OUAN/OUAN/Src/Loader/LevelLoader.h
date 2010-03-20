@@ -49,8 +49,8 @@ namespace OUAN
 		void processGameObjectItem1UP(XMLGameObject* gameObject);
 		void processGameObjectEye(XMLGameObject* gameObject);
 		void processGameObjectCamera(XMLGameObject* gameObject);
-		void processGameObjectVolumeBox(XMLGameObject* gameObject);
-		void processGameObjectVolumeCapsule(XMLGameObject* gameObject);
+		void processGameObjectTriggerBox(XMLGameObject* gameObject);
+		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
 		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
 
 		//RenderComponent Processors

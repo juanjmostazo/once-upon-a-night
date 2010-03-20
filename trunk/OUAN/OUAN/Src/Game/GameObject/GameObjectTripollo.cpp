@@ -5,7 +5,7 @@
 using namespace OUAN;
 
 GameObjectTripollo::GameObjectTripollo(const std::string& name)
-:GameObject(name)
+:GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
 {
 
 }
