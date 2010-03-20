@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
-:PhysicsComponent(COMPONENT_TYPE_PHYSICS_CHARACTER)
+:PhysicsComponent(type)
 {
 	mMovementFlags = MOV_NOWHERE;
 
@@ -28,7 +28,7 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
-
+	
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 

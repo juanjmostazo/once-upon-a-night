@@ -172,14 +172,14 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
 		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX="PhysicsComponentComplex";
-		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_MOVABLE="PhysicsComponentComplexConvex";
-		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_NON_MOVABLE="PhysicsComponentComplexTriangle";
+		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_CONVEX="PhysicsComponentComplexConvex";
+		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_TRIANGLE="PhysicsComponentComplexTriangle";
 		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE="PhysicsComponentSimple";
-		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE_BOX="PhysicsComponentSimpleBox";
+		const std::string COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE="PhysicsComponentSimpleCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME="PhysicsComponentVolume";
-		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
 
 		//Logic Components
 		class LogicComponent;

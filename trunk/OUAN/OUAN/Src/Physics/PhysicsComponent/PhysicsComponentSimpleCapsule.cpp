@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentSimpleCapsule::PhysicsComponentSimpleCapsule(const std::string& type)
-:PhysicsComponentSimple(COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE)
+:PhysicsComponentSimple(type)
 {
 
 }

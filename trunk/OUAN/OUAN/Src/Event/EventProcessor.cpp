@@ -1,15 +1,20 @@
 #include "EventProcessor.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
+
 using namespace OUAN;
+
 EventProcessor::EventProcessor()
 {
+
 }
+
 void EventProcessor::init(GameWorldManagerPtr worldManager)
 {
 	mWorldManager=worldManager;
 	registerHandlers();
 }
+
 void EventProcessor::cleanUp()
 {
 	unregisterHandlers();

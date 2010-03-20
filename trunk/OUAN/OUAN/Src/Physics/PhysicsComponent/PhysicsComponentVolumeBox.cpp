@@ -2,7 +2,7 @@
 using namespace OUAN;
 
 PhysicsComponentVolumeBox::PhysicsComponentVolumeBox(const std::string& type)
-:PhysicsComponentVolume(COMPONENT_TYPE_PHYSICS_VOLUME_BOX)
+:PhysicsComponentVolume(type)
 {
 
 }

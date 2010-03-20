@@ -152,7 +152,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = 
-		PhysicsComponentCharacterPtr(new PhysicsComponentCharacter()); 
+		PhysicsComponentCharacterPtr(new PhysicsComponentCharacter(COMPONENT_TYPE_PHYSICS_CHARACTER)); 
 
 	pPhysicsComponentCharacter->setParent(gameObject);	
 	pPhysicsComponentCharacter->setSceneNode(tRenderComponentPositional->getSceneNode());
@@ -172,7 +172,7 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex = 
-		PhysicsComponentComplexConvexPtr(new PhysicsComponentComplexConvex()); 
+		PhysicsComponentComplexConvexPtr(new PhysicsComponentComplexConvex(COMPONENT_TYPE_PHYSICS_COMPLEX_CONVEX)); 
 
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
@@ -189,7 +189,7 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {	
 	PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle = 
-		PhysicsComponentComplexTrianglePtr(new PhysicsComponentComplexTriangle()); 
+		PhysicsComponentComplexTrianglePtr(new PhysicsComponentComplexTriangle(COMPONENT_TYPE_PHYSICS_COMPLEX_TRIANGLE)); 
 
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());	
@@ -209,7 +209,7 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = 
-		PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule()); 
+		PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule(COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE)); 
 
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
@@ -224,7 +224,7 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(GameObjectPtr gameObject,TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox = 
-		PhysicsComponentSimpleBoxPtr(new PhysicsComponentSimpleBox()); 
+		PhysicsComponentSimpleBoxPtr(new PhysicsComponentSimpleBox(COMPONENT_TYPE_PHYSICS_SIMPLE_BOX)); 
 
 	pPhysicsComponentSimpleBox->setParent(gameObject);	
 	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
@@ -240,7 +240,7 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeCapsule(GameObjectPtr gameObject,TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule = 
-		PhysicsComponentVolumeCapsulePtr(new PhysicsComponentVolumeCapsule()); 
+		PhysicsComponentVolumeCapsulePtr(new PhysicsComponentVolumeCapsule(COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE)); 
 
 	pPhysicsComponentVolumeCapsule->setParent(gameObject);	
 	pPhysicsComponentVolumeCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
@@ -255,7 +255,7 @@ PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeC
 PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(GameObjectPtr gameObject,TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
 {
 	PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox = 
-		PhysicsComponentVolumeBoxPtr(new PhysicsComponentVolumeBox()); 
+		PhysicsComponentVolumeBoxPtr(new PhysicsComponentVolumeBox(COMPONENT_TYPE_PHYSICS_VOLUME_BOX)); 
 
 	pPhysicsComponentVolumeBox->setParent(gameObject);	
 	pPhysicsComponentVolumeBox->setSceneNode(tRenderComponentPositional->getSceneNode());
