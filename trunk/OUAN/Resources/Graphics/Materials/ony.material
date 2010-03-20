@@ -19,8 +19,6 @@ material cinturon
 	{
 		pass
 		{
-			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
 
 			texture_unit
 			{
@@ -40,8 +38,6 @@ material ony
 	{
 		pass
 		{
-			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
 
 			texture_unit
 			{
