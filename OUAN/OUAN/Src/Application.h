@@ -79,6 +79,7 @@ namespace OUAN
 			PhysicsSubsystemPtr getPhysicsSubsystem() const;
 			GameWorldManagerPtr getGameWorldManager() const;
 			LevelLoaderPtr getLevelLoader() const;
+			LogicSubsystemPtr getLogicSubsystem() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
 			ConfigurationPtr getConfiguration() const;
 
@@ -118,6 +119,9 @@ namespace OUAN
 			GameWorldManagerPtr mGameWorldManager;
 			/// Pointer to the scene loader
 			LevelLoaderPtr mLevelLoader;
+
+			/// Pointer to the logic subsystem instance
+			LogicSubsystemPtr mLogicSubsystem;
 	
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;

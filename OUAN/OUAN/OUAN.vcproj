@@ -1150,6 +1150,10 @@
 				Name="Logic"
 				>
 				<File
+					RelativePath=".\Src\Logic\LogicDefs.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Logic\LogicSubsystem.h"
 					>
 				</File>
