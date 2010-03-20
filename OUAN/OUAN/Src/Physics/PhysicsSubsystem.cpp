@@ -355,7 +355,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 {
 	GameObjectPtr object;
 	bool found = false;
-	/*
+	
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
 
@@ -363,7 +363,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 	{
 		if (container[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 		{
-			GameObjectOnyPtr tmpObject = container[i];
+			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>(container[i]);
 			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
 			{
 				object= tmpObject;
@@ -373,7 +373,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 		//TODO else if block
 		//Same with the rest of game objects which hold a PhysicsComponentCharacter
 	}	
-	*/
+	
 	return object;
 }
 
@@ -381,7 +381,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 {
 	GameObjectPtr object;
 	bool found = false;
-	/*
+	
 	TGameObjectPhysicsVolumeContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsVolumeContainer();
 
@@ -389,7 +389,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 	{
 		if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0)
 		{
-			GameObjectTriggerBoxPtr tmpObject = container[i];
+			GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(container[i]);
 			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
 			{
 				object= tmpObject;
@@ -398,7 +398,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 		}
 		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0)
 		{
-			GameObjectTriggerCapsulePtr tmpObject = container[i];
+			GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(container[i]);
 			if (tmpObject->getPhysicsComponentVolumeCapsule()->getNxOgreVolume() == volume)
 			{
 				object= tmpObject;
@@ -406,6 +406,6 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 			}
 		}
 	}	
-	*/
+	
 	return object;
 }
