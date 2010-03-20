@@ -11,6 +11,8 @@
 
 #include "Physics/PhysicsSubsystem.h"
 
+#include "Logic/LogicSubsystem.h"
+
 #include "Game/GameWorldManager.h"
 #include "Component/ComponentFactory.h"
 
@@ -46,6 +48,7 @@ void Application::cleanUp()
 	mPhysicsSubsystem->cleanUp();
 	mGUISubsystem->cleanUp();
 	mRenderSubsystem->cleanUp();
+	mLogicSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
 //Application initialization
@@ -61,7 +64,10 @@ void Application::init()
 
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
-
+	
+	mLogicSubsystem.reset(new LogicSubsystem());
+	mLogicSubsystem->init(this_);
+	
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	mRenderSubsystem->init(this_,mConfiguration);
 
@@ -77,7 +83,7 @@ void Application::init()
 	mLevelLoader.reset(new LevelLoader());
 	mLevelLoader->init(this_);
 
-	//TODO: Add remaining subsystems (AI, Audio, etc)
+	//TODO: Add remaining subsystems (Audio, etc)
 
 	setupInputSystem();
 }
@@ -214,4 +220,8 @@ ConfigurationPtr Application::getConfiguration() const
 ConfigurationPtr Application::getTextStrings() const
 {
 	return mTextStrings;
+}
+LogicSubsystemPtr Application::getLogicSubsystem() const
+{
+	return mLogicSubsystem;
 }
