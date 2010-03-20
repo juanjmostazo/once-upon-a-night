@@ -8,7 +8,7 @@
 
 namespace OUAN
 {
-	/// Class to hold Item1UP information
+	/// Class to hold GameObjectItem1UP information
 	class GameObjectItem1UP : public GameObject, public boost::enable_shared_from_this<GameObjectItem1UP>
 	{
 	private:

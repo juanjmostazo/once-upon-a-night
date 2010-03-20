@@ -353,9 +353,13 @@ namespace OUAN
 		class TGameObjectScaredPlantParameters;
 		typedef boost::shared_ptr<GameObjectScaredPlant> GameObjectScaredPlantPtr;
 
-		class GameObjectTree;
-		class TGameObjectTreeParameters;
-		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
+		class GameObjectTreeDreams;
+		class TGameObjectTreeDreamsParameters;
+		typedef boost::shared_ptr<GameObjectTreeDreams> GameObjectTreeDreamsPtr;
+
+		class GameObjectTreeNightmares;
+		class TGameObjectTreeNightmaresParameters;
+		typedef boost::shared_ptr<GameObjectTreeNightmares> GameObjectTreeNightmaresPtr;
 
 		class GameObjectClockPiece;
 		class TGameObjectClockPieceParameters;
@@ -391,8 +395,9 @@ namespace OUAN
 		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
 		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
 		typedef std::vector<GameObjectScaredPlantPtr> TGameObjectScaredPlantContainer;
-		typedef std::vector<GameObjectTreePtr> TGameObjectTreeContainer;
-		typedef std::vector<GameObjectTreePtr> TGameObjectClockPieceContainer;
+		typedef std::vector<GameObjectTreeDreamsPtr> TGameObjectTreeDreamsContainer;
+		typedef std::vector<GameObjectTreeNightmaresPtr> TGameObjectTreeNightmaresContainer;
+		typedef std::vector<GameObjectClockPiecePtr> TGameObjectClockPieceContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -419,7 +424,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_MAGIC_CLOCK="magic_clock";
 		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
-		const std::string GAME_OBJECT_TYPE_TENTENTIESO="tentetieso";
+		const std::string GAME_OBJECT_TYPE_TENTETIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
 		const std::string GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT="snake_creeper%carnivorous_plant";
 		const std::string GAME_OBJECT_TYPE_DIAMOND_TREE="diamond_tree";
@@ -427,7 +432,8 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
 		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
-		const std::string GAME_OBJECT_TYPE_TREE="tree";
+		const std::string GAME_OBJECT_TYPE_TREE_DREAMS="tree";
+		const std::string GAME_OBJECT_TYPE_TREE_NIGHTMARES="tree";
 		const std::string GAME_OBJECT_TYPE_CLOCK_PIECE="clock_piece";
 		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
 		///////////////////////////////////////////////////////////////////

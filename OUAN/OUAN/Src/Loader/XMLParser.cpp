@@ -65,7 +65,8 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_HEART);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCARED_PLANT);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE_DREAMS);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE_NIGHTMARES);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCK_PIECE);
 
 	for(i=0;i<gameObjectTypes.size();i++)
