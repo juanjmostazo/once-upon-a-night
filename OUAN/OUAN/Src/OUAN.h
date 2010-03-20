@@ -454,6 +454,12 @@ namespace OUAN
 		class ChangeWorldEvent;
 		typedef boost::shared_ptr<ChangeWorldEvent> ChangeWorldEventPtr;
 
+		class CharactersCollisionEvent;
+		typedef boost::shared_ptr<CharactersCollisionEvent> CharactersCollisionEventPtr;
+
+		class CharacterInTriggerEvent;
+		typedef boost::shared_ptr<CharacterInTriggerEvent> CharacterInTriggerEventPtr;
+
 		///////////////////////////////////////////////////////////////////
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
@@ -596,28 +602,14 @@ namespace OUAN
 		#define GROUP_COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../Resources/Graphics/NxModels"
 
+		#define COLLISION_TYPE_TRIGGER_ENTER 1
+		#define COLLISION_TYPE_TRIGGER_PRESENCE 2
+		#define COLLISION_TYPE_TRIGGER_EXIT 3
+
 		//-------------------------------------
 		//  Movements masks
 		//-------------------------------------
-		/*
-		bool isPressedMenu();			// Go to main menu
-		bool isPressedPause();			// Go to pause menu
-
-		bool isPressedJump();			// Jump
-		bool isPressedDoAction();		// Perform an action
-		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
-		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
-
-		bool isPressedGoForward();		// Go forward
-		bool isPressedGoBack();			// Go back
-		bool isPressedGoLeft();			// Go to left
-		bool isPressedGoRight();		// Go to right
-
-		bool isPressedWalk();			// Walk mode
-		bool isPressedAutoPoint();		// Automatic pointer
-		bool isPressedRotateLeft();		// Rotate color to left
-		bool isPressedRotateRight();	// Rotate color to right
-		*/
+		
 		const int MOV_NOWHERE = 0;
 		const int MOV_GO_FORWARD = 1;
 		const int MOV_GO_BACK = 2;

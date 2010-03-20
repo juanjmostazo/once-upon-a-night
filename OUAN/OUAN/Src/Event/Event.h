@@ -46,8 +46,39 @@ namespace OUAN
 	public:
 		ChangeWorldEvent(int mNewWorld);
 		int getNewWorld() const;
+
 	private:
 		int mNewWorld;
+	};
+
+	/// Event class representing a collision between two GameObjects
+	/// which both contain a PhysicsComponentCharacter
+	class CharactersCollisionEvent: public Event
+	{
+	public:
+		CharactersCollisionEvent(GameObjectPtr pCharacter1, GameObjectPtr pCharacter2);
+		GameObjectPtr getCharacter1();
+		GameObjectPtr getCharacter2();
+
+	private:
+		GameObjectPtr mCharacter1;
+		GameObjectPtr mCharacter2;
+	};
+
+	/// Event class representing a collision between two GameObjects
+	/// which contain a PhysicsComponentCharacter and a PhysicsVolumeXXX
+	class CharacterInTriggerEvent: public Event
+	{
+	public:
+		CharacterInTriggerEvent(GameObjectPtr pCharacter, GameObjectPtr pTrigger, int pCollisionType);
+		GameObjectPtr getCharacter();
+		GameObjectPtr getTrigger();
+		int getCollisionType();
+
+	private:
+		GameObjectPtr mCharacter;
+		GameObjectPtr mTrigger;
+		int mCollisionType;
 	};
 }
 #endif
