@@ -47,14 +47,16 @@ void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
 	mGameWorldManager=gameWorldManager;
 }
 
-void GameObject::setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance)
+/// Set logic component
+void GameObject::setLogicComponent(LogicComponentPtr logicComponent)
 {
-	mLogicComponentWorldExistance=pLogicComponentWorldExistance;
+	mLogicComponent=logicComponent;
 }
 
-LogicComponentWorldExistancePtr GameObject::getLogicComponentWorldExistance()
+/// return logic component
+LogicComponentPtr GameObject::getLogicComponent()
 {
-	return mLogicComponentWorldExistance;
+	return mLogicComponent;
 }
 
 void GameObject::processChangeWorld(ChangeWorldEventPtr evt)

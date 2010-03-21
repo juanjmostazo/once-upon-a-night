@@ -3,4 +3,8 @@
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="14" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::numLives" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
 </CUSTOMPROPERTIES>

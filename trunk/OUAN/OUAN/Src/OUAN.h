@@ -187,17 +187,7 @@ namespace OUAN
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
 
-		class LogicComponentEvent;
-		class TLogicComponentEventParameters;
-		typedef boost::shared_ptr<LogicComponentEvent> LogicComponentEventPtr;
-
-		class LogicComponentWorldExistance;
-		class TLogicComponentWorldExistanceParameters;
-		typedef boost::shared_ptr<LogicComponentWorldExistance> LogicComponentWorldExistancePtr;
-
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
-		const std::string COMPONENT_TYPE_LOGIC_EVENT="LogicComponentEvent";
-		const std::string COMPONENT_TYPE_LOGIC_WORLD_EXISTANCE="LogicComponentWorldExistance";
 
 		///////////////////////////////////////////////////////////////////
 

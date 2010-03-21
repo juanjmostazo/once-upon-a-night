@@ -46,7 +46,7 @@ PhysicsComponentSimpleCapsulePtr GameObjectItem1UP::getPhysicsComponentSimpleCap
 
 void GameObjectItem1UP::changeWorld(int world)
 {
-	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
 		{
@@ -59,7 +59,7 @@ void GameObjectItem1UP::changeWorld(int world)
 		switch(world)
 		{
 		case DREAMS:
-			if(mLogicComponentWorldExistance->getExistsInDreams())
+			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
@@ -77,7 +77,7 @@ void GameObjectItem1UP::changeWorld(int world)
 			}		
 			break;
 		case NIGHTMARES:
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())

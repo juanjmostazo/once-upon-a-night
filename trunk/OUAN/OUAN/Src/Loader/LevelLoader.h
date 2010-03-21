@@ -78,8 +78,9 @@ namespace OUAN
 		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode);
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode);
 
-		//LogicComponent Processors
-		TLogicComponentWorldExistanceParameters processLogicComponentWorldExistance(TiXmlElement *XMLNodeDreams,TiXmlElement *XMLNodeNightmares);
+		//LogicComponent Processors		
+		TLogicComponentParameters processLogicComponent(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
