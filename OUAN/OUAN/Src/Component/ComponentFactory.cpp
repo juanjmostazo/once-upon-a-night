@@ -19,7 +19,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-#include "../Logic/LogicComponent/LogicComponentWorldExistance.h"
+#include "../Logic/LogicComponent/LogicComponent.h"
 
 using namespace OUAN;
 
@@ -268,15 +268,17 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 	return pPhysicsComponentVolumeBox;
 }
 
-LogicComponentWorldExistancePtr ComponentFactory::createLogicComponentWorldExistance(TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters)
+LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters logicComponentParameters)
 {
+	LogicComponentPtr logicComponent=LogicComponentPtr(new LogicComponent());
+	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
+	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
+	
+	logicComponent->setHealthPoints(logicComponentParameters.healthPoints);
+	logicComponent->setNumLives(logicComponentParameters.numLives);
 
-	LogicComponentWorldExistancePtr pLogicComponentWorldExistance =
-		LogicComponentWorldExistancePtr( new LogicComponentWorldExistance());
-
-	pLogicComponentWorldExistance->setExistsInDreams(tLogicComponentWorldExistanceParameters.existsInDreams);
-	pLogicComponentWorldExistance->setExistsInNightmares(tLogicComponentWorldExistanceParameters.existsInNightmares);
-
-	return pLogicComponentWorldExistance;
-
+	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
+	logicComponent->setState(logicComponentParameters.defaultState);
+	logicComponent->setParent(gameObject);
+	return logicComponent;
 }

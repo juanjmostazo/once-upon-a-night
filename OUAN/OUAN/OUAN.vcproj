@@ -640,14 +640,6 @@
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.cpp"
 						>
 					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEvent.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentWorldExistance.cpp"
-						>
-					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1162,14 +1154,6 @@
 					>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEvent.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentWorldExistance.h"
 						>
 					</File>
 				</Filter>

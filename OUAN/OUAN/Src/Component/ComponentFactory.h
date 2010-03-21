@@ -63,8 +63,8 @@ namespace OUAN
 			RenderComponentPositionalPtr tRenderComponentPositional);
 
 		//Logic components
-		LogicComponentWorldExistancePtr createLogicComponentWorldExistance(
-			TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters);
+		LogicComponentPtr createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters logicComponentParameters);
+
 
 		//[TODO: Others]
 	};

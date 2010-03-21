@@ -10,6 +10,24 @@ namespace OUAN
 		LogicComponent(const std::string& type="");
 		~LogicComponent();
 
+		bool existsInDreams() const;
+		void setExistsInDreams(bool existsInDreams);
+
+		bool existsInNightmares() const;
+		void setExistsInNightmares(bool existsInNightmares);
+
+		int getState() const;
+		void setState(int state);
+
+		int getHealthPoints() const;
+		void setHealthPoints(int healthPoints);
+
+		int getNumLives() const;
+		void setNumLives(int numLives);
+
+		std::string getScriptFilename() const;
+		void setScriptFilename(const std::string& scriptFilename);
+
 		virtual void update(long elapsedTime);
 	private:
 		/// Number of lives of the component
@@ -25,23 +43,6 @@ namespace OUAN
 		bool mExistsInDreams;
 		bool mExistsInNightmares;
 
-		bool existsInDreams() const;
-		void setExistsInDreams(bool existsInDreams);
-
-		bool existsInNightmares() const;
-		void setExistsInNightmares(bool existsInNightmares);
-
-		int getState() const;
-		void setState(int state);
-
-		int getHealthPoints() const;
-		void setHealthPoints(int healthPoints);
-
-		int getNumLives() const;
-		void setNumLives(int numLives);
-		
-		std::string getScriptFilename() const;
-		void setScriptFilename(const std::string& scriptFilename);
 	};
 	
 	class TLogicComponentParameters: public TComponentParameters
@@ -53,6 +54,11 @@ namespace OUAN
 		/// Existence in each world
 		bool existsInDreams;
 		bool existsInNightmares;
+
+		std::string scriptFilename;
+		int defaultState;
+		int numLives;
+		int healthPoints;
 	};
 }
 

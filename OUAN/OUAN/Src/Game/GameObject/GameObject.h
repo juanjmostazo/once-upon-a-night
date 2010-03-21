@@ -2,9 +2,9 @@
 #define GAMEOBJECTH_H
 
 #include "../../OUAN.h"
+#include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Event/EventManager.h"
 #include "../../Event/EventHandler.h"
-#include "../../Logic/LogicComponent/LogicComponentWorldExistance.h"
 
 namespace OUAN
 {
@@ -18,8 +18,10 @@ namespace OUAN
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
 
-		/// World Existance informacion
-		LogicComponentWorldExistancePtr mLogicComponentWorldExistance;
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -41,12 +43,11 @@ namespace OUAN
 		/// @return type of the Game Object
 		const std::string& getType() const;
 
-		/// Set WorldExistence component
-		void setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance);
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
 
-		/// Get WorldExistence component
-		LogicComponentWorldExistancePtr getLogicComponentWorldExistance();
-
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -70,8 +71,7 @@ namespace OUAN
 		std::string dreamsName;
 		std::string nightmaresName;
 
-		///World Existance Information
-		TLogicComponentWorldExistanceParameters tLogicComponentWorldExistanceParameters;
+		TLogicComponentParameters logicComponentParameters;
 	};
 }
 #endif

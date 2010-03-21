@@ -35,7 +35,7 @@ RenderComponentPositionalPtr GameObjectParticleSystem::getRenderComponentPositio
 
 void GameObjectParticleSystem::changeWorld(int world)
 {
-	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		mRenderComponentParticleSystem->setVisible(true);
 	}
@@ -44,7 +44,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 		switch(world)
 		{
 		case DREAMS:
-			if(mLogicComponentWorldExistance->getExistsInDreams())
+			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentParticleSystem->setVisible(true);
 			}
@@ -55,7 +55,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 			}		
 			break;
 		case NIGHTMARES:
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentParticleSystem->setVisible(true);
 			}

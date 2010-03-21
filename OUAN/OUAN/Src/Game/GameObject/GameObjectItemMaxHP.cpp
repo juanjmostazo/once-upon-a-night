@@ -44,19 +44,9 @@ PhysicsComponentSimpleCapsulePtr GameObjectItemMaxHP::getPhysicsComponentSimpleC
 	return mPhysicsComponentSimpleCapsule;
 }
 
-void GameObjectItemMaxHP::setLogicComponentWorldExistance(LogicComponentWorldExistancePtr pLogicComponentWorldExistance)
-{
-	mLogicComponentWorldExistance=pLogicComponentWorldExistance;
-}
-
-LogicComponentWorldExistancePtr GameObjectItemMaxHP::getLogicComponentWorldExistance()
-{
-	return mLogicComponentWorldExistance;
-}
-
 void GameObjectItemMaxHP::changeWorld(int world)
 {
-	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
 		{
@@ -70,7 +60,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		{
 		case DREAMS:
 			
-			if(mLogicComponentWorldExistance->getExistsInDreams())
+			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
@@ -89,7 +79,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 			
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())

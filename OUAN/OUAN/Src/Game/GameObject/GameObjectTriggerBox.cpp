@@ -58,7 +58,7 @@ void GameObjectTriggerBox::changeWorld(int world)
 {
 	mRenderComponentEntity->setVisible(false);
 
-	if(mLogicComponentWorldExistance->getExistsInDreams() && mLogicComponentWorldExistance->getExistsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -72,7 +72,7 @@ void GameObjectTriggerBox::changeWorld(int world)
 		{
 		case DREAMS:
 			
-			if(mLogicComponentWorldExistance->getExistsInDreams())
+			if(mLogicComponent->existsInDreams())
 			{
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
@@ -89,7 +89,7 @@ void GameObjectTriggerBox::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponentWorldExistance->getExistsInNightmares())
+			if(mLogicComponent->existsInNightmares())
 			{
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
