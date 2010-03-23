@@ -218,6 +218,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_ALLOWED_Y", value); 
 		mMinAllowedY = atof(value.c_str());
 
+		config.getOption("MIN_SLIDING_ANGLE", value); 
+		mMinSlidingAngle = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -234,6 +237,7 @@ bool PhysicsSubsystem::loadConfig()
 		mTurnDegreesPerSecond = 0;
 		mInitialJumpSpeed = 0;
 		mMinAllowedY = 0;
+		mMinSlidingAngle = 0;
 
 		success = false;
 	}
@@ -331,8 +335,13 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
-	//TODO INVESTIGATE HOW IT WORKS, seems that its called every frame
-	//Ogre::LogManager::getSingleton().logMessage("Specific-Character-Function onShape called!");
+	double normalAngle = acos(hit.mWorldNormal.y) * 180.0f / PI;
+	if (normalAngle > 0)
+	{
+		NxOgre::Vec3 slideDisplacement = hit.mWorldNormal;
+		setGameObjectSlidingFromController(hit.mController, slideDisplacement, normalAngle);
+	}
+
 	return NxOgre::Enums::ControllerAction_None;
 }
 
@@ -349,7 +358,34 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 }
 
 //////////////////////////////////////////////////////////////////
+// Auxiliar functions
+
+void PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDiplacement, double normalAngle)
+{
+	bool found = false;
+
+	TGameObjectPhysicsCharacterContainer container = 
+		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
+
+	for (unsigned int i=0; !found && i<container.size(); i++)
+	{
+		if (container[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
+		{
+			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				tmpObject->getPhysicsComponentCharacter()->setSlidingValues(slideDiplacement, normalAngle);
+				found = true;
+			}
+		}
+		//TODO else if block
+		//Same with the rest of game objects which hold a PhysicsComponentCharacter
+	}	
+}
+
+//////////////////////////////////////////////////////////////////
 // Fetch functions
+
 
 GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* controller)
 {

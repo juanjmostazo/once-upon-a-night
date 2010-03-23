@@ -28,6 +28,8 @@ namespace OUAN
 
 		void setMovementFlags(int pMovementFlags);
 
+		void setSlidingValues(NxOgre::Vec3 pSlideDisplacement, double pNormalAngle);
+
 	protected:
 		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;
@@ -46,15 +48,16 @@ namespace OUAN
 		// Physics times
 		double mJumpTime;
 		double mFallTime;
-		double mSlideTime;
 
-		/// Physics speeds
+		/// Physics components
 		double mJumpSpeed;
 		double mFallSpeed;
-		double mSlideSpeed;
+		NxOgre::Vec3 mSlideDisplacement;
+		double mNormalAngle;
 
 		void initJump();
 		void initFall();
+		void resetSliding();
 
 		void setJumpSpeed(double pJumpSpeed);
 		void setFallSpeed(double pFallSpeed);

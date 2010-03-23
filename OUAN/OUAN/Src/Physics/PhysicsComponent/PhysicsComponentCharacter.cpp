@@ -13,11 +13,11 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 
 	mJumpTime = 0;
 	mFallTime = 0;
-	mSlideTime = 0;
 
 	mJumpSpeed = 0;
 	mFallSpeed = 0;
-	mSlideSpeed = 0;
+	mSlideDisplacement = NxOgre::Vec3(0,0,0);
+	mNormalAngle = 0;
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
@@ -48,6 +48,20 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
+	// Perform last frame sliding displacement
+	if (isInUse() && mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
+	{
+		unsigned int collisionFlags;
+
+		getNxOgreController()->move(
+			mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds,
+			GROUP_COLLIDABLE_MASK,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+		
+		resetSliding();
+	}
+
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	// Initial displacement vector: gravity
@@ -157,6 +171,20 @@ void PhysicsComponentCharacter::setNxOgreControllerDescription(NxOgre::Controlle
 NxOgre::ControllerDescription PhysicsComponentCharacter::getNxOgreControllerDescription()
 {
 	return mNxOgreControllerDescription;
+}
+
+void PhysicsComponentCharacter::resetSliding()
+{
+	mSlideDisplacement = NxOgre::Vec3(0,0,0);
+	mNormalAngle = 0;
+	mSliding = false;
+}
+
+void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pSlideDisplacement, double pNormalAngle)
+{
+	mSlideDisplacement = pSlideDisplacement;
+	mNormalAngle = pNormalAngle;
+	mSliding = true;
 }
 
 void PhysicsComponentCharacter::initJump()

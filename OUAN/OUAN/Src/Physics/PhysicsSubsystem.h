@@ -7,6 +7,8 @@
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
 
+#define PI 3.14159
+
 namespace OUAN
 {
 	const std::string PHYSICS_CFG="../../Config/physics-cfg.xml";
@@ -91,6 +93,9 @@ namespace OUAN
 		/// param read from config file
 		double mMinAllowedY;
 
+		/// param read from config file
+		double mMinSlidingAngle;
+
 		/// Load params from config file
 		virtual bool loadConfig();
 
@@ -116,6 +121,9 @@ namespace OUAN
 
 		/// NxOgre controller manager
 		NxOgre::ControllerManager* mNxOgreControllerManager;
+
+		/// Auxiliar function
+		void setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDisplacement, double normalAngle);
 
 		/// Fetch function
 		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
