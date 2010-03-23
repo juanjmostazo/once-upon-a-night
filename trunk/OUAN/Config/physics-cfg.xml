@@ -14,5 +14,6 @@
 		<Option key="TURN_DEGREES_PER_SECOND">360</Option>	
 		<Option key="INITIAL_JUMP_SPEED">70</Option>
 		<Option key="MIN_ALLOWED_Y">-100</Option>
+		<Option key="MIN_SLIDING_ANGLE">30</Option>
 	</Options>
 </Configuration>
