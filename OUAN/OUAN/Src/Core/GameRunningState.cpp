@@ -312,13 +312,13 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 
-	//Ogre::LogManager::getSingleton().logMessage("Updating Game World Manager");
+	Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
 	mApp->getGameWorldManager()->update(elapsedSeconds);	
 
-	//Ogre::LogManager::getSingleton().logMessage("Updating Physics Subsystem");
+	Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
-	//Ogre::LogManager::getSingleton().logMessage("Updating Camera Params");
+	Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
 	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
 	
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");

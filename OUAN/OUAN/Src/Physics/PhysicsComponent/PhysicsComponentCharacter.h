@@ -28,7 +28,7 @@ namespace OUAN
 
 		void setMovementFlags(int pMovementFlags);
 
-		void setSlidingValues(NxOgre::Vec3 pSlideDisplacement, double pNormalAngle);
+		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
 	protected:
 		double mNxOgreMass;

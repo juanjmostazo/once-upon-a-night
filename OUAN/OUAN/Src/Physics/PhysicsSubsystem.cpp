@@ -163,7 +163,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Ogre::Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
-
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
 
@@ -221,6 +220,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_SLIDING_ANGLE", value); 
 		mMinSlidingAngle = atof(value.c_str());
 
+		config.getOption("SLIDING_FACTOR", value); 
+		mSlidingFactor = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -238,6 +240,7 @@ bool PhysicsSubsystem::loadConfig()
 		mInitialJumpSpeed = 0;
 		mMinAllowedY = 0;
 		mMinSlidingAngle = 0;
+		mSlidingFactor = 0;
 
 		success = false;
 	}
@@ -335,11 +338,10 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
-	double normalAngle = acos(hit.mWorldNormal.y) * 180.0f / PI;
+	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
 	if (normalAngle > 0)
 	{
-		NxOgre::Vec3 slideDisplacement = hit.mWorldNormal;
-		setGameObjectSlidingFromController(hit.mController, slideDisplacement, normalAngle);
+		setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
 	}
 
 	return NxOgre::Enums::ControllerAction_None;

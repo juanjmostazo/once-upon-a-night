@@ -48,20 +48,6 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
-	// Perform last frame sliding displacement
-	if (isInUse() && mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
-	{
-		unsigned int collisionFlags;
-
-		getNxOgreController()->move(
-			mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds,
-			GROUP_COLLIDABLE_MASK,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
-		
-		resetSliding();
-	}
-
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	// Initial displacement vector: gravity
@@ -115,6 +101,13 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		mDisplacement.y += mFallSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	}
 
+	// Perform last frame sliding displacement
+	if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
+	{
+		mDisplacement += mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+		resetSliding();
+	}
+
 	////////////////////////////////////////////////////////////////////////////
 	// Applying global factor to displacement
 	mDisplacement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
@@ -126,6 +119,8 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			GROUP_COLLIDABLE_MASK,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
+
+		Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}
 
 	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
@@ -180,10 +175,16 @@ void PhysicsComponentCharacter::resetSliding()
 	mSliding = false;
 }
 
-void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pSlideDisplacement, double pNormalAngle)
+void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
-	mSlideDisplacement = pSlideDisplacement;
+	Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
+
+	mSlideDisplacement.x = pNormal.x;
+	mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+	mSlideDisplacement.z = pNormal.z;
+
 	mNormalAngle = pNormalAngle;
+
 	mSliding = true;
 }
 
