@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -433,7 +433,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBush.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCamera.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.cpp"
 						>
 					</File>
 					<File
@@ -450,6 +458,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectDiamondTree.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDoor.cpp"
 						>
 					</File>
 					<File
@@ -501,6 +513,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPlataform.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectPortal.cpp"
 						>
 					</File>
@@ -517,7 +533,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper_CarnivorousPlant.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectScepter.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper.cpp"
 						>
 					</File>
 					<File
@@ -537,7 +557,35 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTreeDreams.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTree1.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree2.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree3.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree4.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree5.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree6.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree7.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree8.cpp"
 						>
 					</File>
 					<File
@@ -546,6 +594,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCapsule.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTripollito.cpp"
 						>
 					</File>
 					<File
@@ -891,7 +943,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBush.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCamera.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.h"
 						>
 					</File>
 					<File
@@ -908,6 +968,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectDiamondTree.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectDoor.h"
 						>
 					</File>
 					<File
@@ -959,6 +1023,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPlataform.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectPortal.h"
 						>
 					</File>
@@ -975,7 +1043,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper_CarnivorousPlant.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectScepter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper.h"
 						>
 					</File>
 					<File
@@ -995,7 +1067,35 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTreeNightmares.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTree1.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree2.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree3.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree4.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree5.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree6.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree7.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTree8.h"
 						>
 					</File>
 					<File
@@ -1004,6 +1104,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCapsule.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTripollito.h"
 						>
 					</File>
 					<File

@@ -54,20 +54,32 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NIGHTGOBLIN);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CRYKING);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DRAGON);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_MAGIC_CLOCK);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_MAGICCLOCK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PILLOW);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FLASHLIGHT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TENTETIESO);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BEE_BUTTERFLY);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND_TREE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMONDTREE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_STORYBOOK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_HEART);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCARED_PLANT);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE_DREAMS);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE_NIGHTMARES);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCK_PIECE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCAREDPLANT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCKPIECE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLITO);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKECREEPER);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CARNIVOROUSPLANT);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCEPTER);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE1);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE2);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE3);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE4);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE5);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE6);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE7);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE8);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DOOR);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PLATAFORM);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

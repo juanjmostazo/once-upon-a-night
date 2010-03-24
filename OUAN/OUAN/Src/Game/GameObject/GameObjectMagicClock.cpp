@@ -4,7 +4,7 @@
 using namespace OUAN;
 
 GameObjectMagicClock::GameObjectMagicClock(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_MAGIC_CLOCK)
+:GameObject(name,GAME_OBJECT_TYPE_MAGICCLOCK)
 {
 
 }

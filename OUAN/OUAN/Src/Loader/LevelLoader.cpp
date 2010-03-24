@@ -173,7 +173,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_MAGIC_CLOCK)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_MAGICCLOCK)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
@@ -193,11 +193,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT)==0)
-		{
-			processGameObjectProvisionalEntity(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMOND_TREE)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
@@ -213,19 +209,71 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCARED_PLANT)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCAREDPLANT)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE_DREAMS)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE_NIGHTMARES)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLITO)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOCK_PIECE)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SNAKECREEPER)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CARNIVOROUSPLANT)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCEPTER)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE1)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE5)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE6)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE7)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DOOR)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PLATAFORM)==0)
+		{
+			processGameObjectProvisionalEntity(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH)==0)
 		{
 			processGameObjectProvisionalEntity(gameObject);
 		}
@@ -1359,25 +1407,25 @@ TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiX
 	return TRenderComponentSkyDomeParameters;
 }
 
-TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode)
+TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix)
 {
 	TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 
 	//Get Component properties
-	tPhysicsComponentCharacterParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacter::mass");
-	tPhysicsComponentCharacterParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacter::radius");
-	tPhysicsComponentCharacterParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacter::height");
+	tPhysicsComponentCharacterParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::mass");
+	tPhysicsComponentCharacterParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::radius");
+	tPhysicsComponentCharacterParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::height");
 
 	return tPhysicsComponentCharacterParameters;
 
 }
 
-TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile)
+TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix)
 {
 	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 	
 	//Get Component properties
-	tPhysicsComponentComplexConvexParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex::mass");
+	tPhysicsComponentComplexConvexParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
 
 	//Set nxs file
 	tPhysicsComponentComplexConvexParameters.nxsFile="nxs:"+nxsFile;
@@ -1385,12 +1433,12 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 	return tPhysicsComponentComplexConvexParameters;
 }
 
-TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string nxsFile)
+TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix)
 {
 	TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
 	
 	//Get Component properties
-	tPhysicsComponentComplexTriangleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex::mass");
+	tPhysicsComponentComplexTriangleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
 
 	//Set nxs file
 	tPhysicsComponentComplexTriangleParameters.nxsFile="nxs:"+nxsFile;
@@ -1398,13 +1446,13 @@ TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentC
 	return tPhysicsComponentComplexTriangleParameters;
 }
 
-TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleBox(TiXmlElement *XMLNode)
+TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleBox(TiXmlElement *XMLNode,std::string suffix)
 {
 	TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 	//Get Component properties
-	tPhysicsComponentSimpleBoxParameters.mass=getPropertyReal(XMLNode, "PhysicsComponentSimpleBox::mass");
-	Vector3 length=getPropertyVector3(XMLNode, "PhysicsComponentSimpleBox::length");
+	tPhysicsComponentSimpleBoxParameters.mass=getPropertyReal(XMLNode, "PhysicsComponentSimpleBox"+suffix+"::mass");
+	Vector3 length=getPropertyVector3(XMLNode, "PhysicsComponentSimpleBox"+suffix+"::length");
 	tPhysicsComponentSimpleBoxParameters.lengthX=length.x;
 	tPhysicsComponentSimpleBoxParameters.lengthY=length.y;
 	tPhysicsComponentSimpleBoxParameters.lengthZ=length.z;
@@ -1413,24 +1461,24 @@ TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleB
 
 }
 
-TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode)
+TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode,std::string suffix)
 {
 	TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
 
 	//Get Component properties
-	tPhysicsComponentSimpleCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule::mass");
-	tPhysicsComponentSimpleCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule::radius");
-	tPhysicsComponentSimpleCapsuleParameters.height= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule::height");
+	tPhysicsComponentSimpleCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule"+suffix+"::mass");
+	tPhysicsComponentSimpleCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule"+suffix+"::radius");
+	tPhysicsComponentSimpleCapsuleParameters.height= getPropertyReal(XMLNode, "PhysicsComponentSimpleCapsule"+suffix+"::height");
 
 	return tPhysicsComponentSimpleCapsuleParameters;
 }
 
-TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode)
+TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix)
 {
 	TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 	//Get Component properties
-	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeBox::mass");
+	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeBox"+suffix+"::mass");
 	Vector3 length=getPropertyVector3(XMLRenderInfoNode, "scale");
 	tPhysicsComponentVolumeBoxParameters.lengthX=length.x;
 	tPhysicsComponentVolumeBoxParameters.lengthY=length.y;
@@ -1439,14 +1487,14 @@ TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeB
 	return tPhysicsComponentVolumeBoxParameters;
 }
 
-TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode)
+TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode,std::string suffix)
 {
 	TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters;
 
 	//Get Component properties
-	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule::mass");
-	tPhysicsComponentVolumeCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule::radius");
-	tPhysicsComponentVolumeCapsuleParameters.height= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule::height");
+	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::mass");
+	tPhysicsComponentVolumeCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::radius");
+	tPhysicsComponentVolumeCapsuleParameters.height= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::height");
 
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
