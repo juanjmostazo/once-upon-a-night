@@ -8,6 +8,7 @@
 #include <NxOgreAddonCharacterController.h>
 
 #define PI 3.14159
+#define TO_DEGREES 57.296 //180/PI
 
 namespace OUAN
 {
@@ -96,6 +97,9 @@ namespace OUAN
 		/// param read from config file
 		double mMinSlidingAngle;
 
+		/// param read from config file
+		double mSlidingFactor;
+
 		/// Load params from config file
 		virtual bool loadConfig();
 
@@ -123,7 +127,7 @@ namespace OUAN
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
 		/// Auxiliar function
-		void setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDisplacement, double normalAngle);
+		void setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
 
 		/// Fetch function
 		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
