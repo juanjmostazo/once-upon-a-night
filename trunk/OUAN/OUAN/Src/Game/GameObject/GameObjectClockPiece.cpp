@@ -4,7 +4,7 @@
 using namespace OUAN;
 
 GameObjectClockPiece::GameObjectClockPiece(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_CLOCK_PIECE)
+:GameObject(name,GAME_OBJECT_TYPE_CLOCKPIECE)
 {
 
 }

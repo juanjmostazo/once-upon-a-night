@@ -264,6 +264,10 @@ namespace OUAN
 		class TGameObjectTripolloParameters;
 		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
 
+		class GameObjectTripollito;
+		class TGameObjectTripollitoParameters;
+		typedef boost::shared_ptr<GameObjectTripollito> GameObjectTripollitoPtr;
+
 		class GameObjectPortal;
 		class TGameObjectPortalParameters;
 		typedef boost::shared_ptr<GameObjectPortal> GameObjectPortalPtr;
@@ -320,9 +324,13 @@ namespace OUAN
 		class TGameObjectBee_ButterflyParameters;
 		typedef boost::shared_ptr<GameObjectBee_Butterfly> GameObjectBee_ButterflyPtr;
 
-		class GameObjectSnakeCreeper_CarnivorousPlant;
-		class TGameObjectSnakeCreeper_CarnivorousPlantParameters;
-		typedef boost::shared_ptr<GameObjectSnakeCreeper_CarnivorousPlant> GameObjectSnakeCreeper_CarnivorousPlantPtr;
+		class GameObjectSnakeCreeper;
+		class TGameObjectSnakeCreeperParameters;
+		typedef boost::shared_ptr<GameObjectSnakeCreeper> GameObjectSnakeCreeperPtr;
+
+		class GameObjectCarnivorousPlant;
+		class TGameObjectCarnivorousPlantParameters;
+		typedef boost::shared_ptr<GameObjectCarnivorousPlant> GameObjectCarnivorousPlantPtr;
 
 		class GameObjectDiamondTree;
 		class TGameObjectDiamondTreeParameters;
@@ -356,6 +364,22 @@ namespace OUAN
 		class TGameObjectClockPieceParameters;
 		typedef boost::shared_ptr<GameObjectClockPiece> GameObjectClockPiecePtr;
 
+		class GameObjectScepter;
+		class TGameObjectScepterParameters;
+		typedef boost::shared_ptr<GameObjectScepter> GameObjectScepterPtr;
+
+		class GameObjectDoor;
+		class TGameObjectDoorParameters;
+		typedef boost::shared_ptr<GameObjectDoor> GameObjectDoorPtr;
+
+		class GameObjectPlataform;
+		class TGameObjectPlataformParameters;
+		typedef boost::shared_ptr<GameObjectPlataform> GameObjectPlataformPtr;
+
+		class GameObjectBush;
+		class TGameObjectBushParameters;
+		typedef boost::shared_ptr<GameObjectBush> GameObjectBushPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -380,7 +404,6 @@ namespace OUAN
 		typedef std::vector<GameObjectFlashlightPtr> TGameObjectFlashlightContainer;
 		typedef std::vector<GameObjectTententiesoPtr> TGameObjectTententiesoContainer;
 		typedef std::vector<GameObjectBee_ButterflyPtr> TGameObjectBee_ButterflyContainer;
-		typedef std::vector<GameObjectSnakeCreeper_CarnivorousPlantPtr> TGameObjectSnakeCreeper_CarnivorousPlantContainer;
 		typedef std::vector<GameObjectDiamondTreePtr> TGameObjectDiamondTreeContainer;
 		typedef std::vector<GameObjectStorybookPtr> TGameObjectStorybookContainer;
 		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
@@ -404,29 +427,42 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
-		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item_1up";
+		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item1up";
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="heartbag";
 		const std::string GAME_OBJECT_TYPE_TRIGGERBOX="volume-box";
 		const std::string GAME_OBJECT_TYPE_TRIGGERCAPSULE="volume-capsule";
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
-		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="night_goblin";
-		const std::string GAME_OBJECT_TYPE_CRYKING="cry_king";
+		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="nightgoblin";
+		const std::string GAME_OBJECT_TYPE_CRYKING="cryking";
 		const std::string GAME_OBJECT_TYPE_DRAGON="dragon";
-		const std::string GAME_OBJECT_TYPE_MAGIC_CLOCK="magic_clock";
+		const std::string GAME_OBJECT_TYPE_MAGICCLOCK="magicclock";
 		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
 		const std::string GAME_OBJECT_TYPE_TENTETIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
-		const std::string GAME_OBJECT_TYPE_SNAKE_CREEPER_CARNIVOROUS_PLANT="snake_creeper%carnivorous_plant";
-		const std::string GAME_OBJECT_TYPE_DIAMOND_TREE="diamond_tree";
+		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamondtree";
 		const std::string GAME_OBJECT_TYPE_STORYBOOK="storybook";
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
-		const std::string GAME_OBJECT_TYPE_SCARED_PLANT="scared_plant";
-		const std::string GAME_OBJECT_TYPE_TREE_DREAMS="tree";
-		const std::string GAME_OBJECT_TYPE_TREE_NIGHTMARES="tree";
-		const std::string GAME_OBJECT_TYPE_CLOCK_PIECE="clock_piece";
+		const std::string GAME_OBJECT_TYPE_SCAREDPLANT="scaredplant";
+		const std::string GAME_OBJECT_TYPE_CLOCKPIECE="clockpiece";
 		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
+
+		const std::string GAME_OBJECT_TYPE_TRIPOLLITO="tripollito";
+		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";
+		const std::string GAME_OBJECT_TYPE_CARNIVOROUSPLANT="carnivorousplant";
+		const std::string GAME_OBJECT_TYPE_SCEPTER="scepter";
+		const std::string GAME_OBJECT_TYPE_TREE1="tree1";
+		const std::string GAME_OBJECT_TYPE_TREE2="tree2";
+		const std::string GAME_OBJECT_TYPE_TREE3="tree3";
+		const std::string GAME_OBJECT_TYPE_TREE4="tree4";
+		const std::string GAME_OBJECT_TYPE_TREE5="tree5";
+		const std::string GAME_OBJECT_TYPE_TREE6="tree6";
+		const std::string GAME_OBJECT_TYPE_TREE7="tree7";
+		const std::string GAME_OBJECT_TYPE_TREE8="tree8";
+		const std::string GAME_OBJECT_TYPE_DOOR="door";
+		const std::string GAME_OBJECT_TYPE_PLATAFORM="plataform";
+		const std::string GAME_OBJECT_TYPE_BUSH="bush";
 		///////////////////////////////////////////////////////////////////
 
 		// Event manager-related constants, typedefs and forwarded declarations

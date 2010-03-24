@@ -70,13 +70,13 @@ namespace OUAN
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
 
 		//PhysicComponent Processors
-		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode);
-		TPhysicsComponentComplexConvexParameters processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile);
-		TPhysicsComponentComplexTriangleParameters processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string nxsFile);
-		TPhysicsComponentSimpleBoxParameters processPhysicsComponentSimpleBox(TiXmlElement *XMLNode);
-		TPhysicsComponentSimpleCapsuleParameters processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode);
-		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode);
-		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode);
+		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix="");
+		TPhysicsComponentComplexConvexParameters processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix="");
+		TPhysicsComponentComplexTriangleParameters processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix="");
+		TPhysicsComponentSimpleBoxParameters processPhysicsComponentSimpleBox(TiXmlElement *XMLNode,std::string suffix="");
+		TPhysicsComponentSimpleCapsuleParameters processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode,std::string suffix="");
+		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
+		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode,std::string suffix="");
 
 		//LogicComponent Processors		
 		TLogicComponentParameters processLogicComponent(TiXmlElement *XMLNodeDreams,

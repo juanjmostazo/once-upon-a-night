@@ -25,12 +25,61 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
 {
+	mSceneManager->destroyQuery(mRaySceneQuery);
+}
+
+void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager)
+{
+	mSceneManager = pSceneManager;
+	mRaySceneQuery = mSceneManager->createRayQuery(Ray());
+
+	//mRaySceneQuery->setQueryTypeMask(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK ); 
+
+	CameraController::init(pSceneManager);
+}
+
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt)
+{
+	//TODO: FINISH IMPLEMENTING THIS
+	Vector3 newCameraPosition;
+	Vector3 rayCollisionPosition;
+	Ray ray;
+	ray.setOrigin(currentCameraLookAt);
+	ray.setDirection(currentCameraPosition-currentCameraLookAt);
+
+	// Perform the scene query
+	mRaySceneQuery->setRay(ray);
+	mRaySceneQuery->setSortByDistance(true);
+	RaySceneQueryResult &raySceneQueryResult=mRaySceneQuery->execute();
+
+	// Get the results, return the camera new position
+	Ogre::LogManager::getSingleton().logMessage("Nº Ray intersections: "+Ogre::StringConverter::toString(raySceneQueryResult.size()));
+
+	RaySceneQueryResult::iterator itr = raySceneQueryResult.begin();
+	newCameraPosition=currentCameraPosition;
+
+
+	//// Get the results, set the camera height
+	//while (itr != raySceneQueryResult.end() && itr->movable)
+	//{
+	//	rayCollisionPosition=itr->movable->getParentSceneNode()->getPosition();
+	//	if(newCameraPosition.distance(currentCameraLookAt)>newCameraPosition.distance(rayCollisionPosition))
+	//	{
+	//		newCameraPosition=rayCollisionPosition;
+	//	}
+
+	//	Ogre::LogManager::getSingleton().logMessage("- position: "+Ogre::StringConverter::toString(newCameraPosition));
+	//	//itr++;
+	//}
+
+	return newCameraPosition;
 }
 
 void CameraControllerThirdPerson::update(double elapsedTime)
 {
 	Vector3 newCameraPosition;
 	Vector3 newTargetPosition;
+	Vector3 cameraLookAt;
 	Quaternion newTargetOrientation;
 
 	newTargetPosition=target->getPosition();
@@ -60,11 +109,18 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	//Calculate Camera position in the world
 	newCameraPosition = target->getPosition()+newCameraPosition;
 
+	//Calculate Camera look at
+	cameraLookAt=newTargetPosition+Vector3(0,height,0);
+
+	//Calculate Collisions
+	//TODO: FINISH IMPLEMENTING THIS
+	//newCameraPosition = calculateCameraCollisions(newCameraPosition,cameraLookAt);
+
 	//set camera position
 	mCamera->setPosition(newCameraPosition);
 
 	//set camera to look at target
-	mCamera->lookAt(newTargetPosition+Vector3(0,height,0));
+	mCamera->lookAt(cameraLookAt);
 
 	lastTargetPosition=newTargetPosition;
 	lastTargetOrientation=newTargetOrientation;

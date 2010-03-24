@@ -9,13 +9,19 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
+		void init(Ogre::SceneManager * pSceneManager);
+
 		void update(double elapsedTime);
 		void processRelativeMotion(double xRel,double yRel,double zRel);
 
 		void setTarget(RenderComponentPositional * target);
 
+		Ogre::Vector3 calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt);
+
 		TCameraControllerType getControllerType();
 	private:
+		Ogre::SceneManager * mSceneManager;
+		Ogre::RaySceneQuery * mRaySceneQuery; 
 		RenderComponentPositional * target;
 		Vector3 distance;
 		double height;
