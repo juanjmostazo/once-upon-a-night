@@ -120,7 +120,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		Ogre::LogManager::getSingleton().logMessage("* * Moving!");
+		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}
 
 	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
@@ -177,7 +177,7 @@ void PhysicsComponentCharacter::resetSliding()
 
 void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
-	Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
+	//Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
 
 	mSlideDisplacement.x = pNormal.x;
 	mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;

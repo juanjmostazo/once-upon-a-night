@@ -863,8 +863,8 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentSimpleCapsule
-		tGameObjectItem1UPParameters.tPhysicsComponentSimpleCapsuleParameters=processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
+		//Get PhysicsComponentVolumeBox
+		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 
 	}
 	catch( std::string error )
@@ -901,9 +901,8 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentSimpleCapsule
-		tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters=processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
-
+		//Get PhysicsComponentVolumeBox
+		tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{

@@ -1,6 +1,8 @@
 #include "EventProcessor.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
+#include "../Game/GameObject/GameObjectItem1UP.h"
+#include "../Game/GameObject/GameObjectItemMaxHP.h"
 
 using namespace OUAN;
 
@@ -79,7 +81,47 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
+	//WHEN ENTERING A WIN ZONE
 	//mApp->getGameWorldManager()->setGameOver(true);
 	//mApp->getGameWorldManager()->setGameBeaten(true);
+
+	switch (evt->getCollisionType())
+	{
+	case COLLISION_TYPE_TRIGGER_ENTER: 
+		/**
+		* If it is an item:
+		* - Set it as disabled
+		* - Hide it (Render Component)
+		* - Destroy Physics Component
+		*/
+
+		if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
+		{
+			GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add 1 life logic
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
+		{
+			GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add max hp logic
+		}
+		//TODO else if block, same with rest of game object items
+
+	break;
+	case COLLISION_TYPE_TRIGGER_PRESENCE: 
+
+	break;
+	case COLLISION_TYPE_TRIGGER_EXIT: break;
+	default: break;
+	}
+
 	Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger");
 }

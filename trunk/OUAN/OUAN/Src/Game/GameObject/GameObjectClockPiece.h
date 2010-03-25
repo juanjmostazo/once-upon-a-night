@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 
 namespace OUAN
 {
@@ -18,8 +18,7 @@ namespace OUAN
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
-
+		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -44,11 +43,10 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		/// Set physics component
-		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
+		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
 
 		/// Get physics component
-		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
-
+		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox();
 	};
 
 	class TGameObjectClockPieceParameters: public TGameObjectParameters
@@ -64,8 +62,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
-
+		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 	};
 }
 #endif

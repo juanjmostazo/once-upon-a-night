@@ -35,6 +35,8 @@ RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() con
 
 void GameObjectLight::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:
@@ -44,7 +46,6 @@ void GameObjectLight::changeWorld(int world)
 	default:
 		break;
 	}
-
 }
 
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()

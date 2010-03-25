@@ -14,6 +14,9 @@ namespace OUAN
 		std::string mName;
 		/// GameObject identifier (i.e. GameObjectTripollo)
 		std::string mType;
+		/// GameObject attribute 
+		bool mEnabled;
+
 	protected:
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
@@ -59,6 +62,12 @@ namespace OUAN
 		/// Process world change event
 		/// @param evt pointer to the event data
 		virtual void processChangeWorld(ChangeWorldEventPtr evt);
+
+		/// Disable the object
+		void disable();
+
+		/// Check if the object is enabled
+		bool isEnabled();
 	};
 
 	class TGameObjectParameters

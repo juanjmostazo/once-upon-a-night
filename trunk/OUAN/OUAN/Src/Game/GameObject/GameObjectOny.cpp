@@ -65,6 +65,8 @@ void GameObjectOny::update(double elapsedSeconds)
 
 void GameObjectOny::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->create();

@@ -58,6 +58,8 @@ PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponen
 
 void GameObjectTerrainTriangle::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

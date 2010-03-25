@@ -424,8 +424,8 @@ void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItem1UP);
 
 	mGameObjectPhysicsContainer.push_back(pGameObjectItem1UP);
-	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItem1UP);
-	mGameObjectPhysicsSimpleCapsuleContainer.push_back(pGameObjectItem1UP);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItem1UP);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItem1UP);
 }
 
 void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
@@ -437,8 +437,8 @@ void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObject
 	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItemMaxHP);
 
 	mGameObjectPhysicsContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectPhysicsSimpleCapsuleContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItemMaxHP);
 }
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
@@ -706,10 +706,10 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
 	
 		//Create PhysicsComponent
-		pGameObjectItem1UP->setPhysicsComponentSimpleCapsule(
-			factory->createPhysicsComponentSimpleCapsule(
+		pGameObjectItem1UP->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
 				pGameObjectItem1UP, 
-				tGameObjectItem1UPParameters.tPhysicsComponentSimpleCapsuleParameters, 
+				tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters, 
 				pGameObjectItem1UP->getRenderComponentPositional()));
 
 	pGameObjectItem1UP->changeWorld(world);
@@ -793,10 +793,10 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
-		pGameObjectItemMaxHP->setPhysicsComponentSimpleCapsule(
-			factory->createPhysicsComponentSimpleCapsule(
+		pGameObjectItemMaxHP->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
 			pGameObjectItemMaxHP, 
-			tGameObjectItemMaxHPParameters.tPhysicsComponentSimpleCapsuleParameters, 
+			tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters, 
 			pGameObjectItemMaxHP->getRenderComponentPositional()));
 
 		//Create LogicComponent

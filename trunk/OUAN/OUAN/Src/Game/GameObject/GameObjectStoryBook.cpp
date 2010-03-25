@@ -34,14 +34,14 @@ RenderComponentPositionalPtr GameObjectStoryBook::getRenderComponentPositional()
 	return mRenderComponentPositional;
 }
 
-void GameObjectStoryBook::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectStoryBook::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
-	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
+	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectStoryBook::getPhysicsComponentSimpleCapsule()
+PhysicsComponentVolumeBoxPtr GameObjectStoryBook::getPhysicsComponentVolumeBox()
 {
-	return mPhysicsComponentSimpleCapsule;
+	return mPhysicsComponentVolumeBox;
 }
 
 

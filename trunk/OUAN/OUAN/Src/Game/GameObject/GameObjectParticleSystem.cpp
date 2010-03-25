@@ -35,6 +35,8 @@ RenderComponentPositionalPtr GameObjectParticleSystem::getRenderComponentPositio
 
 void GameObjectParticleSystem::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		mRenderComponentParticleSystem->setVisible(true);

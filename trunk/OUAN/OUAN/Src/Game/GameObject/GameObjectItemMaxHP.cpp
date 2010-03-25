@@ -34,23 +34,25 @@ RenderComponentPositionalPtr GameObjectItemMaxHP::getRenderComponentPositional()
 	return mRenderComponentPositional;
 }
 
-void GameObjectItemMaxHP::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectItemMaxHP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
-	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
+	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectItemMaxHP::getPhysicsComponentSimpleCapsule()
+PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox()
 {
-	return mPhysicsComponentSimpleCapsule;
+	return mPhysicsComponentVolumeBox;
 }
 
 void GameObjectItemMaxHP::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
-		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
-			mPhysicsComponentSimpleCapsule->create();
+			mPhysicsComponentVolumeBox->create();
 		}
 		return;
 	}
@@ -63,17 +65,17 @@ void GameObjectItemMaxHP::changeWorld(int world)
 			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mPhysicsComponentVolumeBox->create();
 				}
 			}
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
+					mPhysicsComponentVolumeBox->destroy();
 				}
 			}		
 			break;
@@ -82,17 +84,17 @@ void GameObjectItemMaxHP::changeWorld(int world)
 			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mPhysicsComponentVolumeBox->create();
 				}
 			}
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
+					mPhysicsComponentVolumeBox->destroy();
 				}
 			}
 			break;
