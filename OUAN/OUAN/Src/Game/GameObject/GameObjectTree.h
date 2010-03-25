@@ -1,5 +1,5 @@
-#ifndef GameObjectPillowH_H
-#define GameObjectPillowH_H
+#ifndef GameObjectTreeH_H
+#define GameObjectTreeH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -8,8 +8,8 @@
 
 namespace OUAN
 {
-	/// Class to hold GameObjectPillow information
-	class GameObjectPillow : public GameObject, public boost::enable_shared_from_this<GameObjectPillow>
+	/// Class to hold GameObjectTree information
+	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
 	{
 	private:
 		
@@ -24,9 +24,9 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectPillow(const std::string& name);
+		GameObjectTree(const std::string& name);
 		//Destructor
-		~GameObjectPillow();
+		~GameObjectTree();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -54,11 +54,11 @@ namespace OUAN
 		void changeWorld(int world);
 	};
 
-	class TGameObjectPillowParameters: public TGameObjectParameters
+	class TGameObjectTreeParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectPillowParameters();
-		~TGameObjectPillowParameters();
+		TGameObjectTreeParameters();
+		~TGameObjectTreeParameters();
 		
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;

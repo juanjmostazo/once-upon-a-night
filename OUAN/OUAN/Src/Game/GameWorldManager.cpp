@@ -3,23 +3,46 @@
 #include "../Loader/LevelLoader.h"
 #include "../Component/ComponentFactory.h"
 #include "GameObject/GameObject.h"
-#include "GameObject/GameObjectTerrainConvex.h"
-#include "GameObject/GameObjectTerrainTriangle.h"
-#include "GameObject/GameObjectLight.h"
+#include "GameObject/GameObjectBee_Butterfly.h"
 #include "GameObject/GameObjectBillboardSet.h"
-#include "GameObject/GameObjectParticleSystem.h"
-#include "GameObject/GameObjectScene.h"
-#include "GameObject/GameObjectOny.h"
-#include "GameObject/GameObjectTripollo.h"
+#include "GameObject/GameObjectBush.h"
+#include "GameObject/GameObjectCamera.h"
+#include "GameObject/GameObjectCarnivorousPlant.h"
+#include "GameObject/GameObjectClockPiece.h"
+#include "GameObject/GameObjectCryKing.h"
+#include "GameObject/GameObjectDiamond.h"
+#include "GameObject/GameObjectDiamondTree.h"
+#include "GameObject/GameObjectDoor.h"
+#include "GameObject/GameObjectDragon.h"
 #include "GameObject/GameObjectEye.h"
+#include "GameObject/GameObjectFlashLight.h"
+#include "GameObject/GameObjectHeart.h"
 #include "GameObject/GameObjectItem1UP.h"
 #include "GameObject/GameObjectItemMaxHP.h"
+#include "GameObject/GameObjectLight.h"
+#include "GameObject/GameObjectMagicClock.h"
+#include "GameObject/GameObjectNightGoblin.h"
+#include "GameObject/GameObjectOny.h"
+#include "GameObject/GameObjectParticleSystem.h"
+#include "GameObject/GameObjectPillow.h"
+#include "GameObject/GameObjectPlataform.h"
 #include "GameObject/GameObjectPortal.h"
-#include "GameObject/GameObjectCamera.h"
+#include "GameObject/GameObjectProvisionalEntity.h"
+#include "GameObject/GameObjectScaredPlant.h"
+#include "GameObject/GameObjectScene.h"
+#include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSnakeCreeper.h"
+#include "GameObject/GameObjectStoryBook.h"
+#include "GameObject/GameObjectTentetieso.h"
+#include "GameObject/GameObjectTerrainConvex.h"
+#include "GameObject/GameObjectTerrainTriangle.h"
+#include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
+#include "GameObject/GameObjectTripollito.h"
+#include "GameObject/GameObjectTripollo.h"
 #include "GameObject/GameObjectViewport.h"
-#include "GameObject/GameObjectProvisionalEntity.h"
+
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -356,6 +379,134 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 	mGameObjects[gameObject->getName()]=gameObject;
 }
 
+void GameWorldManager::addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly)
+{
+	mGameObjects[gameObjectBee_Butterfly->getName()]=gameObjectBee_Butterfly;
+}
+
+void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet)
+{
+	mGameObjects[pGameObjectBillboardSet->getName()]=pGameObjectBillboardSet;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectBillboardSet);
+	mGameObjectNonMovableContainer.push_back(pGameObjectBillboardSet);
+	mGameObjectBillboardSetContainer.push_back(pGameObjectBillboardSet);
+}
+
+void GameWorldManager::addGameObjectBush(GameObjectBushPtr gameObjectBush)
+{
+	mGameObjects[gameObjectBush->getName()]=gameObjectBush;
+}
+
+void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera)
+{
+	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
+}
+
+void GameWorldManager::addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr gameObjectCarnivorousPlant)
+{
+	mGameObjects[gameObjectCarnivorousPlant->getName()]=gameObjectCarnivorousPlant;
+}
+
+void GameWorldManager::addGameObjectClockPiece(GameObjectClockPiecePtr gameObjectClockPiece)
+{
+	mGameObjects[gameObjectClockPiece->getName()]=gameObjectClockPiece;
+}
+
+void GameWorldManager::addGameObjectCryKing(GameObjectCryKingPtr gameObjectCryKing)
+{
+	mGameObjects[gameObjectCryKing->getName()]=gameObjectCryKing;
+}
+
+void GameWorldManager::addGameObjectDiamond(GameObjectDiamondPtr gameObjectDiamond)
+{
+	mGameObjects[gameObjectDiamond->getName()]=gameObjectDiamond;
+}
+
+void GameWorldManager::addGameObjectDiamondTree(GameObjectDiamondTreePtr gameObjectDiamondTree)
+{
+	mGameObjects[gameObjectDiamondTree->getName()]=gameObjectDiamondTree;
+}
+
+void GameWorldManager::addGameObjectDoor(GameObjectDoorPtr gameObjectDoor)
+{
+	mGameObjects[gameObjectDoor->getName()]=gameObjectDoor;
+}
+
+void GameWorldManager::addGameObjectDragon(GameObjectDragonPtr gameObjectDragon)
+{
+	mGameObjects[gameObjectDragon->getName()]=gameObjectDragon;
+}
+
+void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
+{
+	mGameObjects[pGameObjectEye->getName()]=pGameObjectEye;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectEye);
+	mGameObjectNonMovableContainer.push_back(pGameObjectEye);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectEye);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectEye);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectEye);
+
+	mGameObjectEyeContainer.push_back(pGameObjectEye);
+}
+
+void GameWorldManager::addGameObjectFlashLight(GameObjectFlashLightPtr gameObjectFlashLight)
+{
+	mGameObjects[gameObjectFlashLight->getName()]=gameObjectFlashLight;
+}
+
+void GameWorldManager::addGameObjectHeart(GameObjectHeartPtr gameObjectHeart)
+{
+	mGameObjects[gameObjectHeart->getName()]=gameObjectHeart;
+}
+
+void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
+{
+	mGameObjects[pGameObjectItem1UP->getName()]=pGameObjectItem1UP;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectItem1UP);
+	mGameObjectNonMovableContainer.push_back(pGameObjectItem1UP);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItem1UP);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectItem1UP);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItem1UP);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItem1UP);
+}
+
+void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
+{
+	mGameObjects[pGameObjectItemMaxHP->getName()]=pGameObjectItemMaxHP;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectNonMovableContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItemMaxHP);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItemMaxHP);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItemMaxHP);
+}
+
+void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
+{
+	mGameObjects[pGameObjectLight->getName()]=pGameObjectLight;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectLight);
+	mGameObjectNonMovableContainer.push_back(pGameObjectLight);
+	mGameObjectLightContainer.push_back(pGameObjectLight);
+}
+
+void GameWorldManager::addGameObjectMagicClock(GameObjectMagicClockPtr gameObjectMagicClock)
+{
+	mGameObjects[gameObjectMagicClock->getName()]=gameObjectMagicClock;
+}
+
+void GameWorldManager::addGameObjectNightGoblin(GameObjectNightGoblinPtr gameObjectNightGoblin)
+{
+	mGameObjects[gameObjectNightGoblin->getName()]=gameObjectNightGoblin;
+}
+
 void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 {
 	mGameObjects[pGameObjectOny->getName()]=pGameObjectOny;
@@ -370,18 +521,80 @@ void GameWorldManager::addGameObjectOny(GameObjectOnyPtr pGameObjectOny)
 	mGameObjectOnyContainer.push_back(pGameObjectOny);
 }
 
-void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
+void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem)
 {
-	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
+	mGameObjects[pGameObjectParticleSystem->getName()]=pGameObjectParticleSystem;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
+	mGameObjectPositionalContainer.push_back(pGameObjectParticleSystem);
+	mGameObjectNonMovableContainer.push_back(pGameObjectParticleSystem);
+	mGameObjectParticleSystemContainer.push_back(pGameObjectParticleSystem);
+}
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
+void GameWorldManager::addGameObjectPillow(GameObjectPillowPtr gameObjectPillow)
+{
+	mGameObjects[gameObjectPillow->getName()]=gameObjectPillow;
+}
 
-	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
+void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr gameObjectPlataform)
+{
+	mGameObjects[gameObjectPlataform->getName()]=gameObjectPlataform;
+}
+
+void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
+{
+	mGameObjects[pGameObjectPortal->getName()]=pGameObjectPortal;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectPortal);
+	mGameObjectNonMovableContainer.push_back(pGameObjectPortal);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectPortal);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectPortal);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectPortal);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectPortal);
+}
+
+void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity)
+{
+	mGameObjects[pGameObjectProvisionalEntity->getName()]=pGameObjectProvisionalEntity;
+	mGameObjectPositionalContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectNonMovableContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectProvisionalEntity);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectProvisionalEntity);
+}
+
+void GameWorldManager::addGameObjectScaredPlant(GameObjectScaredPlantPtr gameObjectScaredPlant)
+{
+	mGameObjects[gameObjectScaredPlant->getName()]=gameObjectScaredPlant;
+}
+
+void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)
+{
+	mGameObjects[pGameObjectScene->getName()]=pGameObjectScene;
+
+	mGameObjectSceneContainer.push_back(pGameObjectScene);
+}
+
+void GameWorldManager::addGameObjectScepter(GameObjectScepterPtr gameObjectScepter)
+{
+	mGameObjects[gameObjectScepter->getName()]=gameObjectScepter;
+}
+
+void GameWorldManager::addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr gameObjectSnakeCreeper)
+{
+	mGameObjects[gameObjectSnakeCreeper->getName()]=gameObjectSnakeCreeper;
+}
+
+void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr gameObjectStoryBook)
+{
+	mGameObjects[gameObjectStoryBook->getName()]=gameObjectStoryBook;
+}
+
+void GameWorldManager::addGameObjectTentetieso(GameObjectTentetiesoPtr gameObjectTentetieso)
+{
+	mGameObjects[gameObjectTentetieso->getName()]=gameObjectTentetieso;
 }
 
 void GameWorldManager::addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex)
@@ -414,102 +627,9 @@ void GameWorldManager::addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr
 	mGameObjectTerrainTriangleContainer.push_back(pGameObjectTerrainTriangle);
 }
 
-
-void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
+void GameWorldManager::addGameObjectTree(GameObjectTreePtr gameObjectTree)
 {
-	mGameObjects[pGameObjectItem1UP->getName()]=pGameObjectItem1UP;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectItem1UP);
-	mGameObjectNonMovableContainer.push_back(pGameObjectItem1UP);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItem1UP);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectItem1UP);
-	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItem1UP);
-	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItem1UP);
-}
-
-void GameWorldManager::addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP)
-{
-	mGameObjects[pGameObjectItemMaxHP->getName()]=pGameObjectItemMaxHP;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectNonMovableContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectItemMaxHP);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectItemMaxHP);
-	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectItemMaxHP);
-}
-
-void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
-{
-	mGameObjects[pGameObjectPortal->getName()]=pGameObjectPortal;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectPortal);
-	mGameObjectNonMovableContainer.push_back(pGameObjectPortal);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectPortal);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectPortal);
-	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectPortal);
-	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectPortal);
-}
-
-void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
-{
-	mGameObjects[pGameObjectEye->getName()]=pGameObjectEye;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectEye);
-	mGameObjectNonMovableContainer.push_back(pGameObjectEye);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectEye);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectEye);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectEye);
-
-	mGameObjectEyeContainer.push_back(pGameObjectEye);
-}
-void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
-{
-	mGameObjects[pGameObjectLight->getName()]=pGameObjectLight;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectLight);
-	mGameObjectNonMovableContainer.push_back(pGameObjectLight);
-	mGameObjectLightContainer.push_back(pGameObjectLight);
-}
-
-void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet)
-{
-	mGameObjects[pGameObjectBillboardSet->getName()]=pGameObjectBillboardSet;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectBillboardSet);
-	mGameObjectNonMovableContainer.push_back(pGameObjectBillboardSet);
-	mGameObjectBillboardSetContainer.push_back(pGameObjectBillboardSet);
-}
-
-void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem)
-{
-	mGameObjects[pGameObjectParticleSystem->getName()]=pGameObjectParticleSystem;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectParticleSystem);
-	mGameObjectNonMovableContainer.push_back(pGameObjectParticleSystem);
-	mGameObjectParticleSystemContainer.push_back(pGameObjectParticleSystem);
-}
-
-
-void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera)
-{
-	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
-}
-
-void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity)
-{
-	mGameObjects[pGameObjectProvisionalEntity->getName()]=pGameObjectProvisionalEntity;
-	mGameObjectPositionalContainer.push_back(pGameObjectProvisionalEntity);
-	mGameObjectNonMovableContainer.push_back(pGameObjectProvisionalEntity);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectProvisionalEntity);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectProvisionalEntity);
-	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectProvisionalEntity);
-	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectProvisionalEntity);
+	mGameObjects[gameObjectTree->getName()]=gameObjectTree;
 }
 
 void GameWorldManager::addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox)
@@ -534,6 +654,25 @@ void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr p
 	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
+void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr gameObjectTripollito)
+{
+	mGameObjects[gameObjectTripollito->getName()]=gameObjectTripollito;
+}
+
+void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
+{
+	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectTripollo);
+	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
+
+	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
+}
+
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
 {
 	mGameObjects[pGameObjectViewport->getName()]=pGameObjectViewport;
@@ -541,11 +680,451 @@ void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectVi
 	mGameObjectViewportContainer.push_back(pGameObjectViewport);
 }
 
-void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)
+void GameWorldManager::createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters)
 {
-	mGameObjects[pGameObjectScene->getName()]=pGameObjectScene;
+	GameObjectBee_ButterflyPtr pGameObjectBee_Butterfly;
 
-	mGameObjectSceneContainer.push_back(pGameObjectScene);
+	//Create GameObject
+	pGameObjectBee_Butterfly = GameObjectBee_ButterflyPtr(new GameObjectBee_Butterfly(tGameObjectBee_ButterflyParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectBee_Butterfly->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectBee_Butterfly(pGameObjectBee_Butterfly);
+}
+
+void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters)
+{
+	GameObjectBillboardSetPtr pGameObjectBillboardSet;
+
+	//Create GameObject
+	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(tGameObjectBillboardSetParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponent
+		pGameObjectBillboardSet->setLogicComponent(
+			factory->createLogicComponent(
+				pGameObjectBillboardSet,
+				tGameObjectBillboardSetParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectBillboardSet->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentBillboardSet
+		pGameObjectBillboardSet->setRenderComponentBillboardSet(factory->createRenderComponentBillboardSet(
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
+	
+	pGameObjectBillboardSet->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectBillboardSet->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectBillboardSet(pGameObjectBillboardSet);
+}
+
+void GameWorldManager::createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters)
+{
+	GameObjectBushPtr pGameObjectBush;
+
+	//Create GameObject
+	pGameObjectBush = GameObjectBushPtr(new GameObjectBush(tGameObjectBushParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectBush->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectBush(pGameObjectBush);
+}
+
+void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters)
+{
+	GameObjectCameraPtr pGameObjectCamera;
+
+	//Create GameObject
+	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(tGameObjectCameraParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create RenderComponentCamera
+		pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
+			pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
+
+
+	pGameObjectCamera->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectCamera->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectCamera(pGameObjectCamera);
+}
+
+void GameWorldManager::createGameObjectCarnivorousPlant(TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters)
+{
+	GameObjectCarnivorousPlantPtr pGameObjectCarnivorousPlant;
+
+	//Create GameObject
+	pGameObjectCarnivorousPlant = GameObjectCarnivorousPlantPtr(new GameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectCarnivorousPlant->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectCarnivorousPlant(pGameObjectCarnivorousPlant);
+}
+
+void GameWorldManager::createGameObjectClockPiece(TGameObjectClockPieceParameters tGameObjectClockPieceParameters)
+{
+	GameObjectClockPiecePtr pGameObjectClockPiece;
+
+	//Create GameObject
+	pGameObjectClockPiece = GameObjectClockPiecePtr(new GameObjectClockPiece(tGameObjectClockPieceParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectClockPiece->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectClockPiece(pGameObjectClockPiece);
+}
+
+void GameWorldManager::createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters)
+{
+	GameObjectCryKingPtr pGameObjectCryKing;
+
+	//Create GameObject
+	pGameObjectCryKing = GameObjectCryKingPtr(new GameObjectCryKing(tGameObjectCryKingParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectCryKing->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectCryKing(pGameObjectCryKing);
+}
+
+void GameWorldManager::createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters)
+{
+	GameObjectDiamondPtr pGameObjectDiamond;
+
+	//Create GameObject
+	pGameObjectDiamond = GameObjectDiamondPtr(new GameObjectDiamond(tGameObjectDiamondParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectDiamond->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectDiamond(pGameObjectDiamond);
+}
+
+void GameWorldManager::createGameObjectDiamondTree(TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters)
+{
+	GameObjectDiamondTreePtr pGameObjectDiamondTree;
+
+	//Create GameObject
+	pGameObjectDiamondTree = GameObjectDiamondTreePtr(new GameObjectDiamondTree(tGameObjectDiamondTreeParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectDiamondTree->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectDiamondTree(pGameObjectDiamondTree);
+}
+
+void GameWorldManager::createGameObjectDoor(TGameObjectDoorParameters tGameObjectDoorParameters)
+{
+	GameObjectDoorPtr pGameObjectDoor;
+
+	//Create GameObject
+	pGameObjectDoor = GameObjectDoorPtr(new GameObjectDoor(tGameObjectDoorParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectDoor->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectDoor(pGameObjectDoor);
+}
+
+void GameWorldManager::createGameObjectDragon(TGameObjectDragonParameters tGameObjectDragonParameters)
+{
+	GameObjectDragonPtr pGameObjectDragon;
+
+	//Create GameObject
+	pGameObjectDragon = GameObjectDragonPtr(new GameObjectDragon(tGameObjectDragonParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectDragon->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectDragon(pGameObjectDragon);
+}
+
+
+void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters)
+{
+	GameObjectEyePtr pGameObjectEye;
+
+	//Create GameObject
+	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(tGameObjectEyeParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponent
+		pGameObjectEye->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectEye,
+			tGameObjectEyeParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectEye->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectEye->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectEyeParameters.name,
+			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters));
+
+		//Create PhysicsComponent
+		pGameObjectEye->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectEye,
+			tGameObjectEyeParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectEye->getRenderComponentPositional()));
+
+	pGameObjectEye->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectEye->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectEye(pGameObjectEye);
+}
+
+void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters)
+{
+	GameObjectFlashLightPtr pGameObjectFlashLight;
+
+	//Create GameObject
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectFlashLight->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectFlashLight(pGameObjectFlashLight);
+}
+
+void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
+{
+	GameObjectItem1UPPtr pGameObjectItem1UP;
+
+	//Create GameObject
+	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(tGameObjectItem1UPParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponentWorldExistance
+		pGameObjectItem1UP->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectItem1UP,
+			tGameObjectItem1UPParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectItem1UP->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectItem1UP->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
+			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
+	
+		//Create PhysicsComponent
+		pGameObjectItem1UP->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
+				pGameObjectItem1UP, 
+				tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters, 
+				pGameObjectItem1UP->getRenderComponentPositional()));
+
+	pGameObjectItem1UP->changeWorld(world);
+	
+	// Add a reference to this
+	pGameObjectItem1UP->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectItem1UP(pGameObjectItem1UP);
+}
+
+void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters)
+{
+	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
+
+	//Create GameObject
+	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(tGameObjectItemMaxHPParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponent
+		pGameObjectItemMaxHP->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectItemMaxHP,
+			tGameObjectItemMaxHPParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectItemMaxHP->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectItemMaxHP->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
+			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+
+		//Create PhysicsComponent
+		pGameObjectItemMaxHP->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
+			pGameObjectItemMaxHP, 
+			tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters, 
+			pGameObjectItemMaxHP->getRenderComponentPositional()));
+
+		//Create LogicComponent
+		pGameObjectItemMaxHP->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectItemMaxHP,
+			tGameObjectItemMaxHPParameters.logicComponentParameters));
+
+	pGameObjectItemMaxHP->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectItemMaxHP->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
+}
+
+void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)
+{
+	GameObjectLightPtr pGameObjectLight;
+
+	//Create GameObject
+	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(tGameObjectLightParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponentWorldExistance
+		pGameObjectLight->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectLight,
+			tGameObjectLightParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectLight->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectLight,tGameObjectLightParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentLight
+		pGameObjectLight->setRenderComponentLight(factory->createRenderComponentLight(
+			pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
+	
+	pGameObjectLight->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectLight->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectLight(pGameObjectLight);
+}
+
+void GameWorldManager::createGameObjectMagicClock(TGameObjectMagicClockParameters tGameObjectMagicClockParameters)
+{
+	GameObjectMagicClockPtr pGameObjectMagicClock;
+
+	//Create GameObject
+	pGameObjectMagicClock = GameObjectMagicClockPtr(new GameObjectMagicClock(tGameObjectMagicClockParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectMagicClock->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectMagicClock(pGameObjectMagicClock);
+}
+
+void GameWorldManager::createGameObjectNightGoblin(TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters)
+{
+	GameObjectNightGoblinPtr pGameObjectNightGoblin;
+
+	//Create GameObject
+	pGameObjectNightGoblin = GameObjectNightGoblinPtr(new GameObjectNightGoblin(tGameObjectNightGoblinParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectNightGoblin->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectNightGoblin(pGameObjectNightGoblin);
 }
 
 void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters)
@@ -596,129 +1175,75 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 	addGameObjectOny(pGameObjectOny);
 }
 
-void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
+void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters)
 {
-	GameObjectTripolloPtr pGameObjectTripollo;
+	GameObjectParticleSystemPtr pGameObjectParticleSystem;
 
 	//Create GameObject
-	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
+	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponent
-		pGameObjectTripollo->setLogicComponent(
-			factory->createLogicComponent(pGameObjectTripollo,
-			tGameObjectTripolloParameters.logicComponentParameters));
+		pGameObjectParticleSystem->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectParticleSystem,
+			tGameObjectParticleSystemParameters.logicComponentParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectTripollo->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
+		pGameObjectParticleSystem->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntityDreams
-		pGameObjectTripollo->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters));
+		//Create RenderComponentParticleSystem
+		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
 
-		//Create RenderComponentEntityNightmares
-		pGameObjectTripollo->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters));
-
-		//Create PhysicsComponent
-		pGameObjectTripollo->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
-			pGameObjectTripollo,
-			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
-			pGameObjectTripollo->getRenderComponentPositional()));
-	
-	pGameObjectTripollo->changeWorld(world);
+	pGameObjectParticleSystem->changeWorld(world);
 
 	// Add a reference to this
-	pGameObjectTripollo->setGameWorldManager(mThis);
+	pGameObjectParticleSystem->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectTripollo(pGameObjectTripollo);
+	addGameObjectParticleSystem(pGameObjectParticleSystem);
 }
 
-void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters)
+void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameObjectPillowParameters)
 {
-	GameObjectEyePtr pGameObjectEye;
+	GameObjectPillowPtr pGameObjectPillow;
 
 	//Create GameObject
-	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(tGameObjectEyeParameters.name));
+	pGameObjectPillow = GameObjectPillowPtr(new GameObjectPillow(tGameObjectPillowParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
-		//Create LogicComponent
-		pGameObjectEye->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectEye,
-			tGameObjectEyeParameters.logicComponentParameters));
+	//TODO: CREATE COMPONENTS
 
-		//Create RenderComponentPositional
-		pGameObjectEye->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentPositionalParameters));
-
-		//Create RenderComponentEntity
-		pGameObjectEye->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectEyeParameters.name,
-			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters));
-
-		//Create PhysicsComponent
-		pGameObjectEye->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
-			pGameObjectEye,
-			tGameObjectEyeParameters.tPhysicsComponentCharacterParameters,
-			pGameObjectEye->getRenderComponentPositional()));
-
-	pGameObjectEye->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectEye->setGameWorldManager(mThis);
+	//Add reference to this
+	pGameObjectPillow->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectEye(pGameObjectEye);
+	addGameObjectPillow(pGameObjectPillow);
 }
 
-void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
+void GameWorldManager::createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters)
 {
-	GameObjectItem1UPPtr pGameObjectItem1UP;
+	GameObjectPlataformPtr pGameObjectPlataform;
 
 	//Create GameObject
-	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(tGameObjectItem1UPParameters.name));
+	pGameObjectPlataform = GameObjectPlataformPtr(new GameObjectPlataform(tGameObjectPlataformParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
-		//Create LogicComponentWorldExistance
-		pGameObjectItem1UP->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectItem1UP,
-			tGameObjectItem1UPParameters.logicComponentParameters));
+	//TODO: CREATE COMPONENTS
 
-		//Create RenderComponentPositional
-		pGameObjectItem1UP->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentPositionalParameters));
-
-		//Create RenderComponentEntity
-		pGameObjectItem1UP->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
-			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
-	
-		//Create PhysicsComponent
-		pGameObjectItem1UP->setPhysicsComponentVolumeBox(
-			factory->createPhysicsComponentVolumeBox(
-				pGameObjectItem1UP, 
-				tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters, 
-				pGameObjectItem1UP->getRenderComponentPositional()));
-
-	pGameObjectItem1UP->changeWorld(world);
-	
-	// Add a reference to this
-	pGameObjectItem1UP->setGameWorldManager(mThis);
+	//Add reference to this
+	pGameObjectPlataform->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectItem1UP(pGameObjectItem1UP);
+	addGameObjectPlataform(pGameObjectPlataform);
 }
 
 void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters)
@@ -767,51 +1292,177 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 	addGameObjectPortal(pGameObjectPortal);
 }
 
-void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters)
+
+void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters)
 {
-	GameObjectItemMaxHPPtr pGameObjectItemMaxHP;
+	GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity;
 
 	//Create GameObject
-	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(tGameObjectItemMaxHPParameters.name));
+	pGameObjectProvisionalEntity = GameObjectProvisionalEntityPtr(new GameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponent
-		pGameObjectItemMaxHP->setLogicComponent(
+		pGameObjectProvisionalEntity->setLogicComponent(
 			factory->createLogicComponent(
-			pGameObjectItemMaxHP,
-			tGameObjectItemMaxHPParameters.logicComponentParameters));
+			pGameObjectProvisionalEntity,
+			tGameObjectProvisionalEntityParameters.logicComponentParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectItemMaxHP->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters));
+		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntity
-		pGameObjectItemMaxHP->setRenderComponentEntity(
-			factory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
-			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+		if(pGameObjectProvisionalEntity->getLogicComponent()->existsInDreams())
+		{
+			//Create RenderComponentEntity Dreams
+			pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
+				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
+				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
+		}
+		if(pGameObjectProvisionalEntity->getLogicComponent()->existsInNightmares())
+		{
+			//Create RenderComponentEntity Nightmares
+			pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
+				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
+				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
+		}
 
 		//Create PhysicsComponent
-		pGameObjectItemMaxHP->setPhysicsComponentVolumeBox(
-			factory->createPhysicsComponentVolumeBox(
-			pGameObjectItemMaxHP, 
-			tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters, 
-			pGameObjectItemMaxHP->getRenderComponentPositional()));
+		pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
+			factory->createPhysicsComponentSimpleBox(
+			pGameObjectProvisionalEntity, 
+			tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters, 
+			pGameObjectProvisionalEntity->getRenderComponentPositional()));
 
-		//Create LogicComponent
-		pGameObjectItemMaxHP->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectItemMaxHP,
-			tGameObjectItemMaxHPParameters.logicComponentParameters));
 
-	pGameObjectItemMaxHP->changeWorld(world);
-
+	pGameObjectProvisionalEntity->changeWorld(world);
+	
 	// Add a reference to this
-	pGameObjectItemMaxHP->setGameWorldManager(mThis);
+	pGameObjectProvisionalEntity->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectItemMaxHP(pGameObjectItemMaxHP);
+	addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);
+}
+
+void GameWorldManager::createGameObjectScaredPlant(TGameObjectScaredPlantParameters tGameObjectScaredPlantParameters)
+{
+	GameObjectScaredPlantPtr pGameObjectScaredPlant;
+
+	//Create GameObject
+	pGameObjectScaredPlant = GameObjectScaredPlantPtr(new GameObjectScaredPlant(tGameObjectScaredPlantParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectScaredPlant->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectScaredPlant(pGameObjectScaredPlant);
+}
+
+void GameWorldManager::createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters)
+{
+
+	GameObjectScenePtr pGameObjectScene;
+
+	//Create GameObject
+	pGameObjectScene = GameObjectScenePtr(new GameObjectScene(tGameObjectSceneParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create RenderComponentViewport
+	pGameObjectScene->setRenderComponentScene(factory->createRenderComponentScene(
+			pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters));
+	
+	pGameObjectScene->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectScene->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectScene(pGameObjectScene);
+
+}
+
+void GameWorldManager::createGameObjectScepter(TGameObjectScepterParameters tGameObjectScepterParameters)
+{
+	GameObjectScepterPtr pGameObjectScepter;
+
+	//Create GameObject
+	pGameObjectScepter = GameObjectScepterPtr(new GameObjectScepter(tGameObjectScepterParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectScepter->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectScepter(pGameObjectScepter);
+}
+
+void GameWorldManager::createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters)
+{
+	GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper;
+
+	//Create GameObject
+	pGameObjectSnakeCreeper = GameObjectSnakeCreeperPtr(new GameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectSnakeCreeper->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectSnakeCreeper(pGameObjectSnakeCreeper);
+}
+
+void GameWorldManager::createGameObjectStoryBook(TGameObjectStoryBookParameters tGameObjectStoryBookParameters)
+{
+	GameObjectStoryBookPtr pGameObjectStoryBook;
+
+	//Create GameObject
+	pGameObjectStoryBook = GameObjectStoryBookPtr(new GameObjectStoryBook(tGameObjectStoryBookParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectStoryBook->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectStoryBook(pGameObjectStoryBook);
+}
+
+void GameWorldManager::createGameObjectTentetieso(TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters)
+{
+	GameObjectTentetiesoPtr pGameObjectTentetieso;
+
+	//Create GameObject
+	pGameObjectTentetieso = GameObjectTentetiesoPtr(new GameObjectTentetieso(tGameObjectTentetiesoParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectTentetieso->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectTentetieso(pGameObjectTentetieso);
 }
 
 void GameWorldManager::createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters)
@@ -822,7 +1473,7 @@ void GameWorldManager::createGameObjectTerrainConvex(TGameObjectTerrainConvexPar
 	pGameObjectTerrainConvex = GameObjectTerrainConvexPtr(new GameObjectTerrainConvex(tGameObjectTerrainConvexParameters.name));
 	
 	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
+	ComponentFactory * factory=ComponentFactory::getInstance();
 
 		//Create LogicComponent
 		pGameObjectTerrainConvex->setLogicComponent(
@@ -906,127 +1557,23 @@ void GameWorldManager::createGameObjectTerrainTriangle(TGameObjectTerrainTriangl
 	addGameObjectTerrainTriangle(pGameObjectTerrainTriangle);
 }
 
-void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters)
+void GameWorldManager::createGameObjectTree(TGameObjectTreeParameters tGameObjectTreeParameters)
 {
-	GameObjectLightPtr pGameObjectLight;
+	GameObjectTreePtr pGameObjectTree;
 
 	//Create GameObject
-	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(tGameObjectLightParameters.name));
+	pGameObjectTree = GameObjectTreePtr(new GameObjectTree(tGameObjectTreeParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
-		//Create LogicComponentWorldExistance
-		pGameObjectLight->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectLight,
-			tGameObjectLightParameters.logicComponentParameters));
+	//TODO: CREATE COMPONENTS
 
-		//Create RenderComponentPositional
-		pGameObjectLight->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectLight,tGameObjectLightParameters.tRenderComponentPositionalParameters));
-
-		//Create RenderComponentLight
-		pGameObjectLight->setRenderComponentLight(factory->createRenderComponentLight(
-			pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
-	
-	pGameObjectLight->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectLight->setGameWorldManager(mThis);
+	//Add reference to this
+	pGameObjectTree->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectLight(pGameObjectLight);
-}
-
-void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters)
-{
-	GameObjectBillboardSetPtr pGameObjectBillboardSet;
-
-	//Create GameObject
-	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(tGameObjectBillboardSetParameters.name));
-	
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-		//Create LogicComponent
-		pGameObjectBillboardSet->setLogicComponent(
-			factory->createLogicComponent(
-				pGameObjectBillboardSet,
-				tGameObjectBillboardSetParameters.logicComponentParameters));
-
-		//Create RenderComponentPositional
-		pGameObjectBillboardSet->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters));
-
-		//Create RenderComponentBillboardSet
-		pGameObjectBillboardSet->setRenderComponentBillboardSet(factory->createRenderComponentBillboardSet(
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
-	
-	pGameObjectBillboardSet->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectBillboardSet->setGameWorldManager(mThis);
-
-	//Add Object to GameWorldManager
-	addGameObjectBillboardSet(pGameObjectBillboardSet);
-}
-
-void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters)
-{
-	GameObjectParticleSystemPtr pGameObjectParticleSystem;
-
-	//Create GameObject
-	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
-	
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-		//Create LogicComponent
-		pGameObjectParticleSystem->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectParticleSystem,
-			tGameObjectParticleSystemParameters.logicComponentParameters));
-
-		//Create RenderComponentPositional
-		pGameObjectParticleSystem->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
-
-		//Create RenderComponentParticleSystem
-		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
-			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
-
-	pGameObjectParticleSystem->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectParticleSystem->setGameWorldManager(mThis);
-
-	//Add Object to GameWorldManager
-	addGameObjectParticleSystem(pGameObjectParticleSystem);
-}
-
-void GameWorldManager::createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters)
-{
-	GameObjectCameraPtr pGameObjectCamera;
-
-	//Create GameObject
-	pGameObjectCamera = GameObjectCameraPtr(new GameObjectCamera(tGameObjectCameraParameters.name));
-
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-		//Create RenderComponentCamera
-		pGameObjectCamera->setRenderComponentCamera(factory->createRenderComponentCamera(
-			pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
-
-
-	pGameObjectCamera->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectCamera->setGameWorldManager(mThis);
-
-	//Add Object to GameWorldManager
-	addGameObjectCamera(pGameObjectCamera);
+	addGameObjectTree(pGameObjectTree);
 }
 
 void GameWorldManager::createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters)
@@ -1115,6 +1662,69 @@ void GameWorldManager::createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleP
 	addGameObjectTriggerCapsule(pGameObjectTriggerCapsule);
 }
 
+void GameWorldManager::createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters)
+{
+	GameObjectTripollitoPtr pGameObjectTripollito;
+
+	//Create GameObject
+	pGameObjectTripollito = GameObjectTripollitoPtr(new GameObjectTripollito(tGameObjectTripollitoParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//TODO: CREATE COMPONENTS
+
+	//Add reference to this
+	pGameObjectTripollito->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectTripollito(pGameObjectTripollito);
+}
+
+void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
+{
+	GameObjectTripolloPtr pGameObjectTripollo;
+
+	//Create GameObject
+	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponent
+		pGameObjectTripollo->setLogicComponent(
+			factory->createLogicComponent(pGameObjectTripollo,
+			tGameObjectTripolloParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectTripollo->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntityDreams
+		pGameObjectTripollo->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntityNightmares
+		pGameObjectTripollo->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters));
+
+		//Create PhysicsComponent
+		pGameObjectTripollo->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectTripollo,
+			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectTripollo->getRenderComponentPositional()));
+	
+	pGameObjectTripollo->changeWorld(world);
+
+	// Add a reference to this
+	pGameObjectTripollo->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectTripollo(pGameObjectTripollo);
+}
+
 void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters)
 {
 	GameObjectViewportPtr pGameObjectViewport;
@@ -1134,85 +1744,8 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 	// Add a reference to this
 	pGameObjectViewport->setGameWorldManager(mThis);
 
-
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
-}
-
-void GameWorldManager::createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters)
-{
-
-	GameObjectScenePtr pGameObjectScene;
-
-	//Create GameObject
-	pGameObjectScene = GameObjectScenePtr(new GameObjectScene(tGameObjectSceneParameters.name));
-
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-	//Create RenderComponentViewport
-	pGameObjectScene->setRenderComponentScene(factory->createRenderComponentScene(
-			pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters));
-	
-	pGameObjectScene->changeWorld(world);
-
-	// Add a reference to this
-	pGameObjectScene->setGameWorldManager(mThis);
-
-	//Add Object to GameWorldManager
-	addGameObjectScene(pGameObjectScene);
-
-}
-
-void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters)
-{
-	GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity;
-
-	//Create GameObject
-	pGameObjectProvisionalEntity = GameObjectProvisionalEntityPtr(new GameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters.name));
-	
-	//Create Game Components
-	ComponentFactory* factory=ComponentFactory::getInstance();
-
-		//Create LogicComponent
-		pGameObjectProvisionalEntity->setLogicComponent(
-			factory->createLogicComponent(
-			pGameObjectProvisionalEntity,
-			tGameObjectProvisionalEntityParameters.logicComponentParameters));
-
-		//Create RenderComponentPositional
-		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
-
-		if(pGameObjectProvisionalEntity->getLogicComponent()->existsInDreams())
-		{
-			//Create RenderComponentEntity Dreams
-			pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
-				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
-				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
-		}
-		if(pGameObjectProvisionalEntity->getLogicComponent()->existsInNightmares())
-		{
-			//Create RenderComponentEntity Nightmares
-			pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
-				factory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
-				pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
-		}
-
-		//Create PhysicsComponent
-		pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
-			factory->createPhysicsComponentSimpleBox(
-				pGameObjectProvisionalEntity, 
-				tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters,
-				pGameObjectProvisionalEntity->getRenderComponentPositional()));
-
-	pGameObjectProvisionalEntity->changeWorld(world);
-	
-	// Add a reference to this
-	pGameObjectProvisionalEntity->setGameWorldManager(mThis);
-
-	//Add Object to GameWorldManager
-	addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)

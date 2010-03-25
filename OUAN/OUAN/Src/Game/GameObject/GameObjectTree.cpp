@@ -1,50 +1,50 @@
-#include "GameObjectFlashLight.h"
+#include "GameObjectTree.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
 
-GameObjectFlashLight::GameObjectFlashLight(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_FLASHLIGHT)
+GameObjectTree::GameObjectTree(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_TREE)
 {
 
 }
 
-GameObjectFlashLight::~GameObjectFlashLight()
+GameObjectTree::~GameObjectTree()
 {
 
 }
 
-RenderComponentEntityPtr GameObjectFlashLight::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectTree::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectFlashLight::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTree::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectFlashLight::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTree::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-RenderComponentPositionalPtr GameObjectFlashLight::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTree::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-void GameObjectFlashLight::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectTree::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
 	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectFlashLight::getPhysicsComponentSimpleCapsule()
+PhysicsComponentSimpleCapsulePtr GameObjectTree::getPhysicsComponentSimpleCapsule()
 {
 	return mPhysicsComponentSimpleCapsule;
 }
 
-void GameObjectFlashLight::changeWorld(int world)
+void GameObjectTree::changeWorld(int world)
 {
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
@@ -99,12 +99,12 @@ void GameObjectFlashLight::changeWorld(int world)
 		}
 	}
 }
-TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
+TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectFlashLightParameters::~TGameObjectFlashLightParameters()
+TGameObjectTreeParameters::~TGameObjectTreeParameters()
 {
 
 }
