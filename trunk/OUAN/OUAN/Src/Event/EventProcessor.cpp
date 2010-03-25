@@ -88,20 +88,34 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
 	//WHEN ENTERING A WIN ZONE
-	//mApp->getGameWorldManager()->setGameOver(true);
-	//mApp->getGameWorldManager()->setGameBeaten(true);
+	//
 
 	switch (evt->getCollisionType())
 	{
 	case COLLISION_TYPE_TRIGGER_ENTER: 
+		/**
+		* If it is a trigger
+		* - Temporarily, win
+		*/
+		if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
+		{
+			GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
+			Application::getInstance()->getGameWorldManager()->setGameOver(true);
+			Application::getInstance()->getGameWorldManager()->setGameBeaten(true);
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
+		{	
+			GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
+			Application::getInstance()->getGameWorldManager()->setGameOver(true);
+			Application::getInstance()->getGameWorldManager()->setGameBeaten(true);
+		}
 		/**
 		* If it is an item:
 		* - Set it as disabled
 		* - Hide it (Render Component)
 		* - Destroy Physics Component
 		*/
-
-		if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
 		{
 			GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
 			tmpObject->getRenderComponentEntity()->setVisible(false);
