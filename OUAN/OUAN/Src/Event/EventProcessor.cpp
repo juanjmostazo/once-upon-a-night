@@ -87,9 +87,6 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
-	//WHEN ENTERING A WIN ZONE
-	//
-
 	switch (evt->getCollisionType())
 	{
 	case COLLISION_TYPE_TRIGGER_ENTER: 
