@@ -12,12 +12,16 @@
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Game/GameObject/GameObjectEye.h"
-#include "../Game/GameObject/GameObjectItem1UP.h"
-#include "../Game/GameObject/GameObjectItemMaxHP.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Game/GameObject/GameObjectCamera.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
+#include "../Game/GameObject/GameObjectItem1UP.h"
+#include "../Game/GameObject/GameObjectItemMaxHP.h"
+#include "../Game/GameObject/GameObjectHeart.h"
+#include "../Game/GameObject/GameObjectDiamond.h"
+#include "../Game/GameObject/GameObjectClockPiece.h"
+#include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Event/Event.h"
 #include "PhysicsComponent/PhysicsComponent.h"
@@ -455,6 +459,42 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0)
 		{
 			GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_HEART) == 0)
+		{
+			GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0)
+		{
+			GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0)
+		{
+			GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0)
+		{
+			GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(container[i]);
 			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
 			{
 				object= tmpObject;
