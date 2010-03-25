@@ -312,13 +312,13 @@ namespace OUAN
 		class TGameObjectPillowParameters;
 		typedef boost::shared_ptr<GameObjectPillow> GameObjectPillowPtr;
 
-		class GameObjectFlashlight;
-		class TGameObjectFlashlightParameters;
-		typedef boost::shared_ptr<GameObjectFlashlight> GameObjectFlashlightPtr;
+		class GameObjectFlashLight;
+		class TGameObjectFlashLightParameters;
+		typedef boost::shared_ptr<GameObjectFlashLight> GameObjectFlashLightPtr;
 
-		class GameObjectTententieso;
-		class TGameObjectTententiesoParameters;
-		typedef boost::shared_ptr<GameObjectTententieso> GameObjectTententiesoPtr;
+		class GameObjectTentetieso;
+		class TGameObjectTentetiesoParameters;
+		typedef boost::shared_ptr<GameObjectTentetieso> GameObjectTentetiesoPtr;
 
 		class GameObjectBee_Butterfly;
 		class TGameObjectBee_ButterflyParameters;
@@ -380,6 +380,10 @@ namespace OUAN
 		class TGameObjectBushParameters;
 		typedef boost::shared_ptr<GameObjectBush> GameObjectBushPtr;
 
+		class GameObjectTree;
+		class TGameObjectTreeParameters;
+		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -401,8 +405,8 @@ namespace OUAN
 		typedef std::vector<GameObjectDragonPtr> TGameObjectDragonContainer;
 		typedef std::vector<GameObjectMagicClockPtr> TGameObjectMagicClockContainer;
 		typedef std::vector<GameObjectPillowPtr> TGameObjectPillowContainer;
-		typedef std::vector<GameObjectFlashlightPtr> TGameObjectFlashlightContainer;
-		typedef std::vector<GameObjectTententiesoPtr> TGameObjectTententiesoContainer;
+		typedef std::vector<GameObjectFlashLightPtr> TGameObjectFlashLightContainer;
+		typedef std::vector<GameObjectTentetiesoPtr> TGameObjectTentetiesoContainer;
 		typedef std::vector<GameObjectBee_ButterflyPtr> TGameObjectBee_ButterflyContainer;
 		typedef std::vector<GameObjectDiamondTreePtr> TGameObjectDiamondTreeContainer;
 		typedef std::vector<GameObjectStoryBookPtr> TGameObjectStoryBookContainer;
@@ -441,7 +445,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TENTETIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
 		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamondtree";
-		const std::string GAME_OBJECT_TYPE_STORYBOOK="storybook";
+		const std::string GAME_OBJECT_TYPE_STORYBOOK="StoryBook";
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
 		const std::string GAME_OBJECT_TYPE_SCAREDPLANT="scaredplant";
@@ -452,6 +456,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";
 		const std::string GAME_OBJECT_TYPE_CARNIVOROUSPLANT="carnivorousplant";
 		const std::string GAME_OBJECT_TYPE_SCEPTER="scepter";
+		const std::string GAME_OBJECT_TYPE_TREE="tree";
 		const std::string GAME_OBJECT_TYPE_TREE1="tree1";
 		const std::string GAME_OBJECT_TYPE_TREE2="tree2";
 		const std::string GAME_OBJECT_TYPE_TREE3="tree3";

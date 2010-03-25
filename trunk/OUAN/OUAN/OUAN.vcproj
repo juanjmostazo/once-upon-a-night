@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -557,35 +557,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree1.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree2.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree3.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree4.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree5.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree6.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree7.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree8.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTree.cpp"
 						>
 					</File>
 					<File
@@ -1067,35 +1039,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree1.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree2.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree3.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree4.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree5.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree6.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree7.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTree8.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTree.h"
 						>
 					</File>
 					<File

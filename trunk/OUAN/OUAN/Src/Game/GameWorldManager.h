@@ -70,23 +70,45 @@ namespace OUAN
 		/// Create a game object using the given 'parameters' object
 		/// @param objectParams parameters to init the game object and its components
 
-		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
-		void createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters);
-		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
-		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
-		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
+		void createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters);
 		void createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters);
-		void createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters);
-		void createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters);
-		void createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters);		
-		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
-		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
-		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
-		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
+		void createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters);
 		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
+		void createGameObjectCarnivorousPlant(TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters);
+		void createGameObjectClockPiece(TGameObjectClockPieceParameters tGameObjectClockPieceParameters);
+		void createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters);
+		void createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters);
+		void createGameObjectDiamondTree(TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters);
+		void createGameObjectDoor(TGameObjectDoorParameters tGameObjectDoorParameters);
+		void createGameObjectDragon(TGameObjectDragonParameters tGameObjectDragonParameters);
+		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
+		void createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters);
+		void createGameObjectHeart(TGameObjectHeartParameters tGameObjectHeartParameters);
+		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
+		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
+		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
+		void createGameObjectMagicClock(TGameObjectMagicClockParameters tGameObjectMagicClockParameters);
+		void createGameObjectNightGoblin(TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters);
+		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
+		void createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters);
+		void createGameObjectPillow(TGameObjectPillowParameters tGameObjectPillowParameters);
+		void createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters);
+		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
+		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
+		void createGameObjectScaredPlant(TGameObjectScaredPlantParameters tGameObjectScaredPlantParameters);
+		void createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters);
+		void createGameObjectScepter(TGameObjectScepterParameters tGameObjectScepterParameters);
+		void createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters);
+		void createGameObjectStoryBook(TGameObjectStoryBookParameters tGameObjectStoryBookParameters);
+		void createGameObjectTentetieso(TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters);
+		void createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters);	
+		void createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters);
+		void createGameObjectTree(TGameObjectTreeParameters tGameObjectTreeParameters);
 		void createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters);
 		void createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters);
-		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
+		void createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters);
+		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
+		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
 
 		//trajectory Creator
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
@@ -149,27 +171,46 @@ namespace OUAN
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
-		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
-		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
-		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
-		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
-		void addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex);
-		void addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle);
-		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
-		void addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem);
+		void addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly);
 		void addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet);
+		void addGameObjectBush(GameObjectBushPtr gameObjectBush);
+		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
+		void addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr pGameObjectCarnivorousPlant);
+		void addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece);
+		void addGameObjectCryKing(GameObjectCryKingPtr pGameObjectCryKing);
+		void addGameObjectDiamond(GameObjectDiamondPtr pGameObjectDiamond);
+		void addGameObjectDiamondTree(GameObjectDiamondTreePtr pGameObjectDiamondTree);
+		void addGameObjectDoor(GameObjectDoorPtr pGameObjectDoor);
+		void addGameObjectDragon(GameObjectDragonPtr pGameObjectDragon);
+		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
+		void addGameObjectFlashLight(GameObjectFlashLightPtr pGameObjectFlashLight);
+		void addGameObjectHeart(GameObjectHeartPtr pGameObjectHeart);
 		void addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP);
 		void addGameObjectItemMaxHP(GameObjectItemMaxHPPtr pGameObjectItemMaxHP);
+		void addGameObjectLight(GameObjectLightPtr pGameObjectLight);
+		void addGameObjectMagicClock(GameObjectMagicClockPtr pGameObjectMagicClock);
+		void addGameObjectNightGoblin(GameObjectNightGoblinPtr pGameObjectNightGoblin);
+		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
+		void addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem);
+		void addGameObjectPillow(GameObjectPillowPtr pGameObjectPillow);
+		void addGameObjectPlataform(GameObjectPlataformPtr pGameObjectPlataform);
 		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
-		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
-		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
+		void addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity);
+		void addGameObjectScaredPlant(GameObjectScaredPlantPtr pGameObjectScaredPlant);
+		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
+		void addGameObjectScepter(GameObjectScepterPtr pGameObjectScepter);
+		void addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper);
+		void addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook);
+		void addGameObjectTentetieso(GameObjectTentetiesoPtr pGameObjectTentetieso);
+		void addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex);
+		void addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle);
+		void addGameObjectTree(GameObjectTreePtr pGameObjectTree);
 		void addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox);
 		void addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule);
-		void addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity);
+		void addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito);
+		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
+		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 
-
-		//void addGameObjectMovableEntity(GameObjectMovableEntityPtr gameObjectMovableEntity);
-		//[TODO]: Do the same with the toAdd/toDelete lists?
 
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
