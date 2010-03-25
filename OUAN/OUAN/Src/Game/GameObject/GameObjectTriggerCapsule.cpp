@@ -56,6 +56,8 @@ void GameObjectTriggerCapsule::changeVisibility()
 
 void GameObjectTriggerCapsule::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	mRenderComponentEntity->setVisible(false);
 
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())

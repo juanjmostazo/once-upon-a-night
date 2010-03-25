@@ -56,6 +56,8 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox()
 
 void GameObjectPortal::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());

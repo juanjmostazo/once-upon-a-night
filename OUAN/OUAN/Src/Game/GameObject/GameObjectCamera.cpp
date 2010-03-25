@@ -26,6 +26,8 @@ void GameObjectCamera::setRenderComponentCamera(RenderComponentCameraPtr pRender
 
 void GameObjectCamera::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

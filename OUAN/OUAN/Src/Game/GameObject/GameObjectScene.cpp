@@ -26,6 +26,8 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 
 void GameObjectScene::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	mRenderComponentScene->changeWorld(world);
 }
 //-------------------------------------------------------------------------------------------

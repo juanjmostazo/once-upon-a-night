@@ -35,6 +35,8 @@ RenderComponentPositionalPtr GameObjectBillboardSet::getRenderComponentPositiona
 
 void GameObjectBillboardSet::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+	
 	switch(world)
 	{
 	case DREAMS:
@@ -44,7 +46,6 @@ void GameObjectBillboardSet::changeWorld(int world)
 	default:
 		break;
 	}
-
 }
 
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()

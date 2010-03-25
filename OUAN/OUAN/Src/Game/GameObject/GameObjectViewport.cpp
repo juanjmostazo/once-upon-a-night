@@ -26,6 +26,8 @@ RenderComponentViewportPtr GameObjectViewport::getRenderComponentViewport() cons
 
 void GameObjectViewport::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

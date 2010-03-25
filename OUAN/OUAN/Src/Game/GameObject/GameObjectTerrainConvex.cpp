@@ -57,6 +57,8 @@ PhysicsComponentComplexConvexPtr GameObjectTerrainConvex::getPhysicsComponentCom
 
 void GameObjectTerrainConvex::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

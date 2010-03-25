@@ -6,6 +6,7 @@ GameObject::GameObject(const std::string& name,const std::string& type)
 {
 	mName=name;
 	mType=type;
+	mEnabled=true;
 }
 
 GameObject::~GameObject()
@@ -36,6 +37,17 @@ const std::string& GameObject::getName() const
 const std::string& GameObject::getType() const
 {
 	return mType;
+}
+
+void GameObject::disable()
+{
+	Ogre::LogManager::getSingleton().logMessage("Disabling Game Object '" + mName + "'");
+	mEnabled = false;
+}
+
+bool GameObject::isEnabled()
+{
+	return mEnabled;
 }
 
 GameWorldManagerPtr GameObject::getGameWorldManager()

@@ -443,6 +443,25 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 				found = true;
 			}
 		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0)
+		{
+			GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0)
+		{
+			GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(container[i]);
+			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		//TODO else if block, same with rest of object which contains a volume
 	}	
 	
 	return object;

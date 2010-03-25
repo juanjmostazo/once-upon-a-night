@@ -72,6 +72,8 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 void GameObjectTripollo::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->create();

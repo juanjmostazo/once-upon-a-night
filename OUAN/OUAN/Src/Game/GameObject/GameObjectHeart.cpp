@@ -34,16 +34,15 @@ RenderComponentPositionalPtr GameObjectHeart::getRenderComponentPositional() con
 	return mRenderComponentPositional;
 }
 
-void GameObjectHeart::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectHeart::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
-	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
+	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectHeart::getPhysicsComponentSimpleCapsule()
+PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox()
 {
-	return mPhysicsComponentSimpleCapsule;
+	return mPhysicsComponentVolumeBox;
 }
-
 
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {

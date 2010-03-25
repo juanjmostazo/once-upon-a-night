@@ -62,6 +62,8 @@ void GameObjectEye::update(double elapsedSeconds)
 
 void GameObjectEye::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

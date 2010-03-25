@@ -56,6 +56,8 @@ PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSim
 
 void GameObjectProvisionalEntity::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 
