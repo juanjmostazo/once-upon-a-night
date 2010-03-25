@@ -336,9 +336,9 @@ namespace OUAN
 		class TGameObjectDiamondTreeParameters;
 		typedef boost::shared_ptr<GameObjectDiamondTree> GameObjectDiamondTreePtr;
 
-		class GameObjectStorybook;
-		class TGameObjectStorybookParameters;
-		typedef boost::shared_ptr<GameObjectStorybook> GameObjectStorybookPtr;
+		class GameObjectStoryBook;
+		class TGameObjectStoryBookParameters;
+		typedef boost::shared_ptr<GameObjectStoryBook> GameObjectStoryBookPtr;
 
 		class GameObjectHeart;
 		class TGameObjectHeartParameters;
@@ -405,7 +405,7 @@ namespace OUAN
 		typedef std::vector<GameObjectTententiesoPtr> TGameObjectTententiesoContainer;
 		typedef std::vector<GameObjectBee_ButterflyPtr> TGameObjectBee_ButterflyContainer;
 		typedef std::vector<GameObjectDiamondTreePtr> TGameObjectDiamondTreeContainer;
-		typedef std::vector<GameObjectStorybookPtr> TGameObjectStorybookContainer;
+		typedef std::vector<GameObjectStoryBookPtr> TGameObjectStoryBookContainer;
 		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
 		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
 		typedef std::vector<GameObjectScaredPlantPtr> TGameObjectScaredPlantContainer;

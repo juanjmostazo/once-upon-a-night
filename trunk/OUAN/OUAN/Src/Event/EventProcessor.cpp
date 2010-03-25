@@ -1,8 +1,14 @@
 #include "EventProcessor.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
+#include "../Game/GameObject/GameObjectTriggerBox.h"
+#include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectItem1UP.h"
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
+#include "../Game/GameObject/GameObjectHeart.h"
+#include "../Game/GameObject/GameObjectDiamond.h"
+#include "../Game/GameObject/GameObjectClockPiece.h"
+#include "../Game/GameObject/GameObjectStoryBook.h"
 
 using namespace OUAN;
 
@@ -102,7 +108,7 @@ void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 			tmpObject->getPhysicsComponentVolumeBox()->destroy();
 			tmpObject->disable();
 
-			//TODO Add 1 life logic
+			//TODO Add logic
 		}
 		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
 		{
@@ -111,7 +117,43 @@ void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 			tmpObject->getPhysicsComponentVolumeBox()->destroy();
 			tmpObject->disable();
 
-			//TODO Add max hp logic
+			//TODO Add logic
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
+		{
+			GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add logic
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
+		{
+			GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add logic
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
+		{
+			GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add logic
+		}
+		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
+		{
+			GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
+			tmpObject->getRenderComponentEntity()->setVisible(false);
+			tmpObject->getPhysicsComponentVolumeBox()->destroy();
+			tmpObject->disable();
+
+			//TODO Add logic
 		}
 		//TODO else if block, same with rest of game object items
 
