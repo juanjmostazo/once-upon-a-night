@@ -34,23 +34,23 @@ RenderComponentPositionalPtr GameObjectTree::getRenderComponentPositional() cons
 	return mRenderComponentPositional;
 }
 
-void GameObjectTree::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectTree::getPhysicsComponentSimpleCapsule()
+PhysicsComponentSimpleBoxPtr GameObjectTree::getPhysicsComponentSimpleBox()
 {
-	return mPhysicsComponentSimpleCapsule;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectTree::changeWorld(int world)
 {
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
-		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+		if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 		{
-			mPhysicsComponentSimpleCapsule->create();
+			mPhysicsComponentSimpleBox->create();
 		}
 		return;
 	}
@@ -62,17 +62,17 @@ void GameObjectTree::changeWorld(int world)
 			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mPhysicsComponentSimpleBox->create();
 				}
 			}
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
+					mPhysicsComponentSimpleBox->destroy();
 				}
 			}		
 			break;
@@ -80,17 +80,17 @@ void GameObjectTree::changeWorld(int world)
 			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mPhysicsComponentSimpleBox->create();
 				}
 			}
 			else
 			{
 				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
+					mPhysicsComponentSimpleBox->destroy();
 				}
 			}
 			break;
