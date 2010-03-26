@@ -74,21 +74,70 @@ void GameObjectTripollo::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
-		mPhysicsComponentCharacter->create();
+		switch(world)
+		{
+		case DREAMS:
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+			break;
+		}
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
+		return;
 	}
-	switch(world)
+	else
 	{
-	case DREAMS:
-		mRenderComponentEntityDreams->setVisible(true);
-		mRenderComponentEntityNightmares->setVisible(false);
-		break;
-	case NIGHTMARES:
-		mRenderComponentEntityDreams->setVisible(false);
-		mRenderComponentEntityNightmares->setVisible(true);
-		break;
-	default:break;
+		switch(world)
+		{
+		case DREAMS:
+			
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->create();
+				}
+			}
+			else
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->destroy();
+				}
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
 int GameObjectTripollo::getNumLives() const

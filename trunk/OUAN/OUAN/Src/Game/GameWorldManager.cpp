@@ -729,7 +729,7 @@ void GameWorldManager::createGameObjectBee_Butterfly(TGameObjectBee_ButterflyPar
 				pGameObjectBee_Butterfly->getRenderComponentPositional()));
 		}
 
-
+	pGameObjectBee_Butterfly->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectBee_Butterfly->setGameWorldManager(mThis);
@@ -813,6 +813,8 @@ void GameWorldManager::createGameObjectBush(TGameObjectBushParameters tGameObjec
 			tGameObjectBushParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectBush->getRenderComponentPositional()));
 
+	pGameObjectBush->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectBush->setGameWorldManager(mThis);
 
@@ -886,6 +888,8 @@ void GameWorldManager::createGameObjectCarnivorousPlant(TGameObjectCarnivorousPl
 			tGameObjectCarnivorousPlantParameters.tPhysicsComponentCharacterParameters, 
 			pGameObjectCarnivorousPlant->getRenderComponentPositional()));
 
+	pGameObjectCarnivorousPlant->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectCarnivorousPlant->setGameWorldManager(mThis);
 
@@ -925,6 +929,7 @@ void GameWorldManager::createGameObjectClockPiece(TGameObjectClockPieceParameter
 				tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters, 
 				pGameObjectClockPiece->getRenderComponentPositional()));
 
+	pGameObjectClockPiece->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectClockPiece->setGameWorldManager(mThis);
@@ -975,6 +980,8 @@ void GameWorldManager::createGameObjectCryKing(TGameObjectCryKingParameters tGam
 			tGameObjectCryKingParameters.tPhysicsComponentCharacterParameters, 
 			pGameObjectCryKing->getRenderComponentPositional()));
 
+	pGameObjectCryKing->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectCryKing->setGameWorldManager(mThis);
 
@@ -1013,6 +1020,8 @@ void GameWorldManager::createGameObjectDiamond(TGameObjectDiamondParameters tGam
 				pGameObjectDiamond, 
 				tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters, 
 				pGameObjectDiamond->getRenderComponentPositional()));
+
+	pGameObjectDiamond->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectDiamond->setGameWorldManager(mThis);
@@ -1063,6 +1072,8 @@ void GameWorldManager::createGameObjectDiamondTree(TGameObjectDiamondTreeParamet
 			tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectDiamondTree->getRenderComponentPositional()));
 
+	pGameObjectDiamondTree->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(mThis);
 
@@ -1112,6 +1123,8 @@ void GameWorldManager::createGameObjectDoor(TGameObjectDoorParameters tGameObjec
 			tGameObjectDoorParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectDoor->getRenderComponentPositional()));
 
+	pGameObjectDoor->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectDoor->setGameWorldManager(mThis);
 
@@ -1154,6 +1167,8 @@ void GameWorldManager::createGameObjectDragon(TGameObjectDragonParameters tGameO
 			pGameObjectDragon,
 			tGameObjectDragonParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectDragon->getRenderComponentPositional()));
+
+	pGameObjectDragon->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectDragon->setGameWorldManager(mThis);
@@ -1235,11 +1250,54 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 			tGameObjectFlashLightParameters.tPhysicsComponentSimpleCapsuleParameters, 
 			pGameObjectFlashLight->getRenderComponentPositional()));
 
+	pGameObjectFlashLight->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
 	addGameObjectFlashLight(pGameObjectFlashLight);
+}
+
+void GameWorldManager::createGameObjectHeart(TGameObjectHeartParameters tGameObjectHeartParameters)
+{
+	GameObjectHeartPtr pGameObjectHeart;
+
+	//Create GameObject
+	pGameObjectHeart = GameObjectHeartPtr(new GameObjectHeart(tGameObjectHeartParameters.name));
+	
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+		//Create LogicComponentWorldExistance
+		pGameObjectHeart->setLogicComponent(
+			factory->createLogicComponent(
+			pGameObjectHeart,
+			tGameObjectHeartParameters.logicComponentParameters));
+
+		//Create RenderComponentPositional
+		pGameObjectHeart->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentEntity
+		pGameObjectHeart->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectHeartParameters.name,
+			pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentEntityParameters));
+	
+		//Create PhysicsComponent
+		pGameObjectHeart->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
+				pGameObjectHeart, 
+				tGameObjectHeartParameters.tPhysicsComponentVolumeBoxParameters, 
+				pGameObjectHeart->getRenderComponentPositional()));
+
+	pGameObjectHeart->changeWorld(world);
+	
+	// Add a reference to this
+	pGameObjectHeart->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectHeart(pGameObjectHeart);
 }
 
 void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters)
@@ -1379,6 +1437,8 @@ void GameWorldManager::createGameObjectMagicClock(TGameObjectMagicClockParameter
 			pGameObjectMagicClock,
 			tGameObjectMagicClockParameters.logicComponentParameters));
 
+	pGameObjectMagicClock->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectMagicClock->setGameWorldManager(mThis);
 
@@ -1421,6 +1481,8 @@ void GameWorldManager::createGameObjectNightGoblin(TGameObjectNightGoblinParamet
 			pGameObjectNightGoblin,
 			tGameObjectNightGoblinParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectNightGoblin->getRenderComponentPositional()));
+
+	pGameObjectNightGoblin->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectNightGoblin->setGameWorldManager(mThis);
@@ -1542,6 +1604,8 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 			tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
 			pGameObjectPillow->getRenderComponentPositional()));
 
+	pGameObjectPillow->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectPillow->setGameWorldManager(mThis);
 
@@ -1588,6 +1652,9 @@ void GameWorldManager::createGameObjectPlataform(TGameObjectPlataformParameters 
 			pGameObjectPlataform,
 			tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters,
 			pGameObjectPlataform->getRenderComponentPositional()));
+
+	pGameObjectPlataform->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectPlataform->setGameWorldManager(mThis);
 
@@ -1725,6 +1792,8 @@ void GameWorldManager::createGameObjectScaredPlant(TGameObjectScaredPlantParamet
 			tGameObjectScaredPlantParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectScaredPlant->getRenderComponentPositional()));
 
+	pGameObjectScaredPlant->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectScaredPlant->setGameWorldManager(mThis);
 
@@ -1789,6 +1858,8 @@ void GameWorldManager::createGameObjectScepter(TGameObjectScepterParameters tGam
 			tGameObjectScepterParameters.tPhysicsComponentSimpleCapsuleParameters, 
 			pGameObjectScepter->getRenderComponentPositional()));
 
+	pGameObjectScepter->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectScepter->setGameWorldManager(mThis);
 
@@ -1838,6 +1909,8 @@ void GameWorldManager::createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParam
 			tGameObjectSnakeCreeperParameters.tPhysicsComponentCharacterParameters, 
 			pGameObjectSnakeCreeper->getRenderComponentPositional()));
 
+	pGameObjectSnakeCreeper->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectSnakeCreeper->setGameWorldManager(mThis);
 
@@ -1883,6 +1956,7 @@ void GameWorldManager::createGameObjectStoryBook(TGameObjectStoryBookParameters 
 			pGameObjectStoryBook,
 			tGameObjectStoryBookParameters.logicComponentParameters));
 
+	pGameObjectStoryBook->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectStoryBook->setGameWorldManager(mThis);
@@ -1926,6 +2000,8 @@ void GameWorldManager::createGameObjectTentetieso(TGameObjectTentetiesoParameter
 			pGameObjectTentetieso,
 			tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTentetieso->getRenderComponentPositional()));
+
+	pGameObjectTentetieso->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectTentetieso->setGameWorldManager(mThis);
@@ -2058,6 +2134,8 @@ void GameWorldManager::createGameObjectTree(TGameObjectTreeParameters tGameObjec
 			tGameObjectTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectTree->getRenderComponentPositional()));
 
+	pGameObjectTree->changeWorld(world);
+
 	//Add reference to this
 	pGameObjectTree->setGameWorldManager(mThis);
 
@@ -2185,6 +2263,8 @@ void GameWorldManager::createGameObjectTripollito(TGameObjectTripollitoParameter
 			pGameObjectTripollito,
 			tGameObjectTripollitoParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTripollito->getRenderComponentPositional()));
+
+	pGameObjectTripollito->changeWorld(world);
 
 	//Add reference to this
 	pGameObjectTripollito->setGameWorldManager(mThis);
