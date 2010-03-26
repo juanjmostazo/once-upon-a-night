@@ -34,24 +34,47 @@ namespace OUAN
 		double DEFAULT_TIME_TO_NEXT_NODE;
 
 		//Game Object Processors
+		void processGameObjectBee_Butterfly(XMLGameObject* gameObject);
+		void processGameObjectBillboardSet(XMLGameObject* gameObject);
+		void processGameObjectBush(XMLGameObject* gameObject);
+		void processGameObjectCamera(XMLGameObject* gameObject);
+		void processGameObjectCarnivorousPlant(XMLGameObject* gameObject);
+		void processGameObjectClockPiece(XMLGameObject* gameObject);
+		void processGameObjectCryKing(XMLGameObject* gameObject);
+		void processGameObjectDiamond(XMLGameObject* gameObject);
+		void processGameObjectDiamondTree(XMLGameObject* gameObject);
+		void processGameObjectDoor(XMLGameObject* gameObject);
+		void processGameObjectDragon(XMLGameObject* gameObject);
+		void processGameObjectEye(XMLGameObject* gameObject);
+		void processGameObjectFlashLight(XMLGameObject* gameObject);
+		void processGameObjectHeart(XMLGameObject* gameObject);
+		void processGameObjectItem1UP(XMLGameObject* gameObject);
+		void processGameObjectItemMaxHP(XMLGameObject* gameObject);
+		void processGameObjectLight(XMLGameObject* gameObject);
+		void processGameObjectMagicClock(XMLGameObject* gameObject);
+		void processGameObjectNightGoblin(XMLGameObject* gameObject);
+		void processGameObjectOny(XMLGameObject *gameObject);
+		void processGameObjectParticleSystem(XMLGameObject* gameObject);
+		void processGameObjectPillow(XMLGameObject *gameObject);
+		void processGameObjectPlataform(XMLGameObject *gameObject);
+		void processGameObjectPortal(XMLGameObject *gameObject);
+		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
+		void processGameObjectScaredPlant(XMLGameObject* gameObject);
 		void processGameObjectScene(XMLGameObject* gameObject);
+		void processGameObjectScepter(XMLGameObject* gameObject);
+		void processGameObjectSnakeCreeper(XMLGameObject* gameObject);
+		void processGameObjectStoryBook(XMLGameObject* gameObject);
+		void processGameObjectTentetieso(XMLGameObject* gameObject);
+		void processGameObjectTerrain(XMLGameObject* gameObject);
+		void processGameObjectTree(XMLGameObject* gameObject);
+		void processGameObjectTriggerBox(XMLGameObject* gameObject);
+		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
+		void processGameObjectTripollito(XMLGameObject* gameObject);
+		void processGameObjectTripollo(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
 			//Special function to create a GameObjectCamera using Ogitor's viewport camera
 		void processGameObjectViewportCamera(XMLGameObject* gameObject);
-		void processGameObjectOny(XMLGameObject *gameObject);
-		void processGameObjectTripollo(XMLGameObject* gameObject);
-		void processGameObjectTerrain(XMLGameObject* gameObject);
-		void processGameObjectLight(XMLGameObject* gameObject);
-		void processGameObjectParticleSystem(XMLGameObject* gameObject);
-		void processGameObjectBillboardSet(XMLGameObject* gameObject);
-		void processGameObjectPortal(XMLGameObject* gameObject);
-		void processGameObjectItemMaxHP(XMLGameObject* gameObject);
-		void processGameObjectItem1UP(XMLGameObject* gameObject);
-		void processGameObjectEye(XMLGameObject* gameObject);
-		void processGameObjectCamera(XMLGameObject* gameObject);
-		void processGameObjectTriggerBox(XMLGameObject* gameObject);
-		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
-		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
+
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);

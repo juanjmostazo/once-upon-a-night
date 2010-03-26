@@ -7,23 +7,45 @@
 #include "../Graphics/TrajectoryManager/TrajectoryNode.h"
 #include "../Component/Component.h"
 #include "../Game/GameObject/GameObject.h"
-#include "../Game/GameObject/GameObjectLight.h"
+#include "../Game/GameObject/GameObjectBee_Butterfly.h"
 #include "../Game/GameObject/GameObjectBillboardSet.h"
-#include "../Game/GameObject/GameObjectParticleSystem.h"
-#include "../Game/GameObject/GameObjectTerrainTriangle.h"
-#include "../Game/GameObject/GameObjectTerrainConvex.h"
-#include "../Game/GameObject/GameObjectScene.h"
-#include "../Game/GameObject/GameObjectOny.h"
-#include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectBush.h"
+#include "../Game/GameObject/GameObjectCamera.h"
+#include "../Game/GameObject/GameObjectCarnivorousPlant.h"
+#include "../Game/GameObject/GameObjectClockPiece.h"
+#include "../Game/GameObject/GameObjectCryKing.h"
+#include "../Game/GameObject/GameObjectDiamond.h"
+#include "../Game/GameObject/GameObjectDiamondTree.h"
+#include "../Game/GameObject/GameObjectDoor.h"
+#include "../Game/GameObject/GameObjectDragon.h"
+#include "../Game/GameObject/GameObjectEye.h"
+#include "../Game/GameObject/GameObjectFlashLight.h"
+#include "../Game/GameObject/GameObjectHeart.h"
 #include "../Game/GameObject/GameObjectItem1UP.h"
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
-#include "../Game/GameObject/GameObjectEye.h"
+#include "../Game/GameObject/GameObjectLight.h"
+#include "../Game/GameObject/GameObjectMagicClock.h"
+#include "../Game/GameObject/GameObjectNightGoblin.h"
+#include "../Game/GameObject/GameObjectOny.h"
+#include "../Game/GameObject/GameObjectParticleSystem.h"
+#include "../Game/GameObject/GameObjectPillow.h"
+#include "../Game/GameObject/GameObjectPlataform.h"
 #include "../Game/GameObject/GameObjectPortal.h"
-#include "../Game/GameObject/GameObjectCamera.h"
+#include "../Game/GameObject/GameObjectProvisionalEntity.h"
+#include "../Game/GameObject/GameObjectScaredPlant.h"
+#include "../Game/GameObject/GameObjectScene.h"
+#include "../Game/GameObject/GameObjectScepter.h"
+#include "../Game/GameObject/GameObjectSnakeCreeper.h"
+#include "../Game/GameObject/GameObjectStoryBook.h"
+#include "../Game/GameObject/GameObjectTenteTieso.h"
+#include "../Game/GameObject/GameObjectTerrainTriangle.h"
+#include "../Game/GameObject/GameObjectTerrainConvex.h"
+#include "../Game/GameObject/GameObjectTree.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
+#include "../Game/GameObject/GameObjectTripollito.h"
+#include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Game/GameObject/GameObjectViewport.h"
-#include "../Game/GameObject/GameObjectProvisionalEntity.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -163,47 +185,47 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_NIGHTGOBLIN)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectNightGoblin(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CRYKING)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectCryKing(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DRAGON)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectDragon(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_MAGICCLOCK)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectMagicClock(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PILLOW)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectPillow(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectFlashLight(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TENTETIESO)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTentetieso(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BEE_BUTTERFLY)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectBee_Butterfly(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectDiamondTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_STORYBOOK)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectStoryBook(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_HEART)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectHeart(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMOND)==0)
 		{
@@ -211,19 +233,19 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCAREDPLANT)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectScaredPlant(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectClockPiece(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLITO)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTripollito(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SNAKECREEPER)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectSnakeCreeper(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CARNIVOROUSPLANT)==0)
 		{
@@ -231,51 +253,51 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCEPTER)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectScepter(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE1)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE5)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE6)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE7)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectTree(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DOOR)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectDoor(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PLATAFORM)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectPlataform(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectBush(gameObject);
 		}
 		else
 		{
@@ -358,66 +380,147 @@ void LevelLoader::processTrajectory(XMLTrajectory *pXMLTrajectory)
 	mGameWorldManager->createTrajectory(tTrajectoryParameters);
 }
 
-void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
+	OUAN::TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters;
 
-	try
-	{
-		//Check errors
-		if(!gameObject->getMainXMLNode()) throw SCENE_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeCustomProperties) throw SCENE_NODE_NOT_FOUND;
-
-		//Get Scene name
-		tGameObjectSceneParameters.name = gameObject->name;
-
-		//Get SceneManager properties
-		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode(),gameObject->XMLNodeCustomProperties);
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
-}
-
-void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
 	try
 	{
 		//Check parsing errors
-		if(!gameObject->XMLNodeDreams) throw VIEWPORT_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
-		//Get name
-		tGameObjectViewportParameters.name = gameObject->name;
+		//Get names
+		tGameObjectBee_ButterflyParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectBee_ButterflyParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectBee_ButterflyParameters.name = gameObject->name;
+	
+		//Get Logic component
+		tGameObjectBee_ButterflyParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentViewport
-		tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(gameObject->getMainXMLNode());
+		//Get RenderComponentPositional
+		tGameObjectBee_ButterflyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		if(tGameObjectBee_ButterflyParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+			//Get PhysicsComponentCharacterDreams
+			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterDreamsParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Dreams");
+		}
+
+		if(tGameObjectBee_ButterflyParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			//Get PhysicsComponentCharacterNightmares
+			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterNightmaresParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Nightmares");
+		}
 	}
 	catch( std::string error )
 	{
 		throw error;
 		return;
 	}
+
 	//Create GameObject
-	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+	mGameWorldManager->createGameObjectBee_Butterfly(tGameObjectBee_ButterflyParameters);
 }
 
-void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectBillboardSetParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectBillboardSetParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectBillboardSetParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectBillboardSetParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentBillboardSet
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
+}
+
+void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectBushParameters tGameObjectBushParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectBushParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectBushParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectBushParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectBushParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectBushParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectBushParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectBushParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectBushParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectBushParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
+}
+
+void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
 
 	try
 	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
 		//Get names
-		tGameObjectCameraParameters.name = "Camera#Viewport";
+		tGameObjectCameraParameters.name = gameObject->name;
 
 		//Get RenderComponentCamera
-		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCameraViewport(gameObject->getMainXMLNode());
+		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -427,6 +530,591 @@ void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
 
 	//Create GameObject
 	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+}
+
+void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectCarnivorousPlantParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectCarnivorousPlantParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectCarnivorousPlantParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectCarnivorousPlantParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectCarnivorousPlantParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectCarnivorousPlantParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectCarnivorousPlantParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectCarnivorousPlantParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters);
+}
+
+void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectClockPieceParameters tGameObjectClockPieceParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectClockPieceParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectClockPieceParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectClockPieceParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectClockPieceParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectClockPiece(tGameObjectClockPieceParameters);
+}
+
+void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectCryKingParameters tGameObjectCryKingParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectCryKingParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectCryKingParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectCryKingParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectCryKingParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		//Get RenderComponentEntityNightmares
+		tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		tGameObjectCryKingParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+	
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectCryKing(tGameObjectCryKingParameters);
+}
+
+void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectDiamondParameters tGameObjectDiamondParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectDiamondParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectDiamondParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectDiamondParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectDiamondParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectDiamondParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectDiamond(tGameObjectDiamondParameters);
+}
+
+void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectDiamondTreeParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectDiamondTreeParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectDiamondTreeParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectDiamondTreeParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectDiamondTreeParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectDiamondTreeParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectDiamondTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectDiamondTree(tGameObjectDiamondTreeParameters);
+}
+
+void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectDoorParameters tGameObjectDoorParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectDoorParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectDoorParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectDoorParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectDoorParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		//Get RenderComponentEntityNightmares
+		tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectDoorParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectDoorParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectDoor(tGameObjectDoorParameters);
+}
+
+void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectDragonParameters tGameObjectDragonParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectDragonParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectDragonParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectDragonParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectDragonParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectDragonParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		//Get RenderComponentEntityNightmares
+		tGameObjectDragonParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectDragonParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		tGameObjectDragonParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+	
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectDragon(tGameObjectDragonParameters);
+}
+
+void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectEyeParameters tGameObjectEyeParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+		if(gameObject->XMLNodeDreams) throw DREAMS_SHOULD_NOT_EXIST;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectEyeParameters.dreamsName = "None";
+		tGameObjectEyeParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectEyeParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectEyeParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeNightmares);
+
+		//Get PhysicsComponentCharacter
+		tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
+}
+
+void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectFlashLightParameters tGameObjectFlashLightParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectFlashLightParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectFlashLightParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectFlashLightParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectFlashLightParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectFlashLightParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectFlashLightParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleCapsule
+		tGameObjectFlashLightParameters.tPhysicsComponentSimpleCapsuleParameters = processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectFlashLight(tGameObjectFlashLightParameters);
+}
+
+void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectHeartParameters tGameObjectHeartParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectHeartParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectHeartParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectHeartParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectHeartParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectHeartParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectHeart(tGameObjectHeartParameters);
+}
+
+void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectItem1UPParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectItem1UPParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectItem1UPParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectItem1UPParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
+}
+
+void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectItemMaxHPParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectItemMaxHPParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectItemMaxHPParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectItemMaxHPParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
+}
+
+void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectLightParameters  tGameObjectLightParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectLightParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectLightParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectLightParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectLightParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentLight
+		tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+}
+
+void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectMagicClockParameters tGameObjectMagicClockParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectMagicClockParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectMagicClockParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectMagicClockParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectMagicClockParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectMagicClock(tGameObjectMagicClockParameters);
+}
+
+void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectNightGoblinParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectNightGoblinParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectNightGoblinParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectNightGoblinParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectNightGoblinParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		//Get RenderComponentEntityNightmares
+		tGameObjectNightGoblinParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectNightGoblinParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		tGameObjectNightGoblinParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectNightGoblin(tGameObjectNightGoblinParameters);
 }
 
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
@@ -469,6 +1157,175 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 	//Create GameObject
 	mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 
+}
+
+void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectParticleSystemParameters  tGameObjectParticleSystemParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectParticleSystemParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectParticleSystemParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectParticleSystemParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectParticleSystemParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentParticleSystem
+		tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
+}
+
+void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectPillowParameters tGameObjectPillowParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectPillowParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectPillowParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectPillowParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectPillowParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectPillowParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectPillowParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleCapsule
+		tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters = processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectPillow(tGameObjectPillowParameters);
+}
+
+void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectPlataformParameters tGameObjectPlataformParameters;
+	std::string meshfile;
+
+	try
+	{
+
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		if(gameObject->XMLNodeDreams)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeDreams, "meshfile");			
+		}
+		else if(gameObject->XMLNodeNightmares)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeNightmares, "meshfile");
+		}
+
+		std::string complexConvex="CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
+
+		//Get names
+		tGameObjectPlataformParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectPlataformParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectPlataformParameters.name = gameObject->name;
+
+		//Get PhysicsComponentComplexConvex
+		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
+			complexConvex);
+
+		tGameObjectPlataformParameters.logicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		tGameObjectPlataformParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+		if(tGameObjectPlataformParameters.logicComponentParameters.existsInDreams)
+		{
+			tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		
+		if(tGameObjectPlataformParameters.logicComponentParameters.existsInNightmares)
+		{
+			tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectPlataform(tGameObjectPlataformParameters);
+}
+
+void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectPortalParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectPortalParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectPortalParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectPortalParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+
+		//Get RenderComponentEntityNightmares
+		tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+		//Get PhysicsComponentSimpleBox
+		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
 }
 
 void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
@@ -517,10 +1374,197 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters);
 }
 
-
-void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
+	OUAN::TGameObjectScaredPlantParameters tGameObjectScaredPlantParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(gameObject->XMLNodeNightmares) throw NIGHTMARES_SHOULD_NOT_EXIST;
+
+		//Get names
+		tGameObjectScaredPlantParameters.dreamsName = "None";
+		tGameObjectScaredPlantParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectScaredPlantParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectScaredPlantParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+
+		//Get RenderComponentPositional
+		tGameObjectScaredPlantParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+
+		//Get PhysicsComponentCharacter
+		tGameObjectScaredPlantParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectScaredPlant(tGameObjectScaredPlantParameters);
+}
+
+void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
+
+	try
+	{
+		//Check errors
+		if(!gameObject->getMainXMLNode()) throw SCENE_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw SCENE_NODE_NOT_FOUND;
+
+		//Get Scene name
+		tGameObjectSceneParameters.name = gameObject->name;
+
+		//Get SceneManager properties
+		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode(),gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
+}
+
+void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectScepterParameters tGameObjectScepterParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectScepterParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectScepterParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectScepterParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectScepterParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectScepterParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectScepterParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleCapsule
+		tGameObjectScepterParameters.tPhysicsComponentSimpleCapsuleParameters = processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectScepter(tGameObjectScepterParameters);
+}
+
+void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectSnakeCreeperParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectSnakeCreeperParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectSnakeCreeperParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectSnakeCreeperParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectSnakeCreeperParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectSnakeCreeperParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectSnakeCreeperParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectSnakeCreeperParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectSnakeCreeperParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectSnakeCreeperParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters);
+}
+
+void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectStoryBookParameters tGameObjectStoryBookParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectStoryBookParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectStoryBookParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectStoryBookParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectStoryBookParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectStoryBookParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectStoryBook(tGameObjectStoryBookParameters);
+}
+
+void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters;
 
 	try
 	{
@@ -530,25 +1574,25 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectTripolloParameters.name = gameObject->name;
+		tGameObjectTentetiesoParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTentetiesoParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTentetiesoParameters.name = gameObject->name;
 
-		//Get Logic component
-		tGameObjectTripolloParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		//Get logic component
+		tGameObjectTentetiesoParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
-		
+		tGameObjectTentetiesoParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
 		//Get RenderComponentEntityNightmares
-		tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
 
 		//Get RenderComponentPositional
-		tGameObjectTripolloParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectTentetiesoParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
-		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{
@@ -557,7 +1601,7 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
+	mGameWorldManager->createGameObjectTentetieso(tGameObjectTentetiesoParameters);
 }
 
 void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
@@ -674,9 +1718,9 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 	}
 }
 
-void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
+	OUAN::TGameObjectTreeParameters tGameObjectTreeParameters;
 
 	try
 	{
@@ -684,266 +1728,23 @@ void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectCameraParameters.name = gameObject->name;
-
-		//Get RenderComponentCamera
-		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
-}
-
-void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectLightParameters  tGameObjectLightParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectLightParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectLightParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectLightParameters.name = gameObject->name;
+		tGameObjectTreeParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTreeParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTreeParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectLightParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentLight
-		tGameObjectLightParameters.tRenderComponentLightParameters=processRenderComponentLight(gameObject->getMainXMLNode());
-
-		//Get RenderComponentPositional
-		tGameObjectLightParameters.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
-}
-
-void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectParticleSystemParameters  tGameObjectParticleSystemParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectParticleSystemParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectParticleSystemParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectParticleSystemParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectParticleSystemParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentParticleSystem
-		tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters=processRenderComponentParticleSystem(gameObject->getMainXMLNode());
-
-		//Get RenderComponentPositional
-		tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
-}
-void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectBillboardSetParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectBillboardSetParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectBillboardSetParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectBillboardSetParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentBillboardSet
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(gameObject->getMainXMLNode());
-
-		//Get RenderComponentPositional
-		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
-}
-
-void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectEyeParameters tGameObjectEyeParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-		if(gameObject->XMLNodeDreams) throw DREAMS_SHOULD_NOT_EXIST;
-		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectEyeParameters.dreamsName = "None";
-		tGameObjectEyeParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectEyeParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectEyeParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectTreeParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectTreeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
-		tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeNightmares);
+		tGameObjectTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentCharacter
-		tGameObjectEyeParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
-}
-
-void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectItem1UPParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectItem1UPParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectItem1UPParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectItem1UPParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntity
-		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
-
-		//Get RenderComponentPositional
-		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//Get PhysicsComponentVolumeBox
-		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
-
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
-}
-
-void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectItemMaxHPParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectItemMaxHPParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectItemMaxHPParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectItemMaxHPParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntity
-		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
-
-		//Get RenderComponentPositional
-		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//Get PhysicsComponentVolumeBox
-		tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	mGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
-}
-
-void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectPortalParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectPortalParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectPortalParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectPortalParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntityDreams
-		tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
-
-		//Get RenderComponentEntityNightmares
-		tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
-
-		//Get RenderComponentPositional
-		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-		
 		//Get PhysicsComponentSimpleBox
-		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		tGameObjectTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{
@@ -952,7 +1753,7 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
+	mGameWorldManager->createGameObjectTree(tGameObjectTreeParameters);
 }
 
 void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
@@ -1025,20 +1826,139 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters);
 }
 
-TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
+void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 {
-	OUAN::TRenderComponentViewportParameters tRenderComponentViewportParameters;
+	OUAN::TGameObjectTripollitoParameters tGameObjectTripollitoParameters;
 
-	//Get Viewport properties
-	tRenderComponentViewportParameters.colour = getPropertyColourValue(XMLNode,"colour");
-	tRenderComponentViewportParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
-	tRenderComponentViewportParameters.index = getPropertyInt(XMLNode,"index");
-	tRenderComponentViewportParameters.overlays = getPropertyBool(XMLNode,"overlays");
-	tRenderComponentViewportParameters.shadows = getPropertyBool(XMLNode,"shadows");
-	tRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
-	return tRenderComponentViewportParameters;
-	
+		//Get names
+		tGameObjectTripollitoParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTripollitoParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTripollitoParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectTripollitoParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectTripollitoParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectTripollitoParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectTripollitoParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectTripollitoParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectTripollitoParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		tGameObjectTripollitoParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectTripollito(tGameObjectTripollitoParameters);
+}
+
+void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTripolloParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectTripolloParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectTripolloParameters.logicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		}
+		if(tGameObjectTripolloParameters.logicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
+}
+
+
+void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeDreams) throw VIEWPORT_NODE_NOT_FOUND;
+
+		//Get name
+		tGameObjectViewportParameters.name = gameObject->name;
+
+		//Get RenderComponentViewport
+		tGameObjectViewportParameters.tRenderComponentViewportParameters=processRenderComponentViewport(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+	//Create GameObject
+	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+}
+
+void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
+
+	try
+	{
+		//Get names
+		tGameObjectCameraParameters.name = "Camera#Viewport";
+
+		//Get RenderComponentCamera
+		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCameraViewport(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
 }
 
 TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode)
@@ -1060,6 +1980,23 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 	//processShadows(XMLNode);
 
 	return tRenderComponentSceneParameters;
+}
+
+
+TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentViewportParameters tRenderComponentViewportParameters;
+
+	//Get Viewport properties
+	tRenderComponentViewportParameters.colour = getPropertyColourValue(XMLNode,"colour");
+	tRenderComponentViewportParameters.compositorcount = getPropertyInt(XMLNode,"compositorcount");
+	tRenderComponentViewportParameters.index = getPropertyInt(XMLNode,"index");
+	tRenderComponentViewportParameters.overlays = getPropertyBool(XMLNode,"overlays");
+	tRenderComponentViewportParameters.shadows = getPropertyBool(XMLNode,"shadows");
+	tRenderComponentViewportParameters.skies = getPropertyBool(XMLNode,"skies");
+
+	return tRenderComponentViewportParameters;
+	
 }
 
 TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXmlElement *XMLNode)
