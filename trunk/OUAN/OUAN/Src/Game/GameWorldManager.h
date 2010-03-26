@@ -144,6 +144,17 @@ namespace OUAN
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
 
+		// Take items
+		void takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP);
+		void takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP);
+		void takeItemHeart(GameObjectHeartPtr gameObjectHeart);
+		void takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond);
+		void takeItemClockPiece(GameObjectClockPiecePtr gameObjectClockPiece);
+		void takeItemStoryBook(GameObjectStoryBookPtr gameObjectStoryBook);
+
+		// Pass current level
+		void win();
+
 		/// Change world to the one specified by the passed parameter
 		/// @param currentworld world to change to
 		void setWorld (int newWorld);

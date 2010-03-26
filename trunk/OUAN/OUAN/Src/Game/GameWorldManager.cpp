@@ -2314,6 +2314,66 @@ void GameWorldManager::changeWorld()
 	addEvent(evt);
 }
 
+void GameWorldManager::takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP)
+{
+	gameObjectMaxHP->getRenderComponentEntity()->setVisible(false);
+	gameObjectMaxHP->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectMaxHP->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP)
+{
+	gameObjectItem1UP->getRenderComponentEntity()->setVisible(false);
+	gameObjectItem1UP->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectItem1UP->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::takeItemHeart(GameObjectHeartPtr gameObjectHeart)
+{
+	gameObjectHeart->getRenderComponentEntity()->setVisible(false);
+	gameObjectHeart->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectHeart->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond)
+{
+	gameObjectDiamond->getRenderComponentEntity()->setVisible(false);
+	gameObjectDiamond->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectDiamond->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::takeItemClockPiece(GameObjectClockPiecePtr gameObjectClockPiece)
+{
+	gameObjectClockPiece->getRenderComponentEntity()->setVisible(false);
+	gameObjectClockPiece->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectClockPiece->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::takeItemStoryBook(GameObjectStoryBookPtr gameObjectStoryBook)
+{
+	gameObjectStoryBook->getRenderComponentEntity()->setVisible(false);
+	gameObjectStoryBook->getPhysicsComponentVolumeBox()->destroy();
+	gameObjectStoryBook->disable();
+
+	//Add logic
+}
+
+void GameWorldManager::win()
+{
+	setGameOver(true);
+	setGameBeaten(true);
+}
+
 void GameWorldManager::addEvent(OUAN::EventPtr event)
 {
 	mEventManager->addEvent(event);

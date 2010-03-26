@@ -11,7 +11,9 @@
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectEye.h"
+#include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Game/GameObject/GameObjectCamera.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
@@ -392,12 +394,33 @@ void PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 //////////////////////////////////////////////////////////////////
 // Fetch functions
 
-
 GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* controller)
 {
 	GameObjectPtr object;
 	bool found = false;
 	
+	/*
+	if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+	{
+		object = mApp->getGameWorldManager()->getGameObjectOny();
+		found = true;
+		Ogre::LogManager::getSingleton().logMessage("Ony matched!");
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("Noone matched!");
+	}
+
+	NxOgre::Controller* onyController = mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController();
+	Ogre::String onyPos = Ogre::StringConverter::toString(onyController->getPosition().x) + "," + Ogre::StringConverter::toString(onyController->getPosition().y) + "," + Ogre::StringConverter::toString(onyController->getPosition().z);
+	Ogre::String controllerPos = Ogre::StringConverter::toString(controller->getPosition().x) + "," + Ogre::StringConverter::toString(controller->getPosition().y) + "," + Ogre::StringConverter::toString(controller->getPosition().z);
+	Ogre::LogManager::getSingleton().logMessage(onyPos + " :: " + controllerPos);
+	*/
+
+	// Hack done to fix the problem: Received NxOgre::Controller* seems to be null or incorrect
+	object = mApp->getGameWorldManager()->getGameObjectOny();
+
+	/*
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
 
@@ -412,9 +435,46 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 				found = true;
 			}
 		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO) == 0)
+		{
+			GameObjectTripolloPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTripollo>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIPOLLITO) == 0)
+		{
+			GameObjectTripollitoPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTripollito>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_EYE) == 0)
+		{
+			GameObjectEyePtr tmpObject = boost::dynamic_pointer_cast<GameObjectEye>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TENTETIESO) == 0)
+		{
+			GameObjectTentetiesoPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTentetieso>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
 		//TODO else if block
 		//Same with the rest of game objects which hold a PhysicsComponentCharacter
 	}	
+	*/
 	
 	return object;
 }

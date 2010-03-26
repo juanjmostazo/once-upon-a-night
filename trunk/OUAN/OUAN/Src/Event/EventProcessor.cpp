@@ -82,99 +82,75 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 
 void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 {
-	Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision");
+	Ogre::String characters = evt->getCharacter1()->getName() + "," + evt->getCharacter2()->getName();
+	Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision (" + characters + ")");
 }
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
-	switch (evt->getCollisionType())
+	//Ogre::LogManager::getSingleton().logMessage("* Character: " + evt->getCharacter()->getName());
+	//Ogre::LogManager::getSingleton().logMessage("* Trigger: " + evt->getTrigger()->getName());
+
+	if (evt->getCharacter()->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 	{
-	case COLLISION_TYPE_TRIGGER_ENTER: 
-		/**
-		* If it is a trigger
-		* - Temporarily, win
-		*/
-		if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (ONY)");
+
+		switch (evt->getCollisionType())
 		{
-			GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
-			Application::getInstance()->getGameWorldManager()->setGameOver(true);
-			Application::getInstance()->getGameWorldManager()->setGameBeaten(true);
-		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
-		{	
-			GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
-			Application::getInstance()->getGameWorldManager()->setGameOver(true);
-			Application::getInstance()->getGameWorldManager()->setGameBeaten(true);
-		}
-		/**
-		* If it is an item:
-		* - Set it as disabled
-		* - Hide it (Render Component)
-		* - Destroy Physics Component
-		*/
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
-		{
-			GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
+		case COLLISION_TYPE_TRIGGER_ENTER: 
 
-			//TODO Add logic
+			if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
+			{
+				GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->win();
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
+			{	
+				GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->win();
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
+			{
+				GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
+			{
+				GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
+			{
+				GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
+			{
+				GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
+			{
+				GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemClockPiece(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
+			{
+				GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemStoryBook(tmpObject);
+			}
+			//TODO else if block, same with rest of game object items
+
+			break;
+		case COLLISION_TYPE_TRIGGER_PRESENCE: 
+
+			break;
+		case COLLISION_TYPE_TRIGGER_EXIT: break;
+		default: break;
 		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
-		{
-			GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
-
-			//TODO Add logic
-		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
-		{
-			GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
-
-			//TODO Add logic
-		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
-		{
-			GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
-
-			//TODO Add logic
-		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
-		{
-			GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
-
-			//TODO Add logic
-		}
-		else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
-		{
-			GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
-			tmpObject->getRenderComponentEntity()->setVisible(false);
-			tmpObject->getPhysicsComponentVolumeBox()->destroy();
-			tmpObject->disable();
-
-			//TODO Add logic
-		}
-		//TODO else if block, same with rest of game object items
-
-	break;
-	case COLLISION_TYPE_TRIGGER_PRESENCE: 
-
-	break;
-	case COLLISION_TYPE_TRIGGER_EXIT: break;
-	default: break;
 	}
-
-	Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger");
+	else 
+	{
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (OTHER)");
+	}
 }
