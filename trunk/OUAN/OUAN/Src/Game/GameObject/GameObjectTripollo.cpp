@@ -91,6 +91,12 @@ void GameObjectTripollo::changeWorld(int world)
 	default:break;
 	}
 }
+int GameObjectTripollo::getNumLives() const
+{
+	if (mLogicComponent)
+		return mLogicComponent->getNumLives();
+	return -1;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
 {

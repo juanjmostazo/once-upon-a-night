@@ -28,7 +28,10 @@ void Component::setParent(GameObjectPtr parent)
 {
 	mParent=parent;
 }
-
+GameObjectPtr Component::getParent()
+{
+	return mParent;
+}
 
 TComponentParameters::TComponentParameters()
 {

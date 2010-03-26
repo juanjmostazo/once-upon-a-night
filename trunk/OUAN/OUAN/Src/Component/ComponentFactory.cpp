@@ -278,6 +278,7 @@ LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObjec
 	logicComponent->setNumLives(logicComponentParameters.numLives);
 
 	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
+	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);
 	logicComponent->setState(logicComponentParameters.defaultState);
 	logicComponent->setParent(gameObject);
 	return logicComponent;

@@ -9,6 +9,7 @@
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIConsole.h"
+#include "../Logic/LogicSubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
@@ -41,6 +42,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->loadLevel(LEVEL_2);
 
 	//mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
+	mApp->getLogicSubsystem()->loadScripts();
 
 	mApp->mKeyBuffer=-1;
 	
@@ -320,7 +322,11 @@ void GameRunningState::update(long elapsedTime)
 
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
 	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
-	
+
+	mApp->getLogicSubsystem()->update(elapsedSeconds);
+
+	//TODO: update GameObjects if necessary after the logic update has updated their state.
+
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
 	mApp->mKeyBuffer-=elapsedTime;
 

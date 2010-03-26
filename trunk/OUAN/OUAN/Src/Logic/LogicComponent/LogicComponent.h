@@ -28,7 +28,12 @@ namespace OUAN
 		std::string getScriptFilename() const;
 		void setScriptFilename(const std::string& scriptFilename);
 
+		std::string getScriptFunction() const;
+		void setScriptFunction(const std::string& scriptFunction);
+
 		virtual void update(long elapsedTime);
+		
+		void initStateHistory();
 	private:
 		/// Number of lives of the component
 		int mNumLives;
@@ -39,6 +44,12 @@ namespace OUAN
 		/// Filename of the script that'll be executed by the logic subsystem
 		/// to update this component's parent game object
 		std::string mScriptFilename;
+		
+		/// Name of the script function that'll handle the state update
+		std::string mScriptFunction;
+
+		/// Size of the number of states
+		int stateHistory[GAMESTATE_HISTORY_SIZE];
 
 		bool mExistsInDreams;
 		bool mExistsInNightmares;
@@ -56,6 +67,7 @@ namespace OUAN
 		bool existsInNightmares;
 
 		std::string scriptFilename;
+		std::string scriptFunction;
 		int defaultState;
 		int numLives;
 		int healthPoints;

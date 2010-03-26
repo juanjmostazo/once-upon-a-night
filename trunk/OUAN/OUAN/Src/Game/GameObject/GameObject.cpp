@@ -75,6 +75,13 @@ void GameObject::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	changeWorld(evt->getNewWorld());
 }
+void GameObject::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
 
 //-------------------------------------------------------
 
