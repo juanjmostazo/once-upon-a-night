@@ -166,6 +166,9 @@ namespace OUAN
 		/// Return GameObjectOny
 		GameObjectOnyPtr getGameObjectOny();
 
+		/// Return the application pointer
+		ApplicationPtr getParent();
+
 	private:
 
 		/// Add the game object pointer to the objects List

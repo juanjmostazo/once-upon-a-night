@@ -1530,6 +1530,14 @@ TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNo
 			logicComponentParameters.scriptFilename="";
 		}
 		try{
+			logicComponentParameters.scriptFunction=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFunction");
+		}
+		catch(std::string error)
+		{
+			logicComponentParameters.scriptFunction="";
+		}
+		try{
 			logicComponentParameters.defaultState=getPropertyInt(XMLNodeCustomProperties,
 				"LogicComponent::defaultState");
 		}

@@ -55,6 +55,8 @@ namespace OUAN
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
+		virtual void updateLogic(double elapsedSeconds);
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		virtual void changeWorld(int world);

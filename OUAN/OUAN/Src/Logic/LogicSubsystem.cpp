@@ -1,4 +1,14 @@
 #include "LogicSubsystem.h"
+#include "../Application.h"
+#include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectTripollo.h"
+extern "C" {
+	#include "lua.h"
+	#include "lualib.h"
+	#include "lauxlib.h"
+}
+#include <luabind/luabind.hpp>
+
 using namespace OUAN;
 LogicSubsystem::LogicSubsystem()
 {
@@ -12,115 +22,87 @@ void LogicSubsystem::init(ApplicationPtr app)
 {
 	mApp=app;
 	mLuaEngine = lua_open();
-	lua_baselibopen(mLuaEngine);
+	luaL_openlibs(mLuaEngine);
+	luabind::open(mLuaEngine);
 
+	loadScripts();
+	registerModules();
+
+}
+void LogicSubsystem::registerModules()
+{
+	using namespace luabind;
+	module(mLuaEngine) [
+		class_<GameObject>("GameObject")
+			.def( constructor<const std::string&,const std::string&>())
+			.def("getName",&GameObject::getName),
+		class_<GameObjectTripollo, GameObject > ("GameObjectTripollo")
+			.def(constructor<const std::string&>())
+			.def("getNumLives",&GameObjectTripollo::getNumLives)
+	];
+	//Do the same with the others.
+}
+void LogicSubsystem::loadScripts()
+{
+	TGameObjectTripolloContainer tripolloList= mApp->getGameWorldManager()->getGameObjectTripolloContainer();
+	if (!tripolloList.empty() && !tripolloList.at(0)->getLogicComponent()->getScriptFilename().empty())
+		loadScript(SCRIPTS_PATH+"/"+tripolloList.at(0)->getLogicComponent()->getScriptFilename());
+	//repeat
 }
 void LogicSubsystem::cleanUp()
 {
+	//...
 	lua_close(mLuaEngine);
-
 }
 void LogicSubsystem::update (double elapsedSeconds)
 {
-
+	if (mApp)
+	{
+		TGameObjectTripolloContainer tripolloList= mApp->getGameWorldManager()->getGameObjectTripolloContainer();
+		if (!tripolloList.empty())
+		{
+			for (TGameObjectTripolloContainer::iterator it=tripolloList.begin();it!=tripolloList.end();++it)
+			{
+				GameObjectTripolloPtr tripollo=*it;
+				tripollo->updateLogic(elapsedSeconds);
+			}
+		}
+	}
 }
-void LogicSubsystem::executeScript(const std::string& filename)
+void LogicSubsystem::loadScript(const std::string& filename)
 {
 	if (mLuaEngine)
 	{
-		lua_dofile(mLuaEngine,filename.c_str());
+		luaL_dofile(mLuaEngine,filename.c_str());
 	}
 }
-
-
-// lua wrappers
-//-- lua from c++
-void LogicSubsystem::loadFunction(const std::string& filename)	
+void LogicSubsystem::executeString(const std::string& scriptString)
 {
 	if (mLuaEngine)
-		lua_getglobal(mLuaEngine,filename.c_str());	
+	{
+		luaL_dostring(mLuaEngine,scriptString.c_str());
+	}
 }
-void LogicSubsystem::pushNumber(double number)
-{
-	if (mLuaEngine)
-		lua_pushnumber(mLuaEngine,number);
-
-}
-void LogicSubsystem::pushNumber(float number)
-{
-	if (mLuaEngine)
-		lua_pushnumber(mLuaEngine,number);
-}
-void LogicSubsystem::pushNumber(long number)
-{
-	if (mLuaEngine)
-		lua_pushnumber(mLuaEngine,number);
-}
-void LogicSubsystem::pushNumber(int number)
-{
-	if (mLuaEngine)
-		lua_pushnumber(mLuaEngine,number);
-}
-void LogicSubsystem::pushBoolean(bool booleanValue)
-{
-	if(mLuaEngine)
-		lua_pushboolean(mLuaEngine,booleanValue?1:0);
-}
-void LogicSubsystem::pushString(const std::string& string)
-{
-	if (mLuaEngine)
-		lua_pushstring(mLuaEngine,string.c_str());
-}
-
-void LogicSubsystem::invokeFunction(int args, int results)
+int LogicSubsystem::invokeFunction(const std::string& functionName,int state, GameObjectPtr gameObject)
 {	
-	if (mLuaEngine)
-		lua_call(mLuaEngine,args,results);
-}
-double LogicSubsystem::extractNumericResult(int index)
-{
-	double luaResult=-1;
+	int result=-1;
 	if (mLuaEngine)
 	{
-		if (index>0)
-			index*=-1;
-		luaResult=(double)lua_tonumber(mLuaEngine,index);
-		lua_pop(mLuaEngine,1);
+		try{
+			GameObjectTripollo* ptr=dynamic_cast<GameObjectTripollo*>(gameObject.get());
+			if (ptr)
+				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),ptr,state);
+				//result=luabind::call_function<int>(mLuaEngine,"gimmeSumthin",45);
+				
+		}
+		catch(const luabind::error& err)
+		{
+			std::string errString = "LUA Function call failed: ";
+			errString.append(err.what()).append(" - ");
+			errString.append(lua_tostring(err.state(),-1));
+			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+		}
+
 	}
-	return luaResult;
-}
-
-//-- c++ from lua
-//void registerFunction(const std::string& functionName, FPLuaFunction function);
-int LogicSubsystem::getArgsNum()
-{
-	int argsNum=-1;
-	argsNum=lua_gettop(mLuaEngine);
-	return argsNum;
-}
-int LogicSubsystem::getInt(int index)
-{
-	return static_cast<int>(lua_tonumber(mLuaEngine,index));
-
-}
-long LogicSubsystem::getLong(int index)
-{
-	return static_cast<long>(lua_tonumber(mLuaEngine,index));
-}
-double LogicSubsystem::getDouble(int index)
-{
-	return static_cast<double>(lua_tonumber(mLuaEngine,index));
-}
-float LogicSubsystem::getFloat(int index)
-{
-	return static_cast<float>(lua_tonumber(mLuaEngine,index));
-}
-bool LogicSubsystem::getBool(int index)
-{
-	return (lua_toboolean(mLuaEngine,index))?true:false;
-}
-std::string LogicSubsystem::getString(int index)
-{
-	std::string result=lua_tostring(mLuaEngine,index);
 	return result;
 }

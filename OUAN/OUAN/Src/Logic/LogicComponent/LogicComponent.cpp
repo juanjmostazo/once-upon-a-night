@@ -1,4 +1,10 @@
 #include "LogicComponent.h"
+#include "../LogicSubsystem.h"
+#include "../../Application.h"
+#include "../../Game/GameWorldManager.h"
+#include "../../Game/GameObject/GameObject.h"
+
+
 using namespace OUAN;
 
 LogicComponent::LogicComponent(const std::string& type)
@@ -12,6 +18,19 @@ LogicComponent::~LogicComponent()
 
 void LogicComponent::update(long elapsedTime)
 {
+	if (!mScriptFunction.empty())
+	{
+		LogicSubsystemPtr logicSS= mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
+		int newState=logicSS->invokeFunction(mScriptFunction,mState,mParent);
+		setState(newState);
+	}
+}
+void LogicComponent::initStateHistory()
+{
+	for (int i=0;i<GAMESTATE_HISTORY_SIZE;++i)
+	{
+		stateHistory[i]=-1;
+	}
 }
 
 bool LogicComponent::existsInDreams() const
@@ -38,7 +57,14 @@ int LogicComponent::getState() const
 }
 void LogicComponent::setState(int state)
 {
+	int oldState=mState;
 	mState=state;
+	for (int i=GAMESTATE_HISTORY_SIZE-1;i>0;--i)
+	{
+		stateHistory[i]=stateHistory[i-1];
+	}
+	stateHistory[0]=oldState;
+	
 }
 
 int LogicComponent::getHealthPoints() const
@@ -67,7 +93,14 @@ void LogicComponent::setScriptFilename(const std::string& scriptFilename)
 {
 	mScriptFilename=scriptFilename;
 }
-
+std::string LogicComponent::getScriptFunction() const
+{
+	return mScriptFunction;
+}
+void LogicComponent::setScriptFunction(const std::string& scriptFunction)
+{
+	mScriptFunction=scriptFunction;
+}
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {
 }

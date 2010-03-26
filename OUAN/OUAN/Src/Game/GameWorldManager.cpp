@@ -2333,3 +2333,7 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 {
 	return mGameObjectOnyContainer[0];
 }
+ApplicationPtr GameWorldManager::getParent()
+{
+	return mApp;
+}

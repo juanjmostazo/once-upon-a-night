@@ -65,9 +65,6 @@ void Application::init()
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
 	
-	mLogicSubsystem.reset(new LogicSubsystem());
-	mLogicSubsystem->init(this_);
-	
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	mRenderSubsystem->init(this_,mConfiguration);
 
@@ -79,6 +76,9 @@ void Application::init()
 
 	mGameWorldManager.reset(new GameWorldManager());
 	mGameWorldManager->init(this_);
+
+	mLogicSubsystem.reset(new LogicSubsystem());
+	mLogicSubsystem->init(this_);
 
 	mLevelLoader.reset(new LevelLoader());
 	mLevelLoader->init(this_);

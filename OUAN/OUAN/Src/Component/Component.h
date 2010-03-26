@@ -32,6 +32,10 @@ namespace OUAN
 		/// set the component's parent GameObject
 		/// @param parent the parent GameObject
 		void setParent(GameObjectPtr parent);
+
+		/// Return the component's parent GameObject
+		/// @return this component's parent GameObject
+		GameObjectPtr getParent();
 		
 		/// Update component
 		virtual void update(long elapsedTime)=0;
