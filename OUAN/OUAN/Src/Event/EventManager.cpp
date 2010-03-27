@@ -100,3 +100,10 @@ void EventManager::clear()
 
 	mEventHandlers.clear();
 }
+void EventManager::clearEvents()
+{
+	while(!mEventQueue.empty())
+	{
+		mEventQueue.pop();
+	}
+}

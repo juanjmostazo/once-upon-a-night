@@ -106,8 +106,7 @@ void GameRunningState::handleEvents()
 	//and simulate a gameOver event
 	else if(mApp->isPressedAutoPoint() && mApp->mKeyBuffer<0)
 	{
-		mApp->getGameWorldManager()->setGameOver(true);
-		mApp->getGameWorldManager()->setGameBeaten(true);
+		mApp->getGameWorldManager()->win();
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		mGUI->hideConsole();
 	}

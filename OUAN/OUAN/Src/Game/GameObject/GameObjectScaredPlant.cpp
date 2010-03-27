@@ -5,7 +5,7 @@
 using namespace OUAN;
 
 GameObjectScaredPlant::GameObjectScaredPlant(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_EYE)
+:GameObject(name,GAME_OBJECT_TYPE_SCAREDPLANT)
 {
 
 }

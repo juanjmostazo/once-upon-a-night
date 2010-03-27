@@ -91,5 +91,8 @@ int CharacterInTriggerEvent::getCollisionType()
 {
 	return mCollisionType;
 }
-
 //----------------------
+ClearQueueEvent::ClearQueueEvent()
+:Event(EVT_PRIORITY_CLEARQUEUE,EVENT_TYPE_CLEARQUEUE)
+{
+}

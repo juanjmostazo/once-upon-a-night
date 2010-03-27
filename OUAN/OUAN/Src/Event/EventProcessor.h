@@ -30,6 +30,8 @@ namespace OUAN
 		/// @param evt pointer to the event
 		void processCharacterInTrigger(CharacterInTriggerEventPtr evt);
 
+		void processClearQueue(ClearQueueEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

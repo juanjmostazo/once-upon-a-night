@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "../GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -80,6 +81,48 @@ void GameObject::updateLogic(double elapsedSeconds)
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->update(elapsedSeconds);
+	}
+}
+void GameObject::increaseHP(int amount)
+{
+	if (mEnabled && mLogicComponent.get())
+	{
+		if (mLogicComponent->getHealthPoints()+amount>mLogicComponent->getInitialHealthPoints())
+			mLogicComponent->setHealthPoints(mLogicComponent->getInitialHealthPoints());
+		else mLogicComponent->setHealthPoints(mLogicComponent->getHealthPoints()+amount);
+	}
+}
+void GameObject::decreaseHP(int amount)
+{
+	std::ostringstream s;
+	s.str("");
+	s<<"Decreasing "<<getName()<<" health";
+	Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
+	s.str("");
+	s<<"Current HP: "<<mLogicComponent->getHealthPoints()<<" , Num. lives: "<<mLogicComponent->getNumLives();
+	Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
+	if (mEnabled && mLogicComponent.get())
+	{
+		if (mLogicComponent->getHealthPoints()>0 && mLogicComponent->getNumLives()>0)
+		{
+			mLogicComponent->setHealthPoints(mLogicComponent->getHealthPoints()-amount<0
+				?0
+				:mLogicComponent->getHealthPoints()-amount);
+			if (mLogicComponent->getHealthPoints()==0)
+			{
+				mLogicComponent->setNumLives(mLogicComponent->getNumLives()-1);
+				if (mLogicComponent->getNumLives()==0)
+				{
+					mGameWorldManager->setGameBeaten(false);
+					mGameWorldManager->setGameOver(true);
+				}
+				else
+					mLogicComponent->setHealthPoints(mLogicComponent->getInitialHealthPoints());
+			}
+		}
+		s.str("");
+		s<<"New HP: "<<mLogicComponent->getHealthPoints()<<" , New N. lives: "<<mLogicComponent->getNumLives();
+		Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
 	}
 }
 
