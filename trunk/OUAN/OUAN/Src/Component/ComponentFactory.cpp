@@ -275,7 +275,9 @@ LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObjec
 	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
 	
 	logicComponent->setHealthPoints(logicComponentParameters.healthPoints);
+	logicComponent->setInitialHealthPoints(logicComponentParameters.healthPoints);
 	logicComponent->setNumLives(logicComponentParameters.numLives);
+	logicComponent->setInitialNumLives(logicComponentParameters.numLives);
 
 	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
 	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);

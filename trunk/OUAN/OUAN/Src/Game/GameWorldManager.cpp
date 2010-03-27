@@ -568,6 +568,12 @@ void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntit
 void GameWorldManager::addGameObjectScaredPlant(GameObjectScaredPlantPtr gameObjectScaredPlant)
 {
 	mGameObjects[gameObjectScaredPlant->getName()]=gameObjectScaredPlant;
+	mGameObjectPositionalContainer.push_back(gameObjectScaredPlant);
+	mGameObjectNonMovableContainer.push_back(gameObjectScaredPlant);
+	mGameObjectNonMovableEntityContainer.push_back(gameObjectScaredPlant);
+
+	mGameObjectPhysicsContainer.push_back(gameObjectScaredPlant);
+	mGameObjectPhysicsCharacterContainer.push_back(gameObjectScaredPlant);
 }
 
 void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)
@@ -2471,4 +2477,8 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 ApplicationPtr GameWorldManager::getParent()
 {
 	return mApp;
+}
+void GameWorldManager::clearEvents()
+{
+	mEventManager->clearEvents();
 }

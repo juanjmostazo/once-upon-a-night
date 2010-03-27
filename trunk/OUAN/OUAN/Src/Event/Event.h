@@ -82,5 +82,10 @@ namespace OUAN
 		GameObjectPtr mTrigger;
 		int mCollisionType;
 	};
+
+	class ClearQueueEvent: public Event{
+	public:
+		ClearQueueEvent();
+	};
 }
 #endif

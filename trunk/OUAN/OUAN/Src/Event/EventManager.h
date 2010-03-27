@@ -49,6 +49,8 @@ namespace OUAN
 		/// @return removed event
 		EventPtr removeEvent();
 
+		void clearEvents();
+
 		/// Add a new event handler for the given event type
 		/// @param handler	functor object containing the instance that will handle the event 
 		///					and the callback method it'll invoke

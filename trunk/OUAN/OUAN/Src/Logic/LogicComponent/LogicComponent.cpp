@@ -101,6 +101,23 @@ void LogicComponent::setScriptFunction(const std::string& scriptFunction)
 {
 	mScriptFunction=scriptFunction;
 }
+int LogicComponent::getInitialHealthPoints() const
+{
+	return mInitialHealthPoints;
+}
+void LogicComponent::setInitialHealthPoints(int healthPoints)
+{
+	mInitialHealthPoints=healthPoints;
+}
+
+int LogicComponent::getInitialNumLives() const
+{
+	return mInitialNumLives;
+}
+void LogicComponent::setInitialNumLives(int numLives)
+{
+	mInitialNumLives=numLives;
+}
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {
 }

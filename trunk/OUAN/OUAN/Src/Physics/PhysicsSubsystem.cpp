@@ -24,6 +24,7 @@
 #include "../Game/GameObject/GameObjectDiamond.h"
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
+#include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Event/Event.h"
 #include "PhysicsComponent/PhysicsComponent.h"
@@ -465,6 +466,15 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TENTETIESO) == 0)
 		{
 			GameObjectTentetiesoPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTentetieso>(container[i]);
+			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			{
+				object= tmpObject;
+				found = true;
+			}
+		}
+		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_SCAREDPLANT) == 0)
+		{
+			GameObjectScaredPlantPtr tmpObject = boost::dynamic_pointer_cast<GameObjectScaredPlant>(container[i]);
 			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
 			{
 				object= tmpObject;

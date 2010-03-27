@@ -25,6 +25,12 @@ namespace OUAN
 		int getNumLives() const;
 		void setNumLives(int numLives);
 
+		int getInitialHealthPoints() const;
+		void setInitialHealthPoints(int healthPoints);
+
+		int getInitialNumLives() const;
+		void setInitialNumLives(int numLives);
+
 		std::string getScriptFilename() const;
 		void setScriptFilename(const std::string& scriptFilename);
 
@@ -53,6 +59,9 @@ namespace OUAN
 
 		bool mExistsInDreams;
 		bool mExistsInNightmares;
+
+		int mInitialHealthPoints;
+		int mInitialNumLives;
 
 	};
 	

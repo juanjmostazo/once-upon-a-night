@@ -180,6 +180,8 @@ namespace OUAN
 		/// Return the application pointer
 		ApplicationPtr getParent();
 
+		void clearEvents();
+
 	private:
 
 		/// Add the game object pointer to the objects List

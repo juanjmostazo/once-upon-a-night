@@ -495,6 +495,10 @@ namespace OUAN
 		class CharacterInTriggerEvent;
 		typedef boost::shared_ptr<CharacterInTriggerEvent> CharacterInTriggerEventPtr;
 
+
+		class ClearQueueEvent;
+		typedef boost::shared_ptr<ClearQueueEvent> ClearQueueEventPtr;
+
 		///////////////////////////////////////////////////////////////////
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
