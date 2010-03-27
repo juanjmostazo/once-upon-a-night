@@ -21,7 +21,7 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 	private:
 		Ogre::SceneManager * mSceneManager;
-		Ogre::RaySceneQuery * mRaySceneQuery; 
+		RayCasting * mRayCasting;
 		RenderComponentPositional * target;
 		Vector3 distance;
 		Vector3 initialDistance;
