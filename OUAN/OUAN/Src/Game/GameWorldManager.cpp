@@ -1511,15 +1511,10 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		pGameObjectOny->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
-		//Create RenderComponentEntityDreams
-		pGameObjectOny->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectOnyParameters.dreamsName,
-			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityDreamsParameters));
-
-		//Create RenderComponentEntityNightmares
-		pGameObjectOny->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectOnyParameters.nightmaresName,
-			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityNightmaresParameters));
+		//Create RenderComponentEntity
+		pGameObjectOny->setRenderComponentEntity(
+			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
+			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
 		
 		//Create PhysicsComponent
 		pGameObjectOny->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
