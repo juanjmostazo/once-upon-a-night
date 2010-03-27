@@ -48,7 +48,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vecto
 	direction=currentCameraPosition-currentCameraLookAt;
 	direction.normalise();
 
-	mRayCasting->raycastFromPoint(currentCameraLookAt,direction,newCameraPosition);
+	mRayCasting->raycastFromPoint(currentCameraLookAt,direction,newCameraPosition,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(currentCameraLookAt.distance(newCameraPosition)<currentCameraLookAt.distance(currentCameraPosition) && currentCameraLookAt.distance(newCameraPosition)>10)
 	{
@@ -156,7 +156,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	cameraLookAt=newTargetPosition+Vector3(0,height,0);
 
 	//Calculate camera collisions
-	newCameraPosition=calculateCameraCollisions(newCameraPosition,cameraLookAt);
+	newCameraPosition=calculateCameraCollisions(newCameraPosition,newTargetPosition);
 
 	//set camera position
 	mCamera->setPosition(newCameraPosition);

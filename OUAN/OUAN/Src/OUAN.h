@@ -140,6 +140,14 @@ namespace OUAN
 		//RayCasting
 		class RayCasting;
 
+		enum QueryFlags
+		{
+			QUERYFLAGS_NONE = 1<<0,
+			QUERYFLAGS_CAMERA_COLLISION = 1<<1,
+			//QUERYFLAGS... = 1<<2
+		};
+
+
 		//Physics components
 		class PhysicsComponentCharacter;
 		class TPhysicsComponentCharacterParameters;
