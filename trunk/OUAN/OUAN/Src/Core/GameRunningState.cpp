@@ -164,13 +164,11 @@ void GameRunningState::handleEvents()
 
 		if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
 		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityDreams()->setVisible(false);
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityNightmares()->setVisible(false);
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
 		}
 		else
 		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityDreams()->setVisible(true);
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntityNightmares()->setVisible(true);
+			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
 
 		}
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;

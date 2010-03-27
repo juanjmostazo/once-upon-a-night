@@ -24,6 +24,7 @@ namespace OUAN
 		Ogre::RaySceneQuery * mRaySceneQuery; 
 		RenderComponentPositional * target;
 		Vector3 distance;
+		Vector3 initialDistance;
 		double height;
 
 		//camera relative rotation to target's X axe
