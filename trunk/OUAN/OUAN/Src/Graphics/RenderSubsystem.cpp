@@ -417,7 +417,7 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
-Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags)
 {
 	unsigned int i;
 	Entity *pEntity = 0;
@@ -439,6 +439,9 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].material,
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].visible);
 		}
+
+		//set Query flags
+		pEntity->setQueryFlags(flags);
 
 		//attach to Scene Manager
 		pEntityNode=mSceneManager->getSceneNode(nodeName);

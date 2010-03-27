@@ -31,7 +31,8 @@ void RayCasting::init(Ogre::SceneManager * pSceneManager)
 // on success the point is returned in the result.
 bool RayCasting::raycastFromPoint(const Vector3 &point,
                                         const Vector3 &normal,
-                                        Vector3 &result)
+                                        Vector3 &result,
+										QueryFlags flags)
 {
     // create the ray to test
     Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z),
@@ -40,6 +41,8 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
     // check we are initialised
     if (m_pray_scene_query != NULL)
     {
+		// Set Flags
+		m_pray_scene_query->setQueryMask(flags);
         // create a query object
         m_pray_scene_query->setRay(ray);
 
@@ -78,6 +81,7 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
         if ((query_result[qr_idx].movable != NULL) &&
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
+			Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
             // get the entity to check
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);           
 
