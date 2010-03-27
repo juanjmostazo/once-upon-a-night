@@ -399,28 +399,28 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 	GameObjectPtr object;
 	bool found = false;
 	
-	/*
-	if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-	{
-		object = mApp->getGameWorldManager()->getGameObjectOny();
-		found = true;
-		Ogre::LogManager::getSingleton().logMessage("Ony matched!");
-	}
-	else
-	{
-		Ogre::LogManager::getSingleton().logMessage("Noone matched!");
-	}
 
-	NxOgre::Controller* onyController = mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController();
-	Ogre::String onyPos = Ogre::StringConverter::toString(onyController->getPosition().x) + "," + Ogre::StringConverter::toString(onyController->getPosition().y) + "," + Ogre::StringConverter::toString(onyController->getPosition().z);
-	Ogre::String controllerPos = Ogre::StringConverter::toString(controller->getPosition().x) + "," + Ogre::StringConverter::toString(controller->getPosition().y) + "," + Ogre::StringConverter::toString(controller->getPosition().z);
-	Ogre::LogManager::getSingleton().logMessage(onyPos + " :: " + controllerPos);
-	*/
+	//if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+	//{
+	//	object = mApp->getGameWorldManager()->getGameObjectOny();
+	//	found = true;
+	//	Ogre::LogManager::getSingleton().logMessage("Ony matched!");
+	//}
+	//else
+	//{
+	//	Ogre::LogManager::getSingleton().logMessage("Noone matched!");
+	//}
+
+	//NxOgre::Controller* onyController = mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController();
+	//Ogre::String onyPos = Ogre::StringConverter::toString(onyController->getPosition().x) + "," + Ogre::StringConverter::toString(onyController->getPosition().y) + "," + Ogre::StringConverter::toString(onyController->getPosition().z);
+	//Ogre::String controllerPos = Ogre::StringConverter::toString(controller->getPosition().x) + "," + Ogre::StringConverter::toString(controller->getPosition().y) + "," + Ogre::StringConverter::toString(controller->getPosition().z);
+	//Ogre::LogManager::getSingleton().logMessage(onyPos + " :: " + controllerPos);
+
 
 	// Hack done to fix the problem: Received NxOgre::Controller* seems to be null or incorrect
-	object = mApp->getGameWorldManager()->getGameObjectOny();
+	//object = mApp->getGameWorldManager()->getGameObjectOny();
 
-	/*
+
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
 
@@ -473,8 +473,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 		}
 		//TODO else if block
 		//Same with the rest of game objects which hold a PhysicsComponentCharacter
-	}	
-	*/
+	}		
 	
 	return object;
 }
