@@ -137,6 +137,9 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 
+		//RayCasting
+		class RayCasting;
+
 		//Physics components
 		class PhysicsComponentCharacter;
 		class TPhysicsComponentCharacterParameters;

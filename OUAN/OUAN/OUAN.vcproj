@@ -382,6 +382,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="RayCasting"
+					>
+					<File
+						RelativePath=".\Src\Graphics\RayCasting\RayCasting.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -889,6 +897,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\TrajectoryManager\TrajectoryNode.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="RayCasting"
+					>
+					<File
+						RelativePath=".\Src\Graphics\RayCasting\RayCasting.h"
 						>
 					</File>
 				</Filter>

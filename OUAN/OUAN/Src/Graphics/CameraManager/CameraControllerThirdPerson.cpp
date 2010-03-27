@@ -1,5 +1,6 @@
 #include "CameraControllerThirdPerson.h"
 #include "../RenderComponent/RenderComponentPositional.h"
+#include "../RayCasting/RayCasting.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -26,79 +27,95 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
 {
-	mSceneManager->destroyQuery(mRaySceneQuery);
+
 }
 
 void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager)
 {
 	mSceneManager = pSceneManager;
-	mRaySceneQuery = mSceneManager->createRayQuery(Ray());
 
-	//mRaySceneQuery->setQueryTypeMask(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK ); 
+	mRayCasting = new RayCasting();
+	mRayCasting->init(pSceneManager);
 
 	CameraController::init(pSceneManager);
 }
 
 Ogre::Vector3 CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt)
 {
-	Vector3 newCameraPosition;
-	Real target_distance;
-	Vector3 direction;
+	Ogre::Vector3 direction;
+	Ogre::Vector3 newCameraPosition;
 
 	direction=currentCameraPosition-currentCameraLookAt;
-
 	direction.normalise();
 
-	//TODO: FINISH IMPLEMENTING THIS
-	Ray ray;
-	ray.setOrigin(currentCameraLookAt);
-	ray.setDirection(direction);
+	mRayCasting->raycastFromPoint(currentCameraLookAt,direction,newCameraPosition);
 
-	// Perform the scene query
-	mRaySceneQuery->setRay(ray);
-	mRaySceneQuery->setSortByDistance(true);
-	RaySceneQueryResult &raySceneQueryResult=mRaySceneQuery->execute();
-
-	Ogre::LogManager::getSingleton().logMessage("RAYSCENE QUERY");
-	Ogre::LogManager::getSingleton().logMessage("Camera Initial Position "+Ogre::StringConverter::toString(currentCameraPosition));
-	Ogre::LogManager::getSingleton().logMessage("Camera Look at: "+Ogre::StringConverter::toString(currentCameraLookAt));
-	Ogre::LogManager::getSingleton().logMessage("Direction: "+Ogre::StringConverter::toString(direction));
-
-	// Get the results, return the camera new position
-	Ogre::LogManager::getSingleton().logMessage("Nº Ray intersections: "+Ogre::StringConverter::toString(raySceneQueryResult.size()));
-
-	RaySceneQueryResult::iterator itr = raySceneQueryResult.begin();
-
-	//Intitialise target distance
-	target_distance=currentCameraPosition.distance(currentCameraLookAt);
-
-	Ogre::LogManager::getSingleton().logMessage("Initial distance: "+Ogre::StringConverter::toString(target_distance));
-
-	// Get the results, set the camera height
-	while (itr != raySceneQueryResult.end() && itr->movable)
+	if(currentCameraLookAt.distance(newCameraPosition)<currentCameraLookAt.distance(currentCameraPosition) && currentCameraLookAt.distance(newCameraPosition)>10)
 	{
-		if(itr->movable->isVisible() && itr->movable->getName().compare("ony#0")!=0)
-		{
-			if(itr->distance)
-			{
-				if(itr->distance<target_distance)
-				{
-					target_distance=itr->distance;
-				}
-
-				Ogre::LogManager::getSingleton().logMessage("-name: "+itr->movable->getName()+" distance: "+Ogre::StringConverter::toString(itr->distance));
-			}
-		}
-		itr++;
+		return newCameraPosition;
 	}
 
-	newCameraPosition=currentCameraLookAt+target_distance*direction;
-
-	Ogre::LogManager::getSingleton().logMessage("New Camera Position: "+Ogre::StringConverter::toString(newCameraPosition));
-
-	return newCameraPosition;
-
+	return currentCameraPosition;
 }
+
+//Ogre::Vector3 CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt)
+//{
+//	Vector3 newCameraPosition;
+//	Real target_distance;
+//	Vector3 direction;
+//
+//	raycastFromPoint
+//
+//	direction=currentCameraPosition-currentCameraLookAt;
+//
+//	direction.normalise();
+//
+//
+//	//// Perform the scene query
+//	//mRaySceneQuery->setRay(ray);
+//	//mRaySceneQuery->setSortByDistance(true);
+//	//RaySceneQueryResult &raySceneQueryResult=mRaySceneQuery->execute();
+//
+//	//Ogre::LogManager::getSingleton().logMessage("RAYSCENE QUERY");
+//	//Ogre::LogManager::getSingleton().logMessage("Camera Initial Position "+Ogre::StringConverter::toString(currentCameraPosition));
+//	//Ogre::LogManager::getSingleton().logMessage("Camera Look at: "+Ogre::StringConverter::toString(currentCameraLookAt));
+//	//Ogre::LogManager::getSingleton().logMessage("Direction: "+Ogre::StringConverter::toString(direction));
+//
+//	//// Get the results, return the camera new position
+//	//Ogre::LogManager::getSingleton().logMessage("Nº Ray intersections: "+Ogre::StringConverter::toString(raySceneQueryResult.size()));
+//
+//	//RaySceneQueryResult::iterator itr = raySceneQueryResult.begin();
+//
+//	////Intitialise target distance
+//	target_distance=currentCameraPosition.distance(currentCameraLookAt);
+//
+//	//Ogre::LogManager::getSingleton().logMessage("Initial distance: "+Ogre::StringConverter::toString(target_distance));
+//
+//	//// Get the results, set the camera height
+//	//while (itr != raySceneQueryResult.end() && itr->movable)
+//	//{
+//	//	if(itr->movable->isVisible() && itr->movable->getName().compare("ony#0")!=0)
+//	//	{
+//	//		if(itr->distance)
+//	//		{
+//	//			if(itr->distance<target_distance)
+//	//			{
+//	//				target_distance=itr->distance;
+//	//			}
+//
+//	//			Ogre::LogManager::getSingleton().logMessage("-name: "+itr->movable->getName()+" distance: "+Ogre::StringConverter::toString(itr->distance));
+//	//		}
+//	//	}
+//	//	itr++;
+//	//}
+//
+//	newCameraPosition=currentCameraLookAt+target_distance*direction;
+//
+//	Ogre::LogManager::getSingleton().logMessage("New Camera Position: "+Ogre::StringConverter::toString(newCameraPosition));
+//
+//	return newCameraPosition;
+//
+//}
 
 void CameraControllerThirdPerson::update(double elapsedTime)
 {
