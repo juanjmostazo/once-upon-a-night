@@ -194,10 +194,10 @@ void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & 
 		int errorBorder = maxAxis / 4; //25%
 		OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
 		
-		leftX = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
-		leftY = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
-		rightX = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
-		rightY = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
+		leftX = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
+		leftY = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
+		rightX = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
+		rightY = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
 	}
 	else
 	{

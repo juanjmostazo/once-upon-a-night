@@ -7,6 +7,8 @@
 
 namespace OUAN
 {
+	const double JOYSTICK_FACTOR= 0.001;
+
 	const std::string PSXPAD_CFG="../../Config/psxpad-cfg.xml";
 	const std::string DEFAULTINPUT_CFG = "../../Config/defaultinput-cfg.xml";
 	const std::string INPUTSTRINGS_CFG = "../../Config/input-strings_en.xml";
