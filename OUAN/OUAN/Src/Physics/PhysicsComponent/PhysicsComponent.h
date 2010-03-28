@@ -3,6 +3,7 @@
 
 #include "../../Component/Component.h"
 #include "../../Game/GameWorldManager.h"
+#include "../../Game/GameObject/GameObject.h"
 #include "../../Application.h"
 #include "../PhysicsSubsystem.h"
 #include <NxOgre.h>

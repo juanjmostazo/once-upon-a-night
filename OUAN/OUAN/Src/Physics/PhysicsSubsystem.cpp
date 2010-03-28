@@ -283,7 +283,7 @@ NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 
 //////////////////////////////////////////////////////////////////
 // General physics callbacks
-
+/*
 void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
 	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent)
 {
@@ -306,7 +306,7 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 			break;
 	}
 }
-
+*/
 bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 {
 	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
@@ -320,7 +320,7 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 
 //////////////////////////////////////////////////////////////////
 // Character physics callbacks
-
+/*
 void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, void* controller, unsigned int collisionEvent)
 {
 	NxOgre::Controller* cController = static_cast<NxOgre::Controller*>(controller);
@@ -342,7 +342,7 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 
 	mApp->getGameWorldManager()->addEvent(evt);
 }
-
+*/
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
@@ -364,6 +364,45 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 	mApp->getGameWorldManager()->addEvent(evt);
 
 	return NxOgre::Enums::ControllerAction_None;
+}
+
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, const std::string objectName, NxOgre::Vec3 objectPosition, unsigned int collisionEvent)
+{
+	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
+	switch (collisionEvent)
+	{
+		case NxOgre::Enums::VolumeCollisionType_OnEnter: collisionType = COLLISION_TYPE_TRIGGER_ENTER; break;
+		case NxOgre::Enums::VolumeCollisionType_OnExit: collisionType = COLLISION_TYPE_TRIGGER_EXIT; break;
+		case NxOgre::Enums::VolumeCollisionType_OnPresence: collisionType = COLLISION_TYPE_TRIGGER_PRESENCE; break;
+		default: collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN; break;
+	}	 
+	/*
+	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug Init");
+	Ogre::LogManager::getSingleton().logMessage("**********");
+	Ogre::LogManager::getSingleton().logMessage(objectName);
+	Ogre::LogManager::getSingleton().logMessage("*********");
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.x));
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.y));
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.z));
+	Ogre::LogManager::getSingleton().logMessage("**********");
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().x));
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().y));
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().z));
+	Ogre::LogManager::getSingleton().logMessage("**********");
+	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug End");
+	*/
+
+	double radius = 1.0f;
+	if (isOnyCloseFromPosition(objectPosition, radius))
+	{
+		CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
+			new CharacterInTriggerEvent(
+			mApp->getGameWorldManager()->getGameObjectOny(), 
+			getGameObjectFromVolume(volume),
+			collisionType));
+
+		mApp->getGameWorldManager()->addEvent(evt);
+	}
 }
 
 //////////////////////////////////////////////////////////////////
@@ -392,15 +431,35 @@ void PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 	}	
 }
 
+bool PhysicsSubsystem::areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius)
+{
+	double diffX = position1.x - position2.x;
+	double diffY = position1.y - position2.y;
+	double diffZ = position1.z - position2.z;
+	
+	double diffX2 = diffX * diffX;
+	double diffY2 = diffY * diffY;
+	double diffZ2 = diffZ * diffZ;
+
+	return sqrt(diffX2 + diffY2 + diffZ2) < radius;
+}
+
+bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radius)
+{
+	return areClose(
+		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition(), 
+		position, 
+		radius);
+}
+
 //////////////////////////////////////////////////////////////////
 // Fetch functions
 
 GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* controller)
 {
-	GameObjectPtr object;
+	GameObjectPtr object = GameObject::Null;
 	bool found = false;
 	
-
 	//if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController() == controller)
 	//{
 	//	object = mApp->getGameWorldManager()->getGameObjectOny();
@@ -417,10 +476,8 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 	//Ogre::String controllerPos = Ogre::StringConverter::toString(controller->getPosition().x) + "," + Ogre::StringConverter::toString(controller->getPosition().y) + "," + Ogre::StringConverter::toString(controller->getPosition().z);
 	//Ogre::LogManager::getSingleton().logMessage(onyPos + " :: " + controllerPos);
 
-
 	// Hack done to fix the problem: Received NxOgre::Controller* seems to be null or incorrect
 	//object = mApp->getGameWorldManager()->getGameObjectOny();
-
 
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
@@ -490,7 +547,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 
 GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 {
-	GameObjectPtr object;
+	GameObjectPtr object = GameObject::Null;
 	bool found = false;
 	
 	TGameObjectPhysicsVolumeContainer container = 

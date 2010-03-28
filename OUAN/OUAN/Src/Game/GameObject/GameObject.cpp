@@ -3,6 +3,8 @@
 
 using namespace OUAN;
 
+GameObjectPtr GameObject::Null;
+
 GameObject::GameObject(const std::string& name,const std::string& type)
 {
 	mName=name;
