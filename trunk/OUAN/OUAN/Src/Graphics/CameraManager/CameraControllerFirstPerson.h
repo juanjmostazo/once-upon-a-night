@@ -12,9 +12,9 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 
 		void update(double elapsedTime);
-		void processRelativeMotion(double xRel,double yRel,double zRel);
+		void processCameraRotation(Ogre::Vector2 cameraRotation);
 
-		void processSimpleTranslation(int movementFlags);
+		void processSimpleTranslation(Ogre::Vector3 nextMovement);
 		void setCamera(Ogre::Camera * pCamera);
 
 	private:

@@ -53,6 +53,12 @@ void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,Trajec
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 
 }
+
+Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
+{
+	return activeCameraController->rotateMovementVector(movement);
+}
+
 void CameraManager::setCameraTrajectory(std::string name)
 {
 
@@ -132,7 +138,6 @@ RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderCom
 
 		// Add RenderComponentCamera to Container
 		camera[name]=pRenderComponentCamera;
-
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -189,6 +194,7 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
 			mCameraControllerFixedThirdPerson->setCamera(activeCameraController->getCamera());
+			mCameraControllerFixedThirdPerson->calculateRotY();
 			activeCameraController=mCameraControllerFixedThirdPerson;
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Fixed Third Person activated");
 			break;
@@ -226,19 +232,14 @@ void CameraManager::update(double elapsedTime)
 	activeCameraController->update(elapsedTime);
 }
 
-void CameraManager::processMouseInput(const OIS::MouseEvent &e)
+void CameraManager::processCameraRotation(Ogre::Vector2 cameraRotation)
 {
-	activeCameraController->processMouseInput(e);
+	activeCameraController->processCameraRotation(cameraRotation);
 }
 
-void CameraManager::processRelativeMotion(double xRel,double yRel,double zRel)
+void CameraManager::processSimpleTranslation(Ogre::Vector3 nextMovement)
 {
-	activeCameraController->processRelativeMotion(xRel,yRel,zRel);
-}
-
-void CameraManager::processSimpleTranslation(int movementFlags)
-{
-	activeCameraController->processSimpleTranslation(movementFlags);
+	activeCameraController->processSimpleTranslation(nextMovement);
 }
 
 void CameraManager::changeCamera()

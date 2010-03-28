@@ -26,18 +26,23 @@ namespace OUAN
 		void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
 		NxOgre::ControllerDescription getNxOgreControllerDescription();
 
-		void setMovementFlags(int pMovementFlags);
+		void setNextMovement(NxOgre::Vec3 nextMovement);
+		NxOgre::Vec3 getNextMovement();
 
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
 	protected:
+	
+		//Uses mNextMovement to set Character's display yaw
+		void setCharactersDisplayYaw();
+
 		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
 
-		/// Entity movement flags, will be updated every frame
-		int mMovementFlags;
+		/// Entity next movement, will be updated and reset to zero at update()
+		NxOgre::Vec3 mNextMovement;
 
 		// Physics states
 		bool mJumping;

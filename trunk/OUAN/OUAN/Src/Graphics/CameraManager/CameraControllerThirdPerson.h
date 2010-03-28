@@ -12,11 +12,13 @@ namespace OUAN
 		void init(Ogre::SceneManager * pSceneManager);
 
 		void update(double elapsedTime);
-		void processRelativeMotion(double xRel,double yRel,double zRel);
+		void processCameraRotation(Ogre::Vector2 cameraRotation);
 
 		void setTarget(RenderComponentPositional * target);
 
 		Ogre::Vector3 calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt);
+
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
 	private:

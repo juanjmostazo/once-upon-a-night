@@ -1,20 +1,20 @@
-<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
-	<Options>
-		<Option key="GRAVITY_X">0</Option>
-		<Option key="GRAVITY_Y">-9.8</Option>
-		<Option key="GRAVITY_Z">0</Option>
-		<Option key="STATIC_FRICTION">0.5</Option>
-		<Option key="DYNAMIC_FRICTION">0.5</Option>
-		<Option key="RESTITUTION">0.1</Option>
-		<Option key="DISPLACEMENT_SCALE">1</Option>
-		<Option key="MIN_DISTANCE">0.001</Option>
-		<Option key="MOVEMENT_UNITS_PER_SECOND">50</Option>		
-		<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">100</Option>
-		<Option key="TURN_DEGREES_PER_SECOND">360</Option>	
-		<Option key="INITIAL_JUMP_SPEED">70</Option>
-		<Option key="MIN_ALLOWED_Y">-100</Option>
-		<Option key="MIN_SLIDING_ANGLE">30</Option>
-		<Option key="SLIDING_FACTOR">5</Option>
-	</Options>
+  <Options>
+    <Option key="GRAVITY_X">0</Option>
+    <Option key="GRAVITY_Y">-9.8</Option>
+    <Option key="GRAVITY_Z">0</Option>
+    <Option key="STATIC_FRICTION">0.5</Option>
+    <Option key="DYNAMIC_FRICTION">0.5</Option>
+    <Option key="RESTITUTION">0.1</Option>
+    <Option key="DISPLACEMENT_SCALE">1</Option>
+    <Option key="MIN_DISTANCE">0.001</Option>
+    <Option key="MOVEMENT_UNITS_PER_SECOND">50</Option>
+    <Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">100</Option>
+    <Option key="TURN_DEGREES_PER_SECOND">360</Option>
+    <Option key="INITIAL_JUMP_SPEED">70</Option>
+    <Option key="MIN_ALLOWED_Y">-100</Option>
+    <Option key="MIN_SLIDING_ANGLE">30</Option>
+    <Option key="SLIDING_FACTOR">5</Option>
+  </Options>
 </Configuration>

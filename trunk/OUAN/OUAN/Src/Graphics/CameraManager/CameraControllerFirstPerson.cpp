@@ -42,39 +42,25 @@ void CameraControllerFirstPerson::setCamera(Ogre::Camera * pCamera)
 	rotY=mCamera->getOrientation().getYaw().valueDegrees();
 }
 
-void CameraControllerFirstPerson::processRelativeMotion(double xRel,double yRel,double zRel)
+void CameraControllerFirstPerson::processCameraRotation(Ogre::Vector2 cameraRotation)
 {
 
 	//process Relative Motion
-	if(xRel==0 && yRel==0) 
+	if(cameraRotation.x==0 && cameraRotation.y==0) 
 	{
 		return;
 	}
 	else
 	{
-		rotY-=xRel*rotationSpeed;
-		rotX-=yRel*rotationSpeed;
+		rotY-=cameraRotation.x*rotationSpeed;
+		rotX-=cameraRotation.y*rotationSpeed;
 	}
 
 }
 
-void CameraControllerFirstPerson::processSimpleTranslation(int movementFlags)
+void CameraControllerFirstPerson::processSimpleTranslation(Ogre::Vector3 translation)
 {
-	newTranslation=Vector3(0,0,0);
-
-	//Forwand / backwards
-	if ((movementFlags & MOV_FORWARD_OR_BACK) > 0)
-	{	
-		double way = ((movementFlags & MOV_GO_FORWARD) > 0) ? 1.0f : -1.0f;
-		newTranslation -= Ogre::Vector3::UNIT_Z * way;
-	}
-
-	//strafe left / right
-	if ((movementFlags & MOV_LEFT_OR_RIGHT) > 0)
-	{
-		double way = ((movementFlags & MOV_GO_LEFT) > 0) ? 1.0f : -1.0f;
-		newTranslation -= Ogre::Vector3::UNIT_X * way;
-	}
+	newTranslation=-translation;
 
 	newTranslation*=speed;
 

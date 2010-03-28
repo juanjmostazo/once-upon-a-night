@@ -11,11 +11,18 @@ namespace OUAN
 
 		void update(double elapsedTime);
 		void setTarget(RenderComponentPositional * target);
+		void setCamera(Ogre::Camera * pCamera);
+
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
-	private:
-		RenderComponentPositional * target;
 
+		void calculateRotY();
+	private:
+
+
+		RenderComponentPositional * target;
+		double rotY;
 		double height;
 	};
 }

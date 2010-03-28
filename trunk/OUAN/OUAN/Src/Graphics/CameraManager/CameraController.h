@@ -17,10 +17,10 @@ namespace OUAN
 		Ogre::Camera * getCamera();
 
 		virtual void update(double elapsedTime);
-		virtual void processMouseInput(const OIS::MouseEvent &e);
-		virtual void processRelativeMotion(double xRel,double yRel,double zRel);
-		virtual void processSimpleTranslation(int movementFlags);
+		virtual void processCameraRotation(Ogre::Vector2 cameraRotation);
+		virtual void processSimpleTranslation(Ogre::Vector3 nextMovement);
 		virtual void setTarget(RenderComponentPositional * target);
+		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 	protected:
 		Ogre::Camera *mCamera;

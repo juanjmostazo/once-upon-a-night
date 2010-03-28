@@ -4,7 +4,7 @@ using namespace OUAN;
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
 {
-	mMovementFlags = MOV_NOWHERE;
+	mNextMovement = NxOgre::Vec3(0,0,0);
 
 	mJumping = false;
 	mFalling = true;
@@ -50,72 +50,45 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	// Initial displacement vector: gravity
-	NxOgre::Vec3 mDisplacement(Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds);
-
-	// Movement forces
-	if (mMovementFlags > 0)
+	if (mNextMovement!=Vector3::ZERO)
 	{
-		// Advance stuff
-		if ((mMovementFlags & MOV_FORWARD_OR_BACK) > 0)
-		{	
-			double way = ((mMovementFlags & MOV_GO_FORWARD) > 0) ? 1.0f : -1.0f;
-			mDisplacement += Ogre::Vector3::UNIT_Z * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * way * elapsedSeconds;
-		}
-
-		// Turn stuff
-		if ((mMovementFlags & MOV_LEFT_OR_RIGHT) > 0)
-		{
-			double offsetYaw = ((mMovementFlags & MOV_GO_LEFT) > 0) ? 
-				Application::getInstance()->getPhysicsSubsystem()->mTurnDegreesPerSecond : 
-			-Application::getInstance()->getPhysicsSubsystem()->mTurnDegreesPerSecond;
-			offsetYaw *= elapsedSeconds;
-
-			getNxOgreController()->setDisplayYaw(getNxOgreController()->getDisplayYaw() + offsetYaw);
-		}
-
-		// Jump stuff
-		if ((mMovementFlags & MOV_JUMP) > 0 && !mJumping && mOnSurface)
-		{
-			Ogre::LogManager::getSingleton().logMessage("Jump!"); 
-			initJump();
-		} 
-
-		// Calculates the current displacement from position and angle
-		mDisplacement = Ogre::Quaternion(
-			Ogre::Degree(getNxOgreController()->getDisplayYaw()), 
-			Ogre::Vector3::UNIT_Y) * 
-			mDisplacement.as<Ogre::Vector3>();
+		// Scale next movement using time and speed
+		mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+		
+		// Apply gravity
+		mNextMovement+=Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds;
 	}
 
 	if (mJumping)
 	{
 		setJumpSpeed(mJumpSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mJumpTime);
 		mJumpTime += elapsedSeconds;
-		mDisplacement.y += mJumpSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
+		mNextMovement.y += mJumpSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	} 
 	else if (mFalling) 
 	{
 		setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
 		mFallTime += elapsedSeconds;
-		mDisplacement.y += mFallSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
+		mNextMovement.y += mFallSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
 	}
 
 	// Perform last frame sliding displacement
 	if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
 	{
-		mDisplacement += mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+		mNextMovement += mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
 		resetSliding();
 	}
 
 	////////////////////////////////////////////////////////////////////////////
 	// Applying global factor to displacement
-	mDisplacement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
+	mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 
 	if (isInUse())
 	{
+		setCharactersDisplayYaw();
+
 		getNxOgreController()->move(
-			mDisplacement,
+			mNextMovement,
 			GROUP_COLLIDABLE_MASK,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
@@ -136,6 +109,64 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		Application::getInstance()->getGameWorldManager()->setGameOver(true);
 		Application::getInstance()->getGameWorldManager()->setGameBeaten(false);
 	}
+
+	//Set movement to zero for the next frame
+	mNextMovement=Vector3::ZERO;
+}
+
+void PhysicsComponentCharacter::setCharactersDisplayYaw()
+{
+	double characterYaw=getNxOgreController()->getDisplayYaw();
+
+	if(mNextMovement.z<0 && mNextMovement.x<0)
+	{
+		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+		characterYaw+=180;
+	}
+	else if(mNextMovement.z<0 && mNextMovement.x>0)
+	{
+		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+		characterYaw+=180;
+	}
+	else if(mNextMovement.z>0 && mNextMovement.x>0)
+	{
+		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+	}
+	else if(mNextMovement.z>0 && mNextMovement.x<0)
+	{
+		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+	}
+	else if(mNextMovement.z!=0)
+	{
+		if(mNextMovement.z<0)
+		{
+			characterYaw=180;
+		}
+		else if(mNextMovement.z>0)
+		{
+			characterYaw=0;
+		}
+	}
+	else if(mNextMovement.x!=0)
+	{
+		if(mNextMovement.x<0)
+		{
+			characterYaw=270;
+		}
+		else if(mNextMovement.x>0)
+		{
+			characterYaw=90;
+		}
+	}
+
+	if(characterYaw!=getNxOgreController()->getDisplayYaw())
+	{
+		Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(mNextMovement.x)+" "
+																	+Ogre::StringConverter::toString(mNextMovement.z));
+		Ogre::LogManager::getSingleton().logMessage("characterYaw "+Ogre::StringConverter::toString(Ogre::Real(characterYaw)));
+	}
+
+	getNxOgreController()->setDisplayYaw(characterYaw);
 }
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)
@@ -225,9 +256,14 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 	}
 }
 
-void PhysicsComponentCharacter::setMovementFlags(int pMovementFlags)
+void PhysicsComponentCharacter::setNextMovement(NxOgre::Vec3 nextMovement)
 {
-	mMovementFlags=pMovementFlags;
+	mNextMovement=nextMovement;
+}
+
+NxOgre::Vec3 PhysicsComponentCharacter::getNextMovement()
+{
+	return mNextMovement;
 }
 
 TPhysicsComponentCharacterParameters::TPhysicsComponentCharacterParameters() : TPhysicsComponentParameters()

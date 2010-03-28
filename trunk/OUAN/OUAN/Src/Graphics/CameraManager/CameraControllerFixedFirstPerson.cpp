@@ -55,19 +55,19 @@ void CameraControllerFixedFirstPerson::update(double elapsedTime)
 
 }
 
-void CameraControllerFixedFirstPerson::processRelativeMotion(double xRel,double yRel,double zRel)
+void CameraControllerFixedFirstPerson::processCameraRotation(Ogre::Vector2 cameraRotation)
 {
 	Ogre::Matrix3 next_rotation;
 
 	//process Relative Motion
-	if(xRel==0 && yRel==0) 
+	if(cameraRotation.x==0 && cameraRotation.y==0) 
 	{
 		return;
 	}
 	else
 	{
-		rotY-=xRel*speed;
-		rotX-=yRel*speed;
+		rotY-=cameraRotation.x*speed;
+		rotX-=cameraRotation.y*speed;
 	}
 
 	//check if rotation exceeds limits for X axis

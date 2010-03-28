@@ -174,11 +174,11 @@ OIS::JoyStick* FullInputManager::getJoystick( unsigned int index ) {
     return 0;
 }
 
-void FullInputManager::getMouseStateRelValues(double* x, double* y, double* z)
+void FullInputManager::getMouseStateRelValues(double & x, double & y, double & z)
 {
-	*x = getMouse()->getMouseState().X.rel;
-	*y = getMouse()->getMouseState().Y.rel;
-	*z = getMouse()->getMouseState().Z.rel;
+	x = getMouse()->getMouseState().X.rel;
+	y = getMouse()->getMouseState().Y.rel;
+	z = getMouse()->getMouseState().Z.rel;
 }
 
 int FullInputManager::getNumOfJoysticks( void ) {
@@ -186,15 +186,26 @@ int FullInputManager::getNumOfJoysticks( void ) {
     return (int) m_joysticks.size();
 }
 
-void FullInputManager::getJoystickStateAxes(unsigned int index, double* leftX, double* leftY, double* rightX, double* rightY){
-	int maxAxis = getJoystick(index)->MAX_AXIS;
-	int errorBorder = maxAxis / 4; //25%
-	OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
-	
-	*leftX = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
-	*leftY = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
-	*rightX = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
-	*rightY = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
+void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & leftY, double & rightX, double & rightY){
+
+	if(getNumOfJoysticks()>index)
+	{
+		int maxAxis = getJoystick(index)->MAX_AXIS;
+		int errorBorder = maxAxis / 4; //25%
+		OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
+		
+		leftX = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
+		leftY = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
+		rightX = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
+		rightY = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
+	}
+	else
+	{
+		leftX = 0;
+		leftY = 0;
+		rightX = 0;
+		rightY = 0;
+	}
 }
 
 double FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int border){
