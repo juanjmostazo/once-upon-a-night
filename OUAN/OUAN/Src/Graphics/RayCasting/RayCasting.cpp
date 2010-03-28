@@ -81,7 +81,7 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
         if ((query_result[qr_idx].movable != NULL) &&
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
-			Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
+			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
             // get the entity to check
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);           
 

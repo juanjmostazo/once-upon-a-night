@@ -30,8 +30,11 @@ namespace OUAN
 		void update(double elapsedTime);
 
 		void processMouseInput(const OIS::MouseEvent &e);
-		void processRelativeMotion(double xRel,double yRel,double zRel);
-		void processSimpleTranslation(int movementFlags);
+		void processCameraRotation(Ogre::Vector2 cameraRotation);
+		void processSimpleTranslation(Ogre::Vector3 nextMovement);
+
+		// Process a movement vector in order to fit with the current active camera.
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		/// Return read-only pointer to the viewport
 		/// @return viewport

@@ -137,10 +137,8 @@ namespace OUAN
 		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
 		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
 
-		bool isPressedGoForward();		// Go forward
-		bool isPressedGoBack();			// Go back
-		bool isPressedGoLeft();			// Go to left
-		bool isPressedGoRight();		// Go to right
+		Vector2 getMovement();
+		Vector2 getCameraRotation();
 
 		bool isPressedWalk();			// Walk mode
 		bool isPressedAutoPoint();		// Automatic pointer
@@ -169,10 +167,10 @@ namespace OUAN
 		bool isPressedToggleVolumes();
 
 		void getMouseStateRelValues(
-			double*, double*, double*);			// Mouse x, y, z coordinate values
+			double & x, double & y, double & z);			// Mouse x, y, z coordinate values
 
 		void getJoystickStateAxes(
-			double*, double*, double*, double*);	// Joystick left and right axes values (from -1 to 1)
+			double & leftX, double & leftY, double & rightX, double & rightY);	// Joystick left and right axes values (from -1 to 1)
 
 		/// Fill a dictionary containing the keyboard and pad mappings
 		/// for a set of key ids
@@ -186,6 +184,13 @@ namespace OUAN
 		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
 		
 	protected:
+
+		/// In order to determine getMovement method result
+		bool isPressedGoForward();		// Go forward
+		bool isPressedGoBack();			// Go back
+		bool isPressedGoLeft();			// Go to left
+		bool isPressedGoRight();		// Go to right
+
 		/// Parse configuration files for the input device button mappings
 		bool loadConfig();
 

@@ -55,12 +55,7 @@ namespace OUAN
 		void createOverlays();
 
 		/// Translate/Rotate camera's position with mouse
-		void moveCamera(const OIS::MouseEvent &e);
-		/// Translate/Rotate camera's position according to the given relative translations
-		/// @param xRel	relative translation along the X Axis
-		/// @param yRel	relative translation along the Y Axis
-		/// @param zRel relative translation along the Z Axis
-		void moveCamera(double xRel, double yRel, double zRel);
+		void moveCamera(Ogre::Vector2 cameraRotation);
 
 		/// Translate camera according to the given coordinate axis
 		/// @param worldCoordinateAxis

@@ -244,45 +244,35 @@ void GameRunningState::handleEvents()
 		
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
-	int movementFlags = 0;
-	if (mApp->isPressedGoForward())
-	{
-		movementFlags |= MOV_GO_FORWARD;	
-	}
+	//TODO: separate jump from movement?
+	Vector2 nextMovementXZ=mApp->getMovement();
 
-	if (mApp->isPressedGoBack())
-	{
-		movementFlags |= MOV_GO_BACK;
-	}
-
-	if (mApp->isPressedGoLeft())
-	{
-		movementFlags |= MOV_GO_LEFT;
-	}
-
-	if (mApp->isPressedGoRight())
-	{
-		movementFlags |= MOV_GO_RIGHT;
-	}
+	Vector3 nextMovement;
+	nextMovement.x=nextMovementXZ.x;
+	nextMovement.y=0;
+	nextMovement.z=nextMovementXZ.y;
 
 	if (mApp->isPressedJump())
 	{
-		movementFlags |= MOV_JUMP;
-	}
+		nextMovement+=Vector3::UNIT_Y;	
+	}	
 
 	if (mApp->isPressedWalk())
 	{
-		movementFlags |= MOV_WALK;
+		//TODO: this should be loaded from config
+		nextMovement=nextMovement/2;	
 	}
 
 	if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
 	{
-		mApp->getRenderSubsystem()->getCameraManager()->processSimpleTranslation(movementFlags);
+		mApp->getRenderSubsystem()->getCameraManager()->processSimpleTranslation(nextMovement);
 	}
 	else if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
 	{
 		//Access to [0] because there's only one Ony, otherwise it should be a loop
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setMovementFlags(movementFlags);
+		//rotate movement vector using the current camera direction
+		nextMovement=mApp->getRenderSubsystem()->getCameraManager()->rotateMovementVector(nextMovement);
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
 	}
 
 	//[TODO: This will also have to be refactored somehow as soon as
@@ -297,9 +287,9 @@ void GameRunningState::handleEvents()
 	//	 or switch to the user-controlled camera mode and then update that one, whatever.
 	//   The current active camera would be a GameObject using a CameraComponent.
 	//]
-	double xRel,yRel,zRel;	
-	mApp->getMouseStateRelValues(&xRel,&yRel,&zRel);
-	mApp->getRenderSubsystem()->moveCamera(xRel,yRel,zRel);
+	Vector2 cameraRotation;
+	cameraRotation=mApp->getCameraRotation();
+	mApp->getRenderSubsystem()->moveCamera(cameraRotation);
 }
 
 void GameRunningState::update(long elapsedTime)

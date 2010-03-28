@@ -193,15 +193,9 @@ TrajectoryManager* RenderSubsystem::getTrajectoryManager() const
 //	return mCameraControllerFirstPerson;
 //}
 
-/// Translate/Rotate camera's position with mouse
-void RenderSubsystem::moveCamera(const OIS::MouseEvent &e)
+void RenderSubsystem::moveCamera(Ogre::Vector2 cameraRotation)
 {
-	mCameraManager->processMouseInput(e);
-}
-
-void RenderSubsystem::moveCamera(double xRel, double yRel, double zRel)
-{
-	mCameraManager->processRelativeMotion(xRel,yRel,zRel);
+	mCameraManager->processCameraRotation(cameraRotation);
 }
 
 void RenderSubsystem::updateVisualDebugger()

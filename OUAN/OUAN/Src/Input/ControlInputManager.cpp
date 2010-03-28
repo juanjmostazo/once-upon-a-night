@@ -276,6 +276,95 @@ bool ControlInputManager::isPressedWeaponAction()
 
 //////////////////////////////////////////////////////////////
 
+Vector2 ControlInputManager::getMovement()
+{
+	Vector2 nextMovement = Vector2::ZERO;
+
+	double joystickLeftX=0;
+	double joystickLeftY=0;
+	double joystickRightX=0;
+	double joystickRightY=0;
+
+	getJoystickStateAxes(joystickLeftX, joystickLeftY, joystickRightX, joystickRightY);
+
+	if (isPressedGoForward())
+	{
+		nextMovement+=Vector2::UNIT_Y;	
+	}
+	else if(joystickLeftY>0)
+	{
+		nextMovement+=Vector2::UNIT_Y;
+	}
+
+	if (isPressedGoBack())
+	{
+		nextMovement+=Vector2::NEGATIVE_UNIT_Y;	
+	}
+	else if(joystickLeftY<0)
+	{
+		nextMovement+=Vector2::NEGATIVE_UNIT_Y;
+	}
+
+	if (isPressedGoLeft())
+	{
+		nextMovement+=Vector2::UNIT_X;	
+	}
+	else if(joystickLeftX>0)
+	{
+		nextMovement+=Vector2::UNIT_X;
+	}
+
+	if (isPressedGoRight())
+	{
+		nextMovement+=Vector2::NEGATIVE_UNIT_X;	
+	}
+	else if(joystickLeftX<0)
+	{
+		nextMovement+=Vector2::NEGATIVE_UNIT_X;
+	}
+
+	return nextMovement;
+}
+Vector2 ControlInputManager::getCameraRotation()
+{
+	Vector2 nextCameraRotation = Vector2::ZERO;
+
+	double joystickLeftX=0;
+	double joystickLeftY=0;
+	double joystickRightX=0;
+	double joystickRightY=0;
+
+	getJoystickStateAxes(joystickLeftX, joystickLeftY, joystickRightX, joystickRightY);
+
+	double mouseX;
+	double mouseY;
+	double mouseZ;
+
+	getMouseStateRelValues(mouseX,mouseY,mouseZ);
+
+	if(mouseX!=0)
+	{
+		nextCameraRotation.x+=mouseX;
+	}
+	else if(joystickRightX!=0)
+	{
+		nextCameraRotation.x+=joystickRightX;
+	}
+
+	if(mouseY!=0)
+	{
+		nextCameraRotation.y+=mouseY;
+	}
+	else if(joystickRightY!=0)
+	{
+		nextCameraRotation.y+=joystickRightY;
+	}
+
+	return nextCameraRotation;
+}
+
+//////////////////////////////////////////////////////////////
+
 bool ControlInputManager::isPressedGoForward()
 {
 	return isPressed(padUp,mDefaultInputData.keyForward);
@@ -367,12 +456,12 @@ bool ControlInputManager::isPressedToggleVolumes()
 
 //////////////////////////////////////////////////////////////
 
-void ControlInputManager::getMouseStateRelValues(double* x, double* y, double* z)
+void ControlInputManager::getMouseStateRelValues(double & x, double & y, double & z)
 {
 	FullInputManager::getMouseStateRelValues(x, y, z);
 }
 
-void ControlInputManager::getJoystickStateAxes(double* leftX, double* leftY, double* rightX, double* rightY)
+void ControlInputManager::getJoystickStateAxes(double & leftX, double & leftY, double & rightX, double & rightY)
 {
 	FullInputManager::getJoystickStateAxes(defaultPadId, leftX, leftY, rightX, rightY);
 }

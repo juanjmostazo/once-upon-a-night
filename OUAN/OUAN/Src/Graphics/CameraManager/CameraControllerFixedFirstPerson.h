@@ -13,7 +13,7 @@ namespace OUAN
 		void setTarget(RenderComponentPositional * target);
 
 		void update(double elapsedTime);
-		void processRelativeMotion(double xRel,double yRel,double zRel);
+		void processCameraRotation(Ogre::Vector2 cameraRotation);
 
 	private:
 		RenderComponentPositional * target;

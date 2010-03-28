@@ -6,6 +6,7 @@ using namespace Ogre;
 
 CameraController::CameraController()
 {
+	mCamera=0;
 }
 CameraController::~CameraController()
 {
@@ -30,17 +31,12 @@ void CameraController::update(double elapsedTime)
 
 }
 
-void CameraController::processMouseInput(const OIS::MouseEvent &e)
-{
-	processRelativeMotion(e.state.X.rel,e.state.Y.rel,e.state.Z.rel);
-}
-
-void CameraController::processRelativeMotion(double xRel,double yRel,double zRel)
+void CameraController::processCameraRotation(Ogre::Vector2 cameraRotation)
 {
 
 }
 
-void CameraController::processSimpleTranslation(int movementFlags)
+void CameraController::processSimpleTranslation(Ogre::Vector3 translation)
 {
 
 }
@@ -49,7 +45,15 @@ void CameraController::setTarget(RenderComponentPositional * target)
 {
 
 }
+
+Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement)
+{
+	return movement;
+}
+
+
 TCameraControllerType CameraController::getControllerType()
 {
 	return OUAN::CAMERA_NONE;
 }
+
