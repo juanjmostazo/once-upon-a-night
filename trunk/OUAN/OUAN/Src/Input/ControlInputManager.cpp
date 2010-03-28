@@ -309,8 +309,8 @@ Vector2 ControlInputManager::getMovement()
 
 	if(joystickLeftY!=0 || joystickLeftX!=0)
 	{
-		nextMovement.x+=joystickLeftX*0.00005;
-		nextMovement.y+=joystickLeftY*0.00005;
+		nextMovement.x+=joystickLeftX*JOYSTICK_MOVEMENT_FACTOR;
+		nextMovement.y+=joystickLeftY*JOYSTICK_MOVEMENT_FACTOR;
 	}
 
 	return nextMovement;
@@ -338,7 +338,7 @@ Vector2 ControlInputManager::getCameraRotation()
 	}
 	else if(joystickRightX!=0)
 	{
-		nextCameraRotation.x-=joystickRightX*JOYSTICK_FACTOR;
+		nextCameraRotation.x-=joystickRightX*JOYSTICK_ROTATE_FACTOR;
 	}
 
 	if(mouseY!=0)
@@ -347,7 +347,7 @@ Vector2 ControlInputManager::getCameraRotation()
 	}
 	else if(joystickRightY!=0)
 	{
-		nextCameraRotation.y+=joystickRightY*JOYSTICK_FACTOR;
+		nextCameraRotation.y+=joystickRightY*JOYSTICK_ROTATE_FACTOR;
 	}
 
 	return nextCameraRotation;
