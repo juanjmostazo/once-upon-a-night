@@ -7,13 +7,8 @@
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
 
-#define PI 3.14159
-#define TO_DEGREES 57.296 //180/PI
-
 namespace OUAN
 {
-	const std::string PHYSICS_CFG="../../Config/physics-cfg.xml";
-
 	//This class encapsulates the physics logic
 	//of our game. It uses NxOgre BloodyMess v.1.5.5
 	class PhysicsSubsystem : public NxOgre::Callback, public NxOgre::ControllerCallback
@@ -49,13 +44,16 @@ namespace OUAN
 		virtual NxOgre::ControllerManager* getNxOgreControllerManager();
 
 		//General physics callbacks
-		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-			NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent);
+		//virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+		//	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent);
+		//virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
+		//	void* controller, unsigned int collisionEvent);
+		
 		virtual bool onHitEvent(const NxOgre::RaycastHit& raycastHit);
 		virtual void onContact(const NxOgre::ContactPair& contactPair);
 
 		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-			void* controller, unsigned int collisionEvent);
+			const std::string objectName, NxOgre::Vec3 objectPosition, unsigned int collisionEvent);
 
 		//Specific physics character callbacks
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
@@ -129,11 +127,18 @@ namespace OUAN
 		/// Auxiliar function
 		void setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
 
+		/// Auxiliar function
+		bool areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius);
+
+		/// Auxiliar function
+		bool isOnyCloseFromPosition(NxOgre::Vec3 position, double radius);
+
 		/// Fetch function
 		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
 
 		/// Fetch function
 		GameObjectPtr getGameObjectFromVolume(NxOgre::Volume* Volume);
+
 	};
 }
 #endif

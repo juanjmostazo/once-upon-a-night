@@ -31,6 +31,8 @@ namespace OUAN
 		//Destructor
 		~GameObject();
 
+		static GameObjectPtr Null;
+
 		GameWorldManagerPtr getGameWorldManager();
 		void setGameWorldManager(GameWorldManagerPtr gameWorldManager);
 

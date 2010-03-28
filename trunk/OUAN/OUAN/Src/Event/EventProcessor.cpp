@@ -85,7 +85,6 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		}
 		/*ClearQueueEventPtr evt(new ClearQueueEvent());
 		mWorldManager->addEvent(evt);*/
-		
 	}
 }
 
@@ -118,72 +117,65 @@ void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 {
 	//Ogre::LogManager::getSingleton().logMessage("* Character: " + evt->getCharacter()->getName());
 	//Ogre::LogManager::getSingleton().logMessage("* Trigger: " + evt->getTrigger()->getName());
-	if (evt->getCharacter())
+
+	if (evt->getCharacter() && evt->getTrigger() && evt->getTrigger()->isEnabled())
 	{
 		if (evt->getCharacter()->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 		{
 			Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (ONY)");
 
-			switch (evt->getCollisionType())
+			if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
 			{
-			case COLLISION_TYPE_TRIGGER_ENTER: 
-
-				if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
-				{
-					GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->win();
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
-				{	
-					GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->win();
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
-				{
-					GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject);
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
-				{
-					GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject);
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
-				{
-					GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject);
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
-				{
-					GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject);
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
-				{
-					GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItemClockPiece(tmpObject);
-				}
-				else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
-				{
-					GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
-					Application::getInstance()->getGameWorldManager()->takeItemStoryBook(tmpObject);
-				}
-				//TODO else if block, same with rest of game object items
-
-				break;
-			case COLLISION_TYPE_TRIGGER_PRESENCE: 
-
-				break;
-			case COLLISION_TYPE_TRIGGER_EXIT: break;
-			default: break;
+				GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->win();
 			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
+			{	
+				GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->win();
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
+			{
+				GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
+			{
+				GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
+			{
+				GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
+			{
+				GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
+			{
+				GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemClockPiece(tmpObject);
+			}
+			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
+			{
+				GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
+				Application::getInstance()->getGameWorldManager()->takeItemStoryBook(tmpObject);
+			}
+			//TODO else if block, 
+			//same with rest of game object items which need trigger actions
 		}
 		else 
 		{
-			Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (OTHER)");
+			//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (OTHER)");
 		}
 	}
-	else Ogre::LogManager::getSingleton().logMessage("EventProcessor: character is null!");
+	else 
+	{
+		//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (NULL OR NOT ENABLED)");
+	}
 }
 void EventProcessor::processClearQueue(ClearQueueEventPtr evt)
 {

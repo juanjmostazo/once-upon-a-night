@@ -648,11 +648,15 @@ namespace OUAN
 
 		#define GROUP_COLLIDABLE_MASK (1 << GROUP_COLLIDABLE_NON_PUSHABLE) | (1 << GROUP_COLLIDABLE_PUSHABLE)
 		#define NXS_PATH "file:../../Resources/Graphics/NxModels"
+		#define PHYSICS_CFG "../../Config/physics-cfg.xml"
 
 		#define COLLISION_TYPE_TRIGGER_UNKNOWN 0
 		#define COLLISION_TYPE_TRIGGER_ENTER 1
 		#define COLLISION_TYPE_TRIGGER_PRESENCE 2
 		#define COLLISION_TYPE_TRIGGER_EXIT 3
+
+		#define PI 3.14159
+		#define TO_DEGREES 57.296 //180/PI
 
 		//-------------------------------------
 		//  Movements masks
