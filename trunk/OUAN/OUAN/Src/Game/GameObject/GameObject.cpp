@@ -95,7 +95,7 @@ void GameObject::increaseHP(int amount)
 	}
 }
 void GameObject::decreaseHP(int amount)
-{
+{	
 	std::ostringstream s;
 	s.str("");
 	s<<"Decreasing "<<getName()<<" health";

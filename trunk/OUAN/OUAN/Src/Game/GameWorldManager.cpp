@@ -2540,7 +2540,11 @@ EventManagerPtr GameWorldManager::getEventManager()
 
 GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 {
-	return mGameObjectOnyContainer[0];
+	if (!mGameObjectOnyContainer.empty())
+		return mGameObjectOnyContainer[0];
+	GameObjectOnyPtr nullPtr;
+	nullPtr.reset();
+	return nullPtr;
 }
 ApplicationPtr GameWorldManager::getParent()
 {

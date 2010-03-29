@@ -5,12 +5,12 @@ material OUAN/Hud/Health
 		pass
 		{
 			lighting off
-			scene_blend alpha_blend
+			scene_blend alpha_blend	
 			depth_check off
 
 			texture_unit
 			{
-				texture HUDHealth00.png
+				texture HUDHealth03.png
 			}
 		}
 	}

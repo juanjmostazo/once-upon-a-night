@@ -734,3 +734,16 @@ void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 		overlayElem->show();
 
 }
+void RenderSubsystem::setHealthHudData(const std::string& overlayName, int numLives, const std::string& healthMaterialName, const std::string& texName)
+{
+	Ogre::OverlayElement* overlayElem =  Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
+	std::ostringstream livesText;
+	livesText.str("");
+	livesText<<'x'<<numLives;
+	overlayElem->setCaption(livesText.str());
+	Ogre::MaterialPtr mat = MaterialManager::getSingleton().getByName(healthMaterialName);
+	if (!mat.isNull())
+	{
+		mat->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureName(texName);	
+	}
+}
