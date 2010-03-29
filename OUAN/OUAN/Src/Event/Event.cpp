@@ -96,3 +96,20 @@ ClearQueueEvent::ClearQueueEvent()
 :Event(EVT_PRIORITY_CLEARQUEUE,EVENT_TYPE_CLEARQUEUE)
 {
 }
+//----------------------
+GameOverEvent::GameOverEvent(bool win)
+:Event(EVT_PRIORITY_GAMEOVER,EVENT_TYPE_GAMEOVER)
+,mWin(win)
+{
+}
+bool GameOverEvent::isWin() const
+{
+	return mWin;
+}
+//-----------------------
+OnyDiesEvent::OnyDiesEvent(int remainingLives)
+:Event(EVT_PRIORITY_ONY_DEATH,EVENT_TYPE_ONY_DEATH)
+,mRemainingLives(remainingLives)
+{
+
+}

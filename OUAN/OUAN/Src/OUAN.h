@@ -510,6 +510,12 @@ namespace OUAN
 		class ClearQueueEvent;
 		typedef boost::shared_ptr<ClearQueueEvent> ClearQueueEventPtr;
 
+		class GameOverEvent;
+		typedef boost::shared_ptr<GameOverEvent> GameOverEventPtr;
+
+		class OnyDiesEvent;
+		typedef boost::shared_ptr<OnyDiesEvent> OnyDiesEventPtr;
+
 		///////////////////////////////////////////////////////////////////
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;

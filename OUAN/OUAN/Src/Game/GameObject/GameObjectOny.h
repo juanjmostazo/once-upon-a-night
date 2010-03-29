@@ -82,7 +82,15 @@ namespace OUAN
 		void changeWorld(int world);
 
 		void decreaseHP(int amount=1);
+		void setMaxHP();
 
+		void increaseWeaponPower(int powerUnits=1);
+		void decreaseWeaponPower(int powerUnits=1);
+
+		/// Additional actions to take after losing one life
+		void loseLife();
+		/// Additional actions to take after losing all lives
+		void die();
 	};
 
 	/// Carries data between the level loader and the object factories

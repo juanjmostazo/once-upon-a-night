@@ -146,15 +146,20 @@ namespace OUAN
 		void changeWorld();
 
 		// Take items
-		void takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP);
-		void takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP);
-		void takeItemHeart(GameObjectHeartPtr gameObjectHeart);
-		void takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond);
+		void takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP,GameObjectOnyPtr ony);
+		void takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP,GameObjectOnyPtr ony);
+		void takeItemHeart(GameObjectHeartPtr gameObjectHeart,GameObjectOnyPtr ony);
+		void takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond,GameObjectOnyPtr ony);
 		void takeItemClockPiece(GameObjectClockPiecePtr gameObjectClockPiece);
 		void takeItemStoryBook(GameObjectStoryBookPtr gameObjectStoryBook);
 
-		// Pass current level
+		/// Pass current level
 		void win();
+		/// Lose game
+		void lose();
+
+		/// Reset the world after ony's death
+		void onyDied();
 
 		/// Change world to the one specified by the passed parameter
 		/// @param currentworld world to change to

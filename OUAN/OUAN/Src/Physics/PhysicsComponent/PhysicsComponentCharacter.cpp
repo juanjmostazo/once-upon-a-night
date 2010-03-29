@@ -108,8 +108,9 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	}
 
 	if (getNxOgreController()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
-		Application::getInstance()->getGameWorldManager()->setGameOver(true);
-		Application::getInstance()->getGameWorldManager()->setGameBeaten(false);
+		//TODO: When the reset() method is done, replace gameOver with onyDies
+		GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
+		mParent->getGameWorldManager()->addEvent(evt);
 	}
 
 	//Set movement to zero for the next frame

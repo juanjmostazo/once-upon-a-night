@@ -2463,40 +2463,56 @@ void GameWorldManager::changeWorld()
 	addEvent(evt);
 }
 
-void GameWorldManager::takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP)
+void GameWorldManager::takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP, GameObjectOnyPtr ony)
 {
 	gameObjectMaxHP->getRenderComponentEntity()->setVisible(false);
 	gameObjectMaxHP->getPhysicsComponentVolumeBox()->destroy();
 	gameObjectMaxHP->disable();
 
 	//Add logic
+	if (ony.get())
+	{
+		ony->setMaxHP();
+	}
 }
 
-void GameWorldManager::takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP)
+void GameWorldManager::takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP, GameObjectOnyPtr ony)
 {
 	gameObjectItem1UP->getRenderComponentEntity()->setVisible(false);
 	gameObjectItem1UP->getPhysicsComponentVolumeBox()->destroy();
 	gameObjectItem1UP->disable();
 
 	//Add logic
+	if (ony.get())
+	{
+		ony->increaseLives();
+	}
 }
 
-void GameWorldManager::takeItemHeart(GameObjectHeartPtr gameObjectHeart)
+void GameWorldManager::takeItemHeart(GameObjectHeartPtr gameObjectHeart, GameObjectOnyPtr ony)
 {
 	gameObjectHeart->getRenderComponentEntity()->setVisible(false);
 	gameObjectHeart->getPhysicsComponentVolumeBox()->destroy();
 	gameObjectHeart->disable();
 
 	//Add logic
+	if (ony.get())
+	{
+		ony->increaseHP();
+	}
 }
 
-void GameWorldManager::takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond)
+void GameWorldManager::takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond, GameObjectOnyPtr ony)
 {
 	gameObjectDiamond->getRenderComponentEntity()->setVisible(false);
 	gameObjectDiamond->getPhysicsComponentVolumeBox()->destroy();
 	gameObjectDiamond->disable();
 
 	//Add logic
+	if (ony.get())
+	{
+		ony->increaseWeaponPower();
+	}
 }
 
 void GameWorldManager::takeItemClockPiece(GameObjectClockPiecePtr gameObjectClockPiece)
@@ -2521,6 +2537,16 @@ void GameWorldManager::win()
 {
 	setGameOver(true);
 	setGameBeaten(true);
+}
+void GameWorldManager::lose()
+{
+	setGameOver(true);
+	setGameBeaten(false);
+}
+
+void GameWorldManager::onyDied()
+{
+	//TODO: Reset Ony and every other game object that needs it.
 }
 
 void GameWorldManager::addEvent(OUAN::EventPtr event)
