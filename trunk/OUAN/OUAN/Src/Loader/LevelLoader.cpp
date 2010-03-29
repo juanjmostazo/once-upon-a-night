@@ -603,7 +603,7 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -683,7 +683,7 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -926,7 +926,7 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectHeartParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectHeartParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -964,7 +964,7 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -1002,7 +1002,7 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectItemMaxHPParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -1547,7 +1547,7 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectStoryBookParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectStoryBookParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -1778,7 +1778,7 @@ void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 		tGameObjectTriggerBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectTriggerBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectTriggerBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -1813,7 +1813,7 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 		tGameObjectTriggerCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeCapsule
-		tGameObjectTriggerCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsule(gameObject->XMLNodeCustomProperties);
+		tGameObjectTriggerCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters=processPhysicsComponentVolumeCapsuleUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -2407,7 +2407,33 @@ TPhysicsComponentSimpleCapsuleParameters LevelLoader::processPhysicsComponentSim
 	return tPhysicsComponentSimpleCapsuleParameters;
 }
 
-TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix)
+TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,std::string suffix)
+{
+	TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeBoxParameters.mass=getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeBox"+suffix+"::mass");
+	Vector3 length=getPropertyVector3(XMLCustomPropertiesNode, "PhysicsComponentVolumeBox"+suffix+"::length");
+	tPhysicsComponentVolumeBoxParameters.lengthX=length.x;
+	tPhysicsComponentVolumeBoxParameters.lengthY=length.y;
+	tPhysicsComponentVolumeBoxParameters.lengthZ=length.z;
+
+	return tPhysicsComponentVolumeBoxParameters;
+}
+
+TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLCustomPropertiesNode,std::string suffix)
+{
+	TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeCapsule"+suffix+"::mass");
+	tPhysicsComponentVolumeCapsuleParameters.radius= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeCapsule"+suffix+"::radius");
+	tPhysicsComponentVolumeCapsuleParameters.height= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeCapsule"+suffix+"::height");
+
+	return tPhysicsComponentVolumeCapsuleParameters;
+}
+
+TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeBoxUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix)
 {
 	TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
@@ -2421,17 +2447,20 @@ TPhysicsComponentVolumeBoxParameters LevelLoader::processPhysicsComponentVolumeB
 	return tPhysicsComponentVolumeBoxParameters;
 }
 
-TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsule(TiXmlElement *XMLNode,std::string suffix)
+TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVolumeCapsuleUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix)
 {
 	TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters;
 
 	//Get Component properties
-	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::mass");
-	tPhysicsComponentVolumeCapsuleParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::radius");
-	tPhysicsComponentVolumeCapsuleParameters.height= getPropertyReal(XMLNode, "PhysicsComponentVolumeCapsule"+suffix+"::height");
+	tPhysicsComponentVolumeCapsuleParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeCapsule"+suffix+"::mass");
+	Vector3 length=getPropertyVector3(XMLRenderInfoNode, "scale");
+	tPhysicsComponentVolumeCapsuleParameters.radius= length.x;
+	tPhysicsComponentVolumeCapsuleParameters.height= length.y;
 
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
+
+
 TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNodeDreams,
 												TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {
