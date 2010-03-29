@@ -30,7 +30,15 @@ namespace OUAN
 		/// @param evt pointer to the event
 		void processCharacterInTrigger(CharacterInTriggerEventPtr evt);
 
+		/// Process game over event
+		/// @param evt pointer to the event
+		void processGameOver(GameOverEventPtr evt);
+
+		/// Process clear queue event (likely to be removed)
 		void processClearQueue(ClearQueueEventPtr evt);
+
+		/// Process ony's death event
+		void processOnyDies(OnyDiesEventPtr evt);
 
 	private:
 		/// Register all event handling methods

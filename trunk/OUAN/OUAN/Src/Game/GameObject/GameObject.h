@@ -79,6 +79,19 @@ namespace OUAN
 		/// If applicable, decrease the object's health points
 		/// @param amount number of HP to decrease
 		virtual void decreaseHP(int amount=1);
+		
+		/// If applicable, increase the object's number of lives
+		/// @param amount of lives to increase
+		virtual void increaseLives(int amount=1);
+		/// If applicable, decrease the object's number of lives
+		/// @param amount of lives to decrease
+		virtual void decreaseLives(int amount=1);
+
+		/// Additional actions to take after losing one life
+		virtual void loseLife();
+
+		/// Additional actions to take after losing all lives
+		virtual void die();
 	};
 
 	class TGameObjectParameters

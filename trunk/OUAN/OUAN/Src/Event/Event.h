@@ -87,5 +87,24 @@ namespace OUAN
 	public:
 		ClearQueueEvent();
 	};
+
+	class GameOverEvent: public Event
+	{
+	public:
+		GameOverEvent(bool win);
+		bool isWin() const;
+	private:
+		bool mWin;
+	};
+	
+	class OnyDiesEvent: public Event
+	{
+	public:
+		OnyDiesEvent(int remainingLives);
+		int getRemainingLives() const;
+	private:
+		int mRemainingLives;
+	};
+
 }
 #endif

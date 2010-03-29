@@ -44,10 +44,13 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
 			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
 
-		//registerEventHandler<EventProcessor,ClearQueueEvent, EVENT_TYPE_CLEARQUEUE>
-		//	(this_,&EventProcessor::processClearQueue,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
+			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
+			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
 	}
 }
+
 
 void EventProcessor::unregisterHandlers()
 {
@@ -63,15 +66,34 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
 			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
-		//unregisterEventHandler<EventProcessor,ClearQueueEvent, EVENT_TYPE_CLEARQUEUE>
-		//	(this_,&EventProcessor::processClearQueue,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
+			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
+			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
 	}
 }
 
 //---------------------------------------------------------------------
 // Event callbacks
 //---------------------------------------------------------------------
-
+void EventProcessor::processGameOver(GameOverEventPtr evt)
+{
+	if (mWorldManager.get())
+	{
+		//TODO: Additional stuff if required
+		if (evt->isWin())
+			mWorldManager->win();
+		else mWorldManager->lose();
+	}
+}
+void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
+{
+	if (mWorldManager.get())
+	{
+		//TODO: Additional stuff as needed
+		mWorldManager->onyDied();
+	}
+}
 void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	if (mWorldManager.get())
@@ -120,36 +142,40 @@ void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 		if (evt->getCharacter()->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 		{
 			Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (ONY)");
+			
+			GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter());
 
 			if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
 			{
-				GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->win();
+				//GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
+				GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(true));
+				mWorldManager->addEvent(evt);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
 			{	
-				GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->win();
+				//GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
+				GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(true));
+				mWorldManager->addEvent(evt);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
 			{
 				GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject);
+				Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject, ony);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
 			{
 				GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject);
+				Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject,ony);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
 			{
 				GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject);
+				Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject,ony);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
 			{
 				GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject);
+				Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject,ony);
 			}
 			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
 			{

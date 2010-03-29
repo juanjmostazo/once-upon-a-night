@@ -96,13 +96,7 @@ void GameObject::increaseHP(int amount)
 }
 void GameObject::decreaseHP(int amount)
 {	
-	std::ostringstream s;
-	s.str("");
-	s<<"Decreasing "<<getName()<<" health";
-	Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
-	s.str("");
-	s<<"Current HP: "<<mLogicComponent->getHealthPoints()<<" , Num. lives: "<<mLogicComponent->getNumLives();
-	Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
+	
 	if (mEnabled && mLogicComponent.get())
 	{
 		if (mLogicComponent->getHealthPoints()>0 && mLogicComponent->getNumLives()>0)
@@ -112,20 +106,34 @@ void GameObject::decreaseHP(int amount)
 				:mLogicComponent->getHealthPoints()-amount);
 			if (mLogicComponent->getHealthPoints()==0)
 			{
-				mLogicComponent->setNumLives(mLogicComponent->getNumLives()-1);
-				if (mLogicComponent->getNumLives()==0)
-				{
-					mGameWorldManager->setGameBeaten(false);
-					mGameWorldManager->setGameOver(true);
-				}
-				else
-					mLogicComponent->setHealthPoints(mLogicComponent->getInitialHealthPoints());
+				decreaseLives();				
 			}
 		}
-		s.str("");
-		s<<"New HP: "<<mLogicComponent->getHealthPoints()<<" , New N. lives: "<<mLogicComponent->getNumLives();
-		Ogre::LogManager::getSingletonPtr()->logMessage(s.str());
 	}
+}
+void GameObject::increaseLives(int amount)
+{
+	getLogicComponent()->setNumLives(getLogicComponent()->getNumLives()+amount);
+}
+void GameObject::decreaseLives(int amount)
+{
+	getLogicComponent()->setNumLives(getLogicComponent()->getNumLives()-amount);
+	if (getLogicComponent()->getNumLives()<=0)
+	{
+		getLogicComponent()->setNumLives(0);//safety assignment.
+		die();
+	}
+	else
+		loseLife();
+}
+void GameObject::die()
+{
+	//TODO: ADDITIONAL STUFF (Or redefine in subclass for type-specific behaviour)
+	disable();
+}
+void GameObject::loseLife()
+{
+	mLogicComponent->setHealthPoints(mLogicComponent->getInitialHealthPoints());
 }
 
 //-------------------------------------------------------
