@@ -21,7 +21,6 @@ namespace OUAN
 		/// @return the game object container
 		TGameObjectContainer getAllGameObjects();
 
-
 		TGameObjectMovableContainer getGameObjectMovableContainer();
 		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
 		TGameObjectNonMovableContainer getGameObjectNonMovableContainer();
@@ -35,6 +34,8 @@ namespace OUAN
 		TGameObjectPositionalContainer getGameObjectPositionalContainer();
 		TGameObjectSceneContainer getGameObjectSceneContainer();
 		TGameObjectTripolloContainer getGameObjectTripolloContainer();
+		TGameObjectTripollitoContainer getGameObjectTripollitoContainer();
+		TGameObjectTentetiesoContainer getGameObjectTentetiesoContainer();
 		TGameObjectEyeContainer getGameObjectEyeContainer();
 		TGameObjectTriggerBoxContainer getGameObjectTriggerBoxContainer();
 		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
@@ -262,6 +263,8 @@ namespace OUAN
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
 		TGameObjectTripolloContainer mGameObjectTripolloContainer;
+		TGameObjectTripollitoContainer mGameObjectTripollitoContainer;
+		TGameObjectTentetiesoContainer mGameObjectTentetiesoContainer;
 		TGameObjectEyeContainer mGameObjectEyeContainer;
 		TGameObjectTriggerBoxContainer mGameObjectTriggerBoxContainer;
 		TGameObjectTriggerCapsuleContainer mGameObjectTriggerCapsuleContainer;

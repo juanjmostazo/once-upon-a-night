@@ -156,6 +156,16 @@ TGameObjectTripolloContainer GameWorldManager::getGameObjectTripolloContainer()
 	return mGameObjectTripolloContainer;
 }
 
+TGameObjectTripollitoContainer GameWorldManager::getGameObjectTripollitoContainer()
+{
+	return mGameObjectTripollitoContainer;
+}
+
+TGameObjectTentetiesoContainer GameWorldManager::getGameObjectTentetiesoContainer()
+{
+	return mGameObjectTentetiesoContainer;
+}
+
 TGameObjectEyeContainer GameWorldManager::getGameObjectEyeContainer()
 {
 	return mGameObjectEyeContainer;
@@ -630,9 +640,18 @@ void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr pGameObject
 	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectStoryBook);
 }
 
-void GameWorldManager::addGameObjectTentetieso(GameObjectTentetiesoPtr gameObjectTentetieso)
+void GameWorldManager::addGameObjectTentetieso(GameObjectTentetiesoPtr pGameObjectTentetieso)
 {
-	mGameObjects[gameObjectTentetieso->getName()]=gameObjectTentetieso;
+	mGameObjects[pGameObjectTentetieso->getName()]=pGameObjectTentetieso;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectTentetieso);
+	mGameObjectMovableContainer.push_back(pGameObjectTentetieso);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTentetieso);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectTentetieso);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTentetieso);
+
+	mGameObjectTentetiesoContainer.push_back(pGameObjectTentetieso);
 }
 
 void GameWorldManager::addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex)
@@ -665,9 +684,17 @@ void GameWorldManager::addGameObjectTerrainTriangle(GameObjectTerrainTrianglePtr
 	mGameObjectTerrainTriangleContainer.push_back(pGameObjectTerrainTriangle);
 }
 
-void GameWorldManager::addGameObjectTree(GameObjectTreePtr gameObjectTree)
+void GameWorldManager::addGameObjectTree(GameObjectTreePtr pGameObjectTree)
 {
-	mGameObjects[gameObjectTree->getName()]=gameObjectTree;
+	mGameObjects[pGameObjectTree->getName()]=pGameObjectTree;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectTree);
+	mGameObjectNonMovableContainer.push_back(pGameObjectTree);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectTree);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectTree);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectTree);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectTree);
 }
 
 void GameWorldManager::addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox)
@@ -692,9 +719,18 @@ void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr p
 	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
-void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr gameObjectTripollito)
+void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito)
 {
-	mGameObjects[gameObjectTripollito->getName()]=gameObjectTripollito;
+	mGameObjects[pGameObjectTripollito->getName()]=pGameObjectTripollito;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectTripollito);
+	mGameObjectMovableContainer.push_back(pGameObjectTripollito);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollito);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripollito);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollito);
+
+	mGameObjectTripollitoContainer.push_back(pGameObjectTripollito);
 }
 
 void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
