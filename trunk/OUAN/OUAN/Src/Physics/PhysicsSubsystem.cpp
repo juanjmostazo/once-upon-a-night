@@ -366,7 +366,7 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 	return NxOgre::Enums::ControllerAction_None;
 }
 
-void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, const std::string objectName, NxOgre::Vec3 objectPosition, unsigned int collisionEvent)
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, const std::string objectName, NxOgre::Vec3 objectPosition, double objectMass, unsigned int collisionEvent)
 {
 	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
 	switch (collisionEvent)
@@ -389,11 +389,13 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().y));
 	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().z));
 	Ogre::LogManager::getSingleton().logMessage("**********");
+	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(NxOgre::Real(objectMass)));
+	Ogre::LogManager::getSingleton().logMessage("**********");
 	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug End");
-	*/
-
+	
 	double radius = 1.0f;
-	if (isOnyCloseFromPosition(objectPosition, radius))
+	*/
+	if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getMass() == objectMass)
 	{
 		CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
 			new CharacterInTriggerEvent(

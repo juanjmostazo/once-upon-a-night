@@ -53,7 +53,7 @@ namespace OUAN
 		virtual void onContact(const NxOgre::ContactPair& contactPair);
 
 		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-			const std::string objectName, NxOgre::Vec3 objectPosition, unsigned int collisionEvent);
+			const std::string objectName, NxOgre::Vec3 objectPosition, double objectMass, unsigned int collisionEvent);
 
 		//Specific physics character callbacks
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
