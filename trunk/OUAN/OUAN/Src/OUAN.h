@@ -405,6 +405,7 @@ namespace OUAN
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
 		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
+		typedef std::vector<GameObjectTripollitoPtr> TGameObjectTripollitoContainer;
 		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
 		typedef std::vector<GameObjectItem1UPPtr> TGameObjectItem1UPContainer;
