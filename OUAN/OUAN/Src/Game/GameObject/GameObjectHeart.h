@@ -47,6 +47,10 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox();
+
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		void changeWorld(int world);
 	};
 
 	class TGameObjectHeartParameters: public TGameObjectParameters

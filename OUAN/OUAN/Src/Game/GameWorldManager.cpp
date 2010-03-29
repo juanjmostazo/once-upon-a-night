@@ -408,9 +408,17 @@ void GameWorldManager::addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantP
 	mGameObjects[gameObjectCarnivorousPlant->getName()]=gameObjectCarnivorousPlant;
 }
 
-void GameWorldManager::addGameObjectClockPiece(GameObjectClockPiecePtr gameObjectClockPiece)
+void GameWorldManager::addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece)
 {
-	mGameObjects[gameObjectClockPiece->getName()]=gameObjectClockPiece;
+	mGameObjects[pGameObjectClockPiece->getName()]=pGameObjectClockPiece;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectClockPiece);
+	mGameObjectNonMovableContainer.push_back(pGameObjectClockPiece);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectClockPiece);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectClockPiece);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectClockPiece);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectClockPiece);
 }
 
 void GameWorldManager::addGameObjectCryKing(GameObjectCryKingPtr gameObjectCryKing)
@@ -418,9 +426,17 @@ void GameWorldManager::addGameObjectCryKing(GameObjectCryKingPtr gameObjectCryKi
 	mGameObjects[gameObjectCryKing->getName()]=gameObjectCryKing;
 }
 
-void GameWorldManager::addGameObjectDiamond(GameObjectDiamondPtr gameObjectDiamond)
+void GameWorldManager::addGameObjectDiamond(GameObjectDiamondPtr pGameObjectDiamond)
 {
-	mGameObjects[gameObjectDiamond->getName()]=gameObjectDiamond;
+	mGameObjects[pGameObjectDiamond->getName()]=pGameObjectDiamond;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectDiamond);
+	mGameObjectNonMovableContainer.push_back(pGameObjectDiamond);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectDiamond);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectDiamond);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectDiamond);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectDiamond);
 }
 
 void GameWorldManager::addGameObjectDiamondTree(GameObjectDiamondTreePtr gameObjectDiamondTree)
@@ -457,9 +473,17 @@ void GameWorldManager::addGameObjectFlashLight(GameObjectFlashLightPtr gameObjec
 	mGameObjects[gameObjectFlashLight->getName()]=gameObjectFlashLight;
 }
 
-void GameWorldManager::addGameObjectHeart(GameObjectHeartPtr gameObjectHeart)
+void GameWorldManager::addGameObjectHeart(GameObjectHeartPtr pGameObjectHeart)
 {
-	mGameObjects[gameObjectHeart->getName()]=gameObjectHeart;
+	mGameObjects[pGameObjectHeart->getName()]=pGameObjectHeart;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectHeart);
+	mGameObjectNonMovableContainer.push_back(pGameObjectHeart);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectHeart);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectHeart);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectHeart);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectHeart);
 }
 
 void GameWorldManager::addGameObjectItem1UP(GameObjectItem1UPPtr pGameObjectItem1UP)
@@ -593,9 +617,17 @@ void GameWorldManager::addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr gameO
 	mGameObjects[gameObjectSnakeCreeper->getName()]=gameObjectSnakeCreeper;
 }
 
-void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr gameObjectStoryBook)
+void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook)
 {
-	mGameObjects[gameObjectStoryBook->getName()]=gameObjectStoryBook;
+	mGameObjects[pGameObjectStoryBook->getName()]=pGameObjectStoryBook;
+
+	mGameObjectPositionalContainer.push_back(pGameObjectStoryBook);
+	mGameObjectNonMovableContainer.push_back(pGameObjectStoryBook);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectStoryBook);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectStoryBook);
+	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectStoryBook);
+	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectStoryBook);
 }
 
 void GameWorldManager::addGameObjectTentetieso(GameObjectTentetiesoPtr gameObjectTentetieso)
