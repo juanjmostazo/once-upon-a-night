@@ -231,6 +231,8 @@ namespace OUAN
 
 		////////////////////////////////////////////////////////////////////
 
+		const int HIT_RECOVERY_TIME=500000;
+
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
 		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;

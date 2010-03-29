@@ -75,10 +75,10 @@ namespace OUAN
 
 		/// If applicable, increase the object's health points
 		/// @param amount number of HP to increase
-		void increaseHP(int amount=1);
+		virtual void increaseHP(int amount=1);
 		/// If applicable, decrease the object's health points
 		/// @param amount number of HP to decrease
-		void decreaseHP(int amount=1);
+		virtual void decreaseHP(int amount=1);
 	};
 
 	class TGameObjectParameters

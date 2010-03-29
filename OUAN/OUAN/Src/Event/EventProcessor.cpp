@@ -78,39 +78,36 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 	{
 		TGameObjectContainer objs=mWorldManager->getAllGameObjects();
 
-		//TODO: Replace the container getter with a more specific one if needed
 		for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
 		{
 			it->second->changeWorld(evt->getNewWorld());
 		}
-		/*ClearQueueEventPtr evt(new ClearQueueEvent());
-		mWorldManager->addEvent(evt);*/
 	}
 }
 
 void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 {
-	//if (evt->getCharacter1() && evt->getCharacter2())
-	//{
+	if (evt->getCharacter1() && evt->getCharacter2())
+	{
 		Ogre::String characters = evt->getCharacter1()->getName() + "," + evt->getCharacter2()->getName();
 		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision (" + characters + ")");
 		//TODO: Handle weapon->enemy collisions, so their health can be modified as well
-		//GameObjectOnyPtr ony;
-		//ony.reset();
-		//if (evt->getCharacter1()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//{
-		//	ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter1());
-		//}
-		//else if (evt->getCharacter2()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//{
-		//	ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter2());
-		//}
-		//if (ony.get())
-		//{
-		//	ony->decreaseHP();
-		//}
-	//}
-	//else Ogre::LogManager::getSingleton().logMessage("EventProcessor: empty characters!");
+		GameObjectOnyPtr ony;
+		ony.reset();
+		if (evt->getCharacter1()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		{
+			ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter1());
+		}
+		else if (evt->getCharacter2()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		{
+			ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter2());
+		}
+		if (ony.get())
+		{
+			ony->decreaseHP();
+		}
+	}
+	else Ogre::LogManager::getSingleton().logMessage("EventProcessor: empty characters!");
 }
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)

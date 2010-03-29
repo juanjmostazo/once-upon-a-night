@@ -52,7 +52,9 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
-	mGUI->hideConsole();	
+	mGUI->hideConsole();
+
+	initHealthHud();
 }
 
 /// Clean up main menu's resources
@@ -324,6 +326,7 @@ void GameRunningState::update(long elapsedTime)
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
 	updateRoulette();
+	updateHealthHUD();
 	mGUI->update(elapsedSeconds);
 }
 
@@ -383,6 +386,24 @@ void GameRunningState::updateRouletteHUD()
 	mApp->getRenderSubsystem()->setTextureData(MATERIAL_ROULETTE,mRouletteData[mCurrentRouletteState].textureName,
 		mRouletteData[mCurrentRouletteState].isAnimated, mRouletteData[mCurrentRouletteState].numFrames,
 		mRouletteData[mCurrentRouletteState].duration);
+}
+void GameRunningState::updateHealthHUD()
+{
+	if (mApp.get()&&mApp->getGameWorldManager().get()&& mApp->getGameWorldManager()->getGameObjectOny().get())
+	{
+		LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+		mApp->getRenderSubsystem()->setHealthHudData(OVERLAY_INGAME_HUD_LIVES_TEXT,onyLogic->getNumLives(), 
+			MATERIAL_HEALTH, mHealthHudTextures[onyLogic->getHealthPoints()]);
+	}
+}
+void GameRunningState::initHealthHud()
+{
+	mHealthHudTextures[0]=TEX_HEALTH_HUD_NAME_EMPTY;
+	mHealthHudTextures[1]=TEX_HEALTH_HUD_NAME_X1;
+	mHealthHudTextures[2]=TEX_HEALTH_HUD_NAME_X2;
+	mHealthHudTextures[3]=TEX_HEALTH_HUD_NAME_FULL;
+	
+	updateHealthHUD();
 }
 void GameRunningState::initRouletteData()
 {

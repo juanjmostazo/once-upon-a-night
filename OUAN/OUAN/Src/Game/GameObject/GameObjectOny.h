@@ -8,6 +8,20 @@
 
 namespace OUAN
 {
+
+	const int STATE_ONY_IDLE=0;
+	const int STATE_ONY_WALKS=1;
+	const int STATE_ONY_JUMPS=2;
+	const int STATE_ONY_TAKES_HIT=3;
+	const int STATE_ONY_PILLOW_DRAW=4;
+	const int STATE_ONY_PILLOW_ATTACK=5;
+	const int STATE_ONY_PILLOW_ATTACK_SPECIAL=6;
+	const int STATE_ONY_PILLOW_HIDE=7;
+	const int STATE_ONY_FLASHLIGHT_DRAW=8;
+	const int STATE_ONY_FLASHLIGHT_USE=9;
+	const int STATE_ONY_FLASHLIGHT_HIDE=10;
+	const int STATE_ONY_FLASHLIGHT_USE_SPECIAL=11;
+		
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
@@ -26,6 +40,9 @@ namespace OUAN
 		
 		/// Weapon wielding component
 		//WeaponComponentPtr mWeaponComponent;
+
+		/// 'Immunity' time so a single collision is not processed during several ticks
+		int mHitRecoveryTime;
 
 	public:
 		//Constructor
@@ -63,6 +80,8 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		void decreaseHP(int amount=1);
 
 	};
 

@@ -7,7 +7,7 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 {
-	
+	mHitRecoveryTime=HIT_RECOVERY_TIME;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -47,6 +47,8 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 
 void GameObjectOny::update(double elapsedSeconds)
 {
+	if (mHitRecoveryTime>=0)
+		mHitRecoveryTime-=elapsedSeconds*1000000;
 	GameObject::update(elapsedSeconds);
 
 	//TODO THIS SHOULD BE DONE IN A GENERAL WAY IN THE PHYSICSSUBSYSTEM::UPDATE
@@ -60,6 +62,14 @@ void GameObjectOny::changeWorld(int world)
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->create();
+	}
+}
+void GameObjectOny::decreaseHP(int amount)
+{
+	if (mHitRecoveryTime<=0)
+	{
+		GameObject::decreaseHP();
+		mHitRecoveryTime=HIT_RECOVERY_TIME;
 	}
 }
 

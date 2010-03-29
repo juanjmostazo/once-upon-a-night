@@ -93,6 +93,8 @@ namespace OUAN
 		/// Set target for camera manager
 		/// @param	renderComponentPositional is the RenderComponentPositional which we will set as the camera's target
 		void setCameraTarget(RenderComponentPositional * renderComponentPositional);
+
+		void setHealthHudData(const std::string& overlayName, int numLives, const std::string& healthMaterialName, const std::string& texName);
 		
 		//Object creators
 
