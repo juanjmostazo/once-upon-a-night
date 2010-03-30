@@ -52,6 +52,8 @@ namespace OUAN
 		//true if camera has been moved this frame
 		bool cameraMoved;
 
+		double rotXDistanceAttenuation;
+
 		void returningToInitialPosition();
 		
 
