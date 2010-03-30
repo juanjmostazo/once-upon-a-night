@@ -27,15 +27,22 @@ namespace OUAN
 	//-------------------------------------
 	//	Basic Types
 	//-------------------------------------
-	typedef Ogre::String String;
-	typedef Ogre::StringConverter StringConverter;
-	typedef Ogre::Vector2 Vector2;
-	typedef Ogre::Vector3 Vector3;
-	typedef Ogre::Vector4 Vector4;
-	typedef Ogre::Quaternion Quaternion;
-	typedef Ogre::Real Real;
-	typedef Ogre::ColourValue ColourValue;
+		typedef Ogre::String String;
+		typedef Ogre::StringConverter StringConverter;
+		typedef Ogre::Vector2 Vector2;
+		typedef Ogre::Vector3 Vector3;
+		typedef Ogre::Vector4 Vector4;
+		typedef Ogre::Quaternion Quaternion;
+		typedef Ogre::Real Real;
+		typedef Ogre::ColourValue ColourValue;
 
+
+	//-------------------------------------
+	//	Input module-related constants, type definitions and forwarded declarations
+	//-------------------------------------
+
+		class FullInputManager;
+		typedef boost::shared_ptr<FullInputManager> FullInputManagerPtr;
 
 	//-------------------------------------
 	//	Core module-related constants, type definitions and forwarded declarations

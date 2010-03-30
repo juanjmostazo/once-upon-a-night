@@ -19,96 +19,12 @@ ControlInputManager::~ControlInputManager()
 void ControlInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer)
 {
 	FullInputManager::init(window,showDefaultMousePointer);
-	loadConfig();
-	loadStrings();
 }
 
 void ControlInputManager::finalise()
 {
 	mInputTextStrings.reset();
 	FullInputManager::finalise();
-}
-
-//////////////////////////////////////////////////////////////
-
-bool ControlInputManager::loadConfig()
-{
-	Configuration config;
-	std::string value;
-	bool success;
-
-	// Load key mappings for mouse-keyboard input
-	loadDefaultInputConfig(DEFAULTINPUT_CFG);
-
-	// Same for a pad
-	if (config.loadFromFile(PSXPAD_CFG))
-	{
-		config.getOption(DEFAULT_PAD_ID, value); 
-		defaultPadId = atoi(value.c_str());
-
-		config.getOption(PAD_SELECT, value); 
-		padSelect = atoi(value.c_str());
-		config.getOption(PAD_START, value); 
-		padStart = atoi(value.c_str());
-
-		config.getOption(PAD_UP, value); 
-		padUp = atoi(value.c_str());
-		config.getOption(PAD_DOWN, value); 
-		padDown = atoi(value.c_str());
-		config.getOption(PAD_LEFT, value); 
-		padLeft = atoi(value.c_str());
-		config.getOption(PAD_RIGHT, value); 
-		padRight = atoi(value.c_str());
-
-		config.getOption(PAD_TRIANGLE, value); 
-		padTriangle = atoi(value.c_str());
-		config.getOption(PAD_X, value); 
-		padX = atoi(value.c_str());
-		config.getOption(PAD_SQUARE, value); 
-		padSquare = atoi(value.c_str());
-		config.getOption(PAD_CIRCLE, value); 
-		padCircle = atoi(value.c_str());
-
-		config.getOption(PAD_L1, value); 
-		padL1 = atoi(value.c_str());
-		config.getOption(PAD_L2, value); 
-		padL2 = atoi(value.c_str());
-		config.getOption(PAD_R1, value); 
-		padR1 = atoi(value.c_str());
-		config.getOption(PAD_R2, value); 
-		padR2 = atoi(value.c_str());
-
-		success = true;
-	} 
-	else 
-	{
-		//LogManager::getSingleton().logMessage(PSXPAD_CFG + " COULD NOT BE LOADED!");
-
-		defaultPadId = -1;
-		padSelect = -1, padStart = -1;
-		padUp = -1, padDown = -1, padLeft = -1, padRight = -1;
-		padTriangle = -1, padX = -1, padSquare = -1, padCircle = -1;
-		padL1 = -1, padL2 = -1, padR1 = -1, padR2 = -1;
-
-		success = false;
-	}
- 
-//	config.~Configuration();
-	return success;
-}
-bool ControlInputManager::loadStrings()
-{
-	mInputTextStrings.reset(new Configuration());
-	return mInputTextStrings->loadFromFile(INPUTSTRINGS_CFG);
-}
-
-void ControlInputManager::readOption(Configuration cfg,const std::string& key, int& value)
-{
-	std::string strValue;
-	std::istringstream valueReader;
-	cfg.getOption(key,strValue);
-	valueReader.str(strValue);
-	valueReader>>std::hex>>value;
 }
 
 OIS::MouseButtonID ControlInputManager::convertMouseButtonId(TInputCfgMouseButtonMapper inputCfgMouseButtonId)
@@ -160,72 +76,7 @@ TInputCfgMouseButtonMapper ControlInputManager::convertMouseButtonId(OIS::MouseB
 	}
 }
 
-bool ControlInputManager::loadDefaultInputConfig(const std::string& configFilePath)
-{
-	Configuration config;
-	if (config.loadFromFile(configFilePath))
-	{
-		readOption(config,KEY_MENU,mDefaultInputData.keyMenu);
-		readOption(config,KEY_PAUSE,mDefaultInputData.keyPause);
 
-		readOption(config,KEY_USEWEAPON,mDefaultInputData.keyUseWeapon);
-		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon);
-		readOption(config,KEY_ACTION,mDefaultInputData.keyAction);
-		readOption(config,KEY_JUMP,mDefaultInputData.keyJump);
-		readOption(config,KEY_WALK,mDefaultInputData.keyWalk);
-
-		readOption(config,KEY_FORWARD,mDefaultInputData.keyForward);			
-		readOption(config,KEY_BACKWARDS,mDefaultInputData.keyBackwards);
-		readOption(config,KEY_LEFT,mDefaultInputData.keyLeft);
-		readOption(config,KEY_RIGHT,mDefaultInputData.keyRight);
-
-		readOption(config,KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget);
-		readOption(config,KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft);
-		readOption(config,KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight);
-
-		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
-		readOption(config,KEY_DEBUG_PERFORMANCE,mDefaultInputData.keyDebugPerformance);
-		readOption(config,KEY_DEBUG_PHYSICS,mDefaultInputData.keyDebugPhysics);
-		readOption(config,KEY_CHANGE_CAMERA_CONTROLLER,mDefaultInputData.keyChangeCameraController);
-		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
-		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
-		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
-		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
-		readOption(config,KEY_TOGGLE_VOLUMES,mDefaultInputData.keyToggleVolumes);
-
-		return true;
-	}
-	else
-	{
-		//LogManager::getSingleton().logMessage(configFilePath + " COULD NOT BE LOADED!");
-
-		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyReloadWeapon=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyForward=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyJump=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyLeft=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyMenu=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyPause=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyRight=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyRotateLeft=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyRotateRight=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyWalk=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyUseWeapon=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyDebugPerformance=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyDebugPhysics=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyChangeCamera=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyToggleVolumes=OIS::KC_UNASSIGNED;
-
-		return false;
-	}
-}
 
 
 //////////////////////////////////////////////////////////////
@@ -309,8 +160,8 @@ Vector2 ControlInputManager::getMovement()
 
 	if(joystickLeftY!=0 || joystickLeftX!=0)
 	{
-		nextMovement.x+=joystickLeftX*JOYSTICK_MOVEMENT_FACTOR;
-		nextMovement.y+=joystickLeftY*JOYSTICK_MOVEMENT_FACTOR;
+		nextMovement.x+=joystickLeftX;
+		nextMovement.y+=joystickLeftY;
 	}
 
 	return nextMovement;
@@ -338,7 +189,7 @@ Vector2 ControlInputManager::getCameraRotation()
 	}
 	else if(joystickRightX!=0)
 	{
-		nextCameraRotation.x-=joystickRightX*JOYSTICK_ROTATE_FACTOR;
+		nextCameraRotation.x-=joystickRightX*padCameraJoystickScaleFactor;
 	}
 
 	if(mouseY!=0)
@@ -347,7 +198,7 @@ Vector2 ControlInputManager::getCameraRotation()
 	}
 	else if(joystickRightY!=0)
 	{
-		nextCameraRotation.y+=joystickRightY*JOYSTICK_ROTATE_FACTOR;
+		nextCameraRotation.y+=joystickRightY*padCameraJoystickScaleFactor;
 	}
 
 	return nextCameraRotation;
@@ -611,20 +462,28 @@ void ControlInputManager::savePsxInput()
 	Configuration c;
 	std::stringstream convertString;
 	ADD_CONFIG_ENTRY(defaultPadId,DEFAULT_PAD_ID,true); //THE SEMICOLON HERE ADDS AN EMPTY INSTRUCTION! (Hopefully, it's removed by the compiler)
-	ADD_CONFIG_ENTRY(padUp,PAD_UP,true);
-	ADD_CONFIG_ENTRY(padDown,PAD_DOWN,true);
-	ADD_CONFIG_ENTRY(padLeft,PAD_LEFT,true);
-	ADD_CONFIG_ENTRY(padRight,PAD_RIGHT,true);
-	ADD_CONFIG_ENTRY(padTriangle,PAD_TRIANGLE,true);
-	ADD_CONFIG_ENTRY(padCircle,PAD_CIRCLE,true);
-	ADD_CONFIG_ENTRY(padSquare,PAD_SQUARE,true);
-	ADD_CONFIG_ENTRY(padX, PAD_X,true);
-	ADD_CONFIG_ENTRY(padL1, PAD_L1,true);
-	ADD_CONFIG_ENTRY(padL2, PAD_L2,true);
-	ADD_CONFIG_ENTRY(padR1, PAD_R1,true);
-	ADD_CONFIG_ENTRY(padR2, PAD_R2,true);
-	ADD_CONFIG_ENTRY(padSelect, PAD_SELECT,true);
-	ADD_CONFIG_ENTRY(padStart, PAD_START,true);
+	ADD_CONFIG_ENTRY(padUp,PAD_BUTTON_NAME_UP,true);
+	ADD_CONFIG_ENTRY(padDown,PAD_BUTTON_NAME_DOWN,true);
+	ADD_CONFIG_ENTRY(padLeft,PAD_BUTTON_NAME_LEFT,true);
+	ADD_CONFIG_ENTRY(padRight,PAD_BUTTON_NAME_RIGHT,true);
+	ADD_CONFIG_ENTRY(padTriangle,PAD_BUTTON_NAME_TRIANGLE,true);
+	ADD_CONFIG_ENTRY(padCircle,PAD_BUTTON_NAME_CIRCLE,true);
+	ADD_CONFIG_ENTRY(padSquare,PAD_BUTTON_NAME_SQUARE,true);
+	ADD_CONFIG_ENTRY(padX, PAD_BUTTON_NAME_X,true);
+	ADD_CONFIG_ENTRY(padL1, PAD_BUTTON_NAME_L1,true);
+	ADD_CONFIG_ENTRY(padL2, PAD_BUTTON_NAME_L2,true);
+	ADD_CONFIG_ENTRY(padR1, PAD_BUTTON_NAME_R1,true);
+	ADD_CONFIG_ENTRY(padR2, PAD_BUTTON_NAME_R2,true);
+	ADD_CONFIG_ENTRY(padSelect, PAD_BUTTON_NAME_SELECT,true);
+	ADD_CONFIG_ENTRY(padStart, PAD_BUTTON_NAME_START,true);
+
+	ADD_CONFIG_ENTRY(padLeftJoystickX,PAD_LEFT_JOYSTICK_Y,true);
+	ADD_CONFIG_ENTRY(padLeftJoystickY,PAD_LEFT_JOYSTICK_X,true);
+
+	ADD_CONFIG_ENTRY(padRightJoystickX,PAD_RIGHT_JOYSTICK_Y,true);
+	ADD_CONFIG_ENTRY(padRightJoystickY,PAD_RIGHT_JOYSTICK_X,true);
+
+
 	c.saveToFile(PSXPAD_CFG);
 }
 #undef ADD_CONFIG_ENTRY 

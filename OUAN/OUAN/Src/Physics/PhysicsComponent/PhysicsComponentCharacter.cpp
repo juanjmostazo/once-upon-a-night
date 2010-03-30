@@ -52,6 +52,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
+
 	if (mNextMovement!=Vector3::ZERO)
 	{
 		// Scale next movement using time and speed

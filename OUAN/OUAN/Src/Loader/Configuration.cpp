@@ -20,6 +20,7 @@ bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags
 {
 	TiXmlDocument doc(fileName.c_str());
 	if (!doc.LoadFile()){
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [Configuration] Error reading file "+fileName);
 		return  false; //Let the client of this class handle this
 	} 
 
@@ -100,7 +101,11 @@ bool Configuration::getOption(const std::string& key, std::string& value)
 		value=configMap[key];
 		return true;
 	}
-	else return false;
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [Configuration] Error reading option "+key);
+		return false;
+	}
 
 }
 void Configuration::setOption (const std::string& key, const std::string& value, bool replaceExisting)
