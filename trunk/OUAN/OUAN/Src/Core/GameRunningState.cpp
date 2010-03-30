@@ -7,6 +7,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/HUD/HUDInGame.h"
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIConsole.h"
 #include "../Logic/LogicSubsystem.h"
@@ -46,15 +47,14 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mApp->mKeyBuffer=-1;
 	
-	initRouletteData();
-	mCurrentRouletteState=ROULETTE_COLOUR_RED;
-	updateRouletteHUD();
-
 	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();
 
-	initHealthHud();
+	//create HUD
+	mHUD.reset(new HUDInGame());
+	LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives());
 }
 
 /// Clean up main menu's resources
@@ -62,15 +62,15 @@ void GameRunningState::cleanUp()
 {
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
-	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_INGAME_HUD);
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	mApp->getGameWorldManager()->unloadLevel();
-	mApp->getGUISubsystem()->cleanUp();
-	//mApp->getPhysicsSubsystem()->clear(); Done into mApp->getGameWorldManager()->unloadLevel();
-	//mApp->getRenderSubsystem()->clear(); Done into mApp->getGameWorldManager()->unloadLevel();
+	mApp->getGUISubsystem()->cleanUp();	
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;
-	mRouletteData.clear();
+	
+	//Destroy HUD
+	mHUD->destroy();
+
 }
 
 /// pause state
@@ -104,13 +104,11 @@ void GameRunningState::handleEvents()
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
 	}
-	//TODO: REMOVE THIS STATEMENT when we can respond to a collision 
-	//and simulate a gameOver event
 	else if(mApp->isPressedAutoPoint() && mApp->mKeyBuffer<0)
 	{
-		GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-		mGUI->hideConsole();
+		//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
+		//mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		//mGUI->hideConsole();
 	}
 	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
 	{
@@ -207,12 +205,12 @@ void GameRunningState::handleEvents()
 	}
 	else if (mApp->isPressedRotateLeft() && mApp->mKeyBuffer<0)
 	{
-		spinRoulette(true);
+		mHUD->spinRoulette(true);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedRotateRight() && mApp->mKeyBuffer<0)
 	{
-		spinRoulette(false);
+		mHUD->spinRoulette(false);
 		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 	else if (mApp->isPressedToggleConsole() && mApp->mKeyBuffer<0)
@@ -325,15 +323,15 @@ void GameRunningState::update(long elapsedTime)
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
-	updateRoulette();
-	updateHealthHUD();
+	LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+	mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
 	mGUI->update(elapsedSeconds);
 }
 
 bool GameRunningState::render()
 {
 	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
-	
+
 	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
 	{
 		renderSubsystem->updateStats();
@@ -342,108 +340,8 @@ bool GameRunningState::render()
 	}
 
 	renderSubsystem->updateVisualDebugger();
-	renderSubsystem->showOverlay(OVERLAY_INGAME_HUD);
-	
+
+	mHUD->show();
+
 	return renderSubsystem->render();
-}
-
-void GameRunningState::spinRoulette(bool forward)
-{
-	int increment=forward?1:-1;
-	bool isColourRouletteState=mCurrentRouletteState==ROULETTE_COLOUR_BLUE || 
-		mCurrentRouletteState==ROULETTE_COLOUR_RED || mCurrentRouletteState == ROULETTE_COLOUR_GREEN;
-	if (isColourRouletteState)
-	{	
-		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
-		if (next<0) next+=NUM_ROULETTE_STATES;
-		mCurrentRouletteState=static_cast<TRouletteState>(next);
-		updateRouletteHUD();
-	}	
-}
-void GameRunningState::updateRoulette()
-{
-	bool isLeftTransition = mCurrentRouletteState== ROULETTE_TRANSITION_REDGREEN ||
-		mCurrentRouletteState == ROULETTE_TRANSITION_GREENBLUE || mCurrentRouletteState==ROULETTE_TRANSITION_BLUERED;
-	bool isRightTransition = mCurrentRouletteState==ROULETTE_TRANSITION_REDBLUE ||
-		mCurrentRouletteState == ROULETTE_TRANSITION_BLUEGREEN || mCurrentRouletteState==ROULETTE_TRANSITION_GREENRED;
-	int increment=0;
-	if (isLeftTransition)
-		increment=-2;
-	else if (isRightTransition)
-		increment=2;
-	//---
-	if ((isLeftTransition || isRightTransition) && isRouletteAnimationFinished())
-	{
-		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
-		if (next<0) next+=NUM_ROULETTE_STATES;
-		mCurrentRouletteState=static_cast<TRouletteState>(next);
-
-		updateRouletteHUD();
-	}
-}
-void GameRunningState::updateRouletteHUD()
-{
-	mApp->getRenderSubsystem()->setTextureData(MATERIAL_ROULETTE,mRouletteData[mCurrentRouletteState].textureName,
-		mRouletteData[mCurrentRouletteState].isAnimated, mRouletteData[mCurrentRouletteState].numFrames,
-		mRouletteData[mCurrentRouletteState].duration);
-}
-void GameRunningState::updateHealthHUD()
-{
-	if (mApp.get()&&mApp->getGameWorldManager().get()&& mApp->getGameWorldManager()->getGameObjectOny().get())
-	{
-		LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
-		mApp->getRenderSubsystem()->setHealthHudData(OVERLAY_INGAME_HUD_LIVES_TEXT,onyLogic->getNumLives(), 
-			MATERIAL_HEALTH, mHealthHudTextures[onyLogic->getHealthPoints()]);
-	}
-}
-void GameRunningState::initHealthHud()
-{
-	mHealthHudTextures[0]=TEX_HEALTH_HUD_NAME_EMPTY;
-	mHealthHudTextures[1]=TEX_HEALTH_HUD_NAME_X1;
-	mHealthHudTextures[2]=TEX_HEALTH_HUD_NAME_X2;
-	mHealthHudTextures[3]=TEX_HEALTH_HUD_NAME_FULL;
-	
-	updateHealthHUD();
-}
-void GameRunningState::initRouletteData()
-{
-	mRouletteData.clear();
-	mRouletteData[ROULETTE_COLOUR_RED].textureName=TEX_ROULETTE_COLOUR_RED;
-	mRouletteData[ROULETTE_COLOUR_RED].isAnimated=false;
-	mRouletteData[ROULETTE_COLOUR_BLUE].textureName=TEX_ROULETTE_COLOUR_BLUE;
-	mRouletteData[ROULETTE_COLOUR_BLUE].isAnimated=false;
-	mRouletteData[ROULETTE_COLOUR_GREEN].textureName=TEX_ROULETTE_COLOUR_GREEN;
-	mRouletteData[ROULETTE_COLOUR_GREEN].isAnimated=false;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].textureName=TEX_ROULETTE_TRANSITION_BG;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].textureName=TEX_ROULETTE_TRANSITION_GB;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].textureName=TEX_ROULETTE_TRANSITION_RB;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].textureName=TEX_ROULETTE_TRANSITION_BR;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].textureName=TEX_ROULETTE_TRANSITION_RG;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].textureName=TEX_ROULETTE_TRANSITION_GR;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].duration=TRANSITION_DURATION;
-}
-bool GameRunningState::isRouletteAnimationFinished()
-{
-	if (mRouletteData[mCurrentRouletteState].isAnimated)
-	{
-		return mApp->getRenderSubsystem()->isAnimatedTextureFinished(MATERIAL_ROULETTE);
-	}
-	return false;
 }

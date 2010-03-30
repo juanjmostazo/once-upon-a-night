@@ -390,6 +390,18 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="HUD"
+					>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDBase.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDInGame.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -905,6 +917,18 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\RayCasting\RayCasting.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="HUD"
+					>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDBase.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDInGame.h"
 						>
 					</File>
 				</Filter>
