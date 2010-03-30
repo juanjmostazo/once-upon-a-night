@@ -9,7 +9,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 {
 	//Set CameraControllerThirdPerson Initial Parameters
 
-	distance=Ogre::Vector3(0,15,-45);
+	distance=Ogre::Vector3(0,15,-55);
 	initialDistance=distance;
 	height=5;
 	rotX=0;
@@ -18,8 +18,10 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	speed=0.13;
 	returningspeed=2.5;
 
-	maxRotX=25;
-	minRotX=-35;
+	rotXDistanceAttenuation=0.4;
+
+	maxRotX=70;
+	minRotX=-70;
 
 	cameraMoved=false;
 	cameraIsReturning=false;
@@ -86,7 +88,14 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 
 	//Calculate Camera position in relation to the target
-	newCameraPosition = initialDistance;
+	if(rotX<0)
+	{
+		newCameraPosition = initialDistance-rotXDistanceAttenuation*initialDistance*rotX/double(minRotX);
+	}
+	else
+	{
+		newCameraPosition = initialDistance-rotXDistanceAttenuation*initialDistance*rotX/double(maxRotX);
+	}
 	newCameraPosition = Quaternion(Ogre::Degree(rotX), Vector3::UNIT_X) * newCameraPosition;
 	newCameraPosition = Quaternion(Ogre::Degree(rotY), Vector3::UNIT_Y) * newCameraPosition;
 
