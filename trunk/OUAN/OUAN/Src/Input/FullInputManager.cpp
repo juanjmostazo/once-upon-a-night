@@ -62,6 +62,187 @@ void FullInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePo
 
 	m_mouse->setEventCallback( this );
 	m_keyboard->setEventCallback( this );
+
+	loadConfig();
+	loadStrings();
+}
+
+
+//////////////////////////////////////////////////////////////
+
+bool FullInputManager::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	// Load key mappings for mouse-keyboard input
+	loadDefaultInputConfig(DEFAULTINPUT_CFG);
+
+	// Load common joystick factors
+	if (config.loadFromFile(INPUTCOMMONJOYSTICK_CFG))
+	{
+		config.getOption(PAD_CAMERA_JOYSTICK_SCALE_FACTOR, value); 
+		padCameraJoystickScaleFactor = atof(value.c_str());
+		config.getOption(PAD_JOYSTICK_BORDER, value); 
+		padJoystickBorder = atof(value.c_str());
+
+	}
+
+	// Same for a pad
+	if (config.loadFromFile(PSXPAD_CFG))
+	{
+		config.getOption(DEFAULT_PAD_ID, value); 
+		defaultPadId = atoi(value.c_str());
+
+		config.getOption(PAD_BUTTON_NAME_SELECT, value); 
+		padSelect = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_START, value); 
+		padStart = atoi(value.c_str());
+
+		config.getOption(PAD_BUTTON_NAME_UP, value); 
+		padUp = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_DOWN, value); 
+		padDown = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_LEFT, value); 
+		padLeft = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_RIGHT, value); 
+		padRight = atoi(value.c_str());
+
+		config.getOption(PAD_BUTTON_NAME_TRIANGLE, value); 
+		padTriangle = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_X, value); 
+		padX = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_SQUARE, value); 
+		padSquare = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_CIRCLE, value); 
+		padCircle = atoi(value.c_str());
+
+		config.getOption(PAD_BUTTON_NAME_L1, value); 
+		padL1 = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_L2, value); 
+		padL2 = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_R1, value); 
+		padR1 = atoi(value.c_str());
+		config.getOption(PAD_BUTTON_NAME_R2, value); 
+		padR2 = atoi(value.c_str());
+
+		config.getOption(PAD_LEFT_JOYSTICK_X, value); 
+		padLeftJoystickX = atoi(value.c_str());
+		config.getOption(PAD_LEFT_JOYSTICK_Y, value); 
+		padLeftJoystickY = atoi(value.c_str());
+
+		config.getOption(PAD_RIGHT_JOYSTICK_X, value); 
+		padRightJoystickX = atoi(value.c_str());
+		config.getOption(PAD_RIGHT_JOYSTICK_Y, value); 
+		padRightJoystickY = atoi(value.c_str());
+
+		success = true;
+	} 
+	else 
+	{
+		//LogManager::getSingleton().logMessage(PSXPAD_CFG + " COULD NOT BE LOADED!");
+
+		defaultPadId = -1;
+		padSelect = -1, padStart = -1;
+		padUp = -1, padDown = -1, padLeft = -1, padRight = -1;
+		padTriangle = -1, padX = -1, padSquare = -1, padCircle = -1;
+		padL1 = -1, padL2 = -1, padR1 = -1, padR2 = -1;
+
+		success = false;
+	}
+ 
+//	config.~Configuration();
+	return success;
+}
+
+void FullInputManager::readOption(Configuration cfg,const std::string& key, int& value)
+{
+	try
+	{
+		std::string strValue;
+		std::istringstream valueReader;
+		cfg.getOption(key,strValue);
+		valueReader.str(strValue);
+		valueReader>>std::hex>>value;
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [FullInputManager] Error reading key "+key);
+	}
+}
+
+bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
+{
+	Configuration config;
+	if (config.loadFromFile(configFilePath))
+	{
+		readOption(config,KEY_MENU,mDefaultInputData.keyMenu);
+		readOption(config,KEY_PAUSE,mDefaultInputData.keyPause);
+
+		readOption(config,KEY_USEWEAPON,mDefaultInputData.keyUseWeapon);
+		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon);
+		readOption(config,KEY_ACTION,mDefaultInputData.keyAction);
+		readOption(config,KEY_JUMP,mDefaultInputData.keyJump);
+		readOption(config,KEY_WALK,mDefaultInputData.keyWalk);
+
+		readOption(config,KEY_FORWARD,mDefaultInputData.keyForward);			
+		readOption(config,KEY_BACKWARDS,mDefaultInputData.keyBackwards);
+		readOption(config,KEY_LEFT,mDefaultInputData.keyLeft);
+		readOption(config,KEY_RIGHT,mDefaultInputData.keyRight);
+
+		readOption(config,KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget);
+		readOption(config,KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft);
+		readOption(config,KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight);
+
+		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
+		readOption(config,KEY_DEBUG_PERFORMANCE,mDefaultInputData.keyDebugPerformance);
+		readOption(config,KEY_DEBUG_PHYSICS,mDefaultInputData.keyDebugPhysics);
+		readOption(config,KEY_CHANGE_CAMERA_CONTROLLER,mDefaultInputData.keyChangeCameraController);
+		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
+		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
+		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
+		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
+		readOption(config,KEY_TOGGLE_VOLUMES,mDefaultInputData.keyToggleVolumes);
+
+		return true;
+	}
+	else
+	{
+		//LogManager::getSingleton().logMessage(configFilePath + " COULD NOT BE LOADED!");
+
+		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyReloadWeapon=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyForward=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyJump=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyLeft=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyMenu=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyPause=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRight=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRotateLeft=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyRotateRight=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyWalk=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyUseWeapon=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebugPerformance=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebugPhysics=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeCamera=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyToggleVolumes=OIS::KC_UNASSIGNED;
+
+		return false;
+	}
+}
+
+bool FullInputManager::loadStrings()
+{
+	mInputTextStrings.reset(new Configuration());
+	return mInputTextStrings->loadFromFile(INPUTSTRINGS_CFG);
 }
 
 void FullInputManager::finalise()
@@ -186,18 +367,25 @@ int FullInputManager::getNumOfJoysticks( void ) {
     return (int) m_joysticks.size();
 }
 
-void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & leftY, double & rightX, double & rightY){
-
+void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & leftY, double & rightX, double & rightY) {
 	if(getNumOfJoysticks()>index)
 	{
 		int maxAxis = getJoystick(index)->MAX_AXIS;
-		int errorBorder = maxAxis / 4; //25%
+		int errorBorder = maxAxis * padJoystickBorder;
+
 		OIS::JoyStickState state = getJoystick(index)->getJoyStickState();
 		
-		leftX = getJoystickNormalisedAxe(state.mAxes[3].abs, maxAxis, errorBorder);
-		leftY = getJoystickNormalisedAxe(state.mAxes[2].abs, maxAxis, errorBorder);
-		rightX = getJoystickNormalisedAxe(state.mAxes[1].abs, maxAxis, errorBorder);
-		rightY = getJoystickNormalisedAxe(state.mAxes[0].abs, maxAxis, errorBorder);
+		leftX = getJoystickNormalisedAxe(state.mAxes[padLeftJoystickX].abs, maxAxis, errorBorder);
+		leftY = getJoystickNormalisedAxe(state.mAxes[padLeftJoystickY].abs, maxAxis, errorBorder);
+		rightX = getJoystickNormalisedAxe(state.mAxes[padRightJoystickX].abs, maxAxis, errorBorder);
+		rightY = getJoystickNormalisedAxe(state.mAxes[padRightJoystickY].abs, maxAxis, errorBorder);
+
+
+		//Ogre::LogManager::getSingleton().logMessage("JOYSTICKS");
+		//Ogre::LogManager::getSingleton().logMessage("[leftX] "+Ogre::StringConverter::toString(Ogre::Real(leftX)));
+		//Ogre::LogManager::getSingleton().logMessage("[leftY] "+Ogre::StringConverter::toString(Ogre::Real(leftY)));
+		//Ogre::LogManager::getSingleton().logMessage("[rightX] "+Ogre::StringConverter::toString(Ogre::Real(rightX)));
+		//Ogre::LogManager::getSingleton().logMessage("[rightY] "+Ogre::StringConverter::toString(Ogre::Real(rightY)));
 	}
 	else
 	{
@@ -209,14 +397,15 @@ void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & 
 }
 
 double FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int border){
-	double value = 0.0f;
-	double scaleValue = ((double)maxAxis - (double)border) / (double)maxAxis;
-	int absAxeState = abs(axeState);
+        double value = 0.0f;
+        int absAxeState = abs(axeState);
 
-	if (absAxeState >= border){
-		value = (absAxeState - border) * scaleValue * (axeState < 0 ? 1.0f : -1.0f);
-	} 
+        if (absAxeState >= border){
+                value = (absAxeState - border) * (axeState < 0 ? 1.0f : -1.0f);
+				value = double(value)/double(maxAxis - border);
+        } 
 
-	return value;
+        return value;
 }
+
 

@@ -3,19 +3,27 @@
     <!--Config options-->
     <Options>
         <Option key="DEFAULT_PAD_ID">0</Option>
-        <Option key="PAD_CIRCLE">1</Option>
-        <Option key="PAD_DOWN">14</Option>
-        <Option key="PAD_L1">6</Option>
-        <Option key="PAD_L2">4</Option>
-        <Option key="PAD_LEFT">15</Option>
-        <Option key="PAD_R1">7</Option>
-        <Option key="PAD_R2">5</Option>
-        <Option key="PAD_RIGHT">13</Option>
-        <Option key="PAD_SELECT">9</Option>
-        <Option key="PAD_SQUARE">3</Option>
-        <Option key="PAD_START">8</Option>
-        <Option key="PAD_TRIANGLE">0</Option>
-        <Option key="PAD_UP">12</Option>
-        <Option key="PAD_X">2</Option>
+        <Option key="PAD_BUTTON_NAME_CIRCLE">1</Option>
+        <Option key="PAD_BUTTON_NAME_DOWN">14</Option>
+        <Option key="PAD_BUTTON_NAME_L1">6</Option>
+        <Option key="PAD_BUTTON_NAME_L2">4</Option>
+        <Option key="PAD_BUTTON_NAME_LEFT">15</Option>
+        <Option key="PAD_BUTTON_NAME_R1">7</Option>
+        <Option key="PAD_BUTTON_NAME_R2">5</Option>
+        <Option key="PAD_BUTTON_NAME_RIGHT">13</Option>
+        <Option key="PAD_BUTTON_NAME_SELECT">9</Option>
+        <Option key="PAD_BUTTON_NAME_SQUARE">2</Option>
+        <Option key="PAD_BUTTON_NAME_START">8</Option>
+        <Option key="PAD_BUTTON_NAME_TRIANGLE">3</Option>
+        <Option key="PAD_BUTTON_NAME_UP">12</Option>
+        <Option key="PAD_BUTTON_NAME_X">0</Option>
+
+	<Option key="PAD_LEFT_JOYSTICK_Y">0</Option>
+	<Option key="PAD_LEFT_JOYSTICK_X">1</Option>
+
+	<Option key="PAD_RIGHT_JOYSTICK_Y">2</Option>
+	<Option key="PAD_RIGHT_JOYSTICK_X">3</Option>
+
+
     </Options>
 </Configuration>
