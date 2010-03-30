@@ -15,7 +15,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	rotX=0;
 	rotY=0;
 
-	speed=0.2;
+	speed=0.13;
 	returningspeed=2.5;
 
 	maxRotX=25;
