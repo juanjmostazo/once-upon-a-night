@@ -323,8 +323,11 @@ void GameRunningState::update(long elapsedTime)
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
-	LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
-	mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
+	{
+		LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+		mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+	}
 	mGUI->update(elapsedSeconds);
 }
 
