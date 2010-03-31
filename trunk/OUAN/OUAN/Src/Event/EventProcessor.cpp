@@ -44,8 +44,12 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
 			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
 
+		registerEventHandler<EventProcessor,CharacterShapeFrontCollisionEvent, EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION>
+			(this_,&EventProcessor::processCharacterShapeFrontCollision,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
 			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
 	}
@@ -66,8 +70,13 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
 			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
+
+		unregisterEventHandler<EventProcessor,CharacterShapeFrontCollisionEvent, EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION>
+			(this_,&EventProcessor::processCharacterShapeFrontCollision,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
 			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
 	}
@@ -129,7 +138,10 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 			ony->decreaseHP();
 		}
 	}
-	else Ogre::LogManager::getSingleton().logMessage("EventProcessor: empty characters!");
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision with empty data!");
+	}
 }
 
 void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
@@ -200,6 +212,20 @@ void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
 		//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (NULL OR NOT ENABLED)");
 	}
 }
+
+void EventProcessor::processCharacterShapeFrontCollision(CharacterShapeFrontCollisionEventPtr evt)
+{
+	if (evt->getCharacter() && evt->getShape())
+	{
+		Ogre::String collision = evt->getCharacter()->getName() + "," + evt->getShape()->getName();
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision (" + collision + ")");
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision with empty data!");
+	}
+}
+
 void EventProcessor::processClearQueue(ClearQueueEventPtr evt)
 {
 	if (mWorldManager)

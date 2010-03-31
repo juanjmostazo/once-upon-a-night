@@ -92,6 +92,26 @@ int CharacterInTriggerEvent::getCollisionType()
 	return mCollisionType;
 }
 //----------------------
+//----------------------
+
+CharacterShapeFrontCollisionEvent::CharacterShapeFrontCollisionEvent(GameObjectPtr pCharacter, GameObjectPtr pShape)
+:Event(EVT_PRIORITY_CHARACTER_SHAPE_FRONT_COLLISION,EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION)
+{
+	mCharacter=pCharacter;
+	mShape=pShape;
+};
+
+GameObjectPtr CharacterShapeFrontCollisionEvent::getCharacter()
+{
+	return mCharacter;
+}
+
+GameObjectPtr CharacterShapeFrontCollisionEvent::getShape()
+{
+	return mShape;
+}
+
+//----------------------
 ClearQueueEvent::ClearQueueEvent()
 :Event(EVT_PRIORITY_CLEARQUEUE,EVENT_TYPE_CLEARQUEUE)
 {

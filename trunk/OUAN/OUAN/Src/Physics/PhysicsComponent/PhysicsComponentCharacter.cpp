@@ -162,14 +162,14 @@ void PhysicsComponentCharacter::setCharactersDisplayYaw()
 			characterYaw=90;
 		}
 	}
-
+	/*
 	if(characterYaw!=getNxOgreController()->getDisplayYaw())
 	{
 		Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(mNextMovement.x)+" "
 																	+Ogre::StringConverter::toString(mNextMovement.z));
 		Ogre::LogManager::getSingleton().logMessage("characterYaw "+Ogre::StringConverter::toString(Ogre::Real(characterYaw)));
 	}
-
+	*/
 	getNxOgreController()->setDisplayYaw(characterYaw);
 }
 

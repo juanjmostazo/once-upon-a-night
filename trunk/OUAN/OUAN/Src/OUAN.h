@@ -517,6 +517,8 @@ namespace OUAN
 		class CharacterInTriggerEvent;
 		typedef boost::shared_ptr<CharacterInTriggerEvent> CharacterInTriggerEventPtr;
 
+		class CharacterShapeFrontCollisionEvent;
+		typedef boost::shared_ptr<CharacterShapeFrontCollisionEvent> CharacterShapeFrontCollisionEventPtr;
 
 		class ClearQueueEvent;
 		typedef boost::shared_ptr<ClearQueueEvent> ClearQueueEventPtr;
