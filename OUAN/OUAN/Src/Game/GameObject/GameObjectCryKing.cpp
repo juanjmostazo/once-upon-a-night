@@ -89,6 +89,14 @@ void GameObjectCryKing::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectCryKing::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectCryKing::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()
 {

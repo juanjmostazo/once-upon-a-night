@@ -37,6 +37,9 @@ namespace OUAN
 		TGameObjectTripollitoContainer getGameObjectTripollitoContainer();
 		TGameObjectTentetiesoContainer getGameObjectTentetiesoContainer();
 		TGameObjectEyeContainer getGameObjectEyeContainer();
+		TGameObjectBee_ButterflyContainer getGameObjectBeeButterflyContainer();
+		TGameObjectCarnivorousPlantContainer getGameObjectCarnivorousPlantContainer();
+		TGameObjectSnakeCreeperContainer getGameObjectSnakeCreeperContainer();
 		TGameObjectTriggerBoxContainer getGameObjectTriggerBoxContainer();
 		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer getGameObjectViewportContainer();
@@ -52,6 +55,8 @@ namespace OUAN
 		TGameObjectPhysicsVolumeContainer getGameObjectPhysicsVolumeContainer();
 		TGameObjectPhysicsVolumeBoxContainer getGameObjectPhysicsVolumeBoxContainer();
 		TGameObjectPhysicsVolumeCapsuleContainer getGameObjectPhysicsVolumeCapsuleContainer();
+
+		TGameObjectLogicContainer getGameObjectLogicContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -118,14 +123,6 @@ namespace OUAN
 		/// @param elapsedTime time since last update
 		void update(double elapsedSeconds);
 
-		/// Return an id value and increment it
-		/// @return id value
-		inline unsigned long nextId() {return mNextIdNum++;}
-
-		/// Return the last id value used
-		/// @return last id value used
-		inline unsigned long lastId() {return mNextIdNum;}
-
 		/// Tell if the game over flag is set to true
 		/// @return value of the "game over" flag
 		bool isGameOver() const;
@@ -188,6 +185,22 @@ namespace OUAN
 
 		void clearEvents();
 
+		// METHODS USED BY THE LUA SCRIPTS
+
+		/// Compute distance between two game objects
+		/// @param obj1	first object
+		/// @param obj2 second object
+		/// @return distance between the two game objects
+		static double getDistance(const std::string& obj1, const std::string& obj2);
+		
+		/// Compute distance between a game object and the player
+		/// @param obj object for which the distance to Ony will be computed
+		/// @return distance between Ony and the object with its name equal to the passed one
+		static double getPlayerDistance(const std::string& obj);
+
+		/// Return the current world
+		static int getWorld();
+
 	private:
 
 		/// Add the game object pointer to the objects List
@@ -247,9 +260,7 @@ namespace OUAN
 		/// Pointer to the main application object
 		ApplicationPtr mApp;
 		
-		///number used to generate a unique identifier
-		///for every game object that is created
-		static unsigned long mNextIdNum;
+
 
 		/// Game objects currently existing in the world
 		TGameObjectContainer mGameObjects;
@@ -273,6 +284,9 @@ namespace OUAN
 		TGameObjectEyeContainer mGameObjectEyeContainer;
 		TGameObjectTriggerBoxContainer mGameObjectTriggerBoxContainer;
 		TGameObjectTriggerCapsuleContainer mGameObjectTriggerCapsuleContainer;
+		TGameObjectBee_ButterflyContainer mGameObjectBeeButterflyContainer;
+		TGameObjectCarnivorousPlantContainer mGameObjectCarnivorousPlantContainer;
+		TGameObjectSnakeCreeperContainer mGameObjectSnakeCreeperContainer;
 
 		TGameObjectPhysicsContainer mGameObjectPhysicsContainer;
 		TGameObjectPhysicsCharacterContainer mGameObjectPhysicsCharacterContainer;
@@ -285,6 +299,8 @@ namespace OUAN
 		TGameObjectPhysicsVolumeContainer mGameObjectPhysicsVolumeContainer;
 		TGameObjectPhysicsVolumeBoxContainer mGameObjectPhysicsVolumeBoxContainer;
 		TGameObjectPhysicsVolumeCapsuleContainer mGameObjectPhysicsVolumeCapsuleContainer;
+
+		TGameObjectLogicContainer mGameObjectLogicContainer;
 
 		TGameObjectViewportContainer mGameObjectViewportContainer;
 
@@ -310,6 +326,8 @@ namespace OUAN
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;
 		GameWorldManagerPtr mThis;
+
+		static GameWorldManager* mInst;
 	};
 }
 #endif

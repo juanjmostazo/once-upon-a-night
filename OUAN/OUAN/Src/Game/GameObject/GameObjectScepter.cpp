@@ -99,6 +99,14 @@ void GameObjectScepter::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectScepter::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectScepter::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectScepterParameters::TGameObjectScepterParameters() : TGameObjectParameters()
 {
 

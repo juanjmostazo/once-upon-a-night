@@ -58,6 +58,13 @@ void RenderComponentPositional::setAsCameraTarget()
 	mRenderSubsystem->setCameraTarget(this);
 }
 
+double RenderComponentPositional::computeDistanceTo(RenderComponentPositionalPtr other)
+{
+	if (other.get())
+		return getPosition().distance(other->getPosition());
+	else return -1;
+}
+
 TRenderComponentPositionalParameters::TRenderComponentPositionalParameters()
 :TRenderComponentParameters()
 {

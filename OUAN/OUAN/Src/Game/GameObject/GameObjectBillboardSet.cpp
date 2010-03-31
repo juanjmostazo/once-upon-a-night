@@ -47,6 +47,14 @@ void GameObjectBillboardSet::changeWorld(int world)
 		break;
 	}
 }
+bool GameObjectBillboardSet::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectBillboardSet::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {

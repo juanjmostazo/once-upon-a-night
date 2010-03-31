@@ -109,6 +109,14 @@ void GameObjectTriggerCapsule::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectTriggerCapsule::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTriggerCapsule::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTriggerCapsuleParameters::TGameObjectTriggerCapsuleParameters() : TGameObjectParameters()
 {

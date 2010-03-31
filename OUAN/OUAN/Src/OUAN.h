@@ -236,6 +236,8 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeBoxContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeCapsuleContainer;
 
+		typedef std::vector<GameObjectPtr> TGameObjectLogicContainer;
+
 		////////////////////////////////////////////////////////////////////
 
 		const int HIT_RECOVERY_TIME=500000;
@@ -437,6 +439,8 @@ namespace OUAN
 		typedef std::vector<GameObjectTreeDreamsPtr> TGameObjectTreeDreamsContainer;
 		typedef std::vector<GameObjectTreeNightmaresPtr> TGameObjectTreeNightmaresContainer;
 		typedef std::vector<GameObjectClockPiecePtr> TGameObjectClockPieceContainer;
+		typedef std::vector<GameObjectCarnivorousPlantPtr> TGameObjectCarnivorousPlantContainer;
+		typedef std::vector<GameObjectSnakeCreeperPtr> TGameObjectSnakeCreeperContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";

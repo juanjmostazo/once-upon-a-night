@@ -81,6 +81,14 @@ void GameObjectScaredPlant::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectScaredPlant::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectScaredPlant::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectScaredPlantParameters::TGameObjectScaredPlantParameters() : TGameObjectParameters()

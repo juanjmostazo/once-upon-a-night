@@ -99,6 +99,14 @@ void GameObjectPillow::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectPillow::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectPillow::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {
 

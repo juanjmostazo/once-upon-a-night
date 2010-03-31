@@ -103,7 +103,14 @@ void GameObjectClockPiece::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectClockPiece::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectClockPiece::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
 {
 

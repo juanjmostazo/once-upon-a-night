@@ -103,7 +103,14 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectItemMaxHP::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectItemMaxHP::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
 

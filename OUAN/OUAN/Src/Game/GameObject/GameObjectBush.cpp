@@ -117,6 +117,14 @@ void GameObjectBush::changeWorld(int world)
 		break;
 	}
 }
+bool GameObjectBush::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectBushParameters::TGameObjectBushParameters() : TGameObjectParameters()

@@ -103,7 +103,14 @@ void GameObjectStoryBook::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectStoryBook::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectStoryBook::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {
 

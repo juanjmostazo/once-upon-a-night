@@ -71,17 +71,18 @@
 
 using namespace OUAN;
 
-unsigned long GameWorldManager::mNextIdNum=0;
+GameWorldManager* GameWorldManager::mInst=NULL;
 
 GameWorldManager::GameWorldManager()
 {
 	world=DREAMS;
 	level=LEVEL_NONE;
+	mInst=this;
 }
 
 GameWorldManager::~GameWorldManager()
 {
-
+	mInst=NULL;
 }
 
 void GameWorldManager::update(double elapsedSeconds)
@@ -170,6 +171,18 @@ TGameObjectEyeContainer GameWorldManager::getGameObjectEyeContainer()
 {
 	return mGameObjectEyeContainer;
 
+}
+TGameObjectSnakeCreeperContainer GameWorldManager::getGameObjectSnakeCreeperContainer()
+{
+	return mGameObjectSnakeCreeperContainer;
+}
+TGameObjectBee_ButterflyContainer GameWorldManager::getGameObjectBeeButterflyContainer()
+{
+	return mGameObjectBeeButterflyContainer;
+}
+TGameObjectCarnivorousPlantContainer GameWorldManager::getGameObjectCarnivorousPlantContainer()
+{
+	return mGameObjectCarnivorousPlantContainer;
 }
 TGameObjectTerrainConvexContainer GameWorldManager::getGameObjectTerrainConvexContainer()
 {
@@ -260,6 +273,11 @@ TGameObjectPhysicsVolumeCapsuleContainer GameWorldManager::getGameObjectPhysicsV
 	return mGameObjectPhysicsVolumeCapsuleContainer;
 }
 
+TGameObjectLogicContainer GameWorldManager::getGameObjectLogicContainer()
+{
+	return mGameObjectLogicContainer;
+}
+
 void GameWorldManager::clearContainers()
 {
 	mGameObjects.clear();
@@ -282,12 +300,17 @@ void GameWorldManager::clearContainers()
 	mGameObjectEyeContainer.clear();
 	mGameObjectTriggerBoxContainer.clear();
 	mGameObjectTriggerCapsuleContainer.clear();
+	mGameObjectBeeButterflyContainer.clear();
+	mGameObjectCarnivorousPlantContainer.clear();
+	mGameObjectSnakeCreeperContainer.clear();
 
 	mGameObjectPhysicsCharacterContainer.clear();
 	mGameObjectPhysicsComplexConvexContainer.clear();
 	mGameObjectPhysicsComplexTriangleContainer.clear();
 	mGameObjectPhysicsSimpleContainer.clear();
 	mGameObjectPhysicsVolumeContainer.clear();
+
+	mGameObjectLogicContainer.clear();
 }
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
@@ -326,8 +349,6 @@ void GameWorldManager::unloadLevel()
 {
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
 
-	mNextIdNum=0;//reset id counter
-
 	mApp->getPhysicsSubsystem()->clear();
 	mApp->getRenderSubsystem()->clear();
 	
@@ -348,7 +369,6 @@ void GameWorldManager::init(ApplicationPtr app)
 {
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT STARTED]");
 	world=DREAMS;
-	mNextIdNum=0;
 	mGameOver=false;
 	mApp=app;
 
@@ -392,6 +412,8 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 void GameWorldManager::addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly)
 {
 	mGameObjects[gameObjectBee_Butterfly->getName()]=gameObjectBee_Butterfly;
+	mGameObjectBeeButterflyContainer.push_back(gameObjectBee_Butterfly);
+	mGameObjectLogicContainer.push_back(gameObjectBee_Butterfly);
 }
 
 void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet)
@@ -416,6 +438,8 @@ void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera
 void GameWorldManager::addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr gameObjectCarnivorousPlant)
 {
 	mGameObjects[gameObjectCarnivorousPlant->getName()]=gameObjectCarnivorousPlant;
+	mGameObjectCarnivorousPlantContainer.push_back(gameObjectCarnivorousPlant);
+	mGameObjectLogicContainer.push_back(gameObjectCarnivorousPlant);
 }
 
 void GameWorldManager::addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece)
@@ -462,6 +486,7 @@ void GameWorldManager::addGameObjectDoor(GameObjectDoorPtr gameObjectDoor)
 void GameWorldManager::addGameObjectDragon(GameObjectDragonPtr gameObjectDragon)
 {
 	mGameObjects[gameObjectDragon->getName()]=gameObjectDragon;
+	mGameObjectLogicContainer.push_back(gameObjectDragon);
 }
 
 void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
@@ -476,6 +501,7 @@ void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectEye);
 
 	mGameObjectEyeContainer.push_back(pGameObjectEye);
+	mGameObjectLogicContainer.push_back(pGameObjectEye);
 }
 
 void GameWorldManager::addGameObjectFlashLight(GameObjectFlashLightPtr gameObjectFlashLight)
@@ -608,6 +634,7 @@ void GameWorldManager::addGameObjectScaredPlant(GameObjectScaredPlantPtr gameObj
 
 	mGameObjectPhysicsContainer.push_back(gameObjectScaredPlant);
 	mGameObjectPhysicsCharacterContainer.push_back(gameObjectScaredPlant);
+
 }
 
 void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)
@@ -625,6 +652,8 @@ void GameWorldManager::addGameObjectScepter(GameObjectScepterPtr gameObjectScept
 void GameWorldManager::addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr gameObjectSnakeCreeper)
 {
 	mGameObjects[gameObjectSnakeCreeper->getName()]=gameObjectSnakeCreeper;
+	mGameObjectSnakeCreeperContainer.push_back(gameObjectSnakeCreeper);
+	mGameObjectLogicContainer.push_back(gameObjectSnakeCreeper);
 }
 
 void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook)
@@ -652,6 +681,7 @@ void GameWorldManager::addGameObjectTentetieso(GameObjectTentetiesoPtr pGameObje
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTentetieso);
 
 	mGameObjectTentetiesoContainer.push_back(pGameObjectTentetieso);
+	mGameObjectLogicContainer.push_back(pGameObjectTentetieso);
 }
 
 void GameWorldManager::addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex)
@@ -731,6 +761,7 @@ void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr pGameObje
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollito);
 
 	mGameObjectTripollitoContainer.push_back(pGameObjectTripollito);
+	mGameObjectLogicContainer.push_back(pGameObjectTripollito);
 }
 
 void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
@@ -745,6 +776,7 @@ void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTr
 	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
 
 	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
+	mGameObjectLogicContainer.push_back(pGameObjectTripollo);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
@@ -2579,4 +2611,31 @@ ApplicationPtr GameWorldManager::getParent()
 void GameWorldManager::clearEvents()
 {
 	mEventManager->clearEvents();
+}
+
+double GameWorldManager::getDistance(const std::string& obj1Name, const std::string& obj2Name)
+{
+	double distance=-1;
+	GameObjectPtr obj1= mInst->getObject(obj1Name);
+	GameObjectPtr obj2= mInst->getObject(obj2Name);
+	if (obj1.get() && obj2.get())
+	{
+		distance=obj1->computeDistanceTo(obj2);
+	}
+	//std::ostringstream distanceText;
+	//distanceText.str("");
+	//distanceText<<"Distance between "<<obj1Name<<" and "<<obj2Name<<": "<<distance<<std::endl;
+	//Ogre::LogManager::getSingletonPtr()->logMessage(distanceText.str());
+	return distance;
+}
+
+double GameWorldManager::getPlayerDistance(const std::string& objName)
+{
+	if (mInst->getGameObjectOny().get())
+		return getDistance(mInst->getGameObjectOny()->getName(),objName);
+	return -1;
+}
+int GameWorldManager::getWorld()
+{
+	return mInst->getCurrentWorld();
 }

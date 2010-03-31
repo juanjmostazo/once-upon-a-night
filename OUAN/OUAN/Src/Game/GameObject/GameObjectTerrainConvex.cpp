@@ -118,6 +118,14 @@ void GameObjectTerrainConvex::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectTerrainConvex::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTerrainConvex::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()
 {

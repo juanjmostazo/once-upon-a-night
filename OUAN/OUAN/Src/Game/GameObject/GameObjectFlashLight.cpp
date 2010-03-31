@@ -99,6 +99,14 @@ void GameObjectFlashLight::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectFlashLight::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {
 

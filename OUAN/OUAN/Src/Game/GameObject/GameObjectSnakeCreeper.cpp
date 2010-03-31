@@ -89,6 +89,14 @@ void GameObjectSnakeCreeper::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectSnakeCreeper::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectSnakeCreeper::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectSnakeCreeperParameters::TGameObjectSnakeCreeperParameters() : TGameObjectParameters()
 {

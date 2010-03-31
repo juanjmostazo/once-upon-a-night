@@ -116,6 +116,14 @@ void GameObjectPlataform::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectPlataform::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectPlataform::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectPlataformParameters::TGameObjectPlataformParameters() : TGameObjectParameters()
 {

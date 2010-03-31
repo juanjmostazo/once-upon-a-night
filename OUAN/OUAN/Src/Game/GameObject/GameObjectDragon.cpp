@@ -89,6 +89,21 @@ void GameObjectDragon::changeWorld(int world)
 	default:break;
 	}
 }
+
+int GameObjectDragon::getTimeStunned() const
+{
+	//TODO: Define somewhere a stunned counter for the dragon and update
+	// it accordingly; then, use that value here
+	return 0;
+}
+bool GameObjectDragon::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectDragon::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()
 {

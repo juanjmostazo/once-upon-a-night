@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -131,11 +132,52 @@ void GameObject::die()
 	//TODO: ADDITIONAL STUFF (Or redefine in subclass for type-specific behaviour)
 	disable();
 }
+bool GameObject::hasPositionalComponent() const
+{
+	return false;
+}
+RenderComponentPositionalPtr GameObject::getPositionalComponent() const
+{
+	return RenderComponentPositionalPtr();
+}
 void GameObject::loseLife()
 {
 	mLogicComponent->setHealthPoints(mLogicComponent->getInitialHealthPoints());
 }
+int GameObject::getNumLives() const
+{
+	if (mLogicComponent)
+		return mLogicComponent->getNumLives();
+	return -1;
+}
+int GameObject::getHealthPoints() const
+{
+	if (mLogicComponent)
+		return mLogicComponent->getHealthPoints();
+	return -1;
+}
 
+int GameObject::getMaximumHealthPoints() const
+{
+	if (mLogicComponent)
+		return mLogicComponent->getHealthPoints();
+	return -1;
+}
+
+int GameObject::getLineOfSight() const
+{
+	if (mLogicComponent)
+		return mLogicComponent->getLineOfSight();
+	return -1;
+}
+double GameObject::computeDistanceTo(GameObjectPtr other) const
+{
+	if (hasPositionalComponent() && other->hasPositionalComponent())
+	{
+		return getPositionalComponent()->computeDistanceTo(other->getPositionalComponent());
+	}
+	return -1;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

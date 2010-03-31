@@ -117,6 +117,14 @@ void GameObjectDoor::changeWorld(int world)
 		break;
 	}
 }
+bool GameObjectDoor::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectDoor::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectDoorParameters::TGameObjectDoorParameters() : TGameObjectParameters()

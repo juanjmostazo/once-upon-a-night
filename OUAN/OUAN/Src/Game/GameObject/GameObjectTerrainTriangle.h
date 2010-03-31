@@ -54,6 +54,9 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
+
 	};
 
 	class TGameObjectTerrainTriangleParameters: public TGameObjectParameters

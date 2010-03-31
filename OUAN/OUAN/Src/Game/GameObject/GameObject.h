@@ -92,6 +92,26 @@ namespace OUAN
 
 		/// Additional actions to take after losing all lives
 		virtual void die();
+
+		virtual bool hasPositionalComponent() const;
+		virtual RenderComponentPositionalPtr getPositionalComponent() const;
+
+		//QUERY METHODS (Used by LUA scripts)
+
+		/// Return number of lives (in practice, all enemies will have only 1 life, so it won't be used)
+		int getNumLives() const;
+
+		/// Return health points
+		int getHealthPoints() const;
+
+		/// Return base/maximum health points
+		int getMaximumHealthPoints() const;
+
+		/// Return sight distance
+		int getLineOfSight() const;
+
+		/// Compute distance from this object to the passed one
+		double computeDistanceTo(GameObjectPtr other) const;
 	};
 
 	class TGameObjectParameters

@@ -47,7 +47,14 @@ void GameObjectLight::changeWorld(int world)
 		break;
 	}
 }
-
+bool GameObjectLight::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectLight::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {
 

@@ -6,4 +6,10 @@
   <PROPERTY id="PhysicsComponentCharacterNightmares::mass" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterNightmares::radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterNightmares::height" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::scriptFilename" type="7" value="bee_butterfly.lua" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::scriptFunction" type="7" value="beeButterflyLogic" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="40" fields="X;Y;Z;W"></PROPERTY>    
 </CUSTOMPROPERTIES>

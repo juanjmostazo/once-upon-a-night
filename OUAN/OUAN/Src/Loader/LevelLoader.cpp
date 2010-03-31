@@ -2525,6 +2525,14 @@ TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNo
 		{
 			logicComponentParameters.numLives=-1;	
 		}
+		try{
+			logicComponentParameters.lineOfSight=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::lineOfSight");
+		}
+		catch (std::string error)
+		{
+			logicComponentParameters.lineOfSight=-1;	
+		}
 	}
 	return logicComponentParameters;
 }

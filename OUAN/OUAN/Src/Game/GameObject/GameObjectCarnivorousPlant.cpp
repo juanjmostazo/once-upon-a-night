@@ -89,6 +89,14 @@ void GameObjectCarnivorousPlant::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectCarnivorousPlant::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectCarnivorousPlant::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectCarnivorousPlantParameters::TGameObjectCarnivorousPlantParameters() : TGameObjectParameters()
 {
