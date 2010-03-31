@@ -168,7 +168,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::stringstream out;
 	out << elapsedSeconds;
 	std::string elapsedTime = out.str();
-	Ogre::Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
+	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
 	mNxOgreTimeController->advance(elapsedSeconds);
 }
@@ -227,6 +227,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_SLIDING_ANGLE", value); 
 		mMinSlidingAngle = atof(value.c_str());
 
+		config.getOption("MIN_COLLISION_ANGLE", value); 
+		mMinCollisionAngle = atof(value.c_str());
+
 		config.getOption("SLIDING_FACTOR", value); 
 		mSlidingFactor = atof(value.c_str());
 
@@ -247,6 +250,7 @@ bool PhysicsSubsystem::loadConfig()
 		mInitialJumpSpeed = 0;
 		mMinAllowedY = 0;
 		mMinSlidingAngle = 0;
+		mMinCollisionAngle = 0;
 		mSlidingFactor = 0;
 
 		success = false;
@@ -283,30 +287,7 @@ NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 
 //////////////////////////////////////////////////////////////////
 // General physics callbacks
-/*
-void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent)
-{
-	switch (collisionEvent)
-	{
-		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - ENTER"); 
-			break;
 
-		case NxOgre::Enums::VolumeCollisionType_OnExit: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - EXIT"); 
-			break;
-
-		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - PRESENCE"); 
-			break;
-
-		default: 
-			Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onVolumeEvent called! - UNKNOWN"); 
-			break;
-	}
-}
-*/
 bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 {
 	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
@@ -320,35 +301,20 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 
 //////////////////////////////////////////////////////////////////
 // Character physics callbacks
-/*
-void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, void* controller, unsigned int collisionEvent)
-{
-	NxOgre::Controller* cController = static_cast<NxOgre::Controller*>(controller);
 
-	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
-	switch (collisionEvent)
-	{
-		case NxOgre::Enums::VolumeCollisionType_OnEnter: collisionType = COLLISION_TYPE_TRIGGER_ENTER; break;
-		case NxOgre::Enums::VolumeCollisionType_OnExit: collisionType = COLLISION_TYPE_TRIGGER_EXIT; break;
-		case NxOgre::Enums::VolumeCollisionType_OnPresence: collisionType = COLLISION_TYPE_TRIGGER_PRESENCE; break;
-		default: collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN; break;
-	}	 
-
-	CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
-		new CharacterInTriggerEvent(
-			getGameObjectFromController(cController), 
-			getGameObjectFromVolume(volume),
-			collisionType));
-
-	mApp->getGameWorldManager()->addEvent(evt);
-}
-*/
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
-	if (normalAngle > 0)
+	setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
+
+	if (normalAngle > mMinCollisionAngle)
 	{
-		setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
+		CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
+			new CharacterShapeFrontCollisionEvent(
+				getGameObjectFromController(hit.mController), 
+				getGameObjectFromShape(hit.mShape)));
+
+		mApp->getGameWorldManager()->addEvent(evt);
 	}
 
 	return NxOgre::Enums::ControllerAction_None;
@@ -358,8 +324,8 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 {	
 	CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
 		new CharactersCollisionEvent(
-		getGameObjectFromController(controller), 
-		getGameObjectFromController(other)));
+			getGameObjectFromController(controller), 
+			getGameObjectFromController(other)));
 
 	mApp->getGameWorldManager()->addEvent(evt);
 
@@ -392,8 +358,6 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(NxOgre::Real(objectMass)));
 	Ogre::LogManager::getSingleton().logMessage("**********");
 	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug End");
-	
-	double radius = 1.0f;
 	*/
 	if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getMass() == objectMass)
 	{
@@ -410,9 +374,10 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volu
 //////////////////////////////////////////////////////////////////
 // Auxiliar functions
 
-void PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDiplacement, double normalAngle)
+bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDiplacement, double normalAngle)
 {
 	bool found = false;
+	bool isOny = false;
 
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
@@ -426,11 +391,14 @@ void PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 			{
 				tmpObject->getPhysicsComponentCharacter()->setSlidingValues(slideDiplacement, normalAngle);
 				found = true;
+				isOny = true;
 			}
 		}
 		//TODO else if block
 		//Same with the rest of game objects which hold a PhysicsComponentCharacter
 	}	
+
+	return isOny;
 }
 
 bool PhysicsSubsystem::areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius)
@@ -462,25 +430,6 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 	GameObjectPtr object = GameObject::Null;
 	bool found = false;
 	
-	//if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-	//{
-	//	object = mApp->getGameWorldManager()->getGameObjectOny();
-	//	found = true;
-	//	Ogre::LogManager::getSingleton().logMessage("Ony matched!");
-	//}
-	//else
-	//{
-	//	Ogre::LogManager::getSingleton().logMessage("Noone matched!");
-	//}
-
-	//NxOgre::Controller* onyController = mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController();
-	//Ogre::String onyPos = Ogre::StringConverter::toString(onyController->getPosition().x) + "," + Ogre::StringConverter::toString(onyController->getPosition().y) + "," + Ogre::StringConverter::toString(onyController->getPosition().z);
-	//Ogre::String controllerPos = Ogre::StringConverter::toString(controller->getPosition().x) + "," + Ogre::StringConverter::toString(controller->getPosition().y) + "," + Ogre::StringConverter::toString(controller->getPosition().z);
-	//Ogre::LogManager::getSingleton().logMessage(onyPos + " :: " + controllerPos);
-
-	// Hack done to fix the problem: Received NxOgre::Controller* seems to be null or incorrect
-	//object = mApp->getGameWorldManager()->getGameObjectOny();
-
 	TGameObjectPhysicsCharacterContainer container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
 
@@ -544,6 +493,45 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* 
 		//Same with the rest of game objects which hold a PhysicsComponentCharacter
 	}		
 	
+	return object;
+}
+
+GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
+{
+	GameObjectPtr object = GameObject::Null;
+	bool found = false;
+
+	TGameObjectPhysicsContainer container[2];
+	container[0] = mApp->getGameWorldManager()->getGameObjectPhysicsSimpleContainer();
+	container[1] = mApp->getGameWorldManager()->getGameObjectPhysicsComplexContainer();
+	
+	for (unsigned int k=0; !found && k<2; k++)
+	{
+		for (unsigned int i=0; !found && i<container[k].size(); i++)
+		{
+			if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX) == 0)
+			{
+				GameObjectTerrainConvexPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(container[k][i]);
+				if (tmpObject->getPhysicsComponentComplexConvex()->getNxOgreConvex() == shape)
+				{
+					object= tmpObject;
+					found = true;
+					//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
+				}
+			}
+			else if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE) == 0)
+			{
+				GameObjectTerrainTrianglePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainTriangle>(container[k][i]);
+				if (tmpObject->getPhysicsComponentComplexTriangle()->getNxOgreTriangleGeometry() == shape)
+				{
+					object= tmpObject;
+					found = true;
+					//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
+				}
+			}
+		}
+	}
+
 	return object;
 }
 

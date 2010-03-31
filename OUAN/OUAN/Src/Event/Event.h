@@ -83,6 +83,20 @@ namespace OUAN
 		int mCollisionType;
 	};
 
+	/// Event class representing a collision between a Character and a Shape
+	/// Character (Ony, enemies); Shape (terrain, columns, walls, trees...)
+	class CharacterShapeFrontCollisionEvent: public Event
+	{
+	public:
+		CharacterShapeFrontCollisionEvent(GameObjectPtr pCharacter, GameObjectPtr pShape);
+		GameObjectPtr getCharacter();
+		GameObjectPtr getShape();
+
+	private:
+		GameObjectPtr mCharacter;
+		GameObjectPtr mShape;
+	};
+
 	class ClearQueueEvent: public Event{
 	public:
 		ClearQueueEvent();

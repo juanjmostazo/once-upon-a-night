@@ -30,6 +30,10 @@ namespace OUAN
 		/// @param evt pointer to the event
 		void processCharacterInTrigger(CharacterInTriggerEventPtr evt);
 
+		/// Process world change event
+		/// @param evt pointer to the event
+		void processCharacterShapeFrontCollision(CharacterShapeFrontCollisionEventPtr evt);
+
 		/// Process game over event
 		/// @param evt pointer to the event
 		void processGameOver(GameOverEventPtr evt);

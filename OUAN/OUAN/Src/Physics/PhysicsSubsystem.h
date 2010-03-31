@@ -44,14 +44,8 @@ namespace OUAN
 		virtual NxOgre::ControllerManager* getNxOgreControllerManager();
 
 		//General physics callbacks
-		//virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-		//	NxOgre::RigidBody* collision_body, NxOgre::Shape* rigidBodyShape, unsigned int collisionEvent);
-		//virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-		//	void* controller, unsigned int collisionEvent);
-		
 		virtual bool onHitEvent(const NxOgre::RaycastHit& raycastHit);
 		virtual void onContact(const NxOgre::ContactPair& contactPair);
-
 		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
 			const std::string objectName, NxOgre::Vec3 objectPosition, double objectMass, unsigned int collisionEvent);
 
@@ -96,6 +90,9 @@ namespace OUAN
 		double mMinSlidingAngle;
 
 		/// param read from config file
+		double mMinCollisionAngle;
+
+		/// param read from config file
 		double mSlidingFactor;
 
 		/// Load params from config file
@@ -125,7 +122,7 @@ namespace OUAN
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
 		/// Auxiliar function
-		void setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
+		bool setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
 
 		/// Auxiliar function
 		bool areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius);
@@ -137,8 +134,10 @@ namespace OUAN
 		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
 
 		/// Fetch function
-		GameObjectPtr getGameObjectFromVolume(NxOgre::Volume* Volume);
+		GameObjectPtr getGameObjectFromShape(NxOgre::Shape* shape);
 
+		/// Fetch function
+		GameObjectPtr getGameObjectFromVolume(NxOgre::Volume* Volume);
 	};
 }
 #endif
