@@ -118,6 +118,15 @@ void LogicComponent::setInitialNumLives(int numLives)
 {
 	mInitialNumLives=numLives;
 }
+int LogicComponent::getLineOfSight() const
+{
+	return mLineOfSight;
+}
+void LogicComponent::setLineOfSight(int lineOfSight)
+{
+	mLineOfSight=lineOfSight;
+}
+
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {
 }

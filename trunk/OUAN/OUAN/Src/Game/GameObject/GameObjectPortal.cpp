@@ -99,6 +99,14 @@ void GameObjectPortal::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectPortal::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectPortal::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()

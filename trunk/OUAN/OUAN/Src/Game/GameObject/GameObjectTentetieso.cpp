@@ -89,6 +89,14 @@ void GameObjectTentetieso::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectTentetieso::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTentetieso::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()
 {

@@ -96,6 +96,14 @@ void GameObjectOny::loseLife()
 	mGameWorldManager->addEvent(evt);
 
 }
+bool GameObjectOny::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

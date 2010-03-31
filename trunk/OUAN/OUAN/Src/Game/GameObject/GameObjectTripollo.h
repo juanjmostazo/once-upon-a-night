@@ -60,7 +60,9 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
-		int getNumLives() const;
+		//-- Methods used by GameWorldManager or GameObject to implement global query methods used by LUA
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
 
 	};
 	

@@ -117,6 +117,14 @@ void GameObjectDiamondTree::changeWorld(int world)
 		break;
 	}
 }
+bool GameObjectDiamondTree::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectDiamondTree::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectDiamondTreeParameters::TGameObjectDiamondTreeParameters() : TGameObjectParameters()

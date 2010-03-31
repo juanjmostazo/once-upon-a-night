@@ -101,6 +101,14 @@ void GameObjectItem1UP::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectItem1UP::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectItem1UP::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
 

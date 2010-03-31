@@ -1282,6 +1282,34 @@
 			Name="Scripts"
 			>
 			<File
+				RelativePath="..\Resources\Scripts\bee_butterfly.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\carnivorousplant.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\dragon.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\eye.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\snakecreeper.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\tentetieso.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\tripollito.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\tripollo.lua"
 				>
 			</File>

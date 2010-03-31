@@ -73,6 +73,14 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectTerrainTriangle::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTerrainTriangle::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
 

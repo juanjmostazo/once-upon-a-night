@@ -39,6 +39,9 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 		void changeWorld(int world);
+
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
 	};
 
 	/// Transport object carrying around data from the level loader

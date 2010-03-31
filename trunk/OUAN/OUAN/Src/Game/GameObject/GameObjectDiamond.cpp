@@ -103,7 +103,14 @@ void GameObjectDiamond::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectDiamond::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectDiamond::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {
 

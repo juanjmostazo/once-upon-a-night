@@ -68,7 +68,14 @@ void GameObjectBee_Butterfly::update(double elapsedSeconds)
 {
 
 }
-
+bool GameObjectBee_Butterfly::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectBee_Butterfly::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectBee_ButterflyParameters::TGameObjectBee_ButterflyParameters() : TGameObjectParameters()
 {

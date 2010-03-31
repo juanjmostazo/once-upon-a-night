@@ -60,6 +60,9 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
+
 	};
 	
 	/// Information data structure to carry around data between the

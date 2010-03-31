@@ -140,11 +140,13 @@ void GameObjectTripollo::changeWorld(int world)
 		}
 	}
 }
-int GameObjectTripollo::getNumLives() const
+bool GameObjectTripollo::hasPositionalComponent() const
 {
-	if (mLogicComponent)
-		return mLogicComponent->getNumLives();
-	return -1;
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTripollo::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()

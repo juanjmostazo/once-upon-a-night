@@ -41,8 +41,10 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
 		
-		//Event handler method overrides
 	};
 
 	/// Transport object carrying around data from the level loader

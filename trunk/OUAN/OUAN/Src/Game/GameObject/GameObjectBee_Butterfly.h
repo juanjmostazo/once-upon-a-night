@@ -58,6 +58,9 @@ namespace OUAN
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
+
 	};
 	
 	/// Information data structure to carry around data between the

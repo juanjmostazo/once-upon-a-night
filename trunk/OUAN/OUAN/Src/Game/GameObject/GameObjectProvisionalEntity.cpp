@@ -119,6 +119,14 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 		break;
 	}
 }
+bool GameObjectProvisionalEntity::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectProvisionalEntity::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectProvisionalEntityParameters::TGameObjectProvisionalEntityParameters() : TGameObjectParameters()

@@ -51,6 +51,9 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
 	};
 
 	class TGameObjectClockPieceParameters: public TGameObjectParameters

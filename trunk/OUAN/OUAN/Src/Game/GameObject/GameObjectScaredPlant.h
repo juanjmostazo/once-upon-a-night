@@ -54,6 +54,9 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
+
 		/// Attach all event handlers for this class.
 		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
 		void registerHandlers();

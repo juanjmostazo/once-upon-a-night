@@ -99,6 +99,14 @@ void GameObjectTree::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectTree::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTree::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {
 

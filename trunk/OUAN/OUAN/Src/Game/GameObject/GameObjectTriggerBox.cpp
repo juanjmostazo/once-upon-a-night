@@ -111,6 +111,14 @@ void GameObjectTriggerBox::changeWorld(int world)
 		}
 	}
 }
+bool GameObjectTriggerBox::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectTriggerBox::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectTriggerBoxParameters::TGameObjectTriggerBoxParameters() : TGameObjectParameters()

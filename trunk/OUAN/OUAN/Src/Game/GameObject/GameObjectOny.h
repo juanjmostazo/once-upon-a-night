@@ -91,6 +91,9 @@ namespace OUAN
 		void loseLife();
 		/// Additional actions to take after losing all lives
 		void die();
+
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
 	};
 
 	/// Carries data between the level loader and the object factories

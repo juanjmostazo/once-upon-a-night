@@ -83,6 +83,14 @@ void GameObjectEye::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectEye::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectEye::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()

@@ -89,6 +89,14 @@ void GameObjectNightGoblin::changeWorld(int world)
 	default:break;
 	}
 }
+bool GameObjectNightGoblin::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectNightGoblin::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectNightGoblinParameters::TGameObjectNightGoblinParameters() : TGameObjectParameters()
 {

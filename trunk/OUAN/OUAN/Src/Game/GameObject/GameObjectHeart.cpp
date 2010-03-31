@@ -103,7 +103,14 @@ void GameObjectHeart::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectHeart::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectHeart::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {
 

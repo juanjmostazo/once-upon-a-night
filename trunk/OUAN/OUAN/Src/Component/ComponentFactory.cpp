@@ -279,6 +279,7 @@ LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObjec
 	logicComponent->setInitialHealthPoints(logicComponentParameters.healthPoints);
 	logicComponent->setNumLives(logicComponentParameters.numLives);
 	logicComponent->setInitialNumLives(logicComponentParameters.numLives);
+	logicComponent->setLineOfSight(logicComponentParameters.lineOfSight);
 
 	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
 	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);

@@ -71,7 +71,14 @@ void GameObjectParticleSystem::changeWorld(int world)
 		}
 	}
 }
-
+bool GameObjectParticleSystem::hasPositionalComponent() const
+{
+	return true;
+}
+RenderComponentPositionalPtr GameObjectParticleSystem::getPositionalComponent() const
+{
+	return getRenderComponentPositional();
+}
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {
 
