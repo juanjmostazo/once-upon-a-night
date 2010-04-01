@@ -11,7 +11,7 @@ namespace OUAN
 		
 		void init(Ogre::SceneManager * pSceneManager);
 
-		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
 
 	private:

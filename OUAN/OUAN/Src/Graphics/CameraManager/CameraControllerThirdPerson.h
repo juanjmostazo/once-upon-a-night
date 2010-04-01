@@ -16,7 +16,7 @@ namespace OUAN
 
 		void setTarget(RenderComponentPositional * target);
 
-		Ogre::Vector3 calculateCameraCollisions(Ogre::Vector3 currentCameraPosition, Ogre::Vector3 currentCameraLookAt);
+		bool calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt);
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
@@ -25,9 +25,19 @@ namespace OUAN
 		Ogre::SceneManager * mSceneManager;
 		RayCasting * mRayCasting;
 		RenderComponentPositional * target;
-		Vector3 distance;
-		Vector3 initialDistance;
+
+		Ogre::Vector3 initialDirection;
+		double initialDistance;
 		double height;
+
+		double collisionMargin;
+
+		double currentCollisionTime;
+		double minCollisionTime;
+
+		double minDistance;
+
+		double collisionDisplacementDistance;
 
 		//camera relative rotation to target's X axe
 		double rotX;
@@ -40,6 +50,7 @@ namespace OUAN
 
 		//camera position speed
 		double speed;
+		double collisionMoveSpeed;
 
 		//camera speed when it returns to initial position
 		double returningspeed;
@@ -52,9 +63,12 @@ namespace OUAN
 		//true if camera has been moved this frame
 		bool cameraMoved;
 
-		double rotXDistanceAttenuation;
+		double rotXDistanceAttenuationNegative;
+		double rotXDistanceAttenuationPositive;
 
 		void returningToInitialPosition();
+
+		double calculateNextMovementTo(Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,Ogre::Vector3 & newNextMovePosition,double elapsedTime);
 		
 
 	};

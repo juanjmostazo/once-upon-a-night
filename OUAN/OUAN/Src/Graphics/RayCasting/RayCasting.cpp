@@ -32,6 +32,7 @@ void RayCasting::init(Ogre::SceneManager * pSceneManager)
 bool RayCasting::raycastFromPoint(const Vector3 &point,
                                         const Vector3 &normal,
                                         Vector3 &result,
+										double maxDistance,
 										QueryFlags flags)
 {
     // create the ray to test
@@ -76,6 +77,12 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
         {
              break;
         }
+
+		//stop checking if the raycast hit is further from maximum distance
+		if(maxDistance >= 0.0f && query_result[qr_idx].distance>maxDistance)
+		{
+             break;
+		}
        
         // only check this result if its a hit against an entity
         if ((query_result[qr_idx].movable != NULL) &&
