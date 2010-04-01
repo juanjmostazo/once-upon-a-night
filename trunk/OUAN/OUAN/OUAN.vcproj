@@ -60,7 +60,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/NODEFAULTLIB:MSVCRT"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib fmodex_vc.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
@@ -133,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib"
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -703,6 +703,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Audio"
+				>
+				<File
+					RelativePath=".\Src\Audio\AudioSubsystem.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1268,6 +1276,18 @@
 				</File>
 				<File
 					RelativePath=".\Src\Event\EventProcessor.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Audio"
+				>
+				<File
+					RelativePath=".\Src\Audio\AudioDefs.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Audio\AudioSubsystem.h"
 					>
 				</File>
 			</Filter>
