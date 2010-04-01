@@ -24,7 +24,7 @@
   <CAMERASPEED value="8"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="44.6751 244.293 443.702" orientation="0.9109 -0.407924 0.056624 0.0255567"></OPTION>
+    <OPTION id="1" position="44.6751 244.293 443.702" orientation="0.975701 -0.152321 0.155585 0.024477"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -88,17 +88,17 @@
     <PROPERTY id="shadows::technique" type="2" value="37"></PROPERTY>
     <PROPERTY id="skybox::active" type="12" value="false"></PROPERTY>
     <PROPERTY id="skybox::distance" type="6" value="500"></PROPERTY>
-    <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
-    <PROPERTY id="skydome::active" type="12" value="false"></PROPERTY>
-    <PROPERTY id="skydome::material" type="7" value=""></PROPERTY>
+    <PROPERTY id="skybox::material" type="7" value="Examples/CloudySky1"></PROPERTY>
+    <PROPERTY id="skydome::active" type="12" value="true"></PROPERTY>
+    <PROPERTY id="skydome::material" type="7" value="Examples/CloudySky1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
-    <PROPERTY id="camera::clipdistance" type="8" value="1 1000"></PROPERTY>
+    <PROPERTY id="camera::clipdistance" type="8" value="1 10000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.910933 -0.407939 0.0566261 0.0255577"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.975712 -0.152323 0.155587 0.0244772"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="44.6751 244.293 443.702"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="6"></PROPERTY>
