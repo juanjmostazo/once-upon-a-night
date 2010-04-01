@@ -2226,7 +2226,7 @@ void GameWorldManager::createGameObjectTree(TGameObjectTreeParameters tGameObjec
 		//Create RenderComponentEntity
 		pGameObjectTree->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectTreeParameters.name,
-			pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,QUERYFLAGS_CAMERA_COLLISION));
+			pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
 		pGameObjectTree->setPhysicsComponentSimpleBox(
