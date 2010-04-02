@@ -34,7 +34,7 @@ namespace OUAN
 			TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		RenderComponentEntityPtr createRenderComponentEntity(std::string name,GameObjectPtr gameObject,
 			TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags=QUERYFLAGS_NONE);
-		RenderComponentLightPtr createRenderComponentLight(GameObjectPtr gameObject,
+		RenderComponentLightPtr createRenderComponentLight(std::string name,GameObjectPtr gameObject,
 			TRenderComponentLightParameters tRenderComponentLightParameters);
 		RenderComponentParticleSystemPtr createRenderComponentParticleSystem(GameObjectPtr gameObject,
 			TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters);
@@ -42,6 +42,9 @@ namespace OUAN
 			TRenderComponentSceneParameters tRenderComponentSceneParameters);
 		RenderComponentPositionalPtr createRenderComponentPositional(GameObjectPtr gameObject,
 			TRenderComponentPositionalParameters tRenderComponentPositionalParameters);
+		RenderComponentPositionalPtr createRenderComponentPositional(GameObjectPtr gameObject,
+			TRenderComponentPositionalParameters tRenderComponentPositionalParameters,
+			std::string name);
 		RenderComponentViewportPtr createRenderComponentViewport(GameObjectPtr gameObject,
 			TRenderComponentViewportParameters tRenderComponentViewportParameters); 
 		

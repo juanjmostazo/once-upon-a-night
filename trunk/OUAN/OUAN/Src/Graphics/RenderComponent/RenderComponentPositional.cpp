@@ -28,6 +28,16 @@ Quaternion RenderComponentPositional::getOrientation() const
 	return mSceneNode->getOrientation();
 }
 
+void RenderComponentPositional::setPosition(Vector3 position)
+{
+	mSceneNode->setPosition(position);
+}
+
+void RenderComponentPositional::setOrientation(Quaternion orientation)
+{
+	mSceneNode->setOrientation(orientation);
+}
+
 double RenderComponentPositional::getYaw() const
 {
 	return mSceneNode->getOrientation().getYaw().valueDegrees();

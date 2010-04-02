@@ -631,6 +631,8 @@ namespace OUAN
 
 		///Camera Manager
 		class CameraManager;
+		typedef boost::shared_ptr<CameraManager> CameraManagerPtr;
+
 		class CameraController;
 		class CameraControllerFirstPerson;
 		class CameraControllerThirdPerson;

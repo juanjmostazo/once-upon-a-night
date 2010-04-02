@@ -1329,7 +1329,7 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 	GameObjectFlashLightPtr pGameObjectFlashLight;
 
 	//Create GameObject
-	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name));
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,mApp->getGameWorldManager(),mApp->getRenderSubsystem()->getCameraManager()));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -1349,12 +1349,42 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 			factory->createRenderComponentEntity(tGameObjectFlashLightParameters.name,
 			pGameObjectFlashLight,tGameObjectFlashLightParameters.tRenderComponentEntityParameters));
 
-		//Create PhysicsComponent
-		pGameObjectFlashLight->setPhysicsComponentSimpleCapsule(
-			factory->createPhysicsComponentSimpleCapsule(
-			pGameObjectFlashLight, 
-			tGameObjectFlashLightParameters.tPhysicsComponentSimpleCapsuleParameters, 
-			pGameObjectFlashLight->getRenderComponentPositional()));
+		////Create PhysicsComponent
+		//pGameObjectFlashLight->setPhysicsComponentSimpleCapsule(
+		//	factory->createPhysicsComponentSimpleCapsule(
+		//	pGameObjectFlashLight, 
+		//	tGameObjectFlashLightParameters.tPhysicsComponentSimpleCapsuleParameters, 
+		//	pGameObjectFlashLight->getRenderComponentPositional()));
+
+		//Create Flashlight's light
+
+			//Create RenderComponentPositional for Light
+			TRenderComponentPositionalParameters lightPositionalComponentParameters;
+			lightPositionalComponentParameters.autotracktarget="None";
+			lightPositionalComponentParameters.orientation=Quaternion(1,0,0,0);
+			lightPositionalComponentParameters.parentSceneNodeName="SceneManager";
+			lightPositionalComponentParameters.position=Vector3(0,0,0);
+			lightPositionalComponentParameters.scale=Vector3(1,1,1);
+
+			pGameObjectFlashLight->setLightPositionalComponent(factory->createRenderComponentPositional(
+				pGameObjectFlashLight,lightPositionalComponentParameters,tGameObjectFlashLightParameters.name+"#Light"));
+
+			//Create RenderComponentLight
+			TRenderComponentLightParameters tRenderComponentLightParameters;
+
+			tRenderComponentLightParameters.attenuation=Vector4(200,0.15,0,0);
+			tRenderComponentLightParameters.castshadows=false;
+			tRenderComponentLightParameters.diffuse=Ogre::ColourValue(0.7,0,0,1);
+			tRenderComponentLightParameters.direction=Vector3(0,0,1);
+			tRenderComponentLightParameters.lightrange=Vector3(60,90,0.1);
+			tRenderComponentLightParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
+			tRenderComponentLightParameters.power=1;
+			tRenderComponentLightParameters.specular=Ogre::ColourValue(1,0.2,0.2,1);
+
+			pGameObjectFlashLight->setRenderComponentLight(
+				factory->createRenderComponentLight(tGameObjectFlashLightParameters.name+"#Light",
+				pGameObjectFlashLight,tRenderComponentLightParameters));
+
 
 	pGameObjectFlashLight->changeWorld(world);
 
@@ -1516,7 +1546,7 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 
 		//Create RenderComponentLight
 		pGameObjectLight->setRenderComponentLight(factory->createRenderComponentLight(
-			pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
+			tGameObjectLightParameters.name,pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
 	
 	pGameObjectLight->changeWorld(world);
 

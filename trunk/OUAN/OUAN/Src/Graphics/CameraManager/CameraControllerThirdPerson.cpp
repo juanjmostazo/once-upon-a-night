@@ -28,7 +28,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	rotXDistanceAttenuationPositive=0.3;
 
 	maxRotX=70;
-	minRotX=-70;
+	minRotX=-45;
 
 	cameraMoved=false;
 	cameraIsReturning=false;
@@ -118,7 +118,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Ogre::Vector3 newNextMovePosition;
 
 	//Calculate camera collisions
-	if(calculateCameraCollisions(cameraCollisionPosition,newTargetPosition))
+	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt))
 	{
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)

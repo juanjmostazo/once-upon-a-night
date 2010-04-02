@@ -1,12 +1,16 @@
 #include "GameObjectFlashLight.h"
+#include "GameObjectOny.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentLight.h"
 
 using namespace OUAN;
 
-GameObjectFlashLight::GameObjectFlashLight(const std::string& name)
+GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager)
 :GameObject(name,GAME_OBJECT_TYPE_FLASHLIGHT)
 {
-
+	mGameWorldManager=pGameWorldManager;
+	mCameraManager=pCameraManager;
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -29,6 +33,27 @@ void GameObjectFlashLight::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+
+RenderComponentLightPtr GameObjectFlashLight::getRenderComponentLight() const
+{
+	return mRenderComponentLight;
+}
+
+void GameObjectFlashLight::setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight)
+{
+	mRenderComponentLight = pRenderComponentLight;
+}
+
+void GameObjectFlashLight::setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional)
+{
+	mLightPositionalComponent=pRenderComponentPositional;
+}
+
+RenderComponentPositionalPtr GameObjectFlashLight::getLightPositionalComponent() const
+{
+	return mLightPositionalComponent;
+}
+
 RenderComponentPositionalPtr GameObjectFlashLight::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -46,57 +71,18 @@ PhysicsComponentSimpleCapsulePtr GameObjectFlashLight::getPhysicsComponentSimple
 
 void GameObjectFlashLight::changeWorld(int world)
 {
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+
+	switch(world)
 	{
-		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-		{
-			mPhysicsComponentSimpleCapsule->create();
-		}
-		return;
-	}
-	else
-	{
-		switch(world)
-		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-				{
-					mPhysicsComponentSimpleCapsule->create();
-				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
-				{
-					mPhysicsComponentSimpleCapsule->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-				{
-					mPhysicsComponentSimpleCapsule->create();
-				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
-				{
-					mPhysicsComponentSimpleCapsule->destroy();
-				}
-			}
-			break;
-		default:
-			break;
-		}
+	case DREAMS:
+		//TODO: set this to false
+		mRenderComponentLight->setVisible(true);
+		break;
+	case NIGHTMARES:
+		mRenderComponentLight->setVisible(true);
+		break;
+	default:
+		break;
 	}
 }
 bool GameObjectFlashLight::hasPositionalComponent() const
@@ -107,6 +93,26 @@ RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectFlashLight::update(double elapsedSeconds)
+{
+	Ogre::Camera * camera;
+	Vector3 direction;
+
+	camera=mCameraManager->getActiveCamera();
+
+	mLightPositionalComponent->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+	//mLightPositionalComponent->setOrientation(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getOrientation());
+
+	mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+	mRenderComponentPositional->setOrientation(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getOrientation());
+
+	direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
+	direction.normalise();
+
+	mRenderComponentLight->setDirection(direction);
+}
+
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {
 

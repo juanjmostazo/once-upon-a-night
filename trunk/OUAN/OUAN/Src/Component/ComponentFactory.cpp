@@ -85,7 +85,7 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 
 	return pRenderComponentEntity;
 }
-RenderComponentLightPtr ComponentFactory::createRenderComponentLight(GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)
+RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string name,GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)
 {
 	//Create void Render Component
 	RenderComponentLightPtr pRenderComponentLight = RenderComponentLightPtr(new RenderComponentLight()); 
@@ -93,7 +93,7 @@ RenderComponentLightPtr ComponentFactory::createRenderComponentLight(GameObjectP
 	pRenderComponentLight->setParent(gameObject);
 
 	//init Render Component
-	pRenderComponentLight->setLight(mApp->getRenderSubsystem()->createLight(gameObject->getName(),tRenderComponentLightParameters));
+	pRenderComponentLight->setLight(mApp->getRenderSubsystem()->createLight(name,tRenderComponentLightParameters));
 
 	return pRenderComponentLight;
 }
@@ -133,6 +133,19 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	//init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
+	pRenderComponentPositional->setRenderSubsystem(mApp->getRenderSubsystem());
+
+	return pRenderComponentPositional;
+}
+RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(GameObjectPtr gameObject,TRenderComponentPositionalParameters tRenderComponentPositionalParameters,std::string name)
+{
+	//Create void Render Component
+	RenderComponentPositionalPtr pRenderComponentPositional = RenderComponentPositionalPtr(new RenderComponentPositional()); 
+
+	pRenderComponentPositional->setParent(gameObject);	
+
+	//init Render Component
+	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(name,tRenderComponentPositionalParameters));
 	pRenderComponentPositional->setRenderSubsystem(mApp->getRenderSubsystem());
 
 	return pRenderComponentPositional;

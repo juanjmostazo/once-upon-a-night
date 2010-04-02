@@ -18,6 +18,8 @@ namespace OUAN
 		Ogre::SceneNode * getSceneNode() const;
 		void setSceneNode(Ogre::SceneNode *);	
 
+		void setPosition(Vector3 position);
+		void setOrientation(Quaternion orientation);
 
 		Vector3 getPosition() const;
 		Quaternion getOrientation() const;
