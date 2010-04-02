@@ -15,16 +15,22 @@ namespace OUAN
 		
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentLightPtr mRenderComponentLight;
+
 		/// Position information
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		RenderComponentPositionalPtr mLightPositionalComponent;
+
 		/// Physics information
 		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
 
+		CameraManagerPtr mCameraManager;
+		GameWorldManagerPtr mGameWorldManager;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectFlashLight(const std::string& name);
+		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager);
 		//Destructor
 		~GameObjectFlashLight();
 		/// Return render component entity 
@@ -35,6 +41,17 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
+		/// Return render component Light 
+		/// @return render component Light
+		RenderComponentLightPtr getRenderComponentLight() const;
+
+		/// Set render component
+		/// @param pRenderComponentLight
+		void setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight);
+
+		void setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional);
+		RenderComponentPositionalPtr getLightPositionalComponent() const;
+
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
@@ -42,6 +59,8 @@ namespace OUAN
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
+
+
 
 		/// Set physics component
 		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
@@ -55,6 +74,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		/// Update object
+		void update(double elapsedSeconds);
+
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters

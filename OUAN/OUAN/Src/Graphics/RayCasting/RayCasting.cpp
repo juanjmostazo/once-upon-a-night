@@ -35,6 +35,11 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
 										double maxDistance,
 										QueryFlags flags)
 {
+
+    Ogre::Vector3 *vertices;
+    unsigned long *indices;
+
+
     // create the ray to test
     Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z),
                   Ogre::Vector3(normal.x, normal.y, normal.z));
@@ -95,8 +100,6 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
             // mesh data to retrieve         
             size_t vertex_count;
             size_t index_count;
-            Ogre::Vector3 *vertices;
-            unsigned long *indices;
 
             // get the mesh information
          GetMeshInformation(pentity->getMesh(), vertex_count, vertices, index_count, indices,             
@@ -125,16 +128,17 @@ bool RayCasting::raycastFromPoint(const Vector3 &point,
                 }
             }
 
-         // free the verticies and indicies memory
-            delete[] vertices;
-            delete[] indices;
-
             // if we found a new closest raycast for this object, update the
             // closest_result before moving on to the next object.
             if (new_closest_found)
             {
                 closest_result = ray.getPoint(closest_distance);               
             }
+
+
+		 // free the verticies and indicies memory
+			delete[] vertices;
+			delete[] indices;
         }       
     }
 

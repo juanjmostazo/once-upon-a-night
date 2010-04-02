@@ -22,7 +22,6 @@ using namespace Ogre;
 
 RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
-, mCameraManager( NULL ) 
 , mWindowName(windowName)
 {
 	
@@ -46,10 +45,10 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
-	mTrajectoryManager = new TrajectoryManager();
+	mTrajectoryManager.reset(new TrajectoryManager());
 	mTrajectoryManager->init(mSceneManager);
 
-	mCameraManager = new CameraManager();
+	mCameraManager.reset(new CameraManager());
 	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 }
 
@@ -179,11 +178,11 @@ RenderWindow* RenderSubsystem::getWindow() const
 	return mWindow;
 }
 
-CameraManager* RenderSubsystem::getCameraManager() const
+CameraManagerPtr RenderSubsystem::getCameraManager() const
 {
 	return mCameraManager;
 }
-TrajectoryManager* RenderSubsystem::getTrajectoryManager() const
+TrajectoryManagerPtr RenderSubsystem::getTrajectoryManager() const
 {
 	return mTrajectoryManager;
 }
@@ -667,7 +666,7 @@ void RenderSubsystem::clearScene()
 	mRoot->destroySceneManager(mSceneManager);
 	mWindow->removeAllViewports();
 	//mApp->getGUISubsystem()->clearRenderer();
-	delete mCameraManager;
+
 }
 
 void RenderSubsystem::resetScene()
@@ -675,7 +674,10 @@ void RenderSubsystem::resetScene()
 	clearScene();
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
-	mCameraManager = new CameraManager();
+	mTrajectoryManager.reset(new TrajectoryManager());
+	mTrajectoryManager->init(mSceneManager);
+
+	mCameraManager.reset(new CameraManager());
 	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 }
 

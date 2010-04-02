@@ -19,6 +19,22 @@ void RenderComponentLight::setLight(Ogre::Light* light)
 	mLight=light;
 }
 
+void RenderComponentLight::setVisible(bool visible)
+{
+	mLight->setVisible(visible);
+}
+
+void RenderComponentLight::setDiffuseColor(ColourValue colour)
+{
+	mLight->setDiffuseColour(colour);
+}
+
+
+void RenderComponentLight::setDirection(Vector3 direction)
+{
+	mLight->setDirection(direction);
+}
+
 TRenderComponentLightParameters::TRenderComponentLightParameters() : TRenderComponentParameters()
 {
 }

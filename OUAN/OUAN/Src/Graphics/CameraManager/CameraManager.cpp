@@ -22,7 +22,7 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManager * pTrajectoryManager)
+void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManagerPtr pTrajectoryManager)
 {
 	mSceneManager=pSceneManager;
 	mTrajectoryManager=pTrajectoryManager;

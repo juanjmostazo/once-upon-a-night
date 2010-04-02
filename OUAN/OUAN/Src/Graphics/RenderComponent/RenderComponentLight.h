@@ -16,6 +16,13 @@ namespace OUAN
 
 		Ogre::Light * getLight() const;
 		void setLight(Ogre::Light *);
+
+		void setVisible(bool visible);
+
+		void setDiffuseColor(ColourValue colour);
+
+		void setDirection(Vector3 direction);
+
 	};
 
 	class TRenderComponentLightParameters: public TRenderComponentParameters
