@@ -78,6 +78,9 @@ namespace OUAN
 			GUISubsystemPtr getGUISubsystem() const;
 			PhysicsSubsystemPtr getPhysicsSubsystem() const;
 			GameWorldManagerPtr getGameWorldManager() const;
+			CameraManagerPtr getCameraManager() const;
+			TrajectoryManagerPtr getTrajectoryManager() const;
+			RayCastingPtr getRayCasting() const;
 			LevelLoaderPtr getLevelLoader() const;
 			LogicSubsystemPtr getLogicSubsystem() const;
 			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
@@ -119,6 +122,15 @@ namespace OUAN
 			GameWorldManagerPtr mGameWorldManager;
 			/// Pointer to the scene loader
 			LevelLoaderPtr mLevelLoader;
+
+			/// Pointer to the RayCasting module
+			RayCastingPtr mRayCasting;
+
+			/// Camera Manager
+			CameraManagerPtr mCameraManager;
+
+			/// Pointer to the trajectory manager
+			TrajectoryManagerPtr mTrajectoryManager;
 
 			/// Pointer to the logic subsystem instance
 			LogicSubsystemPtr mLogicSubsystem;

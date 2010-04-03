@@ -54,8 +54,6 @@ namespace OUAN
 		/// Create overlays
 		void createOverlays();
 
-		/// Translate/Rotate camera's position with mouse
-		void moveCamera(Ogre::Vector2 cameraRotation);
 
 		/// Translate camera according to the given coordinate axis
 		/// @param worldCoordinateAxis
@@ -69,13 +67,9 @@ namespace OUAN
 		/// @return main window
 		Ogre::RenderWindow* getWindow() const;
 
-		/// Return read-only pointer to the camera manager
-		/// @return camera manager
-		CameraManagerPtr getCameraManager() const;
-
-		/// Return read-only pointer to the trajectory manager
-		/// @return trajectory manager
-		TrajectoryManagerPtr getTrajectoryManager() const;
+		/// Return read-only pointer to the ogre root
+		/// @return ogre root
+		RootPtr getRoot() const;
 
 		/// Return read-only pointer to the scene manager
 		/// @return scene manager
@@ -85,24 +79,13 @@ namespace OUAN
 		/// @return <b>true</b> if the window has been closed
 		bool isWindowClosed() const;
 		
-		/// Update the parameters that control the camera's
-		/// movement
-		/// @param	elapsedTime	time since last frame was processed
-		void updateCameraParams(double elapsedTime);
-
-		/// Set target for camera manager
-		/// @param	renderComponentPositional is the RenderComponentPositional which we will set as the camera's target
-		void setCameraTarget(RenderComponentPositional * renderComponentPositional);
-		
+	
 		//Object creators
-
 		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters,QueryFlags flags=QUERYFLAGS_NONE);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
 		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
-		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters TRenderComponentViewportParameters);
-		RenderComponentCameraPtr createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		Ogre::SceneManager* setSceneParameters(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 
 		/// Getters and setters
@@ -122,11 +105,6 @@ namespace OUAN
 		void showVisualDebugger();
 		/// Turn off visual debugger
 		void hideVisualDebugger();
-
-		/// Activates next camera
-		void changeCamera();
-		/// Activates next camera controller type
-		void changeCameraController();
 
 		/// Hides the overlay named 'overlayName', if found
 		/// @param overlayName	name of the overlay to hide
@@ -168,14 +146,8 @@ namespace OUAN
 		// window]
 		Ogre::RenderWindow* mWindow;
 
-		/// Camera Manager
-		CameraManagerPtr mCameraManager;
-
 		/// Window name
 		std::string mWindowName;
-
-		/// Pointer to the trajectory manager
-		TrajectoryManagerPtr mTrajectoryManager;
 
 		//Attributes used to handle the default
 		//camera movements

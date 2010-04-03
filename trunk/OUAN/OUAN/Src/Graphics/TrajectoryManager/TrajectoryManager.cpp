@@ -1,6 +1,7 @@
 #include "TrajectoryManager.h"
 #include "Trajectory.h"
 #include "TrajectoryNode.h"
+#include "../RenderSubsystem.h"
 using namespace OUAN;
 
 TrajectoryManager::TrajectoryManager()
@@ -14,9 +15,9 @@ TrajectoryManager::~TrajectoryManager()
 
 }
 
-void TrajectoryManager::init(Ogre::SceneManager * pSceneManager)
+void TrajectoryManager::init(RenderSubsystemPtr pRenderSubsystem)
 {
-	mSceneManager=pSceneManager;
+	mSceneManager=pRenderSubsystem->getSceneManager();
 
 	clear();
 }

@@ -9,7 +9,7 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
-		void init(Ogre::SceneManager * pSceneManager);
+		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting);
 
 		void update(double elapsedTime);
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
@@ -23,7 +23,7 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 	private:
 		Ogre::SceneManager * mSceneManager;
-		RayCasting * mRayCasting;
+		RayCastingPtr mRayCasting;
 		RenderComponentPositional * target;
 
 		Ogre::Vector3 initialDirection;

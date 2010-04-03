@@ -151,7 +151,7 @@ void GameRunningState::handleEvents()
 	{
 		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCamera key pressed");
 
-		mApp->getRenderSubsystem()->changeCamera();
+		mApp->getCameraManager()->changeCamera();
 
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}
@@ -159,9 +159,9 @@ void GameRunningState::handleEvents()
 	{
 		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
 
-		mApp->getRenderSubsystem()->changeCameraController();
+		mApp->getCameraManager()->changeCameraController();
 
-		if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
+		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
 		{
 			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
 		}
@@ -263,15 +263,15 @@ void GameRunningState::handleEvents()
 		nextMovement=nextMovement/2;	
 	}
 
-	if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
+	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
 	{
-		mApp->getRenderSubsystem()->getCameraManager()->processSimpleTranslation(nextMovement);
+		mApp->getCameraManager()->processSimpleTranslation(nextMovement);
 	}
-	else if(mApp->getRenderSubsystem()->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
+	else if(mApp->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
 	{
 		//Access to [0] because there's only one Ony, otherwise it should be a loop
 		//rotate movement vector using the current camera direction
-		nextMovement=mApp->getRenderSubsystem()->getCameraManager()->rotateMovementVector(nextMovement);
+		nextMovement=mApp->getCameraManager()->rotateMovementVector(nextMovement);
 		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
 	}
 
@@ -289,7 +289,7 @@ void GameRunningState::handleEvents()
 	//]
 	Vector2 cameraRotation;
 	cameraRotation=mApp->getCameraRotation();
-	mApp->getRenderSubsystem()->moveCamera(cameraRotation);
+	mApp->getCameraManager()->processCameraRotation(cameraRotation);
 }
 
 void GameRunningState::update(long elapsedTime)
@@ -307,8 +307,11 @@ void GameRunningState::update(long elapsedTime)
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
+	//TODO????
+	//mApp->getRenderSubsystem()->update(elapsedSeconds);
+
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
-	mApp->getRenderSubsystem()->updateCameraParams(elapsedSeconds);
+	mApp->getCameraManager()->update(elapsedSeconds);
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
 

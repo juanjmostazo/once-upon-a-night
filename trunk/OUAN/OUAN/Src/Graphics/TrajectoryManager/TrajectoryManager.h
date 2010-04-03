@@ -18,7 +18,7 @@ namespace OUAN
 		TrajectoryManager();
 		~TrajectoryManager();
 		
-		void init(Ogre::SceneManager * pSceneManager);
+		void init(RenderSubsystemPtr pRenderSubsystem);
 		void clear();
 
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);

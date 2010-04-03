@@ -1,6 +1,7 @@
 #include "CameraControllerThirdPerson.h"
 #include "../RenderComponent/RenderComponentPositional.h"
-#include "../RayCasting/RayCasting.h"
+#include "../RenderSubsystem.h"
+#include "../../RayCasting/RayCasting.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -42,14 +43,13 @@ CameraControllerThirdPerson::~CameraControllerThirdPerson()
 
 }
 
-void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager)
+void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting)
 {
-	mSceneManager = pSceneManager;
+	mSceneManager = pRenderSubsystem->getSceneManager();
 
-	mRayCasting = new RayCasting();
-	mRayCasting->init(pSceneManager);
+	mRayCasting = pRayCasting;
 
-	CameraController::init(pSceneManager);
+	CameraController::init(pRenderSubsystem->getSceneManager());
 }
 
 bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt)
@@ -65,7 +65,7 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 	newCameraPosition=cameraPosition;
 
-	mRayCasting->raycastFromPoint(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
+	mRayCasting->raycastFromPointPhysics(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{
@@ -150,17 +150,17 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	lastTargetPosition=newTargetPosition;
 	lastTargetOrientation=newTargetOrientation;
 
-	Ogre::LogManager::getSingleton().logMessage("[rotX] before "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
-	Ogre::LogManager::getSingleton().logMessage("[rotY] before "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+	//Ogre::LogManager::getSingleton().logMessage("[rotX] before "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
+	//Ogre::LogManager::getSingleton().logMessage("[rotY] before "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
-			//BUG WITH ROTATIONS, THEY SHOULD BE UPDATED
+	//		//BUG WITH ROTATIONS, THEY SHOULD BE UPDATED
 
 	//Rotations correction
 	//rotX=mCamera->getOrientation().getRoll().valueDegrees();
 	//rotY=mCamera->getOrientation().getYaw().valueDegrees();
 
-	Ogre::LogManager::getSingleton().logMessage("[rotX] after "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
-	Ogre::LogManager::getSingleton().logMessage("[rotY] after "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+	//Ogre::LogManager::getSingleton().logMessage("[rotX] after "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
+	//Ogre::LogManager::getSingleton().logMessage("[rotY] after "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 }
 
 double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,Ogre::Vector3 & newNextMovePosition,double elapsedTime)

@@ -8,7 +8,7 @@ namespace OUAN
 	class RenderComponentPositional: public RenderComponent
 	{
 	private:
-		RenderSubsystemPtr mRenderSubsystem;
+		CameraManagerPtr mCameraManager;
 		Ogre::SceneNode * mSceneNode;
 	public:
 
@@ -30,8 +30,8 @@ namespace OUAN
 
 
 
-		RenderSubsystemPtr getRenderSubsystem() const;
-		void setRenderSubsystem(RenderSubsystemPtr renderSubsystem);
+		CameraManagerPtr getCameraManager() const;
+		void setCameraManager(CameraManagerPtr pCameraManager);
 
 		void setAsCameraTarget();
 

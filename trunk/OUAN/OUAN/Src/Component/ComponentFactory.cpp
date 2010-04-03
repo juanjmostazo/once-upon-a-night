@@ -12,6 +12,7 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Graphics/CameraManager/CameraManager.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
@@ -65,7 +66,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
 	//Create and init Render Component Camera
-	RenderComponentCameraPtr pRenderComponentCameraPtr = mApp->getRenderSubsystem()->createCamera(gameObject->getName(),tRenderComponentCameraParameters);
+	RenderComponentCameraPtr pRenderComponentCameraPtr = mApp->getCameraManager()->createCamera(gameObject->getName(),tRenderComponentCameraParameters);
 
 	pRenderComponentCameraPtr->setParent(gameObject);	
 
@@ -133,7 +134,7 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	//init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
-	pRenderComponentPositional->setRenderSubsystem(mApp->getRenderSubsystem());
+	pRenderComponentPositional->setCameraManager(mApp->getCameraManager());
 
 	return pRenderComponentPositional;
 }
@@ -146,7 +147,7 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	//init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(name,tRenderComponentPositionalParameters));
-	pRenderComponentPositional->setRenderSubsystem(mApp->getRenderSubsystem());
+	pRenderComponentPositional->setCameraManager(mApp->getCameraManager());
 
 	return pRenderComponentPositional;
 }
@@ -158,7 +159,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	pRenderComponentViewport->setParent(gameObject);
 
 	//init Render Component
-	pRenderComponentViewport->setViewport(mApp->getRenderSubsystem()->setViewportParameters(gameObject->getName(),tRenderComponentViewportParameters));
+	pRenderComponentViewport->setViewport(mApp->getCameraManager()->setViewportParameters(gameObject->getName(),tRenderComponentViewportParameters));
 
 	return pRenderComponentViewport;
 }

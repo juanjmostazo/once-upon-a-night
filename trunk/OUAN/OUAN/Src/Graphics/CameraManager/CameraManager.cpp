@@ -5,7 +5,9 @@
 #include "CameraControllerFixedThirdPerson.h"
 #include "CameraControllerThirdPerson.h"
 #include "CameraControllerTrajectory.h"
+#include "../RenderSubsystem.h"
 #include "../RenderComponent/RenderComponentCamera.h"
+#include "../RenderComponent/RenderComponentViewport.h"
 #include "../TrajectoryManager/TrajectoryManager.h"
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
@@ -22,31 +24,31 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManagerPtr pTrajectoryManager)
+void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting)
 {
-	mSceneManager=pSceneManager;
+	mSceneManager= pRenderSubsystem->getSceneManager();
 	mTrajectoryManager=pTrajectoryManager;
 
 	//Clear all cameras
 	camera.clear();
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
-	mCameraControllerFirstPerson->init(pSceneManager);
+	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
 	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
-	mCameraControllerThirdPerson->init(pSceneManager);
+	mCameraControllerThirdPerson->init( pRenderSubsystem,pPhysicsSubsystem,pRayCasting);
 	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
-	mCameraControllerFixedThirdPerson->init(pSceneManager);
+	mCameraControllerFixedThirdPerson->init( pRenderSubsystem->getSceneManager());
 	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
-	mCameraControllerFixedFirstPerson->init(pSceneManager);
+	mCameraControllerFixedFirstPerson->init( pRenderSubsystem->getSceneManager());
 	mCameraControllerTrajectory= new CameraControllerTrajectory();
-	mCameraControllerTrajectory->init(pSceneManager);
+	mCameraControllerTrajectory->init( pRenderSubsystem->getSceneManager());
 
 	activeCameraController=mCameraControllerThirdPerson;
 
 	createMainCamera();
 
 	//Set Default camera to viewport
-	mViewport= pRoot->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
+	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
 	//Make it the active camera
@@ -226,6 +228,18 @@ void CameraManager::resetActiveCameraPosition()
 {
 	camera[getActiveCameraName()]->resetCameraParameters();
 }
+
+Ogre::Viewport* CameraManager::setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
+{
+	//// Set the Viewport parameters
+	mViewport->setBackgroundColour(tRenderComponentViewportParameters.colour);
+	mViewport->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
+	mViewport->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
+	mViewport->setSkiesEnabled(tRenderComponentViewportParameters.skies);
+
+	return mViewport;
+}
+
 
 void CameraManager::update(double elapsedTime)
 {

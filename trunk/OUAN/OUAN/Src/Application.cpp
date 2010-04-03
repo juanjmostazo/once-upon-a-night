@@ -1,6 +1,8 @@
 #include "Application.h"
 
 #include "Graphics/RenderSubsystem.h"
+#include "Graphics/CameraManager/CameraManager.h"
+#include "Graphics/TrajectoryManager/TrajectoryManager.h"
 
 #include "Core/GameStateManager.h"
 #include "Core/GameState.h"
@@ -10,6 +12,8 @@
 #include "GUI/GUISubsystem.h"
 
 #include "Physics/PhysicsSubsystem.h"
+
+#include "RayCasting/RayCasting.h"
 
 #include "Logic/LogicSubsystem.h"
 
@@ -64,12 +68,21 @@ void Application::init()
 
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
-	
+
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
-	mRenderSubsystem->init(this_,mConfiguration);
+	mRenderSubsystem->init(this_, mConfiguration);
 
 	mPhysicsSubsystem.reset(new PhysicsSubsystem());
 	mPhysicsSubsystem->init(this_, mConfiguration);
+	
+	mRayCasting.reset(new RayCasting());
+	mRayCasting->init(mRenderSubsystem,mPhysicsSubsystem);
+
+	mTrajectoryManager.reset(new TrajectoryManager());
+	mTrajectoryManager->init(mRenderSubsystem);
+
+	mCameraManager.reset(new CameraManager());
+	mCameraManager->init(mRenderSubsystem,mTrajectoryManager,mPhysicsSubsystem,mRayCasting);
 
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);
@@ -224,4 +237,19 @@ ConfigurationPtr Application::getTextStrings() const
 LogicSubsystemPtr Application::getLogicSubsystem() const
 {
 	return mLogicSubsystem;
+}
+
+CameraManagerPtr Application::getCameraManager() const
+{
+	return mCameraManager;
+}
+
+TrajectoryManagerPtr Application::getTrajectoryManager() const
+{
+	return mTrajectoryManager;
+}
+
+RayCastingPtr Application::getRayCasting() const
+{
+	return mRayCasting;
 }
