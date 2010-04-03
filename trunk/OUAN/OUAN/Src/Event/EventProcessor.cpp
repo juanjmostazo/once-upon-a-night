@@ -140,7 +140,7 @@ void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision with empty data!");
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision with unknown data!");
 	}
 }
 
@@ -222,7 +222,7 @@ void EventProcessor::processCharacterShapeFrontCollision(CharacterShapeFrontColl
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision with empty data!");
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision with unknown data!");
 	}
 }
 

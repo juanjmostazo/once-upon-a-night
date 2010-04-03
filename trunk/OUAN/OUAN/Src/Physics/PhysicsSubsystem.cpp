@@ -25,6 +25,7 @@
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
+#include "../Game/GameObject/GameObjectTree.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Event/Event.h"
 #include "PhysicsComponent/PhysicsComponent.h"
@@ -504,7 +505,7 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
 	TGameObjectPhysicsContainer container[2];
 	container[0] = mApp->getGameWorldManager()->getGameObjectPhysicsSimpleContainer();
 	container[1] = mApp->getGameWorldManager()->getGameObjectPhysicsComplexContainer();
-	
+
 	for (unsigned int k=0; !found && k<2; k++)
 	{
 		for (unsigned int i=0; !found && i<container[k].size(); i++)
@@ -512,7 +513,8 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
 			if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX) == 0)
 			{
 				GameObjectTerrainConvexPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(container[k][i]);
-				if (tmpObject->getPhysicsComponentComplexConvex()->getNxOgreConvex() == shape)
+				if (tmpObject->getPhysicsComponentComplexConvex()->isInUse() && 
+					tmpObject->getPhysicsComponentComplexConvex()->getNxOgreConvex() == shape)
 				{
 					object= tmpObject;
 					found = true;
@@ -522,11 +524,29 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
 			else if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE) == 0)
 			{
 				GameObjectTerrainTrianglePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainTriangle>(container[k][i]);
-				if (tmpObject->getPhysicsComponentComplexTriangle()->getNxOgreTriangleGeometry() == shape)
+				if (tmpObject->getPhysicsComponentComplexTriangle()->isInUse() && 
+					tmpObject->getPhysicsComponentComplexTriangle()->getNxOgreTriangleGeometry() == shape)
 				{
 					object= tmpObject;
 					found = true;
 					//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
+				}
+			}
+			else if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TREE) == 0)
+			{
+				GameObjectTreePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTree>(container[k][i]);
+				if (tmpObject->getPhysicsComponentSimpleBox()->isInUse())
+				{
+					NxOgre::Shapes shapes = tmpObject->getPhysicsComponentSimpleBox()->getNxOgreKinematicBody()->getShapes();
+					for (unsigned int j=0; !found && j<shapes.size(); j++)
+					{
+						if (shapes[j] == shape)
+						{
+							object= tmpObject;
+							found = true;
+							//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
+						}
+					}
 				}
 			}
 		}
