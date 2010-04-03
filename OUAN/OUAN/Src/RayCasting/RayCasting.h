@@ -1,6 +1,6 @@
 #ifndef RayCastingH_H
 #define RayCastingH_H
-#include "../../OUAN.h"
+#include "../OUAN.h"
 namespace OUAN
 {
 	class RayCasting
@@ -9,15 +9,18 @@ namespace OUAN
 		RayCasting();
 		~RayCasting();
 		
-		void init(Ogre::SceneManager * pSceneManager);
+		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem);
 
-		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastFromPointRender(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastFromPointPhysics(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+
 
 
 	private:
 
 		Ogre::SceneManager * m_pscene_manager;
 		Ogre::RaySceneQuery * m_pray_scene_query; 
+		PhysicsSubsystemPtr mPhysicsSubsystem;
 
 		void GetMeshInformation(const Ogre::MeshPtr mesh,
                                 size_t &vertex_count,

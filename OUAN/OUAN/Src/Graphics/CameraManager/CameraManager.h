@@ -9,7 +9,7 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void init(RootPtr pRoot,Ogre::SceneManager * pSceneManager,TrajectoryManagerPtr pTrajectoryManager);
+		void init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting);
 
 		/// Free resources
 		void cleanUp();
@@ -48,12 +48,13 @@ namespace OUAN
 		//Sets camera target for applicable controllers
 		void setCameraTarget(RenderComponentPositional * target);
 
-
 		//Sets camera trajectory for trajectory controller
 		void setCameraTrajectory(std::string name);
 
 		//Returns active camera controller type
 		TCameraControllerType getActiveCameraControllerType();
+
+		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 
 	private:
 		/// GameWorldManager

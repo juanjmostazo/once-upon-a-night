@@ -206,7 +206,7 @@ bool ChannelGroup::setPaused(bool val)
 }
 FMOD::Channel* ChannelGroup::getChannel(int index)
 {
-	if (index>=0 && index<mChannels.size())
+	if (index>=0 && index<(int)mChannels.size())
 		return mChannels[index]->getChannel();
 	return NULL;
 }

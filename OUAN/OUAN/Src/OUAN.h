@@ -146,6 +146,7 @@ namespace OUAN
 
 		//RayCasting
 		class RayCasting;
+		typedef boost::shared_ptr<RayCasting> RayCastingPtr;
 
 		enum QueryFlags
 		{

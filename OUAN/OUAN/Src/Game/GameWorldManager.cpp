@@ -335,8 +335,8 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 
 	//Set Active Camera
-	mApp->getRenderSubsystem()->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getRenderSubsystem()->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
+	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
+	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
 	mGameOver=false;
 	mGameBeaten=false;
@@ -351,7 +351,10 @@ void GameWorldManager::unloadLevel()
 
 	mApp->getPhysicsSubsystem()->clear();
 	mApp->getRenderSubsystem()->clear();
-	
+	mApp->getTrajectoryManager()->clear();
+	mApp->getCameraManager()->clear();
+
+
 	TGameObjectContainerIterator it;
 	TGameObjectContainer container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
 
@@ -1329,7 +1332,7 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 	GameObjectFlashLightPtr pGameObjectFlashLight;
 
 	//Create GameObject
-	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,mApp->getGameWorldManager(),mApp->getRenderSubsystem()->getCameraManager()));
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,mApp->getGameWorldManager(),mApp->getCameraManager()));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -2473,7 +2476,7 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
 {
-	mApp->getRenderSubsystem()->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);
+	mApp->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);
 }
 
 bool GameWorldManager::isGameOver()const

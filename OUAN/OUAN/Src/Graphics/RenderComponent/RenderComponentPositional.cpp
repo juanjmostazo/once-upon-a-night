@@ -1,4 +1,5 @@
 #include "RenderComponentPositional.h"
+#include "../CameraManager/CameraManager.h"
 using namespace OUAN;
 
 RenderComponentPositional::RenderComponentPositional(const std::string& type)
@@ -53,19 +54,19 @@ double RenderComponentPositional::getRoll() const
 	return mSceneNode->getOrientation().getRoll().valueDegrees();
 }
 
-RenderSubsystemPtr RenderComponentPositional::getRenderSubsystem() const
+CameraManagerPtr RenderComponentPositional::getCameraManager() const
 {
-	return mRenderSubsystem;
+	return mCameraManager;
 }
 
-void RenderComponentPositional::setRenderSubsystem(RenderSubsystemPtr renderSubsystem)
+void RenderComponentPositional::setCameraManager(CameraManagerPtr pCameraManager)
 {
-	mRenderSubsystem=renderSubsystem;
+	mCameraManager=pCameraManager;
 }
 
 void RenderComponentPositional::setAsCameraTarget()
 {
-	mRenderSubsystem->setCameraTarget(this);
+	mCameraManager->setCameraTarget(this);
 }
 
 double RenderComponentPositional::computeDistanceTo(RenderComponentPositionalPtr other)

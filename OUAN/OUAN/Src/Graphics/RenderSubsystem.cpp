@@ -44,12 +44,6 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	initResourceGroups(config);
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
-
-	mTrajectoryManager.reset(new TrajectoryManager());
-	mTrajectoryManager->init(mSceneManager);
-
-	mCameraManager.reset(new CameraManager());
-	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 }
 
 void RenderSubsystem::cleanUp()
@@ -72,6 +66,11 @@ void RenderSubsystem::createRoot(ConfigurationPtr config)
 			config->getOption(CONFIG_KEYS_OGRE_LOG_PATH,logPath);
 	}
 	mRoot.reset(new Ogre::Root(pluginsPath,configPath,logPath));
+}
+
+RootPtr RenderSubsystem::getRoot() const
+{
+	return mRoot;
 }
 
 void RenderSubsystem::defineResources(ConfigurationPtr config)
@@ -165,12 +164,6 @@ void RenderSubsystem::clear()
 {
 	/// Clear Scene manager
 	mSceneManager->clearScene();
-
-	/// Clear Camera Manager
-	mCameraManager->clear();
-
-	/// Clear Trajectory Manager
-	mTrajectoryManager->clear();
 }
 
 RenderWindow* RenderSubsystem::getWindow() const
@@ -178,24 +171,11 @@ RenderWindow* RenderSubsystem::getWindow() const
 	return mWindow;
 }
 
-CameraManagerPtr RenderSubsystem::getCameraManager() const
-{
-	return mCameraManager;
-}
-TrajectoryManagerPtr RenderSubsystem::getTrajectoryManager() const
-{
-	return mTrajectoryManager;
-}
-
 //CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
 //{
 //	return mCameraControllerFirstPerson;
 //}
 
-void RenderSubsystem::moveCamera(Ogre::Vector2 cameraRotation)
-{
-	mCameraManager->processCameraRotation(cameraRotation);
-}
 
 void RenderSubsystem::updateVisualDebugger()
 {	
@@ -240,30 +220,9 @@ bool RenderSubsystem::isWindowClosed() const
 //	mCameraManager->processSimpleTranslation(unitTranslationVector);
 //}
 
-void RenderSubsystem::updateCameraParams(double elapsedTime)
-{
-	mMoveScale = mMoveSpeed   * elapsedTime;
-	mRotScale  = mRotateSpeed * elapsedTime;
-	mTranslateVector = Ogre::Vector3::ZERO;
-
-	mCameraManager->update(elapsedTime);
-
-}
-
 Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 {
 	return mSceneManager;
-}
-
-Ogre::Viewport* RenderSubsystem::setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
-{
-	//// Set the Viewport parameters
-	mCameraManager->getViewport()->setBackgroundColour(tRenderComponentViewportParameters.colour);
-	mCameraManager->getViewport()->setOverlaysEnabled(tRenderComponentViewportParameters.overlays);
-	mCameraManager->getViewport()->setShadowsEnabled(tRenderComponentViewportParameters.shadows);
-	mCameraManager->getViewport()->setSkiesEnabled(tRenderComponentViewportParameters.skies);
-
-	return mCameraManager->getViewport();
 }
 
 Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRenderComponentSceneParameters tRenderComponentSceneParameters)
@@ -344,12 +303,6 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Light!");
 	}
 	return pLight;
-}
-
-
-RenderComponentCameraPtr RenderSubsystem::createCamera(Ogre::String name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
-{
-	return mCameraManager->createCamera(name,tRenderComponentCameraParameters);
 }
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
@@ -622,20 +575,7 @@ void RenderSubsystem::hideVisualDebugger()
 		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowNone);		
 }
 
-void RenderSubsystem::changeCamera()
-{
-	mCameraManager->changeCamera();
-}
 
-void RenderSubsystem::changeCameraController()
-{
-	mCameraManager->changeCameraController();
-}
-
-void RenderSubsystem::setCameraTarget(RenderComponentPositional * renderComponentPositional)
-{
-	mCameraManager->setCameraTarget(renderComponentPositional);
-}
 void RenderSubsystem::showOverlay(const std::string& overlayName)
 {
 	Ogre::Overlay* ovl;
@@ -673,12 +613,6 @@ void RenderSubsystem::resetScene()
 {
 	clearScene();
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
-
-	mTrajectoryManager.reset(new TrajectoryManager());
-	mTrajectoryManager->init(mSceneManager);
-
-	mCameraManager.reset(new CameraManager());
-	mCameraManager->init(mRoot,mSceneManager,mTrajectoryManager);
 }
 
 void RenderSubsystem::captureScene(const std::string& name)
@@ -688,7 +622,7 @@ void RenderSubsystem::captureScene(const std::string& name)
 		TU_RENDERTARGET);
 	Ogre::RenderTexture *renderTexture = texture->getBuffer()->getRenderTarget();
 
-	renderTexture->addViewport(mCameraManager->getActiveCamera());
+	renderTexture->addViewport(mApp->getCameraManager()->getActiveCamera());
 	renderTexture->getViewport(0)->setClearEveryFrame(true);
 	renderTexture->getViewport(0)->setBackgroundColour(ColourValue::Black);
 	renderTexture->getViewport(0)->setOverlaysEnabled(false);		

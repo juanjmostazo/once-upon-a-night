@@ -1,4 +1,6 @@
 #include "RayCasting.h"
+#include "../Physics/PhysicsSubsystem.h"
+#include "../Graphics/RenderSubsystem.h"
 
 using namespace OUAN;
 
@@ -11,9 +13,10 @@ RayCasting::~RayCasting()
 	m_pscene_manager->destroyQuery(m_pray_scene_query);
 }
 
-void RayCasting::init(Ogre::SceneManager * pSceneManager)
+void RayCasting::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem)
 {
-	m_pscene_manager=pSceneManager;
+	m_pscene_manager=pRenderSubsystem->getSceneManager();
+	mPhysicsSubsystem=pPhysicsSubsystem;
 
 	// create the ray scene query object
     m_pray_scene_query = m_pscene_manager->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
@@ -26,10 +29,19 @@ void RayCasting::init(Ogre::SceneManager * pSceneManager)
 
 }
 
+bool RayCasting::raycastFromPointPhysics(const Vector3 &point,
+                                        const Vector3 &normal,
+                                        Vector3 &result,
+										double maxDistance,
+										QueryFlags flags)
+{
+	return mPhysicsSubsystem->raycastFromPoint(point,normal,result,maxDistance,flags);
+}
+
 // raycast from a point in to the scene.
 // returns success or failure.
 // on success the point is returned in the result.
-bool RayCasting::raycastFromPoint(const Vector3 &point,
+bool RayCasting::raycastFromPointRender(const Vector3 &point,
                                         const Vector3 &normal,
                                         Vector3 &result,
 										double maxDistance,

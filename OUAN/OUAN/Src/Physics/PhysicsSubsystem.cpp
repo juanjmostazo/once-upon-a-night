@@ -535,6 +535,28 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
 	return object;
 }
 
+bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
+{
+
+	NxOgre::Vec3 StartPos( point );
+
+	NxOgre::Vec3 Direction( normal );
+	NxOgre::Ray CubeRay( StartPos, Direction );
+
+	bool returnResult=false;
+
+	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestShape( CubeRay, NxOgre::Enums::ShapesType_Static );
+
+	if(mRayResult.mDistance<=maxDistance)
+	{
+		result=point+normal*mRayResult.mDistance;
+		returnResult=true;
+	}
+
+
+	return returnResult;
+}
+
 GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 {
 	GameObjectPtr object = GameObject::Null;

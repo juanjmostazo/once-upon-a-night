@@ -185,7 +185,7 @@ Vector2 ControlInputManager::getCameraRotation()
 
 	if(mouseX!=0)
 	{
-		nextCameraRotation.x-=mouseX;
+		nextCameraRotation.x+=mouseX;
 	}
 	else if(joystickRightX!=0)
 	{
@@ -194,7 +194,7 @@ Vector2 ControlInputManager::getCameraRotation()
 
 	if(mouseY!=0)
 	{
-		nextCameraRotation.y+=mouseY;
+		nextCameraRotation.y-=mouseY;
 	}
 	else if(joystickRightY!=0)
 	{

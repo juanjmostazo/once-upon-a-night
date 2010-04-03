@@ -98,6 +98,9 @@ namespace OUAN
 		/// Load params from config file
 		virtual bool loadConfig();
 
+		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+
+
 	protected:
 
 		/// the application
