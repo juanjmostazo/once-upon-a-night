@@ -225,14 +225,20 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_ALLOWED_Y", value); 
 		mMinAllowedY = atof(value.c_str());
 
-		config.getOption("MIN_SLIDING_ANGLE", value); 
-		mMinSlidingAngle = atof(value.c_str());
-
 		config.getOption("MIN_COLLISION_ANGLE", value); 
 		mMinCollisionAngle = atof(value.c_str());
 
+		config.getOption("MIN_SLIDING_ANGLE", value); 
+		mMinSlidingAngle = atof(value.c_str());
+
+		config.getOption("MIN_SLIDING_ANGLE_FALL", value); 
+		mMinSlidingAngleFall = atof(value.c_str());
+
 		config.getOption("SLIDING_FACTOR", value); 
 		mSlidingFactor = atof(value.c_str());
+
+		config.getOption("SLIDING_FACTOR_FALL", value); 
+		mSlidingFactorFall = atof(value.c_str());
 
 		success = true;
 	} 
@@ -251,8 +257,10 @@ bool PhysicsSubsystem::loadConfig()
 		mInitialJumpSpeed = 0;
 		mMinAllowedY = 0;
 		mMinSlidingAngle = 0;
+		mMinSlidingAngleFall = 0;
 		mMinCollisionAngle = 0;
 		mSlidingFactor = 0;
+		mSlidingFactorFall = 0;
 
 		success = false;
 	}
