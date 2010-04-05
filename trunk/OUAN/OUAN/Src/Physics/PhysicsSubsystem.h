@@ -98,8 +98,8 @@ namespace OUAN
 		/// Load params from config file
 		virtual bool loadConfig();
 
+		/// Raycast function
 		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
-
 
 	protected:
 
@@ -132,6 +132,9 @@ namespace OUAN
 
 		/// Auxiliar function
 		bool isOnyCloseFromPosition(NxOgre::Vec3 position, double radius);
+
+		/// Auxiliar function
+		bool isAllowedCollision(GameObjectPtr object1, GameObjectPtr object2);
 
 		/// Fetch function
 		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
