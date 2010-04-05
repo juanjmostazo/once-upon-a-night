@@ -55,7 +55,6 @@ void EventProcessor::registerHandlers()
 	}
 }
 
-
 void EventProcessor::unregisterHandlers()
 {
 	if (mWorldManager.get())
@@ -89,20 +88,25 @@ void EventProcessor::processGameOver(GameOverEventPtr evt)
 {
 	if (mWorldManager.get())
 	{
-		//TODO: Additional stuff if required
 		if (evt->isWin())
+		{
 			mWorldManager->win();
-		else mWorldManager->lose();
+		}
+		else 
+		{
+			mWorldManager->lose();
+		}
 	}
 }
+
 void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
 {
 	if (mWorldManager.get())
 	{
-		//TODO: Additional stuff as needed
 		mWorldManager->onyDied();
 	}
 }
+
 void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	if (mWorldManager.get())

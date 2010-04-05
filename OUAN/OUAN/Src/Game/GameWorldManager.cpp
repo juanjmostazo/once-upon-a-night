@@ -2493,6 +2493,7 @@ bool GameWorldManager::isGameBeaten() const
 {
 	return mGameBeaten;
 }
+
 void GameWorldManager::setGameBeaten(bool gameBeaten)
 {
 	mGameBeaten=gameBeaten;
@@ -2602,16 +2603,23 @@ void GameWorldManager::win()
 {
 	setGameOver(true);
 	setGameBeaten(true);
+	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::win exec");
 }
+
 void GameWorldManager::lose()
 {
 	setGameOver(true);
 	setGameBeaten(false);
+	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::lose exec");
 }
 
 void GameWorldManager::onyDied()
 {
+	//TODO: Remove next two lines
+	setGameOver(true);
+	setGameBeaten(false);
 	//TODO: Reset Ony and every other game object that needs it.
+	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
 }
 
 void GameWorldManager::addEvent(OUAN::EventPtr event)
@@ -2637,10 +2645,12 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 	nullPtr.reset();
 	return nullPtr;
 }
+
 ApplicationPtr GameWorldManager::getParent()
 {
 	return mApp;
 }
+
 void GameWorldManager::clearEvents()
 {
 	mEventManager->clearEvents();
@@ -2668,6 +2678,7 @@ double GameWorldManager::getPlayerDistance(const std::string& objName)
 		return getDistance(mInst->getGameObjectOny()->getName(),objName);
 	return -1;
 }
+
 int GameWorldManager::getWorld()
 {
 	return mInst->getCurrentWorld();

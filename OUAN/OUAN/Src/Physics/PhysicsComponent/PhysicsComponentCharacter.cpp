@@ -52,7 +52,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-
 	if (mNextMovement!=Vector3::ZERO)
 	{
 		// Scale next movement using time and speed
@@ -107,13 +106,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	{
 		setOnSurface(false);
 	}
-
-	if (getNxOgreController()->getPosition().y < Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY){
-		//TODO: When the reset() method is done, replace gameOver with onyDies
-		GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
-		mParent->getGameWorldManager()->addEvent(evt);
-	}
-
+	
 	//Set movement to zero for the next frame
 	mNextMovement=Vector3::ZERO;
 }
