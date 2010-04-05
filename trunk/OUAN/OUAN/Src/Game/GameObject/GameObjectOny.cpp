@@ -48,11 +48,19 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 void GameObjectOny::update(double elapsedSeconds)
 {
 	if (mHitRecoveryTime>=0)
+	{
 		mHitRecoveryTime-=elapsedSeconds*1000000;
+	}
+
 	GameObject::update(elapsedSeconds);
 
-	//TODO THIS SHOULD BE DONE IN A GENERAL WAY IN THE PHYSICSSUBSYSTEM::UPDATE
 	mPhysicsComponentCharacter->update(elapsedSeconds);
+
+	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
+		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
+	{
+		loseLife();
+	}
 }
 
 void GameObjectOny::changeWorld(int world)
@@ -64,6 +72,7 @@ void GameObjectOny::changeWorld(int world)
 		mPhysicsComponentCharacter->create();
 	}
 }
+
 void GameObjectOny::decreaseHP(int amount)
 {
 	if (mHitRecoveryTime<=0)
@@ -72,38 +81,45 @@ void GameObjectOny::decreaseHP(int amount)
 		mHitRecoveryTime=HIT_RECOVERY_TIME;
 	}
 }
+
 void GameObjectOny::setMaxHP()
 {
 	getLogicComponent()->setHealthPoints(getLogicComponent()->getInitialHealthPoints());
 }
+
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
 	//TODO: WEAPONS NEEDED
 }
+
 void GameObjectOny::decreaseWeaponPower(int powerUnits)
 {
 	//TODO: WEAPONS NEEDED
 }
+
 void GameObjectOny::die()
 {
 	GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
 	mGameWorldManager->addEvent(evt);
 }
+
 void GameObjectOny::loseLife()
 {
 	GameObject::loseLife();
 	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getLogicComponent()->getNumLives()));
 	mGameWorldManager->addEvent(evt);
-
 }
+
 bool GameObjectOny::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

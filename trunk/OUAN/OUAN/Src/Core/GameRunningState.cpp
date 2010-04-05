@@ -70,7 +70,6 @@ void GameRunningState::cleanUp()
 	
 	//Destroy HUD
 	mHUD->destroy();
-
 }
 
 /// pause state
