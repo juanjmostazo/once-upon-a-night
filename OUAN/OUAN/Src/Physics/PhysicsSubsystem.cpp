@@ -310,12 +310,16 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 	if (normalAngle > mMinCollisionAngle)
 	{
-		CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
-			new CharacterShapeFrontCollisionEvent(
-				getGameObjectFromController(hit.mController), 
-				getGameObjectFromShape(hit.mShape)));
+		GameObjectPtr object1 = getGameObjectFromController(hit.mController);
+		GameObjectPtr object2 = getGameObjectFromShape(hit.mShape);
 
-		mApp->getGameWorldManager()->addEvent(evt);
+		if (isAllowedCollision(object1, object2))
+		{
+			CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
+				new CharacterShapeFrontCollisionEvent(object1,object2));
+
+			mApp->getGameWorldManager()->addEvent(evt);
+		}
 	}
 
 	return NxOgre::Enums::ControllerAction_None;
@@ -323,13 +327,17 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
 {	
-	CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
-		new CharactersCollisionEvent(
-			getGameObjectFromController(controller), 
-			getGameObjectFromController(other)));
+	GameObjectPtr object1 = getGameObjectFromController(controller);
+	GameObjectPtr object2 = getGameObjectFromController(other);
 
-	mApp->getGameWorldManager()->addEvent(evt);
+	if (isAllowedCollision(object1, object2))
+	{
+		CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
+			new CharactersCollisionEvent(object1, object2));
 
+		mApp->getGameWorldManager()->addEvent(evt);
+	}
+	
 	return NxOgre::Enums::ControllerAction_None;
 }
 
@@ -421,6 +429,19 @@ bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radi
 		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition(), 
 		position, 
 		radius);
+}
+
+bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr object2)
+{
+	bool isAllowed = true;
+
+	if ((object1->getType().compare(GAME_OBJECT_TYPE_ONY) != 0) ||
+		(object2->getType().compare(GAME_OBJECT_TYPE_ONY) != 0))
+	{
+		isAllowed = false;
+	}
+
+	return isAllowed;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -555,28 +576,6 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
 	return object;
 }
 
-bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
-{
-
-	NxOgre::Vec3 StartPos( point );
-
-	NxOgre::Vec3 Direction( normal );
-	NxOgre::Ray CubeRay( StartPos, Direction );
-
-	bool returnResult=false;
-
-	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestShape( CubeRay, NxOgre::Enums::ShapesType_Static );
-
-	if(mRayResult.mDistance<=maxDistance)
-	{
-		result=point+normal*mRayResult.mDistance;
-		returnResult=true;
-	}
-
-
-	return returnResult;
-}
-
 GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 {
 	GameObjectPtr object = GameObject::Null;
@@ -663,4 +662,27 @@ GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
 	}	
 	
 	return object;
+}
+
+//////////////////////////////////////////////////////////////////
+// Raycast functions
+
+bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
+{
+	NxOgre::Vec3 StartPos( point );
+
+	NxOgre::Vec3 Direction( normal );
+	NxOgre::Ray CubeRay( StartPos, Direction );
+
+	bool returnResult=false;
+
+	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestShape( CubeRay, NxOgre::Enums::ShapesType_Static );
+
+	if(mRayResult.mDistance<=maxDistance)
+	{
+		result=point+normal*mRayResult.mDistance;
+		returnResult=true;
+	}
+
+	return returnResult;
 }
