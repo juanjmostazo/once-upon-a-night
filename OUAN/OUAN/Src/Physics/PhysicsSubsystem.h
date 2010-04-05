@@ -87,13 +87,19 @@ namespace OUAN
 		double mMinAllowedY;
 
 		/// param read from config file
-		double mMinSlidingAngle;
-
-		/// param read from config file
 		double mMinCollisionAngle;
 
 		/// param read from config file
+		double mMinSlidingAngle;
+
+		/// param read from config file
+		double mMinSlidingAngleFall;
+
+		/// param read from config file
 		double mSlidingFactor;
+
+		/// param read from config file
+		double mSlidingFactorFall;
 
 		/// Load params from config file
 		virtual bool loadConfig();

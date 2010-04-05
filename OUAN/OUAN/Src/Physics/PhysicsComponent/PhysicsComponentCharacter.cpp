@@ -207,13 +207,20 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 {
 	//Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
 
-	mSlideDisplacement.x = pNormal.x;
-	mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
-	mSlideDisplacement.z = pNormal.z;
+	if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
+	{
+		mSliding = true;
+		mNormalAngle = pNormalAngle;
 
-	mNormalAngle = pNormalAngle;
-
-	mSliding = true;
+		mSlideDisplacement.x = pNormal.x;
+		mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+		mSlideDisplacement.z = pNormal.z;
+		
+		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
+		{
+			mSlideDisplacement.y *= Application::getInstance()->getPhysicsSubsystem()->mSlidingFactorFall;
+		}
+	}
 }
 
 void PhysicsComponentCharacter::initJump()
