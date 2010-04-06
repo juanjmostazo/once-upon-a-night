@@ -33,7 +33,7 @@ void GameObject::changeWorld(int world)
 
 }
 
-const std::string& GameObject::getName() const
+const std::string& GameObject::getName()
 {
 	return mName;
 }

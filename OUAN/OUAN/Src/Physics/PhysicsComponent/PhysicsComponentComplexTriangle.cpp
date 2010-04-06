@@ -16,8 +16,14 @@ void PhysicsComponentComplexTriangle::create()
 {
 	PhysicsComponentComplex::create();
 
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
+
+	NxOgre::TriangleGeometry * pTriangleGeometry = getNxOgreTriangleGeometry();
+
+	pTriangleGeometry->setName(name);
+
 	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createSceneGeometry(
-		getNxOgreTriangleGeometry(),
+		pTriangleGeometry,
 		NxOgre::Matrix44(
 			NxOgre::Vec3(getSceneNode()->getPosition()), 
 			NxOgre::Quat(getSceneNode()->getOrientation())));

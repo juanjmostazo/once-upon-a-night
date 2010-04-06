@@ -27,7 +27,10 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 void PhysicsComponentCharacter::create()
 {
+
 	PhysicsComponent::create();
+
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
@@ -36,7 +39,7 @@ void PhysicsComponentCharacter::create()
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
 				createPointRenderable(getSceneNode()),			
-			getParent()->getName(),
+			name,
 			getMass()));
 
 	//TODO SET SCENE NODE ORIENTATION SOMEHOW
@@ -164,6 +167,15 @@ void PhysicsComponentCharacter::setCharactersDisplayYaw()
 	}
 	*/
 	getNxOgreController()->setDisplayYaw(characterYaw);
+}
+
+void PhysicsComponentCharacter::setQueryFlags(QueryFlags queryFlags)
+{
+	//unsigned int i;
+	//for(i=0;i<getNxOgreBody()->getNxActor()->getShapes().size();i++)
+	//{
+	//	getNxOgreBody()->getNxActor()->getShapes()[i]->setFlag(queryFlags);
+	//}
 }
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)

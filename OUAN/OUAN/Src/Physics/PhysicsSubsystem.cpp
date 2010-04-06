@@ -294,12 +294,40 @@ NxOgre::ControllerManager* PhysicsSubsystem::getNxOgreControllerManager()
 	return mNxOgreControllerManager;	
 }
 
+GameObjectPtr PhysicsSubsystem::getGameObject(NxOgre::String name)
+{
+	return mApp->getGameWorldManager()->getObject(std::string(name.c_str()));
+}
+
 //////////////////////////////////////////////////////////////////
 // General physics callbacks
 
 bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 {
-	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
+	//Ogre::LogManager::getSingleton().logMessage("On Hit Event");
+
+	GameObjectPtr pGameObject;
+
+	pGameObject=getGameObject(raycastHit.name.c_str());
+	if(pGameObject)
+	{
+		if(pGameObject->getType()!=GAME_OBJECT_TYPE_ONY)
+		{
+			Ogre::LogManager::getSingleton().logMessage("RAYCAST HIT "+pGameObject->getName());
+		}
+		////
+		//CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
+		//	new CharacterShapeFrontCollisionEvent(
+		//		pGameObject, 
+		//		pGameObject));
+
+		//mApp->getGameWorldManager()->addEvent(evt);
+	}
+	else
+	{
+		//Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
+	}
+
 	return true;
 }
 
@@ -316,32 +344,40 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
 	setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
 
+	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
+	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
+
+
 	if (normalAngle > mMinCollisionAngle)
 	{
-		GameObjectPtr object1 = getGameObjectFromController(hit.mController);
-		GameObjectPtr object2 = getGameObjectFromShape(hit.mShape);
 
-		if (isAllowedCollision(object1, object2))
+		if (isAllowedCollision(pGameObjectController, pGameObjectShape))
 		{
 			CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
-				new CharacterShapeFrontCollisionEvent(object1,object2));
+				new CharacterShapeFrontCollisionEvent(pGameObjectController,pGameObjectShape));
 
 			mApp->getGameWorldManager()->addEvent(evt);
 		}
+		//Ogre::LogManager::getSingleton().logMessage("ON SHAPE "+std::string(hit.mControllerName.c_str())+" "+std::string(hit.mShapeName.c_str()));
 	}
 
 	return NxOgre::Enums::ControllerAction_None;
 }
 
-NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controller* controller, NxOgre::Controller* other)
+NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::ControllerControllerHit& hit)
 {	
-	GameObjectPtr object1 = getGameObjectFromController(controller);
-	GameObjectPtr object2 = getGameObjectFromController(other);
 
-	if (isAllowedCollision(object1, object2))
+	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
+	GameObjectPtr pGameObjectOtherController = getGameObject(hit.mOtherControllerName);
+
+
+	//Ogre::LogManager::getSingleton().logMessage("ON CONTROLLER");
+
+
+	if (isAllowedCollision(pGameObjectController, pGameObjectOtherController))
 	{
 		CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
-			new CharactersCollisionEvent(object1, object2));
+			new CharactersCollisionEvent(pGameObjectController, pGameObjectOtherController));
 
 		mApp->getGameWorldManager()->addEvent(evt);
 	}
@@ -349,39 +385,29 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(NxOgre::Controlle
 	return NxOgre::Enums::ControllerAction_None;
 }
 
-void PhysicsSubsystem::onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, const std::string objectName, NxOgre::Vec3 objectPosition, double objectMass, unsigned int collisionEvent)
+void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String collisionName, unsigned int collisionEventType  )
 {
+	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT volume "+std::string(hit.mVolumeShapeName.c_str()));//+" "+std::string(collisionShape->getName().c_str()));
+	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT character "+std::string(hit.mCollisionShapeName.c_str()));
+
 	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
-	switch (collisionEvent)
+	switch (collisionEventType)
 	{
 		case NxOgre::Enums::VolumeCollisionType_OnEnter: collisionType = COLLISION_TYPE_TRIGGER_ENTER; break;
 		case NxOgre::Enums::VolumeCollisionType_OnExit: collisionType = COLLISION_TYPE_TRIGGER_EXIT; break;
 		case NxOgre::Enums::VolumeCollisionType_OnPresence: collisionType = COLLISION_TYPE_TRIGGER_PRESENCE; break;
 		default: collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN; break;
 	}	 
-	/*
-	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug Init");
-	Ogre::LogManager::getSingleton().logMessage("**********");
-	Ogre::LogManager::getSingleton().logMessage(objectName);
-	Ogre::LogManager::getSingleton().logMessage("*********");
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.x));
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.y));
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(objectPosition.z));
-	Ogre::LogManager::getSingleton().logMessage("**********");
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().x));
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().y));
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getNxOgreController()->getPosition().z));
-	Ogre::LogManager::getSingleton().logMessage("**********");
-	Ogre::LogManager::getSingleton().logMessage(Ogre::StringConverter::toString(NxOgre::Real(objectMass)));
-	Ogre::LogManager::getSingleton().logMessage("**********");
-	Ogre::LogManager::getSingleton().logMessage("Volume Event Debug End");
-	*/
-	if (mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->getMass() == objectMass)
+
+	GameObjectPtr pGameObjectVolume=getGameObject(volume->getName());
+	GameObjectPtr pGameObjectShape=getGameObject(collisionName);
+
+	if (pGameObjectShape->getType()==GAME_OBJECT_TYPE_ONY)
 	{
 		CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
 			new CharacterInTriggerEvent(
-			mApp->getGameWorldManager()->getGameObjectOny(), 
-			getGameObjectFromVolume(volume),
+			pGameObjectShape, 
+			pGameObjectVolume,
 			collisionType));
 
 		mApp->getGameWorldManager()->addEvent(evt);
@@ -443,8 +469,20 @@ bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr o
 {
 	bool isAllowed = true;
 
-	if ((object1->getType().compare(GAME_OBJECT_TYPE_ONY) != 0) ||
-		(object2->getType().compare(GAME_OBJECT_TYPE_ONY) != 0))
+	if ((object1->getType()!=GAME_OBJECT_TYPE_ONY) &&
+		(object2->getType()!=GAME_OBJECT_TYPE_ONY))
+	{
+		isAllowed = false;
+	}
+
+	if ((object1->getType()==GAME_OBJECT_TYPE_TERRAINTRIANGLE) ||
+		(object2->getType()==GAME_OBJECT_TYPE_TERRAINTRIANGLE))
+	{
+		isAllowed = false;
+	}
+
+	if ((object1->getType()==GAME_OBJECT_TYPE_TERRAINCONVEX) ||
+		(object2->getType()==GAME_OBJECT_TYPE_TERRAINCONVEX))
 	{
 		isAllowed = false;
 	}
@@ -453,229 +491,9 @@ bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr o
 }
 
 //////////////////////////////////////////////////////////////////
-// Fetch functions
+// Physics Raycasting
 
-GameObjectPtr PhysicsSubsystem::getGameObjectFromController(NxOgre::Controller* controller)
-{
-	GameObjectPtr object = GameObject::Null;
-	bool found = false;
-	
-	TGameObjectPhysicsCharacterContainer container = 
-		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
-
-	for (unsigned int i=0; !found && i<container.size(); i++)
-	{
-		if (container[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
-		{
-			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO) == 0)
-		{
-			GameObjectTripolloPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTripollo>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIPOLLITO) == 0)
-		{
-			GameObjectTripollitoPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTripollito>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_EYE) == 0)
-		{
-			GameObjectEyePtr tmpObject = boost::dynamic_pointer_cast<GameObjectEye>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TENTETIESO) == 0)
-		{
-			GameObjectTentetiesoPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTentetieso>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_SCAREDPLANT) == 0)
-		{
-			GameObjectScaredPlantPtr tmpObject = boost::dynamic_pointer_cast<GameObjectScaredPlant>(container[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		//TODO else if block
-		//Same with the rest of game objects which hold a PhysicsComponentCharacter
-	}		
-	
-	return object;
-}
-
-GameObjectPtr PhysicsSubsystem::getGameObjectFromShape(NxOgre::Shape* shape)
-{
-	GameObjectPtr object = GameObject::Null;
-	bool found = false;
-
-	TGameObjectPhysicsContainer container[2];
-	container[0] = mApp->getGameWorldManager()->getGameObjectPhysicsSimpleContainer();
-	container[1] = mApp->getGameWorldManager()->getGameObjectPhysicsComplexContainer();
-
-	for (unsigned int k=0; !found && k<2; k++)
-	{
-		for (unsigned int i=0; !found && i<container[k].size(); i++)
-		{
-			if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX) == 0)
-			{
-				GameObjectTerrainConvexPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(container[k][i]);
-				if (tmpObject->getPhysicsComponentComplexConvex()->isInUse() && 
-					tmpObject->getPhysicsComponentComplexConvex()->getNxOgreConvex() == shape)
-				{
-					object= tmpObject;
-					found = true;
-					//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
-				}
-			}
-			else if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE) == 0)
-			{
-				GameObjectTerrainTrianglePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTerrainTriangle>(container[k][i]);
-				if (tmpObject->getPhysicsComponentComplexTriangle()->isInUse() && 
-					tmpObject->getPhysicsComponentComplexTriangle()->getNxOgreTriangleGeometry() == shape)
-				{
-					object= tmpObject;
-					found = true;
-					//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
-				}
-			}
-			else if (container[k][i]->getType().compare(GAME_OBJECT_TYPE_TREE) == 0)
-			{
-				GameObjectTreePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTree>(container[k][i]);
-				if (tmpObject->getPhysicsComponentSimpleBox()->isInUse())
-				{
-					NxOgre::Shapes shapes = tmpObject->getPhysicsComponentSimpleBox()->getNxOgreKinematicBody()->getShapes();
-					for (unsigned int j=0; !found && j<shapes.size(); j++)
-					{
-						if (shapes[j] == shape)
-						{
-							object= tmpObject;
-							found = true;
-							//Ogre::LogManager::getSingleton().logMessage(tmpObject->getName());
-						}
-					}
-				}
-			}
-		}
-	}
-
-	return object;
-}
-
-GameObjectPtr PhysicsSubsystem::getGameObjectFromVolume(NxOgre::Volume* volume)
-{
-	GameObjectPtr object = GameObject::Null;
-	bool found = false;
-	
-	TGameObjectPhysicsVolumeContainer container = 
-		mApp->getGameWorldManager()->getGameObjectPhysicsVolumeContainer();
-
-	for (unsigned int i=0; !found && i<container.size(); i++)
-	{
-		if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0)
-		{
-			GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0)
-		{
-			GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeCapsule()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0)
-		{
-			GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0)
-		{
-			GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_HEART) == 0)
-		{
-			GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0)
-		{
-			GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0)
-		{
-			GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		else if (container[i]->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0)
-		{
-			GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(container[i]);
-			if (tmpObject->getPhysicsComponentVolumeBox()->getNxOgreVolume() == volume)
-			{
-				object= tmpObject;
-				found = true;
-			}
-		}
-		//TODO else if block, same with rest of object which contains a volume
-	}	
-	
-	return object;
-}
-
-//////////////////////////////////////////////////////////////////
-// Raycast functions
-
-bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
+bool PhysicsSubsystem::raycastClosestGeometry(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
 {
 	NxOgre::Vec3 StartPos( point );
 
@@ -684,7 +502,9 @@ bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &norm
 
 	bool returnResult=false;
 
-	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestShape( CubeRay, NxOgre::Enums::ShapesType_Static );
+	// TODO SOLVE THAT
+	//NxOgre::Enums::ShapesType has only static 1<<0 and dynamic 1<<1 flags assigned, the rest are custom.
+	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestShape( CubeRay, NxOgre::Enums::ShapesType_Static, INT_MAX, maxDistance);
 
 	if(mRayResult.mDistance<=maxDistance)
 	{
@@ -692,5 +512,51 @@ bool PhysicsSubsystem::raycastFromPoint(const Vector3 &point,const Vector3 &norm
 		returnResult=true;
 	}
 
+
 	return returnResult;
 }
+
+
+bool PhysicsSubsystem::raycastClosestBoundings(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance,QueryFlags flags)
+{
+	NxOgre::Vec3 StartPos( point );
+
+	NxOgre::Vec3 Direction( normal );
+	NxOgre::Ray CubeRay( StartPos, Direction );
+
+	bool returnResult=false;
+
+	// TODO SOLVE THAT
+	//NxOgre::Enums::ShapesType has only static 1<<0 and dynamic 1<<1 flags assigned, the rest are custom.
+	NxOgre::RaycastHit mRayResult = getNxOgreScene()->raycastClosestBounds( CubeRay, NxOgre::Enums::ShapesType_Static, INT_MAX, maxDistance);
+
+	if(mRayResult.mDistance<=maxDistance)
+	{
+		result=point+normal*mRayResult.mDistance;
+		returnResult=true;
+	}
+
+
+	return returnResult;
+}
+
+
+
+int PhysicsSubsystem::raycastAllBoundings(const Vector3 &point,const Vector3 &normal,std::vector<GameObjectPtr> &result,double maxDistance,QueryFlags flags)
+{
+	NxOgre::Vec3 StartPos( point );
+
+
+	NxOgre::Vec3 Direction( normal );
+	NxOgre::Ray CubeRay( StartPos, Direction );
+
+	bool returnResult=false;
+	int numResults;
+
+	// TODO SOLVE THAT
+	//NxOgre::Enums::ShapesType has only static 1<<0 and dynamic 1<<1 flags assigned, the rest are custom.
+	numResults = getNxOgreScene()->raycastAllBounds( CubeRay, this, NxOgre::Enums::ShapesType_All, INT_MAX, maxDistance);
+
+	return numResults;
+}
+

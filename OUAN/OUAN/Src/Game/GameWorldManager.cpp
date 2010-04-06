@@ -294,6 +294,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectTerrainConvexContainer.clear();
 	mGameObjectTerrainTriangleContainer.clear();
 	mGameObjectOnyContainer.clear();
+	mGameObjectFlashLightContainer.clear();
 	mGameObjectPositionalContainer.clear();
 	mGameObjectSceneContainer.clear();
 	mGameObjectTripolloContainer.clear();
@@ -510,6 +511,8 @@ void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
 void GameWorldManager::addGameObjectFlashLight(GameObjectFlashLightPtr gameObjectFlashLight)
 {
 	mGameObjects[gameObjectFlashLight->getName()]=gameObjectFlashLight;
+
+	mGameObjectFlashLightContainer.push_back(gameObjectFlashLight);
 }
 
 void GameWorldManager::addGameObjectHeart(GameObjectHeartPtr pGameObjectHeart)
@@ -1332,7 +1335,7 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 	GameObjectFlashLightPtr pGameObjectFlashLight;
 
 	//Create GameObject
-	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,mApp->getGameWorldManager(),mApp->getCameraManager()));
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,mApp->getGameWorldManager(),mApp->getCameraManager(),mApp->getRayCasting()));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
@@ -2645,6 +2648,16 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 	nullPtr.reset();
 	return nullPtr;
 }
+
+GameObjectFlashLightPtr GameWorldManager::getGameObjectFlashLight()
+{
+	if (!mGameObjectFlashLightContainer.empty())
+		return mGameObjectFlashLightContainer[0];
+	GameObjectFlashLightPtr nullPtr;
+	nullPtr.reset();
+	return nullPtr;
+}
+
 
 ApplicationPtr GameWorldManager::getParent()
 {

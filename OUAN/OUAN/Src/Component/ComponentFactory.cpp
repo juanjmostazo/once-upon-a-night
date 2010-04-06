@@ -164,7 +164,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	return pRenderComponentViewport;
 }
 
-PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(GameObjectPtr gameObject,TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentCharacterPtr pPhysicsComponentCharacter = 
 		PhysicsComponentCharacterPtr(new PhysicsComponentCharacter(COMPONENT_TYPE_PHYSICS_CHARACTER)); 
@@ -172,6 +172,7 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	pPhysicsComponentCharacter->setParent(gameObject);	
 	pPhysicsComponentCharacter->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentCharacter->setMass(tPhysicsComponentCharacterParameters.mass);
+	pPhysicsComponentCharacter->setQueryFlags(flags);
 	pPhysicsComponentCharacter->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentCharacterParameters.radius, 
 						tPhysicsComponentCharacterParameters.height));
@@ -181,10 +182,12 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
+
+
 	return pPhysicsComponentCharacter;
 }
 
-PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex = 
 		PhysicsComponentComplexConvexPtr(new PhysicsComponentComplexConvex(COMPONENT_TYPE_PHYSICS_COMPLEX_CONVEX)); 
@@ -192,7 +195,8 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
-	
+	pPhysicsComponentComplexConvex->setQueryFlags(flags);	
+
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
 
@@ -201,7 +205,7 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	return pPhysicsComponentComplexConvex;
 }
 
-PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentComplexTriangle(GameObjectPtr gameObject,TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {	
 	PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle = 
 		PhysicsComponentComplexTrianglePtr(new PhysicsComponentComplexTriangle(COMPONENT_TYPE_PHYSICS_COMPLEX_TRIANGLE)); 
@@ -209,6 +213,7 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());	
 	pPhysicsComponentComplexTriangle->setMass(tPhysicsComponentComplexTriangleParameters.mass);
+	pPhysicsComponentComplexTriangle->setQueryFlags(flags);
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
@@ -218,10 +223,12 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 
 	pPhysicsComponentComplexTriangle->setNxOgreTriangleGeometry(triangleGeometry);
 
+
+
 	return pPhysicsComponentComplexTriangle;
 }
 
-PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule = 
 		PhysicsComponentSimpleCapsulePtr(new PhysicsComponentSimpleCapsule(COMPONENT_TYPE_PHYSICS_SIMPLE_CAPSULE)); 
@@ -229,14 +236,18 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleCapsule->setMass(tPhysicsComponentSimpleCapsuleParameters.mass);
+	pPhysicsComponentSimpleCapsule->setQueryFlags(flags);
+
 	pPhysicsComponentSimpleCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
 						tPhysicsComponentSimpleCapsuleParameters.height));
 
+
+
 	return pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(GameObjectPtr gameObject,TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(GameObjectPtr gameObject,TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox = 
 		PhysicsComponentSimpleBoxPtr(new PhysicsComponentSimpleBox(COMPONENT_TYPE_PHYSICS_SIMPLE_BOX)); 
@@ -244,21 +255,24 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 	pPhysicsComponentSimpleBox->setParent(gameObject);	
 	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleBox->setMass(tPhysicsComponentSimpleBoxParameters.mass);
+	pPhysicsComponentSimpleBox->setQueryFlags(flags);
+
 	pPhysicsComponentSimpleBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentSimpleBoxParameters.lengthX,
 						tPhysicsComponentSimpleBoxParameters.lengthY,
 						tPhysicsComponentSimpleBoxParameters.lengthZ));
-	
+
 	return pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeCapsule(GameObjectPtr gameObject,TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeCapsule(GameObjectPtr gameObject,TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule = 
 		PhysicsComponentVolumeCapsulePtr(new PhysicsComponentVolumeCapsule(COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE)); 
 
 	pPhysicsComponentVolumeCapsule->setParent(gameObject);	
 	pPhysicsComponentVolumeCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentVolumeCapsule->setQueryFlags(flags);
 	
 	pPhysicsComponentVolumeCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentVolumeCapsuleParameters.radius,
@@ -267,13 +281,14 @@ PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeC
 	return pPhysicsComponentVolumeCapsule;
 }
 
-PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(GameObjectPtr gameObject,TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional)
+PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(GameObjectPtr gameObject,TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
 	PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox = 
 		PhysicsComponentVolumeBoxPtr(new PhysicsComponentVolumeBox(COMPONENT_TYPE_PHYSICS_VOLUME_BOX)); 
 
 	pPhysicsComponentVolumeBox->setParent(gameObject);	
 	pPhysicsComponentVolumeBox->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentVolumeBox->setQueryFlags(flags);
 	
 	pPhysicsComponentVolumeBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentVolumeBoxParameters.lengthX,

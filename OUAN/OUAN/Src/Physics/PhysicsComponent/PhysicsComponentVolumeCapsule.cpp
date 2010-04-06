@@ -16,11 +16,17 @@ void PhysicsComponentVolumeCapsule::create()
 {
 	PhysicsComponentVolume::create();
 
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
+	
+	NxOgre::Capsule* pCapsule = 
+		new NxOgre::Capsule(getNxOgreSize().x,
+							getNxOgreSize().y);
+
+	pCapsule->setName(name);
+
 	setNxOgreVolume(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
-			new NxOgre::Capsule(
-				getNxOgreSize().x,
-				getNxOgreSize().y),
+			pCapsule,
 			NxOgre::Matrix44(	
 				NxOgre::Vec3(getSceneNode()->getPosition()), 
 				NxOgre::Quat(getSceneNode()->getOrientation())),
@@ -41,6 +47,11 @@ NxOgre::Vec2 PhysicsComponentVolumeCapsule::getNxOgreSize()
 void PhysicsComponentVolumeCapsule::setNxOgreSize(NxOgre::Vec2 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
+}
+
+void PhysicsComponentVolumeCapsule::setQueryFlags(QueryFlags queryFlags)
+{
+	//getNxOgreBody()->setQueryFlags((int)queryFlags);
 }
 
 TPhysicsComponentVolumeCapsuleParameters::TPhysicsComponentVolumeCapsuleParameters() : TPhysicsComponentVolumeParameters()
