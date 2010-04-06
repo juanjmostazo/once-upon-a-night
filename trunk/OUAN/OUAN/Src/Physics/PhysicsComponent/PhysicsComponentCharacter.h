@@ -31,6 +31,8 @@ namespace OUAN
 
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
+		void setQueryFlags(QueryFlags queryFlags);
+
 	protected:
 	
 		//Uses mNextMovement to set Character's display yaw

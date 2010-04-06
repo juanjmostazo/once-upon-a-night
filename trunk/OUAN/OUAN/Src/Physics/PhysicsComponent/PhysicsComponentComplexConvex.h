@@ -23,6 +23,8 @@ namespace OUAN
 		OGRE3DKinematicBody* getNxOgreKinematicBody();
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
+	//	void setQueryFlags(QueryFlags queryFlags);
+
 	protected:
 		NxOgre::Convex* mNxOgreConvex;
 		OGRE3DBody* mNxOgreBody;

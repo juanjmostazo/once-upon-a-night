@@ -67,6 +67,12 @@ void PhysicsComponent::setMass(double pMass)
 	mMass=pMass;
 }
 
+void PhysicsComponent::setQueryFlags(QueryFlags queryFlags)
+{
+	
+}
+
+
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {
 

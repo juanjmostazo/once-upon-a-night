@@ -26,11 +26,15 @@ namespace OUAN
 
 		CameraManagerPtr mCameraManager;
 		GameWorldManagerPtr mGameWorldManager;
+		RayCastingPtr mRayCasting;
+		EventManagerPtr mEventManager;
+
+		double distance;
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager);
+		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting);
 		//Destructor
 		~GameObjectFlashLight();
 		/// Return render component entity 
@@ -61,6 +65,8 @@ namespace OUAN
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
 
+		/// Detects Flashlight's light collisions with the scene and adds the events to the eventManager
+		void detectLightCollisions();
 
 		/// Set physics component
 		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);

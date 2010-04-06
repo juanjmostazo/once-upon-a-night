@@ -65,7 +65,7 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 	newCameraPosition=cameraPosition;
 
-	mRayCasting->raycastFromPointPhysics(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
+	mRayCasting->raycastPhysicsClosestGeometry(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{

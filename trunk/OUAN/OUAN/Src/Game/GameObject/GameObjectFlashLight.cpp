@@ -3,14 +3,18 @@
 #include "../GameWorldManager.h"
 #include "../../Graphics/CameraManager/CameraManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
+#include "../../RayCasting/RayCasting.h"
 
 using namespace OUAN;
 
-GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager)
+GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting)
 :GameObject(name,GAME_OBJECT_TYPE_FLASHLIGHT)
 {
 	mGameWorldManager=pGameWorldManager;
 	mCameraManager=pCameraManager;
+	mRayCasting=pRayCasting;
+
+	distance=10000.0f;
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -92,6 +96,31 @@ bool GameObjectFlashLight::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectFlashLight::detectLightCollisions()
+{
+	Vector3 position;
+	Vector3 direction;
+	std::vector<GameObjectPtr> result;
+
+	Ogre::Camera * camera;
+	camera=mCameraManager->getActiveCamera();
+
+	position=mLightPositionalComponent->getPosition();
+
+	direction=mLightPositionalComponent->getPosition()-camera->getPosition();
+	direction.normalise();
+
+	//Ogre::LogManager::getSingleton().logMessage("FLASHLIGHT COLLISIONS");
+
+	//int numHits = mRayCasting->raycastPhysicsAllBoundings(position,
+ //                                       direction,
+ //                                       result,
+	//									10,
+	//									QUERYFLAGS_FLASHLIGHT_LIGHT);
+
+	//Ogre::LogManager::getSingleton().logMessage("RAYCAST NUMBER OF HITS "+Ogre::StringConverter::toString(numHits));
 }
 
 void GameObjectFlashLight::update(double elapsedSeconds)

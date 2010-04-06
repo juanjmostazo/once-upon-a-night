@@ -35,6 +35,9 @@ namespace OUAN
 		virtual double getMass();
 		virtual void setMass(double pMass);
 
+		virtual void setQueryFlags(QueryFlags queryFlags);
+
+
 	protected:
 		// Tells if the component is in use or not
 		bool mInUse;

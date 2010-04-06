@@ -180,6 +180,9 @@ namespace OUAN
 		/// Return GameObjectOny
 		GameObjectOnyPtr getGameObjectOny();
 
+		/// Return GameObjectFlashLight
+		GameObjectFlashLightPtr getGameObjectFlashLight();
+
 		/// Return the application pointer
 		ApplicationPtr getParent();
 
@@ -276,6 +279,7 @@ namespace OUAN
 		TGameObjectTerrainTriangleContainer mGameObjectTerrainTriangleContainer;
 		TGameObjectTerrainConvexContainer mGameObjectTerrainConvexContainer;
 		TGameObjectOnyContainer mGameObjectOnyContainer;
+		TGameObjectFlashLightContainer mGameObjectFlashLightContainer;
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
 		TGameObjectTripolloContainer mGameObjectTripolloContainer;

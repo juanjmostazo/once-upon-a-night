@@ -16,10 +16,14 @@ void PhysicsComponentSimpleBox::create()
 {
 	PhysicsComponentSimple::create();
 
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
+
 	NxOgre::Box* pBox = 
 		new NxOgre::Box(	getNxOgreSize().x,
 							getNxOgreSize().y,
 							getNxOgreSize().z);
+
+	pBox->setName(name);
 
 	if (getMass() > 0)
 	{
@@ -27,6 +31,7 @@ void PhysicsComponentSimpleBox::create()
 
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
 		pDesc.mMass = getMass();
+		pDesc.mName = name;
 
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
@@ -36,6 +41,7 @@ void PhysicsComponentSimpleBox::create()
 				pDesc));
 
 		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		//getNxOgreBody()->setQueryFlags((int)mQueryFlags);
 	}
 	else
 	{
@@ -50,6 +56,7 @@ void PhysicsComponentSimpleBox::create()
 				getSceneNode()));
 
 		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		//getNxOgreKinematicBody()->setQueryFlags((int)mQueryFlags);
 	}
 }
 
@@ -66,6 +73,11 @@ NxOgre::Vec3 PhysicsComponentSimpleBox::getNxOgreSize()
 void PhysicsComponentSimpleBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
+}
+
+void PhysicsComponentSimpleBox::setQueryFlags(QueryFlags queryFlags)
+{
+	mQueryFlags=queryFlags;
 }
 
 TPhysicsComponentSimpleBoxParameters::TPhysicsComponentSimpleBoxParameters() : TPhysicsComponentSimpleParameters()

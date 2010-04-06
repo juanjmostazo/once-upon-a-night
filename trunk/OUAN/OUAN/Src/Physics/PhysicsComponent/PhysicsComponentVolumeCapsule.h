@@ -17,6 +17,8 @@ namespace OUAN
 		NxOgre::Vec2 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec2 pNxOgreSize);
 
+		void setQueryFlags(QueryFlags queryFlags);
+
 	protected:
 		NxOgre::Vec2 mNxOgreSize;
 	};

@@ -15,6 +15,12 @@ PhysicsComponentComplexConvex::~PhysicsComponentComplexConvex()
 void PhysicsComponentComplexConvex::create()
 {
 	PhysicsComponentComplex::create();
+
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
+	NxOgre::Convex * pConvex = getNxOgreConvex();
+
+	pConvex->setName(name);
+
 	
 	if (getMass() > 0)
 	{
@@ -22,15 +28,18 @@ void PhysicsComponentComplexConvex::create()
 
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
 		pDesc.mMass = getMass();
+		pDesc.mName = name;
 
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-				getNxOgreConvex(),
+				pConvex,
 				getSceneNode()->getPosition(),
 				getSceneNode(),
 				pDesc));
 
 		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+
+
 	}
 	else
 	{
@@ -40,7 +49,7 @@ void PhysicsComponentComplexConvex::create()
 
 		setNxOgreKinematicBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
-			getNxOgreConvex(),
+			pConvex,
 			getSceneNode()->getPosition(),
 			getSceneNode()));
 

@@ -6,6 +6,8 @@
 #include <NxOgre.h>
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
+#include <NxController.h>
+#include <NxActor.h>
 
 namespace OUAN
 {
@@ -46,12 +48,11 @@ namespace OUAN
 		//General physics callbacks
 		virtual bool onHitEvent(const NxOgre::RaycastHit& raycastHit);
 		virtual void onContact(const NxOgre::ContactPair& contactPair);
-		virtual void onVolumeEvent(NxOgre::Volume* volume, NxOgre::Shape* volumeShape, 
-			const std::string objectName, NxOgre::Vec3 objectPosition, double objectMass, unsigned int collisionEvent);
+		virtual void onVolumeEvent( NxOgre::Shape * volume, NxOgre::String collisionName, unsigned int collisionEventType );
 
 		//Specific physics character callbacks
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
-		virtual NxOgre::Enums::ControllerAction onController(NxOgre::Controller* controller, NxOgre::Controller* other);
+		virtual NxOgre::Enums::ControllerAction onController(const NxOgre::ControllerControllerHit& hit);
 
 		/// param read from config file, gravity force
 		NxOgre::Vec3 mGravity;
@@ -104,8 +105,12 @@ namespace OUAN
 		/// Load params from config file
 		virtual bool loadConfig();
 
-		/// Raycast function
-		bool raycastFromPoint(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+
+		bool raycastClosestGeometry(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastClosestBoundings(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+
+		//returns the number of hits
+		int raycastAllBoundings(const Vector3 &point,const Vector3 &normal,std::vector<GameObjectPtr> &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
 	protected:
 
@@ -139,17 +144,14 @@ namespace OUAN
 		/// Auxiliar function
 		bool isOnyCloseFromPosition(NxOgre::Vec3 position, double radius);
 
+		/// Fetch function
+		GameObjectPtr getGameObject(NxOgre::String name);
+
 		/// Auxiliar function
 		bool isAllowedCollision(GameObjectPtr object1, GameObjectPtr object2);
 
-		/// Fetch function
-		GameObjectPtr getGameObjectFromController(NxOgre::Controller* controller);
 
-		/// Fetch function
-		GameObjectPtr getGameObjectFromShape(NxOgre::Shape* shape);
 
-		/// Fetch function
-		GameObjectPtr getGameObjectFromVolume(NxOgre::Volume* Volume);
 	};
 }
 #endif

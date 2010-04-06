@@ -29,20 +29,119 @@ void RayCasting::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pP
 
 }
 
-bool RayCasting::raycastFromPointPhysics(const Vector3 &point,
-                                        const Vector3 &normal,
+bool RayCasting::raycastPhysicsClosestGeometry(const Vector3 point,
+                                        const Vector3 normal,
                                         Vector3 &result,
 										double maxDistance,
 										QueryFlags flags)
 {
-	return mPhysicsSubsystem->raycastFromPoint(point,normal,result,maxDistance,flags);
+	return mPhysicsSubsystem->raycastClosestGeometry(point,normal,result,maxDistance,flags);
+}
+
+bool RayCasting::raycastPhysicsClosestBoundings(const Vector3 point,
+                                        const Vector3 normal,
+                                        Vector3 &result,
+										double maxDistance,
+										QueryFlags flags)
+{
+	return mPhysicsSubsystem->raycastClosestBoundings(point,normal,result,maxDistance,flags);
+}
+
+
+bool RayCasting::raycastPhysicsAllBoundings(const Vector3 point,const Vector3 normal,std::vector<GameObjectPtr> &result,double maxDistance,QueryFlags flags)
+{
+	return mPhysicsSubsystem->raycastAllBoundings(point,normal,result,maxDistance,flags);
 }
 
 // raycast from a point in to the scene.
 // returns success or failure.
 // on success the point is returned in the result.
-bool RayCasting::raycastFromPointRender(const Vector3 &point,
-                                        const Vector3 &normal,
+bool RayCasting::raycastRenderClosestBoundings(const Vector3 point,
+                                        const Vector3 normal,
+                                        Vector3 &result,
+										double maxDistance,
+										QueryFlags flags)
+{
+
+    // create the ray to test
+    Ogre::Ray ray(Ogre::Vector3(point.x, point.y, point.z),
+                  Ogre::Vector3(normal.x, normal.y, normal.z));
+
+    // check we are initialised
+    if (m_pray_scene_query != NULL)
+    {
+		// Set Flags
+		m_pray_scene_query->setQueryMask(flags);
+        // create a query object
+        m_pray_scene_query->setRay(ray);
+
+        // execute the query, returns a vector of hits
+        if (m_pray_scene_query->execute().size() <= 0)
+        {
+            // raycast did not hit an objects bounding box
+            return (false);
+        }
+    }
+    else
+    {
+        Ogre::LogManager::getSingleton().logMessage("[RayCasting] Cannot raycast without RaySceneQuery instance");
+        return (false);
+    }   
+
+    // at this point we have raycast to a series of different objects bounding boxes.
+    // we need to test these different objects to see which is the first polygon hit.
+    // there are some minor optimizations (distance based) that mean we wont have to
+    // check all of the objects most of the time, but the worst case scenario is that
+    // we need to test every triangle of every object.
+    Ogre::Real closest_distance = -1.0f;
+    Ogre::Vector3 closest_result;
+    Ogre::RaySceneQueryResult &query_result = m_pray_scene_query->getLastResults();
+    for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
+    {
+        // stop checking if we have found a raycast hit that is closer
+        // than all remaining entities
+        if ((closest_distance >= 0.0f) &&
+            (closest_distance < query_result[qr_idx].distance))
+        {
+             break;
+        }
+
+		//stop checking if the raycast hit is further from maximum distance
+		if(maxDistance >= 0.0f && query_result[qr_idx].distance>maxDistance)
+		{
+             break;
+		}
+       
+        // only check this result if its a hit against an entity
+		if ((query_result[qr_idx].movable != NULL) && (query_result[qr_idx].distance!=NULL))
+        {
+			if(closest_distance>query_result[qr_idx].distance)
+			{
+				closest_distance=query_result[qr_idx].distance;
+				closest_result=point+normal*closest_distance;
+			}
+        }       
+    }
+
+    // return the result
+    if (closest_distance >= 0.0f)
+    {
+        // raycast success
+        result = closest_result;
+        return (true);
+    }
+    else
+    {
+        // raycast failed
+        return (false);
+    } 
+}
+
+// raycast from a point in to the scene.
+// returns success or failure.
+// on success the point is returned in the result.
+bool RayCasting::raycastRenderClosestGeometry(const Vector3 point,
+                                        const Vector3 normal,
                                         Vector3 &result,
 										double maxDistance,
 										QueryFlags flags)

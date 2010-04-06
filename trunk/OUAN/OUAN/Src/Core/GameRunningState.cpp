@@ -14,6 +14,7 @@
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
+#include "../Game/GameObject/GameObjectFlashLight.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 
@@ -313,6 +314,9 @@ void GameRunningState::update(long elapsedTime)
 	mApp->getCameraManager()->update(elapsedSeconds);
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
+
+
+	mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
 
 	//TODO: update GameObjects if necessary after the logic update has updated their state.
 

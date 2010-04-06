@@ -42,7 +42,7 @@ namespace OUAN
 
 		/// Return Game Object name (i.e, its identifier)
 		/// @return name of the Game Object
-		const std::string& getName() const;
+		const std::string& getName();
 
 		/// Return Game Object type
 		/// @return type of the Game Object

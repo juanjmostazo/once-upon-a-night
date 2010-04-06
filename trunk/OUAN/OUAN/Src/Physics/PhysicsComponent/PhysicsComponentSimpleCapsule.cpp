@@ -15,10 +15,14 @@ PhysicsComponentSimpleCapsule::~PhysicsComponentSimpleCapsule()
 void PhysicsComponentSimpleCapsule::create()
 {
 	PhysicsComponentSimple::create();
+
+	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	
 	NxOgre::Capsule* pCapsule = 
 		new NxOgre::Capsule(getNxOgreSize().x,
 							getNxOgreSize().y);
+
+	pCapsule->setName(name);
 
 	if (getMass() > 0)
 	{
@@ -26,6 +30,7 @@ void PhysicsComponentSimpleCapsule::create()
 
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
 		pDesc.mMass = getMass();
+		pDesc.mName = name;
 
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
@@ -35,6 +40,7 @@ void PhysicsComponentSimpleCapsule::create()
 				pDesc));
 
 		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		//getNxOgreBody()->setQueryFlags((int)mQueryFlags);
 	}
 	else
 	{
@@ -49,6 +55,7 @@ void PhysicsComponentSimpleCapsule::create()
 				getSceneNode()));
 
 		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		//getNxOgreKinematicBody()->setQueryFlags((int)mQueryFlags);
 	}
 }
 
@@ -65,6 +72,11 @@ NxOgre::Vec2 PhysicsComponentSimpleCapsule::getNxOgreSize()
 void PhysicsComponentSimpleCapsule::setNxOgreSize(NxOgre::Vec2 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
+}
+
+void PhysicsComponentSimpleCapsule::setQueryFlags(QueryFlags queryFlags)
+{
+	mQueryFlags = queryFlags;
 }
 
 TPhysicsComponentSimpleCapsuleParameters::TPhysicsComponentSimpleCapsuleParameters() : TPhysicsComponentSimpleParameters()

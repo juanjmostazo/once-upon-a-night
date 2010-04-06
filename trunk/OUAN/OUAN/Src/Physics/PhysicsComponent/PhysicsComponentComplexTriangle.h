@@ -17,6 +17,8 @@ namespace OUAN
 		void setNxOgreTriangleGeometry(NxOgre::TriangleGeometry* pNxOgreTriangleGeometry);
 		NxOgre::TriangleGeometry* getNxOgreTriangleGeometry();
 
+	//	void setQueryFlags(QueryFlags queryFlags);
+
 	protected:
 		NxOgre::TriangleGeometry* mNxOgreTriangleGeometry;
 	};

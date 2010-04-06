@@ -17,8 +17,11 @@ namespace OUAN
 		NxOgre::Vec3 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec3 pNxOgreSize);
 
+		void setQueryFlags(QueryFlags queryFlags);
+
 	protected:
 		NxOgre::Vec3 mNxOgreSize;
+
 	};
 
 	class TPhysicsComponentVolumeBoxParameters: public TPhysicsComponentVolumeParameters
