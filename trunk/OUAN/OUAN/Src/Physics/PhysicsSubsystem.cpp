@@ -347,7 +347,6 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
-
 	if (normalAngle > mMinCollisionAngle)
 	{
 
@@ -469,23 +468,6 @@ bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr o
 {
 	bool isAllowed = true;
 
-	if ((object1->getType()!=GAME_OBJECT_TYPE_ONY) &&
-		(object2->getType()!=GAME_OBJECT_TYPE_ONY))
-	{
-		isAllowed = false;
-	}
-
-	if ((object1->getType()==GAME_OBJECT_TYPE_TERRAINTRIANGLE) ||
-		(object2->getType()==GAME_OBJECT_TYPE_TERRAINTRIANGLE))
-	{
-		isAllowed = false;
-	}
-
-	if ((object1->getType()==GAME_OBJECT_TYPE_TERRAINCONVEX) ||
-		(object2->getType()==GAME_OBJECT_TYPE_TERRAINCONVEX))
-	{
-		isAllowed = false;
-	}
 
 	return isAllowed;
 }
