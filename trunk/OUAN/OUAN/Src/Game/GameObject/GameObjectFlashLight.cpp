@@ -107,18 +107,18 @@ void GameObjectFlashLight::detectLightCollisions()
 	Ogre::Camera * camera;
 	camera=mCameraManager->getActiveCamera();
 
-	position=mLightPositionalComponent->getPosition();
+	position=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition();
 
-	direction=mLightPositionalComponent->getPosition()-camera->getPosition();
+	direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-mCameraManager->getActiveCamera()->getPosition();
 	direction.normalise();
 
 	//Ogre::LogManager::getSingleton().logMessage("FLASHLIGHT COLLISIONS");
 
-	//int numHits = mRayCasting->raycastPhysicsAllBoundings(position,
- //                                       direction,
- //                                       result,
-	//									10,
-	//									QUERYFLAGS_FLASHLIGHT_LIGHT);
+	int numHits = mRayCasting->raycastPhysicsAllBoundings(position,
+                                        direction,
+                                        result,
+										1000,
+										QUERYFLAGS_FLASHLIGHT_LIGHT);
 
 	//Ogre::LogManager::getSingleton().logMessage("RAYCAST NUMBER OF HITS "+Ogre::StringConverter::toString(numHits));
 }
