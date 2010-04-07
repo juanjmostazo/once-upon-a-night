@@ -20,6 +20,12 @@ void GameObjectTentetieso::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTentetieso::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTentetieso::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,6 +74,11 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectTentetieso::reset()
+{
+
 }
 
 void GameObjectTentetieso::changeWorld(int world)

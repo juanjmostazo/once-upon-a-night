@@ -20,6 +20,12 @@ void GameObjectCryKing::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectCryKing::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectCryKing::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -70,6 +76,11 @@ void GameObjectCryKing::update(double elapsedSeconds)
 	}
 }
 
+void GameObjectCryKing::reset()
+{
+
+}
+
 void GameObjectCryKing::changeWorld(int world)
 {
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
@@ -89,10 +100,12 @@ void GameObjectCryKing::changeWorld(int world)
 	default:break;
 	}
 }
+
 bool GameObjectCryKing::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectCryKing::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

@@ -37,7 +37,6 @@ void GameObjectViewport::changeWorld(int world)
 	default:
 		break;
 	}
-
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectViewportParameters::TGameObjectViewportParameters() : TGameObjectParameters()

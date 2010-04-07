@@ -23,9 +23,16 @@ void GameObjectLight::setRenderComponentLight(RenderComponentLightPtr pRenderCom
 {
 	mRenderComponentLight=pRenderComponentLight;
 }
+
 void GameObjectLight::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
+}
+
+void GameObjectLight::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
 }
 
 RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() const
@@ -47,14 +54,22 @@ void GameObjectLight::changeWorld(int world)
 		break;
 	}
 }
+
+void GameObjectLight::reset()
+{
+
+}
+
 bool GameObjectLight::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectLight::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {
 

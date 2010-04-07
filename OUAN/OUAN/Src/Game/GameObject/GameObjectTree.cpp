@@ -29,6 +29,12 @@ void GameObjectTree::setRenderComponentPositional(RenderComponentPositionalPtr p
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTree::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTree::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -99,14 +105,22 @@ void GameObjectTree::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectTree::reset()
+{
+
+}
+
 bool GameObjectTree::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectTree::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {
 

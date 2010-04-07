@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 
@@ -16,6 +17,7 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
+		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
@@ -40,6 +42,9 @@ namespace OUAN
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
+		/// Set initial component
+		void setRenderComponentInitialFromPositional();
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
@@ -54,9 +59,11 @@ namespace OUAN
 		/// @param world world to change to
 		void changeWorld(int world);
 
+		/// Reset object
+		virtual void reset();
+
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
-
 	};
 
 	class TGameObjectTerrainTriangleParameters: public TGameObjectParameters

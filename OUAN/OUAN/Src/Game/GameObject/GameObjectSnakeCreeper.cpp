@@ -20,6 +20,12 @@ void GameObjectSnakeCreeper::setRenderComponentPositional(RenderComponentPositio
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectSnakeCreeper::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectSnakeCreeper::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -89,10 +95,17 @@ void GameObjectSnakeCreeper::changeWorld(int world)
 	default:break;
 	}
 }
+
+void GameObjectSnakeCreeper::reset()
+{
+
+}
+
 bool GameObjectSnakeCreeper::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectSnakeCreeper::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

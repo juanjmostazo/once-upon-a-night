@@ -20,6 +20,12 @@ void GameObjectCarnivorousPlant::setRenderComponentPositional(RenderComponentPos
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectCarnivorousPlant::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectCarnivorousPlant::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,6 +74,11 @@ void GameObjectCarnivorousPlant::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectCarnivorousPlant::reset()
+{
+
 }
 
 void GameObjectCarnivorousPlant::changeWorld(int world)

@@ -314,6 +314,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentInitial.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentLight.cpp"
 						>
 					</File>
@@ -857,6 +861,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentInitial.h"
 						>
 					</File>
 					<File

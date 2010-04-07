@@ -39,6 +39,12 @@ void GameObjectBush::setRenderComponentPositional(RenderComponentPositionalPtr p
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectBush::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectBush::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -117,10 +123,17 @@ void GameObjectBush::changeWorld(int world)
 		break;
 	}
 }
+
+void GameObjectBush::reset()
+{
+
+}
+
 bool GameObjectBush::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

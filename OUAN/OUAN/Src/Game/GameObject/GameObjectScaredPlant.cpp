@@ -30,6 +30,13 @@ void GameObjectScaredPlant::setRenderComponentPositional(RenderComponentPosition
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectScaredPlant::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+
+}
+
 RenderComponentPositionalPtr GameObjectScaredPlant::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -58,6 +65,11 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectScaredPlant::reset()
+{
+
 }
 
 void GameObjectScaredPlant::changeWorld(int world)

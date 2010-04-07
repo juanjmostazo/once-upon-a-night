@@ -20,6 +20,12 @@ void GameObjectDragon::setRenderComponentPositional(RenderComponentPositionalPtr
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectDragon::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectDragon::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,6 +74,11 @@ void GameObjectDragon::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectDragon::reset()
+{
+
 }
 
 void GameObjectDragon::changeWorld(int world)

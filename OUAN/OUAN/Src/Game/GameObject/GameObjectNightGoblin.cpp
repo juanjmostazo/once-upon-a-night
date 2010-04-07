@@ -20,6 +20,12 @@ void GameObjectNightGoblin::setRenderComponentPositional(RenderComponentPosition
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectNightGoblin::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectNightGoblin::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,6 +74,11 @@ void GameObjectNightGoblin::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectNightGoblin::reset()
+{
+
 }
 
 void GameObjectNightGoblin::changeWorld(int world)

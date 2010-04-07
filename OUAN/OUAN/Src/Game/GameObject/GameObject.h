@@ -37,8 +37,10 @@ namespace OUAN
 		void setGameWorldManager(GameWorldManagerPtr gameWorldManager);
 
 		/// Manages Game Object destruction
-		/// Each game object must take care about their specific components)
 		virtual void destroy();
+
+		/// Manages Game Object reset
+		virtual void reset();
 
 		/// Return Game Object name (i.e, its identifier)
 		/// @return name of the Game Object

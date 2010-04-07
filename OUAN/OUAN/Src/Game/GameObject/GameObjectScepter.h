@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 
@@ -16,10 +17,10 @@ namespace OUAN
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
+		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
-
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
@@ -39,6 +40,9 @@ namespace OUAN
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
+		/// Set initial component
+		void setRenderComponentInitialFromPositional();
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
@@ -52,6 +56,9 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		/// Reset object
+		virtual void reset();
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;

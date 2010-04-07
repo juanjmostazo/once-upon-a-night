@@ -20,6 +20,12 @@ void GameObjectTriggerBox::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTriggerBox::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTriggerBox::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -111,10 +117,17 @@ void GameObjectTriggerBox::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectTriggerBox::reset()
+{
+
+}
+
 bool GameObjectTriggerBox::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectTriggerBox::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

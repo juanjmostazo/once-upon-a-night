@@ -19,6 +19,12 @@ void GameObjectBee_Butterfly::setRenderComponentPositional(RenderComponentPositi
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectBee_Butterfly::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectBee_Butterfly::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,10 +74,17 @@ void GameObjectBee_Butterfly::update(double elapsedSeconds)
 {
 
 }
+
+void GameObjectBee_Butterfly::reset()
+{
+
+}
+
 bool GameObjectBee_Butterfly::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectBee_Butterfly::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

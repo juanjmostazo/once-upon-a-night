@@ -29,6 +29,12 @@ void GameObjectStoryBook::setRenderComponentPositional(RenderComponentPositional
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectStoryBook::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectStoryBook::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -103,14 +109,22 @@ void GameObjectStoryBook::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectStoryBook::reset()
+{
+
+}
+
 bool GameObjectStoryBook::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectStoryBook::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {
 

@@ -20,6 +20,12 @@ void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pR
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectOny::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectOny::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -61,6 +67,11 @@ void GameObjectOny::update(double elapsedSeconds)
 	{
 		loseLife();
 	}
+}
+
+void GameObjectOny::reset()
+{
+
 }
 
 void GameObjectOny::changeWorld(int world)

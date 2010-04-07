@@ -20,6 +20,12 @@ void GameObjectTripollo::setRenderComponentPositional(RenderComponentPositionalP
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTripollo::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTripollo::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -68,6 +74,11 @@ void GameObjectTripollo::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+}
+
+void GameObjectTripollo::reset()
+{
+
 }
 
 void GameObjectTripollo::changeWorld(int world)
