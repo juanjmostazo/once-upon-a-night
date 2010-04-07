@@ -414,8 +414,8 @@ void GameWorldManager::resetAll()
 		it->second->reset();
 	}
 
-	//ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(DREAMS));
-	//addEvent(evt);
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(DREAMS));
+	addEvent(evt);
 
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }

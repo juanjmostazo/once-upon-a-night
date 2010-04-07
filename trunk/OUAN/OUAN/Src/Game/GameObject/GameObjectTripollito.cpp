@@ -83,6 +83,14 @@ void GameObjectTripollito::update(double elapsedSeconds)
 void GameObjectTripollito::reset()
 {
 	GameObject::reset();
+
+	if (!mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+
+	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 }
 
 void GameObjectTripollito::changeWorld(int world)

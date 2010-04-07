@@ -83,6 +83,14 @@ void GameObjectCryKing::update(double elapsedSeconds)
 void GameObjectCryKing::reset()
 {
 	GameObject::reset();
+
+	if (!mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+
+	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 }
 
 void GameObjectCryKing::changeWorld(int world)

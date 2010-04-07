@@ -467,6 +467,9 @@ bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr o
 {
 	bool isAllowed = true;
 
+	//AT THE MOMENT PLEASE LEAVE IT LIKE THIS
+	isAllowed = 
+		(object1->getType().compare(GAME_OBJECT_TYPE_ONY) == 0 || object2->getType().compare(GAME_OBJECT_TYPE_ONY) == 0);
 
 	return isAllowed;
 }
