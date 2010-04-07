@@ -40,6 +40,12 @@ void GameObjectTerrainTriangle::setRenderComponentPositional(RenderComponentPosi
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTerrainTriangle::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTerrainTriangle::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -73,14 +79,22 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 	default:break;
 	}
 }
+
+void GameObjectTerrainTriangle::reset()
+{
+
+}
+
 bool GameObjectTerrainTriangle::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectTerrainTriangle::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
 

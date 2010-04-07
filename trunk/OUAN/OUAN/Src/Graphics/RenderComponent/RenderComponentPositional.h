@@ -10,8 +10,8 @@ namespace OUAN
 	private:
 		CameraManagerPtr mCameraManager;
 		Ogre::SceneNode * mSceneNode;
-	public:
 
+	public:
 		RenderComponentPositional(const std::string& type="");
 		~RenderComponentPositional();
 
@@ -23,12 +23,11 @@ namespace OUAN
 
 		Vector3 getPosition() const;
 		Quaternion getOrientation() const;
+
 		//values in degrees
 		double getYaw() const;
 		double getPitch() const;
 		double getRoll() const;
-
-
 
 		CameraManagerPtr getCameraManager() const;
 		void setCameraManager(CameraManagerPtr pCameraManager);

@@ -130,6 +130,9 @@ namespace OUAN
 		class TRenderComponentPositionalParameters;
 		typedef boost::shared_ptr<RenderComponentPositional> RenderComponentPositionalPtr;
 
+		class RenderComponentInitial;
+		typedef boost::shared_ptr<RenderComponentInitial> RenderComponentInitialPtr;
+
 		class RenderComponentViewport;
 		class TRenderComponentViewportParameters;
 		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
@@ -138,6 +141,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
 		const std::string COMPONENT_TYPE_RENDER_CAMERA="RenderComponentCamera";
 		const std::string COMPONENT_TYPE_RENDER_ENTITY="RenderComponentEntity";
+		const std::string COMPONENT_TYPE_RENDER_INITIAL="RenderComponentInitial";
 		const std::string COMPONENT_TYPE_RENDER_LIGHT="RenderComponentLight";
 		const std::string COMPONENT_TYPE_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
 		const std::string COMPONENT_TYPE_RENDER_POSITIONAL="RenderComponentPositional";

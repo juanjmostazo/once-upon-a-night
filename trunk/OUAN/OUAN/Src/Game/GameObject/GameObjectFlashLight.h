@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 
@@ -18,6 +19,7 @@ namespace OUAN
 		RenderComponentLightPtr mRenderComponentLight;
 
 		/// Position information
+		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		RenderComponentPositionalPtr mLightPositionalComponent;
 
@@ -60,10 +62,12 @@ namespace OUAN
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
+		/// Set initial component
+		void setRenderComponentInitialFromPositional();
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
-
 
 		/// Detects Flashlight's light collisions with the scene and adds the events to the eventManager
 		void detectLightCollisions();
@@ -84,6 +88,8 @@ namespace OUAN
 		/// Update object
 		void update(double elapsedSeconds);
 
+		/// Reset object
+		virtual void reset();
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters

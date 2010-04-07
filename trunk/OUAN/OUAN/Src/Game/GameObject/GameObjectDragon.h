@@ -2,6 +2,7 @@
 #define GameObjectDragonH_H
 
 #include "GameObject.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
@@ -16,6 +17,7 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Positional component
+		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
@@ -43,6 +45,9 @@ namespace OUAN
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
+		/// Set initial component
+		void setRenderComponentInitialFromPositional();
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
@@ -55,7 +60,10 @@ namespace OUAN
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
-		
+
+		/// Reset object
+		virtual void reset();
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);

@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../GameWorldManager.h"
 
@@ -21,6 +22,11 @@ GameObject::~GameObject()
 void GameObject::destroy()
 {
 	
+}
+
+void GameObject::reset()
+{
+
 }
 
 void GameObject::update(double elapsedSeconds)

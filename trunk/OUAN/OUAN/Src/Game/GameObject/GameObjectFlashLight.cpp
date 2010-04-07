@@ -37,6 +37,11 @@ void GameObjectFlashLight::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectFlashLight::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
 
 RenderComponentLightPtr GameObjectFlashLight::getRenderComponentLight() const
 {
@@ -89,10 +94,17 @@ void GameObjectFlashLight::changeWorld(int world)
 		break;
 	}
 }
+
+void GameObjectFlashLight::reset()
+{
+
+}
+
 bool GameObjectFlashLight::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

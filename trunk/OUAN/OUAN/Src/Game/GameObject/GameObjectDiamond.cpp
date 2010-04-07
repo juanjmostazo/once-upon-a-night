@@ -29,6 +29,12 @@ void GameObjectDiamond::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectDiamond::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectDiamond::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -103,14 +109,22 @@ void GameObjectDiamond::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectDiamond::reset()
+{
+
+}
+
 bool GameObjectDiamond::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectDiamond::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {
 

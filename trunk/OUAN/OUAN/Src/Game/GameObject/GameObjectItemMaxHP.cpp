@@ -29,6 +29,12 @@ void GameObjectItemMaxHP::setRenderComponentPositional(RenderComponentPositional
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectItemMaxHP::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectItemMaxHP::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -103,14 +109,22 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectItemMaxHP::reset()
+{
+
+}
+
 bool GameObjectItemMaxHP::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectItemMaxHP::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
 

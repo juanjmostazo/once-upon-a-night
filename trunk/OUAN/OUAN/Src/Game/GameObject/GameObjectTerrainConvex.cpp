@@ -40,6 +40,12 @@ void GameObjectTerrainConvex::setRenderComponentPositional(RenderComponentPositi
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectTerrainConvex::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectTerrainConvex::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -118,6 +124,12 @@ void GameObjectTerrainConvex::changeWorld(int world)
 	default:break;
 	}
 }
+
+void GameObjectTerrainConvex::reset()
+{
+
+}
+
 bool GameObjectTerrainConvex::hasPositionalComponent() const
 {
 	return true;

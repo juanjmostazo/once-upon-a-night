@@ -29,6 +29,12 @@ void GameObjectPillow::setRenderComponentPositional(RenderComponentPositionalPtr
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectPillow::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectPillow::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -99,14 +105,22 @@ void GameObjectPillow::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectPillow::reset()
+{
+
+}
+
 bool GameObjectPillow::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectPillow::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {
 

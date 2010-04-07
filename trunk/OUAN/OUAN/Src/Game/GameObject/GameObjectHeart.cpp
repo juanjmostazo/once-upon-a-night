@@ -29,6 +29,12 @@ void GameObjectHeart::setRenderComponentPositional(RenderComponentPositionalPtr 
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectHeart::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectHeart::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -103,14 +109,22 @@ void GameObjectHeart::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectHeart::reset()
+{
+
+}
+
 bool GameObjectHeart::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectHeart::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {
 

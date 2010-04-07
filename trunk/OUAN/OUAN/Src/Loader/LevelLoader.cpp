@@ -53,6 +53,7 @@
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
+#include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"

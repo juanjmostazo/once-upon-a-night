@@ -29,6 +29,12 @@ void GameObjectScepter::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectScepter::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectScepter::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -99,14 +105,22 @@ void GameObjectScepter::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectScepter::reset()
+{
+
+}
+
 bool GameObjectScepter::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectScepter::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
 TGameObjectScepterParameters::TGameObjectScepterParameters() : TGameObjectParameters()
 {
 

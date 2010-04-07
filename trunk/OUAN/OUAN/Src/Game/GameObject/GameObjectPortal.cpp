@@ -39,6 +39,12 @@ void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
+void GameObjectPortal::setRenderComponentInitialFromPositional()
+{
+	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
+	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+}
+
 RenderComponentPositionalPtr GameObjectPortal::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
@@ -99,10 +105,17 @@ void GameObjectPortal::changeWorld(int world)
 		}
 	}
 }
+
+void GameObjectPortal::reset()
+{
+
+}
+
 bool GameObjectPortal::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectPortal::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

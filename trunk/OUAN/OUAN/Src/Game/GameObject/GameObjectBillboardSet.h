@@ -2,6 +2,7 @@
 #define GameObjectBillboardSetH_H
 
 #include "GameObject.h"
+#include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 
@@ -14,6 +15,7 @@ namespace OUAN
 		/// Holds the information related to visual rendering
 		RenderComponentBillboardSetPtr mRenderComponentBillboardSet;
 		/// Holds information related to the object's position in space
+		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 
 	public:
@@ -34,6 +36,9 @@ namespace OUAN
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
+		/// Set initial component
+		void setRenderComponentInitialFromPositional();
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
@@ -41,6 +46,9 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		/// Reset object
+		virtual void reset();
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
@@ -61,7 +69,6 @@ namespace OUAN
 		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
 		/// Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
-
 	};
 }
 #endif
