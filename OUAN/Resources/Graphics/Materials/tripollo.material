@@ -1,5 +1,5 @@
 
-material Scene_Material
+material tripollo_d
 {
 	technique
 	{
