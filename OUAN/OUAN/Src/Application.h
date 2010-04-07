@@ -3,6 +3,7 @@
 
 #include "OUAN.h"
 #include "GUI/GUIDefs.h"
+#include "Audio/AudioDefs.h"
 #include "Input/ControlInputManager.h"
 
 namespace OUAN
@@ -83,7 +84,7 @@ namespace OUAN
 			RayCastingPtr getRayCasting() const;
 			LevelLoaderPtr getLevelLoader() const;
 			LogicSubsystemPtr getLogicSubsystem() const;
-			//OUAN::AudioSubsystemPtr getAudioSubsystem() const;
+			AudioSubsystemPtr getAudioSubsystem() const;
 			ConfigurationPtr getConfiguration() const;
 
 			ConfigurationPtr getTextStrings() const;
@@ -137,6 +138,9 @@ namespace OUAN
 	
 			/// Pointer to the global configuration map
 			ConfigurationPtr mConfiguration;
+
+			/// Pointer to the sound manager
+			AudioSubsystemPtr mAudioSubsystem;
 
 			/// Name of the application window
 			std::string mWindowName;

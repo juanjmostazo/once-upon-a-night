@@ -8,6 +8,9 @@
 #include "GameOptionsState.h"
 #include "ExtrasState.h"
 
+#include "../Audio/AudioDefs.h"
+#include "../Audio/AudioSubsystem.h"
+
 using namespace OUAN;
 
 
@@ -15,7 +18,7 @@ using namespace OUAN;
 MainMenuState::MainMenuState()
 :GameState()
 {
-
+	mMusicChannel=-1;
 }
 /// Destructor
 MainMenuState::~MainMenuState()
@@ -30,6 +33,18 @@ void MainMenuState::init(ApplicationPtr app)
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
 	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 	mGUI->initGUI(shared_from_this());
+
+	TSoundData desc;
+	desc.mId="MUSIC";
+	desc.mFileName=MUSIC_TRACK;
+	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
+	desc.mHardware=true;
+	desc.m3D=false;
+	desc.mStream=true;
+	desc.mLoop=true;
+	mApp->getAudioSubsystem()->addSound(desc);
+	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
+	
 }
 
 /// Clean up main menu's resources
@@ -37,6 +52,9 @@ void MainMenuState::cleanUp()
 {
 	//Unsubscribe from events
 	mGUI->destroy();
+	if (mMusicChannel!=-1)
+	mApp->getAudioSubsystem()->stopSound(mMusicChannel);
+	mApp->getAudioSubsystem()->removeSound("MUSIC");
 	mApp->getGUISubsystem()->destroyGUI();
 	//mApp->getGUISubsystem()->unbindAllEvents();
 }
@@ -63,7 +81,7 @@ void MainMenuState::handleEvents()
 /// @param app	the parent app
 void MainMenuState::update(long elapsedTime)
 {
-
+	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
 }
 void MainMenuState::gotoPlay()
 {

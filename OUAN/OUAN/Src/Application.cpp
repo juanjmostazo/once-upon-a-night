@@ -23,6 +23,8 @@
 #include "Loader/Configuration.h"
 #include "Loader/LevelLoader.h"
 
+#include "Audio/AudioSubsystem.h"
+
 #include "Game/GameObject/GameObjectTripollo.h"
 #include "Graphics/RenderComponent/RenderComponentPositional.h"
 
@@ -53,6 +55,7 @@ void Application::cleanUp()
 	mGUISubsystem->cleanUp();
 	mRenderSubsystem->cleanUp();
 	mLogicSubsystem->cleanUp();
+	mAudioSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
 //Application initialization
@@ -96,7 +99,15 @@ void Application::init()
 	mLevelLoader.reset(new LevelLoader());
 	mLevelLoader->init(this_);
 
-	//TODO: Add remaining subsystems (Audio, etc)
+	ConfigurationPtr audioCfg(new Configuration());
+	audioCfg->loadFromFile(SOUND_CONFIG_FILE);
+	TAudioSubsystemConfigData audioDesc;
+	audioDesc.set(audioCfg);
+	mAudioSubsystem.reset(new AudioSubsystem());
+	mAudioSubsystem->init(audioDesc,this_);
+
+	//TODO: Add remaining subsystems ()
+
 
 	setupInputSystem();
 }
@@ -237,6 +248,10 @@ ConfigurationPtr Application::getTextStrings() const
 LogicSubsystemPtr Application::getLogicSubsystem() const
 {
 	return mLogicSubsystem;
+}
+AudioSubsystemPtr Application::getAudioSubsystem() const
+{
+	return mAudioSubsystem;
 }
 
 CameraManagerPtr Application::getCameraManager() const

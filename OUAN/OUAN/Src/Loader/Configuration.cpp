@@ -129,3 +129,77 @@ TConfigMapConstIterator Configuration::end() const
 {
 	return configMap.end();
 }
+bool Configuration::isEmpty() const
+{
+	return configMap.empty();
+}
+double Configuration::parseDouble(const std::string& key)
+{
+	std::string value;
+	std::stringstream strm;
+	getOption(key,value);
+	double doubleVal;
+	if (!value.empty())
+	{
+		strm.str(value);
+		strm>>doubleVal;
+		return doubleVal;
+	}
+	else throw std::exception("An error happened while parsing a double: Key wasn't found in the map, or its value is empty");
+}
+int Configuration::parseInt(const std::string& key)
+{
+	std::string value;
+	std::stringstream strm;
+	getOption(key,value);
+	int intVal;
+	if (!value.empty())
+	{
+		strm.str(value);
+		strm>>intVal;
+		return intVal;
+	}
+	else throw std::exception("An error happened while parsing an integer: Key wasn't found in the map, or its value is empty");
+}
+long Configuration::parseLong(const std::string& key)
+{
+	std::string value;
+	std::stringstream strm;
+	getOption(key,value);
+	long longVal;
+	if (!value.empty())
+	{
+		strm.str(value);
+		strm>>longVal;
+		return longVal;
+	}
+	else throw std::exception("An error happened while parsing a long: Key wasn't found in the map, or its value is empty");
+}
+float Configuration::parseFloat(const std::string& key)
+{
+	std::string value;
+	std::stringstream strm;
+	getOption(key,value);
+	float floatVal;
+	if (!value.empty())
+	{
+		strm.str(value);
+		strm>>floatVal;
+		return floatVal;
+	}
+	else throw std::exception("An error happened while parsing a float: Key wasn't found in the map, or its value is empty");
+}
+bool Configuration::parseBool(const std::string& key)
+{
+	std::string value;
+	std::stringstream strm;
+	getOption(key,value);
+	bool boolVal;
+	if (!value.empty())
+	{
+		strm.str(value);
+		strm>>boolVal;
+		return boolVal;
+	}
+	else throw std::exception("An error happened while parsing a bool: Key wasn't found in the map, or its value is empty");
+}

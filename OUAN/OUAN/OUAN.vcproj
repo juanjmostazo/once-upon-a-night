@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -702,6 +702,14 @@
 					RelativePath=".\Src\Audio\AudioSubsystem.cpp"
 					>
 				</File>
+				<Filter
+					Name="AudioComponent"
+					>
+					<File
+						RelativePath=".\Src\Audio\AudioComponent\AudioComponent.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="RayCasting"
@@ -1282,6 +1290,14 @@
 					RelativePath=".\Src\Audio\AudioSubsystem.h"
 					>
 				</File>
+				<Filter
+					Name="AudioComponent"
+					>
+					<File
+						RelativePath=".\Src\Audio\AudioComponent\AudioComponent.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="RayCasting"

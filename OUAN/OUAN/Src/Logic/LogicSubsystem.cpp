@@ -35,7 +35,7 @@ void LogicSubsystem::init(ApplicationPtr app)
 	luabind::open(mLuaEngine);
 
 	registerModules();
-	loadScripts();
+	//loadScripts();
 }
 void LogicSubsystem::registerModules()
 {
