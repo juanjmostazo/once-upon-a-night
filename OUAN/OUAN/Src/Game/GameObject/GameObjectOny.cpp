@@ -20,15 +20,19 @@ void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pR
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectOny::setRenderComponentInitialFromPositional()
+void GameObjectOny::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectOny::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectOny::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectOny::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
@@ -71,7 +75,8 @@ void GameObjectOny::update(double elapsedSeconds)
 
 void GameObjectOny::reset()
 {
-
+	GameObject::reset();
+	//mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 }
 
 void GameObjectOny::changeWorld(int world)
@@ -110,7 +115,7 @@ void GameObjectOny::decreaseWeaponPower(int powerUnits)
 
 void GameObjectOny::die()
 {
-	GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
+	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getLogicComponent()->getNumLives()));
 	mGameWorldManager->addEvent(evt);
 }
 

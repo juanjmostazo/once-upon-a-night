@@ -70,12 +70,15 @@ namespace OUAN
 		/// init object
 		/// @param pointer to the application object
 		void init(ApplicationPtr app);
+
 		/// Free resources
 		void cleanUp();
 
+		/// Reset game objects
+		void resetAll();
+
 		/// Create a game object using the given 'parameters' object
 		/// @param objectParams parameters to init the game object and its components
-
 		void createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters);
 		void createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters);
 		void createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters);

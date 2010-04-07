@@ -20,15 +20,19 @@ void GameObjectTentetieso::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTentetieso::setRenderComponentInitialFromPositional()
+void GameObjectTentetieso::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectTentetieso::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectTentetieso::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectTentetieso::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -78,7 +82,7 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 
 void GameObjectTentetieso::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectTentetieso::changeWorld(int world)

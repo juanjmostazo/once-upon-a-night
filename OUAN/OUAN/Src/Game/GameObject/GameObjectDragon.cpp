@@ -20,15 +20,19 @@ void GameObjectDragon::setRenderComponentPositional(RenderComponentPositionalPtr
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectDragon::setRenderComponentInitialFromPositional()
+void GameObjectDragon::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectDragon::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectDragon::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectDragon::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -78,7 +82,7 @@ void GameObjectDragon::update(double elapsedSeconds)
 
 void GameObjectDragon::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectDragon::changeWorld(int world)

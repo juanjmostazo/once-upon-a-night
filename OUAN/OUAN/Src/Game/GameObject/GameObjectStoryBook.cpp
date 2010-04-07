@@ -29,15 +29,20 @@ void GameObjectStoryBook::setRenderComponentPositional(RenderComponentPositional
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectStoryBook::setRenderComponentInitialFromPositional()
+void GameObjectStoryBook::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectStoryBook::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectStoryBook::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectStoryBook::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -112,7 +117,7 @@ void GameObjectStoryBook::changeWorld(int world)
 
 void GameObjectStoryBook::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectStoryBook::hasPositionalComponent() const

@@ -20,15 +20,19 @@ void GameObjectNightGoblin::setRenderComponentPositional(RenderComponentPosition
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectNightGoblin::setRenderComponentInitialFromPositional()
+void GameObjectNightGoblin::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectNightGoblin::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectNightGoblin::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectNightGoblin::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -78,7 +82,7 @@ void GameObjectNightGoblin::update(double elapsedSeconds)
 
 void GameObjectNightGoblin::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectNightGoblin::changeWorld(int world)

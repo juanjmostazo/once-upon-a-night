@@ -20,15 +20,19 @@ void GameObjectTripollito::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTripollito::setRenderComponentInitialFromPositional()
+void GameObjectTripollito::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectTripollito::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectTripollito::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectTripollito::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -78,7 +82,7 @@ void GameObjectTripollito::update(double elapsedSeconds)
 
 void GameObjectTripollito::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectTripollito::changeWorld(int world)

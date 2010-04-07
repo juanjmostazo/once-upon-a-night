@@ -29,15 +29,19 @@ void GameObjectItem1UP::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectItem1UP::setRenderComponentInitialFromPositional()
+void GameObjectItem1UP::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectItem1UP::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectItem1UP::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectItem1UP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -110,7 +114,7 @@ void GameObjectItem1UP::changeWorld(int world)
 
 void GameObjectItem1UP::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const

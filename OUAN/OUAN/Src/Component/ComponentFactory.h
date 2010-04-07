@@ -40,6 +40,8 @@ namespace OUAN
 			TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters);
 		RenderComponentScenePtr createRenderComponentScene(GameObjectPtr gameObject,
 			TRenderComponentSceneParameters tRenderComponentSceneParameters);
+		RenderComponentInitialPtr createRenderComponentInitial(
+			RenderComponentPositionalPtr pRenderComponentPositional);
 		RenderComponentPositionalPtr createRenderComponentPositional(GameObjectPtr gameObject,
 			TRenderComponentPositionalParameters tRenderComponentPositionalParameters);
 		RenderComponentPositionalPtr createRenderComponentPositional(GameObjectPtr gameObject,

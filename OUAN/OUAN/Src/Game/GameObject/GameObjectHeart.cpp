@@ -29,15 +29,19 @@ void GameObjectHeart::setRenderComponentPositional(RenderComponentPositionalPtr 
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectHeart::setRenderComponentInitialFromPositional()
+void GameObjectHeart::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectHeart::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectHeart::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectHeart::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -112,7 +116,7 @@ void GameObjectHeart::changeWorld(int world)
 
 void GameObjectHeart::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectHeart::hasPositionalComponent() const

@@ -39,15 +39,19 @@ void GameObjectDoor::setRenderComponentPositional(RenderComponentPositionalPtr p
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectDoor::setRenderComponentInitialFromPositional()
+void GameObjectDoor::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectDoor::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectDoor::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectDoor::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -126,7 +130,7 @@ void GameObjectDoor::changeWorld(int world)
 
 void GameObjectDoor::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectDoor::hasPositionalComponent() const

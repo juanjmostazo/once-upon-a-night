@@ -402,6 +402,24 @@ void GameWorldManager::cleanUp()
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP FINISHED]");
 }
 
+void GameWorldManager::resetAll()
+{
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER RESET ALL STARTED]");
+
+	TGameObjectContainerIterator it;
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Reseting game object " + it->second->getName());
+		it->second->reset();
+	}
+
+	//ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(DREAMS));
+	//addEvent(evt);
+
+	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER RESET ALL FINISHED]");
+}
+
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
 {
 	std::ostringstream ostr(baseString);
@@ -813,6 +831,10 @@ void GameWorldManager::createGameObjectBee_Butterfly(TGameObjectBee_ButterflyPar
 		pGameObjectBee_Butterfly->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectBee_Butterfly,tGameObjectBee_ButterflyParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectBee_Butterfly->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectBee_Butterfly->getRenderComponentPositional()));
+
 		if(pGameObjectBee_Butterfly->getLogicComponent()->existsInDreams())
 		{
 			//Create RenderComponentEntity Dreams
@@ -871,6 +893,10 @@ void GameWorldManager::createGameObjectBillboardSet(TGameObjectBillboardSetParam
 		pGameObjectBillboardSet->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectBillboardSet->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectBillboardSet->getRenderComponentPositional()));
+
 		//Create RenderComponentBillboardSet
 		pGameObjectBillboardSet->setRenderComponentBillboardSet(factory->createRenderComponentBillboardSet(
 			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
@@ -903,6 +929,10 @@ void GameWorldManager::createGameObjectBush(TGameObjectBushParameters tGameObjec
 		//Create RenderComponentPositional
 		pGameObjectBush->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectBush,tGameObjectBushParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectBush->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectBush->getRenderComponentPositional()));
 
 		if(pGameObjectBush->getLogicComponent()->existsInDreams())
 		{
@@ -979,6 +1009,10 @@ void GameWorldManager::createGameObjectCarnivorousPlant(TGameObjectCarnivorousPl
 		pGameObjectCarnivorousPlant->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectCarnivorousPlant,tGameObjectCarnivorousPlantParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectCarnivorousPlant->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectCarnivorousPlant->getRenderComponentPositional()));
+
 		if(pGameObjectCarnivorousPlant->getLogicComponent()->existsInDreams())
 		{
 			//Create RenderComponentEntity Dreams
@@ -1030,6 +1064,10 @@ void GameWorldManager::createGameObjectClockPiece(TGameObjectClockPieceParameter
 		pGameObjectClockPiece->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectClockPiece->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectClockPiece->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectClockPiece->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectClockPieceParameters.name,
@@ -1070,6 +1108,10 @@ void GameWorldManager::createGameObjectCryKing(TGameObjectCryKingParameters tGam
 		//Create RenderComponentPositional
 		pGameObjectCryKing->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectCryKing->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectCryKing->getRenderComponentPositional()));
 
 		if(pGameObjectCryKing->getLogicComponent()->existsInDreams())
 		{
@@ -1122,6 +1164,10 @@ void GameWorldManager::createGameObjectDiamond(TGameObjectDiamondParameters tGam
 		pGameObjectDiamond->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectDiamond->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectDiamond->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectDiamond->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectDiamondParameters.name,
@@ -1162,6 +1208,10 @@ void GameWorldManager::createGameObjectDiamondTree(TGameObjectDiamondTreeParamet
 		//Create RenderComponentPositional
 		pGameObjectDiamondTree->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectDiamondTree->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectDiamondTree->getRenderComponentPositional()));
 
 		if(pGameObjectDiamondTree->getLogicComponent()->existsInDreams())
 		{
@@ -1214,6 +1264,10 @@ void GameWorldManager::createGameObjectDoor(TGameObjectDoorParameters tGameObjec
 		pGameObjectDoor->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectDoor->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectDoor->getRenderComponentPositional()));
+
 		if(pGameObjectDoor->getLogicComponent()->existsInDreams())
 		{
 			//Create RenderComponentEntity Dreams
@@ -1265,6 +1319,10 @@ void GameWorldManager::createGameObjectDragon(TGameObjectDragonParameters tGameO
 		pGameObjectDragon->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectDragon,tGameObjectDragonParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectDragon->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectDragon->getRenderComponentPositional()));
+
 		//Create RenderComponentEntityDreams
 		pGameObjectDragon->setRenderComponentEntityDreams(
 			factory->createRenderComponentEntity(tGameObjectDragonParameters.dreamsName,
@@ -1311,6 +1369,10 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 		pGameObjectEye->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectEye,tGameObjectEyeParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectEye->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectEye->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectEye->setRenderComponentEntityNightmares(
 			factory->createRenderComponentEntity(tGameObjectEyeParameters.name,
@@ -1350,6 +1412,10 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 		//Create RenderComponentPositional
 		pGameObjectFlashLight->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectFlashLight,tGameObjectFlashLightParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectFlashLight->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectFlashLight->getRenderComponentPositional()));
 
 		//Create RenderComponentEntity
 		pGameObjectFlashLight->setRenderComponentEntity(
@@ -1422,6 +1488,10 @@ void GameWorldManager::createGameObjectHeart(TGameObjectHeartParameters tGameObj
 		pGameObjectHeart->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectHeart->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectHeart->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectHeart->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectHeartParameters.name,
@@ -1463,6 +1533,10 @@ void GameWorldManager::createGameObjectItem1UP(TGameObjectItem1UPParameters tGam
 		pGameObjectItem1UP->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectItem1UP->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectItem1UP->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectItem1UP->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
@@ -1503,6 +1577,10 @@ void GameWorldManager::createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters 
 		//Create RenderComponentPositional
 		pGameObjectItemMaxHP->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectItemMaxHP->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectItemMaxHP->getRenderComponentPositional()));
 
 		//Create RenderComponentEntity
 		pGameObjectItemMaxHP->setRenderComponentEntity(
@@ -1550,6 +1628,10 @@ void GameWorldManager::createGameObjectLight(TGameObjectLightParameters tGameObj
 		//Create RenderComponentPositional
 		pGameObjectLight->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectLight,tGameObjectLightParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectLight->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectLight->getRenderComponentPositional()));
 
 		//Create RenderComponentLight
 		pGameObjectLight->setRenderComponentLight(factory->createRenderComponentLight(
@@ -1609,6 +1691,10 @@ void GameWorldManager::createGameObjectNightGoblin(TGameObjectNightGoblinParamet
 		pGameObjectNightGoblin->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectNightGoblin,tGameObjectNightGoblinParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectNightGoblin->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectNightGoblin->getRenderComponentPositional()));
+
 		//Create RenderComponentEntityDreams
 		pGameObjectNightGoblin->setRenderComponentEntityDreams(
 			factory->createRenderComponentEntity(tGameObjectNightGoblinParameters.dreamsName,
@@ -1654,6 +1740,10 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		pGameObjectOny->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectOny->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectOny->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectOny->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
@@ -1697,6 +1787,10 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 		pGameObjectParticleSystem->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectParticleSystem->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectParticleSystem->getRenderComponentPositional()));
+
 		//Create RenderComponentParticleSystem
 		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
 			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
@@ -1729,6 +1823,10 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 		//Create RenderComponentPositional
 		pGameObjectPillow->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectPillow->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectPillow->getRenderComponentPositional()));
 
 		//Create RenderComponentEntity
 		pGameObjectPillow->setRenderComponentEntity(
@@ -1770,6 +1868,10 @@ void GameWorldManager::createGameObjectPlataform(TGameObjectPlataformParameters 
 		//Create RenderComponentPositional
 		pGameObjectPlataform->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectPlataform,tGameObjectPlataformParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectPlataform->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectPlataform->getRenderComponentPositional()));
 
 		if(pGameObjectPlataform->getLogicComponent()->existsInDreams())
 		{
@@ -1820,6 +1922,10 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 		pGameObjectPortal->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectPortal->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectPortal->getRenderComponentPositional()));
+
 		//Create RenderComponentEntityDreams
 		pGameObjectPortal->setRenderComponentEntityDreams(
 			factory->createRenderComponentEntity(tGameObjectPortalParameters.dreamsName,
@@ -1866,6 +1972,10 @@ void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalE
 		//Create RenderComponentPositional
 		pGameObjectProvisionalEntity->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectProvisionalEntity->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectProvisionalEntity->getRenderComponentPositional()));
 
 		if(pGameObjectProvisionalEntity->getLogicComponent()->existsInDreams())
 		{
@@ -1918,6 +2028,10 @@ void GameWorldManager::createGameObjectScaredPlant(TGameObjectScaredPlantParamet
 		//Create RenderComponentPositional
 		pGameObjectScaredPlant->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectScaredPlant->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectScaredPlant->getRenderComponentPositional()));
 
 		//Create RenderComponentEntity
 		pGameObjectScaredPlant->setRenderComponentEntityDreams(
@@ -1984,6 +2098,10 @@ void GameWorldManager::createGameObjectScepter(TGameObjectScepterParameters tGam
 		pGameObjectScepter->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectScepter,tGameObjectScepterParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectScepter->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectScepter->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity 
 		pGameObjectScepter->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectScepterParameters.name,
@@ -2024,6 +2142,10 @@ void GameWorldManager::createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParam
 		//Create RenderComponentPositional
 		pGameObjectSnakeCreeper->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectSnakeCreeper,tGameObjectSnakeCreeperParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectSnakeCreeper->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectSnakeCreeper->getRenderComponentPositional()));
 
 		if(pGameObjectSnakeCreeper->getLogicComponent()->existsInDreams())
 		{
@@ -2076,6 +2198,10 @@ void GameWorldManager::createGameObjectStoryBook(TGameObjectStoryBookParameters 
 		pGameObjectStoryBook->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectStoryBook->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectStoryBook->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectStoryBook->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectStoryBookParameters.name,
@@ -2123,6 +2249,10 @@ void GameWorldManager::createGameObjectTentetieso(TGameObjectTentetiesoParameter
 		pGameObjectTentetieso->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectTentetieso->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTentetieso->getRenderComponentPositional()));
+
 		//Create RenderComponentEntityDreams
 		pGameObjectTentetieso->setRenderComponentEntityDreams(
 			factory->createRenderComponentEntity(tGameObjectTentetiesoParameters.dreamsName,
@@ -2167,6 +2297,10 @@ void GameWorldManager::createGameObjectTerrainConvex(TGameObjectTerrainConvexPar
 		//Create RenderComponentPositional
 		pGameObjectTerrainConvex->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectTerrainConvex->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTerrainConvex->getRenderComponentPositional()));
 
 		if(pGameObjectTerrainConvex->getLogicComponent()->existsInDreams())
 		{
@@ -2216,6 +2350,10 @@ void GameWorldManager::createGameObjectTerrainTriangle(TGameObjectTerrainTriangl
 		pGameObjectTerrainTriangle->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectTerrainTriangle->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTerrainTriangle->getRenderComponentPositional()));
+
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
 			factory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
@@ -2260,6 +2398,10 @@ void GameWorldManager::createGameObjectTree(TGameObjectTreeParameters tGameObjec
 		pGameObjectTree->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTree,tGameObjectTreeParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectTree->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTree->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectTree->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectTreeParameters.name,
@@ -2300,6 +2442,10 @@ void GameWorldManager::createGameObjectTriggerBox(TGameObjectTriggerBoxParameter
 		//Create RenderComponentPositional
 		pGameObjectTriggerBox->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTriggerBox,tGameObjectTriggerBoxParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectTriggerBox->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTriggerBox->getRenderComponentPositional()));
 
 		//Create RenderComponentEntity
 		pGameObjectTriggerBox->setRenderComponentEntity(
@@ -2344,6 +2490,10 @@ void GameWorldManager::createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleP
 		pGameObjectTriggerCapsule->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTriggerCapsule,tGameObjectTriggerCapsuleParameters.tRenderComponentPositionalParameters));
 
+		//Create RenderComponentInitial
+		pGameObjectTriggerCapsule->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTriggerCapsule->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectTriggerCapsule->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectTriggerCapsuleParameters.name,
@@ -2385,6 +2535,10 @@ void GameWorldManager::createGameObjectTripollito(TGameObjectTripollitoParameter
 		//Create RenderComponentPositional
 		pGameObjectTripollito->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTripollito,tGameObjectTripollitoParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectTripollito->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTripollito->getRenderComponentPositional()));
 
 		//Create RenderComponentEntityDreams
 		pGameObjectTripollito->setRenderComponentEntityDreams(
@@ -2429,6 +2583,10 @@ void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tG
 		//Create RenderComponentPositional
 		pGameObjectTripollo->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
+
+		//Create RenderComponentInitial
+		pGameObjectTripollo->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTripollo->getRenderComponentPositional()));
 
 		//Create RenderComponentEntityDreams
 		pGameObjectTripollo->setRenderComponentEntityDreams(
@@ -2529,7 +2687,7 @@ void GameWorldManager::changeWorld()
 		world=DREAMS;
 	}
 
-	ChangeWorldEventPtr evt= ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	addEvent(evt);
 }
 
@@ -2620,10 +2778,11 @@ void GameWorldManager::lose()
 void GameWorldManager::onyDied()
 {
 	//TODO: Remove next two lines
-	setGameOver(true);
-	setGameBeaten(false);
+	//setGameOver(true);
+	//setGameBeaten(false);
 	//TODO: Reset Ony and every other game object that needs it.
 	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
+	resetAll();
 }
 
 void GameWorldManager::addEvent(OUAN::EventPtr event)
@@ -2644,7 +2803,10 @@ EventManagerPtr GameWorldManager::getEventManager()
 GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 {
 	if (!mGameObjectOnyContainer.empty())
+	{
 		return mGameObjectOnyContainer[0];
+	}
+
 	GameObjectOnyPtr nullPtr;
 	nullPtr.reset();
 	return nullPtr;
@@ -2653,7 +2815,10 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 GameObjectFlashLightPtr GameWorldManager::getGameObjectFlashLight()
 {
 	if (!mGameObjectFlashLightContainer.empty())
+	{
 		return mGameObjectFlashLightContainer[0];
+	}
+
 	GameObjectFlashLightPtr nullPtr;
 	nullPtr.reset();
 	return nullPtr;
@@ -2675,6 +2840,7 @@ double GameWorldManager::getDistance(const std::string& obj1Name, const std::str
 	double distance=-1;
 	GameObjectPtr obj1= mInst->getObject(obj1Name);
 	GameObjectPtr obj2= mInst->getObject(obj2Name);
+
 	if (obj1.get() && obj2.get())
 	{
 		distance=obj1->computeDistanceTo(obj2);
@@ -2689,7 +2855,10 @@ double GameWorldManager::getDistance(const std::string& obj1Name, const std::str
 double GameWorldManager::getPlayerDistance(const std::string& objName)
 {
 	if (mInst->getGameObjectOny().get())
+	{
 		return getDistance(mInst->getGameObjectOny()->getName(),objName);
+	}
+
 	return -1;
 }
 

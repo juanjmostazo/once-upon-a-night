@@ -40,15 +40,19 @@ void GameObjectPlataform::setRenderComponentPositional(RenderComponentPositional
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectPlataform::setRenderComponentInitialFromPositional()
+void GameObjectPlataform::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectPlataform::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectPlataform::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectPlataform::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
@@ -125,7 +129,7 @@ void GameObjectPlataform::changeWorld(int world)
 
 void GameObjectPlataform::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const

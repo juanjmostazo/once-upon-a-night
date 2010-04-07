@@ -29,15 +29,20 @@ void GameObjectScepter::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectScepter::setRenderComponentInitialFromPositional()
+void GameObjectScepter::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectScepter::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectScepter::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectScepter::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
@@ -108,7 +113,7 @@ void GameObjectScepter::changeWorld(int world)
 
 void GameObjectScepter::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectScepter::hasPositionalComponent() const

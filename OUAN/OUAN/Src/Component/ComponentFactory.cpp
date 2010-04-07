@@ -10,6 +10,7 @@
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
+#include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -125,6 +126,19 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 
 	return pRenderComponentScene;
 }
+
+RenderComponentInitialPtr ComponentFactory::createRenderComponentInitial(RenderComponentPositionalPtr pRenderComponentPositional)
+{
+	//Create void Render Component
+	RenderComponentInitialPtr pRenderComponentInitial = RenderComponentInitialPtr(new RenderComponentInitial()); 
+
+	//init Render Component
+	pRenderComponentInitial->setPosition(pRenderComponentPositional->getPosition());
+	pRenderComponentInitial->setOrientation(pRenderComponentPositional->getOrientation());
+
+	return pRenderComponentInitial;
+}
+
 RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(GameObjectPtr gameObject,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
 {
 	//Create void Render Component
@@ -132,12 +146,13 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	pRenderComponentPositional->setParent(gameObject);	
 
-	//init Render Component
+	//Init Render Component
 	pRenderComponentPositional->setSceneNode(mApp->getRenderSubsystem()->createSceneNode(gameObject->getName(),tRenderComponentPositionalParameters));
 	pRenderComponentPositional->setCameraManager(mApp->getCameraManager());
 
 	return pRenderComponentPositional;
 }
+
 RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(GameObjectPtr gameObject,TRenderComponentPositionalParameters tRenderComponentPositionalParameters,std::string name)
 {
 	//Create void Render Component
@@ -151,6 +166,7 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 
 	return pRenderComponentPositional;
 }
+
 RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameObjectPtr gameObject,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {
 	//Create void Render Component
