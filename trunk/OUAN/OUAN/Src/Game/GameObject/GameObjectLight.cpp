@@ -29,15 +29,19 @@ void GameObjectLight::setRenderComponentPositional(RenderComponentPositionalPtr 
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectLight::setRenderComponentInitialFromPositional()
+void GameObjectLight::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectLight::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectLight::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectLight::changeWorld(int world)
@@ -57,7 +61,7 @@ void GameObjectLight::changeWorld(int world)
 
 void GameObjectLight::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectLight::hasPositionalComponent() const

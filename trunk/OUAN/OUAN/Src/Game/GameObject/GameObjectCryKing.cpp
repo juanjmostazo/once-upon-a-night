@@ -20,15 +20,19 @@ void GameObjectCryKing::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectCryKing::setRenderComponentInitialFromPositional()
+void GameObjectCryKing::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectCryKing::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectCryKing::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectCryKing::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -78,7 +82,7 @@ void GameObjectCryKing::update(double elapsedSeconds)
 
 void GameObjectCryKing::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectCryKing::changeWorld(int world)

@@ -19,15 +19,19 @@ void GameObjectBee_Butterfly::setRenderComponentPositional(RenderComponentPositi
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectBee_Butterfly::setRenderComponentInitialFromPositional()
+void GameObjectBee_Butterfly::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectBee_Butterfly::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectBee_Butterfly::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectBee_Butterfly::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
@@ -77,7 +81,7 @@ void GameObjectBee_Butterfly::update(double elapsedSeconds)
 
 void GameObjectBee_Butterfly::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectBee_Butterfly::hasPositionalComponent() const

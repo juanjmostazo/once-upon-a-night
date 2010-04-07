@@ -20,15 +20,19 @@ void GameObjectTriggerCapsule::setRenderComponentPositional(RenderComponentPosit
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTriggerCapsule::setRenderComponentInitialFromPositional()
+void GameObjectTriggerCapsule::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectTriggerCapsule::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectTriggerCapsule::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectTriggerCapsule::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
@@ -117,7 +121,7 @@ void GameObjectTriggerCapsule::changeWorld(int world)
 
 void GameObjectTriggerCapsule::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectTriggerCapsule::hasPositionalComponent() const

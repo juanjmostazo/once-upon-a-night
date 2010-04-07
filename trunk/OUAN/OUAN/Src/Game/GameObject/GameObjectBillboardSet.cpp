@@ -29,15 +29,19 @@ void GameObjectBillboardSet::setRenderComponentPositional(RenderComponentPositio
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectBillboardSet::setRenderComponentInitialFromPositional()
+void GameObjectBillboardSet::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectBillboardSet::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectBillboardSet::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectBillboardSet::changeWorld(int world)
@@ -57,7 +61,7 @@ void GameObjectBillboardSet::changeWorld(int world)
 
 void GameObjectBillboardSet::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectBillboardSet::hasPositionalComponent() const

@@ -43,11 +43,15 @@ namespace OUAN
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
 
 		/// Set initial component
-		void setRenderComponentInitialFromPositional();
+		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
+
+		/// Return initial component 
+		/// @return initial component
+		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
 		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);

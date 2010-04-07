@@ -29,15 +29,19 @@ void GameObjectClockPiece::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectClockPiece::setRenderComponentInitialFromPositional()
+void GameObjectClockPiece::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectClockPiece::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectClockPiece::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectClockPiece::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -112,7 +116,7 @@ void GameObjectClockPiece::changeWorld(int world)
 
 void GameObjectClockPiece::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectClockPiece::hasPositionalComponent() const

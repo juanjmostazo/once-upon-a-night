@@ -349,7 +349,6 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 	if (normalAngle > mMinCollisionAngle)
 	{
-
 		if (isAllowedCollision(pGameObjectController, pGameObjectShape))
 		{
 			CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(

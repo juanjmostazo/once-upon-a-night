@@ -30,15 +30,19 @@ void GameObjectEye::setRenderComponentPositional(RenderComponentPositionalPtr pR
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectEye::setRenderComponentInitialFromPositional()
+void GameObjectEye::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectEye::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectEye::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectEye::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
@@ -68,7 +72,7 @@ void GameObjectEye::update(double elapsedSeconds)
 
 void GameObjectEye::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectEye::changeWorld(int world)

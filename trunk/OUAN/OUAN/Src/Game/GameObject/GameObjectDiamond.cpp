@@ -29,15 +29,19 @@ void GameObjectDiamond::setRenderComponentPositional(RenderComponentPositionalPt
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectDiamond::setRenderComponentInitialFromPositional()
+void GameObjectDiamond::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectDiamond::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectDiamond::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectDiamond::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -112,7 +116,7 @@ void GameObjectDiamond::changeWorld(int world)
 
 void GameObjectDiamond::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const

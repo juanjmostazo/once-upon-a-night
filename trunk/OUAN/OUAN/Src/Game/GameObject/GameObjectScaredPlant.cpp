@@ -30,16 +30,19 @@ void GameObjectScaredPlant::setRenderComponentPositional(RenderComponentPosition
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectScaredPlant::setRenderComponentInitialFromPositional()
+void GameObjectScaredPlant::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
-
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectScaredPlant::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectScaredPlant::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectScaredPlant::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
@@ -69,7 +72,7 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 
 void GameObjectScaredPlant::reset()
 {
-
+	GameObject::reset();
 }
 
 void GameObjectScaredPlant::changeWorld(int world)

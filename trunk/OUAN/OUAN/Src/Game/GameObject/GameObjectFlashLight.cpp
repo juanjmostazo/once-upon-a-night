@@ -37,10 +37,10 @@ void GameObjectFlashLight::setRenderComponentPositional(RenderComponentPositiona
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectFlashLight::setRenderComponentInitialFromPositional()
+void GameObjectFlashLight::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentLightPtr GameObjectFlashLight::getRenderComponentLight() const
@@ -66,6 +66,11 @@ RenderComponentPositionalPtr GameObjectFlashLight::getLightPositionalComponent()
 RenderComponentPositionalPtr GameObjectFlashLight::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectFlashLight::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectFlashLight::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
@@ -97,7 +102,7 @@ void GameObjectFlashLight::changeWorld(int world)
 
 void GameObjectFlashLight::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectFlashLight::hasPositionalComponent() const

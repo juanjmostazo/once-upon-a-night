@@ -40,15 +40,19 @@ void GameObjectTerrainTriangle::setRenderComponentPositional(RenderComponentPosi
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTerrainTriangle::setRenderComponentInitialFromPositional()
+void GameObjectTerrainTriangle::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectTerrainTriangle::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectTerrainTriangle::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
@@ -82,7 +86,7 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 
 void GameObjectTerrainTriangle::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectTerrainTriangle::hasPositionalComponent() const

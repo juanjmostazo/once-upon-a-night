@@ -29,15 +29,19 @@ void GameObjectParticleSystem::setRenderComponentPositional(RenderComponentPosit
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectParticleSystem::setRenderComponentInitialFromPositional()
+void GameObjectParticleSystem::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectParticleSystem::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectParticleSystem::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectParticleSystem::changeWorld(int world)
@@ -81,7 +85,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 
 void GameObjectParticleSystem::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectParticleSystem::hasPositionalComponent() const

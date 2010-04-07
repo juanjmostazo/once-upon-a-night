@@ -39,15 +39,19 @@ void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectPortal::setRenderComponentInitialFromPositional()
+void GameObjectPortal::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectPortal::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectPortal::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -108,7 +112,7 @@ void GameObjectPortal::changeWorld(int world)
 
 void GameObjectPortal::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectPortal::hasPositionalComponent() const

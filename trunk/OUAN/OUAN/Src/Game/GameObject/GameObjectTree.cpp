@@ -29,15 +29,19 @@ void GameObjectTree::setRenderComponentPositional(RenderComponentPositionalPtr p
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTree::setRenderComponentInitialFromPositional()
+void GameObjectTree::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectTree::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectTree::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -108,7 +112,7 @@ void GameObjectTree::changeWorld(int world)
 
 void GameObjectTree::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectTree::hasPositionalComponent() const

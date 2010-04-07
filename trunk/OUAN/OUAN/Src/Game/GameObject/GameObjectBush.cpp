@@ -39,15 +39,19 @@ void GameObjectBush::setRenderComponentPositional(RenderComponentPositionalPtr p
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectBush::setRenderComponentInitialFromPositional()
+void GameObjectBush::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectBush::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectBush::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -126,7 +130,7 @@ void GameObjectBush::changeWorld(int world)
 
 void GameObjectBush::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectBush::hasPositionalComponent() const

@@ -39,15 +39,19 @@ void GameObjectDiamondTree::setRenderComponentPositional(RenderComponentPosition
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectDiamondTree::setRenderComponentInitialFromPositional()
+void GameObjectDiamondTree::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	mRenderComponentInitial->setPosition(mRenderComponentPositional->getPosition());
-	mRenderComponentInitial->setOrientation(mRenderComponentPositional->getOrientation());
+	mRenderComponentInitial=pRenderComponentInitial;
 }
 
 RenderComponentPositionalPtr GameObjectDiamondTree::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
+}
+
+RenderComponentInitialPtr GameObjectDiamondTree::getRenderComponentInitial() const
+{
+	return mRenderComponentInitial;
 }
 
 void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -126,7 +130,7 @@ void GameObjectDiamondTree::changeWorld(int world)
 
 void GameObjectDiamondTree::reset()
 {
-
+	GameObject::reset();
 }
 
 bool GameObjectDiamondTree::hasPositionalComponent() const

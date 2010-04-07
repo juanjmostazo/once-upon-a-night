@@ -11,7 +11,7 @@ GameObject::GameObject(const std::string& name,const std::string& type)
 {
 	mName=name;
 	mType=type;
-	mEnabled=true;
+	reset();
 }
 
 GameObject::~GameObject()
@@ -26,7 +26,7 @@ void GameObject::destroy()
 
 void GameObject::reset()
 {
-
+	mEnabled=true;
 }
 
 void GameObject::update(double elapsedSeconds)
