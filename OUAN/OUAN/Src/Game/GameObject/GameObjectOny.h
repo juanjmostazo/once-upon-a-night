@@ -9,7 +9,6 @@
 
 namespace OUAN
 {
-
 	const int STATE_ONY_IDLE=0;
 	const int STATE_ONY_WALKS=1;
 	const int STATE_ONY_JUMPS=2;

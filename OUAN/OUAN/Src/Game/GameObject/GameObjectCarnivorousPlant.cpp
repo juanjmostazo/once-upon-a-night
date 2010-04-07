@@ -83,6 +83,14 @@ void GameObjectCarnivorousPlant::update(double elapsedSeconds)
 void GameObjectCarnivorousPlant::reset()
 {
 	GameObject::reset();
+
+	if (!mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+
+	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 }
 
 void GameObjectCarnivorousPlant::changeWorld(int world)

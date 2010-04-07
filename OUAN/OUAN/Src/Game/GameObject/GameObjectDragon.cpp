@@ -83,6 +83,14 @@ void GameObjectDragon::update(double elapsedSeconds)
 void GameObjectDragon::reset()
 {
 	GameObject::reset();
+
+	if (!mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+
+	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 }
 
 void GameObjectDragon::changeWorld(int world)
