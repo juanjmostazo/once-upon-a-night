@@ -6,8 +6,8 @@
 #include <NxOgre.h>
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
-#include <NxController.h>
-#include <NxActor.h>
+//#include <NxController.h>
+//#include <NxActor.h>
 
 namespace OUAN
 {
