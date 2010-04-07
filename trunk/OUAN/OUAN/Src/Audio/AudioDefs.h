@@ -19,6 +19,8 @@ namespace OUAN
 	//Audio resources path
 	const std::string SOUND_RESOURCES_PATH="../../Resources/Music/";
 
+	const std::string SOUND_CONFIG_FILE="../../Config/audio-cfg.xml";
+
 	//Sound vector size info
 	const int INITIAL_VECTOR_SIZE=100;
 	const int INCREASE_VECTOR_SIZE=20;
@@ -60,6 +62,26 @@ namespace OUAN
 		SOUND_FLAG_3D		= 0x4,
 		SOUND_FLAG_STREAM	= 0x8
 	} TSoundFlag;
+
+	// Audio config file keys
+	const std::string CONFIG_KEYS_DISTANCE_FACTOR="DISTANCE_FACTOR";
+	const std::string CONFIG_KEYS_DOPPLER_SCALE="DOPPLER_SCALE";
+	const std::string CONFIG_KEYS_ROLLOFF_SCALE="ROLLOFF_SCALE";
+
+	const std::string CONFIG_KEYS_MASTER_NUM_CHANNELS="MASTER_NUM_CHANNELS";
+	const std::string CONFIG_KEYS_MASTER_VOLUME="MASTER_VOLUME";
+	const std::string CONFIG_KEYS_MASTER_PITCH="MASTER_PITCH";
+	const std::string CONFIG_KEYS_MASTER_ENABLED="MASTER_ENABLED";
+
+	const std::string CONFIG_KEYS_MUSIC_VOLUME="MUSIC_VOLUME";
+	const std::string CONFIG_KEYS_MUSIC_PITCH="MUSIC_PITCH";
+	const std::string CONFIG_KEYS_MUSIC_ENABLED="MUSIC_ENABLED";
+	const std::string CONFIG_KEYS_MUSIC_NUM_CHANNELS="MUSIC_NUM_CHANNELS";
+
+	const std::string CONFIG_KEYS_SFX_VOLUME="SFX_VOLUME";
+	const std::string CONFIG_KEYS_SFX_PITCH="SFX_PITCH";
+	const std::string CONFIG_KEYS_SFX_ENABLED="SFX_ENABLED";
+	const std::string CONFIG_KEYS_SFX_NUM_CHANNELS="SFX_NUM_CHANNELS";
 
 }
 #endif

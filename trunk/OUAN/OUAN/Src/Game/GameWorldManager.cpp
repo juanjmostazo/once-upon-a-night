@@ -304,6 +304,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectBeeButterflyContainer.clear();
 	mGameObjectCarnivorousPlantContainer.clear();
 	mGameObjectSnakeCreeperContainer.clear();
+	mGameObjectTentetiesoContainer.clear();
 
 	mGameObjectPhysicsCharacterContainer.clear();
 	mGameObjectPhysicsComplexConvexContainer.clear();

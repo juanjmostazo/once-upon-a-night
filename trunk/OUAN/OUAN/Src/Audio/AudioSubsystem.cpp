@@ -7,6 +7,38 @@
 
 using namespace OUAN;
 
+//--- Audio subsystem config data
+void TAudioSubsystemConfigData::set(ConfigurationPtr config)
+{
+	if (config.get() && !config->isEmpty())
+	{		
+		// 3D sound attributes
+		try
+		{
+			mDopplerScale=config->parseDouble(CONFIG_KEYS_DOPPLER_SCALE);
+			mDistanceFactor=config->parseDouble(CONFIG_KEYS_DISTANCE_FACTOR);
+			mRollOffScale=config->parseDouble(CONFIG_KEYS_ROLLOFF_SCALE);
+			mMasterVolume=config->parseDouble(CONFIG_KEYS_MASTER_VOLUME);
+			mMasterPitch=config->parseDouble(CONFIG_KEYS_MASTER_PITCH);
+			mMasterVolumeEnabled=config->parseBool(CONFIG_KEYS_MASTER_ENABLED);
+			mNumChannels=config->parseInt(CONFIG_KEYS_MASTER_NUM_CHANNELS);
+			mMusicVolume=config->parseDouble(CONFIG_KEYS_MUSIC_VOLUME);
+			mMusicPitch=config->parseDouble(CONFIG_KEYS_MUSIC_PITCH);
+			mMusicVolumeEnabled=config->parseBool(CONFIG_KEYS_MUSIC_ENABLED);
+			mMusicNumChannels=config->parseInt(CONFIG_KEYS_MUSIC_NUM_CHANNELS);
+			mSfxVolume=config->parseDouble(CONFIG_KEYS_SFX_VOLUME);
+			mSfxPitch=config->parseDouble(CONFIG_KEYS_SFX_PITCH);
+			mSfxVolumeEnabled=config->parseBool(CONFIG_KEYS_SFX_ENABLED);
+			mSfxNumChannels=config->parseInt(CONFIG_KEYS_SFX_NUM_CHANNELS);
+		}
+		catch (const std::exception& e)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage("[AudioSubsystemConfigData::set]An error happened while parsing the audio config file");
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+		}
+	}
+}
+
 //--- FMOD'S VECTOR CONVERSION AUXILIARY FUNCTIONS
 
 FMOD_VECTOR FMODHelper::toFMODVec(const Ogre::Vector3 &vec)
@@ -206,7 +238,7 @@ bool ChannelGroup::setPaused(bool val)
 }
 FMOD::Channel* ChannelGroup::getChannel(int index)
 {
-	if (index>=0 && index<(int)mChannels.size())
+	if (index>=0 && (unsigned int)index<mChannels.size())	
 		return mChannels[index]->getChannel();
 	return NULL;
 }
@@ -425,12 +457,13 @@ bool AudioSubsystem::addSound(const TSoundData& desc)
 		}
 		//m_logFile.push_back("AddSound" + desc.id + " fn: " + desc.fn);
 		FMOD::Sound* soundPtr;
+		std::string filename=AUDIO_RESOURCE_PATH+desc.mFileName;
 		if(desc.mStream)
 		{
-			result = mSystem->createStream(desc.mFileName.c_str(), flag, 0, &soundPtr);
+			result = mSystem->createStream(filename.c_str(), flag, 0, &soundPtr);
 		}else{
 			//MessageBox(0,desc.fn.c_str(),"FILE",0);
-			result = mSystem->createSound(desc.mFileName.c_str(), flag,0, &soundPtr);
+			result = mSystem->createSound(filename.c_str(), flag,0, &soundPtr);
 		}
 		if (result == FMOD_OK)
 		{
@@ -752,4 +785,37 @@ bool AudioSubsystem::stopSound(int channelIndex)
 ApplicationPtr AudioSubsystem::getApplication()
 {
 	return mApp;
+}
+
+void AudioSubsystem::removeSound(const std::string& soundID)
+{
+	if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
+	{
+		SoundPtr sound= mSoundMap[soundID];
+		sound->mFMODSound->release();
+		sound.reset();
+		mSoundMap.erase(soundID);
+	}
+}
+void AudioSubsystem::loadSounds(std::vector<TSoundData> soundBank)
+{
+	unloadSounds();
+	if (!soundBank.empty())
+	{
+		for (std::vector<TSoundData>::iterator it = soundBank.begin();it!=soundBank.end();++it)
+		{
+
+			addSound(*it);		
+		}
+	}
+}
+void AudioSubsystem::unloadSounds()
+{
+	// NOTE: Check if channels should be released as well, in case FMOD
+	// does not handle that.
+	for(TSoundMapIterator i=mSoundMap.begin();i!=mSoundMap.end(); i++)
+	{
+		(i->second)->mFMODSound->release();
+	}
+	mSoundMap.clear();	
 }

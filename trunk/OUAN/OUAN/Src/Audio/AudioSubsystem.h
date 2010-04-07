@@ -5,6 +5,8 @@
 
 namespace OUAN
 {
+	const std::string AUDIO_RESOURCE_PATH="../../Resources/Music/";
+
 	typedef struct  
 	{
 		std::string mId;
@@ -104,6 +106,8 @@ namespace OUAN
 		bool mMusicVolumeEnabled;
 		int mMusicNumChannels;
 
+		void set(ConfigurationPtr config);
+
 	} TAudioSubsystemConfigData;
 
 	/// Audio manager. It controls reproduction of sounds
@@ -131,6 +135,10 @@ namespace OUAN
 			const std::string& sound,
 			const std::string& channelID=SM_CHANNEL_SFX_GROUP,
 			int soundFlag=SOUND_FLAG_HARDWARE);
+		
+		virtual void removeSound(const std::string& soundID);
+		virtual void loadSounds(std::vector<TSoundData> soundBank);
+		virtual void unloadSounds();
 
 		virtual bool setChannelGroupVolume(const std::string& channelGroupID, double volume);
 		virtual bool setChannelGroupPitch(const std::string& channelGroupID, double pitch);

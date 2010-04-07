@@ -91,6 +91,13 @@ namespace OUAN
 		TConfigMapConstIterator  end() const;
 
 		std::string operator[](const std::string& key);
+
+		bool isEmpty() const;
+		double parseDouble(const std::string& key);
+		int parseInt(const std::string& key);
+		long parseLong(const std::string& key);
+		float parseFloat(const std::string& key);
+		bool parseBool(const std::string& key);
 	};
 }
 
