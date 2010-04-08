@@ -1,6 +1,7 @@
 #include "TrajectoryManager.h"
 #include "Trajectory.h"
 #include "TrajectoryNode.h"
+#include "WalkabilityMap.h"
 #include "../RenderSubsystem.h"
 using namespace OUAN;
 
@@ -43,11 +44,21 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 	}
 }
 
+void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters)
+{
+	WalkabilityMap * pWalkabilityMap;
+
+	pWalkabilityMap= new WalkabilityMap();
+
+
+}
+
 void TrajectoryManager::clear()
 {
-	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories");
+	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories and Walkability maps");
 
 	trajectoryContainer.clear();
+	walkabilityMapContainer.clear();
 }
 
 Trajectory * TrajectoryManager::getTrajectoryInstance(std::string name)
@@ -86,3 +97,13 @@ bool TrajectoryManager::hasTrajectory(std::string name)
 
 	return it!=trajectoryContainer.end();
 }
+
+bool TrajectoryManager::hasWalkabilityMap(std::string name)
+{
+	TWalkabilityMapIterator it;
+
+	it=walkabilityMapContainer.find(name);
+
+	return it!=walkabilityMapContainer.end();
+}
+

@@ -2,7 +2,6 @@
 #define XMLParserH_H
 
 #include "../OUAN.h"
-#include "XMLTrajectory.h"
 namespace OUAN
 {
 	class XMLParser
@@ -21,6 +20,9 @@ namespace OUAN
 			//Trajectory Parsing
 			void parseTrajectory(TiXmlElement *XMLTrajectoryStartNode);
 			TiXmlElement * findTrajectoryNode(std::string trajectoryNodeName);
+
+			//WalkabilityMapParsing
+			void parseWalkabilityMapNode(TiXmlElement *XMLTrajectoryStartNode);
 
 			//Game Object names processors
 			bool isDreams(std::string worldName,std::string gameObjectType);
@@ -59,12 +61,13 @@ namespace OUAN
 			void parseLevel(String SceneName);
 
 			//Map containing all the parsed game objects
-			std::map<std::string,XMLGameObject> XMLGameObjectContainer;
-			typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
+			XMLGameObjectContainer mXMLGameObjectContainer;
 
 			//Map containing all the parsed trajectories
-			std::map<std::string,XMLTrajectory> XMLTrajectoryContainer;
-			typedef std::map<std::string,XMLTrajectory>::iterator XMLTrajectoryContainerIterator;
+			XMLTrajectoryContainer mXMLTrajectoryContainer;
+
+			//Map containing all the parsed walkability maps
+			XMLWalkabilityMapContainer mXMLWalkabilityMapContainer;
 	};
 
 }

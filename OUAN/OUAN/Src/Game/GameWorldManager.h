@@ -119,8 +119,11 @@ namespace OUAN
 		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
 		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
 
-		//trajectory Creator
+		//Trajectory Creator
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
+
+		//Walkability Map Creator
+		void createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters);
 
 		/// Update world state
 		/// @param elapsedTime time since last update

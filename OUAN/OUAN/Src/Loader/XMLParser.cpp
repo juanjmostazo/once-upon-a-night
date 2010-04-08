@@ -1,6 +1,7 @@
 #include "XMLParser.h"
 #include "XMLGameObject.h"
 #include "XMLTrajectory.h"
+#include "XMLWalkabilityMap.h"
 
 using namespace OUAN;
 
@@ -16,12 +17,14 @@ void XMLParser::clearLevelInfo()
 {
 	XMLGameObjectContainerIterator it;
 
-	XMLGameObjectContainer.clear();
+	mXMLGameObjectContainer.clear();
 	gameObjectTypes.clear();
 	XMLCustomProperties.clear();
-	XMLTrajectoryContainer.clear();
 
-	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
+	mXMLTrajectoryContainer.clear();
+	mXMLWalkabilityMapContainer.clear();
+
+	for(it = mXMLGameObjectContainer.begin(); it != mXMLGameObjectContainer.end(); it++)
 	{
 		it->second.XMLNodeDreams=NULL;
 		it->second.XMLNodeNightmares=NULL;
@@ -148,7 +151,7 @@ void XMLParser::setNames()
 {
 	XMLGameObjectContainerIterator it;
 
-	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
+	for(it = mXMLGameObjectContainer.begin(); it != mXMLGameObjectContainer.end(); it++)
 	{
 		//special cases
 		if(it->second.gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
@@ -179,7 +182,7 @@ void XMLParser::addXMLNodeCustomProperties()
 {
 	XMLGameObjectContainerIterator it;
 
-	for(it = XMLGameObjectContainer.begin(); it != XMLGameObjectContainer.end(); it++)
+	for(it = mXMLGameObjectContainer.begin(); it != mXMLGameObjectContainer.end(); it++)
 	{
 		it->second.XMLNodeCustomProperties=getXMLCustomProperties(it->second.gameObjectType);
 	}
@@ -242,6 +245,13 @@ TiXmlElement * XMLParser::findTrajectoryNode(std::string trajectoryNodeName)
 	return NULL;
 }
 
+void XMLParser::parseWalkabilityMapNode(TiXmlElement *XMLWalkabilityMapNode)
+{
+	String walkabilityMapName = getPropertyString(XMLWalkabilityMapNode,"walkability::name");
+
+	mXMLWalkabilityMapContainer[walkabilityMapName].walkabilityMapNodes.push_back(XMLWalkabilityMapNode);
+}
+
 void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 {
 	int i;
@@ -253,7 +263,7 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 
  	try
 	{
-		XMLTrajectoryContainer[trajectoryName].name=trajectoryName;
+		mXMLTrajectoryContainer[trajectoryName].name=trajectoryName;
 
 		//process all Trajectory Nodes
 		i=0;
@@ -268,7 +278,7 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 			if(currentTrajectoryNode.compare("")==0) break;
 
 			//find current trajectory node
-			XMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findTrajectoryNode(currentTrajectoryNode));
+			mXMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findTrajectoryNode(currentTrajectoryNode));
 
 			i++;
 		}
@@ -298,6 +308,14 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 		{
 			//Trajectory start node
 			parseTrajectory(XMLNode);
+		}
+
+		//Parse Trajectory
+		String walkabilityMapName = getPropertyString(XMLNode,"walkability::name",false);
+		if(walkabilityMapName.compare("")!=0)
+		{
+			//Trajectory start node
+			parseWalkabilityMapNode(XMLNode);
 		}
 		return;
 	}
@@ -336,42 +354,42 @@ void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjec
 	if(gameObjectType.compare(GAME_OBJECT_TYPE_SCENE)==0)
 	{
 		baseName=worldName;
-		XMLGameObjectContainer[baseName].name=baseName;
-		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+		mXMLGameObjectContainer[baseName].name=baseName;
+		mXMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
 
-		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+		mXMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 	}
 	else if(gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
 	{
 		baseName=worldName;
-		XMLGameObjectContainer[baseName].name=baseName;
-		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+		mXMLGameObjectContainer[baseName].name=baseName;
+		mXMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
 
-		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+		mXMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 	}
 	else if(gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
 	{
 		baseName=worldName;
-		XMLGameObjectContainer[baseName].name=baseName;
-		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+		mXMLGameObjectContainer[baseName].name=baseName;
+		mXMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
 
-		XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+		mXMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 	}
 	//default case
 	else
 	{
 		baseName=getBaseName(worldName,gameObjectType);
 
-		XMLGameObjectContainer[baseName].name=baseName;
-		XMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
+		mXMLGameObjectContainer[baseName].name=baseName;
+		mXMLGameObjectContainer[baseName].gameObjectType=gameObjectType;
 
 		if(isDreams(worldName,gameObjectType))
 		{
-			XMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
+			mXMLGameObjectContainer[baseName].XMLNodeDreams=XMLNode;
 		}
 		else if(isNightmares(worldName,gameObjectType))
 		{
-			XMLGameObjectContainer[baseName].XMLNodeNightmares=XMLNode;
+			mXMLGameObjectContainer[baseName].XMLNodeNightmares=XMLNode;
 		}
 	}
 
