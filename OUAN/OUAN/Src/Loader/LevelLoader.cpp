@@ -430,12 +430,18 @@ TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElemen
 
 	TWalkabilityMapNodeParameters tWalkabilityMapNodeParameters;
 
+	//Get Walkability Map node name
+	tWalkabilityMapNodeParameters.nodeName=getAttrib(XMLNode, "name");
+
 	//process and load all WalkabilityMapNode's Neightbors
-	i=0;
+	i=1;
 	while(true)
 	{
 		//Process Neightbor
-		currentNeighborName=getPropertyString(XMLNode,"walkability"+StringConverter::toString(i)+"::node",false);
+		currentNeighborName=getPropertyString(XMLNode,"walkability::node#"+StringConverter::toString(i),false);
+
+
+		//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] currentNeighborName" +currentNeighborName);
 
 		//there is no more neighbors
 		if(currentNeighborName.compare("")==0) break;

@@ -3,11 +3,6 @@
 
 #include "../../OUAN.h"
 
-//#include <iostream> // std::cout
-//#include <utility> // std::pair
-//#include <boost/graph/graph_traits.hpp>
-//#include <boost/graph/adjacency_list.hpp>
-//#include <boost/graph/topological_sort.hpp>
 
 namespace OUAN
 {
@@ -22,12 +17,6 @@ namespace OUAN
 
 		Ogre::SceneManager * mSceneManager;
 
-	 // using namespace boost;
-	 // typedef adjacency_list<vecS, vecS, bidirectionalS, 
-		//  property<vertex_color_t, default_color_type>
-		//> Graph;
-	 // Graph g(used_by, used_by + sizeof(used_by) / sizeof(Edge), N);
-	 // typedef graph_traits<Graph>::vertex_descriptor Vertex;
 
 	public:
 

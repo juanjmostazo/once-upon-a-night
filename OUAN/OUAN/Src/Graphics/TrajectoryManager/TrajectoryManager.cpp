@@ -48,9 +48,13 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 {
 	WalkabilityMap * pWalkabilityMap;
 
+	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating walkability map "+tWalkabilityMapParameters.name);
+
 	pWalkabilityMap= new WalkabilityMap();
 
+	pWalkabilityMap->init(tWalkabilityMapParameters);
 
+	walkabilityMapContainer[tWalkabilityMapParameters.name]=pWalkabilityMap;
 }
 
 void TrajectoryManager::clear()
