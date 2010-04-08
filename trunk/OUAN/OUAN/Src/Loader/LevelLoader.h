@@ -31,6 +31,11 @@ namespace OUAN
 		void processTrajectory(XMLTrajectory *trajectory);
 		TTrajectoryNodeParameters processTrajectoryNode(TiXmlElement *XMLNode);
 
+		//ProcessWalkabilityMaps
+		void processWalkabilityMaps();
+		void processWalkabilityMap(XMLWalkabilityMap *walkabilityMap);
+		TWalkabilityMapNodeParameters processWalkabilityMapNode(TiXmlElement *XMLNode);
+
 		double DEFAULT_TIME_TO_NEXT_NODE;
 
 		//Game Object Processors

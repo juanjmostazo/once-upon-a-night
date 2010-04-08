@@ -1,10 +1,13 @@
 #include "LevelLoader.h"
 #include "XMLParser.h"
+#include "XMLTrajectory.h"
+#include "XMLWalkabilityMap.h"
 #include "XMLGameObject.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryNode.h"
+#include "../Graphics/TrajectoryManager/WalkabilityMap.h"
 #include "../Component/Component.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectBee_Butterfly.h"
@@ -95,6 +98,9 @@ void LevelLoader::loadLevel(String level)
 	//Process Level's Trajectories
 	processTrajectories();
 
+	//Process Level's Walkability Maps
+	processWalkabilityMaps();
+
 	//clear information, as we do not need it anymore
 	mXMLParser.clearLevelInfo();
 
@@ -105,7 +111,7 @@ void LevelLoader::processGameObjects()
 {
 	XMLGameObjectContainerIterator it;
 
-	for(it = mXMLParser.XMLGameObjectContainer.begin(); it !=mXMLParser.XMLGameObjectContainer.end(); it++)
+	for(it = mXMLParser.mXMLGameObjectContainer.begin(); it !=mXMLParser.mXMLGameObjectContainer.end(); it++)
 	{
 		processGameObject(&it->second);
 	}
@@ -318,7 +324,7 @@ void LevelLoader::processTrajectories()
 
 	try
 	{
-		for(it = mXMLParser.XMLTrajectoryContainer.begin(); it !=mXMLParser.XMLTrajectoryContainer.end(); it++)
+		for(it = mXMLParser.mXMLTrajectoryContainer.begin(); it !=mXMLParser.mXMLTrajectoryContainer.end(); it++)
 		{
 			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading Trajectory "+it->first);
 
@@ -379,6 +385,68 @@ void LevelLoader::processTrajectory(XMLTrajectory *pXMLTrajectory)
 
 	//Create Trajectory 
 	mGameWorldManager->createTrajectory(tTrajectoryParameters);
+}
+
+void LevelLoader::processWalkabilityMaps()
+{
+	XMLWalkabilityMapContainerIterator it;
+
+	try
+	{
+		for(it = mXMLParser.mXMLWalkabilityMapContainer.begin(); it !=mXMLParser.mXMLWalkabilityMapContainer.end(); it++)
+		{
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading Walkability Map "+it->first);
+
+			processWalkabilityMap(&it->second);
+
+		}
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Walkability Map "+it->first+": "+error);
+	}
+}
+
+void LevelLoader::processWalkabilityMap(XMLWalkabilityMap * walkabilityMap)
+{
+	unsigned int i;
+
+	TWalkabilityMapParameters tWalkabilityMapParameters;
+
+	for(i=0;i<walkabilityMap->walkabilityMapNodes.size();i++)
+	{
+		tWalkabilityMapParameters.walkabilityNodes.push_back(
+			processWalkabilityMapNode(walkabilityMap->walkabilityMapNodes[i]));
+	}
+
+	//Create Walkability Map
+	mGameWorldManager->createWalkabilityMap(tWalkabilityMapParameters);
+}
+
+TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElement *XMLNode)
+{
+	int i;
+	String currentNeighborName;
+
+	TWalkabilityMapNodeParameters tWalkabilityMapNodeParameters;
+
+	//process and load all WalkabilityMapNode's Neightbors
+	i=0;
+	while(true)
+	{
+		//Process Neightbor
+		currentNeighborName=getPropertyString(XMLNode,"walkability"+StringConverter::toString(i)+"::node",false);
+
+		//there is no more neighbors
+		if(currentNeighborName.compare("")==0) break;
+
+		//Add neighbor
+		tWalkabilityMapNodeParameters.neighbors.push_back(currentNeighborName);
+
+		i++;
+	}
+
+	return tWalkabilityMapNodeParameters;
 }
 
 void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)

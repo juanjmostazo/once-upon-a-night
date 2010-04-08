@@ -559,17 +559,28 @@ namespace OUAN
 		class TrajectoryNode;
 		class TTrajectoryNodeParameters;
 
+		class WalkabilityMap;
+		class TWalkabilityMapParameters;
+		class TWalkabilityMapNodeParameters;
+
 		class TrajectoryManager;
 		typedef boost::shared_ptr<TrajectoryManager> TrajectoryManagerPtr;
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
+
 		class XMLGameObject;
+		typedef std::map<std::string,XMLGameObject> XMLGameObjectContainer;
 		typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
 
 		class XMLTrajectory;
+		typedef std::map<std::string,XMLTrajectory> XMLTrajectoryContainer;
 		typedef std::map<std::string,XMLTrajectory>::iterator XMLTrajectoryContainerIterator;
+
+		class XMLWalkabilityMap;
+		typedef std::map<std::string,XMLWalkabilityMap> XMLWalkabilityMapContainer;
+		typedef std::map<std::string,XMLWalkabilityMap>::iterator XMLWalkabilityMapContainerIterator;
 
 		class XMLParser;
 		class Configuration;

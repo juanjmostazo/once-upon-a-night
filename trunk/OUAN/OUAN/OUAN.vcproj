@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -242,6 +242,10 @@
 					RelativePath=".\Src\Loader\XMLTrajectory.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\Src\Loader\XMLWalkabilityMap.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Core"
@@ -383,6 +387,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\TrajectoryManager\TrajectoryNode.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\TrajectoryManager\WalkabilityMap.cpp"
 						>
 					</File>
 				</Filter>
@@ -792,6 +800,10 @@
 					RelativePath=".\Src\Loader\XMLTrajectory.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Src\Loader\XMLWalkabilityMap.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Core"
@@ -933,6 +945,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\TrajectoryManager\TrajectoryNode.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\TrajectoryManager\WalkabilityMap.h"
 						>
 					</File>
 				</Filter>

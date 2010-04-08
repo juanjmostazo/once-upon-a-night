@@ -24,7 +24,7 @@
   <CAMERASPEED value="20"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="300.095 170.913 5.29539" orientation="-0.138426 0.0225573 0.977244 0.159138"></OPTION>
+    <OPTION id="1" position="281.213 170.936 50.7325" orientation="-0.667385 0.226543 0.671779 0.22801"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -98,9 +98,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.138426 0.0225573 0.977245 0.159138"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.667389 0.226544 0.671782 0.228011"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="300.095 170.913 5.29539"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="281.213 170.936 50.7325"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -5830,6 +5830,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="185247344" name="Marker#24" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="298.904 156.189 38.2728"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::name" type="7" value="map1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#1" type="7" value="Marker#20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="572649280" name="Marker#4" typename="Marker Object" parentnode="Trajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
@@ -5855,6 +5872,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::time to next node" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="366801984" name="Marker#23" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="316.31 149.124 64.4091"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::name" type="7" value="map1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#1" type="7" value="Marker#22" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="Marker#21" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5897,6 +5931,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::time to next node" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="254890592" name="Marker#22" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="307.617 144.839 55.5609"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::name" type="7" value="map1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#1" type="7" value="Marker#23" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="Marker#20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5951,6 +6002,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::time to next node" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="71535384" name="Marker#21" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="315.95 153.981 60.5397"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::name" type="7" value="map1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#1" type="7" value="Marker#20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="Marker#23" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6048,6 +6116,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::time to next node" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="452131712" name="Marker#20" typename="Marker Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0.2 0.2 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="305.876 151.937 49.7646"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::name" type="7" value="map1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#1" type="7" value="Marker#24" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="Marker#21" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="Marker#22" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

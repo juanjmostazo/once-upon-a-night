@@ -47,6 +47,7 @@
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
+#include "../Graphics/TrajectoryManager/WalkabilityMap.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -2639,6 +2640,11 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
 {
 	mApp->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);
+}
+
+void GameWorldManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters)
+{
+	mApp->getTrajectoryManager()->createWalkabilityMap(tWalkabilityMapParameters);
 }
 
 bool GameWorldManager::isGameOver()const
