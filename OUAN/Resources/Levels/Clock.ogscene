@@ -16,6 +16,7 @@
       <DIRECTORY type="FileSystem" value="../Graphics/Particles"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Shaders"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Textures"></DIRECTORY>
+	  <DIRECTORY type="FileSystem" value="../Graphics/Skeletons"></DIRECTORY>	  
       <DIRECTORY type="FileSystem" value="./"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="./Custom Properties"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
