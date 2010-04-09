@@ -6,8 +6,8 @@
 #include <utility> // std::pair
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
-#include <boost/graph/topological_sort.hpp>
-#include <boost/graph/graph_utility.hpp>
+//#include <boost/graph/topological_sort.hpp>
+//#include <boost/graph/graph_utility.hpp>
 
 using namespace boost;
 
@@ -17,14 +17,26 @@ namespace OUAN
 	{
 	private:
 
+		struct VertexProperties
+		{
+			std::string name;
+		};
+
+		struct EdgeProperties
+		{
+		  double distance;
+		};
+
 		//boost Graph definitions
-		typedef adjacency_list<> Graph;
+		typedef adjacency_list<    
+			boost::vecS, boost::vecS, boost::undirectedS,
+			VertexProperties,
+			EdgeProperties
+		> Graph;
 
-		typedef graph_traits<Graph> GraphTraits;
-
-		typedef GraphTraits::vertex_descriptor Vertex;
-
-		typedef std::pair<int, int> Edge;
+		//typedef graph_traits<Graph> GraphTraits;
+		//typedef GraphTraits::vertex_descriptor Vertex;
+		//typedef std::pair<int, int> Edge;
 
 		//graph used to represent the walkability map
 		Graph mGraph;
@@ -40,7 +52,7 @@ namespace OUAN
 		WalkabilityMap();
 		~WalkabilityMap();
 
-		void init(TWalkabilityMapParameters tWalkabilityMapParameters);
+		void init(TWalkabilityMapParameters tWalkabilityMapParameters,Ogre::SceneManager * pSceneManager);
 
 	};
 
@@ -61,6 +73,8 @@ namespace OUAN
 		~TWalkabilityMapNodeParameters();
 
 		String nodeName;
+		Vector3 position;
+		Quaternion orientation;
 		std::vector<String> neighbors;
 	};
 

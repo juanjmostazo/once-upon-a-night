@@ -52,7 +52,7 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 
 	pWalkabilityMap= new WalkabilityMap();
 
-	pWalkabilityMap->init(tWalkabilityMapParameters);
+	pWalkabilityMap->init(tWalkabilityMapParameters,mSceneManager);
 
 	walkabilityMapContainer[tWalkabilityMapParameters.name]=pWalkabilityMap;
 }

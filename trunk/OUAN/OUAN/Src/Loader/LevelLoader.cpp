@@ -433,6 +433,10 @@ TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElemen
 	//Get Walkability Map node name
 	tWalkabilityMapNodeParameters.nodeName=getAttrib(XMLNode, "name");
 
+	//Get Walkability Map node properties
+	tWalkabilityMapNodeParameters.position=getPropertyVector3(XMLNode,"position");
+	tWalkabilityMapNodeParameters.orientation=getPropertyQuaternion(XMLNode,"orientation");
+
 	//process and load all WalkabilityMapNode's Neightbors
 	i=1;
 	while(true)

@@ -48,7 +48,7 @@ std::string WalkabilityMap::getNodeName(int nodeNumber)
 	return "";
 }
 
-void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters)
+void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Ogre::SceneManager * pSceneManager)
 {
 		unsigned int i,j;
 
@@ -63,38 +63,67 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters)
 		mGraph.clear();
 		mGraph = Graph(mNodeNumbers.size());
 
-		//add graph edges
+		Ogre::SceneNode * pSceneNode;
+		
+
+		//add graph edges and create graph nodes
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
 		{
+			pSceneNode=pSceneManager->getRootSceneNode()->createChildSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+			pSceneNode->setPosition(tWalkabilityMapParameters.walkabilityNodes[i].position);
+			pSceneNode->setOrientation(tWalkabilityMapParameters.walkabilityNodes[i].orientation);
+
+			//add_vertex(getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName),mGraph);
+
+			mGraph[getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName)].name=tWalkabilityMapParameters.walkabilityNodes[i].nodeName;
+
 			for(j=0;j<tWalkabilityMapParameters.walkabilityNodes[i].neighbors.size();j++)
 			{
+				Ogre::LogManager::getSingleton().logMessage("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+"-"
+					+tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]);
+
 				add_edge(getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName.c_str()),
 					getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j].c_str()),
 					mGraph);
-				Ogre::LogManager::getSingleton().logMessage("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+" "
-					+tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]);
 			}
 		}
 
-		graph_traits < adjacency_list <> >::vertex_iterator it, end;
-		graph_traits < adjacency_list <> >::adjacency_iterator ai, a_end;
-		property_map < adjacency_list <>, vertex_index_t >::type
-		index_map = get(vertex_index, mGraph);
 
-		Ogre::LogManager::getSingleton().logMessage("PRINT GRAPH");
+		Graph::vertex_descriptor v1,v2;
+		Ogre::SceneNode * pSceneNode1;
+		Ogre::SceneNode * pSceneNode2;
+		Graph::edge_descriptor e = *edges(mGraph).first;
 
-		for (tie(it, end) = vertices(mGraph); it != end; ++it) {
-			Ogre::LogManager::getSingleton().logMessage( "NODE "+getNodeName(get(index_map, *it)));
-			tie(ai, a_end) = adjacent_vertices(*it, mGraph);
-			if (ai == a_end)
-				Ogre::LogManager::getSingleton().logMessage( " has no children");
-			else
-				Ogre::LogManager::getSingleton().logMessage( " adjacent with: ");
-			for (; ai != a_end; ++ai) {
-			  Ogre::LogManager::getSingleton().logMessage( getNodeName(get(index_map, *ai)));
-			}
+		boost::graph_traits<Graph>::edge_iterator eit,eend;
+		for (tie(eit, eend) = edges(mGraph); eit != eend; ++eit) 
+		{
+			Graph::edge_descriptor e = *eit;
+
+			v1=source(e, mGraph);
+			v2=target(e, mGraph);
+			pSceneNode1=pSceneManager->getSceneNode(mGraph[v1].name);
+			pSceneNode2=pSceneManager->getSceneNode(mGraph[v2].name);
+
+			mGraph[e].distance=pSceneNode1->getPosition().distance(pSceneNode2->getPosition());
+
 		}
 
+		Ogre::LogManager::getSingleton().logMessage("PRINT GRAPH VERTICES");
+		boost::graph_traits<Graph>::vertex_iterator vit,vend;
+		for (tie(vit, vend) = vertices(mGraph); vit != vend; ++vit) 
+		{
+			Ogre::LogManager::getSingleton().logMessage(mGraph[*vit].name);
+		}
+
+		Ogre::LogManager::getSingleton().logMessage("PRINT GRAPH EDGES");
+		for (tie(eit, eend) = edges(mGraph); eit != eend; ++eit) 
+		{
+			v1=source(*eit, mGraph);
+			v2=target(*eit, mGraph);
+
+			Ogre::LogManager::getSingleton().logMessage("Edge "+mGraph[v1].name+"-"+mGraph[v2].name+
+				" distance:"+Ogre::StringConverter::toString(Ogre::Real(mGraph[*eit].distance)));
+		}
 }
 
 TWalkabilityMapParameters::TWalkabilityMapParameters()
