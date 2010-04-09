@@ -10,7 +10,7 @@ material tripollo_d
 
 			texture_unit
 			{
-				texture tripollo_d.tga
+				texture textura.tga
 			}
 		}
 
