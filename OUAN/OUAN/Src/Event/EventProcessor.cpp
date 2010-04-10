@@ -52,6 +52,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
+		
+		registerEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
+			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
 	}
 }
 
@@ -78,6 +81,8 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
+			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
 	}
 }
 
@@ -234,4 +239,9 @@ void EventProcessor::processClearQueue(ClearQueueEventPtr evt)
 {
 	if (mWorldManager)
 		mWorldManager->clearEvents();
+}
+void EventProcessor::processOnyFalls(OnyFallsEventPtr evt)
+{
+	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())
+		mWorldManager->getGameObjectOny()->decreaseLives();
 }

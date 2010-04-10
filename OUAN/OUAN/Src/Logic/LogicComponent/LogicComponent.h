@@ -29,6 +29,8 @@ namespace OUAN
 		int getState() const;
 		void setState(int state);
 
+		int getOldState(int index=0) const;
+
 		int getHealthPoints() const;
 		void setHealthPoints(int healthPoints);
 
@@ -50,7 +52,22 @@ namespace OUAN
 		int getLineOfSight() const;
 		void setLineOfSight(int lineOfSight);
 
+		int getAttackRange() const;
+		void setAttackRange(int attackRange);
+
+		int getAttackDamage() const;
+		void setAttackDamage(int attackDamage);
+
+		int getAttackDelay() const;
+		void setAttackDelay(int attackDelay);
+
+		int getColourSensitivityMask() const;
+		void setColourSensitivityMask(int colourSensitivityMask);
+
 		virtual void update(long elapsedTime);
+
+		bool isStateChanged() const;
+		void setStateChanged(bool stateChanged);
 		
 		void initStateHistory();
 	private:
@@ -72,6 +89,8 @@ namespace OUAN
 		/// Size of the number of states
 		int stateHistory[GAMESTATE_HISTORY_SIZE];
 
+		bool mStateChanged;
+
 		bool mExistsInDreams;
 		bool mExistsInNightmares;
 
@@ -81,6 +100,29 @@ namespace OUAN
 		///// Set of available attacks
 		//std::vector<TAttackData> mAttackTypes;
 		//int mSelectedAttackType;
+
+		std::string mPatrolTrajectoryName;
+		//TrajectoryPtr mPatrolTrajectory;
+
+		//
+		// TODO [ENHANCEMENT]: 
+		// Add support for a variety of attacks
+		// This will probably be a must anyway, since some enemies might
+		// sport a different behaviour depending on the world
+		//
+
+		/// Distance at which the parent object can launch its attack
+		int mAttackRange;
+		/// Damage inflicted by the attack
+		int mAttackDamage;
+		/// Minimum delay between two consecutive attacks
+		int mAttackDelay;
+
+		/// If the GO presents a nightmare variant and
+		/// will take damage when lit by the flashlight, 
+		/// This value will hold the colours that the object
+		/// will react to.
+		int mColourSensitivityMask;	
 
 	};
 	
@@ -94,12 +136,18 @@ namespace OUAN
 		bool existsInDreams;
 		bool existsInNightmares;
 
+		bool hasPatrolTrajectory;
+
 		std::string scriptFilename;
 		std::string scriptFunction;
 		int defaultState;
 		int numLives;
 		int healthPoints;
 		int lineOfSight;
+		int attackDelay;
+		int attackRange;
+		int attackDamage;
+		int colourSensitivityMask;	
 	};
 }
 

@@ -32,6 +32,10 @@ namespace OUAN
 		EventManagerPtr mEventManager;
 
 		double distance;
+		int mSelectedColour;
+		int mDamage;
+		int mAttackRange;//distance?
+		double mAttackAngle;//flashlight cone angle
 
 		//TODO: think what happens when world changes with the rendercomponent
 	public:

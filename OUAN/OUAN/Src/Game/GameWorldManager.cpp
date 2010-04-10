@@ -2783,9 +2783,6 @@ void GameWorldManager::lose()
 
 void GameWorldManager::onyDied()
 {
-	//TODO: Remove next two lines
-	//setGameOver(true);
-	//setGameBeaten(false);
 	//TODO: Reset Ony and every other game object that needs it.
 	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
 	resetAll();

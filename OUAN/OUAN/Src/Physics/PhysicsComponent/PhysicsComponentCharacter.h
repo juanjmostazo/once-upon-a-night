@@ -29,6 +29,9 @@ namespace OUAN
 		void setNextMovement(NxOgre::Vec3 nextMovement);
 		NxOgre::Vec3 getNextMovement();
 
+		void setLastMovement(NxOgre::Vec3 lastMovement);
+		NxOgre::Vec3 getLastMovement();
+
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
 		void setQueryFlags(QueryFlags queryFlags);
@@ -45,6 +48,8 @@ namespace OUAN
 
 		/// Entity next movement, will be updated and reset to zero at update()
 		NxOgre::Vec3 mNextMovement;
+		/// Entiti's last movement: it'll be used to follow a path.
+		NxOgre::Vec3 mLastMovement;
 
 		// Physics states
 		bool mJumping;

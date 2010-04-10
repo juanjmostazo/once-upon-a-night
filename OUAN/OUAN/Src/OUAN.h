@@ -248,7 +248,9 @@ namespace OUAN
 
 		////////////////////////////////////////////////////////////////////
 
-		const int HIT_RECOVERY_TIME=500000;
+		const int HIT_RECOVERY_TIME=500;
+		const int MIN_RANDOM_MOVEMENT_DELAY=500;
+		const int MAX_RANDOM_MOVEMENT_DELAY=800;
 
 		class GameObjectScene;
 		class TGameObjectSceneParameters;
@@ -537,6 +539,9 @@ namespace OUAN
 		class OnyDiesEvent;
 		typedef boost::shared_ptr<OnyDiesEvent> OnyDiesEventPtr;
 
+		class OnyFallsEvent;
+		typedef boost::shared_ptr<OnyFallsEvent> OnyFallsEventPtr;
+
 		///////////////////////////////////////////////////////////////////
 
 		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
@@ -698,7 +703,7 @@ namespace OUAN
 		#define COLLISION_TYPE_TRIGGER_PRESENCE 2
 		#define COLLISION_TYPE_TRIGGER_EXIT 3
 
-		#define PI 3.14159
+		#define PI 3.14159265
 		#define TO_DEGREES 57.296 //180/PI
 
 		//-------------------------------------

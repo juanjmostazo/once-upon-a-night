@@ -7,7 +7,7 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 {
-	mHitRecoveryTime=HIT_RECOVERY_TIME;
+	mHitRecoveryTime=-1;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -59,7 +59,7 @@ void GameObjectOny::update(double elapsedSeconds)
 {
 	if (mHitRecoveryTime>=0)
 	{
-		mHitRecoveryTime-=elapsedSeconds*1000000;
+		mHitRecoveryTime-=elapsedSeconds*1000;
 	}
 
 	GameObject::update(elapsedSeconds);
@@ -69,7 +69,8 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
-		loseLife();
+		OnyFallsEventPtr evt(new OnyFallsEvent());
+		mGameWorldManager->addEvent(evt);
 	}
 }
 
@@ -122,7 +123,7 @@ void GameObjectOny::decreaseWeaponPower(int powerUnits)
 
 void GameObjectOny::die()
 {
-	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getLogicComponent()->getNumLives()));
+	GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
 	mGameWorldManager->addEvent(evt);
 }
 

@@ -120,5 +120,11 @@ namespace OUAN
 		int mRemainingLives;
 	};
 
+	class OnyFallsEvent: public Event
+	{
+	public:
+		OnyFallsEvent();
+	};
+
 }
 #endif

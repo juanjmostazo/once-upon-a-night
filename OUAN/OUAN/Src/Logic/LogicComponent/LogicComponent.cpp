@@ -10,6 +10,8 @@ using namespace OUAN;
 LogicComponent::LogicComponent(const std::string& type)
 :Component(COMPONENT_TYPE_LOGIC)
 {
+//	mPatrolTrajectory.reset();
+	mStateChanged=false;
 }
 
 LogicComponent::~LogicComponent()
@@ -20,9 +22,14 @@ void LogicComponent::update(long elapsedTime)
 {
 	if (!mScriptFunction.empty())
 	{
+		mStateChanged=false;
 		LogicSubsystemPtr logicSS= mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
 		int newState=logicSS->invokeFunction(mScriptFunction,mState,mParent);
-		setState(newState);
+		if (newState!=mState)
+		{
+			setState(newState);
+			mStateChanged=true;
+		}
 	}
 }
 void LogicComponent::initStateHistory()
@@ -54,6 +61,14 @@ void LogicComponent::setExistsInNightmares(bool existsInNightmares)
 int LogicComponent::getState() const
 {
 	return mState;
+}
+int LogicComponent::getOldState(int index) const
+{
+	if (index>=0 && index<GAMESTATE_HISTORY_SIZE)
+	{
+		return stateHistory[index];
+	}
+	return -1;
 }
 void LogicComponent::setState(int state)
 {
@@ -125,6 +140,55 @@ int LogicComponent::getLineOfSight() const
 void LogicComponent::setLineOfSight(int lineOfSight)
 {
 	mLineOfSight=lineOfSight;
+}
+
+bool LogicComponent::isStateChanged() const
+{
+	return mStateChanged;
+}
+
+void LogicComponent::setStateChanged(bool stateChanged)
+{
+	mStateChanged=stateChanged;
+}
+
+int LogicComponent::getAttackRange() const
+{
+	return mAttackRange;
+}
+void LogicComponent::setAttackRange(int attackRange)
+{
+	mAttackRange=attackRange;
+}
+
+int LogicComponent::getAttackDamage() const
+{
+	return mAttackDamage;
+}
+
+void LogicComponent::setAttackDamage(int attackDamage)
+{
+	mAttackDamage=attackDamage;
+}
+
+int LogicComponent::getAttackDelay() const
+{
+	return mAttackDelay;
+}
+
+void LogicComponent::setAttackDelay(int attackDelay)
+{
+	mAttackDelay=attackDelay;
+}
+
+int LogicComponent::getColourSensitivityMask() const
+{
+	return mColourSensitivityMask;
+}
+
+void LogicComponent::setColourSensitivityMask(int colourSensitivityMask)
+{
+	mColourSensitivityMask=colourSensitivityMask;
 }
 
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()

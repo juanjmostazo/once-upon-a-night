@@ -326,6 +326,11 @@ LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObjec
 	logicComponent->setInitialNumLives(logicComponentParameters.numLives);
 	logicComponent->setLineOfSight(logicComponentParameters.lineOfSight);
 
+	logicComponent->setAttackDamage(logicComponentParameters.attackDamage);
+	logicComponent->setAttackDelay(logicComponentParameters.attackDelay);
+	logicComponent->setAttackRange(logicComponentParameters.attackRange);
+	logicComponent->setColourSensitivityMask(logicComponentParameters.colourSensitivityMask);
+
 	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
 	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);
 	logicComponent->setState(logicComponentParameters.defaultState);

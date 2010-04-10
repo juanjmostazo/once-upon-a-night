@@ -44,6 +44,9 @@ namespace OUAN
 		/// Process ony's death event
 		void processOnyDies(OnyDiesEventPtr evt);
 
+		/// Process 'ony falls down a chasm' event
+		void processOnyFalls(OnyFallsEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();
