@@ -28,6 +28,10 @@
 #include "Game/GameObject/GameObjectTripollo.h"
 #include "Graphics/RenderComponent/RenderComponentPositional.h"
 
+#include "Utils/Utils.h"
+
+#include <ctime>
+
 using namespace OUAN;
 
 Application::Application(const std::string& windowName) : mWindowName(windowName)
@@ -64,6 +68,7 @@ void Application::init()
 	ApplicationPtr this_ = shared_from_this();
 
 	mExitRequested=false;
+	Utils::Random::getInstance()->init((unsigned)time(NULL));
 
 	ComponentFactory::getInstance()->init(this_);
 

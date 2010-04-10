@@ -315,8 +315,8 @@ void GameRunningState::update(long elapsedTime)
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
 
-
-	mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
+	if (mApp->getGameWorldManager()->getGameObjectFlashLight().get())
+		mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
 
 	//TODO: update GameObjects if necessary after the logic update has updated their state.
 

@@ -9,6 +9,11 @@
 
 namespace OUAN
 {
+	const std::string TRIPOLLO_STATE_IDLE="TRIPOLLO_STATE_IDLE";
+	const std::string TRIPOLLO_STATE_PATROL="TRIPOLLO_STATE_PATROL";
+	const std::string TRIPOLLO_STATE_CHASE="TRIPOLLO_STATE_CHASE";
+	const std::string TRIPOLLO_STATE_FLEE="TRIPOLLO_STATE_FLEE";
+
 	/// Class modelling a particular enemy type
 	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{
@@ -21,6 +26,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+
+		// TODO: Delete this!
+		int mRandomMovementDelay;
+
 
 	public:
 		/// Constructor

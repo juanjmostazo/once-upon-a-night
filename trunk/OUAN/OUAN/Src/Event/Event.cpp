@@ -133,3 +133,9 @@ OnyDiesEvent::OnyDiesEvent(int remainingLives)
 {
 
 }
+//-----------------------
+OnyFallsEvent::OnyFallsEvent()
+:Event(EVT_PRIORITY_ONY_FALLS,EVENT_TYPE_ONY_FALLS)
+{
+
+}

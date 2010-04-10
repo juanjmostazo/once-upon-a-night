@@ -2612,6 +2612,39 @@ TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNo
 		{
 			logicComponentParameters.lineOfSight=-1;	
 		}
+		try{
+			logicComponentParameters.attackDamage=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::attackDamage");
+		}
+		catch (std::string error)
+		{
+			logicComponentParameters.attackDamage=-1;	
+		}
+		try{
+			logicComponentParameters.attackDelay=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::attackDelay");
+		}
+		catch (std::string error)
+		{
+			logicComponentParameters.attackDelay=-1;	
+		}
+		try{
+			logicComponentParameters.attackRange=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::attackRange");
+		}
+		catch (std::string error)
+		{
+			logicComponentParameters.attackRange=-1;	
+		}
+		try{
+			logicComponentParameters.colourSensitivityMask=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::colourSensitivityMask");
+		}
+		catch (std::string error)
+		{
+			logicComponentParameters.colourSensitivityMask=-1;	
+		}
+
 	}
 	return logicComponentParameters;
 }

@@ -9,6 +9,7 @@
 #include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Utils/Utils.h"
 
 
 extern "C" {
@@ -41,6 +42,7 @@ void LogicSubsystem::registerModules()
 {
 	using namespace luabind;
 	module(mLuaEngine) [
+		def("log", (void (*) (const std::string&)) &Utils::scriptLog),
 		def("getDistance",&GameWorldManager::getDistance),
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getCurrentWorld",&GameWorldManager::getWorld),
@@ -124,7 +126,17 @@ void LogicSubsystem::loadScript(const std::string& filename)
 {
 	if (mLuaEngine)
 	{
-		luaL_dofile(mLuaEngine,filename.c_str());
+		try
+		{
+			luaL_dofile(mLuaEngine,filename.c_str());
+		}
+		catch(const luabind::error& err)
+		{
+			std::string errString = "LUA Function call failed: ";
+			errString.append(err.what()).append(" - ");
+			errString.append(lua_tostring(err.state(),-1));
+			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+		}
 	}
 }
 void LogicSubsystem::executeString(const std::string& scriptString)
@@ -156,4 +168,8 @@ int LogicSubsystem::invokeFunction(const std::string& functionName,int state, Ga
 
 	}
 	return result;
+}
+int LogicSubsystem::getGlobalInt (const std::string& globalName)
+{
+	return luabind::object_cast<int>(luabind::globals(mLuaEngine)[globalName]);
 }

@@ -5,6 +5,7 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
 {
 	mNextMovement = NxOgre::Vec3(0,0,0);
+	mLastMovement = NxOgre::Vec3::ZERO;
 
 	mJumping = false;
 	mFalling = true;
@@ -280,6 +281,14 @@ void PhysicsComponentCharacter::setNextMovement(NxOgre::Vec3 nextMovement)
 NxOgre::Vec3 PhysicsComponentCharacter::getNextMovement()
 {
 	return mNextMovement;
+}
+void PhysicsComponentCharacter::setLastMovement(NxOgre::Vec3 lastMovement)
+{
+	mLastMovement=lastMovement;
+}
+NxOgre::Vec3 PhysicsComponentCharacter::getLastMovement()
+{
+	return mLastMovement;
 }
 
 TPhysicsComponentCharacterParameters::TPhysicsComponentCharacterParameters() : TPhysicsComponentParameters()
