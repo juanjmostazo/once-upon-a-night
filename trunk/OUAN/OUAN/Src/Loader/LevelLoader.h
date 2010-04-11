@@ -36,7 +36,7 @@ namespace OUAN
 		void processWalkabilityMap(XMLWalkabilityMap *walkabilityMap);
 		TWalkabilityMapNodeParameters processWalkabilityMapNode(TiXmlElement *XMLNode);
 
-		double DEFAULT_TIME_TO_NEXT_NODE;
+		double DEFAULT_TRAJECTORY_SPEED;
 
 		//Game Object Processors
 		void processGameObjectBee_Butterfly(XMLGameObject* gameObject);

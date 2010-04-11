@@ -14,7 +14,7 @@ namespace OUAN
 		String nodeName;
 		Vector3 position;
 		Quaternion orientation;
-		double timeToNextNode;
+		double speed;
 
 	};
 
@@ -22,7 +22,7 @@ namespace OUAN
 	{
 	private:
 		Ogre::SceneNode * mSceneNode;
-		double timeToNextNode;
+		double speed;
 	public:
 
 		TrajectoryNode();
@@ -31,8 +31,8 @@ namespace OUAN
 		Ogre::SceneNode * getSceneNode() const;
 		void setSceneNode(Ogre::SceneNode * pSceneNode);
 
-		double getTimeToNextNode() const;
-		void setTimeToNextNode(double timeToNextNode);
+		double getSpeed() const;
+		void setSpeed(double Speed);
 	};
 }
 

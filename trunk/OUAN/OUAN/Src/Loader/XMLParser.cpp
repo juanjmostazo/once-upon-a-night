@@ -250,6 +250,8 @@ void XMLParser::parseWalkabilityMapNode(TiXmlElement *XMLWalkabilityMapNode)
 	String walkabilityMapName = getPropertyString(XMLWalkabilityMapNode,"walkability::name");
 
 	mXMLWalkabilityMapContainer[walkabilityMapName].walkabilityMapNodes.push_back(XMLWalkabilityMapNode);
+
+	mXMLWalkabilityMapContainer[walkabilityMapName].name=walkabilityMapName;
 }
 
 void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)

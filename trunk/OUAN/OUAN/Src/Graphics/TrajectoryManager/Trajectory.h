@@ -8,6 +8,8 @@ namespace OUAN
 	class Trajectory
 	{
 	private:
+		double distanceToNextNode;
+		double completeDistanceToNextNode;
 		double totalTime;
 		unsigned int currentNode;
 		std::vector<TrajectoryNode *> trajectoryNodes;
@@ -17,7 +19,17 @@ namespace OUAN
 		bool loopTrajectory;
 
 		int getNextNode();
+		void setCurrentNode(int node);
 
+		std::string mName;
+
+		bool startupDone;
+
+		Vector3 mStartupPosition;
+		Quaternion mStartupOrientation;
+
+		Ogre::SceneNode * mDebugObjects;
+		Ogre::SceneManager * mSceneManager;
 	public:
 
 		Trajectory();
@@ -27,15 +39,22 @@ namespace OUAN
 		Vector3 getCurrentPosition();
 
 		void reset();
+		void clear();
 
 		void update(double elapsedTime);
 
-		void addTrajectoryNode(Ogre::SceneNode * sceneNode, double timeToNextNode);
+		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects);
+
+		void addTrajectoryNode(TrajectoryNode * pTrajectoryNode,std::string debugColor);
+
+		void setStartup(TrajectoryNode * pTrajectoryNode);
 
 		std::vector<TrajectoryNode *>  getTrajectoryNodes() const;
 
 		bool getLoopTrajectory() const;
 		void setLoopTrajectory(bool loopTrajectory);
+
+		std::string getName( );
 
 	};
 

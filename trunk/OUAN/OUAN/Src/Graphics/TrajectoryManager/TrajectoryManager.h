@@ -16,7 +16,9 @@ namespace OUAN
 		typedef std::map<std::string,WalkabilityMap *>::iterator TWalkabilityMapIterator;
 
 		Ogre::SceneManager * mSceneManager;
+		Ogre::SceneNode * mDebugObjects;
 
+		int trajectoryID;
 
 	public:
 
@@ -29,10 +31,16 @@ namespace OUAN
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
 		void createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters);
 
-		Trajectory * getTrajectoryInstance(std::string name);
-
 		bool hasTrajectory(std::string name);
 		bool hasWalkabilityMap(std::string name);
+		void destroyTrajectory(std::string name);
+		void destroyTrajectory(Trajectory * pTrajectory);
+
+		Trajectory * getTrajectoryInstance();
+		void calculatePathFinding(Trajectory  & pTrajectory,std::string walkabilityMapName,std::string source, std::string target, double speed);
+		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName);
+	
+		void toggleDebugMode();
 	};
 }
 

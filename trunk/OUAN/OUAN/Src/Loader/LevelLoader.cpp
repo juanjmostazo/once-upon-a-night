@@ -72,7 +72,7 @@ using namespace OUAN;
 
 LevelLoader::LevelLoader()
 {
-	DEFAULT_TIME_TO_NEXT_NODE = 3;
+	DEFAULT_TRAJECTORY_SPEED = 20;
 }
 LevelLoader::~LevelLoader(){}
 
@@ -354,15 +354,15 @@ TTrajectoryNodeParameters LevelLoader::processTrajectoryNode(TiXmlElement *XMLNo
 
 	try
 	{
-		tTrajectoryNodeParameters.timeToNextNode=getPropertyReal(XMLNode,"trajectorynode::time to next node");
-		if(tTrajectoryNodeParameters.timeToNextNode<0)
+		tTrajectoryNodeParameters.speed=getPropertyReal(XMLNode,"trajectorynode::speed");
+		if(tTrajectoryNodeParameters.speed<0)
 		{
 			throw "time to next node must be positive";
 		}
 	}
 	catch( std::string error )
 	{
-		tTrajectoryNodeParameters.timeToNextNode=DEFAULT_TIME_TO_NEXT_NODE;
+		tTrajectoryNodeParameters.speed=DEFAULT_TRAJECTORY_SPEED;
 	}
 
 	return tTrajectoryNodeParameters;
@@ -413,6 +413,10 @@ void LevelLoader::processWalkabilityMap(XMLWalkabilityMap * walkabilityMap)
 
 	TWalkabilityMapParameters tWalkabilityMapParameters;
 
+	//Get Walkability Map name
+	tWalkabilityMapParameters.name=walkabilityMap->name;
+
+	//Get Walkability Map nodes
 	for(i=0;i<walkabilityMap->walkabilityMapNodes.size();i++)
 	{
 		tWalkabilityMapParameters.walkabilityNodes.push_back(

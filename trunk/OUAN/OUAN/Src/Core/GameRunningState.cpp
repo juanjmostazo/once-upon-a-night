@@ -7,6 +7,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/HUD/HUDInGame.h"
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIConsole.h"
@@ -144,6 +145,14 @@ void GameRunningState::handleEvents()
 			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 			mApp->getRenderSubsystem()->hideVisualDebugger();
 		}
+
+		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+	}
+	else if (mApp->isPressedToggleDebugTrajectory() && mApp->mKeyBuffer<0)
+	{
+		Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
+
+		mApp->getTrajectoryManager()->toggleDebugMode();
 
 		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 	}

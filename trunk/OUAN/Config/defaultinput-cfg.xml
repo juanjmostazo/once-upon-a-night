@@ -11,6 +11,7 @@
         <Option key="ChangeWorld">0x41</Option>
         <Option key="DebugPerformance">0x44</Option>
         <Option key="DebugPhysics">0x57</Option>
+        <Option key="DebugTrajectory">0x3F</Option>
         <Option key="Forward">0x11</Option>
         <Option key="Jump">0x39</Option>
         <Option key="LRotate">0x2c</Option>

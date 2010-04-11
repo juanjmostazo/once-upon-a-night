@@ -20,13 +20,13 @@ void TrajectoryNode::setSceneNode(Ogre::SceneNode * pSceneNode)
 	mSceneNode=pSceneNode;
 }
 
-double TrajectoryNode::getTimeToNextNode() const
+double TrajectoryNode::getSpeed() const
 {
-	return this->timeToNextNode;
+	return this->speed;
 }
-void TrajectoryNode::setTimeToNextNode(double timeToNextNode)
+void TrajectoryNode::setSpeed(double Speed)
 {
-	this->timeToNextNode=timeToNextNode;
+	this->speed=Speed;
 }
 
 TTrajectoryNodeParameters::TTrajectoryNodeParameters()

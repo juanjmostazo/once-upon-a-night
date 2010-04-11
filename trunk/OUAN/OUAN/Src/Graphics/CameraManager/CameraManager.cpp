@@ -70,7 +70,11 @@ void CameraManager::setCameraTrajectory(std::string name)
 	{
 		if(mTrajectoryManager->hasTrajectory(name))
 		{
-			mCameraControllerTrajectory->setTrajectory(mTrajectoryManager->getTrajectoryInstance(name));
+			Trajectory * trajectory;
+			trajectory=mTrajectoryManager->getTrajectoryInstance();
+			mTrajectoryManager->setPredefinedTrajectory(*trajectory,"a");
+			mCameraControllerTrajectory->setTrajectory(trajectory);
+
 		}
 		else
 		{

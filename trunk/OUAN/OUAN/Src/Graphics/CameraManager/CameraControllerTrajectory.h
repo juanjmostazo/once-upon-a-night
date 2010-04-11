@@ -14,6 +14,7 @@ namespace OUAN
 		void update(double elapsedTime);
 
 		void setTrajectory(Trajectory * pTrajectory);
+		Trajectory * getTrajectory() const;
 
 		void resetTrajectory();
 	private:

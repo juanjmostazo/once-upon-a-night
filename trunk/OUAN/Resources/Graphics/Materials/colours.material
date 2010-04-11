@@ -1,0 +1,89 @@
+material white
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+material black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0 0 0 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+material red
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 0 0 1
+			diffuse 1 0 0 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+material blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 1 1
+			diffuse 0 0 1 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+material green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 1 0 1
+			diffuse 0 1 0 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+material yellow
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 1 0 1
+			diffuse 1 1 0 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}

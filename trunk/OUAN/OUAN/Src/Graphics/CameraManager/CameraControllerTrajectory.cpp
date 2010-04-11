@@ -41,3 +41,8 @@ void CameraControllerTrajectory::setTrajectory(Trajectory * pTrajectory)
 {
 	mTrajectory=pTrajectory;
 }
+
+Trajectory * CameraControllerTrajectory::getTrajectory() const
+{
+	return mTrajectory;
+}
