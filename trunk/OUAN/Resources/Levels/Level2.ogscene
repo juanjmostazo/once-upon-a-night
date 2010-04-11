@@ -16,7 +16,7 @@
       <DIRECTORY type="FileSystem" value="../Graphics/Particles"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Shaders"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Textures"></DIRECTORY>
-	  <DIRECTORY type="FileSystem" value="../Graphics/Skeletons"></DIRECTORY>
+      <DIRECTORY type="FileSystem" value="../Graphics/Skeletons"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="./"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="./Custom Properties"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
@@ -25,7 +25,7 @@
   <CAMERASPEED value="20"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="281.213 170.936 50.7325" orientation="-0.667385 0.226543 0.671779 0.22801"></OPTION>
+    <OPTION id="1" position="64.4004 160.143 296.892" orientation="-0.895715 0.0616389 0.439297 0.0302099"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.667389 0.226544 0.671782 0.228011"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.895734 0.0616402 0.439306 0.0302106"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="281.213 170.936 50.7325"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="64.4004 160.143 296.892"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2864,6 +2864,23 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree01_nightmare"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="615649856" name="diamond_tree#0" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="diamond_tree.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="398.617 110.461 192.818"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="diamondtree_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
