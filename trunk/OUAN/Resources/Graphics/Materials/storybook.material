@@ -1,5 +1,5 @@
 
-material sotrybook
+material sotrybook_n
 {
 	technique
 	{
@@ -9,7 +9,7 @@ material sotrybook
 
 			texture_unit
 			{
-				texture storybook.dds
+				texture storybook_textura.tga
 			}
 		}
 
