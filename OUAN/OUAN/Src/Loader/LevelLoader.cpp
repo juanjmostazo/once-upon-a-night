@@ -240,7 +240,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCAREDPLANT)==0)
 		{
-			processGameObjectScaredPlant(gameObject);
+			//processGameObjectScaredPlant(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 		{
