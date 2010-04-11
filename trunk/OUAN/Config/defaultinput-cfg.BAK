@@ -45,5 +45,9 @@
 		<Option key="QuickExit">0x58</Option>
 		<!-- F5 -->		
 		<Option key="ToggleConsole">0x3F</Option>
+		<!-- F4 -->		
+		<Option key="ToggleVolumes">0x3E</Option>
+		<!-- F3 -->		
+		<Option key="DebugTrajectory">0x3D</Option>
 	</Options>
 </Configuration>

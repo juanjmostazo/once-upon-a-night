@@ -11,7 +11,7 @@
         <Option key="ChangeWorld">0x41</Option>
         <Option key="DebugPerformance">0x44</Option>
         <Option key="DebugPhysics">0x57</Option>
-        <Option key="DebugTrajectory">0x3F</Option>
+        <Option key="DebugTrajectory">0x3D</Option>
         <Option key="Forward">0x11</Option>
         <Option key="Jump">0x39</Option>
         <Option key="LRotate">0x2c</Option>
@@ -22,9 +22,9 @@
         <Option key="RRotate">0x2d</Option>
         <Option key="Reload">0x13</Option>
         <Option key="Right">0x20</Option>
+        <Option key="ToggleConsole">0x3f</Option>
         <Option key="UseWeapon">-0x01</Option>
         <Option key="Walk">0x12</Option>
-		<Option key="ToggleConsole">0x3F</Option>
 		<Option key="ToggleVolumes">0x3E</Option>
     </Options>
 </Configuration>
