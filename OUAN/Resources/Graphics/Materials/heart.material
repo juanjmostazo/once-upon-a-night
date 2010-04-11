@@ -9,7 +9,7 @@ material heart
 
 			texture_unit
 			{
-				texture heart.dds
+				texture heart_texture.tga
 			}
 		}
 

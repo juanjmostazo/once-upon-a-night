@@ -1,24 +1,4 @@
 
-material scared_plant
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
-
-			texture_unit
-			{
-				texture scared_plant.dds
-			}
-		}
-
-	}
-
-}
-
-
 material scared_plant7
 {
 	technique
@@ -37,3 +17,5 @@ material scared_plant7
 	}
 
 }
+
+
