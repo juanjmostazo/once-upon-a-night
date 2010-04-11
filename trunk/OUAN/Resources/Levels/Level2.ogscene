@@ -25,8 +25,7 @@
   <CAMERASPEED value="3"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="49.7916 223.824 -58.5546" orientation="-0.63063 0.0607215 0.770145 0.0741259"></OPTION>
->>>>>>> .r453
+    <OPTION id="1" position="-56.2996 181.547 -69.5166" orientation="-0.541879 0.00236411 0.840445 0.00362454"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -100,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.630633 0.0607218 0.770149 0.0741263"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.54189 0.00236416 0.840462 0.00362461"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="49.7916 223.824 -58.5546"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-56.2996 181.547 -69.5166"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -349,6 +348,17 @@
   </OBJECT>
 
   <OBJECT object_id="153782768" name="Volumes" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="459639296" name="walkability map1" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -973,11 +983,11 @@
     <PROPERTY id="position" type="9" value="36.5822 63.8127 -33.5165"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1028,7 +1038,7 @@
     <PROPERTY id="position" type="9" value="-372.81 68.0893 -88.5186"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1164,11 +1174,11 @@
     <PROPERTY id="position" type="9" value="32.7046 63.8882 -40.4493"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1219,11 +1229,11 @@
     <PROPERTY id="position" type="9" value="338.448 133.088 78.5372"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1291,7 +1301,7 @@
     <PROPERTY id="position" type="9" value="-367.786 68.1392 -89.9013"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1631,7 +1641,7 @@
     <PROPERTY id="position" type="9" value="-362.404 68.2831 -92.6316"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1784,11 +1794,11 @@
     <PROPERTY id="position" type="9" value="76.2733 63.4852 0.997484"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1958,7 +1968,7 @@
     <PROPERTY id="position" type="9" value="223.615 69.9672 62.6217"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2077,11 +2087,11 @@
     <PROPERTY id="position" type="9" value="117.167 64.9153 -156.73"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2183,7 +2193,7 @@
     <PROPERTY id="position" type="9" value="-363.714 68.3108 -96.292"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2506,11 +2516,11 @@
     <PROPERTY id="position" type="9" value="-3.43109 180.749 -788.418"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2578,7 +2588,7 @@
     <PROPERTY id="position" type="9" value="224.804 69.7987 67.4348"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2612,7 +2622,7 @@
     <PROPERTY id="position" type="9" value="-366.59 68.2846 -95.2959"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2731,11 +2741,11 @@
     <PROPERTY id="position" type="9" value="86.8887 63.7736 8.99769"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2769,11 +2779,11 @@
     <PROPERTY id="position" type="9" value="111.528 64.9029 -160.685"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2807,7 +2817,7 @@
     <PROPERTY id="position" type="9" value="212.73 69.6691 65.2744"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2960,11 +2970,11 @@
     <PROPERTY id="position" type="9" value="324.528 135.085 86.0665"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3049,11 +3059,11 @@
     <PROPERTY id="position" type="9" value="-255.449 66.108 -59.7187"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3070,7 +3080,7 @@
     <PROPERTY id="position" type="9" value="-247.013 65.866 -51.8744"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3444,7 +3454,7 @@
     <PROPERTY id="position" type="9" value="222.335 69.7181 73.9634"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3529,11 +3539,11 @@
     <PROPERTY id="position" type="9" value="53.8909 63.5434 -51.7739"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3567,11 +3577,11 @@
     <PROPERTY id="position" type="9" value="88.7391 64.3724 -177.243"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3588,7 +3598,7 @@
     <PROPERTY id="position" type="9" value="220.415 69.5786 62.0323"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3741,11 +3751,11 @@
     <PROPERTY id="position" type="9" value="339.631 132.806 81.9232"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3813,11 +3823,11 @@
     <PROPERTY id="position" type="9" value="91.9633 64.1196 -166.921"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3834,7 +3844,7 @@
     <PROPERTY id="position" type="9" value="-250.279 66.1116 -54.7269"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4225,11 +4235,11 @@
     <PROPERTY id="position" type="9" value="-253.875 66.1292 -64.2715"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4348,11 +4358,11 @@
     <PROPERTY id="position" type="9" value="40.3956 63.5765 -55.0512"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4420,11 +4430,11 @@
     <PROPERTY id="position" type="9" value="113.557 66.0643 -162.41"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4458,7 +4468,7 @@
     <PROPERTY id="position" type="9" value="-364.733 68.2814 -89.212"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4560,11 +4570,11 @@
     <PROPERTY id="position" type="9" value="-74.2121 66.4678 44.6611"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4615,7 +4625,7 @@
     <PROPERTY id="position" type="9" value="-250.015 65.9505 -52.1812"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4921,11 +4931,11 @@
     <PROPERTY id="position" type="9" value="69.6774 63.6974 9.09576"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5027,11 +5037,11 @@
     <PROPERTY id="position" type="9" value="-261.675 66.1315 -53.6357"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5099,11 +5109,11 @@
     <PROPERTY id="position" type="9" value="24.7091 63.7213 -55.2761"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5154,11 +5164,11 @@
     <PROPERTY id="position" type="9" value="123.167 66.0815 -195.553"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5209,7 +5219,7 @@
     <PROPERTY id="position" type="9" value="-371.675 68.1748 -94.9209"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5311,11 +5321,11 @@
     <PROPERTY id="position" type="9" value="340.665 136.266 39.5601"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="scared_plant"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="scared_plant7"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5676,7 +5686,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="480330816" name="Marker#21" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="480330816" name="Marker#21" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0.0117647 0.027451 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5707,7 +5717,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="641499072" name="Marker#26" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="641499072" name="Marker#26" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5778,7 +5788,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="677175232" name="Marker#23" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="677175232" name="Marker#23" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5879,7 +5889,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="554765440" name="Marker#20" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="554765440" name="Marker#20" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0.0117647 0.027451 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5896,7 +5906,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="674581120" name="Marker#25" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="674581120" name="Marker#25" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5941,7 +5951,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="167882320" name="Marker#28" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="167882320" name="Marker#28" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5984,7 +5994,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="712912384" name="Marker#22" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="712912384" name="Marker#22" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6015,7 +6025,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="526230624" name="Marker#27" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="526230624" name="Marker#27" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0.0156863 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6100,7 +6110,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="629169600" name="Marker#24" typename="Marker Object" parentnode="SceneManager">
+  <OBJECT object_id="629169600" name="Marker#24" typename="Marker Object" parentnode="walkability map1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0.0196078 0.0352941 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
