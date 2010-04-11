@@ -265,6 +265,12 @@ bool ControlInputManager::isPressedToggleDebugPhysics()
 	return isPressed(-1,mDefaultInputData.keyDebugPhysics);
 }
 
+bool ControlInputManager::isPressedToggleDebugTrajectory()
+{
+	return isPressed(-1,mDefaultInputData.keyDebugTrajectory);
+}
+
+
 bool ControlInputManager::isPressedToggleChangeCamera()
 {
 	return isPressed(-1,mDefaultInputData.keyChangeCamera);

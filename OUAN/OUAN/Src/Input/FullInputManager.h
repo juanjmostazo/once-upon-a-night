@@ -34,6 +34,7 @@ namespace OUAN
 	const std::string KEY_QUICKEXIT = "QuickExit";
 	const std::string KEY_DEBUG_PERFORMANCE = "DebugPerformance";
 	const std::string KEY_DEBUG_PHYSICS = "DebugPhysics";
+	const std::string KEY_DEBUG_TRAJECTORY = "DebugTrajectory";
 	const std::string KEY_CHANGE_CAMERA = "ChangeCamera";
 	const std::string KEY_CHANGE_CAMERA_CONTROLLER = "ChangeCameraController";
 	const std::string KEY_CHANGE_WORLD = "ChangeWorld";
@@ -114,7 +115,7 @@ namespace OUAN
 		int keyForward,keyBackwards,keyLeft,keyRight;
 		int keyJump,keyAction,keyReloadWeapon,keyUseWeapon;
 		int keyWalk,keyRotateLeft,keyRotateRight,keyAutoTarget;
-		int keyQuickExit, keyDebugPerformance, keyDebugPhysics;
+		int keyQuickExit, keyDebugPerformance, keyDebugPhysics, keyDebugTrajectory;
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
 		int keyToggleConsole, keyToggleVolumes;

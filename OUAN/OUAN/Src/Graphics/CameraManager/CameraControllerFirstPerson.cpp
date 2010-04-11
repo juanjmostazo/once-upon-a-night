@@ -53,7 +53,7 @@ void CameraControllerFirstPerson::processCameraRotation(Ogre::Vector2 cameraRota
 	else
 	{
 		rotY-=cameraRotation.x*rotationSpeed;
-		rotX-=cameraRotation.y*rotationSpeed;
+		rotX+=cameraRotation.y*rotationSpeed;
 	}
 
 }

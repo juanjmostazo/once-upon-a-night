@@ -406,6 +406,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="Line3D"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Line3D\Line3D.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -969,6 +977,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\HUD\HUDInGame.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Line3D"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Line3D\Line3D.h"
 						>
 					</File>
 				</Filter>

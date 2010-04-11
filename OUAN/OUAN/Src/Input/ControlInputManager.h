@@ -44,6 +44,8 @@ namespace OUAN
 		bool isPressedToggleDebugPerformance();
 		/// Convenience method to enable physics debug mode
 		bool isPressedToggleDebugPhysics();
+		/// Convenience method to enable trajectory debug mode
+		bool isPressedToggleDebugTrajectory();
 		/// Convenience method to change between cameras
 		bool isPressedToggleChangeCamera();
 		/// Convenience method to change current camera controller

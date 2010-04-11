@@ -67,7 +67,7 @@ void CameraControllerFixedFirstPerson::processCameraRotation(Ogre::Vector2 camer
 	else
 	{
 		rotY-=cameraRotation.x*speed;
-		rotX-=cameraRotation.y*speed;
+		rotX+=cameraRotation.y*speed;
 	}
 
 	//check if rotation exceeds limits for X axis

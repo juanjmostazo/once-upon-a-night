@@ -198,6 +198,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		readOption(config,KEY_QUICKEXIT,mDefaultInputData.keyQuickExit);
 		readOption(config,KEY_DEBUG_PERFORMANCE,mDefaultInputData.keyDebugPerformance);
 		readOption(config,KEY_DEBUG_PHYSICS,mDefaultInputData.keyDebugPhysics);
+		readOption(config,KEY_DEBUG_TRAJECTORY,mDefaultInputData.keyDebugTrajectory);
 		readOption(config,KEY_CHANGE_CAMERA_CONTROLLER,mDefaultInputData.keyChangeCameraController);
 		readOption(config,KEY_CHANGE_CAMERA,mDefaultInputData.keyChangeCamera);
 		readOption(config,KEY_CHANGE_WORLD,mDefaultInputData.keyChangeWorld);
@@ -228,6 +229,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		mDefaultInputData.keyQuickExit=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyDebugPerformance=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyDebugPhysics=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyDebugTrajectory=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeCamera=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeCameraController=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyChangeWorld=OIS::KC_UNASSIGNED;
