@@ -384,6 +384,7 @@ void GameWorldManager::init(ApplicationPtr app)
 	mEventManager.reset(new EventManager());
 	mEventProcessor.reset(new EventProcessor());
 	mEventProcessor->init(mThis);
+	//
 
 	//landscape.reset() | landscape->initBlank() | ...
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
@@ -398,7 +399,7 @@ void GameWorldManager::cleanUp()
 	// will free their resources!!
 	mEventManager->clear();
 	clearContainers();
-	mEventProcessor->cleanUp();
+	mEventProcessor->cleanUp();	
 
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP FINISHED]");
 }
@@ -1736,6 +1737,12 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 			factory->createLogicComponent(
 			pGameObjectOny,
 			tGameObjectOnyParameters.logicComponentParameters));
+		pGameObjectOny->setWeaponComponent(
+			factory->createWeaponComponent(
+				pGameObjectOny,
+				tGameObjectOnyParameters.tWeaponComponentParameters
+			)
+		);
 
 		//Create RenderComponentPositional
 		pGameObjectOny->setRenderComponentPositional(factory->createRenderComponentPositional(
@@ -1763,6 +1770,8 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(mThis);
+	//...and initialise the active weapon according to the current world
+	pGameObjectOny->getWeaponComponent()->init(world);
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
@@ -2868,4 +2877,18 @@ double GameWorldManager::getPlayerDistance(const std::string& objName)
 int GameWorldManager::getWorld()
 {
 	return mInst->getCurrentWorld();
+}
+void GameWorldManager::useWeapon()
+{
+	if (getGameObjectOny().get())
+	{
+		getGameObjectOny()->useWeapon();
+	}
+}
+void GameWorldManager::stopUsingWeapon()
+{
+	if (getGameObjectOny().get())
+	{
+		getGameObjectOny()->stopUsingWeapon();
+	}
 }

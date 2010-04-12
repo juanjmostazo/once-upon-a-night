@@ -2,6 +2,7 @@
 #define EVENTH_H
 
 #include "../OUAN.h"
+#include "EventDefs.h"
 
 namespace OUAN
 {
@@ -52,6 +53,7 @@ namespace OUAN
 	private:
 		int mNewWorld;
 	};
+	//------------------------------------
 
 	/// Event class representing a collision between two GameObjects
 	/// which both contain a PhysicsComponentCharacter
@@ -66,6 +68,8 @@ namespace OUAN
 		GameObjectPtr mCharacter1;
 		GameObjectPtr mCharacter2;
 	};
+
+	//------------------------------------
 
 	/// Event class representing a collision between two GameObjects
 	/// which contain a PhysicsComponentCharacter and a PhysicsVolumeXXX
@@ -83,6 +87,8 @@ namespace OUAN
 		int mCollisionType;
 	};
 
+	//------------------------------------
+
 	/// Event class representing a collision between a Character and a Shape
 	/// Character (Ony, enemies); Shape (terrain, columns, walls, trees...)
 	class CharacterShapeFrontCollisionEvent: public Event
@@ -97,10 +103,14 @@ namespace OUAN
 		GameObjectPtr mShape;
 	};
 
+	//------------------------------------
+
 	class ClearQueueEvent: public Event{
 	public:
 		ClearQueueEvent();
 	};
+
+	//------------------------------------
 
 	class GameOverEvent: public Event
 	{
@@ -111,6 +121,8 @@ namespace OUAN
 		bool mWin;
 	};
 	
+	//------------------------------------
+	
 	class OnyDiesEvent: public Event
 	{
 	public:
@@ -120,10 +132,23 @@ namespace OUAN
 		int mRemainingLives;
 	};
 
+	//------------------------------------
+
 	class OnyFallsEvent: public Event
 	{
 	public:
 		OnyFallsEvent();
+	};
+
+	//------------------------------------
+
+	class WeaponModeChangedEvent: public Event
+	{
+		public: 
+			WeaponModeChangedEvent(TWeaponMode newWeaponMode);
+			TWeaponMode getNewWeaponMode() const;
+		private:
+			TWeaponMode mNewWeaponMode;
 	};
 
 }

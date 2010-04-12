@@ -56,12 +56,16 @@ void GameRunningState::init(ApplicationPtr app)
 	//create HUD
 	mHUD.reset(new HUDInGame());
 	LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
-	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives());
+	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld());
+	mApp->getGameWorldManager()->getGameObjectOny()->setWeaponMode(convertRouletteValue(mHUD->getCurrentState()));
+
+	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
 }
 
 /// Clean up main menu's resources
 void GameRunningState::cleanUp()
 {
+	mHUD->unregisterEventHandlers(mApp->getGameWorldManager()->getEventManager());
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
@@ -87,170 +91,57 @@ void GameRunningState::resume()
 {
 	mApp->getRenderSubsystem()->resumeRendering();
 }
-
 void GameRunningState::handleEvents()
 {
-	if (mApp->isPressedQuickExit() && mApp->mKeyBuffer<0)
+	if (mApp->mKeyBuffer<0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("isPressedQuickExit IN");
-		mApp->mExitRequested=true;
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
-	}
-	else if (mApp->isPressedPause() && mApp->mKeyBuffer<0)
-	{
-		GameStatePtr nextState(new GamePausedState());
-		// Notice how pushState is called instead of changeState.
-		// The reason to use push this time is to prevent unnecessary cleanup and initialisation, since
-		// after the pause the application flow will come back to "GameRunning"
-		mApp->getGameStateManager()->pushState(nextState,mApp);
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
-	}
-	else if(mApp->isPressedAutoPoint() && mApp->mKeyBuffer<0)
-	{
-		//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
-		//mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-		//mGUI->hideConsole();
-	}
-	else if (mApp->isPressedToggleDebugPerformance() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleDebugPerformance key pressed");
+		checkDebuggingKeys();
 
-		if (mApp->getDebugMode()!=DEBUGMODE_PERFORMANCE)
+		if (mApp->isPressedQuickExit())
 		{
-			mApp->setDebugMode(DEBUGMODE_PERFORMANCE);
-			mApp->getRenderSubsystem()->hideVisualDebugger();
-			mApp->getRenderSubsystem()->showOverlay(OVERLAY_DEBUG_PANEL);
+			//Ogre::LogManager::getSingleton().logMessage("isPressedQuickExit IN");
+			mApp->mExitRequested=true;
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
-		else
+		else if (mApp->isPressedPause())
 		{
-			mApp->setDebugMode(DEBUGMODE_NONE);
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
+			GameStatePtr nextState(new GamePausedState());
+			// Notice how pushState is called instead of changeState.
+			// The reason to use push this time is to prevent unnecessary cleanup and initialisation, since
+			// after the pause the application flow will come back to "GameRunning"
+			mApp->getGameStateManager()->pushState(nextState,mApp);
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER; //0.5s
 		}
-		
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleDebugPhysics() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleDebugPhysics key pressed");
-
-		if (mApp->getDebugMode()!=DEBUGMODE_PHYSICS)
+		else if(mApp->isPressedAutoPoint())
 		{
-			mApp->setDebugMode(DEBUGMODE_PHYSICS);
-			mApp->getRenderSubsystem()->showOverlay(OVERLAY_DEBUG_PANEL);
-			mApp->getRenderSubsystem()->showVisualDebugger();
-		}
-		else 
-		{
-			mApp->setDebugMode(DEBUGMODE_NONE);
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
-			mApp->getRenderSubsystem()->hideVisualDebugger();
-		}
-
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleDebugTrajectory() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
-
-		mApp->getTrajectoryManager()->toggleDebugMode();
-
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleChangeCamera() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCamera key pressed");
-
-		mApp->getCameraManager()->changeCamera();
-
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleChangeCameraController() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
-
-		mApp->getCameraManager()->changeCameraController();
-
-		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
-		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
-		}
-		else
-		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
-
-		}
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleChangeWorld() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleChangeWorld key pressed");
-
-		mApp->getGameWorldManager()->changeWorld();
-
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleChangeLevel() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleChangeLevel key pressed");
-
-		Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
-		if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_1);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_2);
-		}
-		else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
-		{
-			mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
-		}
-		mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedRotateLeft() && mApp->mKeyBuffer<0)
-	{
-		mHUD->spinRoulette(true);
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedRotateRight() && mApp->mKeyBuffer<0)
-	{
-		mHUD->spinRoulette(false);
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleConsole() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleConsole key pressed");
-
-		if (mGUI->isVisible())
+			//TODO: Replace with the proper auto-target functionality
+			GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
+			mApp->getGameWorldManager()->addEvent(evt);
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 			mGUI->hideConsole();
-		else
-			mGUI->showConsole();
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-	}
-	else if (mApp->isPressedToggleVolumes() && mApp->mKeyBuffer<0)
-	{
-		Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
-
-		TGameObjectTriggerBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
-		for(unsigned int i=0; i<cBox.size(); i++)
-		{
-			cBox[i]->changeVisibility();
 		}
-
-		TGameObjectTriggerCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectTriggerCapsuleContainer();
-		for(unsigned int i=0; i<cCapsule.size(); i++)
-		{
-			cCapsule[i]->changeVisibility();
-		}
-
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
-	}
 		
+		else if (mApp->isPressedRotateLeft())
+		{
+			mHUD->spinRoulette(true);
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedRotateRight())
+		{
+			mHUD->spinRoulette(false);
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+	}
+	if (mApp->isPressedUseWeapon())
+	{
+		mApp->getGameWorldManager()->useWeapon();
+	}
+	else
+	{
+		mApp->getGameWorldManager()->stopUsingWeapon();
+	}
+
+			
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
 	//TODO: separate jump from movement?
@@ -284,21 +175,67 @@ void GameRunningState::handleEvents()
 		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
 	}
 
-	//[TODO: This will also have to be refactored somehow as soon as
-	// a camera manager system has been implemented. 
-	// The render subsystem shouldn't move cameras at this point: it will
-	// all be managed internally from the body of a hypothetic CameraComponent
-	// 
-	// The main idea would be something like:
-	// - Poll mouse/joystick right axis using the mApp methods inherited
-	//   from ControlInputManager and retrieve the relative increments
-	// - Then ask the gameWorldManager to update the current active camera accordingly,
-	//	 or switch to the user-controlled camera mode and then update that one, whatever.
-	//   The current active camera would be a GameObject using a CameraComponent.
-	//]
 	Vector2 cameraRotation;
 	cameraRotation=mApp->getCameraRotation();
 	mApp->getCameraManager()->processCameraRotation(cameraRotation);
+}
+void GameRunningState::checkDebuggingKeys()
+{
+	if (mApp->mKeyBuffer<0)
+	{
+		if (mApp->isPressedToggleDebugPerformance())
+		{
+			toggleDebugPerformance();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleDebugPhysics())
+		{		
+			toggleDebugPhysics();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleDebugTrajectory())
+		{
+			Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
+			mApp->getTrajectoryManager()->toggleDebugMode();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleChangeCamera())
+		{
+			Ogre::LogManager::getSingleton().logMessage("ToggleChangeCamera key pressed");
+			mApp->getCameraManager()->changeCamera();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleChangeCameraController())
+		{
+			changeCameraController();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleChangeWorld())
+		{
+			Ogre::LogManager::getSingleton().logMessage("ToggleChangeWorld key pressed");
+			mApp->getGameWorldManager()->changeWorld();
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleChangeLevel())
+		{
+			toggleChangeLevel();		
+			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleConsole())
+		{
+			Ogre::LogManager::getSingleton().logMessage("ToggleConsole key pressed");
+			if (mGUI->isVisible())
+				mGUI->hideConsole();
+			else
+				mGUI->showConsole();
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleVolumes())
+		{
+			toggleVolumes();		
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+	}
 }
 
 void GameRunningState::update(long elapsedTime)
@@ -310,14 +247,8 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
-	mApp->getGameWorldManager()->update(elapsedSeconds);	
-
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
-
-	//TODO????
-	//mApp->getRenderSubsystem()->update(elapsedSeconds);
 
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
 	mApp->getCameraManager()->update(elapsedSeconds);
@@ -327,7 +258,8 @@ void GameRunningState::update(long elapsedTime)
 	if (mApp->getGameWorldManager()->getGameObjectFlashLight().get())
 		mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
 
-	//TODO: update GameObjects if necessary after the logic update has updated their state.
+	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
+	mApp->getGameWorldManager()->update(elapsedSeconds);	
 
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
 	mApp->mKeyBuffer-=elapsedTime;
@@ -342,8 +274,34 @@ void GameRunningState::update(long elapsedTime)
 	{
 		LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
 		mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+		if (mHUD->isSelectedModeChanged())
+		{
+			TWeaponMode newWeaponMode = convertRouletteValue(mHUD->getCurrentState());
+			mHUD->setSelectedModeChanged(false);
+			WeaponModeChangedEventPtr evt(new WeaponModeChangedEvent(newWeaponMode));
+			mApp->getGameWorldManager()->addEvent(evt);
+		}
 	}
 	mGUI->update(elapsedSeconds);
+}
+TWeaponMode GameRunningState::convertRouletteValue(TRouletteState rouletteValue)
+{
+	TWeaponMode newWeaponMode=WEAPON_MODE_INVALID;
+	switch (rouletteValue)
+	{
+	case ROULETTE_STATE_0:
+		newWeaponMode=WEAPON_MODE_0;
+		break;
+	case ROULETTE_STATE_1:
+		newWeaponMode=WEAPON_MODE_1;
+		break;
+	case ROULETTE_STATE_2:
+		newWeaponMode=WEAPON_MODE_2;
+	//TODO: Special cases, other modes
+	default:
+		break;
+	}
+	return newWeaponMode;
 }
 
 bool GameRunningState::render()
@@ -362,4 +320,90 @@ bool GameRunningState::render()
 	mHUD->show();
 
 	return renderSubsystem->render();
+}
+void GameRunningState::toggleDebugPerformance()
+{
+	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPerformance key pressed");
+
+	if (mApp->getDebugMode()!=DEBUGMODE_PERFORMANCE)
+	{
+		mApp->setDebugMode(DEBUGMODE_PERFORMANCE);
+		mApp->getRenderSubsystem()->hideVisualDebugger();
+		mApp->getRenderSubsystem()->showOverlay(OVERLAY_DEBUG_PANEL);
+	}
+	else
+	{
+		mApp->setDebugMode(DEBUGMODE_NONE);
+		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
+	}
+}
+void GameRunningState::toggleDebugPhysics()
+{
+	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPhysics key pressed");
+
+	if (mApp->getDebugMode()!=DEBUGMODE_PHYSICS)
+	{
+		mApp->setDebugMode(DEBUGMODE_PHYSICS);
+		mApp->getRenderSubsystem()->showOverlay(OVERLAY_DEBUG_PANEL);
+		mApp->getRenderSubsystem()->showVisualDebugger();
+	}
+	else 
+	{
+		mApp->setDebugMode(DEBUGMODE_NONE);
+		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
+		mApp->getRenderSubsystem()->hideVisualDebugger();
+	}
+}
+void GameRunningState::toggleChangeLevel()
+{
+	Ogre::LogManager::getSingleton().logMessage("ToggleChangeLevel key pressed");
+	Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
+	if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
+	{
+		mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
+	}
+	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
+	{
+		mApp->getGameWorldManager()->loadLevel(LEVEL_1);
+	}
+	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
+	{
+		mApp->getGameWorldManager()->loadLevel(LEVEL_2);
+	}
+	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
+	{
+		mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
+	}
+}
+void GameRunningState::changeCameraController()
+{
+	Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
+
+	mApp->getCameraManager()->changeCameraController();
+	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
+		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
+	else
+		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
+}
+void GameRunningState::toggleVolumes()
+{
+	Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
+
+	TGameObjectTriggerBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
+	for(unsigned int i=0; i<cBox.size(); i++)
+	{
+		cBox[i]->changeVisibility();
+	}
+
+	TGameObjectTriggerCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectTriggerCapsuleContainer();
+	for(unsigned int i=0; i<cCapsule.size(); i++)
+	{
+		cCapsule[i]->changeVisibility();
+	}
+}
+TWeaponMode GameRunningState::getCurrentWeaponMode()
+{
+	if (mHUD.get())
+		return convertRouletteValue(mHUD->getCurrentState());
+	return WEAPON_MODE_INVALID;
 }

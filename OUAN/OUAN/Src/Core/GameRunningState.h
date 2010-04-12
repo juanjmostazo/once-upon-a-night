@@ -3,6 +3,7 @@
 
 #include "../OUAN.h"
 #include "GameState.h"
+#include "../Graphics/hud/HUDInGame.h"
 namespace OUAN
 {
 	const std::string OVERLAY_DEBUG_PANEL = "Core/DebugOverlay";
@@ -17,6 +18,17 @@ namespace OUAN
 	private:		
 		GUIConsolePtr mGUI;
 		HUDInGamePtr mHUD;
+
+		//Refactored code into functions to improve legibility
+		void checkDebuggingKeys();
+		void toggleDebugPerformance();
+		void toggleDebugPhysics();
+		void toggleChangeLevel();
+		void changeCameraController();
+		void toggleVolumes();
+
+		TWeaponMode convertRouletteValue(TRouletteState rouletteValue);
+		TWeaponMode getCurrentWeaponMode();
 
 	public:
 		/// init main menu's resources

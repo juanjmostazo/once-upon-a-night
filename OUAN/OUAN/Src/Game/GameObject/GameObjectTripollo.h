@@ -85,6 +85,10 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+		Trajectory* mPatrol;
+		int			mNextPatrolPoint;
+
+
 	};
 	
 	/// Information data structure to carry around data between the

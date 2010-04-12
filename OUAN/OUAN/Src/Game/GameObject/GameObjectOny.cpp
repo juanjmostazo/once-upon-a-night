@@ -89,11 +89,16 @@ void GameObjectOny::reset()
 
 void GameObjectOny::changeWorld(int world)
 {
-	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	if (isEnabled())
 	{
-		mPhysicsComponentCharacter->create();
+		if(mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+
+		}
+		mWeaponComponent->changeActiveWeapon(world);
+		mWeaponComponent->updateWeaponMode();
+		mWeaponComponent->switchOff();
 	}
 }
 
@@ -113,12 +118,14 @@ void GameObjectOny::setMaxHP()
 
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
-	//TODO: WEAPONS NEEDED
+	if (mWeaponComponent.get())
+		mWeaponComponent->increaseWeaponPower(powerUnits);
 }
 
 void GameObjectOny::decreaseWeaponPower(int powerUnits)
 {
-	//TODO: WEAPONS NEEDED
+	if (mWeaponComponent.get())
+		mWeaponComponent->decreaseWeaponPower(powerUnits);
 }
 
 void GameObjectOny::die()
@@ -138,10 +145,33 @@ bool GameObjectOny::hasPositionalComponent() const
 {
 	return true;
 }
+void GameObjectOny::useWeapon()
+{
+	mWeaponComponent->switchOn();
+}
+void GameObjectOny::stopUsingWeapon()
+{
+	mWeaponComponent->switchOff();
+}
 
 RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectOny::setWeaponComponent(WeaponComponentPtr weaponComponent)
+{
+	mWeaponComponent=weaponComponent;
+}
+
+WeaponComponentPtr GameObjectOny::getWeaponComponent() const
+{
+	return mWeaponComponent;
+}
+
+void GameObjectOny::setWeaponMode(TWeaponMode weaponMode)
+{
+	mWeaponComponent->setActiveWeaponMode(weaponMode);
 }
 
 //-------

@@ -20,6 +20,7 @@ namespace OUAN
 		void setVisible(bool visible);
 
 		void setDiffuseColor(ColourValue colour);
+		void setSpecularColor(ColourValue colour);
 
 		void setDirection(Vector3 direction);
 

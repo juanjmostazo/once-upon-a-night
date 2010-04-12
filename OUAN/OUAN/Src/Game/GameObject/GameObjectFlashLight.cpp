@@ -14,7 +14,7 @@ GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldMa
 	mCameraManager=pCameraManager;
 	mRayCasting=pRayCasting;
 
-	distance=10000.0f;
+	distance=10000.0f;	
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -51,6 +51,7 @@ RenderComponentLightPtr GameObjectFlashLight::getRenderComponentLight() const
 void GameObjectFlashLight::setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight)
 {
 	mRenderComponentLight = pRenderComponentLight;
+	mRenderComponentLight->getLight()->setVisible(false);
 }
 
 void GameObjectFlashLight::setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -86,18 +87,18 @@ PhysicsComponentSimpleCapsulePtr GameObjectFlashLight::getPhysicsComponentSimple
 void GameObjectFlashLight::changeWorld(int world)
 {
 
-	switch(world)
-	{
-	case DREAMS:
-		//TODO: set this to false
-		mRenderComponentLight->setVisible(true);
-		break;
-	case NIGHTMARES:
-		mRenderComponentLight->setVisible(true);
-		break;
-	default:
-		break;
-	}
+	//switch(world)
+	//{
+	//case DREAMS:
+	//	//TODO: set this to false
+	//	mRenderComponentLight->setVisible(false);
+	//	break;
+	//case NIGHTMARES:
+	//	mRenderComponentLight->setVisible(true);
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void GameObjectFlashLight::reset()
@@ -157,6 +158,45 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 	direction.normalise();
 
 	mRenderComponentLight->setDirection(direction);
+}
+void GameObjectFlashLight::setAttackMode(TWeaponMode attackMode)
+{
+	switch(attackMode)
+	{
+	case WEAPON_MODE_0:
+		mSelectedColour=RED;//red
+		break;
+	case WEAPON_MODE_1:
+		mSelectedColour=BLUE;//blue
+		break;
+	case WEAPON_MODE_2:
+		mSelectedColour=GREEN;//green
+		break;
+	case WEAPON_MODE_SPECIAL:
+		mSelectedColour=WHITE;//white
+		break;
+	}
+	ColourValue diffuseColour=ColourValue::Black;
+	diffuseColour.setAsRGBA(mSelectedColour);
+	mRenderComponentLight->setDiffuseColor(diffuseColour);
+	mRenderComponentLight->setSpecularColor(diffuseColour);
+}
+void GameObjectFlashLight::switchOn()
+{
+	mRenderComponentLight->getLight()->setVisible(true);
+}
+void GameObjectFlashLight::switchOff()
+{
+	mRenderComponentLight->getLight()->setVisible(false);
+}
+
+int GameObjectFlashLight::getSelectedColour() const
+{
+	return mSelectedColour;
+}
+void GameObjectFlashLight::setSelectedColour(int selectedColour)
+{
+	mSelectedColour=selectedColour;
 }
 
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()

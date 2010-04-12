@@ -2,6 +2,7 @@
 #define EVENTPROCESSORH_H
 
 #include "../OUAN.h"
+#include "../Event/Event.h"
 
 namespace OUAN
 {
@@ -46,6 +47,10 @@ namespace OUAN
 
 		/// Process 'ony falls down a chasm' event
 		void processOnyFalls(OnyFallsEventPtr evt);
+
+		/// Process weapon mode (i.e, the flashlight colour or the 
+		/// pillow special funtion) change event
+		void processWeaponModeChanged(WeaponModeChangedEventPtr evt);
 
 	private:
 		/// Register all event handling methods

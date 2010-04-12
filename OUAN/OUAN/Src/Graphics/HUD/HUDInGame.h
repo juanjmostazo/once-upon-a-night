@@ -1,6 +1,8 @@
 #ifndef HUDINGAMEH_H
 #define HUDINGAMEH_H
 #include "HUDBase.h"
+#include "../../Event/EventDefs.h"
+#include <boost/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	const std::string OVERLAY_INGAME_HUD = "OUAN/HUDOverlay";
@@ -29,23 +31,25 @@ namespace OUAN
 	const std::string OVERLAY_INGAME_HUD_LIVES_TEXT="OUAN/NumLives";
 	const std::string MATERIAL_ROULETTE="OUAN/Hud/Roulette";
 	const std::string MATERIAL_HEALTH="OUAN/Hud/Health";
+	
+	const std::string PANEL_ROULETTE="OUAN/RoulettePanel";
 
 	const int TRANSITION_NFRAMES=2;
 	const float TRANSITION_DURATION=0.5f;
 
 	typedef enum 
 	{
-		ROULETTE_TRANSITION_REDGREEN=0,
-		ROULETTE_COLOUR_RED,
-		ROULETTE_TRANSITION_REDBLUE,
-		ROULETTE_TRANSITION_BLUERED,
-		ROULETTE_COLOUR_BLUE,
-		ROULETTE_TRANSITION_BLUEGREEN,
-		ROULETTE_TRANSITION_GREENBLUE,
-		ROULETTE_COLOUR_GREEN,
-		ROULETTE_TRANSITION_GREENRED
+		ROULETTE_TRANSITION_02=0,
+		ROULETTE_STATE_0,
+		ROULETTE_TRANSITION_01,
+		ROULETTE_TRANSITION_10,
+		ROULETTE_STATE_1,
+		ROULETTE_TRANSITION_12,
+		ROULETTE_TRANSITION_21,
+		ROULETTE_STATE_2,
+		ROULETTE_TRANSITION_20
 	}TRouletteState;
-	const int NUM_ROULETTE_STATES=ROULETTE_TRANSITION_GREENRED-ROULETTE_TRANSITION_REDGREEN+1;
+	const int NUM_ROULETTE_STATES=ROULETTE_TRANSITION_20-ROULETTE_TRANSITION_02+1;
 
 	typedef struct
 	{
@@ -59,7 +63,7 @@ namespace OUAN
 	const int NUM_HEALTH_POINTS=3; //TODO: Change this so it doesn't depend on hardcoded values!!
 
 	//-- 
-	class HUDInGame: public HUDBase
+	class HUDInGame: public HUDBase, public boost::enable_shared_from_this<HUDInGame>
 	{
 	private:
 		TRouletteInfoMap mRouletteData;
@@ -79,18 +83,26 @@ namespace OUAN
 		void updateRouletteHUD();
 		void updateHealthHUD(int healthPoints, int numLives);
 
+		bool mSelectedModeChanged;
+
+
 	public:
 		HUDInGame();
 		~HUDInGame();
-		void init(int healthPoints, int numLives);
+		void init(int healthPoints, int numLives, int world);
 		void destroy();
 		void update(long elapsedTime,int healthPoints, int numLives);
 
 		void spinRoulette(bool forward);
 
+		bool isSelectedModeChanged();
+		void setSelectedModeChanged(bool selectedModeChanged);
+		TRouletteState getCurrentState() const;
+
 		//register/unregister
-		//processOnyIsHit
-		//processOnyDies
+		void registerEventHandlers(EventManagerPtr evtMgr);
+		void unregisterEventHandlers(EventManagerPtr evtMgr);
+		void processChangeWorld(ChangeWorldEventPtr evt);
 		
 	};
 }

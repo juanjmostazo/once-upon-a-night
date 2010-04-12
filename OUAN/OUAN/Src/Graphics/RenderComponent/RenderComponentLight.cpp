@@ -28,7 +28,10 @@ void RenderComponentLight::setDiffuseColor(ColourValue colour)
 {
 	mLight->setDiffuseColour(colour);
 }
-
+void RenderComponentLight::setSpecularColor(ColourValue colour)
+{
+	mLight->setSpecularColour(colour);
+}
 
 void RenderComponentLight::setDirection(Vector3 direction)
 {

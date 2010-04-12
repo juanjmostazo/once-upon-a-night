@@ -697,6 +697,10 @@
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\WeaponComponent.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1299,6 +1303,10 @@
 					>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\WeaponComponent.h"
 						>
 					</File>
 				</Filter>
