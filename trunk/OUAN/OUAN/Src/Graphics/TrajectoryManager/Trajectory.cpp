@@ -195,6 +195,19 @@ void Trajectory::addTrajectoryNode(TrajectoryNode * pTrajectoryNode,std::string 
 	}
 }
 
+TrajectoryNode* Trajectory::getTrajectoryNode(int index)
+{
+	if (!trajectoryNodes.empty() && index>=0 && (unsigned)index<trajectoryNodes.size())
+	{
+		return trajectoryNodes.at(index);
+	}
+	return NULL;
+}
+int Trajectory::getNumberOfNodes() const
+{
+	return (trajectoryNodes.empty())?0:trajectoryNodes.size();
+}
+
 TTrajectoryParameters::TTrajectoryParameters()
 {
 

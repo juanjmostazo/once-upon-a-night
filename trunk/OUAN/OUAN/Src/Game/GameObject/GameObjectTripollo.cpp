@@ -5,6 +5,9 @@
 #include "../../Event/Event.h"
 #include "../../Utils/Utils.h"
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Graphics/TrajectoryManager/Trajectory.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryManager.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryNode.h"
 
 using namespace OUAN;
 
@@ -83,9 +86,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
 		{
 			movement=NxOgre::Vec3::ZERO;
+			mPatrol=NULL;
+			mNextPatrolPoint=-1;
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
-		{	
+		{				
+
 			if (mLogicComponent->isStateChanged())
 			{
 				/*
@@ -94,8 +100,9 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				*/
 
 				mRandomMovementDelay=Utils::Random::getInstance()->getRandomInteger(MIN_RANDOM_MOVEMENT_DELAY,MAX_RANDOM_MOVEMENT_DELAY);
-				movement.x=Utils::Random::getInstance()->getRandomDouble(-3,3);
-				movement.z=Utils::Random::getInstance()->getRandomDouble(-3,3);
+				movement.x=Utils::Random::getInstance()->getRandomDouble(-1,1);
+				movement.z=Utils::Random::getInstance()->getRandomDouble(-1,1);
+
 			}
 			else
 			{
@@ -106,28 +113,25 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				else
 				{
 					mRandomMovementDelay=Utils::Random::getInstance()->getRandomInteger(MIN_RANDOM_MOVEMENT_DELAY,MAX_RANDOM_MOVEMENT_DELAY);
-					movement.x=Utils::Random::getInstance()->getRandomDouble(-3,3);
-					movement.z=Utils::Random::getInstance()->getRandomDouble(-3,3);
+					movement.x=Utils::Random::getInstance()->getRandomDouble(-1,1);
+					movement.z=Utils::Random::getInstance()->getRandomDouble(-1,1);
 				}
-				
-				/*
-					If the object is currently at one marker, compute the displacement vector as
-					(marker_n+1 - marker_n) (if it is the last one, marker_n+1 will be marker_0)
-					There might be some kind of flag to select a patrol behaviour, but at the moment
-					I'm just considering circular patrols
-						- Traverse the patrol markers and then traverse them again in reverse order:
-							0..1..2..3..2..1..0..1 (etc)
-						- Traverse the patrol makers and from the last one move to the first one:
-							0..1..2..3..0..1..2..3 (etc)
-				*/
 			}
 			
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 		{
 			/*
-				Set the displacementVector as ony.position-this.position
-				until there is a walkability map, beware of collisions and chasms
+				TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
+				compute a trajectory of nodes via an A* implementation.
+
+				For the sake of efficiency, here are two suggestions that I recall from the pathfinding classes:
+					- It may be useful to keep a structure containing precalculated paths between pairs of nodes. By doing this, 
+					only one invocation would be needed at the beginning, as the path might be retrieved in practically constant time.
+					- If the first option isn't chosen, don't invoke the A* on every tick. There should be some kind of constraint, such as:
+						- not to recompute the trajectory unless the distance between A*'s last destination node and Ony's current position
+						  exceeds a given value
+						- wait for a given amount of time before callin A* again
 			*/
 			movement=NxOgre::Vec3::ZERO;
 			if (mGameWorldManager.get() && mGameWorldManager->getGameObjectOny().get())
@@ -138,9 +142,17 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				movement.x=chaseDirection.x;
 				movement.y=chaseDirection.y;
 				movement.z=chaseDirection.z;
-				movement=movement/5;
+				movement=movement/5; //temporary hack: decrease the chase speed for the time being 
+									// so Ony can escape from the tripollo's reach
 			}
+			mPatrol=NULL;
+			mNextPatrolPoint=-1;
 			
+		}
+		else
+		{
+			mPatrol=NULL;
+			mNextPatrolPoint=-1;
 		}
 		if (mPhysicsComponentCharacter->isInUse())
 		{

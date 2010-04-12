@@ -9,6 +9,10 @@
 
 namespace OUAN
 {
+	const int RED = 0xff0000ff;
+	const int BLUE= 0x0000ffff;
+	const int GREEN=0x00ff00ff;
+	const int WHITE=0xffffffff;
 	/// Class to hold GameObjectFlashLight information
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
 	{
@@ -95,6 +99,13 @@ namespace OUAN
 
 		/// Update object
 		void update(double elapsedSeconds);
+
+		int getSelectedColour() const;
+		void setSelectedColour(int selectedColour);
+
+		void setAttackMode(TWeaponMode attackMode);
+		void switchOff();
+		void switchOn();
 
 		/// Reset object
 		virtual void reset();

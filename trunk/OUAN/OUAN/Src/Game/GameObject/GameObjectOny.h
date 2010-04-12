@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Logic/LogicComponent/WeaponComponent.h"
 
 namespace OUAN
 {
@@ -40,7 +41,8 @@ namespace OUAN
 		//HealthComponentPtr mHealthComponent;
 		
 		/// Weapon wielding component
-		//WeaponComponentPtr mWeaponComponent;
+		WeaponComponentPtr mWeaponComponent;
+		void initWeaponComponent();
 
 		/// 'Immunity' time so a single collision is not processed during several ticks
 		int mHitRecoveryTime;
@@ -82,6 +84,13 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 
+		/// set weapon component
+		void setWeaponComponent(WeaponComponentPtr weaponComponent);
+
+		void setWeaponMode(TWeaponMode weaponMode);
+		WeaponComponentPtr getWeaponComponent() const;
+
+
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
@@ -105,6 +114,9 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		void useWeapon();
+		void stopUsingWeapon();
 	};
 
 	/// Carries data between the level loader and the object factories
@@ -124,6 +136,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;		
+		
+		///Weapon parameters
+		TWeaponComponentParameters tWeaponComponentParameters;
 	};
 
 }

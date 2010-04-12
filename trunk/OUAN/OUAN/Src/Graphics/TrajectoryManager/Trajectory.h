@@ -54,8 +54,14 @@ namespace OUAN
 		bool getLoopTrajectory() const;
 		void setLoopTrajectory(bool loopTrajectory);
 
-		std::string getName( );
+		std::string getName();
 
+		// Methods to retrieve trajectory nodes and related information
+		// They'll be used to get fixed positions belonging to predefined patrol trajectories
+		// The reason why we're not using the update() and similar methods in those cases
+		// is that the Game Objects using patrols use the PhysicsComponent to modify their positions/orientations
+		TrajectoryNode* getTrajectoryNode(int index);
+		int getNumberOfNodes() const;
 	};
 
 	class TTrajectoryParameters

@@ -1,6 +1,7 @@
 #ifndef GAMEWORLDMANAGERH_H
 #define GAMEWORLDMANAGERH_H
 #include "../OUAN.h"
+#include "../Event/Event.h"
 
 namespace OUAN
 {
@@ -209,6 +210,9 @@ namespace OUAN
 
 		/// Return the current world
 		static int getWorld();
+
+		void useWeapon();
+		void stopUsingWeapon();
 
 	private:
 

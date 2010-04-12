@@ -16,7 +16,6 @@
 
 #include "TinyXML/tinyxml.h"
 
-#include "Event/EventDefs.h"
 #include "Logic/LogicDefs.h"
 
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
@@ -213,7 +212,24 @@ namespace OUAN
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
 
+		class WeaponComponent;
+		class TWeaponComponentParameters;
+		typedef boost::shared_ptr<WeaponComponent> WeaponComponentPtr;
+
+		const int DEFAULT_MAX_WEAPON_POWER=10;
+		typedef enum
+		{
+			WEAPON_MODE_INVALID=-1,
+			WEAPON_MODE_0,
+			WEAPON_MODE_1,
+			WEAPON_MODE_2,
+			//...
+			WEAPON_MODE_SPECIAL
+		} TWeaponMode;
+
+
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
+		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -503,44 +519,9 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_DOOR="door";
 		const std::string GAME_OBJECT_TYPE_PLATAFORM="plataform";
 		const std::string GAME_OBJECT_TYPE_BUSH="bush";
-		///////////////////////////////////////////////////////////////////
 
-		// Event manager-related constants, typedefs and forwarded declarations
-		class Event;
-		typedef boost::shared_ptr<Event> EventPtr;
-
-		class BaseEventHandler;
-		typedef boost::shared_ptr<BaseEventHandler> EventHandlerPtr;
-
-		class EventManager;
-		typedef boost::shared_ptr<EventManager> EventManagerPtr;
-
-		class EventProcessor;
-		typedef boost::shared_ptr<EventProcessor> EventProcessorPtr;
-
-		class ChangeWorldEvent;
-		typedef boost::shared_ptr<ChangeWorldEvent> ChangeWorldEventPtr;
-
-		class CharactersCollisionEvent;
-		typedef boost::shared_ptr<CharactersCollisionEvent> CharactersCollisionEventPtr;
-
-		class CharacterInTriggerEvent;
-		typedef boost::shared_ptr<CharacterInTriggerEvent> CharacterInTriggerEventPtr;
-
-		class CharacterShapeFrontCollisionEvent;
-		typedef boost::shared_ptr<CharacterShapeFrontCollisionEvent> CharacterShapeFrontCollisionEventPtr;
-
-		class ClearQueueEvent;
-		typedef boost::shared_ptr<ClearQueueEvent> ClearQueueEventPtr;
-
-		class GameOverEvent;
-		typedef boost::shared_ptr<GameOverEvent> GameOverEventPtr;
-
-		class OnyDiesEvent;
-		typedef boost::shared_ptr<OnyDiesEvent> OnyDiesEventPtr;
-
-		class OnyFallsEvent;
-		typedef boost::shared_ptr<OnyFallsEvent> OnyFallsEventPtr;
+		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
+		///////////////////////////////////////////////////////////////////		
 
 		///////////////////////////////////////////////////////////////////
 

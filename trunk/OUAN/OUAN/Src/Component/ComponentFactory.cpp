@@ -22,6 +22,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
+#include "../Logic/LogicComponent/WeaponComponent.h"
 
 using namespace OUAN;
 
@@ -336,4 +337,10 @@ LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObjec
 	logicComponent->setState(logicComponentParameters.defaultState);
 	logicComponent->setParent(gameObject);
 	return logicComponent;
+}
+WeaponComponentPtr ComponentFactory::createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters)
+{
+	WeaponComponentPtr weaponComponent = WeaponComponentPtr(new WeaponComponent());	
+	weaponComponent->setParent(gameObject);
+	return weaponComponent;
 }

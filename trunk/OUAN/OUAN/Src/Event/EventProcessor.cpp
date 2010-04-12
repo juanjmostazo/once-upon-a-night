@@ -55,6 +55,8 @@ void EventProcessor::registerHandlers()
 		
 		registerEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
 			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
+			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
 	}
 }
 
@@ -83,6 +85,8 @@ void EventProcessor::unregisterHandlers()
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
 		unregisterEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
 			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
+			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
 	}
 }
 
@@ -244,4 +248,12 @@ void EventProcessor::processOnyFalls(OnyFallsEventPtr evt)
 {
 	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())
 		mWorldManager->getGameObjectOny()->decreaseLives();
+}
+void EventProcessor::processWeaponModeChanged(WeaponModeChangedEventPtr evt)
+{
+	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())
+	{
+		mWorldManager->getGameObjectOny()->setWeaponMode(evt->getNewWeaponMode());
+	}
+
 }

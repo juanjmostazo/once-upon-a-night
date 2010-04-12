@@ -75,6 +75,7 @@ namespace OUAN
 
 		//Logic components
 		LogicComponentPtr createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters logicComponentParameters);
+		WeaponComponentPtr createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters);
 
 
 		//[TODO: Others]

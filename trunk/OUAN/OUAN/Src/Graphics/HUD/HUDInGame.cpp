@@ -1,18 +1,19 @@
 #include "HUDInGame.h"
 #include <Ogre.h>
-
+#include "../../Event/Event.h"
+#include "../../Event/EventManager.h"
 using namespace OUAN;
 
 HUDInGame::HUDInGame()
 :HUDBase()
 {
-
+	mSelectedModeChanged=false;
 }
 HUDInGame::~HUDInGame()
 {
 	destroy();
 }
-void HUDInGame::init(int healthPoints, int numLives)
+void HUDInGame::init(int healthPoints, int numLives, int world)
 {
 	HUDBase::init(OVERLAY_INGAME_HUD);
 	mHealthMaterial= Ogre::MaterialManager::getSingletonPtr()->getByName(MATERIAL_HEALTH);
@@ -21,9 +22,20 @@ void HUDInGame::init(int healthPoints, int numLives)
 	mLives=Ogre::OverlayManager::getSingleton().getOverlayElement(OVERLAY_INGAME_HUD_LIVES_TEXT);
 
 	initRouletteData();
-	mCurrentRouletteState=ROULETTE_COLOUR_RED;
+	mCurrentRouletteState=ROULETTE_STATE_0;
 	updateRouletteHUD();
 	initHealthHud(healthPoints,numLives);
+
+	if (world==DREAMS)
+	{		
+		hideElement(PANEL_ROULETTE);
+		//showElement(PANEL_PILLOW_ROULE
+	}
+	else
+	{
+		showElement(PANEL_ROULETTE);
+		//showElement(PANEL_PILLOW_ROULE
+	}
 }
 void HUDInGame::destroy()
 {
@@ -34,36 +46,36 @@ void HUDInGame::destroy()
 void HUDInGame::initRouletteData()
 {
 	mRouletteData.clear();
-	mRouletteData[ROULETTE_COLOUR_RED].textureName=TEX_ROULETTE_COLOUR_RED;
-	mRouletteData[ROULETTE_COLOUR_RED].isAnimated=false;
-	mRouletteData[ROULETTE_COLOUR_BLUE].textureName=TEX_ROULETTE_COLOUR_BLUE;
-	mRouletteData[ROULETTE_COLOUR_BLUE].isAnimated=false;
-	mRouletteData[ROULETTE_COLOUR_GREEN].textureName=TEX_ROULETTE_COLOUR_GREEN;
-	mRouletteData[ROULETTE_COLOUR_GREEN].isAnimated=false;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].textureName=TEX_ROULETTE_TRANSITION_BG;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_BLUEGREEN].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].textureName=TEX_ROULETTE_TRANSITION_GB;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_GREENBLUE].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].textureName=TEX_ROULETTE_TRANSITION_RB;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_REDBLUE].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].textureName=TEX_ROULETTE_TRANSITION_BR;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_BLUERED].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].textureName=TEX_ROULETTE_TRANSITION_RG;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_REDGREEN].duration=TRANSITION_DURATION;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].textureName=TEX_ROULETTE_TRANSITION_GR;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].isAnimated=true;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].numFrames=TRANSITION_NFRAMES;
-	mRouletteData[ROULETTE_TRANSITION_GREENRED].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_STATE_0].textureName=TEX_ROULETTE_COLOUR_RED;
+	mRouletteData[ROULETTE_STATE_0].isAnimated=false;
+	mRouletteData[ROULETTE_STATE_1].textureName=TEX_ROULETTE_COLOUR_BLUE;
+	mRouletteData[ROULETTE_STATE_1].isAnimated=false;
+	mRouletteData[ROULETTE_STATE_2].textureName=TEX_ROULETTE_COLOUR_GREEN;
+	mRouletteData[ROULETTE_STATE_2].isAnimated=false;
+	mRouletteData[ROULETTE_TRANSITION_12].textureName=TEX_ROULETTE_TRANSITION_BG;
+	mRouletteData[ROULETTE_TRANSITION_12].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_12].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_12].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_21].textureName=TEX_ROULETTE_TRANSITION_GB;
+	mRouletteData[ROULETTE_TRANSITION_21].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_21].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_21].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_01].textureName=TEX_ROULETTE_TRANSITION_RB;
+	mRouletteData[ROULETTE_TRANSITION_01].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_01].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_01].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_10].textureName=TEX_ROULETTE_TRANSITION_BR;
+	mRouletteData[ROULETTE_TRANSITION_10].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_10].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_10].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_02].textureName=TEX_ROULETTE_TRANSITION_RG;
+	mRouletteData[ROULETTE_TRANSITION_02].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_02].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_02].duration=TRANSITION_DURATION;
+	mRouletteData[ROULETTE_TRANSITION_20].textureName=TEX_ROULETTE_TRANSITION_GR;
+	mRouletteData[ROULETTE_TRANSITION_20].isAnimated=true;
+	mRouletteData[ROULETTE_TRANSITION_20].numFrames=TRANSITION_NFRAMES;
+	mRouletteData[ROULETTE_TRANSITION_20].duration=TRANSITION_DURATION;
 }
 void HUDInGame::initHealthHud(int healthPoints, int numLives)
 {
@@ -77,8 +89,8 @@ void HUDInGame::initHealthHud(int healthPoints, int numLives)
 void HUDInGame::spinRoulette(bool forward)
 {
 	int increment=forward?1:-1;
-	bool isColourRouletteState=mCurrentRouletteState==ROULETTE_COLOUR_BLUE || 
-		mCurrentRouletteState==ROULETTE_COLOUR_RED || mCurrentRouletteState == ROULETTE_COLOUR_GREEN;
+	bool isColourRouletteState=mCurrentRouletteState==ROULETTE_STATE_1 || 
+		mCurrentRouletteState==ROULETTE_STATE_0 || mCurrentRouletteState == ROULETTE_STATE_2;
 	if (isColourRouletteState)
 	{	
 		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
@@ -89,10 +101,10 @@ void HUDInGame::spinRoulette(bool forward)
 }
 void HUDInGame::updateRoulette()
 {
-	bool isLeftTransition = mCurrentRouletteState== ROULETTE_TRANSITION_REDGREEN ||
-		mCurrentRouletteState == ROULETTE_TRANSITION_GREENBLUE || mCurrentRouletteState==ROULETTE_TRANSITION_BLUERED;
-	bool isRightTransition = mCurrentRouletteState==ROULETTE_TRANSITION_REDBLUE ||
-		mCurrentRouletteState == ROULETTE_TRANSITION_BLUEGREEN || mCurrentRouletteState==ROULETTE_TRANSITION_GREENRED;
+	bool isLeftTransition = mCurrentRouletteState== ROULETTE_TRANSITION_02 ||
+		mCurrentRouletteState == ROULETTE_TRANSITION_21 || mCurrentRouletteState==ROULETTE_TRANSITION_10;
+	bool isRightTransition = mCurrentRouletteState==ROULETTE_TRANSITION_01 ||
+		mCurrentRouletteState == ROULETTE_TRANSITION_12 || mCurrentRouletteState==ROULETTE_TRANSITION_20;
 	int increment=0;
 	if (isLeftTransition)
 		increment=-2;
@@ -104,7 +116,7 @@ void HUDInGame::updateRoulette()
 		int next=(mCurrentRouletteState+increment)%NUM_ROULETTE_STATES;
 		if (next<0) next+=NUM_ROULETTE_STATES;
 		mCurrentRouletteState=static_cast<TRouletteState>(next);
-
+		mSelectedModeChanged=true;
 		updateRouletteHUD();
 	}
 }
@@ -158,4 +170,51 @@ void HUDInGame::update(long elapsedTime, int healthPoints, int numLives)
 {
 	updateRoulette();
 	updateHealthHUD(healthPoints,numLives);
+}
+bool HUDInGame::isSelectedModeChanged()
+{
+	return mSelectedModeChanged;
+}
+void HUDInGame::setSelectedModeChanged(bool selectedModeChanged)
+{
+	mSelectedModeChanged=selectedModeChanged;
+}
+TRouletteState HUDInGame::getCurrentState() const
+{
+	return mCurrentRouletteState;
+}
+void HUDInGame::registerEventHandlers(EventManagerPtr evtMgr)
+{
+	boost::shared_ptr<HUDInGame> this_ = shared_from_this();
+	if (evtMgr.get())
+	{
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<HUDInGame,ChangeWorldEvent>(this_,&HUDInGame::processChangeWorld));
+		evtMgr->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+	}
+}
+void HUDInGame::unregisterEventHandlers(EventManagerPtr evtMgr)
+{
+	boost::shared_ptr<HUDInGame> this_ = shared_from_this();
+	if (evtMgr.get())
+	{
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<HUDInGame,ChangeWorldEvent>(this_,&HUDInGame::processChangeWorld));
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+	}
+}
+void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	if (evt->getNewWorld()==DREAMS)
+	{
+		hideElement(PANEL_ROULETTE);
+		//TODO:
+		//showElement(PANEL_PILLOW_ROULETTE);
+	}
+	else
+	{
+		showElement(PANEL_ROULETTE);
+		//TOD:
+		//hideElement(PANEL_PILLOW_ROULETTE);
+	}
+		
 }
