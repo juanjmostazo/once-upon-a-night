@@ -104,8 +104,14 @@ namespace OUAN
 		void setSelectedColour(int selectedColour);
 
 		void setAttackMode(TWeaponMode attackMode);
+		/// Switch off the light
 		void switchOff();
+		/// Switch on the light
 		void switchOn();
+		/// Show the flashlight (i.e, the model)
+		void show();
+		/// Hide the flashlight (i.e, the model)
+		void hide();
 
 		/// Reset object
 		virtual void reset();
