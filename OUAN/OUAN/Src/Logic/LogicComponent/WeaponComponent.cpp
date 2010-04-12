@@ -23,12 +23,25 @@ void WeaponComponent::init(int currentWorld)
 	nullPtr.reset();
 	mAvailableWeapons[DREAMS]=nullPtr;//TODO: replace with the pillow (//mParent->getGameWorldManager()->getGameObjectPillow())
 	mAvailableWeapons[NIGHTMARES]=mParent->getGameWorldManager()->getGameObjectFlashLight();
+
+	mMaxWeaponPower=DEFAULT_MAX_WEAPON_POWER;
+	mWeaponPower=0;
 	
 	mActiveWeapon=mAvailableWeapons[currentWorld];
 	mActiveWeaponInUse=false;
 	
-	mMaxWeaponPower=DEFAULT_MAX_WEAPON_POWER;
-	mWeaponPower=0;
+	if (currentWorld==DREAMS)
+	{
+		if(GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(mAvailableWeapons[NIGHTMARES]))
+			flashlight->hide();
+		//TODO: Pillow->show)
+	}
+	else
+	{
+		if(GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(mAvailableWeapons[NIGHTMARES]))
+			flashlight->show();
+		//TODO: Pillow->hide()
+	}
 }
 void WeaponComponent::cleanUp()
 {
@@ -44,8 +57,23 @@ void WeaponComponent::cleanUp()
 }
 void WeaponComponent::changeActiveWeapon(int world)
 {
+	GameObjectPtr oldActiveWeapon=mActiveWeapon;
 	mActiveWeapon=mAvailableWeapons[world];
-	mActiveWeaponInUse=false;
+	mActiveWeaponInUse=false;	
+	if (GameObjectFlashLightPtr flashlight =boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon))
+	{
+		flashlight->show();
+		//if (GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(oldActiveWeapon))
+		//	pillow->hide();
+	}
+	else// if (boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon))
+	{
+		GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon);
+		//pillow->show();
+		if (GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(oldActiveWeapon))
+			flashlight->hide();
+	}
+	oldActiveWeapon.reset();
 }
 void WeaponComponent::setActiveWeaponMode(TWeaponMode activeWeaponMode)
 {

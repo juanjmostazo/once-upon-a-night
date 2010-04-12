@@ -189,7 +189,14 @@ void GameObjectFlashLight::switchOff()
 {
 	mRenderComponentLight->getLight()->setVisible(false);
 }
-
+void GameObjectFlashLight::show()
+{
+	mRenderComponentEntity->getEntity()->setVisible(true);
+}
+void GameObjectFlashLight::hide()
+{
+	mRenderComponentEntity->getEntity()->setVisible(false);
+}
 int GameObjectFlashLight::getSelectedColour() const
 {
 	return mSelectedColour;
