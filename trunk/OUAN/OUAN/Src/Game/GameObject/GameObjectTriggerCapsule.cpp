@@ -81,40 +81,40 @@ void GameObjectTriggerCapsule::changeWorld(int world)
 	{
 		switch(world)
 		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+			case DREAMS:
+				if(mLogicComponent->existsInDreams())
 				{
-					mPhysicsComponentVolumeCapsule->create();
+					if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+					{
+						mPhysicsComponentVolumeCapsule->create();
+					}
 				}
-			}
-			else
-			{
-				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				else
 				{
-					mPhysicsComponentVolumeCapsule->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+					if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+					{
+						mPhysicsComponentVolumeCapsule->destroy();
+					}
+				}		
+				break;
+			case NIGHTMARES:
+				if(mLogicComponent->existsInNightmares())
 				{
-					mPhysicsComponentVolumeCapsule->create();
+					if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+					{
+						mPhysicsComponentVolumeCapsule->create();
+					}
 				}
-			}
-			else
-			{
-				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				else
 				{
-					mPhysicsComponentVolumeCapsule->destroy();
+					if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+					{
+						mPhysicsComponentVolumeCapsule->destroy();
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -122,6 +122,8 @@ void GameObjectTriggerCapsule::changeWorld(int world)
 void GameObjectTriggerCapsule::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectTriggerCapsule::hasPositionalComponent() const

@@ -82,42 +82,42 @@ void GameObjectTriggerBox::changeWorld(int world)
 	{
 		switch(world)
 		{
-		case DREAMS:
-			
-			if(mLogicComponent->existsInDreams())
-			{
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			case DREAMS:
+	
+				if(mLogicComponent->existsInDreams())
 				{
-					mPhysicsComponentVolumeBox->create();
+					if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+					{
+						mPhysicsComponentVolumeBox->create();
+					}
 				}
-			}
-			else
-			{
-				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+				else
 				{
-					mPhysicsComponentVolumeBox->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
+					if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+					{
+						mPhysicsComponentVolumeBox->destroy();
+					}
+				}		
+				break;
+			case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
-			{
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				if(mLogicComponent->existsInNightmares())
 				{
-					mPhysicsComponentVolumeBox->create();
+					if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+					{
+						mPhysicsComponentVolumeBox->create();
+					}
 				}
-			}
-			else
-			{
-				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+				else
 				{
-					mPhysicsComponentVolumeBox->destroy();
+					if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+					{
+						mPhysicsComponentVolumeBox->destroy();
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -125,6 +125,8 @@ void GameObjectTriggerBox::changeWorld(int world)
 void GameObjectTriggerBox::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectTriggerBox::hasPositionalComponent() const

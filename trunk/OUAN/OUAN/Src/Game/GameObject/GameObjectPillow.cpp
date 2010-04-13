@@ -62,50 +62,52 @@ void GameObjectPillow::changeWorld(int world)
 		{
 			mPhysicsComponentSimpleCapsule->create();
 		}
+
+		mRenderComponentEntity->setVisible(true);
 		return;
 	}
 	else
 	{
 		switch(world)
 		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+			case DREAMS:
+				if(mLogicComponent->existsInDreams())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mRenderComponentEntity->setVisible(true);
+					if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+					{
+						mPhysicsComponentSimpleCapsule->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				else
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+					mRenderComponentEntity->setVisible(false);
+					if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+					{
+						mPhysicsComponentSimpleCapsule->destroy();
+					}
+				}		
+				break;
+			case NIGHTMARES:
+				if(mLogicComponent->existsInNightmares())
 				{
-					mPhysicsComponentSimpleCapsule->create();
+					mRenderComponentEntity->setVisible(true);
+					if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
+					{
+						mPhysicsComponentSimpleCapsule->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+				else
 				{
-					mPhysicsComponentSimpleCapsule->destroy();
+					mRenderComponentEntity->setVisible(false);
+					if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+					{
+						mPhysicsComponentSimpleCapsule->destroy();
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -113,6 +115,8 @@ void GameObjectPillow::changeWorld(int world)
 void GameObjectPillow::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectPillow::hasPositionalComponent() const

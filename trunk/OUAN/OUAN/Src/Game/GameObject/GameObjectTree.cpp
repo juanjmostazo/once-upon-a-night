@@ -62,50 +62,52 @@ void GameObjectTree::changeWorld(int world)
 		{
 			mPhysicsComponentSimpleBox->create();
 		}
+
+		mRenderComponentEntity->setVisible(true);
 		return;
 	}
 	else
 	{
 		switch(world)
 		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			case DREAMS:
+				if(mLogicComponent->existsInDreams())
 				{
-					mPhysicsComponentSimpleBox->create();
+					mRenderComponentEntity->setVisible(true);
+					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					{
+						mPhysicsComponentSimpleBox->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				else
 				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					mRenderComponentEntity->setVisible(false);
+					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+					{
+						mPhysicsComponentSimpleBox->destroy();
+					}
+				}		
+				break;
+			case NIGHTMARES:
+				if(mLogicComponent->existsInNightmares())
 				{
-					mPhysicsComponentSimpleBox->create();
+					mRenderComponentEntity->setVisible(true);
+					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					{
+						mPhysicsComponentSimpleBox->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				else
 				{
-					mPhysicsComponentSimpleBox->destroy();
+					mRenderComponentEntity->setVisible(false);
+					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+					{
+						mPhysicsComponentSimpleBox->destroy();
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -113,6 +115,8 @@ void GameObjectTree::changeWorld(int world)
 void GameObjectTree::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectTree::hasPositionalComponent() const
