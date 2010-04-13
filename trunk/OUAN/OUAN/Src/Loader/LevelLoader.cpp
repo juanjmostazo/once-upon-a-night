@@ -47,7 +47,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
-#include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
@@ -144,7 +144,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
-			processGameObjectTripollo(gameObject);
+			processGameObjectTripolloDreams(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{
@@ -240,7 +240,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCAREDPLANT)==0)
 		{
-			//processGameObjectScaredPlant(gameObject);
+			processGameObjectScaredPlant(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 		{
@@ -1469,8 +1469,8 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 		if(gameObject->XMLNodeNightmares) throw NIGHTMARES_SHOULD_NOT_EXIST;
 
 		//Get names
-		tGameObjectScaredPlantParameters.dreamsName = "None";
-		tGameObjectScaredPlantParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectScaredPlantParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectScaredPlantParameters.nightmaresName = "None";
 		tGameObjectScaredPlantParameters.name = gameObject->name;
 
 		//Get Logic component
@@ -1953,9 +1953,9 @@ void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectTripollito(tGameObjectTripollitoParameters);
 }
 
-void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
+	OUAN::TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters;
 
 	try
 	{
@@ -1963,30 +1963,30 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectTripolloParameters.name = gameObject->name;
+		tGameObjectTripolloDreamsParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTripolloDreamsParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTripolloDreamsParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectTripolloParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectTripolloDreamsParameters.logicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		if(tGameObjectTripolloParameters.logicComponentParameters.existsInDreams)
+		if(tGameObjectTripolloDreamsParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
 		}
-		if(tGameObjectTripolloParameters.logicComponentParameters.existsInNightmares)
+		if(tGameObjectTripolloDreamsParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
 		}
 
 		//Get RenderComponentPositional
-		tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectTripolloDreamsParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
-		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -1995,7 +1995,7 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
+	mGameWorldManager->createGameObjectTripolloDreams(tGameObjectTripolloDreamsParameters);
 }
 
 

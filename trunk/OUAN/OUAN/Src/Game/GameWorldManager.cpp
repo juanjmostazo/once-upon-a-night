@@ -40,7 +40,7 @@
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
 #include "GameObject/GameObjectTripollito.h"
-#include "GameObject/GameObjectTripollo.h"
+#include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
 
 #include "../Graphics/RenderSubsystem.h"
@@ -154,9 +154,9 @@ TGameObjectSceneContainer GameWorldManager::getGameObjectSceneContainer()
 	return mGameObjectSceneContainer;
 }
 
-TGameObjectTripolloContainer GameWorldManager::getGameObjectTripolloContainer()
+TGameObjectTripolloDreamsContainer GameWorldManager::getGameObjectTripolloDreamsContainer()
 {
-	return mGameObjectTripolloContainer;
+	return mGameObjectTripolloDreamsContainer;
 }
 
 TGameObjectTripollitoContainer GameWorldManager::getGameObjectTripollitoContainer()
@@ -299,7 +299,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectFlashLightContainer.clear();
 	mGameObjectPositionalContainer.clear();
 	mGameObjectSceneContainer.clear();
-	mGameObjectTripolloContainer.clear();
+	mGameObjectTripolloDreamsContainer.clear();
 	mGameObjectEyeContainer.clear();
 	mGameObjectTriggerBoxContainer.clear();
 	mGameObjectTriggerCapsuleContainer.clear();
@@ -331,6 +331,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	// world information.
 	//Init physicssubsystem
 	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
+	mApp->getTrajectoryManager()->clear();
 
 	//Set world to dreams
 	setWorld(DREAMS); 
@@ -791,19 +792,19 @@ void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr pGameObje
 	mGameObjectLogicContainer.push_back(pGameObjectTripollito);
 }
 
-void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
+void GameWorldManager::addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams)
 {
-	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
+	mGameObjects[pGameObjectTripolloDreams->getName()]=pGameObjectTripolloDreams;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
+	mGameObjectPositionalContainer.push_back(pGameObjectTripolloDreams);
+	mGameObjectMovableContainer.push_back(pGameObjectTripolloDreams);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTripolloDreams);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripolloDreams);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripolloDreams);
 
-	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
-	mGameObjectLogicContainer.push_back(pGameObjectTripollo);
+	mGameObjectTripolloDreamsContainer.push_back(pGameObjectTripolloDreams);
+	mGameObjectLogicContainer.push_back(pGameObjectTripolloDreams);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
@@ -2575,52 +2576,52 @@ void GameWorldManager::createGameObjectTripollito(TGameObjectTripollitoParameter
 	addGameObjectTripollito(pGameObjectTripollito);
 }
 
-void GameWorldManager::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters)
+void GameWorldManager::createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters)
 {
-	GameObjectTripolloPtr pGameObjectTripollo;
+	GameObjectTripolloDreamsPtr pGameObjectTripolloDreams;
 
 	//Create GameObject
-	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
+	pGameObjectTripolloDreams = GameObjectTripolloDreamsPtr(new GameObjectTripolloDreams(tGameObjectTripolloDreamsParameters.name));
 	
 	//Create Game Components
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponent
-		pGameObjectTripollo->setLogicComponent(
-			factory->createLogicComponent(pGameObjectTripollo,
-			tGameObjectTripolloParameters.logicComponentParameters));
+		pGameObjectTripolloDreams->setLogicComponent(
+			factory->createLogicComponent(pGameObjectTripolloDreams,
+			tGameObjectTripolloDreamsParameters.logicComponentParameters));
 
 		//Create RenderComponentPositional
-		pGameObjectTripollo->setRenderComponentPositional(factory->createRenderComponentPositional(
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
+		pGameObjectTripolloDreams->setRenderComponentPositional(factory->createRenderComponentPositional(
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentPositionalParameters));
 
 		//Create RenderComponentInitial
-		pGameObjectTripollo->setRenderComponentInitial(factory->createRenderComponentInitial(
-			pGameObjectTripollo->getRenderComponentPositional()));
+		pGameObjectTripolloDreams->setRenderComponentInitial(factory->createRenderComponentInitial(
+			pGameObjectTripolloDreams->getRenderComponentPositional()));
 
 		//Create RenderComponentEntityDreams
-		pGameObjectTripollo->setRenderComponentEntityDreams(
-			factory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters));
 
 		//Create RenderComponentEntityNightmares
-		pGameObjectTripollo->setRenderComponentEntityNightmares(
-			factory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
-			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters));
 
 		//Create PhysicsComponent
-		pGameObjectTripollo->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
-			pGameObjectTripollo,
-			tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
-			pGameObjectTripollo->getRenderComponentPositional()));
+		pGameObjectTripolloDreams->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
+			pGameObjectTripolloDreams,
+			tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectTripolloDreams->getRenderComponentPositional()));
 	
-	pGameObjectTripollo->changeWorld(world);
+	pGameObjectTripolloDreams->changeWorld(world);
 
 	// Add a reference to this
-	pGameObjectTripollo->setGameWorldManager(mThis);
+	pGameObjectTripolloDreams->setGameWorldManager(mThis);
 
 	//Add Object to GameWorldManager
-	addGameObjectTripollo(pGameObjectTripollo);
+	addGameObjectTripolloDreams(pGameObjectTripolloDreams);
 }
 
 void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters)

@@ -1,4 +1,4 @@
-#include "GameObjectTripollo.h"
+#include "GameObjectTripolloDreams.h"
 
 #include "GameObjectOny.h"
 #include "../GameWorldManager.h"
@@ -13,68 +13,68 @@ using namespace OUAN;
 
 
 
-GameObjectTripollo::GameObjectTripollo(const std::string& name)
+GameObjectTripolloDreams::GameObjectTripolloDreams(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
 {
 	mRandomMovementDelay=-1;
 }
 
-GameObjectTripollo::~GameObjectTripollo()
+GameObjectTripolloDreams::~GameObjectTripolloDreams()
 {
 
 }
 
-void GameObjectTripollo::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTripolloDreams::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTripollo::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectTripolloDreams::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectTripollo::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTripolloDreams::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectTripollo::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectTripolloDreams::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectTripollo::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTripolloDreams::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectTripollo::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTripolloDreams::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectTripolloDreams::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
 }
 
-RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectTripolloDreams::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectTripollo::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectTripolloDreams::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharacter()
 {
 	return mPhysicsComponentCharacter;
 }
 
-void GameObjectTripollo::update(double elapsedSeconds)
+void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
@@ -181,7 +181,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 	//}
 }
 
-void GameObjectTripollo::reset()
+void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();
 
@@ -194,7 +194,7 @@ void GameObjectTripollo::reset()
 	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 }
 
-void GameObjectTripollo::changeWorld(int world)
+void GameObjectTripolloDreams::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
@@ -264,21 +264,21 @@ void GameObjectTripollo::changeWorld(int world)
 		}
 	}
 }
-bool GameObjectTripollo::hasPositionalComponent() const
+bool GameObjectTripolloDreams::hasPositionalComponent() const
 {
 	return true;
 }
-RenderComponentPositionalPtr GameObjectTripollo::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectTripolloDreams::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 //-------------------------------------------------------------------------------------------
-TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
+TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectTripolloParameters::~TGameObjectTripolloParameters()
+TGameObjectTripolloDreamsParameters::~TGameObjectTripolloDreamsParameters()
 {
 
 }
