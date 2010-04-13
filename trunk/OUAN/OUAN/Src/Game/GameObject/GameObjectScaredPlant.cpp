@@ -73,35 +73,42 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 void GameObjectScaredPlant::reset()
 {
 	GameObject::reset();
-
-	if (!mPhysicsComponentCharacter->isInUse())
+	/*
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
-		mPhysicsComponentCharacter->create();
+		mPhysicsComponentCharacter->destroy();
 	}
+	*/
+	changeWorld(DREAMS);
 
-	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
 }
 
 void GameObjectScaredPlant::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
-	case DREAMS:
-		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-		{
-			//mPhysicsComponentCharacter->create();
-		}
-		mRenderComponentEntityDreams->setVisible(true);
-		break;
-	case NIGHTMARES:
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			//mPhysicsComponentCharacter->destroy();
-		}
-		mRenderComponentEntityDreams->setVisible(false);
-		break;
-	default:break;
+		case DREAMS:
+			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+			{
+				//mPhysicsComponentCharacter->create();
+			}
+			mRenderComponentEntityDreams->setVisible(true);
+			break;
+		case NIGHTMARES:
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			{
+				//mPhysicsComponentCharacter->destroy();
+			}
+			mRenderComponentEntityDreams->setVisible(false);
+			break;
+		default:break;
 	}
 
 }

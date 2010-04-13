@@ -78,13 +78,13 @@ void GameObjectOny::reset()
 {
 	GameObject::reset();
 
-	if (!mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
+	changeWorld(DREAMS);
 
-	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
 }
 
 void GameObjectOny::changeWorld(int world)
@@ -94,8 +94,8 @@ void GameObjectOny::changeWorld(int world)
 		if(mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 		{
 			mPhysicsComponentCharacter->create();
-
 		}
+
 		mWeaponComponent->changeActiveWeapon(world);
 		mWeaponComponent->updateWeaponMode();
 		mWeaponComponent->switchOff();

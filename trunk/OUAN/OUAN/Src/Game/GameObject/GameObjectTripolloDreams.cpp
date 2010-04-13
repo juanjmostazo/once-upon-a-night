@@ -170,7 +170,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 	//if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	//{
 
-	
 	//	//mPhysicsComponentCharacter->getNxOgreController()->move(
 	//	//	getPhysicsComponentCharacter()->getNextMovement()+
 	//	//	Application::getInstance()->getPhysicsSubsystem()->mGravity* 
@@ -185,13 +184,18 @@ void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();
 
-	if (!mPhysicsComponentCharacter->isInUse())
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
-		mPhysicsComponentCharacter->create();
+		mPhysicsComponentCharacter->destroy();
 	}
 
-	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	changeWorld(DREAMS);
+
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
 }
 
 void GameObjectTripolloDreams::changeWorld(int world)
@@ -202,65 +206,65 @@ void GameObjectTripolloDreams::changeWorld(int world)
 	{
 		switch(world)
 		{
-		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-			break;
-		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
-			break;
-		}
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
+			case DREAMS:
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityNightmares->setVisible(false);
+				break;
+			case NIGHTMARES:
+				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(true);
+				break;
+			}
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			{
+				mPhysicsComponentCharacter->create();
+			}
 		return;
 	}
 	else
 	{
 		switch(world)
 		{
-		case DREAMS:
-			
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			case DREAMS:
+				
+				if(mLogicComponent->existsInDreams())
 				{
-					mPhysicsComponentCharacter->create();
+					mRenderComponentEntityDreams->setVisible(true);
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+					{
+						mPhysicsComponentCharacter->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				else
 				{
-					mPhysicsComponentCharacter->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
-			
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+					mRenderComponentEntityNightmares->setVisible(false);
+					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+					{
+						mPhysicsComponentCharacter->destroy();
+					}
+				}		
+				break;
+			case NIGHTMARES:
+				
+				if(mLogicComponent->existsInNightmares())
 				{
-					mPhysicsComponentCharacter->create();
+					mRenderComponentEntityNightmares->setVisible(true);
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+					{
+						mPhysicsComponentCharacter->create();
+					}
 				}
-			}
-			else
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				else
 				{
-					mPhysicsComponentCharacter->destroy();
+					mRenderComponentEntityDreams->setVisible(false);
+					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+					{
+						mPhysicsComponentCharacter->destroy();
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }

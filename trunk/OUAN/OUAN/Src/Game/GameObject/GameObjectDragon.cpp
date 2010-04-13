@@ -84,32 +84,35 @@ void GameObjectDragon::reset()
 {
 	GameObject::reset();
 
-	if (!mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
+	changeWorld(DREAMS);
 
-	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
 }
 
 void GameObjectDragon::changeWorld(int world)
 {
+	if (!isEnabled()) return;
+
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->create();
 	}
+
 	switch(world)
 	{
-	case DREAMS:
-		mRenderComponentEntityDreams->setVisible(true);
-		mRenderComponentEntityNightmares->setVisible(false);
-		break;
-	case NIGHTMARES:
-		mRenderComponentEntityDreams->setVisible(false);
-		mRenderComponentEntityNightmares->setVisible(true);
-		break;
-	default:break;
+		case DREAMS:
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+			break;
+		default:break;
 	}
 }
 

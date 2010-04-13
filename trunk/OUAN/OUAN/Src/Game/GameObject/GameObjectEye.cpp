@@ -74,13 +74,18 @@ void GameObjectEye::reset()
 {
 	GameObject::reset();
 
-	if (!mPhysicsComponentCharacter->isInUse())
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
-		mPhysicsComponentCharacter->create();
+		mPhysicsComponentCharacter->destroy();
 	}
 
-	mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-	mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	changeWorld(DREAMS);
+
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
 }
 
 void GameObjectEye::changeWorld(int world)
@@ -89,21 +94,21 @@ void GameObjectEye::changeWorld(int world)
 
 	switch(world)
 	{
-	case DREAMS:
-		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->destroy();
-		}
-		mRenderComponentEntityNightmares->setVisible(false);
-		break;
-	case NIGHTMARES:
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
-		mRenderComponentEntityNightmares->setVisible(true);
-		break;
-	default:break;
+		case DREAMS:
+			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+			{
+				mPhysicsComponentCharacter->destroy();
+			}
+			mRenderComponentEntityNightmares->setVisible(false);
+			break;
+		case NIGHTMARES:
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			{
+				mPhysicsComponentCharacter->create();
+			}
+			mRenderComponentEntityNightmares->setVisible(true);
+			break;
+		default:break;
 	}
 }
 bool GameObjectEye::hasPositionalComponent() const
