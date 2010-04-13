@@ -34,7 +34,7 @@ namespace OUAN
 		TGameObjectOnyContainer getGameObjectOnyContainer();
 		TGameObjectPositionalContainer getGameObjectPositionalContainer();
 		TGameObjectSceneContainer getGameObjectSceneContainer();
-		TGameObjectTripolloContainer getGameObjectTripolloContainer();
+		TGameObjectTripolloDreamsContainer getGameObjectTripolloDreamsContainer();
 		TGameObjectTripollitoContainer getGameObjectTripollitoContainer();
 		TGameObjectTentetiesoContainer getGameObjectTentetiesoContainer();
 		TGameObjectEyeContainer getGameObjectEyeContainer();
@@ -117,7 +117,7 @@ namespace OUAN
 		void createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters);
 		void createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters);
 		void createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters);
-		void createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters);
+		void createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters);
 		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
 
 		//Trajectory Creator
@@ -256,7 +256,7 @@ namespace OUAN
 		void addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox);
 		void addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule);
 		void addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito);
-		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
+		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 
 
@@ -292,7 +292,7 @@ namespace OUAN
 		TGameObjectFlashLightContainer mGameObjectFlashLightContainer;
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
-		TGameObjectTripolloContainer mGameObjectTripolloContainer;
+		TGameObjectTripolloDreamsContainer mGameObjectTripolloDreamsContainer;
 		TGameObjectTripollitoContainer mGameObjectTripollitoContainer;
 		TGameObjectTentetiesoContainer mGameObjectTentetiesoContainer;
 		TGameObjectEyeContainer mGameObjectEyeContainer;

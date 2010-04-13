@@ -75,7 +75,7 @@ namespace OUAN
 		void processGameObjectTriggerBox(XMLGameObject* gameObject);
 		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
 		void processGameObjectTripollito(XMLGameObject* gameObject);
-		void processGameObjectTripollo(XMLGameObject* gameObject);
+		void processGameObjectTripolloDreams(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
 			//Special function to create a GameObjectCamera using Ogitor's viewport camera
 		void processGameObjectViewportCamera(XMLGameObject* gameObject);

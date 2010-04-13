@@ -90,19 +90,20 @@ void GameObjectScaredPlant::changeWorld(int world)
 	case DREAMS:
 		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 		{
-			mPhysicsComponentCharacter->destroy();
+			//mPhysicsComponentCharacter->create();
 		}
-		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntityDreams->setVisible(true);
 		break;
 	case NIGHTMARES:
 		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 		{
-			mPhysicsComponentCharacter->create();
+			//mPhysicsComponentCharacter->destroy();
 		}
-		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityDreams->setVisible(false);
 		break;
 	default:break;
 	}
+
 }
 bool GameObjectScaredPlant::hasPositionalComponent() const
 {

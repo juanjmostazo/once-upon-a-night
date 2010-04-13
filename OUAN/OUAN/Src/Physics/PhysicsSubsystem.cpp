@@ -10,7 +10,7 @@
 #include "../Game/GameObject/GameObjectParticleSystem.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectOny.h"
-#include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectTentetieso.h"

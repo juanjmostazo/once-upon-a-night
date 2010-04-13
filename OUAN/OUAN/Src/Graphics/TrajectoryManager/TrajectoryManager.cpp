@@ -22,10 +22,6 @@ void TrajectoryManager::init(RenderSubsystemPtr pRenderSubsystem)
 {
 	mSceneManager=pRenderSubsystem->getSceneManager();
 
-	mDebugObjects=mSceneManager->getRootSceneNode()->createChildSceneNode("trajectory manager debug");
-
-	mDebugObjects->setVisible(false);
-
 	clear();
 
 }
@@ -91,7 +87,12 @@ void TrajectoryManager::clear()
 	if(mSceneManager->hasSceneNode("trajectory manager debug"))
 	{
 		mDebugObjects->removeAndDestroyAllChildren();
+
+		mSceneManager->destroySceneNode(mDebugObjects);
 	}
+
+	mDebugObjects=mSceneManager->getRootSceneNode()->createChildSceneNode("trajectory manager debug");
+	mDebugObjects->setVisible(false);
 }
 
 Trajectory * TrajectoryManager::getTrajectoryInstance()

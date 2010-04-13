@@ -8,7 +8,7 @@
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
-#include "../Game/GameObject/GameObjectTripollo.h"
+#include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Utils/Utils.h"
 
 
@@ -53,7 +53,7 @@ void LogicSubsystem::registerModules()
 			.def("getLineOfSight",&GameObject::getLineOfSight)
 			.def("getHP",&GameObject::getHealthPoints)
 			.def("getMaxHP",&GameObject::getMaximumHealthPoints),
-		class_<GameObjectTripollo, GameObject > ("GameObjectTripollo")
+		class_<GameObjectTripolloDreams, GameObject > ("GameObjectTripolloDreams")
 			.def(constructor<const std::string&>()),
 		class_<GameObjectEye, GameObject >("GameObjectEye")
 			.def(constructor<const std::string&>()),
@@ -77,7 +77,7 @@ void LogicSubsystem::loadScripts()
 {
 	GameWorldManagerPtr worldMgr=mApp->getGameWorldManager();
 	std::string currentFilename;
-	TGameObjectTripolloContainer tripolloList= worldMgr->getGameObjectTripolloContainer();
+	TGameObjectTripolloDreamsContainer tripolloList= worldMgr->getGameObjectTripolloDreamsContainer();
 	if (!tripolloList.empty() && !(currentFilename=tripolloList.at(0)->getLogicComponent()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
 	TGameObjectEyeContainer eyeList=worldMgr->getGameObjectEyeContainer();
@@ -152,7 +152,7 @@ int LogicSubsystem::invokeFunction(const std::string& functionName,int state, Ga
 	if (mLuaEngine)
 	{
 		try{
-			GameObjectTripollo* ptr=dynamic_cast<GameObjectTripollo*>(gameObject.get());
+			GameObjectTripolloDreams* ptr=dynamic_cast<GameObjectTripolloDreams*>(gameObject.get());
 			if (ptr)
 				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),ptr,state);
 				//result=luabind::call_function<int>(mLuaEngine,"gimmeSumthin",45);

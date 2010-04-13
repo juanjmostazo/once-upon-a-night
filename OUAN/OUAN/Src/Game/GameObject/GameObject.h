@@ -12,7 +12,7 @@ namespace OUAN
 	private:
 		/// GameObject identifier (i.e, "tripollo#14")
 		std::string mName;
-		/// GameObject identifier (i.e. GameObjectTripollo)
+		/// GameObject identifier (i.e. GameObjectTripolloDreams)
 		std::string mType;
 		/// GameObject attribute 
 		bool mEnabled;

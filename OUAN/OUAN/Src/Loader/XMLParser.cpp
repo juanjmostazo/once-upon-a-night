@@ -62,9 +62,9 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FLASHLIGHT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TENTETIESO);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BEE_BUTTERFLY);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMONDTREE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_STORYBOOK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_HEART);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMONDTREE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCAREDPLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCKPIECE);
@@ -339,6 +339,7 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 
 	if(found)
 	{
+		//Ogre::LogManager::getSingleton().logMessage("[XMLParser] Game Object "+gameObjectType);
 		addXMLGameObjectNode(name,gameObjectType,XMLNode);
 	}
 	else

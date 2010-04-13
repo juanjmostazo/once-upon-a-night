@@ -308,9 +308,9 @@ namespace OUAN
 		class TGameObjectOnyParameters;
 		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
 
-		class GameObjectTripollo;
-		class TGameObjectTripolloParameters;
-		typedef boost::shared_ptr<GameObjectTripollo> GameObjectTripolloPtr;
+		class GameObjectTripolloDreams;
+		class TGameObjectTripolloDreamsParameters;
+		typedef boost::shared_ptr<GameObjectTripolloDreams> GameObjectTripolloDreamsPtr;
 
 		class GameObjectTripollito;
 		class TGameObjectTripollitoParameters;
@@ -441,7 +441,7 @@ namespace OUAN
 		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
-		typedef std::vector<GameObjectTripolloPtr> TGameObjectTripolloContainer;
+		typedef std::vector<GameObjectTripolloDreamsPtr> TGameObjectTripolloDreamsContainer;
 		typedef std::vector<GameObjectTripollitoPtr> TGameObjectTripollitoContainer;
 		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
@@ -495,7 +495,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
 		const std::string GAME_OBJECT_TYPE_TENTETIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
-		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamondtree";
+		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamond_tree";
 		const std::string GAME_OBJECT_TYPE_STORYBOOK="storybook";
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";
