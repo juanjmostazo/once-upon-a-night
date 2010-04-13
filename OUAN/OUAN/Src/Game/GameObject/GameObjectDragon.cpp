@@ -122,10 +122,12 @@ int GameObjectDragon::getTimeStunned() const
 	// it accordingly; then, use that value here
 	return 0;
 }
+
 bool GameObjectDragon::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectDragon::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

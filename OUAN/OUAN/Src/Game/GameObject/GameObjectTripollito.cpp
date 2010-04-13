@@ -115,10 +115,12 @@ void GameObjectTripollito::changeWorld(int world)
 		default:break;
 	}
 }
+
 bool GameObjectTripollito::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectTripollito::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

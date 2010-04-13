@@ -215,6 +215,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
 			}
+
 			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 			{
 				mPhysicsComponentCharacter->create();

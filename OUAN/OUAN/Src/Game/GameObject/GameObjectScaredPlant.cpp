@@ -73,12 +73,7 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 void GameObjectScaredPlant::reset()
 {
 	GameObject::reset();
-	/*
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->destroy();
-	}
-	*/
+	
 	changeWorld(DREAMS);
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -112,10 +107,12 @@ void GameObjectScaredPlant::changeWorld(int world)
 	}
 
 }
+
 bool GameObjectScaredPlant::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectScaredPlant::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

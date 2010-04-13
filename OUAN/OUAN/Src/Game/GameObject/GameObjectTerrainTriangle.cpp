@@ -72,21 +72,23 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 
 	switch(world)
 	{
-	case DREAMS:
-		mRenderComponentEntityDreams->setVisible(true);
-		mRenderComponentEntityNightmares->setVisible(false);
-		break;
-	case NIGHTMARES:
-		mRenderComponentEntityDreams->setVisible(false);
-		mRenderComponentEntityNightmares->setVisible(true);
-		break;
-	default:break;
+		case DREAMS:
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+			break;
+		default:break;
 	}
 }
 
 void GameObjectTerrainTriangle::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectTerrainTriangle::hasPositionalComponent() const
