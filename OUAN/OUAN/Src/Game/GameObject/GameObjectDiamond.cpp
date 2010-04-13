@@ -121,12 +121,6 @@ void GameObjectDiamond::reset()
 	GameObject::reset();
 
 	changeWorld(DREAMS);
-
-	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-	{
-		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalOrientationQuat(mRenderComponentInitial->getOrientation());
-	}
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const
