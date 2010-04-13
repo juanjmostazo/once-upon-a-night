@@ -204,6 +204,11 @@ void GameObjectTripolloDreams::changeWorld(int world)
 
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
+
 		switch(world)
 		{
 			case DREAMS:
@@ -214,11 +219,6 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
-			}
-
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-			{
-				mPhysicsComponentCharacter->create();
 			}
 		return;
 	}

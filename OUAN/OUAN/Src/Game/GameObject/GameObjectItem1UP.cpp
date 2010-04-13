@@ -64,6 +64,8 @@ void GameObjectItem1UP::changeWorld(int world)
 		{
 			mPhysicsComponentVolumeBox->create();
 		}
+
+		mRenderComponentEntity->setVisible(true);
 		return;
 	}
 	else
@@ -71,6 +73,7 @@ void GameObjectItem1UP::changeWorld(int world)
 		switch(world)
 		{
 		case DREAMS:
+
 			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
@@ -89,6 +92,7 @@ void GameObjectItem1UP::changeWorld(int world)
 			}		
 			break;
 		case NIGHTMARES:
+
 			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
@@ -115,6 +119,14 @@ void GameObjectItem1UP::changeWorld(int world)
 void GameObjectItem1UP::reset()
 {
 	GameObject::reset();
+	
+	changeWorld(DREAMS);
+
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
+		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalOrientationQuat(mRenderComponentInitial->getOrientation());
+	}
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const

@@ -65,6 +65,8 @@ void GameObjectStoryBook::changeWorld(int world)
 		{
 			mPhysicsComponentVolumeBox->create();
 		}
+
+		mRenderComponentEntity->setVisible(true);
 		return;
 	}
 	else
@@ -118,6 +120,14 @@ void GameObjectStoryBook::changeWorld(int world)
 void GameObjectStoryBook::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
+
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
+		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentVolumeBox->getNxOgreVolume()->setGlobalOrientationQuat(mRenderComponentInitial->getOrientation());
+	}
 }
 
 bool GameObjectStoryBook::hasPositionalComponent() const
