@@ -119,8 +119,6 @@ void GameObjectDiamond::changeWorld(int world)
 void GameObjectDiamond::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const

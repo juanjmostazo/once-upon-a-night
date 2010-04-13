@@ -115,8 +115,6 @@ void GameObjectPillow::changeWorld(int world)
 void GameObjectPillow::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectPillow::hasPositionalComponent() const

@@ -130,8 +130,6 @@ void GameObjectBush::changeWorld(int world)
 void GameObjectBush::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectBush::hasPositionalComponent() const

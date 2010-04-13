@@ -115,8 +115,6 @@ void GameObjectTree::changeWorld(int world)
 void GameObjectTree::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectTree::hasPositionalComponent() const

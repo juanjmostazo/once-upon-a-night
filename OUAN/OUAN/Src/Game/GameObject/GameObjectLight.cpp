@@ -62,8 +62,6 @@ void GameObjectLight::changeWorld(int world)
 void GameObjectLight::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectLight::hasPositionalComponent() const

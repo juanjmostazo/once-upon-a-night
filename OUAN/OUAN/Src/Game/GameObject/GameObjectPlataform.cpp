@@ -130,8 +130,6 @@ void GameObjectPlataform::changeWorld(int world)
 void GameObjectPlataform::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const

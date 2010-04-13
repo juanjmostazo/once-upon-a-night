@@ -122,8 +122,6 @@ void GameObjectTriggerCapsule::changeWorld(int world)
 void GameObjectTriggerCapsule::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectTriggerCapsule::hasPositionalComponent() const

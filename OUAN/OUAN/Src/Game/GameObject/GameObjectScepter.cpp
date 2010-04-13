@@ -116,8 +116,6 @@ void GameObjectScepter::changeWorld(int world)
 void GameObjectScepter::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectScepter::hasPositionalComponent() const

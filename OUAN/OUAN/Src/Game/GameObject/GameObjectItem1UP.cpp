@@ -119,8 +119,6 @@ void GameObjectItem1UP::changeWorld(int world)
 void GameObjectItem1UP::reset()
 {
 	GameObject::reset();
-	
-	changeWorld(DREAMS);
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const
