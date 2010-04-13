@@ -104,6 +104,8 @@ void GameObjectFlashLight::changeWorld(int world)
 void GameObjectFlashLight::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectFlashLight::hasPositionalComponent() const

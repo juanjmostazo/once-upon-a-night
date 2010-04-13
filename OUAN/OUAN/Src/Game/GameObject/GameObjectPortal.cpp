@@ -76,36 +76,39 @@ void GameObjectPortal::changeWorld(int world)
 			//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
 			mPhysicsComponentSimpleBox->create();
 		}
+
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityNightmares->setVisible(true);
 		return;
 	}
 	else
 	{
 		switch(world)
 		{
-		case DREAMS:
-			//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
+			case DREAMS:
+				//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
 
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-			{
-				mPhysicsComponentSimpleBox->create();
-			}
-	
-			break;
-		case NIGHTMARES:
-			//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
-	
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-			{
-				mPhysicsComponentSimpleBox->create();
-			}
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
+		
+				break;
+			case NIGHTMARES:
+				//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
+		
+				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
 
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -113,6 +116,8 @@ void GameObjectPortal::changeWorld(int world)
 void GameObjectPortal::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectPortal::hasPositionalComponent() const

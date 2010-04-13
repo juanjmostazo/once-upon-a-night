@@ -50,18 +50,20 @@ void GameObjectLight::changeWorld(int world)
 
 	switch(world)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			break;
+		case NIGHTMARES:
+			break;
+		default:
+			break;
 	}
 }
 
 void GameObjectLight::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectLight::hasPositionalComponent() const

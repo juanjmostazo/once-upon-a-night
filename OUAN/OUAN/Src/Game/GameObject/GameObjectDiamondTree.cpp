@@ -68,69 +68,70 @@ void GameObjectDiamondTree::changeWorld(int world)
 {
 	switch(world)
 	{
-
-	case DREAMS:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
 			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(true);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
+				mRenderComponentEntityDreams->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
 			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(false);
-			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->destroy();
-			}
-		}		
-		break;
-	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
+				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
 			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(false);
-			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->destroy();
+				mRenderComponentEntityDreams->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
 			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(true);
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
-			}
-		}		
-		break;
-	default:
-		break;
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
+			}		
+			break;
+		default:
+			break;
 	}
 }
 
 void GameObjectDiamondTree::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectDiamondTree::hasPositionalComponent() const
