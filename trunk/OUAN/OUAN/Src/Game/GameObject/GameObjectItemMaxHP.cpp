@@ -119,8 +119,6 @@ void GameObjectItemMaxHP::changeWorld(int world)
 void GameObjectItemMaxHP::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectItemMaxHP::hasPositionalComponent() const

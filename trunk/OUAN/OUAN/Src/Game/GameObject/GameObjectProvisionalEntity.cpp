@@ -132,8 +132,6 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 void GameObjectProvisionalEntity::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectProvisionalEntity::hasPositionalComponent() const

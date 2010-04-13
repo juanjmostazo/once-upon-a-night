@@ -116,8 +116,6 @@ void GameObjectPortal::changeWorld(int world)
 void GameObjectPortal::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectPortal::hasPositionalComponent() const

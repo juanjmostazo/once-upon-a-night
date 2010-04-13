@@ -132,8 +132,6 @@ void GameObjectTerrainConvex::changeWorld(int world)
 void GameObjectTerrainConvex::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectTerrainConvex::hasPositionalComponent() const

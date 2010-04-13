@@ -119,8 +119,6 @@ void GameObjectClockPiece::changeWorld(int world)
 void GameObjectClockPiece::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectClockPiece::hasPositionalComponent() const

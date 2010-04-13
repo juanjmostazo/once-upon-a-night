@@ -130,8 +130,6 @@ void GameObjectDoor::changeWorld(int world)
 void GameObjectDoor::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectDoor::hasPositionalComponent() const

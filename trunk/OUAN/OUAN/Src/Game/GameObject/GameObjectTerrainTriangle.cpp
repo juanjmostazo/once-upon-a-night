@@ -87,8 +87,6 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 void GameObjectTerrainTriangle::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectTerrainTriangle::hasPositionalComponent() const

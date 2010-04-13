@@ -130,8 +130,6 @@ void GameObjectDiamondTree::changeWorld(int world)
 void GameObjectDiamondTree::reset()
 {
 	GameObject::reset();
-
-	changeWorld(DREAMS);
 }
 
 bool GameObjectDiamondTree::hasPositionalComponent() const
