@@ -74,11 +74,6 @@ void GameObjectEye::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->destroy();
-	}
-
 	changeWorld(DREAMS);
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -111,10 +106,12 @@ void GameObjectEye::changeWorld(int world)
 		default:break;
 	}
 }
+
 bool GameObjectEye::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectEye::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

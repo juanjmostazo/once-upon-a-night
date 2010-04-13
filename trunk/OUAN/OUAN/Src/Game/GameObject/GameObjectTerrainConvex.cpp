@@ -71,67 +71,69 @@ void GameObjectTerrainConvex::changeWorld(int world)
 
 	switch(world)
 	{
-	case DREAMS:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-			if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->create();
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
 			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(true);
-			if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->create();
+				mRenderComponentEntityDreams->setVisible(true);
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
 			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(false);
-			if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->destroy();
-			}
-		}		
-		break;
-	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
-			if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->create();
+				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
 			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityDreams->setVisible(false);
-			if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->destroy();
+				mRenderComponentEntityDreams->setVisible(false);
+				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->destroy();
+				}
 			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(true);
-			if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentComplexConvex->create();
-			}
-		}	
-		break;
-	default:break;
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
+			}	
+			break;
+		default:break;
 	}
 }
 
 void GameObjectTerrainConvex::reset()
 {
 	GameObject::reset();
+
+	changeWorld(DREAMS);
 }
 
 bool GameObjectTerrainConvex::hasPositionalComponent() const
