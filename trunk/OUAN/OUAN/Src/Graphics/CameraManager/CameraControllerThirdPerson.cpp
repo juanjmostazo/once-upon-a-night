@@ -220,6 +220,7 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 void CameraControllerThirdPerson::setTarget(RenderComponentPositional * target)
 {
 	this->target=target;
+	rotY=target->getOrientation().getYaw().valueDegrees();
 }
 
 TCameraControllerType CameraControllerThirdPerson::getControllerType()
