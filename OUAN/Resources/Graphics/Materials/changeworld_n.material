@@ -1,4 +1,35 @@
 
+material Scene_Material
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
+
+material Material
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
 material changeworld_n
 {
 	technique
@@ -10,8 +41,25 @@ material changeworld_n
 
 			texture_unit
 			{
-				texture changeworld_n.dds
+				texture changeworld_d.dds
 			}
+		}
+
+	}
+
+}
+
+
+
+material scene_material1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
 		}
 
 	}
