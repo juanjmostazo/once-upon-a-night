@@ -28,11 +28,12 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 void PhysicsComponentCharacter::create()
 {
-
 	PhysicsComponent::create();
 
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	
+	Ogre::LogManager::getSingleton().logMessage("Creating character " + getParent()->getName() + ". Initial yaw: " + Ogre::StringConverter::toString(Ogre::Real(getSceneNode()->getOrientation().getYaw().valueRadians())));
+
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
@@ -41,9 +42,8 @@ void PhysicsComponentCharacter::create()
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
 				createPointRenderable(getSceneNode()),			
 			name,
-			getMass()));
-
-	//TODO SET SCENE NODE ORIENTATION SOMEHOW
+			getMass(),
+			getSceneNode()->getOrientation().getYaw().valueRadians()));
 }
 
 void PhysicsComponentCharacter::destroy()
