@@ -246,7 +246,8 @@ void GameRunningState::update(long elapsedTime)
 	//out << elapsedSeconds;
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
-
+	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
+	mApp->getGameWorldManager()->update(elapsedSeconds);	
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
@@ -258,8 +259,7 @@ void GameRunningState::update(long elapsedTime)
 	if (mApp->getGameWorldManager()->getGameObjectFlashLight().get())
 		mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
 
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
-	mApp->getGameWorldManager()->update(elapsedSeconds);	
+
 
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
 	mApp->mKeyBuffer-=elapsedTime;
