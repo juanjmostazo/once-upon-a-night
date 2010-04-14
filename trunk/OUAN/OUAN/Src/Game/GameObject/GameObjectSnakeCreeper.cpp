@@ -114,6 +114,11 @@ void GameObjectSnakeCreeper::reset()
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 	}
+	else
+	{
+		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
+	}
 }
 
 bool GameObjectSnakeCreeper::hasPositionalComponent() const

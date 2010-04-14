@@ -184,17 +184,17 @@ void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->destroy();
-	}
-
 	changeWorld(DREAMS);
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}
+	else
+	{
+		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 	}
 }
 
