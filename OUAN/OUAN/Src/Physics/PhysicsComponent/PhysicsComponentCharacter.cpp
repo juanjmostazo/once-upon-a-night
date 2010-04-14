@@ -32,7 +32,7 @@ void PhysicsComponentCharacter::create()
 
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	
-	Ogre::LogManager::getSingleton().logMessage("Creating character " + getParent()->getName() + ". Initial yaw: " + Ogre::StringConverter::toString(Ogre::Real(getSceneNode()->getOrientation().getYaw().valueRadians())));
+	//Ogre::LogManager::getSingleton().logMessage("Creating character " + getParent()->getName() + ". Initial yaw: " + Ogre::StringConverter::toString(Ogre::Real(getSceneNode()->getOrientation().getYaw().valueRadians())));
 
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
@@ -43,7 +43,7 @@ void PhysicsComponentCharacter::create()
 				createPointRenderable(getSceneNode()),			
 			name,
 			getMass(),
-			getSceneNode()->getOrientation().getYaw().valueRadians()));
+			getSceneNode()->getOrientation().getYaw().valueDegrees()));
 }
 
 void PhysicsComponentCharacter::destroy()
@@ -118,7 +118,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 void PhysicsComponentCharacter::setCharactersDisplayYaw()
 {
 	double characterYaw=getNxOgreController()->getDisplayYaw();
-
+	
 	if(mNextMovement.z<0 && mNextMovement.x<0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
