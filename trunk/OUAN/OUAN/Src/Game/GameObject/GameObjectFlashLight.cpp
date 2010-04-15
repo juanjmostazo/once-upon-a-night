@@ -143,6 +143,8 @@ void GameObjectFlashLight::detectLightCollisions()
 
 void GameObjectFlashLight::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	Ogre::Camera * camera;
 	Vector3 direction;
 

@@ -6,7 +6,7 @@ using namespace OUAN;
 GameObjectHeart::GameObjectHeart(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_HEART)
 {
-	mFirstUpdate=true;
+	
 }
 
 GameObjectHeart::~GameObjectHeart()
@@ -117,19 +117,21 @@ void GameObjectHeart::changeWorld(int world)
 }
 void GameObjectHeart::update(double elapsedSeconds)
 {
-	if (mFirstUpdate)
+	GameObject::update(elapsedSeconds);
+
+	if (isFirstUpdate())
 	{
 		mRenderComponentEntity->changeAnimation("animation_prop");
-		mFirstUpdate=false;
 	}
 	else
+	{
 		mRenderComponentEntity->update(elapsedSeconds);
+	}
 }
 
 void GameObjectHeart::reset()
 {
 	GameObject::reset();
-	mFirstUpdate=true;
 }
 
 bool GameObjectHeart::hasPositionalComponent() const

@@ -27,11 +27,17 @@ void GameObject::destroy()
 void GameObject::reset()
 {
 	mEnabled=true;
+	mNumUpdates=0;
+}
+
+bool GameObject::isFirstUpdate()
+{
+	return mNumUpdates <= 1;
 }
 
 void GameObject::update(double elapsedSeconds)
 {
-
+	mNumUpdates++;
 }
 
 void GameObject::changeWorld(int world)
