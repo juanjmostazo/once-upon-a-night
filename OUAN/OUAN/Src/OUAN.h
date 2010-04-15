@@ -80,6 +80,7 @@ namespace OUAN
 
 		const int DREAMS=0;
 		const int NIGHTMARES=1;
+		const int BOTH_WORLDS=2;
 
 		const std::string LEVEL_NONE="None";
 		const std::string LEVEL_TEST="TestLevel";
@@ -105,6 +106,7 @@ namespace OUAN
 		class RenderComponentEntity;
 		class TRenderComponentEntityParameters;
 		class TRenderComponentSubEntityParameters;
+		class TRenderComponentEntityAnimParams;
 		typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
 
 		class RenderComponentLight;

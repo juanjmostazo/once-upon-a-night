@@ -5,10 +5,23 @@
 
 namespace OUAN
 {
+	typedef std::map<std::string, Ogre::AnimationState*> TAnimationStateMap;
 	class RenderComponentEntity: public RenderComponent
 	{
 	private:
 		Ogre::Entity * mEntity;
+
+		/// Map with the set of animation state pointers that are available for the entity, 
+		/// so they can be easily accessed.
+		TAnimationStateMap mAnimations;
+		
+		/// Current animation playing (Perhaps we might keep track of two active animations, for blending purposes)
+		std::string mCurrentAnimationName;
+		Ogre::AnimationState* mCurrentAnimation;
+		
+		/// This can be replaced with a mAnimations.empty() check
+		bool mIsAnimated;
+
 	public:
 
 		RenderComponentEntity(const std::string& type="");
@@ -18,8 +31,23 @@ namespace OUAN
 		void setEntity(Ogre::Entity *);
 
 		void setVisible(bool visible);
-	};
 
+		void update(double elapsedTime);
+
+		void initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams);
+		void changeAnimation(const std::string& newAnimation /*TODO: Add options*/);
+		Ogre::AnimationState* getCurrentAnimation() const;
+		std::string getCurrentAnimationName() const;
+		bool isAnimated() const;
+	};
+	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{
+		public: 
+			TRenderComponentEntityAnimParams();
+			~TRenderComponentEntityAnimParams();
+			
+			std::string name;
+			bool loop;
+	};
 	class TRenderComponentSubEntityParameters: public TRenderComponentParameters
 	{
 	public:
@@ -39,6 +67,7 @@ namespace OUAN
 		String meshfile;
 		bool castshadows;
 		std::vector<TRenderComponentSubEntityParameters> tRenderComponentSubEntityParameters;
+		std::vector<TRenderComponentEntityAnimParams> tRenderComponentEntityAnimParams;
 	};
 }
 

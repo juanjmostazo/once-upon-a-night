@@ -487,7 +487,8 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 		if(tGameObjectBee_ButterflyParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
 			//Get PhysicsComponentCharacterDreams
 			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterDreamsParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Dreams");
 		}
@@ -495,7 +496,7 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 		if(tGameObjectBee_ButterflyParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,NIGHTMARES,gameObject->XMLNodeCustomProperties);
 			//Get PhysicsComponentCharacterNightmares
 			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterNightmaresParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Nightmares");
 		}
@@ -565,12 +566,14 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 		if(tGameObjectBushParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectBushParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectBushParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectBushParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -636,12 +639,13 @@ void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
 		if(tGameObjectCarnivorousPlantParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectCarnivorousPlantParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectCarnivorousPlantParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -680,7 +684,8 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(), 
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -720,9 +725,11 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
 		//Get RenderComponentEntityNightmares
-		tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -760,7 +767,8 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectDiamondParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectDiamondParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -800,12 +808,14 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 		if(tGameObjectDiamondTreeParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectDiamondTreeParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -846,9 +856,11 @@ void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
 		//Get RenderComponentEntityNightmares
-		tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectDoorParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -887,9 +899,11 @@ void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectDragonParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectDragonParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS,gameObject->XMLNodeCustomProperties);
 		//Get RenderComponentEntityNightmares
-		tGameObjectDragonParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectDragonParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectDragonParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -929,7 +943,8 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectEyeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeNightmares);
@@ -966,7 +981,8 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectFlashLightParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectFlashLightParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectFlashLightParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1003,7 +1019,8 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1041,7 +1058,8 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1079,7 +1097,8 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1180,9 +1199,11 @@ void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectNightGoblinParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectNightGoblinParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS,gameObject->XMLNodeCustomProperties);
 		//Get RenderComponentEntityNightmares
-		tGameObjectNightGoblinParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectNightGoblinParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectNightGoblinParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1223,7 +1244,8 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		//[Perhaps TODO]: Process weapon component
 
 		//Get RenderComponentEntityDreams
-		tGameObjectOnyParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectOnyParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectOnyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1295,7 +1317,8 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectPillowParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectPillowParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+			DREAMS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectPillowParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1352,12 +1375,14 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 		
 		if(tGameObjectPlataformParameters.logicComponentParameters.existsInDreams)
 		{
-			tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 		
 		if(tGameObjectPlataformParameters.logicComponentParameters.existsInNightmares)
 		{
-			tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
 	}
 	catch( std::string error )
@@ -1390,10 +1415,12 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityNightmares
-		tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1429,13 +1456,14 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 		if(tGameObjectProvisionalEntityParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
 		}
 
 		if(tGameObjectProvisionalEntityParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -1478,7 +1506,8 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectScaredPlantParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
@@ -1542,7 +1571,8 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectScepterParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectScepterParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectScepterParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1582,12 +1612,14 @@ void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 		if(tGameObjectSnakeCreeperParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectSnakeCreeperParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectSnakeCreeperParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectSnakeCreeperParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectSnakeCreeperParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectSnakeCreeperParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties );
 		}
 
 		//Get RenderComponentPositional
@@ -1626,7 +1658,8 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1666,9 +1699,11 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectTentetiesoParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams);
+		tGameObjectTentetiesoParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
 		//Get RenderComponentEntityNightmares
-		tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares);
+		tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			NIGHTMARES, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectTentetiesoParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1730,12 +1765,14 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				
 				if(tGameObjectTerrainConvexParameters.logicComponentParameters.existsInDreams)
 				{
-					tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+					tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(
+						gameObject->XMLNodeDreams, DREAMS, gameObject->XMLNodeCustomProperties);
 				}
 				
 				if(tGameObjectTerrainConvexParameters.logicComponentParameters.existsInNightmares)
 				{
-					tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+					tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
+						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 				}
 			}
 			catch( std::string error )
@@ -1773,9 +1810,10 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 				tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
 				
-				tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+				tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+					DREAMS, gameObject->XMLNodeCustomProperties);
 
-				tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+				tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 			}
 			catch( std::string error )
 			{
@@ -1820,7 +1858,8 @@ void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectTreeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectTreeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1857,7 +1896,8 @@ void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectTriggerBoxParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1892,7 +1932,8 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode());
+		tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectTriggerCapsuleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1930,12 +1971,14 @@ void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 		if(tGameObjectTripollitoParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectTripollitoParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectTripollitoParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectTripollitoParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectTripollitoParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectTripollitoParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -1974,12 +2017,12 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 		if(tGameObjectTripolloDreamsParameters.logicComponentParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams);
+			tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,						DREAMS, gameObject->XMLNodeCustomProperties);
 		}
 		if(tGameObjectTripolloDreamsParameters.logicComponentParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares);
+			tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
@@ -2194,6 +2237,32 @@ TRenderComponentPositionalParameters LevelLoader::processRenderComponentPosition
 
 	return tRenderComponentPositionalParameters;
 }
+void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParams,
+														 TiXmlElement* XMLNode, int world)
+{
+	if (XMLNode)
+	{
+		TRenderComponentEntityAnimParams currentAnimParams;
+
+		int i=0;
+		std::string worldSuffix=(world==DREAMS)
+			?"d"
+			:(world==NIGHTMARES)
+				?"n"
+				:"";
+		while(true)
+		{
+			currentAnimParams.name=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::name",
+				false);
+			currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
+				false);
+			if (currentAnimParams.name.compare("")==0) break;
+
+			renderComponentEntityAnimParams.push_back(currentAnimParams);
+			++i;
+		}
+	}
+}
 
 void LevelLoader::processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters> &tRenderComponentSubEntityParameters,TiXmlElement *XMLNode)
 {
@@ -2219,7 +2288,7 @@ void LevelLoader::processRenderComponentSubEntities(std::vector<TRenderComponent
 		}
 }
 
-TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXmlElement *XMLNode)
+TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXmlElement *XMLNode, int world, TiXmlElement* XMLCustomPropertiesNode)
 {
 
 	TRenderComponentEntityParameters tRenderComponentEntityParameters;
@@ -2230,6 +2299,10 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 
 	//process Entity's SubEntites
 	processRenderComponentSubEntities(tRenderComponentEntityParameters.tRenderComponentSubEntityParameters,XMLNode);
+
+	//Process Animation states
+	tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.clear();
+	processRenderComponentEntityAnimParams(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams,XMLCustomPropertiesNode,world);
 	
 	return tRenderComponentEntityParameters;
 }

@@ -21,8 +21,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+		
+		bool mFirstUpdate; //refactor this hack so it queries this property from the logic component
+							//this will involve some tweaks.
 
-		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
 		GameObjectHeart(const std::string& name);
@@ -66,6 +68,9 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		void update(double elapsedSeconds);
+
 	};
 
 	class TGameObjectHeartParameters: public TGameObjectParameters

@@ -87,15 +87,19 @@ namespace OUAN
 		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode);
 		TRenderComponentPositionalParameters processRenderComponentPositional(TiXmlElement *XMLNode);
 		TRenderComponentPositionalParameters processRenderComponentPositionalNoScale(TiXmlElement *XMLNode);
-		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode);
+		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode, int world, TiXmlElement* XMLCustomPropertiesNode=NULL);
 		TRenderComponentLightParameters processRenderComponentLight(TiXmlElement *XMLNode);
 		TRenderComponentParticleSystemParameters processRenderComponentParticleSystem(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
 		TRenderComponentCameraParameters processRenderComponentCameraViewport(TiXmlElement *XMLNode);
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
-		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters ,TiXmlElement *XMLNode);
-		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters ,TiXmlElement *XMLNode);
+		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters,
+			TiXmlElement *XMLNode);
+		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters,
+			TiXmlElement *XMLNode);
+		void processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParameters,
+			TiXmlElement* XMLNode, int world);
 
 		//PhysicComponent Processors
 		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix="");
