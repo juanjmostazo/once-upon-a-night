@@ -78,6 +78,9 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+		?mRenderComponentEntityDreams
+		:mRenderComponentEntityNightmares;
 	//
 	int currentState=mLogicComponent->getState();
 	if (mPhysicsComponentCharacter.get())
@@ -85,6 +88,10 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		NxOgre::Vec3 movement=mPhysicsComponentCharacter->getLastMovement();
 		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
 		{
+			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			{
+				entityToUpdate->changeAnimation("idle02");
+			}
 			movement=NxOgre::Vec3::ZERO;
 			mPatrol=NULL;
 			mNextPatrolPoint=-1;
@@ -98,7 +105,8 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 					If the state has just changed, then load the trajectory and set the displacement
 					vector as (marker1-marker0)
 				*/
-
+				if (entityToUpdate.get())
+					entityToUpdate->changeAnimation("walk");
 				mRandomMovementDelay=Utils::Random::getInstance()->getRandomInteger(MIN_RANDOM_MOVEMENT_DELAY,MAX_RANDOM_MOVEMENT_DELAY);
 				movement.x=Utils::Random::getInstance()->getRandomDouble(-1,1);
 				movement.z=Utils::Random::getInstance()->getRandomDouble(-1,1);
@@ -121,6 +129,10 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 		{
+			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			{
+				entityToUpdate->changeAnimation("walk");
+			}
 			/*
 				TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
 				compute a trajectory of nodes via an A* implementation.
@@ -165,6 +177,9 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 					mPhysicsComponentCharacter->getNxOgreController()->getDisplayYaw()+180
 			);
 		}
+
+		if (entityToUpdate.get())
+			entityToUpdate->update(elapsedSeconds);
 	}
 
 	//if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())

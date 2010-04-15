@@ -86,6 +86,8 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	//init Render Component
 	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters,flags));
 
+	pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
+
 	return pRenderComponentEntity;
 }
 RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string name,GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)

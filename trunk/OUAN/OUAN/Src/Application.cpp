@@ -122,9 +122,9 @@ void Application::go()
 	Ogre::Timer loopTimer;
 	bool continueRunning = true;
 
-	long nextGameTicks = loopTimer.getMicroseconds();
-	long lastTick=nextGameTicks;
-	long currentTime;
+	unsigned long nextGameTicks = loopTimer.getMicroseconds();
+	unsigned long lastTick=nextGameTicks;
+	unsigned long currentTime;
 	int loops;
 
 	while ( continueRunning )
