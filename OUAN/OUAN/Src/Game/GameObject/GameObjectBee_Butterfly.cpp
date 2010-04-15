@@ -76,7 +76,7 @@ PhysicsComponentCharacterPtr GameObjectBee_Butterfly::getPhysicsComponentCharact
 
 void GameObjectBee_Butterfly::update(double elapsedSeconds)
 {
-
+	GameObject::update(elapsedSeconds);
 }
 
 void GameObjectBee_Butterfly::reset()

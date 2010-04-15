@@ -21,9 +21,6 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
-		
-		bool mFirstUpdate; //refactor this hack so it queries this property from the logic component
-							//this will involve some tweaks.
 
 	public:
 		//Constructor

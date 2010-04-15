@@ -16,6 +16,8 @@ namespace OUAN
 		std::string mType;
 		/// GameObject attribute 
 		bool mEnabled;
+		/// GameObject number of updates
+		long mNumUpdates;
 
 	protected:
 		///Game world manager
@@ -41,6 +43,9 @@ namespace OUAN
 
 		/// Manages Game Object reset
 		virtual void reset();
+
+		//// Returns if it's first update
+		bool isFirstUpdate();
 
 		/// Return Game Object name (i.e, its identifier)
 		/// @return name of the Game Object

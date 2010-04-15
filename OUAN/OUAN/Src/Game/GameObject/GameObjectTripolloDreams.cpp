@@ -1,5 +1,4 @@
 #include "GameObjectTripolloDreams.h"
-
 #include "GameObjectOny.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
@@ -10,8 +9,6 @@
 #include "../../Graphics/TrajectoryManager/TrajectoryNode.h"
 
 using namespace OUAN;
-
-
 
 GameObjectTripolloDreams::GameObjectTripolloDreams(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
@@ -76,12 +73,14 @@ PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharac
 
 void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
-	//
+	
 	int currentState=mLogicComponent->getState();
 	if (mPhysicsComponentCharacter.get())
 	{
@@ -98,7 +97,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
 		{				
-
 			if (mLogicComponent->isStateChanged())
 			{
 				/*
@@ -173,13 +171,16 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			mPhysicsComponentCharacter->setNextMovement(movement);
 			mPhysicsComponentCharacter->update(elapsedSeconds);
 			if (rotate)
+			{
 				mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(
-					mPhysicsComponentCharacter->getNxOgreController()->getDisplayYaw()+180
-			);
+					mPhysicsComponentCharacter->getNxOgreController()->getDisplayYaw()+180);
+			}
 		}
 
 		if (entityToUpdate.get())
+		{
 			entityToUpdate->update(elapsedSeconds);
+		}
 	}
 
 	//if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -284,10 +285,12 @@ void GameObjectTripolloDreams::changeWorld(int world)
 		}
 	}
 }
+
 bool GameObjectTripolloDreams::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectTripolloDreams::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

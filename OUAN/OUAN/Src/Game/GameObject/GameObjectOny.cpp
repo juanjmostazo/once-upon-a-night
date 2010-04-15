@@ -57,6 +57,8 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 
 void GameObjectOny::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	if (mHitRecoveryTime>=0)
 	{
 		mHitRecoveryTime-=elapsedSeconds*1000;

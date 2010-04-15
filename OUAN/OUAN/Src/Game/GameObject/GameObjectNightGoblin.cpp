@@ -67,6 +67,8 @@ PhysicsComponentCharacterPtr GameObjectNightGoblin::getPhysicsComponentCharacter
 
 void GameObjectNightGoblin::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())

@@ -30,7 +30,6 @@ namespace OUAN
 		// TODO: Delete this!
 		int mRandomMovementDelay;
 
-
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -87,8 +86,6 @@ namespace OUAN
 
 		Trajectory* mPatrol;
 		int			mNextPatrolPoint;
-
-
 	};
 	
 	/// Information data structure to carry around data between the
