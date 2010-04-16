@@ -2614,7 +2614,12 @@ void GameWorldManager::createGameObjectTripolloDreams(TGameObjectTripolloDreamsP
 			pGameObjectTripolloDreams,
 			tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectTripolloDreams->getRenderComponentPositional()));
-	
+
+		//Create TrajectoryComponent
+		pGameObjectTripolloDreams->setTrajectoryComponent(factory->createTrajectoryComponent(
+			pGameObjectTripolloDreams,
+			true));
+
 	pGameObjectTripolloDreams->changeWorld(world);
 
 	// Add a reference to this

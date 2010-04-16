@@ -38,7 +38,7 @@ namespace OUAN
 		GameObjectPtr getParent();
 		
 		/// Update component
-		virtual void update(long elapsedTime)=0;
+		virtual void update(double elapsedSeconds);
 
 	protected:
 

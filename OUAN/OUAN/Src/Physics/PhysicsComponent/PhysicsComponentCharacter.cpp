@@ -59,8 +59,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	if (mNextMovement!=Vector3::ZERO)
 	{
 		// Scale next movement using time and speed
-		mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
-		
+		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		{
+			mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+		}
 		// Apply gravity
 		mNextMovement+=Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds;
 	}
@@ -87,11 +89,16 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 	////////////////////////////////////////////////////////////////////////////
 	// Applying global factor to displacement
-	mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
+	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
+	}
 
 	if (isInUse())
 	{
+
 		setCharactersDisplayYaw();
+
 
 		getNxOgreController()->move(
 			mNextMovement,
@@ -117,47 +124,53 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 void PhysicsComponentCharacter::setCharactersDisplayYaw()
 {
+
 	double characterYaw=getNxOgreController()->getDisplayYaw();
 	
 	if(mNextMovement.z<0 && mNextMovement.x<0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
-		characterYaw+=180;
 	}
 	else if(mNextMovement.z<0 && mNextMovement.x>0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
-		characterYaw+=180;
 	}
 	else if(mNextMovement.z>0 && mNextMovement.x>0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+		characterYaw+=180;
 	}
 	else if(mNextMovement.z>0 && mNextMovement.x<0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
+		characterYaw+=180;
 	}
 	else if(mNextMovement.z!=0)
 	{
 		if(mNextMovement.z<0)
 		{
-			characterYaw=180;
+			characterYaw=0;
 		}
 		else if(mNextMovement.z>0)
 		{
-			characterYaw=0;
+			characterYaw=180;
 		}
 	}
 	else if(mNextMovement.x!=0)
 	{
 		if(mNextMovement.x<0)
 		{
-			characterYaw=270;
+			characterYaw=90;
 		}
 		else if(mNextMovement.x>0)
 		{
-			characterYaw=90;
+			characterYaw=270;
 		}
+	}
+
+	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0 && (mNextMovement.x!=0 || mNextMovement.z!=0))
+	{
+		characterYaw+=180;
 	}
 	/*
 	if(characterYaw!=getNxOgreController()->getDisplayYaw())

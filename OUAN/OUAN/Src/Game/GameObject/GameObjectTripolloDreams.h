@@ -26,9 +26,12 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		/// Trajectory information
+		TrajectoryComponentPtr mTrajectoryComponent;
 
 		// TODO: Delete this!
 		int mRandomMovementDelay;
+		bool pathfindingInitialized;
 
 	public:
 		/// Constructor
@@ -48,6 +51,11 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+
+		/// Set trajectory component
+		/// @param pTrajectoryComponent
+		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
+		TrajectoryComponentPtr getTrajectoryComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -84,8 +92,6 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
-		Trajectory* mPatrol;
-		int			mNextPatrolPoint;
 	};
 	
 	/// Information data structure to carry around data between the

@@ -15,7 +15,7 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
-		virtual void update(double elapsedSeconds);
+		void update(double elapsedSeconds);
 
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		NxOgre::Controller* getNxOgreController();

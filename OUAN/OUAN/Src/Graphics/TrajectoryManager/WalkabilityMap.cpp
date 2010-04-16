@@ -6,7 +6,7 @@ using namespace boost;
 
 WalkabilityMap::WalkabilityMap()
 {
-
+	mVisible=false;
 }
 
 WalkabilityMap::~WalkabilityMap()
@@ -43,6 +43,8 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 
 		mDebugObjects=pDebugObjects;
 
+		mName=tWalkabilityMapParameters.name;
+
 		mDebugObjects->createChildSceneNode("walkability#"+tWalkabilityMapParameters.name);
 
 		//init node numbers
@@ -62,9 +64,17 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		//add graph edges and create graph nodes
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
 		{
-			pSceneNode=pSceneManager->getRootSceneNode()->createChildSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
-			pSceneNode->setPosition(tWalkabilityMapParameters.walkabilityNodes[i].position);
-			pSceneNode->setOrientation(tWalkabilityMapParameters.walkabilityNodes[i].orientation);
+			if(pSceneManager->hasSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName))
+			{
+				pSceneNode=pSceneManager->getSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+			}
+			else
+			{
+				pSceneNode=pSceneManager->getRootSceneNode()->createChildSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+				pSceneNode->setPosition(tWalkabilityMapParameters.walkabilityNodes[i].position);
+				pSceneNode->setOrientation(tWalkabilityMapParameters.walkabilityNodes[i].orientation);
+			}
+
 
 			mGraph[getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName)].mSceneNode=pSceneNode;
 
@@ -81,12 +91,13 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			//create graphics debug objects
 			std::string debugName="walkability#"+tWalkabilityMapParameters.name+"#"+tWalkabilityMapParameters.walkabilityNodes[i].nodeName;
 			pEntityDebugNode=mDebugObjects->createChildSceneNode(debugName);
-			pEntityDebugNode->setVisible(false);
 			pEntityDebugNode->setPosition(pSceneNode->getPosition());
+			pEntityDebugNode->setVisible(mVisible);
 			pEntity=pSceneManager->createEntity(debugName,"node.mesh");
 			pEntity->setMaterialName("red");
-			pEntity->setVisible(false);
+			pEntity->setVisible(mVisible);
 			pEntityDebugNode->attachObject(pEntity);
+
 
 		}
 
@@ -120,8 +131,8 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			myLine->addPoint(pSceneNode2->getPosition());
 			myLine->setMaterial("black");
 			myLine->drawLines();
-			myLine->setVisible(false);
 			mDebugObjects->attachObject(myLine);
+			mDebugObjects->setVisible(mVisible);
 		}
 
 		//print graph information
@@ -175,26 +186,62 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 	Edge targetEdge;
 	Edge sourceEdge;
 
-	Ogre::LogManager::getSingleton().logMessage("PATHFINDING "+sourceNode->getName()+" to "+targetNode->getName());
+	bool createdSource=false;
+	bool createdTarget=false;
+
+
+	//Ogre::LogManager::getSingleton().logMessage("PATHFINDING "+sourceNode->getName()+" to "+targetNode->getName());
 
 	//add source and target nodes to graph
-	source=num_vertices(mGraph);
-	target=num_vertices(mGraph)+1;
+	if(!hasNode(sourceNode->getName()))
+	{
+		source=num_vertices(mGraph);
+		sourceNearestNode=getNearestNode(sourceNode->getPosition());
 
-	//add edge from source to source's nearest node and add edge from target to target's nearest node
-	sourceNearestNode=getNearestNode(sourceNode->getPosition());
-	targetNearestNode=getNearestNode(targetNode->getPosition());
-	sourceEdge=add_edge(source,sourceNearestNode,mGraph).first;
-	targetEdge=add_edge(target,targetNearestNode,mGraph).first;
+		if(mGraph[sourceNearestNode].mSceneNode->getPosition().distance(sourceNode->getPosition())>=sourceNode->getPosition().distance(targetNode->getPosition()))
+		{
+			//we do not need walkability map since we're closer to the target than nearest node
+			path.push_back(sourceNode);
+			path.push_back(targetNode);
+			return path;
+		}
 
-	//set vertex properties
-	mGraph[source].mSceneNode=sourceNode;
-	mGraph[target].mSceneNode=targetNode;
+		sourceEdge=add_edge(source,sourceNearestNode,mGraph).first;
 
-	//set edge properties
-	boost::property_map<Graph, edge_weight_t>::type weightmap = get(edge_weight, mGraph);
-	weightmap[sourceEdge]=mGraph[sourceNearestNode].mSceneNode->getPosition().distance(mGraph[source].mSceneNode->getPosition());
-	weightmap[targetEdge]=mGraph[targetNearestNode].mSceneNode->getPosition().distance(mGraph[target].mSceneNode->getPosition());
+		//set vertex properties
+		mGraph[source].mSceneNode=sourceNode;
+
+		//set edge properties
+		boost::property_map<Graph, edge_weight_t>::type weightmap = get(edge_weight, mGraph);
+		weightmap[sourceEdge]=mGraph[sourceNearestNode].mSceneNode->getPosition().distance(mGraph[source].mSceneNode->getPosition());
+
+		createdSource=true;
+	}
+	else
+	{
+		source=getNodeNumber(sourceNode->getName());
+	}
+
+	if(!hasNode(targetNode->getName()))
+	{
+		target=num_vertices(mGraph);
+		targetNearestNode=getNearestNode(targetNode->getPosition());
+
+		targetEdge=add_edge(target,targetNearestNode,mGraph).first;
+
+		//set vertex properties
+		mGraph[target].mSceneNode=targetNode;
+
+		//set edge properties
+		boost::property_map<Graph, edge_weight_t>::type weightmap = get(edge_weight, mGraph);
+		weightmap[targetEdge]=mGraph[targetNearestNode].mSceneNode->getPosition().distance(mGraph[target].mSceneNode->getPosition());
+
+		createdTarget=true;
+	}
+	else
+	{
+		target=getNodeNumber(targetNode->getName());
+	}
 
 	std::vector<Graph::vertex_descriptor> p(num_vertices(mGraph));
 	std::vector<double> d(num_vertices(mGraph));
@@ -228,36 +275,60 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 			break;
 		  }
 		}
-		Ogre::LogManager::getSingleton().logMessage(mGraph[source].mSceneNode->getName());
+		//Ogre::LogManager::getSingleton().logMessage(mGraph[source].mSceneNode->getName());
 		path.push_back(mGraph[source].mSceneNode);
 
 		std::list<Vertex>::iterator spi = shortest_path.begin();
 		for(++spi; spi != shortest_path.end(); ++spi)
 		{
 			path.push_back(mGraph[*spi].mSceneNode);
-			Ogre::LogManager::getSingleton().logMessage(mGraph[*spi].mSceneNode->getName());
+			//Ogre::LogManager::getSingleton().logMessage(mGraph[*spi].mSceneNode->getName());
 		}
 
 		fg.info="";
 		
-		clear_vertex(target,mGraph);
-		remove_vertex(target,mGraph);
-		clear_vertex(source,mGraph);
-		remove_vertex(source,mGraph);
+		if(createdTarget)
+		{
+			clear_vertex(target,mGraph);
+			remove_vertex(target,mGraph);
+		}
+		if(createdSource)
+		{
+			clear_vertex(source,mGraph);
+			remove_vertex(source,mGraph);
+		}
 
 		return path;
   }
 
   Ogre::LogManager::getSingleton().logMessage("FAIL");
 
-	clear_vertex(target,mGraph);
-	remove_vertex(target,mGraph);
-	clear_vertex(source,mGraph);
-	remove_vertex(source,mGraph);
+	if(createdTarget)
+	{
+		clear_vertex(target,mGraph);
+		remove_vertex(target,mGraph);
+	}
+	if(createdSource)
+	{
+		clear_vertex(source,mGraph);
+		remove_vertex(source,mGraph);
+	}
 
 	return path;
 }
 
+bool WalkabilityMap::hasNode(std::string nodeName)
+{
+	TNodeNumbersIterator it;
+	it=mNodeNumbers.find(nodeName);
+
+	return it!=mNodeNumbers.end();
+}
+
+void WalkabilityMap::setVisible(bool visible)
+{
+	mVisible=visible;
+}
 
 TWalkabilityMapParameters::TWalkabilityMapParameters()
 {

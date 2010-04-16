@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -379,6 +379,10 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\TrajectoryManager\Trajectory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\TrajectoryManager\TrajectoryComponent.cpp"
 						>
 					</File>
 					<File
@@ -957,6 +961,10 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\TrajectoryManager\Trajectory.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\TrajectoryManager\TrajectoryComponent.h"
 						>
 					</File>
 					<File
