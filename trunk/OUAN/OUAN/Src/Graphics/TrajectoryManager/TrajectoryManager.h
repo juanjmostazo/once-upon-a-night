@@ -20,6 +20,8 @@ namespace OUAN
 
 		int trajectoryID;
 
+		bool mVisible;
+
 	public:
 
 		TrajectoryManager();
@@ -37,9 +39,14 @@ namespace OUAN
 		void destroyTrajectory(Trajectory * pTrajectory);
 
 		Trajectory * getTrajectoryInstance();
-		void calculatePathFinding(Trajectory  & pTrajectory,std::string walkabilityMapName,std::string source, std::string target, double speed);
-		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName);
-	
+
+		std::vector<Ogre::SceneNode *> calculatePathFinding(std::string walkabilityMapName,std::string source, std::string target);
+		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor);
+		void stopTrajectory(Trajectory & trajectory);
+		void setIdle(Trajectory & trajectory,std::string gameObjectName);
+
+		std::string getNearestNodeToTrajectory(std::string trajectory,Vector3 position);
+
 		void toggleDebugMode();
 	};
 }

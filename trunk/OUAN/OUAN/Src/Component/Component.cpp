@@ -33,6 +33,10 @@ GameObjectPtr Component::getParent()
 	return mParent;
 }
 
+void Component::update(double elapsedSeconds)
+{
+}
+
 TComponentParameters::TComponentParameters()
 {
 }

@@ -4,9 +4,7 @@
 #include "../../Event/Event.h"
 #include "../../Utils/Utils.h"
 #include "../../Logic/LogicSubsystem.h"
-#include "../../Graphics/TrajectoryManager/Trajectory.h"
-#include "../../Graphics/TrajectoryManager/TrajectoryManager.h"
-#include "../../Graphics/TrajectoryManager/TrajectoryNode.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 using namespace OUAN;
 
@@ -77,61 +75,65 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	Vector3 movement;
+
+	//debug code, erase when it works
+	//if(getName().compare("tripollo#7")!=0)
+	//	return;
+
 	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
-	
+
 	int currentState=mLogicComponent->getState();
 	if (mPhysicsComponentCharacter.get())
 	{
-		NxOgre::Vec3 movement=mPhysicsComponentCharacter->getLastMovement();
 		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
 		{
+
 			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
 			{
 				entityToUpdate->changeAnimation("idle02");
+				mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
 			}
-			movement=NxOgre::Vec3::ZERO;
-			mPatrol=NULL;
-			mNextPatrolPoint=-1;
+
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
 		{				
 			if (mLogicComponent->isStateChanged())
 			{
+				if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+				{
+					mTrajectoryComponent->activatePredefinedTrajectory(getName(),mGameWorldManager->getCurrentWorld());
+				}
+				else
+				{
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+				}
 				/*
 					If the state has just changed, then load the trajectory and set the displacement
 					vector as (marker1-marker0)
 				*/
 				if (entityToUpdate.get())
 					entityToUpdate->changeAnimation("walk");
-				mRandomMovementDelay=Utils::Random::getInstance()->getRandomInteger(MIN_RANDOM_MOVEMENT_DELAY,MAX_RANDOM_MOVEMENT_DELAY);
-				movement.x=Utils::Random::getInstance()->getRandomDouble(-1,1);
-				movement.z=Utils::Random::getInstance()->getRandomDouble(-1,1);
 
 			}
-			else
-			{
-				if (mRandomMovementDelay>=0)
-				{
-					mRandomMovementDelay-=elapsedSeconds*1000;
-				}
-				else
-				{
-					mRandomMovementDelay=Utils::Random::getInstance()->getRandomInteger(MIN_RANDOM_MOVEMENT_DELAY,MAX_RANDOM_MOVEMENT_DELAY);
-					movement.x=Utils::Random::getInstance()->getRandomDouble(-1,1);
-					movement.z=Utils::Random::getInstance()->getRandomDouble(-1,1);
-				}
-			}
-			
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 		{
+
 			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
 			{
 				entityToUpdate->changeAnimation("walk");
+
+				mTrajectoryComponent->activatePathFinding(
+					mGameWorldManager->getGameObjectOny()->getName(),
+					mGameWorldManager->getCurrentWorld());
 			}
+
 			/*
+			
 				TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
 				compute a trajectory of nodes via an A* implementation.
 
@@ -142,58 +144,36 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 						- not to recompute the trajectory unless the distance between A*'s last destination node and Ony's current position
 						  exceeds a given value
 						- wait for a given amount of time before callin A* again
+
+						<---- 
+						If its not fast enough we could use dynamic programming and keep the list.
+						The trajectory will be computed every certain time (see Trajectory::recalculateTime) 
+						recalculateTime has a random component so every object calculates at different periods
 			*/
-			movement=NxOgre::Vec3::ZERO;
-			if (mGameWorldManager.get() && mGameWorldManager->getGameObjectOny().get())
-			{
-				Vector3 chaseDirection= mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-
-					mRenderComponentPositional->getPosition();
-				chaseDirection.normalise();
-				movement.x=chaseDirection.x;
-				movement.y=chaseDirection.y;
-				movement.z=chaseDirection.z;
-				movement=movement/5; //temporary hack: decrease the chase speed for the time being 
-									// so Ony can escape from the tripollo's reach
-			}
-			mPatrol=NULL;
-			mNextPatrolPoint=-1;
-			
 		}
 		else
 		{
-			mPatrol=NULL;
-			mNextPatrolPoint=-1;
-		}
-		if (mPhysicsComponentCharacter->isInUse())
-		{
-			bool rotate = movement!=NxOgre::Vec3::ZERO;
-			mPhysicsComponentCharacter->setLastMovement(movement);
-			mPhysicsComponentCharacter->setNextMovement(movement);
-			mPhysicsComponentCharacter->update(elapsedSeconds);
-			if (rotate)
-			{
-				mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(
-					mPhysicsComponentCharacter->getNxOgreController()->getDisplayYaw()+180);
-			}
+			
 		}
 
 		if (entityToUpdate.get())
 		{
 			entityToUpdate->update(elapsedSeconds);
 		}
+
+		mTrajectoryComponent->update(elapsedSeconds);
+
+		if (mPhysicsComponentCharacter->isInUse())
+		{
+			movement=mTrajectoryComponent->getNextMovement();
+			//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
+
+			//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
+			mPhysicsComponentCharacter->setNextMovement(movement);
+			mPhysicsComponentCharacter->update(elapsedSeconds);
+		}
 	}
 
-	//if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	//{
-
-	//	//mPhysicsComponentCharacter->getNxOgreController()->move(
-	//	//	getPhysicsComponentCharacter()->getNextMovement()+
-	//	//	Application::getInstance()->getPhysicsSubsystem()->mGravity* 
-	//	//	Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-	//	//	GROUP_COLLIDABLE_MASK,
-	//	//	Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-	//	//	collisionFlags);
-	//}
 }
 
 void GameObjectTripolloDreams::reset()
@@ -284,6 +264,16 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				break;
 		}
 	}
+}
+
+void GameObjectTripolloDreams::setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent)
+{
+	mTrajectoryComponent=pTrajectoryComponent;
+}
+
+TrajectoryComponentPtr GameObjectTripolloDreams::getTrajectoryComponent()
+{
+	return mTrajectoryComponent;
 }
 
 bool GameObjectTripolloDreams::hasPositionalComponent() const

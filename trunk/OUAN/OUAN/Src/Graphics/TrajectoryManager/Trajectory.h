@@ -11,18 +11,27 @@ namespace OUAN
 		double distanceToNextNode;
 		double completeDistanceToNextNode;
 		double totalTime;
+		double lastPathFindingTime;
+		double recalculateTime;
 		unsigned int currentNode;
 		std::vector<TrajectoryNode *> trajectoryNodes;
 		Vector3 currentPosition;
+		Vector3 nextMovement;
 		Quaternion currentOrientation;
 
 		bool loopTrajectory;
+		bool stop;
+		bool pathFindingActivated;
+		bool reachedLastNode;
+		bool twoDimensionsTrajectory;
 
 		int getNextNode();
 		void setCurrentNode(int node);
 
 		std::string mName;
-
+		std::string mWalkabilityMap;
+		std::string mPathfindingTarget;
+		std::string mPathfindingSource;
 		bool startupDone;
 
 		Vector3 mStartupPosition;
@@ -30,6 +39,31 @@ namespace OUAN
 
 		Ogre::SceneNode * mDebugObjects;
 		Ogre::SceneManager * mSceneManager;
+		TrajectoryManagerPtr mTrajectoryManager;
+
+		void recalculatePathfinding();
+		void removeNodeDebugInfo(int node);
+		void createNodeDebugInfo(int node,std::string debugColor);
+
+		void popBackNode();
+		void pushBackNode(TrajectoryNode * pTrajectoryNode,std::string debugColor);
+		double calculateDistance(Ogre::Vector3 v1,Ogre::Vector3 v2);
+
+		std::string getEntityDebugName(int node);
+		std::string getLineDebugName(int node);
+
+		TrajectoryNode* getTrajectoryNode(int index);
+		int getNumberOfNodes() const;
+
+		bool mVisible;
+
+		std::string mPredefinedTrajectory;
+		bool moveToPredefinedTrajectory;
+
+		void doPathfinding(std::string source,std::string target,std::string walkabilityMap);
+		void setPredefinedTrajectoryFromNode(std::string trajectory,std::string node);
+
+
 	public:
 
 		Trajectory();
@@ -37,31 +71,42 @@ namespace OUAN
 
 		Quaternion getCurrentOrientation();
 		Vector3 getCurrentPosition();
+		Vector3 getNextMovement();
 
 		void reset();
 		void clear();
 
 		void update(double elapsedTime);
+		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager);
+		void setTrajectoryNodes(std::vector<TrajectoryNode *> trajectoryNodes,std::string debugColor);
 
-		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects);
+		void setAs2DTrajectory();
+		void setAs3DTrajectory();
 
-		void addTrajectoryNode(TrajectoryNode * pTrajectoryNode,std::string debugColor);
+		void activatePathfinding(std::string source,std::string target,std::string walkabilityMap);
+		void activateIdle(std::string gameObject,std::string node,std::string walkabilityMap);
+		void activatePredefinedTrajectory(std::string trajectory);
+		void activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap);
 
-		void setStartup(TrajectoryNode * pTrajectoryNode);
+		std::string getNearestNode(Ogre::Vector3 position);
+
+		TrajectoryNode * getCurrentNode();
+
+		bool isEmpty();
 
 		std::vector<TrajectoryNode *>  getTrajectoryNodes() const;
 
 		bool getLoopTrajectory() const;
 		void setLoopTrajectory(bool loopTrajectory);
 
+		void setStop(bool stop);
+
+		void setVisible(bool visible);
+
 		std::string getName();
 
-		// Methods to retrieve trajectory nodes and related information
-		// They'll be used to get fixed positions belonging to predefined patrol trajectories
-		// The reason why we're not using the update() and similar methods in those cases
-		// is that the Game Objects using patrols use the PhysicsComponent to modify their positions/orientations
-		TrajectoryNode* getTrajectoryNode(int index);
-		int getNumberOfNodes() const;
+		bool predefinedTrajectoryExists(std::string name);
+
 	};
 
 	class TTrajectoryParameters

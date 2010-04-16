@@ -13,6 +13,9 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Graphics/TrajectoryManager/Trajectory.h"
+#include "../Graphics/TrajectoryManager/TrajectoryManager.h"
+#include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
@@ -345,4 +348,25 @@ WeaponComponentPtr ComponentFactory::createWeaponComponent(GameObjectPtr gameObj
 	WeaponComponentPtr weaponComponent = WeaponComponentPtr(new WeaponComponent());	
 	weaponComponent->setParent(gameObject);
 	return weaponComponent;
+}
+
+TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions)
+{
+	TrajectoryComponentPtr pTrajectoryComponent = TrajectoryComponentPtr(new TrajectoryComponent); 
+	Trajectory * pTrajectory;
+
+	pTrajectory=mApp->getTrajectoryManager()->getTrajectoryInstance();
+	if(TwoDimensions)
+	{
+		pTrajectory->setAs2DTrajectory();
+	}
+	else
+	{
+		pTrajectory->setAs3DTrajectory();
+	}
+
+	pTrajectoryComponent->setTrajectory(pTrajectory);
+	pTrajectoryComponent->setParent(gameObject);
+
+	return pTrajectoryComponent;
 }

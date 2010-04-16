@@ -26,6 +26,10 @@ namespace OUAN
 
 		std::vector<Ogre::SceneNode *> pathFinding(Ogre::SceneNode * sourceNode,Ogre::SceneNode * targetNode);
 
+		bool hasNode(std::string nodeName);
+
+		void setVisible(bool visible);
+
 	private:
 
 		struct VertexProperties
@@ -101,6 +105,10 @@ namespace OUAN
 
 		//graph used to represent the walkability map
 		Graph mGraph;
+
+		std::string mName;
+
+		bool mVisible;
 
 		Ogre::SceneNode * mDebugObjects;
 
