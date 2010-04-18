@@ -46,7 +46,7 @@ namespace OUAN
 		void changeCameraController();
 
 		//Sets camera target for applicable controllers
-		void setCameraTarget(RenderComponentPositional * target);
+		void setCameraTarget(RenderComponentPositionalPtr target);
 
 		//Sets camera trajectory for trajectory controller
 		void setCameraTrajectory(std::string name);

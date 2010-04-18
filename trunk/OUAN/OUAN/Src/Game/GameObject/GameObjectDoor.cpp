@@ -141,6 +141,50 @@ RenderComponentPositionalPtr GameObjectDoor::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectDoor::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectDoor::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectDoor::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectDoor::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectDoor::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectDoor::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectDoorParameters::TGameObjectDoorParameters() : TGameObjectParameters()

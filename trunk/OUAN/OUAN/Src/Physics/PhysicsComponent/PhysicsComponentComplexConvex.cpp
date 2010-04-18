@@ -78,9 +78,9 @@ NxOgre::Convex* PhysicsComponentComplexConvex::getNxOgreConvex()
 	return mNxOgreConvex;
 }
 
-void PhysicsComponentComplexConvex::setNxOgreConvex(NxOgre::Convex* pNxOgreConvex)
+void PhysicsComponentComplexConvex::setNxOgreConvex(NxOgre::Convex* pConvexMesh)
 {
-	mNxOgreConvex=pNxOgreConvex;
+	mNxOgreConvex=pConvexMesh;
 }
 
 OGRE3DBody* PhysicsComponentComplexConvex::getNxOgreBody()

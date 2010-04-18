@@ -124,6 +124,52 @@ RenderComponentPositionalPtr GameObjectScaredPlant::getPositionalComponent() con
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectScaredPlant::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectScaredPlant::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+
+void GameObjectScaredPlant::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectScaredPlant::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectScaredPlant::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectScaredPlant::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectScaredPlantParameters::TGameObjectScaredPlantParameters() : TGameObjectParameters()

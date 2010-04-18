@@ -18,6 +18,17 @@ RenderComponentEntityPtr GameObjectDiamond::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
+/// Set logic component
+void GameObjectDiamond::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
+}
+
+/// return logic component
+LogicComponentItemPtr GameObjectDiamond::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
 
 void GameObjectDiamond::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
@@ -58,7 +69,7 @@ void GameObjectDiamond::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -74,7 +85,7 @@ void GameObjectDiamond::changeWorld(int world)
 		{
 		case DREAMS:
 
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -93,7 +104,7 @@ void GameObjectDiamond::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -129,6 +140,38 @@ bool GameObjectDiamond::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectDiamond::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectDiamond::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectDiamond::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectDiamond::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectDiamond::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
 }
 
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()

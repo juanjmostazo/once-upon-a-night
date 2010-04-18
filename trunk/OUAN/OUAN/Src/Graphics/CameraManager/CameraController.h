@@ -19,7 +19,7 @@ namespace OUAN
 		virtual void update(double elapsedTime);
 		virtual void processCameraRotation(Ogre::Vector2 cameraRotation);
 		virtual void processSimpleTranslation(Ogre::Vector3 nextMovement);
-		virtual void setTarget(RenderComponentPositional * target);
+		virtual void setTarget(RenderComponentPositionalPtr target);
 		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 	protected:

@@ -13,6 +13,7 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
@@ -24,7 +25,11 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
+#include "../Logic/LogicComponent/LogicComponentOny.h"
+#include "../Logic/LogicComponent/LogicComponentItem.h"
+#include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 
 using namespace OUAN;
@@ -105,6 +110,7 @@ RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string
 
 	return pRenderComponentLight;
 }
+
 RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticleSystem(GameObjectPtr gameObject,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters)
 {
 	//Create void Render Component
@@ -117,6 +123,20 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 
 	return pRenderComponentParticleSystem;
 }
+
+RenderComponentDecalPtr ComponentFactory::createRenderComponentDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters)
+{
+	//Create void Render Component
+	RenderComponentDecalPtr pRenderComponentDecal = RenderComponentDecalPtr(new RenderComponentDecal()); 
+
+	//init Render Component
+	pRenderComponentDecal=mApp->getRenderSubsystem()->createDecal(gameObject,tRenderComponentDecalParameters);
+
+	pRenderComponentDecal->setParent(gameObject);
+
+	return pRenderComponentDecal;
+}
+
 RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectPtr gameObject,TRenderComponentSceneParameters tRenderComponentSceneParameters)
 {
 	//Create void Render Component
@@ -194,7 +214,7 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	pPhysicsComponentCharacter->setParent(gameObject);	
 	pPhysicsComponentCharacter->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentCharacter->setMass(tPhysicsComponentCharacterParameters.mass);
-	pPhysicsComponentCharacter->setQueryFlags(flags);
+	//pPhysicsComponentCharacter->setQueryFlags(flags);
 	pPhysicsComponentCharacter->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentCharacterParameters.radius, 
 						tPhysicsComponentCharacterParameters.height));
@@ -217,7 +237,7 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
-	pPhysicsComponentComplexConvex->setQueryFlags(flags);	
+	//pPhysicsComponentComplexConvex->setQueryFlags(flags);	
 
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
@@ -235,7 +255,7 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 	pPhysicsComponentComplexTriangle->setParent(gameObject);	
 	pPhysicsComponentComplexTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());	
 	pPhysicsComponentComplexTriangle->setMass(tPhysicsComponentComplexTriangleParameters.mass);
-	pPhysicsComponentComplexTriangle->setQueryFlags(flags);
+	//pPhysicsComponentComplexTriangle->setQueryFlags(flags);
 
 	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentComplexTriangleParameters.nxsFile.c_str());
@@ -258,7 +278,7 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 	pPhysicsComponentSimpleCapsule->setParent(gameObject);	
 	pPhysicsComponentSimpleCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleCapsule->setMass(tPhysicsComponentSimpleCapsuleParameters.mass);
-	pPhysicsComponentSimpleCapsule->setQueryFlags(flags);
+	//pPhysicsComponentSimpleCapsule->setQueryFlags(flags);
 
 	pPhysicsComponentSimpleCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
@@ -277,7 +297,7 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 	pPhysicsComponentSimpleBox->setParent(gameObject);	
 	pPhysicsComponentSimpleBox->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentSimpleBox->setMass(tPhysicsComponentSimpleBoxParameters.mass);
-	pPhysicsComponentSimpleBox->setQueryFlags(flags);
+	//pPhysicsComponentSimpleBox->setQueryFlags(flags);
 
 	pPhysicsComponentSimpleBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentSimpleBoxParameters.lengthX,
@@ -294,7 +314,7 @@ PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeC
 
 	pPhysicsComponentVolumeCapsule->setParent(gameObject);	
 	pPhysicsComponentVolumeCapsule->setSceneNode(tRenderComponentPositional->getSceneNode());
-	pPhysicsComponentVolumeCapsule->setQueryFlags(flags);
+	//pPhysicsComponentVolumeCapsule->setQueryFlags(flags);
 	
 	pPhysicsComponentVolumeCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentVolumeCapsuleParameters.radius,
@@ -310,7 +330,7 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 
 	pPhysicsComponentVolumeBox->setParent(gameObject);	
 	pPhysicsComponentVolumeBox->setSceneNode(tRenderComponentPositional->getSceneNode());
-	pPhysicsComponentVolumeBox->setQueryFlags(flags);
+	//pPhysicsComponentVolumeBox->setQueryFlags(flags);
 	
 	pPhysicsComponentVolumeBox->setNxOgreSize(
 		NxOgre::Vec3(	tPhysicsComponentVolumeBoxParameters.lengthX,
@@ -320,29 +340,96 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 	return pPhysicsComponentVolumeBox;
 }
 
-LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters logicComponentParameters)
+PhysicsComponentVolumeConvexPtr ComponentFactory::createPhysicsComponentVolumeConvex(GameObjectPtr gameObject,TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
+{
+	PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex = 
+		PhysicsComponentVolumeConvexPtr(new PhysicsComponentVolumeConvex(COMPONENT_TYPE_PHYSICS_VOLUME_CONVEX)); 
+
+	pPhysicsComponentVolumeConvex->setParent(gameObject);	
+	pPhysicsComponentVolumeConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentVolumeConvex->setMass(tPhysicsComponentVolumeConvexParameters.mass);
+	//pPhysicsComponentVolumeConvex->setQueryFlags(flags);	
+
+	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
+		tPhysicsComponentVolumeConvexParameters.nxsFile.c_str());
+	pPhysicsComponentVolumeConvex->setNxOgreConvexMesh(convexMesh);
+
+	return pPhysicsComponentVolumeConvex;
+}
+
+LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters tLogicComponentParameters)
 {
 	LogicComponentPtr logicComponent=LogicComponentPtr(new LogicComponent());
-	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
-	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
-	
-	logicComponent->setHealthPoints(logicComponentParameters.healthPoints);
-	logicComponent->setInitialHealthPoints(logicComponentParameters.healthPoints);
-	logicComponent->setNumLives(logicComponentParameters.numLives);
-	logicComponent->setInitialNumLives(logicComponentParameters.numLives);
-	logicComponent->setLineOfSight(logicComponentParameters.lineOfSight);
+	logicComponent->setExistsInDreams(tLogicComponentParameters.existsInDreams);
+	logicComponent->setExistsInNightmares(tLogicComponentParameters.existsInNightmares);
 
-	logicComponent->setAttackDamage(logicComponentParameters.attackDamage);
-	logicComponent->setAttackDelay(logicComponentParameters.attackDelay);
-	logicComponent->setAttackRange(logicComponentParameters.attackRange);
-	logicComponent->setColourSensitivityMask(logicComponentParameters.colourSensitivityMask);
-
-	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
-	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);
-	logicComponent->setState(logicComponentParameters.defaultState);
+	logicComponent->setScriptFilename(tLogicComponentParameters.scriptFilename);
+	logicComponent->setScriptFunction(tLogicComponentParameters.scriptFunction);
+	logicComponent->setState(tLogicComponentParameters.defaultState);
 	logicComponent->setParent(gameObject);
 	return logicComponent;
 }
+
+LogicComponentItemPtr ComponentFactory::createLogicComponentItem(GameObjectPtr gameObject, TLogicComponentItemParameters LogicComponentItemParameters)
+{
+	LogicComponentItemPtr pLogicComponentItem=LogicComponentItemPtr(new LogicComponentItem());
+	pLogicComponentItem->setExistsInDreams(LogicComponentItemParameters.existsInDreams);
+	pLogicComponentItem->setExistsInNightmares(LogicComponentItemParameters.existsInNightmares);
+	pLogicComponentItem->setIsTaken(false);
+
+	pLogicComponentItem->setScriptFilename(LogicComponentItemParameters.scriptFilename);
+	pLogicComponentItem->setScriptFunction(LogicComponentItemParameters.scriptFunction);
+	pLogicComponentItem->setState(LogicComponentItemParameters.defaultState);
+	pLogicComponentItem->setParent(gameObject);
+
+	return pLogicComponentItem;
+}
+
+LogicComponentOnyPtr ComponentFactory::createLogicComponentOny(GameObjectPtr gameObject, TLogicComponentOnyParameters LogicComponentOnyParameters)
+{
+	LogicComponentOnyPtr pLogicComponentOny=LogicComponentOnyPtr(new LogicComponentOny());
+	pLogicComponentOny->setExistsInDreams(LogicComponentOnyParameters.existsInDreams);
+	pLogicComponentOny->setExistsInNightmares(LogicComponentOnyParameters.existsInNightmares);
+	
+	pLogicComponentOny->setHealthPoints(LogicComponentOnyParameters.healthPoints);
+	pLogicComponentOny->setInitialHealthPoints(LogicComponentOnyParameters.healthPoints);
+	pLogicComponentOny->setNumLives(LogicComponentOnyParameters.numLives);
+	pLogicComponentOny->setInitialNumLives(LogicComponentOnyParameters.numLives);
+
+
+	pLogicComponentOny->setAttackDamage(LogicComponentOnyParameters.attackDamage);
+
+	pLogicComponentOny->setScriptFilename(LogicComponentOnyParameters.scriptFilename);
+	pLogicComponentOny->setScriptFunction(LogicComponentOnyParameters.scriptFunction);
+	pLogicComponentOny->setState(LogicComponentOnyParameters.defaultState);
+	pLogicComponentOny->setParent(gameObject);
+
+	return pLogicComponentOny;
+}
+
+LogicComponentEnemyPtr ComponentFactory::createLogicComponentEnemy(GameObjectPtr gameObject, TLogicComponentEnemyParameters LogicComponentEnemyParameters)
+{
+	LogicComponentEnemyPtr pLogicComponentEnemy=LogicComponentEnemyPtr(new LogicComponentEnemy());
+	pLogicComponentEnemy->setExistsInDreams(LogicComponentEnemyParameters.existsInDreams);
+	pLogicComponentEnemy->setExistsInNightmares(LogicComponentEnemyParameters.existsInNightmares);
+	
+	pLogicComponentEnemy->setHealthPoints(LogicComponentEnemyParameters.healthPoints);
+	pLogicComponentEnemy->setInitialHealthPoints(LogicComponentEnemyParameters.healthPoints);
+	pLogicComponentEnemy->setLineOfSight(LogicComponentEnemyParameters.lineOfSight);
+
+	pLogicComponentEnemy->setAttackDamage(LogicComponentEnemyParameters.attackDamage);
+	pLogicComponentEnemy->setAttackDelay(LogicComponentEnemyParameters.attackDelay);
+	pLogicComponentEnemy->setAttackRange(LogicComponentEnemyParameters.attackRange);
+	pLogicComponentEnemy->setColourSensitivityMask(LogicComponentEnemyParameters.colourSensitivityMask);
+
+	pLogicComponentEnemy->setScriptFilename(LogicComponentEnemyParameters.scriptFilename);
+	pLogicComponentEnemy->setScriptFunction(LogicComponentEnemyParameters.scriptFunction);
+	pLogicComponentEnemy->setState(LogicComponentEnemyParameters.defaultState);
+	pLogicComponentEnemy->setParent(gameObject);
+	return pLogicComponentEnemy;
+}
+
+
 WeaponComponentPtr ComponentFactory::createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters)
 {
 	WeaponComponentPtr weaponComponent = WeaponComponentPtr(new WeaponComponent());	

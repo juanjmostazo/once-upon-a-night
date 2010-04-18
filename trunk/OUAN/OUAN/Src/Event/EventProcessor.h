@@ -23,17 +23,17 @@ namespace OUAN
 		/// @param evt pointer to the event
 		void processChangeWorld(ChangeWorldEventPtr evt);
 
-		/// Process world change event
+		/// Process collision event
 		/// @param evt pointer to the event
-		void processCharactersCollision(CharactersCollisionEventPtr evt);
+		void processCollision(CollisionEventPtr evt);
 
-		/// Process world change event
+		/// Process enter trigger event
 		/// @param evt pointer to the event
-		void processCharacterInTrigger(CharacterInTriggerEventPtr evt);
+		void processEnterTrigger(EnterTriggerEventPtr evt);
 
-		/// Process world change event
+		/// Process exit trigger event
 		/// @param evt pointer to the event
-		void processCharacterShapeFrontCollision(CharacterShapeFrontCollisionEventPtr evt);
+		void processExitTrigger(ExitTriggerEventPtr evt);
 
 		/// Process game over event
 		/// @param evt pointer to the event

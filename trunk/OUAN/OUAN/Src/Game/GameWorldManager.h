@@ -149,14 +149,6 @@ namespace OUAN
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
 
-		// Take items
-		void takeItemMaxHP(GameObjectItemMaxHPPtr gameObjectMaxHP,GameObjectOnyPtr ony);
-		void takeItem1UP(GameObjectItem1UPPtr gameObjectItem1UP,GameObjectOnyPtr ony);
-		void takeItemHeart(GameObjectHeartPtr gameObjectHeart,GameObjectOnyPtr ony);
-		void takeItemDiamond(GameObjectDiamondPtr gameObjectDiamond,GameObjectOnyPtr ony);
-		void takeItemClockPiece(GameObjectClockPiecePtr gameObjectClockPiece);
-		void takeItemStoryBook(GameObjectStoryBookPtr gameObjectStoryBook);
-
 		/// Pass current level
 		void win();
 		/// Lose game

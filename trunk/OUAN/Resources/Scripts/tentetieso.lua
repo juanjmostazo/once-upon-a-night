@@ -8,7 +8,7 @@ TENTETIESO_STATE_DEAD=5
 function tentetiesoLogic(pTentetieso,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pTentetieso:getName()
-	local playerDistance=pTentetieso:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pTentetieso:getLineOfSight()
 	local myHP = pTentetieso:getHP()
 	local maxHPHalved = pTentetieso:getMaxHP()/2

@@ -309,7 +309,7 @@ void CameraManager::changeCameraController()
 	}
 }
 
-void CameraManager::setCameraTarget(RenderComponentPositional * target)
+void CameraManager::setCameraTarget(RenderComponentPositionalPtr target)
 {
 	mCameraControllerThirdPerson->setTarget(target);
 	mCameraControllerFixedThirdPerson->setTarget(target);

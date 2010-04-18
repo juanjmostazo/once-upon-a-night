@@ -133,6 +133,51 @@ RenderComponentPositionalPtr GameObjectTriggerCapsule::getPositionalComponent() 
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectTriggerCapsule::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectTriggerCapsule::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectTriggerCapsule::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTriggerCapsule::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTriggerCapsule::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTriggerCapsule::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectTriggerCapsuleParameters::TGameObjectTriggerCapsuleParameters() : TGameObjectParameters()
 {

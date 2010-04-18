@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-
+#include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
 	/// Class to hold volume box information
@@ -20,7 +20,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
-
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -34,6 +37,11 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -69,6 +77,22 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
+
 	};
 
 	class TGameObjectTriggerBoxParameters: public TGameObjectParameters
@@ -85,6 +109,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+		///Logic parameters
+		TLogicComponentParameters tLogicComponentParameters;
 	};
 }
 #endif

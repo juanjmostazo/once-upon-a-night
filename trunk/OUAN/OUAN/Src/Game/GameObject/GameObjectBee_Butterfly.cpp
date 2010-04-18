@@ -13,6 +13,17 @@ GameObjectBee_Butterfly::~GameObjectBee_Butterfly()
 {
 
 }
+/// Set logic component
+void GameObjectBee_Butterfly::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
+
+/// return logic component
+LogicComponentEnemyPtr GameObjectBee_Butterfly::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 
 void GameObjectBee_Butterfly::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
@@ -93,6 +104,40 @@ RenderComponentPositionalPtr GameObjectBee_Butterfly::getPositionalComponent() c
 {
 	return getRenderComponentPositional();
 }
+
+
+void GameObjectBee_Butterfly::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectBee_Butterfly::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectBee_Butterfly::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectBee_Butterfly::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectBee_ButterflyParameters::TGameObjectBee_ButterflyParameters() : TGameObjectParameters()
 {

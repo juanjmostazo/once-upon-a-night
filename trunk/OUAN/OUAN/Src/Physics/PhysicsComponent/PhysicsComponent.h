@@ -35,7 +35,7 @@ namespace OUAN
 		virtual double getMass();
 		virtual void setMass(double pMass);
 
-		virtual void setQueryFlags(QueryFlags queryFlags);
+		//virtual void setQueryFlags(QueryFlags queryFlags);
 
 
 	protected:

@@ -142,6 +142,51 @@ RenderComponentPositionalPtr GameObjectProvisionalEntity::getPositionalComponent
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectProvisionalEntity::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectProvisionalEntity::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectProvisionalEntity::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectProvisionalEntity::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectProvisionalEntity::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectProvisionalEntity::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectProvisionalEntityParameters::TGameObjectProvisionalEntityParameters() : TGameObjectParameters()

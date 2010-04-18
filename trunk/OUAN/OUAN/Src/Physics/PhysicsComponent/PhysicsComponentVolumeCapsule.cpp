@@ -49,10 +49,10 @@ void PhysicsComponentVolumeCapsule::setNxOgreSize(NxOgre::Vec2 pNxOgreSize)
 	mNxOgreSize=pNxOgreSize;
 }
 
-void PhysicsComponentVolumeCapsule::setQueryFlags(QueryFlags queryFlags)
-{
-	//getNxOgreBody()->setQueryFlags((int)queryFlags);
-}
+//void PhysicsComponentVolumeCapsule::setQueryFlags(QueryFlags queryFlags)
+//{
+//	//getNxOgreBody()->setQueryFlags((int)queryFlags);
+//}
 
 TPhysicsComponentVolumeCapsuleParameters::TPhysicsComponentVolumeCapsuleParameters() : TPhysicsComponentVolumeParameters()
 {

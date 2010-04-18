@@ -15,6 +15,16 @@ GameObjectTentetieso::~GameObjectTentetieso()
 
 }
 
+void GameObjectTentetieso::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
+
+LogicComponentEnemyPtr GameObjectTentetieso::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
+
 void GameObjectTentetieso::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -132,6 +142,39 @@ RenderComponentPositionalPtr GameObjectTentetieso::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectTentetieso::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTentetieso::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTentetieso::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTentetieso::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()
 {

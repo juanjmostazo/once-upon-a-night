@@ -46,7 +46,7 @@ namespace OUAN
 		/// @param functionName name of the function to invoke
 		/// @param game object state
 		/// @param gameObject game object to update
-		int invokeFunction(const std::string& functionName,int state, GameObjectPtr gameObject);
+		int invokeFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent);
 
 		/// Retrieve the value of a global variable in LUA
 		int getGlobalInt (const std::string& globalName);

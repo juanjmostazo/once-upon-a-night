@@ -9,7 +9,7 @@ function eyeLogic(pEye,state)
 	print(state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pEye:getName()
-	local playerDistance=pEye:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pEye:getLineOfSight()
 	local myHP = pEye:getHP()
 	local maxHPHalved = pEye:getMaxHP()/2

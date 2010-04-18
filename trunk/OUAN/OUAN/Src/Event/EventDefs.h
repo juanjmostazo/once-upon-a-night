@@ -20,14 +20,14 @@ namespace OUAN
 	class ChangeWorldEvent;
 	typedef boost::shared_ptr<ChangeWorldEvent> ChangeWorldEventPtr;
 
-	class CharactersCollisionEvent;
-	typedef boost::shared_ptr<CharactersCollisionEvent> CharactersCollisionEventPtr;
+	class CollisionEvent;
+	typedef boost::shared_ptr<CollisionEvent> CollisionEventPtr;
 
-	class CharacterInTriggerEvent;
-	typedef boost::shared_ptr<CharacterInTriggerEvent> CharacterInTriggerEventPtr;
+	class EnterTriggerEvent;
+	typedef boost::shared_ptr<EnterTriggerEvent> EnterTriggerEventPtr;
 
-	class CharacterShapeFrontCollisionEvent;
-	typedef boost::shared_ptr<CharacterShapeFrontCollisionEvent> CharacterShapeFrontCollisionEventPtr;
+	class ExitTriggerEvent;
+	typedef boost::shared_ptr<ExitTriggerEvent> ExitTriggerEventPtr;
 
 	class ClearQueueEvent;
 	typedef boost::shared_ptr<ClearQueueEvent> ClearQueueEventPtr;
@@ -51,9 +51,9 @@ namespace OUAN
 		EVENT_TYPE_ONY_FALLS,
 		EVENT_TYPE_CHANGEWORLD,
 		EVENT_TYPE_CLEARQUEUE,
-		EVENT_TYPE_CHARACTERS_COLLISION,
-		EVENT_TYPE_CHARACTER_IN_TRIGGER,
-		EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION,
+		EVENT_TYPE_COLLISION,
+		EVENT_TYPE_ENTER_TRIGGER,
+		EVENT_TYPE_EXIT_TRIGGER,
 		EVENT_TYPE_WEAPON_MODE_CHANGED
 	} TEventType;
 
@@ -65,9 +65,9 @@ namespace OUAN
 	const int EVT_PRIORITY_CHANGEWORLD=2;
 	const int EVT_PRIORITY_CLEARQUEUE=2;
 	const int EVT_PRIORITY_WEAPON_MODE_CHANGED=3;
-	const int EVT_PRIORITY_CHARACTERS_COLLISION=3;
-	const int EVT_PRIORITY_CHARACTER_IN_TRIGGER=4;
-	const int EVT_PRIORITY_CHARACTER_SHAPE_FRONT_COLLISION=5;
+	const int EVT_PRIORITY_EXIT_TRIGGER=3;
+	const int EVT_PRIORITY_ENTER_TRIGGER=4;
+	const int EVT_PRIORITY_COLLISION=5;
 	//...
 }
 

@@ -217,7 +217,7 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }
-void CameraControllerThirdPerson::setTarget(RenderComponentPositional * target)
+void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
 {
 	this->target=target;
 	rotY=target->getOrientation().getYaw().valueDegrees();

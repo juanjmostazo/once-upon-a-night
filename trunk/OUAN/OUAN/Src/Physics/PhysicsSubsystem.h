@@ -147,10 +147,10 @@ namespace OUAN
 		/// Fetch function
 		GameObjectPtr getGameObject(NxOgre::String name);
 
-		/// Auxiliar function
-		bool isAllowedCollision(GameObjectPtr object1, GameObjectPtr object2);
-
-
+		/// Sends collisions to the EventManager function
+		bool sendCollision(GameObjectPtr object1, GameObjectPtr object2);
+		bool sendEnterTrigger(GameObjectPtr object1, GameObjectPtr object2);
+		bool sendExitTrigger(GameObjectPtr object1, GameObjectPtr object2);
 
 	};
 }

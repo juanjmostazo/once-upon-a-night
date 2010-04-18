@@ -5,8 +5,8 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
-
+#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
 	const int RED = 0xff0000ff;
@@ -17,7 +17,10 @@ namespace OUAN
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
 	{
 	private:
-		
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;		
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		RenderComponentLightPtr mRenderComponentLight;
@@ -28,7 +31,7 @@ namespace OUAN
 		RenderComponentPositionalPtr mLightPositionalComponent;
 
 		/// Physics information
-		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
+		PhysicsComponentVolumeConvexPtr mPhysicsComponentVolumeConvex;
 
 		CameraManagerPtr mCameraManager;
 		GameWorldManagerPtr mGameWorldManager;
@@ -54,6 +57,11 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Return render component Light 
 		/// @return render component Light
@@ -81,14 +89,11 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		/// Detects Flashlight's light collisions with the scene and adds the events to the eventManager
-		void detectLightCollisions();
-
 		/// Set physics component
-		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
+		void setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex);
 
 		/// Get physics component
-		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
+		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex();
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -115,6 +120,21 @@ namespace OUAN
 
 		/// Reset object
 		virtual void reset();
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters
@@ -130,7 +150,10 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
+		TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
+
+		///Logic parameters
+		TLogicComponentParameters tLogicComponentParameters;
 
 	};
 }

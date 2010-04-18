@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentOny.h"
 
 namespace OUAN
 {
@@ -22,10 +23,11 @@ namespace OUAN
 	const int STATE_ONY_FLASHLIGHT_USE=9;
 	const int STATE_ONY_FLASHLIGHT_HIDE=10;
 	const int STATE_ONY_FLASHLIGHT_USE_SPECIAL=11;
-		
+
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
+
 	private:
 		
 		/// Visual component data
@@ -37,15 +39,11 @@ namespace OUAN
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 
-		/// Health-related information (i.e, current HP and number of lives)
-		//HealthComponentPtr mHealthComponent;
+		LogicComponentOnyPtr mLogicComponentOny;
 		
 		/// Weapon wielding component
 		WeaponComponentPtr mWeaponComponent;
 		void initWeaponComponent();
-
-		/// 'Immunity' time so a single collision is not processed during several ticks
-		int mHitRecoveryTime;
 
 	public:
 		//Constructor
@@ -54,6 +52,7 @@ namespace OUAN
 		GameObjectOny(const std::string& name);
 		//Destructor
 		~GameObjectOny();
+
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -90,6 +89,11 @@ namespace OUAN
 		void setWeaponMode(TWeaponMode weaponMode);
 		WeaponComponentPtr getWeaponComponent() const;
 
+		/// Set logic component
+		void setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny);
+
+		/// return logic component
+		LogicComponentOnyPtr getLogicComponentOny();
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -110,13 +114,28 @@ namespace OUAN
 		/// Additional actions to take after losing one life
 		void loseLife();
 		/// Additional actions to take after losing all lives
-		void die();
+		void gameOver();
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
 		void useWeapon();
 		void stopUsingWeapon();
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
 	};
 
 	/// Carries data between the level loader and the object factories
@@ -135,7 +154,10 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;		
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;	
+
+		///Logic parameters
+		TLogicComponentOnyParameters tLogicComponentOnyParameters;
 		
 		///Weapon parameters
 		TWeaponComponentParameters tWeaponComponentParameters;

@@ -142,6 +142,51 @@ RenderComponentPositionalPtr GameObjectTerrainConvex::getPositionalComponent() c
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectTerrainConvex::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectTerrainConvex::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectTerrainConvex::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTerrainConvex::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTerrainConvex::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTerrainConvex::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()
 {

@@ -50,65 +50,60 @@ int ChangeWorldEvent::getNewWorld() const
 
 //----------------------
 
-CharactersCollisionEvent::CharactersCollisionEvent(GameObjectPtr pCharacter1, GameObjectPtr pCharacter2)
-:Event(EVT_PRIORITY_CHARACTERS_COLLISION,EVENT_TYPE_CHARACTERS_COLLISION)
+CollisionEvent::CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2)
+:Event(EVT_PRIORITY_COLLISION,EVENT_TYPE_COLLISION)
 {
-	mCharacter1=pCharacter1;
-	mCharacter2=pCharacter2;
+	mGameObject1=pGameObject1;
+	mGameObject2=pGameObject2;
 };
 
-GameObjectPtr CharactersCollisionEvent::getCharacter1()
+GameObjectPtr CollisionEvent::getGameObject1()
 {
-	return mCharacter1;
+	return mGameObject1;
 }
 
-GameObjectPtr CharactersCollisionEvent::getCharacter2()
+GameObjectPtr CollisionEvent::getGameObject2()
 {
-	return mCharacter2;
+	return mGameObject2;
 }
 
 //----------------------
 
-CharacterInTriggerEvent::CharacterInTriggerEvent(GameObjectPtr pCharacter, GameObjectPtr pTrigger, int pCollisionType)
-:Event(EVT_PRIORITY_CHARACTER_IN_TRIGGER,EVENT_TYPE_CHARACTER_IN_TRIGGER)
+EnterTriggerEvent::EnterTriggerEvent(GameObjectPtr pTrigger, GameObjectPtr pGameObject)
+:Event(EVT_PRIORITY_ENTER_TRIGGER,EVENT_TYPE_ENTER_TRIGGER)
 {
-	mCharacter=pCharacter;
 	mTrigger=pTrigger;
-	mCollisionType=pCollisionType;
+	mGameObject=pGameObject;
 };
 
-GameObjectPtr CharacterInTriggerEvent::getCharacter()
+GameObjectPtr EnterTriggerEvent::getGameObject()
 {
-	return mCharacter;
+	return mGameObject;
 }
 
-GameObjectPtr CharacterInTriggerEvent::getTrigger()
+GameObjectPtr EnterTriggerEvent::getTrigger()
 {
 	return mTrigger;
 }
 
-int CharacterInTriggerEvent::getCollisionType()
-{
-	return mCollisionType;
-}
 //----------------------
 //----------------------
 
-CharacterShapeFrontCollisionEvent::CharacterShapeFrontCollisionEvent(GameObjectPtr pCharacter, GameObjectPtr pShape)
-:Event(EVT_PRIORITY_CHARACTER_SHAPE_FRONT_COLLISION,EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION)
+ExitTriggerEvent::ExitTriggerEvent(GameObjectPtr pTrigger, GameObjectPtr pGameObject)
+:Event(EVT_PRIORITY_EXIT_TRIGGER,EVENT_TYPE_EXIT_TRIGGER)
 {
-	mCharacter=pCharacter;
-	mShape=pShape;
+	mTrigger=pTrigger;
+	mGameObject=pGameObject;
 };
 
-GameObjectPtr CharacterShapeFrontCollisionEvent::getCharacter()
+GameObjectPtr ExitTriggerEvent::getGameObject()
 {
-	return mCharacter;
+	return mGameObject;
 }
 
-GameObjectPtr CharacterShapeFrontCollisionEvent::getShape()
+GameObjectPtr ExitTriggerEvent::getTrigger()
 {
-	return mShape;
+	return mTrigger;
 }
 
 //----------------------

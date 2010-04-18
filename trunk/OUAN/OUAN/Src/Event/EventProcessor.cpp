@@ -38,14 +38,14 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,ChangeWorldEvent, EVENT_TYPE_CHANGEWORLD>
 			(this_,&EventProcessor::processChangeWorld,mWorldManager->getEventManager());
 
-		registerEventHandler<EventProcessor,CharactersCollisionEvent, EVENT_TYPE_CHARACTERS_COLLISION>
-			(this_,&EventProcessor::processCharactersCollision,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,CollisionEvent, EVENT_TYPE_COLLISION>
+			(this_,&EventProcessor::processCollision,mWorldManager->getEventManager());
 
-		registerEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
-			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,EnterTriggerEvent, EVENT_TYPE_ENTER_TRIGGER>
+			(this_,&EventProcessor::processEnterTrigger,mWorldManager->getEventManager());
 
-		registerEventHandler<EventProcessor,CharacterShapeFrontCollisionEvent, EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION>
-			(this_,&EventProcessor::processCharacterShapeFrontCollision,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,ExitTriggerEvent, EVENT_TYPE_EXIT_TRIGGER>
+			(this_,&EventProcessor::processExitTrigger,mWorldManager->getEventManager());
 
 		registerEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
 			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
@@ -55,6 +55,7 @@ void EventProcessor::registerHandlers()
 		
 		registerEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
 			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
 			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
 	}
@@ -69,14 +70,14 @@ void EventProcessor::unregisterHandlers()
 		unregisterEventHandler<EventProcessor,ChangeWorldEvent, EVENT_TYPE_CHANGEWORLD>
 			(this_,&EventProcessor::processChangeWorld,mWorldManager->getEventManager());
 
-		unregisterEventHandler<EventProcessor,CharactersCollisionEvent, EVENT_TYPE_CHARACTERS_COLLISION>
-			(this_,&EventProcessor::processCharactersCollision,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,CollisionEvent, EVENT_TYPE_COLLISION>
+			(this_,&EventProcessor::processCollision,mWorldManager->getEventManager());
 
-		unregisterEventHandler<EventProcessor,CharacterInTriggerEvent, EVENT_TYPE_CHARACTER_IN_TRIGGER>
-			(this_,&EventProcessor::processCharacterInTrigger,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,EnterTriggerEvent, EVENT_TYPE_ENTER_TRIGGER>
+			(this_,&EventProcessor::processEnterTrigger,mWorldManager->getEventManager());
 
-		unregisterEventHandler<EventProcessor,CharacterShapeFrontCollisionEvent, EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION>
-			(this_,&EventProcessor::processCharacterShapeFrontCollision,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,ExitTriggerEvent, EVENT_TYPE_EXIT_TRIGGER>
+			(this_,&EventProcessor::processExitTrigger,mWorldManager->getEventManager());
 
 		unregisterEventHandler<EventProcessor,GameOverEvent, EVENT_TYPE_GAMEOVER>
 			(this_,&EventProcessor::processGameOver,mWorldManager->getEventManager());
@@ -129,113 +130,44 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 	}
 }
 
-void EventProcessor::processCharactersCollision(CharactersCollisionEventPtr evt)
+void EventProcessor::processCollision(CollisionEventPtr evt)
 {
-	if (evt->getCharacter1() && evt->getCharacter2())
+	if (evt->getGameObject1() && evt->getGameObject2())
 	{
-		Ogre::String characters = evt->getCharacter1()->getName() + "," + evt->getCharacter2()->getName();
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision (" + characters + ")");
-		//TODO: Handle weapon->enemy collisions, so their health can be modified as well
-		GameObjectOnyPtr ony;
-		ony.reset();
-		if (evt->getCharacter1()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		{
-			ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter1());
-		}
-		else if (evt->getCharacter2()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		{
-			ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter2());
-		}
-		if (ony.get())
-		{
-			ony->decreaseHP();
-		}
+		//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
+		
+		 evt->getGameObject1()->processCollision( evt->getGameObject2());
+		 evt->getGameObject2()->processCollision( evt->getGameObject1());
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharactersCollision with unknown data!");
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCollision with unknown data!");
 	}
 }
 
-void EventProcessor::processCharacterInTrigger(CharacterInTriggerEventPtr evt)
+void EventProcessor::processEnterTrigger(EnterTriggerEventPtr evt)
 {
-	//Ogre::LogManager::getSingleton().logMessage("* Character: " + evt->getCharacter()->getName());
-	//Ogre::LogManager::getSingleton().logMessage("* Trigger: " + evt->getTrigger()->getName());
-
-	if (evt->getCharacter() && evt->getTrigger() && evt->getTrigger()->isEnabled())
+	if (evt->getTrigger() && evt->getGameObject())
 	{
-		if (evt->getCharacter()->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
-		{
-			Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (ONY)");
-			
-			GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getCharacter());
-
-			if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERBOX) == 0) 
-			{
-				//GameObjectTriggerBoxPtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerBox>(evt->getTrigger());
-				GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(true));
-				mWorldManager->addEvent(evt);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE) == 0) 
-			{	
-				//GameObjectTriggerCapsulePtr tmpObject = boost::dynamic_pointer_cast<GameObjectTriggerCapsule>(evt->getTrigger());
-				GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(true));
-				mWorldManager->addEvent(evt);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP) == 0) 
-			{
-				GameObjectItem1UPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItem1UP>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItem1UP(tmpObject, ony);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_ITEM_MAXHP) == 0) 
-			{
-				GameObjectItemMaxHPPtr tmpObject = boost::dynamic_pointer_cast<GameObjectItemMaxHP>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemMaxHP(tmpObject,ony);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_HEART) == 0) 
-			{
-				GameObjectHeartPtr tmpObject = boost::dynamic_pointer_cast<GameObjectHeart>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemHeart(tmpObject,ony);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_DIAMOND) == 0) 
-			{
-				GameObjectDiamondPtr tmpObject = boost::dynamic_pointer_cast<GameObjectDiamond>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemDiamond(tmpObject,ony);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE) == 0) 
-			{
-				GameObjectClockPiecePtr tmpObject = boost::dynamic_pointer_cast<GameObjectClockPiece>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemClockPiece(tmpObject);
-			}
-			else if (evt->getTrigger()->getType().compare(GAME_OBJECT_TYPE_STORYBOOK) == 0) 
-			{
-				GameObjectStoryBookPtr tmpObject = boost::dynamic_pointer_cast<GameObjectStoryBook>(evt->getTrigger());
-				Application::getInstance()->getGameWorldManager()->takeItemStoryBook(tmpObject);
-			}
-			//TODO else if block, 
-			//same with rest of game object items which need trigger actions
-		}
-		else 
-		{
-			//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (OTHER)");
-		}
-	}
-	else 
-	{
-		//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterTrigger (NULL OR NOT ENABLED)");
-	}
-}
-
-void EventProcessor::processCharacterShapeFrontCollision(CharacterShapeFrontCollisionEventPtr evt)
-{
-	if (evt->getCharacter() && evt->getShape())
-	{
-		Ogre::String collision = evt->getCharacter()->getName() + "," + evt->getShape()->getName();
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision (" + collision + ")");
+		 evt->getTrigger()->processEnterTrigger( evt->getGameObject());
+		 evt->getGameObject()->processEnterTrigger( evt->getTrigger());
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCharacterShapeFrontCollision with unknown data!");
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processEnterTrigger with unknown data!");
+	}
+}
+
+void EventProcessor::processExitTrigger(ExitTriggerEventPtr evt)
+{
+	if (evt->getTrigger() && evt->getGameObject())
+	{
+		 evt->getTrigger()->processExitTrigger( evt->getGameObject());
+		 evt->getGameObject()->processExitTrigger( evt->getTrigger());
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processExitTrigger with unknown data!");
 	}
 }
 
@@ -244,11 +176,12 @@ void EventProcessor::processClearQueue(ClearQueueEventPtr evt)
 	if (mWorldManager)
 		mWorldManager->clearEvents();
 }
+
 void EventProcessor::processOnyFalls(OnyFallsEventPtr evt)
 {
-	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())
-		mWorldManager->getGameObjectOny()->decreaseLives();
+	mWorldManager->getGameObjectOny()->getLogicComponentOny()->decreaseLives();
 }
+
 void EventProcessor::processWeaponModeChanged(WeaponModeChangedEventPtr evt)
 {
 	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())

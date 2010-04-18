@@ -132,6 +132,53 @@ RenderComponentPositionalPtr GameObjectCryKing::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+/// Set logic component
+void GameObjectCryKing::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectCryKing::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+
+void GameObjectCryKing::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectCryKing::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectCryKing::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectCryKing::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
+
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()
 {

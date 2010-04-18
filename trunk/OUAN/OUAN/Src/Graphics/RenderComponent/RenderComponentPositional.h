@@ -32,8 +32,6 @@ namespace OUAN
 		CameraManagerPtr getCameraManager() const;
 		void setCameraManager(CameraManagerPtr pCameraManager);
 
-		void setAsCameraTarget();
-
 		/// Compute this component's distance to another positional component
 		/// @param other the component from which the distance to this one will be calculated
 		/// @return distance between this component and the passed one.

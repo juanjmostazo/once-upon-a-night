@@ -14,6 +14,19 @@ GameObjectItemMaxHP::~GameObjectItemMaxHP()
 
 }
 
+
+/// Set logic component
+void GameObjectItemMaxHP::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
+}
+
+/// return logic component
+LogicComponentItemPtr GameObjectItemMaxHP::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
+
 RenderComponentEntityPtr GameObjectItemMaxHP::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -58,7 +71,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -74,7 +87,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 		{
 		case DREAMS:
 			
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -93,7 +106,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 			
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -119,6 +132,7 @@ void GameObjectItemMaxHP::changeWorld(int world)
 void GameObjectItemMaxHP::reset()
 {
 	GameObject::reset();
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
 bool GameObjectItemMaxHP::hasPositionalComponent() const
@@ -129,6 +143,52 @@ bool GameObjectItemMaxHP::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectItemMaxHP::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectItemMaxHP::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectItemMaxHP::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectItemMaxHP::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectItemMaxHP::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+
+void GameObjectItemMaxHP::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+		}
+	}
 }
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()

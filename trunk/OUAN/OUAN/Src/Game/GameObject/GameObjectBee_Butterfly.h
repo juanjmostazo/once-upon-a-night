@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-
+#include "../../Logic/LogicComponent/LogicComponentEnemy.h"
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
@@ -22,6 +22,12 @@ namespace OUAN
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacterDreams;
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacterNightmares;
+
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentEnemyPtr mLogicComponentEnemy;
+
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -30,6 +36,11 @@ namespace OUAN
 
 		//Destructor
 		~GameObjectBee_Butterfly();
+		/// Set logic component
+		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
+
+		/// return logic component
+		LogicComponentEnemyPtr getLogicComponentEnemy();
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -72,6 +83,23 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
+
 	};
 	
 	/// Information data structure to carry around data between the
@@ -94,6 +122,9 @@ namespace OUAN
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterDreamsParameters;
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterNightmaresParameters;
+
+		///Logic parameters
+		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
 	};
 
 }

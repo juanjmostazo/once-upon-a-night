@@ -8,7 +8,7 @@ TRIPOLLITO_STATE_DEAD=5
 function tripollitoLogic(pTripollito,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pTripollito:getName()
-	local playerDistance=pTripollito:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pTripollito:getLineOfSight()
 	local myHP = pTripollito:getHP()
 	local maxHPHalved = pTripollito:getMaxHP()/2

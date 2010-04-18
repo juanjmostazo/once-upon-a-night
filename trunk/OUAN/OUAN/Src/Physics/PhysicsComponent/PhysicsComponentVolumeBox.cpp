@@ -50,10 +50,10 @@ void PhysicsComponentVolumeBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 	mNxOgreSize=pNxOgreSize;
 }
 
-void PhysicsComponentVolumeBox::setQueryFlags(QueryFlags queryFlags)
-{
-	//getNxOgreBody()->setQueryFlags((int)queryFlags);
-}
+//void PhysicsComponentVolumeBox::setQueryFlags(QueryFlags queryFlags)
+//{
+//	//getNxOgreBody()->setQueryFlags((int)queryFlags);
+//}
 
 TPhysicsComponentVolumeBoxParameters::TPhysicsComponentVolumeBoxParameters() : TPhysicsComponentVolumeParameters()
 {

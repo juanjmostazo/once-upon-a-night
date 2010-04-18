@@ -111,11 +111,17 @@ namespace OUAN
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");
 		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBoxUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsuleUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
+		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");
 
 		//LogicComponent Processors		
 		TLogicComponentParameters processLogicComponent(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
-
+		TLogicComponentOnyParameters processLogicComponentOny(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TLogicComponentItemParameters processLogicComponentItem(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TLogicComponentEnemyParameters processLogicComponentEnemy(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 

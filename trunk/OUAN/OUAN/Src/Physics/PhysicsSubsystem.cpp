@@ -347,18 +347,8 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
-	if (normalAngle > mMinCollisionAngle)
-	{
-		if (isAllowedCollision(pGameObjectController, pGameObjectShape))
-		{
-			CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
-				new CharacterShapeFrontCollisionEvent(pGameObjectController,pGameObjectShape));
-
-			mApp->getGameWorldManager()->addEvent(evt);
-		}
-		//Ogre::LogManager::getSingleton().logMessage("ON SHAPE "+std::string(hit.mControllerName.c_str())+" "+std::string(hit.mShapeName.c_str()));
-	}
-
+	sendCollision(pGameObjectController,pGameObjectShape);
+	
 	return NxOgre::Enums::ControllerAction_None;
 }
 
@@ -368,17 +358,9 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::Con
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectOtherController = getGameObject(hit.mOtherControllerName);
 
-
 	//Ogre::LogManager::getSingleton().logMessage("ON CONTROLLER");
 
-
-	if (isAllowedCollision(pGameObjectController, pGameObjectOtherController))
-	{
-		CharactersCollisionEventPtr evt = CharactersCollisionEventPtr(
-			new CharactersCollisionEvent(pGameObjectController, pGameObjectOtherController));
-
-		mApp->getGameWorldManager()->addEvent(evt);
-	}
+	sendCollision(pGameObjectController,pGameObjectOtherController);
 	
 	return NxOgre::Enums::ControllerAction_None;
 }
@@ -388,28 +370,25 @@ void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String c
 	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT volume "+std::string(hit.mVolumeShapeName.c_str()));//+" "+std::string(collisionShape->getName().c_str()));
 	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT character "+std::string(hit.mCollisionShapeName.c_str()));
 
-	int collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN;	
-	switch (collisionEventType)
-	{
-		case NxOgre::Enums::VolumeCollisionType_OnEnter: collisionType = COLLISION_TYPE_TRIGGER_ENTER; break;
-		case NxOgre::Enums::VolumeCollisionType_OnExit: collisionType = COLLISION_TYPE_TRIGGER_EXIT; break;
-		case NxOgre::Enums::VolumeCollisionType_OnPresence: collisionType = COLLISION_TYPE_TRIGGER_PRESENCE; break;
-		default: collisionType = COLLISION_TYPE_TRIGGER_UNKNOWN; break;
-	}	 
-
 	GameObjectPtr pGameObjectVolume=getGameObject(volume->getName());
 	GameObjectPtr pGameObjectShape=getGameObject(collisionName);
 
-	if (pGameObjectShape->getType()==GAME_OBJECT_TYPE_ONY)
+	switch (collisionEventType)
 	{
-		CharacterInTriggerEventPtr evt = CharacterInTriggerEventPtr(
-			new CharacterInTriggerEvent(
-			pGameObjectShape, 
-			pGameObjectVolume,
-			collisionType));
-
-		mApp->getGameWorldManager()->addEvent(evt);
-	}
+		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
+			sendCollision(pGameObjectShape,pGameObjectVolume);
+			sendEnterTrigger(pGameObjectShape,pGameObjectVolume);
+			break;
+		case NxOgre::Enums::VolumeCollisionType_OnExit: 
+			sendExitTrigger(pGameObjectShape,pGameObjectVolume);
+			break;
+		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
+			sendCollision(pGameObjectShape,pGameObjectVolume);													
+			break;
+		default: 
+			
+			break;
+	}	 
 }
 
 //////////////////////////////////////////////////////////////////
@@ -463,13 +442,44 @@ bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radi
 		radius);
 }
 
-bool PhysicsSubsystem::isAllowedCollision(GameObjectPtr object1, GameObjectPtr object2)
+bool PhysicsSubsystem::sendEnterTrigger(GameObjectPtr object1, GameObjectPtr object2)
 {
 	bool isAllowed = true;
 
-	//AT THE MOMENT PLEASE LEAVE IT LIKE THIS
-	isAllowed = 
-		(object1->getType().compare(GAME_OBJECT_TYPE_ONY) == 0 || object2->getType().compare(GAME_OBJECT_TYPE_ONY) == 0);
+	EnterTriggerEventPtr evt = EnterTriggerEventPtr(
+		new EnterTriggerEvent(
+		object1, 
+		object2));
+
+	mApp->getGameWorldManager()->addEvent(evt);
+
+	return isAllowed;
+}
+
+bool PhysicsSubsystem::sendExitTrigger(GameObjectPtr object1, GameObjectPtr object2)
+{
+	bool isAllowed = true;
+
+	ExitTriggerEventPtr evt = ExitTriggerEventPtr(
+		new ExitTriggerEvent(
+		object1, 
+		object2));
+
+	mApp->getGameWorldManager()->addEvent(evt);
+
+	return isAllowed;
+}
+
+bool PhysicsSubsystem::sendCollision(GameObjectPtr object1, GameObjectPtr object2)
+{
+	bool isAllowed = true;
+
+	CollisionEventPtr evt = CollisionEventPtr(
+		new CollisionEvent(
+		object1, 
+		object2));
+
+	mApp->getGameWorldManager()->addEvent(evt);
 
 	return isAllowed;
 }

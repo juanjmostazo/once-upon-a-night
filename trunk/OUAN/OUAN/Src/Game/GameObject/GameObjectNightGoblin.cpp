@@ -14,7 +14,17 @@ GameObjectNightGoblin::~GameObjectNightGoblin()
 {
 
 }
+/// Set logic component
+void GameObjectNightGoblin::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
 
+/// return logic component
+LogicComponentEnemyPtr GameObjectNightGoblin::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 void GameObjectNightGoblin::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -132,6 +142,39 @@ RenderComponentPositionalPtr GameObjectNightGoblin::getPositionalComponent() con
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectNightGoblin::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectNightGoblin::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectNightGoblin::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectNightGoblin::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectNightGoblinParameters::TGameObjectNightGoblinParameters() : TGameObjectParameters()
 {

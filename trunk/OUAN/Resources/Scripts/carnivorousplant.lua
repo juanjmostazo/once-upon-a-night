@@ -8,7 +8,7 @@ CP_STATE_DEAD=5
 function carnivorousPlantLogic(pCarnivorousPlant,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pCarnivorousPlant:getName()
-	local playerDistance=pCarnivorousPlant:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pCarnivorousPlant:getLineOfSight()
 	local myHP = pCarnivorousPlant:getHP()
 	local maxHPHalved = pCarnivorousPlant:getMaxHP()/2

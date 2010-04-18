@@ -14,6 +14,18 @@ GameObjectItem1UP::~GameObjectItem1UP()
 
 }
 
+/// Set logic component
+void GameObjectItem1UP::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
+}
+
+/// return logic component
+LogicComponentItemPtr GameObjectItem1UP::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
+
 RenderComponentEntityPtr GameObjectItem1UP::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -58,7 +70,7 @@ void GameObjectItem1UP::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -74,7 +86,7 @@ void GameObjectItem1UP::changeWorld(int world)
 		{
 		case DREAMS:
 
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -93,7 +105,7 @@ void GameObjectItem1UP::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -119,6 +131,7 @@ void GameObjectItem1UP::changeWorld(int world)
 void GameObjectItem1UP::reset()
 {
 	GameObject::reset();
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const
@@ -129,6 +142,51 @@ bool GameObjectItem1UP::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectItem1UP::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectItem1UP::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectItem1UP::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectItem1UP::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectItem1UP::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+
+void GameObjectItem1UP::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+		}
+	}
 }
 
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()

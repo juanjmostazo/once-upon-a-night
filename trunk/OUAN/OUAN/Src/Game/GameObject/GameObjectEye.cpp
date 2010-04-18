@@ -14,7 +14,17 @@ GameObjectEye::~GameObjectEye()
 {
 
 }
+/// Set logic component
+void GameObjectEye::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
 
+/// return logic component
+LogicComponentEnemyPtr GameObjectEye::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 RenderComponentEntityPtr GameObjectEye::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
@@ -124,6 +134,39 @@ RenderComponentPositionalPtr GameObjectEye::getPositionalComponent() const
 	return getRenderComponentPositional();
 }
 //-------------------------------------------------------------------------------------------
+
+
+void GameObjectEye::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectEye::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectEye::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectEye::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
 
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()
 {

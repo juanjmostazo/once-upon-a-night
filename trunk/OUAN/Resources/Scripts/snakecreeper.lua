@@ -8,7 +8,7 @@ SS_STATE_DEAD=5
 function snakeCreeperLogic(pSnakeCreeper,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pSnakeCreeper:getName()
-	local playerDistance=pSnakeCreeper:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pSnakeCreeper:getLineOfSight()
 	local myHP = pSnakeCreeper:getHP()
 	local maxHPHalved = pSnakeCreeper:getMaxHP()/2
