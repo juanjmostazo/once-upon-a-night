@@ -10,7 +10,7 @@ namespace OUAN
 		~CameraControllerFixedThirdPerson();
 
 		void update(double elapsedTime);
-		void setTarget(RenderComponentPositional * target);
+		void setTarget(RenderComponentPositionalPtr target);
 		void setCamera(Ogre::Camera * pCamera);
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
@@ -21,7 +21,7 @@ namespace OUAN
 	private:
 
 
-		RenderComponentPositional * target;
+		RenderComponentPositionalPtr target;
 		double rotY;
 		double height;
 	};

@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-
+#include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
 	/// Class to hold GameObjectTree information
@@ -21,7 +21,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
-
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -31,6 +34,11 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -66,6 +74,22 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
+
 	};
 
 	class TGameObjectTreeParameters: public TGameObjectParameters
@@ -82,6 +106,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		///Logic parameters
+		TLogicComponentParameters tLogicComponentParameters;
 
 	};
 }

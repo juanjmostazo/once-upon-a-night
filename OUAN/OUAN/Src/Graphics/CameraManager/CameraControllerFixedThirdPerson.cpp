@@ -24,7 +24,7 @@ void CameraControllerFixedThirdPerson::update(double elapsedTime)
 	mCamera->lookAt(target->getPosition()+Vector3(0,height,0));
 }
 
-void CameraControllerFixedThirdPerson::setTarget(RenderComponentPositional * target)
+void CameraControllerFixedThirdPerson::setTarget(RenderComponentPositionalPtr target)
 {
 	this->target=target;
 	if(mCamera && target)

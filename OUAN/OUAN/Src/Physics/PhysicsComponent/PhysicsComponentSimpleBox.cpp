@@ -75,10 +75,10 @@ void PhysicsComponentSimpleBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 	mNxOgreSize=pNxOgreSize;
 }
 
-void PhysicsComponentSimpleBox::setQueryFlags(QueryFlags queryFlags)
-{
-	mQueryFlags=queryFlags;
-}
+//void PhysicsComponentSimpleBox::setQueryFlags(QueryFlags queryFlags)
+//{
+//	mQueryFlags=queryFlags;
+//}
 
 TPhysicsComponentSimpleBoxParameters::TPhysicsComponentSimpleBoxParameters() : TPhysicsComponentSimpleParameters()
 {

@@ -8,7 +8,7 @@
 using namespace OUAN;
 
 LogicComponent::LogicComponent(const std::string& type)
-:Component(COMPONENT_TYPE_LOGIC)
+:Component(type)
 {
 //	mPatrolTrajectory.reset();
 	mStateChanged=false;
@@ -18,18 +18,39 @@ LogicComponent::~LogicComponent()
 {
 }
 
-void LogicComponent::update(long elapsedTime)
+void LogicComponent::processCollision(GameObjectPtr pGameObject)
 {
+
+}
+
+void LogicComponent::processEnterTrigger(GameObjectPtr pGameObject)
+{
+
+}
+
+void LogicComponent::processExitTrigger(GameObjectPtr pGameObject)
+{
+
+}
+
+void LogicComponent::update(double elapsedTime)
+{
+	mStateChanged=false;
+
 	if (!mScriptFunction.empty())
 	{
-		mStateChanged=false;
 		LogicSubsystemPtr logicSS= mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
-		int newState=logicSS->invokeFunction(mScriptFunction,mState,mParent);
+		int newState=logicSS->invokeFunction(mScriptFunction,mState,this);
 		if (newState!=mState)
 		{
 			setState(newState);
-			mStateChanged=true;
 		}
+	}
+
+	if(mState!=mLastFrameState)
+	{
+		mStateChanged=true;
+		mLastFrameState=mState;
 	}
 }
 void LogicComponent::initStateHistory()
@@ -82,24 +103,6 @@ void LogicComponent::setState(int state)
 	
 }
 
-int LogicComponent::getHealthPoints() const
-{
-	return mHealthPoints;
-}
-void LogicComponent::setHealthPoints(int healthPoints)
-{
-	mHealthPoints=healthPoints;
-}
-
-int LogicComponent::getNumLives() const
-{
-	return mNumLives;
-}
-void LogicComponent::setNumLives(int numLives)
-{
-	mNumLives=numLives;
-}
-
 std::string LogicComponent::getScriptFilename() const
 {
 	return mScriptFilename;
@@ -116,31 +119,6 @@ void LogicComponent::setScriptFunction(const std::string& scriptFunction)
 {
 	mScriptFunction=scriptFunction;
 }
-int LogicComponent::getInitialHealthPoints() const
-{
-	return mInitialHealthPoints;
-}
-void LogicComponent::setInitialHealthPoints(int healthPoints)
-{
-	mInitialHealthPoints=healthPoints;
-}
-
-int LogicComponent::getInitialNumLives() const
-{
-	return mInitialNumLives;
-}
-void LogicComponent::setInitialNumLives(int numLives)
-{
-	mInitialNumLives=numLives;
-}
-int LogicComponent::getLineOfSight() const
-{
-	return mLineOfSight;
-}
-void LogicComponent::setLineOfSight(int lineOfSight)
-{
-	mLineOfSight=lineOfSight;
-}
 
 bool LogicComponent::isStateChanged() const
 {
@@ -150,45 +128,6 @@ bool LogicComponent::isStateChanged() const
 void LogicComponent::setStateChanged(bool stateChanged)
 {
 	mStateChanged=stateChanged;
-}
-
-int LogicComponent::getAttackRange() const
-{
-	return mAttackRange;
-}
-void LogicComponent::setAttackRange(int attackRange)
-{
-	mAttackRange=attackRange;
-}
-
-int LogicComponent::getAttackDamage() const
-{
-	return mAttackDamage;
-}
-
-void LogicComponent::setAttackDamage(int attackDamage)
-{
-	mAttackDamage=attackDamage;
-}
-
-int LogicComponent::getAttackDelay() const
-{
-	return mAttackDelay;
-}
-
-void LogicComponent::setAttackDelay(int attackDelay)
-{
-	mAttackDelay=attackDelay;
-}
-
-int LogicComponent::getColourSensitivityMask() const
-{
-	return mColourSensitivityMask;
-}
-
-void LogicComponent::setColourSensitivityMask(int colourSensitivityMask)
-{
-	mColourSensitivityMask=colourSensitivityMask;
 }
 
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()

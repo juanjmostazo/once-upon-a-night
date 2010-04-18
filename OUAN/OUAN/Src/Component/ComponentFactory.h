@@ -49,6 +49,8 @@ namespace OUAN
 			std::string name);
 		RenderComponentViewportPtr createRenderComponentViewport(GameObjectPtr gameObject,
 			TRenderComponentViewportParameters tRenderComponentViewportParameters); 
+		RenderComponentDecalPtr createRenderComponentDecal(GameObjectPtr gameObject,
+			TRenderComponentDecalParameters tRenderComponentDecalParameters);
 		
 		//create and return a physics component
 		PhysicsComponentCharacterPtr createPhysicsComponentCharacter(GameObjectPtr gameObject,
@@ -72,9 +74,16 @@ namespace OUAN
 		PhysicsComponentVolumeBoxPtr createPhysicsComponentVolumeBox(GameObjectPtr gameObject,
 			TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
+		PhysicsComponentVolumeConvexPtr createPhysicsComponentVolumeConvex(GameObjectPtr gameObject,
+			TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters,
+			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
 
 		//Logic components
-		LogicComponentPtr createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters logicComponentParameters);
+		LogicComponentPtr createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters tLogicComponentParameters);
+		LogicComponentOnyPtr createLogicComponentOny(GameObjectPtr gameObject, TLogicComponentOnyParameters logicComponentOnyParameters);
+		LogicComponentEnemyPtr createLogicComponentEnemy(GameObjectPtr gameObject, TLogicComponentEnemyParameters logicComponentEnemyParameters);
+		LogicComponentItemPtr createLogicComponentItem(GameObjectPtr gameObject, TLogicComponentItemParameters logicComponentItemParameters);
+
 		WeaponComponentPtr createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters);
 
 		//trajectory component

@@ -58,7 +58,7 @@ void GameObjectClockPiece::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -74,7 +74,7 @@ void GameObjectClockPiece::changeWorld(int world)
 		{
 		case DREAMS:
 
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -93,7 +93,7 @@ void GameObjectClockPiece::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -119,6 +119,7 @@ void GameObjectClockPiece::changeWorld(int world)
 void GameObjectClockPiece::reset()
 {
 	GameObject::reset();
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
 bool GameObjectClockPiece::hasPositionalComponent() const
@@ -129,6 +130,66 @@ bool GameObjectClockPiece::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectClockPiece::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+/// Set logic component
+void GameObjectClockPiece::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
+}
+
+/// return logic component
+LogicComponentItemPtr GameObjectClockPiece::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
+
+void GameObjectClockPiece::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectClockPiece::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectClockPiece::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectClockPiece::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+
+void GameObjectClockPiece::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+			disable();
+		}
+	}
+
 }
 
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()

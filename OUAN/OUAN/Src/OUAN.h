@@ -138,6 +138,11 @@ namespace OUAN
 		class TRenderComponentViewportParameters;
 		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
 
+		class RenderComponentDecal;
+		class TRenderComponentDecalParameters;
+		typedef boost::shared_ptr<RenderComponentDecal> RenderComponentDecalPtr;
+
+
 		const std::string COMPONENT_TYPE_RENDER="RenderComponent";
 		const std::string COMPONENT_TYPE_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
 		const std::string COMPONENT_TYPE_RENDER_CAMERA="RenderComponentCamera";
@@ -148,6 +153,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_POSITIONAL="RenderComponentPositional";
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
+		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";
 
 		//RayCasting
 		class RayCasting;
@@ -197,6 +203,10 @@ namespace OUAN
 		class TPhysicsComponentVolumeBoxParameters;
 		typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
 
+		class PhysicsComponentVolumeConvex;
+		class TPhysicsComponentVolumeConvexParameters;
+		typedef boost::shared_ptr<PhysicsComponentVolumeConvex> PhysicsComponentVolumeConvexPtr;
+
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
 		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX="PhysicsComponentComplex";
@@ -208,8 +218,21 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME="PhysicsComponentVolume";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CONVEX="PhysicsComponentVolumeConvex";
 
 		//Logic Components
+		class LogicComponentOny;
+		class TLogicComponentOnyParameters;
+		typedef boost::shared_ptr<LogicComponentOny> LogicComponentOnyPtr;
+
+		class LogicComponentEnemy;
+		class TLogicComponentEnemyParameters;
+		typedef boost::shared_ptr<LogicComponentEnemy> LogicComponentEnemyPtr;
+
+		class LogicComponentItem;
+		class TLogicComponentItemParameters;
+		typedef boost::shared_ptr<LogicComponentItem> LogicComponentItemPtr;
+
 		class LogicComponent;
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
@@ -231,6 +254,9 @@ namespace OUAN
 
 
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
+		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
+		const std::string COMPONENT_TYPE_LOGIC_ENEMY="LogicComponentEnemy";
+		const std::string COMPONENT_TYPE_LOGIC_ITEM="LogicComponentItem";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 
 		///////////////////////////////////////////////////////////////////

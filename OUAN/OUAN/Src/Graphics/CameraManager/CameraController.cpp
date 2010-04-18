@@ -41,7 +41,7 @@ void CameraController::processSimpleTranslation(Ogre::Vector3 translation)
 
 }
 
-void CameraController::setTarget(RenderComponentPositional * target)
+void CameraController::setTarget(RenderComponentPositionalPtr target)
 {
 
 }

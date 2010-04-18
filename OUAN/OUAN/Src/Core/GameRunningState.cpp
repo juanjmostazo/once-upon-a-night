@@ -12,6 +12,7 @@
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIConsole.h"
 #include "../Logic/LogicSubsystem.h"
+#include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectOny.h"
@@ -55,7 +56,7 @@ void GameRunningState::init(ApplicationPtr app)
 
 	//create HUD
 	mHUD.reset(new HUDInGame());
-	LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+	LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
 	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld());
 	mApp->getGameWorldManager()->getGameObjectOny()->setWeaponMode(convertRouletteValue(mHUD->getCurrentState()));
 
@@ -247,18 +248,18 @@ void GameRunningState::update(long elapsedTime)
 	//std::string elapsedTimeDebug = out.str();
 	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
+
+	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
+
+	//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
+	mApp->getCameraManager()->update(elapsedSeconds);
+
 	mApp->getGameWorldManager()->update(elapsedSeconds);	
 	//Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
 	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
-	mApp->getCameraManager()->update(elapsedSeconds);
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
-
-	if (mApp->getGameWorldManager()->getGameObjectFlashLight().get())
-		mApp->getGameWorldManager()->getGameObjectFlashLight()->detectLightCollisions();
-
 
 
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
@@ -272,7 +273,7 @@ void GameRunningState::update(long elapsedTime)
 	}
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 	{
-		LogicComponentPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponent();
+		LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
 		mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
 		if (mHUD->isSelectedModeChanged())
 		{

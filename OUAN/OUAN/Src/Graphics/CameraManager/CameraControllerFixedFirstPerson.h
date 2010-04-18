@@ -10,13 +10,13 @@ namespace OUAN
 		~CameraControllerFixedFirstPerson();
 
 		TCameraControllerType getControllerType();
-		void setTarget(RenderComponentPositional * target);
+		void setTarget(RenderComponentPositionalPtr target);
 
 		void update(double elapsedTime);
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
 
 	private:
-		RenderComponentPositional * target;
+		RenderComponentPositionalPtr target;
 
 		//camera relative rotation to target's X axe
 		double rotX;

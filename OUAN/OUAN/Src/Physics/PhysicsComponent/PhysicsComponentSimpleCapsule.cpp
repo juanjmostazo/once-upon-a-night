@@ -74,10 +74,10 @@ void PhysicsComponentSimpleCapsule::setNxOgreSize(NxOgre::Vec2 pNxOgreSize)
 	mNxOgreSize=pNxOgreSize;
 }
 
-void PhysicsComponentSimpleCapsule::setQueryFlags(QueryFlags queryFlags)
-{
-	mQueryFlags = queryFlags;
-}
+//void PhysicsComponentSimpleCapsule::setQueryFlags(QueryFlags queryFlags)
+//{
+//	mQueryFlags = queryFlags;
+//}
 
 TPhysicsComponentSimpleCapsuleParameters::TPhysicsComponentSimpleCapsuleParameters() : TPhysicsComponentSimpleParameters()
 {

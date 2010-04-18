@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-
+#include "../../Logic/LogicComponent/LogicComponentEnemy.h"
 namespace OUAN
 {
 	const std::string TRIPOLLO_STATE_IDLE="TRIPOLLO_STATE_IDLE";
@@ -29,10 +29,11 @@ namespace OUAN
 		/// Trajectory information
 		TrajectoryComponentPtr mTrajectoryComponent;
 
-		// TODO: Delete this!
-		int mRandomMovementDelay;
-		bool pathfindingInitialized;
 
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentEnemyPtr mLogicComponentEnemy;
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -41,7 +42,11 @@ namespace OUAN
 
 		//Destructor
 		~GameObjectTripolloDreams();
+		/// Set logic component
+		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
 
+		/// return logic component
+		LogicComponentEnemyPtr getLogicComponentEnemy();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
@@ -92,6 +97,21 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
+
 	};
 	
 	/// Information data structure to carry around data between the
@@ -113,6 +133,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+		///Logic parameters
+		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
 	};
 
 }

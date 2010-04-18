@@ -14,7 +14,17 @@ GameObjectTripollito::~GameObjectTripollito()
 {
 
 }
+/// Set logic component
+void GameObjectTripollito::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
 
+/// return logic component
+LogicComponentEnemyPtr GameObjectTripollito::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 void GameObjectTripollito::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -132,6 +142,39 @@ RenderComponentPositionalPtr GameObjectTripollito::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectTripollito::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTripollito::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTripollito::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTripollito::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectTripollitoParameters::TGameObjectTripollitoParameters() : TGameObjectParameters()
 {

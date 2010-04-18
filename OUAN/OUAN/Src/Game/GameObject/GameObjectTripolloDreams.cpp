@@ -11,14 +11,24 @@ using namespace OUAN;
 GameObjectTripolloDreams::GameObjectTripolloDreams(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
 {
-	mRandomMovementDelay=-1;
+
 }
 
 GameObjectTripolloDreams::~GameObjectTripolloDreams()
 {
 
 }
+/// Set logic component
+void GameObjectTripolloDreams::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
 
+/// return logic component
+LogicComponentEnemyPtr GameObjectTripolloDreams::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 void GameObjectTripolloDreams::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -86,13 +96,13 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
 
-	int currentState=mLogicComponent->getState();
+	int currentState=mLogicComponentEnemy->getState();
 	if (mPhysicsComponentCharacter.get())
 	{
 		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
 		{
 
-			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 			{
 				entityToUpdate->changeAnimation("idle02");
 				mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
@@ -101,7 +111,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		}
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
 		{				
-			if (mLogicComponent->isStateChanged())
+			if (mLogicComponentEnemy->isStateChanged())
 			{
 				if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 				{
@@ -123,7 +133,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 		{
 
-			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 			{
 				entityToUpdate->changeAnimation("walk");
 
@@ -198,7 +208,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 	{
 		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 		{
@@ -224,7 +234,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 		{
 			case DREAMS:
 				
-				if(mLogicComponent->existsInDreams())
+				if(mLogicComponentEnemy->existsInDreams())
 				{
 					mRenderComponentEntityDreams->setVisible(true);
 					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
@@ -243,7 +253,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				break;
 			case NIGHTMARES:
 				
-				if(mLogicComponent->existsInNightmares())
+				if(mLogicComponentEnemy->existsInNightmares())
 				{
 					mRenderComponentEntityNightmares->setVisible(true);
 					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
@@ -285,6 +295,39 @@ RenderComponentPositionalPtr GameObjectTripolloDreams::getPositionalComponent() 
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectTripolloDreams::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTripolloDreams::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTripolloDreams::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTripolloDreams::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()
 {

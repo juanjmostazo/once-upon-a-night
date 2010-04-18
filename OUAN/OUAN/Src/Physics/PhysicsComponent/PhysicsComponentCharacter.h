@@ -34,7 +34,7 @@ namespace OUAN
 
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
-		void setQueryFlags(QueryFlags queryFlags);
+		//void setQueryFlags(QueryFlags queryFlags);
 
 	protected:
 	

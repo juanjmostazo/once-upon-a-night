@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "../Game/GameObject/GameObject.h"
 using namespace OUAN;
 Component::Component(const std::string& type)
 :mType(type)
@@ -31,6 +32,11 @@ void Component::setParent(GameObjectPtr parent)
 GameObjectPtr Component::getParent()
 {
 	return mParent;
+}
+
+const std::string& Component::getParentName()
+{
+	return mParent->getName();
 }
 
 void Component::update(double elapsedSeconds)

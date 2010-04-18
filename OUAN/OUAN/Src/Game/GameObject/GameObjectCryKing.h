@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-
+#include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
@@ -21,7 +21,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
-
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -30,6 +33,11 @@ namespace OUAN
 
 		//Destructor
 		~GameObjectCryKing();
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -75,6 +83,21 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
+
 	};
 	
 	/// Information data structure to carry around data between the
@@ -96,6 +119,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+		///Logic parameters
+		TLogicComponentParameters tLogicComponentParameters;
 	};
 
 }

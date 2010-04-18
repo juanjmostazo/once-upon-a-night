@@ -14,6 +14,18 @@ GameObjectStoryBook::~GameObjectStoryBook()
 
 }
 
+/// Set logic component
+void GameObjectStoryBook::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
+}
+
+/// return logic component
+LogicComponentItemPtr GameObjectStoryBook::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
+
 RenderComponentEntityPtr GameObjectStoryBook::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -59,7 +71,7 @@ void GameObjectStoryBook::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -75,7 +87,7 @@ void GameObjectStoryBook::changeWorld(int world)
 		{
 		case DREAMS:
 
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -94,7 +106,7 @@ void GameObjectStoryBook::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -120,7 +132,7 @@ void GameObjectStoryBook::changeWorld(int world)
 void GameObjectStoryBook::reset()
 {
 	GameObject::reset();
-
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 	changeWorld(DREAMS);
 }
 
@@ -128,6 +140,52 @@ bool GameObjectStoryBook::hasPositionalComponent() const
 {
 	return true;
 }
+
+void GameObjectStoryBook::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectStoryBook::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectStoryBook::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectStoryBook::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+
+void GameObjectStoryBook::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+		}
+	}
+}
+
 
 RenderComponentPositionalPtr GameObjectStoryBook::getPositionalComponent() const
 {

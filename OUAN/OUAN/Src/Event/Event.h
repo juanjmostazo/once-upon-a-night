@@ -56,51 +56,46 @@ namespace OUAN
 	//------------------------------------
 
 	/// Event class representing a collision between two GameObjects
-	/// which both contain a PhysicsComponentCharacter
-	class CharactersCollisionEvent: public Event
+	class CollisionEvent: public Event
 	{
 	public:
-		CharactersCollisionEvent(GameObjectPtr pCharacter1, GameObjectPtr pCharacter2);
-		GameObjectPtr getCharacter1();
-		GameObjectPtr getCharacter2();
+		CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2);
+		GameObjectPtr getGameObject1();
+		GameObjectPtr getGameObject2();
 
 	private:
-		GameObjectPtr mCharacter1;
-		GameObjectPtr mCharacter2;
+		GameObjectPtr mGameObject1;
+		GameObjectPtr mGameObject2;
 	};
 
 	//------------------------------------
 
-	/// Event class representing a collision between two GameObjects
-	/// which contain a PhysicsComponentCharacter and a PhysicsVolumeXXX
-	class CharacterInTriggerEvent: public Event
+	/// Event class representing a game Object enters a trigger zone
+	class EnterTriggerEvent: public Event
 	{
 	public:
-		CharacterInTriggerEvent(GameObjectPtr pCharacter, GameObjectPtr pTrigger, int pCollisionType);
-		GameObjectPtr getCharacter();
+		EnterTriggerEvent(GameObjectPtr pTrigger, GameObjectPtr pGameObject);
 		GameObjectPtr getTrigger();
-		int getCollisionType();
+		GameObjectPtr getGameObject();
 
 	private:
-		GameObjectPtr mCharacter;
 		GameObjectPtr mTrigger;
-		int mCollisionType;
+		GameObjectPtr mGameObject;
 	};
 
 	//------------------------------------
 
-	/// Event class representing a collision between a Character and a Shape
-	/// Character (Ony, enemies); Shape (terrain, columns, walls, trees...)
-	class CharacterShapeFrontCollisionEvent: public Event
+	/// Event class representing a game Object exits a trigger zone
+	class ExitTriggerEvent: public Event
 	{
 	public:
-		CharacterShapeFrontCollisionEvent(GameObjectPtr pCharacter, GameObjectPtr pShape);
-		GameObjectPtr getCharacter();
-		GameObjectPtr getShape();
+		ExitTriggerEvent(GameObjectPtr pTrigger, GameObjectPtr pGameObject);
+		GameObjectPtr getTrigger();
+		GameObjectPtr getGameObject();
 
 	private:
-		GameObjectPtr mCharacter;
-		GameObjectPtr mShape;
+		GameObjectPtr mTrigger;
+		GameObjectPtr mGameObject;
 	};
 
 	//------------------------------------

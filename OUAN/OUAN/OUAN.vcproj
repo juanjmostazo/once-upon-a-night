@@ -314,6 +314,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentDecal.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentEntity.cpp"
 						>
 					</File>
@@ -673,6 +677,10 @@
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeCapsule.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeConvex.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -699,6 +707,18 @@
 					>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEnemy.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentItem.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentOny.cpp"
 						>
 					</File>
 					<File
@@ -893,6 +913,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentCamera.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentDecal.h"
 						>
 					</File>
 					<File
@@ -1273,6 +1297,10 @@
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeCapsule.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeConvex.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1311,6 +1339,18 @@
 					>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEnemy.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentItem.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentOny.h"
 						>
 					</File>
 					<File

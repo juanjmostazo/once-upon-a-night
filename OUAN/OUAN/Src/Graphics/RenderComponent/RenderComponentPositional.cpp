@@ -68,11 +68,6 @@ void RenderComponentPositional::setCameraManager(CameraManagerPtr pCameraManager
 	mCameraManager=pCameraManager;
 }
 
-void RenderComponentPositional::setAsCameraTarget()
-{
-	mCameraManager->setCameraTarget(this);
-}
-
 double RenderComponentPositional::computeDistanceTo(RenderComponentPositionalPtr other)
 {
 	if (other.get())

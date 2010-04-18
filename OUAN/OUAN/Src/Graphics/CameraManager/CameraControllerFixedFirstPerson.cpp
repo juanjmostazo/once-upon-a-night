@@ -30,7 +30,7 @@ TCameraControllerType CameraControllerFixedFirstPerson::getControllerType()
 	return OUAN::CAMERA_FIXED_FIRST_PERSON;
 }
 
-void CameraControllerFixedFirstPerson::setTarget(RenderComponentPositional * target)
+void CameraControllerFixedFirstPerson::setTarget(RenderComponentPositionalPtr target)
 {
 	this->target=target;
 }

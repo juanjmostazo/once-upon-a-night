@@ -14,7 +14,17 @@ GameObjectSnakeCreeper::~GameObjectSnakeCreeper()
 {
 
 }
+/// Set logic component
+void GameObjectSnakeCreeper::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
 
+/// return logic component
+LogicComponentEnemyPtr GameObjectSnakeCreeper::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 void GameObjectSnakeCreeper::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -132,6 +142,39 @@ RenderComponentPositionalPtr GameObjectSnakeCreeper::getPositionalComponent() co
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectSnakeCreeper::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectSnakeCreeper::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectSnakeCreeper::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectSnakeCreeper::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectSnakeCreeperParameters::TGameObjectSnakeCreeperParameters() : TGameObjectParameters()
 {

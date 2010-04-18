@@ -58,7 +58,7 @@ void GameObjectHeart::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		{
@@ -74,7 +74,7 @@ void GameObjectHeart::changeWorld(int world)
 		{
 		case DREAMS:
 
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponentItem->existsInDreams())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -93,7 +93,7 @@ void GameObjectHeart::changeWorld(int world)
 			break;
 		case NIGHTMARES:
 
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponentItem->existsInNightmares())
 			{
 				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -115,23 +115,22 @@ void GameObjectHeart::changeWorld(int world)
 		}
 	}
 }
-void GameObjectHeart::update(double elapsedSeconds)
-{
-	GameObject::update(elapsedSeconds);
 
-	if (isFirstUpdate())
-	{
-		mRenderComponentEntity->changeAnimation("animation_prop");
-	}
-	else
-	{
-		mRenderComponentEntity->update(elapsedSeconds);
-	}
+/// Set logic component
+void GameObjectHeart::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
+{
+	mLogicComponentItem=logicComponentItem;
 }
 
+/// return logic component
+LogicComponentItemPtr GameObjectHeart::getLogicComponentItem()
+{
+	return mLogicComponentItem;
+}
 void GameObjectHeart::reset()
 {
 	GameObject::reset();
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
 bool GameObjectHeart::hasPositionalComponent() const
@@ -142,6 +141,60 @@ bool GameObjectHeart::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectHeart::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectHeart::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processCollision(pGameObject);
+	}
+}
+
+void GameObjectHeart::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectHeart::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectHeart::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentItem.get())
+	{
+		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+void GameObjectHeart::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+		}
+	}
+
+	if (isFirstUpdate())
+	{
+		mRenderComponentEntity->changeAnimation("animation_prop");
+	}
+	else
+	{
+		mRenderComponentEntity->update(elapsedSeconds);
+	}
 }
 
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()

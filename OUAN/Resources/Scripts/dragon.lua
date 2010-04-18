@@ -7,7 +7,7 @@ DRAGON_STATE_DEAD=5
 function dragonLogic(pDragon,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pDragon:getName()
-	local playerDistance=pDragon:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pDragon:getLineOfSight()
 	local myHP = pDragon:getHP()
 	local maxHPHalved = pDragon:getMaxHP()/2

@@ -183,14 +183,14 @@ void PhysicsComponentCharacter::setCharactersDisplayYaw()
 	getNxOgreController()->setDisplayYaw(characterYaw);
 }
 
-void PhysicsComponentCharacter::setQueryFlags(QueryFlags queryFlags)
-{
-	//unsigned int i;
-	//for(i=0;i<getNxOgreBody()->getNxActor()->getShapes().size();i++)
-	//{
-	//	getNxOgreBody()->getNxActor()->getShapes()[i]->setFlag(queryFlags);
-	//}
-}
+//void PhysicsComponentCharacter::setQueryFlags(QueryFlags queryFlags)
+//{
+//	unsigned int i;
+//	for(i=0;i<getNxOgreBody()->getNxActor()->getShapes().size();i++)
+//	{
+//		getNxOgreBody()->getNxActor()->getShapes()[i]->setFlag(queryFlags);
+//	}
+//}
 
 void PhysicsComponentCharacter::setNxOgreController(NxOgre::Controller* pNxOgreController)
 {

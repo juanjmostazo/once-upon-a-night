@@ -11,7 +11,7 @@ WORLD_NIGHTMARES=1
 function beeButterflyLogic(pBeeButterfly,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pBeeButterfly:getName()
-	local playerDistance=pBeeButterfly:getPlayerDistance(myName)
+	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pBeeButterfly:getLineOfSight()
 	local myHP = pBeeButterfly:getHP()
 	local maxHPHalved = pBeeButterfly:getMaxHP()/2

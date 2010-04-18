@@ -128,6 +128,50 @@ RenderComponentPositionalPtr GameObjectScepter::getPositionalComponent() const
 	return getRenderComponentPositional();
 }
 
+/// Set logic component
+void GameObjectScepter::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectScepter::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectScepter::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectScepter::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectScepter::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectScepter::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 TGameObjectScepterParameters::TGameObjectScepterParameters() : TGameObjectParameters()
 {
 

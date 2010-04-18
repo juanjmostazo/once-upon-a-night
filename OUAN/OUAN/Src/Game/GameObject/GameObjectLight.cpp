@@ -74,6 +74,50 @@ RenderComponentPositionalPtr GameObjectLight::getPositionalComponent() const
 	return getRenderComponentPositional();
 }
 
+/// Set logic component
+void GameObjectLight::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectLight::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+void GameObjectLight::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectLight::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectLight::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectLight::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {
 

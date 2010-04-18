@@ -14,7 +14,7 @@ namespace OUAN
 		void update(double elapsedTime);
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
 
-		void setTarget(RenderComponentPositional * target);
+		void setTarget(RenderComponentPositionalPtr target);
 
 		bool calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt);
 
@@ -24,7 +24,7 @@ namespace OUAN
 	private:
 		Ogre::SceneManager * mSceneManager;
 		RayCastingPtr mRayCasting;
-		RenderComponentPositional * target;
+		RenderComponentPositionalPtr target;
 
 		Ogre::Vector3 initialDirection;
 		double initialDistance;

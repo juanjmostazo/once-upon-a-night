@@ -14,6 +14,17 @@ GameObjectDragon::~GameObjectDragon()
 {
 
 }
+/// Set logic component
+void GameObjectDragon::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+{
+	mLogicComponentEnemy=logicComponentEnemy;
+}
+
+/// return logic component
+LogicComponentEnemyPtr GameObjectDragon::getLogicComponentEnemy()
+{
+	return mLogicComponentEnemy;
+}
 
 void GameObjectDragon::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
@@ -139,6 +150,39 @@ RenderComponentPositionalPtr GameObjectDragon::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectDragon::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processCollision(pGameObject);
+	}
+}
+
+void GameObjectDragon::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectDragon::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectDragon::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentEnemy.get())
+	{
+		mLogicComponentEnemy->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()
 {

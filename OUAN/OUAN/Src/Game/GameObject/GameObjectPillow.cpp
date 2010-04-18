@@ -13,7 +13,17 @@ GameObjectPillow::~GameObjectPillow()
 {
 
 }
+/// Set logic component
+void GameObjectPillow::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
 
+/// return logic component
+LogicComponentPtr GameObjectPillow::getLogicComponent()
+{
+	return mLogicComponent;
+}
 RenderComponentEntityPtr GameObjectPillow::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -125,6 +135,38 @@ bool GameObjectPillow::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectPillow::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+void GameObjectPillow::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectPillow::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectPillow::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectPillow::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
 }
 
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()

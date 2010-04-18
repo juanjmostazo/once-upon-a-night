@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-
+#include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
 	/// Class to hold ScaredPlant information
@@ -20,7 +20,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
-
+		/// Logic component: it'll represent the 'brains' of the game object
+		/// containing information on its current state, its life and health(if applicable),
+		/// or the world(s) the object belongs to
+		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -30,6 +33,11 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -69,12 +77,20 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
-		/// Attach all event handlers for this class.
-		// This method will have to be redefined by all GameObject subclasses to register all the event handlers
-		void registerHandlers();
-		/// Detach all event handlers.
-		// This method will have to be redefined by all GameObject subclasses to unregister all the event handlers
-		void unregisterHandlers();
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
+		// update logic component
+		void updateLogic(double elapsedSeconds);
 		
 		//------------------------------------------------------------------
 	};
@@ -93,6 +109,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+		///Logic parameters
+		TLogicComponentParameters tLogicComponentParameters;
 	};
 }
 #endif

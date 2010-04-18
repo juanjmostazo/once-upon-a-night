@@ -7,7 +7,7 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 {
-	mHitRecoveryTime=-1;
+
 }
 
 GameObjectOny::~GameObjectOny()
@@ -59,13 +59,6 @@ void GameObjectOny::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	if (mHitRecoveryTime>=0)
-	{
-		mHitRecoveryTime-=elapsedSeconds*1000;
-	}
-
-	GameObject::update(elapsedSeconds);
-
 	mPhysicsComponentCharacter->update(elapsedSeconds);
 
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
@@ -109,19 +102,15 @@ void GameObjectOny::changeWorld(int world)
 	}
 }
 
-void GameObjectOny::decreaseHP(int amount)
+void GameObjectOny::setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny)
 {
-	if (mHitRecoveryTime<=0)
-	{
-		GameObject::decreaseHP();
-		mHitRecoveryTime=HIT_RECOVERY_TIME;
-	}
+	mLogicComponentOny=pLogicComponentOny;
 }
 
-void GameObjectOny::setMaxHP()
+LogicComponentOnyPtr GameObjectOny::getLogicComponentOny()
 {
-	getLogicComponent()->setHealthPoints(getLogicComponent()->getInitialHealthPoints());
-}
+	return mLogicComponentOny;
+}	
 
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
@@ -133,19 +122,6 @@ void GameObjectOny::decreaseWeaponPower(int powerUnits)
 {
 	if (mWeaponComponent.get())
 		mWeaponComponent->decreaseWeaponPower(powerUnits);
-}
-
-void GameObjectOny::die()
-{
-	GameOverEventPtr evt=GameOverEventPtr(new GameOverEvent(false));
-	mGameWorldManager->addEvent(evt);
-}
-
-void GameObjectOny::loseLife()
-{
-	GameObject::loseLife();
-	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getLogicComponent()->getNumLives()));
-	mGameWorldManager->addEvent(evt);
 }
 
 bool GameObjectOny::hasPositionalComponent() const
@@ -179,6 +155,38 @@ WeaponComponentPtr GameObjectOny::getWeaponComponent() const
 void GameObjectOny::setWeaponMode(TWeaponMode weaponMode)
 {
 	mWeaponComponent->setActiveWeaponMode(weaponMode);
+}
+
+void GameObjectOny::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentOny.get())
+	{
+		mLogicComponentOny->processCollision(pGameObject);
+	}
+}
+
+void GameObjectOny::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentOny.get())
+	{
+		mLogicComponentOny->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectOny::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponentOny.get())
+	{
+		mLogicComponentOny->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectOny::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponentOny.get())
+	{
+		mLogicComponentOny->update(elapsedSeconds);
+	}
 }
 
 //-------

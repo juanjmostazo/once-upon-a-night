@@ -132,10 +132,56 @@ bool GameObjectTriggerBox::hasPositionalComponent() const
 	return true;
 }
 
+/// Set logic component
+void GameObjectTriggerBox::setLogicComponent(LogicComponentPtr logicComponent)
+{
+	mLogicComponent=logicComponent;
+}
+
+/// return logic component
+LogicComponentPtr GameObjectTriggerBox::getLogicComponent()
+{
+	return mLogicComponent;
+}
+
+
 RenderComponentPositionalPtr GameObjectTriggerBox::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+void GameObjectTriggerBox::processCollision(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject);
+	}
+}
+
+void GameObjectTriggerBox::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectTriggerBox::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectTriggerBox::updateLogic(double elapsedSeconds)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->update(elapsedSeconds);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectTriggerBoxParameters::TGameObjectTriggerBoxParameters() : TGameObjectParameters()
