@@ -252,12 +252,16 @@ namespace OUAN
 			WEAPON_MODE_SPECIAL
 		} TWeaponMode;
 
+		class AttackComponent;
+		class TAttackComponentParameters;
+		typedef boost::shared_ptr<AttackComponent> AttackComponentPtr;
 
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
 		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
 		const std::string COMPONENT_TYPE_LOGIC_ENEMY="LogicComponentEnemy";
 		const std::string COMPONENT_TYPE_LOGIC_ITEM="LogicComponentItem";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
+		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
 
 		///////////////////////////////////////////////////////////////////
 

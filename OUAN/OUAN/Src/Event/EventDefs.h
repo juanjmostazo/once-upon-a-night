@@ -44,6 +44,9 @@ namespace OUAN
 	class WeaponModeChangedEvent;
 	typedef boost::shared_ptr<WeaponModeChangedEvent> WeaponModeChangedEventPtr;
 
+	class AnimationEndedEvent;
+	typedef boost::shared_ptr<AnimationEndedEvent> AnimationEndedEventPtr;
+
 	// Event types
 	typedef enum{
 		EVENT_TYPE_GAMEOVER,	
@@ -51,6 +54,10 @@ namespace OUAN
 		EVENT_TYPE_ONY_FALLS,
 		EVENT_TYPE_CHANGEWORLD,
 		EVENT_TYPE_CLEARQUEUE,
+		EVENT_TYPE_ANIMATION_ENDED,
+		EVENT_TYPE_CHARACTERS_COLLISION,
+		EVENT_TYPE_CHARACTER_IN_TRIGGER,
+		EVENT_TYPE_CHARACTER_SHAPE_FRONT_COLLISION,
 		EVENT_TYPE_COLLISION,
 		EVENT_TYPE_ENTER_TRIGGER,
 		EVENT_TYPE_EXIT_TRIGGER,
@@ -64,6 +71,7 @@ namespace OUAN
 	const int EVT_PRIORITY_ONY_FALLS=1;
 	const int EVT_PRIORITY_CHANGEWORLD=2;
 	const int EVT_PRIORITY_CLEARQUEUE=2;
+	const int EVT_PRIORITY_ANIMATION_ENDED=3;
 	const int EVT_PRIORITY_WEAPON_MODE_CHANGED=3;
 	const int EVT_PRIORITY_EXIT_TRIGGER=3;
 	const int EVT_PRIORITY_ENTER_TRIGGER=4;

@@ -4,21 +4,23 @@
 #include "../../Component/Component.h"
 namespace OUAN
 {
-	typedef std::map<int,GameObjectPtr> TWeaponCollection;
+	typedef std::map<std::string,GameObjectPtr> TWeaponCollection;
 	class WeaponComponent: public Component
 	{
 	public:
 		WeaponComponent(const std::string& type="");
 		~WeaponComponent();
 
-		void init(int currentWorld);
+		void initWeapons(std::vector<std::string> weapons, const std::string& activeWeapon);
+
 		void cleanUp();
 		
-		void changeActiveWeapon(int world);
+		void changeActiveWeapon(const std::string& newWeapon);
 		GameObjectPtr getActiveWeapon();
+		void initActiveWeapon();
 
-		void setActiveWeaponMode(TWeaponMode activeWeaponMode);
-		void updateWeaponMode();
+		void setAttackType(const std::string& newAttack);
+		void updateAttackType();
 		
 		void update(long elapsedTime);
 
@@ -35,12 +37,17 @@ namespace OUAN
 		void setMaxWeaponPower(int maxWeaponPower);
 
 	private:
-		TWeaponCollection mAvailableWeapons;
+		//TWeaponCollection mAvailableWeapons;
 		GameObjectPtr mActiveWeapon;
 		bool mActiveWeaponInUse;
+		std::string mActiveWeaponName;
 		int mWeaponPower;//Atm, use the same value for both weapons
 		int mMaxWeaponPower;//set as an attribute to consider 'level-up'
-		TWeaponMode mCurrentWeaponMode;
+		std::string mCurrentWeaponAttack;
+		// We can't instance the GameObjects during the component initialization,
+		// since in principle it is possible that they haven't been created yet.
+		// For that reason, we'll keep their names temporarily until 
+		std::vector<std::string> mWeaponNames;
 	};
 	
 	class TWeaponComponentParameters: public TComponentParameters
@@ -48,6 +55,8 @@ namespace OUAN
 	public:
 		TWeaponComponentParameters();
 		~TWeaponComponentParameters();
+		std::vector<std::string> mWeaponNames;
+		std::string mSelectedWeapon;
 
 	};
 }

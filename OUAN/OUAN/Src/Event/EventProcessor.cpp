@@ -58,6 +58,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
 			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
+
+		registerEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
+			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
 	}
 }
 
@@ -88,6 +91,9 @@ void EventProcessor::unregisterHandlers()
 			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
 		unregisterEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
 			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
+		
+		unregisterEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
+			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
 	}
 }
 
@@ -186,7 +192,15 @@ void EventProcessor::processWeaponModeChanged(WeaponModeChangedEventPtr evt)
 {
 	if (mWorldManager.get() && mWorldManager->getGameObjectOny().get())
 	{
-		mWorldManager->getGameObjectOny()->setWeaponMode(evt->getNewWeaponMode());
+		mWorldManager->getGameObjectOny()->setAttack(evt->getNewWeaponMode());
 	}
+}
 
+void EventProcessor::processAnimationEnded(AnimationEndedEventPtr evt)
+{
+	if (evt->getActor().get())
+	{
+		//TODO: Uncomment
+		//evt->getActor()->animationEnded(evt->getAnimationName());
+	}
 }

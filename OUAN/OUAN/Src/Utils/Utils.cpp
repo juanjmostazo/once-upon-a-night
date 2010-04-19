@@ -1,6 +1,9 @@
 #include "Utils.h"
 #include <Ogre.h>
 #include <ctime>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 using namespace OUAN;
 using namespace Utils;
@@ -53,4 +56,22 @@ double Random::getRandomDouble(double low, double high)
 void OUAN::Utils::scriptLog (const std::string& logMsg)
 {
 	Ogre::LogManager::getSingletonPtr()->logMessage("LUA: "+logMsg);
+}
+int OUAN::Utils::parseInt(std::string& strValue)
+{
+	unsigned int hexValue=0;
+	try
+	{
+		if (!strValue.empty())
+		{
+			std::stringstream in(strValue);			
+			in >> std::hex>>hexValue;
+		}
+		else throw std::exception();
+	}
+	catch (const std::exception&)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage("Couldn't parse string to an hex value: string was empty");
+	}
+	return static_cast<int>(hexValue);
 }

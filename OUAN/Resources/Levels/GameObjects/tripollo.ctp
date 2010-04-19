@@ -10,6 +10,27 @@
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="150" fields="X;Y;Z;W"></PROPERTY>  
+  <!-- Available attacks -->
+  <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::selectedAttack" type="7" value="peck" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#attackName" type="7" value="peck" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#animationName" type="7" value="attack01" fields="X;Y;Z;W">
+  </PROPERTY>  
+  <PROPERTY id="AttackComponent::attack0#damage" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#attackRange" type="2" value="10" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <!-- -->
+  <PROPERTY id="AttackComponent::attack1#attackName" type="7" value="claw" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#animationName" type="7" value="attack02" fields="X;Y;Z;W">
+  </PROPERTY>  
+  <PROPERTY id="AttackComponent::attack1#damage" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#attackRange" type="2" value="10" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+  
   <!-- Animations -->
   <PROPERTY id="animation0d::name" type="7" value="StaticPose" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
@@ -35,6 +56,7 @@
   <PROPERTY id="animation10d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>  
   <PROPERTY id="animation11d::name" type="7" value="walk02" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation11d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>  
+    
   <!-- Animations for the nightmare entity -->
   <PROPERTY id="animation0n::name" type="7" value="StaticPose" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>

@@ -213,6 +213,9 @@ void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 	else
 	{
 		showElement(PANEL_ROULETTE);
+		mCurrentRouletteState=ROULETTE_STATE_0;
+		updateRouletteHUD();
+		mSelectedModeChanged=true;
 		//TOD:
 		//hideElement(PANEL_PILLOW_ROULETTE);
 	}

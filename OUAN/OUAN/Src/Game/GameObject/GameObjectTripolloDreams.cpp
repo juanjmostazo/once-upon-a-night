@@ -86,8 +86,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-	Vector3 movement;
-
 	//debug code, erase when it works
 	//if(getName().compare("tripollo#7")!=0)
 	//	return;
@@ -104,7 +102,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 			{
-				entityToUpdate->changeAnimation("idle02");
+				entityToUpdate->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 				mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
 			}
 
@@ -126,7 +124,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 					vector as (marker1-marker0)
 				*/
 				if (entityToUpdate.get())
-					entityToUpdate->changeAnimation("walk");
+					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
 
 			}
 		}
@@ -135,7 +133,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 			{
-				entityToUpdate->changeAnimation("walk");
+				entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
 
 				mTrajectoryComponent->activatePathFinding(
 					mGameWorldManager->getGameObjectOny()->getName(),
@@ -161,6 +159,13 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 						recalculateTime has a random component so every object calculates at different periods
 			*/
 		}
+		//else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
+		//{
+		//	std::string msg="Enemy ";
+		//	msg.append(getName()).append(" died");
+		//	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+		//	disable();
+		//}
 		else
 		{
 			
@@ -175,17 +180,27 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 		if (mPhysicsComponentCharacter->isInUse())
 		{
-			movement=mTrajectoryComponent->getNextMovement();
 			//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
 
 			//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
-			mPhysicsComponentCharacter->setNextMovement(movement);
+			mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
 			mPhysicsComponentCharacter->update(elapsedSeconds);
 		}
 	}
 
 }
-
+AttackComponentPtr GameObjectTripolloDreams::getAttackComponent() const
+{
+	return mAttackComponent;
+}
+void GameObjectTripolloDreams::setAttackComponent(AttackComponentPtr attackComponent)
+{
+	mAttackComponent=attackComponent;
+}
+std::string GameObjectTripolloDreams::getDefaultAttack()
+{
+	return TRIPOLLO_ATTACK_PECK;
+}
 void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();

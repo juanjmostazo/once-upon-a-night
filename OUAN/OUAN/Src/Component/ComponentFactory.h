@@ -85,6 +85,7 @@ namespace OUAN
 		LogicComponentItemPtr createLogicComponentItem(GameObjectPtr gameObject, TLogicComponentItemParameters logicComponentItemParameters);
 
 		WeaponComponentPtr createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters);
+		AttackComponentPtr createAttackComponent(GameObjectPtr gameObject, TAttackComponentParameters attackComponentParameters);
 
 		//trajectory component
 		TrajectoryComponentPtr createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions);

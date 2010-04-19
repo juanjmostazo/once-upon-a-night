@@ -3,12 +3,13 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectPillow.h"
+#include <algorithm>
 using namespace OUAN;
 
 WeaponComponent::WeaponComponent(const std::string& type)
 :Component(COMPONENT_TYPE_WEAPON)
 {
-	mAvailableWeapons.clear();
+	mWeaponNames.clear();
 	mActiveWeapon.reset();
 	mActiveWeaponInUse=false;
 }
@@ -17,81 +18,72 @@ WeaponComponent::~WeaponComponent()
 	cleanUp();
 }
 
-void WeaponComponent::init(int currentWorld)
-{
+void WeaponComponent::initWeapons(std::vector<std::string> weaponNames, const std::string& activeWeapon)
+{	
+	mWeaponNames.clear();
+	for (std::vector<std::string>::iterator it=weaponNames.begin();it!=weaponNames.end();++it)
+	{
+			mWeaponNames.push_back(*it);
+	}
 	GameObjectPtr nullPtr;
 	nullPtr.reset();
-	mAvailableWeapons[DREAMS]=nullPtr;//TODO: replace with the pillow (//mParent->getGameWorldManager()->getGameObjectPillow())
-	mAvailableWeapons[NIGHTMARES]=mParent->getGameWorldManager()->getGameObjectFlashLight();
+	mActiveWeapon=nullPtr;
+	mActiveWeaponName=activeWeapon;
+	mActiveWeaponInUse=false;
 
 	mMaxWeaponPower=DEFAULT_MAX_WEAPON_POWER;
 	mWeaponPower=0;
-	
-	mActiveWeapon=mAvailableWeapons[currentWorld];
-	mActiveWeaponInUse=false;
-	
-	if (currentWorld==DREAMS)
+}
+void WeaponComponent::initActiveWeapon()
+{
+	if (!mActiveWeaponName.empty())
 	{
-		if(GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(mAvailableWeapons[NIGHTMARES]))
-			flashlight->hide();
-		//TODO: Pillow->show)
-	}
-	else
-	{
-		if(GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(mAvailableWeapons[NIGHTMARES]))
-			flashlight->show();
-		//TODO: Pillow->hide()
+		changeActiveWeapon(mActiveWeaponName);
 	}
 }
 void WeaponComponent::cleanUp()
 {
 	if (mActiveWeapon.get())
 		mActiveWeapon->reset();
-	if (!mAvailableWeapons.empty())
-		for (TWeaponCollection::iterator it=mAvailableWeapons.begin();
-			it!=mAvailableWeapons.end();++it)
-		{
-			(it->second).reset();
-		}
-	mAvailableWeapons.clear();
+	mWeaponNames.clear();
 }
-void WeaponComponent::changeActiveWeapon(int world)
+void WeaponComponent::changeActiveWeapon(const std::string& newWeapon)
 {
 	GameObjectPtr oldActiveWeapon=mActiveWeapon;
-	mActiveWeapon=mAvailableWeapons[world];
-	mActiveWeaponInUse=false;	
-	if (GameObjectFlashLightPtr flashlight =boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon))
+	mActiveWeaponInUse=false;
+	mActiveWeapon.reset();
+	if (std::find(mWeaponNames.begin(),mWeaponNames.end(),newWeapon)!=mWeaponNames.end())
 	{
-		flashlight->show();
-		//if (GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(oldActiveWeapon))
-		//	pillow->hide();
+		mActiveWeapon=mParent->getGameWorldManager()->getObject(newWeapon);
+		if (mActiveWeapon.get())
+		{
+			mActiveWeapon->enable();
+			mActiveWeapon->setAttack(mActiveWeapon->getDefaultAttack());
+		}
 	}
-	else// if (boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon))
+	if (oldActiveWeapon.get())
 	{
-		GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon);
-		//pillow->show();
-		if (GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(oldActiveWeapon))
-			flashlight->hide();
-	}
-	oldActiveWeapon.reset();
-}
-void WeaponComponent::setActiveWeaponMode(TWeaponMode activeWeaponMode)
-{
-	mCurrentWeaponMode=activeWeaponMode;
-	if (boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon))
-	{
-		GameObjectFlashLightPtr flashlight = boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon);
-		flashlight->setAttackMode(activeWeaponMode);
-	}
-	else if (boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon))
-	{
-		GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon);
-		//pillow->setAttackMode(activeWeaponMode);
+		oldActiveWeapon->disable();
+		oldActiveWeapon->reset();
 	}
 }
-void WeaponComponent::updateWeaponMode()
+
+void WeaponComponent::setAttackType(const std::string& newAttack)
 {
-	setActiveWeaponMode(mCurrentWeaponMode);
+	if (mActiveWeapon.get() && !newAttack.empty())
+	{
+		mCurrentWeaponAttack=newAttack;
+		mActiveWeapon->setAttack(mCurrentWeaponAttack);
+	}
+}
+
+void WeaponComponent::updateAttackType()
+{
+	if (mActiveWeapon.get())
+	{
+		std::string defaultAttack=mActiveWeapon->getDefaultAttack();
+		setAttackType(defaultAttack);
+	}
 }
 void WeaponComponent::update(long elapsedTime)
 {
@@ -99,40 +91,18 @@ void WeaponComponent::update(long elapsedTime)
 }
 void WeaponComponent::switchOn()
 {
-	if (!mActiveWeaponInUse)
+	if (mActiveWeapon.get() && !mActiveWeaponInUse)
 	{
 		mActiveWeaponInUse=true;
-		if (boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon))
-		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("USING FLASHLIGHT");
-			GameObjectFlashLightPtr flashlight = boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon);
-			flashlight->switchOn();
-		}
-		else if (boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon))
-		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("USING PILLOW");
-			GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon);
-			//pillow->draw();
-		}
+		mActiveWeapon->beginAttack();
 	}
 }
 void WeaponComponent::switchOff()
 {
-	if (mActiveWeaponInUse)
+	if (mActiveWeapon.get() && mActiveWeaponInUse)
 	{
 		mActiveWeaponInUse=false;
-		if (boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon))
-		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("STOPPED USING FLASHLIGHT");
-			GameObjectFlashLightPtr flashlight = boost::dynamic_pointer_cast<GameObjectFlashLight>(mActiveWeapon);
-			flashlight->switchOff();
-		}
-		else if (boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon))
-		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("STOPPED USING PILLOW");
-			GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mActiveWeapon);
-			//pillow->sheathe();
-		}
+		mActiveWeapon->switchOff();
 	}
 }
 int WeaponComponent::getWeaponPower() const

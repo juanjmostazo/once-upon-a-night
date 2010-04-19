@@ -186,7 +186,6 @@ int LogicSubsystem::invokeFunction(const std::string& functionName,int state, Lo
 			LogicComponentEnemy* ptr=dynamic_cast<LogicComponentEnemy*>(pLogicComponent);
 			if (ptr)
 				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),ptr,state);
-				//result=luabind::call_function<int>(mLuaEngine,"gimmeSumthin",45);
 				
 		}
 		catch(const luabind::error& err)

@@ -343,6 +343,11 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
+	if (getGameObjectOny().get())
+	{
+		getGameObjectOny()->setInitialWeaponComponent(world);
+	}
+
 	mGameOver=false;
 	mGameBeaten=false;
 
@@ -1398,7 +1403,6 @@ void GameWorldManager::createGameObjectEye(TGameObjectEyeParameters tGameObjectE
 	//Add Object to GameWorldManager
 	addGameObjectEye(pGameObjectEye);
 }
-
 void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters)
 {
 	GameObjectFlashLightPtr pGameObjectFlashLight;
@@ -1414,6 +1418,12 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 			factory->createLogicComponent(
 			pGameObjectFlashLight,
 			tGameObjectFlashLightParameters.tLogicComponentParameters));
+				
+		pGameObjectFlashLight->setAttackComponent(
+			factory->createAttackComponent(
+				pGameObjectFlashLight,
+				tGameObjectFlashLightParameters.attackComponentParameters
+		));
 
 		//Create RenderComponentPositional
 		pGameObjectFlashLight->setRenderComponentPositional(factory->createRenderComponentPositional(
@@ -1469,6 +1479,8 @@ void GameWorldManager::createGameObjectFlashLight(TGameObjectFlashLightParameter
 
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(mThis);
+	pGameObjectFlashLight->hide();
+	pGameObjectFlashLight->switchOff();
 
 	//Add Object to GameWorldManager
 	addGameObjectFlashLight(pGameObjectFlashLight);
@@ -1778,7 +1790,7 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(mThis);
 	//...and initialise the active weapon according to the current world
-	pGameObjectOny->getWeaponComponent()->init(world);
+	pGameObjectOny->setInitialWeaponComponent(world);
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
@@ -2626,6 +2638,11 @@ void GameWorldManager::createGameObjectTripolloDreams(TGameObjectTripolloDreamsP
 			pGameObjectTripolloDreams,
 			true));
 
+		pGameObjectTripolloDreams->setAttackComponent(
+			factory->createAttackComponent(
+				pGameObjectTripolloDreams,
+				tGameObjectTripolloDreamsParameters.tAttackComponentParameters));
+
 	pGameObjectTripolloDreams->changeWorld(world);
 
 	// Add a reference to this
@@ -2734,7 +2751,6 @@ void GameWorldManager::lose()
 
 void GameWorldManager::onyDied()
 {
-	//TODO: Reset Ony and every other game object that needs it.
 	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
 	resetAll();
 }
@@ -2825,13 +2841,13 @@ void GameWorldManager::useWeapon()
 {
 	if (getGameObjectOny().get())
 	{
-		getGameObjectOny()->useWeapon();
+		getGameObjectOny()->beginAttack();
 	}
 }
 void GameWorldManager::stopUsingWeapon()
 {
 	if (getGameObjectOny().get())
 	{
-		getGameObjectOny()->stopUsingWeapon();
+		getGameObjectOny()->switchOff();
 	}
 }

@@ -67,6 +67,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../Utils/Utils.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
@@ -994,6 +995,8 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentVolumeConvex
 		tGameObjectFlashLightParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectFlashLightParameters.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -1246,7 +1249,8 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		tGameObjectOnyParameters.tLogicComponentOnyParameters=processLogicComponentOny(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//[Perhaps TODO]: Process weapon component
+		//Process weapon component
+		tGameObjectOnyParameters.tWeaponComponentParameters=processWeaponComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
 		tGameObjectOnyParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
@@ -2035,6 +2039,8 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentCharacter
 		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectTripolloDreamsParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -2826,43 +2832,108 @@ TLogicComponentEnemyParameters LevelLoader::processLogicComponentEnemy(TiXmlElem
 		{
 			logicComponentEnemyParameters.lineOfSight=-1;	
 		}
+			
 		try{
-			logicComponentEnemyParameters.attackDamage=getPropertyInt(XMLNodeCustomProperties,
-				"LogicComponent::attackDamage");
-		}
-		catch (std::string error)
-		{
-			logicComponentEnemyParameters.attackDamage=-1;	
-		}
-		try{
-			logicComponentEnemyParameters.attackDelay=getPropertyInt(XMLNodeCustomProperties,
-				"LogicComponent::attackDelay");
-		}
-		catch (std::string error)
-		{
-			logicComponentEnemyParameters.attackDelay=-1;	
-		}
-		try{
-			logicComponentEnemyParameters.attackRange=getPropertyInt(XMLNodeCustomProperties,
-				"LogicComponent::attackRange");
-		}
-		catch (std::string error)
-		{
-			logicComponentEnemyParameters.attackRange=-1;	
-		}
-		try{
-			logicComponentEnemyParameters.colourSensitivityMask=getPropertyInt(XMLNodeCustomProperties,
+			logicComponentEnemyParameters.colourSensitivityMask=getPropertyInt(XMLNodeNightmares,
 				"LogicComponent::colourSensitivityMask");
 		}
 		catch (std::string error)
 		{
-			logicComponentEnemyParameters.colourSensitivityMask=-1;	
+			logicComponentEnemyParameters.colourSensitivityMask=0;	
 		}
 
 	}
 	return logicComponentEnemyParameters;
 }
+TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XMLNode)
+{
+	TAttackComponentParameters params;
+	if (XMLNode)
+	{
+		params.mSelectedAttack=getPropertyString(XMLNode,"AttackComponent::selectedAttack",false);
 
+		int i=0;
+		AttackDataPtr currentAttack;
+		while(true)
+		{
+			std::string name=getPropertyString(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#attackName",
+				false);
+			
+			int type=getPropertyInt(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#type",false);
+			switch(static_cast<TAttackType>(type))
+			{
+			case ATTACK_TYPE_FLASHLIGHT:
+				currentAttack=AttackDataPtr(new FlashlightAttackData());
+				break;
+			case ATTACK_TYPE_PILLOW:
+			case ATTACK_TYPE_DEFAULT:
+				currentAttack=AttackDataPtr(new AttackData());
+				break;
+			}
+			currentAttack->attackName=name;
+			currentAttack->animationName=getPropertyString(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#animationName",
+				false);
+			currentAttack->damage=getPropertyInt(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#damage",
+				false);
+			currentAttack->attackRange=getPropertyInt(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#attackRange",
+				false);
+			currentAttack->cooldownDelay=getPropertyReal(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#cooldownDelay",
+				false);
+			currentAttack->area=getPropertyReal(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#area",
+				false);
+			currentAttack->powerCost=getPropertyInt(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#powerCost",
+				false);
+			
+			if (static_cast<TAttackType>(type)==ATTACK_TYPE_FLASHLIGHT && 
+				(boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)))
+			{				
+				int rgb;
+				try{
+					rgb=Utils::parseInt(getPropertyString(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#rgb",
+						false));
+				}
+				catch(const std::exception& e)
+				{
+					Ogre::LogManager::getSingletonPtr()->logMessage("Couldn't parse RGB value: defaulting to 0x000000ff");
+					std::string msg="Exception message: ";
+					msg.append(e.what());
+					Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+					rgb=0x000000ff;
+				}
+				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->rgb=rgb;
+				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->coneRadius=getPropertyReal(XMLNode,
+					"AttackComponent::attack"+StringConverter::toString(i)+"#coneRadius",
+					false);
+			}
+			if (name.compare("")==0) break;
+
+			params.mAttacks[currentAttack->attackName]=currentAttack;
+			++i;
+		}
+	}
+	return params;
+}
+TWeaponComponentParameters LevelLoader::processWeaponComponent(TiXmlElement* XMLNode)
+{
+	TWeaponComponentParameters params;
+	if (XMLNode)
+	{
+		params.mSelectedWeapon=getPropertyString(XMLNode,"WeaponComponent::selectedWeapon",false);
+
+		int i=0;
+		std::string currentWeapon;
+		while(true)
+		{
+			currentWeapon=getPropertyString(XMLNode,"WeaponComponent::weapon"+StringConverter::toString(i),
+				false);
+			if (currentWeapon.compare("")==0) break;
+
+			params.mWeaponNames.push_back(currentWeapon);
+			++i;
+		}
+	}
+	return params;
+}
 TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNodeDreams,
 												TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {

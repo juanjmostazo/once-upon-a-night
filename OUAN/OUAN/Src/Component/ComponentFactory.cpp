@@ -31,6 +31,7 @@
 #include "../Logic/LogicComponent/LogicComponentItem.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
+#include "../Logic/LogicComponent/AttackComponent.h"
 
 using namespace OUAN;
 
@@ -417,9 +418,6 @@ LogicComponentEnemyPtr ComponentFactory::createLogicComponentEnemy(GameObjectPtr
 	pLogicComponentEnemy->setInitialHealthPoints(LogicComponentEnemyParameters.healthPoints);
 	pLogicComponentEnemy->setLineOfSight(LogicComponentEnemyParameters.lineOfSight);
 
-	pLogicComponentEnemy->setAttackDamage(LogicComponentEnemyParameters.attackDamage);
-	pLogicComponentEnemy->setAttackDelay(LogicComponentEnemyParameters.attackDelay);
-	pLogicComponentEnemy->setAttackRange(LogicComponentEnemyParameters.attackRange);
 	pLogicComponentEnemy->setColourSensitivityMask(LogicComponentEnemyParameters.colourSensitivityMask);
 
 	pLogicComponentEnemy->setScriptFilename(LogicComponentEnemyParameters.scriptFilename);
@@ -433,8 +431,17 @@ LogicComponentEnemyPtr ComponentFactory::createLogicComponentEnemy(GameObjectPtr
 WeaponComponentPtr ComponentFactory::createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters)
 {
 	WeaponComponentPtr weaponComponent = WeaponComponentPtr(new WeaponComponent());	
+	weaponComponent->initWeapons(weaponComponentParameters.mWeaponNames,weaponComponentParameters.mSelectedWeapon);
 	weaponComponent->setParent(gameObject);
 	return weaponComponent;
+}
+
+AttackComponentPtr ComponentFactory::createAttackComponent(GameObjectPtr gameObject, TAttackComponentParameters attackComponentParameters)
+{
+	AttackComponentPtr attackComponent = AttackComponentPtr(new AttackComponent());
+	attackComponent->init(attackComponentParameters.mAttacks,attackComponentParameters.mSelectedAttack);
+	attackComponent->setParent(gameObject);
+	return attackComponent;
 }
 
 TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions)
