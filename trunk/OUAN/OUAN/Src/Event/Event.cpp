@@ -152,3 +152,20 @@ TWeaponMode WeaponModeChangedEvent::getNewWeaponMode() const
 {
 	return mNewWeaponMode;
 }
+
+//--------------------------
+
+AnimationEndedEvent::AnimationEndedEvent(GameObjectPtr actor, const std::string animationName)
+:Event(EVT_PRIORITY_ANIMATION_ENDED, EVENT_TYPE_ANIMATION_ENDED)
+{
+	mActor=actor;
+	mAnimationName=animationName;
+}
+GameObjectPtr AnimationEndedEvent::getActor() const
+{
+	return mActor;
+}
+std::string AnimationEndedEvent::getAnimationName() const
+{
+	return mAnimationName;
+}

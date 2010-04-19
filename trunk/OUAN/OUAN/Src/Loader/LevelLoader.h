@@ -116,6 +116,8 @@ namespace OUAN
 		//LogicComponent Processors		
 		TLogicComponentParameters processLogicComponent(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TAttackComponentParameters processAttackComponent(TiXmlElement* XMLNode);
+		TWeaponComponentParameters processWeaponComponent(TiXmlElement* XMLNode);
 		TLogicComponentOnyParameters processLogicComponentOny(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentItemParameters processLogicComponentItem(TiXmlElement *XMLNodeDreams,

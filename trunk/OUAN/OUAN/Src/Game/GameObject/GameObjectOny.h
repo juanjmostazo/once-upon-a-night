@@ -24,6 +24,16 @@ namespace OUAN
 	const int STATE_ONY_FLASHLIGHT_HIDE=10;
 	const int STATE_ONY_FLASHLIGHT_USE_SPECIAL=11;
 
+	//Animation names
+	const std::string ONY_ANIM_ALERT="ALERT";
+	const std::string ONY_ANIM_WALK="WALK";
+	const std::string ONY_ANIM_RUN="RUN";
+	const std::string ONY_ANIM_IDLE01="IDLE01";
+	const std::string ONY_ANIM_IDLE02="IDLE02";
+	const std::string ONY_ANIM_DIE="DIE";
+	const std::string ONY_ANIM_JUMP="JUMP";
+	const std::string ONY_ANIM_HIT01="HIT01";
+		
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
@@ -43,7 +53,10 @@ namespace OUAN
 		
 		/// Weapon wielding component
 		WeaponComponentPtr mWeaponComponent;
-		void initWeaponComponent();
+
+		//TODO: move to LogicComponentOny
+		std::string mDreamsWeapon;
+		std::string mNightmaresWeapon;
 
 	public:
 		//Constructor
@@ -86,9 +99,13 @@ namespace OUAN
 		/// set weapon component
 		void setWeaponComponent(WeaponComponentPtr weaponComponent);
 
-		void setWeaponMode(TWeaponMode weaponMode);
+		void setAttack(TWeaponMode weaponMode);
 		WeaponComponentPtr getWeaponComponent() const;
 
+		//void initWeaponComponent(int world);
+		void setInitialWeaponComponent(int world);
+		void beginAttack();
+		void switchOff();
 		/// Set logic component
 		void setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny);
 
@@ -119,8 +136,6 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
-		void useWeapon();
-		void stopUsingWeapon();
 
 		/// Process collision event
 		/// @param gameObject which has collision with

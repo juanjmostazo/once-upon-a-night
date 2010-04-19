@@ -58,7 +58,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mHUD.reset(new HUDInGame());
 	LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
 	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld());
-	mApp->getGameWorldManager()->getGameObjectOny()->setWeaponMode(convertRouletteValue(mHUD->getCurrentState()));
+	mApp->getGameWorldManager()->getGameObjectOny()->setAttack(convertRouletteValue(mHUD->getCurrentState()));
 
 	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
 }

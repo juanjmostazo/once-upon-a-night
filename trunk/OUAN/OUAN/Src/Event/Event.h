@@ -146,5 +146,16 @@ namespace OUAN
 			TWeaponMode mNewWeaponMode;
 	};
 
+	class AnimationEndedEvent: public Event
+	{
+	public: 
+		AnimationEndedEvent(GameObjectPtr mActor, const std::string animationName);
+		GameObjectPtr getActor() const;
+		std::string getAnimationName() const;
+	private:
+		GameObjectPtr mActor;
+		std::string mAnimationName;
+	};
+
 }
 #endif

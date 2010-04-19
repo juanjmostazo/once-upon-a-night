@@ -60,6 +60,11 @@ void GameObject::disable()
 	Ogre::LogManager::getSingleton().logMessage("Disabling Game Object '" + mName + "'");
 	mEnabled = false;
 }
+void GameObject::enable()
+{
+	Ogre::LogManager::getSingleton().logMessage("Enabling Game Object '" + mName + "'");
+	mEnabled = true;
+}
 
 bool GameObject::isEnabled()
 {
@@ -118,6 +123,26 @@ double GameObject::computeDistanceTo(GameObjectPtr other) const
 		return getPositionalComponent()->computeDistanceTo(other->getPositionalComponent());
 	}
 	return -1;
+}
+void GameObject::setAttack(const std::string& newAttack)
+{
+
+}
+void GameObject::beginAttack()
+{
+
+}
+void GameObject::switchOff()
+{
+
+}
+std::string GameObject::translateWeaponMode(TWeaponMode weaponmode)
+{
+	return "";
+}
+std::string GameObject::getDefaultAttack()
+{
+	return "";
 }
 //-------------------------------------------------------
 

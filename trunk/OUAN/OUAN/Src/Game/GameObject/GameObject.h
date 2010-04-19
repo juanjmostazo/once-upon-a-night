@@ -78,7 +78,9 @@ namespace OUAN
 
 
 		/// Disable the object
-		void disable();
+		virtual void disable();
+		/// Enable the object
+		virtual void enable();
 
 		/// Check if the object is enabled
 		bool isEnabled();
@@ -122,6 +124,12 @@ namespace OUAN
 
 		/// Compute distance from this object to the passed one
 		double computeDistanceTo(GameObjectPtr other) const;
+
+		virtual void setAttack(const std::string& newAttack);
+		virtual void beginAttack();
+		virtual void switchOff();
+		virtual std::string translateWeaponMode(TWeaponMode weaponmode);
+		virtual std::string getDefaultAttack();
 	};
 
 	class TGameObjectParameters

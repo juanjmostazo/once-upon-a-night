@@ -7,12 +7,20 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/AttackComponent.h"
+
 namespace OUAN
 {
 	const int RED = 0xff0000ff;
 	const int BLUE= 0x0000ffff;
 	const int GREEN=0x00ff00ff;
 	const int WHITE=0xffffffff;
+
+	const std::string ATTACK_NAME_RED="red";
+	const std::string ATTACK_NAME_GREEN="green";
+	const std::string ATTACK_NAME_BLUE="blue";
+	const std::string ATTACK_NAME_WHITE="white";
+
 	/// Class to hold GameObjectFlashLight information
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
 	{
@@ -44,7 +52,8 @@ namespace OUAN
 		int mAttackRange;//distance?
 		double mAttackAngle;//flashlight cone angle
 
-		//TODO: think what happens when world changes with the rendercomponent
+		AttackComponentPtr mAttackComponent;
+
 	public:
 		//Constructor
 		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting);
@@ -120,6 +129,15 @@ namespace OUAN
 
 		/// Reset object
 		virtual void reset();
+		void enable();
+		void disable();
+
+		AttackComponentPtr getAttackComponent() const;
+		void setAttackComponent(AttackComponentPtr attackComponent);
+		std::string translateWeaponMode(TWeaponMode weaponMode);
+		std::string getDefaultAttack();
+		void beginAttack();
+		void setAttack(const std::string& newAttack);
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -135,6 +153,9 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		// Return current colour
+		int getColour();
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters
@@ -151,6 +172,8 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
+
+		TAttackComponentParameters attackComponentParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

@@ -25,6 +25,7 @@ namespace OUAN
 		};
 
 		void scriptLog (const std::string& logMsg);
+		int parseInt(std::string& strValue);
 	}
 }
 #endif

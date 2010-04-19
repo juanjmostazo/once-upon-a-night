@@ -15,7 +15,7 @@ GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldMa
 	mCameraManager=pCameraManager;
 	mRayCasting=pRayCasting;
 
-	distance=10000.0f;	
+	distance=10000.0f;
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -87,33 +87,49 @@ PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeC
 
 void GameObjectFlashLight::changeWorld(int world)
 {
-
-	switch(world)
-	{
-	case DREAMS:
-		//PROVISIONAL
-		mRenderComponentLight->getLight()->setVisible(false);
-		if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
-		{
-			mPhysicsComponentVolumeConvex->destroy();
-		}
-		break;
-	case NIGHTMARES:
-		//PROVISIONAL
-		mRenderComponentLight->getLight()->setVisible(true);
-		if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
-		{
-			mPhysicsComponentVolumeConvex->create();
-		}
-		break;
-	default:
-		break;
-	}
+	//The flashlight's operation mode concerning a world change is managed
+	//by Ony (i.e, on a change to dreams Ony changes his active weapon to the pillow,
+	// and to the flashlight on a change to nightmares)
+	//Theoretically, the weapon shouldn't care about the world it is in 
+	
+	//switch(world)
+	//{
+	//case DREAMS:
+	//	//PROVISIONAL
+	//	mRenderComponentLight->getLight()->setVisible(false);
+	//	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+	//	{
+	//		mPhysicsComponentVolumeConvex->destroy();
+	//	}
+	//	break;
+	//case NIGHTMARES:
+	//	//PROVISIONAL
+	//	mRenderComponentLight->getLight()->setVisible(true);
+	//	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+	//	{
+	//		mPhysicsComponentVolumeConvex->create();
+	//	}
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void GameObjectFlashLight::reset()
 {
 	GameObject::reset();
+}
+void GameObjectFlashLight::enable()
+{
+	GameObject::enable();
+	show();
+	mRenderComponentLight->getLight()->setVisible(false);
+}
+void GameObjectFlashLight::disable()
+{
+	GameObject::disable();
+	hide();
+	switchOff();
 }
 
 bool GameObjectFlashLight::hasPositionalComponent() const
@@ -128,82 +144,55 @@ RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() cons
 
 void GameObjectFlashLight::update(double elapsedSeconds)
 {
-	Ogre::Camera * camera;
-	Vector3 direction;
-
-	GameObject::update(elapsedSeconds);
-
-	camera=mCameraManager->getActiveCamera();
-
-	if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
+	if (isEnabled()) //there is no point to updating the flashlight when it's not active
 	{
-		mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-		mRenderComponentPositional->setOrientation(camera->getOrientation());
+		Ogre::Camera * camera;
+		Vector3 direction;
 
-		if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+		GameObject::update(elapsedSeconds);
+
+		camera=mCameraManager->getActiveCamera();
+
+		if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
 		{
-			//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
-			mPhysicsComponentVolumeConvex->destroy();
-			mPhysicsComponentVolumeConvex->create();
+			mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+			mRenderComponentPositional->setOrientation(camera->getOrientation());
 
-			mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+			if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+			{
+				//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
+				mPhysicsComponentVolumeConvex->destroy();
+				mPhysicsComponentVolumeConvex->create();
 
-			camera=mCameraManager->getActiveCamera();
-			mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
+				mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+
+				camera=mCameraManager->getActiveCamera();
+				mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
+			}
 		}
+
+		mLightPositionalComponent->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+
+		direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
+		direction.normalise();
+
+		mRenderComponentLight->setDirection(direction);
+
+	}
+}
+void GameObjectFlashLight::setAttack(const std::string& newAttack)
+{
+	mAttackComponent->setSelectedAttack(newAttack);
+	FlashlightAttackDataPtr attackData= boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+	if (attackData.get())
+	{
+		ColourValue newColour;
+		newColour.setAsRGBA(attackData->rgb);
+		mRenderComponentLight->setDiffuseColor(newColour);
+		mRenderComponentLight->setSpecularColor(newColour);
+		//TODO: radius, etc, should also be modified here
 	}
 
-	mLightPositionalComponent->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-
-	direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
-	direction.normalise();
-
-	mRenderComponentLight->setDirection(direction);
-
-
-
-	//OLD STUFF
-
-	//Ogre::Camera * camera;
-	//Vector3 direction;
-
-	//if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
-	//{
-	//	mPhysicsComponentVolumeConvex->destroy();
-	//	mPhysicsComponentVolumeConvex->create();
-	//}
-
-	//ERASE NEXT TWO LINES WHEN FLASHLIGHT IS ATTACHED TO ONY
-	//mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-	//mRenderComponentPositional->setOrientation(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getOrientation());
-
-	//mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-	//if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
-	//{
-	//	camera=mCameraManager->getActiveCamera();
-
-	//	//mPhysicsComponentVolumeConvex->setOrientation(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getOrientation());
-	//	
-	//	Ogre::LogManager::getSingleton().logMessage("CAMERA YAW "+Ogre::StringConverter::toString(camera->getOrientation().getYaw().valueDegrees()));	
-	//	//if(camera->getOrientation().getYaw().valueDegrees()<0)
-	//	//{
-	//	//Ogre::Quaternion quat;
-	//	//quat.FromAxes(&camera->getDirection());
-	//	mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
-
-	//	mPhysicsComponentVolumeConvex->update(elapsedSeconds);
-			
-		//}
-		//else
-		//{
-		//	mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
-		//}
-
-		//direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
-		//direction.normalise();
-
-		//mRenderComponentLight->setDirection(direction);
-	//}
 }
 void GameObjectFlashLight::setAttackMode(TWeaponMode attackMode)
 {
@@ -230,10 +219,18 @@ void GameObjectFlashLight::setAttackMode(TWeaponMode attackMode)
 void GameObjectFlashLight::switchOn()
 {
 	mRenderComponentLight->getLight()->setVisible(true);
+	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+	{
+		mPhysicsComponentVolumeConvex->create();
+	}
 }
 void GameObjectFlashLight::switchOff()
 {
 	mRenderComponentLight->getLight()->setVisible(false);
+	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+	{
+		mPhysicsComponentVolumeConvex->destroy();
+	}
 }
 void GameObjectFlashLight::show()
 {
@@ -250,6 +247,38 @@ int GameObjectFlashLight::getSelectedColour() const
 void GameObjectFlashLight::setSelectedColour(int selectedColour)
 {
 	mSelectedColour=selectedColour;
+}
+AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
+{
+	return mAttackComponent;
+}
+void GameObjectFlashLight::setAttackComponent(AttackComponentPtr attackComponent)
+{
+	mAttackComponent=attackComponent;
+}
+std::string GameObjectFlashLight::translateWeaponMode(TWeaponMode weaponMode)
+{
+	switch (weaponMode)
+	{
+		case WEAPON_MODE_0:
+			return ATTACK_NAME_RED;
+		case WEAPON_MODE_1:
+			return ATTACK_NAME_BLUE;
+		case WEAPON_MODE_2:
+			return ATTACK_NAME_GREEN;
+		case WEAPON_MODE_SPECIAL:
+			return ATTACK_NAME_WHITE;
+		default:
+			return "";
+	}
+}
+void GameObjectFlashLight::beginAttack()
+{
+	switchOn();
+}
+std::string GameObjectFlashLight::getDefaultAttack()
+{
+	return ATTACK_NAME_RED;
 }
 
 /// Set logic component
@@ -294,6 +323,15 @@ void GameObjectFlashLight::updateLogic(double elapsedSeconds)
 	{
 		mLogicComponent->update(elapsedSeconds);
 	}
+}
+int GameObjectFlashLight::getColour()
+{
+	FlashlightAttackDataPtr attackData=boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+	if (attackData && attackData.get())
+	{
+		return attackData->rgb;
+	}
+	return 0;
 }
 
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()

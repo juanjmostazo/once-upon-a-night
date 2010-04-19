@@ -6,13 +6,24 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Logic/LogicComponent/AttackComponent.h"
+
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
 namespace OUAN
 {
+	//State names
 	const std::string TRIPOLLO_STATE_IDLE="TRIPOLLO_STATE_IDLE";
 	const std::string TRIPOLLO_STATE_PATROL="TRIPOLLO_STATE_PATROL";
 	const std::string TRIPOLLO_STATE_CHASE="TRIPOLLO_STATE_CHASE";
 	const std::string TRIPOLLO_STATE_FLEE="TRIPOLLO_STATE_FLEE";
+	const std::string TRIPOLLO_STATE_DEAD="TRIPOLLO_STATE_DEAD";
+
+	const std::string TRIPOLLO_ATTACK_PECK="peck";
+	const std::string TRIPOLLO_ATTACK_CLAW="claw";
+
+	//Animation names
+	const std::string TRIPOLLO_ANIM_IDLE_02="idle02";
+	const std::string TRIPOLLO_ANIM_WALK="walk";
 
 	/// Class modelling a particular enemy type
 	class GameObjectTripolloDreams : public GameObject, public boost::enable_shared_from_this<GameObjectTripolloDreams>
@@ -29,6 +40,7 @@ namespace OUAN
 		/// Trajectory information
 		TrajectoryComponentPtr mTrajectoryComponent;
 
+		AttackComponentPtr mAttackComponent;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -83,6 +95,10 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
 
+		AttackComponentPtr getAttackComponent() const;
+		void setAttackComponent(AttackComponentPtr attackComponent);
+		std::string getDefaultAttack();
+
 		/// Update object
 		virtual void update(double elapsedSeconds);
 		
@@ -133,6 +149,9 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+		// Attacks parameters
+		TAttackComponentParameters tAttackComponentParameters;
 
 		///Logic parameters
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;

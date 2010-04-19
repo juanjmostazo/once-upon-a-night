@@ -2,6 +2,7 @@
 #include "TrajectoryManager.h"
 #include "TrajectoryNode.h"
 #include "../Line3D/Line3D.h"
+#include "../../Utils/Utils.h"
 #include <stdlib.h>
 using namespace OUAN;
 
@@ -11,14 +12,14 @@ Trajectory::Trajectory()
 
 	mVisible=false;
 
-	double random;
+	//double random;
 
-	/* initialize random seed: */
-	srand ( time(NULL) );
-	/* generate random number: */
-	random = (rand() % 100)/100;
+	///* initialize random seed: */
+	//srand ( time(NULL) );
+	///* generate random number: */
+	//random = (rand() % 100)/100;
 
-	recalculateTime=1.5+random;
+	recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
 }
 
 Trajectory::~Trajectory()

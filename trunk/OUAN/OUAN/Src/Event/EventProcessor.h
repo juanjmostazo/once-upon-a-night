@@ -52,6 +52,9 @@ namespace OUAN
 		/// pillow special funtion) change event
 		void processWeaponModeChanged(WeaponModeChangedEventPtr evt);
 
+		/// Process the 'animation has ended' event
+		void processAnimationEnded(AnimationEndedEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

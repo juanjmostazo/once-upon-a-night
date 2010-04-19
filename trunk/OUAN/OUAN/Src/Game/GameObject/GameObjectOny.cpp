@@ -7,7 +7,8 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 {
-
+	mDreamsWeapon="pillow#1";
+	mNightmaresWeapon="flashlight#1";
 }
 
 GameObjectOny::~GameObjectOny()
@@ -96,12 +97,11 @@ void GameObjectOny::changeWorld(int world)
 			mPhysicsComponentCharacter->create();
 		}
 
-		mWeaponComponent->changeActiveWeapon(world);
-		mWeaponComponent->updateWeaponMode();
+		mWeaponComponent->changeActiveWeapon((world==DREAMS)?mDreamsWeapon:mNightmaresWeapon);
+		mWeaponComponent->updateAttackType();
 		mWeaponComponent->switchOff();
 	}
 }
-
 void GameObjectOny::setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny)
 {
 	mLogicComponentOny=pLogicComponentOny;
@@ -110,8 +110,7 @@ void GameObjectOny::setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny
 LogicComponentOnyPtr GameObjectOny::getLogicComponentOny()
 {
 	return mLogicComponentOny;
-}	
-
+}
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
 	if (mWeaponComponent.get())
@@ -128,15 +127,6 @@ bool GameObjectOny::hasPositionalComponent() const
 {
 	return true;
 }
-void GameObjectOny::useWeapon()
-{
-	mWeaponComponent->switchOn();
-}
-void GameObjectOny::stopUsingWeapon()
-{
-	mWeaponComponent->switchOff();
-}
-
 RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
@@ -152,9 +142,27 @@ WeaponComponentPtr GameObjectOny::getWeaponComponent() const
 	return mWeaponComponent;
 }
 
-void GameObjectOny::setWeaponMode(TWeaponMode weaponMode)
+void GameObjectOny::setAttack(TWeaponMode weaponMode)
 {
-	mWeaponComponent->setActiveWeaponMode(weaponMode);
+	if (mWeaponComponent.get() && mWeaponComponent->getActiveWeapon().get())
+	{
+		std::string attackType= mWeaponComponent->getActiveWeapon()->translateWeaponMode(weaponMode);
+		mWeaponComponent->setAttackType(attackType);
+	}
+}
+
+void GameObjectOny::setInitialWeaponComponent(int world)
+{
+	mWeaponComponent->changeActiveWeapon(world==DREAMS?mDreamsWeapon:mNightmaresWeapon);
+}
+
+void GameObjectOny::beginAttack()
+{
+	mWeaponComponent->switchOn();
+}
+void GameObjectOny::switchOff()
+{
+	mWeaponComponent->switchOff();
 }
 
 void GameObjectOny::processCollision(GameObjectPtr pGameObject)

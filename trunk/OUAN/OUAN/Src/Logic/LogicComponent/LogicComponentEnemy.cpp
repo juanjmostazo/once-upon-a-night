@@ -3,6 +3,7 @@
 #include "../../Application.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameObject/GameObjectFlashLight.h"
 
 using namespace OUAN;
 
@@ -20,8 +21,64 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 {
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 	{
-		decreaseHP();
+		GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(pGameObject);
+		int flashlightColour=flashlight->getColour();
+		std::string msg="Flashlight collision - Current colour: ";
+		msg.append(getColourName(flashlightColour));
+		msg.append("; This enemy will react to ");
+		msg.append(getMaskString());
+		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+		if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask && mHitRecoveryTime<0)
+		{
+			decreaseHP();
+			mHitRecoveryTime=1000;
+		}		
 	}
+}
+int LogicComponentEnemy::getMaskValueFromColour(int colour)
+{
+	int retVal=0;
+	switch(colour)
+	{
+	case RED:
+		retVal=COLOUR_FLAG_RED;
+		break;
+	case GREEN:
+		retVal=COLOUR_FLAG_GREEN;
+		break;
+	case BLUE:
+		retVal=COLOUR_FLAG_BLUE;
+		break;
+	default:break;		
+	}
+	return retVal;
+}
+std::string LogicComponentEnemy::getColourName(int colour)
+{
+	switch(colour)
+	{
+		case RED:
+			return "RED";
+		case GREEN:
+			return "GREEN";
+		case BLUE:
+			return "BLUE";
+		case WHITE:
+			return "WHITE";
+		default:
+			return "";
+	}
+}
+std::string LogicComponentEnemy::getMaskString()
+{
+	std::string strValue="WHITE";
+	if (mColourSensitivityMask&COLOUR_FLAG_RED)
+		strValue.append(", RED");
+	if (mColourSensitivityMask&COLOUR_FLAG_GREEN)
+		strValue.append(", GREEN");
+	if (mColourSensitivityMask&COLOUR_FLAG_BLUE)
+		strValue.append(", BLUE");
+	return strValue;
 }
 void LogicComponentEnemy::increaseHP(int amount)
 {
@@ -43,7 +100,11 @@ void LogicComponentEnemy::decreaseHP(int amount)
 				:getHealthPoints()-amount);
 			if (getHealthPoints()==0)
 			{
-				//TODO CHANGESTATE DEAD
+				//TODO: Create an "enemy died" event
+					std::string msg="Enemy ";
+					msg.append(getParent()->getName()).append(" died");
+					Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+				getParent()->disable();
 				//decreaseLives();				
 			}
 		}
@@ -52,7 +113,7 @@ void LogicComponentEnemy::decreaseHP(int amount)
 
 int LogicComponentEnemy::getNumLives() const
 {
-	return 0;
+	return 1;
 }
 int LogicComponentEnemy::getHealthPoints() const
 {
@@ -81,35 +142,6 @@ void LogicComponentEnemy::setLineOfSight(int lineOfSight)
 	mLineOfSight=lineOfSight;
 }
 
-int LogicComponentEnemy::getAttackRange() const
-{
-	return mAttackRange;
-}
-void LogicComponentEnemy::setAttackRange(int attackRange)
-{
-	mAttackRange=attackRange;
-}
-
-int LogicComponentEnemy::getAttackDamage() const
-{
-	return mAttackDamage;
-}
-
-void LogicComponentEnemy::setAttackDamage(int attackDamage)
-{
-	mAttackDamage=attackDamage;
-}
-
-int LogicComponentEnemy::getAttackDelay() const
-{
-	return mAttackDelay;
-}
-
-void LogicComponentEnemy::setAttackDelay(int attackDelay)
-{
-	mAttackDelay=attackDelay;
-}
-
 int LogicComponentEnemy::getColourSensitivityMask() const
 {
 	return mColourSensitivityMask;
@@ -118,6 +150,14 @@ int LogicComponentEnemy::getColourSensitivityMask() const
 void LogicComponentEnemy::setColourSensitivityMask(int colourSensitivityMask)
 {
 	mColourSensitivityMask=colourSensitivityMask;
+}
+void LogicComponentEnemy::update(double elapsedTime)
+{
+	LogicComponent::update(elapsedTime);
+	if(mHitRecoveryTime>=0)
+	{
+		mHitRecoveryTime-=elapsedTime*1000;
+	}
 }
 
 TLogicComponentEnemyParameters::TLogicComponentEnemyParameters() : TLogicComponentParameters()
