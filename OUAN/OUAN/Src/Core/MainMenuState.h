@@ -7,7 +7,8 @@ namespace OUAN
 {
 	typedef std::vector<CEGUI::Event::Connection> TGUIConnections;
 
-	const std::string MUSIC_TRACK="dreams00.mp3";
+	const std::string MAINMENU_MUSIC_TRACK="menu00.mp3";
+	
 	///State corresponding to the game's main menu
 	class MainMenuState: public GameState, public boost::enable_shared_from_this<MainMenuState>{
 	private:

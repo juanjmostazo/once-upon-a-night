@@ -9,8 +9,17 @@ namespace OUAN
 	const std::string OVERLAY_DEBUG_PANEL = "Core/DebugOverlay";
 	const std::string SAVED_RTT_FILENAME="../../Resources/Graphics/Textures/savedRTT.png";
 
+	const std::string DREAMS00_MUSIC_TRACK="dreams00.mp3";
+	const std::string NIGHTMARES00_MUSIC_TRACK="nightmares00.mp3";
+
 	class HUDInGame;
 	typedef boost::shared_ptr<HUDInGame> HUDInGamePtr;
+
+	typedef struct
+	{
+		std::string id;
+		int channelId;
+	} TMusicTrackInfo;
 
 	///State corresponding to the game's main menu
 	class GameRunningState: public GameState, public boost::enable_shared_from_this<GameRunningState>
@@ -29,6 +38,15 @@ namespace OUAN
 
 		TWeaponMode convertRouletteValue(TRouletteState rouletteValue);
 		TWeaponMode getCurrentWeaponMode();
+
+		void loadMusic();
+		void changeMusic(int world);
+		void clearMusic();
+		void processChangeWorld(ChangeWorldEventPtr evt);
+		void pauseMusic();
+		void unpauseMusic();
+
+		std::map<int,TMusicTrackInfo> mMusicChannels;
 
 	public:
 		/// init main menu's resources

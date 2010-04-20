@@ -726,6 +726,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentPortal.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\WeaponComponent.cpp"
 						>
 					</File>
@@ -1366,6 +1370,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentOny.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentPortal.h"
 						>
 					</File>
 					<File
