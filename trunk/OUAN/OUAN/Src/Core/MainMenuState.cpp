@@ -36,7 +36,7 @@ void MainMenuState::init(ApplicationPtr app)
 
 	TSoundData desc;
 	desc.mId="MUSIC";
-	desc.mFileName=MUSIC_TRACK;
+	desc.mFileName=MAINMENU_MUSIC_TRACK;
 	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
 	desc.mHardware=true;
 	desc.m3D=false;

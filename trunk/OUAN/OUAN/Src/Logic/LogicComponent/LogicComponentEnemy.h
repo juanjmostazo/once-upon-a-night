@@ -4,9 +4,9 @@
 #include "LogicComponent.h"
 namespace OUAN
 {
-	const int COLOUR_FLAG_RED=1;
-	const int COLOUR_FLAG_GREEN=2;
-	const int COLOUR_FLAG_BLUE=4;
+	const int COLOUR_FLAG_RED=0x1;
+	const int COLOUR_FLAG_GREEN=0x2;
+	const int COLOUR_FLAG_BLUE=0x4;
 	class LogicComponentEnemy: public LogicComponent
 	{
 	public:

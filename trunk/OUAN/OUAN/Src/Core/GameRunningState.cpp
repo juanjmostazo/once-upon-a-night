@@ -19,6 +19,7 @@
 #include "../Game/GameObject/GameObjectFlashLight.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
+#include "../Audio/AudioSubsystem.h"
 
 #include <fstream>
 
@@ -61,6 +62,20 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->getGameObjectOny()->setAttack(convertRouletteValue(mHUD->getCurrentState()));
 
 	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
+
+	mMusicChannels.clear();
+	loadMusic();
+	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getCurrentWorld()].id,
+		mMusicChannels[mApp->getGameWorldManager()->getCurrentWorld()].channelId,
+		true);
+	
+	if (mApp->getGameWorldManager()->getEventManager().get())
+	{
+		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
+		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+	}
 }
 
 /// Clean up main menu's resources
@@ -74,6 +89,14 @@ void GameRunningState::cleanUp()
 	mApp->getGUISubsystem()->cleanUp();	
 	mApp->getGUISubsystem()->init(mApp);
 	mApp->mKeyBuffer=-1;
+
+	if (mApp->getGameWorldManager()->getEventManager().get())
+	{
+		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
+		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+	}
 	
 	//Destroy HUD
 	mHUD->destroy();
@@ -86,11 +109,13 @@ void GameRunningState::pause()
 	//particle systems and other automatically animated
 	//elements
 	mApp->getRenderSubsystem()->pauseRendering();
+	pauseMusic();
 }
 /// resume state
 void GameRunningState::resume()
 {
 	mApp->getRenderSubsystem()->resumeRendering();
+	unpauseMusic();
 }
 void GameRunningState::handleEvents()
 {
@@ -407,4 +432,52 @@ TWeaponMode GameRunningState::getCurrentWeaponMode()
 	if (mHUD.get())
 		return convertRouletteValue(mHUD->getCurrentState());
 	return WEAPON_MODE_INVALID;
+}
+void GameRunningState::loadMusic()
+{
+	TSoundData desc;
+	desc.mId="DREAMS00";
+	desc.mFileName=DREAMS00_MUSIC_TRACK;
+	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
+	desc.mHardware=true;
+	desc.m3D=false;
+	desc.mStream=true;
+	desc.mLoop=true;
+	mApp->getAudioSubsystem()->addSound(desc);
+	mMusicChannels[DREAMS].id=desc.mId;
+	
+	desc.mId="NIGHTMARES00";
+	desc.mFileName=NIGHTMARES00_MUSIC_TRACK;
+	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
+	desc.mHardware=true;
+	desc.m3D=false;
+	desc.mStream=true;
+	desc.mLoop=true;
+	mApp->getAudioSubsystem()->addSound(desc);
+	mMusicChannels[NIGHTMARES].id=desc.mId;
+}
+void GameRunningState::changeMusic(int world)
+{
+	mApp->getAudioSubsystem()->stopSound(mMusicChannels[world].channelId);
+	mApp->getAudioSubsystem()->playMusic(mMusicChannels[world].id,mMusicChannels[world].channelId,true);
+}
+void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	changeMusic(evt->getNewWorld());
+}
+void GameRunningState::clearMusic()
+{
+	mApp->getAudioSubsystem()->stopSound(mMusicChannels[DREAMS].channelId);
+	mApp->getAudioSubsystem()->removeSound(mMusicChannels[DREAMS].id);
+	mApp->getAudioSubsystem()->stopSound(mMusicChannels[NIGHTMARES].channelId);
+	mApp->getAudioSubsystem()->removeSound(mMusicChannels[NIGHTMARES].id);
+	mMusicChannels.clear();
+}
+void GameRunningState::pauseMusic()
+{
+	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,true);
+}
+void GameRunningState::unpauseMusic()
+{
+	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,false);
 }
