@@ -96,7 +96,7 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	//init Render Component
 	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters,flags));
 
-	//pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
+	pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
 
 	return pRenderComponentEntity;
 }
