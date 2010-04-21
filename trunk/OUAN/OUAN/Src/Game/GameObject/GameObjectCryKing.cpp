@@ -60,7 +60,7 @@ void GameObjectCryKing::setPhysicsComponentCharacter(PhysicsComponentCharacterPt
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectCryKing::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectCryKing::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -132,6 +132,16 @@ RenderComponentPositionalPtr GameObjectCryKing::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectCryKing::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectCryKing::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 /// Set logic component
 void GameObjectCryKing::setLogicComponent(LogicComponentPtr logicComponent)

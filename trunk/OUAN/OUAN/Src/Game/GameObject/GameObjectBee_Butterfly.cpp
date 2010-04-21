@@ -70,7 +70,7 @@ void GameObjectBee_Butterfly::setPhysicsComponentCharacterDreams(PhysicsComponen
 	mPhysicsComponentCharacterDreams=pPhysicsComponentCharacterDreams;
 }
 
-PhysicsComponentCharacterPtr GameObjectBee_Butterfly::getPhysicsComponentCharacterDreams()
+PhysicsComponentCharacterPtr GameObjectBee_Butterfly::getPhysicsComponentCharacterDreams() const
 {
 	return mPhysicsComponentCharacterDreams;
 }
@@ -80,7 +80,7 @@ void GameObjectBee_Butterfly::setPhysicsComponentCharacterNightmares(PhysicsComp
 	mPhysicsComponentCharacterNightmares=pPhysicsComponentCharacterNightmares;
 }
 
-PhysicsComponentCharacterPtr GameObjectBee_Butterfly::getPhysicsComponentCharacterNightmares()
+PhysicsComponentCharacterPtr GameObjectBee_Butterfly::getPhysicsComponentCharacterNightmares() const
 {
 	return mPhysicsComponentCharacterNightmares;
 }
@@ -113,6 +113,18 @@ void GameObjectBee_Butterfly::processCollision(GameObjectPtr pGameObject)
 		mLogicComponentEnemy->processCollision(pGameObject);
 	}
 }
+
+bool GameObjectBee_Butterfly::hasPhysicsComponent() const
+{
+	return false;
+}
+PhysicsComponentPtr GameObjectBee_Butterfly::getPhysicsComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)
+		?getPhysicsComponentCharacterDreams()
+		:getPhysicsComponentCharacterNightmares();
+}
+
 
 void GameObjectBee_Butterfly::processEnterTrigger(GameObjectPtr pGameObject)
 {

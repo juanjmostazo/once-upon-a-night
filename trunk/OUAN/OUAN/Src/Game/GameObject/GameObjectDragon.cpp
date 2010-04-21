@@ -71,8 +71,8 @@ void GameObjectDragon::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectDragon::getPhysicsComponentCharacter()
-{
+PhysicsComponentCharacterPtr GameObjectDragon::getPhysicsComponentCharacter() const
+{ 
 	return mPhysicsComponentCharacter;
 }
 
@@ -150,6 +150,16 @@ RenderComponentPositionalPtr GameObjectDragon::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectDragon::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectDragon::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 void GameObjectDragon::processCollision(GameObjectPtr pGameObject)
 {

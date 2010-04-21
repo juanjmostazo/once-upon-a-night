@@ -171,6 +171,10 @@ namespace OUAN
 
 
 		//Physics components
+		class PhysicsComponent;
+		class TPhysicsComponentParameters;
+		typedef boost::shared_ptr<PhysicsComponent> PhysicsComponentPtr;
+
 		class PhysicsComponentCharacter;
 		class TPhysicsComponentCharacterParameters;
 		typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;

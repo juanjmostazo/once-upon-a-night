@@ -70,7 +70,7 @@ void GameObjectTentetieso::setPhysicsComponentCharacter(PhysicsComponentCharacte
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectTentetieso::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectTentetieso::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -142,6 +142,16 @@ RenderComponentPositionalPtr GameObjectTentetieso::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTentetieso::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTentetieso::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 void GameObjectTentetieso::processCollision(GameObjectPtr pGameObject)
 {

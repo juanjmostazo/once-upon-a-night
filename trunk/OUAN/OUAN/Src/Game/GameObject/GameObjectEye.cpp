@@ -60,7 +60,7 @@ void GameObjectEye::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pP
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectEye::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectEye::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -133,6 +133,17 @@ RenderComponentPositionalPtr GameObjectEye::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectEye::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectEye::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
+
 //-------------------------------------------------------------------------------------------
 
 

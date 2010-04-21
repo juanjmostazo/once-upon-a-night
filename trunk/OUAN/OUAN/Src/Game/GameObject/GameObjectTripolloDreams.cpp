@@ -74,7 +74,7 @@ void GameObjectTripolloDreams::setPhysicsComponentCharacter(PhysicsComponentChar
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -184,7 +184,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 			//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
 			mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
-			mPhysicsComponentCharacter->update(elapsedSeconds);
 		}
 	}
 
@@ -310,6 +309,16 @@ RenderComponentPositionalPtr GameObjectTripolloDreams::getPositionalComponent() 
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTripolloDreams::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTripolloDreams::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 void GameObjectTripolloDreams::processCollision(GameObjectPtr pGameObject)
 {

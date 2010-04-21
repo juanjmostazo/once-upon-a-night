@@ -62,7 +62,7 @@ void GameObjectStoryBook::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBox
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectStoryBook::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectStoryBook::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -191,6 +191,16 @@ RenderComponentPositionalPtr GameObjectStoryBook::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectStoryBook::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectStoryBook::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
+}
+
 
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {

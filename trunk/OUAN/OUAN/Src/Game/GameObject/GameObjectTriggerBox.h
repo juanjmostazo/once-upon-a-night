@@ -62,7 +62,7 @@ namespace OUAN
 		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
 
 		/// Get physics component
-		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox();
+		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 
 		/// Show or hide the component
 		void changeVisibility();
@@ -76,6 +76,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 
 		/// Process collision event

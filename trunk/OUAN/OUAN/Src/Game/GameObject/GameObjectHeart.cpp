@@ -49,7 +49,7 @@ void GameObjectHeart::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr 
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -141,6 +141,15 @@ bool GameObjectHeart::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectHeart::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectHeart::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectHeart::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
 }
 
 void GameObjectHeart::processCollision(GameObjectPtr pGameObject)

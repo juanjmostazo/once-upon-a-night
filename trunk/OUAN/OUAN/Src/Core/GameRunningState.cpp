@@ -76,6 +76,8 @@ void GameRunningState::init(ApplicationPtr app)
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
 	}
+
+
 }
 
 /// Clean up main menu's resources
@@ -185,7 +187,7 @@ void GameRunningState::handleEvents()
 
 	if (mApp->isPressedJump())
 	{
-		nextMovement+=Vector3::UNIT_Y;	
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->jump();
 	}	
 
 	if (mApp->isPressedWalk())

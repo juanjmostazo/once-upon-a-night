@@ -80,7 +80,7 @@ void GameObjectFlashLight::setPhysicsComponentVolumeConvex(PhysicsComponentVolum
 	mPhysicsComponentVolumeConvex=pPhysicsComponentVolumeConvex;
 }
 
-PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeConvex()
+PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeConvex() const
 {
 	return mPhysicsComponentVolumeConvex;
 }
@@ -140,6 +140,15 @@ bool GameObjectFlashLight::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectFlashLight::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectFlashLight::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectFlashLight::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeConvex();
 }
 
 void GameObjectFlashLight::update(double elapsedSeconds)

@@ -116,6 +116,15 @@ RenderComponentPositionalPtr GameObject::getPositionalComponent() const
 	return RenderComponentPositionalPtr();
 }
 
+bool GameObject::hasPhysicsComponent() const
+{
+	return false;
+}
+PhysicsComponentPtr GameObject::getPhysicsComponent() const
+{
+	return PhysicsComponentPtr();
+}
+
 double GameObject::computeDistanceTo(GameObjectPtr other) const
 {
 	if (hasPositionalComponent() && other->hasPositionalComponent())

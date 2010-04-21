@@ -51,7 +51,7 @@ void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pP
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -59,8 +59,6 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter()
 void GameObjectOny::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-
-	mPhysicsComponentCharacter->update(elapsedSeconds);
 
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
@@ -130,6 +128,15 @@ bool GameObjectOny::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectOny::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectOny::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
 }
 
 void GameObjectOny::setWeaponComponent(WeaponComponentPtr weaponComponent)

@@ -65,7 +65,7 @@ namespace OUAN
 		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
 
 		/// Get physics component
-		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule();
+		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -76,6 +76,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 
 		/// Process collision event

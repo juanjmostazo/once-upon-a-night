@@ -59,7 +59,7 @@ void GameObjectPillow::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCa
 	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectPillow::getPhysicsComponentSimpleCapsule()
+PhysicsComponentSimpleCapsulePtr GameObjectPillow::getPhysicsComponentSimpleCapsule() const
 {
 	return mPhysicsComponentSimpleCapsule;
 }
@@ -135,6 +135,15 @@ bool GameObjectPillow::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectPillow::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectPillow::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectPillow::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleCapsule();
 }
 
 void GameObjectPillow::processCollision(GameObjectPtr pGameObject)

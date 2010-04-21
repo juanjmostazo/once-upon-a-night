@@ -49,7 +49,7 @@ void GameObjectClockPiece::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBo
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectClockPiece::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectClockPiece::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -131,6 +131,16 @@ RenderComponentPositionalPtr GameObjectClockPiece::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectClockPiece::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectClockPiece::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
+}
+
 
 /// Set logic component
 void GameObjectClockPiece::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)

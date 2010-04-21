@@ -70,7 +70,7 @@ void GameObjectSnakeCreeper::setPhysicsComponentCharacter(PhysicsComponentCharac
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectSnakeCreeper::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectSnakeCreeper::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -141,6 +141,15 @@ bool GameObjectSnakeCreeper::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectSnakeCreeper::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectSnakeCreeper::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectSnakeCreeper::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
 }
 
 void GameObjectSnakeCreeper::processCollision(GameObjectPtr pGameObject)

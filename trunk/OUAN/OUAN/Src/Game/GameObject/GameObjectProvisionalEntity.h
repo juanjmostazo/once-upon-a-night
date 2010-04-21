@@ -67,7 +67,7 @@ namespace OUAN
 		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox();
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to

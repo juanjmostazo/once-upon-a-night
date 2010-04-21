@@ -70,7 +70,7 @@ void GameObjectTripollito::setPhysicsComponentCharacter(PhysicsComponentCharacte
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectTripollito::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectTripollito::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -142,6 +142,16 @@ RenderComponentPositionalPtr GameObjectTripollito::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTripollito::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTripollito::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 void GameObjectTripollito::processCollision(GameObjectPtr pGameObject)
 {

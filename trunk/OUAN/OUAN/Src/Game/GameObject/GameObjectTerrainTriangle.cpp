@@ -61,7 +61,7 @@ void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsCompon
 	mPhysicsComponentComplexTriangle->create();
 }
 
-PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponentComplexTriangle()
+PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponentComplexTriangle() const
 {
 	return mPhysicsComponentComplexTriangle;
 }
@@ -98,6 +98,16 @@ RenderComponentPositionalPtr GameObjectTerrainTriangle::getPositionalComponent()
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTerrainTriangle::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTerrainTriangle::getPhysicsComponent() const
+{
+	return getPhysicsComponentComplexTriangle();
+}
+
 
 /// Set logic component
 void GameObjectTerrainTriangle::setLogicComponent(LogicComponentPtr logicComponent)

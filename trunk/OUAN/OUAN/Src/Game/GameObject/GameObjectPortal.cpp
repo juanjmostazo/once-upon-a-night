@@ -61,7 +61,7 @@ void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox()
+PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox() const
 {
 	return mPhysicsComponentSimpleBox;
 }
@@ -128,6 +128,15 @@ bool GameObjectPortal::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectPortal::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectPortal::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectPortal::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleBox();
 }
 
 

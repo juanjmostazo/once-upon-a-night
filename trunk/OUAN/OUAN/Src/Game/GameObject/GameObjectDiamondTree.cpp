@@ -59,7 +59,7 @@ void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleB
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox()
+PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox() const
 {
 	return mPhysicsComponentSimpleBox;
 }
@@ -141,6 +141,16 @@ RenderComponentPositionalPtr GameObjectDiamondTree::getPositionalComponent() con
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectDiamondTree::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectDiamondTree::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleBox();
+}
+
 
 /// Set logic component
 void GameObjectDiamondTree::setLogicComponent(LogicComponentPtr logicComponent)

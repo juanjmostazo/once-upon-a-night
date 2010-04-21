@@ -38,6 +38,9 @@ namespace OUAN
 		// Update physics subsystem elements
 		virtual void update(double elapsedSeconds);
 
+		//stabilize objects,  needs to be called at load level and change world
+		void stabilize();
+
 		//Getters
 		virtual NxOgre::World* getNxOgreWorld();
 		virtual NxOgre::Scene* getNxOgreScene();

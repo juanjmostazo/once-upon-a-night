@@ -102,7 +102,7 @@ namespace OUAN
 		void setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex);
 
 		/// Get physics component
-		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex();
+		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -110,6 +110,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 		/// Update object
 		void update(double elapsedSeconds);

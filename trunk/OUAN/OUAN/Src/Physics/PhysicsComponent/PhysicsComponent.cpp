@@ -24,7 +24,7 @@ void PhysicsComponent::destroy()
 	mInUse=false;
 }
 
-void PhysicsComponent::update(long elapsedTime)
+void PhysicsComponent::update(double elapsedSeconds)
 {
 
 }

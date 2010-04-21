@@ -29,14 +29,23 @@ namespace OUAN
 		void setNextMovement(NxOgre::Vec3 nextMovement);
 		NxOgre::Vec3 getNextMovement();
 
-		void setLastMovement(NxOgre::Vec3 lastMovement);
 		NxOgre::Vec3 getLastMovement();
 
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
+		void jump();
+
+		void applyDash(double elapsedSeconds);
+
+		void applyGravity(double elapsedSeconds);
+
 		//void setQueryFlags(QueryFlags queryFlags);
 
 	protected:
+
+		double getYawFromMovement(NxOgre::Vec3 movement);
+
+		void setLastMovement(NxOgre::Vec3 lastMovement);
 	
 		//Uses mNextMovement to set Character's display yaw
 		void setCharactersDisplayYaw();
@@ -58,7 +67,6 @@ namespace OUAN
 		bool mOnSurface;
 
 		// Physics times
-		double mJumpTime;
 		double mFallTime;
 
 		/// Physics components
@@ -66,6 +74,12 @@ namespace OUAN
 		double mFallSpeed;
 		NxOgre::Vec3 mSlideDisplacement;
 		double mNormalAngle;
+
+		double mDash;
+		double mDashMax;
+		Vector3 mDashDirection;
+		double mLastYaw;
+		double mDashFactor;
 
 		void initJump();
 		void initFall();

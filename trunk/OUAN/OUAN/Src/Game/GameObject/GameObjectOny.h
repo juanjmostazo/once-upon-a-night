@@ -94,7 +94,7 @@ namespace OUAN
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
 
 		/// set weapon component
 		void setWeaponComponent(WeaponComponentPtr weaponComponent);
@@ -135,6 +135,9 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
 
 
 		/// Process collision event

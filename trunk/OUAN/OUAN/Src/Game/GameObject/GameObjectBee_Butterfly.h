@@ -72,8 +72,8 @@ namespace OUAN
 		void setPhysicsComponentCharacterNightmares(PhysicsComponentCharacterPtr pPhysicsComponentCharacterNightmares);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacterDreams();
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacterNightmares();
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacterDreams() const;
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacterNightmares() const;
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -84,6 +84,8 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
 
 		/// Process collision event
 		/// @param gameObject which has collision with

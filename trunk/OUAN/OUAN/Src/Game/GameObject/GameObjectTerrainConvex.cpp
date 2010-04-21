@@ -60,7 +60,7 @@ void GameObjectTerrainConvex::setPhysicsComponentComplexConvex(PhysicsComponentC
 	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
 }
 
-PhysicsComponentComplexConvexPtr GameObjectTerrainConvex::getPhysicsComponentComplexConvex()
+PhysicsComponentComplexConvexPtr GameObjectTerrainConvex::getPhysicsComponentComplexConvex() const
 {
 	return mPhysicsComponentComplexConvex;
 }
@@ -142,6 +142,16 @@ RenderComponentPositionalPtr GameObjectTerrainConvex::getPositionalComponent() c
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTerrainConvex::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTerrainConvex::getPhysicsComponent() const
+{
+	return getPhysicsComponentComplexConvex();
+}
+
 
 /// Set logic component
 void GameObjectTerrainConvex::setLogicComponent(LogicComponentPtr logicComponent)
