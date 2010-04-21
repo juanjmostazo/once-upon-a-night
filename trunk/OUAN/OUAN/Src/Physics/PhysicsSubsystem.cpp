@@ -263,6 +263,12 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("SLIDING_FACTOR_FALL", value); 
 		mSlidingFactorFall = atof(value.c_str());
 
+		config.getOption("DASH_FACTOR", value); 
+		mDashFactor = atof(value.c_str());
+
+		config.getOption("ACCELERATION_INCREMENT", value); 
+		mAccelerationIncrement = atof(value.c_str());
+
 		success = true;
 	} 
 	else 

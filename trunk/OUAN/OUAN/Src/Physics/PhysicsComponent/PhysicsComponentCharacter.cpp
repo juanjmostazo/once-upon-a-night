@@ -22,6 +22,13 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 	mDash = 0;
 	mDashMax = 10;
 	mLastYaw=0;
+	mDashDirection=Ogre::Vector3::ZERO;
+
+	mMaxAccelerationFactor=1.3;
+	mMinAccelerationFactor=0.5;
+	mAccelerationFactor=mMinAccelerationFactor;
+
+	mMaxSameDirectionAngle=60;
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
@@ -92,9 +99,21 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	// Applying global factor to displacement and calculate dash
 	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
+
+		calculateAngleDifference();
+		if(mOnSurface)
+		{
+			calculateAcceleration(elapsedSeconds);
+		}
+		//applyDash(elapsedSeconds);
+
+		mNextMovement.x *= mAccelerationFactor;
+		mNextMovement.z *= mAccelerationFactor;
+
+
 		mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 
-		//applyDash(elapsedSeconds);
+		Ogre::LogManager::getSingleton().logMessage("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
 	}
 
 	if (isInUse())
@@ -132,29 +151,77 @@ void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 	mNextMovement.y += mFallSpeed * elapsedSeconds;
 }
 
-void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
+Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 {
-		Vector3 mDirection;
-		double angleDifference;
+	Vector3 dashMovement = mDash*mDashDirection*elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
 
-		if(mNextMovement!=Vector3::ZERO)
+	mDash-=mDash*elapsedSeconds;
+	if(mDash<0)
+	{
+		mDash=0;
+	}
+
+	return dashMovement;
+}
+
+bool PhysicsComponentCharacter::isMoving()
+{
+	return (Ogre::Math::Abs(mNextMovement.x)>0.1 || Ogre::Math::Abs(mNextMovement.z)>0.1);
+}	
+
+void PhysicsComponentCharacter::calculateAngleDifference()
+{
+	double mCurrentYaw;
+	if(isMoving())
+	{
+		mCurrentYaw=getYawFromMovement(mNextMovement);
+
+		mAngleDifference=Ogre::Math::Abs(mCurrentYaw-mLastYaw);
+
+		mLastYaw=mCurrentYaw;
+	}
+}
+
+void PhysicsComponentCharacter::calculateAcceleration(double elapsedSeconds)
+{
+	Vector3 mDirection;
+
+	if(isMoving())
+	{
+		if(mAngleDifference<mMaxSameDirectionAngle)
 		{
-
 			mDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
 			mDirection.normalise();
 
-			double mCurrentYaw=getYawFromMovement(mNextMovement);
+			mAccelerationFactor+=mDirection.length()*elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mAccelerationIncrement;
 
-			angleDifference=Ogre::Math::Abs(mCurrentYaw-mLastYaw);
-			if(angleDifference<0.1)
+			if(mAccelerationFactor>mMaxAccelerationFactor)
 			{
-				angleDifference=0;
+				mAccelerationFactor=mMaxAccelerationFactor;
 			}
+		}
+	}
+	else
+	{
+		mAccelerationFactor=mMinAccelerationFactor;
+	}
+}
 
-			if(angleDifference<60)
+void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
+{
+		Vector3 mDirection;
+
+		//if(mNextMovement!=Vector3::ZERO)
+		//{
+		if(isMoving())
+		{
+			mDashDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
+			mDashDirection.normalise();
+
+			if(mAngleDifference<mMaxSameDirectionAngle)
 			{
 				//same direction
-				mDash++;
+				mDash+=Vector3(mNextMovement.x,0,mNextMovement.z).length();
 				if(mDash>mDashMax)
 				{
 					mDash=mDashMax;
@@ -164,38 +231,25 @@ void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
 			else if(mDash>0)
 			{
 				//different direction
-				mNextMovement+=mDashDirection*mDashFactor;
-
-				mDash--;
-				if(mDash<0)
-				{
-					mDash=0;
-				}
+				mNextMovement+=getDashMovement(elapsedSeconds);
 
 			}
 
 			mDashDirection=mDirection;
-			mLastYaw=mCurrentYaw;
 		}
 		else if(mDash>0)
 		{
 			//different direction
-			mNextMovement+=mDashDirection*mDashFactor;
-
-			mDash--;
-			if(mDash<0)
-			{
-				mDash=0;
-			}
-
+			mNextMovement+=getDashMovement(elapsedSeconds);
 		}
 
+		//Ogre::LogManager::getSingleton().logMessage("mDashDirection "+Ogre::StringConverter::toString(mDashDirection));
 }
 
 
 void PhysicsComponentCharacter::jump()
 {
-	if(!mJumping)
+	if(!mJumping && !mSliding && mOnSurface)
 	{
 		initJump();
 	}

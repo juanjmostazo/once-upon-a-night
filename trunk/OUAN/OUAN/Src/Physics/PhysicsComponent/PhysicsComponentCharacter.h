@@ -36,6 +36,11 @@ namespace OUAN
 		void jump();
 
 		void applyDash(double elapsedSeconds);
+		Vector3 getDashMovement(double elapsedSeconds);
+		void calculateAngleDifference();
+		void calculateAcceleration(double elapsedSeconds);
+		bool isMoving();
+
 
 		void applyGravity(double elapsedSeconds);
 
@@ -75,11 +80,20 @@ namespace OUAN
 		NxOgre::Vec3 mSlideDisplacement;
 		double mNormalAngle;
 
+		//angle difference
+		double mLastYaw;
+		double mAngleDifference;
+		double mMaxSameDirectionAngle;
+
+		//dash
 		double mDash;
 		double mDashMax;
 		Vector3 mDashDirection;
-		double mLastYaw;
-		double mDashFactor;
+
+		//acceleration
+		double mAccelerationFactor;
+		double mMaxAccelerationFactor;
+		double mMinAccelerationFactor;
 
 		void initJump();
 		void initFall();
