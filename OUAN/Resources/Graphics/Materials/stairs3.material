@@ -1,5 +1,5 @@
 
-material stairs_texture2
+material stairs_d3
 {
 	technique
 	{
@@ -9,7 +9,7 @@ material stairs_texture2
 
 			texture_unit
 			{
-				texture stairs_texture.dds
+				texture stairs_d.dds
 			}
 		}
 

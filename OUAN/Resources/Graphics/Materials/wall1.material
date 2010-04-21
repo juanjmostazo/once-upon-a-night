@@ -1,12 +1,16 @@
 
-material terrain1
+material wall_d
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.336 1
+
+			texture_unit
+			{
+				texture wall_d.dds
+			}
 		}
 
 	}
