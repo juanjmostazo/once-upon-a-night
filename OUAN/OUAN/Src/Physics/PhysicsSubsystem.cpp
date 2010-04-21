@@ -171,7 +171,30 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
+
+	if (mApp)
+	{
+		TGameObjectContainer container = mApp->getGameWorldManager()->getAllGameObjects();
+		
+		if (!container.empty())
+		{
+			for (TGameObjectContainer::iterator it=container.begin();it!=container.end();++it)
+			{
+				if(it->second->hasPhysicsComponent())
+				{
+					it->second->getPhysicsComponent()->update(elapsedSeconds);
+				}
+			}
+		}
+	}
+
 	mNxOgreTimeController->advance(elapsedSeconds);
+
+}
+
+void PhysicsSubsystem::stabilize()
+{
+	update(1000.0f);
 }
 
 bool PhysicsSubsystem::loadConfig()

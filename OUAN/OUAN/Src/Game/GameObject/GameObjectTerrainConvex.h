@@ -65,7 +65,7 @@ namespace OUAN
 		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 
 		/// Get physics component
-		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex();
+		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -76,6 +76,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

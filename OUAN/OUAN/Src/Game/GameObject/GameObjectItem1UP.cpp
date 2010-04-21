@@ -61,7 +61,7 @@ void GameObjectItem1UP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPt
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectItem1UP::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectItem1UP::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -142,6 +142,15 @@ bool GameObjectItem1UP::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectItem1UP::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectItem1UP::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectItem1UP::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
 }
 
 void GameObjectItem1UP::processCollision(GameObjectPtr pGameObject)

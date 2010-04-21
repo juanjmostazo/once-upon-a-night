@@ -366,10 +366,6 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 
-	//Set Active Camera
-	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
-
 	if (getGameObjectOny().get())
 	{
 		getGameObjectOny()->setInitialWeaponComponent(world);
@@ -377,6 +373,12 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 
 	mGameOver=false;
 	mGameBeaten=false;
+
+	mApp->getPhysicsSubsystem()->stabilize();
+
+	//Set Active Camera
+	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
+	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
 	level=levelFileName;
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");

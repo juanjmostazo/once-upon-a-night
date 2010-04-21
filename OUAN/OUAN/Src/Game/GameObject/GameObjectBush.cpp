@@ -59,7 +59,7 @@ void GameObjectBush::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr p
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectBush::getPhysicsComponentSimpleBox()
+PhysicsComponentSimpleBoxPtr GameObjectBush::getPhysicsComponentSimpleBox() const
 {
 	return mPhysicsComponentSimpleBox;
 }
@@ -141,6 +141,16 @@ RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectBush::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectBush::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleBox();
+}
+
 
 /// Set logic component
 void GameObjectBush::setLogicComponent(LogicComponentPtr logicComponent)

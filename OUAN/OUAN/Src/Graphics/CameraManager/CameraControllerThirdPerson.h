@@ -66,8 +66,6 @@ namespace OUAN
 		double rotXDistanceAttenuationNegative;
 		double rotXDistanceAttenuationPositive;
 
-		void returningToInitialPosition();
-
 		double calculateNextMovementTo(Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,Ogre::Vector3 & newNextMovePosition,double elapsedTime);
 		
 

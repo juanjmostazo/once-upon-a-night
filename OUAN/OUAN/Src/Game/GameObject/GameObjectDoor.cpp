@@ -59,7 +59,7 @@ void GameObjectDoor::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr p
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectDoor::getPhysicsComponentSimpleBox()
+PhysicsComponentSimpleBoxPtr GameObjectDoor::getPhysicsComponentSimpleBox() const
 {
 	return mPhysicsComponentSimpleBox;
 }
@@ -141,6 +141,16 @@ RenderComponentPositionalPtr GameObjectDoor::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectDoor::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectDoor::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleBox();
+}
+
 
 /// Set logic component
 void GameObjectDoor::setLogicComponent(LogicComponentPtr logicComponent)

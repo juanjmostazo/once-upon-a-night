@@ -50,7 +50,7 @@ void GameObjectScaredPlant::setPhysicsComponentCharacter(PhysicsComponentCharact
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectScaredPlant::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectScaredPlant::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -123,6 +123,15 @@ bool GameObjectScaredPlant::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectScaredPlant::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectScaredPlant::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectScaredPlant::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
 }
 
 /// Set logic component

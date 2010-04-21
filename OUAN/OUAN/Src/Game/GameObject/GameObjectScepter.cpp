@@ -50,7 +50,7 @@ void GameObjectScepter::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleC
 	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectScepter::getPhysicsComponentSimpleCapsule()
+PhysicsComponentSimpleCapsulePtr GameObjectScepter::getPhysicsComponentSimpleCapsule() const
 {
 	return mPhysicsComponentSimpleCapsule;
 }
@@ -126,6 +126,15 @@ bool GameObjectScepter::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectScepter::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectScepter::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectScepter::getPhysicsComponent() const
+{
+	return getPhysicsComponentSimpleCapsule();
 }
 
 /// Set logic component

@@ -12,12 +12,12 @@
     <Option key="MOVEMENT_UNITS_PER_SECOND">50</Option>
     <Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">100</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
-    <Option key="INITIAL_JUMP_SPEED">70</Option>
+    <Option key="INITIAL_JUMP_SPEED">100</Option>
     <Option key="MIN_ALLOWED_Y">-100</Option>
-	<Option key="MIN_COLLISION_ANGLE">45</Option>
-    <Option key="MIN_SLIDING_ANGLE">30</Option>
-	<Option key="MIN_SLIDING_ANGLE_FALL">75</Option>
+    <Option key="MIN_COLLISION_ANGLE">45</Option>
+    <Option key="MIN_SLIDING_ANGLE">40</Option>
+    <Option key="MIN_SLIDING_ANGLE_FALL">90</Option>
     <Option key="SLIDING_FACTOR">5</Option>
-	<Option key="SLIDING_FACTOR_FALL">25</Option>
+    <Option key="SLIDING_FACTOR_FALL">25</Option>
   </Options>
 </Configuration>

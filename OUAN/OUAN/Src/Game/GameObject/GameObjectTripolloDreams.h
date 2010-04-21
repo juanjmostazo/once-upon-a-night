@@ -93,7 +93,7 @@ namespace OUAN
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter();
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
 
 		AttackComponentPtr getAttackComponent() const;
 		void setAttackComponent(AttackComponentPtr attackComponent);
@@ -112,6 +112,10 @@ namespace OUAN
 		//-- Methods used by GameWorldManager or GameObject to implement global query methods used by LUA
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

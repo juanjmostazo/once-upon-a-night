@@ -60,7 +60,7 @@ void GameObjectPlataform::setPhysicsComponentComplexConvex(PhysicsComponentCompl
 	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
 }
 
-PhysicsComponentComplexConvexPtr GameObjectPlataform::getPhysicsComponentComplexConvex()
+PhysicsComponentComplexConvexPtr GameObjectPlataform::getPhysicsComponentComplexConvex() const
 {
 	return mPhysicsComponentComplexConvex;
 }
@@ -140,6 +140,15 @@ bool GameObjectPlataform::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectPlataform::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectPlataform::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectPlataform::getPhysicsComponent() const
+{
+	return getPhysicsComponentComplexConvex();
 }
 
 /// Set logic component

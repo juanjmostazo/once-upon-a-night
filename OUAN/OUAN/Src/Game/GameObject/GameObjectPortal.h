@@ -75,7 +75,7 @@ namespace OUAN
 		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox();
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -86,6 +86,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

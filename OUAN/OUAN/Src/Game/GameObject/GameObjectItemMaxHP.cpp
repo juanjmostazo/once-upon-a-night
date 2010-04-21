@@ -62,7 +62,7 @@ void GameObjectItemMaxHP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBox
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -143,6 +143,15 @@ bool GameObjectItemMaxHP::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectItemMaxHP::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectItemMaxHP::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectItemMaxHP::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
 }
 
 void GameObjectItemMaxHP::processCollision(GameObjectPtr pGameObject)

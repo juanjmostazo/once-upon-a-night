@@ -60,7 +60,7 @@ void GameObjectDiamond::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPt
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectDiamond::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectDiamond::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -141,6 +141,16 @@ RenderComponentPositionalPtr GameObjectDiamond::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectDiamond::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectDiamond::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
+}
+
 
 void GameObjectDiamond::processCollision(GameObjectPtr pGameObject)
 {

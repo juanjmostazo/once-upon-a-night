@@ -51,7 +51,7 @@ void GameObjectTriggerBox::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBo
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectTriggerBox::getPhysicsComponentVolumeBox()
+PhysicsComponentVolumeBoxPtr GameObjectTriggerBox::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
@@ -149,6 +149,16 @@ RenderComponentPositionalPtr GameObjectTriggerBox::getPositionalComponent() cons
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTriggerBox::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTriggerBox::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeBox();
+}
+
 
 void GameObjectTriggerBox::processCollision(GameObjectPtr pGameObject)
 {

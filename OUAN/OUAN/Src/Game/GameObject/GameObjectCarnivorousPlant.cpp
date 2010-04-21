@@ -70,7 +70,7 @@ void GameObjectCarnivorousPlant::setPhysicsComponentCharacter(PhysicsComponentCh
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectCarnivorousPlant::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectCarnivorousPlant::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -142,6 +142,16 @@ RenderComponentPositionalPtr GameObjectCarnivorousPlant::getPositionalComponent(
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectCarnivorousPlant::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectCarnivorousPlant::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
+}
+
 
 void GameObjectCarnivorousPlant::processCollision(GameObjectPtr pGameObject)
 {

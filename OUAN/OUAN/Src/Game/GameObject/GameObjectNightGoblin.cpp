@@ -70,7 +70,7 @@ void GameObjectNightGoblin::setPhysicsComponentCharacter(PhysicsComponentCharact
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectNightGoblin::getPhysicsComponentCharacter()
+PhysicsComponentCharacterPtr GameObjectNightGoblin::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
@@ -141,6 +141,15 @@ bool GameObjectNightGoblin::hasPositionalComponent() const
 RenderComponentPositionalPtr GameObjectNightGoblin::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
+}
+
+bool GameObjectNightGoblin::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectNightGoblin::getPhysicsComponent() const
+{
+	return getPhysicsComponentCharacter();
 }
 
 void GameObjectNightGoblin::processCollision(GameObjectPtr pGameObject)

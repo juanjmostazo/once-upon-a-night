@@ -21,7 +21,7 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
-		virtual void update(long elapsedTime);
+		virtual void update(double elapsedSeconds);
 
 		virtual Ogre::SceneNode* getSceneNode();
 		virtual void setSceneNode(Ogre::SceneNode* sceneNode);

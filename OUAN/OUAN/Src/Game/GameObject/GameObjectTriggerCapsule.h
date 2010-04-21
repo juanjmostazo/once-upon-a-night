@@ -62,7 +62,7 @@ namespace OUAN
 		void setPhysicsComponentVolumeCapsule(PhysicsComponentVolumeCapsulePtr pPhysicsComponentVolumeCapsule);
 
 		/// Get physics component
-		PhysicsComponentVolumeCapsulePtr getPhysicsComponentVolumeCapsule();
+		PhysicsComponentVolumeCapsulePtr getPhysicsComponentVolumeCapsule() const;
 
 		/// Show or hide the component
 		void changeVisibility();
@@ -76,6 +76,10 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
+
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

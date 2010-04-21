@@ -12,13 +12,16 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 	mSliding = false;
 	mOnSurface = false;
 
-	mJumpTime = 0;
 	mFallTime = 0;
 
 	mJumpSpeed = 0;
 	mFallSpeed = 0;
 	mSlideDisplacement = NxOgre::Vec3(0,0,0);
 	mNormalAngle = 0;
+
+	mDash = 0;
+	mDashMax = 10;
+	mLastYaw=0;
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
@@ -69,36 +72,35 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 	if (mJumping)
 	{
-		setJumpSpeed(mJumpSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mJumpTime);
-		mJumpTime += elapsedSeconds;
-		mNextMovement.y += mJumpSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
+		mNextMovement.y += mJumpSpeed * elapsedSeconds;
+
+		applyGravity(elapsedSeconds);
 	} 
 	else if (mFalling) 
 	{
-		setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
-		mFallTime += elapsedSeconds;
-		mNextMovement.y += mFallSpeed * elapsedSeconds - 0.5f * Application::getInstance()->getPhysicsSubsystem()->mGravity.y * elapsedSeconds * elapsedSeconds;
+		applyGravity(elapsedSeconds);
 	}
 
 	// Perform last frame sliding displacement
 	if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
 	{
-		mNextMovement += mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+		mNextMovement = mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
 		resetSliding();
 	}
 
 	////////////////////////////////////////////////////////////////////////////
-	// Applying global factor to displacement
+	// Applying global factor to displacement and calculate dash
 	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
+
+		//applyDash(elapsedSeconds);
 	}
 
 	if (isInUse())
 	{
 
 		setCharactersDisplayYaw();
-
 
 		getNxOgreController()->move(
 			mNextMovement,
@@ -117,16 +119,91 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	{
 		setOnSurface(false);
 	}
-	
+
+	setLastMovement(mNextMovement);
 	//Set movement to zero for the next frame
 	mNextMovement=Vector3::ZERO;
 }
 
-void PhysicsComponentCharacter::setCharactersDisplayYaw()
+void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
+	setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
+	mFallTime += elapsedSeconds;
+	mNextMovement.y += mFallSpeed * elapsedSeconds;
+}
 
+void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
+{
+		Vector3 mDirection;
+		double angleDifference;
+
+		if(mNextMovement!=Vector3::ZERO)
+		{
+
+			mDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
+			mDirection.normalise();
+
+			double mCurrentYaw=getYawFromMovement(mNextMovement);
+
+			angleDifference=Ogre::Math::Abs(mCurrentYaw-mLastYaw);
+			if(angleDifference<0.1)
+			{
+				angleDifference=0;
+			}
+
+			if(angleDifference<60)
+			{
+				//same direction
+				mDash++;
+				if(mDash>mDashMax)
+				{
+					mDash=mDashMax;
+				}
+
+			}
+			else if(mDash>0)
+			{
+				//different direction
+				mNextMovement+=mDashDirection*mDashFactor;
+
+				mDash--;
+				if(mDash<0)
+				{
+					mDash=0;
+				}
+
+			}
+
+			mDashDirection=mDirection;
+			mLastYaw=mCurrentYaw;
+		}
+		else if(mDash>0)
+		{
+			//different direction
+			mNextMovement+=mDashDirection*mDashFactor;
+
+			mDash--;
+			if(mDash<0)
+			{
+				mDash=0;
+			}
+
+		}
+
+}
+
+
+void PhysicsComponentCharacter::jump()
+{
+	if(!mJumping)
+	{
+		initJump();
+	}
+}
+
+double PhysicsComponentCharacter::getYawFromMovement(NxOgre::Vec3 movement)
+{
 	double characterYaw=getNxOgreController()->getDisplayYaw();
-	
 	if(mNextMovement.z<0 && mNextMovement.x<0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
@@ -172,14 +249,27 @@ void PhysicsComponentCharacter::setCharactersDisplayYaw()
 	{
 		characterYaw+=180;
 	}
-	/*
-	if(characterYaw!=getNxOgreController()->getDisplayYaw())
+
+	if(characterYaw>=360)
 	{
-		Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(mNextMovement.x)+" "
-																	+Ogre::StringConverter::toString(mNextMovement.z));
-		Ogre::LogManager::getSingleton().logMessage("characterYaw "+Ogre::StringConverter::toString(Ogre::Real(characterYaw)));
+		characterYaw-=360;
 	}
-	*/
+	else if(characterYaw<0)
+	{
+		characterYaw+=360;
+	}
+
+	return characterYaw;
+}
+
+
+void PhysicsComponentCharacter::setCharactersDisplayYaw()
+{
+
+	double characterYaw;
+	
+	characterYaw=getYawFromMovement(mNextMovement);
+	
 	getNxOgreController()->setDisplayYaw(characterYaw);
 }
 
@@ -233,7 +323,8 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 {
 	//Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
 
-	if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
+	if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 
+		pNormalAngle < Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
 	{
 		mSliding = true;
 		mNormalAngle = pNormalAngle;
@@ -241,19 +332,20 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 		mSlideDisplacement.x = pNormal.x;
 		mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
 		mSlideDisplacement.z = pNormal.z;
-		
-		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
-		{
-			mSlideDisplacement.y *= Application::getInstance()->getPhysicsSubsystem()->mSlidingFactorFall;
-		}
+	}
+
+	if(mSlideDisplacement.y>0)
+	{
+		mSlideDisplacement.y=0;
 	}
 }
 
 void PhysicsComponentCharacter::initJump()
 {
 	mJumping = true;
-	mJumpTime = 0;
 	mJumpSpeed = Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed;
+
+	initFall();
 }
 
 void PhysicsComponentCharacter::initFall()
@@ -265,14 +357,22 @@ void PhysicsComponentCharacter::initFall()
 
 void PhysicsComponentCharacter::setJumpSpeed(double pJumpSpeed)
 {
-	mJumpSpeed = pJumpSpeed < Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond ?
-		pJumpSpeed : Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+	mJumpSpeed = pJumpSpeed;
+
+	if(mJumpSpeed>Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond)
+	{
+		mJumpSpeed=Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+	}
 }
 
 void PhysicsComponentCharacter::setFallSpeed(double pFallSpeed)
 {
-	mFallSpeed = pFallSpeed < Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond ?
-		pFallSpeed : Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+	mFallSpeed = pFallSpeed;
+
+	if(mFallSpeed>Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond)
+	{
+		mFallSpeed=Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+	}
 }
 
 void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)

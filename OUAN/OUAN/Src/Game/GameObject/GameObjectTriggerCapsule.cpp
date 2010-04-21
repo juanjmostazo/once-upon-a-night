@@ -50,7 +50,7 @@ void GameObjectTriggerCapsule::setPhysicsComponentVolumeCapsule(PhysicsComponent
 	mPhysicsComponentVolumeCapsule=pPhysicsComponentVolumeCapsule;
 }
 
-PhysicsComponentVolumeCapsulePtr GameObjectTriggerCapsule::getPhysicsComponentVolumeCapsule()
+PhysicsComponentVolumeCapsulePtr GameObjectTriggerCapsule::getPhysicsComponentVolumeCapsule() const
 {
 	return mPhysicsComponentVolumeCapsule;
 }
@@ -133,6 +133,16 @@ RenderComponentPositionalPtr GameObjectTriggerCapsule::getPositionalComponent() 
 {
 	return getRenderComponentPositional();
 }
+
+bool GameObjectTriggerCapsule::hasPhysicsComponent() const
+{
+	return true;
+}
+PhysicsComponentPtr GameObjectTriggerCapsule::getPhysicsComponent() const
+{
+	return getPhysicsComponentVolumeCapsule();
+}
+
 
 /// Set logic component
 void GameObjectTriggerCapsule::setLogicComponent(LogicComponentPtr logicComponent)

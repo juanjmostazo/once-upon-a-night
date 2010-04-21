@@ -59,7 +59,7 @@ void GameObjectProvisionalEntity::setPhysicsComponentSimpleBox(PhysicsComponentS
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSimpleBox()
+PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSimpleBox() const
 {
 	return mPhysicsComponentSimpleBox;
 }
