@@ -1,0 +1,17 @@
+
+material tree4_d
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.129 0.525 0.782 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+

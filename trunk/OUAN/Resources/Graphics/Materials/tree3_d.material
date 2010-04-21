@@ -1,0 +1,16 @@
+
+material tree3_d
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.861 0.297 0.297 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
