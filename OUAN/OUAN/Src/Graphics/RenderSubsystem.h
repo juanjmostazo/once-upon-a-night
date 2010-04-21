@@ -48,6 +48,9 @@ namespace OUAN
 		/// Load resources [TODO: Make this level dependent?]
 		void initResourceGroups(OUAN::ConfigurationPtr config);
 
+		/// Set ambient specular and diffuse mateial components off
+		void initMaterials();
+
 		/// Clear current Scene
 		void clear();
 

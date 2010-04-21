@@ -47,6 +47,22 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 }
 
+void RenderSubsystem::initMaterials()
+{
+	Ogre::MaterialManager::ResourceMapIterator it = Ogre::MaterialManager::getSingleton().getResourceIterator();
+	Ogre::MaterialPtr material;
+
+	while (it.hasMoreElements())
+	{
+		material=it.getNext();
+		if(material->isLoaded())
+		{
+			material->setLightingEnabled(false);
+		}
+	}
+	
+}
+
 void RenderSubsystem::cleanUp()
 {
 	clearScene();
@@ -231,8 +247,10 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	try
 	{
 
+		mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+
 		//Set SceneManager parameters
-		mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
+	//	mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
 
 		if(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active)
 		{
