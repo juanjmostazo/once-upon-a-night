@@ -233,9 +233,9 @@ namespace OUAN
 		class TLogicComponentItemParameters;
 		typedef boost::shared_ptr<LogicComponentItem> LogicComponentItemPtr;
 
-		class LogicComponentPortal;
-		class TLogicComponentPortalParameters;
-		typedef boost::shared_ptr<LogicComponentPortal> LogicComponentPortalPtr;
+		class LogicComponentUsable;
+		class TLogicComponentUsableParameters;
+		typedef boost::shared_ptr<LogicComponentUsable> LogicComponentUsablePtr;
 
 		class LogicComponent;
 		class TLogicComponentParameters;
@@ -264,7 +264,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
 		const std::string COMPONENT_TYPE_LOGIC_ENEMY="LogicComponentEnemy";
 		const std::string COMPONENT_TYPE_LOGIC_ITEM="LogicComponentItem";
-		const std::string COMPONENT_TYPE_LOGIC_PORTAL="LogicComponentPortal";
+		const std::string COMPONENT_TYPE_LOGIC_USABLE="LogicComponentUsable";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
 
@@ -298,6 +298,7 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeCapsuleContainer;
 
 		typedef std::vector<GameObjectPtr> TGameObjectLogicContainer;
+		typedef std::vector<GameObjectPtr> TGameObjectUsableContainer;
 
 		////////////////////////////////////////////////////////////////////
 

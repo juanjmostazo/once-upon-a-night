@@ -1,47 +1,16 @@
 
-material pelo
+material Material12
 {
 	technique
 	{
 		pass
 		{
-		}
-
-	}
-
-}
-
-
-
-material cinturon
-{
-	technique
-	{
-		pass
-		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
 
 			texture_unit
 			{
 				texture cinturon.tga
-			}
-		}
-
-	}
-
-}
-
-
-
-material ony
-{
-	technique
-	{
-		pass
-		{
-
-			texture_unit
-			{
-				texture ony.tga
 			}
 		}
 
@@ -59,6 +28,55 @@ material Material7
 		{
 			ambient 0.992 0.992 0.992 1
 			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
+
+material NoMaterial
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
+material material2
+{
+	technique
+	{
+		pass
+		{
+		}
+
+	}
+
+}
+
+
+
+material Material9
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture ony.tga
+			}
 		}
 
 	}

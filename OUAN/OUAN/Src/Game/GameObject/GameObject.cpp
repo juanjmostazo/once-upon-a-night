@@ -144,6 +144,14 @@ std::string GameObject::getDefaultAttack()
 {
 	return "";
 }
+void GameObject::activate()
+{
+
+}
+bool GameObject::canBeActivated() const
+{
+	return false;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

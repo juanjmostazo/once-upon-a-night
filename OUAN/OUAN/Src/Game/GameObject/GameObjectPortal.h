@@ -6,9 +6,19 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentUsable.h"
 namespace OUAN
 {
+	const std::string PORTAL_ANIMATION_IDLE="";
+	const std::string PORTAL_ANIMATION_ONY_APPROACHING="";
+	const std::string PORTAL_ANIMATION_ONY_MAY_ACTIVATE="";
+	const std::string PORTAL_ANIMATION_CHANGING_WORLD="";
+
+	const std::string PORTAL_STATE_IDLE="PORTAL_STATE_IDLE";
+	const std::string PORTAL_STATE_ONY_APPROACHING="PORTAL_STATE_ONY_APPROACHING";
+	const std::string PORTAL_STATE_ONY_MAY_ACTIVATE="PORTAL_STATE_ONY_MAY_ACTIVATE";
+	const std::string PORTAL_STATE_CHANGING_WORLD="PORTAL_STATE_CHANGING_WORLD";
+
 	/// Class to hold Portal information
 	class GameObjectPortal : public GameObject, public boost::enable_shared_from_this<GameObjectPortal>
 	{
@@ -24,7 +34,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentUsablePtr mLogicComponentUsable;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -36,10 +46,10 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentUsable(LogicComponentUsablePtr logicComponentUsable);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentUsablePtr getLogicComponentUsable();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -92,6 +102,11 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
+		void activate();
+		bool canBeActivated() const;
+
+		void update(double elapsedSeconds);
+
 	};
 
 	class TGameObjectPortalParameters: public TGameObjectParameters
@@ -111,7 +126,7 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentUsableParameters tLogicComponentParameters;
 	};
 }
 #endif

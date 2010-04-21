@@ -73,6 +73,7 @@
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
+#include "../Logic/LogicComponent/LogicComponentUsable.h"
 
 using namespace OUAN;
 
@@ -1420,7 +1421,7 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		tGameObjectPortalParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectPortalParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectPortalParameters.tLogicComponentParameters=processLogicComponentUsable(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
@@ -2844,6 +2845,73 @@ TLogicComponentEnemyParameters LevelLoader::processLogicComponentEnemy(TiXmlElem
 
 	}
 	return logicComponentEnemyParameters;
+}
+TLogicComponentUsableParameters LevelLoader::processLogicComponentUsable(TiXmlElement *XMLNodeDreams,
+																	   TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentUsableParameters logicComponentUsableParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentUsableParameters.existsInDreams=true;
+		logicComponentUsableParameters.existsInNightmares=true;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		logicComponentUsableParameters.existsInDreams=true;
+		logicComponentUsableParameters.existsInNightmares=false;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentUsableParameters.existsInDreams=false;
+		logicComponentUsableParameters.existsInNightmares=true;
+	}
+	if (XMLNodeCustomProperties)
+	{
+		try{
+			logicComponentUsableParameters.scriptFilename=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFilename");
+		}
+		catch(std::string error)
+		{
+			logicComponentUsableParameters.scriptFilename="";
+		}
+		try{
+			logicComponentUsableParameters.scriptFunction=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFunction");
+		}
+		catch(std::string error)
+		{
+			logicComponentUsableParameters.scriptFunction="";
+		}
+		try{
+			logicComponentUsableParameters.defaultState=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::defaultState");
+		}
+		catch (std::string error)
+		{
+			logicComponentUsableParameters.defaultState=0;
+		}
+		try{
+			logicComponentUsableParameters.approachDistance=getPropertyReal(XMLNodeCustomProperties,
+				"LogicComponent::approachDistance");
+		}
+		catch (std::string error)
+		{
+			logicComponentUsableParameters.approachDistance=0.0f;
+		}
+		try{
+			logicComponentUsableParameters.activateDistance=getPropertyReal(XMLNodeCustomProperties,
+				"LogicComponent::activateDistance");
+		}
+		catch (std::string error)
+		{
+			logicComponentUsableParameters.activateDistance=0.0f;	
+		}
+	}
+	return logicComponentUsableParameters;
 }
 TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XMLNode)
 {

@@ -45,6 +45,8 @@ namespace OUAN
 		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer getGameObjectViewportContainer();
 
+		TGameObjectPortalContainer getGameObjectPortalContainer();
+
 		TGameObjectPhysicsContainer getGameObjectPhysicsContainer();
 		TGameObjectPhysicsCharacterContainer getGameObjectPhysicsCharacterContainer();
 		TGameObjectPhysicsComplexContainer getGameObjectPhysicsComplexContainer();
@@ -58,6 +60,8 @@ namespace OUAN
 		TGameObjectPhysicsVolumeCapsuleContainer getGameObjectPhysicsVolumeCapsuleContainer();
 
 		TGameObjectLogicContainer getGameObjectLogicContainer();
+
+		TGameObjectUsableContainer getGameObjectUsableContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -206,6 +210,8 @@ namespace OUAN
 		void useWeapon();
 		void stopUsingWeapon();
 
+		void useObject();
+
 	private:
 
 		/// Add the game object pointer to the objects List
@@ -294,6 +300,8 @@ namespace OUAN
 		TGameObjectCarnivorousPlantContainer mGameObjectCarnivorousPlantContainer;
 		TGameObjectSnakeCreeperContainer mGameObjectSnakeCreeperContainer;
 
+		TGameObjectPortalContainer mGameObjectPortalContainer;
+
 		TGameObjectPhysicsContainer mGameObjectPhysicsContainer;
 		TGameObjectPhysicsCharacterContainer mGameObjectPhysicsCharacterContainer;
 		TGameObjectPhysicsComplexContainer mGameObjectPhysicsComplexContainer;
@@ -308,16 +316,11 @@ namespace OUAN
 
 		TGameObjectLogicContainer mGameObjectLogicContainer;
 
+		TGameObjectUsableContainer mGameObjectUsableContainer;
+
 		TGameObjectViewportContainer mGameObjectViewportContainer;
 
 		void clearContainers();
-
-		// Lists of objects to be created/deleted as a result of an
-		// update frame. 
-		// Addition/Deletion will be effective just before the next
-		// update cycle
-		TGameObjectContainer mGameObjectsToAdd;
-		TGameObjectContainer mGameObjectsToDelete;
 
 		bool mGameOver;
 		// Besides being over, the game has been beaten
