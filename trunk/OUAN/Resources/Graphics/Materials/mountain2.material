@@ -1,16 +1,12 @@
 
-material mountain2_texture
+material mountain2
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-
-			texture_unit
-			{
-				texture mountain2_texture.dds
-			}
+			diffuse 0.7 0.726 0.442 1
 		}
 
 	}
