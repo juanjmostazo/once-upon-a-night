@@ -366,6 +366,9 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 
+	/// Set ambient specular and diffuse material components off
+	mApp->getRenderSubsystem()->initMaterials();
+
 	if (getGameObjectOny().get())
 	{
 		getGameObjectOny()->setInitialWeaponComponent(world);
