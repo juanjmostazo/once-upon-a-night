@@ -8,6 +8,7 @@ extern "C" {
 namespace OUAN
 {
 	const std::string SCRIPTS_PATH ="../../Resources/Scripts";
+	const std::string SCRIPT_COMMON_FUNCTIONS="common.lua";
 	/// This class will manage the
 	/// logic of the game, acting as an interface
 	/// to LUA

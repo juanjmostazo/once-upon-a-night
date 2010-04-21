@@ -13,17 +13,6 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_ATTACK]="ATTACK"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_FLEE]="FLEE"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_DEAD]="DEAD"
 
-TRIPOLLO_STATE_NAME_VOID="Invalid!"
-
-function getStateName(state)
-	local retVal
-	if TRIPOLLO_STATE_NAMES[state] then
-		retVal=TRIPOLLO_STATE_NAMES[state]
-	else
-		retVal=TRIPOLLO_STATE_NAME_VOID
-	end
-	return retVal
-end
 
 function tripolloLogic(pTripollo,state)
 	local myName=pTripollo:getName()	
@@ -50,7 +39,7 @@ function tripolloLogic(pTripollo,state)
 		newState=TRIPOLLO_STATE_DEAD
 	end
 	if (state ~= newState) then
-		log (pTripollo:getName() .. " changed its state from " .. getStateName(state) .. " to " .. getStateName(newState))
+		log (pTripollo:getName() .. " changed its state from " .. getStateName(newState,TRIPOLLO_STATE_NAMES) .. " to " .. getStateName(newState,TRIPOLLO_STATE_NAMES))
 	end
 	return newState
 end

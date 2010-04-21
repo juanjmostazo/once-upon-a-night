@@ -726,7 +726,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentPortal.cpp"
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.cpp"
 						>
 					</File>
 					<File
@@ -1373,7 +1373,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentPortal.h"
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.h"
 						>
 					</File>
 					<File
@@ -1466,6 +1466,10 @@
 			</File>
 			<File
 				RelativePath="..\Resources\Scripts\eye.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\portal.lua"
 				>
 			</File>
 			<File

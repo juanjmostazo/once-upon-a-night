@@ -68,6 +68,21 @@
 #include "../Event/EventManager.h"
 #include "../Event/EventProcessor.h"
 
+/// These macros will reset the shared pointers, just in case 
+/// clearing the containers will mess with the pointers' references count
+#define EMPTY_VECTOR(T,v) \
+	for (T::iterator it=v.begin();it!=v.end();++it) \
+	{ \
+		(*it).reset(); \
+	}\
+	v.clear();
+#define EMPTY_MAP(T,v) \
+	for (T::iterator it=v.begin();it!=v.end();++it) \
+	{ \
+	(it->second).reset(); \
+	}\
+	v.clear();
+
 #include <iomanip>
 #include <sstream>
 
@@ -204,6 +219,10 @@ TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystem
 {
 	return mGameObjectParticleSystemContainer;
 }
+TGameObjectPortalContainer GameWorldManager::getGameObjectPortalContainer()
+{
+	return mGameObjectPortalContainer;
+}
 
 TGameObjectViewportContainer GameWorldManager::getGameObjectViewportContainer()
 {
@@ -279,42 +298,50 @@ TGameObjectLogicContainer GameWorldManager::getGameObjectLogicContainer()
 {
 	return mGameObjectLogicContainer;
 }
+TGameObjectUsableContainer GameWorldManager::getGameObjectUsableContainer()
+{
+	return mGameObjectUsableContainer;
+}
 
 void GameWorldManager::clearContainers()
 {
-	mGameObjects.clear();
-	mGameObjectsToAdd.clear();
-	mGameObjectsToDelete.clear();
+	EMPTY_MAP(TGameObjectContainer,mGameObjects);
+	EMPTY_VECTOR(TGameObjectMovableContainer,mGameObjectMovableContainer);
+	EMPTY_VECTOR(TGameObjectMovableEntityContainer,mGameObjectMovableEntityContainer);
+	EMPTY_VECTOR(TGameObjectNonMovableContainer,mGameObjectNonMovableContainer);
+	EMPTY_VECTOR(TGameObjectNonMovableEntityContainer,mGameObjectNonMovableEntityContainer);
+	EMPTY_VECTOR(TGameObjectLightContainer,mGameObjectLightContainer);
+	
+	EMPTY_VECTOR(TGameObjectParticleSystemContainer,mGameObjectParticleSystemContainer);
+	EMPTY_VECTOR(TGameObjectBillboardSetContainer,mGameObjectBillboardSetContainer);
+	EMPTY_VECTOR(TGameObjectTerrainConvexContainer,mGameObjectTerrainConvexContainer);
+	EMPTY_VECTOR(TGameObjectTerrainTriangleContainer,mGameObjectTerrainTriangleContainer);
 
-	mGameObjectMovableContainer.clear();
-	mGameObjectMovableEntityContainer.clear();
-	mGameObjectNonMovableContainer.clear();
-	mGameObjectNonMovableEntityContainer.clear();
-	mGameObjectLightContainer.clear();
-	mGameObjectParticleSystemContainer.clear();
-	mGameObjectBillboardSetContainer.clear();
-	mGameObjectTerrainConvexContainer.clear();
-	mGameObjectTerrainTriangleContainer.clear();
-	mGameObjectOnyContainer.clear();
-	mGameObjectFlashLightContainer.clear();
-	mGameObjectPositionalContainer.clear();
-	mGameObjectSceneContainer.clear();
-	mGameObjectTripolloDreamsContainer.clear();
-	mGameObjectEyeContainer.clear();
-	mGameObjectTriggerBoxContainer.clear();
-	mGameObjectTriggerCapsuleContainer.clear();
-	mGameObjectBeeButterflyContainer.clear();
-	mGameObjectCarnivorousPlantContainer.clear();
-	mGameObjectSnakeCreeperContainer.clear();
-	mGameObjectTentetiesoContainer.clear();
+	EMPTY_VECTOR(TGameObjectOnyContainer,mGameObjectOnyContainer);
+	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
+	EMPTY_VECTOR(TGameObjectPositionalContainer,mGameObjectPositionalContainer);
+	EMPTY_VECTOR(TGameObjectSceneContainer,mGameObjectSceneContainer);
 
-	mGameObjectPhysicsCharacterContainer.clear();
-	mGameObjectPhysicsComplexConvexContainer.clear();
-	mGameObjectPhysicsComplexTriangleContainer.clear();
-	mGameObjectPhysicsSimpleContainer.clear();
-	mGameObjectPhysicsVolumeContainer.clear();
+	EMPTY_VECTOR(TGameObjectTripolloDreamsContainer,mGameObjectTripolloDreamsContainer);
+	EMPTY_VECTOR(TGameObjectEyeContainer,mGameObjectEyeContainer);
+	EMPTY_VECTOR(TGameObjectTriggerBoxContainer,mGameObjectTriggerBoxContainer);
+	EMPTY_VECTOR(TGameObjectTriggerCapsuleContainer,mGameObjectTriggerCapsuleContainer);
+	EMPTY_VECTOR(TGameObjectBee_ButterflyContainer,mGameObjectBeeButterflyContainer);
+	EMPTY_VECTOR(TGameObjectCarnivorousPlantContainer,mGameObjectCarnivorousPlantContainer);
+	EMPTY_VECTOR(TGameObjectSnakeCreeperContainer,mGameObjectSnakeCreeperContainer);
+	EMPTY_VECTOR(TGameObjectTentetiesoContainer,mGameObjectTentetiesoContainer);
 
-	mGameObjectLogicContainer.clear();
+	EMPTY_VECTOR(TGameObjectPortalContainer, mGameObjectPortalContainer);
+
+	EMPTY_VECTOR(TGameObjectPhysicsCharacterContainer,mGameObjectPhysicsCharacterContainer);
+	EMPTY_VECTOR(TGameObjectPhysicsComplexConvexContainer,mGameObjectPhysicsComplexConvexContainer);
+	EMPTY_VECTOR(TGameObjectPhysicsComplexTriangleContainer,mGameObjectPhysicsComplexTriangleContainer);
+	EMPTY_VECTOR(TGameObjectPhysicsSimpleContainer,mGameObjectPhysicsSimpleContainer);
+	EMPTY_VECTOR(TGameObjectPhysicsVolumeContainer,mGameObjectPhysicsVolumeContainer);
+
+	EMPTY_VECTOR(TGameObjectUsableContainer,mGameObjectUsableContainer);
+	EMPTY_VECTOR(TGameObjectLogicContainer,mGameObjectLogicContainer);
+
 }
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
@@ -648,6 +675,10 @@ void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal
 	mGameObjectPhysicsContainer.push_back(pGameObjectPortal);
 	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectPortal);
 	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectPortal);
+
+	mGameObjectPortalContainer.push_back(pGameObjectPortal);
+
+	mGameObjectUsableContainer.push_back(pGameObjectPortal);
 }
 
 void GameWorldManager::addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity)
@@ -1942,8 +1973,8 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 	ComponentFactory* factory=ComponentFactory::getInstance();
 
 		//Create LogicComponent
-		pGameObjectPortal->setLogicComponent(
-			factory->createLogicComponent(
+		pGameObjectPortal->setLogicComponentUsable(
+			factory->createLogicComponentUsable(
 			pGameObjectPortal,
 			tGameObjectPortalParameters.tLogicComponentParameters));
 
@@ -2849,5 +2880,23 @@ void GameWorldManager::stopUsingWeapon()
 	if (getGameObjectOny().get())
 	{
 		getGameObjectOny()->switchOff();
+	}
+}
+void GameWorldManager::useObject()
+{
+	if(!mGameObjectUsableContainer.empty())
+	{
+		// In case of collision, only the first object will be activated
+		for (TGameObjectUsableContainer::iterator it=mGameObjectUsableContainer.begin();
+			it!=mGameObjectUsableContainer.end();++it)
+		{
+			if ((*it)->canBeActivated())
+			{
+				ActivatedItemEventPtr evt = ActivatedItemEventPtr(new ActivatedItemEvent(*it));
+				addEvent(evt);
+				break;
+			}
+		}
+
 	}
 }

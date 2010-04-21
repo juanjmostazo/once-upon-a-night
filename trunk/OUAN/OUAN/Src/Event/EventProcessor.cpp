@@ -61,6 +61,10 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
 			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,AnimationStartedEvent,EVENT_TYPE_ANIMATION_STARTED>
+			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
+			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
 	}
 }
 
@@ -94,6 +98,10 @@ void EventProcessor::unregisterHandlers()
 		
 		unregisterEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
 			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,AnimationStartedEvent,EVENT_TYPE_ANIMATION_STARTED>
+			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
+			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
 	}
 }
 
@@ -202,5 +210,19 @@ void EventProcessor::processAnimationEnded(AnimationEndedEventPtr evt)
 	{
 		//TODO: Uncomment
 		//evt->getActor()->animationEnded(evt->getAnimationName());
+	}
+}
+
+void EventProcessor::processAnimationStarted(AnimationStartedEventPtr evt)
+{
+
+}
+
+void EventProcessor::processActivatedItem(ActivatedItemEventPtr evt)
+{
+	if (evt->getActor().get())
+	{
+		evt->getActor()->activate();
+		//Play "activate" sound
 	}
 }

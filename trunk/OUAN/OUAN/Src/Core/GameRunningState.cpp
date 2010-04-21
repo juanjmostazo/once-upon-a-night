@@ -157,6 +157,11 @@ void GameRunningState::handleEvents()
 			mHUD->spinRoulette(false);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
+		else if (mApp->isPressedDoAction())
+		{
+			mApp->getGameWorldManager()->useObject();
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
 	}
 	if (mApp->isPressedUseWeapon())
 	{

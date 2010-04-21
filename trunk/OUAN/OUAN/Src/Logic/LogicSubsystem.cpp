@@ -9,10 +9,12 @@
 #include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../Game/GameObject/GameObjectPortal.h"
 #include "LogicComponent/LogicComponent.h"
 #include "LogicComponent/LogicComponentOny.h"
 #include "LogicComponent/LogicComponentItem.h"
 #include "LogicComponent/LogicComponentEnemy.h"
+#include "LogicComponent/LogicComponentUsable.h"
 
 #include "../Utils/Utils.h"
 
@@ -68,7 +70,12 @@ void LogicSubsystem::registerModules()
 			.def("getHP",&LogicComponentOny::getHealthPoints)
 			.def("getMaxHP",&LogicComponentOny::getInitialHealthPoints),
 		class_<LogicComponentItem, LogicComponent > ("LogicComponentItem")
+			.def(constructor<const std::string&>()),
+		class_<LogicComponentUsable,LogicComponent>("LogicComponentUsable")
 			.def(constructor<const std::string&>())
+			.def("getApproachDistance",&LogicComponentUsable::getApproachDistance)
+			.def("getActivateDistance",&LogicComponentUsable::getActivateDistance)
+			.def("isActivated",&LogicComponentUsable::isActivated)
 	];
 
 	//NOW WORKS WITH LOGICCOMPONENTS INSTEAD OF GAMEOBJECTS
@@ -106,6 +113,8 @@ void LogicSubsystem::registerModules()
 }
 void LogicSubsystem::loadScripts()
 {
+	loadScript(SCRIPTS_PATH+"/"+SCRIPT_COMMON_FUNCTIONS);
+
 	GameWorldManagerPtr worldMgr=mApp->getGameWorldManager();
 	std::string currentFilename;
 	TGameObjectTripolloDreamsContainer tripolloList= worldMgr->getGameObjectTripolloDreamsContainer();
@@ -129,6 +138,15 @@ void LogicSubsystem::loadScripts()
 	TGameObjectSnakeCreeperContainer scList=worldMgr->getGameObjectSnakeCreeperContainer();
 	if(!scList.empty() && !(currentFilename=scList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
+	TGameObjectPortalContainer ptList=worldMgr->getGameObjectPortalContainer();
+	if (!ptList.empty())
+	{
+		GameObjectPortalPtr portal= boost::dynamic_pointer_cast<GameObjectPortal>(ptList.at(0));
+		if (portal && portal.get() && !portal->getLogicComponentUsable()->getScriptFilename().empty())
+		{
+			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentUsable()->getScriptFilename());
+		}
+	}
 	//TODO: CHANGE THIS!!!
 	GameObjectDragonPtr dragon = boost::dynamic_pointer_cast<GameObjectDragon> (worldMgr->getObject("dragon#0"));
 	if (dragon.get() && !(currentFilename=dragon->getLogicComponentEnemy()->getScriptFilename()).empty())
@@ -183,10 +201,11 @@ int LogicSubsystem::invokeFunction(const std::string& functionName,int state, Lo
 	if (mLuaEngine)
 	{
 		try{
-			LogicComponentEnemy* ptr=dynamic_cast<LogicComponentEnemy*>(pLogicComponent);
-			if (ptr)
-				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),ptr,state);
-				
+			LogicComponentEnemy* enemyPtr=dynamic_cast<LogicComponentEnemy*>(pLogicComponent);
+			if (enemyPtr)
+				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),enemyPtr,state);
+			else if(LogicComponentUsable* usablePtr=dynamic_cast<LogicComponentUsable*>(pLogicComponent))
+				result=luabind::call_function<int>(mLuaEngine,functionName.c_str(),usablePtr,state);				
 		}
 		catch(const luabind::error& err)
 		{

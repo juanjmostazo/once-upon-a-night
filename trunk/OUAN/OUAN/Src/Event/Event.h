@@ -157,5 +157,25 @@ namespace OUAN
 		std::string mAnimationName;
 	};
 
+	class AnimationStartedEvent: public Event
+	{
+	public: 
+		AnimationStartedEvent(GameObjectPtr actor, const std::string animationName);
+		GameObjectPtr getActor() const;
+		std::string getAnimationName() const;
+	private:
+		GameObjectPtr mActor;
+		std::string mAnimationName;
+	};
+
+	class ActivatedItemEvent: public Event
+	{
+	public:
+		ActivatedItemEvent(GameObjectPtr actor);
+		GameObjectPtr getActor() const;
+	private:
+		GameObjectPtr mActor;
+	};
+
 }
 #endif

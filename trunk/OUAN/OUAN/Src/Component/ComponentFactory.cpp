@@ -30,6 +30,7 @@
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
+#include "../Logic/LogicComponent/LogicComponentUsable.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
 
@@ -425,6 +426,23 @@ LogicComponentEnemyPtr ComponentFactory::createLogicComponentEnemy(GameObjectPtr
 	pLogicComponentEnemy->setState(LogicComponentEnemyParameters.defaultState);
 	pLogicComponentEnemy->setParent(gameObject);
 	return pLogicComponentEnemy;
+}
+LogicComponentUsablePtr ComponentFactory::createLogicComponentUsable(GameObjectPtr gameObject, 
+																	 TLogicComponentUsableParameters logicComponentParameters)
+{
+	LogicComponentUsablePtr logicComponent = LogicComponentUsablePtr(new LogicComponentUsable());
+	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
+	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
+	
+	logicComponent->setApproachDistance(logicComponentParameters.approachDistance);
+	logicComponent->setActivateDistance(logicComponentParameters.activateDistance);
+	
+	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
+	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);
+	logicComponent->setState(logicComponentParameters.defaultState);
+
+	logicComponent->setParent(gameObject);
+	return logicComponent;
 }
 
 

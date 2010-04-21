@@ -169,3 +169,31 @@ std::string AnimationEndedEvent::getAnimationName() const
 {
 	return mAnimationName;
 }
+
+//--------------------------
+
+AnimationStartedEvent::AnimationStartedEvent(GameObjectPtr actor, const std::string animationName)
+:Event(EVT_PRIORITY_ANIMATION_STARTED, EVENT_TYPE_ANIMATION_STARTED)
+{
+	mActor=actor;
+	mAnimationName=animationName;
+}
+GameObjectPtr AnimationStartedEvent::getActor() const
+{
+	return mActor;
+}
+std::string AnimationStartedEvent::getAnimationName() const
+{
+	return mAnimationName;
+}
+
+//--------------------------
+ActivatedItemEvent::ActivatedItemEvent(GameObjectPtr actor)
+:Event(EVT_PRIORITY_ACTIVATED_ITEM, EVENT_TYPE_ACTIVATED_ITEM)
+{
+	mActor=actor;
+}
+GameObjectPtr ActivatedItemEvent::getActor() const
+{
+	return mActor;
+}

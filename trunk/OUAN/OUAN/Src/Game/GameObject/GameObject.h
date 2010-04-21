@@ -130,6 +130,9 @@ namespace OUAN
 		virtual void switchOff();
 		virtual std::string translateWeaponMode(TWeaponMode weaponmode);
 		virtual std::string getDefaultAttack();
+
+		virtual void activate();
+		virtual bool canBeActivated() const;
 	};
 
 	class TGameObjectParameters

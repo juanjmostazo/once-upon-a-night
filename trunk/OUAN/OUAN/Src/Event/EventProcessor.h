@@ -55,6 +55,12 @@ namespace OUAN
 		/// Process the 'animation has ended' event
 		void processAnimationEnded(AnimationEndedEventPtr evt);
 
+		/// Process the 'animation has started' event
+		void processAnimationStarted(AnimationStartedEventPtr evt);
+
+		/// Process the 'activated item' event
+		void processActivatedItem(ActivatedItemEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

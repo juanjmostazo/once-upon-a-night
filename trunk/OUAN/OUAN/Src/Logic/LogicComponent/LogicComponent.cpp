@@ -11,7 +11,7 @@ LogicComponent::LogicComponent(const std::string& type)
 :Component(type)
 {
 //	mPatrolTrajectory.reset();
-	mStateChanged=false;
+	mStateChanged=true;
 }
 
 LogicComponent::~LogicComponent()
