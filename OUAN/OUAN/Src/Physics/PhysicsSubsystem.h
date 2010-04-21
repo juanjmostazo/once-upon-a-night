@@ -105,6 +105,13 @@ namespace OUAN
 		/// param read from config file
 		double mSlidingFactorFall;
 
+		/// param read from config file
+		double mDashFactor;
+
+		/// param read from config file
+		double mAccelerationIncrement;
+
+
 		/// Load params from config file
 		virtual bool loadConfig();
 
