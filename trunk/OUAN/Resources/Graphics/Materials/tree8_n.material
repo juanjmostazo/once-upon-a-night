@@ -1,0 +1,20 @@
+
+material tree8_n1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.333 0.13 0.041 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
+
+			texture_unit
+			{
+				texture noIcon.pic
+			}
+		}
+
+	}
+
+}
