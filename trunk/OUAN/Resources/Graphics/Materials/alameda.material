@@ -1,5 +1,5 @@
 
-material tower1_island2
+material alameda
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material tower1_island2
 
 			texture_unit
 			{
-				texture tower1_island2.dds
+				texture alameda2_island2.dds
 			}
 		}
 
