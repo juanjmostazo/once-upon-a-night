@@ -89,6 +89,7 @@ namespace OUAN
 		double mDash;
 		double mDashMax;
 		Vector3 mDashDirection;
+		bool mDashEmpty;
 
 		//acceleration
 		double mAccelerationFactor;
