@@ -107,10 +107,21 @@ namespace OUAN
 
 		/// param read from config file
 		double mDashFactor;
+		double mDashMax;
+		double mDashAccelerationIncrement;
+		double mMinDashAccelerationFactor;
+		double mMaxDashAccelerationFactor;
 
 		/// param read from config file
 		double mAccelerationIncrement;
+		double mMaxAccelerationFactor;
+		double mMinAccelerationFactor;
 
+		/// param read from config file
+		double mMaxSameDirectionAngle;
+
+		/// param read from config file
+		double mWalkSpeed;
 
 		/// Load params from config file
 		virtual bool loadConfig();

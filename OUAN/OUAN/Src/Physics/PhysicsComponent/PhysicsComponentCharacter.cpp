@@ -4,6 +4,16 @@ using namespace OUAN;
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
 {
+	reset();
+}
+
+PhysicsComponentCharacter::~PhysicsComponentCharacter()
+{
+
+}
+
+void PhysicsComponentCharacter::reset()
+{
 	mNextMovement = NxOgre::Vec3(0,0,0);
 	mLastMovement = NxOgre::Vec3::ZERO;
 
@@ -11,6 +21,7 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 	mFalling = true;
 	mSliding = false;
 	mOnSurface = false;
+	mIsWalking = false;
 
 	mFallTime = 0;
 
@@ -20,21 +31,13 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 	mNormalAngle = 0;
 
 	mDash = 0;
-	mDashMax = 100;
+
 	mLastYaw=0;
 	mDashDirection=Ogre::Vector3::ZERO;
-	mDashEmpty=true;
+	mIsNotApplyingDash=true;
 
-	mMaxAccelerationFactor=1;
-	mMinAccelerationFactor=0.5;
-	mAccelerationFactor=mMinAccelerationFactor;
-
-	mMaxSameDirectionAngle=60;
-}
-
-PhysicsComponentCharacter::~PhysicsComponentCharacter()
-{
-
+	mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
+	mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinAccelerationFactor;
 }
 
 void PhysicsComponentCharacter::create()
@@ -66,6 +69,16 @@ void PhysicsComponentCharacter::destroy()
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+
+	if(mIsWalking)
+	{
+		Vector3 mWalkDirection;
+		mWalkDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
+		mWalkDirection.normalise();
+		
+		mNextMovement.x=mWalkDirection.x*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+		mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+	}
 
 	if (mNextMovement!=Vector3::ZERO)
 	{
@@ -145,6 +158,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	setLastMovement(mNextMovement);
 	//Set movement to zero for the next frame
 	mNextMovement=Vector3::ZERO;
+	mIsWalking=false;
 }
 
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
@@ -158,6 +172,11 @@ bool PhysicsComponentCharacter::isMoving()
 {
 	return (Ogre::Math::Abs(mNextMovement.x)>0.1 || Ogre::Math::Abs(mNextMovement.z)>0.1);
 }	
+
+void PhysicsComponentCharacter::walk()
+{
+	mIsWalking=true;
+}
 
 void PhysicsComponentCharacter::calculateAngleDifference()
 {
@@ -177,9 +196,9 @@ void PhysicsComponentCharacter::calculateAcceleration(double elapsedSeconds)
 	Vector3 mXZMovement;
 	Vector3 mLastXZMovement;
 
-	if(isMoving())
+	if(isMoving() && mIsNotApplyingDash && !mIsWalking)
 	{
-		if(mAngleDifference<mMaxSameDirectionAngle)
+		if(mAngleDifference<Application::getInstance()->getPhysicsSubsystem()->mMaxSameDirectionAngle)
 		{
 			mXZMovement=Vector3(mNextMovement.x,0,mNextMovement.z);
 			mLastXZMovement=Vector3(mLastMovement.x,0,mLastMovement.z);
@@ -188,9 +207,9 @@ void PhysicsComponentCharacter::calculateAcceleration(double elapsedSeconds)
 			{
 				mAccelerationFactor+=mXZMovement.length()*elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mAccelerationIncrement;
 
-				if(mAccelerationFactor>mMaxAccelerationFactor)
+				if(mAccelerationFactor>Application::getInstance()->getPhysicsSubsystem()->mMaxAccelerationFactor)
 				{
-					mAccelerationFactor=mMaxAccelerationFactor;
+					mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMaxAccelerationFactor;
 				}
 			}
 			else
@@ -201,7 +220,7 @@ void PhysicsComponentCharacter::calculateAcceleration(double elapsedSeconds)
 	}
 	else
 	{
-		mAccelerationFactor=mMinAccelerationFactor;
+		mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinAccelerationFactor;
 	}
 }
 
@@ -210,27 +229,40 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 	double dashPower;
 	Vector3 dashMovement;
 
-	dashPower=mDash*elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
+	dashMovement = Vector3::ZERO;
+	dashPower=0;
 
-	mDash-=dashPower;
+	if(mDash>0)
+	{
+		dashPower=elapsedSeconds*mDashAccelerationFactor*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
+		mDashAccelerationFactor-=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashAccelerationIncrement;
+		
+		if(mDashAccelerationFactor<Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor)
+		{
+			mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
+		}
+
+		mDash-=dashPower;
+
+		dashMovement = mDashDirection * dashPower;
+
+	}
+
 	if(mDash<0.1)
 	{
+		mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
 		mDash=0;
-		mDashEmpty=true;
+		mIsNotApplyingDash=true;
 	}
 	else
 	{
-		mDashEmpty=false;
+		mIsNotApplyingDash=false;
 	}
 
-	if(mOnSurface)
-	{
-		dashMovement = mDashDirection * dashPower;
-	}
-	else
-	{ 
-		dashMovement = Vector3::ZERO;
-	}
+
+
+	//Ogre::LogManager::getSingleton().logMessage("dashMovement "+Ogre::StringConverter::toString(dashMovement));
+	//Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 
 	return dashMovement;
 }
@@ -242,32 +274,42 @@ void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
 		//{
 		if(isMoving())
 		{
-			if(mAngleDifference<mMaxSameDirectionAngle && mDashEmpty)
+			if(mAngleDifference<Application::getInstance()->getPhysicsSubsystem()->mMaxSameDirectionAngle && mIsNotApplyingDash)
 			{
 				//same direction
-				mDash+=Vector3(mNextMovement.x,0,mNextMovement.z).length()*elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
-				if(mDash>mDashMax)
+				mDashAccelerationFactor+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashAccelerationIncrement;
+
+				if(mDashAccelerationFactor>Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor)
 				{
-					mDash=mDashMax;
+					mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor;
+				}
+
+				mDash+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
+	
+				if(mDash>Application::getInstance()->getPhysicsSubsystem()->mDashMax)
+				{
+					mDash=Application::getInstance()->getPhysicsSubsystem()->mDashMax;
 				}
 
 				mDashDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
 				mDashDirection.normalise();
 
 			}
-			else if(mDash>0)
+			else
 			{
 				//different direction
 				mNextMovement+=getDashMovement(elapsedSeconds);
 			}
 		}
-		else if(mDash>0)
+		else
 		{
 			//different direction
 			mNextMovement+=getDashMovement(elapsedSeconds);
 		}
 
-		Ogre::LogManager::getSingleton().logMessage("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
+		//Ogre::LogManager::getSingleton().logMessage("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
+		//Ogre::LogManager::getSingleton().logMessage("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
+
 }
 
 

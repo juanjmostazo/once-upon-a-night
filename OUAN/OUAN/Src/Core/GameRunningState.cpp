@@ -192,8 +192,7 @@ void GameRunningState::handleEvents()
 
 	if (mApp->isPressedWalk())
 	{
-		//TODO: this should be loaded from config
-		nextMovement=nextMovement/2;	
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
 	}
 
 	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)

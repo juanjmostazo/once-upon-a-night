@@ -205,7 +205,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		readOption(config,KEY_CHANGE_LEVEL,mDefaultInputData.keyChangeLevel);
 		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
 		readOption(config,KEY_TOGGLE_VOLUMES,mDefaultInputData.keyToggleVolumes);
-
+		readOption(config,KEY_TOGGLE_GOD_MODE,mDefaultInputData.keyToggleGodMode);
 		return true;
 	}
 	else
@@ -236,7 +236,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		mDefaultInputData.keyChangeLevel=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleVolumes=OIS::KC_UNASSIGNED;
-
+		mDefaultInputData.keyToggleGodMode=OIS::KC_UNASSIGNED;
 		return false;
 	}
 }
