@@ -93,6 +93,9 @@ void GameObjectBee_Butterfly::update(double elapsedSeconds)
 void GameObjectBee_Butterfly::reset()
 {
 	GameObject::reset();
+
+	mPhysicsComponentCharacterDreams->reset();
+	mPhysicsComponentCharacterNightmares->reset();
 }
 
 bool GameObjectBee_Butterfly::hasPositionalComponent() const

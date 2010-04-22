@@ -35,18 +35,20 @@ namespace OUAN
 
 		void jump();
 
+		void walk();
+
+		void reset();
+
+		//void setQueryFlags(QueryFlags queryFlags);
+
+	protected:
+
 		void applyDash(double elapsedSeconds);
 		Vector3 getDashMovement(double elapsedSeconds);
 		void calculateAngleDifference();
 		void calculateAcceleration(double elapsedSeconds);
 		bool isMoving();
-
-
 		void applyGravity(double elapsedSeconds);
-
-		//void setQueryFlags(QueryFlags queryFlags);
-
-	protected:
 
 		double getYawFromMovement(NxOgre::Vec3 movement);
 
@@ -70,6 +72,7 @@ namespace OUAN
 		bool mFalling;
 		bool mSliding;
 		bool mOnSurface;
+		bool mIsWalking;
 
 		// Physics times
 		double mFallTime;
@@ -83,18 +86,17 @@ namespace OUAN
 		//angle difference
 		double mLastYaw;
 		double mAngleDifference;
-		double mMaxSameDirectionAngle;
+
 
 		//dash
+
+		double mDashAccelerationFactor;
 		double mDash;
-		double mDashMax;
 		Vector3 mDashDirection;
-		bool mDashEmpty;
+		bool mIsNotApplyingDash;
 
 		//acceleration
 		double mAccelerationFactor;
-		double mMaxAccelerationFactor;
-		double mMinAccelerationFactor;
 
 		void initJump();
 		void initFall();

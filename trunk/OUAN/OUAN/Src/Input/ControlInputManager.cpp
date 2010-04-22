@@ -301,6 +301,11 @@ bool ControlInputManager::isPressedToggleVolumes()
 	return isPressed(-1,mDefaultInputData.keyToggleVolumes);
 }
 
+bool ControlInputManager::isPressedToggleGodMode()
+{
+	return isPressed(-1,mDefaultInputData.keyToggleGodMode);
+}
+
 //////////////////////////////////////////////////////////////
 
 void ControlInputManager::getMouseStateRelValues(double & x, double & y, double & z)

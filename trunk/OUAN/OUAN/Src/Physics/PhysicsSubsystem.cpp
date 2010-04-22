@@ -266,8 +266,32 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("DASH_FACTOR", value); 
 		mDashFactor = atof(value.c_str());
 
+		config.getOption("MAX_DASH", value); 
+		mDashMax = atof(value.c_str());
+
+		config.getOption("DASH_ACCELERATION_INCREMENT", value); 
+		mDashAccelerationIncrement = atof(value.c_str());
+
+		config.getOption("DASH_ACCELERATION_FACTOR_MIN", value); 
+		mMinDashAccelerationFactor = atof(value.c_str());
+
+		config.getOption("DASH_ACCELERATION_FACTOR_MAX", value); 
+		mMaxDashAccelerationFactor = atof(value.c_str());
+
 		config.getOption("ACCELERATION_INCREMENT", value); 
 		mAccelerationIncrement = atof(value.c_str());
+
+		config.getOption("ACCELERATION_FACTOR_MIN", value); 
+		mMinAccelerationFactor = atof(value.c_str());
+
+		config.getOption("ACCELERATION_FACTOR_MAX", value); 
+		mMaxAccelerationFactor = atof(value.c_str());
+
+		config.getOption("MAX_SAME_DIRECTION_ANGLE", value); 
+		mMaxSameDirectionAngle = atof(value.c_str());
+
+		config.getOption("WALK_SPEED", value); 
+		mWalkSpeed = atof(value.c_str());
 
 		success = true;
 	} 

@@ -76,6 +76,7 @@ void GameObjectOny::reset()
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
+		mPhysicsComponentCharacter->reset();
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 	}

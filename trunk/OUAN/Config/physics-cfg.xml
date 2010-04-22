@@ -19,7 +19,15 @@
     <Option key="MIN_SLIDING_ANGLE_FALL">90</Option>
     <Option key="SLIDING_FACTOR">5</Option>
     <Option key="SLIDING_FACTOR_FALL">25</Option>
-    <Option key="DASH_FACTOR">3</Option>
-    <Option key="ACCELERATION_INCREMENT">0.7</Option>
+    <Option key="DASH_FACTOR">20</Option>
+    <Option key="MAX_SAME_DIRECTION_ANGLE">60</Option>
+    <Option key="ACCELERATION_INCREMENT">0.5</Option>
+    <Option key="ACCELERATION_FACTOR_MAX">1.5</Option>
+    <Option key="ACCELERATION_FACTOR_MIN">0.5</Option>
+    <Option key="DASH_ACCELERATION_FACTOR_MAX">6</Option>
+    <Option key="DASH_ACCELERATION_FACTOR_MIN">2.5</Option>
+    <Option key="MAX_DASH">200</Option>
+    <Option key="DASH_ACCELERATION_INCREMENT">2.5</Option>
+    <Option key="WALK_SPEED">0.5</Option>
   </Options>
 </Configuration>

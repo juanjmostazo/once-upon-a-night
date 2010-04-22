@@ -60,6 +60,9 @@ namespace OUAN
 		/// Detect if the 'toggle-volumes' key has been pressed
 		/// @return true if there has been a 'toggle-volumes' key press
 		bool isPressedToggleVolumes();
+		/// Detect if the 'toggle-godmode' key has been pressed
+		/// @return true if there has been a 'toggle-godmode' key press
+		bool isPressedToggleGodMode();
 
 		void getMouseStateRelValues(
 			double & x, double & y, double & z);			// Mouse x, y, z coordinate values
