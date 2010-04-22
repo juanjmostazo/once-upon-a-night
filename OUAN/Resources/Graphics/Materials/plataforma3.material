@@ -1,5 +1,5 @@
 
-material tower1_island2
+material plataforma3
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material tower1_island2
 
 			texture_unit
 			{
-				texture tower1_island2.dds
+				texture plataforma3.dds
 			}
 		}
 

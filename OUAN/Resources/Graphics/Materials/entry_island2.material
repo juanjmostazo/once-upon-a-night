@@ -1,21 +1,20 @@
 
-material entry_island2
+material Entry_island2
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
 
 			texture_unit
 			{
-				texture entry_little.tga
+				texture entry_little.dds
 			}
 		}
 
 	}
 
 }
-
-
