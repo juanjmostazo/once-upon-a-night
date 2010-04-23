@@ -20,6 +20,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Audio/AudioSubsystem.h"
+#include "../Utils/Utils.h"
 
 #include <fstream>
 
@@ -121,6 +122,9 @@ void GameRunningState::resume()
 }
 void GameRunningState::handleEvents()
 {
+	bool actionKeyPressed=false;
+	bool useWeaponKeyPressed=false;
+	bool useSpWeaponKeyPressed=false;
 	if (mApp->mKeyBuffer<0)
 	{
 		checkDebuggingKeys();
@@ -161,6 +165,7 @@ void GameRunningState::handleEvents()
 		}
 		else if (mApp->isPressedDoAction())
 		{
+			actionKeyPressed=true;
 			mApp->getGameWorldManager()->useObject();
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
@@ -168,10 +173,17 @@ void GameRunningState::handleEvents()
 	if (mApp->isPressedUseWeapon())
 	{
 		mApp->getGameWorldManager()->useWeapon();
+		useWeaponKeyPressed=true;
 	}
 	else
 	{
+		//this method will basically apply to the flashlight, as it'll stop working
+		//when it is not used
 		mApp->getGameWorldManager()->stopUsingWeapon();
+	}
+	if (mApp->isPressedWeaponAction())
+	{
+		useSpWeaponKeyPressed=true;
 	}
 
 			
@@ -185,26 +197,63 @@ void GameRunningState::handleEvents()
 	nextMovement.y=0;
 	nextMovement.z=nextMovementXZ.y;
 
-	if (mApp->isPressedJump())
+	GameObjectOnyPtr ony=mApp->getGameWorldManager()->getGameObjectOny();
+	if (ony.get())
 	{
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->jump();
-	}	
+		int currentState = ony->getLogicComponentOny()->getState();
+		currentState =actionKeyPressed
+			?SET_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION)
+			:CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION);
+		// TODO: Uncomment when the attack logic is fully implemented
+		//if (useWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK))
+		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK);
+		//if (useSpWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK))
+		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK);
 
+		bool zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
+		currentState =zeroMovement
+			?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
+			:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
+		if (!zeroMovement)
+			currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_HIT);
 	if (mApp->isPressedWalk())
 	{
 		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
+		currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_WALK),ONY_STATE_BIT_FIELD_HIT);
 	}
+	else currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
 
-	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
-	{
-		mApp->getCameraManager()->processSimpleTranslation(nextMovement);
-	}
-	else if(mApp->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
-	{
-		//Access to [0] because there's only one Ony, otherwise it should be a loop
-		//rotate movement vector using the current camera direction
-		nextMovement=mApp->getCameraManager()->rotateMovementVector(nextMovement);
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
+		if (mApp->isPressedJump())
+		{
+			ony->getPhysicsComponentCharacter()->jump();
+			currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP),ONY_STATE_BIT_FIELD_HIT);
+		}	
+		//else currentState =CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
+		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
+		{
+			mApp->getCameraManager()->processSimpleTranslation(nextMovement);
+		}
+		else if(mApp->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
+		{
+			//Access to [0] because there's only one Ony, otherwise it should be a loop
+			//rotate movement vector using the current camera direction
+			nextMovement=mApp->getCameraManager()->rotateMovementVector(nextMovement);
+			ony->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
+			
+			zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
+			currentState =zeroMovement
+				?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
+				:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
+			if (!zeroMovement)
+				currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_HIT);
+		}
+
+		if (currentState!=ony->getLogicComponentOny()->getState())
+		{
+			ony->getLogicComponentOny()->setState(currentState);
+			//ony->getLogicComponentOny()->setStateChanged(true);
+		}
+		
 	}
 
 	Vector2 cameraRotation;

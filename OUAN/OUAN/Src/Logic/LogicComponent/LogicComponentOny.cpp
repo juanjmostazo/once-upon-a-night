@@ -3,6 +3,8 @@
 #include "../../Application.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameObject/GameObjectOny.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -52,9 +54,22 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	{
 		if(mHitRecoveryTime<0)
 		{
+			OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
+			getParent()->getGameWorldManager()->addEvent(evt);
 			decreaseHP();
-			mHitRecoveryTime=1000;
+			mHitRecoveryTime=2;
 		}
+	}
+}
+void LogicComponentOny::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(ONY_ANIM_HIT01)==0)
+	{
+		//if (mHitRecoveryTime<0)
+		//{					
+			int tempState=getState();
+			setState(CLEAR_BIT(tempState,ONY_STATE_BIT_FIELD_HIT));
+		//}
 	}
 }
 
@@ -169,11 +184,16 @@ void LogicComponentOny::setInitialNumLives(int numLives)
 
 void LogicComponentOny::update(double elapsedTime)
 {
-	LogicComponent::update(elapsedTime);
+	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
+	if (CHECK_BIT(getState(), ONY_STATE_BIT_FIELD_JUMP) && !ony->getPhysicsComponentCharacter()->isJumping())
+	{
+		setState(CLEAR_BIT(getState(),ONY_STATE_BIT_FIELD_JUMP));
+	}
+	else setStateChanged(false);
 
 	if(mHitRecoveryTime>=0)
 	{
-		mHitRecoveryTime-=elapsedTime*1000;
+		mHitRecoveryTime-=elapsedTime;
 	}
 }
 

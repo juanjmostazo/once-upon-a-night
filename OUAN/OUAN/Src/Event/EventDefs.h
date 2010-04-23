@@ -41,6 +41,9 @@ namespace OUAN
 	class OnyFallsEvent;
 	typedef boost::shared_ptr<OnyFallsEvent> OnyFallsEventPtr;
 
+	class OnyTakesHitEvent;
+	typedef boost::shared_ptr<OnyTakesHitEvent> OnyTakesHitEventPtr;
+
 	class WeaponModeChangedEvent;
 	typedef boost::shared_ptr<WeaponModeChangedEvent> WeaponModeChangedEventPtr;
 
@@ -69,6 +72,7 @@ namespace OUAN
 		EVENT_TYPE_COLLISION,
 		EVENT_TYPE_ENTER_TRIGGER,
 		EVENT_TYPE_EXIT_TRIGGER,
+		EVENT_TYPE_ONY_TAKES_HIT,
 		EVENT_TYPE_WEAPON_MODE_CHANGED
 	} TEventType;
 
@@ -81,10 +85,11 @@ namespace OUAN
 	const int EVT_PRIORITY_CLEARQUEUE=2;
 	const int EVT_PRIORITY_ANIMATION_STARTED=3;
 	const int EVT_PRIORITY_ANIMATION_ENDED=3;
-	const int EVT_PRIORITY_WEAPON_MODE_CHANGED=3;
+	const int EVT_PRIORITY_WEAPON_MODE_CHANGED=3;	
 	const int EVT_PRIORITY_EXIT_TRIGGER=3;
 	const int EVT_PRIORITY_ENTER_TRIGGER=4;
 	const int EVT_PRIORITY_ACTIVATED_ITEM=4;
+	const int EVT_PRIORITY_ONY_TAKES_HIT=4;
 	const int EVT_PRIORITY_COLLISION=5;
 
 	//...

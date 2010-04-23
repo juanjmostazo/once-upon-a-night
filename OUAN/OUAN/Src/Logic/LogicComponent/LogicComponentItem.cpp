@@ -20,7 +20,7 @@ LogicComponentItem::~LogicComponentItem()
 
 void LogicComponentItem::processCollision(GameObjectPtr pGameObject)
 {
-	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0 && !mIsTaken)
 	{
 		setIsTaken(true);
 		getParent()->disable();

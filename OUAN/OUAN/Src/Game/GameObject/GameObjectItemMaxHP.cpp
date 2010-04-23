@@ -156,7 +156,7 @@ PhysicsComponentPtr GameObjectItemMaxHP::getPhysicsComponent() const
 
 void GameObjectItemMaxHP::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -196,6 +196,7 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 		{
 			mRenderComponentEntity->setVisible(false);
 			mPhysicsComponentVolumeBox->destroy();
+			mLogicComponentItem->setStateChanged(false);
 		}
 	}
 }

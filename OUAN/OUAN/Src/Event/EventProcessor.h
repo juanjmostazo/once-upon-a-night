@@ -61,6 +61,9 @@ namespace OUAN
 		/// Process the 'activated item' event
 		void processActivatedItem(ActivatedItemEventPtr evt);
 
+		/// Process the 'ony takes hit' event
+		void processOnyTakesHit(OnyTakesHitEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

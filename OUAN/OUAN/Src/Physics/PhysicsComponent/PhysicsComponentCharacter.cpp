@@ -522,6 +522,26 @@ NxOgre::Vec3 PhysicsComponentCharacter::getLastMovement()
 {
 	return mLastMovement;
 }
+bool PhysicsComponentCharacter::isJumping() const
+{
+	return mJumping;
+}
+bool PhysicsComponentCharacter::isFalling() const
+{
+	return mFalling;
+}
+bool PhysicsComponentCharacter::isSliding() const
+{
+	return mSliding;
+}
+bool PhysicsComponentCharacter::isMoving() const
+{	
+	return mNextMovement!=NxOgre::Vec3::ZERO;
+}
+bool PhysicsComponentCharacter::isOnSurface() const
+{
+	return mOnSurface;
+}
 
 TPhysicsComponentCharacterParameters::TPhysicsComponentCharacterParameters() : TPhysicsComponentParameters()
 {

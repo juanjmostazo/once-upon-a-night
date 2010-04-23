@@ -177,5 +177,11 @@ namespace OUAN
 		GameObjectPtr mActor;
 	};
 
+	class OnyTakesHitEvent: public Event{
+	public:
+		OnyTakesHitEvent();
+	//remaining info?
+	};
+
 }
 #endif

@@ -65,6 +65,8 @@ void EventProcessor::registerHandlers()
 			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
 		registerEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
 			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
+			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
 	}
 }
 
@@ -102,6 +104,8 @@ void EventProcessor::unregisterHandlers()
 			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
 		unregisterEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
 			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
+			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
 	}
 }
 
@@ -209,8 +213,10 @@ void EventProcessor::processAnimationEnded(AnimationEndedEventPtr evt)
 {
 	if (evt->getActor().get())
 	{
-		//TODO: Uncomment
+		//TODO: Replace code with the commented, more general one when it's needed
 		//evt->getActor()->animationEnded(evt->getAnimationName());
+		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getActor());
+		ony->processAnimationEnded(evt->getAnimationName());
 	}
 }
 
@@ -226,4 +232,14 @@ void EventProcessor::processActivatedItem(ActivatedItemEventPtr evt)
 		evt->getActor()->activate();
 		//Play "activate" sound
 	}
+}
+void EventProcessor::processOnyTakesHit(OnyTakesHitEventPtr evt)
+{
+	if (mWorldManager->getGameObjectOny().get())
+	{
+		int state=mWorldManager->getGameObjectOny()->getLogicComponentOny()->getState();
+		state=SET_BIT(state,ONY_STATE_BIT_FIELD_HIT);
+		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setState(state);
+		//mWorldManager->getGameObjectOny()->getLogicComponentOny()->setStateChanged(true);
+	}	
 }

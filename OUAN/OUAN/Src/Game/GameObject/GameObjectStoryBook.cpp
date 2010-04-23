@@ -143,7 +143,7 @@ bool GameObjectStoryBook::hasPositionalComponent() const
 
 void GameObjectStoryBook::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get() && !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -176,14 +176,16 @@ void GameObjectStoryBook::updateLogic(double elapsedSeconds)
 void GameObjectStoryBook::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
 	if (mLogicComponentItem->isStateChanged())
 	{
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
 		{
 			mRenderComponentEntity->setVisible(false);
 			mPhysicsComponentVolumeBox->destroy();
+			mLogicComponentItem->setStateChanged(false);
 		}
-	}
+	}	
 }
 
 

@@ -156,7 +156,7 @@ LogicComponentItemPtr GameObjectClockPiece::getLogicComponentItem()
 
 void GameObjectClockPiece::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -189,17 +189,14 @@ void GameObjectClockPiece::updateLogic(double elapsedSeconds)
 void GameObjectClockPiece::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-
 	if (mLogicComponentItem->isStateChanged())
 	{
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
 		{
 			mRenderComponentEntity->setVisible(false);
-			mPhysicsComponentVolumeBox->destroy();
-			disable();
+			mPhysicsComponentVolumeBox->destroy();		
 		}
-	}
-
+	}	
 }
 
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()

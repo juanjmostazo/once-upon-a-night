@@ -32,6 +32,8 @@ namespace OUAN
 
 		bool isStateChanged() const;
 		void setStateChanged(bool stateChanged);
+
+		int getLastFrameState() const;
 		
 		void initStateHistory();
 
@@ -39,10 +41,12 @@ namespace OUAN
 		virtual void processEnterTrigger(GameObjectPtr pGameObject);
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
-	private:
+	protected:
 
 		int mState;
 		int mLastFrameState;
+	
+	private:
 		/// Filename of the script that'll be executed by the logic subsystem
 		/// to update this component's parent game object
 		std::string mScriptFilename;
