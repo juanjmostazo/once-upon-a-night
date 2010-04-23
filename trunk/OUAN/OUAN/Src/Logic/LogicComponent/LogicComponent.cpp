@@ -12,6 +12,7 @@ LogicComponent::LogicComponent(const std::string& type)
 {
 //	mPatrolTrajectory.reset();
 	mStateChanged=true;
+	mLastFrameState=-1;
 }
 
 LogicComponent::~LogicComponent()
@@ -35,23 +36,20 @@ void LogicComponent::processExitTrigger(GameObjectPtr pGameObject)
 
 void LogicComponent::update(double elapsedTime)
 {
-	mStateChanged=false;
+	//mStateChanged=false;
 
 	if (!mScriptFunction.empty())
 	{
 		LogicSubsystemPtr logicSS= mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
 		int newState=logicSS->invokeFunction(mScriptFunction,mState,this);
-		if (newState!=mState)
-		{
-			setState(newState);
-		}
+		setState(newState);
 	}
 
-	if(mState!=mLastFrameState)
-	{
-		mStateChanged=true;
-		mLastFrameState=mState;
-	}
+	//if(mState!=mLastFrameState)
+	//{
+	//	mStateChanged=true;
+	//	mLastFrameState=mState;
+	//}
 }
 void LogicComponent::initStateHistory()
 {
@@ -100,7 +98,7 @@ void LogicComponent::setState(int state)
 		stateHistory[i]=stateHistory[i-1];
 	}
 	stateHistory[0]=oldState;
-	
+	setStateChanged(oldState!=mState);
 }
 
 std::string LogicComponent::getScriptFilename() const
@@ -128,6 +126,11 @@ bool LogicComponent::isStateChanged() const
 void LogicComponent::setStateChanged(bool stateChanged)
 {
 	mStateChanged=stateChanged;
+}
+
+int LogicComponent::getLastFrameState() const
+{
+	return mLastFrameState;
 }
 
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()

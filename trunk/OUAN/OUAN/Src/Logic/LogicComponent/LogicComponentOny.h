@@ -12,6 +12,7 @@ namespace OUAN
 		~LogicComponentOny();
 
 		void processCollision(GameObjectPtr pGameObject);
+		void processAnimationEnded(const std::string& animationName);
 
 		int getHealthPoints() const;
 		void setHealthPoints(int healthPoints);
@@ -63,7 +64,7 @@ namespace OUAN
 		int mAttackDamage;
 
 		/// 'Immunity' time so a single collision is not processed during several ticks
-		int mHitRecoveryTime;
+		double mHitRecoveryTime;
 
 	};
 	

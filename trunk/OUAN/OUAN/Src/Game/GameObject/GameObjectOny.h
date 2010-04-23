@@ -11,28 +11,103 @@
 
 namespace OUAN
 {
-	const int STATE_ONY_IDLE=0;
-	const int STATE_ONY_WALKS=1;
-	const int STATE_ONY_JUMPS=2;
-	const int STATE_ONY_TAKES_HIT=3;
-	const int STATE_ONY_PILLOW_DRAW=4;
-	const int STATE_ONY_PILLOW_ATTACK=5;
-	const int STATE_ONY_PILLOW_ATTACK_SPECIAL=6;
-	const int STATE_ONY_PILLOW_HIDE=7;
-	const int STATE_ONY_FLASHLIGHT_DRAW=8;
-	const int STATE_ONY_FLASHLIGHT_USE=9;
-	const int STATE_ONY_FLASHLIGHT_HIDE=10;
-	const int STATE_ONY_FLASHLIGHT_USE_SPECIAL=11;
+	//Time to be spent in idle state before the animation changes to 'napping'
+	const double IDLE_SECONDS_TO_NAP=5.0;
+
+	//Default state
+	const int ONY_STATE_IDLE=0;
+
+	//Bit positions to encode Ony's state.
+	//The reason why a bit field is being used instead
+	//of a single number is to allow for combinations
+	//of states (for instance, ony can be attacking at the same time that he's jumping
+	//forward; that would combine three states at once)
+	const unsigned int ONY_STATE_BIT_FIELD_IDLE=0;		//0=IDLE; 1=NAPPING (iff the rest of bits are set to 0)
+	const unsigned int ONY_STATE_BIT_FIELD_MOVEMENT=1;  //0=Still or jumping vertically; 1=Moving in the XZ plane
+	const unsigned int ONY_STATE_BIT_FIELD_WALK=2;		//0=Running; 1=Walking
+	const unsigned int ONY_STATE_BIT_FIELD_JUMP=3;		//0=No jump; 1=Jumping
+	const unsigned int ONY_STATE_BIT_FIELD_ACTION=4;	//0=No action; 1=Executing action (activating a portal, pulling a lever,...)
+	const unsigned int ONY_STATE_BIT_FIELD_CHANGE_WORLD=5; //During a world change (probably not necessary)
+	const unsigned int ONY_STATE_BIT_FIELD_WORLD=6; //if 1, nightmares
+	const unsigned int ONY_STATE_BIT_FIELD_ATTACK=7;	//Ony is attacking	
+	const unsigned int ONY_STATE_BIT_FIELD_SP_ATTACK=8; //If 1, ony's using his current weapon's special attack
+	const unsigned int ONY_STATE_BIT_FIELD_COMBO01=9;	//These two fields will encode the combo state:
+	const unsigned int ONY_STATE_BIT_FIELD_COMBO02=10;  //00: No combo
+														//01: first hit
+														//10: second hit
+														//11: last hit
+	const unsigned int ONY_STATE_BIT_FIELD_HIT=11; //Ony being hit
+	const unsigned int ONY_STATE_BIT_FIELD_DIE=12; //Ony is dying
+
+#define SET_BIT(var,pos) var|(1<<pos)
+#define CLEAR_BIT(var,pos) var& ~(1<<pos)
+#define CHECK_BIT(var,pos) (var & (1<<pos))
+#define TOGGLE_BIT(var,pos) var^= (1<<pos)
+#define RESET_BIT_FIELD(var) var=0;
+
 
 	//Animation names
-	const std::string ONY_ANIM_ALERT="ALERT";
-	const std::string ONY_ANIM_WALK="WALK";
-	const std::string ONY_ANIM_RUN="RUN";
-	const std::string ONY_ANIM_IDLE01="IDLE01";
-	const std::string ONY_ANIM_IDLE02="IDLE02";
-	const std::string ONY_ANIM_DIE="DIE";
-	const std::string ONY_ANIM_JUMP="JUMP";
-	const std::string ONY_ANIM_HIT01="HIT01";
+	//TODO: Replace with correct names
+	const std::string ONY_ANIM_IDLE01="idle1_eani_Clip";
+	const std::string ONY_ANIM_IDLE02="idle2_eani_Clip";
+	const std::string ONY_ANIM_WALK="walk_eani_Clip";
+	const std::string ONY_ANIM_RUN="run_eani_Clip";
+	const std::string ONY_ANIM_JUMP="jump_eani_Clip";
+	const std::string ONY_ANIM_GET_PILLOW="Get_pillow_Clip";
+	const std::string ONY_ANIM_STAB_RIGHT_PILLOW="Stab_right_pillow__Clip";
+	const std::string ONY_ANIM_STAB_LEFT_PILLOW="Stab_left_pillow__Clip";
+	const std::string ONY_ANIM_LEAVE_PILLOW="Leave_pillow_Clip";
+	const std::string ONY_ANIM_SPECIAL_PILLOW_ATTACK="Special_pillow_attack__Clip";
+	const std::string ONY_ANIM_GET_FLASH="Get_flash__Clip";
+	const std::string ONY_ANIM_SHOOT_SPECIAL="shot_special_Clip";
+	const std::string ONY_ANIM_ALERT="alert_eani1_Clip";
+	const std::string ONY_ANIM_HIT01="hit1_eani_Clip";
+	const std::string ONY_ANIM_HIT02="Hit_02_Clip";
+	const std::string ONY_ANIM_DIE01="die_eani_Clip";
+	const std::string ONY_ANIM_DIE02="die2_Clip";
+	const std::string ONY_ANIM_TIRED="Tired_Clip";
+	const std::string ONY_ANIM_HANDLE="handle_Clip";
+	const std::string ONY_ANIM_OPEN_DOOR="open_door_Clip";
+	const std::string ONY_ANIM_GET_PIECE="get_piece_Clip";
+	const std::string ONY_ANIM_GET_ITEM="get_item_Clip";
+	const std::string ONY_ANIM_AFRAID="Afraid_Clip";
+	const std::string ONY_ANIM_CHANGE_WORLD="change_world_Clip";
+	const std::string ONY_ANIM_TICKLING="tickling_Clip";
+	const std::string ONY_ANIM_SPEAK="Speak_Clip";
+	const std::string ONY_ANIM_FALLING="falling_Clip";
+	const std::string ONY_ANIM_SHOOT_UP="shot_up_Clip";
+	const std::string ONY_ANIM_SHOOT_CENTER="shot_center_Clip";
+	const std::string ONY_ANIM_SHOOT_DOWN="shot_down_Clip";
+	//const std::string ONY_ANIM_IDLE01="idle01";
+	//const std::string ONY_ANIM_IDLE02="idle02";
+	//const std::string ONY_ANIM_WALK="walk";
+	//const std::string ONY_ANIM_RUN="run";
+	//const std::string ONY_ANIM_JUMP="jump";
+	//const std::string ONY_ANIM_GET_PILLOW="get_pillow";
+	//const std::string ONY_ANIM_STAB_RIGHT_PILLOW="stab_right_pillow";
+	//const std::string ONY_ANIM_STAB_LEFT_PILLOW="stab_left_pillow";
+	//const std::string ONY_ANIM_LEAVE_PILLOW="leave_pillow";
+	//const std::string ONY_ANIM_SPECIAL_PILLOW_ATTACK="special_pillow_attack";
+	//const std::string ONY_ANIM_GET_FLASH="get_flash";
+	//const std::string ONY_ANIM_SHOOT_SPECIAL="shoot_special";
+	//const std::string ONY_ANIM_ALERT="alert";
+	//const std::string ONY_ANIM_HIT01="hit01";
+	//const std::string ONY_ANIM_HIT02="hit02";
+	//const std::string ONY_ANIM_DIE01="die01";
+	//const std::string ONY_ANIM_DIE02="die02";
+	//const std::string ONY_ANIM_TIRED="tired";
+	//const std::string ONY_ANIM_HANDLE="handle";
+	//const std::string ONY_ANIM_OPEN_DOOR="open_door";
+	//const std::string ONY_ANIM_GET_PIECE="get_piece";
+	//const std::string ONY_ANIM_GET_ITEM="get_item";
+	//const std::string ONY_ANIM_AFRAID="afraid";
+	//const std::string ONY_ANIM_CHANGE_WORLD="change_world";
+	//const std::string ONY_ANIM_TICKLING="tickling";
+	//const std::string ONY_ANIM_SPEAK="speak";
+	//const std::string ONY_ANIM_FALLING="falling";
+	//const std::string ONY_ANIM_SHOOT_UP="shoot_up";
+	//const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
+	//const std::string ONY_ANIM_SHOOT_DOWN="shoot_down";
 		
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
@@ -57,6 +132,7 @@ namespace OUAN
 		//TODO: move to LogicComponentOny
 		std::string mDreamsWeapon;
 		std::string mNightmaresWeapon;
+		double mIdleTime;
 
 	public:
 		//Constructor
@@ -154,6 +230,8 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		void processAnimationEnded(const std::string animationName);
 	};
 
 	/// Carries data between the level loader and the object factories

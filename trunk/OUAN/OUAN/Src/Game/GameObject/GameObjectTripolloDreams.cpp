@@ -81,112 +81,123 @@ PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharac
 
 void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
-	GameObject::update(elapsedSeconds);
-
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
-
-	//debug code, erase when it works
-	//if(getName().compare("tripollo#7")!=0)
-	//	return;
-
-	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
-		?mRenderComponentEntityDreams
-		:mRenderComponentEntityNightmares;
-
-	int currentState=mLogicComponentEnemy->getState();
-	if (mPhysicsComponentCharacter.get())
+	if (isEnabled())
 	{
-		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
+		GameObject::update(elapsedSeconds);
+
+		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+		//debug code, erase when it works
+		//if(getName().compare("tripollo#7")!=0)
+		//	return;
+
+		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+			?mRenderComponentEntityDreams
+			:mRenderComponentEntityNightmares;
+
+		int currentState=mLogicComponentEnemy->getState();
+		if (mPhysicsComponentCharacter.get())
 		{
-
-			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+			if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
 			{
-				entityToUpdate->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
-				mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
-			}
 
-		}
-		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
-		{				
-			if (mLogicComponentEnemy->isStateChanged())
-			{
-				if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
-					mTrajectoryComponent->activatePredefinedTrajectory(getName(),mGameWorldManager->getCurrentWorld());
-				}
-				else
-				{
+					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
 				}
-				/*
-					If the state has just changed, then load the trajectory and set the displacement
-					vector as (marker1-marker0)
-				*/
-				if (entityToUpdate.get())
+
+			}
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
+			{				
+				if (mLogicComponentEnemy->isStateChanged())
+				{
+					if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+					{
+						mTrajectoryComponent->activatePredefinedTrajectory(getName(),mGameWorldManager->getCurrentWorld());
+					}
+					else
+					{
+						mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+					}
+					/*
+						If the state has just changed, then load the trajectory and set the displacement
+						vector as (marker1-marker0)
+					*/
+					if (entityToUpdate.get())
+						entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
+
+				}
+			}
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
+			{
+
+				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
 
-			}
-		}
-		else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
-		{
+					mTrajectoryComponent->activatePathFinding(
+						mGameWorldManager->getGameObjectOny()->getName(),
+						mGameWorldManager->getCurrentWorld());
+				}
 
-			if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+				/*
+				
+					TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
+					compute a trajectory of nodes via an A* implementation.
+
+					For the sake of efficiency, here are two suggestions that I recall from the pathfinding classes:
+						- It may be useful to keep a structure containing precalculated paths between pairs of nodes. By doing this, 
+						only one invocation would be needed at the beginning, as the path might be retrieved in practically constant time.
+						- If the first option isn't chosen, don't invoke the A* on every tick. There should be some kind of constraint, such as:
+							- not to recompute the trajectory unless the distance between A*'s last destination node and Ony's current position
+							  exceeds a given value
+							- wait for a given amount of time before callin A* again
+
+							<---- 
+							If its not fast enough we could use dynamic programming and keep the list.
+							The trajectory will be computed every certain time (see Trajectory::recalculateTime) 
+							recalculateTime has a random component so every object calculates at different periods
+				*/
+			}
+			//else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
+			//{
+			//	std::string msg="Enemy ";
+			//	msg.append(getName()).append(" died");
+			//	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+			//	disable();
+			//}
+			else
 			{
-				entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
-
-				mTrajectoryComponent->activatePathFinding(
-					mGameWorldManager->getGameObjectOny()->getName(),
-					mGameWorldManager->getCurrentWorld());
+				
 			}
 
-			/*
-			
-				TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
-				compute a trajectory of nodes via an A* implementation.
+			if (entityToUpdate.get())
+			{
+				entityToUpdate->update(elapsedSeconds);
+			}
 
-				For the sake of efficiency, here are two suggestions that I recall from the pathfinding classes:
-					- It may be useful to keep a structure containing precalculated paths between pairs of nodes. By doing this, 
-					only one invocation would be needed at the beginning, as the path might be retrieved in practically constant time.
-					- If the first option isn't chosen, don't invoke the A* on every tick. There should be some kind of constraint, such as:
-						- not to recompute the trajectory unless the distance between A*'s last destination node and Ony's current position
-						  exceeds a given value
-						- wait for a given amount of time before callin A* again
+			mTrajectoryComponent->update(elapsedSeconds);
 
-						<---- 
-						If its not fast enough we could use dynamic programming and keep the list.
-						The trajectory will be computed every certain time (see Trajectory::recalculateTime) 
-						recalculateTime has a random component so every object calculates at different periods
-			*/
-		}
-		//else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
-		//{
-		//	std::string msg="Enemy ";
-		//	msg.append(getName()).append(" died");
-		//	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
-		//	disable();
-		//}
-		else
-		{
-			
-		}
+			if (mPhysicsComponentCharacter->isInUse())
+			{
+				//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
 
-		if (entityToUpdate.get())
-		{
-			entityToUpdate->update(elapsedSeconds);
-		}
-
-		mTrajectoryComponent->update(elapsedSeconds);
-
-		if (mPhysicsComponentCharacter->isInUse())
-		{
-			//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
-
-			//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
-			mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
+				//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
+				mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
+			}
 		}
 	}
-
+	else
+	{		
+		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntityNightmares->setVisible(false);
+		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->destroy();
+		}
+	}
 }
 AttackComponentPtr GameObjectTripolloDreams::getAttackComponent() const
 {

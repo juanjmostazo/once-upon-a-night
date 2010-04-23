@@ -197,3 +197,10 @@ GameObjectPtr ActivatedItemEvent::getActor() const
 {
 	return mActor;
 }
+
+//----------
+
+OnyTakesHitEvent::OnyTakesHitEvent()
+:Event(EVT_PRIORITY_ONY_TAKES_HIT, EVENT_TYPE_ONY_TAKES_HIT)
+{
+}

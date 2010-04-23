@@ -155,7 +155,7 @@ PhysicsComponentPtr GameObjectItem1UP::getPhysicsComponent() const
 
 void GameObjectItem1UP::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -194,6 +194,7 @@ void GameObjectItem1UP::update(double elapsedSeconds)
 		{
 			mRenderComponentEntity->setVisible(false);
 			mPhysicsComponentVolumeBox->destroy();
+			mLogicComponentItem->setStateChanged(false);
 		}
 	}
 }

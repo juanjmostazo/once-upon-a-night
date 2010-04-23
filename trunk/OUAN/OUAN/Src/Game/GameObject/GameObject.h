@@ -73,6 +73,11 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
+		/// Process animation ended event
+		/// @param name of the object's animation that's finished
+		virtual void processAnimationEnded(const std::string animationName);
+	
+
 		// update logic component
 		virtual void updateLogic(double elapsedSeconds);
 

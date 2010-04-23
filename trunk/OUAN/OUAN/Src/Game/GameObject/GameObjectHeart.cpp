@@ -154,7 +154,7 @@ PhysicsComponentPtr GameObjectHeart::getPhysicsComponent() const
 
 void GameObjectHeart::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -193,16 +193,19 @@ void GameObjectHeart::update(double elapsedSeconds)
 		{
 			mRenderComponentEntity->setVisible(false);
 			mPhysicsComponentVolumeBox->destroy();
+			mLogicComponentItem->setStateChanged(false);
 		}
 	}
-
-	if (isFirstUpdate())
+	if (isEnabled())
 	{
-		mRenderComponentEntity->changeAnimation("animation_prop");
-	}
-	else
-	{
-		mRenderComponentEntity->update(elapsedSeconds);
+		if (isFirstUpdate())
+		{
+			mRenderComponentEntity->changeAnimation("animation_prop");
+		}
+		else
+		{
+			mRenderComponentEntity->update(elapsedSeconds);
+		}
 	}
 }
 

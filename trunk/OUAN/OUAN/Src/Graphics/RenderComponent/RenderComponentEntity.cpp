@@ -1,4 +1,7 @@
 #include "RenderComponentEntity.h"
+#include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameWorldManager.h"
+#include "../../Event/EventDefs.h"
 using namespace OUAN;
 
 RenderComponentEntity::RenderComponentEntity(const std::string& type)
@@ -50,7 +53,14 @@ void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAni
 			if (mEntity)
 			{
 				animName=(*it).name;
-				mAnimations[animName]=mEntity->getAnimationState(animName);
+				try
+				{
+					mAnimations[animName]=mEntity->getAnimationState(animName);
+				}
+				catch(Ogre::ItemIdentityException)
+				{
+					Ogre::LogManager::getSingletonPtr()->logMessage("ANIMATION STATE NOT FOUND: "+animName);
+				}
 				if (mAnimations[animName])
 				{
 					mAnimations[animName]->setEnabled(false);
@@ -70,7 +80,10 @@ void RenderComponentEntity::changeAnimation(const std::string& newAnimation /*TO
 	mCurrentAnimationName=newAnimation;
 	mCurrentAnimation= mAnimations[newAnimation];
 	if (mCurrentAnimation)
-		mCurrentAnimation->setEnabled(true);
+	{
+		mCurrentAnimation->setEnabled(true);		
+		mCurrentAnimation->setTimePosition(0);
+	}
 }
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {
@@ -88,7 +101,14 @@ bool RenderComponentEntity::isAnimated() const
 void RenderComponentEntity::update(double elapsedTime)
 {
 	if (mCurrentAnimation)
+	{
 		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
+		if (mCurrentAnimation->hasEnded())
+		{
+			AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
+			getParent()->getGameWorldManager()->addEvent(evt);
+		}
+	}
 }
 
 //--- Entity parameters

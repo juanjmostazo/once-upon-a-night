@@ -55,7 +55,7 @@ double Random::getRandomDouble(double low, double high)
 
 void OUAN::Utils::scriptLog (const std::string& logMsg)
 {
-	//Ogre::LogManager::getSingletonPtr()->logMessage("LUA: "+logMsg);
+	Ogre::LogManager::getSingletonPtr()->logMessage("LUA: "+logMsg);
 }
 int OUAN::Utils::parseInt(std::string& strValue)
 {

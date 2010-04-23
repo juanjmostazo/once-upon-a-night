@@ -39,7 +39,13 @@ namespace OUAN
 
 		void reset();
 
-		//void setQueryFlags(QueryFlags queryFlags);
+		//Query methods used by the logic component, between others, to check if the
+		//character is jumping/etc
+		bool isJumping() const;
+		bool isFalling() const;
+		bool isSliding() const;
+		bool isMoving() const;
+		bool isOnSurface() const;
 
 	protected:
 
@@ -49,6 +55,7 @@ namespace OUAN
 		void calculateAcceleration(double elapsedSeconds);
 		bool isMoving();
 		void applyGravity(double elapsedSeconds);
+
 
 		double getYawFromMovement(NxOgre::Vec3 movement);
 
