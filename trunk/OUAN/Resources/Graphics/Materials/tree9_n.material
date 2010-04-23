@@ -15,20 +15,3 @@ material tree9_n
 }
 
 
-
-material scene_material
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.7 1
-			specular 1 1 1 1 50
-		}
-
-	}
-
-}
-
-
