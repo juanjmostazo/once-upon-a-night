@@ -22,10 +22,10 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="3"></CAMERASPEED>
+  <CAMERASPEED value="15.1875"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-579.532 153.083 -1003.75" orientation="-0.983081 0.0833938 -0.162699 -0.0112292"></OPTION>
+    <OPTION id="1" position="-2205.65 4026.06 -70.1726" orientation="-0.596709 0.351268 0.619881 0.369184"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.983678 0.0834445 -0.162798 -0.011236"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.596729 0.35128 0.619902 0.369197"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-579.532 153.083 -1003.75"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-2205.65 4026.06 -70.1726"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -112,72 +112,6 @@
     <PROPERTY id="placement" type="10" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="shadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="skies" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="876247488" name="Trajectory" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="918210368" name="diamond_tree" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="309518720" name="patrol_tripollo_d#7" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="714499328" name="Nightgoblin" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="997283904" name="Lights" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="79012424" name="Ony" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -238,28 +172,6 @@
   </OBJECT>
 
   <OBJECT object_id="597827072" name="Island2_Trees" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="153782768" name="Volumes" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 311.782 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="459639296" name="walkability map1" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -381,6 +293,94 @@
   </OBJECT>
 
   <OBJECT object_id="989989952" name="Particles" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="309518720" name="patrol_tripollo_d#7" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="79012424" name="Ony" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="876247488" name="Trajectory" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="714499328" name="Nightgoblin" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="918210368" name="diamond_tree" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="997283904" name="Lights" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="153782768" name="Volumes" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 311.782 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="459639296" name="walkability map1" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -952,7 +952,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="343699456" name="bush#19" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="343699456" name="bush_d#19" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1007,7 +1007,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="601947072" name="tree_01d#26" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="601947072" name="tree1_d#26" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1109,7 +1109,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="873683840" name="tree_01d#5" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="873683840" name="tree1_d#5" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1177,7 +1177,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="591082496" name="bush#1" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="591082496" name="bush_d#1" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1228,7 +1228,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="78554648" name="bush#22" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="78554648" name="bush_d#22" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1283,7 +1283,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="91219824" name="tree_01d#35" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="91219824" name="tree1_d#35" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1389,7 +1389,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="730246912" name="tree_01d#16" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="730246912" name="tree1_d#16" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1603,7 +1603,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="992065216" name="tree_01d#45" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="992065216" name="tree1_d#45" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1620,7 +1620,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="715323328" name="bush#12" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="715323328" name="bush_d#12" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1671,7 +1671,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="374431584" name="bush3#0" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="374431584" name="bush3_d#0" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1688,7 +1688,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="642994432" name="tree_01d#29" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="642994432" name="tree1_d#29" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1705,7 +1705,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="572740864" name="tree_01d#18" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="572740864" name="tree1_d#18" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1966,7 +1966,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="468184448" name="tree_01d#23" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="468184448" name="tree1_d#23" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2314,7 +2314,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="803369216" name="tree_01d#30" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="803369216" name="tree1_d#30" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2348,7 +2348,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="228888832" name="tree_01d#25" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="228888832" name="tree1_d#25" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2540,7 +2540,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="397839264" name="tree_01d#4" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="397839264" name="tree1_d#4" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2608,7 +2608,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="332926432" name="bush#0" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="332926432" name="bush_d#0" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2625,7 +2625,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="781304384" name="bush#21" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="781304384" name="bush_d#21" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2642,7 +2642,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="671987072" name="tree_01d#36" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="671987072" name="tree1_d#36" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2748,7 +2748,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="175328832" name="tree_01d#17" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="175328832" name="tree1_d#17" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -2996,7 +2996,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="383251424" name="tree_01d#44" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="383251424" name="tree1_d#44" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3030,7 +3030,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="167210912" name="bush#13" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="167210912" name="bush_d#13" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3098,7 +3098,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="53834652" name="tree_01d#28" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="53834652" name="tree1_d#28" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3115,7 +3115,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="672170176" name="tree_01d#19" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="672170176" name="tree1_d#19" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3388,7 +3388,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="131015960" name="tree_01d#22" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="131015960" name="tree1_d#22" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3566,7 +3566,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="817133056" name="tree_01d#1" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="817133056" name="tree1_d#1" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3651,7 +3651,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="193945120" name="scared_plant_d#0" typename="Entity Object" parentnode="Scared Plants">
+  <OBJECT object_id="193945120" name="scaredplant_d#0" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3706,7 +3706,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="349101216" name="bush#5" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="349101216" name="bush_d#5" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3795,7 +3795,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="504104736" name="tree_01d#31" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="504104736" name="tree1_d#31" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3812,7 +3812,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="275734720" name="tree_01d#24" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="275734720" name="tree1_d#24" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3884,7 +3884,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="145329152" name="tree_01d#12" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="145329152" name="tree1_d#12" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4008,7 +4008,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="795587008" name="tree_01d#7" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="795587008" name="tree1_d#7" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4093,7 +4093,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="445814368" name="bush#3" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="445814368" name="bush_d#3" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4127,7 +4127,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="957304576" name="bush#20" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="957304576" name="bush_d#20" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4144,7 +4144,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="521134080" name="tree_01d#41" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="521134080" name="tree1_d#41" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4161,7 +4161,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="141819504" name="tree_01d#37" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="141819504" name="tree1_d#37" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4178,7 +4178,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="796288960" name="bush#16" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="796288960" name="bush_d#16" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4284,7 +4284,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="282906592" name="tree_01d#14" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="282906592" name="tree1_d#14" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4518,7 +4518,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="965147840" name="tree_01d#47" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="965147840" name="tree1_d#47" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4552,7 +4552,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="548387136" name="bush#10" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="548387136" name="bush_d#10" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4603,7 +4603,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="342783904" name="bush3#2" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="342783904" name="bush3_d#2" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4842,7 +4842,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="363444928" name="tree_01d#21" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="363444928" name="tree1_d#21" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -4978,7 +4978,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="636524544" name="tree_01d#0" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="636524544" name="tree1_d#0" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5063,7 +5063,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="810541120" name="bush#4" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="810541120" name="bush_d#4" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5114,7 +5114,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="417462688" name="bush#25" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="417462688" name="bush_d#25" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5169,7 +5169,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="277779456" name="tree_01d#32" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="277779456" name="tree1_d#32" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5275,7 +5275,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="68025760" name="tree_01d#13" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="68025760" name="tree1_d#13" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5381,7 +5381,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="138035216" name="tree_01d#6" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="138035216" name="tree1_d#6" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5432,7 +5432,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="747611968" name="bush#2" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="747611968" name="bush_d#2" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5483,7 +5483,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="287789568" name="tree_01d#40" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="287789568" name="tree1_d#40" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5500,7 +5500,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="647328064" name="bush#17" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="647328064" name="bush_d#17" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5585,7 +5585,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="928678208" name="tree_01d#15" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="928678208" name="tree1_d#15" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5836,7 +5836,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="473891392" name="tree_01d#46" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="473891392" name="tree1_d#46" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5853,7 +5853,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="102755824" name="bush#11" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="102755824" name="bush_d#11" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5904,7 +5904,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="33539844" name="bush3#3" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="33539844" name="bush3_d#3" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6146,7 +6146,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="784814016" name="bush#9" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="784814016" name="bush_d#9" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6214,7 +6214,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="549546752" name="tree_01d#20" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="549546752" name="tree1_d#20" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6406,7 +6406,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="598284864" name="tree_01d#3" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="598284864" name="tree1_d#3" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6491,7 +6491,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="892239168" name="bush#7" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="892239168" name="bush_d#7" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6508,7 +6508,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="963042112" name="bush#24" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="963042112" name="bush_d#24" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6563,7 +6563,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="967406208" name="tree_01d#33" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="967406208" name="tree1_d#33" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6574,6 +6574,23 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree01_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="98178040" name="terrain_n#terrain1" typename="Entity Object" parentnode="Mountains">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="terrain1.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0.00554085 0.0106201 -0.00341797"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6669,7 +6686,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="502273632" name="tree_01d#10" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="502273632" name="tree1_d#10" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6775,7 +6792,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="933042432" name="diamondtree_d#0" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="933042432" name="diamond_tree_d#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6792,7 +6809,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="466719552" name="tree_01d#9" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="466719552" name="tree1_d#9" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6860,7 +6877,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="113620408" name="tree_01d#43" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="113620408" name="tree1_d#43" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6877,7 +6894,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="158299504" name="bush#14" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="158299504" name="bush_d#14" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7230,7 +7247,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="709128064" name="tree_01d#38" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="709128064" name="tree1_d#38" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7455,7 +7472,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="217017120" name="bush#8" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="217017120" name="bush_d#8" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7489,7 +7506,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="449079872" name="bush#18" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="449079872" name="bush_d#18" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7544,7 +7561,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="248084960" name="tree_01d#27" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="248084960" name="tree1_d#27" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7667,7 +7684,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="757072704" name="tree_01d#2" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="757072704" name="tree1_d#2" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7752,7 +7769,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="814630592" name="bush#6" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="814630592" name="bush_d#6" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7769,7 +7786,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="196203504" name="bush#23" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="196203504" name="bush_d#23" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7824,7 +7841,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="44129768" name="tree_01d#34" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="44129768" name="tree1_d#34" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7930,7 +7947,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="824060800" name="tree_01d#11" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="824060800" name="tree1_d#11" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8057,7 +8074,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="217169712" name="diamondtree_d#1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="217169712" name="diamond_tree_d#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8074,7 +8091,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="733848064" name="tree_01d#8" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="733848064" name="tree1_d#8" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8142,7 +8159,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="133518472" name="tree_01d#42" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="133518472" name="tree1_d#42" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8159,7 +8176,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="936826688" name="bush#15" typename="Entity Object" parentnode="Bush">
+  <OBJECT object_id="936826688" name="bush_d#15" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8495,7 +8512,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="587450816" name="tree_01d#39" typename="Entity Object" parentnode="Trees">
+  <OBJECT object_id="587450816" name="tree1_d#39" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
