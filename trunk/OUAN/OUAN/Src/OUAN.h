@@ -558,6 +558,8 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TREE6="tree6";
 		const std::string GAME_OBJECT_TYPE_TREE7="tree7";
 		const std::string GAME_OBJECT_TYPE_TREE8="tree8";
+		const std::string GAME_OBJECT_TYPE_TREE9="tree9";
+		const std::string GAME_OBJECT_TYPE_TREE10="tree10";
 		const std::string GAME_OBJECT_TYPE_DOOR="door";
 		const std::string GAME_OBJECT_TYPE_PLATAFORM="plataform";
 		const std::string GAME_OBJECT_TYPE_BUSH="bush";
