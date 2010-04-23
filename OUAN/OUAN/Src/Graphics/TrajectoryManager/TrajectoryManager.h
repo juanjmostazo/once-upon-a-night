@@ -47,7 +47,9 @@ namespace OUAN
 
 		std::string getNearestNodeToTrajectory(std::string trajectory,Vector3 position);
 
-		void toggleDebugMode();
+		void toggleDebugMode(int currentWorld);
+
+		void changeWorld(int currentWorld);
 	};
 }
 

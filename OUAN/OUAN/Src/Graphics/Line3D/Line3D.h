@@ -1,37 +1,38 @@
 #ifndef __LINE3D_H__
 #define __LINE3D_H__
 
-#include "Ogre.h"
-#include <vector>
+#include "../../OUAN.h"
 
 using namespace Ogre;
 using namespace std;
-
-#define POSITION_BINDING 0
-#define TEXCOORD_BINDING 1
-
-class Line3D:public SimpleRenderable
+namespace OUAN
 {
-public:
-   Line3D(void);
-   ~Line3D(void);
+	#define POSITION_BINDING 0
+	#define TEXCOORD_BINDING 1
 
-   void addPoint(const Vector3 &p);
-   const Vector3 &getPoint(unsigned short index) const;
-   unsigned short getNumPoints(void) const;
-   void updatePoint(unsigned short index, const Vector3 &value);
-   void drawLine(Vector3 &start, Vector3 &end);
-   void drawLines(void);
+	class Line3D:public SimpleRenderable
+	{
+	public:
+	   Line3D(void);
+	   ~Line3D(void);
 
-   Real getSquaredViewDepth(const Camera *cam) const;
-   Real getBoundingRadius(void) const;
-protected:
-   //void getWorldTransforms(Matrix4 *xform) const;
-   const Quaternion &getWorldOrientation(void) const;
-   const Vector3 &getWorldPosition(void) const;
+	   void addPoint(const Ogre::Vector3 &p);
+	   const Ogre::Vector3 &getPoint(unsigned short index) const;
+	   unsigned short getNumPoints(void) const;
+	   void updatePoint(unsigned short index, const Ogre::Vector3 &value);
+	   void drawLine(Ogre::Vector3 &start, Ogre::Vector3 &end);
+	   void drawLines(void);
 
-   vector<Vector3> mPoints;
-   bool mDrawn;
-};
+	   Ogre::Real getSquaredViewDepth(const Camera *cam) const;
+	   Ogre::Real getBoundingRadius(void) const;
+	protected:
+	   //void getWorldTransforms(Matrix4 *xform) const;
+	   const Ogre::Quaternion &getWorldOrientation(void) const;
+	   const Ogre::Vector3 &getWorldPosition(void) const;
+
+	   vector<Ogre::Vector3> mPoints;
+	   bool mDrawn;
+	};
+}
 
 #endif /* __LINE3D_H__ */

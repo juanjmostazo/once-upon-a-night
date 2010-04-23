@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEMPLATES>
+  <OBJECTTEMPLATE name="TrajectoryNode">
+    <OBJECT name="TrajectoryNode" typename="Marker Object">
+      <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+      <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+      <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+      <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+      <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+      <PROPERTY id="position" type="9" value="307.417 323.96 27.0879"></PROPERTY>
+      <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+      <CUSTOMPROPERTIES>
+        <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      </CUSTOMPROPERTIES>
+    </OBJECT>
+  </OBJECTTEMPLATE>
+</TEMPLATES>

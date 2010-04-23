@@ -19,10 +19,11 @@ namespace OUAN
 
 			//Trajectory Parsing
 			void parseTrajectory(TiXmlElement *XMLTrajectoryStartNode);
-			TiXmlElement * findTrajectoryNode(std::string trajectoryNodeName);
+			TiXmlElement * findNode(std::string nodeName);
 
 			//WalkabilityMapParsing
-			void parseWalkabilityMapNode(TiXmlElement *XMLTrajectoryStartNode);
+			void parseWalkabilityMap(TiXmlElement *XMLWalkabilityMap);
+
 
 			//Game Object names processors
 			bool isDreams(std::string worldName,std::string gameObjectType);

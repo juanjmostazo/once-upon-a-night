@@ -146,7 +146,6 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			it->second->changeWorld(evt->getNewWorld());
 		}
 	}
-
 }
 
 void EventProcessor::processCollision(CollisionEventPtr evt)

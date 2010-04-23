@@ -277,7 +277,7 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleDebugTrajectory())
 		{
 			Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
-			mApp->getTrajectoryManager()->toggleDebugMode();
+			mApp->getTrajectoryManager()->toggleDebugMode(mApp->getGameWorldManager()->getCurrentWorld());
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeCamera())
@@ -313,7 +313,15 @@ void GameRunningState::checkDebuggingKeys()
 		}
 		else if (mApp->isPressedToggleVolumes())
 		{
+			Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
 			toggleVolumes();		
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedToggleGodMode())
+		{	
+			Ogre::LogManager::getSingleton().logMessage("ToggleGodMode key pressed");
+
+			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->getGodMode());
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}

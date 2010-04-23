@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CUSTOMPROPERTIES>
+  <PROPERTY id="walkability map::name" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#0" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="walkability map::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+</CUSTOMPROPERTIES>

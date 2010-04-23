@@ -1,5 +1,7 @@
 #include "Line3D.h"
 
+using namespace OUAN;
+
 Line3D::Line3D(void)
 {
    mRenderOp.vertexData = new VertexData();
@@ -13,12 +15,12 @@ Line3D::~Line3D(void)
    delete mRenderOp.vertexData;
 }
 
-void Line3D::addPoint(const Vector3 &p)
+void Line3D::addPoint(const Ogre::Vector3 &p)
 {
    mPoints.push_back(p);
 }
 
-const Vector3 &Line3D::getPoint(unsigned short index) const
+const Ogre::Vector3 &Line3D::getPoint(unsigned short index) const
 {
    assert(index < mPoints.size() && "Point index is out of bounds!!");
 
@@ -30,14 +32,14 @@ unsigned short Line3D::getNumPoints(void) const
    return (unsigned short)mPoints.size();
 }
 
-void Line3D::updatePoint(unsigned short index, const Vector3 &value)
+void Line3D::updatePoint(unsigned short index, const Ogre::Vector3 &value)
 {
    assert(index < mPoints.size() && "Point index is out of bounds!!");
 
    mPoints[index] = value;
 }
 
-void Line3D::drawLine(Vector3 &start, Vector3 &end)
+void Line3D::drawLine(Ogre::Vector3 &start, Ogre::Vector3 &end)
 {
    if(mPoints.size())
       mPoints.clear();
@@ -77,10 +79,10 @@ void Line3D::drawLines(void)
 
    // Drawing stuff
    int size = mPoints.size();
-   Vector3 vaabMin = mPoints[0];
-   Vector3 vaabMax = mPoints[0];
+   Ogre::Vector3 vaabMin = mPoints[0];
+   Ogre::Vector3 vaabMax = mPoints[0];
 
-   Real *prPos = static_cast<Real*>(vbuf->lock(HardwareBuffer::HBL_DISCARD));
+   Ogre::Real *prPos = static_cast<Ogre::Real*>(vbuf->lock(HardwareBuffer::HBL_DISCARD));
 
    for(int i = 0; i < size; i++)
    {
@@ -108,9 +110,9 @@ void Line3D::drawLines(void)
    mBox.setExtents(vaabMin, vaabMax);
 }
 
-Real Line3D::getSquaredViewDepth(const Camera *cam) const
+Ogre::Real Line3D::getSquaredViewDepth(const Camera *cam) const
 {
-   Vector3 vMin, vMax, vMid, vDist;
+   Ogre::Vector3 vMin, vMax, vMid, vDist;
    vMin = mBox.getMinimum();
    vMax = mBox.getMaximum();
    vMid = ((vMin - vMax) * 0.5) + vMin;
@@ -119,7 +121,7 @@ Real Line3D::getSquaredViewDepth(const Camera *cam) const
    return vDist.squaredLength();
 }
 
-Real Line3D::getBoundingRadius(void) const
+Ogre::Real Line3D::getBoundingRadius(void) const
 {
    return Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
    //return mRadius;
@@ -131,13 +133,13 @@ void Line3D::getWorldTransforms(Matrix4 *xform) const
    *xform = Matrix4::IDENTITY;
 }
 */
-const Quaternion &Line3D::getWorldOrientation(void) const
+const Ogre::Quaternion &Line3D::getWorldOrientation(void) const
 {
-   return Quaternion::IDENTITY;
+   return Ogre::Quaternion::IDENTITY;
 }
 
-const Vector3 &Line3D::getWorldPosition(void) const
+const Ogre::Vector3 &Line3D::getWorldPosition(void) const
 {
-   return Vector3::ZERO;
+   return Ogre::Vector3::ZERO;
 }
 

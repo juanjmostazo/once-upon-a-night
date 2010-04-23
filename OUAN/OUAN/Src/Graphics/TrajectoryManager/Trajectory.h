@@ -49,6 +49,9 @@ namespace OUAN
 		void pushBackNode(TrajectoryNode * pTrajectoryNode,std::string debugColor);
 		double calculateDistance(Ogre::Vector3 v1,Ogre::Vector3 v2);
 
+		void fullPathfinding();
+		void partialPathfinding();
+
 		std::string getEntityDebugName(int node);
 		std::string getLineDebugName(int node);
 
@@ -63,6 +66,8 @@ namespace OUAN
 		void doPathfinding(std::string source,std::string target,std::string walkabilityMap);
 		void setPredefinedTrajectoryFromNode(std::string trajectory,std::string node);
 
+		std::map<std::string,Line3D *> myLines;
+		std::map<std::string,Ogre::Entity *> myNodes;
 
 	public:
 

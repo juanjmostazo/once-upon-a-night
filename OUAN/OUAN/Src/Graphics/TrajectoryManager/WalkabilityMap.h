@@ -111,6 +111,7 @@ namespace OUAN
 		bool mVisible;
 
 		Ogre::SceneNode * mDebugObjects;
+		Ogre::SceneManager * mSceneManager;
 
 		std::map<std::string,int> mNodeNumbers;
 		typedef std::map<std::string,int>::iterator TNodeNumbersIterator;
@@ -120,8 +121,8 @@ namespace OUAN
 
 		int getNearestNode(Ogre::Vector3 position);
 
-
-
+		std::vector<Line3D *> myLines;
+		std::vector<Ogre::Entity *> myNodes;
 	};
 
 	class TWalkabilityMapParameters

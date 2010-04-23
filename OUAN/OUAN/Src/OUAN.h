@@ -591,6 +591,8 @@ namespace OUAN
 		class TWalkabilityMapParameters;
 		class TWalkabilityMapNodeParameters;
 
+		class Line3D;
+
 		class TrajectoryManager;
 		typedef boost::shared_ptr<TrajectoryManager> TrajectoryManagerPtr;
 
@@ -598,8 +600,8 @@ namespace OUAN
 		typedef boost::shared_ptr<TrajectoryComponent> TrajectoryComponentPtr;
 
 		const std::string COMPONENT_TYPE_TRAJECTORY="TrajectoryComponent";
-		const std::string DEFAULT_WALKABILITY_MAP_DREAMS="map1";
-		const std::string DEFAULT_WALKABILITY_MAP_NIGHTMARES="map1";
+		const std::string DEFAULT_WALKABILITY_MAP_DREAMS="dreams";
+		const std::string DEFAULT_WALKABILITY_MAP_NIGHTMARES="nightmares";
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations

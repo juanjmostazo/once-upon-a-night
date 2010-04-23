@@ -218,7 +218,8 @@ TrajectoryNode * Trajectory::getCurrentNode()
 
 void Trajectory::clear()
 {
-
+	myLines.clear();
+	myNodes.clear();
 
 	while(trajectoryNodes.size()>0)
 	{
@@ -323,6 +324,8 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	pEntityDebugNode->setScale(Vector3(0.8,0.8,0.8));
 	pEntityDebugNode->attachObject(pEntity);
 
+	myNodes[entityDebugName]=pEntity;
+
 	if(trajectoryNodes.size()>1)
 	{
 		std::string lineDebugName=getLineDebugName(node);;
@@ -336,6 +339,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 		myLine->drawLines();
 		pLineDebugNode->attachObject(myLine);
 		pLineDebugNode->setVisible(mVisible);
+		myLines[lineDebugName]=myLine;
 	}
 }
 
@@ -399,18 +403,79 @@ void Trajectory::doPathfinding(std::string source,std::string target,std::string
 	}
 }
 
-void Trajectory::recalculatePathfinding()
+void Trajectory::fullPathfinding()
 {
 	unsigned int i;
+	TrajectoryNode * pTrajectoryNode;
+	std::vector<Ogre::SceneNode *> path;
+	//Ogre::LogManager::getSingleton().logMessage("CAS 1");
+	clear();
+	path=mTrajectoryManager->calculatePathFinding(
+		mWalkabilityMap,
+		mPathfindingSource,
+		mPathfindingTarget);
+
+	for(i=0;i<path.size();i++)
+	{
+		//create trajectory node and set the scene node and the rest of parameters
+		pTrajectoryNode = new TrajectoryNode();
+		pTrajectoryNode->setSceneNode(path[i]);
+		pTrajectoryNode->setSpeed(15);
+
+		pushBackNode(pTrajectoryNode,"green");
+	}
+	reset();
+
+}
+
+void Trajectory::partialPathfinding()
+{
+	unsigned int i;
+	TrajectoryNode * pTrajectoryNode;
+	std::vector<Ogre::SceneNode *> path;
+	TrajectoryNode * pCurrentNode;
+	TrajectoryNode * pNextNode;
+	int nextNode=getNextNode();
+
+	pCurrentNode = new TrajectoryNode();
+	pCurrentNode->setSceneNode(trajectoryNodes[currentNode]->getSceneNode());
+	pCurrentNode->setSpeed(trajectoryNodes[currentNode]->getSpeed());
+
+	pNextNode = new TrajectoryNode();
+	pNextNode->setSceneNode(trajectoryNodes[nextNode]->getSceneNode());
+	pNextNode->setSpeed(trajectoryNodes[nextNode]->getSpeed());
+
+
+	//Ogre::LogManager::getSingleton().logMessage("CAS 2");
+	path=mTrajectoryManager->calculatePathFinding(
+		mWalkabilityMap,
+		trajectoryNodes[nextNode]->getSceneNode()->getName(),
+		mPathfindingTarget);
+
+	clear();
+
+	pushBackNode(pCurrentNode,"red");
+	pushBackNode(pNextNode,"red");
+	currentNode=0;
+
+	for(i=1;i<path.size();i++)
+	{
+		//create trajectory node and set the scene node and the rest of parameters
+		pTrajectoryNode = new TrajectoryNode();
+		pTrajectoryNode->setSceneNode(path[i]);
+		pTrajectoryNode->setSpeed(15);
+
+		pushBackNode(pTrajectoryNode,"red");
+	}
+}
+
+void Trajectory::recalculatePathfinding()
+{
 
 	//Ogre::LogManager::getSingleton().logMessage("recalculating pathfinding");
 
-	TrajectoryNode * pTrajectoryNode;
-
 	int nextNode=getNextNode();
 
-
-	std::vector<Ogre::SceneNode *> path;
 	//if(pathFindingActivated)
 	//{
 	//	Ogre::LogManager::getSingleton().logMessage("next node "+trajectoryNodes[nextNode]->getSceneNode()->getName());
@@ -424,59 +489,15 @@ void Trajectory::recalculatePathfinding()
 		trajectoryNodes.size()-(currentNode+1)<=0 ||
 		trajectoryNodes[nextNode]->getSceneNode()->getName().compare(mPathfindingTarget)==0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("CAS 1");
-		clear();
-		path=mTrajectoryManager->calculatePathFinding(
-			mWalkabilityMap,
-			mPathfindingSource,
-			mPathfindingTarget);
-
-		for(i=0;i<path.size();i++)
-		{
-			//create trajectory node and set the scene node and the rest of parameters
-			pTrajectoryNode = new TrajectoryNode();
-			pTrajectoryNode->setSceneNode(path[i]);
-			pTrajectoryNode->setSpeed(15);
-
-			pushBackNode(pTrajectoryNode,"green");
-		}
-		reset();
-
+		fullPathfinding();
 	}
 	else
 	{
-		TrajectoryNode * pCurrentNode;
-		TrajectoryNode * pNextNode;
-
-		pCurrentNode = new TrajectoryNode();
-		pCurrentNode->setSceneNode(trajectoryNodes[currentNode]->getSceneNode());
-		pCurrentNode->setSpeed(trajectoryNodes[currentNode]->getSpeed());
-
-		pNextNode = new TrajectoryNode();
-		pNextNode->setSceneNode(trajectoryNodes[nextNode]->getSceneNode());
-		pNextNode->setSpeed(trajectoryNodes[nextNode]->getSpeed());
-
-		//Ogre::LogManager::getSingleton().logMessage("CAS 2");
-		path=mTrajectoryManager->calculatePathFinding(
-			mWalkabilityMap,
-			trajectoryNodes[nextNode]->getSceneNode()->getName(),
-			mPathfindingTarget);
-
-		clear();
-
-		pushBackNode(pCurrentNode,"green");
-		pushBackNode(pNextNode,"green");
-		currentNode=0;
-
-		for(i=1;i<path.size();i++)
-		{
-			//create trajectory node and set the scene node and the rest of parameters
-			pTrajectoryNode = new TrajectoryNode();
-			pTrajectoryNode->setSceneNode(path[i]);
-			pTrajectoryNode->setSpeed(15);
-
-			pushBackNode(pTrajectoryNode,"green");
-		}
+		//if(trajectoryNodes[nextNode]->getSceneNode()->getPosition().distance(mSceneManager->getSceneNode(mPathfindingSource)->getPosition()) >
+		//   mSceneManager->getSceneNode(mPathfindingTarget)->getPosition().distance(mSceneManager->getSceneNode(mPathfindingSource)->getPosition()))
+		//{
+			partialPathfinding();
+		//}
 	}
 
 	//Ogre::LogManager::getSingleton().logMessage("CURRENT TRAJECTORY");
@@ -575,6 +596,20 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 void Trajectory::setVisible(bool visible)
 {
 	mVisible=visible;
+
+	std::map<std::string,Line3D *>::iterator it1;
+
+	for(it1=myLines.begin();it1!=myLines.end();it1++)
+	{
+		it1->second->setVisible(mVisible);
+	}
+
+	std::map<std::string,Ogre::Entity *>::iterator it2;
+
+	for(it2=myNodes.begin();it2!=myNodes.end();it2++)
+	{
+		it2->second->setVisible(mVisible);
+	}
 }
 
 bool Trajectory::predefinedTrajectoryExists(std::string name)

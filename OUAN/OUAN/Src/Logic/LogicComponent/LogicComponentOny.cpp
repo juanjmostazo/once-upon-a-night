@@ -120,11 +120,14 @@ void LogicComponentOny::decreaseLives(int amount)
 
 void LogicComponentOny::loseLife()
 {
-	setHealthPoints(getInitialHealthPoints());
-	getParent()->disable();
+	if(!getParent()->getGameWorldManager()->getGodMode())
+	{
+		setHealthPoints(getInitialHealthPoints());
+		getParent()->disable();
 
-	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives()));
-	getParent()->getGameWorldManager()->addEvent(evt);
+		OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives()));
+		getParent()->getGameWorldManager()->addEvent(evt);
+	}
 }
 
 void LogicComponentOny::gameOver()

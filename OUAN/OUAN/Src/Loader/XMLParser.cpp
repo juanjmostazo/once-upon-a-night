@@ -215,13 +215,12 @@ void XMLParser::parseElements(TiXmlElement *XMLNode)
 	}
 }
 
-TiXmlElement * XMLParser::findTrajectoryNode(std::string trajectoryNodeName)
+TiXmlElement * XMLParser::findNode(std::string nodeName)
 {
 	TiXmlElement *pElement;
 	String name;
 	String type;
 	bool found=false;
-
 
 	// Find the OBJECT node which contains the trajectoryNode with trajectoryNodeName
 	pElement = XMLRootNode->FirstChildElement("OBJECT");
@@ -230,7 +229,7 @@ TiXmlElement * XMLParser::findTrajectoryNode(std::string trajectoryNodeName)
 		name = getAttrib(pElement, "name");
 		type = getAttrib(pElement, "typename");
 
-		if(type.compare("Marker Object")==0 && name.compare(trajectoryNodeName)==0)
+		if(type.compare("Marker Object")==0 && name.compare(nodeName)==0)
 		{
 			return pElement;
 		}
@@ -240,18 +239,48 @@ TiXmlElement * XMLParser::findTrajectoryNode(std::string trajectoryNodeName)
 
 	if(!found)
 	{
-		throw "trajectory node "+trajectoryNodeName+" not found";
+		throw "trajectory node "+nodeName+" not found";
 	}
 	return NULL;
 }
 
-void XMLParser::parseWalkabilityMapNode(TiXmlElement *XMLWalkabilityMapNode)
+void XMLParser::parseWalkabilityMap(TiXmlElement *XMLWalkabilityMap)
 {
-	String walkabilityMapName = getPropertyString(XMLWalkabilityMapNode,"walkability::name");
+	int i;
+	std::string currentWalkabilityMapNode;
+	String walkabilityMapName;
 
-	mXMLWalkabilityMapContainer[walkabilityMapName].walkabilityMapNodes.push_back(XMLWalkabilityMapNode);
+	//Get trajectory name
+	walkabilityMapName = getPropertyString(XMLWalkabilityMap,"walkability map::name",false);
 
-	mXMLWalkabilityMapContainer[walkabilityMapName].name=walkabilityMapName;
+ 	try
+	{
+		mXMLWalkabilityMapContainer[walkabilityMapName].name=walkabilityMapName;
+
+		//process all Trajectory Nodes
+		i=0;
+		while(true)
+		{
+			//Process Trajectory Node
+
+			//get current trajectory node
+			currentWalkabilityMapNode=getPropertyString(XMLWalkabilityMap,"walkability map::node#"+StringConverter::toString(i),false);
+
+			//if there is no more nodes we end
+			if(currentWalkabilityMapNode.compare("")==0) break;
+
+			//find current trajectory node
+			mXMLWalkabilityMapContainer[walkabilityMapName].walkabilityMapNodes.push_back(findNode(currentWalkabilityMapNode));
+
+			i++;
+		}
+	}
+	catch( std::string error )
+	{
+		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing walkablity map "+walkabilityMapName+": "+error);	
+		return;
+	}
+
 }
 
 void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
@@ -280,7 +309,7 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 			if(currentTrajectoryNode.compare("")==0) break;
 
 			//find current trajectory node
-			mXMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findTrajectoryNode(currentTrajectoryNode));
+			mXMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findNode(currentTrajectoryNode));
 
 			i++;
 		}
@@ -313,11 +342,11 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 		}
 
 		//Parse Trajectory
-		String walkabilityMapName = getPropertyString(XMLNode,"walkability::name",false);
+		String walkabilityMapName = getPropertyString(XMLNode,"walkability map::name",false);
 		if(walkabilityMapName.compare("")!=0)
 		{
 			//Trajectory start node
-			parseWalkabilityMapNode(XMLNode);
+			parseWalkabilityMap(XMLNode);
 		}
 		return;
 	}
@@ -402,6 +431,7 @@ bool XMLParser::isDreams(std::string worldName,std::string gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='d';
 }
+
 bool XMLParser::isNightmares(std::string worldName,std::string gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='n';
