@@ -9,10 +9,7 @@ material tentetieso
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
 
-			texture_unit
-			{
-				texture noIcon.pic
-			}
+
 		}
 
 	}
@@ -29,10 +26,7 @@ material tentetieso1
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
 
-			texture_unit
-			{
-				texture noIcon.pic
-			}
+
 		}
 
 	}
@@ -49,10 +43,7 @@ material tentetieso2
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
 
-			texture_unit
-			{
-				texture noIcon.pic
-			}
+
 		}
 
 	}

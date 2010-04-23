@@ -99,7 +99,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	} 
 	else if (mFalling) 
 	{
-		applyGravity(elapsedSeconds);
+		if(!getParent()->getGameWorldManager()->getGodMode())
+		{
+			applyGravity(elapsedSeconds);
+		}
 	}
 
 	// Perform last frame sliding displacement
@@ -319,6 +322,10 @@ void PhysicsComponentCharacter::jump()
 	{
 		initJump();
 	}
+	else if(getParent()->getGameWorldManager()->getGodMode())
+	{
+		initJump();
+	}
 }
 
 double PhysicsComponentCharacter::getYawFromMovement(NxOgre::Vec3 movement)
@@ -441,21 +448,23 @@ void PhysicsComponentCharacter::resetSliding()
 void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
 	//Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
-
-	if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 
-		pNormalAngle < Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
+	if(!getParent()->getGameWorldManager()->getGodMode())
 	{
-		mSliding = true;
-		mNormalAngle = pNormalAngle;
+		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 
+			pNormalAngle < Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
+		{
+			mSliding = true;
+			mNormalAngle = pNormalAngle;
 
-		mSlideDisplacement.x = pNormal.x;
-		mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
-		mSlideDisplacement.z = pNormal.z;
-	}
+			mSlideDisplacement.x = pNormal.x;
+			mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+			mSlideDisplacement.z = pNormal.z;
+		}
 
-	if(mSlideDisplacement.y>0)
-	{
-		mSlideDisplacement.y=0;
+		if(mSlideDisplacement.y>0)
+		{
+			mSlideDisplacement.y=0;
+		}
 	}
 }
 

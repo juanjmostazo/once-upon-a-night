@@ -7,6 +7,8 @@ using namespace boost;
 WalkabilityMap::WalkabilityMap()
 {
 	mVisible=false;
+	mDebugObjects=0;
+	mSceneManager=0;
 }
 
 WalkabilityMap::~WalkabilityMap()
@@ -42,10 +44,15 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		unsigned int i,j;
 
 		mDebugObjects=pDebugObjects;
+		mSceneManager=pSceneManager;
 
 		mName=tWalkabilityMapParameters.name;
 
 		mDebugObjects->createChildSceneNode("walkability#"+tWalkabilityMapParameters.name);
+
+		myLines.clear();
+		myNodes.clear();
+
 
 		//init node numbers
 		mNodeNumbers.clear();
@@ -61,9 +68,11 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		Ogre::SceneNode * pSceneNode;
 		Ogre::Entity * pEntity;
 		Ogre::SceneNode * pEntityDebugNode;
-		//add graph edges and create graph nodes
+		//create graph nodes
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
 		{
+			//Ogre::LogManager::getSingleton().logMessage("Adding node "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+
 			if(pSceneManager->hasSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName))
 			{
 				pSceneNode=pSceneManager->getSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
@@ -75,18 +84,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 				pSceneNode->setOrientation(tWalkabilityMapParameters.walkabilityNodes[i].orientation);
 			}
 
-
 			mGraph[getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName)].mSceneNode=pSceneNode;
-
-			for(j=0;j<tWalkabilityMapParameters.walkabilityNodes[i].neighbors.size();j++)
-			{
-				/*Ogre::LogManager::getSingleton().logMessage("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+"-"
-					+tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]);*/
-
-				add_edge(getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName.c_str()),
-					getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j].c_str()),
-					mGraph);
-			}
 
 			//create graphics debug objects
 			std::string debugName="walkability#"+tWalkabilityMapParameters.name+"#"+tWalkabilityMapParameters.walkabilityNodes[i].nodeName;
@@ -98,14 +96,32 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			pEntity->setVisible(mVisible);
 			pEntityDebugNode->attachObject(pEntity);
 
+			myNodes.push_back(pEntity);
+		}
 
+		//add graph edges
+		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
+		{
+			for(j=0;j<tWalkabilityMapParameters.walkabilityNodes[i].neighbors.size();j++)
+			{
+				//Ogre::LogManager::getSingleton().logMessage("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+"-"
+				//	+tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]);
+
+				if(hasNode(tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]))
+				{
+					add_edge(getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].nodeName.c_str()),
+						getNodeNumber(tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j].c_str()),
+						mGraph);
+				}
+			}
 		}
 
 		//set graph edges properties
 		Graph::vertex_descriptor v1,v2;
 		Ogre::SceneNode * pSceneNode1;
 		Ogre::SceneNode * pSceneNode2;
-		Graph::edge_descriptor e = *edges(mGraph).first;
+
+		Graph::edge_descriptor e;
 
 		boost::graph_traits<Graph>::edge_iterator eit,eend;
 
@@ -133,6 +149,8 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			myLine->drawLines();
 			mDebugObjects->attachObject(myLine);
 			mDebugObjects->setVisible(mVisible);
+
+			myLines.push_back(myLine);
 		}
 
 		//print graph information
@@ -301,7 +319,7 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 		return path;
   }
 
-  Ogre::LogManager::getSingleton().logMessage("FAIL");
+  Ogre::LogManager::getSingleton().logMessage("Path not found");
 
 	if(createdTarget)
 	{
@@ -327,7 +345,20 @@ bool WalkabilityMap::hasNode(std::string nodeName)
 
 void WalkabilityMap::setVisible(bool visible)
 {
+	unsigned int i;
+
 	mVisible=visible;
+
+	for(i=0;i<myLines.size();i++)
+	{
+		myLines[i]->setVisible(mVisible);
+	}
+
+	for(i=0;i<myNodes.size();i++)
+	{
+		myNodes[i]->setVisible(mVisible);
+	}
+
 }
 
 TWalkabilityMapParameters::TWalkabilityMapParameters()

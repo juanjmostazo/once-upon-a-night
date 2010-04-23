@@ -9,7 +9,7 @@
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="150" fields="X;Y;Z;W"></PROPERTY>  
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY>  
   <!-- Available attacks -->
   <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::selectedAttack" type="7" value="peck" fields="X;Y;Z;W"></PROPERTY>

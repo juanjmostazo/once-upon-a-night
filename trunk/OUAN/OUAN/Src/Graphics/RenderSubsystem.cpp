@@ -57,7 +57,7 @@ void RenderSubsystem::initMaterials()
 		material=it.getNext();
 		if(material->isLoaded())
 		{
-			material->setLightingEnabled(false);
+			//material->setLightingEnabled(false);
 		}
 	}
 	

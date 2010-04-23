@@ -212,6 +212,9 @@ namespace OUAN
 
 		void useObject();
 
+		void setGodMode(bool activated);
+		bool getGodMode();
+
 	private:
 
 		/// Add the game object pointer to the objects List
@@ -325,6 +328,8 @@ namespace OUAN
 		bool mGameOver;
 		// Besides being over, the game has been beaten
 		bool mGameBeaten;
+
+		bool mGodMode;
 
 		// Current level
 		std::string level;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEMPLATES>
+  <OBJECTTEMPLATE name="WalkabilityNode">
+    <OBJECT name="WalkabilityNode" typename="Marker Object">
+      <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+      <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+      <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+      <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+      <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+      <PROPERTY id="position" type="9" value="307.3 324.904 26.0994"></PROPERTY>
+      <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+      <CUSTOMPROPERTIES>
+        <PROPERTY id="walkability::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      </CUSTOMPROPERTIES>
+    </OBJECT>
+  </OBJECTTEMPLATE>
+</TEMPLATES>

@@ -234,7 +234,24 @@ std::string TrajectoryManager::getNearestNodeToTrajectory(std::string trajectory
 	}
 }
 
-void TrajectoryManager::toggleDebugMode()
+void TrajectoryManager::changeWorld(int currentWorld)
+{
+	if(mVisible)
+	{
+		if(currentWorld==DREAMS)
+		{
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(true);
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
+		}
+		else if(currentWorld==NIGHTMARES)
+		{
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
+		}
+	}
+}
+
+void TrajectoryManager::toggleDebugMode(int currentWorld)
 {
 	mVisible=!mVisible;
 
@@ -245,13 +262,23 @@ void TrajectoryManager::toggleDebugMode()
 		tit->second->setVisible(mVisible);
 	}
 
-
-	TWalkabilityMapIterator wit;
-
-	for(wit=walkabilityMapContainer.begin();wit!=walkabilityMapContainer.end();wit++)
+	if(mVisible)
 	{
-		wit->second->setVisible(mVisible);
+		if(currentWorld==DREAMS)
+		{
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(true);
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
+		}
+		else if(currentWorld==NIGHTMARES)
+		{
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
+		}
+	}
+	else
+	{
+		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 	}
 
-	mDebugObjects->flipVisibility();
 }

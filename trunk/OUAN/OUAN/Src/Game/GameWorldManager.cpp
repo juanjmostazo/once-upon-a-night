@@ -95,6 +95,7 @@ GameWorldManager::GameWorldManager()
 	world=DREAMS;
 	level=LEVEL_NONE;
 	mInst=this;
+	mGodMode=false;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -118,6 +119,15 @@ void GameWorldManager::update(double elapsedSeconds)
 	}
 
 	dispatchEvents();
+}
+
+void GameWorldManager::setGodMode(bool activated)
+{
+	mGodMode=activated;
+}
+bool GameWorldManager::getGodMode()
+{
+	return mGodMode;
 }
 
 GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
@@ -2766,6 +2776,8 @@ void GameWorldManager::changeWorld()
 	{
 		world=DREAMS;
 	}
+
+	mApp->getTrajectoryManager()->changeWorld(world);
 
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	addEvent(evt);
