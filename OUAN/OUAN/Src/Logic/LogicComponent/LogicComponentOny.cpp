@@ -13,6 +13,7 @@ LogicComponentOny::LogicComponentOny(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_ONY)
 {
 	mHitRecoveryTime=-1;
+	mEventInducedStateChange=true;
 }
 
 LogicComponentOny::~LogicComponentOny()
@@ -52,24 +53,35 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 	{
-		if(mHitRecoveryTime<0)
+		if(mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{
-			OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
-			getParent()->getGameWorldManager()->addEvent(evt);
+			int oldLives=getNumLives();
 			decreaseHP();
 			mHitRecoveryTime=2;
+			if (getNumLives()==oldLives)
+			{
+				OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
+				getParent()->getGameWorldManager()->addEvent(evt);
+			}			
 		}
 	}
 }
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
+	int tempState=getState();
 	if (animationName.compare(ONY_ANIM_HIT01)==0)
 	{
 		//if (mHitRecoveryTime<0)
-		//{					
-			int tempState=getState();
+		//{								
 			setState(CLEAR_BIT(tempState,ONY_STATE_BIT_FIELD_HIT));
+			mEventInducedStateChange=true;
 		//}
+	}
+	else if (animationName.compare(ONY_ANIM_DIE01)==0)
+	{
+		setState(CLEAR_BIT(tempState,ONY_STATE_BIT_FIELD_DIE));
+		mEventInducedStateChange=true;
+		mParent->getGameWorldManager()->onyDied();
 	}
 }
 
@@ -103,7 +115,7 @@ void LogicComponentOny::increaseLives(int amount)
 	setNumLives(getNumLives()+amount);
 }
 
-void LogicComponentOny::decreaseLives(int amount)
+void LogicComponentOny::decreaseLives(int amount,bool fallDown)
 {
 	setNumLives(getNumLives()-amount);
 	if (getNumLives()<=0)
@@ -113,19 +125,20 @@ void LogicComponentOny::decreaseLives(int amount)
 	}
 	else
 	{
-		loseLife();
+		loseLife(fallDown);
 	}
 }
 
 
-void LogicComponentOny::loseLife()
+void LogicComponentOny::loseLife(bool fallDown)
 {
 	if(!getParent()->getGameWorldManager()->getGodMode())
 	{
-		setHealthPoints(getInitialHealthPoints());
-		getParent()->disable();
+		if (fallDown)
+			setHealthPoints(getInitialHealthPoints());
+		//getParent()->disable();
 
-		OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives()));
+		OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives(),fallDown));
 		getParent()->getGameWorldManager()->addEvent(evt);
 	}
 }
@@ -192,12 +205,22 @@ void LogicComponentOny::update(double elapsedTime)
 	{
 		setState(CLEAR_BIT(getState(),ONY_STATE_BIT_FIELD_JUMP));
 	}
-	else setStateChanged(false);
+	else if (!mEventInducedStateChange)
+			setStateChanged(false);
 
 	if(mHitRecoveryTime>=0)
 	{
 		mHitRecoveryTime-=elapsedTime;
 	}
+	// mEventInducedStateChange=false;
+}
+void LogicComponentOny::setEventInducedStateChange(bool eventInducedStateChange)
+{
+	mEventInducedStateChange=eventInducedStateChange;
+}
+bool LogicComponentOny::isEventInducedStateChange() const
+{
+	return mEventInducedStateChange;
 }
 
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()

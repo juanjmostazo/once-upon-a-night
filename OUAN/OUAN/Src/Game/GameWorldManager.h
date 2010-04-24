@@ -161,6 +161,10 @@ namespace OUAN
 		/// Reset the world after ony's death
 		void onyDied();
 
+		/// Facade method to prevent input handling when ony's playing his 'dying' animation
+		bool isOnyDying() const;
+		
+
 		/// Change world to the one specified by the passed parameter
 		/// @param currentworld world to change to
 		void setWorld (int newWorld);

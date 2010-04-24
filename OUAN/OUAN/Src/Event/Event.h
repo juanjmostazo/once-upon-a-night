@@ -121,10 +121,12 @@ namespace OUAN
 	class OnyDiesEvent: public Event
 	{
 	public:
-		OnyDiesEvent(int remainingLives);
+		OnyDiesEvent(int remainingLives,bool onyFellDown=false);
 		int getRemainingLives() const;
+		bool onyFellDown() const;
 	private:
 		int mRemainingLives;
+		bool mOnyFellDown;
 	};
 
 	//------------------------------------

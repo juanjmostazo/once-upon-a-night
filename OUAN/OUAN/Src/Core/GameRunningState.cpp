@@ -173,7 +173,7 @@ void GameRunningState::handleEvents()
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
-	if (mApp->isPressedUseWeapon())
+	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying())
 	{
 		mApp->getGameWorldManager()->useWeapon();
 		useWeaponKeyPressed=true;
@@ -182,9 +182,12 @@ void GameRunningState::handleEvents()
 	{
 		//this method will basically apply to the flashlight, as it'll stop working
 		//when it is not used
-		mApp->getGameWorldManager()->stopUsingWeapon();
+		if (!mApp->getGameWorldManager()->isOnyDying())		
+		{
+			mApp->getGameWorldManager()->stopUsingWeapon();
+		}
 	}
-	if (mApp->isPressedWeaponAction())
+	if (mApp->isPressedWeaponAction() && !mApp->getGameWorldManager()->isOnyDying())
 	{
 		useSpWeaponKeyPressed=true;
 	}
@@ -193,21 +196,32 @@ void GameRunningState::handleEvents()
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
 	//TODO: separate jump from movement?
-	Vector2 nextMovementXZ=mApp->getMovement();
-
-	Vector3 nextMovement;
-	nextMovement.x=nextMovementXZ.x;
-	nextMovement.y=0;
-	nextMovement.z=nextMovementXZ.y;
-
+	
 	GameObjectOnyPtr ony=mApp->getGameWorldManager()->getGameObjectOny();
 	if (ony.get())
 	{
 		int currentState = ony->getLogicComponentOny()->getState();
+		int lastState = ony->getLogicComponentOny()->getOldState();
 		currentState =actionKeyPressed
 			?SET_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION)
 			:CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION);
+
+		bool justHit = CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) 
+			&& ony->getLogicComponentOny()->isEventInducedStateChange();
+
+		Vector2 nextMovementXZ=mApp->getMovement();
+
+		Vector3 nextMovement=Ogre::Vector3::ZERO;
+		if (!mApp->getGameWorldManager()->isOnyDying() && !justHit)
+		{
+			nextMovement.x=nextMovementXZ.x;
+			//nextMovement.y=0;
+			nextMovement.z=nextMovementXZ.y;
+		}
+		
+		
 		// TODO: Uncomment when the attack logic is fully implemented
+		// as it is now it interferes with returning to IDLE state
 		//if (useWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK))
 		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK);
 		//if (useSpWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK))
@@ -217,18 +231,22 @@ void GameRunningState::handleEvents()
 		currentState =zeroMovement
 			?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
 			:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
-		if (!zeroMovement)
+		if (!zeroMovement && !justHit)
+		{
 			currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_HIT);
-	if (mApp->isPressedWalk())
+		}
+	if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
 	{
 		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
-		currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_WALK),ONY_STATE_BIT_FIELD_HIT);
+		if (!justHit)
+			currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_WALK),ONY_STATE_BIT_FIELD_HIT);
 	}
 	else currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
 
-		if (mApp->isPressedJump())
+		if (mApp->isPressedJump() && !mApp->getGameWorldManager()->isOnyDying())
 		{
 			ony->getPhysicsComponentCharacter()->jump();
+			if (!justHit)
 			currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP),ONY_STATE_BIT_FIELD_HIT);
 		}	
 		//else currentState =CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
@@ -247,8 +265,6 @@ void GameRunningState::handleEvents()
 			currentState =zeroMovement
 				?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
 				:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
-			if (!zeroMovement)
-				currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_HIT);
 		}
 
 		if (currentState!=ony->getLogicComponentOny()->getState())

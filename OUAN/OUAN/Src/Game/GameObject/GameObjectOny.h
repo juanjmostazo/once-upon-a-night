@@ -221,6 +221,8 @@ namespace OUAN
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
 
+		bool isDying() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

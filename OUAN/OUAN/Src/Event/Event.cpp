@@ -127,11 +127,21 @@ bool GameOverEvent::isWin() const
 }
 //-----------------------
 
-OnyDiesEvent::OnyDiesEvent(int remainingLives)
+OnyDiesEvent::OnyDiesEvent(int remainingLives, bool onyFellDown)
 :Event(EVT_PRIORITY_ONY_DEATH,EVENT_TYPE_ONY_DEATH)
 ,mRemainingLives(remainingLives)
+,mOnyFellDown(onyFellDown)
 {
 
+}
+
+int OnyDiesEvent::getRemainingLives() const
+{
+	return mRemainingLives;
+}
+bool OnyDiesEvent::onyFellDown() const
+{
+	return mOnyFellDown;
 }
 
 //-----------------------

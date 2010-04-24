@@ -131,7 +131,12 @@ void GameObjectItem1UP::changeWorld(int world)
 void GameObjectItem1UP::reset()
 {
 	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	if (mLogicComponentItem->getIsTaken())
+	{
+		mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+		disable();
+	}
+	
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const
