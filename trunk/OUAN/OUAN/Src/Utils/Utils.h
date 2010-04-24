@@ -37,6 +37,12 @@ namespace OUAN
 
 		Ogre::Vector3 getNodeWorldPosition(Ogre::Entity* entity, Ogre::Node* node);
 		Ogre::Quaternion getNodeWorldOrientation(Ogre::Entity* entity, Ogre::Node* node);
+		std::string toString(double doubleValue);
+		std::string toString(float floatValue);
+		std::string toString(long longValue);
+		std::string toString(int intValue);
+		std::string toString(char charValue);
+		std::string toString(bool boolValue);
 	}
 }
 #endif

@@ -17,6 +17,8 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	mCurrentlyEditedMapping="";
 	initTabs();
 	initControlsTab();
+	mParentGameState->getApp()->getAudioConfig(mCurrentAudioConfig);
+	mNewAudioConfig=mCurrentAudioConfig;
 	initSoundTab();
 	initGraphicsTab();
 
@@ -54,9 +56,24 @@ void GUIOptionsMenu::initControlsTab()
 }
 void GUIOptionsMenu::initSoundTab()
 {
-	initVolumeSlider("OUANOptions/Sound/MasterSlider",100,80,10.0);
-	initVolumeSlider("OUANOptions/Sound/SfxSlider",100,80,10.0);
-	initVolumeSlider("OUANOptions/Sound/MusicSlider",100,80,10.0);
+	initVolumeSlider(SLIDER_NAME_MASTER,100,(float)mCurrentAudioConfig.mMasterVolume*100,10.0);
+	initVolumeSlider(SLIDER_NAME_SFX,100,(float)mCurrentAudioConfig.mSfxVolume*100.0f,10.0);
+	initVolumeSlider(SLIDER_NAME_MUSIC,100,(float)mCurrentAudioConfig.mMusicVolume*100.0f,10.0);
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_MASTER.c_str());
+	if (check)
+	{
+		check->setSelected(mCurrentAudioConfig.mMasterVolumeEnabled);
+	}
+	check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_MUSIC.c_str());
+	if (check)
+	{
+		check->setSelected(mCurrentAudioConfig.mMusicVolumeEnabled);
+	}
+	check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_SFX.c_str());
+	if (check)
+	{
+		check->setSelected(mCurrentAudioConfig.mSfxVolumeEnabled);
+	}
 }
 void GUIOptionsMenu::initGraphicsTab()
 {
@@ -133,6 +150,42 @@ void GUIOptionsMenu::bindEvents()
 	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
 		BUTTON_NAME_MENU,
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
+
+	//Audio:
+	guiSS->bindEvent(CEGUI::PushButton::EventClicked,
+		"OUANOptions/Sound/Apply",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onApplySound,this));
+	guiSS->bindEvent(CEGUI::PushButton::EventClicked,
+		"OUANOptions/Sound/Cancel",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onCancelSound,this));
+	guiSS->bindEvent(CEGUI::Slider::EventValueChanged,
+		SLIDER_NAME_MASTER,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMasterSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Slider::EventThumbTrackEnded,
+		SLIDER_NAME_MASTER,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMasterSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Slider::EventValueChanged,
+		SLIDER_NAME_MUSIC,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMusicSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Slider::EventThumbTrackEnded,
+		SLIDER_NAME_SFX,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMusicSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Slider::EventValueChanged,
+		SLIDER_NAME_SFX,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onSfxSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Slider::EventThumbTrackEnded,
+		SLIDER_NAME_SFX,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onSfxSliderValueChanged,this));
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		CHECKBOX_NAME_SFX,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onSfxCheckBoxStateChanged,this));
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		CHECKBOX_NAME_MUSIC,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMusicCheckBoxStateChanged,this));
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		CHECKBOX_NAME_MASTER,
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMasterCheckBoxStateChanged,this));
+
 }
 void GUIOptionsMenu::initTextButtons()
 {
@@ -185,8 +238,27 @@ bool GUIOptionsMenu::onApply (const CEGUI::EventArgs& args)
 	{
 		mParentGameState->getApp()->replaceConfig(mNewConfig,true);
 		mCurrentConfig=mNewConfig;
+		
 		return true;
 	}
+	return false;
+}
+bool GUIOptionsMenu::onApplySound(const CEGUI::EventArgs& args )
+{
+	if (mParentGameState)
+	{
+		mParentGameState->getApp()->saveAudioConfig(mNewAudioConfig);
+		mCurrentAudioConfig=mNewAudioConfig;
+		return true;
+	}
+	return false;
+}
+bool GUIOptionsMenu::onCancelSound(const CEGUI::EventArgs& args )
+{
+	mNewAudioConfig=mCurrentAudioConfig;
+	//update state
+	mParentGameState->getApp()->setAudioConfig(mCurrentAudioConfig);
+	initSoundTab();
 	return false;
 }
 bool GUIOptionsMenu::onCancel (const CEGUI::EventArgs& args)
@@ -241,6 +313,55 @@ bool GUIOptionsMenu::onRadioButtonStateChange(const CEGUI::EventArgs& args)
 	}
 	return true;
 }
+bool GUIOptionsMenu::onMasterSliderValueChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Slider* slider = (CEGUI::Slider*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)SLIDER_NAME_MASTER.c_str());
+	if (slider)
+	{		
+		mNewAudioConfig.mMasterVolume=slider->getCurrentValue()/100;
+		mParentGameState->getApp()->modifyVolume(SM_CHANNEL_MASTER_GROUP,mNewAudioConfig.mMasterVolume);
+	}
+	return true;
+}
+//bool GUIOptionsMenu::onMasterSliderValueStopped(const CEGUI::EventArgs& args)
+//{
+//	CEGUI::Slider* slider = (CEGUI::Slider*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)SLIDER_NAME_MASTER.c_str());
+//	if (slider)
+//	{		
+//		mNewAudioConfig.mMasterVolume=slider->getCurrentValue();
+//		mParentGameState->getApp()->modifyVolume(SM_CHANNEL_MASTER_GROUP,mNewAudioConfig.mMasterVolume);
+//	}
+//	return true;
+//}
+bool GUIOptionsMenu::onSfxSliderValueChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Slider* slider = (CEGUI::Slider*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)SLIDER_NAME_SFX.c_str());
+	if (slider)
+	{		
+		mNewAudioConfig.mSfxVolume=slider->getCurrentValue()/100;
+		mParentGameState->getApp()->modifyVolume(SM_CHANNEL_SFX_GROUP,mNewAudioConfig.mSfxVolume);
+	}
+	return true;
+}
+//bool GUIOptionsMenu::onSfxSliderValueStopped(const CEGUI::EventArgs& args)
+//{
+//	return true;
+//}
+bool GUIOptionsMenu::onMusicSliderValueChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Slider* slider = (CEGUI::Slider*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)SLIDER_NAME_MUSIC.c_str());
+	if (slider)
+	{		
+		mNewAudioConfig.mMusicVolume=slider->getCurrentValue()/100;
+		mParentGameState->getApp()->modifyVolume(SM_CHANNEL_MUSIC_GROUP,mNewAudioConfig.mMusicVolume);
+	}
+	return true;
+
+}
+//bool GUIOptionsMenu::onMusicSliderValueStopped(const CEGUI::EventArgs& args)
+//{
+//	return true;
+//}
 bool GUIOptionsMenu::keyPressed(const OIS::KeyEvent &e)
 {
 	if (mExpectingPress && mCurrentlyEditedDevice== DEVICE_KEYB_MOUSE && !mCurrentlyEditedMapping.empty())
@@ -336,4 +457,34 @@ bool GUIOptionsMenu::mappingAlreadyFound(int code)
 		if (!found) ++it;
 	}
 	return found;
+}
+bool GUIOptionsMenu::onMasterCheckBoxStateChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_MASTER.c_str());
+	if (check)
+	{		
+		mNewAudioConfig.mMasterVolumeEnabled=check->isSelected();
+		mParentGameState->getApp()->modifyEnable(SM_CHANNEL_MASTER_GROUP,check->isSelected());
+	}
+	return true;
+}
+bool GUIOptionsMenu::onMusicCheckBoxStateChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_MUSIC.c_str());
+	if (check)
+	{		
+		mNewAudioConfig.mMusicVolumeEnabled=check->isSelected();
+		mParentGameState->getApp()->modifyEnable(SM_CHANNEL_MUSIC_GROUP,check->isSelected());
+	}
+	return true;
+}
+bool GUIOptionsMenu::onSfxCheckBoxStateChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)CHECKBOX_NAME_SFX.c_str());
+	if (check)
+	{		
+		mNewAudioConfig.mSfxVolumeEnabled=check->isSelected();
+		mParentGameState->getApp()->modifyEnable(SM_CHANNEL_SFX_GROUP,check->isSelected());
+	}
+	return true;
 }

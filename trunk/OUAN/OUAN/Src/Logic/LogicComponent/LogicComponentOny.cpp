@@ -13,7 +13,6 @@ LogicComponentOny::LogicComponentOny(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_ONY)
 {
 	mHitRecoveryTime=-1;
-	mEventInducedStateChange=true;
 }
 
 LogicComponentOny::~LogicComponentOny()
@@ -68,19 +67,16 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 }
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
-	int tempState=getState();
 	if (animationName.compare(ONY_ANIM_HIT01)==0)
 	{
 		//if (mHitRecoveryTime<0)
 		//{								
-			setState(CLEAR_BIT(tempState,ONY_STATE_BIT_FIELD_HIT));
-			mEventInducedStateChange=true;
+			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);
 		//}
 	}
 	else if (animationName.compare(ONY_ANIM_DIE01)==0)
 	{
-		setState(CLEAR_BIT(tempState,ONY_STATE_BIT_FIELD_DIE));
-		mEventInducedStateChange=true;
+		mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
 		mParent->getGameWorldManager()->onyDied();
 	}
 }
@@ -201,12 +197,44 @@ void LogicComponentOny::setInitialNumLives(int numLives)
 void LogicComponentOny::update(double elapsedTime)
 {
 	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
-	if (CHECK_BIT(getState(), ONY_STATE_BIT_FIELD_JUMP) && !ony->getPhysicsComponentCharacter()->isJumping())
+	int oldState=mState;
+	int finalState=mNewState;
+
+	if (finalState!=ONY_STATE_IDLE)
 	{
-		setState(CLEAR_BIT(getState(),ONY_STATE_BIT_FIELD_JUMP));
+		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_MOVEMENT))
+		{
+			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
+			{
+				//Interrupt hit animation
+				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
+			}
+		}
+		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_WALK))
+		{
+			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
+			{
+				//Interrupt hit animation
+				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
+			}
+
+		}
+		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP))
+		{
+			if (!ony->getPhysicsComponentCharacter()->isJumping())
+			{
+				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP);
+			}
+			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
+			{
+				//Interrupt hit animation
+				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
+			}
+		}
 	}
-	else if (!mEventInducedStateChange)
-			setStateChanged(false);
+
+	setState(finalState);
+	setNewState(finalState);
 
 	if(mHitRecoveryTime>=0)
 	{
@@ -214,15 +242,14 @@ void LogicComponentOny::update(double elapsedTime)
 	}
 	// mEventInducedStateChange=false;
 }
-void LogicComponentOny::setEventInducedStateChange(bool eventInducedStateChange)
+void LogicComponentOny::setNewState(int newState)
 {
-	mEventInducedStateChange=eventInducedStateChange;
+	mNewState=newState;
 }
-bool LogicComponentOny::isEventInducedStateChange() const
+int LogicComponentOny::getNewState()const
 {
-	return mEventInducedStateChange;
+	return mNewState;
 }
-
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {
 }

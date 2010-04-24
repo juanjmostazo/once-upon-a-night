@@ -144,6 +144,7 @@ namespace OUAN
 
 		virtual void activate();
 		virtual bool canBeActivated() const;
+		virtual void postUpdate();
 	};
 
 	class TGameObjectParameters

@@ -273,3 +273,30 @@ RayCastingPtr Application::getRayCasting() const
 {
 	return mRayCasting;
 }
+
+void Application::getAudioConfig(TAudioSubsystemConfigData& audioCfg)
+{
+	if (mAudioSubsystem.get())
+		audioCfg=mAudioSubsystem->getConfigData();
+}
+void Application::setAudioConfig(const TAudioSubsystemConfigData& audioCfg)
+{
+	if (mAudioSubsystem.get())
+		mAudioSubsystem->setConfigData(audioCfg);
+}
+void Application::saveAudioConfig(const TAudioSubsystemConfigData& audioCfg)
+{
+	if (mAudioSubsystem.get())
+	{
+		mAudioSubsystem->setConfigData(audioCfg);
+		mAudioSubsystem->saveCurrentConfigData();
+	}
+}
+void Application::modifyVolume(const std::string& groupName, double volume)
+{
+		mAudioSubsystem->setChannelGroupVolume(groupName,volume);
+}
+void Application::modifyEnable(const std::string& groupName, bool isEnabled)
+{
+		mAudioSubsystem->pauseChannelGroup(groupName,!isEnabled);
+}

@@ -52,11 +52,10 @@ namespace OUAN
 
 		void update(double elapsedTime);
 
-		void setEventInducedStateChange(bool eventInducedStateChange);
-		bool isEventInducedStateChange() const;
+		void setNewState(int newState);
+		int getNewState() const;
 
 	private:
-		bool mEventInducedStateChange;
 		/// Number of lives of the component
 		int mNumLives;
 		/// Health points of the component
@@ -70,6 +69,10 @@ namespace OUAN
 
 		/// 'Immunity' time so a single collision is not processed during several ticks
 		double mHitRecoveryTime;
+
+		//This variable will hold the state changes caused by game or input events
+		//This way, there will only be a state change per frame, as it should be.
+		int mNewState; 
 
 	};
 	

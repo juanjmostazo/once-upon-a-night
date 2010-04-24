@@ -89,6 +89,13 @@ namespace OUAN
 
 			ConfigurationPtr getTextStrings() const;
 
+			///Return a data structure containing the audio subsystem config information
+			void getAudioConfig(TAudioSubsystemConfigData& audioCfg);
+			void setAudioConfig(const TAudioSubsystemConfigData& audioCfg);
+			void saveAudioConfig(const TAudioSubsystemConfigData& audioCfg);
+			void modifyVolume(const std::string& groupName, double volume);
+			void modifyEnable(const std::string& groupName, bool isEnabled);
+
 			///init the game state machine
 			void loadInitialState();
 

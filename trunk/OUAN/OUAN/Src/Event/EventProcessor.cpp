@@ -133,10 +133,7 @@ void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
 	{
 		if (!evt->onyFellDown())
 		{
-			int state=mWorldManager->getGameObjectOny()->getLogicComponentOny()->getState();
-			state=SET_BIT(0,ONY_STATE_BIT_FIELD_DIE);
-			mWorldManager->getGameObjectOny()->getLogicComponentOny()->setState(state);		
-			mWorldManager->getGameObjectOny()->getLogicComponentOny()->setEventInducedStateChange(true);
+			mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_DIE));
 		}
 		else mWorldManager->onyDied();
 	}
@@ -243,10 +240,6 @@ void EventProcessor::processOnyTakesHit(OnyTakesHitEventPtr evt)
 {
 	if (mWorldManager->getGameObjectOny().get())
 	{
-		int state=mWorldManager->getGameObjectOny()->getLogicComponentOny()->getState();
-		state=SET_BIT(0,ONY_STATE_BIT_FIELD_HIT);
-		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setState(state);
-		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setEventInducedStateChange(true);
-		//mWorldManager->getGameObjectOny()->getLogicComponentOny()->setStateChanged(true);
+		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_HIT));
 	}	
 }

@@ -174,6 +174,11 @@ bool GameObject::canBeActivated() const
 {
 	return false;
 }
+
+void GameObject::postUpdate()
+{
+
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

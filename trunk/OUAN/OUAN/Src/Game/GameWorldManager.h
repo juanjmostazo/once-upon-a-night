@@ -134,6 +134,9 @@ namespace OUAN
 		/// @param elapsedTime time since last update
 		void update(double elapsedSeconds);
 
+		/// Perform some additional tasks after the logic update (i.e, change the state)
+		void postUpdate();
+
 		/// Tell if the game over flag is set to true
 		/// @return value of the "game over" flag
 		bool isGameOver() const;

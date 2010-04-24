@@ -1,6 +1,7 @@
 #include "AudioSubsystem.h"
 
 #include "../Application.h"
+#include "../Utils/Utils.h"
 
 #include <fmod_errors.h>
 #include <algorithm>
@@ -386,6 +387,19 @@ bool AudioSubsystem::init(TAudioSubsystemConfigData& desc, ApplicationPtr app)
 		mChannelGroupMap[SM_CHANNEL_SFX_GROUP]	 = ChannelGroupPtr( 
 			new ChannelGroup(channelGroups[2],desc.mSfxNumChannels,
 			mSystem,offset));
+
+		if (!desc.mMasterVolumeEnabled)
+		{
+			pauseChannelGroup(SM_CHANNEL_MASTER_GROUP,true);
+		}
+		if (!desc.mMusicVolumeEnabled)
+		{
+			pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,true);
+		}
+		if (!desc.mSfxVolumeEnabled)
+		{
+			pauseChannelGroup(SM_CHANNEL_SFX_GROUP,true);
+		}
 	}
 	return rc;
 }
@@ -666,6 +680,15 @@ bool AudioSubsystem::update(double elapsedTime)
 	FMOD_RESULT hr;
 	if(mSystem)
 	{
+		if (mOldConfigData.mDopplerScale!=mConfigData.mDopplerScale || mOldConfigData.mDistanceFactor!=mConfigData.mDistanceFactor
+			|| mOldConfigData.mRollOffScale!=mConfigData.mRollOffScale)
+		{
+			mOldConfigData.mDopplerScale=mConfigData.mDopplerScale;
+			mOldConfigData.mDistanceFactor=mConfigData.mDistanceFactor;
+			mOldConfigData.mRollOffScale=mConfigData.mRollOffScale;
+			mSystem->set3DSettings(mConfigData.mDopplerScale,mConfigData.mDistanceFactor,
+				mConfigData.mRollOffScale);
+		}
 		////master group
 		if(mOldConfigData.mMasterVolumeEnabled!=mConfigData.mMasterVolumeEnabled)
 		{
@@ -744,6 +767,10 @@ TAudioSubsystemConfigData AudioSubsystem::getConfigData()
 {
 	return mConfigData;
 }
+void AudioSubsystem::setConfigData(const TAudioSubsystemConfigData& configData)
+{
+	mConfigData=configData;
+}
 double AudioSubsystem::getChannelGroupVolume(const std::string& id)
 {
 	float volume = 1.0;
@@ -818,4 +845,31 @@ void AudioSubsystem::unloadSounds()
 		(i->second)->mFMODSound->release();
 	}
 	mSoundMap.clear();	
+}
+
+void AudioSubsystem::saveCurrentConfigData(const std::string& configFileName)
+{
+	ConfigurationPtr config = ConfigurationPtr(new Configuration());
+	TConfigMap options;
+	options[CONFIG_KEYS_DOPPLER_SCALE]= Utils::toString(mConfigData.mDopplerScale);
+	options[CONFIG_KEYS_DISTANCE_FACTOR]= Utils::toString(mConfigData.mDistanceFactor);
+	options[CONFIG_KEYS_ROLLOFF_SCALE]= Utils::toString(mConfigData.mRollOffScale);
+	options[CONFIG_KEYS_MASTER_VOLUME]= Utils::toString(mConfigData.mMasterVolume);
+	options[CONFIG_KEYS_MASTER_PITCH]= Utils::toString(mConfigData.mMasterPitch);
+	options[CONFIG_KEYS_MASTER_ENABLED]= Utils::toString(mConfigData.mMasterVolumeEnabled);
+	options[CONFIG_KEYS_MASTER_NUM_CHANNELS]= Utils::toString(mConfigData.mNumChannels);
+
+	options[CONFIG_KEYS_SFX_VOLUME]= Utils::toString(mConfigData.mSfxVolume);
+	options[CONFIG_KEYS_SFX_PITCH]= Utils::toString(mConfigData.mSfxPitch);
+	options[CONFIG_KEYS_SFX_ENABLED]= Utils::toString(mConfigData.mSfxVolumeEnabled);
+	options[CONFIG_KEYS_SFX_NUM_CHANNELS]= Utils::toString(mConfigData.mSfxNumChannels);
+
+	options[CONFIG_KEYS_MUSIC_VOLUME]= Utils::toString(mConfigData.mMusicVolume);
+	options[CONFIG_KEYS_MUSIC_PITCH]= Utils::toString(mConfigData.mMusicPitch);
+	options[CONFIG_KEYS_MUSIC_ENABLED]= Utils::toString(mConfigData.mMusicVolumeEnabled);
+	options[CONFIG_KEYS_MUSIC_NUM_CHANNELS]= Utils::toString(mConfigData.mMusicNumChannels);
+
+	config->addOptions(options);
+	std::string filePath = SOUND_RESOURCES_PATH+"/"+configFileName;
+	config->saveToFile(filePath);
 }

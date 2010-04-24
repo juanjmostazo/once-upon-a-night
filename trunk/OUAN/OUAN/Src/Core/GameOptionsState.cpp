@@ -3,6 +3,7 @@
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIOptionsMenu.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Audio/AudioSubsystem.h"
 #include "GameStateManager.h"
 
 #include "MainMenuState.h"
@@ -15,7 +16,7 @@ using namespace OUAN;
 GameOptionsState::GameOptionsState()
 :GameState()
 {
-
+	mMusicChannel=-1;
 }
 /// Destructor
 GameOptionsState::~GameOptionsState()
@@ -29,7 +30,18 @@ void GameOptionsState::init(ApplicationPtr app)
 	using namespace CEGUI;
 	mApp=app;		
 	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
-	mGUI->initGUI(shared_from_this());	
+	mGUI->initGUI(shared_from_this());
+
+	TSoundData desc;
+	desc.mId="MUSIC";
+	desc.mFileName=MAINMENU_MUSIC_TRACK;
+	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
+	desc.mHardware=true;
+	desc.m3D=false;
+	desc.mStream=true;
+	desc.mLoop=true;
+	mApp->getAudioSubsystem()->addSound(desc);
+	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
 
 /// Clean up main menu's resources
@@ -38,6 +50,9 @@ void GameOptionsState::cleanUp()
 	//mApp->getGUISubsystem()->unbindAllEvents();
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
+	if (mMusicChannel!=-1)
+		mApp->getAudioSubsystem()->stopSound(mMusicChannel);
+	mApp->getAudioSubsystem()->removeSound("MUSIC");
 }
 
 /// pause state

@@ -129,3 +129,46 @@ Ogre::Quaternion OUAN::Utils::getNodeWorldOrientation(Ogre::Entity* ent, Ogre::N
 	}
 	return worldOrient;
 }
+
+std::string OUAN::Utils::toString(double doubleValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<doubleValue;
+	return outStr.str();
+}
+std::string OUAN::Utils::toString(float floatValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<floatValue;
+	return outStr.str();
+}
+std::string OUAN::Utils::toString(long longValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<longValue;
+	return outStr.str();
+}
+std::string OUAN::Utils::toString(int intValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<intValue;
+	return outStr.str();
+}
+std::string OUAN::Utils::toString(char charValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<charValue;
+	return outStr.str();
+}
+std::string OUAN::Utils::toString(bool boolValue)
+{
+	std::ostringstream outStr;
+	outStr.str("");
+	outStr<<boolValue;
+	return outStr.str();
+}

@@ -181,7 +181,7 @@ void GameRunningState::handleEvents()
 	else
 	{
 		//this method will basically apply to the flashlight, as it'll stop working
-		//when it is not used
+		//when the button is not being pressed
 		if (!mApp->getGameWorldManager()->isOnyDying())		
 		{
 			mApp->getGameWorldManager()->stopUsingWeapon();
@@ -200,19 +200,16 @@ void GameRunningState::handleEvents()
 	GameObjectOnyPtr ony=mApp->getGameWorldManager()->getGameObjectOny();
 	if (ony.get())
 	{
-		int currentState = ony->getLogicComponentOny()->getState();
-		int lastState = ony->getLogicComponentOny()->getOldState();
-		currentState =actionKeyPressed
-			?SET_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION)
-			:CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_ACTION);
+		int newState= ony->getLogicComponentOny()->getNewState();
 
-		bool justHit = CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) 
-			&& ony->getLogicComponentOny()->isEventInducedStateChange();
+		newState =actionKeyPressed
+			?SET_BIT(newState,ONY_STATE_BIT_FIELD_ACTION)
+			:CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ACTION);
 
 		Vector2 nextMovementXZ=mApp->getMovement();
 
 		Vector3 nextMovement=Ogre::Vector3::ZERO;
-		if (!mApp->getGameWorldManager()->isOnyDying() && !justHit)
+		if (!mApp->getGameWorldManager()->isOnyDying())
 		{
 			nextMovement.x=nextMovementXZ.x;
 			//nextMovement.y=0;
@@ -228,26 +225,21 @@ void GameRunningState::handleEvents()
 		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK);
 
 		bool zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
-		currentState =zeroMovement
-			?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
-			:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
-		if (!zeroMovement && !justHit)
+		newState=zeroMovement
+			?CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
+			:SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+		if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
 		{
-			currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_HIT);
+			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
+			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 		}
-	if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
-	{
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
-		if (!justHit)
-			currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_WALK),ONY_STATE_BIT_FIELD_HIT);
-	}
-	else currentState=CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+		else newState=CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 
 		if (mApp->isPressedJump() && !mApp->getGameWorldManager()->isOnyDying())
 		{
 			ony->getPhysicsComponentCharacter()->jump();
-			if (!justHit)
-			currentState =CLEAR_BIT(SET_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP),ONY_STATE_BIT_FIELD_HIT);
+			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
+			
 		}	
 		//else currentState =CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
 		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
@@ -262,16 +254,12 @@ void GameRunningState::handleEvents()
 			ony->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
 			
 			zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
-			currentState =zeroMovement
-				?CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT)
-				:SET_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT);
+			newState =zeroMovement
+				?CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
+				:SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
 		}
 
-		if (currentState!=ony->getLogicComponentOny()->getState())
-		{
-			ony->getLogicComponentOny()->setState(currentState);
-			//ony->getLogicComponentOny()->setStateChanged(true);
-		}
+		ony->getLogicComponentOny()->setNewState(newState);
 		
 	}
 
@@ -367,6 +355,8 @@ void GameRunningState::update(long elapsedTime)
 
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
+
+	mApp->getGameWorldManager()->postUpdate();
 
 
 	//Ogre::LogManager::getSingleton().logMessage("Other stuff");

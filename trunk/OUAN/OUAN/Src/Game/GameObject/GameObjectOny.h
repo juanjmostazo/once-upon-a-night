@@ -240,6 +240,8 @@ namespace OUAN
 		void updateLogic(double elapsedSeconds);
 
 		void processAnimationEnded(const std::string animationName);
+
+		void postUpdate();
 	};
 
 	/// Carries data between the level loader and the object factories
