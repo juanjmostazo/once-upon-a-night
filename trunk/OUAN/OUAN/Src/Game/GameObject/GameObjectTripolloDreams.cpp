@@ -97,6 +97,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			:mRenderComponentEntityNightmares;
 
 		int currentState=mLogicComponentEnemy->getState();
+
 		if (mPhysicsComponentCharacter.get())
 		{
 			if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE))
@@ -127,7 +128,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 					*/
 					if (entityToUpdate.get())
 						entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
-
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))

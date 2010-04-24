@@ -15,7 +15,7 @@
     <Option key="INITIAL_JUMP_SPEED">160</Option>
     <Option key="MIN_ALLOWED_Y">-100</Option>
     <Option key="MIN_COLLISION_ANGLE">45</Option>
-    <Option key="MIN_SLIDING_ANGLE">40</Option>
+    <Option key="MIN_SLIDING_ANGLE">60</Option>
     <Option key="MIN_SLIDING_ANGLE_FALL">90</Option>
     <Option key="SLIDING_FACTOR">5</Option>
     <Option key="SLIDING_FACTOR_FALL">25</Option>

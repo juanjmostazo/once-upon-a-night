@@ -19,7 +19,7 @@ Trajectory::Trajectory()
 	///* generate random number: */
 	//random = (rand() % 100)/100;
 
-	recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
+	recalculateTime=3+Utils::Random::getInstance()->getRandomDouble();
 }
 
 Trajectory::~Trajectory()
@@ -390,6 +390,71 @@ void Trajectory::activatePathfinding(std::string source,std::string target,std::
 	doPathfinding(source,target,walkabilityMap);
 }
 
+void Trajectory::activateChase(std::string source,std::string target)
+{
+	TrajectoryNode * pTrajectoryNode;
+
+	clear();
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingSource));
+	pTrajectoryNode->setSpeed(15);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
+	pTrajectoryNode->setSpeed(15);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	mPathfindingSource=source;
+	mPathfindingTarget=target;
+	mChase=true;
+
+	reset();
+}
+
+
+void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap)
+{
+	std::string target;
+
+	//find nearest node
+	target=mTrajectoryManager->getNearestNodeToTrajectory(trajectory,
+		mSceneManager->getSceneNode(gameObject)->getPosition());
+
+	mPredefinedTrajectory=trajectory;
+
+	mIddle=false;
+	mChase=false;
+	moveToPredefinedTrajectory=true;
+
+	reachedLastNode=false;
+	mPathfindingTarget=target;
+	mPathfindingSource=gameObject;
+	mWalkabilityMap=walkabilityMap;
+
+	fullPathfinding();
+
+	pathFindingActivated=false;
+
+	//Ogre::LogManager::getSingleton().logMessage("Pathfinding to predefined trajectory "+trajectory);
+
+}
+
+void Trajectory::activatePredefinedTrajectory(std::string trajectory)
+{
+	mIddle=false;
+	mChase=false;
+	moveToPredefinedTrajectory=false;
+	loopTrajectory=true;
+	mPredefinedTrajectory=trajectory;
+	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
+}
+
+
+
 void Trajectory::doPathfinding(std::string source,std::string target,std::string walkabilityMap)
 {
 	TrajectoryNode * pTrajectoryNode;
@@ -416,7 +481,6 @@ void Trajectory::doPathfinding(std::string source,std::string target,std::string
 		//Ogre::LogManager::getSingleton().logMessage("Pathfinding target "+target);
 		recalculatePathfinding();
 		reset();
-		pathFindingActivated=true;
 	}
 }
 
@@ -425,7 +489,9 @@ void Trajectory::fullPathfinding()
 	unsigned int i;
 	TrajectoryNode * pTrajectoryNode;
 	std::vector<Ogre::SceneNode *> path;
-	//Ogre::LogManager::getSingleton().logMessage("CAS 1");
+
+	//Ogre::LogManager::getSingleton().logMessage("FULL");
+
 	clear();
 	path=mTrajectoryManager->calculatePathFinding(
 		mWalkabilityMap,
@@ -454,6 +520,8 @@ void Trajectory::partialPathfinding()
 	TrajectoryNode * pNextNode;
 	int nextNode=getNextNode();
 
+	//Ogre::LogManager::getSingleton().logMessage("PARTIAL");
+
 	pCurrentNode = new TrajectoryNode();
 	pCurrentNode->setSceneNode(trajectoryNodes[currentNode]->getSceneNode());
 	pCurrentNode->setSpeed(trajectoryNodes[currentNode]->getSpeed());
@@ -462,8 +530,6 @@ void Trajectory::partialPathfinding()
 	pNextNode->setSceneNode(trajectoryNodes[nextNode]->getSceneNode());
 	pNextNode->setSpeed(trajectoryNodes[nextNode]->getSpeed());
 
-
-	//Ogre::LogManager::getSingleton().logMessage("CAS 2");
 	path=mTrajectoryManager->calculatePathFinding(
 		mWalkabilityMap,
 		trajectoryNodes[nextNode]->getSceneNode()->getName(),
@@ -513,6 +579,7 @@ void Trajectory::recalculatePathfinding()
 		trajectoryNodes[nextNode]->getSceneNode()->getName().compare(mPathfindingTarget)==0)
 	{
 		fullPathfinding();
+		pathFindingActivated=true;
 	}
 	else
 	{
@@ -527,31 +594,6 @@ void Trajectory::recalculatePathfinding()
 	//}
 
 	lastPathFindingTime=0;
-}
-
-void Trajectory::activateChase(std::string source,std::string target)
-{
-	TrajectoryNode * pTrajectoryNode;
-
-	clear();
-
-	pTrajectoryNode = new TrajectoryNode();
-	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingSource));
-	pTrajectoryNode->setSpeed(15);
-
-	pushBackNode(pTrajectoryNode,"red");
-
-	pTrajectoryNode = new TrajectoryNode();
-	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
-	pTrajectoryNode->setSpeed(15);
-
-	pushBackNode(pTrajectoryNode,"red");
-
-	mPathfindingSource=source;
-	mPathfindingTarget=target;
-	mChase=true;
-
-	reset();
 }
 
 void Trajectory::pushBackNode(TrajectoryNode * pTrajectoryNode,std::string debugColor)
@@ -571,7 +613,7 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 	activatePredefinedTrajectory(trajectory);
 	unsigned int i;
 	int current=-1;
-
+	//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode");
 	//Ogre::LogManager::getSingleton().logMessage("Predefined Trajectory");
 
 	for(i=0;i<trajectoryNodes.size();i++)
@@ -594,17 +636,7 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 		setCurrentNode(current);
 	}
 
-	mIddle=false;
-	pathFindingActivated=false;
 	moveToPredefinedTrajectory=false;
-}
-
-void Trajectory::activatePredefinedTrajectory(std::string trajectory)
-{
-	mChase=false;
-	loopTrajectory=true;
-	mPredefinedTrajectory=trajectory;
-	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
 }
 
 std::string Trajectory::getNearestNode(Ogre::Vector3 position)
@@ -622,21 +654,6 @@ std::string Trajectory::getNearestNode(Ogre::Vector3 position)
 		}
 	}
 	return minDistanceName;
-}
-
-void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap)
-{
-	std::string target;
-
-	//find nearest node
-	target=mTrajectoryManager->getNearestNodeToTrajectory(trajectory,
-		mSceneManager->getSceneNode(gameObject)->getPosition());
-
-	mPredefinedTrajectory=trajectory;
-
-	moveToPredefinedTrajectory=true;
-	doPathfinding(gameObject,target,walkabilityMap);
-
 }
 
 void Trajectory::setVisible(bool visible)
