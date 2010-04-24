@@ -1,5 +1,9 @@
 #include "GameObjectPillow.h"
+#include "GameObjectOny.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
+
+#include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -177,7 +181,63 @@ void GameObjectPillow::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
+void GameObjectPillow::update(double elapsedSeconds)
+{
 
+	if (isEnabled()) //there is no point to updating the flashlight when it's not active
+	{
+		Ogre::Camera * camera;
+		CameraManagerPtr cameraManager = getGameWorldManager()->getParent()->getCameraManager();
+		Vector3 direction;
+
+		GameObject::update(elapsedSeconds);
+
+		camera=cameraManager->getActiveCamera();
+
+		if(cameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
+		{
+			GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
+			Ogre::Vector3 pos;
+			Ogre::Quaternion orient;
+			if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
+				&& ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+			{
+				Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+				Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+				pos=Utils::getNodeWorldPosition(ent,bone);
+				orient=Utils::getNodeWorldOrientation(ent,bone);
+			}
+			else
+			{
+				pos=ony->getRenderComponentPositional()->getPosition();
+				orient=ony->getRenderComponentPositional()->getOrientation();
+			}
+			mRenderComponentPositional->setPosition(pos);
+			mRenderComponentPositional->setOrientation(orient);
+
+			if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+			{
+				//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
+				/*mPhysicsComponentVolumeConvex->destroy();
+				mPhysicsComponentVolumeConvex->create();*/
+
+				mPhysicsComponentSimpleCapsule->setPosition(mRenderComponentPositional->getPosition());
+
+				camera=cameraManager->getActiveCamera();
+				mPhysicsComponentSimpleCapsule->setOrientation(mRenderComponentPositional->getOrientation());
+			}
+		}
+
+	}
+}
+bool GameObjectPillow::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectPillow::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {
 

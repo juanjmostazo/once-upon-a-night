@@ -19,6 +19,9 @@ namespace OUAN
 		void setNxOgreSize(NxOgre::Vec2 pNxOgreSize);
 
 		//void setQueryFlags(QueryFlags queryFlags);
+		void setPosition(NxOgre::Vec3 position);
+		void setOrientation(NxOgre::Quat orientation);
+
 
 	protected:
 		NxOgre::Vec2 mNxOgreSize;

@@ -189,7 +189,14 @@ void GameObjectCryKing::updateLogic(double elapsedSeconds)
 	}
 }
 
-
+bool GameObjectCryKing::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()
 {

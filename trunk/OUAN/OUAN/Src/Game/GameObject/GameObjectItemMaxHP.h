@@ -78,6 +78,9 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with

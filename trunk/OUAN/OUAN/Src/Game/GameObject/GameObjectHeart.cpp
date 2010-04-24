@@ -208,7 +208,14 @@ void GameObjectHeart::update(double elapsedSeconds)
 		}
 	}
 }
-
+bool GameObjectHeart::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectHeart::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {
 

@@ -63,6 +63,21 @@ void PhysicsComponentSimpleCapsule::destroy()
 {
 	PhysicsComponentSimple::destroy();
 }
+void PhysicsComponentSimpleCapsule::setPosition(NxOgre::Vec3 position)
+{
+	if (isInUse())
+	{
+		getNxOgreKinematicBody()->setGlobalPosition(position);
+	}
+}
+
+void PhysicsComponentSimpleCapsule::setOrientation(NxOgre::Quat orientation)
+{
+	if (isInUse())
+	{
+		getNxOgreKinematicBody()->setGlobalOrientationQuat(orientation);
+	}
+}
 
 NxOgre::Vec2 PhysicsComponentSimpleCapsule::getNxOgreSize()
 {

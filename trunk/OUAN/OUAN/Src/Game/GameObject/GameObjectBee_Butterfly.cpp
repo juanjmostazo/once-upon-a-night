@@ -152,7 +152,14 @@ void GameObjectBee_Butterfly::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectBee_Butterfly::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectBee_Butterfly::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectBee_ButterflyParameters::TGameObjectBee_ButterflyParameters() : TGameObjectParameters()
 {

@@ -5,6 +5,14 @@
 #include <boost/random.hpp>
 #include <boost/nondet_random.hpp>
 
+namespace Ogre
+{
+	class Entity;
+	class Node;
+	class Vector3;
+	class Quaternion;
+}
+
 namespace OUAN
 {
 	namespace Utils
@@ -26,6 +34,9 @@ namespace OUAN
 
 		void scriptLog (const std::string& logMsg);
 		int parseInt(std::string& strValue);
+
+		Ogre::Vector3 getNodeWorldPosition(Ogre::Entity* entity, Ogre::Node* node);
+		Ogre::Quaternion getNodeWorldOrientation(Ogre::Entity* entity, Ogre::Node* node);
 	}
 }
 #endif

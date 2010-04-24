@@ -50,6 +50,9 @@ void GameRunningState::init(ApplicationPtr app)
 	//mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
 	mApp->getLogicSubsystem()->loadScripts();
 
+	//...and initialise the active weapon according to the current world
+	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getCurrentWorld());
+
 	mApp->mKeyBuffer=-1;
 	
 	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));

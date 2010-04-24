@@ -84,7 +84,9 @@ namespace OUAN
 
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
-
+		
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
 
 		int getTimeStunned() const;
 

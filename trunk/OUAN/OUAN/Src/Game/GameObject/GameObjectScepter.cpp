@@ -180,7 +180,14 @@ void GameObjectScepter::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectScepter::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectScepter::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectScepterParameters::TGameObjectScepterParameters() : TGameObjectParameters()
 {
 

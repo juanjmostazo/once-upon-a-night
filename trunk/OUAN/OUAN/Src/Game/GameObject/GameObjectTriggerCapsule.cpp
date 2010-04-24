@@ -187,7 +187,6 @@ void GameObjectTriggerCapsule::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
 //-------------------------------------------------------------------------------------------
 TGameObjectTriggerCapsuleParameters::TGameObjectTriggerCapsuleParameters() : TGameObjectParameters()
 {

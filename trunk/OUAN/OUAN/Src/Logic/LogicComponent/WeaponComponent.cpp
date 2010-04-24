@@ -49,22 +49,25 @@ void WeaponComponent::cleanUp()
 }
 void WeaponComponent::changeActiveWeapon(const std::string& newWeapon)
 {
-	GameObjectPtr oldActiveWeapon=mActiveWeapon;
-	mActiveWeaponInUse=false;
-	mActiveWeapon.reset();
-	if (std::find(mWeaponNames.begin(),mWeaponNames.end(),newWeapon)!=mWeaponNames.end())
+	if (mParent->getGameWorldManager().get())
 	{
-		mActiveWeapon=mParent->getGameWorldManager()->getObject(newWeapon);
-		if (mActiveWeapon.get())
+		GameObjectPtr oldActiveWeapon=mActiveWeapon;
+		mActiveWeaponInUse=false;
+		mActiveWeapon.reset();
+		if (std::find(mWeaponNames.begin(),mWeaponNames.end(),newWeapon)!=mWeaponNames.end())
 		{
-			mActiveWeapon->enable();
-			mActiveWeapon->setAttack(mActiveWeapon->getDefaultAttack());
+			mActiveWeapon=mParent->getGameWorldManager()->getObject(newWeapon);
+			if (mActiveWeapon.get())
+			{
+				mActiveWeapon->enable();
+				mActiveWeapon->setAttack(mActiveWeapon->getDefaultAttack());
+			}
 		}
-	}
-	if (oldActiveWeapon.get())
-	{
-		oldActiveWeapon->disable();
-		oldActiveWeapon->reset();
+		if (oldActiveWeapon.get())
+		{
+			oldActiveWeapon->disable();
+			oldActiveWeapon->reset();
+		}
 	}
 }
 

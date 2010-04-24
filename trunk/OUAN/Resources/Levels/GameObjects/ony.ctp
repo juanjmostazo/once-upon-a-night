@@ -10,14 +10,14 @@
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="-1" ></PROPERTY>
   
   <PROPERTY id="WeaponComponent::weapon0" type="7" value="flashlight#1"></PROPERTY>
-  <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow"></PROPERTY>
+  <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow#0"></PROPERTY>
   
   <!-- Animations -->
   <!-- TESTING VALUES until we have a correct Ony -->
   <PROPERTY id="animation0::name" type="7" value="idle1_eani_Clip"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation1::name" type="7" value="idle2_eani_Clip" ></PROPERTY>
-  <PROPERTY id="animation1::loop" type="12" value="true" ></PROPERTY>
+  <PROPERTY id="animation1::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation2::name" type="7" value="walk_eani_Clip" ></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation3::name" type="7" value="run_eani_Clip" ></PROPERTY>

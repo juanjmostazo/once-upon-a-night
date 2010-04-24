@@ -183,7 +183,14 @@ void GameObjectDiamond::updateLogic(double elapsedSeconds)
 		mLogicComponentItem->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectDiamond::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectDiamond::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {
 

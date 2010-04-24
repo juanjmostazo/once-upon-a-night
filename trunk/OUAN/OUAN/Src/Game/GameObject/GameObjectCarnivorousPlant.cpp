@@ -185,7 +185,14 @@ void GameObjectCarnivorousPlant::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectCarnivorousPlant::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectCarnivorousPlant::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectCarnivorousPlantParameters::TGameObjectCarnivorousPlantParameters() : TGameObjectParameters()
 {
