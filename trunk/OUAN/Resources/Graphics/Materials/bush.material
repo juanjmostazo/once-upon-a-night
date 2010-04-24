@@ -8,7 +8,8 @@ material bush
 			ambient 0.3 0.3 0.3 1
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
-			scene_blend alpha_blend
+		            scene_blend alpha_blend
+		            depth_write off
 
 			texture_unit
 			{

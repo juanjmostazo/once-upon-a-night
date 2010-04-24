@@ -382,6 +382,55 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
+void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
+{
+  //mFade.enabled = enable;
+  //mFade.startSqr = startDist*startDist;
+  //mFade.endSqr = endDist*endDist;
+
+  //if (mFade.enabled)
+  //{
+  //  for (int i = 0; i < mpEntity->getNumSubEntities(); ++i)
+  //  {
+  //    // Get the material of this sub entity and build the clone material name
+  //    Ogre::SubEntity* subEnt = mpEntity->getSubEntity(i);
+  //    Ogre::MaterialPtr material = subEnt->getMaterial();
+  //    Ogre::String cloneName = material->getName() +
+  //                             Ogre::StringConverter::toString((int)floor(mFade.startSqr)) +
+  //                             Ogre::StringConverter::toString((int)floor(mFade.endSqr));
+
+  //    // Get/Create the clone material
+  //    Ogre::MaterialPtr clone;
+  //    if (Ogre::MaterialManager::getSingleton().resourceExists(cloneName))
+  //    {
+  //      clone = Ogre::MaterialManager::getSingleton().getByName(cloneName);
+  //    }
+  //    else
+  //    {
+  //      // Clone the material and set the fade limits for the shader
+  //      clone = material->clone(cloneName);
+  //      clone->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+  //      clone->getTechnique(0)->getPass(0)->setVertexProgram("Fade", false);
+  //      Ogre::GpuProgramParametersSharedPtr params = clone->getTechnique(0)->getPass(0)->getVertexProgramParameters();
+  //      float limits[2] = {mFade.startSqr, mFade.endSqr};
+  //      params->setNamedConstant("fadeLimits", limits, 2);
+  //    }
+
+  //    // Apply the cloned material to the sub entity.
+  //    subEnt->setMaterial(clone);
+  //  }
+  //}
+  //else
+  //{
+  //  // Reset the original material names (stored when Entity is loaded)
+  //  for (int i = 0; i < mpEntity->getNumSubEntities(); ++i)
+  //  {
+  //    Ogre::SubEntity* subEnt = mpEntity->getSubEntity(i);
+  //    subEnt->setMaterialName(mFade.originalMaterials[i]);
+  //  }
+  //}
+}
+
 Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags)
 {
 	unsigned int i;
@@ -404,6 +453,9 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].material,
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].visible);
 		}
+
+		//set lightmaps
+		setLightmaps(pEntity);
 
 		//set Query flags
 		pEntity->setQueryFlags(flags);

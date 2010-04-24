@@ -9,9 +9,9 @@ using namespace OUAN;
 Trajectory::Trajectory()
 {
 	loopTrajectory=true;
-
+	mIddle=false;
 	mVisible=false;
-
+	mChase=false;
 	//double random;
 
 	///* initialize random seed: */
@@ -70,6 +70,19 @@ bool Trajectory::getLoopTrajectory() const
 void Trajectory::setLoopTrajectory(bool loopTrajectory)
 {
 	this->loopTrajectory=loopTrajectory;
+}
+
+int Trajectory::getNextNode(int node)
+{
+	unsigned int nextNode=node+1;
+	if(nextNode>=trajectoryNodes.size())
+	{
+		return 0;
+	}
+	else
+	{
+		return nextNode;
+	}
 }
 
 int Trajectory::getNextNode()
@@ -363,12 +376,16 @@ void Trajectory::setStop(bool stop)
 
 void Trajectory::activateIdle(std::string gameObject,std::string node,std::string walkabilityMap)
 {
+	mChase=false;
+	mIddle=true;
 	moveToPredefinedTrajectory=false;
 	doPathfinding(gameObject,node,walkabilityMap);
 }
 
 void Trajectory::activatePathfinding(std::string source,std::string target,std::string walkabilityMap)
 {
+	mChase=false;
+	mIddle=false;
 	moveToPredefinedTrajectory=false;
 	doPathfinding(source,target,walkabilityMap);
 }
@@ -454,8 +471,8 @@ void Trajectory::partialPathfinding()
 
 	clear();
 
-	pushBackNode(pCurrentNode,"red");
-	pushBackNode(pNextNode,"red");
+	pushBackNode(pCurrentNode,"green");
+	pushBackNode(pNextNode,"green");
 	currentNode=0;
 
 	for(i=1;i<path.size();i++)
@@ -465,14 +482,17 @@ void Trajectory::partialPathfinding()
 		pTrajectoryNode->setSceneNode(path[i]);
 		pTrajectoryNode->setSpeed(15);
 
-		pushBackNode(pTrajectoryNode,"red");
+		pushBackNode(pTrajectoryNode,"green");
 	}
 }
 
 void Trajectory::recalculatePathfinding()
 {
-
-	//Ogre::LogManager::getSingleton().logMessage("recalculating pathfinding");
+	if(mChase)
+	{
+		activateChase(mPathfindingSource,mPathfindingTarget);
+		return;
+	}
 
 	int nextNode=getNextNode();
 
@@ -483,7 +503,10 @@ void Trajectory::recalculatePathfinding()
 	if(reachedLastNode)
 	{
 		//Ogre::LogManager::getSingleton().logMessage("REACHED TARGET");
-		return;
+		if(!moveToPredefinedTrajectory && !mIddle)
+		{
+			fullPathfinding();
+		}
 	}
 	else if(!pathFindingActivated ||
 		trajectoryNodes.size()-(currentNode+1)<=0 ||
@@ -493,11 +516,7 @@ void Trajectory::recalculatePathfinding()
 	}
 	else
 	{
-		//if(trajectoryNodes[nextNode]->getSceneNode()->getPosition().distance(mSceneManager->getSceneNode(mPathfindingSource)->getPosition()) >
-		//   mSceneManager->getSceneNode(mPathfindingTarget)->getPosition().distance(mSceneManager->getSceneNode(mPathfindingSource)->getPosition()))
-		//{
-			partialPathfinding();
-		//}
+		partialPathfinding();
 	}
 
 	//Ogre::LogManager::getSingleton().logMessage("CURRENT TRAJECTORY");
@@ -508,6 +527,31 @@ void Trajectory::recalculatePathfinding()
 	//}
 
 	lastPathFindingTime=0;
+}
+
+void Trajectory::activateChase(std::string source,std::string target)
+{
+	TrajectoryNode * pTrajectoryNode;
+
+	clear();
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingSource));
+	pTrajectoryNode->setSpeed(15);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
+	pTrajectoryNode->setSpeed(15);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	mPathfindingSource=source;
+	mPathfindingTarget=target;
+	mChase=true;
+
+	reset();
 }
 
 void Trajectory::pushBackNode(TrajectoryNode * pTrajectoryNode,std::string debugColor)
@@ -550,12 +594,14 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 		setCurrentNode(current);
 	}
 
+	mIddle=false;
 	pathFindingActivated=false;
 	moveToPredefinedTrajectory=false;
 }
 
 void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 {
+	mChase=false;
 	loopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
 	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");

@@ -22,6 +22,11 @@ void TrajectoryComponent::setTrajectory(Trajectory * pTrajectory)
 	mTrajectory=pTrajectory;
 }
 
+void TrajectoryComponent::activateChase(std::string target)
+{
+	mTrajectory->activateChase(getParent()->getName(),target);
+}
+
 void TrajectoryComponent::activateIdle(std::string idleNode,int currentWorld)
 {
 	if(currentWorld==DREAMS)

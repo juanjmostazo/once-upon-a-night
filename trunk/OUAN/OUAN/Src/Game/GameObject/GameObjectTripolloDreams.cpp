@@ -89,7 +89,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
 		//debug code, erase when it works
-		//if(getName().compare("tripollo#7")!=0)
+		//if(getName().compare("tripollo#12")!=0)
 		//	return;
 
 		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
@@ -130,9 +130,9 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 				}
 			}
-			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))
 			{
-
+				//Ogre::LogManager::getSingleton().logMessage("FIND");
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
@@ -168,6 +168,17 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			//	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
 			//	disable();
 			//}
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
+			{
+				//Ogre::LogManager::getSingleton().logMessage("CHASE");
+				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+				{
+					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
+
+					mTrajectoryComponent->activateChase(
+						mGameWorldManager->getGameObjectOny()->getName());
+				}
+			}
 			else
 			{
 				

@@ -216,7 +216,7 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 		source=num_vertices(mGraph);
 		sourceNearestNode=getNearestNode(sourceNode->getPosition());
 
-		if(mGraph[sourceNearestNode].mSceneNode->getPosition().distance(sourceNode->getPosition())>=sourceNode->getPosition().distance(targetNode->getPosition()))
+		if(num_vertices(mGraph)==0 || mGraph[sourceNearestNode].mSceneNode->getPosition().distance(sourceNode->getPosition())>=sourceNode->getPosition().distance(targetNode->getPosition()))
 		{
 			//we do not need walkability map since we're closer to the target than nearest node
 			path.push_back(sourceNode);

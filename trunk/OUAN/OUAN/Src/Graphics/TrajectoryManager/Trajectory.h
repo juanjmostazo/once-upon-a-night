@@ -24,8 +24,11 @@ namespace OUAN
 		bool pathFindingActivated;
 		bool reachedLastNode;
 		bool twoDimensionsTrajectory;
+		bool mIddle;
+		bool mChase;
 
 		int getNextNode();
+		int getNextNode(int node);
 		void setCurrentNode(int node);
 
 		std::string mName;
@@ -92,6 +95,8 @@ namespace OUAN
 		void activateIdle(std::string gameObject,std::string node,std::string walkabilityMap);
 		void activatePredefinedTrajectory(std::string trajectory);
 		void activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap);
+		void activateChase(std::string source,std::string target);
+
 
 		std::string getNearestNode(Ogre::Vector3 position);
 

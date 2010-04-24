@@ -12,7 +12,7 @@
     <Option key="MOVEMENT_UNITS_PER_SECOND">50</Option>
     <Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">100</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
-    <Option key="INITIAL_JUMP_SPEED">130</Option>
+    <Option key="INITIAL_JUMP_SPEED">160</Option>
     <Option key="MIN_ALLOWED_Y">-100</Option>
     <Option key="MIN_COLLISION_ANGLE">45</Option>
     <Option key="MIN_SLIDING_ANGLE">40</Option>
@@ -23,11 +23,11 @@
     <Option key="MAX_SAME_DIRECTION_ANGLE">60</Option>
     <Option key="ACCELERATION_INCREMENT">0.5</Option>
     <Option key="ACCELERATION_FACTOR_MAX">1.5</Option>
-    <Option key="ACCELERATION_FACTOR_MIN">0.5</Option>
+    <Option key="ACCELERATION_FACTOR_MIN">0.8</Option>
     <Option key="DASH_ACCELERATION_FACTOR_MAX">6</Option>
     <Option key="DASH_ACCELERATION_FACTOR_MIN">2.5</Option>
-    <Option key="MAX_DASH">200</Option>
-    <Option key="DASH_ACCELERATION_INCREMENT">1.7</Option>
+    <Option key="MAX_DASH">125</Option>
+    <Option key="DASH_ACCELERATION_INCREMENT">1.5</Option>
     <Option key="WALK_SPEED">0.5</Option>
   </Options>
 </Configuration>
