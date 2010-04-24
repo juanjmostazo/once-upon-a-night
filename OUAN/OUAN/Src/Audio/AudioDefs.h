@@ -8,6 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <vector>
+#include "../Loader/Configuration.h"
 
 namespace OUAN
 {
@@ -82,6 +83,34 @@ namespace OUAN
 	const std::string CONFIG_KEYS_SFX_PITCH="SFX_PITCH";
 	const std::string CONFIG_KEYS_SFX_ENABLED="SFX_ENABLED";
 	const std::string CONFIG_KEYS_SFX_NUM_CHANNELS="SFX_NUM_CHANNELS";
+	
+	typedef struct  
+	{
+		// 3D sound attributes
+		double mDopplerScale;
+		double mDistanceFactor;
+		double mRollOffScale;
 
+		// Global sound controls
+		double mMasterVolume;
+		double mMasterPitch;
+		bool mMasterVolumeEnabled;
+		int mNumChannels;
+
+		// Audio effects sound controls
+		double mSfxVolume;
+		double mSfxPitch;
+		bool mSfxVolumeEnabled;
+		int mSfxNumChannels;
+
+		// Music effects sound controls
+		double mMusicVolume;
+		double mMusicPitch;
+		bool mMusicVolumeEnabled;
+		int mMusicNumChannels;
+
+		void set(ConfigurationPtr config);
+
+	} TAudioSubsystemConfigData;
 }
 #endif

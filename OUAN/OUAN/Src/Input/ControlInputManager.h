@@ -72,7 +72,7 @@ namespace OUAN
 
 		/// Fill a dictionary containing the keyboard and pad mappings
 		/// for a set of key ids
-		void getInputMappings (TControlInputMapping& mappings);
+		void getInputMappings (TControlInputMapping& mappings);			
 
 		std::string getMouseButtonName(int keyCode) const;
 		std::string getAsString(OIS::KeyCode kc) const;

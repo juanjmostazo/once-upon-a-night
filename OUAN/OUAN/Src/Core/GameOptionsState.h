@@ -42,7 +42,7 @@ namespace OUAN
 		void backToMenu();
 
 	private:
-
+		int mMusicChannel;
 		GUIOptionsMenuPtr mGUI;
 
 	};

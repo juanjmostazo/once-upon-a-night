@@ -3,6 +3,7 @@
 #include "GUIDefs.h"
 #include "GUIWindow.h"
 #include "../Input/InputDefs.h"
+#include "../Audio/AudioDefs.h"
 
 namespace OUAN
 {
@@ -55,6 +56,14 @@ namespace OUAN
 	const std::string BUTTON_NAME_PAUSE="OUANOptions/Controls/PauseBtn";
 	const std::string BUTTON_NAME_MENU="OUANOptions/Controls/MenuBtn";
 
+	const std::string SLIDER_NAME_MASTER="OUANOptions/Sound/MasterSlider";
+	const std::string SLIDER_NAME_MUSIC="OUANOptions/Sound/MusicSlider";
+	const std::string SLIDER_NAME_SFX="OUANOptions/Sound/SfxSlider";
+
+	const std::string CHECKBOX_NAME_MASTER="OUANOptions/SoundMasterCheck";
+	const std::string CHECKBOX_NAME_MUSIC="OUANOptions/MusicCheck";
+	const std::string CHECKBOX_NAME_SFX="OUANOptions/SfxCheck";
+
 	class GUIOptionsMenu: public GUIWindow
 	{
 	private:
@@ -65,7 +74,11 @@ namespace OUAN
 		TControlInputMapping mCurrentConfig;
 		/// Modified input mappings
 		TControlInputMapping mNewConfig;
-		
+		/// Current audio mappings
+		TAudioSubsystemConfigData mCurrentAudioConfig;
+		/// Modified audio mappings
+		TAudioSubsystemConfigData mNewAudioConfig;
+
 		/// Name of the button for the mapping being edited
 		std::string mCurrentlyEditedMapping;
 		/// Type of input device
@@ -118,8 +131,21 @@ namespace OUAN
 		bool onRadioButtonStateChange(const CEGUI::EventArgs& args);
 		bool onApply (const CEGUI::EventArgs& args);
 		bool onCancel (const CEGUI::EventArgs& args);
+		bool onApplySound(const CEGUI::EventArgs& args);
+		bool onCancelSound(const CEGUI::EventArgs& args);
 		bool onDeviceSelectionChanged(const CEGUI::EventArgs& args);
 		bool onRadioButtonDown(const CEGUI::EventArgs& args);
+		//TODO: Generalise this
+		bool onMasterSliderValueChanged(const CEGUI::EventArgs& args);
+		//bool onMasterSliderValueStopped(const CEGUI::EventArgs& args);
+		bool onMasterCheckBoxStateChanged(const CEGUI::EventArgs& args);
+		bool onSfxSliderValueChanged(const CEGUI::EventArgs& args);
+		//bool onSfxSliderValueStopped(const CEGUI::EventArgs& args);
+		bool onSfxCheckBoxStateChanged(const CEGUI::EventArgs& args);
+		bool onMusicSliderValueChanged(const CEGUI::EventArgs& args);
+		//bool onMusicSliderValueStopped(const CEGUI::EventArgs& args);
+		bool onMusicCheckBoxStateChanged(const CEGUI::EventArgs& args);
+
 
 	public:
 		/// Free resources

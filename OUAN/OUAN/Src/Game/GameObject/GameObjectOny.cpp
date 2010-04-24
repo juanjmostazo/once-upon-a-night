@@ -63,69 +63,15 @@ void GameObjectOny::update(double elapsedSeconds)
 
 	if (isFirstUpdate())
 	{
-		mLogicComponentOny->setState(ONY_STATE_IDLE);
+		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
 		mIdleTime=0;
-	}	
-	int currentState=mLogicComponentOny->getState();
-	int lastState=mLogicComponentOny->getOldState();
-	mLogicComponentOny->setEventInducedStateChange(false);
+	}
+
+	if (mLogicComponentOny->getState()==ONY_STATE_IDLE)
+		mIdleTime+=elapsedSeconds;
 	
-	if (currentState==ONY_STATE_IDLE)
-	{
-		if (mLogicComponentOny->isStateChanged())
-		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
-			mIdleTime=0.0;
-		}
-		else
-		{
-			mIdleTime+=elapsedSeconds;
-			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
-			{
-				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
-			}
-		}
-		//TODO: other cases
-	}
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && 
-		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
-	{
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
-	}
-
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
-		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
-	{
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
-	}
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP))
-	{
-		if (mLogicComponentOny->isStateChanged() && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
-	}
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT))
-	{
-		if (mLogicComponentOny->isStateChanged())			
-		{
-			if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
-				mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
-			else //Walk/run toggle
-			{
-				bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
-				bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
-				bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
-				if (toWalk || toRun || fromJump)
-				{
-					mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
-				}
-			}
-		}
-	}
-
 	mRenderComponentEntity->update(elapsedSeconds);
+
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
@@ -147,7 +93,7 @@ void GameObjectOny::reset()
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 		mLogicComponentOny->initStateHistory();
 		mLogicComponentOny->setState(ONY_STATE_IDLE);
-		mLogicComponentOny->setEventInducedStateChange(false);
+		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
 		mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	}
@@ -157,7 +103,7 @@ void GameObjectOny::reset()
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());		
 		mLogicComponentOny->initStateHistory();
 		mLogicComponentOny->setState(ONY_STATE_IDLE);
-		mLogicComponentOny->setEventInducedStateChange(false);
+		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
 		mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	}
@@ -297,6 +243,60 @@ RenderComponentEntityPtr GameObjectOny::getEntityComponent() const
 bool GameObjectOny::isDying() const
 {
 	return CHECK_BIT(mLogicComponentOny->getState(),ONY_STATE_BIT_FIELD_DIE);
+}
+void GameObjectOny::postUpdate()
+{
+
+	int currentState=mLogicComponentOny->getState();
+	int lastState=mLogicComponentOny->getOldState();
+	if (currentState==ONY_STATE_IDLE)
+	{
+		if (mLogicComponentOny->isStateChanged())
+		{
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+			mIdleTime=0.0;
+		}
+		else
+		{
+			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
+			{
+				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
+			}
+		}
+	}		
+	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
+		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
+	{
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
+	}
+
+	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
+		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
+		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
+	{
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
+	}
+	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
+		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
+	{
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
+	}
+	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
+	{
+		if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
+			mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
+		else //Walk/run toggle
+		{
+			bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
+			bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+			bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
+			if (toWalk || toRun || fromJump)
+			{
+				mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
+			}
+		}		
+	}
 }
 //-------
 

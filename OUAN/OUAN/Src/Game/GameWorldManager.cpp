@@ -2938,3 +2938,13 @@ void GameWorldManager::useObject()
 
 	}
 }
+void GameWorldManager::postUpdate()
+{
+	TGameObjectContainerIterator it;
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		it->second->postUpdate();
+	}
+}

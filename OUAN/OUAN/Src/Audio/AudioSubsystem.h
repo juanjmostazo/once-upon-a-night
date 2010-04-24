@@ -81,35 +81,6 @@ namespace OUAN
 		int getFreeChannelIndex();
 	};
 
-	typedef struct  
-	{
-		// 3D sound attributes
-		double mDopplerScale;
-		double mDistanceFactor;
-		double mRollOffScale;
-
-		// Global sound controls
-		double mMasterVolume;
-		double mMasterPitch;
-		bool mMasterVolumeEnabled;
-		int mNumChannels;
-
-		// Audio effects sound controls
-		double mSfxVolume;
-		double mSfxPitch;
-		bool mSfxVolumeEnabled;
-		int mSfxNumChannels;
-
-		// Music effects sound controls
-		double mMusicVolume;
-		double mMusicPitch;
-		bool mMusicVolumeEnabled;
-		int mMusicNumChannels;
-
-		void set(ConfigurationPtr config);
-
-	} TAudioSubsystemConfigData;
-
 	/// Audio manager. It controls reproduction of sounds
 	/// Code adapted from http://www.ogre3d.org/wiki/index.php/FMOD_SoundManager
 	class AudioSubsystem
@@ -159,6 +130,9 @@ namespace OUAN
 		virtual double getChannelGroupPitch(const std::string& id);
 
 		virtual TAudioSubsystemConfigData getConfigData();
+		virtual void setConfigData(const TAudioSubsystemConfigData& audioCfg);
+
+		void saveCurrentConfigData(const std::string& configFileName=SOUND_CONFIG_FILE);
 
 		ApplicationPtr getApplication();
 
