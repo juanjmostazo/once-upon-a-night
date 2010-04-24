@@ -11,9 +11,20 @@ material tree01_d
 			texture_unit
 			{
 				texture tree_01_d.dds
+				tex_coord_set 0
+				colour_op modulate
 			}
 		}
-
+	            pass
+	            {
+		           scene_blend modulate
+		           texture_unit
+		           {
+		                    texture tree1_d_light_map.dds
+			        tex_coord_set 0
+		                    colour_op modulate
+		           }
+	            }
 	}
 
 }

@@ -19,6 +19,7 @@ namespace OUAN
 		void activateIdle(std::string idleNode,int currentWorld);
 		void activatePathFinding(std::string target,int currentWorld);
 		void activatePredefinedTrajectory(std::string trajectory,int currentWorld);
+		void activateChase(std::string target);
 
 		bool predefinedTrajectoryExists(std::string name);
 

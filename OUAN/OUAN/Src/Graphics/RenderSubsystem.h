@@ -51,6 +51,9 @@ namespace OUAN
 		/// Set ambient specular and diffuse mateial components off
 		void initMaterials();
 
+		///set lightmaps
+		void setLightmaps(Ogre::Entity * pEntity);
+
 		/// Clear current Scene
 		void clear();
 
