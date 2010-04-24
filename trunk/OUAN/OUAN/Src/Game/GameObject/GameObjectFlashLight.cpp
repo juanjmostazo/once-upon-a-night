@@ -195,8 +195,8 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 				mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
 
 				camera=mCameraManager->getActiveCamera();
-				//mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
-				mPhysicsComponentVolumeConvex->setOrientation(mRenderComponentPositional->getOrientation());
+				mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
+				//mPhysicsComponentVolumeConvex->setOrientation(mRenderComponentPositional->getOrientation());
 			}
 		}
 
