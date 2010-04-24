@@ -79,6 +79,9 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
+
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processCollision(GameObjectPtr pGameObject);

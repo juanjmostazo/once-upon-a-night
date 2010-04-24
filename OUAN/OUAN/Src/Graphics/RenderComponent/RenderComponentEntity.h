@@ -39,6 +39,9 @@ namespace OUAN
 		Ogre::AnimationState* getCurrentAnimation() const;
 		std::string getCurrentAnimationName() const;
 		bool isAnimated() const;
+
+		void attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject);
+		void detachGameObject(GameObjectPtr gameObject);		
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{
 		public: 

@@ -191,7 +191,6 @@ void GameObjectTriggerBox::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
 //-------------------------------------------------------------------------------------------
 
 TGameObjectTriggerBoxParameters::TGameObjectTriggerBoxParameters() : TGameObjectParameters()

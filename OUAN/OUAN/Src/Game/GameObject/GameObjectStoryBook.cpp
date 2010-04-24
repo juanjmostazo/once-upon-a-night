@@ -188,7 +188,14 @@ void GameObjectStoryBook::update(double elapsedSeconds)
 	}	
 }
 
-
+bool GameObjectStoryBook::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectStoryBook::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 RenderComponentPositionalPtr GameObjectStoryBook::getPositionalComponent() const
 {
 	return getRenderComponentPositional();

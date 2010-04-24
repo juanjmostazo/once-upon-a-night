@@ -1,5 +1,6 @@
 #include "Utils.h"
 #include <Ogre.h>
+#include <OgreTagPoint.h>
 #include <ctime>
 #include <iostream>
 #include <sstream>
@@ -74,4 +75,57 @@ int OUAN::Utils::parseInt(std::string& strValue)
 		Ogre::LogManager::getSingletonPtr()->logMessage("Couldn't parse string to an hex value: string was empty");
 	}
 	return static_cast<int>(hexValue);
+}
+
+Ogre::Vector3 OUAN::Utils::getNodeWorldPosition(Ogre::Entity* entity, Ogre::Node* node)
+{
+	Ogre::Vector3 worldPos= node->_getDerivedPosition();
+
+	//multiply with the parent derived transformation
+	Ogre::Node* pParentNode = entity->getParentNode();
+	Ogre::SceneNode* pSceneNode = entity->getParentSceneNode();
+	Ogre::TagPoint* tp=NULL;
+	while (pParentNode)
+	{
+		//process the current i_Node
+		if (pParentNode != pSceneNode && (tp=dynamic_cast<Ogre::TagPoint*>(pParentNode)))
+		{
+			//this is a tag point (a connection point between 2 entities). which means it has a parent i_Node to be processed
+			worldPos = tp->_getFullLocalTransform()*worldPos;
+			pParentNode = tp->getParentEntity()->getParentNode();
+		}
+		else
+		{
+			//this is the scene i_Node meaning this is the last i_Node to process
+			worldPos = pParentNode->_getFullTransform() * worldPos;
+			break;
+		}
+	}
+	return worldPos;
+}
+
+Ogre::Quaternion OUAN::Utils::getNodeWorldOrientation(Ogre::Entity* ent, Ogre::Node* node)
+{
+	Ogre::Quaternion worldOrient = node->_getDerivedOrientation();
+
+	//multiply with the parent derived transformation
+	Ogre::Node* pParentNode = ent->getParentNode();
+	Ogre::SceneNode* pSceneNode = ent->getParentSceneNode();
+	Ogre::TagPoint* tp=NULL;
+	while (pParentNode)
+	{
+		//process the current i_Node
+		if (pParentNode != pSceneNode && (tp=dynamic_cast<Ogre::TagPoint*>(pParentNode)))
+		{
+			worldOrient= tp->_getDerivedOrientation() * worldOrient;
+			pParentNode = tp->getParentEntity()->getParentNode();
+		}
+		else
+		{
+			//this is the scene i_Node meaning this is the last i_Node to process
+			worldOrient = pParentNode->_getDerivedOrientation() * worldOrient;
+			break;
+		}
+	}
+	return worldOrient;
 }

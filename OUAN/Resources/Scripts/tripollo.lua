@@ -39,7 +39,7 @@ function tripolloLogic(pTripollo,state)
 		newState=TRIPOLLO_STATE_DEAD
 	end
 	if (state ~= newState) then
-		log (pTripollo:getName() .. " changed its state from " .. getStateName(newState,TRIPOLLO_STATE_NAMES) .. " to " .. getStateName(newState,TRIPOLLO_STATE_NAMES))
+		log (pTripollo:getName() .. " changed its state from " .. getStateName(state,TRIPOLLO_STATE_NAMES) .. " to " .. getStateName(newState,TRIPOLLO_STATE_NAMES))
 	end
 	return newState
 end

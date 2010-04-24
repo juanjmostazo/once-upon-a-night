@@ -179,7 +179,14 @@ void GameObjectScaredPlant::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectScaredPlant::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectScaredPlant::getEntityComponent() const
+{
+	return  mRenderComponentEntityDreams;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectScaredPlantParameters::TGameObjectScaredPlantParameters() : TGameObjectParameters()

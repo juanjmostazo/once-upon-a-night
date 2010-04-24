@@ -179,7 +179,14 @@ void GameObjectEye::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectEye::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectEye::getEntityComponent() const
+{
+	return mRenderComponentEntityNightmares;
+}
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()
 {
 

@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../../RayCasting/RayCasting.h"
+#include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -164,8 +165,25 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 
 		if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
 		{
-			mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-			mRenderComponentPositional->setOrientation(camera->getOrientation());
+			//mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+			//mRenderComponentPositional->setOrientation(camera->getOrientation());
+			GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
+			Ogre::Vector3 pos;
+			Ogre::Quaternion quat;
+			if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
+				&& ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+			{
+				Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+				Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+				pos=Utils::getNodeWorldPosition(ent,bone);
+			}
+			else
+			{
+				pos=ony->getRenderComponentPositional()->getPosition();
+			}
+
+			mRenderComponentPositional->setPosition(pos);			
+			mRenderComponentPositional->setOrientation(camera->getOrientation()*Ogre::Quaternion(Ogre::Degree(-90),Ogre::Vector3::UNIT_Y));
 
 			if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 			{
@@ -173,13 +191,16 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 				mPhysicsComponentVolumeConvex->destroy();
 				mPhysicsComponentVolumeConvex->create();
 
-				mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+				//mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
+				mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
 
 				camera=mCameraManager->getActiveCamera();
-				mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
+				//mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
+				mPhysicsComponentVolumeConvex->setOrientation(mRenderComponentPositional->getOrientation());
 			}
 		}
 
+		//ACHTUNG: The light's not in sync with the flashlight model, but with ony instead!!!
 		mLightPositionalComponent->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
 
 		direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
@@ -342,7 +363,14 @@ int GameObjectFlashLight::getColour()
 	}
 	return 0;
 }
-
+bool GameObjectFlashLight::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectFlashLight::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {
 

@@ -184,7 +184,14 @@ void GameObjectSnakeCreeper::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectSnakeCreeper::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectSnakeCreeper::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectSnakeCreeperParameters::TGameObjectSnakeCreeperParameters() : TGameObjectParameters()
 {

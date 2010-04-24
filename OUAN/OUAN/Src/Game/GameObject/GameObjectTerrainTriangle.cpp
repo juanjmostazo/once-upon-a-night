@@ -153,7 +153,14 @@ void GameObjectTerrainTriangle::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectTerrainTriangle::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
 

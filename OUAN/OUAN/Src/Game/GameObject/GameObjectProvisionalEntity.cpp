@@ -186,7 +186,14 @@ void GameObjectProvisionalEntity::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectProvisionalEntity::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectProvisionalEntityParameters::TGameObjectProvisionalEntityParameters() : TGameObjectParameters()

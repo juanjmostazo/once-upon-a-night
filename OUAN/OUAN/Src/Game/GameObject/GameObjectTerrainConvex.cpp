@@ -196,7 +196,14 @@ void GameObjectTerrainConvex::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectTerrainConvex::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectTerrainConvex::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()
 {

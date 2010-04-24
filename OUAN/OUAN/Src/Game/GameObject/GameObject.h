@@ -116,6 +116,9 @@ namespace OUAN
 		virtual bool hasPhysicsComponent() const;
 		virtual PhysicsComponentPtr getPhysicsComponent() const;
 
+		virtual bool hasRenderComponentEntity() const;
+		virtual RenderComponentEntityPtr getEntityComponent() const;
+
 		//QUERY METHODS (Used by LUA scripts)
 
 	/*	/// Return number of lives (in practice, all enemies will have only 1 life, so it won't be used)

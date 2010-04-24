@@ -200,7 +200,14 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 		}
 	}
 }
-
+bool GameObjectItemMaxHP::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectItemMaxHP::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
 

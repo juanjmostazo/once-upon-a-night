@@ -363,7 +363,14 @@ void GameObjectTripolloDreams::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectTripolloDreams::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectTripolloDreams::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()
 {

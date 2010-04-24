@@ -328,7 +328,6 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectTerrainTriangleContainer,mGameObjectTerrainTriangleContainer);
 
 	EMPTY_VECTOR(TGameObjectOnyContainer,mGameObjectOnyContainer);
-	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
 	EMPTY_VECTOR(TGameObjectPositionalContainer,mGameObjectPositionalContainer);
 	EMPTY_VECTOR(TGameObjectSceneContainer,mGameObjectSceneContainer);
 
@@ -352,6 +351,8 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectUsableContainer,mGameObjectUsableContainer);
 	EMPTY_VECTOR(TGameObjectLogicContainer,mGameObjectLogicContainer);
 
+	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
+	mGameObjectPillow.reset();
 }
 
 void GameWorldManager::loadLevel (const std::string& levelFileName)
@@ -672,6 +673,7 @@ void GameWorldManager::addGameObjectParticleSystem(GameObjectParticleSystemPtr p
 void GameWorldManager::addGameObjectPillow(GameObjectPillowPtr gameObjectPillow)
 {
 	mGameObjects[gameObjectPillow->getName()]=gameObjectPillow;
+	mGameObjectPillow=gameObjectPillow;
 }
 
 void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr gameObjectPlataform)
@@ -1835,8 +1837,7 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(mThis);
-	//...and initialise the active weapon according to the current world
-	pGameObjectOny->setInitialWeaponComponent(world);
+
 
 	//Add Object to GameWorldManager
 	addGameObjectOny(pGameObjectOny);
@@ -1895,6 +1896,12 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 			pGameObjectPillow,
 			tGameObjectPillowParameters.tLogicComponentParameters));
 
+		//pGameObjectPillow->setAttackComponent(
+		//	factory->createAttackComponent(
+		//	pGameObjectPillow,
+		//	tGameObjectPillowParameters.attackComponentParameters
+		//	));
+
 		//Create RenderComponentPositional
 		pGameObjectPillow->setRenderComponentPositional(factory->createRenderComponentPositional(
 			pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentPositionalParameters));
@@ -1919,9 +1926,12 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 
 	//Add reference to this
 	pGameObjectPillow->setGameWorldManager(mThis);
+	
+	//pGameObjectPillow->hide();
+	//pGameObjectPillow->switchOff();
 
 	//Add Object to GameWorldManager
-	addGameObjectPillow(pGameObjectPillow);
+	addGameObjectPillow(pGameObjectPillow);	
 }
 
 void GameWorldManager::createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters)
@@ -2840,6 +2850,10 @@ GameObjectFlashLightPtr GameWorldManager::getGameObjectFlashLight()
 	GameObjectFlashLightPtr nullPtr;
 	nullPtr.reset();
 	return nullPtr;
+}
+GameObjectPillowPtr GameWorldManager::getGameObjectPillow()
+{
+	return mGameObjectPillow;
 }
 
 

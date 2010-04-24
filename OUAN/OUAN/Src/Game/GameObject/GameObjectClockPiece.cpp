@@ -198,7 +198,14 @@ void GameObjectClockPiece::update(double elapsedSeconds)
 		}
 	}	
 }
-
+bool GameObjectClockPiece::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectClockPiece::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
 {
 

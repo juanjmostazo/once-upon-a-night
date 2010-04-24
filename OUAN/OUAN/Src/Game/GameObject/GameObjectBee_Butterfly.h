@@ -102,6 +102,9 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
+
 	};
 	
 	/// Information data structure to carry around data between the

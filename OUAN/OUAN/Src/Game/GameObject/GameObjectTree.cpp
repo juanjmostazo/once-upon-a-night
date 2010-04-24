@@ -180,7 +180,14 @@ void GameObjectTree::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectTree::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectTree::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 
 TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {

@@ -193,7 +193,14 @@ void GameObjectDragon::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectDragon::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectDragon::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()
 {

@@ -185,7 +185,14 @@ void GameObjectTentetieso::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-
+bool GameObjectTentetieso::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectTentetieso::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()
 {

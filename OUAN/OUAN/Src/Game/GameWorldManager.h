@@ -185,6 +185,7 @@ namespace OUAN
 
 		/// Return GameObjectFlashLight
 		GameObjectFlashLightPtr getGameObjectFlashLight();
+		GameObjectPillowPtr getGameObjectPillow();
 
 		/// Return the application pointer
 		ApplicationPtr getParent();
@@ -290,7 +291,6 @@ namespace OUAN
 		TGameObjectTerrainTriangleContainer mGameObjectTerrainTriangleContainer;
 		TGameObjectTerrainConvexContainer mGameObjectTerrainConvexContainer;
 		TGameObjectOnyContainer mGameObjectOnyContainer;
-		TGameObjectFlashLightContainer mGameObjectFlashLightContainer;
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
 		TGameObjectTripolloDreamsContainer mGameObjectTripolloDreamsContainer;
@@ -317,8 +317,10 @@ namespace OUAN
 		TGameObjectPhysicsVolumeBoxContainer mGameObjectPhysicsVolumeBoxContainer;
 		TGameObjectPhysicsVolumeCapsuleContainer mGameObjectPhysicsVolumeCapsuleContainer;
 
-		TGameObjectLogicContainer mGameObjectLogicContainer;
+		TGameObjectFlashLightContainer mGameObjectFlashLightContainer;
+		GameObjectPillowPtr mGameObjectPillow;
 
+		TGameObjectLogicContainer mGameObjectLogicContainer;
 		TGameObjectUsableContainer mGameObjectUsableContainer;
 
 		TGameObjectViewportContainer mGameObjectViewportContainer;

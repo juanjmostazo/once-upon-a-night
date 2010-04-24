@@ -110,6 +110,31 @@ void RenderComponentEntity::update(double elapsedTime)
 		}
 	}
 }
+void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)
+{
+	bool isValidEntity = mEntity->hasSkeleton() && mEntity->getSkeleton()->hasBone(boneName);
+	bool isValidGO = gameObject.get() && gameObject->hasRenderComponentEntity() && !gameObject->getEntityComponent()->getEntity()->isAttached();
+	if ( isValidEntity && isValidGO)
+	{		
+		mEntity->attachObjectToBone(boneName,gameObject->getEntityComponent()->getEntity());
+	}
+	else
+	{
+		std::string msg = "RCENTITY - Invalid attempt to attach ";
+		msg.append(gameObject.get()?gameObject->getName():"NULL");
+		msg.append(" game object to ").append(getParent()->getName());
+		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+	}
+		
+}
+void RenderComponentEntity::detachGameObject(GameObjectPtr gameObject)
+{
+	if (gameObject.get() && gameObject->hasRenderComponentEntity())
+	{
+		mEntity->detachObjectFromBone(gameObject->getEntityComponent()->getEntity());
+	}
+}
+
 
 //--- Entity parameters
 
@@ -122,7 +147,6 @@ TRenderComponentEntityParameters::~TRenderComponentEntityParameters()
 {
 
 }
-
 //--- Subentities parameters
 
 TRenderComponentSubEntityParameters::TRenderComponentSubEntityParameters() : TRenderComponentParameters()

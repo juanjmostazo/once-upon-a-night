@@ -256,7 +256,14 @@ void GameObjectPortal::update(double elapsedSeconds)
 		}
 	}			
 }
-
+bool GameObjectPortal::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()

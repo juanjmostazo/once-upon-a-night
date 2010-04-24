@@ -195,7 +195,14 @@ void GameObjectPlataform::updateLogic(double elapsedSeconds)
 	}
 }
 
-
+bool GameObjectPlataform::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectPlataform::getEntityComponent() const
+{
+	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectPlataformParameters::TGameObjectPlataformParameters() : TGameObjectParameters()
 {

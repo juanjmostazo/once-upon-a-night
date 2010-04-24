@@ -198,7 +198,14 @@ void GameObjectItem1UP::update(double elapsedSeconds)
 		}
 	}
 }
-
+bool GameObjectItem1UP::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectItem1UP::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
 

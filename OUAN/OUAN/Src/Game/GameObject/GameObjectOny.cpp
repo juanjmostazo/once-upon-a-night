@@ -7,7 +7,7 @@ using namespace OUAN;
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 {
-	mDreamsWeapon="pillow#1";
+	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
 	mIdleTime=-1;
 }
@@ -269,7 +269,14 @@ void GameObjectOny::processAnimationEnded(const std::string animationName)
 	if(mLogicComponentOny.get())
 		mLogicComponentOny->processAnimationEnded(animationName);
 }
-
+bool GameObjectOny::hasRenderComponentEntity() const
+{
+	return true;
+}
+RenderComponentEntityPtr GameObjectOny::getEntityComponent() const
+{
+	return mRenderComponentEntity;
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

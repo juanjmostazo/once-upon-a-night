@@ -73,11 +73,18 @@ namespace OUAN
 		/// Reset object
 		virtual void reset();
 
+		/// Update object
+		/// @param time passed since the last tick
+		void update(double elapsedSeconds);
+
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
+
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
 
 
 		/// Process collision event
