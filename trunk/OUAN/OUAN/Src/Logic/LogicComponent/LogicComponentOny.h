@@ -29,6 +29,7 @@ namespace OUAN
 		int getAttackDamage() const;
 		void setAttackDamage(int attackDamage);
 
+
 		/// If applicable, increase the object's health points
 		/// @param amount number of HP to increase
 		void increaseHP(int amount=1);
@@ -41,17 +42,21 @@ namespace OUAN
 		void increaseLives(int amount=1);
 		/// If applicable, decrease the object's number of lives
 		/// @param amount of lives to decrease
-		void decreaseLives(int amount=1);
+		void decreaseLives(int amount=1, bool fallDown=false);
 
 		/// Additional actions to take after losing one life
-		void loseLife();
+		void loseLife(bool fallDown=false);
 
 		/// Additional actions to take after losing all lives
 		void gameOver();
 
 		void update(double elapsedTime);
 
+		void setEventInducedStateChange(bool eventInducedStateChange);
+		bool isEventInducedStateChange() const;
+
 	private:
+		bool mEventInducedStateChange;
 		/// Number of lives of the component
 		int mNumLives;
 		/// Health points of the component

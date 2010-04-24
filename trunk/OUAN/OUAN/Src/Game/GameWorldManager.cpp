@@ -465,6 +465,8 @@ void GameWorldManager::resetAll()
 		it->second->reset();
 	}
 
+	mEventManager->clearEvents();
+
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(DREAMS));
 	addEvent(evt);
 
@@ -2812,7 +2814,12 @@ void GameWorldManager::onyDied()
 	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
 	resetAll();
 }
-
+bool GameWorldManager::isOnyDying() const
+{	
+	if (!mGameObjectOnyContainer.empty() && mGameObjectOnyContainer[0].get())
+		return mGameObjectOnyContainer[0]->isDying();
+	return false;
+}
 void GameWorldManager::addEvent(OUAN::EventPtr event)
 {
 	mEventManager->addEvent(event);
