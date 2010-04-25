@@ -20,9 +20,11 @@ namespace OUAN
 
 		void setPosition(Vector3 position);
 		void setOrientation(Quaternion orientation);
+		void setScale(Vector3 scale);
 
 		Vector3 getPosition() const;
 		Quaternion getOrientation() const;
+		Vector3 getScale() const;
 
 		//values in degrees
 		double getYaw() const;
