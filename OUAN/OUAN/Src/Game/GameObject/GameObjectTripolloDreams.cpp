@@ -210,6 +210,14 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		}
 	}
 }
+
+void GameObjectTripolloDreams::postUpdate()
+{
+	GameObject::postUpdate();
+	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
+	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-9.7,0));
+}
+
 AttackComponentPtr GameObjectTripolloDreams::getAttackComponent() const
 {
 	return mAttackComponent;
@@ -233,7 +241,8 @@ void GameObjectTripolloDreams::reset()
 		mPhysicsComponentCharacter->reset();
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-	}
+
+	}		
 	else
 	{
 		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());

@@ -1819,7 +1819,7 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		pGameObjectOny->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
-		
+
 		//Create PhysicsComponent
 		pGameObjectOny->setPhysicsComponentCharacter(factory->createPhysicsComponentCharacter(
 			pGameObjectOny,

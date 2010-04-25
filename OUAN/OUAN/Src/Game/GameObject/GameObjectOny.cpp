@@ -100,7 +100,8 @@ void GameObjectOny::reset()
 	else
 	{
 		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());		
+		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
+
 		mLogicComponentOny->initStateHistory();
 		mLogicComponentOny->setState(ONY_STATE_IDLE);
 		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
@@ -246,6 +247,7 @@ bool GameObjectOny::isDying() const
 }
 void GameObjectOny::postUpdate()
 {
+	GameObject::postUpdate();
 
 	int currentState=mLogicComponentOny->getState();
 	int lastState=mLogicComponentOny->getOldState();
@@ -297,7 +299,13 @@ void GameObjectOny::postUpdate()
 			}
 		}		
 	}
+
+	//TODO ERASE THIS WHEN ONY IS PROPERLY SCALED
+	getRenderComponentPositional()->setScale(Vector3(0.7,0.7,0.7));
+	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
+	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-12,0));
 }
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

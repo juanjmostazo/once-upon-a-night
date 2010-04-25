@@ -38,6 +38,16 @@ void RenderComponentPositional::setPosition(Vector3 position)
 	mSceneNode->setPosition(position);
 }
 
+Vector3 RenderComponentPositional::getScale() const
+{
+	return mSceneNode->getScale();
+}
+
+void RenderComponentPositional::setScale(Vector3 scale)
+{
+	mSceneNode->setScale(scale);
+}
+
 void RenderComponentPositional::setOrientation(Quaternion orientation)
 {
 	mSceneNode->setOrientation(orientation);
