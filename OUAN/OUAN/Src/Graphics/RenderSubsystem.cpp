@@ -47,22 +47,6 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 }
 
-void RenderSubsystem::initMaterials()
-{
-	Ogre::MaterialManager::ResourceMapIterator it = Ogre::MaterialManager::getSingleton().getResourceIterator();
-	Ogre::MaterialPtr material;
-
-	while (it.hasMoreElements())
-	{
-		material=it.getNext();
-		if(material->isLoaded())
-		{
-			//material->setLightingEnabled(false);
-		}
-	}
-	
-}
-
 void RenderSubsystem::cleanUp()
 {
 	clearScene();
@@ -382,53 +366,82 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 	}
 }
 
+void RenderSubsystem::initMaterials()
+{
+	Ogre::MaterialManager::ResourceMapIterator it = Ogre::MaterialManager::getSingleton().getResourceIterator();
+	Ogre::MaterialPtr material;
+
+	while (it.hasMoreElements())
+	{
+		material=it.getNext();
+		if(material->isLoaded())
+		{
+			material->setLightingEnabled(false);
+		}
+	}
+}
+
 void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 {
-  //mFade.enabled = enable;
-  //mFade.startSqr = startDist*startDist;
-  //mFade.endSqr = endDist*endDist;
+	unsigned int i;
+	Ogre::String materialName = LIGHTMAP_PREFIX+pEntity->getName();
+	Ogre::String lightmapName = materialName+".dds";
 
-  //if (mFade.enabled)
-  //{
-  //  for (int i = 0; i < mpEntity->getNumSubEntities(); ++i)
-  //  {
-  //    // Get the material of this sub entity and build the clone material name
-  //    Ogre::SubEntity* subEnt = mpEntity->getSubEntity(i);
-  //    Ogre::MaterialPtr material = subEnt->getMaterial();
-  //    Ogre::String cloneName = material->getName() +
-  //                             Ogre::StringConverter::toString((int)floor(mFade.startSqr)) +
-  //                             Ogre::StringConverter::toString((int)floor(mFade.endSqr));
+	if( Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,lightmapName))
+	{
+		try
+		{
+			//LogManager::getSingleton().logMessage("[setLightmaps] Adding "+lightmapName+" Lightmap...");
+			for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
+			{
+				// Get the material of this sub entity and build the clone material name
+				Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
+				Ogre::MaterialPtr material = subEnt->getMaterial();
 
-  //    // Get/Create the clone material
-  //    Ogre::MaterialPtr clone;
-  //    if (Ogre::MaterialManager::getSingleton().resourceExists(cloneName))
-  //    {
-  //      clone = Ogre::MaterialManager::getSingleton().getByName(cloneName);
-  //    }
-  //    else
-  //    {
-  //      // Clone the material and set the fade limits for the shader
-  //      clone = material->clone(cloneName);
-  //      clone->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-  //      clone->getTechnique(0)->getPass(0)->setVertexProgram("Fade", false);
-  //      Ogre::GpuProgramParametersSharedPtr params = clone->getTechnique(0)->getPass(0)->getVertexProgramParameters();
-  //      float limits[2] = {mFade.startSqr, mFade.endSqr};
-  //      params->setNamedConstant("fadeLimits", limits, 2);
-  //    }
+				// Get/Create the clone material
+				Ogre::MaterialPtr clone;
+				if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
+				{
+					clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
+				}
+				else
+				{
+					// Clone the material and set the fade limits for the shader
+					clone = material->clone(materialName);
+				}
 
-  //    // Apply the cloned material to the sub entity.
-  //    subEnt->setMaterial(clone);
-  //  }
-  //}
-  //else
-  //{
-  //  // Reset the original material names (stored when Entity is loaded)
-  //  for (int i = 0; i < mpEntity->getNumSubEntities(); ++i)
-  //  {
-  //    Ogre::SubEntity* subEnt = mpEntity->getSubEntity(i);
-  //    subEnt->setMaterialName(mFade.originalMaterials[i]);
-  //  }
-  //}
+				// Apply the lightmap
+				Ogre::Technique * technique;
+				Ogre::Pass * pass;
+				Ogre::TextureUnitState * texture_unit;
+					//get technique
+				technique = clone->getTechnique(0);
+					//set current pass attributes
+				pass = technique->getPass(0);
+				texture_unit = pass->getTextureUnitState(0);
+				texture_unit->setTextureCoordSet(0);
+				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
+					//create lightmap pass
+				pass = technique->createPass();
+				pass->setSceneBlending(Ogre::SBT_MODULATE);
+				texture_unit = pass->createTextureUnitState();
+				texture_unit->setTextureName(lightmapName);
+				texture_unit->setTextureCoordSet(0);
+				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
+
+				// Apply the cloned material to the sub entity.
+				subEnt->setMaterial(clone);
+			}
+		}
+		catch(Ogre::Exception &/*e*/)
+		{
+			LogManager::getSingleton().logMessage("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
+		}
+	}
+	else
+	{
+		//LogManager::getSingleton().logMessage("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
+	}
 }
 
 Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags)

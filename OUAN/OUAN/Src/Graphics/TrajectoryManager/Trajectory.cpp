@@ -19,7 +19,7 @@ Trajectory::Trajectory()
 	///* generate random number: */
 	//random = (rand() % 100)/100;
 
-	recalculateTime=3+Utils::Random::getInstance()->getRandomDouble();
+	recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
 }
 
 Trajectory::~Trajectory()
