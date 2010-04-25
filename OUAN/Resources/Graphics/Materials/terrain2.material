@@ -1,12 +1,50 @@
 
-material terrain2
+material Scene_Material
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.7 0.7 0.7 1
-			diffuse 0.7 0.7 0.7 1
+		}
+
+	}
+
+}
+
+
+
+material terrain3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture noIcon.pic
+			}
+		}
+
+	}
+
+}
+
+
+
+material terrain4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture noIcon.pic
+			}
 		}
 
 	}
