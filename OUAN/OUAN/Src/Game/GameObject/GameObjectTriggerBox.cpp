@@ -133,13 +133,13 @@ bool GameObjectTriggerBox::hasPositionalComponent() const
 }
 
 /// Set logic component
-void GameObjectTriggerBox::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectTriggerBox::setLogicComponent(LogicComponentTriggerPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectTriggerBox::getLogicComponent()
+LogicComponentTriggerPtr GameObjectTriggerBox::getLogicComponent()
 {
 	return mLogicComponent;
 }

@@ -43,11 +43,20 @@ namespace OUAN
 		/// @param scriptString chunk to execute
 		void executeString(const std::string& scriptString);
 		
-		/// Invoke a LUA function from c++ code
+		/// Invoke a LUA function from c++ code to retrieve a state
 		/// @param functionName name of the function to invoke
-		/// @param game object state
+		/// @param state game object state
+		/// @param pLogicComponent logic component to update
+		int invokeStateFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent);
+		
+		/// Invoke a LUA function from c++ code to check a condition about a game object's logic component
+		/// @param functionName name of the function to invoke
 		/// @param gameObject game object to update
-		int invokeFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent);
+		/// @return true if the condition is true, false otherwise
+		bool invokeConditionFunction(const std::string& functionName, LogicComponent* logicComponent);
+		/// Invoke a LUA function from c++ code to perform an action
+		/// @param functionName name of the function to invoke
+		void invokeActionFunction(const std::string& functionName, LogicComponent* logicComponent);
 
 		/// Retrieve the value of a global variable in LUA
 		int getGlobalInt (const std::string& globalName);

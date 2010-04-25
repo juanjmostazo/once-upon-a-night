@@ -166,6 +166,8 @@ namespace OUAN
 
 		/// Facade method to prevent input handling when ony's playing his 'dying' animation
 		bool isOnyDying() const;
+
+		void toggleTreeVisibility();
 		
 
 		/// Change world to the one specified by the passed parameter
@@ -214,6 +216,8 @@ namespace OUAN
 
 		/// Return the current world
 		static int getWorld();
+
+		static void victory();
 
 		void useWeapon();
 		void stopUsingWeapon();

@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentTrigger.h"
 namespace OUAN
 {
 	/// Class to hold volume capsule information
@@ -23,8 +23,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
-		//TODO: think what happens when world changes with the rendercomponent
+		LogicComponentTriggerPtr mLogicComponent;
 	public:
 		//Constructor
 		GameObjectTriggerCapsule(const std::string& name);
@@ -37,11 +36,12 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponent(LogicComponentTriggerPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentTriggerPtr getLogicComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -114,7 +114,7 @@ namespace OUAN
 		TPhysicsComponentVolumeCapsuleParameters tPhysicsComponentVolumeCapsuleParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentTriggerParameters tLogicComponentParameters;
 
 	};
 }

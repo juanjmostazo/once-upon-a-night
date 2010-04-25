@@ -55,6 +55,7 @@ void LogicSubsystem::registerModules()
 		def("getDistance",&GameWorldManager::getDistance),
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getCurrentWorld",&GameWorldManager::getWorld),
+		def("victory",&GameWorldManager::victory),
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())
 			.def("getName",&LogicComponent::getParentName),
@@ -195,7 +196,7 @@ void LogicSubsystem::executeString(const std::string& scriptString)
 		luaL_dostring(mLuaEngine,scriptString.c_str());
 	}
 }
-int LogicSubsystem::invokeFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent)
+int LogicSubsystem::invokeStateFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent)
 {	
 	int result=-1;
 	if (mLuaEngine)
@@ -217,6 +218,49 @@ int LogicSubsystem::invokeFunction(const std::string& functionName,int state, Lo
 
 	}
 	return result;
+}
+
+bool LogicSubsystem::invokeConditionFunction(const std::string& functionName, LogicComponent* logicComponent)
+{
+	bool result=false;
+	if (mLuaEngine)
+	{
+		try{
+			LogicComponentOny* onyPtr=dynamic_cast<LogicComponentOny*>(logicComponent);
+			if (onyPtr)
+				result= luabind::call_function<bool>(mLuaEngine,functionName.c_str(),onyPtr);
+			//remaining cases to be added as needed
+		}
+		catch(const luabind::error& err)
+		{
+			std::string errString = "LUA Function call failed: ";
+			errString.append(err.what()).append(" - ");
+			errString.append(lua_tostring(err.state(),-1));
+			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+		}
+
+	}
+	return result;
+}
+
+void LogicSubsystem::invokeActionFunction(const std::string& functionName, LogicComponent* logicComponent)
+{
+	if (mLuaEngine)
+	{
+		try{
+			LogicComponentOny* onyPtr=dynamic_cast<LogicComponentOny*>(logicComponent);
+			if (onyPtr)
+				luabind::call_function<void>(mLuaEngine,functionName.c_str(),onyPtr);
+			//remaining cases to be added as needed
+		}
+		catch(const luabind::error& err)
+		{
+			std::string errString = "LUA Function call failed: ";
+			errString.append(err.what()).append(" - ");
+			errString.append(lua_tostring(err.state(),-1));
+			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+		}
+	}
 }
 int LogicSubsystem::getGlobalInt (const std::string& globalName)
 {

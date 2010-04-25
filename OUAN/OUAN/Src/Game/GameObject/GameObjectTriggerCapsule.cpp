@@ -145,13 +145,13 @@ PhysicsComponentPtr GameObjectTriggerCapsule::getPhysicsComponent() const
 
 
 /// Set logic component
-void GameObjectTriggerCapsule::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectTriggerCapsule::setLogicComponent(LogicComponentTriggerPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectTriggerCapsule::getLogicComponent()
+LogicComponentTriggerPtr GameObjectTriggerCapsule::getLogicComponent()
 {
 	return mLogicComponent;
 }

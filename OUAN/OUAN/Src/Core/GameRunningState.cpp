@@ -153,6 +153,7 @@ void GameRunningState::handleEvents()
 			GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 			mApp->getGameWorldManager()->addEvent(evt);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			mGUI->hideConsole();
 		}
 		
@@ -350,9 +351,8 @@ void GameRunningState::update(long elapsedTime)
 	mApp->getCameraManager()->update(elapsedSeconds);
 
 	mApp->getGameWorldManager()->update(elapsedSeconds);	
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Physics Subsystem");
-	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
+	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
 	mApp->getLogicSubsystem()->update(elapsedSeconds);
 
@@ -368,6 +368,7 @@ void GameRunningState::update(long elapsedTime)
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
+
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 	{
 		LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();

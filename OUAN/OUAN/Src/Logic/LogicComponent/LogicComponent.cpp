@@ -41,7 +41,7 @@ void LogicComponent::update(double elapsedTime)
 	if (!mScriptFunction.empty())
 	{
 		LogicSubsystemPtr logicSS= mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
-		int newState=logicSS->invokeFunction(mScriptFunction,mState,this);
+		int newState=logicSS->invokeStateFunction(mScriptFunction,mState,this);
 		setState(newState);
 	}
 

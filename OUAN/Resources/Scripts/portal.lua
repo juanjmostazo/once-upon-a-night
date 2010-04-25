@@ -31,8 +31,7 @@ function portalLogic(pPortal,state)
 			newState=PORTAL_STATE_IDLE
 		end
 	elseif state==PORTAL_STATE_ONY_MAY_ACTIVATE then
-		if isActivated then
-			log ("Now changing world!!")
+		if isActivated then			
 			newState=PORTAL_STATE_CHANGING_WORLD
 		elseif playerDistance>activateDistance then
 			if playerDistance<=approachDistance then
@@ -51,9 +50,10 @@ function portalLogic(pPortal,state)
 		end
 	end
 	
-	if (state ~= newState) then
+--[[	if (state ~= newState) then
 		log (myName .. " changed its state from " .. getStateName(state,PORTAL_STATE_NAMES) .. " to " .. getStateName(newState,PORTAL_STATE_NAMES))
 	end
+--]]
 		
 	return newState
 end

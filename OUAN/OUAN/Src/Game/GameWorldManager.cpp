@@ -105,11 +105,6 @@ GameWorldManager::~GameWorldManager()
 
 void GameWorldManager::update(double elapsedSeconds)
 {
-	//std::stringstream out;
-	//out << elapsedSeconds;
-	//std::string elapsedTimeDebug = out.str();
-	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
-
 	TGameObjectContainerIterator it;
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
@@ -117,7 +112,6 @@ void GameWorldManager::update(double elapsedSeconds)
 		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
 		it->second->update(elapsedSeconds);
 	}
-
 	dispatchEvents();
 }
 
@@ -2522,7 +2516,7 @@ void GameWorldManager::createGameObjectTriggerBox(TGameObjectTriggerBoxParameter
 
 		//Create LogicComponent
 		pGameObjectTriggerBox->setLogicComponent(
-			factory->createLogicComponent(
+			factory->createLogicComponentTrigger(
 			pGameObjectTriggerBox,
 			tGameObjectTriggerBoxParameters.tLogicComponentParameters));
 
@@ -2569,7 +2563,7 @@ void GameWorldManager::createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleP
 
 		//Create LogicComponent
 		pGameObjectTriggerCapsule->setLogicComponent(
-			factory->createLogicComponent(
+			factory->createLogicComponentTrigger(
 			pGameObjectTriggerCapsule,
 			tGameObjectTriggerCapsuleParameters.tLogicComponentParameters));
 
@@ -2947,4 +2941,27 @@ void GameWorldManager::postUpdate()
 		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
 		it->second->postUpdate();
 	}
+}
+void GameWorldManager::toggleTreeVisibility()
+{
+	TGameObjectContainerIterator it;
+	GameObjectTreePtr treeD;
+	
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		treeD=boost::dynamic_pointer_cast<GameObjectTree>(it->second);		
+		if (treeD && treeD.get())
+		{		
+			if (world==DREAMS && treeD->getLogicComponent()->existsInDreams())
+				treeD->getRenderComponentEntity()->getEntity()->setVisible(!treeD->getRenderComponentEntity()->getEntity()->isVisible());
+			else if (world==NIGHTMARES && treeD->getLogicComponent()->existsInNightmares())
+				treeD->getRenderComponentEntity()->getEntity()->setVisible(!treeD->getRenderComponentEntity()->getEntity()->isVisible());
+		}
+	}
+}
+
+void GameWorldManager::victory()
+{
+	GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
+	mInst->addEvent(evt);
 }
