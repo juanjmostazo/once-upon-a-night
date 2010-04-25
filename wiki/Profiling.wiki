@@ -1,8 +1,9 @@
 #summary Short tutorial to use Visual Studio's command line profiler
 = Introduction =
 
-The version of Visual Studio 2008 we're using, the Professional Edition, does not include an integrated profiler. Luckily, Microsoft provides a command line tool to profile an application. 
+The version of Visual Studio 2008 we're using, the Professional Edition, does not include an integrated profiler. Luckily, Microsoft provides a command line tool that can be downloaded from their site to profile an application. 
 
+http://www.microsoft.com/downloads/details.aspx?familyid=fd02c7d6-5306-41f2-a1be-b7dcb74c9c0b
 
 = How-to =
 
