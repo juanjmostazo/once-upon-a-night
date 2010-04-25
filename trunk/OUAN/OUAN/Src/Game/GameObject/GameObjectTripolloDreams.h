@@ -48,6 +48,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentEnemyPtr mLogicComponentEnemy;
+
+		void activateTrajectory(int world);
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class

@@ -140,6 +140,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
+		setOnSurface(false);
 		getNxOgreController()->move(
 			mNextMovement,
 			GROUP_COLLIDABLE_MASK,
@@ -147,15 +148,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			collisionFlags);
 
 		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
-	}
-
-	if(collisionFlags & NxOgre::Enums::ControllerFlag_Down)
-	{
-		setOnSurface(true);
-	}
-	else
-	{
-		setOnSurface(false);
 	}
 
 	setLastMovement(mNextMovement);

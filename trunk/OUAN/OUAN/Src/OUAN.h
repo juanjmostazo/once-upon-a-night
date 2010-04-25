@@ -572,6 +572,10 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_BUSH="bush";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
+		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";
+		const std::string SUFFIX_TRAJECTORY_NIGHTMARES="_n";
+
+
 		///////////////////////////////////////////////////////////////////		
 
 		///////////////////////////////////////////////////////////////////

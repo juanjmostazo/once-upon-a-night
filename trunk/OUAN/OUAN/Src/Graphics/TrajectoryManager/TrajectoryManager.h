@@ -50,6 +50,8 @@ namespace OUAN
 		void toggleDebugMode(int currentWorld);
 
 		void changeWorld(int currentWorld);
+
+		void changeWorldTrajectories(int world);
 	};
 }
 

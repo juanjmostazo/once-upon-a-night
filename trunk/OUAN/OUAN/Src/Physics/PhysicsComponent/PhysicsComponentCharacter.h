@@ -46,6 +46,7 @@ namespace OUAN
 		bool isSliding() const;
 		bool isMoving() const;
 		bool isOnSurface() const;
+		void setOnSurface(bool pOnSurface);
 
 	protected:
 
@@ -111,7 +112,7 @@ namespace OUAN
 
 		void setJumpSpeed(double pJumpSpeed);
 		void setFallSpeed(double pFallSpeed);
-		void setOnSurface(bool pOnSurface);
+
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters
