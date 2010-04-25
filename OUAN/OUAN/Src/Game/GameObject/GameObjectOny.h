@@ -12,7 +12,7 @@
 namespace OUAN
 {
 	//Time to be spent in idle state before the animation changes to 'napping'
-	const double IDLE_SECONDS_TO_NAP=5.0;
+	const double IDLE_SECONDS_TO_NAP=15.0;
 
 	//Name of the bone whose position to retrieve to attach  to Ony
 	const std::string ATTACH_BONE_NAME="RThumbRoot";
