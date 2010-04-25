@@ -155,6 +155,8 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";
 
+		const std::string LIGHTMAP_PREFIX="lightmap#";
+
 		//RayCasting
 		class RayCasting;
 		typedef boost::shared_ptr<RayCasting> RayCastingPtr;
