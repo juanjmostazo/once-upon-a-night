@@ -376,7 +376,15 @@ void RenderSubsystem::initMaterials()
 		material=it.getNext();
 		if(material->isLoaded())
 		{
-			material->setLightingEnabled(false);
+			if((material->getName().compare("red")!=0) &&
+				(material->getName().compare("blue")!=0) &&
+				(material->getName().compare("green")!=0) &&
+				(material->getName().compare("yellow")!=0) &&
+				(material->getName().compare("black")!=0) &&
+				(material->getName().compare("white")!=0))
+			{
+				material->setLightingEnabled(false);
+			}
 		}
 	}
 }
@@ -440,7 +448,7 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 	}
 	else
 	{
-		//LogManager::getSingleton().logMessage("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
+		LogManager::getSingleton().logMessage("[setLightmaps] "+lightmapName+" Lightmap does not exist");
 	}
 }
 

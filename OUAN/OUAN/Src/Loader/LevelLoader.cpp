@@ -300,6 +300,14 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectTree(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE9)==0)
+		{
+			processGameObjectTree(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE10)==0)
+		{
+			processGameObjectTree(gameObject);
+		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DOOR)==0)
 		{
 			processGameObjectDoor(gameObject);

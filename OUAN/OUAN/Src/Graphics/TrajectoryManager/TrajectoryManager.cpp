@@ -234,6 +234,37 @@ std::string TrajectoryManager::getNearestNodeToTrajectory(std::string trajectory
 	}
 }
 
+void TrajectoryManager::changeWorldTrajectories(int world)
+{
+	TTrajectoryIterator tit;
+
+	std::string suffix_hide;
+	std::string suffix_show;
+	std::string suffix;
+	if(world==DREAMS)
+	{
+		suffix_show=SUFFIX_TRAJECTORY_DREAMS;
+		suffix_hide=SUFFIX_TRAJECTORY_NIGHTMARES;
+	}
+	else if(world==NIGHTMARES)
+	{
+		suffix_show=SUFFIX_TRAJECTORY_NIGHTMARES;
+		suffix_hide=SUFFIX_TRAJECTORY_DREAMS;
+	}
+
+	for(tit=trajectoryContainer.begin();tit!=trajectoryContainer.end();tit++)
+	{
+		if(tit->first.substr(tit->first.size()-suffix_show.size(),suffix_show.size()).compare(suffix_show)==0)
+		{
+			tit->second->setVisible(true);
+		}
+		if(tit->first.substr(tit->first.size()-suffix_hide.size(),suffix_hide.size()).compare(suffix_hide)==0)
+		{
+			tit->second->setVisible(false);
+		}
+	}
+}
+
 void TrajectoryManager::changeWorld(int currentWorld)
 {
 	if(mVisible)
@@ -248,6 +279,7 @@ void TrajectoryManager::changeWorld(int currentWorld)
 			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
 			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
 		}
+		changeWorldTrajectories(currentWorld);
 	}
 }
 
@@ -287,4 +319,5 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 	}
 
+	changeWorldTrajectories(currentWorld);
 }

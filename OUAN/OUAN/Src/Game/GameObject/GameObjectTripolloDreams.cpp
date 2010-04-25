@@ -79,6 +79,32 @@ PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharac
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectTripolloDreams::activateTrajectory(int world)
+{
+	if(world==DREAMS)
+	{
+		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_DREAMS))
+		{
+			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_DREAMS,world);
+		}
+		else
+		{
+			mTrajectoryComponent->activateIdle(getName(),world);
+		}
+	}
+	else if(world==NIGHTMARES)
+	{
+		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_NIGHTMARES))
+		{
+			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_NIGHTMARES,world);
+		}
+		else
+		{
+			mTrajectoryComponent->activateIdle(getName(),world);
+		}
+	}
+}
+
 void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
 	if (isEnabled())
@@ -114,21 +140,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{				
 				if (mLogicComponentEnemy->isStateChanged())
 				{
-					if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
-					{
-						if(mGameWorldManager->getCurrentWorld()==DREAMS)
-						{
-							mTrajectoryComponent->activatePredefinedTrajectory(getName()+"_d",mGameWorldManager->getCurrentWorld());
-						}
-						else if(mGameWorldManager->getCurrentWorld()==NIGHTMARES)
-						{
-							mTrajectoryComponent->activatePredefinedTrajectory(getName()+"_n",mGameWorldManager->getCurrentWorld());
-						}
-					}
-					else
-					{
-						mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
-					}
+					activateTrajectory(mGameWorldManager->getCurrentWorld());
 					/*
 						If the state has just changed, then load the trajectory and set the displacement
 						vector as (marker1-marker0)
@@ -279,7 +291,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
 			}
-		return;
+		activateTrajectory(world);
 	}
 	else
 	{
@@ -326,6 +338,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 			default:
 				break;
 		}
+		activateTrajectory(world);
 	}
 }
 

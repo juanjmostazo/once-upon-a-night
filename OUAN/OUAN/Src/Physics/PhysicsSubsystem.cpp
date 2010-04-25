@@ -400,6 +400,16 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
+	//CORRECTING JUMP BUG TODO: DO THIS PROPERLY
+	if((pGameObjectController->getType().compare(GAME_OBJECT_TYPE_ONY)==0) &&
+		(pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) &&
+		(pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0) &&
+		(normalAngle<=mMinSlidingAngleFall))
+	{
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setOnSurface(true);
+	}
+
+
 	sendCollision(pGameObjectController,pGameObjectShape);
 	
 	return NxOgre::Enums::ControllerAction_None;
