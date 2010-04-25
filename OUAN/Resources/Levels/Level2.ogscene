@@ -25,11 +25,11 @@
   <CAMERASPEED value="35"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-867.328 805.554 -1181.25" orientation="0.788766 -0.268715 -0.523313 -0.17828"></OPTION>
+    <OPTION id="1" position="1013.87 253.68 -678.607" orientation="-0.412638 0.00765213 -0.910707 -0.0168801"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.788794 -0.268724 -0.523331 -0.178286"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.412648 0.00765233 -0.91073 -0.0168805"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-867.328 805.554 -1181.25"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="1013.87 253.68 -678.607"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -9444,7 +9444,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain_island1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10262,7 +10262,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.99873 0.99873 0.99873"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain_island1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
