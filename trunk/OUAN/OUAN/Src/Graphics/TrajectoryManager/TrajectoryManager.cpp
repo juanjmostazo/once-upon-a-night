@@ -266,18 +266,24 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 	{
 		if(currentWorld==DREAMS)
 		{
-			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(true);
-			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
+			if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
+				walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(true);
+			if(walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
+				walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 		}
 		else if(currentWorld==NIGHTMARES)
 		{
-			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
-			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
+			if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
+				walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+			if(walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
+				walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
 		}
 	}
 	else
 	{
-		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
+			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
+		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
 		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 	}
 

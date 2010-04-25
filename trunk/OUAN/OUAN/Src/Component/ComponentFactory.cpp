@@ -31,6 +31,7 @@
 #include "../Logic/LogicComponent/LogicComponentItem.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
+#include "../Logic/LogicComponent/LogicComponentTrigger.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
 
@@ -443,6 +444,28 @@ LogicComponentUsablePtr ComponentFactory::createLogicComponentUsable(GameObjectP
 	return logicComponent;
 }
 
+LogicComponentTriggerPtr ComponentFactory::createLogicComponentTrigger(GameObjectPtr gameObject, 
+																	 TLogicComponentTriggerParameters logicComponentParameters)
+{
+	LogicComponentTriggerPtr logicComponent = LogicComponentTriggerPtr(new LogicComponentTrigger());
+	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
+	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
+
+	logicComponent->setDreamsEnterActionFunction(logicComponentParameters.mDreamsEnterActionFunction);
+	logicComponent->setDreamsEnterConditionFunction(logicComponentParameters.mDreamsEnterConditionFunction);
+	logicComponent->setDreamsExitConditionFunction(logicComponentParameters.mDreamsExitConditionFunction);
+	logicComponent->setDreamsExitActionFunction(logicComponentParameters.mDreamsExitActionFunction);
+	logicComponent->setNightmaresEnterActionFunction(logicComponentParameters.mNightmaresEnterActionFunction);
+	logicComponent->setNightmaresEnterConditionFunction(logicComponentParameters.mNightmaresEnterConditionFunction);
+	logicComponent->setNightmaresExitConditionFunction(logicComponentParameters.mNightmaresExitConditionFunction);
+	logicComponent->setNightmaresExitActionFunction(logicComponentParameters.mNightmaresExitActionFunction);
+	logicComponent->setTriggerScript(logicComponentParameters.mTriggerScript);
+
+	logicComponent->setState(logicComponentParameters.defaultState);
+
+	logicComponent->setParent(gameObject);
+	return logicComponent;
+}
 
 WeaponComponentPtr ComponentFactory::createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters)
 {

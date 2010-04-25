@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentTrigger.h"
 namespace OUAN
 {
 	/// Class to hold volume box information
@@ -23,7 +23,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentTriggerPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -38,10 +38,10 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponent(LogicComponentTriggerPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentTriggerPtr getLogicComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -115,7 +115,7 @@ namespace OUAN
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentTriggerParameters tLogicComponentParameters;
 	};
 }
 #endif

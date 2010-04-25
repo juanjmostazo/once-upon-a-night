@@ -1,6 +1,5 @@
 #include "LogicComponentItem.h"
 #include "../LogicSubsystem.h"
-#include "../../Application.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 

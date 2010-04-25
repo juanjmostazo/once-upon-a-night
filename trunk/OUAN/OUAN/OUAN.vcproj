@@ -65,6 +65,7 @@
 				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
+				Profile="false"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -726,6 +727,17 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTrigger.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.cpp"
 						>
 					</File>
@@ -1371,6 +1383,17 @@
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentOny.h"
 						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTrigger.h"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.h"

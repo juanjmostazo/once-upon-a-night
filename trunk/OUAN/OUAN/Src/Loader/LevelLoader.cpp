@@ -1901,7 +1901,7 @@ void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 		tGameObjectTriggerBoxParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectTriggerBoxParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectTriggerBoxParameters.tLogicComponentParameters=processLogicComponentTrigger(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
@@ -1937,7 +1937,7 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 		tGameObjectTriggerCapsuleParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectTriggerCapsuleParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectTriggerCapsuleParameters.tLogicComponentParameters=processLogicComponentTrigger(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
@@ -2912,6 +2912,154 @@ TLogicComponentUsableParameters LevelLoader::processLogicComponentUsable(TiXmlEl
 	}
 	return logicComponentUsableParameters;
 }
+
+TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
+																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentTriggerParameters logicComponentTriggerParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentTriggerParameters.existsInDreams=true;
+		logicComponentTriggerParameters.existsInNightmares=true;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		logicComponentTriggerParameters.existsInDreams=true;
+		logicComponentTriggerParameters.existsInNightmares=false;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentTriggerParameters.existsInDreams=false;
+		logicComponentTriggerParameters.existsInNightmares=true;
+	}
+	if (XMLNodeCustomProperties)
+	{
+		try{
+			logicComponentTriggerParameters.scriptFilename=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFilename");
+		}
+		catch(std::string error)
+		{
+			logicComponentTriggerParameters.scriptFilename="";
+		}
+		try{
+			logicComponentTriggerParameters.scriptFunction=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFunction");
+		}
+		catch(std::string error)
+		{
+			logicComponentTriggerParameters.scriptFunction="";
+		}
+		try{
+			logicComponentTriggerParameters.defaultState=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::defaultState");
+		}
+		catch (std::string error)
+		{
+			logicComponentTriggerParameters.defaultState=0;
+		}
+		try{
+			std::string script="";
+			if (XMLNodeDreams)
+				script=getPropertyString(XMLNodeDreams,
+					"LogicComponent::triggerScript");
+			if (script.empty() && XMLNodeNightmares)
+				script=getPropertyString(XMLNodeNightmares,
+				"LogicComponent::triggerScript");
+			logicComponentTriggerParameters.mTriggerScript=script;
+		}
+		catch (std::string error)
+		{
+			logicComponentTriggerParameters.mTriggerScript="";
+		}
+		try
+		{
+			logicComponentTriggerParameters.mDreamsEnterActionFunction=(XMLNodeDreams)
+				?getPropertyString(XMLNodeDreams,"LogicComponent::enterActionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mDreamsEnterActionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mDreamsEnterConditionFunction=(XMLNodeDreams)
+				?getPropertyString(XMLNodeDreams,"LogicComponent::enterConditionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mDreamsEnterConditionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mDreamsExitActionFunction=(XMLNodeDreams)
+				?getPropertyString(XMLNodeDreams,"LogicComponent::exitActionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mDreamsExitActionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mDreamsExitConditionFunction=(XMLNodeDreams)
+				?getPropertyString(XMLNodeDreams,"LogicComponent::exitConditionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mDreamsExitConditionFunction="";
+		} 
+		//
+		try
+		{
+			logicComponentTriggerParameters.mNightmaresEnterActionFunction=(XMLNodeNightmares)
+				?getPropertyString(XMLNodeNightmares,"LogicComponent::enterActionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mNightmaresEnterActionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mNightmaresEnterConditionFunction=(XMLNodeNightmares)
+				?getPropertyString(XMLNodeNightmares,"LogicComponent::enterConditionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mNightmaresEnterConditionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mNightmaresExitActionFunction=(XMLNodeNightmares)
+				?getPropertyString(XMLNodeNightmares,"LogicComponent::exitActionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mNightmaresExitActionFunction="";
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mNightmaresExitConditionFunction=(XMLNodeNightmares)
+				?getPropertyString(XMLNodeNightmares,"LogicComponent::exitConditionFunction")
+				:"";
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mNightmaresExitConditionFunction="";
+		} 	
+	}
+	return logicComponentTriggerParameters;
+}
+
 TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XMLNode)
 {
 	TAttackComponentParameters params;
