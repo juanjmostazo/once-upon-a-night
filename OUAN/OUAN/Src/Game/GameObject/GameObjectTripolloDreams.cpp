@@ -116,7 +116,14 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				{
 					if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 					{
-						mTrajectoryComponent->activatePredefinedTrajectory(getName(),mGameWorldManager->getCurrentWorld());
+						if(mGameWorldManager->getCurrentWorld()==DREAMS)
+						{
+							mTrajectoryComponent->activatePredefinedTrajectory(getName()+"_d",mGameWorldManager->getCurrentWorld());
+						}
+						else if(mGameWorldManager->getCurrentWorld()==NIGHTMARES)
+						{
+							mTrajectoryComponent->activatePredefinedTrajectory(getName()+"_n",mGameWorldManager->getCurrentWorld());
+						}
 					}
 					else
 					{
