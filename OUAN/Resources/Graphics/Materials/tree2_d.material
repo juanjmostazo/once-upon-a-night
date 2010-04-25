@@ -6,6 +6,11 @@ material tree2_d
 		pass
 		{
 			ambient 0 0 0 1
+			texture_unit
+			{
+			tree2_d_texture.dds
+			}
+
 		}
 
 	}
