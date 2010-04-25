@@ -1,0 +1,22 @@
+
+material box
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0784314 0.0784314 0.0784314 1
+			diffuse 0.0784314 0.0784314 0.0784314 1
+			specular 0 0 0 10 0
+
+			texture_unit
+			{
+				texture caja_madera.jpg
+			}
+		}
+
+	}
+
+}
+
+
