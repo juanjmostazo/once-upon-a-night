@@ -49,7 +49,7 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentEnemyPtr mLogicComponentEnemy;
 
-		void activateTrajectory(int world);
+		bool activateTrajectory(int world);
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
