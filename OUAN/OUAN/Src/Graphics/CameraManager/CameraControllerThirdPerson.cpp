@@ -121,6 +121,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	//Calculate camera collisions
 	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt))
 	{
+
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)
 		{
