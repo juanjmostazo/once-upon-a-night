@@ -130,6 +130,7 @@ void GameObjectDiamond::changeWorld(int world)
 void GameObjectDiamond::reset()
 {
 	GameObject::reset();
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const
@@ -154,7 +155,7 @@ PhysicsComponentPtr GameObjectDiamond::getPhysicsComponent() const
 
 void GameObjectDiamond::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentItem.get())
+	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->processCollision(pGameObject);
 	}
@@ -181,6 +182,31 @@ void GameObjectDiamond::updateLogic(double elapsedSeconds)
 	if (mLogicComponentItem.get())
 	{
 		mLogicComponentItem->update(elapsedSeconds);
+	}
+}
+void GameObjectDiamond::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	if (mLogicComponentItem->isStateChanged())
+	{
+		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(false);
+			mPhysicsComponentVolumeBox->destroy();
+			mLogicComponentItem->setStateChanged(false);
+		}
+	}	
+	if (isEnabled())
+	{
+		if (isFirstUpdate())
+		{
+			mRenderComponentEntity->changeAnimation("idle_Clip");
+		}
+		else
+		{
+			mRenderComponentEntity->update(elapsedSeconds);
+		}
 	}
 }
 bool GameObjectDiamond::hasRenderComponentEntity() const

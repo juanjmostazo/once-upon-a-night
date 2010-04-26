@@ -185,60 +185,67 @@ bool GameObjectPortal::canBeActivated() const
 void GameObjectPortal::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-	
-	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
-
-	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
-		?mRenderComponentEntityDreams
-		:mRenderComponentEntityNightmares;
-
-	int currentState=mLogicComponentUsable->getState();
-	if (mPhysicsComponentSimpleBox.get() && entityToUpdate.get())
+	if (isEnabled())
 	{
-		if (currentState==logicSS->getGlobalInt(PORTAL_STATE_IDLE))
+		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+			?mRenderComponentEntityDreams
+			:mRenderComponentEntityNightmares;
+
+		if (isFirstUpdate())
 		{
-			if (mLogicComponentUsable->isStateChanged())
-			{
-				mLogicComponentUsable->setCanBeActivated(false);
-				//particleSystem->hide();
-				//entityToUpdate()->setAnimationState(PORTAL_ANIMATION_IDLE);
-				//overlay->hide();
-			}
+			entityToUpdate->changeAnimation("turn_Clip");
 		}
-		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
-		{				
-			if (mLogicComponentUsable->isStateChanged())
-			{
-				mLogicComponentUsable->setCanBeActivated(false);
-				displayText("ONY IS CLOSE");
-				//particleSystem->show(approaching);
-				//overlay->hide();
-				//audio->playSound("sparks")
-			}
-		}
-		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE))
+
+		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	
+
+		int currentState=mLogicComponentUsable->getState();
+		if (mPhysicsComponentSimpleBox.get() && entityToUpdate.get())
 		{
-			if (mLogicComponentUsable->isStateChanged())
+			if (currentState==logicSS->getGlobalInt(PORTAL_STATE_IDLE))
 			{
-				displayText("PRESS ACTION TO CHANGE WORLD");
-				mLogicComponentUsable->setCanBeActivated(true);
-				//overlay->show(getTexture(ActionButton)/"Press action button");
-				//particleSystem->show(may_activate)
+				if (mLogicComponentUsable->isStateChanged())
+				{
+					mLogicComponentUsable->setCanBeActivated(false);
+					//particleSystem->hide();
+					//entityToUpdate()->setAnimationState(PORTAL_ANIMATION_IDLE);
+					//overlay->hide();
+				}
 			}
-		}
-		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
-		{
-			if (mLogicComponentUsable->isStateChanged())
+			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
+			{				
+				if (mLogicComponentUsable->isStateChanged())
+				{
+					mLogicComponentUsable->setCanBeActivated(false);
+					displayText("ONY IS CLOSE");
+					//particleSystem->show(approaching);
+					//overlay->hide();
+					//audio->playSound("sparks")
+				}
+			}
+			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE))
 			{
-				getGameWorldManager()->changeWorld();				
-				//NOTE: Maybe this flag could be reset after the changeWorld animation has ended.
-				mLogicComponentUsable->setIsActivated(false);
+				if (mLogicComponentUsable->isStateChanged())
+				{
+					displayText("PRESS ACTION TO CHANGE WORLD");
+					mLogicComponentUsable->setCanBeActivated(true);
+					//overlay->show(getTexture(ActionButton)/"Press action button");
+					//particleSystem->show(may_activate)
+				}
 			}
-		}
-		entityToUpdate->update(elapsedSeconds);
-		if (mPhysicsComponentSimpleBox->isInUse())
-		{
-			mPhysicsComponentSimpleBox->update(elapsedSeconds);
+			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
+			{
+				if (mLogicComponentUsable->isStateChanged())
+				{
+					getGameWorldManager()->changeWorld();				
+					//NOTE: Maybe this flag could be reset after the changeWorld animation has ended.
+					mLogicComponentUsable->setIsActivated(false);
+				}
+			}
+			entityToUpdate->update(elapsedSeconds);
+			if (mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->update(elapsedSeconds);
+			}
 		}
 	}			
 }

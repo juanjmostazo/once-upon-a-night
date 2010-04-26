@@ -242,7 +242,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DIAMOND)==0)
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			processGameObjectDiamond(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SCAREDPLANT)==0)
 		{

@@ -202,6 +202,18 @@ void GameObjectItem1UP::update(double elapsedSeconds)
 			mLogicComponentItem->setStateChanged(false);
 		}
 	}
+
+	if (isEnabled())
+	{
+		if (isFirstUpdate())
+		{
+			mRenderComponentEntity->changeAnimation("idle_Clip");
+		}
+		else
+		{
+			mRenderComponentEntity->update(elapsedSeconds);
+		}
+	}
 }
 bool GameObjectItem1UP::hasRenderComponentEntity() const
 {

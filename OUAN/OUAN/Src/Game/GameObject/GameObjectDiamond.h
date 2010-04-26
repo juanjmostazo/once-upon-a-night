@@ -98,6 +98,7 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+		void update(double elapsedSeconds);
 
 	};
 
