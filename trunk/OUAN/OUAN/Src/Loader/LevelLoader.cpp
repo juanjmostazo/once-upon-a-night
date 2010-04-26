@@ -1350,6 +1350,8 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 		//Get logic component
 		tGameObjectPillowParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+		//Get attack component
+		tGameObjectPillowParameters.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
 		tGameObjectPillowParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
@@ -3107,6 +3109,8 @@ TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XML
 				currentAttack=AttackDataPtr(new FlashlightAttackData());
 				break;
 			case ATTACK_TYPE_PILLOW:
+				currentAttack=AttackDataPtr(new PillowAttackData());
+				break;
 			case ATTACK_TYPE_DEFAULT:
 				currentAttack=AttackDataPtr(new AttackData());
 				break;
@@ -3145,6 +3149,28 @@ TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XML
 				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->coneRadius=getPropertyReal(XMLNode,
 					"AttackComponent::attack"+StringConverter::toString(i)+"#coneRadius",
 					false);
+			}
+			else if (static_cast<TAttackType>(type)==ATTACK_TYPE_PILLOW && 
+				(boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)))
+			{				
+				try{
+					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->comboDelay=
+						getPropertyReal(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#comboDelay",
+						false);
+				}
+				catch(std::string error)
+				{
+					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->comboDelay=-1.0f;
+				}				
+				try{
+					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->nextComboAttack=
+						getPropertyString(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#nextComboAttack",
+						false);
+				}
+				catch(std::string error)
+				{
+					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->nextComboAttack="";
+				}				
 			}
 			if (name.compare("")==0) break;
 

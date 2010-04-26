@@ -17,6 +17,9 @@ namespace OUAN
 		NxOgre::Vec3 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec3 pNxOgreSize);
 
+		void PhysicsComponentVolumeBox::setPosition(NxOgre::Vec3 position);
+		void PhysicsComponentVolumeBox::setOrientation(NxOgre::Quat orientation);
+
 		//void setQueryFlags(QueryFlags queryFlags);
 
 	protected:

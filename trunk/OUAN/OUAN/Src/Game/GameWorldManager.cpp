@@ -388,6 +388,9 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
+	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
+	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
+
 	level=levelFileName;
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
@@ -1885,11 +1888,11 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 			pGameObjectPillow,
 			tGameObjectPillowParameters.tLogicComponentParameters));
 
-		//pGameObjectPillow->setAttackComponent(
-		//	factory->createAttackComponent(
-		//	pGameObjectPillow,
-		//	tGameObjectPillowParameters.attackComponentParameters
-		//	));
+		pGameObjectPillow->setAttackComponent(
+			factory->createAttackComponent(
+			pGameObjectPillow,
+			tGameObjectPillowParameters.attackComponentParameters
+			));
 
 		//Create RenderComponentPositional
 		pGameObjectPillow->setRenderComponentPositional(factory->createRenderComponentPositional(
@@ -1905,11 +1908,26 @@ void GameWorldManager::createGameObjectPillow(TGameObjectPillowParameters tGameO
 			pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentEntityParameters));
 
 		//Create PhysicsComponent
-		pGameObjectPillow->setPhysicsComponentSimpleCapsule(
-			factory->createPhysicsComponentSimpleCapsule(
-			pGameObjectPillow, 
-			tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
-			pGameObjectPillow->getRenderComponentPositional()));
+		//UNCOMMENT WHEN THE FAKE COMPONENT ISN'T NEEDED ANYMORE
+		//pGameObjectPillow->setPhysicsComponentSimpleCapsule(
+		//	factory->createPhysicsComponentSimpleCapsule(
+		//	pGameObjectPillow, 
+		//	tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
+		//	pGameObjectPillow->getRenderComponentPositional()));
+		PhysicsComponentSimpleCapsulePtr nullPtr=PhysicsComponentSimpleCapsulePtr();
+		pGameObjectPillow->setPhysicsComponentSimpleCapsule(nullPtr);
+
+		//Create FAKE PhysicsComponent
+		TPhysicsComponentVolumeBoxParameters fakeVBParams;
+		fakeVBParams.mass=0.0;
+		fakeVBParams.lengthX=1.0;
+		fakeVBParams.lengthY=1.0;
+		fakeVBParams.lengthZ=1.0;
+		pGameObjectPillow->setPhysicsComponentVolumeBox(
+			factory->createPhysicsComponentVolumeBox(
+				pGameObjectPillow,
+				fakeVBParams,
+				pGameObjectPillow->getRenderComponentPositional()));
 
 	pGameObjectPillow->changeWorld(world);
 

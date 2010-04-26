@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -178,6 +179,18 @@ bool GameObject::canBeActivated() const
 void GameObject::postUpdate()
 {
 
+}
+bool GameObject::canInitiateAttack()
+{
+	return true;
+}
+WeaponComponentPtr GameObject::getParentWeaponComponent() const
+{
+	return WeaponComponentPtr();
+}
+bool GameObject::hasParentWeaponComponent() const
+{
+	return false;
 }
 //-------------------------------------------------------
 

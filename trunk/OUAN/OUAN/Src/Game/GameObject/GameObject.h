@@ -141,6 +141,10 @@ namespace OUAN
 		virtual void switchOff();
 		virtual std::string translateWeaponMode(TWeaponMode weaponmode);
 		virtual std::string getDefaultAttack();
+		virtual bool canInitiateAttack();
+
+		virtual WeaponComponentPtr getParentWeaponComponent() const;
+		virtual bool hasParentWeaponComponent() const;
 
 		virtual void activate();
 		virtual bool canBeActivated() const;

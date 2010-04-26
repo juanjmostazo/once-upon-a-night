@@ -4,6 +4,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectFlashLight.h"
+#include "../../Game/GameObject/GameObjectPillow.h"
 
 using namespace OUAN;
 
@@ -22,16 +23,34 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 	{
 		GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(pGameObject);
-		int flashlightColour=flashlight->getColour();
-		std::string msg="Flashlight collision - Current colour: ";
-		msg.append(getColourName(flashlightColour));
-		msg.append("; This enemy will react to ");
-		msg.append(getMaskString());
-		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
-		if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask && mHitRecoveryTime<0)
+		int flashlightColour=flashlight->getColour();		
+		if ( mHitRecoveryTime<0 && (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask))
 		{
+			std::stringstream msg("");
+			msg<<"Flashlight collision - Current colour: ";
+			msg<<getColourName(flashlightColour)<<"; This enemy will react to "<<getMaskString();
+			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
 			decreaseHP();
-			mHitRecoveryTime=1000;
+			msg.str("");
+			msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
+			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+			mHitRecoveryTime=1;
+		}		
+	}
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+	{
+		GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(pGameObject);
+		if (mHitRecoveryTime<0)
+		{
+			std::stringstream msg("");
+			msg<<"Pillow collision - Current attack: ";
+			msg<<pillow->getAttackName()<< " Damage: "<< pillow->getAttackDamage();
+			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+			decreaseHP(pillow->getAttackDamage());
+			msg.str("");
+			msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
+			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+			mHitRecoveryTime=1;
 		}		
 	}
 }
@@ -156,7 +175,7 @@ void LogicComponentEnemy::update(double elapsedTime)
 	LogicComponent::update(elapsedTime);
 	if(mHitRecoveryTime>=0)
 	{
-		mHitRecoveryTime-=elapsedTime*1000;
+		mHitRecoveryTime-=elapsedTime;
 	}
 }
 

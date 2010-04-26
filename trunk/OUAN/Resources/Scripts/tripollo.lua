@@ -47,10 +47,10 @@ function tripolloLogic(pTripollo,state)
 	elseif myHP==0 and myLives==0 then
 		newState=TRIPOLLO_STATE_DEAD
 	end
---[[
+
 	if (state ~= newState) then
 		log (pTripollo:getName() .. " changed its state from " .. getStateName(state,TRIPOLLO_STATE_NAMES) .. " to " .. getStateName(newState,TRIPOLLO_STATE_NAMES))
 	end
---]]
+
 	return newState
 end

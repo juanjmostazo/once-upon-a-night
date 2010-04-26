@@ -25,6 +25,7 @@ namespace OUAN
 		void update(long elapsedTime);
 
 		bool isActiveWeaponInUse() const;
+		void setActiveWeaponInUse(bool activeWeaponInUse);
 		void switchOn();
 		void switchOff();
 

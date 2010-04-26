@@ -62,7 +62,7 @@ namespace OUAN
 		int mColourSensitivityMask;	
 
 		/// 'Immunity' time so a single collision is not processed during several ticks
-		int mHitRecoveryTime;
+		double mHitRecoveryTime;
 
 		std::string getColourName(int colour);
 		std::string getMaskString();
