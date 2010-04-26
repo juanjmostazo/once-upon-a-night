@@ -116,6 +116,11 @@ void LogicComponentEnemy::decreaseHP(int amount)
 				mHasDied=true;
 			}
 		}
+		else
+		{
+			mHasBeenHit=false;
+			mHasDied=true;
+		}
 	}
 }
 

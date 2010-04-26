@@ -26,10 +26,6 @@ namespace OUAN
 		int getInitialNumLives() const;
 		void setInitialNumLives(int numLives);
 
-		int getAttackDamage() const;
-		void setAttackDamage(int attackDamage);
-
-
 		/// If applicable, increase the object's health points
 		/// @param amount number of HP to increase
 		void increaseHP(int amount=1);
@@ -64,9 +60,6 @@ namespace OUAN
 		int mInitialHealthPoints;
 		int mInitialNumLives;
 
-		/// Damage inflicted by the attack
-		int mAttackDamage;
-
 		/// 'Immunity' time so a single collision is not processed during several ticks
 		double mHitRecoveryTime;
 
@@ -84,9 +77,6 @@ namespace OUAN
 
 		int numLives;
 		int healthPoints;
-
-		int attackDamage;
-
 	};
 }
 

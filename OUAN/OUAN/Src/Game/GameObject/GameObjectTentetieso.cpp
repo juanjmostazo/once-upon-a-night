@@ -79,6 +79,15 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
+	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+		?mRenderComponentEntityDreams
+		:mRenderComponentEntityNightmares;
+
+	if (isFirstUpdate())
+	{
+		entityToUpdate->changeAnimation("attack01_Clip");
+	}
+
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -90,6 +99,9 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 	}
+	
+	entityToUpdate->update(elapsedSeconds/2);
+	
 }
 
 void GameObjectTentetieso::reset()
@@ -125,10 +137,12 @@ void GameObjectTentetieso::changeWorld(int world)
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityDreams->setVisible(false);			
 			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 			break;
 		default:break;
 	}

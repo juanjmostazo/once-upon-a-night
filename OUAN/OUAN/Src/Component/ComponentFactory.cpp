@@ -397,9 +397,6 @@ LogicComponentOnyPtr ComponentFactory::createLogicComponentOny(GameObjectPtr gam
 	pLogicComponentOny->setNumLives(LogicComponentOnyParameters.numLives);
 	pLogicComponentOny->setInitialNumLives(LogicComponentOnyParameters.numLives);
 
-
-	pLogicComponentOny->setAttackDamage(LogicComponentOnyParameters.attackDamage);
-
 	pLogicComponentOny->setScriptFilename(LogicComponentOnyParameters.scriptFilename);
 	pLogicComponentOny->setScriptFunction(LogicComponentOnyParameters.scriptFunction);
 	pLogicComponentOny->setState(LogicComponentOnyParameters.defaultState);

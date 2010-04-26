@@ -2787,15 +2787,7 @@ TLogicComponentOnyParameters LevelLoader::processLogicComponentOny(TiXmlElement 
 		catch (std::string error)
 		{
 			logicComponentOnyParameters.numLives=-1;	
-		}
-		try{
-			logicComponentOnyParameters.attackDamage=getPropertyInt(XMLNodeCustomProperties,
-				"LogicComponent::attackDamage");
-		}
-		catch (std::string error)
-		{
-			logicComponentOnyParameters.attackDamage=-1;	
-		}
+		}	
 	}
 	return logicComponentOnyParameters;
 }

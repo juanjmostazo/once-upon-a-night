@@ -432,6 +432,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="Effects"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Effects\LightShafts.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -1057,6 +1065,10 @@
 				<Filter
 					Name="Effects"
 					>
+					<File
+						RelativePath=".\Src\Graphics\Effects\LightShafts.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
