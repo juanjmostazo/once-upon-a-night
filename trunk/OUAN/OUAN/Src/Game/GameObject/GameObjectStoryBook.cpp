@@ -186,6 +186,17 @@ void GameObjectStoryBook::update(double elapsedSeconds)
 			mLogicComponentItem->setStateChanged(false);
 		}
 	}	
+	if (isEnabled())
+	{
+		if (isFirstUpdate())
+		{
+			mRenderComponentEntity->changeAnimation("turn");
+		}
+		else
+		{
+			mRenderComponentEntity->update(elapsedSeconds);
+		}
+	}
 }
 
 bool GameObjectStoryBook::hasRenderComponentEntity() const

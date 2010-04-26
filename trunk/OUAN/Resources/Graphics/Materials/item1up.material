@@ -1,5 +1,5 @@
 
-material muñequito
+material munyequito
 {
 	technique
 	{
@@ -13,7 +13,7 @@ material muñequito
 
 			texture_unit
 			{
-				texture muñequito.dds
+				texture munyequito.dds
 			}
 		}
 
