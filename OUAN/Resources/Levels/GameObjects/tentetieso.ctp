@@ -2,7 +2,7 @@
 <CUSTOMPROPERTIES>
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="14" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="7" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="tentetieso.lua" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::scriptFunction" type="7" value="tentetiesoLogic" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
