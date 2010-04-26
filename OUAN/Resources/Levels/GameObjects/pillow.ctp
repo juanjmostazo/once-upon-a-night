@@ -20,8 +20,8 @@
 	<PROPERTY id="AttackComponent::attack1#type" type="2" value="2"></PROPERTY>
 	<PROPERTY id="AttackComponent::attack1#animationName" type="7" value=""></PROPERTY>  
 	<PROPERTY id="AttackComponent::attack1#damage" type="2" value="2"></PROPERTY>
-	<PROPERTY id="AttackComponent::attack1#attackRange" type="2" value="50"></PROPERTY>
-	<PROPERTY id="AttackComponent::attack1#cooldownDelay" type="6" value="3"></PROPERTY>
+	<PROPERTY id="AttackComponent::attack1#attackRange" type="2" value="25"></PROPERTY>
+	<PROPERTY id="AttackComponent::attack1#cooldownDelay" type="6" value="2"></PROPERTY>
 	<PROPERTY id="AttackComponent::attack1#area" type="6" value="0.0"></PROPERTY>
 	<PROPERTY id="AttackComponent::attack1#powerCost" type="2" value="0"></PROPERTY>	
 	<PROPERTY id="AttackComponent::attack1#comboDelay" type="6" value="1"></PROPERTY>

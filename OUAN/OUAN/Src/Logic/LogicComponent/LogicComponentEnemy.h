@@ -39,6 +39,11 @@ namespace OUAN
 
 		void update(double elapsedTime);
 
+		bool hasBeenHit() const;
+		void setHasBeenHit(bool hasBeenHit);
+		bool hasDied() const;
+		void setHasDied(bool hasDied);
+
 	private:
 
 		/// Health points of the component
@@ -65,6 +70,9 @@ namespace OUAN
 		double mHitRecoveryTime;
 
 		std::string getMaskString();
+
+		bool mHasBeenHit;
+		bool mHasDied;
 
 	};
 	

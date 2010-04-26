@@ -228,7 +228,7 @@ void GameObjectOny::updateLogic(double elapsedSeconds)
 	}
 }
 
-void GameObjectOny::processAnimationEnded(const std::string animationName)
+void GameObjectOny::processAnimationEnded(const std::string& animationName)
 {
 	if(mLogicComponentOny.get())
 		mLogicComponentOny->processAnimationEnded(animationName);

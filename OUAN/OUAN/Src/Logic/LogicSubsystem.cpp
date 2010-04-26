@@ -64,7 +64,9 @@ void LogicSubsystem::registerModules()
 			.def("getNumLives",&LogicComponentEnemy::getNumLives)
 			.def("getLineOfSight",&LogicComponentEnemy::getLineOfSight)
 			.def("getHP",&LogicComponentEnemy::getHealthPoints)
-			.def("getMaxHP",&LogicComponentEnemy::getInitialHealthPoints),
+			.def("getMaxHP",&LogicComponentEnemy::getInitialHealthPoints)
+			.def("hasBeenHit",&LogicComponentEnemy::hasBeenHit)
+			.def("hasDied",&LogicComponentEnemy::hasDied),
 		class_<LogicComponentOny, LogicComponent > ("LogicComponentOny")
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentOny::getNumLives)
@@ -79,38 +81,6 @@ void LogicSubsystem::registerModules()
 			.def("isActivated",&LogicComponentUsable::isActivated)
 	];
 
-	//NOW WORKS WITH LOGICCOMPONENTS INSTEAD OF GAMEOBJECTS
-	//module(mLuaEngine) [
-	//	def("log", (void (*) (const std::string&)) &Utils::scriptLog),
-	//	def("getDistance",&GameWorldManager::getDistance),
-	//	def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
-	//	def("getCurrentWorld",&GameWorldManager::getWorld),
-	//	class_<GameObject>("GameObject")
-	//	.def(constructor<const std::string&, const std::string&>())
-	//		.def("getName",&GameObject::getName)
-	//		.def("getNumLives",&GameObject::getNumLives)
-	//		.def("getLineOfSight",&GameObject::getLineOfSight)
-	//		.def("getHP",&GameObject::getHealthPoints)
-	//		.def("getMaxHP",&GameObject::getMaximumHealthPoints),
-	//	class_<GameObjectTripolloDreams, GameObject > ("GameObjectTripolloDreams")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectEye, GameObject >("GameObjectEye")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectBee_Butterfly,GameObject>("GameObjectBeeButterfly")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectTentetieso,GameObject>("GameObjectTentetieso")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectTripollito,GameObject>("GameObjectTripollito")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectCarnivorousPlant,GameObject>("GameObjectCarnivorousPlant")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectSnakeCreeper,GameObject>("GameObjectSnakeCreeper")
-	//		.def(constructor<const std::string&>()),
-	//	class_<GameObjectDragon,GameObject>("GameObjectDragon")
-	//		.def(constructor<const std::string&>())
-	//		.def("getTimeStunned",&GameObjectDragon::getTimeStunned)
-	//	];
-	//Do the same with the others.
 }
 void LogicSubsystem::loadScripts()
 {
