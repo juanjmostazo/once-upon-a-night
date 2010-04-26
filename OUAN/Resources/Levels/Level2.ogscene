@@ -25,11 +25,11 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-74.4548 1356.6 -924.485" orientation="-0.335999 0.1702 -0.8262 -0.418963"></OPTION>
+    <OPTION id="1" position="-603.729 282.252 -827.238" orientation="-0.384236 0.136472 -0.860308 -0.305955"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.336002 0.170202 -0.826208 -0.418967"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.384238 0.136472 -0.860313 -0.305957"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-74.4548 1356.6 -924.485"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-603.729 282.252 -827.238"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1887,7 +1887,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-697.205 37.2235 -497.799"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-697.205 51.8377 -497.799"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -1997,7 +1997,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.665882 0 -0.746057 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-345.859 230.714 393.336"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-345.859 242.628 393.336"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -2018,7 +2018,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.986996 0 0.160743 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-619.046 83.5646 -627.551"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-619.046 94.8654 -627.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -2484,7 +2484,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.237686 0 -0.971342 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="317.993 159.568 295.083"></PROPERTY>
+    <PROPERTY id="position" type="9" value="317.993 173.103 295.083"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -3026,7 +3026,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-619.046 83.5646 -627.551"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-619.046 95.9235 -627.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -3595,7 +3595,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-269.465 40.6854 -521.273"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-269.465 96.4826 -521.273"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -4042,7 +4042,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.457874 0 0.889017 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-283.085 42.9759 -456.651"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-283.085 56.8261 -456.651"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -4153,7 +4153,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.965926 0 -0.258819 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="735.526 225.353 -27.4286"></PROPERTY>
+    <PROPERTY id="position" type="9" value="735.526 232.844 -27.4286"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -5124,7 +5124,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-721.81 78.96 -615.954"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-721.81 92.9434 -615.954"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -5778,7 +5778,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.0915017 0 0.995805 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-21.5725 63.6753 -470.165"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-21.5725 77.9795 -470.165"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -6248,7 +6248,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.402747 0 0.915311 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-214.602 42.6825 -485.446"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-214.602 57.1474 -485.446"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -6375,7 +6375,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.793353 0 -0.608762 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="559.396 132.476 60.9262"></PROPERTY>
+    <PROPERTY id="position" type="9" value="559.396 145.788 60.9262"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -7122,7 +7122,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.75471 0 0.656059 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="163.607 97.2188 -466.52"></PROPERTY>
+    <PROPERTY id="position" type="9" value="163.607 107.697 -466.52"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -7946,7 +7946,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="7.57841 68.5499 -538.198"></PROPERTY>
+    <PROPERTY id="position" type="9" value="7.57841 81.0453 -538.198"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -8591,7 +8591,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.013089 0 0.999914 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="134.168 73.1683 -533.147"></PROPERTY>
+    <PROPERTY id="position" type="9" value="134.168 85.5512 -533.147"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -9165,7 +9165,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 0 0.697791 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="145.118 95.821 -424.39"></PROPERTY>
+    <PROPERTY id="position" type="9" value="145.118 107.253 -424.39"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -10805,7 +10805,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.96363 0 -0.267238 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-431.306 177.083 -1336.16"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-431.306 220.265 -1336.16"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -10881,7 +10881,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.746057 0 0.665882 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="163.607 83.701 -466.52"></PROPERTY>
+    <PROPERTY id="position" type="9" value="163.681 107.339 -466.432"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -11440,7 +11440,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.410719 0 0.911762 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="141.887 99.783 -384.939"></PROPERTY>
+    <PROPERTY id="position" type="9" value="141.886 109.985 -384.924"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -12501,7 +12501,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-735.458 57.9361 -572.112"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-735.458 91.5998 -572.112"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -12628,7 +12628,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.986395 0.0344457 0.160645 -0.00560987"></PROPERTY>
-    <PROPERTY id="position" type="9" value="597.938 137.115 101.113"></PROPERTY>
+    <PROPERTY id="position" type="9" value="598.181 148.087 101.841"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -12993,7 +12993,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.976296 0 -0.21644 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-463.491 175.33 -1347.99"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-463.491 233.292 -1347.99"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
@@ -13052,7 +13052,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="304.928 150.201 239.907"></PROPERTY>
+    <PROPERTY id="position" type="9" value="304.928 160.991 239.907"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
