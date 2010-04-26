@@ -340,6 +340,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectBush(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
+		{
+			processGameObjectTree(gameObject);
+		}
 		else
 		{
 			processGameObjectProvisionalEntity(gameObject);

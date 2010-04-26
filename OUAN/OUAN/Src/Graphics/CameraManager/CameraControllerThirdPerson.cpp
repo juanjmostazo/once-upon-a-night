@@ -15,14 +15,15 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 
 
 	collisionMargin=5;
-	minDistance=10;
-	height=5;
+	minDistance=30;
+	height=20;
 	rotX=0;
 	rotY=0;
 
 	speed=0.13;
 
-	collisionMoveSpeed=150;
+	collisionMoveSpeed=300;
+	collisionReturningSpeed=50;
 	returningspeed=2.5;
 
 	rotXDistanceAttenuationNegative=0.5;
@@ -65,7 +66,7 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 	newCameraPosition=cameraPosition;
 
-	mRayCasting->raycastPhysicsClosestGeometry(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
+	mRayCasting->raycastRenderClosestGeometry(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{
@@ -126,6 +127,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 			collisionDisplacementDistance+=calculateNextMovementTo(mCamera->getPosition(),cameraCollisionPosition,newNextMovePosition,elapsedTime);
 			newCameraPosition=newNextMovePosition;
 		}
+		cameraIsReturning=false;
 	}
 	else
 	{
@@ -140,6 +142,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 		{
 			collisionDisplacementDistance=0;
 		}
+		cameraIsReturning=true;
 	}
 	//set camera position
 	mCamera->setPosition(newCameraPosition);
@@ -167,7 +170,17 @@ double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 camera
 {
 	Ogre::Vector3 direction;
 
-	if(cameraPosition.distance(newCameraPosition)<collisionMoveSpeed*elapsedTime)
+	double speed;
+	if(cameraIsReturning)
+	{
+		speed=collisionReturningSpeed;
+	}
+	else
+	{
+		speed=collisionMoveSpeed;
+	}
+
+	if(cameraPosition.distance(newCameraPosition)<speed*elapsedTime)
 	{
 		newNextMovePosition=newCameraPosition;
 		return cameraPosition.distance(newCameraPosition);
@@ -178,9 +191,9 @@ double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 camera
 		direction=newCameraPosition-cameraPosition;
 		direction.normalise();
 
-		newNextMovePosition=cameraPosition+direction*collisionMoveSpeed*elapsedTime;
+		newNextMovePosition=cameraPosition+direction*speed*elapsedTime;
 
-		return collisionMoveSpeed;
+		return speed;
 	}
 }
 

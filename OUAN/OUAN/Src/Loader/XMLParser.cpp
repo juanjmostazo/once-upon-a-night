@@ -90,6 +90,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH2);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH1);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WOODBOX);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

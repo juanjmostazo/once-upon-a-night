@@ -51,6 +51,7 @@ namespace OUAN
 		//camera position speed
 		double speed;
 		double collisionMoveSpeed;
+		double collisionReturningSpeed;
 
 		//camera speed when it returns to initial position
 		double returningspeed;

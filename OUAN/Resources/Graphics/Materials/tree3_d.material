@@ -6,21 +6,11 @@ material tree3_d
             pass
             {
 	    scene_blend alpha_blend
+	    depth_write off
                 texture_unit
                 {
                     texture tree3_d_texture.dds
                     tex_coord_set 0 
-                    colour_op modulate
-                }
-            }
-            pass
-            {
-	    scene_blend alpha_blend
-                scene_blend modulate
-                texture_unit
-                {
-                    texture lightmap#tree3.dds
-                    tex_coord_set 0
                     colour_op modulate
                 }
             }
