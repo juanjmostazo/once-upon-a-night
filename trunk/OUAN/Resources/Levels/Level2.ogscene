@@ -25,7 +25,7 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-32.028 208.342 254.145" orientation="-0.649516 -0.0651942 -0.753776 0.0754987"></OPTION>
+    <OPTION id="1" position="-74.4548 1356.6 -924.485" orientation="-0.335999 0.1702 -0.8262 -0.418963"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.649524 -0.065195 -0.753785 0.0754996"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.336002 0.170202 -0.826208 -0.418967"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-32.028 208.342 254.145"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-74.4548 1356.6 -924.485"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2316,7 +2316,7 @@
     <PROPERTY id="position" type="9" value="741.992 252.241 -66.9901"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tower1_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tower1_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3704,7 +3704,7 @@
     <PROPERTY id="position" type="9" value="677.557 230.773 -52.4973"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall_d1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall_n1"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5747,7 +5747,7 @@
     <PROPERTY id="position" type="9" value="770.838 171.37 11.7697"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="mountain1_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="mountain1_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9840,7 +9840,7 @@
     <PROPERTY id="position" type="9" value="751.721 236.692 -67.277"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11118,7 +11118,7 @@
     <PROPERTY id="position" type="9" value="741.167 305.1 -66.9701"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="alamena_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="alamena_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12016,7 +12016,7 @@
     <PROPERTY id="position" type="9" value="628.578 158.854 10.4986"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="stairs_island1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="stairs_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
