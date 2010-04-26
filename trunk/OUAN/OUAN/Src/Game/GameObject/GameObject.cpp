@@ -1,6 +1,10 @@
 #include "GameObject.h"
+#include "../../Application.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
+#include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../GameWorldManager.h"
 
@@ -13,11 +17,17 @@ GameObject::GameObject(const std::string& name,const std::string& type)
 	mName=name;
 	mType=type;
 	reset();
+	mDisplayMsg=NULL;
+	mDisplayLifetime=0;
 }
 
 GameObject::~GameObject()
 {
-
+	if (mDisplayMsg)
+	{
+		delete mDisplayMsg;
+		mDisplayMsg=NULL;
+	}
 }
 
 void GameObject::destroy()
@@ -39,6 +49,20 @@ bool GameObject::isFirstUpdate()
 void GameObject::update(double elapsedSeconds)
 {
 	mNumUpdates++;
+	if (mDisplayMsg)
+	{
+		if (mDisplayLifetime>=0) 
+		{
+			mDisplayMsg->update();
+			mDisplayLifetime-=elapsedSeconds;
+		}
+		else 
+		{
+			mDisplayMsg->enable(false);
+			delete mDisplayMsg;
+			mDisplayMsg=NULL;			
+		}
+	}
 }
 
 void GameObject::changeWorld(int world)
@@ -192,6 +216,33 @@ bool GameObject::hasParentWeaponComponent() const
 {
 	return false;
 }
+void GameObject::displayText(const std::string& msg, const double& displayLifetime)
+{
+	if (mDisplayMsg) 
+	{
+		delete mDisplayMsg;
+		mDisplayMsg=NULL;
+	}	
+	if (hasRenderComponentEntity())
+	{
+		RenderComponentEntityPtr entityComp = getEntityComponent();
+		Ogre::Camera* camera = Application::getInstance()->getCameraManager()->getActiveCamera();
+		mDisplayMsg = new ObjectTextDisplay(entityComp->getEntity(),camera);
+		mDisplayMsg->enable(true);
+		mDisplayMsg->setText(msg);
+	}
+	mDisplayLifetime=displayLifetime;
+}
+void GameObject::disableDisplayMsg()
+{
+	if (mDisplayMsg)
+	{
+		mDisplayMsg->enable(false);
+		delete mDisplayMsg;
+		mDisplayMsg=NULL;
+	}
+}
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

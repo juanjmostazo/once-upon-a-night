@@ -172,6 +172,9 @@ namespace OUAN
 
 		// Return current colour
 		int getColour();
+
+		static std::string getColourName(int colour);
+		int getAttackDamage() const;
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters

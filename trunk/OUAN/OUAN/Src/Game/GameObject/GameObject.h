@@ -7,6 +7,8 @@
 
 namespace OUAN
 {
+	class ObjectTextDisplay;
+	const double DEFAULT_DISPLAY_LIFETIME=2.0;
 	class GameObject{
 	private:
 		/// GameObject identifier (i.e, "tripollo#14")
@@ -17,6 +19,9 @@ namespace OUAN
 		bool mEnabled;
 		/// GameObject number of updates
 		long mNumUpdates;
+
+		double mDisplayLifetime;
+		ObjectTextDisplay* mDisplayMsg;
 
 	protected:
 		///Game world manager
@@ -149,6 +154,9 @@ namespace OUAN
 		virtual void activate();
 		virtual bool canBeActivated() const;
 		virtual void postUpdate();
+
+		void displayText(const std::string& msg, const double& displayLifetime=DEFAULT_DISPLAY_LIFETIME);
+		void disableDisplayMsg();
 	};
 
 	class TGameObjectParameters
