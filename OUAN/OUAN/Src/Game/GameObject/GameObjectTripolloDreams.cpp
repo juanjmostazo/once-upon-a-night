@@ -79,17 +79,19 @@ PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharac
 	return mPhysicsComponentCharacter;
 }
 
-void GameObjectTripolloDreams::activateTrajectory(int world)
+bool GameObjectTripolloDreams::activateTrajectory(int world)
 {
 	if(world==DREAMS)
 	{
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_DREAMS))
 		{
 			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_DREAMS,world);
+			return true;
 		}
 		else
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
+			return false;
 		}
 	}
 	else if(world==NIGHTMARES)
@@ -97,12 +99,15 @@ void GameObjectTripolloDreams::activateTrajectory(int world)
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_NIGHTMARES))
 		{
 			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_NIGHTMARES,world);
+			return true;
 		}
 		else
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
+			return false;
 		}
 	}
+	return false;
 }
 
 void GameObjectTripolloDreams::update(double elapsedSeconds)
@@ -140,13 +145,20 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{				
 				if (mLogicComponentEnemy->isStateChanged())
 				{
-					activateTrajectory(mGameWorldManager->getCurrentWorld());
-					/*
-						If the state has just changed, then load the trajectory and set the displacement
-						vector as (marker1-marker0)
-					*/
-					if (entityToUpdate.get())
-						entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
+					if(activateTrajectory(mGameWorldManager->getCurrentWorld()))
+					{
+						/*
+							If the state has just changed, then load the trajectory and set the displacement
+							vector as (marker1-marker0)
+						*/
+						if (entityToUpdate.get())
+							entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
+					}
+					else
+					{
+						if (entityToUpdate.get())
+							entityToUpdate->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+					}
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))
@@ -273,6 +285,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
+
 	if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 	{
 		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
@@ -291,7 +304,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
 			}
-		activateTrajectory(world);
+			activateTrajectory(world);
 	}
 	else
 	{
@@ -339,6 +352,7 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				break;
 		}
 		activateTrajectory(world);
+
 	}
 }
 
