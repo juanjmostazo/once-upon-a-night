@@ -6,16 +6,15 @@ material changeworld_n
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
 
 			texture_unit
 			{
-				texture changeworld_n.dds
+				texture changeworld_d.dds
 			}
 		}
 
 	}
 
 }
-
-
