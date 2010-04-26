@@ -7,6 +7,10 @@ material tree4_d
 		{
 			ambient 0 0 0 1
 			specular 1 1 1 1 50
+			texture_unit
+			{
+				texture texture_tree4_d.dds
+			}
 		}
 
 	}

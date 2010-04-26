@@ -72,6 +72,8 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKECREEPER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CARNIVOROUSPLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCEPTER);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE12);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE11);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE10);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE1);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE2);
@@ -84,6 +86,9 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE9);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DOOR);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PLATAFORM);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH3);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH2);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH1);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
 
 	for(i=0;i<gameObjectTypes.size();i++)

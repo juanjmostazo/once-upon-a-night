@@ -567,9 +567,14 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TREE8="tree8";
 		const std::string GAME_OBJECT_TYPE_TREE9="tree9";
 		const std::string GAME_OBJECT_TYPE_TREE10="tree10";
+		const std::string GAME_OBJECT_TYPE_TREE11="tree11";
+		const std::string GAME_OBJECT_TYPE_TREE12="tree12";
 		const std::string GAME_OBJECT_TYPE_DOOR="door";
 		const std::string GAME_OBJECT_TYPE_PLATAFORM="plataform";
 		const std::string GAME_OBJECT_TYPE_BUSH="bush";
+		const std::string GAME_OBJECT_TYPE_BUSH1="bush1";
+		const std::string GAME_OBJECT_TYPE_BUSH2="bush2";
+		const std::string GAME_OBJECT_TYPE_BUSH3="bush3";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";

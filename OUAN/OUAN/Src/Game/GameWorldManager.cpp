@@ -1004,13 +1004,6 @@ void GameWorldManager::createGameObjectBush(TGameObjectBushParameters tGameObjec
 				pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
 		}
 
-		//Create PhysicsComponent
-		pGameObjectBush->setPhysicsComponentSimpleBox(
-			factory->createPhysicsComponentSimpleBox(
-			pGameObjectBush, 
-			tGameObjectBushParameters.tPhysicsComponentSimpleBoxParameters, 
-			pGameObjectBush->getRenderComponentPositional()));
-
 	pGameObjectBush->changeWorld(world);
 
 	//Add reference to this

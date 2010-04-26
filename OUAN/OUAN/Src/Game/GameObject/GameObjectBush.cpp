@@ -54,15 +54,6 @@ RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectBush::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
-{
-	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
-}
-
-PhysicsComponentSimpleBoxPtr GameObjectBush::getPhysicsComponentSimpleBox() const
-{
-	return mPhysicsComponentSimpleBox;
-}
 
 void GameObjectBush::changeWorld(int world)
 {
@@ -73,26 +64,14 @@ void GameObjectBush::changeWorld(int world)
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
 			}		
 			break;
 		case NIGHTMARES:
@@ -100,26 +79,14 @@ void GameObjectBush::changeWorld(int world)
 			{
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
 			}		
 			break;
 		default:
@@ -141,16 +108,6 @@ RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
-
-bool GameObjectBush::hasPhysicsComponent() const
-{
-	return true;
-}
-PhysicsComponentPtr GameObjectBush::getPhysicsComponent() const
-{
-	return getPhysicsComponentSimpleBox();
-}
-
 
 /// Set logic component
 void GameObjectBush::setLogicComponent(LogicComponentPtr logicComponent)

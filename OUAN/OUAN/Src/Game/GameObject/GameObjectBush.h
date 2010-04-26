@@ -20,8 +20,7 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
-		/// Physics information
-		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -64,12 +63,6 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		/// Set physics component
-		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
-
-		/// Get physics component
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
-
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
@@ -79,9 +72,6 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
-
-		bool hasPhysicsComponent() const;
-		PhysicsComponentPtr getPhysicsComponent() const;
 
 
 		/// Process collision event
@@ -115,9 +105,6 @@ namespace OUAN
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
-
-		///Physics parameters
-		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
