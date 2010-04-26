@@ -5,15 +5,12 @@ material tree4_d
 	{
 		pass
 		{
-			ambient 0.634 1 1 1
-			specular 0.854 0.854 0.854 1 10
-
-			texture_unit
-			{
-				texture texture_tree4_d.dds
-			}
+			ambient 0 0 0 1
+			specular 1 1 1 1 50
 		}
 
 	}
 
 }
+
+
