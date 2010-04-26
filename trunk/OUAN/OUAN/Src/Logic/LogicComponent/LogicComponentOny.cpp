@@ -150,16 +150,6 @@ void LogicComponentOny::gameOver()
 	getParent()->getGameWorldManager()->addEvent(evt);
 }
 
-int LogicComponentOny::getAttackDamage() const
-{
-	return mAttackDamage;
-}
-
-void LogicComponentOny::setAttackDamage(int attackDamage)
-{
-	mAttackDamage=attackDamage;
-}
-
 int LogicComponentOny::getHealthPoints() const
 {
 	return mHealthPoints;

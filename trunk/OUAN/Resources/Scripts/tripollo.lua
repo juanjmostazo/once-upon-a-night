@@ -21,10 +21,8 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_HIT]="HIT"
 
 function tripolloLogic(pTripollo,state)
 	local myName=pTripollo:getName()	
-	local myLives=pTripollo:getNumLives()
 	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pTripollo:getLineOfSight()
-	local myHP = pTripollo:getHP()
 	
 	local newState=state
 		
@@ -52,8 +50,6 @@ function tripolloLogic(pTripollo,state)
 		if playerDistance>=(myLOS/7) then
 			newState=TRIPOLLO_STATE_FIND
 		end		
-	elseif myHP==0 and myLives==0 then
-		newState=TRIPOLLO_STATE_DEAD
 	end
 
 	if (state ~= newState) then

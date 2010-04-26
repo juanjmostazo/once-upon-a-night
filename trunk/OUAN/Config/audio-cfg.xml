@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?>
 <Configuration>
-  <Options>
-	<!--	Audio options		-->	
-	<Option key="DISTANCE_FACTOR">10</Option>
-	<Option key="DOPPLER_SCALE">0.0</Option>
-	<Option key="ROLLOFF_SCALE">1.0</Option>
-	
-	<Option key="MASTER_NUM_CHANNELS">50</Option>
-	<Option key="MASTER_VOLUME">1.0</Option>
-	<Option key="MASTER_PITCH">1.0</Option>
-	<Option key="MASTER_ENABLED">1</Option>
-
-	<Option key="MUSIC_VOLUME">0.4</Option>
-	<Option key="MUSIC_PITCH">1.0</Option>
-	<Option key="MUSIC_ENABLED">1</Option>
-	<Option key="MUSIC_NUM_CHANNELS">2</Option>
-	
-	<Option key="SFX_VOLUME">1.0</Option>
-	<Option key="SFX_PITCH">1.0</Option>
-	<Option key="SFX_ENABLED">1</Option>
-	<Option key="SFX_NUM_CHANNELS">48</Option>
-	
-  </Options>
+    <!--Config options-->
+    <Options>
+        <Option key="DISTANCE_FACTOR">10</Option>
+        <Option key="DOPPLER_SCALE">0</Option>
+        <Option key="MASTER_ENABLED">1</Option>
+        <Option key="MASTER_NUM_CHANNELS">50</Option>
+        <Option key="MASTER_PITCH">1</Option>
+        <Option key="MASTER_VOLUME">0.465479</Option>
+        <Option key="MUSIC_ENABLED">1</Option>
+        <Option key="MUSIC_NUM_CHANNELS">2</Option>
+        <Option key="MUSIC_PITCH">1</Option>
+        <Option key="MUSIC_VOLUME">0.839644</Option>
+        <Option key="ROLLOFF_SCALE">1</Option>
+        <Option key="SFX_ENABLED">1</Option>
+        <Option key="SFX_NUM_CHANNELS">48</Option>
+        <Option key="SFX_PITCH">1</Option>
+        <Option key="SFX_VOLUME">0.727778</Option>
+    </Options>
 </Configuration>

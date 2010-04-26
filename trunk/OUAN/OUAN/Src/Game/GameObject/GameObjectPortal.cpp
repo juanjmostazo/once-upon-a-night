@@ -84,14 +84,14 @@ void GameObjectPortal::changeWorld(int world)
 
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
-
+			mRenderComponentEntityDreams->changeAnimation("turn_Clip");
 			break;
 		case NIGHTMARES:
 			//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
 	
 			mRenderComponentEntityDreams->setVisible(false);
 			mRenderComponentEntityNightmares->setVisible(true);
-
+			mRenderComponentEntityNightmares->changeAnimation("turn_Clip");
 			break;
 		default:
 			break;
