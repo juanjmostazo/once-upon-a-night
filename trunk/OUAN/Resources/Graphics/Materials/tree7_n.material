@@ -1,20 +1,26 @@
 
 material tree7_n
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
-
-			texture_unit
-			{
-				texture tree7_n_texture.dds
-			}
-		}
-
-	}
-
+        technique
+        {
+            pass
+            {
+                texture_unit
+                {
+                    texture tree7_n_texture.dds
+                    tex_coord_set 0 
+                    colour_op modulate
+                }
+            }
+            pass
+            {
+                scene_blend modulate
+                texture_unit
+                {
+                    texture lightmap#tree7.dds
+                    tex_coord_set 0
+                    colour_op modulate
+                }
+            }
+        }
 }
