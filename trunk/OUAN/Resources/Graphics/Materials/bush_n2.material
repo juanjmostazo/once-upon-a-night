@@ -9,7 +9,7 @@ material bush_n2
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
 			scene_blend alpha_blend
-
+			depth_write off
 			texture_unit
 			{
 				texture bush_n2.dds

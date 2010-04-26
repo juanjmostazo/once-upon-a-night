@@ -70,49 +70,33 @@ void GameObjectPortal::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponentUsable->existsInDreams() && mLogicComponentUsable->existsInNightmares())
+	//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 	{
-		//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());
-		if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-		{
-			//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
-			mPhysicsComponentSimpleBox->create();
-		}
-
-		mRenderComponentEntityDreams->setVisible(true);
-		mRenderComponentEntityNightmares->setVisible(true);
-		return;
+		//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
+		mPhysicsComponentSimpleBox->create();
 	}
-	else
+
+	switch(world)
 	{
-		switch(world)
-		{
-			case DREAMS:
-				//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
+		case DREAMS:
+			//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
 
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
-		
-				break;
-			case NIGHTMARES:
-				//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
-		
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
 
-				break;
-			default:
-				break;
-		}
+			break;
+		case NIGHTMARES:
+			//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
+	
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
+
+			break;
+		default:
+			break;
 	}
+	
 }
 
 void GameObjectPortal::reset()

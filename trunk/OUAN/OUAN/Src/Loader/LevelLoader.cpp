@@ -308,6 +308,14 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectTree(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE11)==0)
+		{
+			processGameObjectTree(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE12)==0)
+		{
+			processGameObjectTree(gameObject);
+		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DOOR)==0)
 		{
 			processGameObjectDoor(gameObject);
@@ -320,8 +328,21 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectBush(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH1)==0)
+		{
+			processGameObjectBush(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH2)==0)
+		{
+			processGameObjectBush(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH3)==0)
+		{
+			processGameObjectBush(gameObject);
+		}
 		else
 		{
+			processGameObjectProvisionalEntity(gameObject);
 			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
 		}
 	}
@@ -592,9 +613,6 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectBushParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//Get PhysicsComponentSimpleBox
-		tGameObjectBushParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
