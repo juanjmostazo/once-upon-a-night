@@ -261,6 +261,8 @@ void GameObjectFlashLight::switchOff()
 	{
 		mPhysicsComponentVolumeConvex->destroy();
 	}
+	if (mParentWeaponComponent.get())
+		mParentWeaponComponent->setActiveWeaponInUse(false);
 }
 void GameObjectFlashLight::show()
 {
@@ -371,6 +373,25 @@ RenderComponentEntityPtr GameObjectFlashLight::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
+WeaponComponentPtr GameObjectFlashLight::getParentWeaponComponent() const
+{
+	return mParentWeaponComponent;
+}
+void GameObjectFlashLight::setParentWeaponComponent(WeaponComponentPtr parentWeaponComponent) 
+{
+	mParentWeaponComponent=parentWeaponComponent;
+}
+bool GameObjectFlashLight::hasParentWeaponComponent() const
+{
+	return true;
+}
+
+bool GameObjectFlashLight::canInitiateAttack()
+{	
+	return (!mParentWeaponComponent->isActiveWeaponInUse());
+}
+//---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {
 

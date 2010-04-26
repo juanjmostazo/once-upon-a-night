@@ -140,6 +140,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
+				Profile="false"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -420,6 +421,14 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\Line3D\Line3D.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="ObjectTextDisplay"
+					>
+					<File
+						RelativePath=".\Src\Graphics\ObjectTextOverlay\ObjectTextDisplay.cpp"
 						>
 					</File>
 				</Filter>
@@ -1034,6 +1043,14 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\Line3D\Line3D.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="ObjectTextDisplay"
+					>
+					<File
+						RelativePath=".\Src\Graphics\ObjectTextOverlay\ObjectTextDisplay.h"
 						>
 					</File>
 				</Filter>

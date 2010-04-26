@@ -8,6 +8,7 @@
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
+#include "../../Logic/LogicComponent/WeaponComponent.h"
 
 namespace OUAN
 {
@@ -53,6 +54,8 @@ namespace OUAN
 		double mAttackAngle;//flashlight cone angle
 
 		AttackComponentPtr mAttackComponent;
+
+		WeaponComponentPtr mParentWeaponComponent;
 
 	public:
 		//Constructor
@@ -116,6 +119,12 @@ namespace OUAN
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
+
+		WeaponComponentPtr getParentWeaponComponent() const;
+		void setParentWeaponComponent(WeaponComponentPtr parentWeaponComponent);
+		bool hasParentWeaponComponent() const;
+
+		bool canInitiateAttack();
 
 
 		/// Update object

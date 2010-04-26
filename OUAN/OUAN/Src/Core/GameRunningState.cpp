@@ -174,10 +174,11 @@ void GameRunningState::handleEvents()
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
-	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying())
+	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying() && mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
 	{
 		mApp->getGameWorldManager()->useWeapon();
 		useWeaponKeyPressed=true;
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 	}
 	else
 	{

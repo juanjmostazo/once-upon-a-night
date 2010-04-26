@@ -94,7 +94,7 @@ void WeaponComponent::update(long elapsedTime)
 }
 void WeaponComponent::switchOn()
 {
-	if (mActiveWeapon.get() && !mActiveWeaponInUse)
+	if (mActiveWeapon.get() && mActiveWeapon->canInitiateAttack())
 	{
 		mActiveWeaponInUse=true;
 		mActiveWeapon->beginAttack();
@@ -104,7 +104,6 @@ void WeaponComponent::switchOff()
 {
 	if (mActiveWeapon.get() && mActiveWeaponInUse)
 	{
-		mActiveWeaponInUse=false;
 		mActiveWeapon->switchOff();
 	}
 }
@@ -144,6 +143,10 @@ GameObjectPtr WeaponComponent::getActiveWeapon()
 bool WeaponComponent::isActiveWeaponInUse() const
 {
 	return mActiveWeaponInUse;
+}
+void WeaponComponent::setActiveWeaponInUse(bool activeWeaponInUse)
+{
+	mActiveWeaponInUse=activeWeaponInUse;
 }
 TWeaponComponentParameters::TWeaponComponentParameters()
 {

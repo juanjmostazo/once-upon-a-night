@@ -37,8 +37,18 @@ namespace OUAN
 		double coneRadius;
 	};
 
+	class PillowAttackData: public AttackData
+	{
+	public: 
+		PillowAttackData(){}
+		virtual ~PillowAttackData(){}
+		double comboDelay;
+		std::string nextComboAttack;
+	};
+
 	typedef boost::shared_ptr<AttackData> AttackDataPtr;
 	typedef boost::shared_ptr<FlashlightAttackData> FlashlightAttackDataPtr;
+	typedef boost::shared_ptr<PillowAttackData> PillowAttackDataPtr;
 	
 	typedef std::map<std::string, AttackDataPtr> TAttackCollection;
 	

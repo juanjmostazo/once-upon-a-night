@@ -54,7 +54,21 @@ void PhysicsComponentVolumeBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 //{
 //	//getNxOgreBody()->setQueryFlags((int)queryFlags);
 //}
+void PhysicsComponentVolumeBox::setPosition(NxOgre::Vec3 position)
+{
+	if (isInUse())
+	{
+		getNxOgreVolume()->setGlobalPosition(position);
+	}
+}
 
+void PhysicsComponentVolumeBox::setOrientation(NxOgre::Quat orientation)
+{
+	if (isInUse())
+	{
+		getNxOgreVolume()->setGlobalOrientationQuat(orientation);
+	}
+}
 TPhysicsComponentVolumeBoxParameters::TPhysicsComponentVolumeBoxParameters() : TPhysicsComponentVolumeParameters()
 {
 
