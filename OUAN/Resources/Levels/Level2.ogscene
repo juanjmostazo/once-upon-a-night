@@ -25,11 +25,11 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-603.729 282.252 -827.238" orientation="-0.384236 0.136472 -0.860308 -0.305955"></OPTION>
+    <OPTION id="1" position="-264.085 663.13 1126.09" orientation="-0.940454 0.0586936 -0.334157 -0.0210058"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.384238 0.136472 -0.860313 -0.305957"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.940457 0.0586938 -0.334158 -0.0210059"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-603.729 282.252 -827.238"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-264.085 663.13 1126.09"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2683,7 +2683,7 @@
     <PROPERTY id="position" type="9" value="-705.936 -44.3146 260.478"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain_2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11948,7 +11948,7 @@
     <PROPERTY id="position" type="9" value="-920.951 356.92 257.731"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="mountain2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="mountain2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12385,7 +12385,7 @@
     <PROPERTY id="position" type="9" value="-705.936 -44.3146 260.478"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain_island2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12614,7 +12614,7 @@
     <PROPERTY id="position" type="9" value="-974.228 356.92 244.425"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="mountain2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
