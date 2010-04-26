@@ -193,7 +193,7 @@ double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 camera
 
 		newNextMovePosition=cameraPosition+direction*speed*elapsedTime;
 
-		return speed;
+		return speed*elapsedTime;
 	}
 }
 
