@@ -237,6 +237,7 @@ void GameObjectPillow::endAttack()
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage("ATTACK ENDED");
 		mPhysicsComponentVolumeBox->destroy();		
+		mRenderComponentEntity->getEntity()->setVisible(false);
 		mParentWeaponComponent->setActiveWeaponInUse(false);
 		setAttack(getDefaultAttack());
 	}

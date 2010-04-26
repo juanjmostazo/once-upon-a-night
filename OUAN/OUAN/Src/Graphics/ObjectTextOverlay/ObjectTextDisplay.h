@@ -22,6 +22,9 @@ namespace OUAN
 		Ogre::OverlayElement* m_pText;
 		Ogre::OverlayContainer* m_pContainer;
 		Ogre::String m_text;
+		Ogre::String m_ShapeName;
+		Ogre::String m_ShapeTextName;
+		Ogre::String m_ContainerName;
 	};
 }
 #endif

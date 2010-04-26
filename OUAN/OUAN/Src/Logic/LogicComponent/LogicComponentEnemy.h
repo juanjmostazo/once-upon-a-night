@@ -64,7 +64,6 @@ namespace OUAN
 		/// 'Immunity' time so a single collision is not processed during several ticks
 		double mHitRecoveryTime;
 
-		std::string getColourName(int colour);
 		std::string getMaskString();
 
 	};

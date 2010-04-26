@@ -248,6 +248,9 @@ void GameObjectFlashLight::setAttackMode(TWeaponMode attackMode)
 }
 void GameObjectFlashLight::switchOn()
 {
+	std::stringstream colourStream("");
+	colourStream<<GameObjectFlashLight::getColourName(getColour());
+	displayText(colourStream.str());
 	mRenderComponentLight->getLight()->setVisible(true);
 	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 	{
@@ -390,6 +393,28 @@ bool GameObjectFlashLight::hasParentWeaponComponent() const
 bool GameObjectFlashLight::canInitiateAttack()
 {	
 	return (!mParentWeaponComponent->isActiveWeaponInUse());
+}
+int GameObjectFlashLight::getAttackDamage() const
+{
+	if (mAttackComponent.get())
+		return mAttackComponent->getSelectedAttack()->damage;
+	return 0;
+}
+std::string GameObjectFlashLight::getColourName(int colour)
+{
+	switch(colour)
+	{
+	case RED:
+		return "RED";
+	case GREEN:
+		return "GREEN";
+	case BLUE:
+		return "BLUE";
+	case WHITE:
+		return "WHITE";
+	default:
+		return "";
+	}
 }
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()

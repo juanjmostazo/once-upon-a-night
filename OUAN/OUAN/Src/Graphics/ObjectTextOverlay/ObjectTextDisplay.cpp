@@ -7,20 +7,23 @@ ObjectTextDisplay::ObjectTextDisplay(const Ogre::MovableObject* p, const Ogre::C
 		m_c = c;
 		m_enabled = false;
 		m_text = "";
+		Ogre::String m_ShapeName="shapeName"+m_p->getName();
+		Ogre::String m_ShapeTextName="shapeNameText"+m_p->getName();
+		Ogre::String m_ContainerName="container"+m_p->getName();
 
 		// create an overlay that we can use for later
-		m_pOverlay = Ogre::OverlayManager::getSingleton().create("shapeName");
+		m_pOverlay = Ogre::OverlayManager::getSingleton().create(m_ShapeName);
 		m_pContainer = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingleton().createOverlayElement(
-			"Panel", "container1"));
+			"Panel", m_ContainerName));
 
 		m_pOverlay->add2D(m_pContainer);
 
-		m_pText = Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", "shapeNameText");
+		m_pText = Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", m_ShapeTextName);
 		m_pText->setDimensions(1.0, 1.0);
 		m_pText->setMetricsMode(Ogre::GMM_PIXELS);
 		m_pText->setPosition(0, 0);
 
-		m_pText->setParameter("font_name", "blue16");
+		m_pText->setParameter("font_name", "BlueHighway");
 		m_pText->setParameter("char_height", "16");
 		m_pText->setParameter("horz_align", "center");
 		m_pText->setColour(Ogre::ColourValue(1.0, 1.0, 1.0));
@@ -36,7 +39,7 @@ ObjectTextDisplay::~ObjectTextDisplay()
 
 		m_pOverlay->hide();
 		Ogre::OverlayManager *overlayManager = Ogre::OverlayManager::getSingletonPtr();
-		m_pContainer->removeChild("shapeNameText");
+		m_pContainer->removeChild(m_pText->getName());
 		m_pOverlay->remove2D(m_pContainer);
 		overlayManager->destroyOverlayElement(m_pText);
 		overlayManager->destroyOverlayElement(m_pContainer);
@@ -97,4 +100,8 @@ void ObjectTextDisplay::update()  {
 	//m_pContainer->setPosition(min_x, min_y);
 	m_pContainer->setPosition(1-max_x, min_y);  // Edited by alberts: This code works for me
 	m_pContainer->setDimensions(max_x - min_x, 0.1); // 0.1, just "because"
+}
+void ObjectTextDisplay::setText(const Ogre::String& text) {
+	m_text = text;
+	m_pText->setCaption(m_text);
 }

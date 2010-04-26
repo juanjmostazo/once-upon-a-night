@@ -210,6 +210,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 			if (mLogicComponentUsable->isStateChanged())
 			{
 				mLogicComponentUsable->setCanBeActivated(false);
+				displayText("ONY IS CLOSE");
 				//particleSystem->show(approaching);
 				//overlay->hide();
 				//audio->playSound("sparks")
@@ -219,6 +220,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 		{
 			if (mLogicComponentUsable->isStateChanged())
 			{
+				displayText("PRESS ACTION TO CHANGE WORLD");
 				mLogicComponentUsable->setCanBeActivated(true);
 				//overlay->show(getTexture(ActionButton)/"Press action button");
 				//particleSystem->show(may_activate)

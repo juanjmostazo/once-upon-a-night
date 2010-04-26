@@ -24,24 +24,32 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 	{
 		GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(pGameObject);
 		int flashlightColour=flashlight->getColour();		
-		if ( mHitRecoveryTime<0 && (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask))
+		if ( mHitRecoveryTime<0)
 		{
-			std::stringstream msg("");
-			msg<<"Flashlight collision - Current colour: ";
-			msg<<getColourName(flashlightColour)<<"; This enemy will react to "<<getMaskString();
-			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
-			decreaseHP();
-			msg.str("");
-			msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
-			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
-			mHitRecoveryTime=1;
-		}		
+			std::stringstream msg;
+			if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
+			{
+				getParent()->displayText("FLASH!");				
+				decreaseHP(flashlight->getAttackDamage());
+				msg.str("");
+				msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
+				Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+				mHitRecoveryTime=1;
+			}		
+			else
+			{
+				msg.str("");
+				msg<<"TRY "<<getMaskString();
+				getParent()->displayText(msg.str());
+			}
+		}
 	}
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
 	{
 		GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(pGameObject);
 		if (mHitRecoveryTime<0)
 		{
+			getParent()->displayText("ZASCA!");
 			std::stringstream msg("");
 			msg<<"Pillow collision - Current attack: ";
 			msg<<pillow->getAttackName()<< " Damage: "<< pillow->getAttackDamage();
@@ -71,22 +79,6 @@ int LogicComponentEnemy::getMaskValueFromColour(int colour)
 	default:break;		
 	}
 	return retVal;
-}
-std::string LogicComponentEnemy::getColourName(int colour)
-{
-	switch(colour)
-	{
-		case RED:
-			return "RED";
-		case GREEN:
-			return "GREEN";
-		case BLUE:
-			return "BLUE";
-		case WHITE:
-			return "WHITE";
-		default:
-			return "";
-	}
 }
 std::string LogicComponentEnemy::getMaskString()
 {
@@ -119,10 +111,11 @@ void LogicComponentEnemy::decreaseHP(int amount)
 				:getHealthPoints()-amount);
 			if (getHealthPoints()==0)
 			{
-				//TODO: Create an "enemy died" event
-					std::string msg="Enemy ";
-					msg.append(getParent()->getName()).append(" died");
-					Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+				getParent()->disableDisplayMsg();
+				std::string msg="Enemy ";
+				msg.append(getParent()->getName()).append(" died");
+				Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+				//BEWARE!! An enemy that's also present in nightmares would disappear as well, wouldn't it?
 				getParent()->disable();
 				//decreaseLives();				
 			}
