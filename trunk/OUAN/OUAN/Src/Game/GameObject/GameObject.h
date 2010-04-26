@@ -80,7 +80,7 @@ namespace OUAN
 
 		/// Process animation ended event
 		/// @param name of the object's animation that's finished
-		virtual void processAnimationEnded(const std::string animationName);
+		virtual void processAnimationEnded(const std::string& animationName);
 	
 
 		// update logic component

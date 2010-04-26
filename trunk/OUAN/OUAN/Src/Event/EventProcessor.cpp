@@ -215,11 +215,8 @@ void EventProcessor::processWeaponModeChanged(WeaponModeChangedEventPtr evt)
 void EventProcessor::processAnimationEnded(AnimationEndedEventPtr evt)
 {
 	if (evt->getActor().get())
-	{
-		//TODO: Replace code with the commented, more general one when it's needed
-		//evt->getActor()->animationEnded(evt->getAnimationName());
-		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(evt->getActor());
-		ony->processAnimationEnded(evt->getAnimationName());
+	{		
+		evt->getActor()->processAnimationEnded(evt->getAnimationName());
 	}
 }
 

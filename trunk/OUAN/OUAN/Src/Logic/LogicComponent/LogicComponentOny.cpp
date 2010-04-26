@@ -4,6 +4,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectOny.h"
+#include "../../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Event/Event.h"
 
@@ -52,8 +53,9 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 	{
-		if(mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
-		{
+		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
+		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
+		{		
 			int oldLives=getNumLives();
 			decreaseHP();
 			mHitRecoveryTime=2;
@@ -250,6 +252,8 @@ int LogicComponentOny::getNewState()const
 {
 	return mNewState;
 }
+
+//-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {
 }

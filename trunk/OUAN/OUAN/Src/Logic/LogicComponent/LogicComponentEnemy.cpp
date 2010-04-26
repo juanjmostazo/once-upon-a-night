@@ -12,6 +12,8 @@ LogicComponentEnemy::LogicComponentEnemy(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_ENEMY)
 {
 	mHitRecoveryTime=-1;
+	mHasDied=false;
+	mHasBeenHit=false;
 }
 
 LogicComponentEnemy::~LogicComponentEnemy()
@@ -24,17 +26,18 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 	{
 		GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(pGameObject);
 		int flashlightColour=flashlight->getColour();		
-		if ( mHitRecoveryTime<0)
+		if ( mHitRecoveryTime<0 && !mHasBeenHit && !mHasDied)
 		{
 			std::stringstream msg;
 			if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
 			{
-				getParent()->displayText("FLASH!");				
+				getParent()->displayText("FWOOOOSHH!!!!");			
+				mHasBeenHit=true;
 				decreaseHP(flashlight->getAttackDamage());
-				msg.str("");
-				msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
+				std::stringstream msg("");
+				msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
 				Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
-				mHitRecoveryTime=1;
+				mHitRecoveryTime=1;//TODO: use animation instead of hit time
 			}		
 			else
 			{
@@ -44,20 +47,18 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 			}
 		}
 	}
-	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && !mHasBeenHit && !mHasDied)
 	{
 		GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(pGameObject);
 		if (mHitRecoveryTime<0)
 		{
 			getParent()->displayText("ZASCA!");
-			std::stringstream msg("");
-			msg<<"Pillow collision - Current attack: ";
-			msg<<pillow->getAttackName()<< " Damage: "<< pillow->getAttackDamage();
-			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+			mHasBeenHit=true;
 			decreaseHP(pillow->getAttackDamage());
-			msg.str("");
-			msg<<getParentName()<<" remaining HP: "<<getHealthPoints();
+			std::stringstream msg("");
+			msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
 			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+
 			mHitRecoveryTime=1;
 		}		
 	}
@@ -111,13 +112,8 @@ void LogicComponentEnemy::decreaseHP(int amount)
 				:getHealthPoints()-amount);
 			if (getHealthPoints()==0)
 			{
-				getParent()->disableDisplayMsg();
-				std::string msg="Enemy ";
-				msg.append(getParent()->getName()).append(" died");
-				Ogre::LogManager::getSingletonPtr()->logMessage(msg);
-				//BEWARE!! An enemy that's also present in nightmares would disappear as well, wouldn't it?
-				getParent()->disable();
-				//decreaseLives();				
+				mHasBeenHit=false;
+				mHasDied=true;
 			}
 		}
 	}
@@ -170,6 +166,23 @@ void LogicComponentEnemy::update(double elapsedTime)
 	{
 		mHitRecoveryTime-=elapsedTime;
 	}
+}
+
+bool LogicComponentEnemy::hasBeenHit() const
+{
+	return mHasBeenHit;
+}
+void LogicComponentEnemy::setHasBeenHit(bool hasBeenHit)
+{
+	mHasBeenHit=hasBeenHit;
+}
+bool LogicComponentEnemy::hasDied() const
+{
+	return mHasDied;
+}
+void LogicComponentEnemy::setHasDied(bool hasDied)
+{
+	mHasDied=hasDied;
 }
 
 TLogicComponentEnemyParameters::TLogicComponentEnemyParameters() : TLogicComponentParameters()

@@ -173,32 +173,23 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 						mGameWorldManager->getCurrentWorld());
 				}
 
-				/*
-				
-					TODO: Instead of getting a direct vector to Ony, such as we're doing at the moment,
-					compute a trajectory of nodes via an A* implementation.
-
-					For the sake of efficiency, here are two suggestions that I recall from the pathfinding classes:
-						- It may be useful to keep a structure containing precalculated paths between pairs of nodes. By doing this, 
-						only one invocation would be needed at the beginning, as the path might be retrieved in practically constant time.
-						- If the first option isn't chosen, don't invoke the A* on every tick. There should be some kind of constraint, such as:
-							- not to recompute the trajectory unless the distance between A*'s last destination node and Ony's current position
-							  exceeds a given value
-							- wait for a given amount of time before callin A* again
-
-							<---- 
-							If its not fast enough we could use dynamic programming and keep the list.
-							The trajectory will be computed every certain time (see Trajectory::recalculateTime) 
-							recalculateTime has a random component so every object calculates at different periods
-				*/
 			}
-			//else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
-			//{
-			//	std::string msg="Enemy ";
-			//	msg.append(getName()).append(" died");
-			//	Ogre::LogManager::getSingletonPtr()->logMessage(msg);
-			//	disable();
-			//}
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_HIT))
+			{
+				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+				{
+					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_HIT01);
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+				}
+			}
+			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
+			{
+				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
+				{
+					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_DIE);
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+				}
+			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 			{
 				//Ogre::LogManager::getSingleton().logMessage("CHASE");
@@ -266,18 +257,25 @@ void GameObjectTripolloDreams::reset()
 	GameObject::reset();
 
 	changeWorld(DREAMS);
+	LogicSubsystemPtr logicSS = getGameWorldManager()->getParent()->getLogicSubsystem();
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+		mLogicComponentEnemy->setHasDied(false);
+		mLogicComponentEnemy->setHasBeenHit(false);
 
+		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
 	}		
 	else
 	{
 		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
+		mLogicComponentEnemy->setHasDied(false);
+		mLogicComponentEnemy->setHasBeenHit(false);
+		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
 	}
 }
 
@@ -412,7 +410,7 @@ void GameObjectTripolloDreams::processExitTrigger(GameObjectPtr pGameObject)
 
 void GameObjectTripolloDreams::updateLogic(double elapsedSeconds)
 {
-	if (mLogicComponentEnemy.get())
+	if (isEnabled() && mLogicComponentEnemy.get())
 	{
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
@@ -424,6 +422,35 @@ bool GameObjectTripolloDreams::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectTripolloDreams::getEntityComponent() const
 {
 	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+//
+void GameObjectTripolloDreams::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(TRIPOLLO_ANIM_HIT01)==0)
+	{
+		mLogicComponentEnemy->setHasBeenHit(false);
+	}
+	if (animationName.compare(TRIPOLLO_ANIM_DIE)==0)
+	{
+		disableDisplayMsg();
+		std::string msg="Enemy ";
+		msg.append(getName()).append(" died");
+		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+		disable();		
+	}
+}
+
+bool GameObjectTripolloDreams::hasBeenHit() const
+{
+	if (mLogicComponentEnemy.get())
+		return mLogicComponentEnemy->hasBeenHit();
+	return false;
+}
+bool GameObjectTripolloDreams::hasDied() const
+{
+	if (mLogicComponentEnemy.get())
+		return mLogicComponentEnemy->hasDied();
+	return false;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()

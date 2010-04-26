@@ -19,6 +19,7 @@ namespace OUAN
 	const std::string TRIPOLLO_STATE_ATTACK="TRIPOLLO_STATE_ATTACK";
 	const std::string TRIPOLLO_STATE_FLEE="TRIPOLLO_STATE_FLEE";
 	const std::string TRIPOLLO_STATE_DEAD="TRIPOLLO_STATE_DEAD";
+	const std::string TRIPOLLO_STATE_HIT="TRIPOLLO_STATE_HIT";
 
 	const std::string TRIPOLLO_ATTACK_PECK="peck";
 	const std::string TRIPOLLO_ATTACK_CLAW="claw";
@@ -26,6 +27,8 @@ namespace OUAN
 	//Animation names
 	const std::string TRIPOLLO_ANIM_IDLE_02="idle02";
 	const std::string TRIPOLLO_ANIM_WALK="walk";
+	const std::string TRIPOLLO_ANIM_DIE="die";
+	const std::string TRIPOLLO_ANIM_HIT01="hit01";
 
 	/// Class modelling a particular enemy type
 	class GameObjectTripolloDreams : public GameObject, public boost::enable_shared_from_this<GameObjectTripolloDreams>
@@ -139,6 +142,9 @@ namespace OUAN
 		void updateLogic(double elapsedSeconds);
 
 		void postUpdate();
+		void processAnimationEnded(const std::string& animationName);
+		bool hasBeenHit() const;
+		bool hasDied() const;
 
 	};
 	

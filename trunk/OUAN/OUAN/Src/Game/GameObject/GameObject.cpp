@@ -127,7 +127,7 @@ void GameObject::processExitTrigger(GameObjectPtr pGameObject)
 {
 
 }
-void GameObject::processAnimationEnded(const std::string animationName)
+void GameObject::processAnimationEnded(const std::string& animationName)
 {
 
 }

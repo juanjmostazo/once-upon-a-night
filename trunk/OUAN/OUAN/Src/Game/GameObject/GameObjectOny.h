@@ -208,7 +208,7 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
-		void processAnimationEnded(const std::string animationName);
+		void processAnimationEnded(const std::string& animationName);
 
 		void postUpdate();
 	};
