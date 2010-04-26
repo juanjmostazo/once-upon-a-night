@@ -1,19 +1,28 @@
 
 material tree4_d
 {
-	technique
-	{
-		pass
-		{
-			ambient 0 0 0 1
-			specular 1 1 1 1 50
-			texture_unit
-			{
-				texture texture_tree4_d.dds
-			}
-		}
-
-	}
+        technique
+        {
+            pass
+            {
+                texture_unit
+                {
+                    texture texture_tree4_d.dds
+                    tex_coord_set 0 
+                    colour_op modulate
+                }
+            }
+            pass
+            {
+                scene_blend modulate
+                texture_unit
+                {
+                    texture lightmap#tree4.dds
+                    tex_coord_set 0
+                    colour_op modulate
+                }
+            }
+        }
 
 }
 
