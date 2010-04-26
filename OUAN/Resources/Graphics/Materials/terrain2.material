@@ -1,11 +1,11 @@
 
-material terrain2
+material terrain_2
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.7 0.7 0.7 1
+			ambient 0 0 0 1
 			diffuse 0.7 0.7 0.7 1
 		}
 
