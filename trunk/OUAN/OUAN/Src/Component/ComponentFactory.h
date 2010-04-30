@@ -37,7 +37,8 @@ namespace OUAN
 		RenderComponentLightPtr createRenderComponentLight(std::string name,GameObjectPtr gameObject,
 			TRenderComponentLightParameters tRenderComponentLightParameters);
 		RenderComponentParticleSystemPtr createRenderComponentParticleSystem(GameObjectPtr gameObject,
-			TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters);
+			TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters,
+			Ogre::SceneNode* pNode);
 		RenderComponentScenePtr createRenderComponentScene(GameObjectPtr gameObject,
 			TRenderComponentSceneParameters tRenderComponentSceneParameters);
 		RenderComponentInitialPtr createRenderComponentInitial(

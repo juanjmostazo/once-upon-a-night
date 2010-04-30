@@ -1861,7 +1861,7 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 
 		//Create RenderComponentParticleSystem
 		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
-			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters));
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional()->getSceneNode()));
 
 	pGameObjectParticleSystem->changeWorld(world);
 

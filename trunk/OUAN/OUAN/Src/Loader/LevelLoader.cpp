@@ -1305,7 +1305,7 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 
 void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectParticleSystemParameters  tGameObjectParticleSystemParameters;
+	OUAN::TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters;
 
 	try
 	{
@@ -2392,8 +2392,7 @@ TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentPart
 	OUAN::TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 
 	//Process ParticleSystem properties
-	tRenderComponentParticleSystemParameters.particle = getPropertyString(XMLNode, "particle");
-	tRenderComponentParticleSystemParameters.castshadows = getPropertyBool(XMLNode, "castshadows");
+	tRenderComponentParticleSystemParameters.templateName = getPropertyString(XMLNode, "templateName");
 	
 	return tRenderComponentParticleSystemParameters;
 }

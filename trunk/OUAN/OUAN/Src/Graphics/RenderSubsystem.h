@@ -6,6 +6,8 @@
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
 
+#include "ParticleUniverseSystemManager.h"
+
 namespace OUAN
 {
 
@@ -85,16 +87,14 @@ namespace OUAN
 		/// @return <b>true</b> if the window has been closed
 		bool isWindowClosed() const;
 		
-	
 		//Object creators
 		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters,QueryFlags flags=QUERYFLAGS_NONE);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
-		Ogre::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters);
+		ParticleUniverse::ParticleSystem* createParticleSystem(Ogre::String templateName,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, Ogre::SceneNode* pNode);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::SceneManager* setSceneParameters(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 		RenderComponentDecalPtr createDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters);
-
 
 		/// Getters and setters
 		Ogre::String getDebugMessage();
@@ -143,6 +143,9 @@ namespace OUAN
 		void createMeshFile(String meshfile);
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 
+		/// Auxiliar functions
+		int getUniqueId();
+
 		/// Ogre root object
 		RootPtr mRoot;
 
@@ -178,6 +181,9 @@ namespace OUAN
 
 		/// Debug message, to be written by other subsystems
 		Ogre::String debugMessage;
+
+		/// Unique id
+		int uniqueId;
 	};
 }
 #endif
