@@ -29,6 +29,8 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 
 void RenderComponentParticleSystem::start()
 {
+	mParticleSystem->stop();		
+	mParticleSystem->prepare();		
 	mParticleSystem->start();		
 }
 

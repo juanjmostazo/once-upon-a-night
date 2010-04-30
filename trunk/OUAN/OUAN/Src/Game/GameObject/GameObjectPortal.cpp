@@ -56,6 +56,16 @@ RenderComponentInitialPtr GameObjectPortal::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
+{
+	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
+}
+
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorld() const
+{
+	return mRenderComponentParticleSystemChangeWorld;
+}
+
 void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
@@ -96,7 +106,8 @@ void GameObjectPortal::changeWorld(int world)
 		default:
 			break;
 	}
-	
+
+	mRenderComponentParticleSystemChangeWorld->start();
 }
 
 void GameObjectPortal::reset()

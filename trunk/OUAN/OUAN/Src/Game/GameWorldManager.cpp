@@ -223,6 +223,7 @@ TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystem
 {
 	return mGameObjectParticleSystemContainer;
 }
+
 TGameObjectPortalContainer GameWorldManager::getGameObjectPortalContainer()
 {
 	return mGameObjectPortalContainer;
@@ -1861,7 +1862,7 @@ void GameWorldManager::createGameObjectParticleSystem(TGameObjectParticleSystemP
 
 		//Create RenderComponentParticleSystem
 		pGameObjectParticleSystem->setRenderComponentParticleSystem(factory->createRenderComponentParticleSystem(
-			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional()->getSceneNode()));
+			pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional()));
 
 	pGameObjectParticleSystem->changeWorld(world);
 
@@ -2017,6 +2018,12 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 		//Create RenderComponentInitial
 		pGameObjectPortal->setRenderComponentInitial(factory->createRenderComponentInitial(
 			pGameObjectPortal->getRenderComponentPositional()));
+
+		//Create RenderComponenetParticleSystem
+		TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+		tRenderComponentParticleSystemParameters.templateName = "PUMediaPack/Teleport";
+		pGameObjectPortal->setRenderComponentParticleSystemChangeWorld(factory->createRenderComponentParticleSystem(
+			pGameObjectPortal,tRenderComponentParticleSystemParameters,pGameObjectPortal->getRenderComponentPositional()));
 
 		//Create RenderComponentEntityDreams
 		pGameObjectPortal->setRenderComponentEntityDreams(

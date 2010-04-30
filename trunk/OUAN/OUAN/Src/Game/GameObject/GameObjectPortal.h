@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Logic/LogicComponent/LogicComponentUsable.h"
 namespace OUAN
 {
@@ -29,6 +30,8 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorld;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -71,6 +74,12 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorld);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorld() const;
+
 		/// Set physics component
 		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
@@ -93,7 +102,6 @@ namespace OUAN
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
 
-
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processCollision(GameObjectPtr pGameObject);
@@ -113,7 +121,6 @@ namespace OUAN
 		bool canBeActivated() const;
 
 		void update(double elapsedSeconds);
-
 	};
 
 	class TGameObjectPortalParameters: public TGameObjectParameters
