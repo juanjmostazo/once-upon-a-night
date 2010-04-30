@@ -114,7 +114,7 @@ RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string
 	return pRenderComponentLight;
 }
 
-RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticleSystem(GameObjectPtr gameObject,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, Ogre::SceneNode * pNode)
+RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticleSystem(GameObjectPtr gameObject,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	//Create void Render Component
 	RenderComponentParticleSystemPtr pRenderComponentParticleSystem = RenderComponentParticleSystemPtr(new RenderComponentParticleSystem()); 
@@ -123,7 +123,7 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 
 	//Init Render Component
 	pRenderComponentParticleSystem->setParticleSystem(
-		mApp->getRenderSubsystem()->createParticleSystem(gameObject->getName(),tRenderComponentParticleSystemParameters,pNode));
+		mApp->getRenderSubsystem()->createParticleSystem(gameObject->getName(),tRenderComponentParticleSystemParameters,pRenderComponentPositional));
 
 	return pRenderComponentParticleSystem;
 }

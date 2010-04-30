@@ -38,7 +38,7 @@ namespace OUAN
 			TRenderComponentLightParameters tRenderComponentLightParameters);
 		RenderComponentParticleSystemPtr createRenderComponentParticleSystem(GameObjectPtr gameObject,
 			TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters,
-			Ogre::SceneNode* pNode);
+			RenderComponentPositionalPtr pRenderComponentPositional);
 		RenderComponentScenePtr createRenderComponentScene(GameObjectPtr gameObject,
 			TRenderComponentSceneParameters tRenderComponentSceneParameters);
 		RenderComponentInitialPtr createRenderComponentInitial(

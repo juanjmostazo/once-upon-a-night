@@ -513,32 +513,33 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 }
 
-ParticleUniverse::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String templateName,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, Ogre::SceneNode * pNode)
+ParticleUniverse::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	ParticleUniverse::ParticleSystem *pParticleSystem = 0;
 	SceneNode *particleSystemNode = 0;
-	
+	Ogre::String particleName = name + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
+	/*
+	Ogre::LogManager::getSingleton().logMessage("INNER CREATION OF PARTICLE SYSTEM");
+	Ogre::LogManager::getSingleton().logMessage("PS INIT INFO");
+	Ogre::LogManager::getSingleton().logMessage(particleName);
+	Ogre::LogManager::getSingleton().logMessage(tRenderComponentParticleSystemParameters.templateName);
+	Ogre::LogManager::getSingleton().logMessage("PS INFO END");
+	*/
 	try
 	{
-		Ogre::String particleSystemUniqueName = 
-			tRenderComponentParticleSystemParameters.templateName + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
-
 		// Create ParticleSystem
-		ParticleUniverse::ParticleSystem * pParticleSystem = 
-			ParticleUniverse::ParticleSystemManager::getSingleton().createParticleSystem(
-				particleSystemUniqueName, 
-				tRenderComponentParticleSystemParameters.templateName, 
-				mApp->getRenderSubsystem()->getSceneManager());
-
-		pParticleSystem->prepare();
+		pParticleSystem = ParticleUniverse::ParticleSystemManager::getSingleton().createParticleSystem(
+			particleName, 
+			tRenderComponentParticleSystemParameters.templateName, 
+			mApp->getRenderSubsystem()->getSceneManager());
 
 		// Attach ParticleSystem to SceneManager
-		particleSystemNode=pNode;
+		particleSystemNode=pRenderComponentPositional->getSceneNode();
 		particleSystemNode->attachObject(pParticleSystem);
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+templateName+" ParticleSystem!");
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+particleName+" ParticleSystem!");
 	}
 	return pParticleSystem;
 }
