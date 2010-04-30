@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(NXOGRE_DIR)\sdk"
+				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				PreprocessorDefinitions="OUAN_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,9 +60,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/NODEFAULTLIB:MSVCRT"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib fmodex_vc.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib fmodex_vc.lib ParticleUniverse_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
+				AdditionalLibraryDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\lib&quot;"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 				Profile="false"
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(NXOGRE_DIR)\sdk"
+				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
@@ -134,8 +134,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib"
-				AdditionalLibraryDirectories="$(NXOGRE_DIR)\sdk"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib ParticleUniverse.lib"
+				AdditionalLibraryDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\lib&quot;"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
