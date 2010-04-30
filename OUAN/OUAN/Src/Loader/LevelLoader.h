@@ -16,7 +16,6 @@ namespace OUAN
 
 		void loadLevel(String SceneName);
 
-
 	protected:
 		GameWorldManagerPtr mGameWorldManager;
 

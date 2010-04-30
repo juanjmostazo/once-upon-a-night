@@ -2,22 +2,28 @@
 #define RenderComponentParticleSystemH_H
 
 #include "RenderComponent.h"
+#include "ParticleUniverseSystemManager.h"
 
 namespace OUAN
 {
 	class RenderComponentParticleSystem: public RenderComponent
 	{
 	private:
-		Ogre::ParticleSystem * mParticleSystem;
+		ParticleUniverse::ParticleSystem * mParticleSystem;
+
 	public:
 
 		RenderComponentParticleSystem(const std::string& type="");
 		~RenderComponentParticleSystem();
 
-		Ogre::ParticleSystem * getParticleSystem() const;
-		void setParticleSystem(Ogre::ParticleSystem *);
+		ParticleUniverse::ParticleSystem * getParticleSystem() const;
+		void setParticleSystem(ParticleUniverse::ParticleSystem *);
 
 		void setVisible(bool visible);
+		void start();
+		void stop();
+		void pause();
+		void resume();
 	};
 
 	class TRenderComponentParticleSystemParameters: public TRenderComponentParameters
@@ -26,9 +32,7 @@ namespace OUAN
 		TRenderComponentParticleSystemParameters();
 		~TRenderComponentParticleSystemParameters();
 
-		String particle;
-		bool castshadows;
-		bool visible;
+		String templateName;
 	};
 
 }

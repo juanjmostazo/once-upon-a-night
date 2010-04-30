@@ -12,19 +12,39 @@ RenderComponentParticleSystem::~RenderComponentParticleSystem()
 	mParticleSystem=NULL;
 }
 
-Ogre::ParticleSystem* RenderComponentParticleSystem::getParticleSystem() const
+ParticleUniverse::ParticleSystem* RenderComponentParticleSystem::getParticleSystem() const
 {
 	return mParticleSystem;
 }
 
-void RenderComponentParticleSystem::setParticleSystem(Ogre::ParticleSystem* particleSystem)
+void RenderComponentParticleSystem::setParticleSystem(ParticleUniverse::ParticleSystem* particleSystem)
 {
 	mParticleSystem=particleSystem;
 }
 
 void RenderComponentParticleSystem::setVisible(bool visible)
 {
-	mParticleSystem->setVisible(visible);
+	mParticleSystem->setVisible(visible);	
+}
+
+void RenderComponentParticleSystem::start()
+{
+	mParticleSystem->start();		
+}
+
+void RenderComponentParticleSystem::stop()
+{
+	mParticleSystem->stop();		
+}
+
+void RenderComponentParticleSystem::pause()
+{
+	mParticleSystem->pause();		
+}
+
+void RenderComponentParticleSystem::resume()
+{
+	mParticleSystem->resume();		
 }
 
 TRenderComponentParticleSystemParameters::TRenderComponentParticleSystemParameters() : TRenderComponentParameters()

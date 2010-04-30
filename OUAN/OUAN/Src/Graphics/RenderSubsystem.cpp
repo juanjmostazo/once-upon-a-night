@@ -38,6 +38,8 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 	this->mApp=app;
 	this->debugMessage = "";
 
+	this->uniqueId = 0;
+
 	createRoot(config);
 	defineResources(config);
 	setupRenderSystem(config);
@@ -511,27 +513,32 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 }
 
-Ogre::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters)
+ParticleUniverse::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String templateName,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, Ogre::SceneNode * pNode)
 {
-	ParticleSystem *pParticleSystem = 0;
+	ParticleUniverse::ParticleSystem *pParticleSystem = 0;
 	SceneNode *particleSystemNode = 0;
 	
 	try
 	{
+		Ogre::String particleSystemUniqueName = 
+			tRenderComponentParticleSystemParameters.templateName + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
+
 		// Create ParticleSystem
-		pParticleSystem = mSceneManager->createParticleSystem(name, tRenderComponentParticleSystemParameters.particle);
+		ParticleUniverse::ParticleSystem * pParticleSystem = 
+			ParticleUniverse::ParticleSystemManager::getSingleton().createParticleSystem(
+				particleSystemUniqueName, 
+				tRenderComponentParticleSystemParameters.templateName, 
+				mApp->getRenderSubsystem()->getSceneManager());
+
+		pParticleSystem->prepare();
 
 		// Attach ParticleSystem to SceneManager
-		particleSystemNode=mSceneManager->getSceneNode(name);
+		particleSystemNode=pNode;
 		particleSystemNode->attachObject(pParticleSystem);
-
-		// Set ParticleSystem parameters
-		pParticleSystem->setCastShadows(tRenderComponentParticleSystemParameters.castshadows);
-
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" ParticleSystem!");
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+templateName+" ParticleSystem!");
 	}
 	return pParticleSystem;
 }
@@ -678,12 +685,12 @@ void RenderSubsystem::showVisualDebugger()
 	if (mNxOgreVisualDebugger)
 		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);	
 }
+
 void RenderSubsystem::hideVisualDebugger()
 {
 	if (mNxOgreVisualDebugger)
 		mNxOgreVisualDebugger->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowNone);		
 }
-
 
 void RenderSubsystem::showOverlay(const std::string& overlayName)
 {
@@ -745,10 +752,17 @@ void RenderSubsystem::hideOverlayElement(const std::string& overlayName)
 	if (overlayElem)
 		overlayElem->hide();
 }
+
 void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 {
 	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
 	if (overlayElem)
 		overlayElem->show();
 
+}
+
+int RenderSubsystem::getUniqueId()
+{
+	uniqueId++;
+	return uniqueId;
 }
