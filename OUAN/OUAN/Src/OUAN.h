@@ -18,6 +18,8 @@
 
 #include "Logic/LogicDefs.h"
 
+#include "ParticleUniverseSystemManager.h"
+
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 #define _CRT_SECURE_NO_WARNINGS
 
