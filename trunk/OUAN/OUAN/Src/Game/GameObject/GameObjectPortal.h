@@ -5,8 +5,8 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentUsable.h"
 namespace OUAN
 {

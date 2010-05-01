@@ -47,6 +47,16 @@ RenderComponentEntityPtr GameObjectOny::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
+void GameObjectOny::setRenderComponentParticleSystemLand(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLand)
+{
+	mRenderComponentParticleSystemLand = pRenderComponentParticleSystemLand;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLand() const
+{
+	return mRenderComponentParticleSystemLand;
+}
+
 void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
@@ -266,6 +276,11 @@ void GameObjectOny::postUpdate()
 		{
 			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 			mIdleTime=0.0;
+
+			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
+			{
+				mRenderComponentParticleSystemLand->start();
+			}
 		}
 		else
 		{

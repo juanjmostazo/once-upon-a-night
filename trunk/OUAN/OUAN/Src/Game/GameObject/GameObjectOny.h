@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentOny.h"
@@ -89,18 +90,17 @@ namespace OUAN
 		
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntity;
-
 		/// Positional component data
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
-
+		/// Logic information
 		LogicComponentOnyPtr mLogicComponentOny;
-		
 		/// Weapon wielding component
 		WeaponComponentPtr mWeaponComponent;
-
 		//TODO: move to LogicComponentOny
 		std::string mDreamsWeapon;
 		std::string mNightmaresWeapon;
@@ -137,6 +137,12 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemLand(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLand() const;
 
 		/// Set physics component
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);

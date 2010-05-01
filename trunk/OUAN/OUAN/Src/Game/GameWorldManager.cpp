@@ -1815,6 +1815,12 @@ void GameWorldManager::createGameObjectOny(TGameObjectOnyParameters tGameObjectO
 		pGameObjectOny->setRenderComponentInitial(factory->createRenderComponentInitial(
 			pGameObjectOny->getRenderComponentPositional()));
 
+		//Create RenderComponenetParticleSystem
+		TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+		tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND;
+		pGameObjectOny->setRenderComponentParticleSystemLand(factory->createRenderComponentParticleSystem(
+			pGameObjectOny,tRenderComponentParticleSystemParameters,pGameObjectOny->getRenderComponentPositional()));
+
 		//Create RenderComponentEntity
 		pGameObjectOny->setRenderComponentEntity(
 			factory->createRenderComponentEntity(tGameObjectOnyParameters.name,
