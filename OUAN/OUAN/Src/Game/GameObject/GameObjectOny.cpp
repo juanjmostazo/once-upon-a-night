@@ -124,6 +124,7 @@ void GameObjectOny::changeWorld(int world)
 		mWeaponComponent->switchOff();
 	}
 }
+
 void GameObjectOny::setLogicComponentOny(LogicComponentOnyPtr pLogicComponentOny)
 {
 	mLogicComponentOny=pLogicComponentOny;
@@ -133,6 +134,7 @@ LogicComponentOnyPtr GameObjectOny::getLogicComponentOny()
 {
 	return mLogicComponentOny;
 }
+
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
 	if (mWeaponComponent.get())
@@ -149,6 +151,7 @@ bool GameObjectOny::hasPositionalComponent() const
 {
 	return true;
 }
+
 RenderComponentPositionalPtr GameObjectOny::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
@@ -158,6 +161,7 @@ bool GameObjectOny::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectOny::getPhysicsComponent() const
 {
 	return getPhysicsComponentCharacter();
@@ -191,6 +195,7 @@ void GameObjectOny::beginAttack()
 {
 	mWeaponComponent->switchOn();
 }
+
 void GameObjectOny::switchOff()
 {
 	mWeaponComponent->switchOff();
@@ -233,18 +238,22 @@ void GameObjectOny::processAnimationEnded(const std::string& animationName)
 	if(mLogicComponentOny.get())
 		mLogicComponentOny->processAnimationEnded(animationName);
 }
+
 bool GameObjectOny::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 RenderComponentEntityPtr GameObjectOny::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 bool GameObjectOny::isDying() const
 {
 	return CHECK_BIT(mLogicComponentOny->getState(),ONY_STATE_BIT_FIELD_DIE);
 }
+
 void GameObjectOny::postUpdate()
 {
 	GameObject::postUpdate();

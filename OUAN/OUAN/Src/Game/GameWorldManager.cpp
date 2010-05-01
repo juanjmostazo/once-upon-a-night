@@ -68,6 +68,8 @@
 #include "../Event/EventManager.h"
 #include "../Event/EventProcessor.h"
 
+#include "../Graphics/ParticleManager/ParticleTemplates.h"
+
 /// These macros will reset the shared pointers, just in case 
 /// clearing the containers will mess with the pointers' references count
 #define EMPTY_VECTOR(T,v) \
@@ -96,6 +98,7 @@ GameWorldManager::GameWorldManager()
 	level=LEVEL_NONE;
 	mInst=this;
 	mGodMode=false;
+	ParticleTemplates::getInstance()->loadConfig();
 }
 
 GameWorldManager::~GameWorldManager()
@@ -2021,7 +2024,7 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 
 		//Create RenderComponenetParticleSystem
 		TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-		tRenderComponentParticleSystemParameters.templateName = "PUMediaPack/Teleport";
+		tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD;
 		pGameObjectPortal->setRenderComponentParticleSystemChangeWorld(factory->createRenderComponentParticleSystem(
 			pGameObjectPortal,tRenderComponentParticleSystemParameters,pGameObjectPortal->getRenderComponentPositional()));
 

@@ -27,16 +27,37 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 	mParticleSystem->setVisible(visible);	
 }
 
+void RenderComponentParticleSystem::run()
+{
+	stop();	
+	start();
+}
+
+void RenderComponentParticleSystem::runOnce()
+{
+	run();
+	//stopWhenFinished();
+}
+
 void RenderComponentParticleSystem::start()
 {
-	mParticleSystem->stop();		
 	mParticleSystem->prepare();		
-	mParticleSystem->start();		
+	mParticleSystem->start();
 }
 
 void RenderComponentParticleSystem::stop()
 {
 	mParticleSystem->stop();		
+}
+
+void RenderComponentParticleSystem::stopWhenFinished()
+{
+	mParticleSystem->stopFade();		
+}
+
+void RenderComponentParticleSystem::stopWithDelay(double seconds)
+{
+	mParticleSystem->stop(seconds);		
 }
 
 void RenderComponentParticleSystem::pause()

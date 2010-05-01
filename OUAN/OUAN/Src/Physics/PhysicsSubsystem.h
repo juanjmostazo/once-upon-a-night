@@ -6,8 +6,6 @@
 #include <NxOgre.h>
 #include <NxOgreOGRE3D.h>
 #include <NxOgreAddonCharacterController.h>
-//#include <NxController.h>
-//#include <NxActor.h>
 
 namespace OUAN
 {
@@ -126,7 +124,6 @@ namespace OUAN
 		/// Load params from config file
 		virtual bool loadConfig();
 
-
 		bool raycastClosestGeometry(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 		bool raycastClosestBoundings(const Vector3 &point,const Vector3 &normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
@@ -172,7 +169,6 @@ namespace OUAN
 		bool sendCollision(GameObjectPtr object1, GameObjectPtr object2);
 		bool sendEnterTrigger(GameObjectPtr object1, GameObjectPtr object2);
 		bool sendExitTrigger(GameObjectPtr object1, GameObjectPtr object2);
-
 	};
 }
 #endif
