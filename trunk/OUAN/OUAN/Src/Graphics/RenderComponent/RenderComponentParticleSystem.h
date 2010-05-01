@@ -20,8 +20,12 @@ namespace OUAN
 		void setParticleSystem(ParticleUniverse::ParticleSystem *);
 
 		void setVisible(bool visible);
+		void run();
+		void runOnce();
 		void start();
 		void stop();
+		void stopWhenFinished();
+		void stopWithDelay(double seconds);
 		void pause();
 		void resume();
 	};

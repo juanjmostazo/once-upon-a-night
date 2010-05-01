@@ -9,10 +9,12 @@ HUDInGame::HUDInGame()
 {
 	mSelectedModeChanged=false;
 }
+
 HUDInGame::~HUDInGame()
 {
 	destroy();
 }
+
 void HUDInGame::init(int healthPoints, int numLives, int world)
 {
 	HUDBase::init(OVERLAY_INGAME_HUD);
@@ -37,12 +39,14 @@ void HUDInGame::init(int healthPoints, int numLives, int world)
 		//showElement(PANEL_PILLOW_ROULE
 	}
 }
+
 void HUDInGame::destroy()
 {
 	hide();
 	mRouletteData.clear();
 	HUDBase::destroy();
 }
+
 void HUDInGame::initRouletteData()
 {
 	mRouletteData.clear();
@@ -77,6 +81,7 @@ void HUDInGame::initRouletteData()
 	mRouletteData[ROULETTE_TRANSITION_20].numFrames=TRANSITION_NFRAMES;
 	mRouletteData[ROULETTE_TRANSITION_20].duration=TRANSITION_DURATION;
 }
+
 void HUDInGame::initHealthHud(int healthPoints, int numLives)
 {
 	mHealthHudTextures[0]=TEX_HEALTH_HUD_NAME_EMPTY;
@@ -86,6 +91,7 @@ void HUDInGame::initHealthHud(int healthPoints, int numLives)
 
 	updateHealthHUD(healthPoints,numLives);
 }
+
 void HUDInGame::spinRoulette(bool forward)
 {
 	int increment=forward?1:-1;
@@ -99,6 +105,7 @@ void HUDInGame::spinRoulette(bool forward)
 		updateRouletteHUD();
 	}	
 }
+
 void HUDInGame::updateRoulette()
 {
 	bool isLeftTransition = mCurrentRouletteState== ROULETTE_TRANSITION_02 ||
@@ -120,6 +127,7 @@ void HUDInGame::updateRoulette()
 		updateRouletteHUD();
 	}
 }
+
 bool HUDInGame::isRouletteAnimationFinished()
 {
 	if (mRouletteData[mCurrentRouletteState].isAnimated)
@@ -135,6 +143,7 @@ bool HUDInGame::isRouletteAnimationFinished()
 	}
 	return false;
 }
+
 void HUDInGame::updateRouletteHUD()
 {
 	if (!mRouletteMaterial.isNull())
@@ -152,6 +161,7 @@ void HUDInGame::updateRouletteHUD()
 	}
 	else Ogre::LogManager::getSingletonPtr()->logMessage("Material name not found. Function HUDInGame::setTextureData");
 }
+
 void HUDInGame::updateHealthHUD(int healthPoints, int numLives)
 {
 	if (mLives)
@@ -166,6 +176,7 @@ void HUDInGame::updateHealthHUD(int healthPoints, int numLives)
 		mHealthMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureName(mHealthHudTextures[healthPoints]);	
 	}
 }
+
 void HUDInGame::update(long elapsedTime, int healthPoints, int numLives)
 {
 	updateRoulette();
@@ -175,14 +186,17 @@ bool HUDInGame::isSelectedModeChanged()
 {
 	return mSelectedModeChanged;
 }
+
 void HUDInGame::setSelectedModeChanged(bool selectedModeChanged)
 {
 	mSelectedModeChanged=selectedModeChanged;
 }
+
 TRouletteState HUDInGame::getCurrentState() const
 {
 	return mCurrentRouletteState;
 }
+
 void HUDInGame::registerEventHandlers(EventManagerPtr evtMgr)
 {
 	boost::shared_ptr<HUDInGame> this_ = shared_from_this();
@@ -193,6 +207,7 @@ void HUDInGame::registerEventHandlers(EventManagerPtr evtMgr)
 
 	}
 }
+
 void HUDInGame::unregisterEventHandlers(EventManagerPtr evtMgr)
 {
 	boost::shared_ptr<HUDInGame> this_ = shared_from_this();
@@ -202,6 +217,7 @@ void HUDInGame::unregisterEventHandlers(EventManagerPtr evtMgr)
 		evtMgr->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
 	}
 }
+
 void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	if (evt->getNewWorld()==DREAMS)
@@ -219,5 +235,4 @@ void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 		//TOD:
 		//hideElement(PANEL_PILLOW_ROULETTE);
 	}
-		
 }

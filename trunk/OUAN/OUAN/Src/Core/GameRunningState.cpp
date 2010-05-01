@@ -80,8 +80,6 @@ void GameRunningState::init(ApplicationPtr app)
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
 	}
-
-
 }
 
 /// Clean up main menu's resources
@@ -101,7 +99,6 @@ void GameRunningState::cleanUp()
 		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
 		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
 		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
-
 	}
 	
 	//Destroy HUD
@@ -384,6 +381,7 @@ void GameRunningState::update(long elapsedTime)
 	}
 	mGUI->update(elapsedSeconds);
 }
+
 TWeaponMode GameRunningState::convertRouletteValue(TRouletteState rouletteValue)
 {
 	TWeaponMode newWeaponMode=WEAPON_MODE_INVALID;
@@ -421,6 +419,7 @@ bool GameRunningState::render()
 
 	return renderSubsystem->render();
 }
+
 void GameRunningState::toggleDebugPerformance()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPerformance key pressed");
@@ -437,6 +436,7 @@ void GameRunningState::toggleDebugPerformance()
 		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
 	}
 }
+
 void GameRunningState::toggleDebugPhysics()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPhysics key pressed");
@@ -454,6 +454,7 @@ void GameRunningState::toggleDebugPhysics()
 		mApp->getRenderSubsystem()->hideVisualDebugger();
 	}
 }
+
 void GameRunningState::toggleChangeLevel()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleChangeLevel key pressed");
@@ -475,6 +476,7 @@ void GameRunningState::toggleChangeLevel()
 		mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
 	}
 }
+
 void GameRunningState::changeCameraController()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
@@ -485,6 +487,7 @@ void GameRunningState::changeCameraController()
 	else
 		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
 }
+
 void GameRunningState::toggleVolumes()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
@@ -501,12 +504,14 @@ void GameRunningState::toggleVolumes()
 		cCapsule[i]->changeVisibility();
 	}
 }
+
 TWeaponMode GameRunningState::getCurrentWeaponMode()
 {
 	if (mHUD.get())
 		return convertRouletteValue(mHUD->getCurrentState());
 	return WEAPON_MODE_INVALID;
 }
+
 void GameRunningState::loadMusic()
 {
 	TSoundData desc;
@@ -530,15 +535,18 @@ void GameRunningState::loadMusic()
 	mApp->getAudioSubsystem()->addSound(desc);
 	mMusicChannels[NIGHTMARES].id=desc.mId;
 }
+
 void GameRunningState::changeMusic(int world)
 {
 	mApp->getAudioSubsystem()->stopSound(mMusicChannels[world].channelId);
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[world].id,mMusicChannels[world].channelId,true);
 }
+
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	changeMusic(evt->getNewWorld());
 }
+
 void GameRunningState::clearMusic()
 {
 	mApp->getAudioSubsystem()->stopSound(mMusicChannels[DREAMS].channelId);
@@ -547,10 +555,12 @@ void GameRunningState::clearMusic()
 	mApp->getAudioSubsystem()->removeSound(mMusicChannels[NIGHTMARES].id);
 	mMusicChannels.clear();
 }
+
 void GameRunningState::pauseMusic()
 {
 	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,true);
 }
+
 void GameRunningState::unpauseMusic()
 {
 	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,false);

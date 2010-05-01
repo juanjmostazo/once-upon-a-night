@@ -100,23 +100,21 @@ GameWorldManagerPtr GameObject::getGameWorldManager()
 {
 	return mGameWorldManager;
 }
+
 void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
 {
 	mGameWorldManager=gameWorldManager;
 }
-
 
 void GameObject::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	changeWorld(evt->getNewWorld());
 }
 
-
 void GameObject::processCollision(GameObjectPtr pGameObject)
 {
 
 }
-
 
 void GameObject::processEnterTrigger(GameObjectPtr pGameObject)
 {
@@ -127,10 +125,12 @@ void GameObject::processExitTrigger(GameObjectPtr pGameObject)
 {
 
 }
+
 void GameObject::processAnimationEnded(const std::string& animationName)
 {
 
 }
+
 void GameObject::updateLogic(double elapsedSeconds)
 {
 
@@ -140,6 +140,7 @@ bool GameObject::hasPositionalComponent() const
 {
 	return false;
 }
+
 RenderComponentPositionalPtr GameObject::getPositionalComponent() const
 {
 	return RenderComponentPositionalPtr();
@@ -149,6 +150,7 @@ bool GameObject::hasPhysicsComponent() const
 {
 	return false;
 }
+
 PhysicsComponentPtr GameObject::getPhysicsComponent() const
 {
 	return PhysicsComponentPtr();
@@ -158,6 +160,7 @@ bool GameObject::hasRenderComponentEntity() const
 {
 	return false;
 }
+
 RenderComponentEntityPtr GameObject::getEntityComponent() const
 {
 	return RenderComponentEntityPtr();
@@ -171,30 +174,37 @@ double GameObject::computeDistanceTo(GameObjectPtr other) const
 	}
 	return -1;
 }
+
 void GameObject::setAttack(const std::string& newAttack)
 {
 
 }
+
 void GameObject::beginAttack()
 {
 
 }
+
 void GameObject::switchOff()
 {
 
 }
+
 std::string GameObject::translateWeaponMode(TWeaponMode weaponmode)
 {
 	return "";
 }
+
 std::string GameObject::getDefaultAttack()
 {
 	return "";
 }
+
 void GameObject::activate()
 {
 
 }
+
 bool GameObject::canBeActivated() const
 {
 	return false;
@@ -204,18 +214,22 @@ void GameObject::postUpdate()
 {
 
 }
+
 bool GameObject::canInitiateAttack()
 {
 	return true;
 }
+
 WeaponComponentPtr GameObject::getParentWeaponComponent() const
 {
 	return WeaponComponentPtr();
 }
+
 bool GameObject::hasParentWeaponComponent() const
 {
 	return false;
 }
+
 void GameObject::displayText(const std::string& msg, const double& displayLifetime)
 {
 	if (mDisplayMsg) 
@@ -233,6 +247,7 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 	}
 	mDisplayLifetime=displayLifetime;
 }
+
 void GameObject::disableDisplayMsg()
 {
 	if (mDisplayMsg)
@@ -256,4 +271,3 @@ TGameObjectParameters::~TGameObjectParameters()
 {
 
 }
-

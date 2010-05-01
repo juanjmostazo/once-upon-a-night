@@ -758,6 +758,12 @@ namespace OUAN
 		#define TO_DEGREES 57.296 //180/PI
 
 		//-------------------------------------
+		//  Particle Systems
+		//-------------------------------------
+
+		#define PARTICLES_CFG "../../Config/particles-cfg.xml"
+
+		//-------------------------------------
 		//  Movements masks
 		//-------------------------------------
 		

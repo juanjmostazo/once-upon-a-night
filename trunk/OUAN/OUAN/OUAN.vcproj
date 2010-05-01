@@ -440,6 +440,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="ParticleManager"
+					>
+					<File
+						RelativePath=".\Src\Graphics\ParticleManager\ParticleTemplates.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -1067,6 +1075,14 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\Effects\LightShafts.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="ParticleManager"
+					>
+					<File
+						RelativePath=".\Src\Graphics\ParticleManager\ParticleTemplates.h"
 						>
 					</File>
 				</Filter>

@@ -106,8 +106,6 @@ void GameObjectPortal::changeWorld(int world)
 		default:
 			break;
 	}
-
-	mRenderComponentParticleSystemChangeWorld->start();
 }
 
 void GameObjectPortal::reset()
@@ -129,11 +127,11 @@ bool GameObjectPortal::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectPortal::getPhysicsComponent() const
 {
 	return getPhysicsComponentSimpleBox();
 }
-
 
 /// Set logic component
 void GameObjectPortal::setLogicComponentUsable(LogicComponentUsablePtr logicComponentUsable)
@@ -250,6 +248,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					getGameWorldManager()->changeWorld();				
 					//NOTE: Maybe this flag could be reset after the changeWorld animation has ended.
 					mLogicComponentUsable->setIsActivated(false);
+					mRenderComponentParticleSystemChangeWorld->runOnce();
 				}
 			}
 			entityToUpdate->update(elapsedSeconds);
@@ -260,10 +259,12 @@ void GameObjectPortal::update(double elapsedSeconds)
 		}
 	}			
 }
+
 bool GameObjectPortal::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
 {
 	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
