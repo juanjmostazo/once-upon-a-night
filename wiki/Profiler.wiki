@@ -1,4 +1,0 @@
-#labels Profiler,VS
-http://www.microsoft.com/downloads/details.aspx?familyid=fd02c7d6-5306-41f2-a1be-b7dcb74c9c0b&displaylang=en <-installer
-
-http://msdn.microsoft.com/en-us/library/dd255411%28v=VS.100%29.aspx <-tutorial
