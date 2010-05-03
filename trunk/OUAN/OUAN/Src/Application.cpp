@@ -117,7 +117,9 @@ bool Application::init()
 	mAudioSubsystem->init(audioDesc,this_);
 
 	//TODO: Add remaining subsystems ()
+
 	setupInputSystem();
+
 	return true;
 }
 

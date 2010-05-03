@@ -172,6 +172,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
 
+
 	if (mApp)
 	{
 		TGameObjectContainer container = mApp->getGameWorldManager()->getAllGameObjects();

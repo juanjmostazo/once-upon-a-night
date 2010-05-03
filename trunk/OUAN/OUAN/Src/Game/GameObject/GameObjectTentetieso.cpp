@@ -88,20 +88,7 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 		entityToUpdate->changeAnimation("attack01_Clip");
 	}
 
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		getPhysicsComponentCharacter()->getNxOgreController()->move(
-			Application::getInstance()->getPhysicsSubsystem()->mGravity * 
-			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-			GROUP_COLLIDABLE_MASK,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
-	}
-	
 	entityToUpdate->update(elapsedSeconds/2);
-	
 }
 
 void GameObjectTentetieso::reset()

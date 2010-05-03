@@ -112,10 +112,10 @@ bool GameObjectTripolloDreams::activateTrajectory(int world)
 
 void GameObjectTripolloDreams::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	if (isEnabled())
 	{
-		GameObject::update(elapsedSeconds);
-
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
