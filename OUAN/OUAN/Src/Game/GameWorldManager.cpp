@@ -42,9 +42,10 @@
 #include "GameObject/GameObjectTripollito.h"
 #include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
-
+#include "GameObject/GameObjectWoodBox.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/ParticleManager/ParticleTemplates.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/WalkabilityMap.h"
@@ -67,8 +68,6 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Event/EventManager.h"
 #include "../Event/EventProcessor.h"
-
-#include "../Graphics/ParticleManager/ParticleTemplates.h"
 
 /// These macros will reset the shared pointers, just in case 
 /// clearing the containers will mess with the pointers' references count
@@ -679,9 +678,16 @@ void GameWorldManager::addGameObjectPillow(GameObjectPillowPtr gameObjectPillow)
 	mGameObjectPillow=gameObjectPillow;
 }
 
-void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr gameObjectPlataform)
+void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr pGameObjectPlataform)
 {
-	mGameObjects[gameObjectPlataform->getName()]=gameObjectPlataform;
+	mGameObjects[pGameObjectPlataform->getName()]=pGameObjectPlataform;
+
+	mGameObjectNonMovableContainer.push_back(pGameObjectPlataform);
+	mGameObjectNonMovableEntityContainer.push_back(pGameObjectPlataform);
+
+	mGameObjectPhysicsContainer.push_back(pGameObjectPlataform);
+	mGameObjectPhysicsComplexContainer.push_back(pGameObjectPlataform);
+	mGameObjectPhysicsComplexConvexContainer.push_back(pGameObjectPlataform);
 }
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
@@ -871,6 +877,17 @@ void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectVi
 	mGameObjects[pGameObjectViewport->getName()]=pGameObjectViewport;
 
 	mGameObjectViewportContainer.push_back(pGameObjectViewport);
+}
+
+void GameWorldManager::addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox)
+{
+	mGameObjects[pGameObjectWoodBox->getName()]=pGameObjectWoodBox;
+
+	mGameObjectMovableContainer.push_back(pGameObjectWoodBox);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectWoodBox);
+	mGameObjectPhysicsContainer.push_back(pGameObjectWoodBox);
+	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectWoodBox);
+	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectWoodBox);
 }
 
 void GameWorldManager::createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters)
@@ -2060,7 +2077,6 @@ void GameWorldManager::createGameObjectPortal(TGameObjectPortalParameters tGameO
 	addGameObjectPortal(pGameObjectPortal);
 }
 
-
 void GameWorldManager::createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters)
 {
 	GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity;
@@ -2752,6 +2768,61 @@ void GameWorldManager::createGameObjectViewport(TGameObjectViewportParameters tG
 
 	//Add Object to GameWorldManager
 	addGameObjectViewport(pGameObjectViewport);
+}
+
+void GameWorldManager::createGameObjectWoodBox(TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters)
+{
+	GameObjectWoodBoxPtr pGameObjectWoodBox;
+
+	//Create GameObject
+	pGameObjectWoodBox = GameObjectWoodBoxPtr(new GameObjectWoodBox(tGameObjectWoodBoxParameters.name));
+
+	//Create Game Components
+	ComponentFactory* factory=ComponentFactory::getInstance();
+
+	//Create LogicComponent
+	pGameObjectWoodBox->setLogicComponent(
+		factory->createLogicComponent(
+		pGameObjectWoodBox,
+		tGameObjectWoodBoxParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectWoodBox->setRenderComponentPositional(factory->createRenderComponentPositional(
+		pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectWoodBox->setRenderComponentInitial(factory->createRenderComponentInitial(
+		pGameObjectWoodBox->getRenderComponentPositional()));
+
+	if(pGameObjectWoodBox->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectWoodBox->setRenderComponentEntityDreams(
+			factory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+	}
+	if(pGameObjectWoodBox->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntityNightmares
+		pGameObjectWoodBox->setRenderComponentEntityNightmares(
+			factory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+	}
+	
+	//Create PhysicsComponent
+	pGameObjectWoodBox->setPhysicsComponentSimpleBox(
+		factory->createPhysicsComponentSimpleBox(
+		pGameObjectWoodBox, 
+		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectWoodBox->getRenderComponentPositional()));
+
+	pGameObjectWoodBox->changeWorld(world);
+
+	//Add reference to this
+	pGameObjectWoodBox->setGameWorldManager(mThis);
+
+	//Add Object to GameWorldManager
+	addGameObjectWoodBox(pGameObjectWoodBox);
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)

@@ -199,6 +199,7 @@ bool GameObjectPlataform::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 RenderComponentEntityPtr GameObjectPlataform::getEntityComponent() const
 {
 	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;

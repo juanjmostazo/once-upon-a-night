@@ -473,6 +473,10 @@ namespace OUAN
 		class TGameObjectPlataformParameters;
 		typedef boost::shared_ptr<GameObjectPlataform> GameObjectPlataformPtr;
 
+		class GameObjectWoodBox;
+		class TGameObjectWoodBoxParameters;
+		typedef boost::shared_ptr<GameObjectWoodBox> GameObjectWoodBoxPtr;
+
 		class GameObjectBush;
 		class TGameObjectBushParameters;
 		typedef boost::shared_ptr<GameObjectBush> GameObjectBushPtr;
@@ -516,6 +520,7 @@ namespace OUAN
 		typedef std::vector<GameObjectClockPiecePtr> TGameObjectClockPieceContainer;
 		typedef std::vector<GameObjectCarnivorousPlantPtr> TGameObjectCarnivorousPlantContainer;
 		typedef std::vector<GameObjectSnakeCreeperPtr> TGameObjectSnakeCreeperContainer;
+		typedef std::vector<GameObjectWoodBoxPtr> TGameObjectWoodBoxContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -579,10 +584,7 @@ namespace OUAN
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";
-		const std::string SUFFIX_TRAJECTORY_NIGHTMARES="_n";
-
-
-		///////////////////////////////////////////////////////////////////		
+		const std::string SUFFIX_TRAJECTORY_NIGHTMARES="_n";	
 
 		///////////////////////////////////////////////////////////////////
 

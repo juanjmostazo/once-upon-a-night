@@ -647,6 +647,10 @@
 						RelativePath=".\Src\Game\GameObject\GameObjectViewport.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectWoodBox.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1255,6 +1259,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectViewport.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectWoodBox.h"
 						>
 					</File>
 				</Filter>
