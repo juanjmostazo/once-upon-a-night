@@ -53,7 +53,10 @@ void PhysicsComponentCharacter::create()
 				createPointRenderable(getSceneNode()),			
 			NxOgre::String(this->getParent()->getName().c_str()),
 			getMass(),
-			getSceneNode()->getOrientation().getYaw().valueDegrees()));
+			getSceneNode()->getOrientation().getYaw().valueDegrees(),
+			Application::getInstance()->getPhysicsSubsystem()->mSlopeLimit,   
+			Application::getInstance()->getPhysicsSubsystem()->mStepOffset,
+			Application::getInstance()->getPhysicsSubsystem()->mSkinWidth));
 }
 
 void PhysicsComponentCharacter::destroy()

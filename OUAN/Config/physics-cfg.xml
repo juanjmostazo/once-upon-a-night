@@ -29,5 +29,8 @@
     <Option key="MAX_DASH">125</Option>
     <Option key="DASH_ACCELERATION_INCREMENT">1.5</Option>
     <Option key="WALK_SPEED">0.5</Option>
+	<Option key="SLOPE_LIMIT">0.707</Option>
+	<Option key="STEP_OFFSET">0.5</Option>
+	<Option key="SKIN_WIDTH">0.1</Option>
   </Options>
 </Configuration>

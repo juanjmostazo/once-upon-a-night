@@ -293,6 +293,15 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("WALK_SPEED", value); 
 		mWalkSpeed = atof(value.c_str());
 
+		config.getOption("SLOPE_LIMIT", value); 
+		mSlopeLimit = atof(value.c_str());
+
+		config.getOption("STEP_OFFSET", value); 
+		mStepOffset= atof(value.c_str());
+
+		config.getOption("SKIN_WIDTH", value); 
+		mSkinWidth = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -314,6 +323,9 @@ bool PhysicsSubsystem::loadConfig()
 		mMinCollisionAngle = 0;
 		mSlidingFactor = 0;
 		mSlidingFactorFall = 0;
+		mSlopeLimit = 0;
+		mStepOffset = 0;
+		mSkinWidth = 0;
 
 		success = false;
 	}
