@@ -33,7 +33,7 @@ RenderSubsystem::~RenderSubsystem()
 
 }
 
-void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
+bool RenderSubsystem::init(ApplicationPtr app, ConfigurationPtr config)
 {
 	this->mApp=app;
 	this->debugMessage = "";
@@ -42,11 +42,17 @@ void RenderSubsystem::init(ApplicationPtr app,ConfigurationPtr config)
 
 	createRoot(config);
 	defineResources(config);
-	setupRenderSystem(config);
+
+	if (!setupRenderSystem(config))
+	{
+		return false;
+	}
+
 	createRenderWindow(config);
 	initResourceGroups(config);
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
+	return true;
 }
 
 void RenderSubsystem::cleanUp()
@@ -102,12 +108,10 @@ void RenderSubsystem::defineResources(ConfigurationPtr config)
 	}
 }
 
-void RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
+bool RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 {
 	//[TODO - Get rid of config dialog]
-	if(!mRoot->showConfigDialog()){
-		mApp->mExitRequested=true;
-	}
+	return mRoot->showConfigDialog();
 }
 
 void RenderSubsystem::createRenderWindow(ConfigurationPtr config)

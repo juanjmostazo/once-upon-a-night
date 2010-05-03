@@ -16,10 +16,12 @@ int main(int argc, char **argv)
 	try
 	{
 		OUAN::ApplicationPtr app(new OUAN::Application());
-		app->init();
-		app->loadInitialState();
-		app->go();
-		app->cleanUp();		
+		if (app->init())
+		{
+			app->loadInitialState();
+			app->go();
+			app->cleanUp();		
+		}
 	}
 	catch(Ogre::Exception& e)
 	{

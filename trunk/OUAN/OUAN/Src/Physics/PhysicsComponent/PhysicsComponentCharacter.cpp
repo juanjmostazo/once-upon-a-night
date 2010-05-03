@@ -44,10 +44,6 @@ void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
 
-	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
-	
-	//Ogre::LogManager::getSingleton().logMessage("Creating character " + getParent()->getName() + ". Initial yaw: " + Ogre::StringConverter::toString(Ogre::Real(getSceneNode()->getOrientation().getYaw().valueRadians())));
-
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
@@ -55,7 +51,7 @@ void PhysicsComponentCharacter::create()
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
 				createPointRenderable(getSceneNode()),			
-			name,
+			NxOgre::String(this->getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees()));
 }
@@ -94,7 +90,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	if (mJumping)
 	{
 		mNextMovement.y += mJumpSpeed * elapsedSeconds;
-
 		applyGravity(elapsedSeconds);
 	} 
 	else if (mFalling) 
@@ -105,6 +100,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////////
 	// Perform last frame sliding displacement
 	if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
 	{
@@ -116,8 +112,8 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	// Applying global factor to displacement and calculate dash
 	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
-
 		calculateAngleDifference();
+
 		if(mOnSurface)
 		{
 			calculateAcceleration(elapsedSeconds);
@@ -131,7 +127,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 	if (isInUse())
 	{
-
 		setCharactersDisplayYaw();
 
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
@@ -145,7 +140,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement,
 			GROUP_COLLIDABLE_MASK,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
+			collisionFlags);		
 
 		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}
@@ -179,9 +174,7 @@ void PhysicsComponentCharacter::calculateAngleDifference()
 	if(isMoving())
 	{
 		mCurrentYaw=getYawFromMovement(mNextMovement);
-
 		mAngleDifference=Ogre::Math::Abs(mCurrentYaw-mLastYaw);
-
 		mLastYaw=mCurrentYaw;
 	}
 }
@@ -238,9 +231,7 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 		}
 
 		mDash-=dashPower;
-
 		dashMovement = mDashDirection * dashPower;
-
 	}
 
 	if(mDash<0.1)
@@ -253,8 +244,6 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 	{
 		mIsNotApplyingDash=false;
 	}
-
-
 
 	//Ogre::LogManager::getSingleton().logMessage("dashMovement "+Ogre::StringConverter::toString(dashMovement));
 	//Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
@@ -304,9 +293,7 @@ void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
 
 		//Ogre::LogManager::getSingleton().logMessage("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
 		//Ogre::LogManager::getSingleton().logMessage("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
-
 }
-
 
 void PhysicsComponentCharacter::jump()
 {
@@ -323,6 +310,7 @@ void PhysicsComponentCharacter::jump()
 double PhysicsComponentCharacter::getYawFromMovement(NxOgre::Vec3 movement)
 {
 	double characterYaw=getNxOgreController()->getDisplayYaw();
+
 	if(mNextMovement.z<0 && mNextMovement.x<0)
 	{
 		characterYaw = Ogre::Math::ATan(mNextMovement.x/mNextMovement.z).valueDegrees();
@@ -381,13 +369,10 @@ double PhysicsComponentCharacter::getYawFromMovement(NxOgre::Vec3 movement)
 	return characterYaw;
 }
 
-
 void PhysicsComponentCharacter::setCharactersDisplayYaw()
 {
 	double characterYaw;
-	
 	characterYaw=getYawFromMovement(mNextMovement);
-	
 	getNxOgreController()->setDisplayYaw(characterYaw);
 }
 
@@ -515,30 +500,37 @@ NxOgre::Vec3 PhysicsComponentCharacter::getNextMovement()
 {
 	return mNextMovement;
 }
+
 void PhysicsComponentCharacter::setLastMovement(NxOgre::Vec3 lastMovement)
 {
 	mLastMovement=lastMovement;
 }
+
 NxOgre::Vec3 PhysicsComponentCharacter::getLastMovement()
 {
 	return mLastMovement;
 }
+
 bool PhysicsComponentCharacter::isJumping() const
 {
 	return mJumping;
 }
+
 bool PhysicsComponentCharacter::isFalling() const
 {
 	return mFalling;
 }
+
 bool PhysicsComponentCharacter::isSliding() const
 {
 	return mSliding;
 }
+
 bool PhysicsComponentCharacter::isMoving() const
 {	
 	return mNextMovement!=NxOgre::Vec3::ZERO;
 }
+
 bool PhysicsComponentCharacter::isOnSurface() const
 {
 	return mOnSurface;

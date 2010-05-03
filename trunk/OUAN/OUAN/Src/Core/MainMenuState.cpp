@@ -13,7 +13,6 @@
 
 using namespace OUAN;
 
-
 /// Default constructor
 MainMenuState::MainMenuState()
 :GameState()
@@ -44,7 +43,6 @@ void MainMenuState::init(ApplicationPtr app)
 	desc.mLoop=true;
 	mApp->getAudioSubsystem()->addSound(desc);
 	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
-	
 }
 
 /// Clean up main menu's resources
@@ -83,22 +81,26 @@ void MainMenuState::update(long elapsedTime)
 {
 	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
 }
+
 void MainMenuState::gotoPlay()
 {
 	//TODO: Change to ProfileSelectState when it's implemented
 	GameStatePtr nextState(new GameRunningState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
+
 void MainMenuState::gotoOptions()
 {
 	GameStatePtr nextState(new GameOptionsState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
+
 void MainMenuState::gotoExtras()
 {
 	GameStatePtr nextState(new ExtrasState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
+
 void MainMenuState::quit()
 {
 	mApp->mExitRequested=true;

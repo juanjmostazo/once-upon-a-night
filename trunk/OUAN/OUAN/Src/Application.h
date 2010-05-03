@@ -25,7 +25,7 @@ namespace OUAN
 			/// Load configuration and init all subsystems and global
 			/// resources
 			/// [TODO] Add optional command line string parameter
-			virtual void init();
+			bool init();
 
 			/// Run application
 			virtual void go();
