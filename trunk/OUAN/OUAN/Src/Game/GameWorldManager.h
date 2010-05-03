@@ -123,6 +123,7 @@ namespace OUAN
 		void createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters);
 		void createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters);
 		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
+		void createGameObjectWoodBox(TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters);
 
 		//Trajectory Creator
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
@@ -167,9 +168,9 @@ namespace OUAN
 		/// Facade method to prevent input handling when ony's playing his 'dying' animation
 		bool isOnyDying() const;
 
+		/// 
 		void toggleTreeVisibility();
 		
-
 		/// Change world to the one specified by the passed parameter
 		/// @param currentworld world to change to
 		void setWorld (int newWorld);
@@ -199,6 +200,7 @@ namespace OUAN
 		/// Return the application pointer
 		ApplicationPtr getParent();
 
+		/// 
 		void clearEvents();
 
 		// METHODS USED BY THE LUA SCRIPTS
@@ -271,7 +273,7 @@ namespace OUAN
 		void addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito);
 		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
-
+		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
 
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
@@ -285,8 +287,6 @@ namespace OUAN
 
 		/// Pointer to the main application object
 		ApplicationPtr mApp;
-		
-
 
 		/// Game objects currently existing in the world
 		TGameObjectContainer mGameObjects;
@@ -339,6 +339,7 @@ namespace OUAN
 		void clearContainers();
 
 		bool mGameOver;
+
 		// Besides being over, the game has been beaten
 		bool mGameBeaten;
 

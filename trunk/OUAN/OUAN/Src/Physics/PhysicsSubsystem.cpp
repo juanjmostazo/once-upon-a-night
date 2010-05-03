@@ -189,7 +189,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	}
 
 	mNxOgreTimeController->advance(elapsedSeconds);
-
 }
 
 void PhysicsSubsystem::stabilize()
@@ -409,7 +408,6 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->setOnSurface(true);
 	}
 
-
 	sendCollision(pGameObjectController,pGameObjectShape);
 	
 	return NxOgre::Enums::ControllerAction_None;
@@ -569,7 +567,6 @@ bool PhysicsSubsystem::raycastClosestGeometry(const Vector3 &point,const Vector3
 		returnResult=true;
 	}
 
-
 	return returnResult;
 }
 
@@ -597,12 +594,9 @@ bool PhysicsSubsystem::raycastClosestBoundings(const Vector3 &point,const Vector
 	return returnResult;
 }
 
-
-
 int PhysicsSubsystem::raycastAllBoundings(const Vector3 &point,const Vector3 &normal,std::vector<GameObjectPtr> &result,double maxDistance,QueryFlags flags)
 {
 	NxOgre::Vec3 StartPos( point );
-
 
 	NxOgre::Vec3 Direction( normal );
 	NxOgre::Ray CubeRay( StartPos, Direction );

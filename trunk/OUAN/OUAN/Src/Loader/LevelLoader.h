@@ -76,9 +76,9 @@ namespace OUAN
 		void processGameObjectTripollito(XMLGameObject* gameObject);
 		void processGameObjectTripolloDreams(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
+		void processGameObjectWoodBox(XMLGameObject* gameObject);
 			//Special function to create a GameObjectCamera using Ogitor's viewport camera
 		void processGameObjectViewportCamera(XMLGameObject* gameObject);
-
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);

@@ -64,6 +64,12 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
+	//TODO: TESTING PURPOSE, THIS IF BLOCK MUST BE REMOVED
+	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		return;
+	}
+
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 	if(mIsWalking)
@@ -136,6 +142,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		}
 
 		setOnSurface(false);
+
 		getNxOgreController()->move(
 			mNextMovement,
 			GROUP_COLLIDABLE_MASK,

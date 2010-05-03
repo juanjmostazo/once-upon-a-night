@@ -49,6 +49,7 @@
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectViewport.h"
+#include "../Game/GameObject/GameObjectWoodBox.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -342,7 +343,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectWoodBox(gameObject);
 		}
 		else
 		{
@@ -859,7 +860,6 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentSimpleBox
 		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
-
 	}
 	catch( std::string error )
 	{
@@ -1385,7 +1385,6 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 
 	try
 	{
-
 		//Check parsing errors
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
@@ -2084,7 +2083,6 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectTripolloDreams(tGameObjectTripolloDreamsParameters);
 }
 
-
 void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
@@ -2130,6 +2128,60 @@ void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
 	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
 }
 
+void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters;
+	std::string meshfile;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		if(gameObject->XMLNodeDreams)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeDreams, "meshfile");			
+		}
+		else if(gameObject->XMLNodeNightmares)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeNightmares, "meshfile");
+		}
+
+		//Get names
+		tGameObjectWoodBoxParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectWoodBoxParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectWoodBoxParameters.name = gameObject->name;
+
+		//Get PhysicsComponentSimpleBox
+		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectWoodBoxParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		if(tGameObjectWoodBoxParameters.tLogicComponentParameters.existsInDreams)
+		{
+			tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS,gameObject->XMLNodeCustomProperties);
+		}
+
+		if(tGameObjectWoodBoxParameters.tLogicComponentParameters.existsInNightmares)
+		{
+			tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		}
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->createGameObjectWoodBox(tGameObjectWoodBoxParameters);
+}
+
 TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode)
 {
 	OUAN::TRenderComponentSceneParameters tRenderComponentSceneParameters;
@@ -2150,7 +2202,6 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 
 	return tRenderComponentSceneParameters;
 }
-
 
 TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(TiXmlElement *XMLNode)
 {

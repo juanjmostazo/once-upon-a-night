@@ -1,16 +1,16 @@
-#ifndef GameObjectPlataformH_H
-#define GameObjectPlataformH_H
+#ifndef GameObjectWoodBoxH_H
+#define GameObjectWoodBoxH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 namespace OUAN
 {
-	/// Class to hold terrain information
-	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>
+	/// Class to hold WoodBox information
+	class GameObjectWoodBox : public GameObject, public boost::enable_shared_from_this<GameObjectWoodBox>
 	{
 	private:
 		/// Visual information
@@ -20,31 +20,32 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+		//TODO: think what happens when world changes with the rendercomponent
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
-		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectPlataform(const std::string& name);
+		GameObjectWoodBox(const std::string& name);
 		//Destructor
-		~GameObjectPlataform();
+		~GameObjectWoodBox();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
-		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
-
-		/// return logic component
-		LogicComponentPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -62,10 +63,10 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex() const;
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -99,12 +100,12 @@ namespace OUAN
 		void updateLogic(double elapsedSeconds);
 	};
 
-	class TGameObjectPlataformParameters: public TGameObjectParameters
+	class TGameObjectWoodBoxParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectPlataformParameters();
-		~TGameObjectPlataformParameters();
-		
+		TGameObjectWoodBoxParameters();
+		~TGameObjectWoodBoxParameters();
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
@@ -113,7 +114,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
