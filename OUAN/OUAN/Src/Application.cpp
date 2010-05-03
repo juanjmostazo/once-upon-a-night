@@ -62,8 +62,9 @@ void Application::cleanUp()
 	mAudioSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
+
 //Application initialization
-void Application::init()
+bool Application::init()
 {	
 	ApplicationPtr this_ = shared_from_this();
 
@@ -78,7 +79,11 @@ void Application::init()
 	//mConfiguration->loadFromFile("something")
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
-	mRenderSubsystem->init(this_, mConfiguration);
+	
+	if (!mRenderSubsystem->init(this_, mConfiguration))
+	{
+		return false;
+	}
 
 	mPhysicsSubsystem.reset(new PhysicsSubsystem());
 	mPhysicsSubsystem->init(this_, mConfiguration);
@@ -112,10 +117,10 @@ void Application::init()
 	mAudioSubsystem->init(audioDesc,this_);
 
 	//TODO: Add remaining subsystems ()
-
-
 	setupInputSystem();
+	return true;
 }
+
 //Run the app
 void Application::go()
 {
@@ -160,16 +165,19 @@ bool Application::keyPressed( const OIS::KeyEvent& e )
 	mGUISubsystem->injectKeyInput(OUAN::GUI_KEYDOWN,e);
 	return mStateManager->getCurrentState()->keyPressed(e);
 }
+
 bool Application::keyReleased(const OIS::KeyEvent& e)
 {	
 	mGUISubsystem->injectKeyInput(OUAN::GUI_KEYUP,e);
 	return mStateManager->getCurrentState()->keyReleased(e);
 }
+
 bool Application::mouseMoved(const OIS::MouseEvent &e)
 {
 	mGUISubsystem->injectMouseInput(OUAN::GUI_MOUSEMOVE,OIS::MB_Left,e);
 	return mStateManager->getCurrentState()->mouseMoved(e);
 }
+
 bool Application::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	mGUISubsystem->injectMouseInput(OUAN::GUI_MOUSEDOWN,id,e);
@@ -213,6 +221,7 @@ void Application::loadInitialState()
 int Application::getDebugMode() const{
 	return mDebugMode;
 }
+
 void Application::setDebugMode(int debugMode)
 {
 	mDebugMode=debugMode;
@@ -222,38 +231,47 @@ GameStateManagerPtr Application::getGameStateManager() const
 {
 	return mStateManager;
 }
+
 RenderSubsystemPtr Application::getRenderSubsystem() const
 {
 	return mRenderSubsystem;
 }
+
 GUISubsystemPtr Application::getGUISubsystem() const
 {
 	return mGUISubsystem;
 }
+
 GameWorldManagerPtr Application::getGameWorldManager() const
 {
 	return mGameWorldManager;
 }
+
 PhysicsSubsystemPtr Application::getPhysicsSubsystem() const
 {
 	return mPhysicsSubsystem;
 }
+
 LevelLoaderPtr Application::getLevelLoader() const
 {
 	return mLevelLoader;
 }
+
 ConfigurationPtr Application::getConfiguration() const
 {
 	return mConfiguration;
 }
+
 ConfigurationPtr Application::getTextStrings() const
 {
 	return mTextStrings;
 }
+
 LogicSubsystemPtr Application::getLogicSubsystem() const
 {
 	return mLogicSubsystem;
 }
+
 AudioSubsystemPtr Application::getAudioSubsystem() const
 {
 	return mAudioSubsystem;
@@ -279,11 +297,13 @@ void Application::getAudioConfig(TAudioSubsystemConfigData& audioCfg)
 	if (mAudioSubsystem.get())
 		audioCfg=mAudioSubsystem->getConfigData();
 }
+
 void Application::setAudioConfig(const TAudioSubsystemConfigData& audioCfg)
 {
 	if (mAudioSubsystem.get())
 		mAudioSubsystem->setConfigData(audioCfg);
 }
+
 void Application::saveAudioConfig(const TAudioSubsystemConfigData& audioCfg)
 {
 	if (mAudioSubsystem.get())
@@ -292,10 +312,12 @@ void Application::saveAudioConfig(const TAudioSubsystemConfigData& audioCfg)
 		mAudioSubsystem->saveCurrentConfigData();
 	}
 }
+
 void Application::modifyVolume(const std::string& groupName, double volume)
 {
 		mAudioSubsystem->setChannelGroupVolume(groupName,volume);
 }
+
 void Application::modifyEnable(const std::string& groupName, bool isEnabled)
 {
 		mAudioSubsystem->pauseChannelGroup(groupName,!isEnabled);

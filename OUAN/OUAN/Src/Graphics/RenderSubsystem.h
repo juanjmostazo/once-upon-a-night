@@ -24,7 +24,7 @@ namespace OUAN
 		virtual ~RenderSubsystem();
 
 		/// init the subsystem from the options read in the configuration file
-		void init (ApplicationPtr app,OUAN::ConfigurationPtr config);
+		bool init (ApplicationPtr app,OUAN::ConfigurationPtr config);
 
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
@@ -36,7 +36,7 @@ namespace OUAN
 		void defineResources(OUAN::ConfigurationPtr config);
 
 		/// Sets up Ogre rendering system
-		void setupRenderSystem(OUAN::ConfigurationPtr config);
+		bool setupRenderSystem(OUAN::ConfigurationPtr config);
 
 		/// Create main window
 		void createRenderWindow(OUAN::ConfigurationPtr config);

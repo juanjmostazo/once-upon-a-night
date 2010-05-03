@@ -49,14 +49,12 @@ namespace OUAN
 		void setOnSurface(bool pOnSurface);
 
 	protected:
-
 		void applyDash(double elapsedSeconds);
 		Vector3 getDashMovement(double elapsedSeconds);
 		void calculateAngleDifference();
 		void calculateAcceleration(double elapsedSeconds);
 		bool isMoving();
 		void applyGravity(double elapsedSeconds);
-
 
 		double getYawFromMovement(NxOgre::Vec3 movement);
 
@@ -91,19 +89,17 @@ namespace OUAN
 		NxOgre::Vec3 mSlideDisplacement;
 		double mNormalAngle;
 
-		//angle difference
+		/// Angle difference
 		double mLastYaw;
 		double mAngleDifference;
 
-
-		//dash
-
+		/// Dash 
 		double mDashAccelerationFactor;
 		double mDash;
 		Vector3 mDashDirection;
 		bool mIsNotApplyingDash;
 
-		//acceleration
+		/// Acceleration
 		double mAccelerationFactor;
 
 		void initJump();
@@ -112,7 +108,6 @@ namespace OUAN
 
 		void setJumpSpeed(double pJumpSpeed);
 		void setFallSpeed(double pFallSpeed);
-
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters
