@@ -55,71 +55,36 @@ namespace OUAN
 		virtual NxOgre::Enums::ControllerAction onShape(const NxOgre::ControllerShapeHit& hit);
 		virtual NxOgre::Enums::ControllerAction onController(const NxOgre::ControllerControllerHit& hit);
 
-		/// param read from config file, gravity force
+		/// params read from config file
 		NxOgre::Vec3 mGravity;
-
-		/// param
 		double mStaticFriction;
-
-		/// param
 		double mDynamicFriction;
-
-		/// param
 		double mRestitution;
-
-		/// param read from config file, applied to move()
 		double mDisplacementScale;
-
-		/// param read from config file, applied to move()
 		double mMinDistance;
-
-		/// param read from config file, applied to move()
 		double mMovementUnitsPerSecond;
-
-		/// param read from config file, applied to move()
 		double mMovementLimitUnitsPerSecond;
-
-		/// param read from config file, applied to move()
 		double mTurnDegreesPerSecond;
-
-		/// param read from config file, applied to jump
-		double mInitialJumpSpeed;
-
-		/// param read from config file
+		double mInitialJumpSpeed;		
 		double mMinAllowedY;
-
-		/// param read from config file
 		double mMinCollisionAngle;
-
-		/// param read from config file
 		double mMinSlidingAngle;
-
-		/// param read from config file
 		double mMinSlidingAngleFall;
-
-		/// param read from config file
 		double mSlidingFactor;
-
-		/// param read from config file
-		double mSlidingFactorFall;
-
-		/// param read from config file
+		double mSlidingFactorFall;	
 		double mDashFactor;
 		double mDashMax;
 		double mDashAccelerationIncrement;
 		double mMinDashAccelerationFactor;
 		double mMaxDashAccelerationFactor;
-
-		/// param read from config file
 		double mAccelerationIncrement;
 		double mMaxAccelerationFactor;
 		double mMinAccelerationFactor;
-
-		/// param read from config file
-		double mMaxSameDirectionAngle;
-
-		/// param read from config file
+		double mMaxSameDirectionAngle;		
 		double mWalkSpeed;
+		double mSlopeLimit;
+		double mStepOffset;
+		double mSkinWidth;
 
 		/// Load params from config file
 		virtual bool loadConfig();
