@@ -65,74 +65,79 @@ void PhysicsComponentCharacter::destroy()
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	//TODO: TESTING PURPOSE, THIS IF BLOCK MUST BE REMOVED
-	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
 	{
 		return;
 	}
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	if(mIsWalking)
-	{
-		Vector3 mWalkDirection;
-		mWalkDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
-		mWalkDirection.normalise();
-		
-		mNextMovement.x=mWalkDirection.x*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
-		mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
-	}
-
-	if (mNextMovement!=Vector3::ZERO)
-	{
-		// Scale next movement using time and speed
-		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		{
-			mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
-		}
-		// Apply gravity
-		mNextMovement+=Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds;
-	}
-
-	if (mJumping)
-	{
-		mNextMovement.y += mJumpSpeed * elapsedSeconds;
-		applyGravity(elapsedSeconds);
-	} 
-	else if (mFalling) 
-	{
-		if(!getParent()->getGameWorldManager()->getGodMode())
-		{
-			applyGravity(elapsedSeconds);
-		}
-	}
-
-	////////////////////////////////////////////////////////////////////////////
-	// Perform last frame sliding displacement
-	if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
-	{
-		mNextMovement = mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
-		resetSliding();
-	}
-
-	////////////////////////////////////////////////////////////////////////////
-	// Applying global factor to displacement and calculate dash
-	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-	{
-		calculateAngleDifference();
-
-		if(mOnSurface)
-		{
-			calculateAcceleration(elapsedSeconds);
-		}
-
-		mNextMovement.x *= mAccelerationFactor;
-		mNextMovement.z *= mAccelerationFactor;
-
-		//Ogre::LogManager::getSingleton().logMessage("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
-	}
-
 	if (isInUse())
 	{
+		if(mIsWalking)
+		{
+			Vector3 mWalkDirection;
+			mWalkDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
+			mWalkDirection.normalise();
+			
+			mNextMovement.x=mWalkDirection.x*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+			mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+		}
+
+		if (mNextMovement!=Vector3::ZERO)
+		{
+			// Scale next movement using time and speed
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			{
+				mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+			}
+			// Apply gravity
+			mNextMovement+=Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds;
+		}
+
+		if (mJumping)
+		{
+			mNextMovement.y += mJumpSpeed * elapsedSeconds;
+			applyGravity(elapsedSeconds);
+		} 
+		else if (mFalling) 
+		{
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			{
+				if(!getParent()->getGameWorldManager()->getGodMode())
+				{
+					applyGravity(elapsedSeconds);
+				}
+			}
+			else
+			{
+				applyGravity(elapsedSeconds);
+			}
+		}
+
+		// Perform last frame sliding displacement
+		if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
+		{
+			mNextMovement = mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+			resetSliding();
+		}
+
+		////////////////////////////////////////////////////////////////////////////
+		// Applying global factor to displacement and calculate dash
+		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		{
+
+			calculateAngleDifference();
+			if(mOnSurface)
+			{
+				calculateAcceleration(elapsedSeconds);
+			}
+
+			mNextMovement.x *= mAccelerationFactor;
+			mNextMovement.z *= mAccelerationFactor;
+			//Ogre::LogManager::getSingleton().logMessage("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
+		}
+
 		setCharactersDisplayYaw();
 
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
@@ -141,13 +146,16 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
-		setOnSurface(false);
+		if (mNextMovement!=Vector3::ZERO)
+		{
+			setOnSurface(false);
 
-		getNxOgreController()->move(
-			mNextMovement,
-			GROUP_COLLIDABLE_MASK,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);		
+			getNxOgreController()->move(
+				mNextMovement,
+				GROUP_COLLIDABLE_MASK,
+				Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+				collisionFlags);
+		}
 
 		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}

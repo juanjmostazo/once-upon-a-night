@@ -196,6 +196,7 @@ void Trajectory::update(double elapsedTime)
 		{
 			recalculatePathfinding();
 			lastPathFindingTime=0;
+			recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
 		}
 	}
 
