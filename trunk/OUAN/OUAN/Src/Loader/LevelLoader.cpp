@@ -1794,8 +1794,8 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectTentetiesoParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentSimpleBox
-		tGameObjectTentetiesoParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		//Get PhysicsComponentCharacter
+		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
