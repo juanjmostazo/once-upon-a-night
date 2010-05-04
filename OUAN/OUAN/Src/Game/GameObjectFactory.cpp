@@ -1554,9 +1554,9 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters));
 
 	//Create PhysicsComponent
-	pGameObjectTentetieso->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
+	pGameObjectTentetieso->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectTentetieso,
-		tGameObjectTentetiesoParameters.tPhysicsComponentSimpleBoxParameters,
+		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectTentetieso->getRenderComponentPositional()));
 
 
