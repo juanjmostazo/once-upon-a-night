@@ -35,6 +35,8 @@ namespace OUAN
 		virtual double getMass();
 		virtual void setMass(double pMass);
 
+		virtual void setOnSurface(bool pOnSurface);
+
 		//virtual void setQueryFlags(QueryFlags queryFlags);
 
 
@@ -44,6 +46,8 @@ namespace OUAN
 
 		// Tells if the game entity is static or can be moved
 		bool mStatic;
+
+		bool mOnSurface;
 
 		// Mass
 		double mMass;

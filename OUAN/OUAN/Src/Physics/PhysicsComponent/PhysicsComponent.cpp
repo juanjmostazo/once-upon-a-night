@@ -29,6 +29,11 @@ void PhysicsComponent::update(double elapsedSeconds)
 
 }
 
+void PhysicsComponent::setOnSurface(bool pOnSurface)
+{
+	mOnSurface=pOnSurface;
+}
+
 bool PhysicsComponent::isInUse()
 {
 	return mInUse;

@@ -1594,7 +1594,7 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 		tGameObjectScaredPlantParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 		//Get PhysicsComponentCharacter
-		tGameObjectScaredPlantParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectScaredPlantParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -1794,8 +1794,8 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectTentetiesoParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentCharacter
-		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		//Get PhysicsComponentSimpleBox
+		tGameObjectTentetiesoParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
