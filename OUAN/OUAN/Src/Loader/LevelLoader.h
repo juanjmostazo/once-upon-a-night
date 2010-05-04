@@ -6,6 +6,9 @@
 #include "XMLParser.h"
 namespace OUAN
 {
+	class GameObjectFactory;
+	typedef boost::shared_ptr<GameObjectFactory> GameObjectFactoryPtr;
+
 	class LevelLoader
 	{
 	public:
@@ -18,6 +21,7 @@ namespace OUAN
 
 	protected:
 		GameWorldManagerPtr mGameWorldManager;
+		GameObjectFactoryPtr mGameObjectFactory;
 
 		XMLParser mXMLParser;
 

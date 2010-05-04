@@ -5,6 +5,7 @@
 #include "XMLGameObject.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObjectFactory.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryNode.h"
 #include "../Graphics/TrajectoryManager/WalkabilityMap.h"
@@ -50,6 +51,7 @@
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Game/GameObject/GameObjectWoodBox.h"
+#include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentCamera.h"
@@ -68,6 +70,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentSimple.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../RayCasting/RayCasting.h"
 #include "../Utils/Utils.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
@@ -81,13 +84,20 @@ using namespace OUAN;
 LevelLoader::LevelLoader()
 {
 	DEFAULT_TRAJECTORY_SPEED = 20;
+	mGameObjectFactory = GameObjectFactoryPtr(new GameObjectFactory());
 }
-LevelLoader::~LevelLoader(){}
+LevelLoader::~LevelLoader(){
+	if (mGameObjectFactory.get())
+		mGameObjectFactory.reset();
+	if (mGameWorldManager.get())
+		mGameWorldManager.reset();
+}
 
 void LevelLoader::init(OUAN::ApplicationPtr app)
 {
-	this->mGameWorldManager=app->getGameWorldManager();
-	this->mXMLParser.init();
+	mGameWorldManager=app->getGameWorldManager();
+	mGameObjectFactory->init(app);
+	mXMLParser.init();
 }
 
 void LevelLoader::loadLevel(String level)
@@ -548,7 +558,8 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectBee_Butterfly(tGameObjectBee_ButterflyParameters);
+	mGameWorldManager->addGameObjectBee_Butterfly(mGameObjectFactory->createGameObjectBee_Butterfly(
+		tGameObjectBee_ButterflyParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
@@ -582,7 +593,9 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectBillboardSet(tGameObjectBillboardSetParameters);
+
+	mGameWorldManager->addGameObjectBillboardSet
+		(mGameObjectFactory->createGameObjectBillboardSet(tGameObjectBillboardSetParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
@@ -627,7 +640,8 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
+	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
+	mGameWorldManager->addGameObjectBush(mGameObjectFactory->createGameObjectBush(tGameObjectBushParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
@@ -652,7 +666,8 @@ void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+	//mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+	mGameWorldManager->addGameObjectCamera(mGameObjectFactory->createGameObjectCamera(tGameObjectCameraParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
@@ -699,7 +714,9 @@ void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters);
+	//mGameWorldManager->createGameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters);
+	mGameWorldManager->addGameObjectCarnivorousPlant(mGameObjectFactory->createGameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters,
+		mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
@@ -738,7 +755,9 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectClockPiece(tGameObjectClockPieceParameters);
+	//mGameWorldManager->createGameObjectClockPiece(tGameObjectClockPieceParameters);
+	mGameWorldManager->addGameObjectClockPiece(mGameObjectFactory->createGameObjectClockPiece(
+		tGameObjectClockPieceParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
@@ -782,7 +801,8 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectCryKing(tGameObjectCryKingParameters);
+	//mGameWorldManager->createGameObjectCryKing(tGameObjectCryKingParameters);
+	mGameWorldManager->addGameObjectCryKing(mGameObjectFactory->createGameObjectCryKing(tGameObjectCryKingParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
@@ -821,7 +841,8 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectDiamond(tGameObjectDiamondParameters);
+	//mGameWorldManager->createGameObjectDiamond(tGameObjectDiamondParameters);
+	mGameWorldManager->addGameObjectDiamond(mGameObjectFactory->createGameObjectDiamond(tGameObjectDiamondParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
@@ -868,7 +889,8 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectDiamondTree(tGameObjectDiamondTreeParameters);
+	//mGameWorldManager->createGameObjectDiamondTree(tGameObjectDiamondTreeParameters);
+	mGameWorldManager->addGameObjectDiamondTree(mGameObjectFactory->createGameObjectDiamondTree(tGameObjectDiamondTreeParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
@@ -911,7 +933,8 @@ void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectDoor(tGameObjectDoorParameters);
+	//mGameWorldManager->createGameObjectDoor(tGameObjectDoorParameters);
+	mGameWorldManager->addGameObjectDoor(mGameObjectFactory->createGameObjectDoor(tGameObjectDoorParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
@@ -955,7 +978,8 @@ void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectDragon(tGameObjectDragonParameters);
+	//mGameWorldManager->createGameObjectDragon(tGameObjectDragonParameters);
+	mGameWorldManager->addGameObjectDragon(mGameObjectFactory->createGameObjectDragon(tGameObjectDragonParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
@@ -995,7 +1019,8 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
+	//mGameWorldManager->createGameObjectEye(tGameObjectEyeParameters);
+	mGameWorldManager->addGameObjectEye(mGameObjectFactory->createGameObjectEye(tGameObjectEyeParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
@@ -1035,7 +1060,9 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectFlashLight(tGameObjectFlashLightParameters);
+	//mGameWorldManager->createGameObjectFlashLight(tGameObjectFlashLightParameters);
+	mGameWorldManager->addGameObjectFlashLight(mGameObjectFactory->createGameObjectFlashLight(tGameObjectFlashLightParameters,mGameWorldManager, 
+		mGameWorldManager->getParent()->getCameraManager(),mGameWorldManager->getParent()->getRayCasting()));
 }
 
 void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
@@ -1074,7 +1101,8 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectHeart(tGameObjectHeartParameters);
+	//mGameWorldManager->createGameObjectHeart(tGameObjectHeartParameters);
+	mGameWorldManager->addGameObjectHeart(mGameObjectFactory->createGameObjectHeart(tGameObjectHeartParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
@@ -1113,7 +1141,8 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
+	//mGameWorldManager->createGameObjectItem1UP(tGameObjectItem1UPParameters);
+	mGameWorldManager->addGameObjectItem1UP(mGameObjectFactory->createGameObjectItem1UP(tGameObjectItem1UPParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
@@ -1151,7 +1180,8 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
+	//mGameWorldManager->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters);
+	mGameWorldManager->addGameObjectItemMaxHP(mGameObjectFactory->createGameObjectItemMaxHP(tGameObjectItemMaxHPParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
@@ -1185,7 +1215,8 @@ void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+	//mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+	mGameWorldManager->addGameObjectLight(mGameObjectFactory->createGameObjectLight(tGameObjectLightParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
@@ -1213,7 +1244,8 @@ void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectMagicClock(tGameObjectMagicClockParameters);
+	//mGameWorldManager->createGameObjectMagicClock(tGameObjectMagicClockParameters);
+	mGameWorldManager->addGameObjectMagicClock(mGameObjectFactory->createGameObjectMagicClock(tGameObjectMagicClockParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
@@ -1256,7 +1288,8 @@ void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectNightGoblin(tGameObjectNightGoblinParameters);
+	//mGameWorldManager->createGameObjectNightGoblin(tGameObjectNightGoblinParameters);
+	mGameWorldManager->addGameObjectNightGoblin(mGameObjectFactory->createGameObjectNightGoblin(tGameObjectNightGoblinParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
@@ -1299,7 +1332,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
+	//mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
+	mGameWorldManager->addGameObjectOny(mGameObjectFactory->createGameObjectOny(tGameObjectOnyParameters,mGameWorldManager,
+		mGameWorldManager->getParent()->getCameraManager()));
 
 }
 
@@ -1334,7 +1369,8 @@ void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
+	//mGameWorldManager->createGameObjectParticleSystem(tGameObjectParticleSystemParameters);
+	mGameWorldManager->addGameObjectParticleSystem(mGameObjectFactory->createGameObjectParticleSystem(tGameObjectParticleSystemParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
@@ -1375,7 +1411,8 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectPillow(tGameObjectPillowParameters);
+	//mGameWorldManager->createGameObjectPillow(tGameObjectPillowParameters);
+	mGameWorldManager->addGameObjectPillow(mGameObjectFactory->createGameObjectPillow(tGameObjectPillowParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
@@ -1432,7 +1469,8 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectPlataform(tGameObjectPlataformParameters);
+	//mGameWorldManager->createGameObjectPlataform(tGameObjectPlataformParameters);
+	mGameWorldManager->addGameObjectPlataform(mGameObjectFactory->createGameObjectPlataform(tGameObjectPlataformParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
@@ -1475,7 +1513,8 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
+	//mGameWorldManager->createGameObjectPortal(tGameObjectPortalParameters);
+	mGameWorldManager->addGameObjectPortal(mGameObjectFactory->createGameObjectPortal(tGameObjectPortalParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
@@ -1522,7 +1561,9 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters);
+	//mGameWorldManager->createGameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters);
+	mGameWorldManager->addGameObjectProvisionalEntity(mGameObjectFactory->createGameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters,
+		mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
@@ -1563,7 +1604,8 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectScaredPlant(tGameObjectScaredPlantParameters);
+	//mGameWorldManager->createGameObjectScaredPlant(tGameObjectScaredPlantParameters);
+	mGameWorldManager->addGameObjectScaredPlant(mGameObjectFactory->createGameObjectScaredPlant(tGameObjectScaredPlantParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
@@ -1589,7 +1631,8 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
+	//mGameWorldManager->createGameObjectScene(tGameObjectSceneParameters);
+	mGameWorldManager->addGameObjectScene(mGameObjectFactory->createGameObjectScene(tGameObjectSceneParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
@@ -1628,7 +1671,8 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectScepter(tGameObjectScepterParameters);
+	//mGameWorldManager->createGameObjectScepter(tGameObjectScepterParameters);
+	mGameWorldManager->addGameObjectScepter(mGameObjectFactory->createGameObjectScepter(tGameObjectScepterParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
@@ -1676,7 +1720,8 @@ void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters);
+	//mGameWorldManager->createGameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters);
+	mGameWorldManager->addGameObjectSnakeCreeper(mGameObjectFactory->createGameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
@@ -1715,7 +1760,8 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectStoryBook(tGameObjectStoryBookParameters);
+	//mGameWorldManager->createGameObjectStoryBook(tGameObjectStoryBookParameters);
+	mGameWorldManager->addGameObjectStoryBook(mGameObjectFactory->createGameObjectStoryBook(tGameObjectStoryBookParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
@@ -1759,7 +1805,8 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTentetieso(tGameObjectTentetiesoParameters);
+	//mGameWorldManager->createGameObjectTentetieso(tGameObjectTentetiesoParameters);
+	mGameWorldManager->addGameObjectTentetieso(mGameObjectFactory->createGameObjectTentetieso(tGameObjectTentetiesoParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
@@ -1822,7 +1869,9 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 			}
 
 			//Create GameObject
-			mGameWorldManager->createGameObjectTerrainConvex(tGameObjectTerrainConvexParameters);
+			//mGameWorldManager->createGameObjectTerrainConvex(tGameObjectTerrainConvexParameters);
+			mGameWorldManager->addGameObjectTerrainConvex(mGameObjectFactory->createGameObjectTerrainConvex(tGameObjectTerrainConvexParameters,
+				mGameWorldManager));
 
 			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexConvex);
 
@@ -1862,7 +1911,9 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 			}
 
 			//Create GameObject
-			mGameWorldManager->createGameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters);
+			//mGameWorldManager->createGameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters);
+			mGameWorldManager->addGameObjectTerrainTriangle(mGameObjectFactory->createGameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters,
+				mGameWorldManager));
 
 			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexTriangle);
 		}
@@ -1915,7 +1966,8 @@ void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTree(tGameObjectTreeParameters);
+	//mGameWorldManager->createGameObjectTree(tGameObjectTreeParameters);
+	mGameWorldManager->addGameObjectTree(mGameObjectFactory->createGameObjectTree(tGameObjectTreeParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
@@ -1951,7 +2003,8 @@ void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	mGameWorldManager->createGameObjectTriggerBox(tGameObjectTriggerBoxParameters);
+	//mGameWorldManager->createGameObjectTriggerBox(tGameObjectTriggerBoxParameters);
+	mGameWorldManager->addGameObjectTriggerBox(mGameObjectFactory->createGameObjectTriggerBox(tGameObjectTriggerBoxParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
@@ -1987,7 +2040,9 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	mGameWorldManager->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters);
+	//mGameWorldManager->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters);
+	mGameWorldManager->addGameObjectTriggerCapsule(mGameObjectFactory->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters,
+		mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
@@ -2033,7 +2088,9 @@ void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTripollito(tGameObjectTripollitoParameters);
+	//mGameWorldManager->createGameObjectTripollito(tGameObjectTripollitoParameters);
+	mGameWorldManager->addGameObjectTripollito(mGameObjectFactory->createGameObjectTripollito(tGameObjectTripollitoParameters,
+		mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
@@ -2080,7 +2137,8 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectTripolloDreams(tGameObjectTripolloDreamsParameters);
+	//mGameWorldManager->createGameObjectTripolloDreams(tGameObjectTripolloDreamsParameters);
+	mGameWorldManager->addGameObjectTripolloDreams(mGameObjectFactory->createGameObjectTripolloDreams(tGameObjectTripolloDreamsParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
@@ -2103,7 +2161,8 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+	//mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
+	mGameWorldManager->addGameObjectViewport(mGameObjectFactory->createGameObjectViewport(tGameObjectViewportParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
@@ -2125,7 +2184,8 @@ void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+	//mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
+	mGameWorldManager->addGameObjectCamera(mGameObjectFactory->createGameObjectCamera(tGameObjectCameraParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
@@ -2179,7 +2239,8 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	mGameWorldManager->createGameObjectWoodBox(tGameObjectWoodBoxParameters);
+	//mGameWorldManager->createGameObjectWoodBox(tGameObjectWoodBoxParameters);
+	mGameWorldManager->addGameObjectWoodBox(mGameObjectFactory->createGameObjectWoodBox(tGameObjectWoodBoxParameters,mGameWorldManager));
 }
 
 TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode)
