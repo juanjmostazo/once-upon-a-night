@@ -14,7 +14,7 @@ PhysicsComponentCharacter::~PhysicsComponentCharacter()
 
 void PhysicsComponentCharacter::reset()
 {
-	mNextMovement = NxOgre::Vec3(0,0,0);
+	mNextMovement = NxOgre::Vec3::ZERO;
 	mLastMovement = NxOgre::Vec3::ZERO;
 
 	mJumping = false;
@@ -67,11 +67,18 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
-	//TODO: TESTING PURPOSE, THIS IF BLOCK MUST BE REMOVED
-	if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
+	////TODO: TESTING PURPOSE, THIS IF BLOCK MUST BE REMOVED
+	//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
+	//{
+	//	return;
+	//}
+
+	if(mNextMovement==NxOgre::Vec3::ZERO && getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
 	{
+		//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated");
 		return;
 	}
+	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated");
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
@@ -87,15 +94,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
 		}
 
-		if (mNextMovement!=Vector3::ZERO)
+
+		// Scale next movement using time and speed
+		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			// Scale next movement using time and speed
-			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-			{
-				mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
-			}
-			// Apply gravity
-			mNextMovement+=Application::getInstance()->getPhysicsSubsystem()->mGravity * elapsedSeconds;
+			mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
 		}
 
 		if (mJumping)
@@ -149,7 +152,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
-		if (mNextMovement!=Vector3::ZERO)
+		if (mNextMovement!=NxOgre::Vec3::ZERO)
 		{
 			setOnSurface(false);
 
@@ -165,7 +168,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 	setLastMovement(mNextMovement);
 	//Set movement to zero for the next frame
-	mNextMovement=Vector3::ZERO;
+	mNextMovement=NxOgre::Vec3::ZERO;
 	mIsWalking=false;
 }
 

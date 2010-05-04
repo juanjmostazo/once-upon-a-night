@@ -279,7 +279,7 @@ void GameObjectOny::postUpdate()
 
 			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 			{
-				mRenderComponentParticleSystemLand->start();
+				//mRenderComponentParticleSystemLand->start();
 			}
 		}
 		else
