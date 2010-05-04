@@ -67,18 +67,13 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
-	////TODO: TESTING PURPOSE, THIS IF BLOCK MUST BE REMOVED
-	//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
+
+	//if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
 	//{
+	//	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated");
 	//	return;
 	//}
-
-	if(mNextMovement==NxOgre::Vec3::ZERO && getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
-	{
-		//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated");
-		return;
-	}
-	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated");
+	////Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated");
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
@@ -152,16 +147,14 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
-		if (mNextMovement!=NxOgre::Vec3::ZERO)
-		{
-			setOnSurface(false);
 
-			getNxOgreController()->move(
-				mNextMovement,
-				GROUP_COLLIDABLE_MASK,
-				Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-				collisionFlags);
-		}
+		setOnSurface(false);
+
+		getNxOgreController()->move(
+			mNextMovement,
+			collisionFlags,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
 
 		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}

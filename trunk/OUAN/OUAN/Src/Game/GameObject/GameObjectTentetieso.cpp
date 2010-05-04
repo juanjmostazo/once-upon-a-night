@@ -65,14 +65,14 @@ RenderComponentEntityPtr GameObjectTentetieso::getRenderComponentEntityNightmare
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectTentetieso::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectTentetieso::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectTentetieso::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectTentetieso::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectTentetieso::update(double elapsedSeconds)
@@ -97,26 +97,15 @@ void GameObjectTentetieso::reset()
 
 	changeWorld(DREAMS);
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->reset();
-		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-	}
-	else
-	{
-		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
-	}
 }
 
 void GameObjectTentetieso::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 	{
-		mPhysicsComponentCharacter->create();
+		mPhysicsComponentSimpleBox->create();
 	}
 
 	switch(world)
@@ -151,7 +140,7 @@ bool GameObjectTentetieso::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectTentetieso::getPhysicsComponent() const
 {
-	return getPhysicsComponentCharacter();
+	return getPhysicsComponentSimpleBox();
 }
 
 

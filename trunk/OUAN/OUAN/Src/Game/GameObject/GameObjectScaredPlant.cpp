@@ -45,31 +45,19 @@ RenderComponentInitialPtr GameObjectScaredPlant::getRenderComponentInitial() con
 	return mRenderComponentInitial;
 }
 
-void GameObjectScaredPlant::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectScaredPlant::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectScaredPlant::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectScaredPlant::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectScaredPlant::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		getPhysicsComponentCharacter()->getNxOgreController()->move(
-			Application::getInstance()->getPhysicsSubsystem()->mGravity * 
-			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-			GROUP_COLLIDABLE_MASK,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
-	}
 }
 
 void GameObjectScaredPlant::reset()
@@ -77,18 +65,6 @@ void GameObjectScaredPlant::reset()
 	GameObject::reset();
 	
 	changeWorld(DREAMS);
-
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->reset();
-		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-	}
-	else
-	{
-		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
-	}
 }
 
 void GameObjectScaredPlant::changeWorld(int world)
@@ -98,16 +74,16 @@ void GameObjectScaredPlant::changeWorld(int world)
 	switch(world)
 	{
 		case DREAMS:
-			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
-				//mPhysicsComponentCharacter->create();
+				mPhysicsComponentSimpleBox->create();
 			}
 			mRenderComponentEntityDreams->setVisible(true);
 			break;
 		case NIGHTMARES:
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				//mPhysicsComponentCharacter->destroy();
+				mPhysicsComponentSimpleBox->destroy();
 			}
 			mRenderComponentEntityDreams->setVisible(false);
 			break;
@@ -132,7 +108,7 @@ bool GameObjectScaredPlant::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectScaredPlant::getPhysicsComponent() const
 {
-	return getPhysicsComponentCharacter();
+	return getPhysicsComponentSimpleBox();
 }
 
 /// Set logic component

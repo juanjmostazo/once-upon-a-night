@@ -78,18 +78,6 @@ PhysicsComponentCharacterPtr GameObjectSnakeCreeper::getPhysicsComponentCharacte
 void GameObjectSnakeCreeper::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		getPhysicsComponentCharacter()->getNxOgreController()->move(
-			Application::getInstance()->getPhysicsSubsystem()->mGravity * 
-			Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale,
-			GROUP_COLLIDABLE_MASK,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
-	}
 }
 
 void GameObjectSnakeCreeper::changeWorld(int world)

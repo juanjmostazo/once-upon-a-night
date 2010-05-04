@@ -1334,9 +1334,9 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 		pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters));
 
 	//Create PhysicsComponent
-	pGameObjectScaredPlant->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectScaredPlant->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectScaredPlant,
-		tGameObjectScaredPlantParameters.tPhysicsComponentCharacterParameters,
+		tGameObjectScaredPlantParameters.tPhysicsComponentSimpleBoxParameters,
 		pGameObjectScaredPlant->getRenderComponentPositional()));
 
 	pGameObjectScaredPlant->changeWorld(gameWorldMgr->getCurrentWorld());
@@ -1554,10 +1554,11 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters));
 
 	//Create PhysicsComponent
-	pGameObjectTentetieso->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectTentetieso->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectTentetieso,
-		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters,
+		tGameObjectTentetiesoParameters.tPhysicsComponentSimpleBoxParameters,
 		pGameObjectTentetieso->getRenderComponentPositional()));
+
 
 	pGameObjectTentetieso->changeWorld(gameWorldMgr->getCurrentWorld());
 

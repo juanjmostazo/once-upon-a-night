@@ -77,7 +77,6 @@ namespace OUAN
 		bool mJumping;
 		bool mFalling;
 		bool mSliding;
-		bool mOnSurface;
 		bool mIsWalking;
 
 		// Physics times
