@@ -71,8 +71,6 @@ bool Application::init()
 	mExitRequested=false;
 	Utils::Random::getInstance()->init((unsigned)time(NULL));
 
-	ComponentFactory::getInstance()->init(this_);
-
 	mStateManager.reset(new GameStateManager());
 
 	mConfiguration.reset(new Configuration());

@@ -82,49 +82,6 @@ namespace OUAN
 		/// Reset game objects
 		void resetAll();
 
-		/// Create a game object using the given 'parameters' object
-		/// @param objectParams parameters to init the game object and its components
-		void createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters);
-		void createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters);
-		void createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters);
-		void createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters);
-		void createGameObjectCarnivorousPlant(TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters);
-		void createGameObjectClockPiece(TGameObjectClockPieceParameters tGameObjectClockPieceParameters);
-		void createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters);
-		void createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters);
-		void createGameObjectDiamondTree(TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters);
-		void createGameObjectDoor(TGameObjectDoorParameters tGameObjectDoorParameters);
-		void createGameObjectDragon(TGameObjectDragonParameters tGameObjectDragonParameters);
-		void createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters);
-		void createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters);
-		void createGameObjectHeart(TGameObjectHeartParameters tGameObjectHeartParameters);
-		void createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters);
-		void createGameObjectItemMaxHP(TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters);
-		void createGameObjectLight(TGameObjectLightParameters tGameObjectLightParameters);
-		void createGameObjectMagicClock(TGameObjectMagicClockParameters tGameObjectMagicClockParameters);
-		void createGameObjectNightGoblin(TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters);
-		void createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters);
-		void createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters);
-		void createGameObjectPillow(TGameObjectPillowParameters tGameObjectPillowParameters);
-		void createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters);
-		void createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters);
-		void createGameObjectProvisionalEntity(TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters);
-		void createGameObjectScaredPlant(TGameObjectScaredPlantParameters tGameObjectScaredPlantParameters);
-		void createGameObjectScene(TGameObjectSceneParameters tGameObjectSceneParameters);
-		void createGameObjectScepter(TGameObjectScepterParameters tGameObjectScepterParameters);
-		void createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters);
-		void createGameObjectStoryBook(TGameObjectStoryBookParameters tGameObjectStoryBookParameters);
-		void createGameObjectTentetieso(TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters);
-		void createGameObjectTerrainConvex(TGameObjectTerrainConvexParameters tGameObjectTerrainConvexParameters);	
-		void createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters);
-		void createGameObjectTree(TGameObjectTreeParameters tGameObjectTreeParameters);
-		void createGameObjectTriggerBox(TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters);
-		void createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters);
-		void createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters);
-		void createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters);
-		void createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters);
-		void createGameObjectWoodBox(TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters);
-
 		//Trajectory Creator
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
 
@@ -229,8 +186,6 @@ namespace OUAN
 		void setGodMode(bool activated);
 		bool getGodMode();
 
-	private:
-
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);
@@ -274,6 +229,8 @@ namespace OUAN
 		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
+
+	private:		
 
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"

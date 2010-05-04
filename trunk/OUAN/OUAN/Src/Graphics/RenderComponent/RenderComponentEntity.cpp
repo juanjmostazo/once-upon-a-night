@@ -100,7 +100,7 @@ bool RenderComponentEntity::isAnimated() const
 }
 void RenderComponentEntity::update(double elapsedTime)
 {
-	if (mCurrentAnimation)
+	if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 	{
 		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
 		if (mCurrentAnimation->hasEnded())

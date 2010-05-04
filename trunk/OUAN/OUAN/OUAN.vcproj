@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -115,13 +115,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
+				Optimization="3"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -140,7 +140,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
-				Profile="false"
+				Profile="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -480,6 +480,10 @@
 			<Filter
 				Name="Game"
 				>
+				<File
+					RelativePath=".\Src\Game\GameObjectFactory.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.cpp"
 					>
@@ -1094,6 +1098,10 @@
 			<Filter
 				Name="Game"
 				>
+				<File
+					RelativePath=".\Src\Game\GameObjectFactory.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.h"
 					>

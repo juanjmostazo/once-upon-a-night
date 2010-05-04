@@ -36,19 +36,15 @@
 #include "../Logic/LogicComponent/AttackComponent.h"
 
 using namespace OUAN;
-
-ComponentFactory* ComponentFactory::mInstance=NULL;
-
-ComponentFactory* ComponentFactory::getInstance()
+ComponentFactory::ComponentFactory()
 {
-	if (mInstance)
-		return mInstance;
-	else{
-		mInstance=new ComponentFactory();
-		return mInstance;
-	}
-}
 
+}
+ComponentFactory::~ComponentFactory()
+{
+	if (mApp.get())
+		mApp.reset();
+}
 void ComponentFactory::init(ApplicationPtr app)
 {
 	mApp=app;

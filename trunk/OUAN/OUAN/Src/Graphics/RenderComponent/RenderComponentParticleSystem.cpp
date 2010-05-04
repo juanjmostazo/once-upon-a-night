@@ -24,13 +24,19 @@ void RenderComponentParticleSystem::setParticleSystem(ParticleUniverse::Particle
 
 void RenderComponentParticleSystem::setVisible(bool visible)
 {
-	mParticleSystem->setVisible(visible);	
+	if (mParticleSystem)
+		mParticleSystem->setVisible(visible);
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - setVisible(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::run()
 {
-	stop();	
-	start();
+	if (mParticleSystem)
+	{
+		stop();	
+		start();
+	}
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - run(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::runOnce()
@@ -41,33 +47,47 @@ void RenderComponentParticleSystem::runOnce()
 
 void RenderComponentParticleSystem::start()
 {
-	mParticleSystem->prepare();		
-	mParticleSystem->start();
+	if (mParticleSystem)
+	{
+		mParticleSystem->prepare();		
+		mParticleSystem->start();
+	}
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - start(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::stop()
 {
-	mParticleSystem->stop();		
+	if (mParticleSystem)
+		mParticleSystem->stop();	
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - stop(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::stopWhenFinished()
 {
-	mParticleSystem->stopFade();		
+	if (mParticleSystem)
+		mParticleSystem->stopFade();
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - stopWhenFinished(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::stopWithDelay(double seconds)
 {
-	mParticleSystem->stop(seconds);		
+	if (mParticleSystem)
+		mParticleSystem->stop(seconds);
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - stopWithDelay(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::pause()
 {
-	mParticleSystem->pause();		
+	if (mParticleSystem)
+		mParticleSystem->pause();	
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - pause(): mParticleSystem is NULL ");
 }
 
 void RenderComponentParticleSystem::resume()
 {
-	mParticleSystem->resume();		
+	if (mParticleSystem)
+		mParticleSystem->resume();		
+	else Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - resume(): mParticleSystem is NULL ");
 }
 
 TRenderComponentParticleSystemParameters::TRenderComponentParticleSystemParameters() : TRenderComponentParameters()

@@ -12,15 +12,9 @@ namespace OUAN
 		/// the application
 		ApplicationPtr mApp;
 		
-		/// the factory instance
-		static ComponentFactory* mInstance;
-		/// Default constructor
-		ComponentFactory(){}
-		~ComponentFactory(){delete mInstance;}
 	public:
-		///return instance of the factory
-		///@return factory's instance
-		static ComponentFactory* getInstance();
+		ComponentFactory();
+		~ComponentFactory();
 
 		void init(ApplicationPtr app);
 
