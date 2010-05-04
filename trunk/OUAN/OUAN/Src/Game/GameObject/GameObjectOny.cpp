@@ -246,7 +246,9 @@ void GameObjectOny::updateLogic(double elapsedSeconds)
 void GameObjectOny::processAnimationEnded(const std::string& animationName)
 {
 	if(mLogicComponentOny.get())
+	{
 		mLogicComponentOny->processAnimationEnded(animationName);
+	}
 }
 
 bool GameObjectOny::hasRenderComponentEntity() const
@@ -270,6 +272,7 @@ void GameObjectOny::postUpdate()
 
 	int currentState=mLogicComponentOny->getState();
 	int lastState=mLogicComponentOny->getOldState();
+
 	if (currentState==ONY_STATE_IDLE)
 	{
 		if (mLogicComponentOny->isStateChanged())
@@ -279,7 +282,7 @@ void GameObjectOny::postUpdate()
 
 			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 			{
-				//mRenderComponentParticleSystemLand->start();
+				mRenderComponentParticleSystemLand->start();
 			}
 		}
 		else
@@ -287,7 +290,9 @@ void GameObjectOny::postUpdate()
 			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
 			{
 				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
+				{
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
+				}
 			}
 		}
 	}		
@@ -311,12 +316,15 @@ void GameObjectOny::postUpdate()
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
 	{
 		if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
+		{
 			mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
+		}
 		else //Walk/run toggle
 		{
 			bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
 			bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
 			bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
+
 			if (toWalk || toRun || fromJump)
 			{
 				mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);

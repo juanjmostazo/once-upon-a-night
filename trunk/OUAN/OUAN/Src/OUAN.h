@@ -757,7 +757,8 @@ namespace OUAN
 		#define COLLISION_TYPE_TRIGGER_EXIT 3
 
 		#define PI 3.14159265
-		#define TO_DEGREES 57.296 //180/PI
+		#define TO_DEGREES 57.296 // 180/PI
+		#define TO_RADIANS 0.0174532925 // PI/180
 
 		//-------------------------------------
 		//  Particle Systems
