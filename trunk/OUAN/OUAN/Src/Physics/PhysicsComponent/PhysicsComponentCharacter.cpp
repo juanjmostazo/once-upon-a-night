@@ -68,12 +68,16 @@ void PhysicsComponentCharacter::destroy()
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 
-	//if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
-	//{
-	//	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated");
-	//	return;
-	//}
-	////Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated");
+	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface)
+	{
+		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
+											getNxOgreController()->getPosition().y,
+											getNxOgreController()->getPosition().z
+			));
+		//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
+		return;
+	}
+	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated, position " + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
@@ -167,9 +171,12 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
-	setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
-	mFallTime += elapsedSeconds;
-	mNextMovement.y += mFallSpeed * elapsedSeconds;
+	//if(!mOnSurface)
+	//{
+		setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
+		mFallTime += elapsedSeconds;
+		mNextMovement.y += mFallSpeed * elapsedSeconds;
+	//}
 }
 
 bool PhysicsComponentCharacter::isMoving()
