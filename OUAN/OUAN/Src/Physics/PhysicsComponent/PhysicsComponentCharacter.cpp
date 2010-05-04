@@ -54,7 +54,7 @@ void PhysicsComponentCharacter::create()
 			NxOgre::String(this->getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees(),
-			Application::getInstance()->getPhysicsSubsystem()->mSlopeLimit,   
+			Ogre::Math::Cos(Application::getInstance()->getPhysicsSubsystem()->mSlopeLimit * TO_RADIANS),   
 			Application::getInstance()->getPhysicsSubsystem()->mStepOffset,
 			Application::getInstance()->getPhysicsSubsystem()->mSkinWidth));
 }
