@@ -70,9 +70,7 @@ void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 void PhysicsSubsystem::cleanUp()
 {
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP STARTED]");
-
 	clear();
-
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP FINISHED]");
 }
 
@@ -88,7 +86,7 @@ void PhysicsSubsystem::initLevel(std::string sceneName)
 
 	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Setting up scene description");
 	NxOgre::SceneDescription sceneDesc;
-	sceneDesc.mGravity = mGravity;
+	sceneDesc.mGravity = mGravity * mGravityBodiesFactor;
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 
 	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating scene");
@@ -302,6 +300,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("SKIN_WIDTH", value); 
 		mSkinWidth = atof(value.c_str());
 
+		config.getOption("GRAVITY_BODIES_FACTOR", value); 
+		mGravityBodiesFactor = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -326,6 +327,7 @@ bool PhysicsSubsystem::loadConfig()
 		mSlopeLimit = 0;
 		mStepOffset = 0;
 		mSkinWidth = 0;
+		mGravityBodiesFactor = 0;
 
 		success = false;
 	}

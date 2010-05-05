@@ -71,6 +71,13 @@ void GameObjectScaredPlant::changeWorld(int world)
 {
 	if (!isEnabled()) return;
 
+	//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	{
+		//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
+		mPhysicsComponentSimpleBox->create();
+	}
+
 	switch(world)
 	{
 		case DREAMS:
