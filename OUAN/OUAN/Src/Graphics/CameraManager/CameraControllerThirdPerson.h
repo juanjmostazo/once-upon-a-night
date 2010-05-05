@@ -49,7 +49,8 @@ namespace OUAN
 		double maxRotX;
 
 		//camera position speed
-		double speed;
+		double speedX;
+		double speedY;
 		double collisionMoveSpeed;
 		double collisionReturningSpeed;
 
