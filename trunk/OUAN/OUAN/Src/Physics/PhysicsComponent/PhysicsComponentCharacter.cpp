@@ -97,7 +97,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		// Scale next movement using time and speed
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			mNextMovement=mNextMovement+mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+			mNextMovement=mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
 		}
 
 		if (mJumping)

@@ -20,10 +20,11 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	rotX=0;
 	rotY=0;
 
-	speed=0.13;
+	speedX=0.06;
+	speedY=0.13;
 
 	collisionMoveSpeed=300;
-	collisionReturningSpeed=50;
+	collisionReturningSpeed=150;
 	returningspeed=2.5;
 
 	rotXDistanceAttenuationNegative=0.5;
@@ -37,6 +38,8 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 
 	currentCollisionTime=0;
 	minCollisionTime=0.3;
+
+	collisionDisplacementDistance=0;
 }
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
@@ -171,17 +174,19 @@ double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 camera
 {
 	Ogre::Vector3 direction;
 
-	double speed;
+	double movement_speed;
 	if(cameraIsReturning)
 	{
-		speed=collisionReturningSpeed;
+		movement_speed=collisionReturningSpeed;
 	}
 	else
 	{
-		speed=collisionMoveSpeed;
+		movement_speed=collisionMoveSpeed;
 	}
 
-	if(cameraPosition.distance(newCameraPosition)<speed*elapsedTime)
+	movement_speed=movement_speed*elapsedTime;
+
+	if(cameraPosition.distance(newCameraPosition)<movement_speed)
 	{
 		newNextMovePosition=newCameraPosition;
 		return cameraPosition.distance(newCameraPosition);
@@ -192,9 +197,9 @@ double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 camera
 		direction=newCameraPosition-cameraPosition;
 		direction.normalise();
 
-		newNextMovePosition=cameraPosition+direction*speed*elapsedTime;
+		newNextMovePosition=cameraPosition+direction*movement_speed;
 
-		return speed*elapsedTime;
+		return movement_speed;
 	}
 }
 
@@ -215,8 +220,8 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 	else
 	{
 		cameraMoved=true;
-		rotY-=cameraRotation.x*speed;
-		rotX-=cameraRotation.y*speed;
+		rotY-=cameraRotation.x*speedY;
+		rotX-=cameraRotation.y*speedX;
 	}
 
 	//check if rotation exceeds limits
