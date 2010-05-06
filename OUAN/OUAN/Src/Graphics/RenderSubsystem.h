@@ -91,7 +91,7 @@ namespace OUAN
 		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters,QueryFlags flags=QUERYFLAGS_NONE);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
-		ParticleUniverse::ParticleSystem* createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional);
+		ParticleUniverse::ParticleSystem** createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::SceneManager* setSceneParameters(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
 		RenderComponentDecalPtr createDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters);

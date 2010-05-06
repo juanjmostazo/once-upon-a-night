@@ -118,8 +118,8 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 	pRenderComponentParticleSystem->setParent(gameObject);
 
 	//Init Render Component
-	pRenderComponentParticleSystem->setParticleSystem(
-		mApp->getRenderSubsystem()->createParticleSystem(gameObject->getName(),tRenderComponentParticleSystemParameters,pRenderComponentPositional));
+	pRenderComponentParticleSystem->setParticleSystems(
+		mApp->getRenderSubsystem()->createParticleSystems(gameObject->getName(),tRenderComponentParticleSystemParameters,pRenderComponentPositional));
 
 	return pRenderComponentParticleSystem;
 }

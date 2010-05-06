@@ -517,35 +517,53 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 }
 
-ParticleUniverse::ParticleSystem* RenderSubsystem::createParticleSystem(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
+ParticleUniverse::ParticleSystem** RenderSubsystem::createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	ParticleUniverse::ParticleSystem *pParticleSystem = 0;
-	SceneNode *particleSystemNode = 0;
-	Ogre::String particleName = name + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
-	/*
-	Ogre::LogManager::getSingleton().logMessage("INNER CREATION OF PARTICLE SYSTEM");
-	Ogre::LogManager::getSingleton().logMessage("PS INIT INFO");
-	Ogre::LogManager::getSingleton().logMessage(particleName);
-	Ogre::LogManager::getSingleton().logMessage(tRenderComponentParticleSystemParameters.templateName);
-	Ogre::LogManager::getSingleton().logMessage("PS INFO END");
-	*/
-	try
-	{
-		// Create ParticleSystem
-		pParticleSystem = ParticleUniverse::ParticleSystemManager::getSingleton().createParticleSystem(
-			particleName, 
-			tRenderComponentParticleSystemParameters.templateName, 
-			mApp->getRenderSubsystem()->getSceneManager());
+	ParticleUniverse::ParticleSystem** pParticleSystems = 
+		(ParticleUniverse::ParticleSystem**) malloc(sizeof(ParticleUniverse::ParticleSystem*) * tRenderComponentParticleSystemParameters.poolSize);
 
-		// Attach ParticleSystem to SceneManager
-		particleSystemNode=pRenderComponentPositional->getSceneNode();
-		particleSystemNode->attachObject(pParticleSystem);
-	}
-	catch(Ogre::Exception &/*e*/)
+	for (int i=0; i<tRenderComponentParticleSystemParameters.poolSize; i++)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+particleName+" ParticleSystem!");
+		ParticleUniverse::ParticleSystem* pParticleSystem = 0;
+		Ogre::SceneNode* particleSystemNode = 0;
+		Ogre::String particleName = name + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
+		/*
+		Ogre::LogManager::getSingleton().logMessage("INNER CREATION OF PARTICLE SYSTEM");
+		Ogre::LogManager::getSingleton().logMessage("PS INIT INFO");
+		Ogre::LogManager::getSingleton().logMessage(particleName);
+		Ogre::LogManager::getSingleton().logMessage(tRenderComponentParticleSystemParameters.templateName);
+		Ogre::LogManager::getSingleton().logMessage("PS INFO END");
+		*/
+		try
+		{
+			// Create ParticleSystem
+			pParticleSystem = ParticleUniverse::ParticleSystemManager::getSingleton().createParticleSystem(
+				particleName, 
+				tRenderComponentParticleSystemParameters.templateName, 
+				mApp->getRenderSubsystem()->getSceneManager());
+
+			// Create Particle System scene node where required
+			if (tRenderComponentParticleSystemParameters.attached)
+			{
+				particleSystemNode=pRenderComponentPositional->getSceneNode()->createChildSceneNode();
+			}
+			else
+			{
+				particleSystemNode=mSceneManager->getRootSceneNode()->createChildSceneNode();
+			}
+
+			// Attach particle system to the created scene node
+			particleSystemNode->attachObject(pParticleSystem);
+		}
+		catch(Ogre::Exception &/*e*/)
+		{
+			LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+particleName+" ParticleSystem!");
+		}
+		
+		pParticleSystems[i] = pParticleSystem;
 	}
-	return pParticleSystem;
+
+	return pParticleSystems;
 }
 
 void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::ColourValue colour,OUAN::Vector2 dimensions,OUAN::Vector3 position,OUAN::Real rotation,int texcoordindex,OUAN::Vector4 texrect)

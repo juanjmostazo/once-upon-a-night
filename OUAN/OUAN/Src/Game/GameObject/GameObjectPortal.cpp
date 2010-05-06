@@ -248,7 +248,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					getGameWorldManager()->changeWorld();				
 					//NOTE: Maybe this flag could be reset after the changeWorld animation has ended.
 					mLogicComponentUsable->setIsActivated(false);
-					mRenderComponentParticleSystemChangeWorld->runOnce();
+					mRenderComponentParticleSystemChangeWorld->start();
 				}
 			}
 			entityToUpdate->update(elapsedSeconds);
