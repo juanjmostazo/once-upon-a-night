@@ -1011,6 +1011,8 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = 1;
 	pGameObjectOny->setRenderComponentParticleSystemLand(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectOny,tRenderComponentParticleSystemParameters,pGameObjectOny->getRenderComponentPositional()));
 
@@ -1220,6 +1222,8 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = 1;
 	pGameObjectPortal->setRenderComponentParticleSystemChangeWorld(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectPortal,tRenderComponentParticleSystemParameters,pGameObjectPortal->getRenderComponentPositional()));
 

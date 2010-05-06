@@ -9,25 +9,30 @@ namespace OUAN
 	class RenderComponentParticleSystem: public RenderComponent
 	{
 	private:
-		ParticleUniverse::ParticleSystem * mParticleSystem;
+		ParticleUniverse::ParticleSystem** mParticleSystems;
+		int mPoolPointer;
+		int mPoolSize;
+
+		void advancePoolPointer();
 
 	public:
-
-		RenderComponentParticleSystem(const std::string& type="");
+		RenderComponentParticleSystem(const std::string& type="", int poolSize=1);
 		~RenderComponentParticleSystem();
 
-		ParticleUniverse::ParticleSystem * getParticleSystem() const;
-		void setParticleSystem(ParticleUniverse::ParticleSystem *);
+		ParticleUniverse::ParticleSystem** getParticleSystems() const;
+		void setParticleSystems(ParticleUniverse::ParticleSystem **);
 
 		void setVisible(bool visible);
-		void run();
-		void runOnce();
+
 		void start();
 		void stop();
-		void stopWhenFinished();
-		void stopWithDelay(double seconds);
 		void pause();
 		void resume();
+
+		void startAll();
+		void stopAll();
+		void pauseAll();
+		void resumeAll();
 	};
 
 	class TRenderComponentParticleSystemParameters: public TRenderComponentParameters
@@ -37,8 +42,9 @@ namespace OUAN
 		~TRenderComponentParticleSystemParameters();
 
 		String templateName;
+		bool attached;
+		int poolSize;
 	};
-
 }
 
 #endif
