@@ -28,6 +28,7 @@ LogicComponentPtr GameObjectPillow::getLogicComponent()
 {
 	return mLogicComponent;
 }
+
 RenderComponentEntityPtr GameObjectPillow::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -58,6 +59,16 @@ RenderComponentInitialPtr GameObjectPillow::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectPillow::setRenderComponentParticleSystemAttack(RenderComponentParticleSystemPtr pRenderComponentParticleSystemAttack)
+{
+	mRenderComponentParticleSystemAttack = pRenderComponentParticleSystemAttack;
+}
+
+RenderComponentParticleSystemPtr GameObjectPillow::getRenderComponentParticleSystemAttack() const
+{
+	return mRenderComponentParticleSystemAttack;
+}
+
 void GameObjectPillow::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
 {
 	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
@@ -67,10 +78,12 @@ PhysicsComponentSimpleCapsulePtr GameObjectPillow::getPhysicsComponentSimpleCaps
 {
 	return mPhysicsComponentSimpleCapsule;
 }
+
 PhysicsComponentVolumeBoxPtr GameObjectPillow::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
+
 void GameObjectPillow::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponent)
 {
 	mPhysicsComponentVolumeBox=physicsComponent;
@@ -191,10 +204,12 @@ void GameObjectPillow::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
+
 double GameObjectPillow::getLastAttackTime()
 {
 	return mLastAttackTime;
 }
+
 void GameObjectPillow::setLastAttackTime(double lastAttackTime)
 {
 	mLastAttackTime=lastAttackTime;
@@ -207,11 +222,26 @@ bool GameObjectPillow::canInitiateAttack()
 	bool isCombo=attackData->comboDelay>0.0 && mLastAttackTime>=0 && mLastAttackTime<(attackData->cooldownDelay-attackData->comboDelay);
 	return (!mParentWeaponComponent->isActiveWeaponInUse() && coolDownPassed) || (mParentWeaponComponent->isActiveWeaponInUse() && isCombo);
 }
+
 void GameObjectPillow::beginAttack()
 {
 	Ogre::LogManager::getSingletonPtr()->logMessage("PILLOW ATTACK LAUNCHED!");
 	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 	std::stringstream textMsg("");
+
+	GameObjectOnyPtr ony = Application::getInstance()->getGameWorldManager()->getGameObjectOny();
+
+	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
+		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+	{
+		Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+		Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
+		Ogre::Quaternion orient = Utils::getNodeWorldOrientation(ent,bone);
+
+		mRenderComponentParticleSystemAttack->start(pos);
+	}
+
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
 	{
 		//NEW COMBO: CHANGE ATTACK
@@ -220,20 +250,29 @@ void GameObjectPillow::beginAttack()
 		attackData=boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 		textMsg<<"It's a COMBO! ";
 	}
+
 	Ogre::LogManager::getSingletonPtr()->logMessage("AttackName: "+attackData->attackName);
 	textMsg<<attackData->attackName<<", "<<attackData->damage<<" HP";
 	displayText(textMsg.str());
+
 	if (!mRenderComponentEntity->getEntity()->isVisible())
+	{
 		mRenderComponentEntity->getEntity()->setVisible(true);
+	}
+
 	if (mPhysicsComponentVolumeBox.get())
 	{
 		if (mPhysicsComponentVolumeBox->isInUse())
+		{
 			mPhysicsComponentVolumeBox->destroy();
+		}
+
 		mPhysicsComponentVolumeBox->create();
 	}
-	mLastAttackTime=attackData->cooldownDelay;
 
+	mLastAttackTime=attackData->cooldownDelay;
 }
+
 void GameObjectPillow::endAttack()
 {
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse() && 
@@ -246,6 +285,7 @@ void GameObjectPillow::endAttack()
 		setAttack(getDefaultAttack());
 	}
 }
+
 void GameObjectPillow::setAttack(const std::string& newAttack)
 {
 	mAttackComponent->setSelectedAttack(newAttack);
@@ -257,41 +297,56 @@ void GameObjectPillow::setAttack(const std::string& newAttack)
 		//TODO: radius, etc, should also be modified here
 	}
 }
+
 std::string GameObjectPillow::getDefaultAttack()
 {
 	return ATTACK_NAME_BASE;	
 }
+
 std::string GameObjectPillow::getAttackName()
 {
 	if (mAttackComponent.get())
+	{
 		return mAttackComponent->getSelectedAttack()->attackName;
+	}
+
 	return "";
 }
+
 int GameObjectPillow::getAttackDamage()
 {
 	if (mAttackComponent.get())
+	{
 		return mAttackComponent->getSelectedAttack()->damage;
+	}
+
 	return 0;
 
 }
+
 void GameObjectPillow::update(double elapsedSeconds)
 {
 	if (isEnabled()) //there is no point to updating the flashlight when it's not active
 	{
 		GameObject::update(elapsedSeconds);
+
 		if (mLastAttackTime>=0.0)
+		{
 			mLastAttackTime-=elapsedSeconds;
-		else 
-			if (mParentWeaponComponent.get() && 
-			mParentWeaponComponent->getActiveWeapon()->getName().compare(getName())==0 &&
+		}
+		else if(mParentWeaponComponent.get() && 
+				mParentWeaponComponent->getActiveWeapon()->getName().compare(getName())==0 &&
 				mParentWeaponComponent->isActiveWeaponInUse())
+		{
 			endAttack();
+		}	
 
 		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
 		Ogre::Vector3 pos;
 		Ogre::Quaternion orient;
-		if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
-			&& ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+
+		if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
+			ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
 		{
 			Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
 			Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
@@ -303,6 +358,7 @@ void GameObjectPillow::update(double elapsedSeconds)
 			pos=ony->getRenderComponentPositional()->getPosition();
 			orient=ony->getRenderComponentPositional()->getOrientation();
 		}
+
 		mRenderComponentPositional->setPosition(pos);
 		mRenderComponentPositional->setOrientation(orient);
 
@@ -325,47 +381,61 @@ void GameObjectPillow::update(double elapsedSeconds)
 		}
 	}
 }
+
 bool GameObjectPillow::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 AttackComponentPtr GameObjectPillow::getAttackComponent() const
 {
 	return mAttackComponent;
 }
+
 void GameObjectPillow::setAttackComponent(AttackComponentPtr attackComponent)
 {
 	mAttackComponent=attackComponent;
 }
+
 RenderComponentEntityPtr GameObjectPillow::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 WeaponComponentPtr GameObjectPillow::getParentWeaponComponent() const
 {
 	return mParentWeaponComponent;
 }
+
 void GameObjectPillow::setParentWeaponComponent(WeaponComponentPtr parentWeaponComponent) 
 {
 	mParentWeaponComponent=parentWeaponComponent;
 }
+
 bool GameObjectPillow::hasParentWeaponComponent() const
 {
 	return true;
 }
+
 void GameObjectPillow::enable()
 {
 	GameObject::enable();
 	mRenderComponentEntity->setVisible(true);
 	//decide what to do with physics component
 }
+
 void GameObjectPillow::disable()
 {
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
+
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
 		mPhysicsComponentVolumeBox->destroy();
+	}
+		
 }
+
 //---------
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {

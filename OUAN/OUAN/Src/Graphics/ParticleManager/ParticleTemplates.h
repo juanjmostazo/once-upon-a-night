@@ -23,6 +23,7 @@ namespace OUAN
 		/// Particle name values
 		std::string PORTAL_CHANGE_WORLD;
 		std::string ONY_LAND;
+		std::string PILLOW_ATTACK;
 
 	protected:
 		/// Singleton instance

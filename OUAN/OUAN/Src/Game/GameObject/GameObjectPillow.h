@@ -26,9 +26,11 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack;
 		/// Physics information
 		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
-
+	
 		/// FAKE VOLUME BOX to emulate the pillow's collisions until we've got the
 		/// proper attack animations
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
@@ -77,6 +79,12 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemAttack(RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttack() const;
 
 		/// FAKE PHYSICS COMPONENT: It just sticks a volume box in front of Ony when he's attacking
 		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;

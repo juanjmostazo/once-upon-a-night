@@ -3,5 +3,6 @@
   <Options>
     <Option key="PORTAL_CHANGE_WORLD">PUMediaPack/Atomicity</Option>
 	<Option key="ONY_LAND">PUMediaPack/SpiralStars</Option>
+	<Option key="PILLOW_ATTACK">PUMediaPack/Atomicity2</Option>
   </Options>
 </Configuration>

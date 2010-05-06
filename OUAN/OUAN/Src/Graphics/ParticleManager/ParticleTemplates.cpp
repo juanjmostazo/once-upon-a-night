@@ -35,6 +35,7 @@ bool ParticleTemplates::loadConfig()
 	{
 		config.getOption("PORTAL_CHANGE_WORLD", PORTAL_CHANGE_WORLD); 
 		config.getOption("ONY_LAND", ONY_LAND); 
+		config.getOption("PILLOW_ATTACK", PILLOW_ATTACK); 
 
 		success = true;
 	}
@@ -42,6 +43,7 @@ bool ParticleTemplates::loadConfig()
 	{
 		PORTAL_CHANGE_WORLD="";
 		ONY_LAND="";
+		PILLOW_ATTACK="";
 
 		success = false;
 	}

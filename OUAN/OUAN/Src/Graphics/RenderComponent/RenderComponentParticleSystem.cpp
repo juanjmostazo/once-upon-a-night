@@ -49,10 +49,16 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 
 void RenderComponentParticleSystem::start()
 {
+	start(Ogre::Vector3::ZERO);
+}
+
+void RenderComponentParticleSystem::start(Ogre::Vector3 position)
+{
 	advancePoolPointer();
 
 	if (mParticleSystems)
 	{
+		mParticleSystems[mPoolPointer]->getParentSceneNode()->setPosition(position);
 		mParticleSystems[mPoolPointer]->prepare();		
 		mParticleSystems[mPoolPointer]->start();
 	}
