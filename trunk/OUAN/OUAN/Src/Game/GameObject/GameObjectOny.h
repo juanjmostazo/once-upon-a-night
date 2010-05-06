@@ -43,12 +43,11 @@ namespace OUAN
 	const unsigned int ONY_STATE_BIT_FIELD_HIT=11; //Ony being hit
 	const unsigned int ONY_STATE_BIT_FIELD_DIE=12; //Ony is dying
 
-#define SET_BIT(var,pos) var|(1<<pos)
-#define CLEAR_BIT(var,pos) var& ~(1<<pos)
-#define CHECK_BIT(var,pos) (var & (1<<pos))
-#define TOGGLE_BIT(var,pos) var^= (1<<pos)
-#define RESET_BIT_FIELD(var) var=0;
-
+	#define SET_BIT(var,pos) var|(1<<pos)
+	#define CLEAR_BIT(var,pos) var& ~(1<<pos)
+	#define CHECK_BIT(var,pos) (var & (1<<pos))
+	#define TOGGLE_BIT(var,pos) var^= (1<<pos)
+	#define RESET_BIT_FIELD(var) var=0;
 
 	//Animation names
 	const std::string ONY_ANIM_IDLE01="idle01";
@@ -81,13 +80,12 @@ namespace OUAN
 	const std::string ONY_ANIM_SHOOT_UP="shoot_up";
 	const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
 	const std::string ONY_ANIM_SHOOT_DOWN="shoot_down";
-		
+
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
 
-	private:
-		
+	private:	
 		/// Visual component data
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Positional component data
@@ -113,7 +111,6 @@ namespace OUAN
 		GameObjectOny(const std::string& name);
 		//Destructor
 		~GameObjectOny();
-
 
 		/// Return render component entity 
 		/// @return render component entity

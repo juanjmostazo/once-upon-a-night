@@ -25,6 +25,7 @@ namespace OUAN
 		void setVisible(bool visible);
 
 		void start();
+		void start(Ogre::Vector3 position);
 		void stop();
 		void pause();
 		void resume();

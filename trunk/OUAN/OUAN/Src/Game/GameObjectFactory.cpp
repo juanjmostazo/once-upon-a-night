@@ -1105,6 +1105,14 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	pGameObjectPillow->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectPillow->getRenderComponentPositional()));
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PILLOW_ATTACK;
+	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.poolSize = 5;
+	pGameObjectPillow->setRenderComponentParticleSystemAttack(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectPillow,tRenderComponentParticleSystemParameters,pGameObjectPillow->getRenderComponentPositional()));
+
 	//Create RenderComponentEntity
 	pGameObjectPillow->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPillowParameters.name,
