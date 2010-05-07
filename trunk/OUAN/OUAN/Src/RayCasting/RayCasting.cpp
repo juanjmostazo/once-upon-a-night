@@ -32,6 +32,7 @@ void RayCasting::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pP
 bool RayCasting::raycastPhysicsClosestGeometry(const Vector3 point,
                                         const Vector3 normal,
                                         Vector3 &result,
+										Ogre::uint32 & collisionType,
 										double maxDistance,
 										QueryFlags flags)
 {
@@ -41,6 +42,7 @@ bool RayCasting::raycastPhysicsClosestGeometry(const Vector3 point,
 bool RayCasting::raycastPhysicsClosestBoundings(const Vector3 point,
                                         const Vector3 normal,
                                         Vector3 &result,
+										Ogre::uint32 & collisionType,
 										double maxDistance,
 										QueryFlags flags)
 {
@@ -48,7 +50,7 @@ bool RayCasting::raycastPhysicsClosestBoundings(const Vector3 point,
 }
 
 
-bool RayCasting::raycastPhysicsAllBoundings(const Vector3 point,const Vector3 normal,std::vector<GameObjectPtr> &result,double maxDistance,QueryFlags flags)
+bool RayCasting::raycastPhysicsAllBoundings(const Vector3 point,const Vector3 normal,std::vector<GameObjectPtr> &result,Ogre::uint32 & collisionType,double maxDistance,QueryFlags flags)
 {
 	return mPhysicsSubsystem->raycastAllBoundings(point,normal,result,maxDistance,flags);
 }
@@ -59,6 +61,7 @@ bool RayCasting::raycastPhysicsAllBoundings(const Vector3 point,const Vector3 no
 bool RayCasting::raycastRenderClosestBoundings(const Vector3 point,
                                         const Vector3 normal,
                                         Vector3 &result,
+										Ogre::uint32 & collisionType,
 										double maxDistance,
 										QueryFlags flags)
 {
@@ -119,6 +122,7 @@ bool RayCasting::raycastRenderClosestBoundings(const Vector3 point,
 			{
 				closest_distance=query_result[qr_idx].distance;
 				closest_result=point+normal*closest_distance;
+				collisionType=query_result[qr_idx].movable->getQueryFlags();
 			}
         }       
     }
@@ -143,6 +147,7 @@ bool RayCasting::raycastRenderClosestBoundings(const Vector3 point,
 bool RayCasting::raycastRenderClosestGeometry(const Vector3 point,
                                         const Vector3 normal,
                                         Vector3 &result,
+										Ogre::uint32 & collisionType,
 										double maxDistance,
 										QueryFlags flags)
 {
@@ -235,6 +240,7 @@ bool RayCasting::raycastRenderClosestGeometry(const Vector3 point,
                         // this is the closest so far, save it off
                         closest_distance = hit.second;
                         new_closest_found = true;
+						collisionType=pentity->getQueryFlags();
                     }
                 }
             }

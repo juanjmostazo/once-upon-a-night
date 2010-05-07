@@ -11,13 +11,13 @@ namespace OUAN
 		
 		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem);
 
-		bool raycastRenderClosestGeometry(const Vector3 point,const Vector3 normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
-		bool raycastPhysicsClosestGeometry(const Vector3 point,const Vector3 normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastRenderClosestGeometry(const Vector3 point,const Vector3 normal,Vector3 &result,Ogre::uint32 &  collisionType,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastPhysicsClosestGeometry(const Vector3 point,const Vector3 normal,Vector3 &result,Ogre::uint32 & collisionType,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
-		bool raycastRenderClosestBoundings(const Vector3 point,const Vector3 normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
-		bool raycastPhysicsClosestBoundings(const Vector3 point,const Vector3 normal,Vector3 &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastRenderClosestBoundings(const Vector3 point,const Vector3 normal,Vector3 &result,Ogre::uint32 &  collisionType,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastPhysicsClosestBoundings(const Vector3 point,const Vector3 normal,Vector3 &result,Ogre::uint32 & collisionType,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
-		bool raycastPhysicsAllBoundings(const Vector3 point,const Vector3 normal,std::vector<GameObjectPtr> &result,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
+		bool raycastPhysicsAllBoundings(const Vector3 point,const Vector3 normal,std::vector<GameObjectPtr> &result,Ogre::uint32 & collisionType,double maxDistance=-1,QueryFlags flags=QUERYFLAGS_NONE);
 
 
 	private:
