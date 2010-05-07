@@ -68,6 +68,8 @@ void PhysicsComponentCharacter::destroy()
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 
+	if(!getParent()->isEnabled()) return;
+
 	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding)
 	{
 		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
@@ -147,7 +149,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			applyDash(elapsedSeconds);
+			//applyDash(elapsedSeconds);
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
