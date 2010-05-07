@@ -68,10 +68,15 @@ void PhysicsComponentCharacter::destroy()
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 
-	if(!getParent()->isEnabled()) return;
+	if(!getParent()->isEnabled())
+	{
+		setLastMovement(NxOgre::Vec3::ZERO);
+		return;
+	}
 
 	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding)
 	{
+		setLastMovement(NxOgre::Vec3::ZERO);
 		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
 											getNxOgreController()->getPosition().y,
 											getNxOgreController()->getPosition().z
@@ -181,7 +186,7 @@ void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 	//}
 }
 
-bool PhysicsComponentCharacter::isMoving()
+bool PhysicsComponentCharacter::isMoving() const
 {
 	return (Ogre::Math::Abs(mNextMovement.x)>0.1 || Ogre::Math::Abs(mNextMovement.z)>0.1);
 }	
@@ -547,11 +552,6 @@ bool PhysicsComponentCharacter::isFalling() const
 bool PhysicsComponentCharacter::isSliding() const
 {
 	return mSliding;
-}
-
-bool PhysicsComponentCharacter::isMoving() const
-{	
-	return mNextMovement!=NxOgre::Vec3::ZERO;
 }
 
 bool PhysicsComponentCharacter::isOnSurface() const

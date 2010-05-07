@@ -195,6 +195,8 @@ namespace OUAN
 
 		bool isDying() const;
 
+		bool isMoving();
+		bool isJumping();
 
 		/// Process collision event
 		/// @param gameObject which has collision with

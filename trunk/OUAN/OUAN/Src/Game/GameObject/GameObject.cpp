@@ -258,6 +258,16 @@ void GameObject::disableDisplayMsg()
 	}
 }
 
+bool GameObject::isMoving()
+{
+	return false;
+}
+
+bool GameObject::isJumping()
+{
+	return false;
+}
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

@@ -17,8 +17,10 @@
     <Option key="ROT_X_DISTANCE_ATTENUATION_POSITIVE">0.3</Option>
     <Option key="ROT_X_DISTANCE_ATTENUATION_NEGATIVE">0.5</Option>
     <Option key="MIN_COLLISION_TIME">0</Option>
-    <Option key="AUTO_ROT_X_SPEED">125</Option>
-    <Option key="MIN_AUTO_ROT_X">10</Option>
+    <Option key="AUTO_ROT_X_SPEED">25</Option>
+    <Option key="MIN_AUTO_ROT_X">0</Option>
     <Option key="MAX_AUTO_ROT_X">50</Option>
+    <Option key="AUTO_ROT_Y_SPEED">10</Option>
+    <Option key="MAX_Y_MOVEMENT_PER_FRAME">0.4</Option>
   </Options>
 </Configuration>

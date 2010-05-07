@@ -3,6 +3,7 @@
 #include "../RenderSubsystem.h"
 #include "../../RayCasting/RayCasting.h"
 #include "../../Loader/Configuration.h"
+#include "../../Game/GameObject/GameObject.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -99,6 +100,11 @@ bool CameraControllerThirdPerson::loadConfig()
 		config.getOption("MAX_AUTO_ROT_X", value); 
 		maxAutoRotX = atof(value.c_str());
 
+		config.getOption("AUTO_ROT_Y_SPEED", value); 
+		autoRotYSpeed = atof(value.c_str());
+
+		config.getOption("MAX_Y_MOVEMENT_PER_FRAME", value); 
+		maxYMovementPerFrame = atof(value.c_str());
 
 		success = true;
 	} 
@@ -120,7 +126,7 @@ void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,Physi
 	CameraController::init(pRenderSubsystem->getSceneManager());
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance)
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance,bool y_correction)
 {
 	Ogre::Vector3 newCameraPosition;
 
@@ -141,6 +147,22 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distan
 
 	//Calculate Camera position in the world
 	newCameraPosition = target->getPosition()+newCameraPosition;
+
+	//jumping correction
+	if(y_correction && Ogre::Math::Abs(newCameraPosition.y-mCamera->getPosition().y)>maxYMovementPerFrame)
+	{
+		if(newCameraPosition.y>mCamera->getPosition().y)
+		{
+			newCameraPosition.y=mCamera->getPosition().y+maxYMovementPerFrame;
+		}
+		else if(newCameraPosition.y<mCamera->getPosition().y)
+		{
+			newCameraPosition.y=mCamera->getPosition().y-maxYMovementPerFrame;
+		}
+		//newCameraPosition.y=mCamera->getPosition().y;
+	}
+
+	Ogre::LogManager::getSingleton().logMessage("y_correction "+Ogre::StringConverter::toString(y_correction));
 
 	return newCameraPosition;
 }
@@ -211,7 +233,10 @@ void CameraControllerThirdPerson::calculateCollisionRotXNegative(double elapsedT
 	}
 	else
 	{
-		//rotateY(-elapsedTime*autoRotXSpeed);
+		if(!target->getParent()->isMoving())
+		{
+			rotateY(elapsedTime*autoRotYSpeed);
+		}
 	}
 }
 
@@ -227,7 +252,10 @@ void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedT
 	}
 	else
 	{
-		//rotateY(-elapsedTime*autoRotXSpeed);
+		if(!target->getParent()->isMoving())
+		{
+			rotateY(elapsedTime*autoRotYSpeed);
+		}
 	}
 }
 
@@ -240,6 +268,19 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
+
+	//moving rotX correction
+	if(target->getParent()->isMoving())
+	{
+		if(rotX>20)
+		{
+			rotateX(-elapsedTime*autoRotXSpeed);
+		}
+		else if(rotX<10)
+		{
+			rotateX(elapsedTime*autoRotXSpeed);
+		}
+	}
 
 	cameraCollisionPosition=newCameraPosition;
 	//Calculate camera collisions
@@ -272,6 +313,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 	//set camera position
 	newCameraPosition=calculateCameraPosition(currentDistance);
+
 	mCamera->setPosition(newCameraPosition);
 
 	//set camera to look at target
@@ -342,6 +384,7 @@ void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
 	reset();
 	this->target=target;
 	rotY=target->getOrientation().getYaw().valueDegrees();
+	mCamera->setPosition(calculateCameraPosition(maxDistance,false));
 }
 
 TCameraControllerType CameraControllerThirdPerson::getControllerType()

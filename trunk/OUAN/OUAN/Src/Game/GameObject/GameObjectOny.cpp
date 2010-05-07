@@ -67,6 +67,16 @@ PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter() const
 	return mPhysicsComponentCharacter;
 }
 
+bool GameObjectOny::isMoving()
+{
+	return mPhysicsComponentCharacter->isMoving();
+}
+
+bool GameObjectOny::isJumping()
+{
+	return mPhysicsComponentCharacter->isJumping();
+}
+
 void GameObjectOny::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);

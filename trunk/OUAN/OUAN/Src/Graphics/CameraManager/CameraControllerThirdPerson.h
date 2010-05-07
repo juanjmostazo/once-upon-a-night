@@ -58,6 +58,8 @@ namespace OUAN
 		double autoRotXSpeed;
 		double minAutoRotX;
 		double maxAutoRotX;
+		double autoRotYSpeed;
+		double maxYMovementPerFrame;
 
 		//camera speed when it returns to initial position
 		double returningspeed;
@@ -75,7 +77,7 @@ namespace OUAN
 		void reset();
 		bool loadConfig();
 
-		Ogre::Vector3 calculateCameraPosition(double distance);
+		Ogre::Vector3 calculateCameraPosition(double distance,bool y_correction=true);
 		Ogre::Vector3 calculateCameraLookAt();
 
 
