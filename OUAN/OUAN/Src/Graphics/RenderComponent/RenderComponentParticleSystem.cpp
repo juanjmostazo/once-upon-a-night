@@ -58,9 +58,16 @@ void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 
 	if (mParticleSystems)
 	{
-		mParticleSystems[mPoolPointer]->getParentSceneNode()->setPosition(position);
-		mParticleSystems[mPoolPointer]->prepare();		
-		mParticleSystems[mPoolPointer]->start();
+		if (mParticleSystems[mPoolPointer])
+		{
+			mParticleSystems[mPoolPointer]->getParentSceneNode()->setPosition(position);
+			mParticleSystems[mPoolPointer]->prepare();		
+			mParticleSystems[mPoolPointer]->start();
+		} 
+		else 
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - start(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+		}
 	}
 	else 
 	{
@@ -72,7 +79,14 @@ void RenderComponentParticleSystem::stop()
 {
 	if (mParticleSystems)
 	{
-		mParticleSystems[mPoolPointer]->stop();
+		if (mParticleSystems[mPoolPointer])
+		{
+			mParticleSystems[mPoolPointer]->stop();
+		} 
+		else 
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - stop(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+		}
 	}
 	else 
 	{
@@ -84,7 +98,14 @@ void RenderComponentParticleSystem::pause()
 {
 	if (mParticleSystems)
 	{
-		mParticleSystems[mPoolPointer]->pause();
+		if (mParticleSystems[mPoolPointer])
+		{
+			mParticleSystems[mPoolPointer]->pause();
+		} 
+		else 
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - pause(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+		}
 	}
 	else 
 	{
@@ -96,7 +117,14 @@ void RenderComponentParticleSystem::resume()
 {
 	if (mParticleSystems)
 	{
-		mParticleSystems[mPoolPointer]->resume();
+		if (mParticleSystems[mPoolPointer])
+		{
+			mParticleSystems[mPoolPointer]->resume();
+		} 
+		else 
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - resume(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+		}
 	}
 	else 
 	{
@@ -110,7 +138,15 @@ void RenderComponentParticleSystem::startAll()
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
-			mParticleSystems[i]->start();
+			if (mParticleSystems[i])
+			{
+				mParticleSystems[i]->prepare();
+				mParticleSystems[i]->start();
+			} 
+			else 
+			{
+				Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - startAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			}
 		}
 	}
 	else
@@ -125,7 +161,14 @@ void RenderComponentParticleSystem::stopAll()
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
-			mParticleSystems[i]->stop();
+			if (mParticleSystems[i])
+			{
+				mParticleSystems[i]->stop();
+			} 
+			else 
+			{
+				Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - stopAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			}
 		}
 	}
 	else
@@ -140,7 +183,14 @@ void RenderComponentParticleSystem::pauseAll()
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
-			mParticleSystems[i]->pause();
+			if (mParticleSystems[i])
+			{
+				mParticleSystems[i]->pause();
+			} 
+			else 
+			{
+				Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - pauseAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			}
 		}
 	}
 	else
@@ -155,7 +205,14 @@ void RenderComponentParticleSystem::resumeAll()
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
-			mParticleSystems[i]->resume();
+			if (mParticleSystems[i])
+			{
+				mParticleSystems[i]->resume();
+			} 
+			else 
+			{
+				Ogre::LogManager::getSingletonPtr()->logMessage("RCParticleSystem - resumeAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			}
 		}
 	}
 	else
