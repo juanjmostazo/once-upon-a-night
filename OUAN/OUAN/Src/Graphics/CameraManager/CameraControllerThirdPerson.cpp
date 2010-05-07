@@ -2,6 +2,7 @@
 #include "../RenderComponent/RenderComponentPositional.h"
 #include "../RenderSubsystem.h"
 #include "../../RayCasting/RayCasting.h"
+#include "../../Loader/Configuration.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -10,41 +11,104 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 {
 	//Set CameraControllerThirdPerson Initial Parameters
 
-	initialDistance=80;
-	initialDirection=Ogre::Vector3(0,0.25,-1);
-
-
-	collisionMargin=5;
-	minDistance=30;
-	height=20;
-	rotX=0;
-	rotY=0;
-
-	speedX=0.06;
-	speedY=0.13;
-
-	collisionMoveSpeed=300;
-	collisionReturningSpeed=150;
-	returningspeed=2.5;
-
-	rotXDistanceAttenuationNegative=0.5;
-	rotXDistanceAttenuationPositive=0.3;
-
-	maxRotX=70;
-	minRotX=-45;
-
-	cameraMoved=false;
-	cameraIsReturning=false;
-
-	currentCollisionTime=0;
-	minCollisionTime=0.3;
-
-	collisionDisplacementDistance=0;
+	loadConfig();
+	reset();
 }
 
 CameraControllerThirdPerson::~CameraControllerThirdPerson()
 {
 
+}
+
+void CameraControllerThirdPerson::reset()
+{
+	rotX=0;
+	rotY=0;
+	cameraMoved=false;
+
+	currentCollisionTime=0;
+	currentDistance=maxDistance;
+}
+
+bool CameraControllerThirdPerson::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	if (config.loadFromFile(CAMERA_CFG))
+	{
+		double initial_directionX, initial_directionY, initial_directionZ;
+
+		config.getOption("INITIAL_DIRECTION_X", value); 
+		initial_directionX = atof(value.c_str());
+
+		config.getOption("INITIAL_DIRECTION_Y", value); 
+		initial_directionY = atof(value.c_str());
+
+		config.getOption("INITIAL_DIRECTION_Z", value); 
+		initial_directionZ = atof(value.c_str());
+
+		initialDirection = Vector3(initial_directionX, initial_directionY, initial_directionZ);
+
+		config.getOption("COLLISION_MARGIN", value); 
+		collisionMargin = atof(value.c_str());
+
+		config.getOption("MIN_DISTANCE", value); 
+		minDistance = atof(value.c_str());
+
+		config.getOption("MAX_DISTANCE", value); 
+		maxDistance = atof(value.c_str());
+
+		config.getOption("TARGET_HEIGHT", value); 
+		height = atof(value.c_str());
+
+		config.getOption("SPEED_X", value); 
+		speedX = atof(value.c_str());
+
+		config.getOption("SPEED_Y", value); 
+		speedY = atof(value.c_str());
+
+		config.getOption("COLLISION_MOVE_SPEED", value); 
+		collisionMoveSpeed = atof(value.c_str());
+
+		config.getOption("COLLISION_RETURN_SPEED", value); 
+		collisionReturningSpeed = atof(value.c_str());
+
+		config.getOption("ROT_X_DISTANCE_ATTENUATION_NEGATIVE", value); 
+		rotXDistanceAttenuationNegative = atof(value.c_str());
+
+		config.getOption("ROT_X_DISTANCE_ATTENUATION_POSITIVE", value); 
+		rotXDistanceAttenuationPositive = atof(value.c_str());
+
+		config.getOption("MAX_ROT_X", value); 
+		maxRotX = atof(value.c_str());
+
+		config.getOption("MIN_ROT_X", value); 
+		minRotX = atof(value.c_str());
+
+		config.getOption("MIN_COLLISION_TIME", value); 
+		minCollisionTime = atof(value.c_str());
+
+		config.getOption("AUTO_ROT_X_SPEED", value); 
+		autoRotXSpeed = atof(value.c_str());
+
+		config.getOption("MIN_AUTO_ROT_X", value); 
+		minAutoRotX = atof(value.c_str());
+
+		config.getOption("MAX_AUTO_ROT_X", value); 
+		maxAutoRotX = atof(value.c_str());
+
+
+		success = true;
+	} 
+	else 
+	{
+		Ogre::LogManager::getSingleton().logMessage(CAMERA_CFG + " COULD NOT BE LOADED!");
+		success = false;
+	}
+
+	return success;
 }
 
 void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting)
@@ -56,47 +120,11 @@ void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,Physi
 	CameraController::init(pRenderSubsystem->getSceneManager());
 }
 
-bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt)
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance)
 {
-	Ogre::Vector3 direction;
 	Ogre::Vector3 newCameraPosition;
-	double currentDistance;
 
-	currentDistance=cameraLookAt.distance(cameraPosition);
-
-	direction=cameraPosition-cameraLookAt;
-	direction.normalise();
-
-	newCameraPosition=cameraPosition;
-
-	mRayCasting->raycastRenderClosestGeometry(cameraLookAt,direction,newCameraPosition,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
-
-	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
-	{
-		newCameraPosition=newCameraPosition-collisionMargin*direction;
-		if( cameraLookAt.distance(newCameraPosition)<minDistance)
-		{
-			newCameraPosition=cameraLookAt+minDistance*direction;
-		}
-		cameraPosition=newCameraPosition;
-		return true;
-	}
-
-	return false;
-}
-
-void CameraControllerThirdPerson::update(double elapsedTime)
-{
-	Vector3 newCameraPosition;
-	Vector3 cameraCollisionPosition;
-	Vector3 newTargetPosition;
-	Vector3 cameraLookAt;
-	Quaternion newTargetOrientation;
-
-	newTargetPosition=target->getPosition();
-	newTargetOrientation=target->getOrientation();
-
-	newCameraPosition=initialDistance*initialDirection;
+	newCameraPosition=distance*initialDirection;
 
 	//Calculate Camera position in relation to the target
 	if(rotX<0)
@@ -114,93 +142,170 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	//Calculate Camera position in the world
 	newCameraPosition = target->getPosition()+newCameraPosition;
 
+	return newCameraPosition;
+}
+
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraLookAt()
+{
+	Ogre::Vector3 cameraLookAt;
+
 	//Calculate Camera look at
-	cameraLookAt=newTargetPosition+Vector3(0,height,0);
+	cameraLookAt=target->getPosition()+Vector3(0,height,0);
+
+	return cameraLookAt;
+}
+
+bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
+{
+	Ogre::Vector3 direction;
+	Ogre::Vector3 newCameraPosition;
+	double currentDistance;
+
+	currentDistance=cameraLookAt.distance(cameraPosition);
+
+	direction=cameraPosition-cameraLookAt;
+	direction.normalise();
+
+	newCameraPosition=cameraPosition;
+
+	mRayCasting->raycastRenderClosestGeometry(cameraLookAt,direction,newCameraPosition,collisionType,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
+
+	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
+	{
+		cameraPosition=newCameraPosition-collisionMargin*direction;
+
+		return true;
+	}
+
+	return false;
+}
+
+void CameraControllerThirdPerson::rotateX(double rotation)
+{
+	rotX+=rotation;
+	//check if rotation exceeds limits
+	if(rotX>maxRotX)
+	{
+		rotX=maxRotX;
+	}
+	else if(rotX<minRotX)
+	{
+		rotX=minRotX;
+	}
+}
+
+void CameraControllerThirdPerson::rotateY(double rotation)
+{
+	rotY+=rotation;
+}
+
+void CameraControllerThirdPerson::calculateCollisionRotXNegative(double elapsedTime)
+{
+	if(lastRotX!=0)
+	{
+		rotateX(-lastRotX);
+	}
+	else if(rotX>minAutoRotX)
+	{
+		rotateX(-elapsedTime*autoRotXSpeed);
+	}
+	else
+	{
+		//rotateY(-elapsedTime*autoRotXSpeed);
+	}
+}
+
+void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedTime)
+{
+	if(lastRotX!=0)
+	{
+		rotateX(-lastRotX);
+	}
+	else if(rotX<maxAutoRotX)
+	{
+		rotateX(elapsedTime*autoRotXSpeed);
+	}
+	else
+	{
+		//rotateY(-elapsedTime*autoRotXSpeed);
+	}
+}
+
+void CameraControllerThirdPerson::update(double elapsedTime)
+{
+	Vector3 cameraCollisionPosition;
+	Vector3 newCameraPosition;
+	Vector3 cameraLookAt;
+	Ogre::uint32 collisionType;
+
+	newCameraPosition=calculateCameraPosition(maxDistance);
+	cameraLookAt=calculateCameraLookAt();
 
 	cameraCollisionPosition=newCameraPosition;
-
-	Ogre::Vector3 newNextMovePosition;
-
 	//Calculate camera collisions
-	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt))
+	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt,collisionType))
 	{
-
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)
 		{
-			collisionDisplacementDistance+=calculateNextMovementTo(mCamera->getPosition(),cameraCollisionPosition,newNextMovePosition,elapsedTime);
-			newCameraPosition=newNextMovePosition;
+			if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET)
+			{
+				currentDistance=calculateCameraMoveToTarget(currentDistance,mCamera->getPosition(),cameraCollisionPosition,elapsedTime);
+			}
+			else if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE)
+			{
+				calculateCollisionRotXNegative(elapsedTime);
+			}
+			else if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE)
+			{
+				calculateCollisionRotXPositive(elapsedTime);
+			}
 		}
-		cameraIsReturning=false;
 	}
 	else
 	{
 		currentCollisionTime=0;
-		if(collisionDisplacementDistance>0)
-		{
-			collisionDisplacementDistance-=calculateNextMovementTo(mCamera->getPosition(),newCameraPosition,newNextMovePosition,elapsedTime);
-			newCameraPosition=newNextMovePosition;
-		}
-		//not else if since we take in account last calculateNextMovement
-		if(collisionDisplacementDistance<0)
-		{
-			collisionDisplacementDistance=0;
-		}
-		cameraIsReturning=true;
+
+		currentDistance=calculateCameraReturningFromTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
+		
 	}
+
 	//set camera position
+	newCameraPosition=calculateCameraPosition(currentDistance);
 	mCamera->setPosition(newCameraPosition);
 
 	//set camera to look at target
 	mCamera->lookAt(cameraLookAt);
-
-	lastTargetPosition=newTargetPosition;
-	lastTargetOrientation=newTargetOrientation;
-
-	//Ogre::LogManager::getSingleton().logMessage("[rotX] before "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
-	//Ogre::LogManager::getSingleton().logMessage("[rotY] before "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
-
-	//		//BUG WITH ROTATIONS, THEY SHOULD BE UPDATED
-
-	//Rotations correction
-	//rotX=mCamera->getOrientation().getRoll().valueDegrees();
-	//rotY=mCamera->getOrientation().getYaw().valueDegrees();
-
-	//Ogre::LogManager::getSingleton().logMessage("[rotX] after "+Ogre::StringConverter::toString(Ogre::Real(rotX)));
-	//Ogre::LogManager::getSingleton().logMessage("[rotY] after "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 }
 
-double CameraControllerThirdPerson::calculateNextMovementTo(Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,Ogre::Vector3 & newNextMovePosition,double elapsedTime)
+double CameraControllerThirdPerson::calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
 {
-	Ogre::Vector3 direction;
+	double newCameraDistance;
 
-	double movement_speed;
-	if(cameraIsReturning)
+	newCameraDistance=currentCameraDistance+=collisionReturningSpeed*elapsedTime;
+	if(newCameraDistance>=maxDistance)
 	{
-		movement_speed=collisionReturningSpeed;
+		newCameraDistance=maxDistance;
 	}
-	else
+	return newCameraDistance;
+}
+
+double CameraControllerThirdPerson::calculateCameraMoveToTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
+{
+
+	double newCameraDistance;
+
+	newCameraDistance=currentCameraDistance-=collisionMoveSpeed*elapsedTime;
+	if (newCameraDistance<=(cameraPosition.distance(newCameraPosition)))
 	{
-		movement_speed=collisionMoveSpeed;
+		newCameraDistance=cameraPosition.distance(newCameraPosition);
 	}
-
-	movement_speed=movement_speed*elapsedTime;
-
-	if(cameraPosition.distance(newCameraPosition)<movement_speed)
+	else if (newCameraDistance<=minDistance)
 	{
-		newNextMovePosition=newCameraPosition;
-		return cameraPosition.distance(newCameraPosition);
+		newCameraDistance=minDistance;
 	}
-	else
-	{
 
-		direction=newCameraPosition-cameraPosition;
-		direction.normalise();
-
-		newNextMovePosition=cameraPosition+direction*movement_speed;
-
-		return movement_speed;
-	}
+	return newCameraDistance;
 }
 
 Ogre::Vector3 CameraControllerThirdPerson::rotateMovementVector(Ogre::Vector3 movement)
@@ -214,30 +319,27 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 	//process Relative Motion
 	if(cameraRotation.x==0 && cameraRotation.y==0) 
 	{
+		lastRotX=0;
+		lastRotY=0;
 		cameraMoved=false;
 		return;
 	}
 	else
 	{
 		cameraMoved=true;
-		rotY-=cameraRotation.x*speedY;
-		rotX-=cameraRotation.y*speedX;
+		rotateY(-cameraRotation.x*speedY);
+		rotateX(-cameraRotation.y*speedX);
+		lastRotX=-cameraRotation.x*speedY;
+		lastRotY=-cameraRotation.y*speedX;
 	}
 
-	//check if rotation exceeds limits
-	if(rotX>maxRotX)
-	{
-		rotX=maxRotX;
-	}
-	else if(rotX<minRotX)
-	{
-		rotX=minRotX;
-	}
+
 	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }
 void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
 {
+	reset();
 	this->target=target;
 	rotY=target->getOrientation().getYaw().valueDegrees();
 }

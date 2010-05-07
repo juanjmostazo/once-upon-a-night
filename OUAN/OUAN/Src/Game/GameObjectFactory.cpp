@@ -1609,14 +1609,14 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
 	}
 	if(pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
 	}
 	//Create PhysicsComponent
 	pGameObjectTerrainConvex->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
@@ -1658,12 +1658,12 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 	//Create RenderComponentEntityDreams
 	pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION));
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION));
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
 
 	//Create PhysicsComponent
 	pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(mComponentFactory->createPhysicsComponentComplexTriangle(
@@ -1705,7 +1705,7 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 	//Create RenderComponentEntity
 	pGameObjectTree->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTreeParameters.name,
-		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,QUERYFLAGS_CAMERA_COLLISION));
+		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE));
 
 	//Create PhysicsComponent
 	pGameObjectTree->setPhysicsComponentSimpleBox(

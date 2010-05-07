@@ -16,8 +16,6 @@ namespace OUAN
 
 		void setTarget(RenderComponentPositionalPtr target);
 
-		bool calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt);
-
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
@@ -27,7 +25,8 @@ namespace OUAN
 		RenderComponentPositionalPtr target;
 
 		Ogre::Vector3 initialDirection;
-		double initialDistance;
+		double maxDistance;
+		double currentDistance;
 		double height;
 
 		double collisionMargin;
@@ -44,6 +43,9 @@ namespace OUAN
 		//camera relative rotation to target's Y axe
 		double rotY;
 
+		double lastRotX;
+		double lastRotY;
+
 		//minimum and maximum rotation to target's X axe
 		double minRotX;
 		double maxRotX;
@@ -53,6 +55,9 @@ namespace OUAN
 		double speedY;
 		double collisionMoveSpeed;
 		double collisionReturningSpeed;
+		double autoRotXSpeed;
+		double minAutoRotX;
+		double maxAutoRotX;
 
 		//camera speed when it returns to initial position
 		double returningspeed;
@@ -60,7 +65,6 @@ namespace OUAN
 		//in order to determine if target has moved
 		Vector3 lastTargetPosition;
 		Quaternion lastTargetOrientation;
-		bool cameraIsReturning;
 
 		//true if camera has been moved this frame
 		bool cameraMoved;
@@ -68,8 +72,23 @@ namespace OUAN
 		double rotXDistanceAttenuationNegative;
 		double rotXDistanceAttenuationPositive;
 
-		double calculateNextMovementTo(Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,Ogre::Vector3 & newNextMovePosition,double elapsedTime);
-		
+		void reset();
+		bool loadConfig();
+
+		Ogre::Vector3 calculateCameraPosition(double distance);
+		Ogre::Vector3 calculateCameraLookAt();
+
+
+		bool calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt,Ogre::uint32 & collisionType);
+
+		double calculateCameraMoveToTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime);
+		double calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime);
+
+		void calculateCollisionRotXNegative(double elapsedTime);
+		void calculateCollisionRotXPositive(double elapsedTime);
+
+		void rotateX(double rotation);
+		void rotateY(double rotation);
 
 	};
 }
