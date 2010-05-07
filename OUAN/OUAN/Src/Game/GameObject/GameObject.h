@@ -86,6 +86,9 @@ namespace OUAN
 		// update logic component
 		virtual void updateLogic(double elapsedSeconds);
 
+		virtual bool isMoving();
+		virtual bool isJumping();
+
 
 		/// Disable the object
 		virtual void disable();

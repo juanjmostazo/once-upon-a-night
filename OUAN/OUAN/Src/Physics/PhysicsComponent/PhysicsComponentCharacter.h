@@ -53,7 +53,7 @@ namespace OUAN
 		Vector3 getDashMovement(double elapsedSeconds);
 		void calculateAngleDifference();
 		void calculateAcceleration(double elapsedSeconds);
-		bool isMoving();
+
 		void applyGravity(double elapsedSeconds);
 
 		double getYawFromMovement(NxOgre::Vec3 movement);
