@@ -171,11 +171,15 @@ void GameRunningState::handleEvents()
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
-	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying() && mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
+	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying())
 	{
-		mApp->getGameWorldManager()->useWeapon();
-		useWeaponKeyPressed=true;
-		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		if (mApp->getGameWorldManager()->getCurrentWorld()==NIGHTMARES || mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
+		{
+			mApp->getGameWorldManager()->useWeapon();
+			useWeaponKeyPressed=true;
+			if (mApp->getGameWorldManager()->getCurrentWorld()==DREAMS)
+				mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
 	}
 	else
 	{

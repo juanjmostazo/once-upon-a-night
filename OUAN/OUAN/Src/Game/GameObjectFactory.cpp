@@ -44,6 +44,7 @@
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 
+#include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
@@ -649,12 +650,13 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 	return pGameObjectEye;
 }
 GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters, 
-	GameWorldManagerPtr gameWorldMgr,CameraManagerPtr cameraMgr, RayCastingPtr raycasting)
+	GameWorldManagerPtr gameWorldMgr,CameraManagerPtr cameraMgr, RayCastingPtr raycasting, RenderSubsystemPtr renderSubsystem)
 {
 	GameObjectFlashLightPtr pGameObjectFlashLight;
 
 	//Create GameObject
-	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,gameWorldMgr,cameraMgr,raycasting));
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,gameWorldMgr,
+		cameraMgr,raycasting,renderSubsystem));
 
 	//Create LogicComponent
 	pGameObjectFlashLight->setLogicComponent(

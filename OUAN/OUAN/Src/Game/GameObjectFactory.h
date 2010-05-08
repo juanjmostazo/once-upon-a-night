@@ -40,7 +40,7 @@ namespace OUAN
 		GameObjectEyePtr createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectFlashLightPtr createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters, 
-			GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraMgr, RayCastingPtr raycasting);
+			GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraMgr, RayCastingPtr raycasting,RenderSubsystemPtr renderSubsystem);
 		GameObjectHeartPtr createGameObjectHeart(TGameObjectHeartParameters tGameObjectHeartParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectItem1UPPtr createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters, 

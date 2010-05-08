@@ -1062,7 +1062,8 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectFlashLight(tGameObjectFlashLightParameters);
 	mGameWorldManager->addGameObjectFlashLight(mGameObjectFactory->createGameObjectFlashLight(tGameObjectFlashLightParameters,mGameWorldManager, 
-		mGameWorldManager->getParent()->getCameraManager(),mGameWorldManager->getParent()->getRayCasting()));
+		mGameWorldManager->getParent()->getCameraManager(),mGameWorldManager->getParent()->getRayCasting(),
+		mGameWorldManager->getParent()->getRenderSubsystem()));
 }
 
 void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
