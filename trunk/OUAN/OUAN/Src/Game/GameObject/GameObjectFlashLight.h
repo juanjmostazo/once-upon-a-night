@@ -12,6 +12,10 @@
 
 namespace OUAN
 {
+	const std::string FLASHLIGHT_DECAL_PROJECTOR_NAME="Flashlight";
+	const std::string FLASHLIGHT_DECAL_TEX_NAME="FlashlightDecal02.png";
+	const std::string FLASHLIGHT_DECAL_FILTER_TEX_NAME="Decal_filter.png";
+
 	const int RED = 0xff0000ff;
 	const int BLUE= 0x0000ffff;
 	const int GREEN=0x00ff00ff;
@@ -21,6 +25,9 @@ namespace OUAN
 	const std::string ATTACK_NAME_GREEN="green";
 	const std::string ATTACK_NAME_BLUE="blue";
 	const std::string ATTACK_NAME_WHITE="white";
+
+	class ProjectiveDecal;
+	typedef boost::shared_ptr<ProjectiveDecal> ProjectiveDecalPtr;
 
 	/// Class to hold GameObjectFlashLight information
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
@@ -48,18 +55,19 @@ namespace OUAN
 		EventManagerPtr mEventManager;
 
 		double distance;
-		int mSelectedColour;
-		int mDamage;
-		int mAttackRange;//distance?
-		double mAttackAngle;//flashlight cone angle
 
 		AttackComponentPtr mAttackComponent;
 
 		WeaponComponentPtr mParentWeaponComponent;
 
+		ProjectiveDecalPtr mFlashlightDecal;
+
+		RenderSubsystemPtr mRenderSubsystem;
+
 	public:
 		//Constructor
-		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting);
+		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting
+			,RenderSubsystemPtr renderSubsystem);
 		//Destructor
 		~GameObjectFlashLight();
 		/// Return render component entity 
@@ -130,10 +138,6 @@ namespace OUAN
 		/// Update object
 		void update(double elapsedSeconds);
 
-		int getSelectedColour() const;
-		void setSelectedColour(int selectedColour);
-
-		void setAttackMode(TWeaponMode attackMode);
 		/// Switch off the light
 		void switchOff();
 		/// Switch on the light

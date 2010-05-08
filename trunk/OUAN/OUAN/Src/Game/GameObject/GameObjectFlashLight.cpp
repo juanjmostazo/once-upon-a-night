@@ -2,19 +2,23 @@
 #include "GameObjectOny.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/CameraManager/CameraManager.h"
+#include "../../Graphics/RenderSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
+#include "../../Graphics/Effects/ProjectiveDecal.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../../RayCasting/RayCasting.h"
 #include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
-GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting)
+GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, 
+	RayCastingPtr pRayCasting, RenderSubsystemPtr renderSubsystem)
 :GameObject(name,GAME_OBJECT_TYPE_FLASHLIGHT)
 {
 	mGameWorldManager=pGameWorldManager;
 	mCameraManager=pCameraManager;
 	mRayCasting=pRayCasting;
+	mRenderSubsystem=renderSubsystem;
 
 	distance=10000.0f;
 }
@@ -88,6 +92,31 @@ PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeC
 
 void GameObjectFlashLight::changeWorld(int world)
 {
+	switch(world)
+	{
+	case DREAMS:
+		if (mFlashlightDecal.get())
+		{
+			mFlashlightDecal->destroyProjector();
+			mFlashlightDecal.reset();
+		}
+		break;
+	case NIGHTMARES:
+		if (!mFlashlightDecal.get())
+		{
+			mFlashlightDecal = ProjectiveDecalPtr(new ProjectiveDecal());
+		}
+		TDecalParams decalSettings;
+		decalSettings.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
+		decalSettings.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
+		decalSettings.projectorNode=getRenderComponentPositional()->getSceneNode();
+		decalSettings.projectorOffset=Ogre::Vector3::ZERO;
+		decalSettings.textureName=FLASHLIGHT_DECAL_TEX_NAME;
+		decalSettings.tintColour=getColour();
+		
+		mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),mGameWorldManager);
+		break;
+	}
 	//The flashlight's operation mode concerning a world change is managed
 	//by Ony (i.e, on a change to dreams Ony changes his active weapon to the pillow,
 	// and to the flashlight on a change to nightmares)
@@ -221,30 +250,12 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 		mRenderComponentLight->setDiffuseColor(newColour);
 		mRenderComponentLight->setSpecularColor(newColour);
 		//TODO: radius, etc, should also be modified here
+		if (mFlashlightDecal.get())
+		{
+			mFlashlightDecal->changeColour(attackData->rgb);
+		}
 	}
 
-}
-void GameObjectFlashLight::setAttackMode(TWeaponMode attackMode)
-{
-	switch(attackMode)
-	{
-	case WEAPON_MODE_0:
-		mSelectedColour=RED;//red
-		break;
-	case WEAPON_MODE_1:
-		mSelectedColour=BLUE;//blue
-		break;
-	case WEAPON_MODE_2:
-		mSelectedColour=GREEN;//green
-		break;
-	case WEAPON_MODE_SPECIAL:
-		mSelectedColour=WHITE;//white
-		break;
-	}
-	ColourValue diffuseColour=ColourValue::Black;
-	diffuseColour.setAsRGBA(mSelectedColour);
-	mRenderComponentLight->setDiffuseColor(diffuseColour);
-	mRenderComponentLight->setSpecularColor(diffuseColour);
 }
 void GameObjectFlashLight::switchOn()
 {
@@ -256,6 +267,10 @@ void GameObjectFlashLight::switchOn()
 	{
 		mPhysicsComponentVolumeConvex->create();
 	}
+	if (mFlashlightDecal.get())
+	{
+		mFlashlightDecal->show();
+	}
 }
 void GameObjectFlashLight::switchOff()
 {
@@ -266,6 +281,10 @@ void GameObjectFlashLight::switchOff()
 	}
 	if (mParentWeaponComponent.get())
 		mParentWeaponComponent->setActiveWeaponInUse(false);
+	if (mFlashlightDecal.get())
+	{
+		mFlashlightDecal->hide();
+	}
 }
 void GameObjectFlashLight::show()
 {
@@ -274,14 +293,6 @@ void GameObjectFlashLight::show()
 void GameObjectFlashLight::hide()
 {
 	mRenderComponentEntity->getEntity()->setVisible(false);
-}
-int GameObjectFlashLight::getSelectedColour() const
-{
-	return mSelectedColour;
-}
-void GameObjectFlashLight::setSelectedColour(int selectedColour)
-{
-	mSelectedColour=selectedColour;
 }
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
 {

@@ -1,4 +1,5 @@
 #include "EventProcessor.h"
+#include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
@@ -143,6 +144,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	if (mWorldManager.get())
 	{
+		mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
 		TGameObjectContainer objs=mWorldManager->getAllGameObjects();
 
 		for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)

@@ -927,8 +927,6 @@ void GameWorldManager::changeWorld()
 		world=DREAMS;
 	}
 
-	mApp->getTrajectoryManager()->changeWorld(world);
-
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	addEvent(evt);
 }
