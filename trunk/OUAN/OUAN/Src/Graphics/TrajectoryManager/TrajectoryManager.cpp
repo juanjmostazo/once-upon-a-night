@@ -31,7 +31,7 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 {
 	unsigned int i;
 	Ogre::SceneNode * pSceneNode;
-	std::vector<TrajectoryNode *> trajectoryNodes;
+	std::vector<TrajectoryNode *> mTrajectoryNodes;
 	TrajectoryNode * pTrajectoryNode;
 	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
 	
@@ -61,10 +61,10 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 		pTrajectoryNode->setSceneNode(pSceneNode);
 		pTrajectoryNode->setSpeed(tTrajectoryParameters.tTrajectoryNodeParameters[i].speed);
 
-		trajectoryNodes.push_back(pTrajectoryNode);
+		mTrajectoryNodes.push_back(pTrajectoryNode);
 	}
 
-	trajectoryContainer[tTrajectoryParameters.name]->setTrajectoryNodes(trajectoryNodes,"blue");
+	trajectoryContainer[tTrajectoryParameters.name]->setTrajectoryNodes(mTrajectoryNodes,"blue");
 
 
 }
@@ -108,7 +108,7 @@ void TrajectoryManager::clear()
 	//mDebugObjects->setVisible(false);
 }
 
-Trajectory * TrajectoryManager::getTrajectoryInstance()
+Trajectory * TrajectoryManager::getTrajectoryInstance(std::string parent)
 {
 	Trajectory * pTrajectory;
 
@@ -117,6 +117,8 @@ Trajectory * TrajectoryManager::getTrajectoryInstance()
 	pTrajectory->init("trajectory#"+Ogre::StringConverter::toString(trajectoryID++),mSceneManager,mDebugObjects,TrajectoryManagerPtr(this));
 
 	trajectoryContainer[pTrajectory->getName()]=pTrajectory;
+
+	pTrajectory->setParent(parent);
 
 	return pTrajectory;
 }
@@ -139,25 +141,19 @@ bool TrajectoryManager::hasWalkabilityMap(std::string name)
 	return it!=walkabilityMapContainer.end();
 }
 
-void TrajectoryManager::stopTrajectory(Trajectory & trajectory)
-{
-	trajectory.setStop(true);
-}
 
 void TrajectoryManager::setIdle(Trajectory & trajectory,std::string gameObjectName)
 {
 		TrajectoryNode * pTrajectoryNode;
-		std::vector<TrajectoryNode *> trajectoryNodes;
+		std::vector<TrajectoryNode *> mTrajectoryNodes;
 		//create trajectory node and set the scene node and the rest of parameters
 		pTrajectoryNode = new TrajectoryNode();
 		pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(gameObjectName));
 		pTrajectoryNode->setSpeed(0);
 
-		trajectoryNodes.push_back(pTrajectoryNode);
+		mTrajectoryNodes.push_back(pTrajectoryNode);
 
-		trajectory.setTrajectoryNodes(trajectoryNodes,"green");
-
-		trajectory.setStop(true);
+		trajectory.setTrajectoryNodes(mTrajectoryNodes,"green");
 }
 
 void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor)
@@ -165,7 +161,7 @@ void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::str
 	unsigned int i;
 
 	TrajectoryNode * pTrajectoryNode;
-	std::vector<TrajectoryNode *> trajectoryNodes;
+	std::vector<TrajectoryNode *> mTrajectoryNodes;
 
 	if(hasTrajectory(trajectoryName))
 	{
@@ -176,10 +172,10 @@ void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::str
 			pTrajectoryNode->setSceneNode(trajectoryContainer[trajectoryName]->getTrajectoryNodes()[i]->getSceneNode());
 			pTrajectoryNode->setSpeed(trajectoryContainer[trajectoryName]->getTrajectoryNodes()[i]->getSpeed());
 
-			trajectoryNodes.push_back(pTrajectoryNode);
+			mTrajectoryNodes.push_back(pTrajectoryNode);
 		}
 
-		trajectory.setTrajectoryNodes(trajectoryNodes,debugColor);
+		trajectory.setTrajectoryNodes(mTrajectoryNodes,debugColor);
 	}
 	else
 	{

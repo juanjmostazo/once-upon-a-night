@@ -486,7 +486,7 @@ TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr
 	TrajectoryComponentPtr pTrajectoryComponent = TrajectoryComponentPtr(new TrajectoryComponent); 
 	Trajectory * pTrajectory;
 
-	pTrajectory=mApp->getTrajectoryManager()->getTrajectoryInstance();
+	pTrajectory=mApp->getTrajectoryManager()->getTrajectoryInstance(gameObject->getName());
 	if(TwoDimensions)
 	{
 		pTrajectory->setAs2DTrajectory();

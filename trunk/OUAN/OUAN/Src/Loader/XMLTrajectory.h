@@ -13,7 +13,7 @@ namespace OUAN
 		virtual ~XMLTrajectory();
 
 		std::string name;
-		std::vector<TiXmlElement *> trajectoryNodes;
+		std::vector<TiXmlElement *> mTrajectoryNodes;
 
 	};
 

@@ -427,10 +427,10 @@ void LevelLoader::processTrajectory(XMLTrajectory *pXMLTrajectory)
 	tTrajectoryParameters.name=pXMLTrajectory->name;
 
 	//Process Trajectory nodes
-	for(i=0;i<pXMLTrajectory->trajectoryNodes.size();i++)
+	for(i=0;i<pXMLTrajectory->mTrajectoryNodes.size();i++)
 	{
 		//Process Trajectory Node
-		tTrajectoryParameters.tTrajectoryNodeParameters.push_back(processTrajectoryNode(pXMLTrajectory->trajectoryNodes[i]));
+		tTrajectoryParameters.tTrajectoryNodeParameters.push_back(processTrajectoryNode(pXMLTrajectory->mTrajectoryNodes[i]));
 	}
 
 	//Create Trajectory 

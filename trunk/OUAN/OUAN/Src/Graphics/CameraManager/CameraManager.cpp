@@ -71,7 +71,7 @@ void CameraManager::setCameraTrajectory(std::string name)
 		if(mTrajectoryManager->hasTrajectory(name))
 		{
 			Trajectory * trajectory;
-			trajectory=mTrajectoryManager->getTrajectoryInstance();
+			trajectory=mTrajectoryManager->getTrajectoryInstance("cameraTrajectory");
 			mTrajectoryManager->setPredefinedTrajectory(*trajectory,"a","blue");
 			mCameraControllerTrajectory->setTrajectory(trajectory);
 

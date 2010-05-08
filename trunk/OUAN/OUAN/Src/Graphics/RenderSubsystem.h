@@ -137,9 +137,12 @@ namespace OUAN
 		/// Load params from config file
 		bool loadConfig();
 
-		/// Particle name values
+		/// Compositor name values
 		std::string BLOOM;
 		std::string HDR;
+
+		bool BLOOM_ACTIVATED;
+		bool HDR_ACTIVATED;
 
 	protected:
 		/// the application

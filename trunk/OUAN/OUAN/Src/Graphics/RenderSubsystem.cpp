@@ -69,13 +69,15 @@ bool RenderSubsystem::loadConfig()
 		config.getOption("BLOOM", BLOOM); 
 		config.getOption("HDR", HDR); 
 
+		config.getOption("BLOOM_ACTIVATED", value); 
+		BLOOM_ACTIVATED=Ogre::StringConverter::parseBool(value);
+		config.getOption("HDR_ACTIVATED", value); 
+		HDR_ACTIVATED=Ogre::StringConverter::parseBool(value);
+
 		success = true;
 	}
 	else
 	{
-		BLOOM="";
-		HDR="";
-
 		success = false;
 	}
 
