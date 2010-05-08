@@ -162,7 +162,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distan
 		//newCameraPosition.y=mCamera->getPosition().y;
 	}
 
-	Ogre::LogManager::getSingleton().logMessage("y_correction "+Ogre::StringConverter::toString(y_correction));
+	//Ogre::LogManager::getSingleton().logMessage("y_correction "+Ogre::StringConverter::toString(y_correction));
 
 	return newCameraPosition;
 }

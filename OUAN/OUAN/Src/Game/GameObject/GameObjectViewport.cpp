@@ -38,6 +38,13 @@ void GameObjectViewport::changeWorld(int world)
 		break;
 	}
 }
+
+
+void GameObjectViewport::setEffect(std::string effectName, bool activated)
+{
+	mRenderComponentViewport->setEffect(effectName,activated);
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectViewportParameters::TGameObjectViewportParameters() : TGameObjectParameters()
 {

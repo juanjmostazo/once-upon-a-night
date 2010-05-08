@@ -677,6 +677,8 @@ namespace OUAN
 		//	Graphics module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
 
+		#define COMPOSITOR_CFG "../../Config/compositor-cfg.xml"
+
 		const int DEFAULT_OGRE_MIPMAPS_NUMBER=5;
 		const std::string MAIN_CAMERA_NAME="Camera";
 		const std::string RUNNING_CAMERA_NAME="Camera";

@@ -9,6 +9,7 @@ namespace OUAN
 	{
 	private:
 		Ogre::Viewport * mViewport;
+		RenderSubsystemPtr mRenderSubsystem;
 	public:
 
 		RenderComponentViewport(const std::string& type="");
@@ -16,6 +17,13 @@ namespace OUAN
 
 		Ogre::Viewport * getViewport() const;
 		void setViewport(Ogre::Viewport *);
+
+		void setEffect(std::string effectName, bool activated);
+
+		void setRenderSubsystem(RenderSubsystemPtr pRenderSubsystem);
+		RenderSubsystemPtr getRenderSubsystem() const;
+
+		void initEffects();
 	};
 
 	class TRenderComponentViewportParameters: public TRenderComponentParameters

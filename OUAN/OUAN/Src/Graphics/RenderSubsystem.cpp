@@ -52,7 +52,34 @@ bool RenderSubsystem::init(ApplicationPtr app, ConfigurationPtr config)
 	initResourceGroups(config);
 
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
+
+	loadConfig();
+
 	return true;
+}
+
+bool RenderSubsystem::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	if (config.loadFromFile(COMPOSITOR_CFG))
+	{
+		config.getOption("BLOOM", BLOOM); 
+		config.getOption("HDR", HDR); 
+
+		success = true;
+	}
+	else
+	{
+		BLOOM="";
+		HDR="";
+
+		success = false;
+	}
+
+	return success;
 }
 
 void RenderSubsystem::cleanUp()
