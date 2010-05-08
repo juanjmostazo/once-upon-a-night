@@ -71,7 +71,7 @@ void CameraManager::setCameraTrajectory(std::string name)
 		if(mTrajectoryManager->hasTrajectory(name))
 		{
 			Trajectory * trajectory;
-			trajectory=mTrajectoryManager->getTrajectoryInstance("cameraTrajectory");
+			trajectory=mTrajectoryManager->getTrajectoryInstance("CameraTrajectory");
 			mTrajectoryManager->setPredefinedTrajectory(*trajectory,"a","blue");
 			mCameraControllerTrajectory->setTrajectory(trajectory);
 
@@ -191,6 +191,8 @@ std::string CameraManager::getActiveCameraName()
 
 void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 {
+	mCameraControllerTrajectory->detachCamera();
+
 	switch(tCameraControllerType)
 	{
 		case CAMERA_FIXED_FIRST_PERSON:
@@ -211,6 +213,7 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			break;
 		case CAMERA_THIRD_PERSON:
 			mCameraControllerThirdPerson->setCamera(activeCameraController->getCamera());
+			mCameraControllerThirdPerson->resetPosition();
 			activeCameraController=mCameraControllerThirdPerson;
 			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Third Person activated");
 			break;
