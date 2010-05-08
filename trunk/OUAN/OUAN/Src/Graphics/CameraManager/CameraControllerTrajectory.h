@@ -17,8 +17,14 @@ namespace OUAN
 		Trajectory * getTrajectory() const;
 
 		void resetTrajectory();
-	private:
 
+		void setCamera(Ogre::Camera * pCamera);
+		void init(Ogre::SceneManager * pSceneManager);
+
+		void detachCamera();
+	private:
+		Ogre::SceneManager * mSceneManager;
+		Ogre::SceneNode * mSceneNode;
 		Trajectory * mTrajectory;
 	};
 }

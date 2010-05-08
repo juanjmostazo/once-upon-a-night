@@ -381,8 +381,13 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 }
 void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
 {
-	reset();
 	this->target=target;
+	resetPosition();
+}
+
+void CameraControllerThirdPerson::resetPosition()
+{
+	reset();
 	rotY=target->getOrientation().getYaw().valueDegrees();
 	mCamera->setPosition(calculateCameraPosition(maxDistance,false));
 }

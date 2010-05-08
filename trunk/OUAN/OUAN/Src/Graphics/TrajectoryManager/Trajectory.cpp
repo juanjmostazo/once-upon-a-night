@@ -174,20 +174,21 @@ Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::
 
 	Ogre::SceneNode * sourceNode=mSceneManager->getSceneNode(source);
 	Ogre::SceneNode * targetNode=mSceneManager->getSceneNode(target);
+	Ogre::SceneNode * lastNodeNode=mSceneManager->getSceneNode(lastNode);
 
 	double distanceSourceTarget=calculateDistance(source,target);
 	double fT;
 
 	if(distanceSourceTarget!=0)
 	{
-		fT=calculateDistance(lastNode,target)/distanceSourceTarget;
+		fT=distanceSourceTarget/calculateDistance(lastNode,target);
 	}
 	else
 	{
 		fT=1;
 	}
 
-	nextOrientation=Ogre::Quaternion::Slerp(fT,sourceNode->getOrientation(),targetNode->getOrientation());
+	nextOrientation=Ogre::Quaternion::Slerp(fT,targetNode->getOrientation(),lastNodeNode->getOrientation());
 
 	return nextOrientation;
 }
@@ -368,15 +369,15 @@ void Trajectory::setCurrentNode(int node)
 {
 	mCurrentNode=node;
 
-	//if(mTrajectoryNodes.size()>0)
-	//{
-	//	//Ogre::LogManager::getSingleton().logMessage("Current Node "+mTrajectoryNodes[node]->getSceneNode()->getName());
-	//	//Ogre::LogManager::getSingleton().logMessage("Current Node "+Ogre::StringConverter::toString(currentNode));
+	if(mTrajectoryNodes.size()>0)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Current Node "+mTrajectoryNodes[node]->getSceneNode()->getName());
+		//Ogre::LogManager::getSingleton().logMessage("Current Node "+Ogre::StringConverter::toString(currentNode));
 
-	//	//mCurrentPosition=mTrajectoryNodes[currentNode]->getSceneNode()->getPosition();
-	//	//mCurrentOrientation=mTrajectoryNodes[currentNode]->getSceneNode()->getOrientation();
+		mCurrentPosition=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition();
+		mCurrentOrientation=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation();
 
-	//}
+	}
 }
 
 void Trajectory::reset()
@@ -536,6 +537,9 @@ void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 	mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
 	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
+
+	mSceneManager->getSceneNode(mParent)->setPosition(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition());
+	mSceneManager->getSceneNode(mParent)->setOrientation(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation());
 }
 
 

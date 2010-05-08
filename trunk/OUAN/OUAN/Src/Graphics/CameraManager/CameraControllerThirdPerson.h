@@ -16,6 +16,8 @@ namespace OUAN
 
 		void setTarget(RenderComponentPositionalPtr target);
 
+		void resetPosition();
+
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
