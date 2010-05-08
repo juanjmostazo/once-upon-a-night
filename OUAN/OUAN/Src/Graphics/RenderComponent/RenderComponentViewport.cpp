@@ -22,8 +22,8 @@ void RenderComponentViewport::initEffects()
 	Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->BLOOM);
 	Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->HDR);
 
-	Ogre::CompositorManager::getSingleton().setCompositorEnabled(mViewport, mRenderSubsystem->BLOOM, false);
-	Ogre::CompositorManager::getSingleton().setCompositorEnabled(mViewport, mRenderSubsystem->HDR, true);
+	Ogre::CompositorManager::getSingleton().setCompositorEnabled(mViewport, mRenderSubsystem->BLOOM, mRenderSubsystem->BLOOM_ACTIVATED);
+	Ogre::CompositorManager::getSingleton().setCompositorEnabled(mViewport, mRenderSubsystem->HDR, mRenderSubsystem->HDR_ACTIVATED);
 
 }
 

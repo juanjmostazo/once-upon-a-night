@@ -38,7 +38,7 @@ namespace OUAN
 		void destroyTrajectory(std::string name);
 		void destroyTrajectory(Trajectory * pTrajectory);
 
-		Trajectory * getTrajectoryInstance();
+		Trajectory * getTrajectoryInstance(std::string parent);
 
 		std::vector<Ogre::SceneNode *> calculatePathFinding(std::string walkabilityMapName,std::string source, std::string target);
 		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor);

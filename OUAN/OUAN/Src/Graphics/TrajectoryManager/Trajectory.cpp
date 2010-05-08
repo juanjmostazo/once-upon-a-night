@@ -8,18 +8,7 @@ using namespace OUAN;
 
 Trajectory::Trajectory()
 {
-	loopTrajectory=true;
-	mIddle=false;
-	mVisible=false;
-	mChase=false;
-	//double random;
 
-	///* initialize random seed: */
-	//srand ( time(NULL) );
-	///* generate random number: */
-	//random = (rand() % 100)/100;
-
-	recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
 }
 
 Trajectory::~Trajectory()
@@ -32,50 +21,72 @@ void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::
 	mSceneManager=pSceneManager;
 	mTrajectoryManager=pTrajectoryManager;
 	mDebugObjects=debugObjects->createChildSceneNode("trajectory#"+mName);
-	lastPathFindingTime=0;
-	nextMovement=Vector3::ZERO;
-	pathFindingActivated=false;
-	twoDimensionsTrajectory=false;
+	mNextMovement=Vector3::ZERO;
+	mTrajectory2d=false;
+	mLoopTrajectory=true;
+	mState=IDLE;
+	mVisible=false;
+	mDefaultSpeed=15;
+	mRecalculateTime=0.2+Utils::Random::getInstance()->getRandomDouble();
+	mTrajectoryNodes.clear();
+	mCurrentNode=0;
+	mMinNextNodeDistance=5;
+}
+
+std::string Trajectory::getParent() const
+{
+	return mParent;
+}
+void Trajectory::setParent(std::string parent)
+{
+	mParent=parent;
 }
 
 void Trajectory::setAs2DTrajectory()
 {
-	twoDimensionsTrajectory=true;
+	mTrajectory2d=true;
 }
 
 void Trajectory::setAs3DTrajectory()
 {
-	twoDimensionsTrajectory=false;
+	mTrajectory2d=false;
 }
 
-double Trajectory::calculateDistance(Ogre::Vector3 v1,Ogre::Vector3 v2)
+double Trajectory::calculateDistance(std::string node1,std::string node2)
 {
-	if(twoDimensionsTrajectory)
+	Ogre::Vector3 v1;
+	Ogre::Vector3 v2;
+
+	v1=mSceneManager->getSceneNode(node1)->getPosition();
+	v2=mSceneManager->getSceneNode(node2)->getPosition();
+
+	if(mTrajectory2d)
 	{
 		v1.y=0;
 		v2.y=0;
 	}
+
 	return v1.distance(v2);
 }
 
-std::string Trajectory::getName( )
+std::string Trajectory::getName()
 {
 	return mName;
 }
 
 bool Trajectory::getLoopTrajectory() const
 {
-	return loopTrajectory;
+	return mLoopTrajectory;
 }
 void Trajectory::setLoopTrajectory(bool loopTrajectory)
 {
-	this->loopTrajectory=loopTrajectory;
+	mLoopTrajectory=loopTrajectory;
 }
 
 int Trajectory::getNextNode(int node)
 {
 	unsigned int nextNode=node+1;
-	if(nextNode>=trajectoryNodes.size())
+	if(nextNode>=mTrajectoryNodes.size())
 	{
 		return 0;
 	}
@@ -87,8 +98,8 @@ int Trajectory::getNextNode(int node)
 
 int Trajectory::getNextNode()
 {
-	unsigned int nextNode=currentNode+1;
-	if(nextNode>=trajectoryNodes.size())
+	unsigned int nextNode=mCurrentNode+1;
+	if(nextNode>=mTrajectoryNodes.size())
 	{
 		return 0;
 	}
@@ -100,134 +111,241 @@ int Trajectory::getNextNode()
 
 std::vector<TrajectoryNode *>  Trajectory::getTrajectoryNodes() const
 {
-	return trajectoryNodes;
+	return mTrajectoryNodes;
+}
+
+void Trajectory::updateChase()
+{
+	TrajectoryNode * pTrajectoryNode;
+	clear();
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mParent));
+	pTrajectoryNode->setSpeed(mDefaultSpeed);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
+	pTrajectoryNode->setSpeed(mDefaultSpeed);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	reset();
+}
+
+Ogre::Vector3 Trajectory::calculateNextMovement(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
+{
+	//Calculate next movement
+	Ogre::Vector3 nextMovement;
+	Ogre::Vector3 direction;
+	direction=mSceneManager->getSceneNode(target)->getPosition()-mSceneManager->getSceneNode(source)->getPosition();
+	direction.normalise();
+	nextMovement=direction*speed*elapsedTime;
+
+	if(Trajectory2d)
+	{
+		nextMovement.y=0;
+	}
+
+	return nextMovement;
+}
+
+Ogre::Vector3 Trajectory::calculateNextPosition(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
+{
+	//Calculate next position
+	Ogre::Vector3 nextPosition;
+	Ogre::Vector3 direction;
+	direction=mSceneManager->getSceneNode(target)->getPosition()-mSceneManager->getSceneNode(source)->getPosition();
+	direction.normalise();
+	nextPosition=mSceneManager->getSceneNode(source)->getPosition()+direction*speed*elapsedTime;
+
+	if(Trajectory2d)
+	{
+		nextPosition.y=0;
+	}
+
+	return nextPosition;
+}
+
+Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
+{
+	Ogre::Quaternion nextOrientation;
+
+	Ogre::SceneNode * sourceNode=mSceneManager->getSceneNode(source);
+	Ogre::SceneNode * targetNode=mSceneManager->getSceneNode(target);
+
+	double distanceSourceTarget=calculateDistance(source,target);
+	double fT;
+
+	if(distanceSourceTarget!=0)
+	{
+		fT=calculateDistance(lastNode,target)/distanceSourceTarget;
+	}
+	else
+	{
+		fT=1;
+	}
+
+	nextOrientation=Ogre::Quaternion::Slerp(fT,sourceNode->getOrientation(),targetNode->getOrientation());
+
+	return nextOrientation;
+}
+
+bool Trajectory::isLastNode()
+{
+	return (getNextNode()==0);
+}
+
+void Trajectory::advanceToNextNode(double elapsedTime)
+{
+	setCurrentNode(getNextNode());
+	//switch(mState)
+	//{
+	//case PATH_FINDING:
+	//	break;
+	//case IDLE:
+	//	break;
+	//case CHASE:
+	//	break;
+	//case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
+	//	break;
+	//case PATH_FINDING_TO_IDLE:
+	//	break;
+	//case PREDEFINED_TRAJECTORY:
+	//	break;
+	//default:
+		//break;	
+	//}
+
+	//std::string target;
+	//setCurrentNode(getNextNode());
+	//target=mTrajectoryNodes[getNextNode()]->getSceneNode()->getName();
+	//mNextMovement=calculateNextMovement(mParent,target,mTrajectory2d,currentSpeed,elapsedTime);
+}
+
+void Trajectory::advanceToLastNode(double elapsedTime)
+{
+	std::string currentNodeName;
+
+	currentNodeName=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getName();
+	switch(mState)
+	{
+	case PATH_FINDING:
+		activateIdle(mParent,currentNodeName,mWalkabilityMap);
+		break;
+	case IDLE:
+		break;
+	case CHASE:
+		break;
+	case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
+		activatePredefinedTrajectory(mPredefinedTrajectory);
+		break;
+	case PATH_FINDING_TO_IDLE:
+		activateIdle(mParent,currentNodeName,mWalkabilityMap);
+		break;
+	case PREDEFINED_TRAJECTORY:
+		activateIdle(mParent,currentNodeName,mWalkabilityMap);
+		break;
+	default:
+		break;	
+	}
 }
 
 void Trajectory::update(double elapsedTime)
 {
-	unsigned int nextNode;
-
-	//Ogre::LogManager::getSingleton().logMessage("Last position "+Ogre::StringConverter::toString(currentPosition));
-	Vector3 lastPosition=currentPosition;
-	nextMovement=Vector3::ZERO;
-
-	if(stop || trajectoryNodes.size()==0) return;
-
-	//Calculate total time
-	totalTime+=elapsedTime;
-	//Ogre::LogManager::getSingleton().logMessage("Updating trajectory "+getName());
-
+	std::string target;
+	std::string source;
+	std::string lastNode;
 	double currentSpeed;
+	double distanceToTarget;
 
-	//currentSpeed= (1-totalDistance/trajectoryNodes[currentNode]->getPosition())*trajectoryNodes[currentNode]->getSceneNode()->getPosition()+
-	//	(totalTime/trajectoryNodes[currentNode]->getSpeed())*trajectoryNodes[nextNode]->getSceneNode()->getPosition();
+	if(isEmpty()) return;
 
-	currentSpeed=trajectoryNodes[currentNode]->getSpeed();
+	lastNode=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getName();
+	target=mTrajectoryNodes[getNextNode()]->getSceneNode()->getName();
+	source=mParent;
 
-	distanceToNextNode-=elapsedTime*currentSpeed;
+	currentSpeed=mTrajectoryNodes[mCurrentNode]->getSpeed();
+	
+	mNextMovement=calculateNextMovement(source,target,mTrajectory2d,currentSpeed,elapsedTime);
+	mCurrentPosition=calculateNextPosition(source,target,mTrajectory2d,currentSpeed,elapsedTime);
+	mCurrentOrientation=calculateNextOrientation(lastNode,source,target,mTrajectory2d,currentSpeed,elapsedTime);
 
-	//Calculate next node
-	nextNode=getNextNode();
+	distanceToTarget=calculateDistance(target,source);
 
-	//Calculate current node
-	if(distanceToNextNode<0)
+	if(distanceToTarget<=mMinNextNodeDistance)
 	{
-		//calculate remaining elapsed time, which will be used for the next node
-		elapsedTime=(-distanceToNextNode)/currentSpeed;
-
-		if(currentNode+1>= trajectoryNodes.size())
+		if(isLastNode() && !mLoopTrajectory)
 		{
-			//If we do not want to loop the trajectory we return and leave it where it is
-			if (!loopTrajectory)
-			{
-				if(moveToPredefinedTrajectory)
-				{
-					setPredefinedTrajectoryFromNode(mPredefinedTrajectory,
-						mPathfindingTarget);
-				}
-				else
-				{
-					reachedLastNode=true;
-					setCurrentNode(trajectoryNodes.size()-1);
-				}
-				return;
-			}
-			else
-			{
-				//We set current node to the starting trajectory node
-				setCurrentNode(0);
-			}
+			advanceToLastNode(elapsedTime);
 		}
 		else
 		{
-			setCurrentNode(currentNode+1);
-		}
-
-		//calculate displacement for remaining elapsed time
-		currentSpeed=trajectoryNodes[currentNode]->getSpeed();
-		distanceToNextNode-=elapsedTime*currentSpeed;
-	}
-
-	//Calculate next node
-	nextNode=getNextNode();
-
-	//Calculate current position
-	Vector3 direction;
-	direction=trajectoryNodes[nextNode]->getSceneNode()->getPosition()-trajectoryNodes[currentNode]->getSceneNode()->getPosition();
-	direction.normalise();
-	currentPosition=currentPosition+direction*currentSpeed*elapsedTime;
-	nextMovement=currentPosition-lastPosition;
-
-	//Calculate current orientation
-	currentOrientation= Quaternion::Slerp(1-(distanceToNextNode/completeDistanceToNextNode), 
-		trajectoryNodes[currentNode]->getSceneNode()->getOrientation(), 
-		trajectoryNodes[nextNode]->getSceneNode()->getOrientation(),true);
-
-	if(twoDimensionsTrajectory)
-	{
-		currentPosition.y=0;
-		nextMovement.y=0;
-	}
-
-	if(pathFindingActivated)
-	{
-		lastPathFindingTime+=elapsedTime;
-		if(lastPathFindingTime>recalculateTime)
-		{
-			recalculatePathfinding();
-			lastPathFindingTime=0;
-			recalculateTime=1.5+Utils::Random::getInstance()->getRandomDouble();
+			advanceToNextNode(elapsedTime);
 		}
 	}
+
+	updateTrajectoryNodes(elapsedTime);
 
 	//Ogre::LogManager::getSingleton().logMessage("Updating position "+Ogre::StringConverter::toString(currentPosition));
 	//Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
 	//Ogre::LogManager::getSingleton().logMessage("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
 }
 
+void Trajectory::updateTrajectoryNodes(double elapsedTime)
+{
+	mTimeSinceLastUpdateNodes+=elapsedTime;
+	if(mTimeSinceLastUpdateNodes>mRecalculateTime)
+	{
+		mTimeSinceLastUpdateNodes=0;
+		mRecalculateTime=0.2+Utils::Random::getInstance()->getRandomDouble();
+
+		switch(mState)
+		{
+		case PATH_FINDING:
+			updatePathfinding();
+			break;
+		case IDLE:
+			break;
+		case CHASE:
+			updateChase();
+			break;
+		case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
+			break;
+		case PATH_FINDING_TO_IDLE:
+			break;
+		case PREDEFINED_TRAJECTORY:
+			break;
+		default:
+			break;	
+		}
+	}
+}
+
 OUAN::Quaternion Trajectory::getCurrentOrientation()
 {
-	return currentOrientation;
+	return mCurrentOrientation;
 }
 
 OUAN::Vector3 Trajectory::getCurrentPosition()
 {
-	return currentPosition;
+	return mCurrentPosition;
 }
 
 OUAN::Vector3 Trajectory::getNextMovement()
 {
-	return nextMovement;
+	return mNextMovement;
 }
 
 bool Trajectory::isEmpty()
 {
-	return trajectoryNodes.size()==0;
+	return mTrajectoryNodes.size()==0;
 }
 
 TrajectoryNode * Trajectory::getCurrentNode()
 {
-	return trajectoryNodes[currentNode];
+	return mTrajectoryNodes[mCurrentNode];
 }
 
 void Trajectory::clear()
@@ -235,7 +353,7 @@ void Trajectory::clear()
 	myLines.clear();
 	myNodes.clear();
 
-	while(trajectoryNodes.size()>0)
+	while(mTrajectoryNodes.size()>0)
 	{
 		popBackNode();
 	}
@@ -248,36 +366,34 @@ void Trajectory::clear()
 
 void Trajectory::setCurrentNode(int node)
 {
-	currentNode=node;
-	totalTime=0;
-	if(trajectoryNodes.size()>0)
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Current Node "+trajectoryNodes[node]->getSceneNode()->getName());
-		//Ogre::LogManager::getSingleton().logMessage("Current Node "+Ogre::StringConverter::toString(currentNode));
+	mCurrentNode=node;
 
-		currentPosition=trajectoryNodes[currentNode]->getSceneNode()->getPosition();
-		currentOrientation=trajectoryNodes[currentNode]->getSceneNode()->getOrientation();
-		completeDistanceToNextNode=calculateDistance(trajectoryNodes[currentNode]->getSceneNode()->getPosition(),trajectoryNodes[getNextNode()]->getSceneNode()->getPosition());
-		distanceToNextNode=completeDistanceToNextNode;
-	}
+	//if(mTrajectoryNodes.size()>0)
+	//{
+	//	//Ogre::LogManager::getSingleton().logMessage("Current Node "+mTrajectoryNodes[node]->getSceneNode()->getName());
+	//	//Ogre::LogManager::getSingleton().logMessage("Current Node "+Ogre::StringConverter::toString(currentNode));
+
+	//	//mCurrentPosition=mTrajectoryNodes[currentNode]->getSceneNode()->getPosition();
+	//	//mCurrentOrientation=mTrajectoryNodes[currentNode]->getSceneNode()->getOrientation();
+
+	//}
 }
 
 void Trajectory::reset()
 {
-	stop=false;
 	setCurrentNode(0);
 }
 
-void Trajectory::setTrajectoryNodes(std::vector<TrajectoryNode *> trajectoryNodes,std::string debugColor)
+void Trajectory::setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNodes,std::string debugColor)
 {
 	unsigned int i;
 	TrajectoryNode * pTrajectoryNode;
 
 	clear();
 
-	for(i=0;i<trajectoryNodes.size();i++)
+	for(i=0;i<mTrajectoryNodes.size();i++)
 	{
-		pTrajectoryNode=trajectoryNodes[i];
+		pTrajectoryNode=mTrajectoryNodes[i];
 
 		pushBackNode(pTrajectoryNode,debugColor);
 
@@ -305,7 +421,7 @@ std::string Trajectory::getEntityDebugName(int node)
 {
 	TrajectoryNode * pTrajectoryNode;
 
-	pTrajectoryNode=trajectoryNodes[node];
+	pTrajectoryNode=mTrajectoryNodes[node];
 	return mName+"#"+Ogre::StringConverter::toString(node)+"#"+pTrajectoryNode->getSceneNode()->getName();
 }
 
@@ -313,8 +429,8 @@ std::string Trajectory::getLineDebugName(int node)
 {
 	TrajectoryNode * pTrajectoryNode;
 
-	pTrajectoryNode=trajectoryNodes[node];
-	return mName+"#"+Ogre::StringConverter::toString(node)+"#line#"+trajectoryNodes[node]->getSceneNode()->getName();
+	pTrajectoryNode=mTrajectoryNodes[node];
+	return mName+"#"+Ogre::StringConverter::toString(node)+"#line#"+mTrajectoryNodes[node]->getSceneNode()->getName();
 }
 
 void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
@@ -325,7 +441,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	Ogre::SceneNode * pLineDebugNode;
 	Ogre::Entity * pEntity;
 
-	pTrajectoryNode=trajectoryNodes[node];
+	pTrajectoryNode=mTrajectoryNodes[node];
 
 	//create graphics debug objects
 	std::string entityDebugName=getEntityDebugName(node);
@@ -340,15 +456,15 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 
 	myNodes[entityDebugName]=pEntity;
 
-	if(trajectoryNodes.size()>1)
+	if(mTrajectoryNodes.size()>1)
 	{
 		std::string lineDebugName=getLineDebugName(node);;
 		pLineDebugNode=mDebugObjects->createChildSceneNode(lineDebugName);
 		Line3D *myLine; 
 		//create graphics debug objects
 		myLine = new Line3D();
-		myLine->addPoint(trajectoryNodes[node]->getSceneNode()->getPosition());
-		myLine->addPoint(trajectoryNodes[node-1]->getSceneNode()->getPosition());
+		myLine->addPoint(mTrajectoryNodes[node]->getSceneNode()->getPosition());
+		myLine->addPoint(mTrajectoryNodes[node-1]->getSceneNode()->getPosition());
 		myLine->setMaterial(debugColor);
 		myLine->drawLines();
 		pLineDebugNode->attachObject(myLine);
@@ -359,63 +475,37 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 
 TrajectoryNode* Trajectory::getTrajectoryNode(int index)
 {
-	if (!trajectoryNodes.empty() && index>=0 && (unsigned)index<trajectoryNodes.size())
+	if (!mTrajectoryNodes.empty() && index>=0 && (unsigned)index<mTrajectoryNodes.size())
 	{
-		return trajectoryNodes.at(index);
+		return mTrajectoryNodes.at(index);
 	}
 	return NULL;
 }
 int Trajectory::getNumberOfNodes() const
 {
-	return (trajectoryNodes.empty())?0:trajectoryNodes.size();
-}
-
-void Trajectory::setStop(bool stop)
-{
-	this->stop=stop;
+	return (mTrajectoryNodes.empty())?0:mTrajectoryNodes.size();
 }
 
 void Trajectory::activateIdle(std::string gameObject,std::string node,std::string walkabilityMap)
 {
-	mChase=false;
-	mIddle=true;
-	moveToPredefinedTrajectory=false;
+	mState=PATH_FINDING_TO_IDLE;
 	doPathfinding(gameObject,node,walkabilityMap);
 }
 
 void Trajectory::activatePathfinding(std::string source,std::string target,std::string walkabilityMap)
 {
-	mChase=false;
-	mIddle=false;
-	moveToPredefinedTrajectory=false;
+	mState=PATH_FINDING;
 	doPathfinding(source,target,walkabilityMap);
 }
 
 void Trajectory::activateChase(std::string source,std::string target)
 {
-	TrajectoryNode * pTrajectoryNode;
+	//TrajectoryNode * pTrajectoryNode;
 
-	clear();
-
-	pTrajectoryNode = new TrajectoryNode();
-	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingSource));
-	pTrajectoryNode->setSpeed(15);
-
-	pushBackNode(pTrajectoryNode,"red");
-
-	pTrajectoryNode = new TrajectoryNode();
-	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
-	pTrajectoryNode->setSpeed(15);
-
-	pushBackNode(pTrajectoryNode,"red");
-
-	mPathfindingSource=source;
+	mState=CHASE;
 	mPathfindingTarget=target;
-	mChase=true;
-
-	reset();
+	updateChase();
 }
-
 
 void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap)
 {
@@ -427,18 +517,13 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 
 	mPredefinedTrajectory=trajectory;
 
-	mIddle=false;
-	mChase=false;
-	moveToPredefinedTrajectory=true;
+	mState=PATH_FINDING_TO_PREDEFINED_TRAJECTORY;
 
-	reachedLastNode=false;
 	mPathfindingTarget=target;
-	mPathfindingSource=gameObject;
+	mParent=gameObject;
 	mWalkabilityMap=walkabilityMap;
 
-	fullPathfinding();
-
-	pathFindingActivated=false;
+	initPathfinding();
 
 	//Ogre::LogManager::getSingleton().logMessage("Pathfinding to predefined trajectory "+trajectory);
 
@@ -446,10 +531,9 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 
 void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 {
-	mIddle=false;
-	mChase=false;
-	moveToPredefinedTrajectory=false;
-	loopTrajectory=true;
+	mState=PREDEFINED_TRAJECTORY;
+
+	mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
 	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
 }
@@ -460,8 +544,7 @@ void Trajectory::doPathfinding(std::string source,std::string target,std::string
 {
 	TrajectoryNode * pTrajectoryNode;
 
-	loopTrajectory=false;
-	pathFindingActivated=false;
+	mLoopTrajectory=false;
 
 	if(source.compare(target)==0)
 	{
@@ -475,17 +558,17 @@ void Trajectory::doPathfinding(std::string source,std::string target,std::string
 	}
 	else
 	{
-		reachedLastNode=false;
+
 		mPathfindingTarget=target;
-		mPathfindingSource=source;
+		mParent=source;
 		mWalkabilityMap=walkabilityMap;
-		//Ogre::LogManager::getSingleton().logMessage("Pathfinding target "+target);
-		recalculatePathfinding();
+
+		initPathfinding();
 		reset();
 	}
 }
 
-void Trajectory::fullPathfinding()
+void Trajectory::initPathfinding()
 {
 	unsigned int i;
 	TrajectoryNode * pTrajectoryNode;
@@ -496,7 +579,7 @@ void Trajectory::fullPathfinding()
 	clear();
 	path=mTrajectoryManager->calculatePathFinding(
 		mWalkabilityMap,
-		mPathfindingSource,
+		mParent,
 		mPathfindingTarget);
 
 	for(i=0;i<path.size();i++)
@@ -512,7 +595,7 @@ void Trajectory::fullPathfinding()
 
 }
 
-void Trajectory::partialPathfinding()
+void Trajectory::recalculatePathfinding()
 {
 	unsigned int i;
 	TrajectoryNode * pTrajectoryNode;
@@ -524,23 +607,23 @@ void Trajectory::partialPathfinding()
 	//Ogre::LogManager::getSingleton().logMessage("PARTIAL");
 
 	pCurrentNode = new TrajectoryNode();
-	pCurrentNode->setSceneNode(trajectoryNodes[currentNode]->getSceneNode());
-	pCurrentNode->setSpeed(trajectoryNodes[currentNode]->getSpeed());
+	pCurrentNode->setSceneNode(mTrajectoryNodes[mCurrentNode]->getSceneNode());
+	pCurrentNode->setSpeed(mTrajectoryNodes[mCurrentNode]->getSpeed());
 
 	pNextNode = new TrajectoryNode();
-	pNextNode->setSceneNode(trajectoryNodes[nextNode]->getSceneNode());
-	pNextNode->setSpeed(trajectoryNodes[nextNode]->getSpeed());
+	pNextNode->setSceneNode(mTrajectoryNodes[nextNode]->getSceneNode());
+	pNextNode->setSpeed(mTrajectoryNodes[nextNode]->getSpeed());
 
 	path=mTrajectoryManager->calculatePathFinding(
 		mWalkabilityMap,
-		trajectoryNodes[nextNode]->getSceneNode()->getName(),
+		mTrajectoryNodes[nextNode]->getSceneNode()->getName(),
 		mPathfindingTarget);
 
 	clear();
 
 	pushBackNode(pCurrentNode,"green");
 	pushBackNode(pNextNode,"green");
-	currentNode=0;
+	mCurrentNode=0;
 
 	for(i=1;i<path.size();i++)
 	{
@@ -553,60 +636,31 @@ void Trajectory::partialPathfinding()
 	}
 }
 
-void Trajectory::recalculatePathfinding()
+void Trajectory::updatePathfinding()
 {
-	if(mChase)
-	{
-		activateChase(mPathfindingSource,mPathfindingTarget);
-		return;
-	}
-
 	int nextNode=getNextNode();
 
-	//if(pathFindingActivated)
-	//{
-	//	Ogre::LogManager::getSingleton().logMessage("next node "+trajectoryNodes[nextNode]->getSceneNode()->getName());
-	//}
-	if(reachedLastNode)
+	if( mTrajectoryNodes.size()-(mCurrentNode+1)<=0 ||
+		mTrajectoryNodes[nextNode]->getSceneNode()->getName().compare(mPathfindingTarget)==0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("REACHED TARGET");
-		if(!moveToPredefinedTrajectory && !mIddle)
-		{
-			fullPathfinding();
-		}
-	}
-	else if(!pathFindingActivated ||
-		trajectoryNodes.size()-(currentNode+1)<=0 ||
-		trajectoryNodes[nextNode]->getSceneNode()->getName().compare(mPathfindingTarget)==0)
-	{
-		fullPathfinding();
-		pathFindingActivated=true;
+		initPathfinding();
 	}
 	else
 	{
-		partialPathfinding();
+		recalculatePathfinding();
 	}
-
-	//Ogre::LogManager::getSingleton().logMessage("CURRENT TRAJECTORY");
-	
-	//for(i=0;i<trajectoryNodes.size();i++)
-	//{
-	//	Ogre::LogManager::getSingleton().logMessage(trajectoryNodes[i]->getSceneNode()->getName());
-	//}
-
-	lastPathFindingTime=0;
 }
 
 void Trajectory::pushBackNode(TrajectoryNode * pTrajectoryNode,std::string debugColor)
 {
-	trajectoryNodes.push_back(pTrajectoryNode);
-	createNodeDebugInfo(trajectoryNodes.size()-1,debugColor);
+	mTrajectoryNodes.push_back(pTrajectoryNode);
+	createNodeDebugInfo(mTrajectoryNodes.size()-1,debugColor);
 }
 
 void Trajectory::popBackNode()
 {
-	removeNodeDebugInfo(trajectoryNodes.size()-1);
-	trajectoryNodes.pop_back();
+	removeNodeDebugInfo(mTrajectoryNodes.size()-1);
+	mTrajectoryNodes.pop_back();
 }
 
 void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::string node)
@@ -617,14 +671,14 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 	//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode");
 	//Ogre::LogManager::getSingleton().logMessage("Predefined Trajectory");
 
-	for(i=0;i<trajectoryNodes.size();i++)
+	for(i=0;i<mTrajectoryNodes.size();i++)
 	{
-		if(trajectoryNodes[i]->getSceneNode()->getName().compare(node)==0)
+		if(mTrajectoryNodes[i]->getSceneNode()->getName().compare(node)==0)
 		{
 			current=i;
 			break;
 		}
-		//Ogre::LogManager::getSingleton().logMessage("Node "+trajectoryNodes[i]->getSceneNode()->getName());
+		//Ogre::LogManager::getSingleton().logMessage("Node "+mTrajectoryNodes[i]->getSceneNode()->getName());
 	}
 
 	if(current==-1)
@@ -633,7 +687,7 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 	}
 	else
 	{
-		//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode Node "+node+" "+trajectoryNodes[current]->getSceneNode()->getName());
+		//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode Node "+node+" "+mTrajectoryNodes[current]->getSceneNode()->getName());
 		setCurrentNode(current);
 	}
 
@@ -645,13 +699,13 @@ std::string Trajectory::getNearestNode(Ogre::Vector3 position)
 	double minDistance=-1;
 	std::string minDistanceName="";
 	double distance;
-	for(unsigned int i=0;i<trajectoryNodes.size();i++)
+	for(unsigned int i=0;i<mTrajectoryNodes.size();i++)
 	{
-		distance=trajectoryNodes[i]->getSceneNode()->getPosition().distance(position);
+		distance=mTrajectoryNodes[i]->getSceneNode()->getPosition().distance(position);
 		if(minDistance==-1 || distance<minDistance)
 		{
 			minDistance=distance;
-			minDistanceName=trajectoryNodes[i]->getSceneNode()->getName();
+			minDistanceName=mTrajectoryNodes[i]->getSceneNode()->getName();
 		}
 	}
 	return minDistanceName;

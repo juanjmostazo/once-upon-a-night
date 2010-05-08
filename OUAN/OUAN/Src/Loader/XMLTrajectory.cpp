@@ -4,7 +4,7 @@ using namespace OUAN;
 
 XMLTrajectory::XMLTrajectory()
 {
-	trajectoryNodes.clear();
+	mTrajectoryNodes.clear();
 }
 
 XMLTrajectory::~XMLTrajectory()

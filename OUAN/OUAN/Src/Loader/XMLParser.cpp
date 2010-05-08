@@ -317,7 +317,7 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 			if(currentTrajectoryNode.compare("")==0) break;
 
 			//find current trajectory node
-			mXMLTrajectoryContainer[trajectoryName].trajectoryNodes.push_back(findNode(currentTrajectoryNode));
+			mXMLTrajectoryContainer[trajectoryName].mTrajectoryNodes.push_back(findNode(currentTrajectoryNode));
 
 			i++;
 		}

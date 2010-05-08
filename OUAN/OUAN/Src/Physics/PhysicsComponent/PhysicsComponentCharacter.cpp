@@ -154,7 +154,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			//applyDash(elapsedSeconds);
+			applyDash(elapsedSeconds);
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
@@ -167,6 +167,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
+		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
+											getNxOgreController()->getPosition().y,
+											getNxOgreController()->getPosition().z
+			));
 		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
 	}
 
