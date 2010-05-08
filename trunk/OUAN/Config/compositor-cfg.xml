@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+	<Option key="BLOOM">Bloom</Option>
+	<Option key="HDR">HDR</Option>
+  </Options>
+</Configuration>

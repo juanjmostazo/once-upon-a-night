@@ -1937,6 +1937,10 @@ GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectVie
 	// Add a reference to this
 	pGameObjectViewport->setGameWorldManager(gameWorldMgr);
 
+	//Initialize compositor effects
+
+	//pGameObjectViewport->setEffect("Posterize",true);
+
 	//Add Object to GameWorldManager
 	//addGameObjectViewport(pGameObjectViewport);
 	return pGameObjectViewport;

@@ -30,6 +30,9 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeWorld(int world);
+
+		void setEffect(std::string effectName, bool activated);
+
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters

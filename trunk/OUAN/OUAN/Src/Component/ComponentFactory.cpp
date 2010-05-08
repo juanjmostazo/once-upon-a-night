@@ -203,6 +203,10 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 	//init Render Component
 	pRenderComponentViewport->setViewport(mApp->getCameraManager()->setViewportParameters(gameObject->getName(),tRenderComponentViewportParameters));
 
+	pRenderComponentViewport->setRenderSubsystem(mApp->getRenderSubsystem());
+
+	pRenderComponentViewport->initEffects();
+
 	return pRenderComponentViewport;
 }
 

@@ -134,6 +134,13 @@ namespace OUAN
 
 		void captureScene(const std::string& name);
 
+		/// Load params from config file
+		bool loadConfig();
+
+		/// Particle name values
+		std::string BLOOM;
+		std::string HDR;
+
 	protected:
 		/// the application
 		OUAN::ApplicationPtr mApp;
