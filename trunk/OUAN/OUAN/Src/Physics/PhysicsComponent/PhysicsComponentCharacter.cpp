@@ -172,8 +172,8 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 											getNxOgreController()->getPosition().z
 			));
 
-		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-			Ogre::LogManager::getSingleton().logMessage("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//	Ogre::LogManager::getSingleton().logMessage("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 	}
 
 	setLastMovement(mNextMovement);
