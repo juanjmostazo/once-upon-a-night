@@ -17,6 +17,7 @@
 #include "../Game/GameObject/GameObjectCamera.h"
 #include "../Game/GameObject/GameObjectCarnivorousPlant.h"
 #include "../Game/GameObject/GameObjectClockPiece.h"
+#include "../Game/GameObject/GameObjectCloud.h"
 #include "../Game/GameObject/GameObjectCryKing.h"
 #include "../Game/GameObject/GameObjectDiamond.h"
 #include "../Game/GameObject/GameObjectDiamondTree.h"
@@ -86,11 +87,17 @@ LevelLoader::LevelLoader()
 	DEFAULT_TRAJECTORY_SPEED = 20;
 	mGameObjectFactory = GameObjectFactoryPtr(new GameObjectFactory());
 }
+
 LevelLoader::~LevelLoader(){
 	if (mGameObjectFactory.get())
+	{
 		mGameObjectFactory.reset();
+	}
+
 	if (mGameWorldManager.get())
+	{
 		mGameWorldManager.reset();
+	}
 }
 
 void LevelLoader::init(OUAN::ApplicationPtr app)
@@ -351,6 +358,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectBush(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOUD)==0)
+		{
+			processGameObjectCloud(gameObject);
+		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
 			processGameObjectWoodBox(gameObject);
@@ -593,7 +604,6 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-
 	mGameWorldManager->addGameObjectBillboardSet
 		(mGameObjectFactory->createGameObjectBillboardSet(tGameObjectBillboardSetParameters,mGameWorldManager));
 }
@@ -641,7 +651,8 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 
 	//Create GameObject
 	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
-	mGameWorldManager->addGameObjectBush(mGameObjectFactory->createGameObjectBush(tGameObjectBushParameters,mGameWorldManager));
+	mGameWorldManager->addGameObjectBush(
+		mGameObjectFactory->createGameObjectBush(tGameObjectBushParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
@@ -705,7 +716,6 @@ void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentSimpleBox
 		tGameObjectCarnivorousPlantParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
-
 	}
 	catch( std::string error )
 	{
@@ -758,6 +768,53 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectClockPiece(tGameObjectClockPieceParameters);
 	mGameWorldManager->addGameObjectClockPiece(mGameObjectFactory->createGameObjectClockPiece(
 		tGameObjectClockPieceParameters,mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectCloud(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectCloudParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectCloudParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectCloudParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectCloudParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
+		}
+		if(tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectCloud(tGameObjectCloudParameters);
+	mGameWorldManager->addGameObjectCloud(
+		mGameObjectFactory->createGameObjectCloud(tGameObjectCloudParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)

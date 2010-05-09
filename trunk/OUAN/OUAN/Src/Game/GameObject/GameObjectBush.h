@@ -7,13 +7,13 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
 namespace OUAN
 {
 	/// Class to hold Bush information
 	class GameObjectBush : public GameObject, public boost::enable_shared_from_this<GameObjectBush>
 	{
 	private:
-		
 		/// Visual component
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
@@ -70,9 +70,9 @@ namespace OUAN
 		/// Reset object
 		virtual void reset();
 
+		/// 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
-
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -89,6 +89,7 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
+		/// 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
 	};

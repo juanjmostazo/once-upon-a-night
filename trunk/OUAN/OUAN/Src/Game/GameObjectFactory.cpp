@@ -9,6 +9,7 @@
 #include "GameObject/GameObjectCamera.h"
 #include "GameObject/GameObjectCarnivorousPlant.h"
 #include "GameObject/GameObjectClockPiece.h"
+#include "GameObject/GameObjectCloud.h"
 #include "GameObject/GameObjectCryKing.h"
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
@@ -347,6 +348,53 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 	//addGameObjectClockPiece(pGameObjectClockPiece);
 
 	return pGameObjectClockPiece;
+}
+
+GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudParameters tGameObjectCloudParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectCloudPtr pGameObjectCloud;
+
+	//Create GameObject
+	pGameObjectCloud = GameObjectCloudPtr(new GameObjectCloud(tGameObjectCloudParameters.name));
+
+	//Create LogicComponent
+	pGameObjectCloud->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectCloud,
+		tGameObjectCloudParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectCloud->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectCloud->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectCloud->getRenderComponentPositional()));
+
+	if(pGameObjectCloud->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntity Dreams
+		pGameObjectCloud->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.dreamsName,
+			pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters));
+	}
+	if(pGameObjectCloud->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntity Nightmares
+		pGameObjectCloud->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.nightmaresName,
+			pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters));
+	}
+
+	pGameObjectCloud->changeWorld(gameWorldMgr->getCurrentWorld());
+
+	//Add reference to this
+	pGameObjectCloud->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectCloud(pGameObjectCloud);
+	return pGameObjectCloud;
 }
 
 GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters, 

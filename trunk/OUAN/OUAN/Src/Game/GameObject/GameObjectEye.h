@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
+
 namespace OUAN
 {
 	/// Class to hold Eye information

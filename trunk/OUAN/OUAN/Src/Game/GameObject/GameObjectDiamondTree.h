@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
 namespace OUAN
 {
 	/// Class to hold DiamondTree information

@@ -594,6 +594,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCloud.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCryKing.cpp"
 						>
 					</File>
@@ -1217,6 +1221,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectClockPiece.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCloud.h"
 						>
 					</File>
 					<File

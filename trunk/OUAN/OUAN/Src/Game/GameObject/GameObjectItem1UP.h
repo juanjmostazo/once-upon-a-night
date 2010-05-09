@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../../Logic/LogicComponent/LogicComponentItem.h"
+
 namespace OUAN
 {
 	/// Class to hold GameObjectItem1UP information

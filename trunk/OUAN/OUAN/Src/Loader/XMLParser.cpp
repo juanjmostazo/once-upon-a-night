@@ -30,7 +30,6 @@ void XMLParser::clearLevelInfo()
 		it->second.XMLNodeNightmares=NULL;
 		it->second.XMLNodeCustomProperties=NULL;
 	}
-
 }
 
 void XMLParser::parseGameObjectTypes()
@@ -90,6 +89,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH2);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH1);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOUD);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WOODBOX);
 
 	for(i=0;i<gameObjectTypes.size();i++)
@@ -155,6 +155,7 @@ void XMLParser::parseLevel(String level)
 	setNames();
 
 }
+
 void XMLParser::setNames()
 {
 	XMLGameObjectContainerIterator it;
@@ -288,7 +289,6 @@ void XMLParser::parseWalkabilityMap(TiXmlElement *XMLWalkabilityMap)
 		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing walkablity map "+walkabilityMapName+": "+error);	
 		return;
 	}
-
 }
 
 void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
@@ -327,7 +327,6 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing trajectory "+trajectoryName+": "+error);	
 		return;
 	}
-
 }
 
 void XMLParser::parseElement(TiXmlElement *XMLNode)
@@ -383,7 +382,6 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 	{
 		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Game Object "+name+" has unrecognised Game Object Type");
 	}
-
 }
 
 void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode)
@@ -432,7 +430,6 @@ void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjec
 			mXMLGameObjectContainer[baseName].XMLNodeNightmares=XMLNode;
 		}
 	}
-
 }
 
 bool XMLParser::isDreams(std::string worldName,std::string gameObjectType)
@@ -454,7 +451,6 @@ std::string XMLParser::getBaseName(std::string worldName,std::string gameObjectT
 	return	baseName;
 }		
 
-
 std::string XMLParser::getNightmaresName(std::string baseName,std::string gameObjectType)
 {
 	std::string nightmaresName;
@@ -471,7 +467,6 @@ std::string XMLParser::getDreamsName(std::string baseName,std::string gameObject
 
 	return	dreamsName;
 }
-
 
 String XMLParser::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)
 {

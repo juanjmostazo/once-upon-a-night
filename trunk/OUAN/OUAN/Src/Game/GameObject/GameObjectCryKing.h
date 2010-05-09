@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
 namespace OUAN
 {
 	/// Class modelling a particular enemy type

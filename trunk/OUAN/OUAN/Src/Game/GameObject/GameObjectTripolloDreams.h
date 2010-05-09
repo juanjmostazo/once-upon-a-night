@@ -7,8 +7,8 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
-
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
+
 namespace OUAN
 {
 	//State names

@@ -5,7 +5,6 @@
 
 namespace OUAN
 {
-
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
 	class GameWorldManager: public boost::enable_shared_from_this<GameWorldManager>
@@ -195,6 +194,7 @@ namespace OUAN
 		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
 		void addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr pGameObjectCarnivorousPlant);
 		void addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece);
+		void addGameObjectCloud(GameObjectCloudPtr gameObjectCloud);
 		void addGameObjectCryKing(GameObjectCryKingPtr pGameObjectCryKing);
 		void addGameObjectDiamond(GameObjectDiamondPtr pGameObjectDiamond);
 		void addGameObjectDiamondTree(GameObjectDiamondTreePtr pGameObjectDiamondTree);
@@ -231,7 +231,6 @@ namespace OUAN
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
 
 	private:		
-
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
 		/// @param baseString	reference string to make the id

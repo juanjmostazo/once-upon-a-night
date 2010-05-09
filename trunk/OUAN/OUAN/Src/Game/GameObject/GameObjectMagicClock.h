@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
 namespace OUAN
 {
 	/// Class to hold GameObjectMagicClock information
