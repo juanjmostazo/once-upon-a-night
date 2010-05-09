@@ -43,6 +43,8 @@
 #include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
+#include "GameObject/GameObjectWater.h"
+
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
@@ -877,6 +879,13 @@ void GameWorldManager::addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWood
 	mGameObjectPhysicsSimpleContainer.push_back(pGameObjectWoodBox);
 	mGameObjectPhysicsSimpleBoxContainer.push_back(pGameObjectWoodBox);
 }
+
+void GameWorldManager::addGameObjectWater(GameObjectWaterPtr pGameObjectWater)
+{
+	mGameObjects[pGameObjectWater->getName()]=pGameObjectWater;
+	mGameObjectPhysicsContainer.push_back(pGameObjectWater);
+}
+
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
 {
 	mApp->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);

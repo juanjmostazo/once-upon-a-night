@@ -74,7 +74,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		return;
 	}
 
-	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding)
+	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding && !getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		setLastMovement(NxOgre::Vec3::ZERO);
 		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
@@ -171,7 +171,9 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 											getNxOgreController()->getPosition().y,
 											getNxOgreController()->getPosition().z
 			));
-		//Ogre::LogManager::getSingleton().logMessage("* * Moving!");
+
+		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			Ogre::LogManager::getSingleton().logMessage("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 	}
 
 	setLastMovement(mNextMovement);
@@ -182,12 +184,9 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
-	//if(!mOnSurface)
-	//{
 		setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
 		mFallTime += elapsedSeconds;
 		mNextMovement.y += mFallSpeed * elapsedSeconds;
-	//}
 }
 
 bool PhysicsComponentCharacter::isMoving() const

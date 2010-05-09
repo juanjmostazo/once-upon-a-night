@@ -5,7 +5,7 @@
     <Option key="INITIAL_DIRECTION_Y">0.25</Option>
     <Option key="INITIAL_DIRECTION_Z">-1</Option>
     <Option key="COLLISION_MARGIN">5</Option>
-    <Option key="MAX_DISTANCE">80</Option>
+    <Option key="MAX_DISTANCE">93</Option>
     <Option key="MIN_DISTANCE">30</Option>
     <Option key="TARGET_HEIGHT">20</Option>
     <Option key="SPEED_X">0.06</Option>
@@ -17,10 +17,10 @@
     <Option key="ROT_X_DISTANCE_ATTENUATION_POSITIVE">0.3</Option>
     <Option key="ROT_X_DISTANCE_ATTENUATION_NEGATIVE">0.5</Option>
     <Option key="MIN_COLLISION_TIME">0</Option>
-    <Option key="AUTO_ROT_X_SPEED">25</Option>
+    <Option key="AUTO_ROT_X_SPEED">40</Option>
     <Option key="MIN_AUTO_ROT_X">0</Option>
     <Option key="MAX_AUTO_ROT_X">50</Option>
     <Option key="AUTO_ROT_Y_SPEED">10</Option>
-    <Option key="MAX_Y_MOVEMENT_PER_FRAME">0.4</Option>
+    <Option key="MAX_Y_MOVEMENT_PER_FRAME">0.15</Option>
   </Options>
 </Configuration>

@@ -268,6 +268,11 @@ bool GameObject::isJumping()
 	return false;
 }
 
+bool GameObject::cancelAutoCameraMovement()
+{
+	return false;
+}
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

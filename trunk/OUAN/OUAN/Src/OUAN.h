@@ -492,6 +492,10 @@ namespace OUAN
 		class TGameObjectTreeParameters;
 		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
 
+		class GameObjectWater;
+		class TGameObjectWaterParameters;
+		typedef boost::shared_ptr<GameObjectWater> GameObjectWaterPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -528,6 +532,7 @@ namespace OUAN
 		typedef std::vector<GameObjectCarnivorousPlantPtr> TGameObjectCarnivorousPlantContainer;
 		typedef std::vector<GameObjectSnakeCreeperPtr> TGameObjectSnakeCreeperContainer;
 		typedef std::vector<GameObjectWoodBoxPtr> TGameObjectWoodBoxContainer;
+		typedef std::vector<GameObjectWaterPtr> TGameObjectWaterContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -589,6 +594,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_BUSH3="bush3";
 		const std::string GAME_OBJECT_TYPE_CLOUD="cloud";
 		const std::string GAME_OBJECT_TYPE_WOODBOX="woodbox";
+		const std::string GAME_OBJECT_TYPE_WATER="water";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";

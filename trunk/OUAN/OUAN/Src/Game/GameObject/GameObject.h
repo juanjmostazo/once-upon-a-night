@@ -88,7 +88,7 @@ namespace OUAN
 
 		virtual bool isMoving();
 		virtual bool isJumping();
-
+		virtual bool cancelAutoCameraMovement();
 
 		/// Disable the object
 		virtual void disable();

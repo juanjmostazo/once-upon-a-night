@@ -44,6 +44,7 @@
 #include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
+#include "GameObject/GameObjectWater.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
@@ -2048,4 +2049,56 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 	//Add Object to GameWorldManager
 	//addGameObjectWoodBox(pGameObjectWoodBox);
 	return pGameObjectWoodBox;
+}
+
+
+GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterParameters tGameObjectWaterParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectWaterPtr pGameObjectWater;
+
+	//Create GameObject
+	pGameObjectWater = GameObjectWaterPtr(new GameObjectWater(tGameObjectWaterParameters.name));
+
+	//Create LogicComponent
+	pGameObjectWater->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectWater,
+		tGameObjectWaterParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectWater->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectWater,tGameObjectWaterParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectWater->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectWater->getRenderComponentPositional()));
+
+	if(pGameObjectWater->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectWater->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectWaterParameters.dreamsName,
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+	}
+	if(pGameObjectWater->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntityNightmares
+		pGameObjectWater->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectWaterParameters.nightmaresName,
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+	}
+	//Create PhysicsComponent
+	pGameObjectWater->setPhysicsComponentVolumeConvex(mComponentFactory->createPhysicsComponentVolumeConvex(
+		pGameObjectWater,
+		tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters,
+		pGameObjectWater->getRenderComponentPositional()));
+
+	pGameObjectWater->changeWorld(gameWorldMgr->getCurrentWorld());
+
+	// Add a reference to this
+	pGameObjectWater->setGameWorldManager(gameWorldMgr);
+	//Add Object to GameWorldManager
+	//addGameObjectWater(pGameObjectWater);
+	return pGameObjectWater;
 }

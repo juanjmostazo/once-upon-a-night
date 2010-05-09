@@ -197,6 +197,7 @@ namespace OUAN
 
 		bool isMoving();
 		bool isJumping();
+		bool cancelAutoCameraMovement();
 
 		/// Process collision event
 		/// @param gameObject which has collision with

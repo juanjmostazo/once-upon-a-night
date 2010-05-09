@@ -188,7 +188,7 @@ Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::
 		fT=1;
 	}
 
-	nextOrientation=Ogre::Quaternion::Slerp(fT,targetNode->getOrientation(),lastNodeNode->getOrientation());
+	nextOrientation=Ogre::Quaternion::Slerp(fT,targetNode->getOrientation(),lastNodeNode->getOrientation(),true);
 
 	return nextOrientation;
 }
