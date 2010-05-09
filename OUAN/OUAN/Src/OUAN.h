@@ -484,6 +484,10 @@ namespace OUAN
 		class TGameObjectBushParameters;
 		typedef boost::shared_ptr<GameObjectBush> GameObjectBushPtr;
 
+		class GameObjectCloud;
+		class TGameObjectCloudParameters;
+		typedef boost::shared_ptr<GameObjectCloud> GameObjectCloudPtr;
+
 		class GameObjectTree;
 		class TGameObjectTreeParameters;
 		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
@@ -583,6 +587,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_BUSH1="bush1";
 		const std::string GAME_OBJECT_TYPE_BUSH2="bush2";
 		const std::string GAME_OBJECT_TYPE_BUSH3="bush3";
+		const std::string GAME_OBJECT_TYPE_CLOUD="cloud";
 		const std::string GAME_OBJECT_TYPE_WOODBOX="woodbox";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";

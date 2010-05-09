@@ -8,6 +8,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentUsable.h"
+
 namespace OUAN
 {
 	const std::string PORTAL_ANIMATION_IDLE="";

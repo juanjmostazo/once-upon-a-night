@@ -1,60 +1,60 @@
-#include "GameObjectBush.h"
+#include "GameObjectCloud.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
 
-GameObjectBush::GameObjectBush(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_BUSH)
+GameObjectCloud::GameObjectCloud(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_CLOUD)
 {
 
 }
 
-GameObjectBush::~GameObjectBush()
+GameObjectCloud::~GameObjectCloud()
 {
 
 }
 
-void GameObjectBush::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCloud::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectBush::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCloud::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectBush::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectCloud::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
 }
 
-RenderComponentEntityPtr GameObjectBush::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectCloud::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectBush::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectCloud::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectBush::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectCloud::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectBush::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectCloud::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectCloud::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectBush::changeWorld(int world)
+void GameObjectCloud::changeWorld(int world)
 {
 	switch(world)
 	{
@@ -93,58 +93,34 @@ void GameObjectBush::changeWorld(int world)
 	}
 }
 
-void GameObjectBush::reset()
+void GameObjectCloud::reset()
 {
 	GameObject::reset();
 }
 
-bool GameObjectBush::hasPositionalComponent() const
+bool GameObjectCloud::hasPositionalComponent() const
 {
 	return true;
 }
 
-RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectCloud::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
 /// Set logic component
-void GameObjectBush::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectCloud::setLogicComponent(LogicComponentPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectBush::getLogicComponent()
+LogicComponentPtr GameObjectCloud::getLogicComponent()
 {
 	return mLogicComponent;
 }
 
-void GameObjectBush::processCollision(GameObjectPtr pGameObject)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->processCollision(pGameObject);
-	}
-}
-
-void GameObjectBush::processEnterTrigger(GameObjectPtr pGameObject)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->processEnterTrigger(pGameObject);
-	}
-}
-
-void GameObjectBush::processExitTrigger(GameObjectPtr pGameObject)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->processExitTrigger(pGameObject);
-	}
-}
-
-void GameObjectBush::updateLogic(double elapsedSeconds)
+void GameObjectCloud::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponent.get())
 	{
@@ -152,23 +128,23 @@ void GameObjectBush::updateLogic(double elapsedSeconds)
 	}
 }
 
-bool GameObjectBush::hasRenderComponentEntity() const
+bool GameObjectCloud::hasRenderComponentEntity() const
 {
 	return true;
 }
 
-RenderComponentEntityPtr GameObjectBush::getEntityComponent() const
+RenderComponentEntityPtr GameObjectCloud::getEntityComponent() const
 {
 	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 
-TGameObjectBushParameters::TGameObjectBushParameters() : TGameObjectParameters()
+TGameObjectCloudParameters::TGameObjectCloudParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectBushParameters::~TGameObjectBushParameters()
+TGameObjectCloudParameters::~TGameObjectCloudParameters()
 {
 
 }

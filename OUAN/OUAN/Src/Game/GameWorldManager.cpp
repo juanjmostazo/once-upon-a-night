@@ -8,6 +8,7 @@
 #include "GameObject/GameObjectCamera.h"
 #include "GameObject/GameObjectCarnivorousPlant.h"
 #include "GameObject/GameObjectClockPiece.h"
+#include "GameObject/GameObjectCloud.h"
 #include "GameObject/GameObjectCryKing.h"
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
@@ -515,6 +516,11 @@ void GameWorldManager::addGameObjectClockPiece(GameObjectClockPiecePtr pGameObje
 	mGameObjectPhysicsContainer.push_back(pGameObjectClockPiece);
 	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectClockPiece);
 	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectClockPiece);
+}
+
+void GameWorldManager::addGameObjectCloud(GameObjectCloudPtr gameObjectCloud)
+{
+	mGameObjects[gameObjectCloud->getName()]=gameObjectCloud;
 }
 
 void GameWorldManager::addGameObjectCryKing(GameObjectCryKingPtr gameObjectCryKing)

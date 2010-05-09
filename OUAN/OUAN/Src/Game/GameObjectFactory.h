@@ -27,6 +27,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectClockPiecePtr createGameObjectClockPiece(TGameObjectClockPieceParameters tGameObjectClockPieceParameters, 
 			GameWorldManagerPtr gameWorldMgr);
+		GameObjectCloudPtr createGameObjectCloud(TGameObjectCloudParameters tGameObjectCloudParameters, 
+			GameWorldManagerPtr gameWorldMgr);
 		GameObjectCryKingPtr createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectDiamondPtr createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters, 

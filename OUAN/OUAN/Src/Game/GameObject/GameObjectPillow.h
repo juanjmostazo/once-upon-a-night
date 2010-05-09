@@ -10,6 +10,7 @@
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
+
 namespace OUAN
 {
 	const std::string ATTACK_NAME_BASE="baseAttack";

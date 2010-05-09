@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../../Logic/LogicComponent/LogicComponentTrigger.h"
+
 namespace OUAN
 {
 	/// Class to hold volume box information
