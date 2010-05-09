@@ -97,6 +97,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectWoodBoxPtr createGameObjectWoodBox(TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters, 
 			GameWorldManagerPtr gameWorldMgr);		
+		GameObjectWaterPtr createGameObjectWater(TGameObjectWaterParameters tGameObjectWaterParameters, 
+			GameWorldManagerPtr gameWorldMgr);		
 	};
 }
 #endif

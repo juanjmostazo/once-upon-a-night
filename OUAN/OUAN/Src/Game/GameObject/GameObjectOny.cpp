@@ -77,6 +77,18 @@ bool GameObjectOny::isJumping()
 	return mPhysicsComponentCharacter->isJumping();
 }
 
+bool GameObjectOny::cancelAutoCameraMovement()
+{
+	if(mWeaponComponent->isActiveWeaponInUse() && getGameWorldManager()->getWorld()==NIGHTMARES)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void GameObjectOny::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);

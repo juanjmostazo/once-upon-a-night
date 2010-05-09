@@ -91,6 +91,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOUD);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WOODBOX);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WATER);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

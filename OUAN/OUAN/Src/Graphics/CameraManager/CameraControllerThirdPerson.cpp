@@ -149,18 +149,18 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distan
 	newCameraPosition = target->getPosition()+newCameraPosition;
 
 	//jumping correction
-	if(y_correction && Ogre::Math::Abs(newCameraPosition.y-mCamera->getPosition().y)>maxYMovementPerFrame)
-	{
-		if(newCameraPosition.y>mCamera->getPosition().y)
-		{
-			newCameraPosition.y=mCamera->getPosition().y+maxYMovementPerFrame;
-		}
-		else if(newCameraPosition.y<mCamera->getPosition().y)
-		{
-			newCameraPosition.y=mCamera->getPosition().y-maxYMovementPerFrame;
-		}
-		//newCameraPosition.y=mCamera->getPosition().y;
-	}
+	//if(target->getParent()->isJumping() && y_correction && Ogre::Math::Abs(newCameraPosition.y-mCamera->getPosition().y)>maxYMovementPerFrame)
+	//{
+	//	if(newCameraPosition.y>mCamera->getPosition().y)
+	//	{
+	//		newCameraPosition.y=mCamera->getPosition().y+maxYMovementPerFrame;
+	//	}
+	//	else if(newCameraPosition.y<mCamera->getPosition().y)
+	//	{
+	//		newCameraPosition.y=mCamera->getPosition().y-maxYMovementPerFrame;
+	//	}
+	//	//newCameraPosition.y=mCamera->getPosition().y;
+	//}
 
 	//Ogre::LogManager::getSingleton().logMessage("y_correction "+Ogre::StringConverter::toString(y_correction));
 
@@ -270,7 +270,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	cameraLookAt=calculateCameraLookAt();
 
 	//moving rotX correction
-	if(target->getParent()->isMoving())
+	if(target->getParent()->isMoving() && !target->getParent()->cancelAutoCameraMovement())
 	{
 		if(rotX>20)
 		{
@@ -284,7 +284,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 	cameraCollisionPosition=newCameraPosition;
 	//Calculate camera collisions
-	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt,collisionType))
+	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt,collisionType) && !target->getParent()->cancelAutoCameraMovement())
 	{
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)
@@ -306,9 +306,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	else
 	{
 		currentCollisionTime=0;
-
 		currentDistance=calculateCameraReturningFromTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
-		
 	}
 
 	//set camera position

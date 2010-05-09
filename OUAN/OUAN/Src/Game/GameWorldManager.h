@@ -229,6 +229,7 @@ namespace OUAN
 		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
+		void addGameObjectWater(GameObjectWaterPtr pGameObjectWater);
 
 	private:		
 		/// Generate a unique id string with the following format:

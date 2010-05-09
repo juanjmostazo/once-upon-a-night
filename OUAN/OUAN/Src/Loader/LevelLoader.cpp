@@ -52,6 +52,7 @@
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Game/GameObject/GameObjectWoodBox.h"
+#include "../Game/GameObject/GameObjectWater.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
@@ -365,6 +366,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
 			processGameObjectWoodBox(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
+		{
+			processGameObjectWater(gameObject);
 		}
 		else
 		{
@@ -2301,6 +2306,77 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 	mGameWorldManager->addGameObjectWoodBox(mGameObjectFactory->createGameObjectWoodBox(tGameObjectWoodBoxParameters,mGameWorldManager));
 }
 
+
+void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
+{
+	std::string meshfile;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		if(gameObject->XMLNodeDreams)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeDreams, "meshfile");			
+		}
+		else if(gameObject->XMLNodeNightmares)
+		{
+			meshfile = getPropertyString(gameObject->XMLNodeNightmares, "meshfile");
+		}
+
+		std::string volumeConvex="CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
+		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,volumeConvex))
+		{
+			OUAN::TGameObjectWaterParameters  tGameObjectWaterParameters;
+
+			//Get names
+			tGameObjectWaterParameters.dreamsName = gameObject->dreamsName;
+			tGameObjectWaterParameters.nightmaresName = gameObject->nightmaresName;
+			tGameObjectWaterParameters.name = gameObject->name;
+
+			//Get PhysicsComponentComplexConvex
+			tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties,
+				volumeConvex);
+
+			tGameObjectWaterParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+				gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+			tGameObjectWaterParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+			
+			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInDreams)
+			{
+				tGameObjectWaterParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(
+					gameObject->XMLNodeDreams, DREAMS, gameObject->XMLNodeCustomProperties);
+			}
+			
+			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInNightmares)
+			{
+				tGameObjectWaterParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
+					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
+			}
+
+
+			//Create GameObject
+			//mGameWorldManager->createGameObjectTerrainConvex(tGameObjectWaterParameters);
+			mGameWorldManager->addGameObjectWater(mGameObjectFactory->createGameObjectWater(tGameObjectWaterParameters,
+				mGameWorldManager));
+
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs convex physics file "+volumeConvex);
+		}
+		else
+		{
+			processGameObjectProvisionalEntity(gameObject);
+			throw "Error reading .nxs complex physics file for mesh "+meshfile;
+		}
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+}
+
 TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode)
 {
 	OUAN::TRenderComponentSceneParameters tRenderComponentSceneParameters;
@@ -2830,13 +2906,24 @@ TPhysicsComponentVolumeCapsuleParameters LevelLoader::processPhysicsComponentVol
 	return tPhysicsComponentVolumeCapsuleParameters;
 }
 
-TPhysicsComponentVolumeConvexParameters LevelLoader::processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string suffix)
+TPhysicsComponentVolumeConvexParameters LevelLoader::processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode)
 {
 	TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
 
 	//Get Component properties
-	tPhysicsComponentVolumeConvexParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex"+suffix+"::mass");
-	tPhysicsComponentVolumeConvexParameters.nxsFile="nxs:"+getPropertyString(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex"+suffix+"::nxsFile");
+	tPhysicsComponentVolumeConvexParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex::mass");
+	tPhysicsComponentVolumeConvexParameters.nxsFile="nxs:"+getPropertyString(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex::nxsFile");
+
+	return tPhysicsComponentVolumeConvexParameters;
+}
+
+TPhysicsComponentVolumeConvexParameters LevelLoader::processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile)
+{
+	TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeConvexParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex::mass");
+	tPhysicsComponentVolumeConvexParameters.nxsFile="nxs:"+nxsFile;
 
 	return tPhysicsComponentVolumeConvexParameters;
 }

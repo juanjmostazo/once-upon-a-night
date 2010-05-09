@@ -82,6 +82,7 @@ namespace OUAN
 		void processGameObjectTripolloDreams(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
 		void processGameObjectWoodBox(XMLGameObject* gameObject);
+		void processGameObjectWater(XMLGameObject* gameObject);
 			//Special function to create a GameObjectCamera using Ogitor's viewport camera
 		void processGameObjectViewportCamera(XMLGameObject* gameObject);
 
@@ -115,7 +116,8 @@ namespace OUAN
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");
 		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBoxUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsuleUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
-		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");
+		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode);
+		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile);
 
 		//LogicComponent Processors		
 		TLogicComponentParameters processLogicComponent(TiXmlElement *XMLNodeDreams,
