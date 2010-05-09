@@ -7,6 +7,7 @@ compositor Bloom
         texture rt_output target_width target_height PF_R8G8B8
         texture rt0 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8
         texture rt1 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8
+        texture rt2 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8
 
         target rt_output
         {
@@ -35,12 +36,12 @@ compositor Bloom
             pass render_quad
             {
                 // Renders a fullscreen quad with a material
-                material Ogre/Compositor/BlurV
+                material Ogre/Compositor/Blur0
                 input 0 rt0
             }
         }
 
-        target rt0
+        target rt2
         {
             // Start with clear texture
             input none
@@ -48,7 +49,7 @@ compositor Bloom
             pass render_quad
             {
                 // Renders a fullscreen quad with a material
-                material Ogre/Compositor/BlurH
+                material Ogre/Compositor/Blur1
                 input 0 rt1
             }
         }
@@ -63,7 +64,7 @@ compositor Bloom
                 // Renders a fullscreen quad with a material
                 material Ogre/Compositor/BloomBlend2
                 input 0 rt_output
-                input 1 rt0
+                input 1 rt2
             }
         }
     }
