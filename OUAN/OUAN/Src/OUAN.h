@@ -121,6 +121,10 @@ namespace OUAN
 		class TRenderComponentParticleSystemParameters;
 		typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
 
+		class RenderComponentQuadHalo;
+		class TRenderComponentQuadHaloParameters;
+		typedef boost::shared_ptr<RenderComponentQuadHalo> RenderComponentQuadHaloPtr;
+
 		class RenderComponentScene;
 		class TRenderComponentSkyDomeParameters;
 		class TRenderComponentSkyBoxParameters;
@@ -142,7 +146,6 @@ namespace OUAN
 		class TRenderComponentDecalParameters;
 		typedef boost::shared_ptr<RenderComponentDecal> RenderComponentDecalPtr;
 
-
 		const std::string COMPONENT_TYPE_RENDER="RenderComponent";
 		const std::string COMPONENT_TYPE_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
 		const std::string COMPONENT_TYPE_RENDER_CAMERA="RenderComponentCamera";
@@ -151,6 +154,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_LIGHT="RenderComponentLight";
 		const std::string COMPONENT_TYPE_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
 		const std::string COMPONENT_TYPE_RENDER_POSITIONAL="RenderComponentPositional";
+		const std::string COMPONENT_TYPE_RENDER_QUAD_HALO="RenderComponentQuadHalo";
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";

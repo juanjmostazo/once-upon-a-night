@@ -1039,44 +1039,55 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	//Create LogicComponentOny
 	pGameObjectOny->setLogicComponentOny(
 		mComponentFactory->createLogicComponentOny(
-		pGameObjectOny,
-		tGameObjectOnyParameters.tLogicComponentOnyParameters)
-		);
+			pGameObjectOny,
+			tGameObjectOnyParameters.tLogicComponentOnyParameters));
 
 	//Create WeaponComponent
 	pGameObjectOny->setWeaponComponent(
 		mComponentFactory->createWeaponComponent(
-		pGameObjectOny,
-		tGameObjectOnyParameters.tWeaponComponentParameters
-		)
-		);
+			pGameObjectOny,
+			tGameObjectOnyParameters.tWeaponComponentParameters));
 	
 	//Create RenderComponentPositional
-	pGameObjectOny->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
+	pGameObjectOny->setRenderComponentPositional(
+		mComponentFactory->createRenderComponentPositional(
+			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectOny->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectOny->getRenderComponentPositional()));
+	pGameObjectOny->setRenderComponentInitial(
+		mComponentFactory->createRenderComponentInitial(
+			pGameObjectOny->getRenderComponentPositional()));
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = 1;
-	pGameObjectOny->setRenderComponentParticleSystemLand(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,tRenderComponentParticleSystemParameters,pGameObjectOny->getRenderComponentPositional()));
+	pGameObjectOny->setRenderComponentParticleSystemLand(
+		mComponentFactory->createRenderComponentParticleSystem(
+			pGameObjectOny,
+			tRenderComponentParticleSystemParameters,
+			pGameObjectOny->getRenderComponentPositional()));
 
 	//Create RenderComponentEntity
 	pGameObjectOny->setRenderComponentEntity(
-		mComponentFactory->createRenderComponentEntity(tGameObjectOnyParameters.name,
-		pGameObjectOny,tGameObjectOnyParameters.tRenderComponentEntityParameters));
+		mComponentFactory->createRenderComponentEntity(
+			tGameObjectOnyParameters.name,
+			pGameObjectOny,
+			tGameObjectOnyParameters.tRenderComponentEntityParameters));
+
+	pGameObjectOny->setRenderComponentQuadHalo(
+		mComponentFactory->createRenderComponentQuadHalo(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tRenderComponentQuadHaloParameters,
+			pGameObjectOny->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
-	pGameObjectOny->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectOny,
-		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectOny->getRenderComponentPositional()));
+	pGameObjectOny->setPhysicsComponentCharacter(
+		mComponentFactory->createPhysicsComponentCharacter(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
+			pGameObjectOny->getRenderComponentPositional()));
 
 	//Set Ony as camera target
 	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());

@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
+
+  <PROPERTY id="RenderComponentQuadHalo::quadMaterial" type="7" value="quad_halo" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::haloRadio" type="6" value="20" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::totalQuads" type="6" value="256" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::quadSize" type="6" value="0.5" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::speedScale" type="6" value="0.1" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::offsetX" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="12" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::offsetZ" type="6" value="0" ></PROPERTY>
+	
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="66" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="14" ></PROPERTY>
+  
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" ></PROPERTY>
   <PROPERTY id="LogicComponent::defaultState" type="2" value="-1" ></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" ></PROPERTY>

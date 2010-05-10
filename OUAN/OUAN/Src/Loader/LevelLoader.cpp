@@ -1385,6 +1385,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectOnyParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
+		//Get RenderComponentQuadHalo
+		tGameObjectOnyParameters.tRenderComponentQuadHaloParameters = processRenderComponentQuadHalo(gameObject->XMLNodeCustomProperties);
+
 		//Get PhysicsComponentCharacter
 		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	}
@@ -2679,6 +2682,23 @@ TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentPart
 	tRenderComponentParticleSystemParameters.templateName = getPropertyString(XMLNode, "templateName");
 	
 	return tRenderComponentParticleSystemParameters;
+}
+
+TRenderComponentQuadHaloParameters LevelLoader::processRenderComponentQuadHalo(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters;
+
+	//Process Quad Halo properties
+	tRenderComponentQuadHaloParameters.quadMaterial = getPropertyString(XMLNode, "RenderComponentQuadHalo::quadMaterial");
+	tRenderComponentQuadHaloParameters.haloRadio = getPropertyReal(XMLNode, "RenderComponentQuadHalo::haloRadio");
+	tRenderComponentQuadHaloParameters.totalQuads = getPropertyReal(XMLNode, "RenderComponentQuadHalo::totalQuads");
+	tRenderComponentQuadHaloParameters.quadSize = getPropertyReal(XMLNode, "RenderComponentQuadHalo::quadSize");
+	tRenderComponentQuadHaloParameters.speedScale = getPropertyReal(XMLNode, "RenderComponentQuadHalo::speedScale");
+	tRenderComponentQuadHaloParameters.offsetX = getPropertyReal(XMLNode, "RenderComponentQuadHalo::offsetX");
+	tRenderComponentQuadHaloParameters.offsetY = getPropertyReal(XMLNode, "RenderComponentQuadHalo::offsetY");
+	tRenderComponentQuadHaloParameters.offsetZ = getPropertyReal(XMLNode, "RenderComponentQuadHalo::offsetZ");;
+
+	return tRenderComponentQuadHaloParameters;
 }
 
 TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillboardSet(TiXmlElement *XMLNode)

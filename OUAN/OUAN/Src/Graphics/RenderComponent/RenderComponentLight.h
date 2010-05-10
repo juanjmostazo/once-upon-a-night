@@ -23,7 +23,6 @@ namespace OUAN
 		void setSpecularColor(ColourValue colour);
 
 		void setDirection(Vector3 direction);
-
 	};
 
 	class TRenderComponentLightParameters: public TRenderComponentParameters
