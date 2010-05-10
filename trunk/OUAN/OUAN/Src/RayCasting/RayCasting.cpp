@@ -193,17 +193,17 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
         if ((query_result[qr_idx].movable != NULL) &&
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
-			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
-			// get the entity to check
-			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
-			allCollisions.push_back(pentity);
-		
 
 			// stop checking if we have found a raycast hit that is closer
 			// than all remaining entities
 			if ((closest_distance >= 0.0f) &&
 				(closest_distance < query_result[qr_idx].distance))
 			{
+				 for (; qr_idx < query_result.size(); qr_idx++)
+				 {
+					Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
+					allCollisions.push_back(pentity);
+				 }
 				 break;
 			}
 
@@ -213,12 +213,17 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
 				 break;
 			}
 
+			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
+			// get the entity to check
+			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
+			allCollisions.push_back(pentity);
+
 			// mesh data to retrieve         
 			size_t vertex_count;
 			size_t index_count;
 
 			// get the mesh information
-		 GetMeshInformation(pentity->getMesh(), vertex_count, vertices, index_count, indices,             
+			GetMeshInformation(pentity->getMesh(), vertex_count, vertices, index_count, indices,             
 							  pentity->getParentNode()->getPosition(),
 							  pentity->getParentNode()->getOrientation(),
 							  pentity->getParentNode()->_getDerivedScale());
