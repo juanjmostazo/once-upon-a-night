@@ -82,7 +82,7 @@ RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjec
 	return pRenderComponentCameraPtr;
 }
 
-RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags)
+RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters)
 {
 	//Create void Render Component
 	RenderComponentEntityPtr pRenderComponentEntity = RenderComponentEntityPtr(new RenderComponentEntity()); 
@@ -91,7 +91,7 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	pRenderComponentEntity->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters,flags));
+	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters));
 
 	pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
 

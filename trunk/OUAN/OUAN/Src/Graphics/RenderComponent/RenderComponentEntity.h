@@ -69,8 +69,11 @@ namespace OUAN
 
 		String meshfile;
 		bool castshadows;
+		QueryFlags cameraCollisionType;
+
 		std::vector<TRenderComponentSubEntityParameters> tRenderComponentSubEntityParameters;
 		std::vector<TRenderComponentEntityAnimParams> tRenderComponentEntityAnimParams;
+
 	};
 }
 

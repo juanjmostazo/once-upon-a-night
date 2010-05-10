@@ -88,7 +88,7 @@ namespace OUAN
 		bool isWindowClosed() const;
 		
 		//Object creators
-		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters,QueryFlags flags=QUERYFLAGS_NONE);
+		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);
 		ParticleUniverse::ParticleSystem** createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional);

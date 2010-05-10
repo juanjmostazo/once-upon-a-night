@@ -1660,14 +1660,14 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
 	}
 	if(pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
 	}
 	//Create PhysicsComponent
 	pGameObjectTerrainConvex->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
@@ -1709,12 +1709,12 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 	//Create RenderComponentEntityDreams
 	pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
 
 	//Create PhysicsComponent
 	pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(mComponentFactory->createPhysicsComponentComplexTriangle(
@@ -1756,7 +1756,7 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 	//Create RenderComponentEntity
 	pGameObjectTree->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTreeParameters.name,
-		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE));
+		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters));
 
 	//Create PhysicsComponent
 	pGameObjectTree->setPhysicsComponentSimpleBox(
@@ -2079,14 +2079,14 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 		//Create RenderComponentEntityDreams
 		pGameObjectWater->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWaterParameters.dreamsName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityDreamsParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityDreamsParameters));
 	}
 	if(pGameObjectWater->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectWater->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWaterParameters.nightmaresName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityNightmaresParameters,QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentEntityNightmaresParameters));
 	}
 	//Create PhysicsComponent
 	pGameObjectWater->setPhysicsComponentVolumeConvex(mComponentFactory->createPhysicsComponentVolumeConvex(
