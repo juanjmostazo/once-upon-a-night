@@ -236,7 +236,7 @@ void TrajectoryManager::changeWorldTrajectories(int world)
 
 	std::string suffix_hide;
 	std::string suffix_show;
-	std::string suffix;
+
 	if(world==DREAMS)
 	{
 		suffix_show=SUFFIX_TRAJECTORY_DREAMS;
@@ -250,19 +250,17 @@ void TrajectoryManager::changeWorldTrajectories(int world)
 
 	for(tit=trajectoryContainer.begin();tit!=trajectoryContainer.end();tit++)
 	{
-		if(tit->first.size()>=suffix_show.size())
+		if(tit->first.size()>=suffix_show.size() && tit->first.substr(tit->first.size()-suffix_show.size(),suffix_show.size()).compare(suffix_show)==0)
 		{
-			if(tit->first.substr(tit->first.size()-suffix_show.size(),suffix_show.size()).compare(suffix_show)==0)
-			{
-				tit->second->setVisible(true);
-			}
+			tit->second->setVisible(true);
 		}
-		if(tit->first.size()>=suffix_hide.size())
+		else if(tit->first.size()>=suffix_hide.size() && tit->first.substr(tit->first.size()-suffix_hide.size(),suffix_hide.size()).compare(suffix_hide)==0)
 		{
-			if(tit->first.substr(tit->first.size()-suffix_hide.size(),suffix_hide.size()).compare(suffix_hide)==0)
-			{
-				tit->second->setVisible(false);
-			}
+			tit->second->setVisible(false);
+		}
+		else
+		{
+			tit->second->setVisible(mVisible);
 		}
 	}
 }
@@ -312,6 +310,7 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 			if(walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
 				walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(true);
 		}
+		changeWorldTrajectories(currentWorld);
 	}
 	else
 	{
@@ -321,5 +320,4 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 	}
 
-	changeWorldTrajectories(currentWorld);
 }
