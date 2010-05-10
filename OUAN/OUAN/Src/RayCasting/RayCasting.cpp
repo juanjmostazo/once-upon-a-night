@@ -190,76 +190,75 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
     Ogre::RaySceneQueryResult &query_result = m_pray_scene_query->getLastResults();
     for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
     {
-		//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
-        // get the entity to check
-        Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);    
-
-		allCollisions.push_back(pentity);
-        // stop checking if we have found a raycast hit that is closer
-        // than all remaining entities
-        if ((closest_distance >= 0.0f) &&
-            (closest_distance < query_result[qr_idx].distance))
-        {
-             break;
-        }
-
-		//stop checking if the raycast hit is further from maximum distance
-		if(maxDistance >= 0.0f && query_result[qr_idx].distance>maxDistance)
-		{
-             break;
-		}
-       
-        // only check this result if its a hit against an entity
         if ((query_result[qr_idx].movable != NULL) &&
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
-       
+			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
+			// get the entity to check
+			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
+			allCollisions.push_back(pentity);
+		
 
-            // mesh data to retrieve         
-            size_t vertex_count;
-            size_t index_count;
+			// stop checking if we have found a raycast hit that is closer
+			// than all remaining entities
+			if ((closest_distance >= 0.0f) &&
+				(closest_distance < query_result[qr_idx].distance))
+			{
+				 break;
+			}
 
-            // get the mesh information
-         GetMeshInformation(pentity->getMesh(), vertex_count, vertices, index_count, indices,             
-                              pentity->getParentNode()->getPosition(),
-                              pentity->getParentNode()->getOrientation(),
-                              pentity->getParentNode()->_getDerivedScale());
+			//stop checking if the raycast hit is further from maximum distance
+			if(maxDistance >= 0.0f && query_result[qr_idx].distance>maxDistance)
+			{
+				 break;
+			}
 
-            // test for hitting individual triangles on the mesh
-            bool new_closest_found = false;
-            for (int i = 0; i < static_cast<int>(index_count); i += 3)
-            {
-                // check for a hit against this triangle
-                std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(ray, vertices[indices[i]],
-                    vertices[indices[i+1]], vertices[indices[i+2]], true, false);
+			// mesh data to retrieve         
+			size_t vertex_count;
+			size_t index_count;
 
-                // if it was a hit check if its the closest
-                if (hit.first)
-                {
-                    if ((closest_distance < 0.0f) ||
-                        (hit.second < closest_distance))
-                    {
-                        // this is the closest so far, save it off
-                        closest_distance = hit.second;
-                        new_closest_found = true;
+			// get the mesh information
+		 GetMeshInformation(pentity->getMesh(), vertex_count, vertices, index_count, indices,             
+							  pentity->getParentNode()->getPosition(),
+							  pentity->getParentNode()->getOrientation(),
+							  pentity->getParentNode()->_getDerivedScale());
+
+			// test for hitting individual triangles on the mesh
+			bool new_closest_found = false;
+			for (int i = 0; i < static_cast<int>(index_count); i += 3)
+			{
+				// check for a hit against this triangle
+				std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(ray, vertices[indices[i]],
+					vertices[indices[i+1]], vertices[indices[i+2]], true, false);
+
+				// if it was a hit check if its the closest
+				if (hit.first)
+				{
+					if ((closest_distance < 0.0f) ||
+						(hit.second < closest_distance))
+					{
+						// this is the closest so far, save it off
+						closest_distance = hit.second;
+						new_closest_found = true;
 						pEntity=pentity;
-                    }
-                }
-            }
+					}
+				}
+			}
 
-            // if we found a new closest raycast for this object, update the
-            // closest_result before moving on to the next object.
-            if (new_closest_found)
-            {
-                closest_result = ray.getPoint(closest_distance);               
-            }
+			// if we found a new closest raycast for this object, update the
+			// closest_result before moving on to the next object.
+			if (new_closest_found)
+			{
+				closest_result = ray.getPoint(closest_distance);               
+			}
 
 
 		 // free the verticies and indicies memory
 			delete[] vertices;
 			delete[] indices;
-        }       
-    }
+			      
+		}
+	}
 
     // return the result
     if (closest_distance >= 0.0f)
