@@ -95,8 +95,14 @@ bool CameraControllerThirdPerson::loadConfig()
 		config.getOption("MIN_COLLISION_TIME", value); 
 		minCollisionTime = atof(value.c_str());
 
-		config.getOption("AUTO_ROT_X_SPEED", value); 
-		autoRotXSpeed = atof(value.c_str());
+		config.getOption("AUTO_ROT_X_POSITIVE_SPEED", value); 
+		autoRotXPositiveSpeed = atof(value.c_str());
+
+		config.getOption("AUTO_ROT_X_NEGATIVE_SPEED", value); 
+		autoRotXNegativeSpeed = atof(value.c_str());
+
+		config.getOption("AUTO_ROT_X_CENTER_SPEED", value); 
+		autoRotXCenterSpeed = atof(value.c_str());
 
 		config.getOption("MIN_AUTO_ROT_X", value); 
 		minAutoRotX = atof(value.c_str());
@@ -338,7 +344,7 @@ void CameraControllerThirdPerson::calculateCollisionRotXNegative(double elapsedT
 	}
 	else if(rotX>minAutoRotX)
 	{
-		rotateX(-elapsedTime*autoRotXSpeed);
+		rotateX(-elapsedTime*autoRotXNegativeSpeed);
 	}
 	else
 	{
@@ -357,7 +363,7 @@ void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedT
 	}
 	else if(rotX<maxAutoRotX)
 	{
-		rotateX(elapsedTime*autoRotXSpeed);
+		rotateX(elapsedTime*autoRotXPositiveSpeed);
 	}
 	else
 	{
@@ -388,11 +394,11 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	{
 		if(rotX>maxCameraCenterRotX)
 		{
-			rotateX(-elapsedTime*autoRotXSpeed);
+			rotateX(-elapsedTime*autoRotXCenterSpeed);
 		}
 		else if(rotX<minCameraCenterRotX)
 		{
-			rotateX(elapsedTime*autoRotXSpeed);
+			rotateX(elapsedTime*autoRotXCenterSpeed);
 		}
 	}
 
