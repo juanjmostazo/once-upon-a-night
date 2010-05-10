@@ -29,6 +29,10 @@ void CameraControllerThirdPerson::reset()
 
 	currentCollisionTime=0;
 	currentDistance=maxDistance;
+
+	mLastCollisionEntities.clear();
+	mSolidMaterial.clear();
+	mLastCollisionEntitiesAreTranslucid=false;
 }
 
 bool CameraControllerThirdPerson::loadConfig()
@@ -106,6 +110,12 @@ bool CameraControllerThirdPerson::loadConfig()
 		config.getOption("MAX_Y_MOVEMENT_PER_FRAME", value); 
 		maxYMovementPerFrame = atof(value.c_str());
 
+		config.getOption("MIN_CAMERA_CENTER_ROT_X", value); 
+		minCameraCenterRotX = atof(value.c_str());
+
+		config.getOption("MAX_CAMERA_CENTER_ROT_X", value); 
+		maxCameraCenterRotX = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -177,11 +187,106 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraLookAt()
 	return cameraLookAt;
 }
 
+void CameraControllerThirdPerson::makeCollisionEntitiesSolid()
+{
+	unsigned int i,j,k;
+	Ogre::Entity * pEntity;
+	Ogre::MaterialPtr material;
+
+	mLastCollisionEntitiesAreTranslucid=false;
+
+	k=0;
+
+	for(j=0;j<mLastCollisionEntities.size();j++)
+	{
+		pEntity=mLastCollisionEntities[j];
+	
+		for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
+		{
+			// Apply the cloned material to the sub entity.
+			Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
+			material=mSolidMaterial[k];
+			subEnt->setMaterial(material);
+			k++;
+		}
+	}
+
+}
+
+void CameraControllerThirdPerson::makeCollisionEntitiesTranslucid(std::vector<Ogre::Entity*> & collisionEntities)
+{
+	unsigned int i,j;
+	std::string materialName;
+	Ogre::Entity * pEntity;
+	Ogre::uint32 currentCollisionType;
+
+	mLastCollisionEntities.clear();
+	mSolidMaterial.clear();
+	mLastCollisionEntitiesAreTranslucid=true;
+
+	for(i=0;i<collisionEntities.size();i++)
+	{
+		currentCollisionType=collisionEntities[i]->getQueryFlags();
+
+		if(currentCollisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID)
+		{
+			mLastCollisionEntities.push_back(collisionEntities[i]);
+		}
+	}
+
+	for(j=0;j<mLastCollisionEntities.size();j++)
+	{
+
+
+		pEntity=mLastCollisionEntities[j];
+
+		for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
+		{
+			// Get the material of this sub entity and build the clone material name
+			Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
+			Ogre::MaterialPtr material = subEnt->getMaterial();
+
+			materialName=material->getName()+"-TRANSLUCID";
+
+			// Get/Create the clone material
+			Ogre::MaterialPtr clone;
+			if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
+			{
+				clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
+			}
+			else
+			{
+				// Clone the material
+				clone = material->clone(materialName);
+
+				// Make it translucid
+				Ogre::Technique * technique;
+				Ogre::Pass * pass;
+					//get technique
+				technique = clone->getTechnique(0);
+					//set current pass attributes
+				pass = technique->getPass(0);
+				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_COLOUR);
+
+			}
+
+			// Apply the cloned material to the sub entity.
+			subEnt->setMaterial(clone);
+
+			mSolidMaterial.push_back(material);
+		}
+	}
+
+
+}
+
 bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
 {
 	Ogre::Vector3 direction;
 	Ogre::Vector3 newCameraPosition;
 	double currentDistance;
+	Ogre::Entity * pEntity;
+	std::vector<Ogre::Entity*> allCollisions;
 
 	currentDistance=cameraLookAt.distance(cameraPosition);
 
@@ -190,10 +295,14 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 	newCameraPosition=cameraPosition;
 
-	mRayCasting->raycastRenderClosestGeometry(cameraLookAt,direction,newCameraPosition,collisionType,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
+	mRayCasting->raycastRenderAllGeometry(cameraLookAt,direction,newCameraPosition,pEntity,allCollisions,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{
+
+		makeCollisionEntitiesTranslucid(allCollisions);
+
+		collisionType=pEntity->getQueryFlags();
 		cameraPosition=newCameraPosition-collisionMargin*direction;
 
 		return true;
@@ -233,10 +342,10 @@ void CameraControllerThirdPerson::calculateCollisionRotXNegative(double elapsedT
 	}
 	else
 	{
-		if(!target->getParent()->isMoving())
-		{
-			rotateY(elapsedTime*autoRotYSpeed);
-		}
+		//if(!target->getParent()->isMoving())
+		//{
+		//	rotateY(elapsedTime*autoRotYSpeed);
+		//}
 	}
 }
 
@@ -252,10 +361,10 @@ void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedT
 	}
 	else
 	{
-		if(!target->getParent()->isMoving())
-		{
-			rotateY(elapsedTime*autoRotYSpeed);
-		}
+		//if(!target->getParent()->isMoving())
+		//{
+		//	rotateY(elapsedTime*autoRotYSpeed);
+		//}
 	}
 }
 
@@ -266,17 +375,22 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Vector3 cameraLookAt;
 	Ogre::uint32 collisionType;
 
+	if(mLastCollisionEntitiesAreTranslucid)
+	{
+		makeCollisionEntitiesSolid();
+	}
+
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
 
 	//moving rotX correction
 	if(target->getParent()->isMoving() && !target->getParent()->cancelAutoCameraMovement())
 	{
-		if(rotX>20)
+		if(rotX>maxCameraCenterRotX)
 		{
 			rotateX(-elapsedTime*autoRotXSpeed);
 		}
-		else if(rotX<10)
+		else if(rotX<minCameraCenterRotX)
 		{
 			rotateX(elapsedTime*autoRotXSpeed);
 		}
@@ -289,6 +403,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)
 		{
+			mCorrectingCameraPosition=true;
 			if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET)
 			{
 				currentDistance=calculateCameraMoveToTarget(currentDistance,mCamera->getPosition(),cameraCollisionPosition,elapsedTime);
@@ -305,6 +420,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	}
 	else
 	{
+		mCorrectingCameraPosition=false;
 		currentCollisionTime=0;
 		currentDistance=calculateCameraReturningFromTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
 	}

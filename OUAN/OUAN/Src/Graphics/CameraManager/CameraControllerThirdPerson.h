@@ -62,6 +62,17 @@ namespace OUAN
 		double maxAutoRotX;
 		double autoRotYSpeed;
 		double maxYMovementPerFrame;
+		double minCameraCenterRotX;
+		double maxCameraCenterRotX;
+
+		std::vector<Ogre::Entity*> mLastCollisionEntities;
+		std::vector<Ogre::MaterialPtr> mSolidMaterial;
+		bool mLastCollisionEntitiesAreTranslucid;
+		void makeCollisionEntitiesSolid();
+		void makeCollisionEntitiesTranslucid(std::vector<Ogre::Entity*> & collisionEntities);
+
+
+
 
 		//camera speed when it returns to initial position
 		double returningspeed;
@@ -72,6 +83,9 @@ namespace OUAN
 
 		//true if camera has been moved this frame
 		bool cameraMoved;
+
+		//true if camera has been corrected last frame
+		bool mCorrectingCameraPosition;
 
 		double rotXDistanceAttenuationNegative;
 		double rotXDistanceAttenuationPositive;

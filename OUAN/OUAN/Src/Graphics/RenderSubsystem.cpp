@@ -487,7 +487,7 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 	}
 }
 
-Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters,QueryFlags flags)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
 {
 	unsigned int i;
 	Entity *pEntity = 0;
@@ -514,7 +514,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 		setLightmaps(pEntity);
 
 		//set Query flags
-		pEntity->setQueryFlags(flags);
+		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
 
 		//attach to Scene Manager
 		pEntityNode=mSceneManager->getSceneNode(nodeName);

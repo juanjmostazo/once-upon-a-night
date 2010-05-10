@@ -2593,6 +2593,44 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.clear();
 	processRenderComponentEntityAnimParams(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams,XMLCustomPropertiesNode,world);
 	
+	//process Camera Collision Type
+	std::string camera_collision_type_string;
+	int camera_collision_type_int;
+	camera_collision_type_string = getPropertyString(XMLNode,"Camera Collisions::Type",false);
+	if(camera_collision_type_string.compare("")!=0)
+	{
+		camera_collision_type_int=Ogre::StringConverter::parseInt(camera_collision_type_string);
+		tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+		switch(camera_collision_type_int)
+		{
+				case OGITOR_CAMERA_COLLISION_MOVE_TO_TARGET:
+					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET;
+					break;
+				case OGITOR_CAMERA_COLLISION_ROTX_POSITIVE:
+					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE;
+					break;
+				case OGITOR_CAMERA_COLLISION_ROTX_NEGATIVE:
+					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE;
+					break;
+				case OGITOR_NONE:
+					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+					break;
+				default:
+					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+					break;
+		}
+		if(!getPropertyBool(XMLNode,"Camera Collisions::Disable Translucid"))
+		{
+			tRenderComponentEntityParameters.cameraCollisionType=QueryFlags(
+				Ogre::uint32(tRenderComponentEntityParameters.cameraCollisionType) | 
+				Ogre::uint32(QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID));
+		}
+	}
+	else
+	{
+		tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+	}
+
 	return tRenderComponentEntityParameters;
 }
 
