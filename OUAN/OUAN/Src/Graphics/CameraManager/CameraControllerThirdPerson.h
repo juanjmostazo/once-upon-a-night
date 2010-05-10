@@ -57,7 +57,9 @@ namespace OUAN
 		double speedY;
 		double collisionMoveSpeed;
 		double collisionReturningSpeed;
-		double autoRotXSpeed;
+		double autoRotXPositiveSpeed;
+		double autoRotXNegativeSpeed;
+		double autoRotXCenterSpeed;
 		double minAutoRotX;
 		double maxAutoRotX;
 		double autoRotYSpeed;
