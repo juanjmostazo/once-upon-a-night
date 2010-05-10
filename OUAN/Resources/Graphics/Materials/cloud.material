@@ -1,4 +1,21 @@
 
+material Scene_Material
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.7 0.7 0.7 1
+			specular 1 1 1 1 50
+		}
+
+	}
+
+}
+
+
+
 material cloud
 {
 	technique
@@ -7,6 +24,26 @@ material cloud
 		{
 			ambient 0 0 0 1
 			diffuse 0.7 0.7 0.7 1
+		}
+
+	}
+
+}
+
+
+
+material cloud1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture cloud_d.dds
+			}
 		}
 
 	}
