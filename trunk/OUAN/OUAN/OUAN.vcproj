@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -414,6 +414,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentQuadHalo.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.cpp"
 						>
 					</File>
@@ -519,6 +523,18 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\ParticleManager\ParticleTemplates.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Volume"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Volume\ThingRenderable.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\Volume\VolumeRenderable.cpp"
 						>
 					</File>
 				</Filter>
@@ -1072,6 +1088,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentQuadHalo.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentScene.h"
 						>
 					</File>
@@ -1181,6 +1201,22 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\ParticleManager\ParticleTemplates.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Volume"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Volume\Julia.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\Volume\ThingRenderable.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\Volume\VolumeRenderable.h"
 						>
 					</File>
 				</Filter>

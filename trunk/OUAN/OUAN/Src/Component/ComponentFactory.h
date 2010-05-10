@@ -1,5 +1,6 @@
 #ifndef COMPONENTFACTORYH_H
 #define COMPONENTFACTORYH_H
+
 #include "../OUAN.h"
 
 namespace OUAN
@@ -42,6 +43,9 @@ namespace OUAN
 		RenderComponentPositionalPtr createRenderComponentPositional(GameObjectPtr gameObject,
 			TRenderComponentPositionalParameters tRenderComponentPositionalParameters,
 			std::string name);
+		RenderComponentQuadHaloPtr createRenderComponentQuadHalo(GameObjectPtr gameObject,
+			TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters,
+			RenderComponentPositionalPtr pRenderComponentPositional);
 		RenderComponentViewportPtr createRenderComponentViewport(GameObjectPtr gameObject,
 			TRenderComponentViewportParameters tRenderComponentViewportParameters); 
 		RenderComponentDecalPtr createRenderComponentDecal(GameObjectPtr gameObject,

@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Graphics/RenderComponent/RenderComponentQuadHalo.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentOny.h"
@@ -93,6 +94,8 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand;
+		/// Particle Systems
+		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 		/// Logic information
@@ -140,6 +143,12 @@ namespace OUAN
 
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLand() const;
+
+		/// Set Quad Halo
+		void setRenderComponentQuadHalo(RenderComponentQuadHaloPtr mRenderComponentQuadHalo);
+
+		/// Get Quad Halo
+		RenderComponentQuadHaloPtr getRenderComponentQuadHalo() const;
 
 		/// Set physics component
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
@@ -233,6 +242,9 @@ namespace OUAN
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
+
+		///Quad Halo parameters
+		TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters;
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;	

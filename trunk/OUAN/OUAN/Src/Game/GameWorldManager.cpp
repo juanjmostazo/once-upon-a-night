@@ -99,6 +99,7 @@ void GameWorldManager::update(double elapsedSeconds)
 		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
 		it->second->update(elapsedSeconds);
 	}
+
 	dispatchEvents();
 }
 
@@ -106,6 +107,7 @@ void GameWorldManager::setGodMode(bool activated)
 {
 	mGodMode=activated;
 }
+
 bool GameWorldManager::getGodMode()
 {
 	return mGodMode;

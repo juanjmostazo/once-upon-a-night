@@ -57,6 +57,16 @@ RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystem
 	return mRenderComponentParticleSystemLand;
 }
 
+void GameObjectOny::setRenderComponentQuadHalo(RenderComponentQuadHaloPtr pRenderComponentQuadHalo)
+{
+	mRenderComponentQuadHalo = pRenderComponentQuadHalo;
+}
+
+RenderComponentQuadHaloPtr GameObjectOny::getRenderComponentQuadHalo() const
+{
+	return mRenderComponentQuadHalo;
+}
+
 void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
@@ -110,6 +120,12 @@ void GameObjectOny::update(double elapsedSeconds)
 		OnyFallsEventPtr evt(new OnyFallsEvent());
 		mGameWorldManager->addEvent(evt);
 	}
+
+	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
+	if (Application::getInstance()->getGameWorldManager()->getGodMode())
+	{
+		mRenderComponentQuadHalo->update(elapsedSeconds);
+	}
 }
 
 void GameObjectOny::reset()
@@ -123,23 +139,19 @@ void GameObjectOny::reset()
 		mPhysicsComponentCharacter->reset();
 		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-		mLogicComponentOny->initStateHistory();
-		mLogicComponentOny->setState(ONY_STATE_IDLE);
-		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
-		mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	}
 	else
 	{
 		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
-
-		mLogicComponentOny->initStateHistory();
-		mLogicComponentOny->setState(ONY_STATE_IDLE);
-		mLogicComponentOny->setNewState(ONY_STATE_IDLE);
-		mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	}
+
+	mLogicComponentOny->initStateHistory();
+	mLogicComponentOny->setState(ONY_STATE_IDLE);
+	mLogicComponentOny->setNewState(ONY_STATE_IDLE);
+	mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
+	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+	mRenderComponentQuadHalo->setVisible(false);
 }
 
 void GameObjectOny::changeWorld(int world)

@@ -12,6 +12,7 @@
 #include "../Graphics/RenderComponent/RenderComponentScene.h"
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../Graphics/RenderComponent/RenderComponentQuadHalo.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
@@ -191,6 +192,39 @@ RenderComponentPositionalPtr ComponentFactory::createRenderComponentPositional(G
 	pRenderComponentPositional->setCameraManager(mApp->getCameraManager());
 
 	return pRenderComponentPositional;
+}
+
+RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameObjectPtr gameObject,TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters, RenderComponentPositionalPtr pRenderComponentPositional)
+{
+	//Create void Render Component
+	RenderComponentQuadHaloPtr pRenderComponentQuadHalo = RenderComponentQuadHaloPtr(new RenderComponentQuadHalo()); 
+
+	pRenderComponentQuadHalo->setParent(gameObject);	
+
+	//init Render Component
+	ThingRenderable* quadHalo = new ThingRenderable(
+		tRenderComponentQuadHaloParameters.haloRadio, 
+		tRenderComponentQuadHaloParameters.totalQuads, 
+		tRenderComponentQuadHaloParameters.quadSize);
+
+	quadHalo->setMaterial(tRenderComponentQuadHaloParameters.quadMaterial);
+
+	pRenderComponentQuadHalo->setQuadHalo(quadHalo);
+
+	pRenderComponentQuadHalo->setSpeedScale(tRenderComponentQuadHaloParameters.speedScale);
+
+	pRenderComponentQuadHalo->setSceneNode(pRenderComponentPositional->getSceneNode()->createChildSceneNode());
+	pRenderComponentQuadHalo->getSceneNode()->attachObject(quadHalo);
+
+	pRenderComponentQuadHalo->getSceneNode()->setPosition(
+		Ogre::Vector3(
+			tRenderComponentQuadHaloParameters.offsetX,
+			tRenderComponentQuadHaloParameters.offsetY,
+			tRenderComponentQuadHaloParameters.offsetZ));
+
+	pRenderComponentQuadHalo->getSceneNode()->setVisible(false);
+
+	return pRenderComponentQuadHalo;
 }
 
 RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameObjectPtr gameObject,TRenderComponentViewportParameters tRenderComponentViewportParameters)
