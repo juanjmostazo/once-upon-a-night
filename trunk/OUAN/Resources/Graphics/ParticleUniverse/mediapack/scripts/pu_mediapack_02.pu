@@ -1,0 +1,779 @@
+//-----------------------------------------------------------------------------------------------------------------------
+// This script is part of the Particle Universe Media Pack product.
+//
+// Copyright (c) 2008 Henry van Merode
+//
+// Usage of this program is licensed under the terms of the Particle Universe Commercial License.
+// You can find a copy of the Commercial License in the Particle Universe package.
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/Leaves
+{
+    technique
+    {
+        renderer Billboard                    {}
+        material                              PUMediaPack/Leave
+        visual_particle_quota                 500
+        emitter                               Line
+        {
+            all_particle_dimensions           dyn_random
+            {
+                min                           100
+                max                           250
+            }
+            position                          -800 600 0
+            line_em_end                       2400 600 0
+            emission_rate                     30
+            angle                             10
+            direction                         0 -1 0
+            velocity                          dyn_random
+            {
+                min                           50
+                max                           200
+            }
+            time_to_live                      15
+        }
+
+        affector                              TextureRotator
+        {
+            tex_rot_use_own_rotation          true
+            tex_rot_speed                     dyn_random
+            {
+                min                           -1
+                max                           1
+            }
+            tex_rot_rotation                  dyn_random
+            {
+                min                           0
+                max                           180
+            }
+        }
+
+        // Use 2 OnRandom observers to switch randomly between LinearForceAffector
+        observer                            OnRandom
+        {
+            observe_interval                1
+            random_threshold                0.5
+            handler                         DoEnableComponent
+            {
+                enable_component            affector_component    WindLeft    true
+            }
+            handler                         DoEnableComponent
+            {
+                enable_component            affector_component    WindRight    false
+            }
+        }
+
+        observer                            OnRandom
+        {
+            observe_interval                1
+            random_threshold                0.6
+            handler                         DoEnableComponent
+            {
+                enable_component            affector_component    WindRight    true
+            }
+            handler                         DoEnableComponent
+            {
+                enable_component            affector_component    WindLeft    false
+            }
+        }
+
+        affector                            LinearForce    WindLeft
+        {
+            enabled                         false
+            force_aff_vector                -150 -50 0
+        }
+        affector                            LinearForce    WindRight
+        {
+            enabled                         false
+            force_aff_vector                50 0 0
+        }
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/FlareShield
+{
+    // Scale it a bit, so it fits in the particle universe viewer window
+    scale 0.5 0.5 0.5
+    scale_velocity 0.5
+
+    // ---- Rotating circles ----
+    technique
+    {
+        material                                    PUMediaPack/Flare_05
+        visual_particle_quota                       200
+        emitted_emitter_quota                       15
+        renderer Billboard
+        {
+        }
+
+        emitter                                     Point
+        {
+            emission_rate                           3
+            emits                                   emitter_particle   CircleEmitter
+            velocity                                300
+            direction                               0 1 0
+            duration                                4
+            time_to_live                            3
+            angle                                   0
+        }
+
+        emitter                                     Circle    CircleEmitter
+        {
+            emission_rate                           20
+            all_particle_dimensions                 dyn_random
+            {
+                min                                 60
+                max                                 160
+            }
+            angle                                   360
+            velocity                                10
+            time_to_live                            dyn_random
+            {
+                min                                 0.2
+                max                                 1
+            }
+            colour                                  0.7 0.8 1
+            circle_em_radius                        200
+            circle_em_random                        true
+            keep_local                              true
+            direction                               0 0 0
+        }
+
+        affector                                    Vortex
+        {
+            vortex_aff_vector                       0 1 0
+            vortex_aff_speed                        5
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_04
+
+        // Wait until a few seconds to enable the onExpireObserver
+        observer                                    OnTime
+        {
+            since_start_system                      true
+            on_time                                 greater_than 4
+            observe_until_event                     true
+            handler                                 DoEnableComponent
+            {
+                enable_component                    observer_component    OnExpireObserver true
+            }
+        }
+
+
+        // Observer is enabled after a few seconds and will emit other emitters
+        observer                                    OnExpire    OnExpireObserver
+        {
+            enabled                                 false
+            handler                                 DoPlacementParticle
+            {
+                force_emitter                       ExplodeEmitter
+            }
+        }
+
+    }
+
+    // ---- Exploding flares ----
+    technique
+    {
+        material                                    PUMediaPack/Flare_05
+        visual_particle_quota                       200
+        emitted_emitter_quota                       30
+        renderer Billboard
+        {
+        }
+
+        emitter                                     Point    ExplodeEmitter
+        {
+            emission_rate                           0
+            emits                                   emitter_particle    ExplodeFlares
+            time_to_live                            dyn_random
+            {
+                min                                 0.3
+                max                                 1
+            }
+            direction                               0 0 0
+            angle                                   0
+        }
+
+        emitter                                     Point    ExplodeFlares
+        {
+            emission_rate                           5
+            all_particle_dimensions                 dyn_random
+            {
+                min                                 20
+                max                                 120
+            }
+            angle                                   360
+            velocity                                400
+            direction                               0 1 0
+            time_to_live                            1
+            colour                                  0.7 0.8 1
+        }
+
+        use_alias                                   $PUMediaPack/OnClearDoStopSystem
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+alias                                           $PUMediaPack/LightningBolt/PointEmitter
+{
+    emitter                                     Point
+    {
+        enabled                                 false
+        all_particle_dimensions                 dyn_random
+        {
+            min                                 256
+            max                                 512
+        }
+        emission_rate                           20
+        angle                                   360
+        direction                               0 1 0
+        velocity                                0.001
+        colour                                  0.46 0.06 0.82
+        duration                                2.5
+        repeat_delay                            2.5
+        time_to_live                            dyn_random
+        {
+            min                                 0.05
+            max                                 0.15
+        }
+    }
+}
+
+system PUMediaPack/LightningBolt
+{
+	scale 											0.02 0.02 0.02
+    // ---- Lightning Smoke ----
+    technique
+    {
+        material                                    PUMediaPack/Smoke_01
+        visual_particle_quota                       100
+        renderer Billboard
+        {
+        }
+
+        emitter                                     Point
+        {
+            emission_rate                           40
+            all_particle_dimensions                 dyn_random
+            {
+                min                                 10
+                max                                 20
+            }
+            angle                                   360
+            velocity                                100
+            direction                               0 1 0
+            duration                                4
+            time_to_live                            dyn_random
+            {
+                min                                 1
+                max                                 3
+            }
+            colour                                  0.46 0.06 0.82
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_01
+
+        affector                                    Scale
+        {
+            xyz_scale                               200
+        }
+
+        use_alias                                   $PUMediaPack/OnClearDoStopSystem
+    }
+
+    // ---- Lightning ----
+    technique                                       Lightning_1
+    {
+        material                                    PUMediaPack/Lightning_01
+        visual_particle_quota                       20
+        renderer Billboard
+        {
+            billboard_type                          oriented_self
+            billboard_origin                        top_center
+        }
+        use_alias                                   $PUMediaPack/LightningBolt/PointEmitter
+        use_alias                                   $PUMediaPack/ColourAffectorFade_02
+    }
+
+    // ---- Lightning ----
+    technique                                       Lightning_2
+    {
+        material                                    PUMediaPack/Lightning_02
+        visual_particle_quota                       5
+        renderer Billboard
+        {
+            billboard_type                          oriented_self
+            billboard_origin                        top_center
+        }
+        use_alias                                   $PUMediaPack/LightningBolt/PointEmitter
+        use_alias                                   $PUMediaPack/ColourAffectorFade_02
+    }
+
+    // ---- Lightning ----
+    technique                                       Lightning_3
+    {
+        material                                    PUMediaPack/Lightning_03
+        visual_particle_quota                       5
+        renderer Billboard
+        {
+            billboard_type                          oriented_self
+            billboard_origin                        top_center
+        }
+        use_alias                                   $PUMediaPack/LightningBolt/PointEmitter
+        use_alias                                   $PUMediaPack/ColourAffectorFade_02
+    }
+
+    // ---- Lightning ----
+    technique                                       Lightning_4
+    {
+        material                                    PUMediaPack/Lightning_04
+        visual_particle_quota                       5
+        renderer Billboard
+        {
+            billboard_type                          oriented_self
+            billboard_origin                        top_center
+        }
+        use_alias                                   $PUMediaPack/LightningBolt/PointEmitter
+        use_alias                                   $PUMediaPack/ColourAffectorFade_02
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/PsychoBurn
+{
+	scale 											0.05 0.05 0.05
+    // Streaks
+    technique
+    {
+        material                                    PUMediaPack/Streak_01
+        visual_particle_quota                       50
+        renderer Billboard
+        {
+            billboard_origin                        bottom_center 
+        }
+
+        emitter                                     Box
+        {
+            emission_rate                           160
+            particle_width                          dyn_random
+            {
+                min                                 80
+                max                                 200
+            }
+            particle_height                         dyn_random
+            {
+                min                                 320
+                max                                 960
+            }
+            box_em_width                            300
+            box_em_height                           10
+            box_em_depth                            300
+            time_to_live                            0.2
+            duration                                10
+            colour                                  0.56 0.20 0.65
+            direction                               0 0 0
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_04
+    }
+
+    // Flares
+    technique
+    {
+        material                                    PUMediaPack/Star_03
+        visual_particle_quota                       200
+        renderer Billboard {}
+
+        emitter                                     Box
+        {
+            emission_rate                           80
+            direction                               0 1 0
+            duration                                8
+            all_particle_dimensions                 dyn_random
+            {
+                min                                 20
+                max                                 220
+            }
+            box_em_width                            250
+            box_em_height                           10
+            box_em_depth                            250
+            velocity                                dyn_random
+            {
+                min                                 20
+                max                                 200
+            }
+            time_to_live                            dyn_random
+            {
+                min                                 1
+                max                                 3
+            }
+            colour                                  0.56 0.20 0.65
+        }
+
+        affector                                    TextureRotator
+        {
+            tex_rot_use_own_rotation                true
+            tex_rot_speed                           dyn_random
+            {
+                min                                 2
+                max                                 6
+            }
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_04
+    }
+
+    // Genesis 1
+    technique
+    {
+        position                                    0 -180 0
+        default_particle_width			    300
+        default_particle_height			    500
+        default_particle_depth			    300
+        visual_particle_quota			    10
+        material                                    PUMediaPack/Genesis_11
+
+        renderer                                    Entity
+        {
+            entity_renderer_mesh_name               pump_tube.mesh
+        }
+		
+        emitter                                     Point
+        {
+            emission_rate                           2
+            direction                               0 1 0
+            velocity                                dyn_random
+            {
+                min                                 80
+                max                                 140
+            }
+            time_to_live                            5
+            duration                                5
+        }
+
+        affector                                    GeometryRotator
+        {
+            geom_rot_use_own_rotation               true
+            geom_rot_axis                           0 1 0
+            geom_rot_rotation_speed                 dyn_random
+            {
+                min                                 -3
+                max                                 3
+            }
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_05
+    }
+
+    // Genesis 2
+    technique
+    {
+        position                                    0 -180 0
+        default_particle_width			    300
+        default_particle_height			    500
+        default_particle_depth			    300
+        visual_particle_quota			    10
+        material                                    PUMediaPack/Genesis_12
+
+        renderer                                    Entity
+        {
+            entity_renderer_mesh_name               pump_tube.mesh
+        }
+		
+        emitter                                     Point
+        {
+            emission_rate                           2
+            direction                               0 1 0
+            velocity                                dyn_random
+            {
+                min                                 80
+                max                                 140
+            }
+            time_to_live                            5
+            duration                                5
+        }
+
+        affector                                    GeometryRotator
+        {
+            geom_rot_use_own_rotation               true	
+            geom_rot_axis                           0 1 0
+            geom_rot_rotation_speed                 dyn_random
+            {
+                min                                 -3
+                max                                 3
+            }
+        }
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/Hypno
+{
+    technique
+    {
+        renderer Billboard                    {}
+        material                              ParticleUniverse/Swirl_01
+        default_particle_width                200
+        default_particle_height               200
+        visual_particle_quota                 200
+        emitter                               Circle
+        {
+            all_particle_dimensions           dyn_random
+            {
+                 min                          100
+                 max                          400
+            }
+            emission_rate                     40
+            auto_direction                    true
+            circle_em_normal                  0 0 1
+            time_to_live                      dyn_random
+            {
+                min                           2
+                max                           5
+            }
+            circle_em_radius                  200
+            circle_em_random                  true
+            velocity                          30
+            colour                            1 0.22 0.22
+            direction                         0 0 0
+        }
+
+        use_alias                             $PUMediaPack/ColourAffectorFade_04
+
+        affector                              TextureRotator
+        {
+            tex_rot_use_own_rotation          false
+            tex_rot_speed                     dyn_random
+            {
+                min                           5
+                max                           20
+            }
+            tex_rot_rotation                  dyn_random
+            {
+                min                           0
+                max                           180
+            }
+        }
+    }
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/Smoke
+{
+    technique
+    {
+        material                                PUMediaPack/Smoke_11
+        visual_particle_quota                   100
+        renderer Billboard                      {}
+
+        emitter                                 Point
+        {
+            emission_rate                       3
+            direction                           0 1 0
+            all_particle_dimensions             dyn_random
+            {
+                min                             10
+                max                             200
+            }
+
+
+            angle                               60
+            velocity                            dyn_random
+            {
+                min                             40
+                max                             80
+            }
+
+            time_to_live                        30
+        }
+        affector                                Scale
+        {
+            xyz_scale                           40
+        }
+        affector                                ParticleFollower
+        {
+            follower_min_distance               40
+            follower_max_distance               200
+        }
+        affector                                Colour
+        {
+            colour_aff_time_colour              0.0 1.0 0.8 0.6 0.0
+            colour_aff_time_colour              0.2 1.0 0.9 0.7 1.0
+            colour_aff_time_colour              1.0 0.0 0.0 0.0 0.0
+        }
+        affector                                LinearForce
+        {
+            force_aff_vector                    0 -0.1 0
+        }
+        affector                                TextureRotator
+        {
+            tex_rot_use_own_rotation            true
+            tex_rot_speed                       0.1
+            tex_rot_rotation                    dyn_random
+            {
+                min                             1
+                max                             40
+            }
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/CanOfWorms
+{
+    technique
+    {
+        material                                PUMediaPack/Flare_04
+        default_particle_width                  40
+        default_particle_height                 40
+        visual_particle_quota                   2000
+        emitted_emitter_quota                   20
+        renderer Billboard                      {}
+        emitter                                 Point    Core
+        {
+            keep_local                          true
+            emission_rate                       3
+            emits                               emitter_particle    Worms
+            angle                               360
+            direction                           0 1 0
+            velocity                            300
+            time_to_live                        4
+        }
+        emitter                                 Point    Worms
+        {
+            emission_rate                       60
+            direction                           0 -1 0
+            angle                               360
+            time_to_live                        2
+            velocity                            15
+            colour                              1.0 0.6 0.6
+        }
+        affector                                SineForce
+        {
+            exclude_emitter                     "Worms"
+            force_aff_vector                    500 500 500
+            sinef_aff_frequency_min             5
+            sinef_aff_frequency_max             5
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+system PUMediaPack/Propulsion
+{
+    keep_local                                      true
+    technique
+    {
+        material                                    PUMediaPack/Streak_04
+        visual_particle_quota                       200
+        renderer Billboard
+        {
+            billboard_origin                        bottom_center
+            billboard_type                          oriented_self
+        }
+
+        emitter                                     Circle
+        {
+            emission_rate                           100
+            direction                               0 -1 0
+            particle_width                          dyn_random
+            {
+                min                                 40
+                max                                 60
+            }
+            particle_height                         dyn_random
+            {
+                min                                 40
+                max                                 80
+            }
+            angle                                   0
+            velocity                                1
+            time_to_live                            dyn_random
+            {
+                min                                 0.2
+                max                                 0.4
+            }
+            colour                                  0.8 0.8 1.0
+            circle_em_radius                        25
+            circle_em_random                        true
+            circle_em_normal                        0 1 0
+        }
+
+        emitter                                     Circle
+        {
+            emission_rate                           100
+            direction                               0 -1 0
+            particle_width                          dyn_random
+            {
+                min                                 30
+                max                                 60
+            }
+            particle_height                         dyn_random
+            {
+                min                                 80
+                max                                 200
+            }
+            angle                                   0
+            velocity                                1
+            time_to_live                            dyn_random
+            {
+                min                                 0.2
+                max                                 0.4
+            }
+            colour                                  0.5 0.5 1.0
+            circle_em_radius                        20
+            circle_em_random                        true
+            circle_em_normal                        0 1 0
+        }
+
+        emitter                                     Circle
+        {
+            emission_rate                           100
+            direction                               0 -1 0
+            particle_width                          dyn_random
+            {
+                min                                 10
+                max                                 60
+            }
+            particle_height                         dyn_random
+            {
+                min                                 160
+                max                                 300
+            }
+            angle                                   0
+            velocity                                1
+            time_to_live                            dyn_random
+            {
+                min                                 0.2
+                max                                 0.4
+            }
+            colour                                  0.3 0.3 1.0
+            circle_em_radius                        10
+            circle_em_random                        true
+            circle_em_normal                        0 1 0
+        }
+
+        use_alias                                   $PUMediaPack/ColourAffectorFade_04
+    }
+}

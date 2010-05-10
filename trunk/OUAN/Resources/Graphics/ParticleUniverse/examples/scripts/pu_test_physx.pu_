@@ -1,0 +1,116 @@
+// ---------------------------------------------- Begin: PhysXParticles ------------------------------------------
+// PhysX test with rigid body based particles.
+// ---------------------------------------------------------------------------------------------------------------
+system PhysXParticles
+{
+    technique 
+    {
+        visual_particle_quota                   1000
+        position                                0 1000 0
+        material                                ParticleUniverse/Crate
+        renderer                                Box {}
+
+        emitter                                 Box
+        {
+            box_em_width                        400
+            box_em_height                       400
+            box_em_depth                        400
+            all_particle_dimensions             dyn_random
+            {
+                min                             10
+                max                             80
+            }
+            emission_rate                       10
+            time_to_live                        10
+            velocity                            100
+            angle                               40
+            direction                           0 -1 0
+            mass                                100
+            range_start_orientation             0.2 1 2 3
+            range_end_orientation               3 3 2 1
+        }
+
+        extern                                  PhysX
+        {
+            physx_actor_group                   100
+            physx_shape                         Box
+            {
+                physx_angular_velocity          0 10 0
+                physx_angular_damping           0.5
+            }
+	}
+
+        observer                                OnCollision
+        {
+            handler                             DoPlacementParticle
+            {
+                force_emitter                   Sparks
+                number_of_particles             10
+            }
+        }
+
+    }
+
+
+    technique
+    {
+        visual_particle_quota                   2500
+        emitted_emitter_quota                   100
+        material                                ParticleUniverse/Star
+        default_particle_width                  20
+        default_particle_height                 20
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point    Sparks
+        {
+            // Set the emission_rate default to 0 to prevent auto-emission
+            emission_rate                       0
+            angle                               360
+            direction                           0 -1 0
+            velocity                            130
+            time_to_live                        0.4
+        }
+    }
+}
+// ---------------------------------------------- End: PhysXParticles -------------------------------------------
+
+
+
+
+
+// ----------------------------------------------- Begin: PhysXFluid ---------------------------------------------
+// PhysX test with rigid fluid based particles.
+// Make sure to create the fluid by means of code, otherwise rigid body based
+// particles are used.
+// ---------------------------------------------------------------------------------------------------------------
+system PhysXFluid
+{
+    technique 
+    {
+        visual_particle_quota                   1000
+        default_particle_width                  40
+        default_particle_height                 40
+        position                                0 800 0
+        material                                ParticleUniverse/GreenBall
+        renderer                                Billboard {sorting true}
+
+        emitter                                 Point
+        {
+            emission_rate                       40
+            time_to_live                        100
+            velocity                            500
+            angle                               10
+            direction                           1 -1 0
+            mass                                1
+        }
+
+        extern                                  PhysX
+        {
+            // Leave it empty and create a fluid by code, using this extern
+	}
+
+    }
+}
+
+// ------------------------------------------------ End: PhysXFluid ---------------------------------------------
