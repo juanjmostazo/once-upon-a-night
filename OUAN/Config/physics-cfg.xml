@@ -32,6 +32,6 @@
     <Option key="SLOPE_LIMIT">60</Option>
     <Option key="STEP_OFFSET">5</Option>
     <Option key="SKIN_WIDTH">0.2</Option>
-    <Option key="GRAVITY_BODIES_FACTOR">10</Option>
+    <Option key="GRAVITY_BODIES_FACTOR">50</Option>
   </Options>
 </Configuration>
