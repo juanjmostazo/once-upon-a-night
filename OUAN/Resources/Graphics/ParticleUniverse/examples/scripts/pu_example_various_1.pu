@@ -1,0 +1,840 @@
+// ------------------------------------------ Begin: FXpression system -------------------------------------------
+// Demo of a complex particle system with multiple techniques and renderers.
+// ---------------------------------------------------------------------------------------------------------------
+system FXpression
+{
+    // Background
+    technique
+    {
+        use_alias                        $defaultBillboardRenderer
+        material                         ParticleUniverse/Star
+        default_particle_width           400
+        default_particle_height          400
+        visual_particle_quota            1000
+        emitter                          Line
+        {
+            position                     -800 600 0
+            line_em_end                  1600 600 0
+            emission_rate                20
+            angle                        0
+            direction               	 0 -1 0
+            velocity                     dyn_random
+            {
+                min                      100
+                max                      400
+            }
+            time_to_live                 10
+        }
+        affector                         Colour
+        {
+            colour_aff_time_colour       0 0.3 0 0.1
+            colour_aff_time_colour       1 0.3 0.3 0
+        }
+    }
+
+    // Rotating mesh
+    technique
+    {
+        default_particle_width           800
+        default_particle_height          400
+        default_particle_depth           40
+        visual_particle_quota            10
+        material                         fxpression/ac3dmat1
+
+        renderer                         Entity
+        {
+            entity_renderer_mesh_name    fxpression.mesh
+        }
+        
+        // Emit just 1 mesh
+        emitter                          Point
+        {
+            enabled                      false
+            emission_rate                1
+            force_emission               true
+            time_to_live                 10
+            repeat_delay                 4
+            direction               	 0 0 0
+        }
+        
+        // Expire after a defined time and call another emitter
+        observer                         OnTime
+        {
+            on_time                      greater_than 10.34
+            since_start_system           true
+            handler                      DoPlacementParticle
+            {
+                force_emitter            LogoEmitter
+                number_of_particles      1
+            }
+            handler                      DoExpire{}
+        }
+        affector                         Vortex
+        {
+            position                     0 0 -500
+            vortex_aff_vector            0 1 0
+            vortex_aff_speed             2
+        }
+    }
+
+    // Exploding mesh
+    technique
+    {
+        default_particle_width           5
+        default_particle_height          5
+        default_particle_depth           5
+        renderer                         Box{}
+        material                         fxpression/ac3dmat1
+        visual_particle_quota            5000
+        emitted_emitter_quota            1
+
+        // Emit just 1 other emitter
+        emitter                          Point    LogoEmitter
+        {
+            // Set emission_rate to 0 to wait until this emitter is called by the DoPlacementParticle event handler
+            emission_rate                0
+            force_emission               true
+            emits                        emitter_particle    Logo
+            time_to_live                 1
+            direction               	 0 0 0
+        }
+
+        // Emit the mesh (as a number of blocks)
+        emitter                          MeshSurface    Logo
+        {
+            emission_rate                3000
+            direction               	 0 0 0
+            mesh_surface_scale           154 370 150
+            force_emission               true
+            auto_direction               true
+            mesh_surface_mesh_name       fxpression.mesh
+            mesh_surface_distribution    heterogeneous_2
+            time_to_live                 15
+            velocity                     dyn_random
+            {
+                min                      10
+                max                      200
+            }
+        }
+        affector                         GeometryRotator
+        {
+            geom_rot_use_own_rotation    true
+            geom_rot_rotation_speed      dyn_random
+            {
+                min                      1
+                max                      20
+            }
+        }
+    }
+}
+// ------------------------------------------- End: FXpression system --------------------------------------------
+
+
+
+
+// ------------------------------------------- Begin: Explosion system -------------------------------------------
+// The explosion system is an example of a complex particle system.
+// Note, that the Projectiles and debris are not emitted immediately, but only after some time to make the effect
+// look a bit more realistic.
+// ---------------------------------------------------------------------------------------------------------------
+system explosionSystem
+{
+    // --------------- The Flame Burst ---------------
+    technique
+    {
+        use_alias                        $defaultBillboardRenderer
+        material                         ParticleUniverse/ExplosionFire
+        default_particle_width           10
+        default_particle_height          10
+        visual_particle_quota            500
+        emitter                          SphereSurface    BurstEmitter
+        {
+            emission_rate                20
+            direction               	 0 0 0
+            auto_direction               true
+            sphere_surface_em_radius     5
+            velocity                     100
+            time_to_live                 2
+        }
+        
+        // Change the colour of the burst
+        affector                         Colour
+        {
+            colour_aff_time_colour       0 1 1 0.95
+            colour_aff_time_colour       0.5 0.18 0.05 0.01
+            colour_aff_time_colour       1 0 0 0
+        }
+        
+        // Let it grow fast, equally in all dimensions
+        affector                         Scale
+        {
+            xyz_scale                    200
+        }
+
+        // After 0.7 seconds, the emitters stops
+        observer                         OnTime
+        {
+            on_time                      greater_than 0.7
+            since_start_system           true
+            handler                      DoEnableComponent
+            {
+                enable_component         emitter_component    BurstEmitter    false
+            }
+        }
+    }
+    
+    // --------------- Projectiles (this technique is responsible for emitting the projectiles) ---------------
+    technique
+    {
+        use_alias                        $defaultBillboardRenderer
+        emitted_technique_quota          6
+
+        // Emit the technique that is responsible for the projectiles
+        emitter                          Point    NucleusEmitter
+        {
+            enabled                      false
+            emission_rate                6
+            emits                        technique_particle    NucleusTechnique
+            force_emission               true
+            angle                        80
+            direction                    0 1 0
+            velocity                     300
+            time_to_live                 10
+        }
+        
+        // Apply some kind of gravity
+        affector                         LinearForce
+        {
+            force_aff_vector             0 -100 0
+        }
+
+        // After 0.3 seconds, the emitter starts
+        observer                         OnTime
+        {
+            on_time                      greater_than 0.3
+            since_start_system           true
+            handler                      DoEnableComponent
+            {
+                enable_component         emitter_component    NucleusEmitter    true
+            }
+        }
+    }
+    
+    // --------------- The emitted Projectile ---------------
+    technique                            NucleusTechnique
+    {
+        material                         ParticleUniverse/Nucleus
+        default_particle_width           15
+        default_particle_height          15
+        visual_particle_quota            500
+        
+        // 'oriented_self' doesn't work, because the direction of the particle is zero. 
+        // So use the default settings
+        use_alias                        $defaultBillboardRenderer
+        emitter                          Point
+        {
+            emission_rate                100
+            direction                    0 -1 0
+            angle                        360
+            time_to_live                 3
+            velocity                     2
+        }
+        
+        // Change the texture from red to grey and fading out
+        affector                         Colour
+        {
+            colour_aff_time_colour       0 0.5 0.4 0.2
+            colour_aff_time_colour       0.1 0.5 0.2 0.05
+            colour_aff_time_colour       0.2 0.1 0.1 0.1
+            colour_aff_time_colour       1 0 0 0
+        }
+
+        // Rotate the texture to keep variation
+        affector                         TextureRotator
+        {
+            tex_rot_use_own_rotation     true
+            tex_rot_speed                dyn_random
+            {
+                min                      0.1
+                max                      1
+            }
+            tex_rot_rotation             dyn_random
+            {
+                min                      1
+                max                      90
+            }
+        }
+
+        // Make the projectile smaller over time
+        affector                         Scale
+        {
+            xyz_scale                    -5
+        }
+    }
+
+    // --------------- Debris ---------------
+    technique
+    {
+        material                         ParticleUniverse/Debris
+        visual_particle_quota            500
+        renderer                         Billboard
+        {
+            billboard_type               oriented_self
+        }
+        
+        // Emit the debris
+        emitter                          Point    DebrisEmitter
+        {
+            enabled                      false
+            emission_rate                100
+            force_emission               true
+            direction                    0 -1 0
+            angle                        360
+            time_to_live                 5
+            particle_height              dyn_random
+            {
+                min                      2
+                max                      20
+            }
+            particle_width               3
+            velocity                     dyn_random
+            {
+                min                      100
+                max                      180
+            }
+        }
+        
+        // Start with a normal coloured texture and fade out
+        affector                         Colour
+        {
+            colour_aff_time_colour       0 1 1 1
+            colour_aff_time_colour       1 0 0 0
+        }
+        
+        // Apply some kind of gravity
+        affector                         LinearForce
+        {
+            force_aff_vector             0 -100 0
+        }
+        
+        // After 0.3 seconds, the emitters starts
+        observer                         OnTime
+        {
+            on_time                      greater_than 0.3
+            since_start_system           true
+            handler                      DoEnableComponent
+            {
+                enable_component         emitter_component    DebrisEmitter    true
+            }
+        }
+    }
+}
+// ---------------------------------------------- End: Explosion system ----------------------------------------------
+
+
+
+
+// ---------------------------------------------- Begin: electricBeamSystem --------------------------------------
+// This particle system demonstrates both:
+// - the emission of particles along a trajectory path (a straight line that allows a small deviation of the 
+//   particle position) 
+// - the combination of the Align affector with the 'oriented_shape' property, which allows a particle to orientate 
+//   itself towards the previous particle (and changes the particle height based on their mutual distance).
+//   This enables the creation of a particle chain.
+// ---------------------------------------------------------------------------------------------------------------
+system electricBeamSystem
+{
+    technique
+    {
+        renderer Billboard
+        {
+            billboard_type                oriented_shape
+            billboard_origin              bottom_center
+        }
+        position -500 -100 0
+        material                          ParticleUniverse/Lightning
+        default_particle_width            35
+        default_particle_height           0
+        visual_particle_quota             500
+        emitter                           Line
+        {
+            line_em_end                   1500 300 0
+            line_em_min_increment         50
+            line_em_max_increment         150
+            line_em_max_deviation         10
+            emission_rate                 40
+            direction               	  0 0 0
+            time_to_live                  100
+        }
+
+        affector                          Line
+        {
+            line_aff_max_deviation        100
+            line_aff_time_step            0.03
+            line_aff_end                  1500 300 0
+            line_aff_drift                0.3
+        }
+        
+        affector                          Align
+        {
+            align_aff_resize              true
+        }
+    }
+
+
+    // We take a second technique for the other beam
+    technique
+    {
+        renderer Billboard
+        {
+            billboard_type               oriented_shape
+            billboard_origin             bottom_center
+        }
+        position -500 -100 0
+        material                         ParticleUniverse/Lightning
+        default_particle_width           15
+        default_particle_height          0
+        visual_particle_quota            500
+        emitter                          Line
+        {
+            line_em_end                  1500 300 0
+            line_em_min_increment        30
+            line_em_max_increment        60
+            line_em_max_deviation        30
+            emission_rate                150
+            direction               	 0 0 0
+            time_to_live                 100
+        }
+
+        affector                         Line
+        {
+            line_aff_max_deviation       140
+            line_aff_time_step           0.01
+            line_aff_end                 1500 300 0
+            line_aff_drift               0.1
+        }
+        
+        affector                         Align
+        {
+            align_aff_resize             true
+        }
+    }
+}
+// ----------------------------------------------- End: electricBeamSystem ---------------------------------------
+
+
+
+
+// ---------------------------------------------- Begin: LOD system ----------------------------------------------
+// This particle system demonstrates the LOD (= Level Of Detail) features. It uses a ramp function that increases
+// or decreases the number of emitted particles, with, height, depth, .. depending on the distance between the 
+// camera and the technique. Remarks:
+// - This is only useful for a 1-camera setup. Applying particle system LOD isn't a good idea in a multi-camera
+// setup, because there is only 1 version of the particle system active for both camera's. Splitting it up in
+// multiple particle system versions isn't a good idea, because this introduces even more overhead.
+// - The distance is calculated between the camera and the technique and not between the camera and the emitter or.
+// between the camera and individual particles.
+// ---------------------------------------------------------------------------------------------------------------
+system lodSystem
+{
+    technique
+    {
+        // Use the billboard renderer defined in the *.pua script
+        use_alias                         $defaultBillboardRenderer
+        material                          ParticleUniverse/Rain
+        
+        // Particles become smaller if the camera is near
+        default_particle_width            40 << camera_dependency
+            {
+                distance_threshold        700
+                increase                  true
+            }
+        default_particle_height           100 << camera_dependency
+            {
+                distance_threshold        700
+                increase                  true
+            }
+
+        visual_particle_quota             1000
+        emitter                           Box
+        {
+            // Emission rate decreses if the camera is further away
+            emission_rate                 30 << camera_dependency
+                {
+                    distance_threshold    500
+                    increase              false
+                }
+            box_em_width                  1000
+            box_em_depth                  1000
+            angle                         0
+            position                      0 400 0
+            direction                     0 -1 0
+            velocity                      120
+            time_to_live                  dyn_random
+            {
+                min                       2
+                max                       4
+            }
+        }
+    }
+}
+// ----------------------------------------------- End: LOD system -----------------------------------------------
+
+
+
+
+
+// ---------------------------------------------- Begin: Advanced LOD system ----------------------------------------------
+// This particle system demonstrates a more advanced LOD feature. It is similar to the Lod system in Ogre's material 
+// system and particularly used if different renderers are used.
+// Depending on the distance between the camera and the techniques, the appropriate technique is used.
+// To prevent that the transition between the 2 techniques is abrupt, the smooth_lod feature is added. Smooth Lod 
+// means that if a technique is outside the Lod distance, it doesn't emit new particles, but it still processes the 
+// particles that are already emitted, which causes a smoother transition. The tradeoff of using Smooth Lod is, 
+// that it only works correct with one camera.
+// ---------------------------------------------------------------------------------------------------------------
+system advancedLodSystem
+{
+    lod_distances                        0 700 2000
+    smooth_lod                           true
+    technique
+    {
+        lod_index                        0
+        material                         ParticleUniverse/Barrel_02
+        default_particle_width           33
+        default_particle_height          35
+        default_particle_depth           35
+        visual_particle_quota            100
+
+        // Render barrel entities if the camera is near
+        renderer                         Entity
+        {
+            entity_renderer_mesh_name    Barrel.mesh
+        }
+
+        emitter                          Box
+        {
+            emission_rate                5
+            angle                        25
+            direction                    0 1 0
+            velocity                     80
+            time_to_live                 dyn_random
+            {
+                min                      2
+                max                      6
+            }
+        }
+    }
+    technique
+    {
+        lod_index                        1
+        material                         ParticleUniverse/Barrel_01
+        default_particle_width           32
+        default_particle_height          42
+        visual_particle_quota            500
+
+        // Render billboards with a barrel image if the camera is further away
+        use_alias                        $defaultBillboardRenderer
+
+        emitter                          Box
+        {
+            emission_rate                5
+            angle                        25
+            direction                    0 1 0
+            velocity                     80
+            time_to_live                 dyn_random
+            {
+                min                      2
+                max                      6
+            }
+        }
+    }
+}
+// ----------------------------------------------- End: Advanced LOD system -----------------------------------------------
+
+
+
+
+// ---------------------------------------------- Begin: Rain system ---------------------------------------------
+// The rain system is an example of the usage of observers, handlers and emission of techniques.
+// ---------------------------------------------------------------------------------------------------------------
+system rainSystem_1
+{
+    fast_forward                            1 1
+
+    // Rain
+    technique
+    {
+        renderer                            Billboard
+        {
+            billboard_type                  oriented_self
+            billboard_origin                top_center
+        }
+
+        material                            ParticleUniverse/Rain_01
+        default_particle_width              2
+        default_particle_height             100
+        visual_particle_quota               1000
+
+        // This is the emitter that emits the rain
+        emitter                             Box
+        {
+            emission_rate                   300
+            position                        0 500 0
+            angle                           1
+            direction                       0.2 -1 0
+            velocity                        2500
+            time_to_live                    20
+            box_em_height                   1
+            box_em_width                    1000
+            box_em_depth                    1000
+        }
+
+        // Handle when the raindrop hits the floor
+        observer                            OnPosition
+        {
+            // Handle in case the particle positions´ y-value < -195
+            position_y                      less_than -195
+
+            handler                         DoPlacementParticle
+            {
+                force_emitter               CircleEmitter
+                number_of_particles         1
+            }
+            handler                         DoPlacementParticle
+            {
+                force_emitter               SplashEmitter
+                number_of_particles         1
+            }
+            handler                         DoExpire {}
+        }
+    }
+    
+    // Circles
+    technique
+    {
+        // Use the billboard renderer defined in the *.pua script
+        use_alias                          $flatBillboardRenderer
+
+        material                           ParticleUniverse/Circle
+        default_particle_width             1
+        default_particle_height            1
+        visual_particle_quota              500
+        emitter                            Point    CircleEmitter
+        {
+            emission_rate                  0
+            angle                          0
+            direction                      0 0 0
+            velocity                       0
+            time_to_live                   dyn_random
+            {
+                min                        1
+                max                        2
+            }
+        }
+
+        affector                           Scale
+        {
+            xyz_scale                      40
+        }
+    }
+    
+    // Splashes
+    technique
+    {
+        // Use the billboard renderer defined in the *.pua script
+        use_alias                          $defaultBillboardRenderer
+
+        material                           ParticleUniverse/Flare
+        default_particle_width             5
+        default_particle_height            5
+        visual_particle_quota              500
+        emitted_emitter_quota              50
+
+        emitter                            Point    SplashEmitter
+        {
+            emission_rate                  0
+            direction               	   0 0 0
+            emits                          emitter_particle    Splash
+            time_to_live                   dyn_random
+            {
+                min                        0.01
+                max                        0.05
+            }
+        }
+
+        emitter                            Point    Splash
+        {
+            emission_rate                  80
+            angle                          20
+            direction                      0 1 0
+            velocity                       dyn_random
+            {
+                min                        120
+                max                        180
+            }
+            time_to_live                   1
+        }
+
+        observer                           OnPosition
+        {
+            // Only observe the visual particles that are emitted
+            observe_particle_type          visual_particle
+
+            // Handle in case the particle positions´ y-value < -200
+            position_y                     less_than -200
+            handler                        DoExpire {}
+        }
+
+        affector                           LinearForce
+        {
+            force_aff_vector               0 -600 0
+        }
+    }
+}
+// ----------------------------------------------- End: Rain system ----------------------------------------------
+
+
+
+
+
+// ---------------------------------------------- Begin: Rain system_2 ---------------------------------------------
+// The rain system in a simplified form. It doesn't put splashes/circles on the exact position where 
+// the rain touches the floor, but on random positions. This gives a performance improvement and the
+// inaccuracy is not noticable.
+// ---------------------------------------------------------------------------------------------------------------
+system rainSystem_2
+{
+    fast_forward                           1 1
+
+    // Rain
+    technique
+    {
+        renderer                           Billboard
+        {
+            billboard_type                 oriented_self
+            billboard_origin               top_center
+        }
+
+        material                           ParticleUniverse/Rain_01
+        default_particle_width             2
+        default_particle_height            100
+        visual_particle_quota              1000
+
+        // This is the emitter that emits the rain
+        emitter                            Box
+        {
+            emission_rate                  300
+            position                       0 500 0
+            angle                          1
+            direction                      0.2 -1 0
+            velocity                       2500
+            time_to_live                   20
+            box_em_height                  1
+            box_em_width                   1000
+            box_em_depth                   1000
+        }
+
+        // Only expire when the raindrop hits the floor
+        observer                           OnPosition
+        {
+            // Handle in case the particle positions´ y-value < -195
+            position_y                     less_than -195
+
+            handler                        DoExpire {}
+        }
+    }
+
+    // Circles
+    technique
+    {
+        // Use the billboard renderer defined in the *.pua script
+        use_alias                          $flatBillboardRenderer
+
+        material                           ParticleUniverse/Circle
+        default_particle_width             1
+        default_particle_height            1
+        visual_particle_quota              500
+
+        emitter                            Box
+        {
+            position                       0 -195 0
+            emission_rate                  300
+            box_em_height                  1
+            box_em_width                   1000
+            box_em_depth                   1000
+            angle                          0
+            direction                      0 0 0
+            velocity                       0
+            time_to_live                   dyn_random
+            {
+                min                        1
+                max                        2
+            }
+        }
+
+        affector                           Scale
+        {
+            xyz_scale                      40
+        }
+    }
+
+    // Splashes
+    technique
+    {
+        position                           0 -195 0
+        
+        // Use the billboard renderer defined in the *.pua script
+        use_alias                          $defaultBillboardRenderer
+
+        material                           ParticleUniverse/Flare
+        default_particle_width             5
+        default_particle_height            5
+        visual_particle_quota              500
+        emitted_emitter_quota              50
+
+        emitter                            Box    SplashEmitter
+        {
+            emission_rate                  50
+            direction                      0 0 0
+            box_em_height                  1
+            box_em_width                   1000
+            box_em_depth                   1000
+            emits                          emitter_particle     Splash
+            time_to_live                   dyn_random
+            {
+                min                        0.01
+                max                        0.05
+            }
+        }
+
+        emitter                            Point    Splash
+        {
+            emission_rate                  80
+            angle                          20
+            direction                      0 1 0
+            velocity                       dyn_random
+            {
+                min                        120
+                max                        180
+            }
+            time_to_live                   1
+        }
+
+        observer                           OnPosition
+        {
+            // Only observe the visual particles that are emitted
+            observe_particle_type          visual_particle
+
+            // Handle in case the particle positions´ y-value < -200
+            position_y                     less_than -200
+            handler                        DoExpire {}
+        }
+
+        affector                           LinearForce
+        {
+            force_aff_vector               0 -600 0
+        }
+    }
+}
+// ----------------------------------------------- End: Rain system_2 ----------------------------------------------
