@@ -272,18 +272,17 @@ void CameraControllerThirdPerson::makeCollisionEntitiesTranslucid(std::vector<Og
 				technique = clone->getTechnique(0);
 					//set current pass attributes
 				pass = technique->getPass(0);
-				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_COLOUR);
-
+				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_COLOUR);			
+				pass->setDepthCheckEnabled(false);
 			}
 
-			// Apply the cloned material to the sub entity.
+			//Apply the cloned material to the sub entity.
 			subEnt->setMaterial(clone);
 
+			//Add material to the material stack 
 			mSolidMaterial.push_back(material);
 		}
 	}
-
-
 }
 
 bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
