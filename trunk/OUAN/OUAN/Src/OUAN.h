@@ -125,6 +125,10 @@ namespace OUAN
 		class TRenderComponentQuadHaloParameters;
 		typedef boost::shared_ptr<RenderComponentQuadHalo> RenderComponentQuadHaloPtr;
 
+		class RenderComponentFractalVolume;
+		class TRenderComponentFractalVolumeParameters;
+		typedef boost::shared_ptr<RenderComponentFractalVolume> RenderComponentFractalVolumePtr;
+
 		class RenderComponentScene;
 		class TRenderComponentSkyDomeParameters;
 		class TRenderComponentSkyBoxParameters;
@@ -155,6 +159,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_PARTICLE_SYSTEM="RenderComponentParticleSystem";
 		const std::string COMPONENT_TYPE_RENDER_POSITIONAL="RenderComponentPositional";
 		const std::string COMPONENT_TYPE_RENDER_QUAD_HALO="RenderComponentQuadHalo";
+		const std::string COMPONENT_TYPE_RENDER_FRACTAL_VOLUME="RenderComponentFractalVolume";
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";

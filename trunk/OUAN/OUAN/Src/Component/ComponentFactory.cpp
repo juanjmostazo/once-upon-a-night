@@ -13,8 +13,10 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentQuadHalo.h"
+#include "../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
+#include "../Graphics/Volume/Julia.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
@@ -37,15 +39,20 @@
 #include "../Logic/LogicComponent/AttackComponent.h"
 
 using namespace OUAN;
+
 ComponentFactory::ComponentFactory()
 {
 
 }
+
 ComponentFactory::~ComponentFactory()
 {
 	if (mApp.get())
+	{
 		mApp.reset();
+	}
 }
+
 void ComponentFactory::init(ApplicationPtr app)
 {
 	mApp=app;
@@ -73,6 +80,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 
 	return pRenderComponentBillboardSetPtr;
 }
+
 RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)
 {
 	//Create and init Render Component Camera
@@ -88,7 +96,6 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	//Create void Render Component
 	RenderComponentEntityPtr pRenderComponentEntity = RenderComponentEntityPtr(new RenderComponentEntity()); 
 
-
 	pRenderComponentEntity->setParent(gameObject);	
 
 	//init Render Component
@@ -98,6 +105,7 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 
 	return pRenderComponentEntity;
 }
+
 RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string name,GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)
 {
 	//Create void Render Component
@@ -120,7 +128,10 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 
 	//Init Render Component
 	pRenderComponentParticleSystem->setParticleSystems(
-		mApp->getRenderSubsystem()->createParticleSystems(gameObject->getName(),tRenderComponentParticleSystemParameters,pRenderComponentPositional));
+		mApp->getRenderSubsystem()->createParticleSystems(
+			gameObject->getName(),
+			tRenderComponentParticleSystemParameters,
+			pRenderComponentPositional));
 
 	return pRenderComponentParticleSystem;
 }
@@ -225,6 +236,102 @@ RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameO
 	pRenderComponentQuadHalo->getSceneNode()->setVisible(false);
 
 	return pRenderComponentQuadHalo;
+}
+
+RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVolume(GameObjectPtr gameObject,TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters, RenderComponentPositionalPtr pRenderComponentPositional)
+{
+	//Create void Render Component
+	RenderComponentFractalVolumePtr pRenderComponentFractalVolume = RenderComponentFractalVolumePtr(new RenderComponentFractalVolume()); 
+
+	pRenderComponentFractalVolume->setParent(gameObject);	
+
+	//init Render Component
+	VolumeRenderable* fractalVolume = 
+		new VolumeRenderable(
+			tRenderComponentFractalVolumeParameters.vSlices, 
+			tRenderComponentFractalVolumeParameters.vSize, 
+			tRenderComponentFractalVolumeParameters.texture3D);
+
+	Julia julia(
+		tRenderComponentFractalVolumeParameters.juliaGlobalReal,
+		tRenderComponentFractalVolumeParameters.juliaGlobalImag, 
+		tRenderComponentFractalVolumeParameters.juliaGlobalTheta);
+
+	Ogre::TexturePtr texture3D = 
+		Application::getInstance()->getRenderSubsystem()->getTexture3D(tRenderComponentFractalVolumeParameters.texture3D);
+
+	Ogre::HardwarePixelBufferSharedPtr buffer = texture3D->getBuffer(0, 0);
+
+	buffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
+
+	const Ogre::PixelBox &pb = buffer->getCurrentLock();
+
+	double vCutInv = 1.0f / tRenderComponentFractalVolumeParameters.vCut;
+
+	unsigned int* pbptr = static_cast<unsigned int*>(pb.data);
+	for(size_t z=pb.front; z<pb.back; z++) 
+	{
+		for(size_t y=pb.top; y<pb.bottom; y++)
+		{
+			for(size_t x=pb.left; x<pb.right; x++)
+			{
+				if(z==pb.front || z==(pb.back-1) || y==pb.top|| y==(pb.bottom-1) || x==pb.left || x==(pb.right-1))
+				{
+					pbptr[x] = 0; // On border, must be zero
+				} 
+				else
+				{
+					float val = julia.eval(
+						((float)x/pb.getWidth()-0.5f) * tRenderComponentFractalVolumeParameters.vScale, 
+						((float)y/pb.getHeight()-0.5f) * tRenderComponentFractalVolumeParameters.vScale, 
+						((float)z/pb.getDepth()-0.5f) * tRenderComponentFractalVolumeParameters.vScale);
+
+					if(val > tRenderComponentFractalVolumeParameters.vCut)
+					{
+						val = tRenderComponentFractalVolumeParameters.vCut;
+					}
+
+					Ogre::PixelUtil::packColour(
+						//(float)(tRenderComponentFractalVolumeParameters.colorR < 0 ? x/pb.getWidth() : tRenderComponentFractalVolumeParameters.colorR), 
+						//(float)(tRenderComponentFractalVolumeParameters.colorG < 0 ? y/pb.getHeight() : tRenderComponentFractalVolumeParameters.colorG), 
+						//(float)(tRenderComponentFractalVolumeParameters.colorB < 0 ? z/pb.getDepth() : tRenderComponentFractalVolumeParameters.colorB), 
+						(float)x/pb.getWidth(), 
+						(float)y/pb.getHeight(), 
+						(float)z/pb.getDepth(),
+						(1.0f-(val*vCutInv))*0.7f, 
+						Ogre::PF_A8R8G8B8, 
+						&pbptr[x]);
+				}	
+			}
+
+			pbptr += pb.rowPitch;
+		}
+
+		pbptr += pb.getSliceSkip();
+	}
+
+	buffer->unlock();
+
+	pRenderComponentFractalVolume->setFractalVolume(fractalVolume);
+
+	pRenderComponentFractalVolume->setRotationDegrees(
+		Ogre::Vector3(
+			tRenderComponentFractalVolumeParameters.rotationDegreesX,
+			tRenderComponentFractalVolumeParameters.rotationDegreesY,
+			tRenderComponentFractalVolumeParameters.rotationDegreesZ));
+
+	pRenderComponentFractalVolume->setSceneNode(pRenderComponentPositional->getSceneNode()->createChildSceneNode());
+	pRenderComponentFractalVolume->getSceneNode()->attachObject(fractalVolume);
+
+	pRenderComponentFractalVolume->getSceneNode()->setPosition(
+		Ogre::Vector3(
+		tRenderComponentFractalVolumeParameters.offsetX,
+		tRenderComponentFractalVolumeParameters.offsetY,
+		tRenderComponentFractalVolumeParameters.offsetZ));
+
+	pRenderComponentFractalVolume->getSceneNode()->setVisible(false);
+
+	return pRenderComponentFractalVolume;
 }
 
 RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameObjectPtr gameObject,TRenderComponentViewportParameters tRenderComponentViewportParameters)

@@ -128,6 +128,9 @@ namespace OUAN
 		/// Set ambient specular and diffuse mateial components off
 		void initMaterials();
 
+		/// Init textures 3d
+		void initTextures3D();
+
 		///set lightmaps
 		void setLightmaps(Ogre::Entity * pEntity);
 
@@ -136,7 +139,6 @@ namespace OUAN
 
 		/// Create overlays
 		void createOverlays();
-
 
 		/// Translate camera according to the given coordinate axis
 		/// @param worldCoordinateAxis
@@ -221,6 +223,17 @@ namespace OUAN
 
 		// WORK IN PROGRESS!!!
 		SSAOListener ssaoListener;
+
+		// Texture 3D variables
+		bool mTexturesInitialized;
+
+		Ogre::TexturePtr mTexture3D_8;
+		Ogre::TexturePtr mTexture3D_16;
+		Ogre::TexturePtr mTexture3D_32;
+		Ogre::TexturePtr mTexture3D_64;
+		Ogre::TexturePtr mTexture3D_128;
+
+		Ogre::TexturePtr getTexture3D(std::string texture3D);
 
 	protected:
 		/// the application

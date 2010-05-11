@@ -24,6 +24,7 @@ using namespace Ogre;
 RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
 , mWindowName(windowName)
+, mTexturesInitialized(false)
 {
 	
 }
@@ -54,6 +55,8 @@ bool RenderSubsystem::init(ApplicationPtr app, ConfigurationPtr config)
 	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 
 	loadConfig();
+
+	initTextures3D();
 
 	return true;
 }
@@ -278,7 +281,6 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
 
-
 		if(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active)
 		{
 			//Set SkyBox Dreams
@@ -429,6 +431,59 @@ void RenderSubsystem::initMaterials()
 				material->setLightingEnabled(false);
 			}
 		}
+	}
+}
+
+void RenderSubsystem::initTextures3D()
+{
+	if (!mTexturesInitialized)
+	{
+		mTexture3D_8 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_8", "General", Ogre::TEX_TYPE_3D, 8, 8, 8, 0, Ogre::PF_A8R8G8B8);
+
+		mTexture3D_16 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_16", "General", Ogre::TEX_TYPE_3D, 16, 16, 16, 0, Ogre::PF_A8R8G8B8);
+
+		mTexture3D_32 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_32", "General", Ogre::TEX_TYPE_3D, 32, 32, 32, 0, Ogre::PF_A8R8G8B8);
+
+		mTexture3D_64 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_64", "General", Ogre::TEX_TYPE_3D, 64, 64, 64, 0, Ogre::PF_A8R8G8B8);
+
+		mTexture3D_128 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_128", "General", Ogre::TEX_TYPE_3D, 128, 128, 128, 0, Ogre::PF_A8R8G8B8);
+
+		mTexturesInitialized = true;
+	}
+}
+
+//TODO DO IT USING A MAP
+Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D){
+
+	if (texture3D.compare("texture3D_8")==0)
+	{
+		return mTexture3D_8;
+	} 
+	else if (texture3D.compare("texture3D_16")==0)
+	{
+		return mTexture3D_16;
+	} 
+	else if (texture3D.compare("texture3D_32")==0)
+	{
+		return mTexture3D_32;
+	} 
+	else if (texture3D.compare("texture3D_64")==0)
+	{
+		return mTexture3D_64;
+	} 
+	else if (texture3D.compare("texture3D_128")==0)
+	{
+		return mTexture3D_128;
+	} 
+	else 
+	{
+		//TODO SET NULL POINTER HERE
+		return mTexture3D_8;
 	}
 }
 
