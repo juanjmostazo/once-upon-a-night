@@ -5,8 +5,12 @@ material waterfall2
 	{
 		pass
 		{
-			ambient 0 0 0 1
-			diffuse 0.7 0.7 0.7 1
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture waterfall2.dds
+			}
 		}
 
 	}
