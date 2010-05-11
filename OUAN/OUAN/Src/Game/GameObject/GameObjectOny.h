@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentQuadHalo.h"
+#include "../../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentOny.h"
@@ -94,8 +95,10 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand;
-		/// Particle Systems
+		/// Quad Halo
 		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
+		/// Fractal Volume
+		RenderComponentFractalVolumePtr mRenderComponentFractalVolume;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 		/// Logic information
@@ -149,6 +152,12 @@ namespace OUAN
 
 		/// Get Quad Halo
 		RenderComponentQuadHaloPtr getRenderComponentQuadHalo() const;
+
+		/// Set Fractal Volume
+		void setRenderComponentFractalVolume(RenderComponentFractalVolumePtr mRenderComponentFractalVolume);
+
+		/// Get Fractal Volume
+		RenderComponentFractalVolumePtr getRenderComponentFractalVolume() const;
 
 		/// Set physics component
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
@@ -245,6 +254,9 @@ namespace OUAN
 
 		///Quad Halo parameters
 		TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters;
+
+		///Fractal Volume parameters
+		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters;
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;	

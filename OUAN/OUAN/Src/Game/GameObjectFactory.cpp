@@ -76,11 +76,13 @@ GameObjectFactory::GameObjectFactory()
 {
 	mComponentFactory = ComponentFactoryPtr(new ComponentFactory());
 }
+
 GameObjectFactory::~GameObjectFactory()
 {
 	if (mComponentFactory.get())
 		mComponentFactory.reset();
 }
+
 void GameObjectFactory::init(ApplicationPtr app)
 {
 	if (mComponentFactory.get())
@@ -1076,10 +1078,18 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny,
 			tGameObjectOnyParameters.tRenderComponentEntityParameters));
 
+	//Create RenderComponentQuadHalo
 	pGameObjectOny->setRenderComponentQuadHalo(
 		mComponentFactory->createRenderComponentQuadHalo(
 			pGameObjectOny,
 			tGameObjectOnyParameters.tRenderComponentQuadHaloParameters,
+			pGameObjectOny->getRenderComponentPositional()));
+
+	//Create RenderComponentFractalVolume
+	pGameObjectOny->setRenderComponentFractalVolume(
+		mComponentFactory->createRenderComponentFractalVolume(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tRenderComponentFractalVolumeParameters,
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
@@ -2061,7 +2071,6 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 	//addGameObjectWoodBox(pGameObjectWoodBox);
 	return pGameObjectWoodBox;
 }
-
 
 GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterParameters tGameObjectWaterParameters, 
 	GameWorldManagerPtr gameWorldMgr)

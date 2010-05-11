@@ -1388,6 +1388,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		//Get RenderComponentQuadHalo
 		tGameObjectOnyParameters.tRenderComponentQuadHaloParameters = processRenderComponentQuadHalo(gameObject->XMLNodeCustomProperties);
 
+		//Get RenderComponentFractalVolume
+		tGameObjectOnyParameters.tRenderComponentFractalVolumeParameters = processRenderComponentFractalVolume(gameObject->XMLNodeCustomProperties);
+
 		//Get PhysicsComponentCharacter
 		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	}
@@ -2699,6 +2702,32 @@ TRenderComponentQuadHaloParameters LevelLoader::processRenderComponentQuadHalo(T
 	tRenderComponentQuadHaloParameters.offsetZ = getPropertyReal(XMLNode, "RenderComponentQuadHalo::offsetZ");;
 
 	return tRenderComponentQuadHaloParameters;
+}
+
+TRenderComponentFractalVolumeParameters LevelLoader::processRenderComponentFractalVolume(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters;
+
+	//Process Quad Halo properties
+	tRenderComponentFractalVolumeParameters.texture3D = getPropertyString(XMLNode, "RenderComponentFractalVolume::texture3D");
+	tRenderComponentFractalVolumeParameters.juliaGlobalReal = getPropertyReal(XMLNode, "RenderComponentFractalVolume::juliaGlobalReal");
+	tRenderComponentFractalVolumeParameters.juliaGlobalImag = getPropertyReal(XMLNode, "RenderComponentFractalVolume::juliaGlobalImag");
+	tRenderComponentFractalVolumeParameters.juliaGlobalTheta = getPropertyReal(XMLNode, "RenderComponentFractalVolume::juliaGlobalTheta");
+	tRenderComponentFractalVolumeParameters.vScale = getPropertyReal(XMLNode, "RenderComponentFractalVolume::vScale");
+	tRenderComponentFractalVolumeParameters.vCut = getPropertyReal(XMLNode, "RenderComponentFractalVolume::vCut");
+	tRenderComponentFractalVolumeParameters.vSlices = getPropertyReal(XMLNode, "RenderComponentFractalVolume::vSlices");
+	tRenderComponentFractalVolumeParameters.vSize = getPropertyReal(XMLNode, "RenderComponentFractalVolume::vSize");
+	tRenderComponentFractalVolumeParameters.offsetX = getPropertyReal(XMLNode, "RenderComponentFractalVolume::offsetX");
+	tRenderComponentFractalVolumeParameters.offsetY = getPropertyReal(XMLNode, "RenderComponentFractalVolume::offsetY");
+	tRenderComponentFractalVolumeParameters.offsetZ = getPropertyReal(XMLNode, "RenderComponentFractalVolume::offsetZ");
+	tRenderComponentFractalVolumeParameters.rotationDegreesX = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesX");
+	tRenderComponentFractalVolumeParameters.rotationDegreesY = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesY");
+	tRenderComponentFractalVolumeParameters.rotationDegreesZ = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesZ");
+	tRenderComponentFractalVolumeParameters.colorR = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorR");
+	tRenderComponentFractalVolumeParameters.colorG = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorG");
+	tRenderComponentFractalVolumeParameters.colorB = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorB");
+
+	return tRenderComponentFractalVolumeParameters;
 }
 
 TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillboardSet(TiXmlElement *XMLNode)

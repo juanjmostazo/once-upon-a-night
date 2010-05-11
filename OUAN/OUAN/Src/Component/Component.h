@@ -41,7 +41,6 @@ namespace OUAN
 		/// @return this component's parent GameObject name
 		const std::string& getParentName();
 
-		
 		/// Update component
 		virtual void update(double elapsedSeconds);
 

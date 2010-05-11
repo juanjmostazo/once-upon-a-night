@@ -67,6 +67,16 @@ RenderComponentQuadHaloPtr GameObjectOny::getRenderComponentQuadHalo() const
 	return mRenderComponentQuadHalo;
 }
 
+void GameObjectOny::setRenderComponentFractalVolume(RenderComponentFractalVolumePtr pRenderComponentFractalVolume)
+{
+	mRenderComponentFractalVolume = pRenderComponentFractalVolume;
+}
+
+RenderComponentFractalVolumePtr GameObjectOny::getRenderComponentFractalVolume() const
+{
+	return mRenderComponentFractalVolume;
+}
+
 void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
@@ -131,10 +141,14 @@ void GameObjectOny::update(double elapsedSeconds)
 		}
 	}
 
+	//God mode effects
 	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
+	mRenderComponentFractalVolume->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
+
 	if (Application::getInstance()->getGameWorldManager()->getGodMode())
 	{
 		mRenderComponentQuadHalo->update(elapsedSeconds);
+		mRenderComponentFractalVolume->update(elapsedSeconds);
 	}
 }
 
