@@ -26,5 +26,7 @@
     <Option key="MAX_Y_MOVEMENT_PER_FRAME">0.15</Option>
     <Option key="MIN_CAMERA_CENTER_ROT_X">10</Option>
     <Option key="MAX_CAMERA_CENTER_ROT_X">20</Option>
+    <Option key="MIN_ALPHA_BLENDING">0.4</Option>
+    <Option key="ALPHA_BLENDING_SPEED">2</Option>
   </Options>
 </Configuration>
