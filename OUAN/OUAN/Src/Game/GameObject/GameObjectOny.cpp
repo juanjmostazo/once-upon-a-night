@@ -117,8 +117,18 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
-		OnyFallsEventPtr evt(new OnyFallsEvent());
-		mGameWorldManager->addEvent(evt);
+		if (!mGameWorldManager->getGodMode())
+		{
+			OnyFallsEventPtr evt(new OnyFallsEvent());
+			mGameWorldManager->addEvent(evt);
+		}
+		else
+		{
+			mPhysicsComponentCharacter->jump();
+			int newState = mLogicComponentOny->getNewState();
+			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
+			mLogicComponentOny->setNewState(newState);
+		}
 	}
 
 	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());

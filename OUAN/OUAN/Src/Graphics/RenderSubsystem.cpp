@@ -64,6 +64,7 @@ bool RenderSubsystem::loadConfig()
 	std::string value;
 	bool success;
 
+	//TODO: Replace this with a more general graphics-config.
 	if (config.loadFromFile(COMPOSITOR_CFG))
 	{
 		config.getOption("BLOOM", BLOOM); 
@@ -200,6 +201,10 @@ void RenderSubsystem::clear()
 {
 	/// Clear Scene manager
 	mSceneManager->clearScene();
+	//Prevent weird bug where a null pointer exception is thrown inside
+	// sceneManager::setShadowTechnique() when resetting the game
+	// (using soft shadowing)
+	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 }
 
 RenderWindow* RenderSubsystem::getWindow() const
@@ -266,10 +271,13 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	try
 	{
 
+		//DO NOT UNCOMMENT: WORK IN PROGRESS
+		//initShadows();
 		mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
 		//Set SceneManager parameters
-	//	mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
+		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
+
 
 		if(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active)
 		{
@@ -769,8 +777,8 @@ void RenderSubsystem::resumeRendering()
 
 void RenderSubsystem::clearScene()
 {
-	mSceneManager->destroyAllCameras(); 
-	mSceneManager->clearScene();
+	//mSceneManager->destroyAllCameras(); 
+	//mSceneManager->clearScene();
 	mRoot->destroySceneManager(mSceneManager);
 	mWindow->removeAllViewports();
 	//mApp->getGUISubsystem()->clearRenderer();
@@ -817,4 +825,49 @@ int RenderSubsystem::getUniqueId()
 {
 	uniqueId++;
 	return uniqueId;
+}
+void RenderSubsystem::initShadows()
+{
+	// enable integrated additive shadows
+	// actually, since we render the shadow map ourselves, it doesn't
+	// really matter whether they are additive or modulative
+	// as long as they are integrated v(O_o)v
+	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);	
+	////TODO: config!!!
+	// we'll be self shadowing
+	mSceneManager->setShadowTextureSelfShadow(true);
+
+	// our caster material
+	mSceneManager->setShadowTextureCasterMaterial("shadow_caster");
+	// note we have no "receiver".  all the "receivers" are integrated.
+	
+	// get the shadow texture count from the cfg file
+	// (each light needs a shadow text.)
+	mSceneManager->setShadowTextureCount(4);
+	// the size, too (1024 looks good with 3x3 or more filtering)
+	mSceneManager->setShadowTextureSize(256);
+
+	// float 16 here.  we need the R and G channels.
+	// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
+	// but float 16 is good enough and supports bilinear filtering on a lot of cards
+	// (we should use _GR, but OpenGL doesn't really like it for some reason)
+	mSceneManager->setShadowTexturePixelFormat(Ogre::PF_FLOAT16_RGB);
+
+	// big NONO to render back faces for VSM.  it doesn't need any biasing
+	// so it's worthless (and rather problematic) to use the back face hack that
+	// works so well for normal depth shadow mapping (you know, so you don't
+	// get surface acne)
+	mSceneManager->setShadowCasterRenderBackFaces(false);
+
+	const unsigned numShadowRTTs = mSceneManager->getShadowTextureCount();
+	for (unsigned i = 0; i < numShadowRTTs; ++i)
+	{
+		Ogre::TexturePtr tex = mSceneManager->getShadowTexture(i);
+		Ogre::Viewport *vp = tex->getBuffer()->getRenderTarget()->getViewport(0);
+		vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1, 1));
+		vp->setClearEveryFrame(true);
+	}
+
+	// and add the shader listener
+	mSceneManager->addListener(&shadowListener);
 }

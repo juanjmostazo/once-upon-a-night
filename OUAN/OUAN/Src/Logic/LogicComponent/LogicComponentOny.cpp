@@ -51,7 +51,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+	
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->getGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
@@ -130,15 +131,12 @@ void LogicComponentOny::decreaseLives(int amount,bool fallDown)
 
 void LogicComponentOny::loseLife(bool fallDown)
 {
-	if(!getParent()->getGameWorldManager()->getGodMode())
-	{
-		if (fallDown)
-			setHealthPoints(getInitialHealthPoints());
-		//getParent()->disable();
+	if (fallDown)
+		setHealthPoints(getInitialHealthPoints());
+	//getParent()->disable();
 
-		OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives(),fallDown));
-		getParent()->getGameWorldManager()->addEvent(evt);
-	}
+	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives(),fallDown));
+	getParent()->getGameWorldManager()->addEvent(evt);
 }
 
 void LogicComponentOny::gameOver()

@@ -361,7 +361,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 
-	/// Set ambient specular and diffuse material components off
+	/// Set ambient specular and diffuse material components off;
 	mApp->getRenderSubsystem()->initMaterials();
 
 	if (getGameObjectOny().get())
@@ -377,6 +377,9 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 	//Set Active Camera
 	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
 	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
+	
+	//WORK IN PROGRESS
+	//mApp->getRenderSubsystem()->ssaoListener.setCamera(mApp->getCameraManager()->getActiveCamera());
 
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
