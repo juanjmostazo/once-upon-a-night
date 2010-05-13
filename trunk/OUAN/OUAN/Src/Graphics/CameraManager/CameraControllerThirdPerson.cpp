@@ -30,6 +30,7 @@ void CameraControllerThirdPerson::reset()
 
 	currentCollisionTime=0;
 	currentDistance=maxDistance;
+	mCurrentCollisionMargin=0;
 }
 
 bool CameraControllerThirdPerson::loadConfig()
@@ -53,8 +54,8 @@ bool CameraControllerThirdPerson::loadConfig()
 
 		initialDirection = Vector3(initial_directionX, initial_directionY, initial_directionZ);
 
-		config.getOption("COLLISION_MARGIN", value); 
-		collisionMargin = atof(value.c_str());
+		config.getOption("MAX_COLLISION_Y_MARGIN", value); 
+		mMaxCollisionYMargin = atof(value.c_str());
 
 		config.getOption("MIN_DISTANCE", value); 
 		minDistance = atof(value.c_str());
@@ -142,7 +143,7 @@ void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,Physi
 	CameraController::init(pRenderSubsystem->getSceneManager());
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance,bool y_correction)
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance,bool y_correction,bool applyCollisionMargin)
 {
 	Ogre::Vector3 newCameraPosition;
 
@@ -163,6 +164,11 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distan
 
 	//Calculate Camera position in the world
 	newCameraPosition = target->getPosition()+newCameraPosition;
+
+	if(applyCollisionMargin)
+	{
+		newCameraPosition+=Vector3(0,mCurrentCollisionMargin,0);
+	}
 
 	//jumping correction
 	//if(target->getParent()->isJumping() && y_correction && Ogre::Math::Abs(newCameraPosition.y-mCamera->getPosition().y)>maxYMovementPerFrame)
@@ -220,7 +226,7 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{
 		collisionType=pEntity->getQueryFlags();
-		cameraPosition=newCameraPosition-collisionMargin*direction;
+		cameraPosition=newCameraPosition;
 		hasBeenCollision=true;
 
 		for(i=0;i<allCollisions.size();i++)
@@ -301,7 +307,6 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Vector3 cameraLookAt;
 	Ogre::uint32 collisionType;
 
-
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
 
@@ -328,6 +333,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 			mCorrectingCameraPosition=true;
 			if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET)
 			{
+				mCurrentCollisionMargin=mMaxCollisionYMargin;
 				currentDistance=calculateCameraMoveToTarget(currentDistance,mCamera->getPosition(),cameraCollisionPosition,elapsedTime);
 			}
 			else if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE)
@@ -348,7 +354,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	}
 
 	//set camera position
-	newCameraPosition=calculateCameraPosition(currentDistance);
+	newCameraPosition=calculateCameraPosition(currentDistance,true,true);
 
 	mCamera->setPosition(newCameraPosition);
 
@@ -366,6 +372,12 @@ double CameraControllerThirdPerson::calculateCameraReturningFromTarget(double cu
 	if(newCameraDistance>=maxDistance)
 	{
 		newCameraDistance=maxDistance;
+	}
+
+	mCurrentCollisionMargin-=collisionReturningSpeed*elapsedTime;
+	if(mCurrentCollisionMargin<=0)
+	{
+		mCurrentCollisionMargin=0;
 	}
 	return newCameraDistance;
 }
