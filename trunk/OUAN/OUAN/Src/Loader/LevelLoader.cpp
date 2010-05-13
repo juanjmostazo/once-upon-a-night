@@ -161,7 +161,7 @@ void LevelLoader::processGameObjectClouds()
 	tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
 
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(800,-100,800);
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(1000,-300,1000);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";

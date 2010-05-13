@@ -28,12 +28,12 @@ void GameObjectCloud::setRenderComponentFractalVolumeNightmares(RenderComponentF
 	mRenderComponentFractalVolumeSetNightmares[pUnit]=pRenderComponentFractalVolume;
 }
 
-std::vector<RenderComponentFractalVolume> GameObjectCloud::getRenderComponentFractalVolumeSetDreams()
+std::vector<RenderComponentFractalVolumePtr> GameObjectCloud::getRenderComponentFractalVolumeSetDreams()
 {
 	return mRenderComponentFractalVolumeSetDreams;
 }
 
-std::vector<RenderComponentFractalVolume> GameObjectCloud::getRenderComponentFractalVolumeSetNightmares()
+std::vector<RenderComponentFractalVolumePtr> GameObjectCloud::getRenderComponentFractalVolumeSetNightmares()
 {
 	return mRenderComponentFractalVolumeSetNightmares;
 }

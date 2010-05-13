@@ -40,8 +40,8 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		std::vector<RenderComponentFractalVolume> getRenderComponentFractalVolumeSetDreams();
-		std::vector<RenderComponentFractalVolume> getRenderComponentFractalVolumeSetNightmares();
+		std::vector<RenderComponentFractalVolumePtr> getRenderComponentFractalVolumeSetDreams();
+		std::vector<RenderComponentFractalVolumePtr> getRenderComponentFractalVolumeSetNightmares();
 
 		/// Set render component
 		/// @param pRenderComponentFractalVolume
