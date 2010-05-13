@@ -14,24 +14,24 @@ GameObjectCloud::~GameObjectCloud()
 
 }
 
-void GameObjectCloud::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCloud::setRenderComponentFractalVolumeSetDreams(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentFractalVolumeSetDreams=pRenderComponentFractalVolumeSet;
 }
 
-void GameObjectCloud::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCloud::setRenderComponentFractalVolumeSetNightmares(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet)
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
+	mRenderComponentFractalVolumeSetNightmares=pRenderComponentFractalVolumeSet;
 }
 
-RenderComponentEntityPtr GameObjectCloud::getRenderComponentEntityDreams() const
+RenderComponentFractalVolumePtr* GameObjectCloud::getRenderComponentFractalVolumeSetDreams() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentFractalVolumeSetDreams;
 }
 
-RenderComponentEntityPtr GameObjectCloud::getRenderComponentEntityNightmares() const
+RenderComponentFractalVolumePtr* GameObjectCloud::getRenderComponentFractalVolumeSetNightmares() const
 {
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentFractalVolumeSetNightmares;
 }
 
 void GameObjectCloud::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -61,31 +61,49 @@ void GameObjectCloud::changeWorld(int world)
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetDreams[i]->setVisible(true);
+					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(false);
+				}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetDreams[i]->setVisible(true);
+				}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(false);
+				}
 			}		
 			break;
 		case NIGHTMARES:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityNightmares->setVisible(true);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetDreams[i]->setVisible(false);
+					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(true);
+				}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetDreams[i]->setVisible(false);
+				}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(true);
+				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+				{
+					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(true);
+				}
 			}		
 			break;
 		default:
@@ -128,15 +146,6 @@ void GameObjectCloud::updateLogic(double elapsedSeconds)
 	}
 }
 
-bool GameObjectCloud::hasRenderComponentEntity() const
-{
-	return true;
-}
-
-RenderComponentEntityPtr GameObjectCloud::getEntityComponent() const
-{
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
-}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectCloudParameters::TGameObjectCloudParameters() : TGameObjectParameters()

@@ -2,10 +2,12 @@
 #define GameObjectCloudH_H
 
 #include "GameObject.h"
-#include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
+#define CLOUD_FRACTAL_VOLUME_SET_SIZE 4
 
 namespace OUAN
 {
@@ -14,8 +16,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentFractalVolumePtr* mRenderComponentFractalVolumeSetDreams;
+		RenderComponentFractalVolumePtr* mRenderComponentFractalVolumeSetNightmares;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -38,13 +40,13 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentFractalVolumePtr* getRenderComponentFractalVolumeSetDreams() const;
+		RenderComponentFractalVolumePtr* getRenderComponentFractalVolumeSetNightmares() const;
 
 		/// Set render component
-		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		/// @param pRenderComponentFractalVolume
+		void setRenderComponentFractalVolumeSetDreams(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSetDreams);
+		void setRenderComponentFractalVolumeSetNightmares(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSetNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -74,10 +76,6 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
-
-		/// 
-		bool hasRenderComponentEntity() const;
-		RenderComponentEntityPtr getEntityComponent() const;
 	};
 
 	class TGameObjectCloudParameters: public TGameObjectParameters
@@ -87,8 +85,8 @@ namespace OUAN
 		~TGameObjectCloudParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetDreamsParameters[CLOUD_FRACTAL_VOLUME_SET_SIZE];
+		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetNightmaresParameters[CLOUD_FRACTAL_VOLUME_SET_SIZE];
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

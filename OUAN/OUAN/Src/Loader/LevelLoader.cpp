@@ -121,6 +121,9 @@ void LevelLoader::loadLevel(String level)
 	//Process Level's GameObjects
 	processGameObjects();
 
+	//Process Level's GameObjectClouds
+	processGameObjectClouds();
+
 	//Process Level's Trajectories
 	processTrajectories();
 
@@ -141,6 +144,11 @@ void LevelLoader::processGameObjects()
 	{
 		processGameObject(&it->second);
 	}
+}
+
+void LevelLoader::processGameObjectClouds()
+{
+
 }
 
 void LevelLoader::processGameObject(XMLGameObject* gameObject)
@@ -361,7 +369,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CLOUD)==0)
 		{
-			processGameObjectCloud(gameObject);
+			//DO NOTHING, CLOUDS ARE GENERATED FROM CODE
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
@@ -773,53 +781,6 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectClockPiece(tGameObjectClockPieceParameters);
 	mGameWorldManager->addGameObjectClockPiece(mGameObjectFactory->createGameObjectClockPiece(
 		tGameObjectClockPieceParameters,mGameWorldManager));
-}
-
-void LevelLoader::processGameObjectCloud(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectCloudParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectCloudParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectCloudParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectCloudParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		if(tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams)
-		{
-			//Get RenderComponentEntityDreams
-			tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-				DREAMS, gameObject->XMLNodeCustomProperties);
-		}
-		if(tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares)
-		{
-			//Get RenderComponentEntityNightmares
-			tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-				NIGHTMARES,gameObject->XMLNodeCustomProperties);
-		}
-
-		//Get RenderComponentPositional
-		tGameObjectCloudParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	//mGameWorldManager->createGameObjectCloud(tGameObjectCloudParameters);
-	mGameWorldManager->addGameObjectCloud(
-		mGameObjectFactory->createGameObjectCloud(tGameObjectCloudParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
