@@ -375,28 +375,51 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 	pGameObjectCloud->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectCloud->getRenderComponentPositional()));
 	
+	//Create set of RenderComponentFractalVolume
+	Ogre::Vector3 pOffsets[] = {
+		Ogre::Vector3(0, 0, -tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation),
+		Ogre::Vector3(tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation, 0, 0),
+		Ogre::Vector3(0, 0, tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation),
+		Ogre::Vector3(-tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation, 0, 0)};
+
 	if(pGameObjectCloud->getLogicComponent()->existsInDreams())
 	{
 		RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet = 
 			(RenderComponentFractalVolumePtr*)malloc(sizeof(RenderComponentFractalVolumePtr) * CLOUD_FRACTAL_VOLUME_SET_SIZE);
-		/*
-		//Create RenderComponentEntity Dreams
-		pGameObjectCloud->setRenderComponentFractalVolumeSetDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.dreamsName,
-				pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters));
-		*/		
+
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetX = pOffsets[i].x;
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = pOffsets[i].y;
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = pOffsets[i].z;
+
+			pRenderComponentFractalVolumeSet[i] = mComponentFactory->createRenderComponentFractalVolume(
+				pGameObjectCloud,
+				tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters,
+				pGameObjectCloud->getRenderComponentPositional());
+		}
+
+		pGameObjectCloud->setRenderComponentFractalVolumeSetDreams(pRenderComponentFractalVolumeSet);			
 	}
+
 	if(pGameObjectCloud->getLogicComponent()->existsInNightmares())
 	{
 		RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet = 
 			(RenderComponentFractalVolumePtr*)malloc(sizeof(RenderComponentFractalVolumePtr) * CLOUD_FRACTAL_VOLUME_SET_SIZE);
 
-		/*
-		//Create RenderComponentEntity Nightmares
-		pGameObjectCloud->setRenderComponentFractalVolumeSetNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.nightmaresName,
-				pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters));
-		*/
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetX = pOffsets[i].x;
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetY = pOffsets[i].y;
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetZ = pOffsets[i].z;
+
+			pRenderComponentFractalVolumeSet[i] = mComponentFactory->createRenderComponentFractalVolume(
+				pGameObjectCloud,
+				tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters,
+				pGameObjectCloud->getRenderComponentPositional());
+		}
+
+		pGameObjectCloud->setRenderComponentFractalVolumeSetNightmares(pRenderComponentFractalVolumeSet);	
 	}
 	
 	pGameObjectCloud->changeWorld(gameWorldMgr->getCurrentWorld());

@@ -25,6 +25,7 @@ RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
 , mWindowName(windowName)
 , mTexturesInitialized(false)
+, mUniqueId(10000)
 {
 	
 }
@@ -38,8 +39,6 @@ bool RenderSubsystem::init(ApplicationPtr app, ConfigurationPtr config)
 {
 	this->mApp=app;
 	this->debugMessage = "";
-
-	this->uniqueId = 0;
 
 	createRoot(config);
 	defineResources(config);
@@ -884,8 +883,8 @@ void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 
 int RenderSubsystem::getUniqueId()
 {
-	uniqueId++;
-	return uniqueId;
+	mUniqueId++;
+	return mUniqueId;
 }
 void RenderSubsystem::initShadows()
 {

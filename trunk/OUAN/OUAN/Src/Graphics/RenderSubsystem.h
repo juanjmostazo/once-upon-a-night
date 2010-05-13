@@ -244,7 +244,7 @@ namespace OUAN
 		Ogre::String debugMessage;
 
 		/// Unique id
-		int uniqueId;
+		int mUniqueId;
 
 		// For the soft shadows: WORK IN PROGRESS
 		ShadowListener shadowListener;

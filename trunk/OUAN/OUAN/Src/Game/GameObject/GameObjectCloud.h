@@ -85,8 +85,10 @@ namespace OUAN
 		~TGameObjectCloudParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetDreamsParameters[CLOUD_FRACTAL_VOLUME_SET_SIZE];
-		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetNightmaresParameters[CLOUD_FRACTAL_VOLUME_SET_SIZE];
+		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetDreamsParameters;
+		TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeSetNightmaresParameters;
+
+		double tFractalVolumeSetInnerSeparation;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
