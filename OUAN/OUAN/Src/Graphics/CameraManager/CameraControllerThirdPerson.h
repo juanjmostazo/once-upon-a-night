@@ -31,7 +31,8 @@ namespace OUAN
 		double currentDistance;
 		double height;
 
-		double collisionMargin;
+		double mMaxCollisionYMargin;
+		double mCurrentCollisionMargin;
 
 		double currentCollisionTime;
 		double minCollisionTime;
@@ -89,7 +90,7 @@ namespace OUAN
 		void reset();
 		bool loadConfig();
 
-		Ogre::Vector3 calculateCameraPosition(double distance,bool y_correction=true);
+		Ogre::Vector3 calculateCameraPosition(double distance,bool y_correction=true,bool applyCollisionMargin=false);
 		Ogre::Vector3 calculateCameraLookAt();
 
 
