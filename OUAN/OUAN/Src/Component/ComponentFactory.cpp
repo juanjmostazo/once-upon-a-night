@@ -316,18 +316,22 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 
 	pRenderComponentFractalVolume->setRotationDegrees(
 		Ogre::Vector3(
-			tRenderComponentFractalVolumeParameters.rotationDegreesX,
-			tRenderComponentFractalVolumeParameters.rotationDegreesY,
-			tRenderComponentFractalVolumeParameters.rotationDegreesZ));
+			tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondX,
+			tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondY,
+			tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondZ));
 
 	pRenderComponentFractalVolume->setSceneNode(pRenderComponentPositional->getSceneNode()->createChildSceneNode());
 	pRenderComponentFractalVolume->getSceneNode()->attachObject(fractalVolume);
 
 	pRenderComponentFractalVolume->getSceneNode()->setPosition(
 		Ogre::Vector3(
-		tRenderComponentFractalVolumeParameters.offsetX,
-		tRenderComponentFractalVolumeParameters.offsetY,
-		tRenderComponentFractalVolumeParameters.offsetZ));
+			tRenderComponentFractalVolumeParameters.offsetX,
+			tRenderComponentFractalVolumeParameters.offsetY,
+			tRenderComponentFractalVolumeParameters.offsetZ));
+
+	pRenderComponentFractalVolume->getSceneNode()->pitch(Ogre::Degree(tRenderComponentFractalVolumeParameters.rotationDegreesInitialX));
+	pRenderComponentFractalVolume->getSceneNode()->yaw(Ogre::Degree(tRenderComponentFractalVolumeParameters.rotationDegreesInitialY));
+	pRenderComponentFractalVolume->getSceneNode()->roll(Ogre::Degree(tRenderComponentFractalVolumeParameters.rotationDegreesInitialZ));
 
 	pRenderComponentFractalVolume->getSceneNode()->setVisible(false);
 

@@ -141,15 +141,21 @@ void GameObjectOny::update(double elapsedSeconds)
 		}
 	}
 
-	//God mode effects
+	//QuadHalo god mode effect
 	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
-	mRenderComponentFractalVolume->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
-
 	if (Application::getInstance()->getGameWorldManager()->getGodMode())
 	{
 		mRenderComponentQuadHalo->update(elapsedSeconds);
+	}
+
+	//Fractal Volume god mode effect
+	/*
+	mRenderComponentFractalVolume->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
+	if (Application::getInstance()->getGameWorldManager()->getGodMode())
+	{
 		mRenderComponentFractalVolume->update(elapsedSeconds);
 	}
+	*/
 }
 
 void GameObjectOny::reset()

@@ -21,9 +21,12 @@
   <PROPERTY id="RenderComponentFractalVolume::offsetX" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::offsetY" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::offsetZ" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesY" type="6" value="10" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesZ" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialX" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialY" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialZ" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondX" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondY" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondZ" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::colorR" type="6" value="-1" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::colorG" type="6" value="-1" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::colorB" type="6" value="-1" ></PROPERTY>
