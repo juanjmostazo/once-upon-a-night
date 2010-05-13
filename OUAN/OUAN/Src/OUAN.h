@@ -747,6 +747,11 @@ namespace OUAN
 		typedef std::map<std::string,TRenderComponentCameraParameters> TCameraParamsContainer;
 		typedef TCameraParamsContainer::iterator TCameraParamsContainerIterator;
 
+		class TransparentEntityManager;
+		typedef boost::shared_ptr<TransparentEntityManager> TransparentEntityManagerPtr;
+		class TransparentEntity;
+		typedef boost::shared_ptr<TransparentEntity> TransparentEntityPtr;
+
 		/// Ogre root object
 		typedef boost::shared_ptr<Ogre::Root> RootPtr;
 

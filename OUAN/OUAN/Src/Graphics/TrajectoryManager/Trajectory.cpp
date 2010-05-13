@@ -452,6 +452,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	pEntity=mSceneManager->createEntity(entityDebugName,"node.mesh");
 	pEntity->setMaterialName(debugColor);
 	pEntity->setVisible(mVisible);
+	pEntity->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 	pEntityDebugNode->setScale(Vector3(0.8,0.8,0.8));
 	pEntityDebugNode->attachObject(pEntity);
 

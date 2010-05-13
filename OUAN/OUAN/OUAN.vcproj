@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -459,6 +459,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\TransparentEntity.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\TransparentEntityManager.cpp"
 						>
 					</File>
 				</Filter>
@@ -1137,6 +1145,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\TransparentEntity.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\TransparentEntityManager.h"
 						>
 					</File>
 				</Filter>

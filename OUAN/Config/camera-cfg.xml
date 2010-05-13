@@ -4,7 +4,7 @@
     <Option key="INITIAL_DIRECTION_X">0</Option>
     <Option key="INITIAL_DIRECTION_Y">0.25</Option>
     <Option key="INITIAL_DIRECTION_Z">-1</Option>
-    <Option key="COLLISION_MARGIN">8</Option>
+    <Option key="COLLISION_MARGIN">20</Option>
     <Option key="MAX_DISTANCE">93</Option>
     <Option key="MIN_DISTANCE">50</Option>
     <Option key="TARGET_HEIGHT">17</Option>
@@ -16,7 +16,7 @@
     <Option key="MIN_ROT_X">-30</Option>
     <Option key="ROT_X_DISTANCE_ATTENUATION_POSITIVE">0.2</Option>
     <Option key="ROT_X_DISTANCE_ATTENUATION_NEGATIVE">0.3</Option>
-    <Option key="MIN_COLLISION_TIME">0</Option>
+    <Option key="MIN_COLLISION_TIME">1</Option>
     <Option key="AUTO_ROT_X_POSITIVE_SPEED">30</Option>
     <Option key="AUTO_ROT_X_NEGATIVE_SPEED">10</Option>
     <Option key="AUTO_ROT_X_CENTER_SPEED">10</Option>
@@ -26,7 +26,7 @@
     <Option key="MAX_Y_MOVEMENT_PER_FRAME">0.15</Option>
     <Option key="MIN_CAMERA_CENTER_ROT_X">10</Option>
     <Option key="MAX_CAMERA_CENTER_ROT_X">20</Option>
-    <Option key="MIN_ALPHA_BLENDING">0.4</Option>
-    <Option key="ALPHA_BLENDING_SPEED">2</Option>
+    <Option key="MIN_ALPHA_BLENDING">0.5</Option>
+    <Option key="ALPHA_BLENDING_SPEED">1.5</Option>
   </Options>
 </Configuration>

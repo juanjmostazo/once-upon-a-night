@@ -22,35 +22,39 @@ void TransparentEntity::clear()
 	mEntity=NULL;
 	mSolidMaterial.clear();
 	mTransparentMaterial.clear();
+	mTransparentMaterialTextures.clear();
 
-	mMakingTransparent=false;
-	mMakingSolid=false;
-
-	mIsSolid=true;
-	mCurrentElapsedTime=0;
 }
 
-void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,double alphaBlendingTime)
+void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,double alphaBlendingSpeed)
 {
-	unsigned int i;
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr material;
+	Ogre::MaterialPtr clone;
+	unsigned int i,j;
 	std::string materialName;
 
 	clear();
-	
+
+	mState=TES_SOLID;
+	mCurrentAlpha=1.0f;
+
 	mEntity=pEntity;
 	mMinAlphaBlending=minAlphaBlending;
-	mAlphaBlendingTime=alphaBlendingTime;
+	mAlphaBlendingSpeed=alphaBlendingSpeed;
 
-	for ( i = 0; i < mEntity->getNumSubEntities(); ++i)
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
 	{
 		// Get the material of this sub entity and build the clone material name
-		Ogre::SubEntity* subEnt = mEntity->getSubEntity(i);
-		Ogre::MaterialPtr material = subEnt->getMaterial();
+		subEnt = mEntity->getSubEntity(i);
+		material = subEnt->getMaterial();
 
 		materialName=mEntity->getName()+"#"+material->getName()+"#TRANSPARENT";
 
 		// Get/Create the clone material
-		Ogre::MaterialPtr clone;
+
 		if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
 		{
 			clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
@@ -59,117 +63,138 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 		{
 			// Clone the material
 			clone = material->clone(materialName);
+
+				//get technique
+			technique = clone->getBestTechnique();
+				//set current pass attributes
+			for(j=0;j<technique->getNumPasses();j++)
+			{
+				pass = technique->getPass(j);
+				if(j==0)
+				{
+					pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);			
+					pass->setDepthWriteEnabled(false);
+
+					if(pass->getTextureUnitStateIterator().hasMoreElements())
+					{
+						mTransparentMaterialTextures.push_back(pass->getTextureUnitState(0));
+						//pass->getTextureUnitState(0)->setColourOperationEx(Ogre::LBX);
+					}
+				}
+
+				//if(j==1)
+				//{
+				//	pass->setSceneBlending(Ogre::SBT_MODULATE);	
+				//	pass->setDepthWriteEnabled(false);
+				//	if(pass->getTextureUnitStateIterator().hasMoreElements())
+				//	{
+				//		mTransparentMaterialTextures.push_back(pass->getTextureUnitState(0));
+				//		pass->getTextureUnitState(0)->setColourOperationEx(Ogre::LBX_MODULATE,Ogre::LBS_CURRENT,Ogre::LBS_TEXTURE,ColourValue::White,ColourValue::White,0.5f);
+				//	}
+				//}
+
+			}
 		}
 
 		//Add material to the material stack 
-		mSolidMaterial.push_back(material);
-		mTransparentMaterial.push_back(clone);
+		mSolidMaterial.push_back(material->getName());
+		mTransparentMaterial.push_back(clone->getName());
 	}
 }
 
 void TransparentEntity::setSolidMaterials()
 {
 	unsigned int i;
+	Ogre::SubEntity* subEnt;
 
-	mIsSolid=true;
-
-	for ( i = 0; i < mEntity->getNumSubEntities(); ++i)
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
 	{
 		// Apply the material to the sub entity.
-		Ogre::SubEntity* subEnt = mEntity->getSubEntity(i);
-		subEnt->setMaterial(mSolidMaterial[i]);
+		subEnt = mEntity->getSubEntity(i);
+		subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mSolidMaterial[i]));
 	}
 }
 
 void TransparentEntity::setTransparentMaterials()
 {
 	unsigned int i;
+	Ogre::SubEntity* subEnt;
 
-	mIsSolid=true;
-
-	for ( i = 0; i < mEntity->getNumSubEntities(); ++i)
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
 	{
 		// Apply the material to the sub entity.
-		Ogre::SubEntity* subEnt = mEntity->getSubEntity(i);
-		subEnt->setMaterial(mTransparentMaterial[i]);
+		subEnt = mEntity->getSubEntity(i);
+		subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mTransparentMaterial[i]));
 	}
 }
 
 void TransparentEntity::makeSolid()
 {
-	mMakingTransparent=false;
-	mMakingSolid=true;
+	mState=TES_MAKING_SOLID;
 }
 
 void TransparentEntity::makeTransparent()
 {
-	mMakingTransparent=true;
-	mMakingSolid=false;
+	mState=TES_MAKING_TRANSPARENT;
 	setTransparentMaterials();
 }
 
 void TransparentEntity::setTransparentMaterialsAlpha(double alpha)
 {
-	Ogre::MaterialPtr material;
-
 	unsigned int i;
 
-	for(i=0;i<mTransparentMaterial.size();i++)
+	for ( i = 0; i < mTransparentMaterialTextures.size(); i++)
 	{
-		// Get the material
-		material=mTransparentMaterial[i];
-
-		// Make it translucid
-		Ogre::Technique * technique;
-		Ogre::Pass * pass;
-		Ogre::TextureUnitState * texture;
-			//get technique
-		technique = material->getBestTechnique();
-			//set current pass attributes
-		pass = technique->getPass(0);
-		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);			
-		pass->setDepthCheckEnabled(false);
-		texture=pass->getTextureUnitState(0);
-		texture->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_CURRENT, alpha);
+		mTransparentMaterialTextures[i]->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_CURRENT, alpha);
 	}
+
 }
 
 void TransparentEntity::update(double elapsedTime)
 {
-	double alpha;
-	mCurrentElapsedTime+=elapsedTime;
-
-	if(mCurrentElapsedTime>=mAlphaBlendingTime)
+	switch(mState)
 	{
-		mCurrentElapsedTime=mAlphaBlendingTime;
-		mMakingTransparent=false;
-		mMakingSolid=false;
-
-		if(mMakingSolid)
+	case TES_SOLID:
+		break;
+	case TES_TRANSPARENT:
+		break;
+	case TES_MAKING_SOLID:
+		mCurrentAlpha+=elapsedTime*mAlphaBlendingSpeed;
+		if(mCurrentAlpha>=1)
 		{
+			mCurrentAlpha=1.0f;
 			setSolidMaterials();
+			mState=TES_SOLID;
 		}
-	}
-
-	if(mMakingTransparent)
-	{
-		alpha=1.0f-(1.0f-mMinAlphaBlending)*mCurrentElapsedTime/mAlphaBlendingTime;
-		setTransparentMaterialsAlpha(alpha);
-	}
-
-	if(mMakingSolid)
-	{
-		alpha=mMinAlphaBlending+(1.0f-mMinAlphaBlending)*mCurrentElapsedTime/mAlphaBlendingTime;
-		setTransparentMaterialsAlpha(alpha);
+		else
+		{
+			setTransparentMaterialsAlpha(mCurrentAlpha);
+		}
+		break;
+	case TES_MAKING_TRANSPARENT:
+		mCurrentAlpha-=elapsedTime*mAlphaBlendingSpeed;
+		if(mCurrentAlpha<=mMinAlphaBlending)
+		{
+			mCurrentAlpha=mMinAlphaBlending;
+			setTransparentMaterialsAlpha(mMinAlphaBlending);
+			mState=TES_TRANSPARENT;
+		}
+		else
+		{
+			setTransparentMaterialsAlpha(mCurrentAlpha);
+		}
+		break;
+	default:
+		break;
 	}
 }
 
 bool TransparentEntity::isSolid()
 {
-	return mIsSolid;
+	return mState==TES_SOLID;
 }
 
 bool TransparentEntity::isTransparent()
 {
-	return !mIsSolid;
+	return mState==TES_TRANSPARENT;
 }
