@@ -16,8 +16,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual component
-		RenderComponentFractalVolumePtr* mRenderComponentFractalVolumeSetDreams;
-		RenderComponentFractalVolumePtr* mRenderComponentFractalVolumeSetNightmares;
+		std::vector<RenderComponentFractalVolumePtr> mRenderComponentFractalVolumeSetDreams;
+		std::vector<RenderComponentFractalVolumePtr> mRenderComponentFractalVolumeSetNightmares;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -40,13 +40,13 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentFractalVolumePtr* getRenderComponentFractalVolumeSetDreams() const;
-		RenderComponentFractalVolumePtr* getRenderComponentFractalVolumeSetNightmares() const;
+		std::vector<RenderComponentFractalVolume> getRenderComponentFractalVolumeSetDreams();
+		std::vector<RenderComponentFractalVolume> getRenderComponentFractalVolumeSetNightmares();
 
 		/// Set render component
 		/// @param pRenderComponentFractalVolume
-		void setRenderComponentFractalVolumeSetDreams(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSetDreams);
-		void setRenderComponentFractalVolumeSetNightmares(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSetNightmares);
+		void setRenderComponentFractalVolumeDreams(RenderComponentFractalVolumePtr pRenderComponentFractalVolumeDreams, int pPosition);
+		void setRenderComponentFractalVolumeNightmares(RenderComponentFractalVolumePtr pRenderComponentFractalVolumeNightmares, int pPosition);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information

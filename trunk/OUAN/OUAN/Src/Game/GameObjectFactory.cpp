@@ -393,13 +393,13 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = pOffsets[i].y;
 			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = pOffsets[i].z;
 
-			pRenderComponentFractalVolumeSet[i] = mComponentFactory->createRenderComponentFractalVolume(
-				pGameObjectCloud,
-				tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters,
-				pGameObjectCloud->getRenderComponentPositional());
-		}
-
-		pGameObjectCloud->setRenderComponentFractalVolumeSetDreams(pRenderComponentFractalVolumeSet);			
+			pGameObjectCloud->setRenderComponentFractalVolumeDreams(
+				mComponentFactory->createRenderComponentFractalVolume(
+					pGameObjectCloud,
+					tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters,
+					pGameObjectCloud->getRenderComponentPositional()),
+				i);
+		}		
 	}
 
 	if(pGameObjectCloud->getLogicComponent()->existsInNightmares())
@@ -413,13 +413,13 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetY = pOffsets[i].y;
 			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetZ = pOffsets[i].z;
 
-			pRenderComponentFractalVolumeSet[i] = mComponentFactory->createRenderComponentFractalVolume(
-				pGameObjectCloud,
-				tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters,
-				pGameObjectCloud->getRenderComponentPositional());
+			pGameObjectCloud->setRenderComponentFractalVolumeNightmares(
+				mComponentFactory->createRenderComponentFractalVolume(
+					pGameObjectCloud,
+					tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters,
+					pGameObjectCloud->getRenderComponentPositional()),
+				i);
 		}
-
-		pGameObjectCloud->setRenderComponentFractalVolumeSetNightmares(pRenderComponentFractalVolumeSet);	
 	}
 	
 	pGameObjectCloud->changeWorld(gameWorldMgr->getCurrentWorld());

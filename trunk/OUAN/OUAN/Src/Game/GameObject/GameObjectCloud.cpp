@@ -6,7 +6,11 @@ using namespace OUAN;
 GameObjectCloud::GameObjectCloud(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_CLOUD)
 {
+	mRenderComponentFractalVolumeSetDreams.clear();
+	mRenderComponentFractalVolumeSetDreams.resize(CLOUD_FRACTAL_VOLUME_SET_SIZE);
 
+	mRenderComponentFractalVolumeSetNightmares.clear();
+	mRenderComponentFractalVolumeSetNightmares.resize(CLOUD_FRACTAL_VOLUME_SET_SIZE);
 }
 
 GameObjectCloud::~GameObjectCloud()
@@ -14,22 +18,22 @@ GameObjectCloud::~GameObjectCloud()
 
 }
 
-void GameObjectCloud::setRenderComponentFractalVolumeSetDreams(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet)
+void GameObjectCloud::setRenderComponentFractalVolumeDreams(RenderComponentFractalVolumePtr pRenderComponentFractalVolume, int pUnit)
 {
-	mRenderComponentFractalVolumeSetDreams=pRenderComponentFractalVolumeSet;
+	mRenderComponentFractalVolumeSetDreams[pUnit]=pRenderComponentFractalVolume;
 }
 
-void GameObjectCloud::setRenderComponentFractalVolumeSetNightmares(RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet)
+void GameObjectCloud::setRenderComponentFractalVolumeNightmares(RenderComponentFractalVolumePtr pRenderComponentFractalVolume, int pUnit)
 {
-	mRenderComponentFractalVolumeSetNightmares=pRenderComponentFractalVolumeSet;
+	mRenderComponentFractalVolumeSetNightmares[pUnit]=pRenderComponentFractalVolume;
 }
 
-RenderComponentFractalVolumePtr* GameObjectCloud::getRenderComponentFractalVolumeSetDreams() const
+std::vector<RenderComponentFractalVolume> GameObjectCloud::getRenderComponentFractalVolumeSetDreams()
 {
 	return mRenderComponentFractalVolumeSetDreams;
 }
 
-RenderComponentFractalVolumePtr* GameObjectCloud::getRenderComponentFractalVolumeSetNightmares() const
+std::vector<RenderComponentFractalVolume> GameObjectCloud::getRenderComponentFractalVolumeSetNightmares()
 {
 	return mRenderComponentFractalVolumeSetNightmares;
 }
