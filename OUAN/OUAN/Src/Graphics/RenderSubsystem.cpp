@@ -343,6 +343,12 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 			tRenderComponentLightParameters.attenuation.y, 
 			tRenderComponentLightParameters.attenuation.z, 
 			tRenderComponentLightParameters.attenuation.w);
+		if (pLight->getType()==Ogre::Light::LT_SPOTLIGHT)
+		{
+			pLight->setSpotlightRange(Ogre::Degree(tRenderComponentLightParameters.lightrange.x),
+				Ogre::Degree(tRenderComponentLightParameters.lightrange.y),
+				tRenderComponentLightParameters.lightrange.z);
+		}
 
 		pLight->setPowerScale(tRenderComponentLightParameters.power);
 	}
@@ -574,7 +580,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 		}
 
 		//set lightmaps
-		setLightmaps(pEntity);
+		//setLightmaps(pEntity);
 
 		//set Query flags
 		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
@@ -888,31 +894,47 @@ void RenderSubsystem::initShadows()
 	// really matter whether they are additive or modulative
 	// as long as they are integrated v(O_o)v
 	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);	
-	////TODO: config!!!
 	// we'll be self shadowing
 	mSceneManager->setShadowTextureSelfShadow(true);
 
-	// our caster material
-	mSceneManager->setShadowTextureCasterMaterial("shadow_caster");
-	// note we have no "receiver".  all the "receivers" are integrated.
-	
-	// get the shadow texture count from the cfg file
-	// (each light needs a shadow text.)
-	mSceneManager->setShadowTextureCount(4);
-	// the size, too (1024 looks good with 3x3 or more filtering)
-	mSceneManager->setShadowTextureSize(256);
+	std::string shadowTextureMaterial=DEFAULT_SHADOW_TEXTURE_CASTER_MATERIAL;
+	int shadowTextureCount=DEFAULT_SHADOW_TEXTURE_COUNT;
+	int shadowTextureSize=DEFAULT_SHADOW_TEXTURE_SIZE;
+	Ogre::PixelFormat shadowTexturePixelFormat=DEFAULT_SHADOW_TEXTURE_PIXEL_FORMAT;
+	bool shadowRenderBackFaces=DEFAULT_SHADOW_CASTER_RENDER_BACK_FACES;
 
-	// float 16 here.  we need the R and G channels.
-	// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
-	// but float 16 is good enough and supports bilinear filtering on a lot of cards
-	// (we should use _GR, but OpenGL doesn't really like it for some reason)
-	mSceneManager->setShadowTexturePixelFormat(Ogre::PF_FLOAT16_RGB);
 
-	// big NONO to render back faces for VSM.  it doesn't need any biasing
-	// so it's worthless (and rather problematic) to use the back face hack that
-	// works so well for normal depth shadow mapping (you know, so you don't
-	// get surface acne)
-	mSceneManager->setShadowCasterRenderBackFaces(false);
+	Configuration config;
+	//TODO: Replace this with a more general graphics-config.
+	if (config.loadFromFile(SHADOWS_CONFIG_PATH))
+	{
+		config.getOption(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_MATERIAL,shadowTextureMaterial);
+		shadowTextureCount=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_COUNT);
+		shadowTextureSize=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_SIZE);
+		shadowTexturePixelFormat=(Ogre::PixelFormat)config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_PIXEL_FORMAT);
+		shadowRenderBackFaces=config.parseBool(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_RENDER_BACK_FACES);
+	}
+		// our caster material
+		mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
+		// note we have no "receiver".  all the "receivers" are integrated.
+
+		// get the shadow texture count from the cfg file
+		// (each light needs a shadow text.)
+		mSceneManager->setShadowTextureCount(shadowTextureCount);
+		// the size, too (1024 looks good with 3x3 or more filtering)
+		mSceneManager->setShadowTextureSize(shadowTextureSize);
+
+		// float 16 here.  we need the R and G channels.
+		// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
+		// but float 16 is good enough and supports bilinear filtering on a lot of cards
+		// (we should use _GR, but OpenGL doesn't really like it for some reason)
+		mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
+
+		// big NONO to render back faces for VSM.  it doesn't need any biasing 
+		// so it's worthless (and rather problematic) to use the back face hack that
+		// works so well for normal depth shadow mapping (you know, so you don't
+		// get surface acne)
+		mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
 
 	const unsigned numShadowRTTs = mSceneManager->getShadowTextureCount();
 	for (unsigned i = 0; i < numShadowRTTs; ++i)
@@ -926,3 +948,66 @@ void RenderSubsystem::initShadows()
 	// and add the shader listener
 	mSceneManager->addListener(&shadowListener);
 }
+//---------------------------
+SSAOListener::SSAOListener()
+:mCam(NULL)
+{
+}
+void SSAOListener::setCamera(Ogre::Camera* cam)
+{
+	mCam=cam;
+}
+	// this callback we will use to modify SSAO parameters
+void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr &mat)
+{
+	if (pass_id != 42 || !mCam) // not SSAO, return
+		return;
+
+	// calculate the far-top-right corner in view-space
+	Ogre::Vector3 farCorner = mCam->getViewMatrix(true) * mCam->getWorldSpaceCorners()[4];
+
+	// get the pass
+	Ogre::Pass *pass = mat->getBestTechnique()->getPass(0);
+
+	// get the vertex shader parameters
+	Ogre::GpuProgramParametersSharedPtr params = pass->getVertexProgramParameters();
+	// set the camera's far-top-right corner
+	if (params->_findNamedConstantDefinition("farCorner"))
+		params->setNamedConstant("farCorner", farCorner);
+
+	// get the fragment shader parameters
+	params = pass->getFragmentProgramParameters();
+	// set the projection matrix we need
+	static const Ogre::Matrix4 CLIP_SPACE_TO_IMAGE_SPACE(
+		0.5,    0,    0,  0.5,
+		0,   -0.5,    0,  0.5,
+		0,      0,    1,    0,
+		0,      0,    0,    1);
+	if (params->_findNamedConstantDefinition("ptMat"))
+		params->setNamedConstant("ptMat", CLIP_SPACE_TO_IMAGE_SPACE * mCam->getProjectionMatrixWithRSDepth());
+	if (params->_findNamedConstantDefinition("far"))
+		params->setNamedConstant("far", mCam->getFarClipDistance());
+}
+//---------------------------
+// this is a callback we'll be using to set up our shadow camera
+void ShadowListener::shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Camera *cam, size_t)
+{
+	// basically, here we do some forceful camera near/far clip attenuation
+	// yeah.  simplistic, but it works nicely.  this is the function I was talking
+	// about you ignoring above in the Mgr declaration.
+	float range = light->getAttenuationRange();
+	cam->setNearClipDistance(0.01);
+	cam->setFarClipDistance(range);
+	// we just use a small near clip so that the light doesn't "miss" anything
+	// that can shadow stuff.  and the far clip is equal to the lights' range.
+	// (thus, if the light only covers 15 units of objects, it can only
+	// shadow 15 units - the rest of it should be attenuated away, and not rendered)
+}
+
+// these are pure virtual but we don't need them...  so just make them empty
+// otherwise we get "cannot declare of type Mgr due to missing abstract
+// functions" and so on
+void ShadowListener::shadowTexturesUpdated(size_t) {}
+void ShadowListener::shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*) {}
+void ShadowListener::preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
+void ShadowListener::postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
