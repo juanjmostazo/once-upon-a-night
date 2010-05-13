@@ -94,6 +94,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			pEntity=pSceneManager->createEntity(debugName,"node.mesh");
 			pEntity->setMaterialName("red");
 			pEntity->setVisible(mVisible);
+			pEntity->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 			pEntityDebugNode->attachObject(pEntity);
 
 			myNodes.push_back(pEntity);

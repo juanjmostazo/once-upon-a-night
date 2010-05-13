@@ -67,14 +67,8 @@ namespace OUAN
 		double minCameraCenterRotX;
 		double maxCameraCenterRotX;
 
-		std::vector<Ogre::Entity*> mLastCollisionEntities;
-		std::vector<Ogre::MaterialPtr> mSolidMaterial;
-		bool mLastCollisionEntitiesAreTranslucid;
-		void makeCollisionEntitiesSolid();
-		void makeCollisionEntitiesTranslucid(std::vector<Ogre::Entity*> & collisionEntities);
-
-
-
+		//transparent collision objects
+		TransparentEntityManagerPtr mTransparentEntityManager;
 
 		//camera speed when it returns to initial position
 		double returningspeed;

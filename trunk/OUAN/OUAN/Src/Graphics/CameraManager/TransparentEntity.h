@@ -25,17 +25,23 @@ namespace OUAN
 
 	protected:
 		Ogre::Entity * mEntity;
-		std::vector<Ogre::MaterialPtr> mSolidMaterial;
-		std::vector<Ogre::MaterialPtr> mTransparentMaterial;
+		std::vector<std::string> mSolidMaterial;
+		std::vector<std::string> mTransparentMaterial;
+		std::vector<Ogre::TextureUnitState *> mTransparentMaterialTextures;
 
 		double mMinAlphaBlending;
-		double mAlphaBlendingTime;
-		double mCurrentElapsedTime;
+		double mAlphaBlendingSpeed;
+		double mCurrentAlpha;
 
-		bool mMakingTransparent;
-		bool mMakingSolid;
+		enum TransparentEntityState
+		{
+			TES_SOLID,
+			TES_TRANSPARENT,
+			TES_MAKING_SOLID,
+			TES_MAKING_TRANSPARENT
+		};
 
-		bool mIsSolid;
+		TransparentEntityState mState;
 
 
 		void setSolidMaterials();

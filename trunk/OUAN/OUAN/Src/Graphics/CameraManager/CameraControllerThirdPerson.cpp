@@ -1,4 +1,5 @@
 #include "CameraControllerThirdPerson.h"
+#include "TransparentEntityManager.h"
 #include "../RenderComponent/RenderComponentPositional.h"
 #include "../RenderSubsystem.h"
 #include "../../RayCasting/RayCasting.h"
@@ -29,10 +30,6 @@ void CameraControllerThirdPerson::reset()
 
 	currentCollisionTime=0;
 	currentDistance=maxDistance;
-
-	mLastCollisionEntities.clear();
-	mSolidMaterial.clear();
-	mLastCollisionEntitiesAreTranslucid=false;
 }
 
 bool CameraControllerThirdPerson::loadConfig()
@@ -139,6 +136,9 @@ void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,Physi
 
 	mRayCasting = pRayCasting;
 
+	mTransparentEntityManager.reset(new TransparentEntityManager());
+	mTransparentEntityManager->init();
+
 	CameraController::init(pRenderSubsystem->getSceneManager());
 }
 
@@ -193,98 +193,6 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraLookAt()
 	return cameraLookAt;
 }
 
-void CameraControllerThirdPerson::makeCollisionEntitiesSolid()
-{
-	unsigned int i,j,k;
-	Ogre::Entity * pEntity;
-	Ogre::MaterialPtr material;
-
-	mLastCollisionEntitiesAreTranslucid=false;
-
-	k=0;
-
-	for(j=0;j<mLastCollisionEntities.size();j++)
-	{
-		pEntity=mLastCollisionEntities[j];
-	
-		for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
-		{
-			// Apply the cloned material to the sub entity.
-			Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
-			material=mSolidMaterial[k];
-			subEnt->setMaterial(material);
-			k++;
-		}
-	}
-
-}
-
-void CameraControllerThirdPerson::makeCollisionEntitiesTranslucid(std::vector<Ogre::Entity*> & collisionEntities)
-{
-	unsigned int i,j;
-	std::string materialName;
-	Ogre::Entity * pEntity;
-	Ogre::uint32 currentCollisionType;
-
-	mLastCollisionEntities.clear();
-	mSolidMaterial.clear();
-	mLastCollisionEntitiesAreTranslucid=true;
-
-	for(i=0;i<collisionEntities.size();i++)
-	{
-		currentCollisionType=collisionEntities[i]->getQueryFlags();
-
-		if(currentCollisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID)
-		{
-			mLastCollisionEntities.push_back(collisionEntities[i]);
-		}
-	}
-
-	for(j=0;j<mLastCollisionEntities.size();j++)
-	{
-
-
-		pEntity=mLastCollisionEntities[j];
-
-		for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
-		{
-			// Get the material of this sub entity and build the clone material name
-			Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
-			Ogre::MaterialPtr material = subEnt->getMaterial();
-
-			materialName=material->getName()+"-TRANSLUCID";
-
-			// Get/Create the clone material
-			Ogre::MaterialPtr clone;
-			if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
-			{
-				clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
-			}
-			else
-			{
-				// Clone the material
-				clone = material->clone(materialName);
-
-				// Make it translucid
-				Ogre::Technique * technique;
-				Ogre::Pass * pass;
-					//get technique
-				technique = clone->getTechnique(0);
-					//set current pass attributes
-				pass = technique->getPass(0);
-				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_COLOUR);			
-				pass->setDepthCheckEnabled(false);
-			}
-
-			//Apply the cloned material to the sub entity.
-			subEnt->setMaterial(clone);
-
-			//Add material to the material stack 
-			mSolidMaterial.push_back(material);
-		}
-	}
-}
-
 bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
 {
 	Ogre::Vector3 direction;
@@ -292,6 +200,10 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 	double currentDistance;
 	Ogre::Entity * pEntity;
 	std::vector<Ogre::Entity*> allCollisions;
+	std::vector<Ogre::Entity*> transparentEntities;
+	unsigned int i;
+
+	bool hasBeenCollision=false;
 
 	currentDistance=cameraLookAt.distance(cameraPosition);
 
@@ -300,20 +212,29 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 	newCameraPosition=cameraPosition;
 
+	allCollisions.clear();
+	transparentEntities.clear();
+
 	mRayCasting->raycastRenderAllGeometry(cameraLookAt,direction,newCameraPosition,pEntity,allCollisions,currentDistance,QUERYFLAGS_CAMERA_COLLISION);
 
 	if(cameraLookAt.distance(newCameraPosition)<currentDistance)
 	{
-
-		makeCollisionEntitiesTranslucid(allCollisions);
-
 		collisionType=pEntity->getQueryFlags();
 		cameraPosition=newCameraPosition-collisionMargin*direction;
+		hasBeenCollision=true;
 
-		return true;
+		for(i=0;i<allCollisions.size();i++)
+		{
+			if(allCollisions[i]->getQueryFlags() & OUAN::QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID && allCollisions[i]->isVisible())
+			{
+				transparentEntities.push_back(allCollisions[i]);
+			}
+		}
 	}
 
-	return false;
+	mTransparentEntityManager->addCurrentCollisionTransparentEntities(transparentEntities);
+
+	return hasBeenCollision;
 }
 
 void CameraControllerThirdPerson::rotateX(double rotation)
@@ -380,10 +301,6 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Vector3 cameraLookAt;
 	Ogre::uint32 collisionType;
 
-	if(mLastCollisionEntitiesAreTranslucid)
-	{
-		makeCollisionEntitiesSolid();
-	}
 
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
@@ -437,6 +354,8 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 	//set camera to look at target
 	mCamera->lookAt(cameraLookAt);
+
+	mTransparentEntityManager->update(elapsedTime);
 }
 
 double CameraControllerThirdPerson::calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
