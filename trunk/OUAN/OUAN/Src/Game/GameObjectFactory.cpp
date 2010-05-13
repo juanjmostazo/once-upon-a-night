@@ -357,7 +357,7 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 	GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectCloudPtr pGameObjectCloud;
-
+	
 	//Create GameObject
 	pGameObjectCloud = GameObjectCloudPtr(new GameObjectCloud(tGameObjectCloudParameters.name));
 
@@ -374,22 +374,31 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 	//Create RenderComponentInitial
 	pGameObjectCloud->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectCloud->getRenderComponentPositional()));
-
+	
 	if(pGameObjectCloud->getLogicComponent()->existsInDreams())
 	{
+		RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet = 
+			(RenderComponentFractalVolumePtr*)malloc(sizeof(RenderComponentFractalVolumePtr) * CLOUD_FRACTAL_VOLUME_SET_SIZE);
+		/*
 		//Create RenderComponentEntity Dreams
-		pGameObjectCloud->setRenderComponentEntityDreams(
+		pGameObjectCloud->setRenderComponentFractalVolumeSetDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.dreamsName,
-			pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters));
+				pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityDreamsParameters));
+		*/		
 	}
 	if(pGameObjectCloud->getLogicComponent()->existsInNightmares())
 	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectCloud->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.nightmaresName,
-			pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters));
-	}
+		RenderComponentFractalVolumePtr* pRenderComponentFractalVolumeSet = 
+			(RenderComponentFractalVolumePtr*)malloc(sizeof(RenderComponentFractalVolumePtr) * CLOUD_FRACTAL_VOLUME_SET_SIZE);
 
+		/*
+		//Create RenderComponentEntity Nightmares
+		pGameObjectCloud->setRenderComponentFractalVolumeSetNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectCloudParameters.nightmaresName,
+				pGameObjectCloud,tGameObjectCloudParameters.tRenderComponentEntityNightmaresParameters));
+		*/
+	}
+	
 	pGameObjectCloud->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
@@ -397,6 +406,7 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 
 	//Add Object to GameWorldManager
 	//addGameObjectCloud(pGameObjectCloud);
+	
 	return pGameObjectCloud;
 }
 
