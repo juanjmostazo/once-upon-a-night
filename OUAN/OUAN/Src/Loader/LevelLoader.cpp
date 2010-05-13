@@ -122,8 +122,7 @@ void LevelLoader::loadLevel(String level)
 	processGameObjects();
 
 	//Process Level's GameObjectClouds
-	//TODO REMOVE THIS //
-	//processGameObjectClouds();
+	processGameObjectClouds();
 
 	//Process Level's Trajectories
 	processTrajectories();

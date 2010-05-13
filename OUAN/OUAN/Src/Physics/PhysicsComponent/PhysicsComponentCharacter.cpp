@@ -464,9 +464,15 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 			mSliding = true;
 			mNormalAngle = pNormalAngle;
 
+			//TODO ADJUST THIS VALUES
 			mSlideDisplacement.x = pNormal.x;
 			mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
 			mSlideDisplacement.z = pNormal.z;
+
+			//TEST THIS
+			//mSlideDisplacement.x = pNormal.x * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+			//mSlideDisplacement.y = 0;
+			//mSlideDisplacement.z = pNormal.z * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
 		}
 
 		if(mSlideDisplacement.y>0)
