@@ -52,9 +52,13 @@ namespace OUAN
 		double offsetY;
 		double offsetZ;
 
-		double rotationDegreesX;
-		double rotationDegreesY;
-		double rotationDegreesZ;
+		double rotationDegreesInitialX;
+		double rotationDegreesInitialY;
+		double rotationDegreesInitialZ;
+
+		double rotationDegreesPerSecondX;
+		double rotationDegreesPerSecondY;
+		double rotationDegreesPerSecondZ;
 
 		double colorR;
 		double colorG;
