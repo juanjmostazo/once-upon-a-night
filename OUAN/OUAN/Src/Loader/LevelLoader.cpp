@@ -122,7 +122,8 @@ void LevelLoader::loadLevel(String level)
 	processGameObjects();
 
 	//Process Level's GameObjectClouds
-	processGameObjectClouds();
+	//TODO REMOVE THIS //
+	//processGameObjectClouds();
 
 	//Process Level's Trajectories
 	processTrajectories();
@@ -148,7 +149,49 @@ void LevelLoader::processGameObjects()
 
 void LevelLoader::processGameObjectClouds()
 {
+	OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
 
+	tGameObjectCloudParameters.dreamsName = "cloud_d#0";
+	tGameObjectCloudParameters.nightmaresName = "cloud_n#0";
+	tGameObjectCloudParameters.name = "cloud#0";
+
+	tGameObjectCloudParameters.tLogicComponentParameters.defaultState = DREAMS;
+	tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams = true;
+	tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares = true;
+	tGameObjectCloudParameters.tLogicComponentParameters.scriptFilename = "";
+	tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
+
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(800,-100,800);
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
+
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.texture3D = "texture3D_64";
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalReal = 0.5f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalImag = 0.5f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalTheta = 0.2f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vScale = 2.5f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vCut = 29.0f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSlices = 32;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize = 750.f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetX = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesX = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesY = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesZ = 0;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorR = -1;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorG = -1;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorB = -1;
+
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters = 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters;
+
+	tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 75;
+
+	mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
+		tGameObjectCloudParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObject(XMLGameObject* gameObject)
@@ -552,7 +595,7 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 		tGameObjectBee_ButterflyParameters.name = gameObject->name;
 	
 		//Get Logic component
-		tGameObjectBee_ButterflyParameters.tLogicComponentEnemyParameters=processLogicComponentEnemy(gameObject->XMLNodeDreams,
+		tGameObjectBee_ButterflyParameters.tLogicComponentEnemyParameters = processLogicComponentEnemy(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
@@ -564,7 +607,7 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 			tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
 				DREAMS,gameObject->XMLNodeCustomProperties);
 			//Get PhysicsComponentCharacterDreams
-			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterDreamsParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Dreams");
+			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterDreamsParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Dreams");
 		}
 
 		if(tGameObjectBee_ButterflyParameters.tLogicComponentEnemyParameters.existsInNightmares)
@@ -572,7 +615,7 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 			//Get RenderComponentEntityNightmares
 			tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,NIGHTMARES,gameObject->XMLNodeCustomProperties);
 			//Get PhysicsComponentCharacterNightmares
-			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterNightmaresParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Nightmares");
+			tGameObjectBee_ButterflyParameters.tPhysicsComponentCharacterNightmaresParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties,"Nightmares");
 		}
 	}
 	catch( std::string error )
@@ -1475,7 +1518,7 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
 			complexConvex);
 
-		tGameObjectPlataformParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectPlataformParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		tGameObjectPlataformParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1875,10 +1918,10 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
 					complexConvex);
 
-				tGameObjectTerrainConvexParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+				tGameObjectTerrainConvexParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 					gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-				tGameObjectTerrainConvexParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+				tGameObjectTerrainConvexParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 				
 				if(tGameObjectTerrainConvexParameters.tLogicComponentParameters.existsInDreams)
 				{
@@ -1924,7 +1967,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,
 					complexTriangle);
 
-				tGameObjectTerrainTriangleParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+				tGameObjectTerrainTriangleParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 					gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 				tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2245,7 +2288,7 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
-		tGameObjectWoodBoxParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectWoodBoxParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2306,10 +2349,10 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties,
 				volumeConvex);
 
-			tGameObjectWaterParameters.tLogicComponentParameters= processLogicComponent(gameObject->XMLNodeDreams,
+			tGameObjectWaterParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 				gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-			tGameObjectWaterParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+			tGameObjectWaterParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 			
 			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInDreams)
 			{
@@ -3575,7 +3618,6 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 	}
 	else
 	{
-
 		// Process all PROPERTY of the XML node
 		pElement = XMLNode->FirstChildElement("PROPERTY");
 		while(pElement)

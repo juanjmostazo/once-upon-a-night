@@ -144,6 +144,21 @@ void GameObjectCloud::updateLogic(double elapsedSeconds)
 	{
 		mLogicComponent->update(elapsedSeconds);
 	}
+
+	if (getGameWorldManager()->getCurrentWorld() == DREAMS)
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetDreams[i]->update(elapsedSeconds);
+		}
+	} 
+	else if (getGameWorldManager()->getCurrentWorld() == NIGHTMARES)
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetNightmares[i]->update(elapsedSeconds);
+		}
+	}
 }
 
 //-------------------------------------------------------------------------------------------
