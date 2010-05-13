@@ -26,7 +26,7 @@ void RenderComponentViewport::initEffects()
 	inst->setEnabled(mRenderSubsystem->HDR_ACTIVATED);
 	
 	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,"ssao");
-	//inst->setEnabled(false);
+	//inst->setEnabled(true);
 }
 
 void RenderComponentViewport::setViewport(Ogre::Viewport* viewport)
