@@ -64,6 +64,7 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+#include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
@@ -2358,13 +2359,13 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			
 			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInDreams)
 			{
-				tGameObjectWaterParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(
+				tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeDreams, DREAMS, gameObject->XMLNodeCustomProperties);
 			}
 			
 			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInNightmares)
 			{
-				tGameObjectWaterParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
+				tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 			}
 

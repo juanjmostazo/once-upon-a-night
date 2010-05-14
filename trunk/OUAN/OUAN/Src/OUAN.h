@@ -129,6 +129,10 @@ namespace OUAN
 		class TRenderComponentFractalVolumeParameters;
 		typedef boost::shared_ptr<RenderComponentFractalVolume> RenderComponentFractalVolumePtr;
 
+		class RenderComponentWater;
+		class TRenderComponentWaterParameters;
+		typedef boost::shared_ptr<RenderComponentWater> RenderComponentWaterPtr;
+
 		class RenderComponentScene;
 		class TRenderComponentSkyDomeParameters;
 		class TRenderComponentSkyBoxParameters;

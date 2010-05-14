@@ -429,6 +429,10 @@
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentWater.cpp"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="CameraManager"
@@ -1113,6 +1117,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentViewport.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentWater.h"
 						>
 					</File>
 				</Filter>

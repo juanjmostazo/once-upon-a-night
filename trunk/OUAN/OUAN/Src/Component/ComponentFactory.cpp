@@ -16,6 +16,7 @@
 #include "../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
+#include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/Volume/Julia.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -105,6 +106,22 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 
 	return pRenderComponentEntity;
 }
+
+RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string name,GameObjectPtr gameObject,TRenderComponentWaterParameters tRenderComponentWaterParameters)
+{
+	//Create void Render Component
+	RenderComponentWaterPtr pRenderComponentWater = RenderComponentWaterPtr(new RenderComponentWater()); 
+
+	pRenderComponentWater->setParent(gameObject);	
+
+	//init Render Component
+	pRenderComponentWater->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentWaterParameters.tRenderComponentEntityParameters));
+
+	pRenderComponentWater->initAnimations(tRenderComponentWaterParameters.tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
+	pRenderComponentWater->initFresnelReflection(mApp->getCameraManager(),mApp->getGameWorldManager());
+	return pRenderComponentWater;
+}
+
 
 RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string name,GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)
 {
