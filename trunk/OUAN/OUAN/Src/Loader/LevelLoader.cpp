@@ -151,10 +151,6 @@ void LevelLoader::processGameObjectClouds()
 {
 	OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
 
-	tGameObjectCloudParameters.dreamsName = "cloud_d#0";
-	tGameObjectCloudParameters.nightmaresName = "cloud_n#0";
-	tGameObjectCloudParameters.name = "cloud#0";
-
 	tGameObjectCloudParameters.tLogicComponentParameters.defaultState = DREAMS;
 	tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams = true;
 	tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares = true;
@@ -162,7 +158,7 @@ void LevelLoader::processGameObjectClouds()
 	tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
 
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(1000,-300,1000);
+	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(0,-300,0);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
 	tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
@@ -174,7 +170,7 @@ void LevelLoader::processGameObjectClouds()
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vScale = 2.5f;
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vCut = 29.0f;
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSlices = 32;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize = 750.f;
+	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize = 1000.0f;
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetX = 0;
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = 0;
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = 0;
@@ -191,10 +187,44 @@ void LevelLoader::processGameObjectClouds()
 	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters = 
 		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters;
 
-	tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 75;
+	tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize / 10.0f;
 
-	mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
-		tGameObjectCloudParameters,mGameWorldManager));
+	int numClouds = 50;
+	double low = -3000;
+	double high = 3000;
+
+	std::string dreamsName = "fractal_cloud_d#";
+	std::string nightmaresName = "fractal_cloud_n#";
+	std::string name = "fractal_cloud#";
+	
+	for (int i=0; i<numClouds; i++)
+	{
+		tGameObjectCloudParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
+		tGameObjectCloudParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
+		tGameObjectCloudParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
+
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = 
+			Utils::Random::getInstance()->getRandomDouble(low, high);
+
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = 
+			Utils::Random::getInstance()->getRandomDouble(low, high);
+
+		try 
+		{
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CLOUD " + tGameObjectCloudParameters.name);
+
+			mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
+				tGameObjectCloudParameters,mGameWorldManager));
+
+			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CLOUD " + Ogre::StringConverter::toString(Ogre::Real(i)) + ": " + 
+				Ogre::StringConverter::toString(tGameObjectCloudParameters.tRenderComponentPositionalParameters.position));
+		} 
+		catch( std::string error )
+		{
+			Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD " + Ogre::StringConverter::toString(Ogre::Real(i)) + ": " + error);
+		}
+	}
 }
 
 void LevelLoader::processGameObject(XMLGameObject* gameObject)

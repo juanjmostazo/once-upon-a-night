@@ -1140,7 +1140,6 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
 
-
 	//Add Object to GameWorldManager
 	//addGameObjectOny(pGameObjectOny);
 	return pGameObjectOny;

@@ -53,7 +53,6 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		myLines.clear();
 		myNodes.clear();
 
-
 		//init node numbers
 		mNodeNumbers.clear();
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)

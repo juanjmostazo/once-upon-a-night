@@ -204,9 +204,6 @@ namespace OUAN
 		void createMeshFile(String meshfile);
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 
-		/// Auxiliar functions
-		int getUniqueId();
-
 		/// Ogre root object
 		RootPtr mRoot;
 
@@ -242,9 +239,6 @@ namespace OUAN
 
 		/// Debug message, to be written by other subsystems
 		Ogre::String debugMessage;
-
-		/// Unique id
-		int mUniqueId;
 
 		// For the soft shadows: WORK IN PROGRESS
 		ShadowListener shadowListener;

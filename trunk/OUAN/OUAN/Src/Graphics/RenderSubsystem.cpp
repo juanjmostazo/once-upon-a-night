@@ -25,7 +25,6 @@ RenderSubsystem::RenderSubsystem(std::string windowName)
 : mWindow( NULL )
 , mWindowName(windowName)
 , mTexturesInitialized(false)
-, mUniqueId(10000)
 {
 	
 }
@@ -157,7 +156,8 @@ void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
 	mNxOgreVisualDebugger = mApp->getPhysicsSubsystem()->getNxOgreWorld()->getVisualDebugger();
 	mNxOgreVisualDebuggerRenderable = new OGRE3DRenderable(NxOgre::Enums::RenderableType_VisualDebugger);
 	mNxOgreVisualDebugger->setRenderable(mNxOgreVisualDebuggerRenderable);
-	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+	mNxOgreVisualDebuggerNode = mSceneManager->getRootSceneNode()->createChildSceneNode(
+		"visual_debugger#" + Application::getInstance()->getStringUniqueId());
 	mNxOgreVisualDebuggerNode->attachObject(mNxOgreVisualDebuggerRenderable);
 	mNxOgreVisualDebugger->setVisualisationMode(mApp->getDebugMode()!=DEBUGMODE_NONE?
 		NxOgre::Enums::VisualDebugger_ShowAll:
@@ -178,7 +178,8 @@ void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
 	Ogre::Entity* pPlaneEnt = mSceneManager->createEntity("debugFloorEntity", "debugFloorPlane");
 	pPlaneEnt->setCastShadows(false);
 	pPlaneEnt->setMaterialName("GrassFloor");
-	SceneNode * pPlaneNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+	SceneNode * pPlaneNode = mSceneManager->getRootSceneNode()->createChildSceneNode(
+		"plane_node#" + Application::getInstance()->getStringUniqueId());
 	pPlaneNode->attachObject(pPlaneEnt);
 }
 
@@ -360,10 +361,9 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
 {
-
 	SceneNode *pParentSceneNode = 0;
 	SceneNode *sceneNode = 0;
-	
+
 	// Set SceneNode parameters and create it
 	try
 	{
@@ -623,7 +623,7 @@ ParticleUniverse::ParticleSystem** RenderSubsystem::createParticleSystems(Ogre::
 	{
 		ParticleUniverse::ParticleSystem* pParticleSystem = 0;
 		Ogre::SceneNode* particleSystemNode = 0;
-		Ogre::String particleName = name + "_" + Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
+		Ogre::String particleName = name + "#" + Application::getInstance()->getStringUniqueId();
 		/*
 		Ogre::LogManager::getSingleton().logMessage("INNER CREATION OF PARTICLE SYSTEM");
 		Ogre::LogManager::getSingleton().logMessage("PS INIT INFO");
@@ -642,11 +642,11 @@ ParticleUniverse::ParticleSystem** RenderSubsystem::createParticleSystems(Ogre::
 			// Create Particle System scene node where required
 			if (tRenderComponentParticleSystemParameters.attached)
 			{
-				particleSystemNode=pRenderComponentPositional->getSceneNode()->createChildSceneNode();
+				particleSystemNode=pRenderComponentPositional->getSceneNode()->createChildSceneNode(particleName);
 			}
 			else
 			{
-				particleSystemNode=mSceneManager->getRootSceneNode()->createChildSceneNode();
+				particleSystemNode=mSceneManager->getRootSceneNode()->createChildSceneNode(particleName);
 			}
 
 			// Attach particle system to the created scene node
@@ -881,11 +881,6 @@ void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 
 }
 
-int RenderSubsystem::getUniqueId()
-{
-	mUniqueId++;
-	return mUniqueId;
-}
 void RenderSubsystem::initShadows()
 {
 	// enable integrated additive shadows

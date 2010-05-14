@@ -37,6 +37,7 @@ using namespace OUAN;
 Application::Application(const std::string& windowName) : mWindowName(windowName)
 ,mDebugMode(DEBUGMODE_NONE)
 ,mKeyBuffer(-1)
+,mUniqueId(1000)
 {
 	instance = this;
 }
@@ -321,4 +322,14 @@ void Application::modifyVolume(const std::string& groupName, double volume)
 void Application::modifyEnable(const std::string& groupName, bool isEnabled)
 {
 		mAudioSubsystem->pauseChannelGroup(groupName,!isEnabled);
+}
+
+int Application::getUniqueId()
+{
+	mUniqueId++;
+	return mUniqueId;
+}
+
+std::string Application::getStringUniqueId(){
+	return Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
 }
