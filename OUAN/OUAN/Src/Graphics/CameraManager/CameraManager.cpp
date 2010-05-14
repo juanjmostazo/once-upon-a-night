@@ -159,6 +159,9 @@ void CameraManager::clear()
 	camera.clear();
 	//We guarantee that at least main camera exists
 	createMainCamera();
+
+	mCameraControllerThirdPerson->clear();
+
 	//Make it the active camera
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 }
