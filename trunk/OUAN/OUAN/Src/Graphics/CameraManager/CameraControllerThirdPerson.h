@@ -21,6 +21,8 @@ namespace OUAN
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
+
+		void clear();
 	private:
 		Ogre::SceneManager * mSceneManager;
 		RayCastingPtr mRayCasting;

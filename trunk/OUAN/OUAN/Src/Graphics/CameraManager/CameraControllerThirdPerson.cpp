@@ -370,6 +370,11 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	mTransparentEntityManager->update(elapsedTime);
 }
 
+void CameraControllerThirdPerson::clear()
+{
+	mTransparentEntityManager->clear();
+}
+
 double CameraControllerThirdPerson::calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
 {
 	double newCameraDistance;
