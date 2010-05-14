@@ -231,7 +231,7 @@ bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & came
 
 		for(i=0;i<allCollisions.size();i++)
 		{
-			if(allCollisions[i]->getQueryFlags() & OUAN::QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID && allCollisions[i]->isVisible())
+			if((allCollisions[i]->getQueryFlags() & OUAN::QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID) && allCollisions[i]->isVisible())
 			{
 				transparentEntities.push_back(allCollisions[i]);
 			}
@@ -325,7 +325,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 
 	cameraCollisionPosition=newCameraPosition;
 	//Calculate camera collisions
-	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt,collisionType) && !target->getParent()->cancelAutoCameraMovement())
+	if(calculateCameraCollisions(cameraCollisionPosition,cameraLookAt,collisionType))
 	{
 		currentCollisionTime+=elapsedTime;
 		if(currentCollisionTime>=minCollisionTime)
@@ -338,11 +338,17 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 			}
 			else if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE)
 			{
-				calculateCollisionRotXNegative(elapsedTime);
+				if(!target->getParent()->cancelAutoCameraMovement())
+				{
+					calculateCollisionRotXNegative(elapsedTime);
+				}
 			}
 			else if(collisionType & OUAN::QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE)
 			{
-				calculateCollisionRotXPositive(elapsedTime);
+				if(!target->getParent()->cancelAutoCameraMovement())
+				{
+					calculateCollisionRotXPositive(elapsedTime);
+				}
 			}
 		}
 	}
