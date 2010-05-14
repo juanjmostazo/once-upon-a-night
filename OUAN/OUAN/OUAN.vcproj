@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -264,14 +264,6 @@
 				</File>
 				<File
 					RelativePath=".\Src\Input\FullInputManager.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Logger"
-				>
-				<File
-					RelativePath=".\Src\Logger\Logger.cpp"
 					>
 				</File>
 			</Filter>
@@ -553,6 +545,10 @@
 						RelativePath=".\Src\Graphics\Volume\VolumeRenderable.cpp"
 						>
 					</File>
+				</Filter>
+				<Filter
+					Name="VideoPlayer"
+					>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1252,16 +1248,16 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="VideoPlayer"
+					>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Game"
 				>
 				<File
 					RelativePath=".\Src\Game\GameObjectFactory.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Src\Game\GameWorldManager.h"
 					>
 				</File>
 				<Filter
@@ -1439,6 +1435,10 @@
 						RelativePath=".\Src\Game\GameObject\GameObjectWoodBox.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Game\GameWorldManager.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1556,14 +1556,6 @@
 				</File>
 				<File
 					RelativePath=".\Src\Component\ComponentFactory.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Logger"
-				>
-				<File
-					RelativePath=".\Src\Logger\Logger.h"
 					>
 				</File>
 			</Filter>

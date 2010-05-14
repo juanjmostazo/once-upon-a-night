@@ -1,21 +1,7 @@
+import diffuse_template from "diffuse.material"
 
-material terrain1_n
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			specular 1 1 1 1 50
-
-			texture_unit
-			{
-				texture terrain1_n.dds
-			}
-		}
-
-	}
-
+material terrain1_n: diffuse_template
+{	
+	set_texture_alias ambient_tex terrain1_n.dds
+    set_texture_alias diffuse_tex terrain1_n.dds
 }
-
-

@@ -274,9 +274,8 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	try
 	{
 
-		//DO NOT UNCOMMENT: WORK IN PROGRESS
-		//initShadows();
-		mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		initShadows();
+		//mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
@@ -361,9 +360,10 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
 {
+
 	SceneNode *pParentSceneNode = 0;
 	SceneNode *sceneNode = 0;
-
+	
 	// Set SceneNode parameters and create it
 	try
 	{
@@ -579,7 +579,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 		}
 
 		//set lightmaps
-		//setLightmaps(pEntity);
+		setLightmaps(pEntity);
 
 		//set Query flags
 		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
@@ -880,7 +880,6 @@ void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 		overlayElem->show();
 
 }
-
 void RenderSubsystem::initShadows()
 {
 	// enable integrated additive shadows
@@ -990,7 +989,7 @@ void ShadowListener::shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Ca
 	// yeah.  simplistic, but it works nicely.  this is the function I was talking
 	// about you ignoring above in the Mgr declaration.
 	float range = light->getAttenuationRange();
-	cam->setNearClipDistance(0.01);
+	cam->setNearClipDistance(0.01);	
 	cam->setFarClipDistance(range);
 	// we just use a small near clip so that the light doesn't "miss" anything
 	// that can shadow stuff.  and the far clip is equal to the lights' range.

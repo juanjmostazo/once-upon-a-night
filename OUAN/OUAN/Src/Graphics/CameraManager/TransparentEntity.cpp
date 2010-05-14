@@ -102,18 +102,18 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 	}
 }
 
-void TransparentEntity::setSolidMaterials()
-{
-	unsigned int i;
-	Ogre::SubEntity* subEnt;
-
-	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	void TransparentEntity::setSolidMaterials()
 	{
-		// Apply the material to the sub entity.
-		subEnt = mEntity->getSubEntity(i);
-		subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mSolidMaterial[i]));
+		unsigned int i;
+		Ogre::SubEntity* subEnt;
+
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Apply the material to the sub entity.
+			subEnt = mEntity->getSubEntity(i);
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mSolidMaterial[i]));
+		}
 	}
-}
 
 void TransparentEntity::setTransparentMaterials()
 {
