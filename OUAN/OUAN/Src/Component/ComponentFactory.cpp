@@ -241,7 +241,10 @@ RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameO
 
 	pRenderComponentQuadHalo->setSpeedScale(tRenderComponentQuadHaloParameters.speedScale);
 
-	pRenderComponentQuadHalo->setSceneNode(pRenderComponentPositional->getSceneNode()->createChildSceneNode());
+	pRenderComponentQuadHalo->setSceneNode(
+		pRenderComponentPositional->getSceneNode()->createChildSceneNode(
+			"quad_halo#" + Application::getInstance()->getStringUniqueId()));
+
 	pRenderComponentQuadHalo->getSceneNode()->attachObject(quadHalo);
 
 	pRenderComponentQuadHalo->getSceneNode()->setPosition(
@@ -337,7 +340,10 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 			tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondY,
 			tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondZ));
 
-	pRenderComponentFractalVolume->setSceneNode(pRenderComponentPositional->getSceneNode()->createChildSceneNode());
+	pRenderComponentFractalVolume->setSceneNode(
+		pRenderComponentPositional->getSceneNode()->createChildSceneNode(
+			"fractal_volume#" + Application::getInstance()->getStringUniqueId()));
+
 	pRenderComponentFractalVolume->getSceneNode()->attachObject(fractalVolume);
 
 	pRenderComponentFractalVolume->getSceneNode()->setPosition(

@@ -87,7 +87,6 @@ void TransparentEntityManager::remove(std::string name)
 void TransparentEntityManager::update(double elapsedTime)
 {
 	TTransparentEntities tit;
-	unsigned int i;
 	std::vector<std::string> toRemove;
 
 	for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
@@ -103,17 +102,15 @@ void TransparentEntityManager::update(double elapsedTime)
 	//		toRemove.push_back(tit->first);
 	//	}
 	//}
-	//for(i=0;i<toRemove.size();i++)
+	//for(int i=0;i<toRemove.size();i++)
 	//{
 	//	remove(toRemove[i]);
 	//}
-
 }
 
 void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vector<Ogre::Entity*> & collisionEntities)
 {
 	TTransparentEntities tit,lastTit;
-	unsigned int i;
 	bool found;
 
 	//Ogre::LogManager::getSingleton().logMessage("UPDATING TRANSPARENT ENTITIES");
@@ -133,7 +130,7 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 	for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
 	{	
 		found=false;
-		for(i=0;i<collisionEntities.size();i++)
+		for(int i=0;i<collisionEntities.size();i++)
 		{
 			if(collisionEntities[i]->getName().compare(Ogre::String(tit->first))==0)
 			{
@@ -147,5 +144,4 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 			tit->second->makeSolid();
 		}
 	}
-
 }

@@ -1,7 +1,7 @@
 #ifndef LIGHTSHAFTSH_H
 #define LIGHTSHAFTSH_H
 
-#include <Ogre.h>
+#include "../../Application.h"
 
 namespace OUAN
 {

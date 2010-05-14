@@ -1,5 +1,7 @@
 #include "LightShafts.h"
+
 using namespace OUAN;
+
 LightShaftsProjector::LightShaftsProjector(Ogre::SceneManager* sceneManager,Ogre::String baseMaterialName, Ogre::SceneNode* sceneNode)
 :mSceneManager(sceneManager)
 ,mBillboardSet(NULL)
@@ -11,7 +13,9 @@ LightShaftsProjector::LightShaftsProjector(Ogre::SceneManager* sceneManager,Ogre
 ,mSwitchedOn(false)
 ,mRotateEnabled(false)
 {
+
 }
+
 LightShaftsProjector::~LightShaftsProjector()
 {
 	mSceneManager=NULL;
@@ -22,13 +26,13 @@ LightShaftsProjector::~LightShaftsProjector()
 	}
 }
 
-
 void LightShaftsProjector::setCookie(const Ogre::String& cookieName)
 {
 	static_cast<Ogre::MaterialPtr>(Ogre::MaterialManager::getSingleton().getByName(mProjectorName+MATERIAL_SUFFIX))->
 		getTechnique(0)->getPass(0)->getTextureUnitState(1)->
 		setTextureName(cookieName);
 }
+
 void LightShaftsProjector::update(float elapsedTime)
 {
 
@@ -43,6 +47,7 @@ void LightShaftsProjector::update(float elapsedTime)
 	// We've to update the texture projection matrix
 	updateTextureProjectionMatrix();
 }
+
 void LightShaftsProjector::updateTextureProjectionMatrix()
 {
 	const Ogre::Matrix4 PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE(
@@ -74,28 +79,46 @@ void LightShaftsProjector::initProjector(const TProjectorSettings& projectorSett
 
 	//Initialize camera	
 	if (!mSceneManager->hasCamera(mProjectorName+CAMERA_SUFFIX))
+	{
 		mProjectorCamera = mSceneManager->createCamera(mProjectorName+CAMERA_SUFFIX);
-	else mProjectorCamera = mSceneManager->getCamera(mProjectorName+CAMERA_SUFFIX);
+	}
+	else
+	{
+		mProjectorCamera = mSceneManager->getCamera(mProjectorName+CAMERA_SUFFIX);
+	}
+
 	mProjectorCamera->setProjectionType(Ogre::PT_PERSPECTIVE);
 	mProjectorCamera->setNearClipDistance(projectorSettings.nearClipDistance);
 	mProjectorCamera->setFarClipDistance(projectorSettings.farClipDistance);
 	mProjectorCamera->setAspectRatio(projectorSettings.aspectRatio);
 	mProjectorCamera->setFOVy(projectorSettings.fovy);
+
 	if (projectorSettings.showDebug) //show frustum
 	{
 		mProjectorCamera->setDebugDisplayEnabled(true);
 		mProjectorCamera->setVisible(true);
 	}
+
 	//Initialize scene node properties
 	if (!mProjectorSceneNode)
-		mProjectorSceneNode = mSceneManager->getRootSceneNode()->createChildSceneNode();
+	{
+		mProjectorSceneNode = mSceneManager->getRootSceneNode()->createChildSceneNode(
+			"light_shafts#" + Application::getInstance()->getStringUniqueId());
+	}
+
 	mProjectorSceneNode->setOrientation(projectorSettings.orientation);	
 	mProjectorSceneNode->attachObject(mProjectorCamera);
 
 	//Initialize billboard set
 	if (!mSceneManager->hasBillboardSet(mProjectorName+BILLBOARDSET_SUFFIX))
+	{
 		mBillboardSet = mSceneManager->createBillboardSet(mProjectorName+BILLBOARDSET_SUFFIX,1);
-	else mBillboardSet= mSceneManager->getBillboardSet(mProjectorName+BILLBOARDSET_SUFFIX);
+	}
+	else
+	{
+		mBillboardSet= mSceneManager->getBillboardSet(mProjectorName+BILLBOARDSET_SUFFIX);
+	}
+
 	mBillboardSet->setMaterialName(mProjectorName+MATERIAL_SUFFIX);
 	mBillboardSet->setBillboardRotationType(Ogre::BBR_VERTEX);
 	mBillboardSet->setCastShadows(false);
@@ -103,7 +126,9 @@ void LightShaftsProjector::initProjector(const TProjectorSettings& projectorSett
 
 	//Initialize spotlight, in case the projector must be used as a light source as well
 	if (projectorSettings.useSpotLight)
+	{
 		initSpotlight(projectorSettings.spotlightSettings);
+	}
 
 	//Inject material variables to the shaders
 	static_cast<Ogre::MaterialPtr>(Ogre::MaterialManager::getSingleton().getByName(mProjectorName+MATERIAL_SUFFIX))->
@@ -229,6 +254,7 @@ void LightShaftsProjector::show()
 	}
 	
 }
+
 void LightShaftsProjector::hide()
 {
 	if (mProjectorSceneNode)
@@ -241,6 +267,7 @@ void LightShaftsProjector::hide()
 			mProjectorSceneNode->detachObject(mLight);
 	}
 }
+
 //--- RENDERTARGET listener's methods
 LightDepthMapRttListener::LightDepthMapRttListener(Ogre::SceneManager *sm,Ogre::BillboardSet* billboardSet, Ogre::String depthMaterialName)
 :mSceneMgr(sm)

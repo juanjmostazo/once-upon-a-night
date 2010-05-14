@@ -114,6 +114,10 @@ namespace OUAN
 			/// toggling on/off certain actions
 			int mKeyBuffer;
 
+			/// Auxiliar functions
+			int getUniqueId();
+			std::string getStringUniqueId();
+
 		protected:
 			/// Singleton instance
 			static Application* instance;
@@ -158,6 +162,9 @@ namespace OUAN
 
 			/// Map containing text strings
 			ConfigurationPtr mTextStrings;
+
+			/// UniqueId
+			int mUniqueId;
 		};
 }
 #endif
