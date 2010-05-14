@@ -2,7 +2,7 @@
 #define GameObjectWaterH_H
 
 #include "GameObject.h"
-#include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
@@ -14,8 +14,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual information
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentWaterPtr mRenderComponentWaterDreams;
+		RenderComponentWaterPtr mRenderComponentWaterNightmares;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -33,8 +33,8 @@ namespace OUAN
 		~GameObjectWater();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentWaterPtr getRenderComponentWaterDreams() const;
+		RenderComponentWaterPtr getRenderComponentWaterNightmares() const;
 		/// Set logic component
 		void setLogicComponent(LogicComponentPtr logicComponent);
 
@@ -42,9 +42,9 @@ namespace OUAN
 		LogicComponentPtr getLogicComponent();
 
 		/// Set render component
-		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		/// @param pRenderComponentWater
+		void setRenderComponentWaterDreams(RenderComponentWaterPtr pRenderComponentWaterDreams);
+		void setRenderComponentWaterNightmares(RenderComponentWaterPtr pRenderComponentWaterNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -80,8 +80,8 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
-		bool hasRenderComponentEntity() const;
-		RenderComponentEntityPtr getEntityComponent() const;
+		//bool hasRenderComponentEntity() const;
+		//RenderComponentEntityPtr getEntityComponent() const;
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -98,6 +98,9 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
+		void postUpdate();
+		void update(double elapsedSeconds);
+
 	};
 
 	class TGameObjectWaterParameters: public TGameObjectParameters
@@ -107,8 +110,8 @@ namespace OUAN
 		~TGameObjectWaterParameters();
 		
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentWaterParameters tRenderComponentWaterDreamsParameters;
+		TRenderComponentWaterParameters tRenderComponentWaterNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

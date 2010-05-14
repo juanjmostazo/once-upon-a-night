@@ -15,24 +15,24 @@ GameObjectWater::~GameObjectWater()
 
 }
 
-void GameObjectWater::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
+void GameObjectWater::setRenderComponentWaterDreams(RenderComponentWaterPtr pRenderComponentWaterDreams)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntityDreams;
+	mRenderComponentWaterDreams=pRenderComponentWaterDreams;
 }
 
-RenderComponentEntityPtr GameObjectWater::getRenderComponentEntityDreams() const
+RenderComponentWaterPtr GameObjectWater::getRenderComponentWaterDreams() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentWaterDreams;
 }
 
-void GameObjectWater::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
+void GameObjectWater::setRenderComponentWaterNightmares(RenderComponentWaterPtr pRenderComponentWaterNightmares)
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
+	mRenderComponentWaterNightmares=pRenderComponentWaterNightmares;
 }
 
-RenderComponentEntityPtr GameObjectWater::getRenderComponentEntityNightmares() const
+RenderComponentWaterPtr GameObjectWater::getRenderComponentWaterNightmares() const
 {
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentWaterNightmares;
 }
 
 void GameObjectWater::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -73,12 +73,24 @@ void GameObjectWater::changeWorld(int world)
 	switch(world)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentWaterDreams->setVisible(true);
+			}
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setVisible(false);
+			}
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentWaterDreams->setVisible(false);
+			}
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setVisible(true);
+			}
 			break;
 		default:break;
 	}
@@ -153,14 +165,62 @@ void GameObjectWater::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-bool GameObjectWater::hasRenderComponentEntity() const
+
+void GameObjectWater::update(double elapsedTime)
 {
-	return true;
+	GameObject::update(elapsedTime);
+	switch(mGameWorldManager->getCurrentWorld())
+	{
+		case DREAMS:
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentWaterDreams->update(elapsedTime);
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->update(elapsedTime);
+			}
+			break;
+		default:break;
+	}
 }
-RenderComponentEntityPtr GameObjectWater::getEntityComponent() const
+
+void GameObjectWater::postUpdate()
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	GameObject::postUpdate();
+	switch(mGameWorldManager->getCurrentWorld())
+	{
+		case DREAMS:	
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentWaterDreams->postUpdate();
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->postUpdate();
+			}
+			break;
+		default:break;
+	}
 }
+
+
+//bool GameObjectWater::hasRenderComponentEntity() const
+//{
+//	return true;
+//}
+//RenderComponentEntityPtr GameObjectWater::getEntityComponent() const
+//{
+//	if(mGameWorldManager->getCurrentWorld()==DREAMS)
+//	{
+//		return mRenderComponentWaterDreams->getRenderComponentEntity()
+//	}
+//	else:mRenderComponentWaterNightmares;
+//}
 TGameObjectWaterParameters::TGameObjectWaterParameters() : TGameObjectParameters()
 {
 

@@ -4,7 +4,7 @@
     <Option key="INITIAL_DIRECTION_X">0</Option>
     <Option key="INITIAL_DIRECTION_Y">0.25</Option>
     <Option key="INITIAL_DIRECTION_Z">-1</Option>
-    <Option key="MAX_COLLISION_Y_MARGIN">10</Option>
+    <Option key="MAX_COLLISION_Y_MARGIN">11.5</Option>
     <Option key="MAX_DISTANCE">93</Option>
     <Option key="MIN_DISTANCE">50</Option>
     <Option key="TARGET_HEIGHT">17</Option>
