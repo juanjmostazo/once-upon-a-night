@@ -120,7 +120,7 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 	//	Ogre::LogManager::getSingleton().logMessage(tit->first);
 	//}
 	//Ogre::LogManager::getSingleton().logMessage("making transparent");
-	for(i=0;i<collisionEntities.size();i++)
+	for(unsigned int i=0;i<collisionEntities.size();i++)
 	{
 		//Ogre::LogManager::getSingleton().logMessage(collisionEntities[i]->getName());
 		add(collisionEntities[i]);
@@ -130,7 +130,7 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 	for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
 	{	
 		found=false;
-		for(int i=0;i<collisionEntities.size();i++)
+		for(unsigned int i=0;i<collisionEntities.size();i++)
 		{
 			if(collisionEntities[i]->getName().compare(Ogre::String(tit->first))==0)
 			{

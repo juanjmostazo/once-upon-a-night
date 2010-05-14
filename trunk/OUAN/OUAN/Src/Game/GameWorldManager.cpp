@@ -376,10 +376,7 @@ void GameWorldManager::loadLevel (const std::string& levelFileName)
 
 	//Set Active Camera
 	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);
-	
-	//WORK IN PROGRESS
-	//mApp->getRenderSubsystem()->ssaoListener.setCamera(mApp->getCameraManager()->getActiveCamera());
+	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
 
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());

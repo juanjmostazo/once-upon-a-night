@@ -1,4 +1,10 @@
+//import diffuse_template from "diffuse.material"
 
+//material tripollo_d: diffuse_template
+//{	
+//	set_texture_alias ambient_tex  textura.tga
+//    set_texture_alias diffuse_tex  textura.tga
+//}
 material tripollo_d
 {
 	technique
@@ -15,7 +21,6 @@ material tripollo_d
 		}
 
 	}
-
 }
 
 
