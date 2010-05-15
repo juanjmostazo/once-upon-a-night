@@ -17,7 +17,7 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
-#include "../Graphics/Volume/Julia.h"
+#include "../Graphics/Volume/JuliaManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
@@ -272,7 +272,7 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 			tRenderComponentFractalVolumeParameters.vSize, 
 			tRenderComponentFractalVolumeParameters.texture3D);
 
-	Julia julia(
+	Julia julia = JuliaManager::getInstance()->getJulia(
 		tRenderComponentFractalVolumeParameters.juliaGlobalReal,
 		tRenderComponentFractalVolumeParameters.juliaGlobalImag, 
 		tRenderComponentFractalVolumeParameters.juliaGlobalTheta);

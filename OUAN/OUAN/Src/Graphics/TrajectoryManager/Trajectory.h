@@ -3,6 +3,7 @@
 
 #include "../../OUAN.h"
 #include "TrajectoryNode.h"
+
 namespace OUAN
 {
 	class Trajectory
@@ -151,8 +152,6 @@ namespace OUAN
 
 		std::vector<TTrajectoryNodeParameters> tTrajectoryNodeParameters;
 	};
-
-
 }
 
 #endif
