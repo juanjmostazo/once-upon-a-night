@@ -123,8 +123,11 @@ void LevelLoader::loadLevel(String level)
 	processGameObjects();
 
 	//Process Level's GameObjectClouds
-	processGameObjectClouds();
-
+	if (Ogre::StringUtil::match(level, "Level2"))
+	{
+		processGameObjectClouds();
+	}
+	
 	//Process Level's Trajectories
 	processTrajectories();
 
@@ -149,81 +152,203 @@ void LevelLoader::processGameObjects()
 
 void LevelLoader::processGameObjectClouds()
 {
-	OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
-
-	tGameObjectCloudParameters.tLogicComponentParameters.defaultState = DREAMS;
-	tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams = true;
-	tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares = true;
-	tGameObjectCloudParameters.tLogicComponentParameters.scriptFilename = "";
-	tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
-
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(0,-300,0);
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
-	tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
-
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.texture3D = "texture3D_64";
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalReal = 0.5f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalImag = 0.5f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalTheta = 0.2f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vScale = 2.5f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vCut = 29.0f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSlices = 32;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize = 1000.0f;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetX = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialX = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialY = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialZ = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondX = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondY = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondZ = 0;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorR = -1;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorG = -1;
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorB = -1;
-
-	tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters = 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters;
-
-	tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize / 10.0f;
-
-	int numClouds = 50;
-	double low = -3000;
-	double high = 3000;
-
-	std::string dreamsName = "fractal_cloud_d#";
-	std::string nightmaresName = "fractal_cloud_n#";
-	std::string name = "fractal_cloud#";
+	Configuration config;
+	std::string value;
 	
-	for (int i=0; i<numClouds; i++)
+	if (config.loadFromFile(CLOUDS_CFG))
 	{
-		tGameObjectCloudParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
-		tGameObjectCloudParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
-		tGameObjectCloudParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
+		std::string dreamsName = "fractal_cloud_d#";
+		std::string nightmaresName = "fractal_cloud_n#";
+		std::string name = "fractal_cloud#";
 
-		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = 
-			Utils::Random::getInstance()->getRandomDouble(low, high);
+		config.getOption("NUM_CLOUDS", value); 
+		double numClouds = atoi(value.c_str());
 
-		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = 
-			Utils::Random::getInstance()->getRandomDouble(low, high);
+		config.getOption("GENERATION_RADIO", value); 
+		double generationRadio = atof(value.c_str());
 
-		try 
+		config.getOption("PLANE_POSITION_Y", value); 
+		double planePositionY = atoi(value.c_str());
+
+		///////////////////////
+
+		OUAN::TGameObjectCloudParameters tGameObjectCloudParameters;
+
+		tGameObjectCloudParameters.tLogicComponentParameters.defaultState = DREAMS;
+		tGameObjectCloudParameters.tLogicComponentParameters.existsInDreams = true;
+		tGameObjectCloudParameters.tLogicComponentParameters.existsInNightmares = true;
+		tGameObjectCloudParameters.tLogicComponentParameters.scriptFilename = "";
+		tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
+
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(0,planePositionY,0);
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
+
+		///////////////////////
+
+		config.getOption("DREAMS_TEXTURE_3D", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.texture3D = value;
+
+		config.getOption("DREAMS_JULIA_GLOBAL_REAL", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalReal = atof(value.c_str());
+
+		config.getOption("DREAMS_JULIA_GLOBAL_IMAG", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalImag = atof(value.c_str());
+
+		config.getOption("DREAMS_JULIA_GLOBAL_THETA", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.juliaGlobalTheta = atof(value.c_str());
+
+		config.getOption("DREAMS_V_SCALE", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vScale = atof(value.c_str());
+
+		config.getOption("DREAMS_V_CUT", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vCut = atof(value.c_str());
+
+		config.getOption("DREAMS_V_SLICES", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSlices = atof(value.c_str());
+
+		config.getOption("DREAMS_V_SIZE", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize = atof(value.c_str());
+
+		config.getOption("DREAMS_OFFSET_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetX = atof(value.c_str());
+
+		config.getOption("DREAMS_OFFSET_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetY = atof(value.c_str());
+
+		config.getOption("DREAMS_OFFSET_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.offsetZ = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_INITIAL_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialX = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_INITIAL_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialY = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_INITIAL_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesInitialZ = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_PER_SECOND_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondX = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_PER_SECOND_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondY = atof(value.c_str());
+
+		config.getOption("DREAMS_ROTATION_DEGREES_PER_SECOND_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondZ = atof(value.c_str());
+
+		config.getOption("DREAMS_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorR = atof(value.c_str());
+
+		config.getOption("DREAMS_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorG = atof(value.c_str());
+
+		config.getOption("DREAMS_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorB = atof(value.c_str());
+
+		config.getOption("DREAMS_SEPARATION_PROPORTION", value); 
+		tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.vSize / atof(value.c_str());
+
+		///////////////////////
+
+		config.getOption("NIGHTMARES_TEXTURE_3D", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.texture3D = value;
+
+		config.getOption("NIGHTMARES_JULIA_GLOBAL_REAL", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.juliaGlobalReal = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_JULIA_GLOBAL_IMAG", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.juliaGlobalImag = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_JULIA_GLOBAL_THETA", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.juliaGlobalTheta = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_V_SCALE", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.vScale = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_V_CUT", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.vCut = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_V_SLICES", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.vSlices = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_V_SIZE", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.vSize = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_OFFSET_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetX = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_OFFSET_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetY = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_OFFSET_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.offsetZ = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_INITIAL_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesInitialX = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_INITIAL_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesInitialY = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_INITIAL_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesInitialZ = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_PER_SECOND_X", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesPerSecondX = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Y", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesPerSecondY = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Z", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesPerSecondZ = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorR = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorG = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorB = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_SEPARATION_PROPORTION", value); 
+		tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
+			tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.vSize / atof(value.c_str());
+
+		///////////////////////
+
+		for (int i=0; i<numClouds; i++)
 		{
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CLOUD " + tGameObjectCloudParameters.name);
+			tGameObjectCloudParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
+			tGameObjectCloudParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
+			tGameObjectCloudParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
 
-			mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
-				tGameObjectCloudParameters,mGameWorldManager));
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
 
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CLOUD " + Ogre::StringConverter::toString(Ogre::Real(i)) + ": " + 
-				Ogre::StringConverter::toString(tGameObjectCloudParameters.tRenderComponentPositionalParameters.position));
-		} 
-		catch( std::string error )
-		{
-			Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD " + Ogre::StringConverter::toString(Ogre::Real(i)) + ": " + error);
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+
+			try 
+			{
+				mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
+					tGameObjectCloudParameters,mGameWorldManager));
+
+				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING CLOUD " + tGameObjectCloudParameters.name + " in " + 
+					Ogre::StringConverter::toString(tGameObjectCloudParameters.tRenderComponentPositionalParameters.position));
+			} 
+			catch( std::string error )
+			{
+				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD " + tGameObjectCloudParameters.name + ": " + error);
+			}
 		}
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD CFG FILE");
 	}
 }
 
