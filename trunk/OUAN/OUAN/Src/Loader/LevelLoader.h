@@ -4,6 +4,8 @@
 //OUAN
 #include "../OUAN.h"
 #include "XMLParser.h"
+#include "Configuration.h"
+
 namespace OUAN
 {
 	class GameObjectFactory;
