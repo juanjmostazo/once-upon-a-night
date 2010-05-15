@@ -538,6 +538,10 @@
 					Name="Volume"
 					>
 					<File
+						RelativePath=".\Src\Graphics\Volume\BufferManager.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\Volume\Julia.cpp"
 						>
 					</File>
@@ -1243,6 +1247,10 @@
 				<Filter
 					Name="Volume"
 					>
+					<File
+						RelativePath=".\Src\Graphics\Volume\BufferManager.h"
+						>
+					</File>
 					<File
 						RelativePath=".\Src\Graphics\Volume\Julia.h"
 						>

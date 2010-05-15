@@ -36,6 +36,8 @@ Julia JuliaManager::getJulia(double globalReal, double globalImag, double global
 		globalImag != mLastGlobalImag || 
 		globalTheta != mLastGlobalTheta)
 	{
+		Ogre::LogManager::getSingleton().logMessage("[Julia MANAGER] Re-Setting julia");
+
 		Julia julia((float)globalReal, (float)globalImag, (float)globalTheta);
 		
 		mJulia = julia;
