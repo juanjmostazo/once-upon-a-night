@@ -17,7 +17,7 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
-#include "../Graphics/Volume/JuliaManager.h"
+#include "../Graphics/Volume/BufferManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
@@ -272,65 +272,13 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 			tRenderComponentFractalVolumeParameters.vSize, 
 			tRenderComponentFractalVolumeParameters.texture3D);
 
-	Julia julia = JuliaManager::getInstance()->getJulia(
+	BufferManager::getInstance()->setBuffer(
+		tRenderComponentFractalVolumeParameters.texture3D,
+		tRenderComponentFractalVolumeParameters.vCut,
+		tRenderComponentFractalVolumeParameters.vScale,
 		tRenderComponentFractalVolumeParameters.juliaGlobalReal,
 		tRenderComponentFractalVolumeParameters.juliaGlobalImag, 
 		tRenderComponentFractalVolumeParameters.juliaGlobalTheta);
-
-	Ogre::TexturePtr texture3D = 
-		Application::getInstance()->getRenderSubsystem()->getTexture3D(tRenderComponentFractalVolumeParameters.texture3D);
-
-	Ogre::HardwarePixelBufferSharedPtr buffer = texture3D->getBuffer(0, 0);
-
-	buffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
-
-	const Ogre::PixelBox &pb = buffer->getCurrentLock();
-
-	double vCutInv = 1.0f / tRenderComponentFractalVolumeParameters.vCut;
-
-	unsigned int* pbptr = static_cast<unsigned int*>(pb.data);
-	for(size_t z=pb.front; z<pb.back; z++) 
-	{
-		for(size_t y=pb.top; y<pb.bottom; y++)
-		{
-			for(size_t x=pb.left; x<pb.right; x++)
-			{
-				if(z==pb.front || z==(pb.back-1) || y==pb.top|| y==(pb.bottom-1) || x==pb.left || x==(pb.right-1))
-				{
-					pbptr[x] = 0; // On border, must be zero
-				} 
-				else
-				{
-					float val = julia.eval(
-						((float)x/pb.getWidth()-0.5f) * tRenderComponentFractalVolumeParameters.vScale, 
-						((float)y/pb.getHeight()-0.5f) * tRenderComponentFractalVolumeParameters.vScale, 
-						((float)z/pb.getDepth()-0.5f) * tRenderComponentFractalVolumeParameters.vScale);
-
-					if(val > tRenderComponentFractalVolumeParameters.vCut)
-					{
-						val = tRenderComponentFractalVolumeParameters.vCut;
-					}
-
-					Ogre::PixelUtil::packColour(
-						//(float)(tRenderComponentFractalVolumeParameters.colorR < 0 ? x/pb.getWidth() : tRenderComponentFractalVolumeParameters.colorR), 
-						//(float)(tRenderComponentFractalVolumeParameters.colorG < 0 ? y/pb.getHeight() : tRenderComponentFractalVolumeParameters.colorG), 
-						//(float)(tRenderComponentFractalVolumeParameters.colorB < 0 ? z/pb.getDepth() : tRenderComponentFractalVolumeParameters.colorB), 
-						(float)x/pb.getWidth(), 
-						(float)y/pb.getHeight(), 
-						(float)z/pb.getDepth(),
-						(1.0f-(val*vCutInv))*0.7f, 
-						Ogre::PF_A8R8G8B8, 
-						&pbptr[x]);
-				}	
-			}
-
-			pbptr += pb.rowPitch;
-		}
-
-		pbptr += pb.getSliceSkip();
-	}
-
-	buffer->unlock();
 
 	pRenderComponentFractalVolume->setFractalVolume(fractalVolume);
 

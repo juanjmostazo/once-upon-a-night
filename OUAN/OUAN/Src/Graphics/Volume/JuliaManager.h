@@ -1,6 +1,7 @@
 #ifndef JULIA_MANAGER_H
 #define JULIA_MANAGER_H
 
+#include "../../OUAN.h"
 #include "Julia.h"
 
 namespace OUAN
