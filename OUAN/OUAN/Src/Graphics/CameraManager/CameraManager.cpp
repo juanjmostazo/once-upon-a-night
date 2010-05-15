@@ -117,6 +117,11 @@ void CameraManager::cleanUp()
 	delete mCameraControllerFirstPerson;
 }
 
+Ogre::Camera * CameraManager::getCamera(std::string name)
+{
+	return mSceneManager->getCamera(name);
+}
+
 TCameraControllerType CameraManager::getActiveCameraControllerType()
 {
 	return activeCameraController->getControllerType();

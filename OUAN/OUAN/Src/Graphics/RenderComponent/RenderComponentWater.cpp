@@ -41,68 +41,68 @@ void RenderComponentWater::setVisible(bool visible)
 
 void RenderComponentWater::initFresnelReflection(CameraManagerPtr pCameraManager,GameWorldManagerPtr pGameWorldManager)
 {
-	mCameraManager=pCameraManager;
-	mGameWorldManager=pGameWorldManager;
+	//mCameraManager=pCameraManager;
+	//mGameWorldManager=pGameWorldManager;
 
-    // Check prerequisites first
-	const RenderSystemCapabilities* caps = Root::getSingleton().getRenderSystem()->getCapabilities();
-    if (!caps->hasCapability(RSC_VERTEX_PROGRAM) || !(caps->hasCapability(RSC_FRAGMENT_PROGRAM)))
-    {
-        OGRE_EXCEPT(1, "Your card does not support vertex and fragment programs, so cannot "
-            " run Once Upon a Night. Sorry!", 
-            "Fresnel::createScene");
-    }
-    else
-    {
-        if (!GpuProgramManager::getSingleton().isSyntaxSupported("arbfp1") &&
-            !GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0") &&
-			!GpuProgramManager::getSingleton().isSyntaxSupported("ps_1_4")
-			)
-        {
-            OGRE_EXCEPT(1, "Your card does not support advanced fragment programs, "
-                "so cannot run Once Upon a Night. Sorry!", 
-            "Fresnel::createScene");
-        }
-    }
+ //   // Check prerequisites first
+	//const RenderSystemCapabilities* caps = Root::getSingleton().getRenderSystem()->getCapabilities();
+ //   if (!caps->hasCapability(RSC_VERTEX_PROGRAM) || !(caps->hasCapability(RSC_FRAGMENT_PROGRAM)))
+ //   {
+ //       OGRE_EXCEPT(1, "Your card does not support vertex and fragment programs, so cannot "
+ //           " run Once Upon a Night. Sorry!", 
+ //           "Fresnel::createScene");
+ //   }
+ //   else
+ //   {
+ //       if (!GpuProgramManager::getSingleton().isSyntaxSupported("arbfp1") &&
+ //           !GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0") &&
+	//		!GpuProgramManager::getSingleton().isSyntaxSupported("ps_1_4")
+	//		)
+ //       {
+ //           OGRE_EXCEPT(1, "Your card does not support advanced fragment programs, "
+ //               "so cannot run Once Upon a Night. Sorry!", 
+ //           "Fresnel::createScene");
+ //       }
+ //   }
 
-   TexturePtr mTexture = TextureManager::getSingleton().createManual( "Refraction", 
-		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
-		512, 512, 0, PF_R8G8B8, TU_RENDERTARGET );
-    //RenderTexture* rttTex = mRoot->getRenderSystem()->createRenderTexture( "Refraction", 512, 512 );
-    RenderTarget *rttTex = mTexture->getBuffer()->getRenderTarget();
-    {
-        Viewport *v = rttTex->addViewport( mCameraManager->getActiveCamera() );
-        MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
-        mat->getTechnique(0)->getPass(0)->getTextureUnitState(2)->setTextureName("Refraction");
-        v->setOverlaysEnabled(false);
-    }
-    
-	mTexture = TextureManager::getSingleton().createManual( "Reflection", 
-		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
-		512, 512, 0, PF_R8G8B8, TU_RENDERTARGET );
-    //rttTex = mRoot->getRenderSystem()->createRenderTexture( "Reflection", 512, 512 );
-    rttTex = mTexture->getBuffer()->getRenderTarget();
-    {
-        Viewport *v = rttTex->addViewport( mCameraManager->getActiveCamera() );
-        MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
-        mat->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setTextureName("Reflection");
-        v->setOverlaysEnabled(false);
-    }
+ //  TexturePtr mTexture = TextureManager::getSingleton().createManual( "Refraction", 
+	//	ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
+	//	512, 512, 0, PF_R8G8B8, TU_RENDERTARGET );
+ //   //RenderTexture* rttTex = mRoot->getRenderSystem()->createRenderTexture( "Refraction", 512, 512 );
+ //   RenderTarget *rttTex = mTexture->getBuffer()->getRenderTarget();
+ //   {
+ //       Viewport *v = rttTex->addViewport( mCameraManager->getActiveCamera() );
+ //       MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
+ //       mat->getTechnique(0)->getPass(0)->getTextureUnitState(2)->setTextureName("Refraction");
+ //       v->setOverlaysEnabled(false);
+ //   }
+ //   
+	//mTexture = TextureManager::getSingleton().createManual( "Reflection", 
+	//	ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, 
+	//	512, 512, 0, PF_R8G8B8, TU_RENDERTARGET );
+ //   //rttTex = mRoot->getRenderSystem()->createRenderTexture( "Reflection", 512, 512 );
+ //   rttTex = mTexture->getBuffer()->getRenderTarget();
+ //   {
+	//	Viewport *v = rttTex->addViewport( mCameraManager->getActiveCamera() );
+ //       MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
+ //       mat->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setTextureName("Reflection");
+ //       v->setOverlaysEnabled(false);
+ //   }
 
-	mEntity->setMaterialName("Examples/FresnelReflectionRefraction");
+	//mEntity->setMaterialName("Examples/FresnelReflectionRefraction");
 
-    //mEntity->setVisible(false);
+ //   //mEntity->setVisible(false);
 
-    mReflectionPlane.normal = Vector3::UNIT_Y;
-	mReflectionPlane.d=0;
+ //   mReflectionPlane.normal = Vector3::UNIT_Y;
+	//mReflectionPlane.d=0;
 
-    //MeshManager::getSingleton().createPlane("ReflectPlane",
-    //    ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-    //    mReflectionPlane,
-    //    700,1300,10,10,true,1,3,5,Vector3::UNIT_Z);
-    //pPlaneEnt = mSceneMgr->createEntity( "plane", "ReflectPlane" );
-    //pPlaneEnt->setMaterialName("Examples/FresnelReflectionRefraction");
-    //mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(pPlaneEnt);
+ //   //MeshManager::getSingleton().createPlane("ReflectPlane",
+ //   //    ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+ //   //    mReflectionPlane,
+ //   //    700,1300,10,10,true,1,3,5,Vector3::UNIT_Z);
+ //   //pPlaneEnt = mSceneMgr->createEntity( "plane", "ReflectPlane" );
+ //   //pPlaneEnt->setMaterialName("Examples/FresnelReflectionRefraction");
+ //   //mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(pPlaneEnt);
 }
 
 void RenderComponentWater::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
@@ -173,41 +173,42 @@ void RenderComponentWater::update(double elapsedTime)
 {
 	RenderComponent::update(elapsedTime);
 
-	if (mCurrentAnimation && mCurrentAnimation->getEnabled())
-	{
-		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
-		if (mCurrentAnimation->hasEnded())
-		{
-			AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
-			getParent()->getGameWorldManager()->addEvent(evt);
-		}
-	}
+	//if (mCurrentAnimation && mCurrentAnimation->getEnabled())
+	//{
+	//	mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
+	//	if (mCurrentAnimation->hasEnded())
+	//	{
+	//		AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
+	//		getParent()->getGameWorldManager()->addEvent(evt);
+	//	}
+	//}
 
-    //// Hide plane and objects below the water
-    mEntity->setVisible(false);
-    //std::vector<Entity*>::iterator i, iend;
-    //iend = belowWaterEnts.end();
-    //for (i = belowWaterEnts.begin(); i != iend; ++i)
-    //{
-    //    (*i)->setVisible(false);
-    //}
+ //   //// Hide plane and objects below the water
+ //   mEntity->setVisible(false);
+ //   //std::vector<Entity*>::iterator i, iend;
+ //   //iend = belowWaterEnts.end();
+ //   //for (i = belowWaterEnts.begin(); i != iend; ++i)
+ //   //{
+ //   //    (*i)->setVisible(false);
+ //   //}
 	//mGameWorldManager->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
-    mCameraManager->getActiveCamera()->enableReflection(mReflectionPlane);
+ //   mCameraManager->getActiveCamera()->enableReflection(mReflectionPlane);
 
 }
 
+
 void RenderComponentWater::postUpdate()
 {
-    //// Show plane and objects below the water
-    mEntity->setVisible(true);
-    //std::vector<Entity*>::iterator i, iend;
-    //iend = belowWaterEnts.end();
-    //for (i = belowWaterEnts.begin(); i != iend; ++i)
-    //{
-    //    (*i)->setVisible(true);
-    //}
+ //   //// Show plane and objects below the water
+ //   mEntity->setVisible(true);
+ //   //std::vector<Entity*>::iterator i, iend;
+ //   //iend = belowWaterEnts.end();
+ //   //for (i = belowWaterEnts.begin(); i != iend; ++i)
+ //   //{
+ //   //    (*i)->setVisible(true);
+ //   //}
 	//mGameWorldManager->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
-    mCameraManager->getActiveCamera()->disableReflection();
+ //   mCameraManager->getActiveCamera()->disableReflection();
 }
 
 TRenderComponentWaterParameters::TRenderComponentWaterParameters() : TRenderComponentParameters()
