@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -1312,6 +1312,10 @@
 					RelativePath=".\Src\Game\GameObjectFactory.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Src\Game\GameWorldManager.h"
+					>
+				</File>
 				<Filter
 					Name="GameObject"
 					>
@@ -1485,10 +1489,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectWoodBox.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameWorldManager.h"
 						>
 					</File>
 				</Filter>

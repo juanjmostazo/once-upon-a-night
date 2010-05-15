@@ -49,3 +49,69 @@ material waterB
 		}
 	}
 }
+
+material water
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.2 0.2
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 
+				texture Water01.jpg
+			}
+		}
+	}
+}
+
+material waterfall
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.2 0.2
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 	
+				texture Water01.jpg
+				scroll_anim 0 0.2
+			}
+		}
+	}
+}
+
+material waterfall_splash
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.2 0.2
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 
+				texture Water01.jpg
+			}
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 				
+				texture Water01.jpg
+				wave_xform scroll_y sine 0 0.1 0 0.5
+			}
+		}
+	}
+}
+
