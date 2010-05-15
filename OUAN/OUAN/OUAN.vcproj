@@ -60,7 +60,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/NODEFAULTLIB:MSVCRT"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib fmodex_vc.lib ParticleUniverse_d.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib NxOgre_Debug.lib NxOgreOGRE3D_Debug.lib NxOgreAddonCharacterController_Debug.lib lua5.1.lib luabindd.lib fmodex_vc.lib ParticleUniverse_d.lib Strmiids.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\lib&quot;"
 				GenerateDebugInformation="true"
@@ -134,7 +134,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib ParticleUniverse.lib"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib ParticleUniverse.lib Strmiids.lib"
 				AdditionalLibraryDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\lib&quot;"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -208,7 +208,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib ParticleUniverse.lib"
+				AdditionalDependencies="OgreMain.lib OIS.lib CEGUIBase.lib OgreGUIRenderer.lib NxOgre.lib NxOgreOGRE3D.lib NxOgreAddonCharacterController.lib lua5.1.lib luabind.lib fmodex_vc.lib ParticleUniverse.lib Strmiids.lib"
 				AdditionalLibraryDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\lib&quot;"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -348,6 +348,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Core\InGameMenuState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Core\IntroState.cpp"
 					>
 				</File>
 				<File
@@ -561,6 +565,14 @@
 				<Filter
 					Name="VideoPlayer"
 					>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\CVDShowUtil.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\OgreDirectShow.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -1057,6 +1069,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\IntroState.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\MainMenuState.h"
 					>
 				</File>
@@ -1271,6 +1287,22 @@
 				<Filter
 					Name="VideoPlayer"
 					>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\CVDShowUtil.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\dxtrans.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\OgreDirectShow.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\VideoPlayer\OgreDirectShowPrivate.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter

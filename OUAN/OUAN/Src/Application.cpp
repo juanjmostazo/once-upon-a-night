@@ -6,7 +6,7 @@
 
 #include "Core/GameStateManager.h"
 #include "Core/GameState.h"
-#include "Core/MainMenuState.h"
+#include "Core/IntroState.h"
 #include "Core/GameRunningState.h"
 
 #include "GUI/GUISubsystem.h"
@@ -214,7 +214,7 @@ void Application::setupInputSystem()
 void Application::loadInitialState()
 {
 	//GameStatePtr initialState(new GameRunningState());
-	GameStatePtr initialState(new MainMenuState());
+	GameStatePtr initialState(new IntroState());
 	ApplicationPtr this_ = shared_from_this();
 	mStateManager->changeState(initialState,this_);
 }
