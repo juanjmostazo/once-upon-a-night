@@ -10,8 +10,12 @@ using namespace OUAN;
 using namespace Utils;
 
 Random* Random::mInstance=NULL;
+
 Random::Random()
-{}
+{
+
+}
+
 Random::~Random()
 {
 	if (mInstance)
@@ -20,6 +24,7 @@ Random::~Random()
 		mInstance=NULL;
 	}
 }
+
 Random* Random::getInstance()
 {
 	if (!mInstance)
@@ -28,16 +33,19 @@ Random* Random::getInstance()
 	}
 	return mInstance;
 }
+
 void Random::init(unsigned int seed)
 {
 	mRandEngine.seed(seed);
 }
+
 int Random::getRandomInteger(int low, int high)
 {
 	boost::uniform_int<> distribution(low, high);
 	boost::variate_generator<boost::mt19937&, boost::uniform_int<> > next(mRandEngine,distribution);
 	return next();
 }
+
 double Random::getRandomDouble(double low, double high)
 {
 	if (fabs(low-0.0)<=DOUBLE_COMPARISON_DELTA && fabs(high-1.0)<=DOUBLE_COMPARISON_DELTA)
@@ -58,6 +66,7 @@ void OUAN::Utils::scriptLog (const std::string& logMsg)
 {
 	Ogre::LogManager::getSingletonPtr()->logMessage("LUA: "+logMsg);
 }
+
 int OUAN::Utils::parseInt(std::string& strValue)
 {
 	unsigned int hexValue=0;
@@ -137,6 +146,7 @@ std::string OUAN::Utils::toString(double doubleValue)
 	outStr<<doubleValue;
 	return outStr.str();
 }
+
 std::string OUAN::Utils::toString(float floatValue)
 {
 	std::ostringstream outStr;
@@ -144,6 +154,7 @@ std::string OUAN::Utils::toString(float floatValue)
 	outStr<<floatValue;
 	return outStr.str();
 }
+
 std::string OUAN::Utils::toString(long longValue)
 {
 	std::ostringstream outStr;
@@ -151,6 +162,7 @@ std::string OUAN::Utils::toString(long longValue)
 	outStr<<longValue;
 	return outStr.str();
 }
+
 std::string OUAN::Utils::toString(int intValue)
 {
 	std::ostringstream outStr;
@@ -158,6 +170,7 @@ std::string OUAN::Utils::toString(int intValue)
 	outStr<<intValue;
 	return outStr.str();
 }
+
 std::string OUAN::Utils::toString(char charValue)
 {
 	std::ostringstream outStr;
@@ -165,6 +178,7 @@ std::string OUAN::Utils::toString(char charValue)
 	outStr<<charValue;
 	return outStr.str();
 }
+
 std::string OUAN::Utils::toString(bool boolValue)
 {
 	std::ostringstream outStr;
