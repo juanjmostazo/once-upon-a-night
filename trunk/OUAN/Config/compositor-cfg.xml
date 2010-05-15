@@ -2,7 +2,7 @@
 <Configuration>
   <Options>
 	<Option key="BLOOM">Bloom</Option>
-	<Option key="BLOOM_ACTIVATED">true</Option>
+	<Option key="BLOOM_ACTIVATED">false</Option>
 	<Option key="HDR">HDR</Option>
 	<Option key="HDR_ACTIVATED">false</Option>
   </Options>

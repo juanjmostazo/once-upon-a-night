@@ -22,6 +22,7 @@ namespace OUAN
 		std::string getActiveCameraName();
 
 		Ogre::Camera * getActiveCamera();
+		Ogre::Camera * getCamera(std::string name);
 
 		void setCameraType(TCameraControllerType cameraControllerType);
 

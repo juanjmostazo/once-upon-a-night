@@ -38,7 +38,7 @@ material waterB
 			texture_unit
 			{
 				texture Water01.jpg
-				scroll_anim 0.25 0
+				scroll_anim 0.05 0
 			}
 
 			texture_unit

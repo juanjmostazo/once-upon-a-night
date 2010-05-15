@@ -35,10 +35,9 @@ material Examples/FresnelReflectionRefraction
 {
 	// ps_2_0 / arbfp1
 	technique
-	{
+	{	
 		pass 
 		{
-			
 			vertex_program_ref Examples/FresnelRefractReflectVP
 			{
 				param_named_auto worldViewProjMatrix worldviewproj_matrix
@@ -52,9 +51,9 @@ material Examples/FresnelReflectionRefraction
 			fragment_program_ref Examples/FresnelRefractReflectFP
 			{
 				param_named fresnelBias float 0
-				param_named fresnelScale float 1.4 
-				param_named fresnelPower float 4  
-				param_named tintColour float4 0 0.05 0.05 1
+				param_named fresnelScale float 1.8 
+				param_named fresnelPower float 128 
+				param_named tintColour float4 0 0.2 0.2 1
 				param_named noiseScale float 0.05 
 			}
 			// Noise
