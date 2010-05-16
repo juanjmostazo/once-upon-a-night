@@ -1,6 +1,8 @@
 #include "Component.h"
 #include "../Game/GameObject/GameObject.h"
+
 using namespace OUAN;
+
 Component::Component(const std::string& type)
 :mType(type)
 {
@@ -8,8 +10,9 @@ Component::Component(const std::string& type)
 }
 
 Component::~Component()
-{}
+{
 
+}
 
 const std::string& Component::getType() const
 {
@@ -29,6 +32,7 @@ void Component::setParent(GameObjectPtr parent)
 {
 	mParent=parent;
 }
+
 GameObjectPtr Component::getParent()
 {
 	return mParent;
@@ -41,11 +45,15 @@ const std::string& Component::getParentName()
 
 void Component::update(double elapsedSeconds)
 {
+
 }
 
 TComponentParameters::TComponentParameters()
 {
+
 }
+
 TComponentParameters::~TComponentParameters()
 {
+
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="NUM_CLOUDS">300</Option>
+    <Option key="NUM_CLOUDS">0</Option>
     <Option key="GENERATION_RADIO">3500</Option>
     <Option key="PLANE_POSITION_Y">-300</Option>
 	

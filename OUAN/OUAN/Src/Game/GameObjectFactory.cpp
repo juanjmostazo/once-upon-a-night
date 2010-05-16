@@ -1149,8 +1149,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectParticleSystemPtr pGameObjectParticleSystem;
-	RenderComponentParticleSystemPtr pRenderComponentParticleSystem;
+	GameObjectParticleSystemPtr pGameObjectParticleSystem;	
 
 	//Create GameObject
 	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
@@ -1158,23 +1157,26 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 	//Create LogicComponent
 	pGameObjectParticleSystem->setLogicComponent(
 		mComponentFactory->createLogicComponent(
-		pGameObjectParticleSystem,
-		tGameObjectParticleSystemParameters.tLogicComponentParameters));
+			pGameObjectParticleSystem,
+			tGameObjectParticleSystemParameters.tLogicComponentParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectParticleSystem->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
+	pGameObjectParticleSystem->setRenderComponentPositional(
+		mComponentFactory->createRenderComponentPositional(
+			pGameObjectParticleSystem,
+			tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectParticleSystem->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectParticleSystem->getRenderComponentPositional()));
+	pGameObjectParticleSystem->setRenderComponentInitial(
+		mComponentFactory->createRenderComponentInitial(
+			pGameObjectParticleSystem->getRenderComponentPositional()));
 
 	//Create RenderComponentParticleSystem
-	pRenderComponentParticleSystem=mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional());
-
-	pRenderComponentParticleSystem->start();
-	pGameObjectParticleSystem->setRenderComponentParticleSystem(pRenderComponentParticleSystem);
+	pGameObjectParticleSystem->setRenderComponentParticleSystem(
+		mComponentFactory->createRenderComponentParticleSystem(
+			pGameObjectParticleSystem,
+			tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,
+			pGameObjectParticleSystem->getRenderComponentPositional()));
 
 	pGameObjectParticleSystem->changeWorld(gameWorldMgr->getCurrentWorld());
 
