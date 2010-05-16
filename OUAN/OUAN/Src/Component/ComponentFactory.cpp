@@ -34,6 +34,7 @@
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
+#include "../Logic/LogicComponent/LogicComponentBreakable.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
 #include "../Logic/LogicComponent/LogicComponentTrigger.h"
@@ -515,6 +516,21 @@ LogicComponentItemPtr ComponentFactory::createLogicComponentItem(GameObjectPtr g
 	pLogicComponentItem->setParent(gameObject);
 
 	return pLogicComponentItem;
+}
+
+LogicComponentBreakablePtr ComponentFactory::createLogicComponentBreakable(GameObjectPtr gameObject, TLogicComponentBreakableParameters logicComponentBreakableParameters)
+{
+	LogicComponentBreakablePtr pLogicComponentBreakable=LogicComponentBreakablePtr(new LogicComponentBreakable());
+	pLogicComponentBreakable->setExistsInDreams(logicComponentBreakableParameters.existsInDreams);
+	pLogicComponentBreakable->setExistsInNightmares(logicComponentBreakableParameters.existsInNightmares);
+	pLogicComponentBreakable->setIsBroken(false);
+
+	pLogicComponentBreakable->setScriptFilename(logicComponentBreakableParameters.scriptFilename);
+	pLogicComponentBreakable->setScriptFunction(logicComponentBreakableParameters.scriptFunction);
+	pLogicComponentBreakable->setState(logicComponentBreakableParameters.defaultState);
+	pLogicComponentBreakable->setParent(gameObject);
+
+	return pLogicComponentBreakable;
 }
 
 LogicComponentOnyPtr ComponentFactory::createLogicComponentOny(GameObjectPtr gameObject, TLogicComponentOnyParameters LogicComponentOnyParameters)

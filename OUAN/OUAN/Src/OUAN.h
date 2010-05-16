@@ -260,6 +260,10 @@ namespace OUAN
 		class TLogicComponentItemParameters;
 		typedef boost::shared_ptr<LogicComponentItem> LogicComponentItemPtr;
 
+		class LogicComponentBreakable;
+		class TLogicComponentBreakableParameters;
+		typedef boost::shared_ptr<LogicComponentBreakable> LogicComponentBreakablePtr;
+
 		class LogicComponentUsable;
 		class TLogicComponentUsableParameters;
 		typedef boost::shared_ptr<LogicComponentUsable> LogicComponentUsablePtr;
@@ -295,6 +299,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
 		const std::string COMPONENT_TYPE_LOGIC_ENEMY="LogicComponentEnemy";
 		const std::string COMPONENT_TYPE_LOGIC_ITEM="LogicComponentItem";
+		const std::string COMPONENT_TYPE_LOGIC_BREAKABLE="LogicComponentBreakable";
 		const std::string COMPONENT_TYPE_LOGIC_USABLE="LogicComponentUsable";
 		const std::string COMPONENT_TYPE_LOGIC_TRIGGER="LogicComponentTrigger";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";

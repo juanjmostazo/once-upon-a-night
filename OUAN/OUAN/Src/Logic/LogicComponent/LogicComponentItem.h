@@ -2,6 +2,7 @@
 #define LogicComponentItemH_H
 
 #include "LogicComponent.h"
+
 namespace OUAN
 {
 	const int STATE_ITEM_NOT_TAKEN=0;
@@ -19,9 +20,7 @@ namespace OUAN
 		void setIsTaken(bool isTaken);
 
 	private:
-
 		bool mIsTaken;
-
 	};
 	
 	class TLogicComponentItemParameters: public TLogicComponentParameters
@@ -29,7 +28,6 @@ namespace OUAN
 	public:
 		TLogicComponentItemParameters();
 		~TLogicComponentItemParameters();
-
 	};
 }
 

@@ -71,7 +71,7 @@ void GameObjectWoodBox::changeWorld(int world)
 	switch(world)
 	{
 	case DREAMS:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
@@ -80,7 +80,7 @@ void GameObjectWoodBox::changeWorld(int world)
 				mPhysicsComponentSimpleBox->create();
 			}
 		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(true);
 			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
@@ -88,7 +88,7 @@ void GameObjectWoodBox::changeWorld(int world)
 				mPhysicsComponentSimpleBox->create();
 			}
 		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityNightmares->setVisible(false);
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
@@ -98,7 +98,7 @@ void GameObjectWoodBox::changeWorld(int world)
 		}		
 		break;
 	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(false);
 			mRenderComponentEntityNightmares->setVisible(true);
@@ -107,7 +107,7 @@ void GameObjectWoodBox::changeWorld(int world)
 				mPhysicsComponentSimpleBox->create();
 			}
 		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityDreams->setVisible(false);
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
@@ -115,7 +115,7 @@ void GameObjectWoodBox::changeWorld(int world)
 				mPhysicsComponentSimpleBox->destroy();
 			}
 		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 		{
 			mRenderComponentEntityNightmares->setVisible(true);
 			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
@@ -154,46 +154,46 @@ PhysicsComponentPtr GameObjectWoodBox::getPhysicsComponent() const
 }
 
 /// Set logic component
-void GameObjectWoodBox::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectWoodBox::setLogicComponentBreakable(LogicComponentBreakablePtr logicComponentBreakable)
 {
-	mLogicComponent=logicComponent;
+	mLogicComponentBreakable=logicComponentBreakable;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectWoodBox::getLogicComponent()
+LogicComponentBreakablePtr GameObjectWoodBox::getLogicComponentBreakable()
 {
-	return mLogicComponent;
+	return mLogicComponentBreakable;
 }
 
 void GameObjectWoodBox::processCollision(GameObjectPtr pGameObject)
 {
-	if (mLogicComponent.get())
+	if (mLogicComponentBreakable.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponentBreakable->processCollision(pGameObject);
 	}
 }
 
 void GameObjectWoodBox::processEnterTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponent.get())
+	if (mLogicComponentBreakable.get())
 	{
-		mLogicComponent->processEnterTrigger(pGameObject);
+		mLogicComponentBreakable->processEnterTrigger(pGameObject);
 	}
 }
 
 void GameObjectWoodBox::processExitTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponent.get())
+	if (mLogicComponentBreakable.get())
 	{
-		mLogicComponent->processExitTrigger(pGameObject);
+		mLogicComponentBreakable->processExitTrigger(pGameObject);
 	}
 }
 
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
-	if (mLogicComponent.get())
+	if (mLogicComponentBreakable.get())
 	{
-		mLogicComponent->update(elapsedSeconds);
+		mLogicComponentBreakable->update(elapsedSeconds);
 	}
 }
 
