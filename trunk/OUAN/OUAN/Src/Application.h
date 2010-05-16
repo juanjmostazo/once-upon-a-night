@@ -8,6 +8,8 @@
 
 namespace OUAN
 {
+	const std::string SKIP_INTRO_CMD_SHORT="-s";
+	const std::string SKIP_INTRO_CMD_LONG="--skipIntro";
 	/// Main application class which will hold all of the game's
 	/// subsystems.
 	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
@@ -26,6 +28,8 @@ namespace OUAN
 			/// resources
 			/// [TODO] Add optional command line string parameter
 			bool init();
+
+			bool init(int argc,char** argv);
 
 			/// Run application
 			virtual void go();
@@ -165,6 +169,9 @@ namespace OUAN
 
 			/// UniqueId
 			int mUniqueId;
+
+			/// If true, jump directly to GameRunningState
+			bool mSkipIntro;
 		};
 }
 #endif
