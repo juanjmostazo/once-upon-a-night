@@ -133,6 +133,10 @@ namespace OUAN
 		class TRenderComponentWaterParameters;
 		typedef boost::shared_ptr<RenderComponentWater> RenderComponentWaterPtr;
 
+		class RenderComponentPlane;
+		class TRenderComponentPlaneParameters;
+		typedef boost::shared_ptr<RenderComponentPlane> RenderComponentPlanePtr;
+
 		class RenderComponentScene;
 		class TRenderComponentSkyDomeParameters;
 		class TRenderComponentSkyBoxParameters;
@@ -486,6 +490,10 @@ namespace OUAN
 		class TGameObjectDoorParameters;
 		typedef boost::shared_ptr<GameObjectDoor> GameObjectDoorPtr;
 
+		class GameObjectPlane;
+		class TGameObjectPlaneParameters;
+		typedef boost::shared_ptr<GameObjectPlane> GameObjectPlanePtr;
+
 		class GameObjectPlataform;
 		class TGameObjectPlataformParameters;
 		typedef boost::shared_ptr<GameObjectPlataform> GameObjectPlataformPtr;
@@ -547,6 +555,7 @@ namespace OUAN
 		typedef std::vector<GameObjectSnakeCreeperPtr> TGameObjectSnakeCreeperContainer;
 		typedef std::vector<GameObjectWoodBoxPtr> TGameObjectWoodBoxContainer;
 		typedef std::vector<GameObjectWaterPtr> TGameObjectWaterContainer;
+		typedef std::vector<GameObjectPlanePtr> TGameObjectPlaneContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -609,6 +618,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_CLOUD="cloud";
 		const std::string GAME_OBJECT_TYPE_WOODBOX="woodbox";
 		const std::string GAME_OBJECT_TYPE_WATER="water";
+		const std::string GAME_OBJECT_TYPE_PLANE="Plane";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";

@@ -61,6 +61,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectPillowPtr createGameObjectPillow(TGameObjectPillowParameters tGameObjectPillowParameters, 
 			GameWorldManagerPtr gameWorldMgr);
+		GameObjectPlanePtr createGameObjectPlane(TGameObjectPlaneParameters tGameObjectPlaneParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectPlataformPtr createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectPortalPtr createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters, 

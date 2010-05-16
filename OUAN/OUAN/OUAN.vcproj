@@ -410,6 +410,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPlane.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPositional.cpp"
 						>
 					</File>
@@ -711,6 +715,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectPillow.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPlane.cpp"
 						>
 					</File>
 					<File
@@ -1128,6 +1136,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPlane.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentPositional.h"
 						>
 					</File>
@@ -1413,6 +1425,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectPillow.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectPlane.h"
 						>
 					</File>
 					<File

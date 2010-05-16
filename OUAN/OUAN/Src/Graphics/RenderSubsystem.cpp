@@ -17,6 +17,7 @@
 #include "RenderComponent/RenderComponentPositional.h"
 #include "RenderComponent/RenderComponentViewport.h"
 #include "RenderComponent/RenderComponentDecal.h"
+#include "RenderComponent/RenderComponentPlane.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -356,6 +357,42 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Light!");
 	}
 	return pLight;
+}
+
+Ogre::Entity* RenderSubsystem::createPlane(Ogre::String nodeName,Ogre::String name,TRenderComponentPlaneParameters tPlaneParameters)
+{
+	SceneNode *planeNode=0;
+	Plane plane;
+	Ogre::Entity * pPlaneEntity;
+	// Set plane parameters and create it
+	try
+	{
+		plane.d=tPlaneParameters.distance;
+		plane.normal=tPlaneParameters.normal;
+		// Create the plane
+        MeshManager::getSingleton().createPlane(name,
+            ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            plane,
+            tPlaneParameters.width,tPlaneParameters.height,tPlaneParameters.Xsegments,tPlaneParameters.Ysegments,
+			tPlaneParameters.hasNormals,tPlaneParameters.numCoordSets,tPlaneParameters.Utile,tPlaneParameters.Vtile, 
+			Ogre::Vector3::UNIT_Z);
+
+        pPlaneEntity = mSceneManager->createEntity( name, name );
+        pPlaneEntity->setMaterialName(tPlaneParameters.material);
+
+		//set Query flags
+		pPlaneEntity->setQueryFlags(tPlaneParameters.cameraCollisionType);
+
+		//attach to Scene Manager
+		planeNode=mSceneManager->getSceneNode(nodeName);
+		planeNode->attachObject(pPlaneEntity);
+
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Plane!");
+	}
+	return pPlaneEntity;
 }
 
 Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)

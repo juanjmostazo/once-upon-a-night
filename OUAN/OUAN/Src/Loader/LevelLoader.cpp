@@ -34,6 +34,7 @@
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectParticleSystem.h"
 #include "../Game/GameObject/GameObjectPillow.h"
+#include "../Game/GameObject/GameObjectPlane.h"
 #include "../Game/GameObject/GameObjectPlataform.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Game/GameObject/GameObjectProvisionalEntity.h"
@@ -65,6 +66,7 @@
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
+#include "../Graphics/RenderComponent/RenderComponentPlane.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
@@ -390,7 +392,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
 		{
-			processGameObjectParticleSystem(gameObject);
+			//processGameObjectParticleSystem(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
 		{
@@ -551,6 +553,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PLATAFORM)==0)
 		{
 			processGameObjectPlataform(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PLANE)==0)
+		{
+			processGameObjectPlane(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BUSH)==0)
 		{
@@ -1644,6 +1650,41 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectPillow(tGameObjectPillowParameters);
 	mGameWorldManager->addGameObjectPillow(mGameObjectFactory->createGameObjectPillow(tGameObjectPillowParameters,mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectPlane(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectPlaneParameters  tGameObjectPlaneParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectPlaneParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectPlaneParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectPlaneParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectPlaneParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPlane
+		tGameObjectPlaneParameters.tRenderComponentPlaneParameters=processRenderComponentPlane(gameObject->getMainXMLNode());
+
+		//Get RenderComponentPositional
+		tGameObjectPlaneParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->addGameObjectPlane
+		(mGameObjectFactory->createGameObjectPlane(tGameObjectPlaneParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
@@ -2761,46 +2802,56 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.clear();
 	processRenderComponentEntityAnimParams(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams,XMLCustomPropertiesNode,world);
 	
+	//Process Query flags
+	tRenderComponentEntityParameters.cameraCollisionType=processCameraCollisionType(XMLNode);
+
+	return tRenderComponentEntityParameters;
+}
+
+QueryFlags LevelLoader::processCameraCollisionType(TiXmlElement *XMLNode)
+{
 	//process Camera Collision Type
+	QueryFlags cameraCollisionType;
 	std::string camera_collision_type_string;
 	int camera_collision_type_int;
 	camera_collision_type_string = getPropertyString(XMLNode,"Camera Collisions::Type",false);
 	if(camera_collision_type_string.compare("")!=0)
 	{
 		camera_collision_type_int=Ogre::StringConverter::parseInt(camera_collision_type_string);
-		tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+		cameraCollisionType=QUERYFLAGS_NONE;
 		switch(camera_collision_type_int)
 		{
 				case OGITOR_CAMERA_COLLISION_MOVE_TO_TARGET:
-					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET;
+					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET;
 					break;
 				case OGITOR_CAMERA_COLLISION_ROTX_POSITIVE:
-					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE;
+					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE;
 					break;
 				case OGITOR_CAMERA_COLLISION_ROTX_NEGATIVE:
-					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE;
+					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE;
 					break;
 				case OGITOR_NONE:
-					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+					cameraCollisionType=QUERYFLAGS_NONE;
 					break;
 				default:
-					tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+					cameraCollisionType=QUERYFLAGS_NONE;
 					break;
 		}
 		if(!getPropertyBool(XMLNode,"Camera Collisions::Disable Translucid"))
 		{
-			tRenderComponentEntityParameters.cameraCollisionType=QueryFlags(
-				Ogre::uint32(tRenderComponentEntityParameters.cameraCollisionType) | 
+			cameraCollisionType=QueryFlags(
+				Ogre::uint32(cameraCollisionType) | 
 				Ogre::uint32(QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID));
 		}
 	}
 	else
 	{
-		tRenderComponentEntityParameters.cameraCollisionType=QUERYFLAGS_NONE;
+		cameraCollisionType=QUERYFLAGS_NONE;
 	}
 
-	return tRenderComponentEntityParameters;
+	return cameraCollisionType;
 }
+
 
 TRenderComponentLightParameters LevelLoader::processRenderComponentLight(TiXmlElement *XMLNode)
 {
@@ -3037,6 +3088,29 @@ TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiX
 	TRenderComponentSkyDomeParameters.materialNightmares = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyDome::materialNightmares");
 
 	return TRenderComponentSkyDomeParameters;
+}
+
+TRenderComponentPlaneParameters LevelLoader::processRenderComponentPlane(TiXmlElement *XMLNode)
+{
+	TRenderComponentPlaneParameters tRenderComponentPlaneParameters;
+
+	// Process plane parameters
+	tRenderComponentPlaneParameters.material=getPropertyString(XMLNode, "material");
+	tRenderComponentPlaneParameters.hasNormals=getPropertyBool(XMLNode, "hasnormals");
+	tRenderComponentPlaneParameters.distance=getPropertyReal(XMLNode, "distance");
+	tRenderComponentPlaneParameters.height=getPropertyReal(XMLNode, "height");
+	tRenderComponentPlaneParameters.width=getPropertyReal(XMLNode, "width");
+	tRenderComponentPlaneParameters.normal=getPropertyVector3(XMLNode, "normal");
+	tRenderComponentPlaneParameters.numCoordSets=getPropertyInt(XMLNode, "numcoordsets");
+	tRenderComponentPlaneParameters.Utile=getPropertyInt(XMLNode, "utile");
+	tRenderComponentPlaneParameters.Vtile=getPropertyInt(XMLNode, "vtile");
+	tRenderComponentPlaneParameters.Xsegments=getPropertyInt(XMLNode, "xsegments");
+	tRenderComponentPlaneParameters.Ysegments=getPropertyInt(XMLNode, "ysegments");
+
+	//Process Query flags
+	tRenderComponentPlaneParameters.cameraCollisionType=processCameraCollisionType(XMLNode);
+
+	return tRenderComponentPlaneParameters;
 }
 
 TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix)
