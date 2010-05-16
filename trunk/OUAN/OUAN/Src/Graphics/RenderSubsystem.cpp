@@ -651,10 +651,9 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 }
 
-ParticleUniverse::ParticleSystem** RenderSubsystem::createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
+std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional)
 {
-	ParticleUniverse::ParticleSystem** pParticleSystems = 
-		(ParticleUniverse::ParticleSystem**) malloc(sizeof(ParticleUniverse::ParticleSystem*) * tRenderComponentParticleSystemParameters.poolSize);
+	std::vector<ParticleUniverse::ParticleSystem*> pParticleSystems(tRenderComponentParticleSystemParameters.poolSize);
 
 	for (int i=0; i<tRenderComponentParticleSystemParameters.poolSize; i++)
 	{

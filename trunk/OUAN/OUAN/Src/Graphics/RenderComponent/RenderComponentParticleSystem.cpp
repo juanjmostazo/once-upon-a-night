@@ -22,19 +22,19 @@ void RenderComponentParticleSystem::advancePoolPointer()
 	mPoolPointer = mPoolPointer % mPoolSize;
 }
 
-ParticleUniverse::ParticleSystem** RenderComponentParticleSystem::getParticleSystems() const
+std::vector<ParticleUniverse::ParticleSystem*> RenderComponentParticleSystem::getParticleSystems() const
 {
 	return mParticleSystems;
 }
 
-void RenderComponentParticleSystem::setParticleSystems(ParticleUniverse::ParticleSystem** particleSystems)
+void RenderComponentParticleSystem::setParticleSystems(std::vector<ParticleUniverse::ParticleSystem*> particleSystems)
 {
 	mParticleSystems=particleSystems;
 }
 
 void RenderComponentParticleSystem::setVisible(bool visible)
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
@@ -56,7 +56,7 @@ void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 {
 	advancePoolPointer();
 
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		if (mParticleSystems[mPoolPointer])
 		{
@@ -77,7 +77,7 @@ void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 
 void RenderComponentParticleSystem::stop()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		if (mParticleSystems[mPoolPointer])
 		{
@@ -96,7 +96,7 @@ void RenderComponentParticleSystem::stop()
 
 void RenderComponentParticleSystem::pause()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		if (mParticleSystems[mPoolPointer])
 		{
@@ -115,7 +115,7 @@ void RenderComponentParticleSystem::pause()
 
 void RenderComponentParticleSystem::resume()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		if (mParticleSystems[mPoolPointer])
 		{
@@ -134,7 +134,7 @@ void RenderComponentParticleSystem::resume()
 
 void RenderComponentParticleSystem::startAll()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
@@ -157,7 +157,7 @@ void RenderComponentParticleSystem::startAll()
 
 void RenderComponentParticleSystem::stopAll()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
@@ -179,7 +179,7 @@ void RenderComponentParticleSystem::stopAll()
 
 void RenderComponentParticleSystem::pauseAll()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{
@@ -201,7 +201,7 @@ void RenderComponentParticleSystem::pauseAll()
 
 void RenderComponentParticleSystem::resumeAll()
 {
-	if (mParticleSystems)
+	if (mParticleSystems.size() > 0)
 	{
 		for (int i=0; i<mPoolSize; i++)
 		{

@@ -51,6 +51,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		mRenderComponentParticleSystem->setVisible(true);
+		mRenderComponentParticleSystem->start();
 	}
 	else
 	{
@@ -60,6 +61,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentParticleSystem->setVisible(true);
+				mRenderComponentParticleSystem->start();
 			}
 			else
 			{
@@ -71,6 +73,7 @@ void GameObjectParticleSystem::changeWorld(int world)
 			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentParticleSystem->setVisible(true);
+				mRenderComponentParticleSystem->start();
 			}
 			else
 			{

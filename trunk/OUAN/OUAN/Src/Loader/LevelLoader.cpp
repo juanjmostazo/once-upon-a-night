@@ -392,7 +392,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
 		{
-			//processGameObjectParticleSystem(gameObject);
+			processGameObjectParticleSystem(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BILLBOARDSET)==0)
 		{
@@ -2896,6 +2896,8 @@ TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentPart
 
 	//Process ParticleSystem properties
 	tRenderComponentParticleSystemParameters.templateName = getPropertyString(XMLNode, "templateName");
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = 1;
 	
 	return tRenderComponentParticleSystemParameters;
 }

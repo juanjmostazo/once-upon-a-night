@@ -9,7 +9,7 @@ namespace OUAN
 	class RenderComponentParticleSystem: public RenderComponent
 	{
 	private:
-		ParticleUniverse::ParticleSystem** mParticleSystems;
+		std::vector<ParticleUniverse::ParticleSystem*> mParticleSystems;
 		int mPoolPointer;
 		int mPoolSize;
 
@@ -19,8 +19,8 @@ namespace OUAN
 		RenderComponentParticleSystem(const std::string& type="", int poolSize=1);
 		~RenderComponentParticleSystem();
 
-		ParticleUniverse::ParticleSystem** getParticleSystems() const;
-		void setParticleSystems(ParticleUniverse::ParticleSystem **);
+		std::vector<ParticleUniverse::ParticleSystem*> getParticleSystems() const;
+		void setParticleSystems(std::vector<ParticleUniverse::ParticleSystem*>);
 
 		void setVisible(bool visible);
 
