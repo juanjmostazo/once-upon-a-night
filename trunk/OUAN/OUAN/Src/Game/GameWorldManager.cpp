@@ -25,6 +25,7 @@
 #include "GameObject/GameObjectOny.h"
 #include "GameObject/GameObjectParticleSystem.h"
 #include "GameObject/GameObjectPillow.h"
+#include "GameObject/GameObjectPlane.h"
 #include "GameObject/GameObjectPlataform.h"
 #include "GameObject/GameObjectPortal.h"
 #include "GameObject/GameObjectProvisionalEntity.h"
@@ -669,6 +670,12 @@ void GameWorldManager::addGameObjectPillow(GameObjectPillowPtr gameObjectPillow)
 	mGameObjects[gameObjectPillow->getName()]=gameObjectPillow;
 	mGameObjectPillow=gameObjectPillow;
 }
+
+void GameWorldManager::addGameObjectPlane(GameObjectPlanePtr gameObjectPlane)
+{
+	mGameObjects[gameObjectPlane->getName()]=gameObjectPlane;
+}
+
 
 void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr pGameObjectPlataform)
 {

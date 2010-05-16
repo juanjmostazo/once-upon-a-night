@@ -26,6 +26,7 @@
 #include "GameObject/GameObjectOny.h"
 #include "GameObject/GameObjectParticleSystem.h"
 #include "GameObject/GameObjectPillow.h"
+#include "GameObject/GameObjectPlane.h"
 #include "GameObject/GameObjectPlataform.h"
 #include "GameObject/GameObjectPortal.h"
 #include "GameObject/GameObjectProvisionalEntity.h"
@@ -1149,6 +1150,7 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 	GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectParticleSystemPtr pGameObjectParticleSystem;
+	RenderComponentParticleSystemPtr pRenderComponentParticleSystem;
 
 	//Create GameObject
 	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
@@ -1168,8 +1170,11 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 		pGameObjectParticleSystem->getRenderComponentPositional()));
 
 	//Create RenderComponentParticleSystem
-	pGameObjectParticleSystem->setRenderComponentParticleSystem(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional()));
+	pRenderComponentParticleSystem=mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectParticleSystem,tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,pGameObjectParticleSystem->getRenderComponentPositional());
+
+	pRenderComponentParticleSystem->start();
+	pGameObjectParticleSystem->setRenderComponentParticleSystem(pRenderComponentParticleSystem);
 
 	pGameObjectParticleSystem->changeWorld(gameWorldMgr->getCurrentWorld());
 
@@ -1255,6 +1260,42 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//Add Object to GameWorldManager
 	//addGameObjectPillow(pGameObjectPillow);	
 	return pGameObjectPillow;
+}
+
+GameObjectPlanePtr GameObjectFactory::createGameObjectPlane(TGameObjectPlaneParameters tGameObjectPlaneParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectPlanePtr pGameObjectPlane;
+
+	//Create GameObject
+	pGameObjectPlane = GameObjectPlanePtr(new GameObjectPlane(tGameObjectPlaneParameters.name));
+
+	//Create LogicComponent
+	pGameObjectPlane->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectPlane,
+		tGameObjectPlaneParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectPlane->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectPlane,tGameObjectPlaneParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectPlane->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectPlane->getRenderComponentPositional()));
+
+	//Create RenderComponentPlane
+	pGameObjectPlane->setRenderComponentPlane(mComponentFactory->createRenderComponentPlane(
+		pGameObjectPlane->getName(),pGameObjectPlane,tGameObjectPlaneParameters.tRenderComponentPlaneParameters));
+
+	pGameObjectPlane->changeWorld(gameWorldMgr->getCurrentWorld());
+
+	// Add a reference to this
+	pGameObjectPlane->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectPlane(pGameObjectPlane);
+	return pGameObjectPlane;
 }
 
 GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectPlataformParameters tGameObjectPlataformParameters, 

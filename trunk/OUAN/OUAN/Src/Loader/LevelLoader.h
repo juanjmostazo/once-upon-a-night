@@ -67,6 +67,7 @@ namespace OUAN
 		void processGameObjectOny(XMLGameObject *gameObject);
 		void processGameObjectParticleSystem(XMLGameObject* gameObject);
 		void processGameObjectPillow(XMLGameObject *gameObject);
+		void processGameObjectPlane(XMLGameObject *gameObject);
 		void processGameObjectPlataform(XMLGameObject *gameObject);
 		void processGameObjectPortal(XMLGameObject *gameObject);
 		void processGameObjectProvisionalEntity(XMLGameObject* gameObject);
@@ -103,12 +104,15 @@ namespace OUAN
 		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
 		TRenderComponentCameraParameters processRenderComponentCameraViewport(TiXmlElement *XMLNode);
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
+		TRenderComponentPlaneParameters processRenderComponentPlane(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters,
 			TiXmlElement *XMLNode);
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters,
 			TiXmlElement *XMLNode);
 		void processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParameters,
 			TiXmlElement* XMLNode, int world);
+		QueryFlags processCameraCollisionType(TiXmlElement *XMLNode);
+
 
 		//PhysicComponent Processors
 		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix="");

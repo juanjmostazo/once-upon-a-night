@@ -53,9 +53,10 @@ namespace OUAN
 			TRenderComponentViewportParameters tRenderComponentViewportParameters); 
 		RenderComponentDecalPtr createRenderComponentDecal(GameObjectPtr gameObject,
 			TRenderComponentDecalParameters tRenderComponentDecalParameters);
-
 		RenderComponentWaterPtr createRenderComponentWater(std::string name,GameObjectPtr gameObject,
 			TRenderComponentWaterParameters tRenderComponentWaterParameters);
+		RenderComponentPlanePtr createRenderComponentPlane(std::string name,GameObjectPtr gameObject,
+			TRenderComponentPlaneParameters tRenderComponentPlaneParameters);
 
 		//create and return a physics component
 		PhysicsComponentCharacterPtr createPhysicsComponentCharacter(GameObjectPtr gameObject,

@@ -125,6 +125,7 @@ namespace OUAN
 		bool isWindowClosed() const;
 		
 		//Object creators
+		Ogre::Entity* createPlane(Ogre::String nodeName,Ogre::String name,TRenderComponentPlaneParameters tPlaneParameters);
 		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters);

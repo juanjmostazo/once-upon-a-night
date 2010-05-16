@@ -211,6 +211,7 @@ namespace OUAN
 		void addGameObjectOny(GameObjectOnyPtr pGameObjectOny);
 		void addGameObjectParticleSystem(GameObjectParticleSystemPtr pGameObjectParticleSystem);
 		void addGameObjectPillow(GameObjectPillowPtr pGameObjectPillow);
+		void addGameObjectPlane(GameObjectPlanePtr pGameObjectPlane);
 		void addGameObjectPlataform(GameObjectPlataformPtr pGameObjectPlataform);
 		void addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal);
 		void addGameObjectProvisionalEntity(GameObjectProvisionalEntityPtr pGameObjectProvisionalEntity);

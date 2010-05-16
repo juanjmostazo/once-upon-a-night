@@ -83,7 +83,7 @@ material waterfall
 			{
 				alpha_op_ex modulate src_manual src_current 0.5 	
 				texture Water01.jpg
-				scroll_anim 0 0.2
+				scroll_anim 0 0.8
 			}
 		}
 	}

@@ -17,6 +17,7 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
+#include "../Graphics/RenderComponent/RenderComponentPlane.h"
 #include "../Graphics/Volume/BufferManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -164,6 +165,19 @@ RenderComponentDecalPtr ComponentFactory::createRenderComponentDecal(GameObjectP
 	pRenderComponentDecal->setParent(gameObject);
 
 	return pRenderComponentDecal;
+}
+
+RenderComponentPlanePtr ComponentFactory::createRenderComponentPlane(std::string name,GameObjectPtr gameObject,TRenderComponentPlaneParameters tRenderComponentPlaneParameters)
+{
+	//Create void Render Component
+	RenderComponentPlanePtr pRenderComponentPlane = RenderComponentPlanePtr(new RenderComponentPlane()); 
+
+	//init Render Component
+	pRenderComponentPlane->setPlane(mApp->getRenderSubsystem()->createPlane(gameObject->getName(),name,tRenderComponentPlaneParameters));
+
+	pRenderComponentPlane->setParent(gameObject);
+
+	return pRenderComponentPlane;
 }
 
 RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectPtr gameObject,TRenderComponentSceneParameters tRenderComponentSceneParameters)

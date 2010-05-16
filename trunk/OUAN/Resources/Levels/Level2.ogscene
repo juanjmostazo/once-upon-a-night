@@ -25,7 +25,7 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="459.332 512.852 -291.497" orientation="-0.979059 -0.0193452 -0.202629 0.0032942"></OPTION>
+    <OPTION id="1" position="-676.113 1189.42 723.184" orientation="-0.893193 0.414373 0.158711 0.0728784"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.979073 -0.0193455 -0.202631 0.00329425"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.893244 0.414397 0.15872 0.0728826"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="459.332 512.852 -291.497"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-676.113 1189.42 723.184"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -646,21 +646,6 @@
     <PROPERTY id="position" type="9" value="23.8313 360.362 -7.70701"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="20325328" name="Camera#Fresnel" typename="Camera Object" parentnode="SceneManager">
-    <PROPERTY id="autoaspectratio" type="12" value="true"></PROPERTY>
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="clipdistance" type="8" value="0.1 3000"></PROPERTY>
-    <PROPERTY id="fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.881883 -0.429863 0.188324 -0.0450989"></PROPERTY>
-    <PROPERTY id="polygonmode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-593.315 1001.13 635.642"></PROPERTY>
-    <PROPERTY id="viewmode" type="2" value="0"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -13898,7 +13883,7 @@
     <PROPERTY id="position" type="9" value="-710.319 507.157 170.862"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Atomicity" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13912,6 +13897,7 @@
     <PROPERTY id="position" type="9" value="-710.075 30.0679 558.996"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13925,6 +13911,7 @@
     <PROPERTY id="position" type="9" value="-587.899 30.0679 558.996"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13938,6 +13925,7 @@
     <PROPERTY id="position" type="9" value="-659.711 274.995 170.887"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13951,7 +13939,7 @@
     <PROPERTY id="position" type="9" value="-747.565 545.078 400.883"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Atomicity" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13965,6 +13953,7 @@
     <PROPERTY id="position" type="9" value="-471.827 30.0679 558.996"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13978,6 +13967,7 @@
     <PROPERTY id="position" type="9" value="-675.259 274.995 283.524"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13991,7 +13981,7 @@
     <PROPERTY id="position" type="9" value="-729.631 516.102 302.637"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Atomicity" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14005,6 +13995,7 @@
     <PROPERTY id="position" type="9" value="-687.692 274.995 389.408"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14018,6 +14009,7 @@
     <PROPERTY id="position" type="9" value="-687.692 274.995 483.815"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14031,7 +14023,7 @@
     <PROPERTY id="position" type="9" value="-747.565 545.078 483.815"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Atomicity" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
