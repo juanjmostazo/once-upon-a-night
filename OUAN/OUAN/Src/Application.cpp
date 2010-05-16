@@ -38,6 +38,7 @@ Application::Application(const std::string& windowName) : mWindowName(windowName
 ,mDebugMode(DEBUGMODE_NONE)
 ,mKeyBuffer(-1)
 ,mUniqueId(1000)
+,mSkipIntro(false)
 {
 	instance = this;
 }
@@ -63,7 +64,19 @@ void Application::cleanUp()
 	mAudioSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
-
+bool Application::init(int argc,char** argv)
+{
+	if (argc>1)
+	{
+		std::string option=argv[1];
+		if (option.compare(SKIP_INTRO_CMD_LONG)==0 || option.compare(SKIP_INTRO_CMD_SHORT)==0)
+			mSkipIntro=true;
+	}
+	//TODO: Reverse order, as the logical thing would be that the command line superceded
+	// the config file options (since no options other than sound's are being processed at the moment,
+	// it doesn't matter)
+	return init();
+}
 //Application initialization
 bool Application::init()
 {	
@@ -214,7 +227,11 @@ void Application::setupInputSystem()
 void Application::loadInitialState()
 {
 	//GameStatePtr initialState(new GameRunningState());
-	GameStatePtr initialState(new IntroState());
+	GameStatePtr initialState;
+	if (mSkipIntro)
+		initialState.reset(new GameRunningState());
+	else
+		initialState.reset(new IntroState());
 	ApplicationPtr this_ = shared_from_this();
 	mStateManager->changeState(initialState,this_);
 }

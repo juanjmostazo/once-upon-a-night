@@ -15,8 +15,17 @@ int main(int argc, char **argv)
 {
 	try
 	{
+		int nArgs;
+		char** cmdLine;
+#if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+		nArgs=__argc;
+		cmdLine=__argv;
+#else
+		nArgs=argc;
+		cmdLine=argv;
+#endif
 		OUAN::ApplicationPtr app(new OUAN::Application());
-		if (app->init())
+		if (app->init(nArgs,cmdLine))
 		{
 			app->loadInitialState();
 			app->go();
