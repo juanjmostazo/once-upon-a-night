@@ -2102,40 +2102,47 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 	pGameObjectWoodBox = GameObjectWoodBoxPtr(new GameObjectWoodBox(tGameObjectWoodBoxParameters.name));
 
 	//Create LogicComponent
-	pGameObjectWoodBox->setLogicComponent(
-		mComponentFactory->createLogicComponent(
-		pGameObjectWoodBox,
-		tGameObjectWoodBoxParameters.tLogicComponentParameters));
+	pGameObjectWoodBox->setLogicComponentBreakable(
+		mComponentFactory->createLogicComponentBreakable(
+			pGameObjectWoodBox,
+			tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectWoodBox->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters));
+	pGameObjectWoodBox->setRenderComponentPositional(
+		mComponentFactory->createRenderComponentPositional(
+			pGameObjectWoodBox,
+			tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectWoodBox->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectWoodBox->getRenderComponentPositional()));
+	pGameObjectWoodBox->setRenderComponentInitial(
+		mComponentFactory->createRenderComponentInitial(
+			pGameObjectWoodBox->getRenderComponentPositional()));
 
-	if(pGameObjectWoodBox->getLogicComponent()->existsInDreams())
+	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+			mComponentFactory->createRenderComponentEntity(
+				tGameObjectWoodBoxParameters.dreamsName,
+				pGameObjectWoodBox,
+				tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
 	}
-	if(pGameObjectWoodBox->getLogicComponent()->existsInNightmares())
+	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+			mComponentFactory->createRenderComponentEntity(
+				tGameObjectWoodBoxParameters.nightmaresName,
+				pGameObjectWoodBox,
+				tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
 	}
 
 	//Create PhysicsComponent
 	pGameObjectWoodBox->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
-		pGameObjectWoodBox, 
-		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters, 
-		pGameObjectWoodBox->getRenderComponentPositional()));
+			pGameObjectWoodBox, 
+			tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters, 
+			pGameObjectWoodBox->getRenderComponentPositional()));
 
 	pGameObjectWoodBox->changeWorld(gameWorldMgr->getCurrentWorld());
 

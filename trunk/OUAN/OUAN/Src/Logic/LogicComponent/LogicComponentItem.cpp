@@ -3,18 +3,17 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 
-
 using namespace OUAN;
 
 LogicComponentItem::LogicComponentItem(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_ITEM)
 {
-
 	mIsTaken=false;
 }
 
 LogicComponentItem::~LogicComponentItem()
 {
+
 }
 
 void LogicComponentItem::processCollision(GameObjectPtr pGameObject)
@@ -41,13 +40,16 @@ void LogicComponentItem::setIsTaken(bool isTaken)
 	{
 		setState(STATE_ITEM_NOT_TAKEN);
 	}
+
 	mIsTaken=isTaken;
 }
 
 TLogicComponentItemParameters::TLogicComponentItemParameters() : TLogicComponentParameters()
 {
+
 }
 
 TLogicComponentItemParameters::~TLogicComponentItemParameters()
 {
+
 }

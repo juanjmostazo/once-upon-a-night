@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -894,6 +894,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentBreakable.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEnemy.cpp"
 						>
 					</File>
@@ -1654,6 +1658,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentBreakable.h"
 						>
 					</File>
 					<File

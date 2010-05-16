@@ -81,6 +81,7 @@
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
+#include "../Logic/LogicComponent/LogicComponentBreakable.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
 
@@ -2487,18 +2488,18 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
-		tGameObjectWoodBoxParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters=processLogicComponentBreakable(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		if(tGameObjectWoodBoxParameters.tLogicComponentParameters.existsInDreams)
+		if(tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters.existsInDreams)
 		{
 			tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
 				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 
-		if(tGameObjectWoodBoxParameters.tLogicComponentParameters.existsInNightmares)
+		if(tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters.existsInNightmares)
 		{
 			tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
@@ -3306,6 +3307,58 @@ TLogicComponentItemParameters LevelLoader::processLogicComponentItem(TiXmlElemen
 		}
 	}
 	return logicComponentItemParameters;
+}
+
+TLogicComponentBreakableParameters LevelLoader::processLogicComponentBreakable(TiXmlElement *XMLNodeDreams,
+																	 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentBreakableParameters logicComponentBreakableParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentBreakableParameters.existsInDreams=true;
+		logicComponentBreakableParameters.existsInNightmares=true;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		logicComponentBreakableParameters.existsInDreams=true;
+		logicComponentBreakableParameters.existsInNightmares=false;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentBreakableParameters.existsInDreams=false;
+		logicComponentBreakableParameters.existsInNightmares=true;
+	}
+	if (XMLNodeCustomProperties)
+	{
+		try{
+			logicComponentBreakableParameters.scriptFilename=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFilename");
+		}
+		catch(std::string error)
+		{
+			logicComponentBreakableParameters.scriptFilename="";
+		}
+		try{
+			logicComponentBreakableParameters.scriptFunction=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFunction");
+		}
+		catch(std::string error)
+		{
+			logicComponentBreakableParameters.scriptFunction="";
+		}
+		try{
+			logicComponentBreakableParameters.defaultState=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::defaultState");
+		}
+		catch (std::string error)
+		{
+			logicComponentBreakableParameters.defaultState=0;
+		}
+	}
+	return logicComponentBreakableParameters;
 }
 
 TLogicComponentOnyParameters LevelLoader::processLogicComponentOny(TiXmlElement *XMLNodeDreams,

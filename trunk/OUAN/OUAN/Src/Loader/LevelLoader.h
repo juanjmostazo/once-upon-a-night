@@ -136,6 +136,8 @@ namespace OUAN
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentItemParameters processLogicComponentItem(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TLogicComponentBreakableParameters processLogicComponentBreakable(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentEnemyParameters processLogicComponentEnemy(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentUsableParameters processLogicComponentUsable(TiXmlElement *XMLNodeDreams,

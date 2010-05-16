@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentBreakable.h"
 
 namespace OUAN
 {
@@ -26,7 +26,8 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentBreakablePtr mLogicComponentBreakable;
+
 	public:
 		//Constructor
 		GameObjectWoodBox(const std::string& name);
@@ -43,10 +44,10 @@ namespace OUAN
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
 		
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentBreakable(LogicComponentBreakablePtr logicComponentBreakable);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentBreakablePtr getLogicComponentBreakable();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -118,7 +119,7 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentBreakableParameters tLogicComponentBreakableParameters;
 	};
 }
 #endif
