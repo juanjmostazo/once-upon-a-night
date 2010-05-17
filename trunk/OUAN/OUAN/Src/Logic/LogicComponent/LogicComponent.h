@@ -42,7 +42,6 @@ namespace OUAN
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
 	protected:
-
 		int mState;
 		int mLastFrameState;
 	
@@ -61,7 +60,6 @@ namespace OUAN
 
 		bool mExistsInDreams;
 		bool mExistsInNightmares;
-
 	};
 	
 	class TLogicComponentParameters: public TComponentParameters

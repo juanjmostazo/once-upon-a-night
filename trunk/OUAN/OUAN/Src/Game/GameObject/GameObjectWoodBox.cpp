@@ -131,6 +131,7 @@ void GameObjectWoodBox::changeWorld(int world)
 void GameObjectWoodBox::reset()
 {
 	GameObject::reset();
+	mLogicComponentBreakable->setState(STATE_BREAKABLE_NOT_BROKEN);
 }
 
 bool GameObjectWoodBox::hasPositionalComponent() const

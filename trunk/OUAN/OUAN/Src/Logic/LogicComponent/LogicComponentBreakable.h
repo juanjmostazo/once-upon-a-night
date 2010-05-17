@@ -19,6 +19,8 @@ namespace OUAN
 		bool getIsBroken() const;
 		void setIsBroken(bool isBroken);
 
+		void update(double elapsedTime);
+
 	private:
 		bool mIsBroken;
 	};

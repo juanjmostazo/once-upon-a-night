@@ -51,7 +51,6 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	{
 		//TODO
 	}
-	
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->getGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
@@ -60,6 +59,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 			int oldLives=getNumLives();
 			decreaseHP();
 			mHitRecoveryTime=2;
+
 			if (getNumLives()==oldLives)
 			{
 				OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
@@ -68,6 +68,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 		}
 	}
 }
+
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
 	if (animationName.compare(ONY_ANIM_HIT01)==0)
@@ -89,10 +90,16 @@ void LogicComponentOny::increaseHP(int amount)
 	if (getParent()->isEnabled())
 	{
 		if (getHealthPoints()+amount>getInitialHealthPoints())
+		{
 			setHealthPoints(getInitialHealthPoints());
-		else setHealthPoints(getHealthPoints()+amount);
+		}
+		else 
+		{
+			setHealthPoints(getHealthPoints()+amount);
+		}
 	}
 }
+
 void LogicComponentOny::decreaseHP(int amount)
 {	
 	if (getParent()->isEnabled())
@@ -109,6 +116,7 @@ void LogicComponentOny::decreaseHP(int amount)
 		}
 	}
 }
+
 void LogicComponentOny::increaseLives(int amount)
 {
 	setNumLives(getNumLives()+amount);
@@ -128,11 +136,12 @@ void LogicComponentOny::decreaseLives(int amount,bool fallDown)
 	}
 }
 
-
 void LogicComponentOny::loseLife(bool fallDown)
 {
 	if (fallDown)
+	{
 		setHealthPoints(getInitialHealthPoints());
+	}
 	//getParent()->disable();
 
 	OnyDiesEventPtr evt=OnyDiesEventPtr(new OnyDiesEvent(getNumLives(),fallDown));
@@ -152,6 +161,7 @@ int LogicComponentOny::getHealthPoints() const
 {
 	return mHealthPoints;
 }
+
 void LogicComponentOny::setHealthPoints(int healthPoints)
 {
 	mHealthPoints=healthPoints;
@@ -161,6 +171,7 @@ int LogicComponentOny::getNumLives() const
 {
 	return mNumLives;
 }
+
 void LogicComponentOny::setNumLives(int numLives)
 {
 	mNumLives=numLives;
@@ -170,6 +181,7 @@ int LogicComponentOny::getInitialHealthPoints() const
 {
 	return mInitialHealthPoints;
 }
+
 void LogicComponentOny::setInitialHealthPoints(int healthPoints)
 {
 	mInitialHealthPoints=healthPoints;
@@ -179,6 +191,7 @@ int LogicComponentOny::getInitialNumLives() const
 {
 	return mInitialNumLives;
 }
+
 void LogicComponentOny::setInitialNumLives(int numLives)
 {
 	mInitialNumLives=numLives;
@@ -232,10 +245,12 @@ void LogicComponentOny::update(double elapsedTime)
 	}
 	// mEventInducedStateChange=false;
 }
+
 void LogicComponentOny::setNewState(int newState)
 {
 	mNewState=newState;
 }
+
 int LogicComponentOny::getNewState()const
 {
 	return mNewState;
@@ -244,8 +259,10 @@ int LogicComponentOny::getNewState()const
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {
+
 }
 
 TLogicComponentOnyParameters::~TLogicComponentOnyParameters()
 {
+
 }

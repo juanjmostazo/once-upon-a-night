@@ -66,7 +66,6 @@ namespace OUAN
 		//This variable will hold the state changes caused by game or input events
 		//This way, there will only be a state change per frame, as it should be.
 		int mNewState; 
-
 	};
 	
 	class TLogicComponentOnyParameters: public TLogicComponentParameters

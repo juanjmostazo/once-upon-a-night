@@ -85,6 +85,7 @@ void GameObject::disable()
 	Ogre::LogManager::getSingleton().logMessage("Disabling Game Object '" + mName + "'");
 	mEnabled = false;
 }
+
 void GameObject::enable()
 {
 	Ogre::LogManager::getSingleton().logMessage("Enabling Game Object '" + mName + "'");
