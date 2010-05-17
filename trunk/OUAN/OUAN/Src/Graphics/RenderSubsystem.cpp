@@ -328,6 +328,8 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		// Create the light
 		pLight = mSceneManager->createLight(name);
 
+		pLight->setQueryFlags(QUERYFLAGS_NONE);
+
 		// Attach to Scene Manager
 		lightNode=mSceneManager->getSceneNode(name);
 		lightNode->attachObject(pLight);
@@ -675,6 +677,7 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 				tRenderComponentParticleSystemParameters.templateName, 
 				mApp->getRenderSubsystem()->getSceneManager());
 
+			pParticleSystem->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 			// Create Particle System scene node where required
 			if (tRenderComponentParticleSystemParameters.attached)
 			{
@@ -714,6 +717,7 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 		pBillboard->setRotation(Angle(rotation));
 		pBillboard->setTexcoordIndex(texcoordindex);
 		pBillboard->setTexcoordRect(texrect.x,texrect.y,texrect.z,texrect.w);
+
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
@@ -744,6 +748,8 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		billBoardSet->setBillboardType(tRenderComponentBillboardSetParameters.billboardtype);
 		billBoardSet->setBillboardOrigin(tRenderComponentBillboardSetParameters.billboardorigin);
 		billBoardSet->setBillboardRotationType(tRenderComponentBillboardSetParameters.billboardrotation);
+
+		billBoardSet->setQueryFlags(QUERYFLAGS_NONE);
 
 		// Create BillboardSet's Billboards
 		for(unsigned int i=0;i<tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.size();i++)
@@ -776,6 +782,7 @@ RenderComponentDecalPtr RenderSubsystem::createDecal(GameObjectPtr gameObject,TR
     pProjectorNode = mSceneManager->getRootSceneNode()->createChildSceneNode("DecalProjectorNode");
     pProjectorNode->attachObject(pDecalFrustum);
     pProjectorNode->setPosition(0,5,0);
+
 
 	//NOT WORKING YET
 

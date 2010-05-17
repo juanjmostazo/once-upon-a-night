@@ -252,6 +252,8 @@ RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameO
 
 	quadHalo->setMaterial(tRenderComponentQuadHaloParameters.quadMaterial);
 
+	quadHalo->setQueryFlags(OUAN::QUERYFLAGS_NONE);
+
 	pRenderComponentQuadHalo->setQuadHalo(quadHalo);
 
 	pRenderComponentQuadHalo->setSpeedScale(tRenderComponentQuadHaloParameters.speedScale);
@@ -286,6 +288,8 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 			tRenderComponentFractalVolumeParameters.vSlices, 
 			tRenderComponentFractalVolumeParameters.vSize, 
 			tRenderComponentFractalVolumeParameters.texture3D);
+
+	fractalVolume->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 
 	BufferManager::getInstance()->setBuffer(
 		tRenderComponentFractalVolumeParameters.texture3D,
