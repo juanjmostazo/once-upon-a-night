@@ -253,6 +253,11 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 		if (mFlashlightDecal.get())
 		{
 			mFlashlightDecal->changeColour(attackData->rgb);
+			if (mFlashlightDecal->isVisible())
+			{	
+				mFlashlightDecal->hide();
+				mFlashlightDecal->show();
+			}
 		}
 	}
 
