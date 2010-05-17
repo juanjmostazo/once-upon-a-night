@@ -120,8 +120,10 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 
 	if (mLogicComponentOny->getState()==ONY_STATE_IDLE)
+	{
 		mIdleTime+=elapsedSeconds;
-	
+	}
+
 	mRenderComponentEntity->update(elapsedSeconds);
 
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 

@@ -136,7 +136,6 @@ void GameObjectItem1UP::reset()
 		mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 		disable();
 	}
-	
 }
 
 bool GameObjectItem1UP::hasPositionalComponent() const

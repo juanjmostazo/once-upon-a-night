@@ -127,6 +127,7 @@ LogicComponentItemPtr GameObjectHeart::getLogicComponentItem()
 {
 	return mLogicComponentItem;
 }
+
 void GameObjectHeart::reset()
 {
 	GameObject::reset();

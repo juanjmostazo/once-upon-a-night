@@ -25,7 +25,7 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-676.113 1189.42 723.184" orientation="-0.893193 0.414373 0.158711 0.0728784"></OPTION>
+    <OPTION id="1" position="-478.51 182.068 -1251.78" orientation="-0.893193 0.414373 0.158711 0.0728784"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.893244 0.414397 0.15872 0.0728826"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.893193 0.414373 0.158711 0.0728784"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-676.113 1189.42 723.184"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-478.51 182.068 -1251.78"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -12363,7 +12363,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="heart.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.267238 0 0.96363 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="96.4264 69.1082 -538.61"></PROPERTY>
+    <PROPERTY id="position" type="9" value="110 75 -538.61"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="heart"></PROPERTY>

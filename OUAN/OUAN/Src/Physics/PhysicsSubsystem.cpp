@@ -432,7 +432,6 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::ControllerControllerHit& hit)
 {	
-
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectOtherController = getGameObject(hit.mOtherControllerName);
 
@@ -464,7 +463,6 @@ void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String c
 			sendCollision(pGameObjectShape,pGameObjectVolume);													
 			break;
 		default: 
-			
 			break;
 	}	 
 }
