@@ -189,3 +189,11 @@ void ProjectiveDecal::hide()
 	}
 	
 }
+bool ProjectiveDecal::isVisible() const
+{
+	return mVisible;
+}
+void ProjectiveDecal::setVisible(bool isVisible)
+{
+	mVisible=isVisible;
+}

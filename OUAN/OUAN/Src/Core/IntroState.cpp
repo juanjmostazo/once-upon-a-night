@@ -155,7 +155,7 @@ void IntroState::update(long elapsedTime)
 	else
 	{
 		mDelay-=elapsedTime;
-		if (elapsedTime<=0)
+		if (mDelay<=0)
 		{
 			GameStatePtr nextState(new MainMenuState());
 			mApp->getGameStateManager()->changeState(nextState,mApp);		

@@ -164,39 +164,44 @@ namespace OgreUtils
 		WCHAR* filepath = util_convertCStringToWString(moviePath.c_str());    
 		hr = dsdata->pGraph->AddSourceFilter(filepath, L"Source", &srcFilter); 
 		if(FAILED(hr)) 
-			throw ("[DSHOW] Unsupported media type!"); 
+			throw std::exception("[DSHOW] Unsupported media type!"); 
 
 		// Connect the src and grabber 
 		hr = ConnectFilters(dsdata->pGraph, srcFilter, dsdata->pGrabberF); 
 		if(FAILED(hr)) 
-			throw ("[DSHOW] Unsupported media type!"); 
+			throw std::exception("[DSHOW] Unsupported media type!"); 
 
 		IBaseFilter * render;
 		hr = CoCreateInstance(CLSID_NullRenderer, NULL, CLSCTX_INPROC_SERVER, IID_IBaseFilter, (void**)&render);
-		if(FAILED(hr)) throw ("[DSHOW] Unsupported media type!"); 
+		if(FAILED(hr)) 
+			throw std::exception("[DSHOW] Unsupported media type!"); 
 
 		dsdata->pGraph->AddFilter(render, L"Render");
 
 		hr = ConnectFilters(dsdata->pGraph, dsdata->pGrabberF, render); 
-		if(FAILED(hr)) throw ("[DSHOW] Can't create render!"); 
+		if(FAILED(hr)) 
+			throw std::exception("[DSHOW] Can't create render!"); 
 
 		//--------------- End of modification
 
 		// open the file!
 		filepath=util_convertCStringToWString(moviePath.c_str());
 		hr=dsdata->pGraph->RenderFile(filepath, NULL);
-		if (FAILED(hr)) throw("[DSHOW] Error opening video file!");
+		if (FAILED(hr)) 
+			throw std::exception("[DSHOW] Error opening video file!");
 
 		// disable auto show
 		// (wouldn't be needed if we used the null renderer)
 		hr=dsdata->pGraph->QueryInterface(IID_IVideoWindow, (void**) & dsdata->pWindow);
-		if (FAILED(hr)) throw("[DSHOW] Error getting video window interface");
+		if (FAILED(hr)) 
+			throw std::exception("[DSHOW] Error getting video window interface");
 		dsdata->pWindow->put_AutoShow(OAFALSE);
 
 		// get video information
 		AM_MEDIA_TYPE mtt;
 		hr=dsdata->pGrabber->GetConnectedMediaType(&mtt);
-		if (FAILED(hr)) throw("[DSHOW] Error getting connected media type info");
+		if (FAILED(hr)) 
+			throw std::exception("[DSHOW] Error getting connected media type info");
 
 		VIDEOINFOHEADER *vih = (VIDEOINFOHEADER*) mtt.pbFormat;
 		dsdata->videoWidth=vih->bmiHeader.biWidth;

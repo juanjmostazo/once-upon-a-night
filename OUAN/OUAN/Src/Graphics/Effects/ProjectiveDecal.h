@@ -52,6 +52,8 @@ namespace OUAN
 		void show();
 		void hide();
 		void changeColour(int tintColour);
+		bool isVisible() const;
+		void setVisible(bool isVisible);
 	};
 }
 #endif
