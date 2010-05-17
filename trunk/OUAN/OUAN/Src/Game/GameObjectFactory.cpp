@@ -2144,6 +2144,12 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 			tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectWoodBox->getRenderComponentPositional()));
 
+	pGameObjectWoodBox->setPhysicsComponentVolumeBox(
+		mComponentFactory->createPhysicsComponentVolumeBox(
+		pGameObjectWoodBox, 
+		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters, 
+		pGameObjectWoodBox->getRenderComponentPositional()));
+
 	pGameObjectWoodBox->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this

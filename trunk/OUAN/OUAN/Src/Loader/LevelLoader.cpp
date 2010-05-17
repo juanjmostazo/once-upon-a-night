@@ -977,7 +977,6 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentVolumeBox
 		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
-
 	}
 	catch( std::string error )
 	{
@@ -2487,6 +2486,9 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentSimpleBox
 		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters=processLogicComponentBreakable(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
