@@ -152,6 +152,7 @@ bool GameObjectItem1UP::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectItem1UP::getPhysicsComponent() const
 {
 	return getPhysicsComponentVolumeBox();
@@ -192,6 +193,7 @@ void GameObjectItem1UP::updateLogic(double elapsedSeconds)
 void GameObjectItem1UP::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
 	if (mLogicComponentItem->isStateChanged())
 	{
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
@@ -218,10 +220,12 @@ bool GameObjectItem1UP::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 RenderComponentEntityPtr GameObjectItem1UP::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
 

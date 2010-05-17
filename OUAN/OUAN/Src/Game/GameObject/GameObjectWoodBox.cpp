@@ -66,6 +66,16 @@ PhysicsComponentSimpleBoxPtr GameObjectWoodBox::getPhysicsComponentSimpleBox() c
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectWoodBox::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
+{
+	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
+}
+
+PhysicsComponentVolumeBoxPtr GameObjectWoodBox::getPhysicsComponentVolumeBox() const
+{
+	return mPhysicsComponentVolumeBox;
+}
+
 void GameObjectWoodBox::changeWorld(int world)
 {
 	switch(world)
@@ -79,6 +89,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
+			}
 		}
 		else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 		{
@@ -87,6 +101,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
+			}
 		}
 		else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 		{
@@ -94,6 +112,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
+			}
+			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->destroy();
 			}
 		}		
 		break;
@@ -106,6 +128,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
+			}
 		}
 		else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 		{
@@ -114,6 +140,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			{
 				mPhysicsComponentSimpleBox->destroy();
 			}
+			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->destroy();
+			}
 		}
 		else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 		{
@@ -121,6 +151,10 @@ void GameObjectWoodBox::changeWorld(int world)
 			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->create();
+			}
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
 			}
 		}	
 		break;
@@ -192,10 +226,35 @@ void GameObjectWoodBox::processExitTrigger(GameObjectPtr pGameObject)
 
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
-	if (mLogicComponentBreakable.get())
+	GameObject::update(elapsedSeconds);
+
+	if (mLogicComponentBreakable->isStateChanged())
 	{
-		mLogicComponentBreakable->update(elapsedSeconds);
+		if (mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
+		{	
+			if (mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->destroy();
+			}
+			
+			if (mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
+
+			if (mLogicComponentBreakable->existsInDreams())
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			
+			if (mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+			}		
+		}
 	}
+
+	mLogicComponentBreakable->update(elapsedSeconds);
 }
 
 bool GameObjectWoodBox::hasRenderComponentEntity() const
