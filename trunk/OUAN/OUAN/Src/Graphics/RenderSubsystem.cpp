@@ -574,6 +574,7 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 					//create lightmap pass
 				pass = technique->createPass();
 				pass->setSceneBlending(Ogre::SBT_MODULATE);
+				pass->setDepthBias(1);
 				texture_unit = pass->createTextureUnitState();
 				texture_unit->setTextureName(lightmapName);
 				texture_unit->setTextureCoordSet(0);

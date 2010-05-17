@@ -24,7 +24,6 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 	mSceneManager = sceneManager;
 	
 	mFrustum= new Ogre::Frustum();
-	mFrustum->setDebugDisplayEnabled(true);
 
 	// Init projector
 	mProjectorName = decalParams.projectorName;
@@ -132,7 +131,7 @@ void ProjectiveDecal::makeMaterialsReceiveDecal()
 
 				// set our pass to blend the decal over the model's regular texture
 				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-				pass->setDepthBias(1);
+				pass->setDepthBias(1); //Z-fighting fix
 
 				// set the decal to be self illuminated instead of lit by scene lighting
 				pass->setLightingEnabled(false);
