@@ -41,7 +41,7 @@ void IntroState::init(ApplicationPtr app)
 		mMovieTexture->loadMovie(VIDEO_PATH+INTRO_MOVIE);
 
 	}
-	catch (std::string s)
+	catch (std::exception& e)
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage("ERROR loading movie. A fallback image will be shown instead");
 		mMovieTexture=NULL;
