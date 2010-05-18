@@ -705,7 +705,8 @@ namespace OUAN
 
 		const std::string GAME_OBJECT_PARAMETERS_PATH="../../Resources/Levels/GameObjects/";
 		const std::string LEVELS_PATH="../../Resources/Levels/";
-		const std::string CLOUDS_CFG="../../Config/clouds-cfg.xml";
+		const std::string FRACTAL_CLOUDS_CFG="../../Config/clouds_fractal-cfg.xml";
+		const std::string BILLBOARD_CLOUDS_CFG="../../Config/clouds_billboard-cfg.xml";
 
 		///	Type definition for the data structure that'll hold the options:
 		/// an STL map of pairs of strings, representing the key and value, respectively

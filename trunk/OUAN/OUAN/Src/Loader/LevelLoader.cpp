@@ -128,7 +128,8 @@ void LevelLoader::loadLevel(String level)
 	//Process Level's GameObjectClouds
 	if (Ogre::StringUtil::match(level, "Level2"))
 	{
-		processGameObjectClouds();
+		processGameObjectFractalClouds();
+		processGameObjectBillboardClouds();
 	}
 	
 	//Process Level's Trajectories
@@ -153,12 +154,122 @@ void LevelLoader::processGameObjects()
 	}
 }
 
-void LevelLoader::processGameObjectClouds()
+void LevelLoader::processGameObjectBillboardClouds()
+{
+	Configuration config;
+	std::string value;
+
+	if (config.loadFromFile(BILLBOARD_CLOUDS_CFG))
+	{
+		std::string dreamsName = "billboard_cloud_d#";
+		std::string nightmaresName = "billboard_cloud_n#";
+		std::string name = "billboard_cloud#";
+
+		config.getOption("NUM_CLOUDS", value); 
+		double numClouds = atoi(value.c_str());
+
+		config.getOption("GENERATION_RADIO", value); 
+		double generationRadio = atof(value.c_str());
+
+		config.getOption("CENTER_POSITION_X", value); 
+		double centerPositionX = atoi(value.c_str());
+
+		config.getOption("CENTER_POSITION_Y", value); 
+		double centerPositionY = atoi(value.c_str());
+
+		config.getOption("CENTER_POSITION_Z", value); 
+		double centerPositionZ = atoi(value.c_str());
+
+		config.getOption("WIDTH", value); 
+		double width = atoi(value.c_str());
+
+		config.getOption("HEIGHT", value); 
+		double height = atoi(value.c_str());
+
+		///////////////////////
+
+		OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
+
+		tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = DREAMS;
+		tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = true;
+		tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = true;
+		tGameObjectBillboardSetParameters.tLogicComponentParameters.scriptFilename = "";
+		tGameObjectBillboardSetParameters.tLogicComponentParameters.scriptFunction = "";
+
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(centerPositionX, centerPositionY, centerPositionZ);
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
+		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
+
+		///////////////////////
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = "cloud2_d";
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultheight = 1;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultwidth = 1;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.pointrendering = false;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.renderdistance = 0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.sorting = false;
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
+
+		///////////////////////
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.resize(1);
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].colour=ColourValue::White;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=Ogre::Vector2(width, height);
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].position=Ogre::Vector3(0,0,0);
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].rotation=0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
+
+		///////////////////////
+
+		for (int i=0; i<numClouds; i++)
+		{
+			tGameObjectBillboardSetParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
+			tGameObjectBillboardSetParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
+			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
+
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionY;
+
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+
+			try 
+			{
+				mGameWorldManager->addGameObjectBillboardSet(mGameObjectFactory->createGameObjectBillboardSet(
+					tGameObjectBillboardSetParameters,mGameWorldManager));
+
+				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
+					Ogre::StringConverter::toString(tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position));
+			} 
+			catch( std::string error )
+			{
+				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
+			}
+		}
+	} 
+	else 
+	{
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD CFG FILE");
+	}
+}
+
+void LevelLoader::processGameObjectFractalClouds()
 {
 	Configuration config;
 	std::string value;
 	
-	if (config.loadFromFile(CLOUDS_CFG))
+	double expandX = 4;
+
+	if (config.loadFromFile(FRACTAL_CLOUDS_CFG))
 	{
 		std::string dreamsName = "fractal_cloud_d#";
 		std::string nightmaresName = "fractal_cloud_n#";
@@ -167,11 +278,23 @@ void LevelLoader::processGameObjectClouds()
 		config.getOption("NUM_CLOUDS", value); 
 		double numClouds = atoi(value.c_str());
 
-		config.getOption("GENERATION_RADIO", value); 
-		double generationRadio = atof(value.c_str());
+		config.getOption("GENERATION_RADIO_X", value); 
+		double generationRadioX = atof(value.c_str());
 
-		config.getOption("PLANE_POSITION_Y", value); 
-		double planePositionY = atoi(value.c_str());
+		config.getOption("GENERATION_RADIO_Y", value); 
+		double generationRadioY = atof(value.c_str());
+
+		config.getOption("GENERATION_RADIO_Z", value); 
+		double generationRadioZ = atof(value.c_str());
+
+		config.getOption("CENTER_POSITION_X", value); 
+		double centerPositionX = atoi(value.c_str());
+
+		config.getOption("CENTER_POSITION_Y", value); 
+		double centerPositionY = atoi(value.c_str());
+
+		config.getOption("CENTER_POSITION_Z", value); 
+		double centerPositionZ = atoi(value.c_str());
 
 		///////////////////////
 
@@ -184,7 +307,7 @@ void LevelLoader::processGameObjectClouds()
 		tGameObjectCloudParameters.tLogicComponentParameters.scriptFunction = "";
 
 		tGameObjectCloudParameters.tRenderComponentPositionalParameters.parentSceneNodeName = "SceneManager";
-		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(0,planePositionY,0);
+		tGameObjectCloudParameters.tRenderComponentPositionalParameters.position = Ogre::Vector3(centerPositionX, centerPositionY, centerPositionZ);
 		tGameObjectCloudParameters.tRenderComponentPositionalParameters.scale = Ogre::Vector3(1,1,1);
 		tGameObjectCloudParameters.tRenderComponentPositionalParameters.orientation = Ogre::Quaternion(1,0,0,0);
 		tGameObjectCloudParameters.tRenderComponentPositionalParameters.autotracktarget = "None";
@@ -329,29 +452,32 @@ void LevelLoader::processGameObjectClouds()
 			tGameObjectCloudParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
 			tGameObjectCloudParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
 
-			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioX, generationRadioX);
 
-			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.y = centerPositionY + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioY, generationRadioY);
+
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioZ, generationRadioZ);
 
 			try 
 			{
 				mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
 					tGameObjectCloudParameters,mGameWorldManager));
 
-				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING CLOUD " + tGameObjectCloudParameters.name + " in " + 
+				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING FRACTAL CLOUD " + tGameObjectCloudParameters.name + " in " + 
 					Ogre::StringConverter::toString(tGameObjectCloudParameters.tRenderComponentPositionalParameters.position));
 			} 
 			catch( std::string error )
 			{
-				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD " + tGameObjectCloudParameters.name + ": " + error);
+				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing FRACTAL CLOUD " + tGameObjectCloudParameters.name + ": " + error);
 			}
 		}
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing CLOUD CFG FILE");
+		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing FRACTAL CLOUD CFG FILE");
 	}
 }
 

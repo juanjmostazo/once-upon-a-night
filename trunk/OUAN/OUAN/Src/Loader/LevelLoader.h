@@ -29,7 +29,8 @@ namespace OUAN
 
 		//Process GameObjects
 		void processGameObjects();
-		void processGameObjectClouds();
+		void processGameObjectBillboardClouds();
+		void processGameObjectFractalClouds();
 		void processGameObject(XMLGameObject *gameObject);
 
 		//ProcessTrajectories

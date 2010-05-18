@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+    <Option key="NUM_CLOUDS">400</Option>
+    <Option key="GENERATION_RADIO">3000</Option>
+    <Option key="CENTER_POSITION_X">0</Option>
+    <Option key="CENTER_POSITION_Y">-200</Option>
+	<Option key="CENTER_POSITION_Z">0</Option>
+	<Option key="WIDTH">300</Option>
+	<Option key="HEIGHT">300</Option>
+  </Options>
+</Configuration>

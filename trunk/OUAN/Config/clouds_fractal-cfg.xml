@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="NUM_CLOUDS">0</Option>
-    <Option key="GENERATION_RADIO">3500</Option>
-    <Option key="PLANE_POSITION_Y">-300</Option>
+    <Option key="NUM_CLOUDS">20</Option>
+    <Option key="GENERATION_RADIO_X">1200</Option>
+	<Option key="GENERATION_RADIO_Y">100</Option>
+	<Option key="GENERATION_RADIO_Z">200</Option>
+	<Option key="CENTER_POSITION_X">-100</Option>
+    <Option key="CENTER_POSITION_Y">150</Option>
+	<Option key="CENTER_POSITION_Z">-1200</Option>
 	
 	<Option key="DREAMS_TEXTURE_3D">texture3D_64</Option>
 	<Option key="DREAMS_JULIA_GLOBAL_REAL">0.5</Option>
@@ -12,15 +16,15 @@
 	<Option key="DREAMS_V_SCALE">2.5</Option>
 	<Option key="DREAMS_V_CUT">29.0</Option>
 	<Option key="DREAMS_V_SLICES">32</Option>
-	<Option key="DREAMS_V_SIZE">1000</Option>
+	<Option key="DREAMS_V_SIZE">400</Option>
 	<Option key="DREAMS_OFFSET_X">0</Option>
 	<Option key="DREAMS_OFFSET_Y">0</Option>
 	<Option key="DREAMS_OFFSET_Z">0</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_X">0</Option>
-	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_Y">180</Option>
+	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_Y">45</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_Z">180</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_X">0</Option>
-	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_Y">0</Option>
+	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_Y">15</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_Z">0</Option>
 	<Option key="DREAMS_COLOR_R">-1</Option>
 	<Option key="DREAMS_COLOR_G">-1</Option>
@@ -34,15 +38,15 @@
 	<Option key="NIGHTMARES_V_SCALE">2.5</Option>
 	<Option key="NIGHTMARES_V_CUT">29.0</Option>
 	<Option key="NIGHTMARES_V_SLICES">32</Option>
-	<Option key="NIGHTMARES_V_SIZE">1000</Option>
+	<Option key="NIGHTMARES_V_SIZE">400</Option>
 	<Option key="NIGHTMARES_OFFSET_X">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Y">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Z">0</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_X">0</Option>
-	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_Y">0</Option>
+	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_Y">225</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_Z">0</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_X">0</Option>
-	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Y">0</Option>
+	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Y">15</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Z">0</Option>
 	<Option key="NIGHTMARES_COLOR_R">-1</Option>
 	<Option key="NIGHTMARES_COLOR_G">-1</Option>
