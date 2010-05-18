@@ -189,7 +189,6 @@ void HUDInGame::update(double elapsedSeconds, int healthPoints, int numLives)
 		{
 			changeToWorld(mWorld,1);
 			changeWorldFinished(mWorld);
-			changeWorldStarted(mWorld);
 			mIsChangingWorld=false;
 		}
 		else
@@ -238,6 +237,7 @@ void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	mWorld=evt->getNewWorld();
 	mChangeWorldTotalTime=evt->time;
+
 	if (evt->fast)
 	{
 		activateChangeWorldFast();
@@ -261,10 +261,11 @@ void HUDInGame::activateChangeWorld()
 	}
 	else
 	{
+		changeWorldStarted(mWorld);
 		mChangeWorldElapsedTime=0;
 		mIsChangingWorld=true;
 	}
-	changeWorldStarted(mWorld);
+
 }
 
 void HUDInGame::changeWorldFinished(int world)

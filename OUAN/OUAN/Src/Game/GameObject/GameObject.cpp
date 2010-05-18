@@ -63,8 +63,8 @@ void GameObject::activateChangeWorld()
 	{
 		mChangeWorldElapsedTime=0;
 		mIsChangingWorld=true;
+		changeWorldStarted(mGameWorldManager->getWorld());
 	}
-	changeWorldStarted(mGameWorldManager->getWorld());
 }
 
 void GameObject::changeWorldFinished(int world)
@@ -138,7 +138,6 @@ void GameObject::update(double elapsedSeconds)
 		{
 			changeToWorld(mGameWorldManager->getWorld(),1);
 			changeWorldFinished(mGameWorldManager->getWorld());
-			changeWorldStarted(mGameWorldManager->getWorld());
 			mIsChangingWorld=false;
 		}
 		else
