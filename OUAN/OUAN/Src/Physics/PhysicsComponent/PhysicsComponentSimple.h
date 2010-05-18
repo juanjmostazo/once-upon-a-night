@@ -20,6 +20,8 @@ namespace OUAN
 		OGRE3DKinematicBody* getNxOgreKinematicBody();
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
+		NxOgre::Vec3 getNxOgrePosition();
+
 	protected:
 		OGRE3DBody* mNxOgreBody;
 		OGRE3DKinematicBody* mNxOgreKinematicBody;

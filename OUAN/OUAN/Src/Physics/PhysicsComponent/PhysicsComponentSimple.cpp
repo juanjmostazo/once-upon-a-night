@@ -53,6 +53,18 @@ void PhysicsComponentSimple::setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgre
 	mNxOgreKinematicBody=pNxOgreKinematicBody;
 }
 
+NxOgre::Vec3 PhysicsComponentSimple::getNxOgrePosition()
+{
+	if (getMass() > 0)
+	{
+		return mNxOgreBody->getGlobalPosition();
+	}
+	else
+	{
+		return mNxOgreKinematicBody->getGlobalPosition();
+	}
+}
+
 TPhysicsComponentSimpleParameters::TPhysicsComponentSimpleParameters() : TPhysicsComponentParameters()
 {
 
