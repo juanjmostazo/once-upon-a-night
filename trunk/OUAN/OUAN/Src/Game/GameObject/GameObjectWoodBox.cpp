@@ -198,6 +198,28 @@ void GameObjectWoodBox::reset()
 {
 	GameObject::reset();
 	mLogicComponentBreakable->setState(STATE_BREAKABLE_NOT_BROKEN);
+
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
+	}
+
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
+		mPhysicsComponentVolumeBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentVolumeBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
+	}
+
+	if (mLogicComponentBreakable->existsInDreams())
+	{
+		mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_IDLE01);
+	}
+
+	if (mLogicComponentBreakable->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_IDLE01);
+	}
 }
 
 bool GameObjectWoodBox::hasPositionalComponent() const
@@ -256,10 +278,18 @@ void GameObjectWoodBox::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectWoodBox::updateLogic(double elapsedSeconds)
+void GameObjectWoodBox::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
+	if (mPhysicsComponentVolumeBox->isInUse() && mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentVolumeBox->setPosition(mPhysicsComponentSimpleBox->getNxOgrePosition());
+	}
+}
+
+void GameObjectWoodBox::updateLogic(double elapsedSeconds)
+{
 	if (mLogicComponentBreakable->isStateChanged())
 	{
 		if (mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
@@ -276,14 +306,14 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 
 			if (mLogicComponentBreakable->existsInDreams())
 			{
-				//mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_BREAK01);
-				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_BREAK01);
+				//mRenderComponentEntityDreams->setVisible(false);
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
-				//mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_BREAK01);
-				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_BREAK01);
+				//mRenderComponentEntityNightmares->setVisible(false);
 			}		
 		}
 	}
