@@ -78,6 +78,8 @@ namespace OUAN
 		class GameWorldManager;
 		class Component;
 
+		const std::string GAMEWORLDMANAGER_CFG="../../Config/gameworldmanager-cfg.xml";
+
 		const int DREAMS=0;
 		const int NIGHTMARES=1;
 		const int BOTH_WORLDS=2;

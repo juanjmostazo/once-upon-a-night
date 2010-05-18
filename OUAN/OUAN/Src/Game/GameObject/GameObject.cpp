@@ -57,7 +57,7 @@ void GameObject::activateChangeWorld()
 {
 	if(mIsChangingWorld)
 	{
-		mChangeWorldElapsedTime=mGameWorldManager->getChangeWorldTime()-mChangeWorldElapsedTime;
+		mChangeWorldElapsedTime=mGameWorldManager->getChangeWorldGameObjectTime()-mChangeWorldElapsedTime;
 	}
 	else
 	{
@@ -134,7 +134,7 @@ void GameObject::update(double elapsedSeconds)
 	if(mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime+=elapsedSeconds;
-		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldTime())
+		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldGameObjectTime())
 		{
 			changeToWorld(mGameWorldManager->getWorld(),1);
 			changeWorldFinished(mGameWorldManager->getWorld());
@@ -142,7 +142,7 @@ void GameObject::update(double elapsedSeconds)
 		}
 		else
 		{
-			changeToWorld(mGameWorldManager->getWorld(),mChangeWorldElapsedTime/mGameWorldManager->getChangeWorldTime());
+			changeToWorld(mGameWorldManager->getWorld(),mChangeWorldElapsedTime/mGameWorldManager->getChangeWorldGameObjectTime());
 		}
 	}
 }

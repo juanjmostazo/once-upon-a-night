@@ -85,7 +85,6 @@ GameWorldManager::GameWorldManager()
 	mGodMode=false;
 	ParticleTemplates::getInstance()->loadConfig();
 
-	mChangeWorldTime=4;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -96,6 +95,21 @@ GameWorldManager::~GameWorldManager()
 void GameWorldManager::update(double elapsedSeconds)
 {
 	TGameObjectContainerIterator it;
+
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime+=elapsedSeconds;
+		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+		{
+			changeToWorld(mWorld,1);
+			changeWorldFinished(mWorld);
+			mIsChangingWorld=false;
+		}
+		else
+		{
+			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+		}
+	}
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
@@ -410,6 +424,29 @@ void GameWorldManager::unloadLevel()
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD FINISHED]");
 }
 
+bool GameWorldManager::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	if (config.loadFromFile(GAMEWORLDMANAGER_CFG))
+	{
+		config.getOption("CHANGE_WORLD_TIME", value); 
+		mChangeWorldTotalTime = atof(value.c_str());
+		mChangeWorldGameObjectTime = mChangeWorldTotalTime/2;
+
+		success = true;
+	} 
+	else 
+	{
+		Ogre::LogManager::getSingleton().logMessage(CAMERA_CFG + " COULD NOT BE LOADED!");
+		success = false;
+	}
+
+	return success;
+}
+
 /// init object
 void GameWorldManager::init(ApplicationPtr app)
 {
@@ -424,6 +461,8 @@ void GameWorldManager::init(ApplicationPtr app)
 	mEventProcessor.reset(new EventProcessor());
 	mEventProcessor->init(mThis);
 	//
+
+	loadConfig();
 
 	//landscape.reset() | landscape->initBlank() | ...
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
@@ -935,8 +974,9 @@ void GameWorldManager::setWorld(int newWorld)
 {
 	world=newWorld;
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	activateChangeWorldFast();
 	evt->fast=true;
-	evt->time=mChangeWorldTime;
+	evt->time=mChangeWorldTotalTime;
 	addEvent(evt);
 }
 
@@ -951,9 +991,9 @@ int GameWorldManager::getWorld()
 	return world;
 }
 
-double GameWorldManager::getChangeWorldTime() const
+double GameWorldManager::getChangeWorldGameObjectTime() const
 {
-	return mChangeWorldTime;
+	return mChangeWorldGameObjectTime;
 }
 
 void GameWorldManager::changeWorld()
@@ -968,9 +1008,68 @@ void GameWorldManager::changeWorld()
 	}
 
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	activateChangeWorld();
 	evt->fast=false;
-	evt->time=mChangeWorldTime;
+	evt->time=mChangeWorldTotalTime;
 	addEvent(evt);
+}
+
+void GameWorldManager::activateChangeWorldFast()
+{
+	changeWorldFinished(mWorld);
+}
+
+void GameWorldManager::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+		changeWorldStarted(mWorld);
+	}
+}
+
+void GameWorldManager::changeWorldFinished(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameWorldManager::changeWorldStarted(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameWorldManager::changeToWorld(int world, double perc)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 }
 
 void GameWorldManager::win()

@@ -129,6 +129,8 @@ void GameObjectPortal::changeToWorld(int world, double perc)
 	default:
 		break;
 	}
+
+	displayText("CHANGING WORLD "+Ogre::StringConverter::toString(Ogre::Real(perc)));
 }
 
 void GameObjectPortal::reset()
