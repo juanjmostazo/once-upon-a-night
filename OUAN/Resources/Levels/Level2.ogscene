@@ -25,7 +25,7 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="1073.55 654.418 353.464" orientation="-0.790475 0.217044 -0.552089 -0.152442"></OPTION>
+    <OPTION id="1" position="473.072 188.7 -286.701" orientation="-0.298304 0.0120837 -0.953518 -0.0408828"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.790476 0.217044 -0.55209 -0.152442"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.298304 0.0120837 -0.953518 -0.0408828"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="1073.55 654.418 353.464"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="473.072 188.7 -286.701"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1653,6 +1653,25 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="35859248" name="woodbox_d#133" typename="Entity Object" parentnode="Items">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="430 135 -170"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="550492864" name="terrain_n#alameda" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1721,17 +1740,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="869716480" name="woodbox_d#22" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="869716480" name="woodbox_d#22" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.716302 0 0.69779 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-55.1102 489.451 -1678.52"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2086,12 +2105,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-382.228 218.445 410.265"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2654,12 +2673,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.74803 -0.0234485 0.66321 0.00734481"></PROPERTY>
     <PROPERTY id="position" type="9" value="-445.949 231.078 159.146"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2868,12 +2887,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-423.117 231.928 134.286"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3236,17 +3255,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="960142848" name="woodbox_d#100" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="960142848" name="woodbox_d#100" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-49.7096 493.559 -1678.51"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4406,12 +4425,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.156434 0 0.987688 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-388.289 217.69 431.967"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5142,12 +5161,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="752.186 222.158 2.21025"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6702,12 +6721,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-378.449 217.416 422.767"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7119,6 +7138,25 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="461134688" name="woodbox_n#133" typename="Entity Object" parentnode="Items">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="430 135 -170"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="799127168" name="changeworld_n#2" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -7494,12 +7532,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-439.654 241.275 136.249"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8947,12 +8985,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-420.063 231.599 164.741"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9861,12 +9899,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99437 -0.102608 -0.019945 0.0173568"></PROPERTY>
     <PROPERTY id="position" type="9" value="90.3744 73.1136 -528.127"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11207,12 +11245,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-494.162 237.957 152.395"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13461,12 +13499,12 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.27144 0 0.962455 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-467.787 237.226 141.557"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13733,17 +13771,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="191228992" name="woodbox_d#45" typename="Entity Object" parentnode="SceneManager">
+  <OBJECT object_id="191228992" name="woodbox_d#45" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.774393 0 0.632705 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-59.4146 488.391 -1673.66"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="box_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="box2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
