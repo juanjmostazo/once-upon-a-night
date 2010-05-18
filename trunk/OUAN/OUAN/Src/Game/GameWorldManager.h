@@ -75,6 +75,8 @@ namespace OUAN
 		/// @param pointer to the application object
 		void init(ApplicationPtr app);
 
+		bool loadConfig();
+
 		/// Free resources
 		void cleanUp();
 
@@ -134,7 +136,7 @@ namespace OUAN
 		/// returns NIGHTMARES or DREAMS depending on current world state
 		int getWorld();
 		static int getMyInstanceWorld();
-		double getChangeWorldTime() const;
+		double getChangeWorldGameObjectTime() const;
 
 		/// gets current Loaded Level
 		std::string getCurrentLevel() const;
@@ -308,7 +310,19 @@ namespace OUAN
 
 		// Current world (DREAMS or NIGHTMARES)
 		int world;
-		double mChangeWorldTime;
+		double mChangeWorldGameObjectTime;
+		//Changeworld functions and variables
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
+		double mChangeWorldTotalTime;
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		int mWorld;
+
 
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;
