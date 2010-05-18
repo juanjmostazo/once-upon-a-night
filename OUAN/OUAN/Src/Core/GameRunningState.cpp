@@ -390,7 +390,7 @@ void GameRunningState::update(long elapsedTime)
 	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 	{
 		LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
-		mHUD->update(elapsedTime,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+		mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives());
 		if (mHUD->isSelectedModeChanged())
 		{
 			TWeaponMode newWeaponMode = convertRouletteValue(mHUD->getCurrentState());
