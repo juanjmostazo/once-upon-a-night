@@ -348,7 +348,6 @@ void GameRunningState::update(long elapsedTime)
 		{
 			changeToWorld(mWorld,1);
 			changeWorldFinished(mWorld);
-			changeWorldStarted(mWorld);
 			mIsChangingWorld=false;
 		}
 		else
@@ -565,6 +564,7 @@ void GameRunningState::changeMusic(int world)
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	mWorld=evt->getNewWorld();
+
 	mChangeWorldTotalTime=evt->time;
 	if (evt->fast)
 	{
@@ -591,8 +591,8 @@ void GameRunningState::activateChangeWorld()
 	{
 		mChangeWorldElapsedTime=0;
 		mIsChangingWorld=true;
+		changeWorldStarted(mWorld);
 	}
-	changeWorldStarted(mWorld);
 }
 
 void GameRunningState::changeWorldFinished(int world)
