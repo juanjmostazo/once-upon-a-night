@@ -43,7 +43,8 @@ void IntroState::init(ApplicationPtr app)
 	}
 	catch (std::exception& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage("ERROR loading movie. A fallback image will be shown instead");
+		std::string ex(e.what());
+		Ogre::LogManager::getSingletonPtr()->logMessage("ERROR loading movie. A fallback image will be shown instead: " + ex);
 		mMovieTexture=NULL;
 		mDelay=IMAGE_DELAY;
 	}
