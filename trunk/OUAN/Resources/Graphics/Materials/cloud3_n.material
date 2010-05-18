@@ -1,0 +1,15 @@
+material cloud3_n
+{
+	technique
+	{
+		pass
+		{
+		      scene_blend alpha_blend
+		      depth_write off
+			texture_unit
+			{
+				texture cloud3_n.dds
+			}
+		}
+	}
+}
