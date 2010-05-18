@@ -85,13 +85,24 @@ namespace OUAN
 
 		bool mSelectedModeChanged;
 
+		//Changeworld functions and variables
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
+		double mChangeWorldTotalTime;
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		int mWorld;
 
 	public:
 		HUDInGame();
 		~HUDInGame();
 		void init(int healthPoints, int numLives, int world);
 		void destroy();
-		void update(long elapsedTime,int healthPoints, int numLives);
+		void update(double elapsedSeconds,int healthPoints, int numLives);
 
 		void spinRoulette(bool forward);
 

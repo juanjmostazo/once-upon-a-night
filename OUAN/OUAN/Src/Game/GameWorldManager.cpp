@@ -936,6 +936,7 @@ void GameWorldManager::setWorld(int newWorld)
 	world=newWorld;
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	evt->fast=true;
+	evt->time=mChangeWorldTime;
 	addEvent(evt);
 }
 
@@ -968,6 +969,7 @@ void GameWorldManager::changeWorld()
 
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
 	evt->fast=false;
+	evt->time=mChangeWorldTime;
 	addEvent(evt);
 }
 

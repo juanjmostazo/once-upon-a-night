@@ -48,6 +48,18 @@ namespace OUAN
 
 		std::map<int,TMusicTrackInfo> mMusicChannels;
 
+		//Changeworld functions and variables
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
+		double mChangeWorldTotalTime;
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		int mWorld;
+
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);

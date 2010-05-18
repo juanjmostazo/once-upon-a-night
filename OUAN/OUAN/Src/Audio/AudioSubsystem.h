@@ -1,8 +1,9 @@
 #ifndef AUDIOSUBSYSTEMH_H
 #define AUDIOSUBSYSTEMH_H
 #include "AudioDefs.h"
-#include "../Application.h"
-
+#include "../OUAN.h"
+#include "../Event/Event.h"
+#include "../Event/EventManager.h"
 namespace OUAN
 {
 	const std::string AUDIO_RESOURCE_PATH="../../Resources/Music/";
@@ -72,7 +73,7 @@ namespace OUAN
 		virtual bool setPaused(bool paused);
 		virtual bool play (int channelIndex);
 		virtual bool stop (int channelIndex);
-		virtual void update(double elapsedTime);
+		virtual void update(double elapsedSeconds);
 		virtual double getPitch();
 		virtual double getVolume();
 
@@ -149,6 +150,8 @@ namespace OUAN
 		virtual bool _playSound(const std::string& id, ChannelGroupPtr outChannel, int& channelIndex);
 
 		ApplicationPtr mApp;
+
+
 	};
 }
 #endif
