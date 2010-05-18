@@ -276,11 +276,13 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 
 			if (mLogicComponentBreakable->existsInDreams())
 			{
+				//mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_BREAK01);
 				mRenderComponentEntityDreams->setVisible(false);
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
+				//mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_BREAK01);
 				mRenderComponentEntityNightmares->setVisible(false);
 			}		
 		}

@@ -11,6 +11,10 @@
 
 namespace OUAN
 {
+	//Animation states
+	const std::string WOODBOX_ANIM_IDLE01="idle_01";
+	const std::string WOODBOX_ANIM_BREAK01="break_01";
+
 	/// Class to hold WoodBox information
 	class GameObjectWoodBox : public GameObject, public boost::enable_shared_from_this<GameObjectWoodBox>
 	{
