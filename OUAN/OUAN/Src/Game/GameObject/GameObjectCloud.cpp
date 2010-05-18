@@ -58,8 +58,10 @@ RenderComponentInitialPtr GameObjectCloud::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectCloud::changeWorld(int world)
+void GameObjectCloud::changeWorldFinished(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 		case DREAMS:
@@ -115,6 +117,36 @@ void GameObjectCloud::changeWorld(int world)
 	}
 }
 
+void GameObjectCloud::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectCloud::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
 void GameObjectCloud::reset()
 {
 	GameObject::reset();
@@ -149,14 +181,14 @@ void GameObjectCloud::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 
-	if (getGameWorldManager()->getCurrentWorld() == DREAMS)
+	if (getGameWorldManager()->getWorld() == DREAMS)
 	{
 		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
 		{
 			mRenderComponentFractalVolumeSetDreams[i]->update(elapsedSeconds);
 		}
 	} 
-	else if (getGameWorldManager()->getCurrentWorld() == NIGHTMARES)
+	else if (getGameWorldManager()->getWorld() == NIGHTMARES)
 	{
 		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
 		{

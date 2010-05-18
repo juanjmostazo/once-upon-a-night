@@ -132,7 +132,9 @@ namespace OUAN
 		void setWorld (int newWorld);
 
 		/// returns NIGHTMARES or DREAMS depending on current world state
-		int getCurrentWorld() const;
+		int getWorld();
+		static int getMyInstanceWorld();
+		double getChangeWorldTime() const;
 
 		/// gets current Loaded Level
 		std::string getCurrentLevel() const;
@@ -172,8 +174,6 @@ namespace OUAN
 		/// @return distance between Ony and the object with its name equal to the passed one
 		static double getPlayerDistance(const std::string& obj);
 
-		/// Return the current world
-		static int getWorld();
 
 		static void victory();
 
@@ -308,6 +308,7 @@ namespace OUAN
 
 		// Current world (DREAMS or NIGHTMARES)
 		int world;
+		double mChangeWorldTime;
 
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;

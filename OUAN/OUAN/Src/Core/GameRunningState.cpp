@@ -51,7 +51,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getLogicSubsystem()->loadScripts();
 
 	//...and initialise the active weapon according to the current world
-	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getCurrentWorld());
+	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
 
 	mApp->mKeyBuffer=-1;
 	
@@ -69,8 +69,8 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mMusicChannels.clear();
 	loadMusic();
-	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getCurrentWorld()].id,
-		mMusicChannels[mApp->getGameWorldManager()->getCurrentWorld()].channelId,
+	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getWorld()].id,
+		mMusicChannels[mApp->getGameWorldManager()->getWorld()].channelId,
 		true);
 	
 	if (mApp->getGameWorldManager()->getEventManager().get())
@@ -173,11 +173,11 @@ void GameRunningState::handleEvents()
 	}
 	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying())
 	{
-		if (mApp->getGameWorldManager()->getCurrentWorld()==NIGHTMARES || mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
+		if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
 		{
 			mApp->getGameWorldManager()->useWeapon();
 			useWeaponKeyPressed=true;
-			if (mApp->getGameWorldManager()->getCurrentWorld()==DREAMS)
+			if (mApp->getGameWorldManager()->getWorld()==DREAMS)
 				mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
@@ -287,7 +287,7 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleDebugTrajectory())
 		{
 			Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
-			mApp->getTrajectoryManager()->toggleDebugMode(mApp->getGameWorldManager()->getCurrentWorld());
+			mApp->getTrajectoryManager()->toggleDebugMode(mApp->getGameWorldManager()->getWorld());
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeCamera())

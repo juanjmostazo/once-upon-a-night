@@ -44,18 +44,48 @@ RenderComponentInitialPtr GameObjectLight::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectLight::changeWorld(int world)
+void GameObjectLight::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
 	switch(world)
 	{
-		case DREAMS:
-			break;
-		case NIGHTMARES:
-			break;
-		default:
-			break;
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectLight::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectLight::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

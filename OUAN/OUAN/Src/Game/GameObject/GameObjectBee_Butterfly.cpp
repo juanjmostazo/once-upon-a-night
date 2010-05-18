@@ -123,7 +123,7 @@ bool GameObjectBee_Butterfly::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectBee_Butterfly::getPhysicsComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)
+	return (mGameWorldManager->getWorld()==DREAMS)
 		?getPhysicsComponentCharacterDreams()
 		:getPhysicsComponentCharacterNightmares();
 }
@@ -152,13 +152,59 @@ void GameObjectBee_Butterfly::updateLogic(double elapsedSeconds)
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
+
+void GameObjectBee_Butterfly::changeWorldFinished(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectBee_Butterfly::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectBee_Butterfly::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
 bool GameObjectBee_Butterfly::hasRenderComponentEntity() const
 {
 	return true;
 }
 RenderComponentEntityPtr GameObjectBee_Butterfly::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectBee_ButterflyParameters::TGameObjectBee_ButterflyParameters() : TGameObjectParameters()

@@ -90,8 +90,10 @@ PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeC
 	return mPhysicsComponentVolumeConvex;
 }
 
-void GameObjectFlashLight::changeWorld(int world)
+void GameObjectFlashLight::changeWorldFinished(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:
@@ -117,6 +119,7 @@ void GameObjectFlashLight::changeWorld(int world)
 		mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),mGameWorldManager);
 		break;
 	}
+
 	//The flashlight's operation mode concerning a world change is managed
 	//by Ony (i.e, on a change to dreams Ony changes his active weapon to the pillow,
 	// and to the flashlight on a change to nightmares)
@@ -143,6 +146,36 @@ void GameObjectFlashLight::changeWorld(int world)
 	//default:
 	//	break;
 	//}
+}
+
+void GameObjectFlashLight::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectFlashLight::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 }
 
 void GameObjectFlashLight::reset()

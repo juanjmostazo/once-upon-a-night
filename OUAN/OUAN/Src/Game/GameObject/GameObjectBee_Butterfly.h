@@ -79,6 +79,10 @@ namespace OUAN
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+
 		/// Reset object
 		virtual void reset();
 

@@ -74,8 +74,6 @@ void GameObjectCryKing::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -89,26 +87,48 @@ void GameObjectCryKing::reset()
 	}
 }
 
-void GameObjectCryKing::changeWorld(int world)
+void GameObjectCryKing::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	switch(world)
 	{
-		mPhysicsComponentCharacter->create();
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
+}
+
+void GameObjectCryKing::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
 
 	switch(world)
 	{
-		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-			break;
-		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
-			break;
-		default:break;
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectCryKing::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -183,7 +203,7 @@ bool GameObjectCryKing::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()

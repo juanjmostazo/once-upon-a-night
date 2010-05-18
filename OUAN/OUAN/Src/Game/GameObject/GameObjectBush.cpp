@@ -54,8 +54,10 @@ RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectBush::changeWorld(int world)
+void GameObjectBush::changeWorldFinished(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 		case DREAMS:
@@ -90,6 +92,36 @@ void GameObjectBush::changeWorld(int world)
 			break;
 		default:
 			break;
+	}
+}
+
+void GameObjectBush::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectBush::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -159,7 +191,7 @@ bool GameObjectBush::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectBush::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

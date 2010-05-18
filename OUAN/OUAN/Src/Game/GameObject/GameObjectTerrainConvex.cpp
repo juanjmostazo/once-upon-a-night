@@ -65,7 +65,7 @@ PhysicsComponentComplexConvexPtr GameObjectTerrainConvex::getPhysicsComponentCom
 	return mPhysicsComponentComplexConvex;
 }
 
-void GameObjectTerrainConvex::changeWorld(int world)
+void GameObjectTerrainConvex::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -126,6 +126,36 @@ void GameObjectTerrainConvex::changeWorld(int world)
 			}	
 			break;
 		default:break;
+	}
+}
+
+void GameObjectTerrainConvex::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTerrainConvex::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -202,7 +232,7 @@ bool GameObjectTerrainConvex::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTerrainConvex::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()

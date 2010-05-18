@@ -79,7 +79,7 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
 
@@ -91,33 +91,9 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 	entityToUpdate->update(elapsedSeconds/2);
 }
 
-void GameObjectTentetieso::reset()
-{
-	GameObject::reset();
-
-	changeWorld(DREAMS);
-
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->reset();
-		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-	}		
-	else
-	{
-		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
-	}
-}
-
-void GameObjectTentetieso::changeWorld(int world)
+void GameObjectTentetieso::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
 
 	switch(world)
 	{
@@ -132,6 +108,53 @@ void GameObjectTentetieso::changeWorld(int world)
 			mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 			break;
 		default:break;
+	}
+}
+
+void GameObjectTentetieso::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTentetieso::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTentetieso::reset()
+{
+	GameObject::reset();
+
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->reset();
+		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+	}		
+	else
+	{
+		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 	}
 }
 
@@ -192,7 +215,7 @@ bool GameObjectTentetieso::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTentetieso::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()

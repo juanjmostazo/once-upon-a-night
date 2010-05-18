@@ -24,7 +24,7 @@ RenderComponentViewportPtr GameObjectViewport::getRenderComponentViewport() cons
 	return mRenderComponentViewport;
 }
 
-void GameObjectViewport::changeWorld(int world)
+void GameObjectViewport::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -39,6 +39,35 @@ void GameObjectViewport::changeWorld(int world)
 	}
 }
 
+void GameObjectViewport::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectViewport::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
 
 void GameObjectViewport::setEffect(std::string effectName, bool activated)
 {

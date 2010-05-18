@@ -67,24 +67,12 @@ PhysicsComponentVolumeBoxPtr GameObjectStoryBook::getPhysicsComponentVolumeBox()
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectStoryBook::changeWorld(int world)
+void GameObjectStoryBook::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
+	switch(world)
 	{
-		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-		{
-			mPhysicsComponentVolumeBox->create();
-		}
-
-		mRenderComponentEntity->setVisible(true);
-		return;
-	}
-	else
-	{
-		switch(world)
-		{
 		case DREAMS:
 
 			if(mLogicComponentItem->existsInDreams())
@@ -125,7 +113,36 @@ void GameObjectStoryBook::changeWorld(int world)
 			break;
 		default:
 			break;
-		}
+	}
+}
+
+void GameObjectStoryBook::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectStoryBook::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -133,7 +150,6 @@ void GameObjectStoryBook::reset()
 {
 	GameObject::reset();
 	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
-	changeWorld(DREAMS);
 }
 
 bool GameObjectStoryBook::hasPositionalComponent() const

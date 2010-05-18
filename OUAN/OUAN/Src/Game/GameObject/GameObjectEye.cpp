@@ -86,8 +86,6 @@ void GameObjectEye::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -101,7 +99,7 @@ void GameObjectEye::reset()
 	}
 }
 
-void GameObjectEye::changeWorld(int world)
+void GameObjectEye::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -122,6 +120,36 @@ void GameObjectEye::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+}
+
+void GameObjectEye::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectEye::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

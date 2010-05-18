@@ -26,7 +26,7 @@ void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 	{
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
 		logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
-		int world=getParent()->getGameWorldManager()->getCurrentWorld();
+		int world=getParent()->getGameWorldManager()->getWorld();
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);	
 		
 		if (world==DREAMS)
@@ -57,7 +57,7 @@ void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
 		logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);
 
-		int world=getParent()->getGameWorldManager()->getCurrentWorld();
+		int world=getParent()->getGameWorldManager()->getWorld();
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);	
 		if (DREAMS)
 		{			

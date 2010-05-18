@@ -24,7 +24,7 @@ void GameObjectCamera::setRenderComponentCamera(RenderComponentCameraPtr pRender
 	mRenderComponentCamera=pRenderComponentCamera;
 }
 
-void GameObjectCamera::changeWorld(int world)
+void GameObjectCamera::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -38,6 +38,38 @@ void GameObjectCamera::changeWorld(int world)
 		break;
 	}
 }
+
+void GameObjectCamera::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectCamera::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectCameraParameters::TGameObjectCameraParameters() : TGameObjectParameters()

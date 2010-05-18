@@ -164,8 +164,6 @@ void GameObjectOny::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -186,18 +184,52 @@ void GameObjectOny::reset()
 	mRenderComponentQuadHalo->setVisible(false);
 }
 
-void GameObjectOny::changeWorld(int world)
+void GameObjectOny::changeWorldFinished(int world)
 {
-	if (isEnabled())
-	{
-		if(mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
+	if (!isEnabled()) return;
 
-		mWeaponComponent->changeActiveWeapon((world==DREAMS)?mDreamsWeapon:mNightmaresWeapon);
-		mWeaponComponent->updateAttackType();
-		mWeaponComponent->switchOff();
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+
+	mWeaponComponent->changeActiveWeapon((world==DREAMS)?mDreamsWeapon:mNightmaresWeapon);
+	mWeaponComponent->updateAttackType();
+	mWeaponComponent->switchOff();
+}
+
+void GameObjectOny::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectOny::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

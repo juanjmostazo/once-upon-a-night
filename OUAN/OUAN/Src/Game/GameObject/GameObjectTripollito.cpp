@@ -86,8 +86,6 @@ void GameObjectTripollito::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -101,14 +99,9 @@ void GameObjectTripollito::reset()
 	}
 }
 
-void GameObjectTripollito::changeWorld(int world)
+void GameObjectTripollito::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
 
 	switch(world)
 	{
@@ -121,6 +114,36 @@ void GameObjectTripollito::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+}
+
+void GameObjectTripollito::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTripollito::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -181,7 +204,7 @@ bool GameObjectTripollito::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTripollito::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripollitoParameters::TGameObjectTripollitoParameters() : TGameObjectParameters()

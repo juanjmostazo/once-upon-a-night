@@ -54,7 +54,7 @@ void LogicSubsystem::registerModules()
 		def("log", (void (*) (const std::string&)) &Utils::scriptLog),
 		def("getDistance",&GameWorldManager::getDistance),
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
-		def("getCurrentWorld",&GameWorldManager::getWorld),
+		def("getWorld",&GameWorldManager::getMyInstanceWorld),
 		def("victory",&GameWorldManager::victory),
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())

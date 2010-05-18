@@ -24,12 +24,53 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 	mRenderComponentScene=pRenderComponentScene;
 }
 
-void GameObjectScene::changeWorld(int world)
+void GameObjectScene::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentScene->changeWorld(world);
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+
+	mRenderComponentScene->changeToWorld(world,1);
 }
+
+void GameObjectScene::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectScene::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectSceneParameters::TGameObjectSceneParameters() : TGameObjectParameters()
 {

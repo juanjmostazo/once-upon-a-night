@@ -363,6 +363,8 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
+	pPhysicsComponentCharacter->create();
+
 	return pPhysicsComponentCharacter;
 }
 
@@ -380,6 +382,8 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 		tPhysicsComponentComplexConvexParameters.nxsFile.c_str());
 
 	pPhysicsComponentComplexConvex->setNxOgreConvex(new NxOgre::Convex(convexMesh));
+
+	pPhysicsComponentComplexConvex->create();
 
 	return pPhysicsComponentComplexConvex;
 }
@@ -402,7 +406,7 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 
 	pPhysicsComponentComplexTriangle->setNxOgreTriangleGeometry(triangleGeometry);
 
-
+	pPhysicsComponentComplexTriangle->create();
 
 	return pPhysicsComponentComplexTriangle;
 }
@@ -421,7 +425,7 @@ PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleC
 		NxOgre::Vec2(	tPhysicsComponentSimpleCapsuleParameters.radius,
 						tPhysicsComponentSimpleCapsuleParameters.height));
 
-
+	pPhysicsComponentSimpleCapsule->create();
 
 	return pPhysicsComponentSimpleCapsule;
 }
@@ -441,6 +445,8 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 						tPhysicsComponentSimpleBoxParameters.lengthY,
 						tPhysicsComponentSimpleBoxParameters.lengthZ));
 
+	pPhysicsComponentSimpleBox->create();
+
 	return pPhysicsComponentSimpleBox;
 }
 
@@ -456,6 +462,8 @@ PhysicsComponentVolumeCapsulePtr ComponentFactory::createPhysicsComponentVolumeC
 	pPhysicsComponentVolumeCapsule->setNxOgreSize(
 		NxOgre::Vec2(	tPhysicsComponentVolumeCapsuleParameters.radius,
 						tPhysicsComponentVolumeCapsuleParameters.height));
+
+	pPhysicsComponentVolumeCapsule->create();
 
 	return pPhysicsComponentVolumeCapsule;
 }
@@ -474,6 +482,8 @@ PhysicsComponentVolumeBoxPtr ComponentFactory::createPhysicsComponentVolumeBox(G
 						tPhysicsComponentVolumeBoxParameters.lengthY,
 						tPhysicsComponentVolumeBoxParameters.lengthZ));
 
+	pPhysicsComponentVolumeBox->create();
+
 	return pPhysicsComponentVolumeBox;
 }
 
@@ -490,6 +500,8 @@ PhysicsComponentVolumeConvexPtr ComponentFactory::createPhysicsComponentVolumeCo
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(
 		tPhysicsComponentVolumeConvexParameters.nxsFile.c_str());
 	pPhysicsComponentVolumeConvex->setNxOgreConvexMesh(convexMesh);
+
+	pPhysicsComponentVolumeConvex->create();
 
 	return pPhysicsComponentVolumeConvex;
 }

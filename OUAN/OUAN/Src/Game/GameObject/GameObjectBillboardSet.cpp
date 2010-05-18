@@ -44,10 +44,40 @@ RenderComponentInitialPtr GameObjectBillboardSet::getRenderComponentInitial() co
 	return mRenderComponentInitial;
 }
 
-void GameObjectBillboardSet::changeWorld(int world)
+void GameObjectBillboardSet::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-	
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectBillboardSet::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectBillboardSet::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:

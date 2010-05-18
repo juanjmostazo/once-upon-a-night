@@ -58,6 +58,51 @@ void GameObjectMagicClock::updateLogic(double elapsedSeconds)
 	}
 }
 
+void GameObjectMagicClock::changeWorldFinished(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectMagicClock::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectMagicClock::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
 TGameObjectMagicClockParameters::TGameObjectMagicClockParameters() : TGameObjectParameters()
 {
 

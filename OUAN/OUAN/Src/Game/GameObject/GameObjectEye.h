@@ -74,7 +74,10 @@ namespace OUAN
 
 		/// React to a world change to the given one
 		/// @param world world to change to
-		void changeWorld(int world);
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+
 
 		/// Attach all event handlers for this class.
 		// This method will have to be redefined by all GameObject subclasses to register all the event handlers

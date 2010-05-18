@@ -44,45 +44,67 @@ RenderComponentInitialPtr GameObjectParticleSystem::getRenderComponentInitial() 
 	return mRenderComponentInitial;
 }
 
-void GameObjectParticleSystem::changeWorld(int world)
+void GameObjectParticleSystem::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	switch(world)
 	{
-		mRenderComponentParticleSystem->setVisible(true);
-		mRenderComponentParticleSystem->start();
-	}
-	else
-	{
-		switch(world)
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
 		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentParticleSystem->setVisible(true);
-				mRenderComponentParticleSystem->start();
-			}
-			else
-			{
-				mRenderComponentParticleSystem->setVisible(false);
-
-			}		
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentParticleSystem->setVisible(true);
-				mRenderComponentParticleSystem->start();
-			}
-			else
-			{
-				mRenderComponentParticleSystem->setVisible(false);
-			}
-			break;
-		default:
-			break;
+			mRenderComponentParticleSystem->setVisible(true);
+			mRenderComponentParticleSystem->start();
 		}
+		else
+		{
+			mRenderComponentParticleSystem->setVisible(false);
+
+		}		
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentParticleSystem->setVisible(true);
+			mRenderComponentParticleSystem->start();
+		}
+		else
+		{
+			mRenderComponentParticleSystem->setVisible(false);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectParticleSystem::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectParticleSystem::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

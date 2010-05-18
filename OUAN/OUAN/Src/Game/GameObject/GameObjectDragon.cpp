@@ -87,8 +87,6 @@ void GameObjectDragon::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -102,14 +100,9 @@ void GameObjectDragon::reset()
 	}
 }
 
-void GameObjectDragon::changeWorld(int world)
+void GameObjectDragon::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
 
 	switch(world)
 	{
@@ -122,6 +115,36 @@ void GameObjectDragon::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+}
+
+void GameObjectDragon::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectDragon::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -189,7 +212,7 @@ bool GameObjectDragon::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDragon::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()

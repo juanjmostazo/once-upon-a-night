@@ -66,7 +66,7 @@ PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponen
 	return mPhysicsComponentComplexTriangle;
 }
 
-void GameObjectTerrainTriangle::changeWorld(int world)
+void GameObjectTerrainTriangle::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -81,6 +81,36 @@ void GameObjectTerrainTriangle::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+}
+
+void GameObjectTerrainTriangle::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTerrainTriangle::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -159,7 +189,7 @@ bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTerrainTriangle::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {

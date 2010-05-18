@@ -86,8 +86,6 @@ void GameObjectNightGoblin::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -101,14 +99,9 @@ void GameObjectNightGoblin::reset()
 	}
 }
 
-void GameObjectNightGoblin::changeWorld(int world)
+void GameObjectNightGoblin::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
 
 	switch(world)
 	{
@@ -121,6 +114,36 @@ void GameObjectNightGoblin::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+}
+
+void GameObjectNightGoblin::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectNightGoblin::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -180,7 +203,7 @@ bool GameObjectNightGoblin::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectNightGoblin::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectNightGoblinParameters::TGameObjectNightGoblinParameters() : TGameObjectParameters()

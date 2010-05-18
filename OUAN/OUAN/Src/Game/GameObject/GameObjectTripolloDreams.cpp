@@ -123,7 +123,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		//if(getName().compare("tripollo#12")!=0)
 		//	return;
 
-		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 
@@ -137,7 +137,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
-					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 
 			}
@@ -145,7 +145,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{				
 				if (mLogicComponentEnemy->isStateChanged())
 				{
-					if(activateTrajectory(mGameWorldManager->getCurrentWorld()))
+					if(activateTrajectory(mGameWorldManager->getWorld()))
 					{
 						/*
 							If the state has just changed, then load the trajectory and set the displacement
@@ -170,7 +170,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 					mTrajectoryComponent->activatePathFinding(
 						mGameWorldManager->getGameObjectOny()->getName(),
-						mGameWorldManager->getCurrentWorld());
+						mGameWorldManager->getWorld());
 				}
 
 			}
@@ -179,7 +179,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_HIT01);
-					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_DEAD))
@@ -187,7 +187,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_DIE);
-					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getCurrentWorld());
+					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
@@ -256,7 +256,6 @@ void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
 	LogicSubsystemPtr logicSS = getGameWorldManager()->getParent()->getLogicSubsystem();
 
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -279,18 +278,12 @@ void GameObjectTripolloDreams::reset()
 	}
 }
 
-void GameObjectTripolloDreams::changeWorld(int world)
+void GameObjectTripolloDreams::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-
 	if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 	{
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
-
 		switch(world)
 		{
 			case DREAMS:
@@ -301,8 +294,8 @@ void GameObjectTripolloDreams::changeWorld(int world)
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
-			}
-			activateTrajectory(world);
+		}
+		activateTrajectory(world);
 	}
 	else
 	{
@@ -351,6 +344,36 @@ void GameObjectTripolloDreams::changeWorld(int world)
 		}
 		activateTrajectory(world);
 
+	}
+}
+
+void GameObjectTripolloDreams::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTripolloDreams::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -421,7 +444,7 @@ bool GameObjectTripolloDreams::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTripolloDreams::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //
 void GameObjectTripolloDreams::processAnimationEnded(const std::string& animationName)

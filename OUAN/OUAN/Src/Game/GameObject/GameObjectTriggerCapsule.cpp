@@ -63,59 +63,76 @@ void GameObjectTriggerCapsule::changeVisibility()
 	}
 }
 
-void GameObjectTriggerCapsule::changeWorld(int world)
+void GameObjectTriggerCapsule::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->setVisible(false);
-
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	switch(world)
 	{
-		if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
-		{
-			mPhysicsComponentVolumeCapsule->create();
-		}
-		return;
+		case DREAMS:
+			if(mLogicComponent->existsInDreams())
+			{
+				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->create();
+				}
+			}
+			else
+			{
+				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->create();
+				}
+			}
+			else
+			{
+				if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
+				{
+					mPhysicsComponentVolumeCapsule->destroy();
+				}
+			}
+			break;
+		default:
+			break;
 	}
-	else
+}
+
+void GameObjectTriggerCapsule::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
 	{
-		switch(world)
-		{
-			case DREAMS:
-				if(mLogicComponent->existsInDreams())
-				{
-					if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
-					{
-						mPhysicsComponentVolumeCapsule->create();
-					}
-				}
-				else
-				{
-					if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
-					{
-						mPhysicsComponentVolumeCapsule->destroy();
-					}
-				}		
-				break;
-			case NIGHTMARES:
-				if(mLogicComponent->existsInNightmares())
-				{
-					if (mPhysicsComponentVolumeCapsule.get() && !mPhysicsComponentVolumeCapsule->isInUse())
-					{
-						mPhysicsComponentVolumeCapsule->create();
-					}
-				}
-				else
-				{
-					if (mPhysicsComponentVolumeCapsule.get() && mPhysicsComponentVolumeCapsule->isInUse())
-					{
-						mPhysicsComponentVolumeCapsule->destroy();
-					}
-				}
-				break;
-			default:
-				break;
-		}
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTriggerCapsule::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
