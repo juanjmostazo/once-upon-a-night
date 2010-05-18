@@ -154,7 +154,7 @@ void IntroState::update(long elapsedTime)
 	}
 	else
 	{
-		mDelay-=elapsedTime;
+		mDelay-=(elapsedTime*0.000001);
 		if (mDelay<=0)
 		{
 			GameStatePtr nextState(new MainMenuState());

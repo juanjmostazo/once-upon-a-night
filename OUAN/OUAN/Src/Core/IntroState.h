@@ -18,7 +18,7 @@ namespace OUAN
 	const std::string MOVIE_MATERIAL_GROUP="General";
 	const std::string SCREEN_SCENE_NODE="Screen";
 	
-	const int IMAGE_DELAY=5;//time in seconds the fallback image will be displayed
+	const double IMAGE_DELAY=5;//time in seconds the fallback image will be displayed
 
 
 	///State corresponding to the game's main menu
@@ -26,7 +26,7 @@ namespace OUAN
 	private:
 		OgreUtils::DirectShowMovieTexture* mMovieTexture;
 		Ogre::Rectangle2D* mScreen;
-		int mDelay;
+		double mDelay;
 
 	public:
 		/// init main menu's resources
