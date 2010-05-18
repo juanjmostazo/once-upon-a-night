@@ -39,7 +39,6 @@ void IntroState::init(ApplicationPtr app)
 		mMovieTexture = new OgreUtils::DirectShowMovieTexture(movDim.x, movDim.y);
 
 		mMovieTexture->loadMovie(VIDEO_PATH+INTRO_MOVIE);
-
 	}
 	catch (std::exception& e)
 	{
