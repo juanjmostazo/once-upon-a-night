@@ -177,10 +177,26 @@ void HUDInGame::updateHealthHUD(int healthPoints, int numLives)
 	}
 }
 
-void HUDInGame::update(long elapsedTime, int healthPoints, int numLives)
+void HUDInGame::update(double elapsedSeconds, int healthPoints, int numLives)
 {
 	updateRoulette();
 	updateHealthHUD(healthPoints,numLives);
+
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime+=elapsedSeconds;
+		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+		{
+			changeToWorld(mWorld,1);
+			changeWorldFinished(mWorld);
+			changeWorldStarted(mWorld);
+			mIsChangingWorld=false;
+		}
+		else
+		{
+			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+		}
+	}
 }
 bool HUDInGame::isSelectedModeChanged()
 {
@@ -220,19 +236,81 @@ void HUDInGame::unregisterEventHandlers(EventManagerPtr evtMgr)
 
 void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 {
-	if (evt->getNewWorld()==DREAMS)
+	mWorld=evt->getNewWorld();
+	mChangeWorldTotalTime=evt->time;
+	if (evt->fast)
 	{
-		hideElement(PANEL_ROULETTE);
-		//TODO:
-		//showElement(PANEL_PILLOW_ROULETTE);
+		activateChangeWorldFast();
 	}
 	else
 	{
+		activateChangeWorld();
+	}
+}
+
+void HUDInGame::activateChangeWorldFast()
+{
+	changeWorldFinished(mChangeWorldTotalTime);
+}
+
+void HUDInGame::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+	}
+	changeWorldStarted(mWorld);
+}
+
+void HUDInGame::changeWorldFinished(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		hideElement(PANEL_ROULETTE);
+		//TODO:
+		//showElement(PANEL_PILLOW_ROULETTE);
+		break;
+	case NIGHTMARES:
 		showElement(PANEL_ROULETTE);
 		mCurrentRouletteState=ROULETTE_STATE_0;
 		updateRouletteHUD();
 		mSelectedModeChanged=true;
 		//TOD:
 		//hideElement(PANEL_PILLOW_ROULETTE);
+		break;
+	default:
+		break;
+	}
+}
+
+void HUDInGame::changeWorldStarted(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void HUDInGame::changeToWorld(int world, double perc)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }

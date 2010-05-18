@@ -3,6 +3,9 @@
 #include "../Application.h"
 #include "../Utils/Utils.h"
 
+#include "../Event/Event.h"
+#include "../Event/EventManager.h"
+
 #include <fmod_errors.h>
 #include <algorithm>
 
@@ -674,10 +677,11 @@ void AudioSubsystem::set3DAttributes(const Ogre::Vector3& pos,
 		&listenerForward, 
 		&listenerUp);
 }
-bool AudioSubsystem::update(double elapsedTime)
+bool AudioSubsystem::update(double elapsedSeconds)
 {
 	bool rc = false;
 	FMOD_RESULT hr;
+
 	if(mSystem)
 	{
 		if (mOldConfigData.mDopplerScale!=mConfigData.mDopplerScale || mOldConfigData.mDistanceFactor!=mConfigData.mDistanceFactor
@@ -755,7 +759,7 @@ bool AudioSubsystem::update(double elapsedTime)
 			for(TChannelGroupMap::iterator i=mChannelGroupMap.begin(); 
 				i!=mChannelGroupMap.end(); i++)
 			{
-				i->second->update(elapsedTime);
+				i->second->update(elapsedSeconds);
 			}
 
 			rc=true;

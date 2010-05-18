@@ -341,6 +341,22 @@ void GameRunningState::update(long elapsedTime)
 {
 	double elapsedSeconds=(double)elapsedTime * 0.000001f;
 
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime+=elapsedSeconds;
+		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+		{
+			changeToWorld(mWorld,1);
+			changeWorldFinished(mWorld);
+			changeWorldStarted(mWorld);
+			mIsChangingWorld=false;
+		}
+		else
+		{
+			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+		}
+	}
+
 	//std::stringstream out;
 	//out << elapsedSeconds;
 	//std::string elapsedTimeDebug = out.str();
@@ -548,7 +564,76 @@ void GameRunningState::changeMusic(int world)
 
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
-	changeMusic(evt->getNewWorld());
+	mWorld=evt->getNewWorld();
+	mChangeWorldTotalTime=evt->time;
+	if (evt->fast)
+	{
+		activateChangeWorldFast();
+	}
+	else
+	{
+		activateChangeWorld();
+	}
+}
+
+void GameRunningState::activateChangeWorldFast()
+{
+	changeWorldFinished(mChangeWorldTotalTime);
+}
+
+void GameRunningState::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+	}
+	changeWorldStarted(mWorld);
+}
+
+void GameRunningState::changeWorldFinished(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		changeMusic(DREAMS);
+		break;
+	case NIGHTMARES:
+		changeMusic(NIGHTMARES);
+		break;
+	default:
+		break;
+	}
+}
+
+void GameRunningState::changeWorldStarted(int world)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameRunningState::changeToWorld(int world, double perc)
+{
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 }
 
 void GameRunningState::clearMusic()
