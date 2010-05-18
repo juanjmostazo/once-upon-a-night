@@ -54,65 +54,82 @@ PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox() con
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectHeart::changeWorld(int world)
+void GameObjectHeart::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
+	switch(world)
 	{
-		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-		{
-			mPhysicsComponentVolumeBox->create();
-		}
+	case DREAMS:
 
-		mRenderComponentEntity->setVisible(true);
-		return;
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(true);
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
+			}
+		}
+		else
+		{
+			mRenderComponentEntity->setVisible(false);
+			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->destroy();
+			}
+		}		
+		break;
+	case NIGHTMARES:
+
+		if(mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(true);
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->create();
+			}
+		}
+		else
+		{
+			mRenderComponentEntity->setVisible(false);
+			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+			{
+				mPhysicsComponentVolumeBox->destroy();
+			}
+		}
+		break;
+	default:
+		break;
 	}
-	else
+}
+
+void GameObjectHeart::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
 	{
-		switch(world)
-		{
-		case DREAMS:
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
 
-			if(mLogicComponentItem->existsInDreams())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
-				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
-				}
-			}		
-			break;
-		case NIGHTMARES:
+void GameObjectHeart::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
 
-			if(mLogicComponentItem->existsInNightmares())
-			{
-				mRenderComponentEntity->setVisible(true);
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
-				}
-			}
-			else
-			{
-				mRenderComponentEntity->setVisible(false);
-				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
-				}
-			}
-			break;
-		default:
-			break;
-		}
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

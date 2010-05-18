@@ -49,6 +49,7 @@ namespace OUAN
 	public:
 		ChangeWorldEvent(int mNewWorld);
 		int getNewWorld() const;
+		bool fast;
 
 	private:
 		int mNewWorld;

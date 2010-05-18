@@ -117,7 +117,10 @@ namespace OUAN
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		void changeWorld(int world);
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;

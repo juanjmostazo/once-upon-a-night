@@ -76,8 +76,10 @@ PhysicsComponentVolumeBoxPtr GameObjectWoodBox::getPhysicsComponentVolumeBox() c
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectWoodBox::changeWorld(int world)
+void GameObjectWoodBox::changeWorldFinished(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:
@@ -159,6 +161,36 @@ void GameObjectWoodBox::changeWorld(int world)
 		}	
 		break;
 	default:break;
+	}
+}
+
+void GameObjectWoodBox::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectWoodBox::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -264,7 +296,7 @@ bool GameObjectWoodBox::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectWoodBox::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

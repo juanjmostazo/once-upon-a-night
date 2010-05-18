@@ -39,12 +39,79 @@ void GameObject::reset()
 {
 	mEnabled=true;
 	mNumUpdates=0;
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=false;
 }
 
 bool GameObject::isFirstUpdate()
 {
 	return mNumUpdates <= 1;
 }
+
+void GameObject::activateChangeWorldFast()
+{
+	changeWorldFinished(mGameWorldManager->getWorld());
+}
+
+void GameObject::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mGameWorldManager->getChangeWorldTime()-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+	}
+	changeWorldStarted(mGameWorldManager->getWorld());
+}
+
+void GameObject::changeWorldFinished(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObject::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObject::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
 
 void GameObject::update(double elapsedSeconds)
 {
@@ -63,11 +130,22 @@ void GameObject::update(double elapsedSeconds)
 			mDisplayMsg=NULL;			
 		}
 	}
-}
 
-void GameObject::changeWorld(int world)
-{
-
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime+=elapsedSeconds;
+		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldTime())
+		{
+			changeToWorld(mGameWorldManager->getWorld(),1);
+			changeWorldFinished(mGameWorldManager->getWorld());
+			changeWorldStarted(mGameWorldManager->getWorld());
+			mIsChangingWorld=false;
+		}
+		else
+		{
+			changeToWorld(mGameWorldManager->getWorld(),mChangeWorldElapsedTime/mGameWorldManager->getChangeWorldTime());
+		}
+	}
 }
 
 const std::string& GameObject::getName()
@@ -105,11 +183,6 @@ GameWorldManagerPtr GameObject::getGameWorldManager()
 void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
 {
 	mGameWorldManager=gameWorldManager;
-}
-
-void GameObject::processChangeWorld(ChangeWorldEventPtr evt)
-{
-	changeWorld(evt->getNewWorld());
 }
 
 void GameObject::processCollision(GameObjectPtr pGameObject)

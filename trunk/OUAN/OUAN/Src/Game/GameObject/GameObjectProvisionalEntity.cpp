@@ -64,7 +64,7 @@ PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSim
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectProvisionalEntity::changeWorld(int world)
+void GameObjectProvisionalEntity::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -126,6 +126,36 @@ void GameObjectProvisionalEntity::changeWorld(int world)
 			break;
 		default:
 			break;
+	}
+}
+
+void GameObjectProvisionalEntity::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectProvisionalEntity::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -192,7 +222,7 @@ bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectProvisionalEntity::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

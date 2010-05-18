@@ -76,16 +76,9 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox() co
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectPortal::changeWorld(int world)
+void GameObjectPortal::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());
-	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-	{
-		//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
-		mPhysicsComponentSimpleBox->create();
-	}
 
 	switch(world)
 	{
@@ -105,6 +98,36 @@ void GameObjectPortal::changeWorld(int world)
 			break;
 		default:
 			break;
+	}
+}
+
+void GameObjectPortal::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectPortal::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -196,7 +219,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 	if (isEnabled())
 	{
-		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getCurrentWorld()==DREAMS)
+		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 
@@ -267,7 +290,7 @@ bool GameObjectPortal::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

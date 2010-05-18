@@ -89,62 +89,49 @@ void GameObjectPillow::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr
 	mPhysicsComponentVolumeBox=physicsComponent;
 }
 
-void GameObjectPillow::changeWorld(int world)
+void GameObjectPillow::changeWorldFinished(int world)
 {
-	/*if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-	{
-		if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-		{
-			mPhysicsComponentSimpleCapsule->create();
-		}
+	if (!isEnabled()) return;
 
-		mRenderComponentEntity->setVisible(true);
-		return;
-	}
-	else
+	switch(world)
 	{
-		switch(world)
-		{
-			case DREAMS:
-				if(mLogicComponent->existsInDreams())
-				{
-					mRenderComponentEntity->setVisible(true);
-					if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-					{
-						mPhysicsComponentSimpleCapsule->create();
-					}
-				}
-				else
-				{
-					mRenderComponentEntity->setVisible(false);
-					if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
-					{
-						mPhysicsComponentSimpleCapsule->destroy();
-					}
-				}		
-				break;
-			case NIGHTMARES:
-				if(mLogicComponent->existsInNightmares())
-				{
-					mRenderComponentEntity->setVisible(true);
-					if (mPhysicsComponentSimpleCapsule.get() && !mPhysicsComponentSimpleCapsule->isInUse())
-					{
-						mPhysicsComponentSimpleCapsule->create();
-					}
-				}
-				else
-				{
-					mRenderComponentEntity->setVisible(false);
-					if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
-					{
-						mPhysicsComponentSimpleCapsule->destroy();
-					}
-				}
-				break;
-			default:
-				break;
-		}
-	}*/
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectPillow::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectPillow::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 }
 
 void GameObjectPillow::reset()

@@ -63,20 +63,11 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 void GameObjectScaredPlant::reset()
 {
 	GameObject::reset();
-	
-	changeWorld(DREAMS);
 }
 
-void GameObjectScaredPlant::changeWorld(int world)
+void GameObjectScaredPlant::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	//Ogre::LogManager::getSingleton().logMessage("BOTH " + getName());
-	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-	{
-		//Ogre::LogManager::getSingleton().logMessage("BOTH IN " + getName());
-		mPhysicsComponentSimpleBox->create();
-	}
 
 	switch(world)
 	{
@@ -96,7 +87,36 @@ void GameObjectScaredPlant::changeWorld(int world)
 			break;
 		default:break;
 	}
+}
 
+void GameObjectScaredPlant::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectScaredPlant::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
 }
 
 bool GameObjectScaredPlant::hasPositionalComponent() const

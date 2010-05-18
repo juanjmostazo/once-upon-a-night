@@ -65,8 +65,10 @@ PhysicsComponentComplexConvexPtr GameObjectPlataform::getPhysicsComponentComplex
 	return mPhysicsComponentComplexConvex;
 }
 
-void GameObjectPlataform::changeWorld(int world)
+void GameObjectPlataform::changeWorldFinished(int world)
 {
+	if (!isEnabled()) return;
+
 	switch(world)
 	{
 	case DREAMS:
@@ -124,6 +126,36 @@ void GameObjectPlataform::changeWorld(int world)
 		}	
 		break;
 	default:break;
+	}
+}
+
+void GameObjectPlataform::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectPlataform::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -202,7 +234,7 @@ bool GameObjectPlataform::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectPlataform::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectPlataformParameters::TGameObjectPlataformParameters() : TGameObjectParameters()

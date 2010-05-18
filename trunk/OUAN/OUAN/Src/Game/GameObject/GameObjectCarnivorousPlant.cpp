@@ -84,8 +84,6 @@ void GameObjectCarnivorousPlant::reset()
 {
 	GameObject::reset();
 
-	changeWorld(DREAMS);
-
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->reset();
@@ -99,14 +97,9 @@ void GameObjectCarnivorousPlant::reset()
 	}
 }
 
-void GameObjectCarnivorousPlant::changeWorld(int world)
+void GameObjectCarnivorousPlant::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
-
-	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->create();
-	}
 
 	switch(world)
 	{
@@ -119,6 +112,37 @@ void GameObjectCarnivorousPlant::changeWorld(int world)
 			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
+	}
+
+}
+
+void GameObjectCarnivorousPlant::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectCarnivorousPlant::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -179,7 +203,7 @@ bool GameObjectCarnivorousPlant::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectCarnivorousPlant::getEntityComponent() const
 {
-	return (mGameWorldManager->getCurrentWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectCarnivorousPlantParameters::TGameObjectCarnivorousPlantParameters() : TGameObjectParameters()

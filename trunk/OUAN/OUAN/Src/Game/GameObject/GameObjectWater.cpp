@@ -66,7 +66,7 @@ PhysicsComponentVolumeConvexPtr GameObjectWater::getPhysicsComponentVolumeConvex
 	return mPhysicsComponentVolumeConvex;
 }
 
-void GameObjectWater::changeWorld(int world)
+void GameObjectWater::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
@@ -93,6 +93,36 @@ void GameObjectWater::changeWorld(int world)
 			}
 			break;
 		default:break;
+	}
+}
+
+void GameObjectWater::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectWater::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -169,7 +199,7 @@ void GameObjectWater::updateLogic(double elapsedSeconds)
 void GameObjectWater::update(double elapsedTime)
 {
 	GameObject::update(elapsedTime);
-	switch(mGameWorldManager->getCurrentWorld())
+	switch(mGameWorldManager->getWorld())
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams())
@@ -190,7 +220,7 @@ void GameObjectWater::update(double elapsedTime)
 void GameObjectWater::postUpdate()
 {
 	GameObject::postUpdate();
-	switch(mGameWorldManager->getCurrentWorld())
+	switch(mGameWorldManager->getWorld())
 	{
 		case DREAMS:	
 			if(mLogicComponent->existsInDreams())
@@ -215,7 +245,7 @@ void GameObjectWater::postUpdate()
 //}
 //RenderComponentEntityPtr GameObjectWater::getEntityComponent() const
 //{
-//	if(mGameWorldManager->getCurrentWorld()==DREAMS)
+//	if(mGameWorldManager->getWorld()==DREAMS)
 //	{
 //		return mRenderComponentWaterDreams->getRenderComponentEntity()
 //	}

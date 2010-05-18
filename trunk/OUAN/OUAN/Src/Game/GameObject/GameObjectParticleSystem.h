@@ -56,7 +56,10 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		void changeWorld(int world);
+		void changeToWorld(int world, double perc);
+		void changeWorldFinished(int world);
+		void changeWorldStarted(int world);
+
 
 		/// Reset object
 		virtual void reset();

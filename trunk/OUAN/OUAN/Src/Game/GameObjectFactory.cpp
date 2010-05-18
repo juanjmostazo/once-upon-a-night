@@ -141,8 +141,6 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 			pGameObjectBee_Butterfly->getRenderComponentPositional()));
 	}
 
-	pGameObjectBee_Butterfly->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectBee_Butterfly->setGameWorldManager(gameWorldMgr);
 
@@ -176,8 +174,6 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	//Create RenderComponentBillboardSet
 	pGameObjectBillboardSet->setRenderComponentBillboardSet(mComponentFactory->createRenderComponentBillboardSet(
 		pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
-
-	pGameObjectBillboardSet->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(gameWorldMgr);
@@ -224,8 +220,6 @@ GameObjectBushPtr GameObjectFactory::createGameObjectBush(TGameObjectBushParamet
 			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
 	}
 
-	pGameObjectBush->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectBush->setGameWorldManager(gameWorldMgr);
 
@@ -246,8 +240,6 @@ GameObjectCameraPtr GameObjectFactory::createGameObjectCamera(TGameObjectCameraP
 	pGameObjectCamera->setRenderComponentCamera(mComponentFactory->createRenderComponentCamera(
 		pGameObjectCamera,tGameObjectCameraParameters.tRenderComponentCameraParameters));
 
-
-	pGameObjectCamera->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectCamera->setGameWorldManager(gameWorldMgr);
@@ -301,7 +293,6 @@ GameObjectCarnivorousPlantPtr GameObjectFactory::createGameObjectCarnivorousPlan
 		tGameObjectCarnivorousPlantParameters.tPhysicsComponentCharacterParameters, 
 		pGameObjectCarnivorousPlant->getRenderComponentPositional()));
 
-	pGameObjectCarnivorousPlant->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectCarnivorousPlant->setGameWorldManager(gameWorldMgr);
@@ -343,7 +334,6 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectClockPiece->getRenderComponentPositional()));
 
-	pGameObjectClockPiece->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectClockPiece->setGameWorldManager(gameWorldMgr);
@@ -422,8 +412,6 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 				i);
 		}
 	}
-	
-	pGameObjectCloud->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectCloud->setGameWorldManager(gameWorldMgr);
@@ -478,8 +466,6 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 		tGameObjectCryKingParameters.tPhysicsComponentCharacterParameters, 
 		pGameObjectCryKing->getRenderComponentPositional()));
 
-	pGameObjectCryKing->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectCryKing->setGameWorldManager(gameWorldMgr);
 
@@ -522,8 +508,6 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 		pGameObjectDiamond, 
 		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectDiamond->getRenderComponentPositional()));
-
-	pGameObjectDiamond->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectDiamond->setGameWorldManager(gameWorldMgr);
@@ -577,8 +561,6 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDiamondTree->getRenderComponentPositional()));
 
-	pGameObjectDiamondTree->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
 
@@ -631,8 +613,6 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 		tGameObjectDoorParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDoor->getRenderComponentPositional()));
 
-	pGameObjectDoor->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectDoor->setGameWorldManager(gameWorldMgr);
 
@@ -680,8 +660,6 @@ GameObjectDragonPtr GameObjectFactory::createGameObjectDragon(TGameObjectDragonP
 		tGameObjectDragonParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectDragon->getRenderComponentPositional()));
 
-	pGameObjectDragon->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectDragon->setGameWorldManager(gameWorldMgr);
 
@@ -723,8 +701,6 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 		pGameObjectEye,
 		tGameObjectEyeParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectEye->getRenderComponentPositional()));
-
-	pGameObjectEye->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectEye->setGameWorldManager(gameWorldMgr);
@@ -804,9 +780,6 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 		mComponentFactory->createRenderComponentLight(tGameObjectFlashLightParameters.name+"#Light",
 		pGameObjectFlashLight,tRenderComponentLightParameters));
 
-
-	pGameObjectFlashLight->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(gameWorldMgr);
 	pGameObjectFlashLight->hide();
@@ -851,8 +824,6 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 		tGameObjectHeartParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectHeart->getRenderComponentPositional()));
 
-	pGameObjectHeart->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectHeart->setGameWorldManager(gameWorldMgr);
 
@@ -895,8 +866,6 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 		pGameObjectItem1UP, 
 		tGameObjectItem1UPParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectItem1UP->getRenderComponentPositional()));
-
-	pGameObjectItem1UP->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectItem1UP->setGameWorldManager(gameWorldMgr);
@@ -946,8 +915,6 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 		pGameObjectItemMaxHP,
 		tGameObjectItemMaxHPParameters.tLogicComponentItemParameters));
 
-	pGameObjectItemMaxHP->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectItemMaxHP->setGameWorldManager(gameWorldMgr);
 
@@ -982,8 +949,6 @@ GameObjectLightPtr GameObjectFactory::createGameObjectLight(TGameObjectLightPara
 	pGameObjectLight->setRenderComponentLight(mComponentFactory->createRenderComponentLight(
 		tGameObjectLightParameters.name,pGameObjectLight,tGameObjectLightParameters.tRenderComponentLightParameters));
 
-	pGameObjectLight->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectLight->setGameWorldManager(gameWorldMgr);
 
@@ -1005,8 +970,6 @@ GameObjectMagicClockPtr GameObjectFactory::createGameObjectMagicClock(TGameObjec
 		mComponentFactory->createLogicComponent(
 		pGameObjectMagicClock,
 		tGameObjectMagicClockParameters.tLogicComponentParameters));
-
-	pGameObjectMagicClock->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectMagicClock->setGameWorldManager(gameWorldMgr);
@@ -1053,8 +1016,6 @@ GameObjectNightGoblinPtr GameObjectFactory::createGameObjectNightGoblin(TGameObj
 		pGameObjectNightGoblin,
 		tGameObjectNightGoblinParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectNightGoblin->getRenderComponentPositional()));
-
-	pGameObjectNightGoblin->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectNightGoblin->setGameWorldManager(gameWorldMgr);
@@ -1136,8 +1097,6 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	//Set Ony as camera target
 	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
 
-	pGameObjectOny->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
 
@@ -1177,8 +1136,6 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 			pGameObjectParticleSystem,
 			tGameObjectParticleSystemParameters.tRenderComponentParticleSystemParameters,
 			pGameObjectParticleSystem->getRenderComponentPositional()));
-
-	pGameObjectParticleSystem->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectParticleSystem->setGameWorldManager(gameWorldMgr);
@@ -1251,8 +1208,6 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 		fakeVBParams,
 		pGameObjectPillow->getRenderComponentPositional()));
 
-	pGameObjectPillow->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectPillow->setGameWorldManager(gameWorldMgr);
 
@@ -1289,8 +1244,6 @@ GameObjectPlanePtr GameObjectFactory::createGameObjectPlane(TGameObjectPlanePara
 	//Create RenderComponentPlane
 	pGameObjectPlane->setRenderComponentPlane(mComponentFactory->createRenderComponentPlane(
 		pGameObjectPlane->getName(),pGameObjectPlane,tGameObjectPlaneParameters.tRenderComponentPlaneParameters));
-
-	pGameObjectPlane->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectPlane->setGameWorldManager(gameWorldMgr);
@@ -1341,8 +1294,6 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 		pGameObjectPlataform,
 		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters,
 		pGameObjectPlataform->getRenderComponentPositional()));
-
-	pGameObjectPlataform->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectPlataform->setGameWorldManager(gameWorldMgr);
@@ -1399,8 +1350,6 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectPortal->getRenderComponentPositional()));
 
-	pGameObjectPortal->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectPortal->setGameWorldManager(gameWorldMgr);
 
@@ -1454,9 +1403,6 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectProvisionalEntity->getRenderComponentPositional()));
 
-
-	pGameObjectProvisionalEntity->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectProvisionalEntity->setGameWorldManager(gameWorldMgr);
 
@@ -1498,8 +1444,6 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 		tGameObjectScaredPlantParameters.tPhysicsComponentSimpleBoxParameters,
 		pGameObjectScaredPlant->getRenderComponentPositional()));
 
-	pGameObjectScaredPlant->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectScaredPlant->setGameWorldManager(gameWorldMgr);
 
@@ -1520,8 +1464,6 @@ GameObjectScenePtr GameObjectFactory::createGameObjectScene(TGameObjectScenePara
 	//Create RenderComponentViewport
 	pGameObjectScene->setRenderComponentScene(mComponentFactory->createRenderComponentScene(
 		pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters));
-
-	pGameObjectScene->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectScene->setGameWorldManager(gameWorldMgr);
@@ -1565,8 +1507,6 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 		pGameObjectScepter, 
 		tGameObjectScepterParameters.tPhysicsComponentSimpleCapsuleParameters, 
 		pGameObjectScepter->getRenderComponentPositional()));
-
-	pGameObjectScepter->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectScepter->setGameWorldManager(gameWorldMgr);
@@ -1620,8 +1560,6 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 		tGameObjectSnakeCreeperParameters.tPhysicsComponentCharacterParameters, 
 		pGameObjectSnakeCreeper->getRenderComponentPositional()));
 
-	pGameObjectSnakeCreeper->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectSnakeCreeper->setGameWorldManager(gameWorldMgr);
 
@@ -1670,8 +1608,6 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 		pGameObjectStoryBook,
 		tGameObjectStoryBookParameters.tLogicComponentItemParameters));
 
-	pGameObjectStoryBook->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectStoryBook->setGameWorldManager(gameWorldMgr);
 
@@ -1717,9 +1653,6 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 		pGameObjectTentetieso,
 		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectTentetieso->getRenderComponentPositional()));
-
-
-	pGameObjectTentetieso->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectTentetieso->setGameWorldManager(gameWorldMgr);
@@ -1771,8 +1704,6 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 		tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters,
 		pGameObjectTerrainConvex->getRenderComponentPositional()));
 
-	pGameObjectTerrainConvex->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectTerrainConvex->setGameWorldManager(gameWorldMgr);
 	//Add Object to GameWorldManager
@@ -1818,8 +1749,6 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 		tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters,
 		pGameObjectTerrainTriangle->getRenderComponentPositional()));
 
-	pGameObjectTerrainTriangle->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectTerrainTriangle->setGameWorldManager(gameWorldMgr);
 	//Add Object to GameWorldManager
@@ -1860,8 +1789,6 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 		pGameObjectTree, 
 		tGameObjectTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectTree->getRenderComponentPositional()));
-
-	pGameObjectTree->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectTree->setGameWorldManager(gameWorldMgr);
@@ -1907,8 +1834,6 @@ GameObjectTriggerBoxPtr GameObjectFactory::createGameObjectTriggerBox(TGameObjec
 		tGameObjectTriggerBoxParameters.tPhysicsComponentVolumeBoxParameters,
 		pGameObjectTriggerBox->getRenderComponentPositional()));
 
-	pGameObjectTriggerBox->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectTriggerBox->setGameWorldManager(gameWorldMgr);
 
@@ -1952,8 +1877,6 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 		pGameObjectTriggerCapsule,
 		tGameObjectTriggerCapsuleParameters.tPhysicsComponentVolumeCapsuleParameters,
 		pGameObjectTriggerCapsule->getRenderComponentPositional()));
-
-	pGameObjectTriggerCapsule->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectTriggerCapsule->setGameWorldManager(gameWorldMgr);
@@ -1999,8 +1922,6 @@ GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjec
 		pGameObjectTripollito,
 		tGameObjectTripollitoParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectTripollito->getRenderComponentPositional()));
-
-	pGameObjectTripollito->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	//Add reference to this
 	pGameObjectTripollito->setGameWorldManager(gameWorldMgr);
@@ -2057,8 +1978,6 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		pGameObjectTripolloDreams,
 		tGameObjectTripolloDreamsParameters.tAttackComponentParameters));
 
-	pGameObjectTripolloDreams->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	// Add a reference to this
 	pGameObjectTripolloDreams->setGameWorldManager(gameWorldMgr);
 
@@ -2078,8 +1997,6 @@ GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectVie
 	//Create RenderComponentViewport
 	pGameObjectViewport->setRenderComponentViewport(mComponentFactory->createRenderComponentViewport(
 		pGameObjectViewport,tGameObjectViewportParameters.tRenderComponentViewportParameters));
-
-	pGameObjectViewport->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectViewport->setGameWorldManager(gameWorldMgr);
@@ -2150,8 +2067,6 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectWoodBox->getRenderComponentPositional()));
 
-	pGameObjectWoodBox->changeWorld(gameWorldMgr->getCurrentWorld());
-
 	//Add reference to this
 	pGameObjectWoodBox->setGameWorldManager(gameWorldMgr);
 
@@ -2201,8 +2116,6 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 		pGameObjectWater,
 		tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters,
 		pGameObjectWater->getRenderComponentPositional()));
-
-	pGameObjectWater->changeWorld(gameWorldMgr->getCurrentWorld());
 
 	// Add a reference to this
 	pGameObjectWater->setGameWorldManager(gameWorldMgr);

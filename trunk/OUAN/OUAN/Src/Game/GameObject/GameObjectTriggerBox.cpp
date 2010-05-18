@@ -64,61 +64,78 @@ void GameObjectTriggerBox::changeVisibility()
 	}
 }
 
-void GameObjectTriggerBox::changeWorld(int world)
+void GameObjectTriggerBox::changeWorldFinished(int world)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->setVisible(false);
-
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	switch(world)
 	{
-		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-		{
-			mPhysicsComponentVolumeBox->create();
-		}
-		return;
+		case DREAMS:
+
+			if(mLogicComponent->existsInDreams())
+			{
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->create();
+				}
+			}
+			else
+			{
+				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->destroy();
+				}
+			}		
+			break;
+		case NIGHTMARES:
+
+			if(mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->create();
+				}
+			}
+			else
+			{
+				if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->destroy();
+				}
+			}
+			break;
+		default:
+			break;
 	}
-	else
-	{
-		switch(world)
-		{
-			case DREAMS:
-	
-				if(mLogicComponent->existsInDreams())
-				{
-					if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-					{
-						mPhysicsComponentVolumeBox->create();
-					}
-				}
-				else
-				{
-					if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-					{
-						mPhysicsComponentVolumeBox->destroy();
-					}
-				}		
-				break;
-			case NIGHTMARES:
+}
 
-				if(mLogicComponent->existsInNightmares())
-				{
-					if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-					{
-						mPhysicsComponentVolumeBox->create();
-					}
-				}
-				else
-				{
-					if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-					{
-						mPhysicsComponentVolumeBox->destroy();
-					}
-				}
-				break;
-			default:
-				break;
-		}
+void GameObjectTriggerBox::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTriggerBox::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

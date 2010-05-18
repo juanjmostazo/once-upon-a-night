@@ -54,61 +54,80 @@ PhysicsComponentSimpleBoxPtr GameObjectTree::getPhysicsComponentSimpleBox() cons
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectTree::changeWorld(int world)
+void GameObjectTree::changeWorldFinished(int world)
 {
-	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-	{
-		if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-		{
-			mPhysicsComponentSimpleBox->create();
-		}
+	if (!isEnabled()) return;
 
-		mRenderComponentEntity->setVisible(true);
-		return;
-	}
-	else
+	switch(world)
 	{
-		switch(world)
-		{
-			case DREAMS:
-				if(mLogicComponent->existsInDreams())
+		case DREAMS:
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mRenderComponentEntity->setVisible(true);
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-					{
-						mPhysicsComponentSimpleBox->create();
-					}
+					mPhysicsComponentSimpleBox->create();
 				}
-				else
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
-					mRenderComponentEntity->setVisible(false);
-					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-					{
-						mPhysicsComponentSimpleBox->destroy();
-					}
-				}		
-				break;
-			case NIGHTMARES:
-				if(mLogicComponent->existsInNightmares())
-				{
-					mRenderComponentEntity->setVisible(true);
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-					{
-						mPhysicsComponentSimpleBox->create();
-					}
+					mPhysicsComponentSimpleBox->destroy();
 				}
-				else
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntity->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mRenderComponentEntity->setVisible(false);
-					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-					{
-						mPhysicsComponentSimpleBox->destroy();
-					}
+					mPhysicsComponentSimpleBox->create();
 				}
-				break;
-			default:
-				break;
-		}
+			}
+			else
+			{
+				mRenderComponentEntity->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+void GameObjectTree::changeWorldStarted(int world)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTree::changeToWorld(int world, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(world)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
 	}
 }
 

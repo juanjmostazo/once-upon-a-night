@@ -9,7 +9,8 @@ namespace OUAN
 {
 	class ObjectTextDisplay;
 	const double DEFAULT_DISPLAY_LIFETIME=2.0;
-	class GameObject{
+	class GameObject
+	{
 	private:
 		/// GameObject identifier (i.e, "tripollo#14")
 		std::string mName;
@@ -23,10 +24,18 @@ namespace OUAN
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;
 
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+
 	protected:
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
 
+		/// React to a world change to the one given as a parameter
+		/// @param world world to change to
+		virtual void changeToWorld(int world, double perc);
+		virtual void changeWorldFinished(int world);
+		virtual void changeWorldStarted(int world);
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -58,13 +67,6 @@ namespace OUAN
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
-		/// React to a world change to the one given as a parameter
-		/// @param world world to change to
-		virtual void changeWorld(int world);
-
-		/// Process world change event
-		/// @param evt pointer to the event data
-		virtual void processChangeWorld(ChangeWorldEventPtr evt);
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -81,7 +83,9 @@ namespace OUAN
 		/// Process animation ended event
 		/// @param name of the object's animation that's finished
 		virtual void processAnimationEnded(const std::string& animationName);
-	
+
+		void activateChangeWorld();
+		void activateChangeWorldFast();
 
 		// update logic component
 		virtual void updateLogic(double elapsedSeconds);

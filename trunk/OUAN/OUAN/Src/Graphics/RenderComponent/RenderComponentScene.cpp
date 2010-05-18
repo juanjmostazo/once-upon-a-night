@@ -13,16 +13,19 @@ Ogre::SceneManager* RenderComponentScene::getSceneManager() const
 {
 	return mSceneManager;
 }
+
 void RenderComponentScene::setSceneManager(Ogre::SceneManager* sceneManager)
 {
 	mSceneManager=sceneManager;
 }
+
 void RenderComponentScene::setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters)
 {	
 	this->tRenderComponentSkyDomeParameters=tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters;
 	this->tRenderComponentSkyBoxParameters=tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters;
 }
-void RenderComponentScene::changeWorld(int world)
+
+void RenderComponentScene::changeToWorld(int world, double perc)
 {
 	if(mSceneManager->isSkyBoxEnabled())
 	{

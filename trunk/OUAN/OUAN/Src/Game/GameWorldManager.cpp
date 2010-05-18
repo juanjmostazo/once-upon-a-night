@@ -84,6 +84,8 @@ GameWorldManager::GameWorldManager()
 	mInst=this;
 	mGodMode=false;
 	ParticleTemplates::getInstance()->loadConfig();
+
+	mChangeWorldTime=4;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -340,7 +342,7 @@ void GameWorldManager::clearContainers()
 	mGameObjectPillow.reset();
 }
 
-void GameWorldManager::loadLevel (const std::string& levelFileName)
+void GameWorldManager::loadLevel(const std::string& levelFileName)
 {
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD STARTED]");
 
@@ -455,8 +457,7 @@ void GameWorldManager::resetAll()
 
 	mEventManager->clearEvents();
 
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(DREAMS));
-	addEvent(evt);
+	setWorld(DREAMS);
 
 	mApp->getCameraManager()->setCameraTarget(
 		getGameObjectOny()->getRenderComponentPositional());
@@ -933,11 +934,25 @@ std::string GameWorldManager::getCurrentLevel() const
 void GameWorldManager::setWorld(int newWorld)
 {
 	world=newWorld;
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	evt->fast=true;
+	addEvent(evt);
 }
 
-int GameWorldManager::getCurrentWorld() const
+int GameWorldManager::getMyInstanceWorld()
+{
+	return mInst->getWorld();
+}
+
+
+int GameWorldManager::getWorld()
 {
 	return world;
+}
+
+double GameWorldManager::getChangeWorldTime() const
+{
+	return mChangeWorldTime;
 }
 
 void GameWorldManager::changeWorld()
@@ -952,6 +967,7 @@ void GameWorldManager::changeWorld()
 	}
 
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	evt->fast=false;
 	addEvent(evt);
 }
 
@@ -1062,10 +1078,6 @@ double GameWorldManager::getPlayerDistance(const std::string& objName)
 	return -1;
 }
 
-int GameWorldManager::getWorld()
-{
-	return mInst->getCurrentWorld();
-}
 void GameWorldManager::useWeapon()
 {
 	if (getGameObjectOny().get())

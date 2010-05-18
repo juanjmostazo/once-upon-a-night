@@ -62,10 +62,13 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
 			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,AnimationStartedEvent,EVENT_TYPE_ANIMATION_STARTED>
 			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
 			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
 			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
 	}
@@ -94,17 +97,22 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,OnyDiesEvent, EVENT_TYPE_ONY_DEATH>
 			(this_,&EventProcessor::processOnyDies,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,OnyFallsEvent, EVENT_TYPE_ONY_FALLS>
 			(this_,&EventProcessor::processOnyFalls,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,WeaponModeChangedEvent,EVENT_TYPE_WEAPON_MODE_CHANGED>
 			(this_,&EventProcessor::processWeaponModeChanged,mWorldManager->getEventManager());
 		
 		unregisterEventHandler<EventProcessor,AnimationEndedEvent,EVENT_TYPE_ANIMATION_ENDED>
 			(this_,&EventProcessor::processAnimationEnded,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,AnimationStartedEvent,EVENT_TYPE_ANIMATION_STARTED>
 			(this_,&EventProcessor::processAnimationStarted,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,ActivatedItemEvent,EVENT_TYPE_ACTIVATED_ITEM>
 			(this_,&EventProcessor::processActivatedItem,mWorldManager->getEventManager());
+
 		unregisterEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
 			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
 	}
@@ -144,12 +152,25 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	if (mWorldManager.get())
 	{
-		mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
-		TGameObjectContainer objs=mWorldManager->getAllGameObjects();
-
-		for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
+		if(evt->fast)
 		{
-			it->second->changeWorld(evt->getNewWorld());
+			mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
+			TGameObjectContainer objs=mWorldManager->getAllGameObjects();
+
+			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
+			{
+				it->second->activateChangeWorldFast();
+			}
+		}
+		else
+		{
+			mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
+			TGameObjectContainer objs=mWorldManager->getAllGameObjects();
+
+			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
+			{
+				it->second->activateChangeWorld();
+			}
 		}
 	}
 }
