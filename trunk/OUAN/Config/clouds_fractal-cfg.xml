@@ -8,6 +8,7 @@
 	<Option key="CENTER_POSITION_X">-100</Option>
     <Option key="CENTER_POSITION_Y">150</Option>
 	<Option key="CENTER_POSITION_Z">-1200</Option>
+	<Option key="MIN_DISTANCE_TO_ANOTHER">50</Option>
 	
 	<Option key="DREAMS_TEXTURE_3D">texture3D_64</Option>
 	<Option key="DREAMS_JULIA_GLOBAL_REAL">0.5</Option>
@@ -16,7 +17,7 @@
 	<Option key="DREAMS_V_SCALE">2.5</Option>
 	<Option key="DREAMS_V_CUT">29.0</Option>
 	<Option key="DREAMS_V_SLICES">32</Option>
-	<Option key="DREAMS_V_SIZE">400</Option>
+	<Option key="DREAMS_V_SIZE">500</Option>
 	<Option key="DREAMS_OFFSET_X">0</Option>
 	<Option key="DREAMS_OFFSET_Y">0</Option>
 	<Option key="DREAMS_OFFSET_Z">0</Option>
@@ -38,7 +39,7 @@
 	<Option key="NIGHTMARES_V_SCALE">2.5</Option>
 	<Option key="NIGHTMARES_V_CUT">29.0</Option>
 	<Option key="NIGHTMARES_V_SLICES">32</Option>
-	<Option key="NIGHTMARES_V_SIZE">400</Option>
+	<Option key="NIGHTMARES_V_SIZE">500</Option>
 	<Option key="NIGHTMARES_OFFSET_X">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Y">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Z">0</Option>
