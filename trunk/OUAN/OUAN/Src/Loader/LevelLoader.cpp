@@ -186,6 +186,46 @@ void LevelLoader::processGameObjectBillboardClouds()
 		config.getOption("HEIGHT", value); 
 		double height = atoi(value.c_str());
 
+		//BBT_POINT,
+		//BBT_ORIENTED_COMMON,
+		//BBT_ORIENTED_SELF,
+		//BBT_PERPENDICULAR_COMMON,
+		//BBT_PERPENDICULAR_SELF
+
+		config.getOption("BILLBOARD_TYPE", value); 
+		Ogre::BillboardType billboardType = Ogre::BBT_POINT;
+		if (value.compare("POINT") == 0)
+		{
+			billboardType = Ogre::BBT_POINT;
+		}
+		else if (value.compare("ORIENTED_COMMON") == 0)
+		{
+			billboardType = Ogre::BBT_ORIENTED_COMMON;
+		}
+		else if (value.compare("ORIENTED_SELF") == 0)
+		{
+			billboardType = Ogre::BBT_ORIENTED_SELF;
+		}
+		else if (value.compare("PERPENDICULAR_COMMON") == 0)
+		{
+			billboardType = Ogre::BBT_PERPENDICULAR_COMMON;
+		}
+		else if (value.compare("PERPENDICULAR_SELF") == 0)
+		{
+			billboardType = Ogre::BBT_PERPENDICULAR_SELF;
+		}
+
+		config.getOption("BILLBOARD_ROTATION", value); 
+		Ogre::BillboardRotationType billboardRotation = Ogre::BBR_TEXCOORD;
+		if (value.compare("VERTEX") == 0)
+		{
+			billboardRotation = Ogre::BBR_VERTEX;
+		}
+		else if (value.compare("TEXCOORD") == 0)
+		{
+			billboardRotation = Ogre::BBR_TEXCOORD;
+		}
+
 		///////////////////////
 
 		OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
@@ -211,9 +251,9 @@ void LevelLoader::processGameObjectBillboardClouds()
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.renderdistance = 0;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.sorting = false;
 
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_ORIENTED_COMMON;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardtype=billboardType;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardrotation=billboardRotation;
 
 		///////////////////////
 
