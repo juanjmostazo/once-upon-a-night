@@ -187,8 +187,14 @@ void LevelLoader::processGameObjectBillboardClouds()
 		config.getOption("WIDTH", value); 
 		double width = atoi(value.c_str());
 
+		config.getOption("WIDTH_RANDOM_OFFSET", value); 
+		double widthRandomOffset = atoi(value.c_str());
+
 		config.getOption("HEIGHT", value); 
 		double height = atoi(value.c_str());
+
+		config.getOption("HEIGHT_RANDOM_OFFSET", value); 
+		double heightRandomOffset = atoi(value.c_str());
 
 		config.getOption("BILLBOARD_TYPE", value); 
 		Ogre::BillboardType billboardType = Ogre::BBT_POINT;
@@ -254,7 +260,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.resize(1);
 
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].colour=ColourValue::White;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=Ogre::Vector2(width, height);
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].position=Ogre::Vector3(0,0,0);
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].rotation=0;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
@@ -271,6 +276,11 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
 				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=
+				Ogre::Vector2(
+					Utils::Random::getInstance()->getRandomDouble(width-widthRandomOffset, width+widthRandomOffset), 
+					Utils::Random::getInstance()->getRandomDouble(height-heightRandomOffset, height+heightRandomOffset));
 
 			///////////////////
 
