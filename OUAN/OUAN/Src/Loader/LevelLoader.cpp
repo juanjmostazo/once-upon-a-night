@@ -156,6 +156,10 @@ void LevelLoader::processGameObjects()
 
 void LevelLoader::processGameObjectBillboardClouds()
 {
+	std::string dreamsClouds[] = {"cloud_d", "cloud2_d", "cloud3_d"} ;
+	std::string nightmaresClouds[] = {"cloud_n", "cloud2_n", "cloud3_n"} ;
+	int numTypeClouds = 3;
+
 	Configuration config;
 	std::string value;
 
@@ -185,12 +189,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		config.getOption("HEIGHT", value); 
 		double height = atoi(value.c_str());
-
-		//BBT_POINT,
-		//BBT_ORIENTED_COMMON,
-		//BBT_ORIENTED_SELF,
-		//BBT_PERPENDICULAR_COMMON,
-		//BBT_PERPENDICULAR_SELF
 
 		config.getOption("BILLBOARD_TYPE", value); 
 		Ogre::BillboardType billboardType = Ogre::BBT_POINT;
@@ -230,9 +228,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
 
-		tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = DREAMS;
-		tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = true;
-		tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = true;
 		tGameObjectBillboardSetParameters.tLogicComponentParameters.scriptFilename = "";
 		tGameObjectBillboardSetParameters.tLogicComponentParameters.scriptFunction = "";
 
@@ -244,7 +239,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		///////////////////////
 
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = "cloud2_d";
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultheight = 1;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultwidth = 1;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.pointrendering = false;
@@ -270,10 +264,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		for (int i=0; i<numClouds; i++)
 		{
-			tGameObjectBillboardSetParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
-			tGameObjectBillboardSetParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
-			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
-
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
 				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
 
@@ -281,6 +271,41 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
 				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+
+			///////////////////
+
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = DREAMS;
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = true;
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = false;
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = dreamsClouds[i%numTypeClouds];
+
+			tGameObjectBillboardSetParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
+			tGameObjectBillboardSetParameters.nightmaresName = "";
+			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
+
+			try 
+			{
+				mGameWorldManager->addGameObjectBillboardSet(mGameObjectFactory->createGameObjectBillboardSet(
+					tGameObjectBillboardSetParameters,mGameWorldManager));
+
+				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
+					Ogre::StringConverter::toString(tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position));
+			} 
+			catch( std::string error )
+			{
+				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
+			}
+
+			///////////////////
+
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = NIGHTMARES;
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = false;
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = true;
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = nightmaresClouds[i%numTypeClouds];
+
+			tGameObjectBillboardSetParameters.dreamsName = "";
+			tGameObjectBillboardSetParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i+numClouds));
+			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i+numClouds));
 
 			try 
 			{
@@ -304,10 +329,14 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 void LevelLoader::processGameObjectFractalClouds()
 {
+	std::vector<Ogre::Vector3> cloudsPositions;
+	Ogre::Vector3 cloudPosition;
+	int maxIterations = 10;
+	int numIteration = 0;
+	bool cloudFoundSoClose = false;
+
 	Configuration config;
 	std::string value;
-	
-	double expandX = 4;
 
 	if (config.loadFromFile(FRACTAL_CLOUDS_CFG))
 	{
@@ -335,6 +364,9 @@ void LevelLoader::processGameObjectFractalClouds()
 
 		config.getOption("CENTER_POSITION_Z", value); 
 		double centerPositionZ = atoi(value.c_str());
+
+		config.getOption("MIN_DISTANCE_TO_ANOTHER", value); 
+		double minDistanceToAnother = atoi(value.c_str());
 
 		///////////////////////
 
@@ -492,14 +524,31 @@ void LevelLoader::processGameObjectFractalClouds()
 			tGameObjectCloudParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
 			tGameObjectCloudParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
 
-			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadioX, generationRadioX);
+			numIteration = 0;
 
-			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.y = centerPositionY + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadioY, generationRadioY);
+			do 
+			{
+				numIteration++;
+				cloudFoundSoClose = false;
 
-			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadioZ, generationRadioZ);
+				cloudPosition.x = centerPositionX + Utils::Random::getInstance()->getRandomDouble(-generationRadioX, generationRadioX);
+				cloudPosition.y = centerPositionY + Utils::Random::getInstance()->getRandomDouble(-generationRadioY, generationRadioY);
+				cloudPosition.z = centerPositionZ + Utils::Random::getInstance()->getRandomDouble(-generationRadioZ, generationRadioZ);
+							
+				for (unsigned int i=0; i<cloudsPositions.size() && !cloudFoundSoClose; i++){
+					if (cloudsPositions[i].distance(cloudPosition) < minDistanceToAnother)
+					{
+						cloudFoundSoClose = true;
+					}
+				}
+
+			} while (cloudFoundSoClose && numIteration < maxIterations);
+
+			cloudsPositions.push_back(cloudPosition);
+
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.x = cloudPosition.x;
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.y = cloudPosition.y;
+			tGameObjectCloudParameters.tRenderComponentPositionalParameters.position.z = cloudPosition.z;
 
 			try 
 			{

@@ -51,11 +51,34 @@ void GameObjectBillboardSet::changeWorldFinished(int world)
 	switch(world)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+		}
+		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(false);
+		}		
 		break;
 	case NIGHTMARES:
+		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+		}
+		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(false);
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+		}	
 		break;
-	default:
-		break;
+	default:break;
 	}
 }
 
