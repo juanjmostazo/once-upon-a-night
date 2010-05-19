@@ -11,6 +11,7 @@
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectOny.h"
+#include "../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -150,26 +151,35 @@ void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
 
 void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
+	double changeTime;
 	if (mWorldManager.get())
 	{
+		mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
+		TGameObjectContainer objs=mWorldManager->getAllGameObjects();
+
+		if(mWorldManager->getChangeWorldGameObjectTime()<mWorldManager->getChangeWorldElapsedTime())
+		{
+			changeTime=mWorldManager->getChangeWorldElapsedTime();
+		}
+		else
+		{
+			changeTime=mWorldManager->getChangeWorldGameObjectTime();
+		}
+
 		if(evt->fast)
 		{
-			mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
-			TGameObjectContainer objs=mWorldManager->getAllGameObjects();
-
 			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
 			{
+				it->second->setChangeWorldDelay(0);
 				it->second->activateChangeWorldFast();
 			}
 		}
 		else
 		{
-			mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
-			TGameObjectContainer objs=mWorldManager->getAllGameObjects();
-
 			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
 			{
-				it->second->activateChangeWorld();
+				it->second->setHasChangedWorld(false);
+				it->second->setChangeWorldDelay(changeTime*Utils::Random::getInstance()->getRandomDouble());
 			}
 		}
 	}

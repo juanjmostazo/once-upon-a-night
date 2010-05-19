@@ -137,6 +137,7 @@ namespace OUAN
 		int getWorld();
 		static int getMyInstanceWorld();
 		double getChangeWorldGameObjectTime() const;
+		double getChangeWorldElapsedTime() const;
 
 		/// gets current Loaded Level
 		std::string getCurrentLevel() const;

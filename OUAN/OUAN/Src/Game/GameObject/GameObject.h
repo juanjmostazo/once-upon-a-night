@@ -24,9 +24,6 @@ namespace OUAN
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;
 
-		double mChangeWorldElapsedTime;
-		bool mIsChangingWorld;
-
 	protected:
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
@@ -36,6 +33,11 @@ namespace OUAN
 		virtual void changeToWorld(int world, double perc);
 		virtual void changeWorldFinished(int world);
 		virtual void changeWorldStarted(int world);
+
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		bool mHasChangedWorld;
+		double mChangeWorldDelay;
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -164,6 +166,12 @@ namespace OUAN
 
 		void displayText(const std::string& msg, const double& displayLifetime=DEFAULT_DISPLAY_LIFETIME);
 		void disableDisplayMsg();
+
+		void setChangeWorldDelay(double delay);
+		double getChangeWorldDelay() const;
+		bool isChangingWorld() const;
+		void setHasChangedWorld(bool hasChangedWorld);
+		bool hasChangedWorld() const;
 	};
 
 	class TGameObjectParameters
