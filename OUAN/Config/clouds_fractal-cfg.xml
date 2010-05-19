@@ -20,7 +20,7 @@
 	<Option key="DREAMS_OFFSET_X">0</Option>
 	<Option key="DREAMS_OFFSET_Y">0</Option>
 	<Option key="DREAMS_OFFSET_Z">0</Option>
-	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_X">0</Option>
+	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_X">45</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_Y">45</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_INITIAL_Z">180</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_X">0</Option>
@@ -42,7 +42,7 @@
 	<Option key="NIGHTMARES_OFFSET_X">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Y">0</Option>
 	<Option key="NIGHTMARES_OFFSET_Z">0</Option>
-	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_X">0</Option>
+	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_X">45</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_Y">225</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_INITIAL_Z">0</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_X">0</Option>
