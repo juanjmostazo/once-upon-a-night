@@ -8,7 +8,7 @@
 	<Option key="CENTER_POSITION_X">-100</Option>
     <Option key="CENTER_POSITION_Y">150</Option>
 	<Option key="CENTER_POSITION_Z">-1200</Option>
-	<Option key="MIN_DISTANCE_TO_ANOTHER">50</Option>
+	<Option key="MIN_DISTANCE_TO_ANOTHER">100</Option>
 	
 	<Option key="DREAMS_TEXTURE_3D">texture3D_64</Option>
 	<Option key="DREAMS_JULIA_GLOBAL_REAL">0.5</Option>
