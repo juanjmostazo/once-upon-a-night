@@ -139,6 +139,7 @@ void GameObject::update(double elapsedSeconds)
 			changeToWorld(mGameWorldManager->getWorld(),1);
 			changeWorldFinished(mGameWorldManager->getWorld());
 			mIsChangingWorld=false;
+			mHasChangedWorld=true;
 		}
 		else
 		{
@@ -346,6 +347,30 @@ bool GameObject::cancelAutoCameraMovement()
 	return false;
 }
 
+void GameObject::setChangeWorldDelay(double delay)
+{
+	mChangeWorldDelay=delay;
+}
+
+double GameObject::getChangeWorldDelay() const
+{
+	return mChangeWorldDelay;
+}
+
+bool GameObject::isChangingWorld() const
+{
+	return mIsChangingWorld;
+}
+
+bool GameObject::hasChangedWorld() const
+{
+	return mHasChangedWorld;
+}
+
+void GameObject::setHasChangedWorld(bool hasChangedWorld)
+{
+	mHasChangedWorld=hasChangedWorld;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

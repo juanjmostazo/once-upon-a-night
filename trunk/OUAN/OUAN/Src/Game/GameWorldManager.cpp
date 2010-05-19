@@ -996,6 +996,11 @@ double GameWorldManager::getChangeWorldGameObjectTime() const
 	return mChangeWorldGameObjectTime;
 }
 
+double GameWorldManager::getChangeWorldElapsedTime() const
+{
+	return mChangeWorldElapsedTime;
+}
+
 void GameWorldManager::changeWorld()
 {	
 	if (world==DREAMS)
@@ -1061,15 +1066,25 @@ void GameWorldManager::changeWorldStarted(int world)
 
 void GameWorldManager::changeToWorld(int world, double perc)
 {
-	switch(world)
+	TGameObjectContainerIterator it;
+	
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && !it->second->isChangingWorld() && !it->second->hasChangedWorld())
+		{
+			it->second->activateChangeWorld();
+		}
 	}
+
+	//switch(world)
+	//{
+	//case DREAMS:
+	//	break;
+	//case NIGHTMARES:
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void GameWorldManager::win()
