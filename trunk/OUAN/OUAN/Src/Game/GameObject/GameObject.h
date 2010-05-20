@@ -173,6 +173,7 @@ namespace OUAN
 		void setChangeWorldElapsedTime(double time);
 		double getChangeWorldElapsedTime() const;
 		int getWorld();
+		void setWorld(int world);
 	};
 
 	class TGameObjectParameters

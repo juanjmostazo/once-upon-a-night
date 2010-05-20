@@ -109,7 +109,7 @@ void GameWorldManager::update(double elapsedSeconds)
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 		{
-			changeToWorld(mWorld,1);
+			changeToWorld(mWorld,1.0f);
 			changeWorldFinished(mWorld);
 			mIsChangingWorld=false;
 		}
@@ -1069,7 +1069,7 @@ void GameWorldManager::changeToWorld(int newWorld, double perc)
 	
 	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
 	{
-		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && it->second->getWorld()!=newWorld)
+		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && it->second->getWorld()!=newWorld && !it->second->isChangingWorld())
 		{
 			it->second->activateChangeWorld();
 		}

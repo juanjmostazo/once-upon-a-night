@@ -172,6 +172,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			{
 				it->second->setChangeWorldDelay(0);
 				it->second->activateChangeWorldFast();
+				it->second->setWorld(evt->getNewWorld());
 			}
 		}
 		else

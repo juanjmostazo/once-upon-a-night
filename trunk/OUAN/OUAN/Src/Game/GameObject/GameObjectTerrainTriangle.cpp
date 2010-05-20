@@ -225,7 +225,7 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 	mRenderComponentEntityDreams->setOriginalMaterial();
 	mRenderComponentEntityNightmares->setOriginalMaterial();
 
-	//Ogre::LogManager::getSingleton().logMessage("changeWorldFinished"+getName()+" ");
+	Ogre::LogManager::getSingleton().logMessage("changeWorldFinished"+getName()+" ");
 }
 
 void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
@@ -244,7 +244,7 @@ void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 		break;
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("changeWorldStarted"+getName()+" ");
+	Ogre::LogManager::getSingleton().logMessage("changeWorldStarted"+getName()+" ");
 }
 
 void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)

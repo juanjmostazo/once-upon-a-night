@@ -137,10 +137,10 @@ void GameObject::update(double elapsedSeconds)
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldGameObjectTime())
 		{
+			mIsChangingWorld=false;
 			changeToWorld(mGameWorldManager->getWorld(),1.0f);
 			changeWorldFinished(mGameWorldManager->getWorld());
 			mWorld=mGameWorldManager->getWorld();
-			mIsChangingWorld=false;
 		}
 		else
 		{
@@ -375,6 +375,11 @@ double GameObject::getChangeWorldElapsedTime() const
 int GameObject::getWorld()
 {
 	return mWorld;
+}
+
+void GameObject::setWorld(int world)
+{
+	mWorld=world;
 }
 
 //-------------------------------------------------------
