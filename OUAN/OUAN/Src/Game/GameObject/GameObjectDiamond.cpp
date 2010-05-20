@@ -65,11 +65,11 @@ PhysicsComponentVolumeBoxPtr GameObjectDiamond::getPhysicsComponentVolumeBox() c
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectDiamond::changeWorldFinished(int world)
+void GameObjectDiamond::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 
@@ -114,11 +114,11 @@ void GameObjectDiamond::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectDiamond::changeWorldStarted(int world)
+void GameObjectDiamond::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -129,11 +129,11 @@ void GameObjectDiamond::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectDiamond::changeToWorld(int world, double perc)
+void GameObjectDiamond::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

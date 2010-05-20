@@ -100,11 +100,11 @@ void GameObjectDragon::reset()
 	}
 }
 
-void GameObjectDragon::changeWorldFinished(int world)
+void GameObjectDragon::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -118,11 +118,11 @@ void GameObjectDragon::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectDragon::changeWorldStarted(int world)
+void GameObjectDragon::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -133,11 +133,11 @@ void GameObjectDragon::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectDragon::changeToWorld(int world, double perc)
+void GameObjectDragon::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

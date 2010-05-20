@@ -55,6 +55,7 @@ void GameObject::activateChangeWorldFast()
 
 void GameObject::activateChangeWorld()
 {
+	//Ogre::LogManager::getSingleton().logMessage("Activate ChangeWorld" + mName + " to "+Ogre::StringConverter::toString(mGameWorldManager->getWorld()));
 	if(mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime=mGameWorldManager->getChangeWorldGameObjectTime()-mChangeWorldElapsedTime;
@@ -67,11 +68,11 @@ void GameObject::activateChangeWorld()
 	}
 }
 
-void GameObject::changeWorldFinished(int world)
+void GameObject::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -82,11 +83,11 @@ void GameObject::changeWorldFinished(int world)
 	}
 }
 
-void GameObject::changeWorldStarted(int world)
+void GameObject::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -97,11 +98,11 @@ void GameObject::changeWorldStarted(int world)
 	}
 }
 
-void GameObject::changeToWorld(int world, double perc)
+void GameObject::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -136,10 +137,10 @@ void GameObject::update(double elapsedSeconds)
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldGameObjectTime())
 		{
-			changeToWorld(mGameWorldManager->getWorld(),1);
+			changeToWorld(mGameWorldManager->getWorld(),1.0f);
 			changeWorldFinished(mGameWorldManager->getWorld());
+			mWorld=mGameWorldManager->getWorld();
 			mIsChangingWorld=false;
-			mHasChangedWorld=true;
 		}
 		else
 		{
@@ -362,15 +363,20 @@ bool GameObject::isChangingWorld() const
 	return mIsChangingWorld;
 }
 
-bool GameObject::hasChangedWorld() const
+void GameObject::setChangeWorldElapsedTime(double time)
 {
-	return mHasChangedWorld;
+	mChangeWorldElapsedTime=time;
+}
+double GameObject::getChangeWorldElapsedTime() const
+{
+	return mChangeWorldElapsedTime;
 }
 
-void GameObject::setHasChangedWorld(bool hasChangedWorld)
+int GameObject::getWorld()
 {
-	mHasChangedWorld=hasChangedWorld;
+	return mWorld;
 }
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

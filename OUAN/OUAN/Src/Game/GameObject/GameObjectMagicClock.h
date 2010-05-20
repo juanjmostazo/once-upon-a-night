@@ -41,9 +41,9 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 
 	};

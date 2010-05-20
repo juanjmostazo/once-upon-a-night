@@ -312,12 +312,11 @@ namespace OUAN
 		std::string level;
 
 		// Current world (DREAMS or NIGHTMARES)
-		int world;
 		double mChangeWorldGameObjectTime;
 		//Changeworld functions and variables
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 

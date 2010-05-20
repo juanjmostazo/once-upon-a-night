@@ -80,11 +80,11 @@ void GameObjectSnakeCreeper::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 }
 
-void GameObjectSnakeCreeper::changeWorldFinished(int world)
+void GameObjectSnakeCreeper::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -98,11 +98,11 @@ void GameObjectSnakeCreeper::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectSnakeCreeper::changeWorldStarted(int world)
+void GameObjectSnakeCreeper::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -113,11 +113,11 @@ void GameObjectSnakeCreeper::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectSnakeCreeper::changeToWorld(int world, double perc)
+void GameObjectSnakeCreeper::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

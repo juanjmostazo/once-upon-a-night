@@ -153,11 +153,11 @@ void GameObjectBee_Butterfly::updateLogic(double elapsedSeconds)
 	}
 }
 
-void GameObjectBee_Butterfly::changeWorldFinished(int world)
+void GameObjectBee_Butterfly::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -168,11 +168,11 @@ void GameObjectBee_Butterfly::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectBee_Butterfly::changeWorldStarted(int world)
+void GameObjectBee_Butterfly::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -183,11 +183,11 @@ void GameObjectBee_Butterfly::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectBee_Butterfly::changeToWorld(int world, double perc)
+void GameObjectBee_Butterfly::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

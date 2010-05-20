@@ -24,11 +24,11 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 	mRenderComponentScene=pRenderComponentScene;
 }
 
-void GameObjectScene::changeWorldFinished(int world)
+void GameObjectScene::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -38,14 +38,14 @@ void GameObjectScene::changeWorldFinished(int world)
 		break;
 	}
 
-	mRenderComponentScene->changeToWorld(world,1);
+	mRenderComponentScene->changeToWorld(newWorld,1);
 }
 
-void GameObjectScene::changeWorldStarted(int world)
+void GameObjectScene::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -56,11 +56,11 @@ void GameObjectScene::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectScene::changeToWorld(int world, double perc)
+void GameObjectScene::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

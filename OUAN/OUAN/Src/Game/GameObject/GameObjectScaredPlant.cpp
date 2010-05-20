@@ -109,11 +109,11 @@ void GameObjectScaredPlant::reset()
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(SCAREDPLANT_STATE_IDLE));
 }
 
-void GameObjectScaredPlant::changeWorldFinished(int world)
+void GameObjectScaredPlant::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
@@ -133,11 +133,11 @@ void GameObjectScaredPlant::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectScaredPlant::changeWorldStarted(int world)
+void GameObjectScaredPlant::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -148,11 +148,11 @@ void GameObjectScaredPlant::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectScaredPlant::changeToWorld(int world, double perc)
+void GameObjectScaredPlant::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

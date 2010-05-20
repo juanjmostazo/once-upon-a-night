@@ -64,11 +64,11 @@ void GameObjectTriggerBox::changeVisibility()
 	}
 }
 
-void GameObjectTriggerBox::changeWorldFinished(int world)
+void GameObjectTriggerBox::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 
@@ -109,11 +109,11 @@ void GameObjectTriggerBox::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectTriggerBox::changeWorldStarted(int world)
+void GameObjectTriggerBox::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -124,11 +124,11 @@ void GameObjectTriggerBox::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTriggerBox::changeToWorld(int world, double perc)
+void GameObjectTriggerBox::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

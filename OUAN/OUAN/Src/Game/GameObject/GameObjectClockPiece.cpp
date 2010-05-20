@@ -54,7 +54,7 @@ PhysicsComponentVolumeBoxPtr GameObjectClockPiece::getPhysicsComponentVolumeBox(
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectClockPiece::changeWorldFinished(int world)
+void GameObjectClockPiece::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -70,7 +70,7 @@ void GameObjectClockPiece::changeWorldFinished(int world)
 	}
 	else
 	{
-		switch(world)
+		switch(newWorld)
 		{
 		case DREAMS:
 
@@ -116,11 +116,11 @@ void GameObjectClockPiece::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectClockPiece::changeWorldStarted(int world)
+void GameObjectClockPiece::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -131,11 +131,11 @@ void GameObjectClockPiece::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectClockPiece::changeToWorld(int world, double perc)
+void GameObjectClockPiece::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

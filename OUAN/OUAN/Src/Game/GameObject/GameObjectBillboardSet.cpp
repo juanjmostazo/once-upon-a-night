@@ -44,11 +44,11 @@ RenderComponentInitialPtr GameObjectBillboardSet::getRenderComponentInitial() co
 	return mRenderComponentInitial;
 }
 
-void GameObjectBillboardSet::changeWorldFinished(int world)
+void GameObjectBillboardSet::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
@@ -82,11 +82,11 @@ void GameObjectBillboardSet::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectBillboardSet::changeWorldStarted(int world)
+void GameObjectBillboardSet::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -97,11 +97,11 @@ void GameObjectBillboardSet::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectBillboardSet::changeToWorld(int world, double perc)
+void GameObjectBillboardSet::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

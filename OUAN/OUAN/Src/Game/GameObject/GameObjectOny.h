@@ -171,8 +171,8 @@ namespace OUAN
 		void setAttack(TWeaponMode weaponMode);
 		WeaponComponentPtr getWeaponComponent() const;
 
-		//void initWeaponComponent(int world);
-		void setInitialWeaponComponent(int world);
+		//void initWeaponComponent(int newWorld);
+		void setInitialWeaponComponent(int newWorld);
 		void beginAttack();
 		void switchOff();
 		/// Set logic component
@@ -189,9 +189,9 @@ namespace OUAN
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 		void decreaseHP(int amount=1);
 		void setMaxHP();

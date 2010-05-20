@@ -56,9 +56,9 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 
 		/// Reset object

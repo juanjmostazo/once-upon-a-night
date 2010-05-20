@@ -1,0 +1,21 @@
+material blending
+{
+   technique
+   {
+      pass
+      {
+         texture_unit
+         {
+           texture random.png             
+         }
+      }
+      pass
+      {
+         scene_blend alpha_blend
+         texture_unit
+         {
+            texture random.png            
+         }
+      }
+   }
+}

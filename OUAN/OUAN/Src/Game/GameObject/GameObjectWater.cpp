@@ -66,11 +66,11 @@ PhysicsComponentVolumeConvexPtr GameObjectWater::getPhysicsComponentVolumeConvex
 	return mPhysicsComponentVolumeConvex;
 }
 
-void GameObjectWater::changeWorldFinished(int world)
+void GameObjectWater::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams())
@@ -96,11 +96,11 @@ void GameObjectWater::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectWater::changeWorldStarted(int world)
+void GameObjectWater::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -111,11 +111,11 @@ void GameObjectWater::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectWater::changeToWorld(int world, double perc)
+void GameObjectWater::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

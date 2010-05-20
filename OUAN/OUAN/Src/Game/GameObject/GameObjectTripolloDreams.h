@@ -52,7 +52,7 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentEnemyPtr mLogicComponentEnemy;
 
-		bool activateTrajectory(int world);
+		bool activateTrajectory(int newWorld);
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -111,9 +111,9 @@ namespace OUAN
 		
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 
 		/// Reset object

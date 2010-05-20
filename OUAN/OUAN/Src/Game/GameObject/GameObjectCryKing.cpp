@@ -87,11 +87,11 @@ void GameObjectCryKing::reset()
 	}
 }
 
-void GameObjectCryKing::changeWorldFinished(int world)
+void GameObjectCryKing::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -102,11 +102,11 @@ void GameObjectCryKing::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectCryKing::changeWorldStarted(int world)
+void GameObjectCryKing::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -117,11 +117,11 @@ void GameObjectCryKing::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectCryKing::changeToWorld(int world, double perc)
+void GameObjectCryKing::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

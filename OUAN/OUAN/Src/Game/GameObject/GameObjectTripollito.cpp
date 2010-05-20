@@ -99,11 +99,11 @@ void GameObjectTripollito::reset()
 	}
 }
 
-void GameObjectTripollito::changeWorldFinished(int world)
+void GameObjectTripollito::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -117,11 +117,11 @@ void GameObjectTripollito::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectTripollito::changeWorldStarted(int world)
+void GameObjectTripollito::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -132,11 +132,11 @@ void GameObjectTripollito::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTripollito::changeToWorld(int world, double perc)
+void GameObjectTripollito::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

@@ -79,7 +79,7 @@ GameWorldManager* GameWorldManager::mInst=NULL;
 
 GameWorldManager::GameWorldManager()
 {
-	world=DREAMS;
+	mWorld=DREAMS;
 	level=LEVEL_NONE;
 	mInst=this;
 	mGodMode=false;
@@ -96,6 +96,14 @@ void GameWorldManager::update(double elapsedSeconds)
 {
 	TGameObjectContainerIterator it;
 
+	dispatchEvents();
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		it->second->update(elapsedSeconds);
+	}
+
 	if(mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime+=elapsedSeconds;
@@ -110,14 +118,6 @@ void GameWorldManager::update(double elapsedSeconds)
 			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
 		}
 	}
-
-	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
-		it->second->update(elapsedSeconds);
-	}
-
-	dispatchEvents();
 }
 
 void GameWorldManager::setGodMode(bool activated)
@@ -388,7 +388,7 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 
 	if (getGameObjectOny().get())
 	{
-		getGameObjectOny()->setInitialWeaponComponent(world);
+		getGameObjectOny()->setInitialWeaponComponent(mWorld);
 	}
 
 	mGameOver=false;
@@ -456,7 +456,7 @@ bool GameWorldManager::loadConfig()
 void GameWorldManager::init(ApplicationPtr app)
 {
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT STARTED]");
-	world=DREAMS;
+	mWorld=DREAMS;
 	mGameOver=false;
 	mApp=app;
 
@@ -978,8 +978,8 @@ std::string GameWorldManager::getCurrentLevel() const
 
 void GameWorldManager::setWorld(int newWorld)
 {
-	world=newWorld;
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	mWorld=newWorld;
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
 	activateChangeWorldFast();
 	evt->fast=true;
 	evt->time=mChangeWorldTotalTime;
@@ -994,7 +994,7 @@ int GameWorldManager::getMyInstanceWorld()
 
 int GameWorldManager::getWorld()
 {
-	return world;
+	return mWorld;
 }
 
 double GameWorldManager::getChangeWorldGameObjectTime() const
@@ -1009,16 +1009,16 @@ double GameWorldManager::getChangeWorldElapsedTime() const
 
 void GameWorldManager::changeWorld()
 {	
-	if (world==DREAMS)
+	if (mWorld==DREAMS)
 	{
-		world=NIGHTMARES;
+		mWorld=NIGHTMARES;
 	}
-	else if (world==NIGHTMARES)
+	else if (mWorld==NIGHTMARES)
 	{
-		world=DREAMS;
+		mWorld=DREAMS;
 	}
 
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(world));
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
 	activateChangeWorld();
 	evt->fast=false;
 	evt->time=mChangeWorldTotalTime;
@@ -1032,21 +1032,14 @@ void GameWorldManager::activateChangeWorldFast()
 
 void GameWorldManager::activateChangeWorld()
 {
-	if(mIsChangingWorld)
-	{
-		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
-	}
-	else
-	{
-		mChangeWorldElapsedTime=0;
-		mIsChangingWorld=true;
-		changeWorldStarted(mWorld);
-	}
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=true;
+	changeWorldStarted(mWorld);
 }
 
-void GameWorldManager::changeWorldFinished(int world)
+void GameWorldManager::changeWorldFinished(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -1057,9 +1050,9 @@ void GameWorldManager::changeWorldFinished(int world)
 	}
 }
 
-void GameWorldManager::changeWorldStarted(int world)
+void GameWorldManager::changeWorldStarted(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -1070,19 +1063,19 @@ void GameWorldManager::changeWorldStarted(int world)
 	}
 }
 
-void GameWorldManager::changeToWorld(int world, double perc)
+void GameWorldManager::changeToWorld(int newWorld, double perc)
 {
 	TGameObjectContainerIterator it;
 	
 	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
 	{
-		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && !it->second->isChangingWorld() && !it->second->hasChangedWorld())
+		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && it->second->getWorld()!=newWorld)
 		{
 			it->second->activateChangeWorld();
 		}
 	}
 
-	//switch(world)
+	//switch(newWorld)
 	//{
 	//case DREAMS:
 	//	break;
@@ -1252,9 +1245,9 @@ void GameWorldManager::toggleTreeVisibility()
 		treeD=boost::dynamic_pointer_cast<GameObjectTree>(it->second);		
 		if (treeD && treeD.get())
 		{		
-			if (world==DREAMS && treeD->getLogicComponent()->existsInDreams())
+			if (mWorld==DREAMS && treeD->getLogicComponent()->existsInDreams())
 				treeD->getRenderComponentEntity()->getEntity()->setVisible(!treeD->getRenderComponentEntity()->getEntity()->isVisible());
-			else if (world==NIGHTMARES && treeD->getLogicComponent()->existsInNightmares())
+			else if (mWorld==NIGHTMARES && treeD->getLogicComponent()->existsInNightmares())
 				treeD->getRenderComponentEntity()->getEntity()->setVisible(!treeD->getRenderComponentEntity()->getEntity()->isVisible());
 		}
 	}

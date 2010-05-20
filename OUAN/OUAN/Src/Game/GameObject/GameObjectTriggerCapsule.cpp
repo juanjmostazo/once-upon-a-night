@@ -63,11 +63,11 @@ void GameObjectTriggerCapsule::changeVisibility()
 	}
 }
 
-void GameObjectTriggerCapsule::changeWorldFinished(int world)
+void GameObjectTriggerCapsule::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams())
@@ -106,11 +106,11 @@ void GameObjectTriggerCapsule::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectTriggerCapsule::changeWorldStarted(int world)
+void GameObjectTriggerCapsule::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -121,11 +121,11 @@ void GameObjectTriggerCapsule::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTriggerCapsule::changeToWorld(int world, double perc)
+void GameObjectTriggerCapsule::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

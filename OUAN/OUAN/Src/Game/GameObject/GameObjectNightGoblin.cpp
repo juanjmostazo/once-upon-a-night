@@ -99,11 +99,11 @@ void GameObjectNightGoblin::reset()
 	}
 }
 
-void GameObjectNightGoblin::changeWorldFinished(int world)
+void GameObjectNightGoblin::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -117,11 +117,11 @@ void GameObjectNightGoblin::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectNightGoblin::changeWorldStarted(int world)
+void GameObjectNightGoblin::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -132,11 +132,11 @@ void GameObjectNightGoblin::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectNightGoblin::changeToWorld(int world, double perc)
+void GameObjectNightGoblin::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

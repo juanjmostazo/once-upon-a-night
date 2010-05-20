@@ -268,9 +268,9 @@ void HUDInGame::activateChangeWorld()
 
 }
 
-void HUDInGame::changeWorldFinished(int world)
+void HUDInGame::changeWorldFinished(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		hideElement(PANEL_ROULETTE);
@@ -290,9 +290,9 @@ void HUDInGame::changeWorldFinished(int world)
 	}
 }
 
-void HUDInGame::changeWorldStarted(int world)
+void HUDInGame::changeWorldStarted(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -303,9 +303,9 @@ void HUDInGame::changeWorldStarted(int world)
 	}
 }
 
-void HUDInGame::changeToWorld(int world, double perc)
+void HUDInGame::changeToWorld(int newWorld, double perc)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

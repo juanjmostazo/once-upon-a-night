@@ -84,9 +84,9 @@ namespace OUAN
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 		/// Reset object
 		virtual void reset();

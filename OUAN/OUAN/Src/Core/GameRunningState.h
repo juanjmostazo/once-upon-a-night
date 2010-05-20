@@ -40,7 +40,7 @@ namespace OUAN
 		TWeaponMode getCurrentWeaponMode();
 
 		void loadMusic();
-		void changeMusic(int world);
+		void changeMusic(int newWorld);
 		void clearMusic();
 		void processChangeWorld(ChangeWorldEventPtr evt);
 		void pauseMusic();
@@ -49,9 +49,9 @@ namespace OUAN
 		std::map<int,TMusicTrackInfo> mMusicChannels;
 
 		//Changeworld functions and variables
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 
