@@ -84,6 +84,7 @@
 #include "../Logic/LogicComponent/LogicComponentBreakable.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
+#include "../Logic/LogicComponent/LogicComponentProp.h"
 
 using namespace OUAN;
 
@@ -2080,7 +2081,7 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 		tGameObjectScaredPlantParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectScaredPlantParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectScaredPlantParameters.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
@@ -3800,7 +3801,57 @@ TLogicComponentUsableParameters LevelLoader::processLogicComponentUsable(TiXmlEl
 	}
 	return logicComponentUsableParameters;
 }
-
+TLogicComponentPropParameters LevelLoader::processLogicComponentProp(TiXmlElement *XMLNodeDreams,
+																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentPropParameters logicComponentPropParameters;
+	logicComponentPropParameters.existsInDreams=XMLNodeDreams;
+	logicComponentPropParameters.existsInNightmares=XMLNodeNightmares;
+	if (XMLNodeCustomProperties)
+	{
+		try{
+			logicComponentPropParameters.scriptFilename=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFilename");
+		}
+		catch(std::string error)
+		{
+			logicComponentPropParameters.scriptFilename="";
+		}
+		try{
+			logicComponentPropParameters.scriptFunction=getPropertyString(XMLNodeCustomProperties,
+				"LogicComponent::scriptFunction");
+		}
+		catch(std::string error)
+		{
+			logicComponentPropParameters.scriptFunction="";
+		}
+		try{
+			logicComponentPropParameters.defaultState=getPropertyInt(XMLNodeCustomProperties,
+				"LogicComponent::defaultState");
+		}
+		catch (std::string error)
+		{
+			logicComponentPropParameters.defaultState=0;
+		}
+		try{
+			logicComponentPropParameters.approachDistance=getPropertyReal(XMLNodeCustomProperties,
+				"LogicComponent::approachDistance");
+		}
+		catch (std::string error)
+		{
+			logicComponentPropParameters.approachDistance=0.0f;
+		}
+		try{
+			logicComponentPropParameters.delay=getPropertyReal(XMLNodeCustomProperties,
+				"LogicComponent::delay");
+		}
+		catch (std::string error)
+		{
+			logicComponentPropParameters.delay=0.0f;
+		}
+	}
+	return logicComponentPropParameters;
+}
 TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {

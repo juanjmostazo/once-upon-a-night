@@ -6,10 +6,18 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
+	const std::string SCAREDPLANT_STATE_IDLE="SP_STATE_IDLE";
+	const std::string SCAREDPLANT_STATE_ALERT="SP_STATE_ALERT";
+	const std::string SCAREDPLANT_STATE_CAUTION="SP_STATE_CAUTION";
+
+	//TODO: Verify animation names when they're done
+	const std::string SCAREDPLANT_ANIM_IDLE="idle";
+	const std::string SCAREDPLANT_ANIM_SCARED="scared";
+
 	/// Class to hold ScaredPlant information
 	class GameObjectScaredPlant : public GameObject, public boost::enable_shared_from_this<GameObjectScaredPlant>
 	{
@@ -24,7 +32,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
@@ -35,10 +43,10 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponent(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -121,7 +129,7 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentParameters;
 	};
 }
 #endif

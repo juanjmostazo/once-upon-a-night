@@ -91,6 +91,7 @@ namespace OUAN
 		LogicComponentItemPtr createLogicComponentItem(GameObjectPtr gameObject, TLogicComponentItemParameters logicComponentItemParameters);
 		LogicComponentBreakablePtr createLogicComponentBreakable(GameObjectPtr gameObject, TLogicComponentBreakableParameters logicComponentBreakableParameters);
 		LogicComponentUsablePtr createLogicComponentUsable(GameObjectPtr gameObject, TLogicComponentUsableParameters logicComponentParameters);
+		LogicComponentPropPtr createLogicComponentProp(GameObjectPtr gameObject, TLogicComponentPropParameters logicComponentParameters);
 		LogicComponentTriggerPtr createLogicComponentTrigger(GameObjectPtr gameObject, TLogicComponentTriggerParameters logicComponentParameters);
 
 		WeaponComponentPtr createWeaponComponent(GameObjectPtr gameObject, TWeaponComponentParameters weaponComponentParameters);

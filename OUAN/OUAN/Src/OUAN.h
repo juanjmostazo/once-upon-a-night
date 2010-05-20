@@ -270,6 +270,10 @@ namespace OUAN
 		class TLogicComponentUsableParameters;
 		typedef boost::shared_ptr<LogicComponentUsable> LogicComponentUsablePtr;
 
+		class LogicComponentProp;
+		class TLogicComponentPropParameters;
+		typedef boost::shared_ptr<LogicComponentProp> LogicComponentPropPtr;
+
 		class LogicComponentTrigger;
 		class TLogicComponentTriggerParameters;
 		typedef boost::shared_ptr<LogicComponentTrigger> LogicComponentTriggerPtr;
@@ -304,6 +308,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_LOGIC_BREAKABLE="LogicComponentBreakable";
 		const std::string COMPONENT_TYPE_LOGIC_USABLE="LogicComponentUsable";
 		const std::string COMPONENT_TYPE_LOGIC_TRIGGER="LogicComponentTrigger";
+		const std::string COMPONENT_TYPE_LOGIC_PROP="LogicComponentProp";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
 

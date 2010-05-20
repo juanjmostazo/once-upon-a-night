@@ -910,6 +910,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentProp.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTrigger.cpp"
 						>
 					</File>
@@ -1674,6 +1678,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentOny.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentProp.h"
 						>
 					</File>
 					<File
