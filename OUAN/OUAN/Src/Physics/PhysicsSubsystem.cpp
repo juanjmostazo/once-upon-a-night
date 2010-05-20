@@ -131,31 +131,22 @@ void PhysicsSubsystem::clear()
 	{
 		Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying controller manager");
 		delete mNxOgreControllerManager;
-		mNxOgreControllerManager=0;
+		mNxOgreControllerManager=NULL;
 	}
 
 	if (mNxOgreRenderSystem)
 	{
 		Ogre::LogManager::getSingleton().logMessage("PHYSICS: render system");
 		delete mNxOgreRenderSystem;
-		mNxOgreRenderSystem=0;
+		mNxOgreRenderSystem=NULL;
 	}
 	
-	//Visual Debugger should be destroyed?
-	//mApp->getRenderSubsystem()->
-
 	if (mNxOgreWorld)
 	{
-		if (mNxOgreScene)
-		{
-			Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying scene");
-			mNxOgreWorld->destroyScene(mNxOgreScene);
-			mNxOgreScene=0;
-		}
-
-		Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying world");
-		mNxOgreWorld->destroyWorld();
-		mNxOgreWorld=0;
+		Ogre::LogManager::getSingleton().logMessage("PHYSICS: Destroying world & scene");
+		mNxOgreWorld->destroyWorld(); //Scene is also destroyed here
+		mNxOgreWorld=NULL;
+		mNxOgreScene=NULL; 
 	}
 
 	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL CLEAR FINISHED]");
@@ -169,7 +160,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
-
 
 	if (mApp)
 	{
