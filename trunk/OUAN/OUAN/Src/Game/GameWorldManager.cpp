@@ -203,6 +203,10 @@ TGameObjectSnakeCreeperContainer GameWorldManager::getGameObjectSnakeCreeperCont
 {
 	return mGameObjectSnakeCreeperContainer;
 }
+TGameObjectScaredPlantContainer GameWorldManager::getGameObjectScaredPlantContainer()
+{
+	return mGameObjectScaredPlantContainer;
+}
 TGameObjectBee_ButterflyContainer GameWorldManager::getGameObjectBeeButterflyContainer()
 {
 	return mGameObjectBeeButterflyContainer;
@@ -340,6 +344,7 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectCarnivorousPlantContainer,mGameObjectCarnivorousPlantContainer);
 	EMPTY_VECTOR(TGameObjectSnakeCreeperContainer,mGameObjectSnakeCreeperContainer);
 	EMPTY_VECTOR(TGameObjectTentetiesoContainer,mGameObjectTentetiesoContainer);
+	EMPTY_VECTOR(TGameObjectScaredPlantContainer,mGameObjectScaredPlantContainer);
 
 	EMPTY_VECTOR(TGameObjectPortalContainer, mGameObjectPortalContainer);
 
@@ -767,6 +772,7 @@ void GameWorldManager::addGameObjectScaredPlant(GameObjectScaredPlantPtr gameObj
 
 	mGameObjectPhysicsContainer.push_back(gameObjectScaredPlant);
 	mGameObjectPhysicsCharacterContainer.push_back(gameObjectScaredPlant);
+	mGameObjectScaredPlantContainer.push_back(gameObjectScaredPlant);
 }
 
 void GameWorldManager::addGameObjectScene(GameObjectScenePtr pGameObjectScene)

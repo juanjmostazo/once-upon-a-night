@@ -1421,7 +1421,7 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 
 	//Create LogicComponent
 	pGameObjectScaredPlant->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectScaredPlant,
 		tGameObjectScaredPlantParameters.tLogicComponentParameters));
 

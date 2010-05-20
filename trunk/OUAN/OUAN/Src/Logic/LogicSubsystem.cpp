@@ -9,12 +9,14 @@
 #include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "LogicComponent/LogicComponent.h"
 #include "LogicComponent/LogicComponentOny.h"
 #include "LogicComponent/LogicComponentItem.h"
 #include "LogicComponent/LogicComponentEnemy.h"
 #include "LogicComponent/LogicComponentUsable.h"
+#include "LogicComponent/LogicComponentProp.h"
 
 #include "../Utils/Utils.h"
 
@@ -78,7 +80,12 @@ void LogicSubsystem::registerModules()
 			.def(constructor<const std::string&>())
 			.def("getApproachDistance",&LogicComponentUsable::getApproachDistance)
 			.def("getActivateDistance",&LogicComponentUsable::getActivateDistance)
-			.def("isActivated",&LogicComponentUsable::isActivated)
+			.def("isActivated",&LogicComponentUsable::isActivated),
+		class_<LogicComponentProp,LogicComponent>("LogicComponentProp")
+			.def(constructor<const std::string&>())
+			.def("getApproachDistance",&LogicComponentProp::getApproachDistance)
+			.def("getDelay",&LogicComponentProp::getDelay)
+			.def("getTimeSpent",&LogicComponentProp::getTimeSpent)
 	];
 
 }
@@ -116,6 +123,15 @@ void LogicSubsystem::loadScripts()
 		if (portal && portal.get() && !portal->getLogicComponentUsable()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentUsable()->getScriptFilename());
+		}
+	}
+	TGameObjectScaredPlantContainer spList=worldMgr->getGameObjectScaredPlantContainer();
+	if (!spList.empty())
+	{
+		GameObjectScaredPlantPtr scplant= boost::dynamic_pointer_cast<GameObjectScaredPlant>(spList.at(0));
+		if (scplant && scplant.get() && !scplant->getLogicComponent()->getScriptFilename().empty())
+		{
+			loadScript(SCRIPTS_PATH+"/"+scplant->getLogicComponent()->getScriptFilename());
 		}
 	}
 	//TODO: CHANGE THIS!!!
@@ -176,7 +192,9 @@ int LogicSubsystem::invokeStateFunction(const std::string& functionName,int stat
 			if (enemyPtr)
 				result= luabind::call_function<int>(mLuaEngine,functionName.c_str(),enemyPtr,state);
 			else if(LogicComponentUsable* usablePtr=dynamic_cast<LogicComponentUsable*>(pLogicComponent))
-				result=luabind::call_function<int>(mLuaEngine,functionName.c_str(),usablePtr,state);				
+				result=luabind::call_function<int>(mLuaEngine,functionName.c_str(),usablePtr,state);
+			else if (LogicComponentProp* propPtr=dynamic_cast<LogicComponentProp*>(pLogicComponent) )
+				result=luabind::call_function<int>(mLuaEngine,functionName.c_str(),propPtr,state);
 		}
 		catch(const luabind::error& err)
 		{

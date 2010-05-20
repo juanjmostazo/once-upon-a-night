@@ -143,6 +143,8 @@ namespace OUAN
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentUsableParameters processLogicComponentUsable(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TLogicComponentPropParameters processLogicComponentProp(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentTriggerParameters processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 

@@ -1,6 +1,8 @@
 #include "GameObjectScaredPlant.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Logic/LogicSubsystem.h"
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
 
 using namespace OUAN;
 
@@ -58,11 +60,53 @@ PhysicsComponentSimpleBoxPtr GameObjectScaredPlant::getPhysicsComponentSimpleBox
 void GameObjectScaredPlant::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+	if(isEnabled() && mGameWorldManager->getWorld()==DREAMS)
+	{
+		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+		//mRenderComponentEntityDreams;
+		int currentState=mLogicComponent->getState();
+		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
+		{
+			//mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
+			displayText("I'M NOT AFRAID ANYMORE! ^_^",0.75);
+		}
+		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
+		{
+			//mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
+			displayText("I'M AFRAID!! >_<");
+		}
+		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_CAUTION))
+		{
+			if (mLogicComponent->isStateChanged())
+			{
+				//Notice that the animation will not change from the alert state
+				mLogicComponent->setTimeSpent(0);
+				std::stringstream msg("");
+				msg<<"I'M STILL AFRAID! T_T ("<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
+				displayText(msg.str(),mLogicComponent->getDelay());
+			}
+			else
+			{
+				if (mDisplayMsg)
+				{
+					std::stringstream msg("");
+					msg<<"I'M STILL AFRAID! ("<<std::fixed<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
+					mDisplayMsg->setText(msg.str());
+				}
+			}
+		}
+		if(mRenderComponentEntityDreams.get())
+		{
+			mRenderComponentEntityDreams->update(elapsedSeconds);
+		}
+
+	}
 }
 
 void GameObjectScaredPlant::reset()
 {
 	GameObject::reset();
+	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(SCAREDPLANT_STATE_IDLE));
 }
 
 void GameObjectScaredPlant::changeWorldFinished(int world)
@@ -139,13 +183,13 @@ PhysicsComponentPtr GameObjectScaredPlant::getPhysicsComponent() const
 }
 
 /// Set logic component
-void GameObjectScaredPlant::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectScaredPlant::setLogicComponent(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectScaredPlant::getLogicComponent()
+LogicComponentPropPtr GameObjectScaredPlant::getLogicComponent()
 {
 	return mLogicComponent;
 }

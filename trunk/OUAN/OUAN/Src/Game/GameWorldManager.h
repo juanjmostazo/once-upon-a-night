@@ -39,6 +39,7 @@ namespace OUAN
 		TGameObjectEyeContainer getGameObjectEyeContainer();
 		TGameObjectBee_ButterflyContainer getGameObjectBeeButterflyContainer();
 		TGameObjectCarnivorousPlantContainer getGameObjectCarnivorousPlantContainer();
+		TGameObjectScaredPlantContainer getGameObjectScaredPlantContainer();
 		TGameObjectSnakeCreeperContainer getGameObjectSnakeCreeperContainer();
 		TGameObjectTriggerBoxContainer getGameObjectTriggerBoxContainer();
 		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
@@ -274,6 +275,7 @@ namespace OUAN
 		TGameObjectBee_ButterflyContainer mGameObjectBeeButterflyContainer;
 		TGameObjectCarnivorousPlantContainer mGameObjectCarnivorousPlantContainer;
 		TGameObjectSnakeCreeperContainer mGameObjectSnakeCreeperContainer;
+		TGameObjectScaredPlantContainer mGameObjectScaredPlantContainer;
 
 		TGameObjectPortalContainer mGameObjectPortalContainer;
 

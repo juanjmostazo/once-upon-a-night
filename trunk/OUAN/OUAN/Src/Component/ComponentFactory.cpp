@@ -37,6 +37,7 @@
 #include "../Logic/LogicComponent/LogicComponentBreakable.h"
 #include "../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
+#include "../Logic/LogicComponent/LogicComponentProp.h"
 #include "../Logic/LogicComponent/LogicComponentTrigger.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
@@ -603,7 +604,24 @@ LogicComponentUsablePtr ComponentFactory::createLogicComponentUsable(GameObjectP
 	logicComponent->setParent(gameObject);
 	return logicComponent;
 }
+LogicComponentPropPtr ComponentFactory::createLogicComponentProp(GameObjectPtr gameObject, 
+																	 TLogicComponentPropParameters logicComponentParameters)
+{
+	LogicComponentPropPtr logicComponent = LogicComponentPropPtr(new LogicComponentProp());
+	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
+	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
 
+	logicComponent->setApproachDistance(logicComponentParameters.approachDistance);
+	logicComponent->setDelay(logicComponentParameters.delay);
+	
+	logicComponent->setScriptFilename(logicComponentParameters.scriptFilename);
+	logicComponent->setScriptFunction(logicComponentParameters.scriptFunction);
+	logicComponent->setState(logicComponentParameters.defaultState);
+	logicComponent->setTimeSpent(0);
+
+	logicComponent->setParent(gameObject);
+	return logicComponent;
+}
 LogicComponentTriggerPtr ComponentFactory::createLogicComponentTrigger(GameObjectPtr gameObject, 
 																	 TLogicComponentTriggerParameters logicComponentParameters)
 {

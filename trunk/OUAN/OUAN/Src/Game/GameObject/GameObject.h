@@ -21,10 +21,9 @@ namespace OUAN
 		/// GameObject number of updates
 		long mNumUpdates;
 
+	protected:
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;
-
-	protected:
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
 
