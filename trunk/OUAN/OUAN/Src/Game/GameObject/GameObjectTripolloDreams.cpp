@@ -79,31 +79,31 @@ PhysicsComponentCharacterPtr GameObjectTripolloDreams::getPhysicsComponentCharac
 	return mPhysicsComponentCharacter;
 }
 
-bool GameObjectTripolloDreams::activateTrajectory(int world)
+bool GameObjectTripolloDreams::activateTrajectory(int newWorld)
 {
-	if(world==DREAMS)
+	if(newWorld==DREAMS)
 	{
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_DREAMS))
 		{
-			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_DREAMS,world);
+			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_DREAMS,newWorld);
 			return true;
 		}
 		else
 		{
-			mTrajectoryComponent->activateIdle(getName(),world);
+			mTrajectoryComponent->activateIdle(getName(),newWorld);
 			return false;
 		}
 	}
-	else if(world==NIGHTMARES)
+	else if(newWorld==NIGHTMARES)
 	{
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_TRAJECTORY_NIGHTMARES))
 		{
-			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_NIGHTMARES,world);
+			mTrajectoryComponent->activatePredefinedTrajectory(getName()+SUFFIX_TRAJECTORY_NIGHTMARES,newWorld);
 			return true;
 		}
 		else
 		{
-			mTrajectoryComponent->activateIdle(getName(),world);
+			mTrajectoryComponent->activateIdle(getName(),newWorld);
 			return false;
 		}
 	}
@@ -278,13 +278,13 @@ void GameObjectTripolloDreams::reset()
 	}
 }
 
-void GameObjectTripolloDreams::changeWorldFinished(int world)
+void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
 	if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 	{
-		switch(world)
+		switch(newWorld)
 		{
 			case DREAMS:
 				mRenderComponentEntityDreams->setVisible(true);
@@ -295,11 +295,11 @@ void GameObjectTripolloDreams::changeWorldFinished(int world)
 				mRenderComponentEntityNightmares->setVisible(true);
 				break;
 		}
-		activateTrajectory(world);
+		activateTrajectory(newWorld);
 	}
 	else
 	{
-		switch(world)
+		switch(newWorld)
 		{
 			case DREAMS:
 				
@@ -342,16 +342,16 @@ void GameObjectTripolloDreams::changeWorldFinished(int world)
 			default:
 				break;
 		}
-		activateTrajectory(world);
+		activateTrajectory(newWorld);
 
 	}
 }
 
-void GameObjectTripolloDreams::changeWorldStarted(int world)
+void GameObjectTripolloDreams::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -362,11 +362,11 @@ void GameObjectTripolloDreams::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTripolloDreams::changeToWorld(int world, double perc)
+void GameObjectTripolloDreams::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

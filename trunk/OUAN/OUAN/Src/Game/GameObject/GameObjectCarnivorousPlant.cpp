@@ -97,11 +97,11 @@ void GameObjectCarnivorousPlant::reset()
 	}
 }
 
-void GameObjectCarnivorousPlant::changeWorldFinished(int world)
+void GameObjectCarnivorousPlant::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -116,11 +116,11 @@ void GameObjectCarnivorousPlant::changeWorldFinished(int world)
 
 }
 
-void GameObjectCarnivorousPlant::changeWorldStarted(int world)
+void GameObjectCarnivorousPlant::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -131,11 +131,11 @@ void GameObjectCarnivorousPlant::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectCarnivorousPlant::changeToWorld(int world, double perc)
+void GameObjectCarnivorousPlant::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

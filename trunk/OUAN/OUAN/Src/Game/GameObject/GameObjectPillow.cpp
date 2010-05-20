@@ -89,11 +89,11 @@ void GameObjectPillow::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr
 	mPhysicsComponentVolumeBox=physicsComponent;
 }
 
-void GameObjectPillow::changeWorldFinished(int world)
+void GameObjectPillow::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -104,11 +104,11 @@ void GameObjectPillow::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectPillow::changeWorldStarted(int world)
+void GameObjectPillow::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -119,11 +119,11 @@ void GameObjectPillow::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectPillow::changeToWorld(int world, double perc)
+void GameObjectPillow::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

@@ -64,11 +64,11 @@ PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSim
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectProvisionalEntity::changeWorldFinished(int world)
+void GameObjectProvisionalEntity::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
@@ -129,11 +129,11 @@ void GameObjectProvisionalEntity::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectProvisionalEntity::changeWorldStarted(int world)
+void GameObjectProvisionalEntity::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -144,11 +144,11 @@ void GameObjectProvisionalEntity::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectProvisionalEntity::changeToWorld(int world, double perc)
+void GameObjectProvisionalEntity::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

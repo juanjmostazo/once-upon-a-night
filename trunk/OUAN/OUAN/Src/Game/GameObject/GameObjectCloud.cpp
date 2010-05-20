@@ -58,11 +58,11 @@ RenderComponentInitialPtr GameObjectCloud::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectCloud::changeWorldFinished(int world)
+void GameObjectCloud::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
@@ -117,11 +117,11 @@ void GameObjectCloud::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectCloud::changeWorldStarted(int world)
+void GameObjectCloud::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -132,11 +132,11 @@ void GameObjectCloud::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectCloud::changeToWorld(int world, double perc)
+void GameObjectCloud::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

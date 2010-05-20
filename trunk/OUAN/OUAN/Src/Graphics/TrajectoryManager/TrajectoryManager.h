@@ -51,7 +51,7 @@ namespace OUAN
 
 		void changeWorld(int currentWorld);
 
-		void changeWorldTrajectories(int world);
+		void changeWorldTrajectories(int newWorld);
 	};
 }
 

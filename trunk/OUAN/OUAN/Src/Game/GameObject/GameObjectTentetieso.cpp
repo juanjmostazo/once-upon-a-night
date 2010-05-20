@@ -91,11 +91,11 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 	entityToUpdate->update(elapsedSeconds/2);
 }
 
-void GameObjectTentetieso::changeWorldFinished(int world)
+void GameObjectTentetieso::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
@@ -111,11 +111,11 @@ void GameObjectTentetieso::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectTentetieso::changeWorldStarted(int world)
+void GameObjectTentetieso::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -126,11 +126,11 @@ void GameObjectTentetieso::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTentetieso::changeToWorld(int world, double perc)
+void GameObjectTentetieso::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

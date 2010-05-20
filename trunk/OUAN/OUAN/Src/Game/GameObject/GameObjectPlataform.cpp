@@ -65,11 +65,11 @@ PhysicsComponentComplexConvexPtr GameObjectPlataform::getPhysicsComponentComplex
 	return mPhysicsComponentComplexConvex;
 }
 
-void GameObjectPlataform::changeWorldFinished(int world)
+void GameObjectPlataform::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
@@ -129,11 +129,11 @@ void GameObjectPlataform::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectPlataform::changeWorldStarted(int world)
+void GameObjectPlataform::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -144,11 +144,11 @@ void GameObjectPlataform::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectPlataform::changeToWorld(int world, double perc)
+void GameObjectPlataform::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

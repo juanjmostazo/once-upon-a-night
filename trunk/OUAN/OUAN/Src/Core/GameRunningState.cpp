@@ -595,9 +595,9 @@ void GameRunningState::activateChangeWorld()
 	}
 }
 
-void GameRunningState::changeWorldFinished(int world)
+void GameRunningState::changeWorldFinished(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		changeMusic(DREAMS);
@@ -610,9 +610,9 @@ void GameRunningState::changeWorldFinished(int world)
 	}
 }
 
-void GameRunningState::changeWorldStarted(int world)
+void GameRunningState::changeWorldStarted(int newWorld)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -623,9 +623,9 @@ void GameRunningState::changeWorldStarted(int world)
 	}
 }
 
-void GameRunningState::changeToWorld(int world, double perc)
+void GameRunningState::changeToWorld(int newWorld, double perc)
 {
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

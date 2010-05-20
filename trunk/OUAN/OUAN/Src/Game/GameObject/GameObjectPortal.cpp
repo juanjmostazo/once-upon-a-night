@@ -76,11 +76,11 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox() co
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectPortal::changeWorldFinished(int world)
+void GameObjectPortal::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
@@ -101,11 +101,11 @@ void GameObjectPortal::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectPortal::changeWorldStarted(int world)
+void GameObjectPortal::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -116,11 +116,11 @@ void GameObjectPortal::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectPortal::changeToWorld(int world, double perc)
+void GameObjectPortal::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

@@ -58,11 +58,11 @@ void GameObjectMagicClock::updateLogic(double elapsedSeconds)
 	}
 }
 
-void GameObjectMagicClock::changeWorldFinished(int world)
+void GameObjectMagicClock::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -73,11 +73,11 @@ void GameObjectMagicClock::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectMagicClock::changeWorldStarted(int world)
+void GameObjectMagicClock::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -88,11 +88,11 @@ void GameObjectMagicClock::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectMagicClock::changeToWorld(int world, double perc)
+void GameObjectMagicClock::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

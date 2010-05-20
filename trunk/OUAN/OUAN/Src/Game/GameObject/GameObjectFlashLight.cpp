@@ -90,11 +90,11 @@ PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeC
 	return mPhysicsComponentVolumeConvex;
 }
 
-void GameObjectFlashLight::changeWorldFinished(int world)
+void GameObjectFlashLight::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		if (mFlashlightDecal.get())
@@ -125,7 +125,7 @@ void GameObjectFlashLight::changeWorldFinished(int world)
 	// and to the flashlight on a change to nightmares)
 	//Theoretically, the weapon shouldn't care about the world it is in 
 	
-	//switch(world)
+	//switch(newWorld)
 	//{
 	//case DREAMS:
 	//	//PROVISIONAL
@@ -148,11 +148,11 @@ void GameObjectFlashLight::changeWorldFinished(int world)
 	//}
 }
 
-void GameObjectFlashLight::changeWorldStarted(int world)
+void GameObjectFlashLight::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -163,11 +163,11 @@ void GameObjectFlashLight::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectFlashLight::changeToWorld(int world, double perc)
+void GameObjectFlashLight::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

@@ -67,11 +67,11 @@ PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox()
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectItemMaxHP::changeWorldFinished(int world)
+void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		
@@ -116,11 +116,11 @@ void GameObjectItemMaxHP::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectItemMaxHP::changeWorldStarted(int world)
+void GameObjectItemMaxHP::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -131,11 +131,11 @@ void GameObjectItemMaxHP::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectItemMaxHP::changeToWorld(int world, double perc)
+void GameObjectItemMaxHP::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

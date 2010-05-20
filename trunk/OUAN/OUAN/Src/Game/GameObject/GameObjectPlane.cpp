@@ -44,11 +44,11 @@ RenderComponentInitialPtr GameObjectPlane::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectPlane::changeWorldFinished(int world)
+void GameObjectPlane::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -59,11 +59,11 @@ void GameObjectPlane::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectPlane::changeWorldStarted(int world)
+void GameObjectPlane::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -74,11 +74,11 @@ void GameObjectPlane::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectPlane::changeToWorld(int world, double perc)
+void GameObjectPlane::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

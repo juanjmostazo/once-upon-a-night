@@ -24,11 +24,11 @@ RenderComponentViewportPtr GameObjectViewport::getRenderComponentViewport() cons
 	return mRenderComponentViewport;
 }
 
-void GameObjectViewport::changeWorldFinished(int world)
+void GameObjectViewport::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -39,11 +39,11 @@ void GameObjectViewport::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectViewport::changeWorldStarted(int world)
+void GameObjectViewport::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -54,11 +54,11 @@ void GameObjectViewport::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectViewport::changeToWorld(int world, double perc)
+void GameObjectViewport::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

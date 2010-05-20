@@ -55,11 +55,11 @@ PhysicsComponentSimpleCapsulePtr GameObjectScepter::getPhysicsComponentSimpleCap
 	return mPhysicsComponentSimpleCapsule;
 }
 
-void GameObjectScepter::changeWorldFinished(int world)
+void GameObjectScepter::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams())
@@ -102,11 +102,11 @@ void GameObjectScepter::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectScepter::changeWorldStarted(int world)
+void GameObjectScepter::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -117,11 +117,11 @@ void GameObjectScepter::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectScepter::changeToWorld(int world, double perc)
+void GameObjectScepter::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

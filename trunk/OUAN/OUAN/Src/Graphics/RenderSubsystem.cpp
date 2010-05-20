@@ -619,7 +619,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 		}
 
 		//set lightmaps
-		setLightmaps(pEntity);
+		//setLightmaps(pEntity);
 
 		//set Query flags
 		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);

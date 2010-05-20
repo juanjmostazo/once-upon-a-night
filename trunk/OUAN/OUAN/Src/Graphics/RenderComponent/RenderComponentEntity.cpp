@@ -9,6 +9,7 @@ RenderComponentEntity::RenderComponentEntity(const std::string& type)
 {
 	mCurrentAnimation=NULL;
 	mCurrentAnimationName="";
+	mEntity=NULL;
 }
 
 RenderComponentEntity::~RenderComponentEntity()
@@ -28,7 +29,26 @@ Ogre::Entity* RenderComponentEntity::getEntity() const
 
 void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 {
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr original_material;
+	unsigned int i;
+
 	mEntity=entity;
+
+	if(mEntity)
+	{
+		mOriginalMaterials.clear();
+
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Get the material of this sub entity and build the clone material name
+			subEnt = mEntity->getSubEntity(i);
+			original_material = subEnt->getMaterial();
+
+			//Add material to the material stack 
+			mOriginalMaterials.push_back(original_material->getName());
+		}
+	}
 }
 
 void RenderComponentEntity::setVisible(bool visible)
@@ -135,6 +155,56 @@ void RenderComponentEntity::detachGameObject(GameObjectPtr gameObject)
 	}
 }
 
+void RenderComponentEntity::setMaterial(std::string material)
+{
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr original_material;
+	unsigned int i;
+
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	{
+		// Get the material of this sub entity and build the clone material name
+		subEnt = mEntity->getSubEntity(i);
+		original_material = subEnt->getMaterial();
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(material))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material));
+		}
+		else
+		{
+			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+material+" does not exist.");
+		}
+
+		//Add material to the material stack 
+		mOriginalMaterials.push_back(original_material->getName());
+	}
+}
+
+void RenderComponentEntity::setOriginalMaterial()
+{
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	{
+		// Get the material of this sub entity and build the clone material name
+		subEnt = mEntity->getSubEntity(i);
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mOriginalMaterials[i]))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mOriginalMaterials[i]));
+		}
+		else
+		{
+			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+mOriginalMaterials[i]+" does not exist.");
+		}
+	}
+}
 
 //--- Entity parameters
 

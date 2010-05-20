@@ -29,14 +29,14 @@ namespace OUAN
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		virtual void changeToWorld(int world, double perc);
-		virtual void changeWorldFinished(int world);
-		virtual void changeWorldStarted(int world);
+		virtual void changeToWorld(int newWorld, double perc);
+		virtual void changeWorldFinished(int newWorld);
+		virtual void changeWorldStarted(int newWorld);
 
 		double mChangeWorldElapsedTime;
 		bool mIsChangingWorld;
-		bool mHasChangedWorld;
 		double mChangeWorldDelay;
+		int mWorld;
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -169,8 +169,10 @@ namespace OUAN
 		void setChangeWorldDelay(double delay);
 		double getChangeWorldDelay() const;
 		bool isChangingWorld() const;
-		void setHasChangedWorld(bool hasChangedWorld);
-		bool hasChangedWorld() const;
+
+		void setChangeWorldElapsedTime(double time);
+		double getChangeWorldElapsedTime() const;
+		int getWorld();
 	};
 
 	class TGameObjectParameters

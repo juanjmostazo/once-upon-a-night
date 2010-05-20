@@ -54,11 +54,11 @@ PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox() con
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectHeart::changeWorldFinished(int world)
+void GameObjectHeart::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 
@@ -103,11 +103,11 @@ void GameObjectHeart::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectHeart::changeWorldStarted(int world)
+void GameObjectHeart::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -118,11 +118,11 @@ void GameObjectHeart::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectHeart::changeToWorld(int world, double perc)
+void GameObjectHeart::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

@@ -54,11 +54,11 @@ PhysicsComponentSimpleBoxPtr GameObjectTree::getPhysicsComponentSimpleBox() cons
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectTree::changeWorldFinished(int world)
+void GameObjectTree::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams())
@@ -101,11 +101,11 @@ void GameObjectTree::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectTree::changeWorldStarted(int world)
+void GameObjectTree::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -116,11 +116,11 @@ void GameObjectTree::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectTree::changeToWorld(int world, double perc)
+void GameObjectTree::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

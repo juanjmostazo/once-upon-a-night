@@ -99,11 +99,11 @@ void GameObjectEye::reset()
 	}
 }
 
-void GameObjectEye::changeWorldFinished(int world)
+void GameObjectEye::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -123,11 +123,11 @@ void GameObjectEye::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectEye::changeWorldStarted(int world)
+void GameObjectEye::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -138,11 +138,11 @@ void GameObjectEye::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectEye::changeToWorld(int world, double perc)
+void GameObjectEye::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

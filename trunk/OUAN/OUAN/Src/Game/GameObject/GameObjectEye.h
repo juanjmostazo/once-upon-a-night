@@ -74,9 +74,9 @@ namespace OUAN
 
 		/// React to a world change to the given one
 		/// @param world world to change to
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 
 		/// Attach all event handlers for this class.

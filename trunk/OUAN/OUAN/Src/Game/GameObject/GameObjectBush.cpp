@@ -54,11 +54,11 @@ RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectBush::changeWorldFinished(int world)
+void GameObjectBush::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
@@ -95,11 +95,11 @@ void GameObjectBush::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectBush::changeWorldStarted(int world)
+void GameObjectBush::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -110,11 +110,11 @@ void GameObjectBush::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectBush::changeToWorld(int world, double perc)
+void GameObjectBush::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

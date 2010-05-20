@@ -25,11 +25,11 @@ void RenderComponentScene::setSkyMaterials(TRenderComponentSceneParameters tRend
 	this->tRenderComponentSkyBoxParameters=tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters;
 }
 
-void RenderComponentScene::changeToWorld(int world, double perc)
+void RenderComponentScene::changeToWorld(int newWorld, double perc)
 {
 	if(mSceneManager->isSkyBoxEnabled())
 	{
-		switch(world)
+		switch(newWorld)
 		{
 		case DREAMS:
 		//Set SkyBox
@@ -50,7 +50,7 @@ void RenderComponentScene::changeToWorld(int world, double perc)
 	}
 	else if(mSceneManager->isSkyDomeEnabled())
 	{
-		switch(world)
+		switch(newWorld)
 		{
 		case DREAMS:
 		//Set SkyDome

@@ -44,11 +44,11 @@ RenderComponentInitialPtr GameObjectParticleSystem::getRenderComponentInitial() 
 	return mRenderComponentInitial;
 }
 
-void GameObjectParticleSystem::changeWorldFinished(int world)
+void GameObjectParticleSystem::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
@@ -78,11 +78,11 @@ void GameObjectParticleSystem::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectParticleSystem::changeWorldStarted(int world)
+void GameObjectParticleSystem::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -93,11 +93,11 @@ void GameObjectParticleSystem::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectParticleSystem::changeToWorld(int world, double perc)
+void GameObjectParticleSystem::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

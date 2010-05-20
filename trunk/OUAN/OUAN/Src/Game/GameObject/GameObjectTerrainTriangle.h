@@ -27,6 +27,12 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+		std::vector<std::string> mChangeWorldMaterial;
+		std::vector<std::string> mOriginalMaterialDreams;
+		std::vector<std::string> mOriginalMaterialNightmares;
+		void setChangeWorldMaterials(std::string changeWorldMaterialName,RenderComponentEntityPtr source, RenderComponentEntityPtr target);
+		void createChangeWorldMaterial(std::string cloneName,std::string changeWorldMaterialName,Ogre::TextureUnitState * source,Ogre::TextureUnitState * target);
+		void setChangeWorldFactor(double factor);
 	public:
 		//Constructor
 		GameObjectTerrainTriangle(const std::string& name);
@@ -70,9 +76,9 @@ namespace OUAN
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
-		void changeToWorld(int world, double perc);
-		void changeWorldFinished(int world);
-		void changeWorldStarted(int world);
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
 
 
 		/// Reset object

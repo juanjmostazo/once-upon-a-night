@@ -76,11 +76,11 @@ PhysicsComponentVolumeBoxPtr GameObjectWoodBox::getPhysicsComponentVolumeBox() c
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectWoodBox::changeWorldFinished(int world)
+void GameObjectWoodBox::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
@@ -164,11 +164,11 @@ void GameObjectWoodBox::changeWorldFinished(int world)
 	}
 }
 
-void GameObjectWoodBox::changeWorldStarted(int world)
+void GameObjectWoodBox::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;
@@ -179,11 +179,11 @@ void GameObjectWoodBox::changeWorldStarted(int world)
 	}
 }
 
-void GameObjectWoodBox::changeToWorld(int world, double perc)
+void GameObjectWoodBox::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	switch(world)
+	switch(newWorld)
 	{
 	case DREAMS:
 		break;

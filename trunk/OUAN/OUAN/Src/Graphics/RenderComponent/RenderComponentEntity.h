@@ -22,6 +22,8 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
+		std::vector<std::string> mOriginalMaterials;
+
 	public:
 
 		RenderComponentEntity(const std::string& type="");
@@ -41,7 +43,10 @@ namespace OUAN
 		bool isAnimated() const;
 
 		void attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject);
-		void detachGameObject(GameObjectPtr gameObject);		
+		void detachGameObject(GameObjectPtr gameObject);
+
+		void setMaterial(std::string material);
+		void setOriginalMaterial();
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{
 		public: 
