@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="NUM_CLOUDS">800</Option>
+    <Option key="NUM_CLOUDS">600</Option>
     <Option key="GENERATION_RADIO">3500</Option>
     <Option key="CENTER_POSITION_X">0</Option>
     <Option key="CENTER_POSITION_Y">-250</Option>

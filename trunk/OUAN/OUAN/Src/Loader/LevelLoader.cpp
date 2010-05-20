@@ -2045,9 +2045,9 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 
 		//TODO: EXTRACT PHYSICS PARAMETERS FROM FILE
 		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.mass=0;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=6;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=20;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=6;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=10;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=10;
+		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=10;
 	}
 	catch( std::string error )
 	{
@@ -2327,7 +2327,6 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,complexConvex))
 		{
-
 			OUAN::TGameObjectTerrainConvexParameters  tGameObjectTerrainConvexParameters;
 			try
 			{
