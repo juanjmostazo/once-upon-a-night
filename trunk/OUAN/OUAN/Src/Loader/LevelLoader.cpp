@@ -188,14 +188,11 @@ void LevelLoader::processGameObjectBillboardClouds()
 		config.getOption("WIDTH", value); 
 		double width = atoi(value.c_str());
 
-		config.getOption("WIDTH_RANDOM_OFFSET", value); 
-		double widthRandomOffset = atoi(value.c_str());
-
 		config.getOption("HEIGHT", value); 
 		double height = atoi(value.c_str());
 
-		config.getOption("HEIGHT_RANDOM_OFFSET", value); 
-		double heightRandomOffset = atoi(value.c_str());
+		config.getOption("SIZE_RANDOM_OFFSET", value); 
+		double sizeRandomOffset = atoi(value.c_str());
 
 		config.getOption("BILLBOARD_TYPE", value); 
 		Ogre::BillboardType billboardType = Ogre::BBT_POINT;
@@ -278,10 +275,10 @@ void LevelLoader::processGameObjectBillboardClouds()
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
 				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
 
+			double randomOffset = Utils::Random::getInstance()->getRandomDouble(-sizeRandomOffset, sizeRandomOffset);
+
 			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=
-				Ogre::Vector2(
-					Utils::Random::getInstance()->getRandomDouble(width-widthRandomOffset, width+widthRandomOffset), 
-					Utils::Random::getInstance()->getRandomDouble(height-heightRandomOffset, height+heightRandomOffset));
+				Ogre::Vector2(width+randomOffset, height+randomOffset);
 
 			///////////////////
 
