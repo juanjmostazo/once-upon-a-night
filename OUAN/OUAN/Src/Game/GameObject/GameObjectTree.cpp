@@ -58,6 +58,8 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
+
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -108,8 +110,10 @@ void GameObjectTree::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
 		break;
 	default:
 		break;
@@ -134,6 +138,7 @@ void GameObjectTree::changeToWorld(int newWorld, double perc)
 void GameObjectTree::reset()
 {
 	GameObject::reset();
+	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE);
 }
 
 bool GameObjectTree::hasPositionalComponent() const
@@ -199,6 +204,12 @@ void GameObjectTree::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
+void GameObjectTree::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	mRenderComponentEntity->update(elapsedSeconds);
+}
+
 bool GameObjectTree::hasRenderComponentEntity() const
 {
 	return true;
