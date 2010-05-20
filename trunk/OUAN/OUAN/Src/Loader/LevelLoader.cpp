@@ -804,7 +804,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
-			processGameObjectWoodBox(gameObject);
+			//processGameObjectWoodBox(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
 		{
@@ -2980,6 +2980,8 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 			currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
 				false);
 			if (currentAnimParams.name.compare("")==0) break;
+
+			Ogre::LogManager::getSingleton().logMessage("Parsing animation "+currentAnimParams.name);
 
 			renderComponentEntityAnimParams.push_back(currentAnimParams);
 			++i;

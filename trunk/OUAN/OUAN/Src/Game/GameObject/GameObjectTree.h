@@ -10,6 +10,11 @@
 
 namespace OUAN
 {
+	//Animation names
+	const std::string TREE_ANIM_UP="up_clip";
+	const std::string TREE_ANIM_DOWN="down_Clip";
+	const std::string TREE_ANIM_IDLE="repos_Clip";
+
 	/// Class to hold GameObjectTree information
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
 	{
@@ -99,6 +104,8 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		void update(double elapsedSeconds);
 
 	};
 
