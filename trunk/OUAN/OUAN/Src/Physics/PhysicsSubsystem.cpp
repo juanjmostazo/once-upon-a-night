@@ -161,17 +161,19 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
 	*/
 
+	unsigned int i;
+
 	if (mApp)
 	{
-		TGameObjectContainer * container = mApp->getGameWorldManager()->getAllGameObjects();
+		TGameObjectPhysicsContainer * container = mApp->getGameWorldManager()->getGameObjectPhysicsContainer();
 		
 		if (!container->empty())
 		{
-			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
+			for (i=0;i<container->size();i++)
 			{
-				if(it->second->hasPhysicsComponent())
+				if(container->at(i)->hasPhysicsComponent())
 				{
-					it->second->getPhysicsComponent()->update(elapsedSeconds);
+					container->at(i)->getPhysicsComponent()->update(elapsedSeconds);
 				}
 			}
 		}
@@ -465,14 +467,14 @@ bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 	bool found = false;
 	bool isOny = false;
 
-	TGameObjectPhysicsCharacterContainer container = 
+	TGameObjectPhysicsCharacterContainer * container = 
 		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
 
-	for (unsigned int i=0; !found && i<container.size(); i++)
+	for (unsigned int i=0; !found && i<container->size(); i++)
 	{
-		if (container[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
+		if ((*container)[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 		{
-			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>(container[i]);
+			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>((*container)[i]);
 			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
 			{
 				tmpObject->getPhysicsComponentCharacter()->setSlidingValues(slideDiplacement, normalAngle);

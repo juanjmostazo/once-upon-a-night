@@ -144,178 +144,178 @@ TGameObjectContainer * GameWorldManager::getAllGameObjects()
 	return &mGameObjects;
 }
 
-TGameObjectMovableContainer GameWorldManager::getGameObjectMovableContainer()
+TGameObjectMovableContainer * GameWorldManager::getGameObjectMovableContainer()
 {
-	return mGameObjectMovableContainer;
+	return &mGameObjectMovableContainer;
 }
 
-TGameObjectMovableEntityContainer GameWorldManager::getGameObjectMovableEntityContainer()
+TGameObjectMovableEntityContainer * GameWorldManager::getGameObjectMovableEntityContainer()
 {
-	return mGameObjectMovableEntityContainer;
+	return &mGameObjectMovableEntityContainer;
 }
 
-TGameObjectNonMovableContainer GameWorldManager::getGameObjectNonMovableContainer()
+TGameObjectNonMovableContainer * GameWorldManager::getGameObjectNonMovableContainer()
 {
-	return mGameObjectNonMovableContainer;
+	return &mGameObjectNonMovableContainer;
 }
 
-TGameObjectNonMovableEntityContainer GameWorldManager::getGameObjectNonMovableEntityContainer()
+TGameObjectNonMovableEntityContainer * GameWorldManager::getGameObjectNonMovableEntityContainer()
 {
-	return mGameObjectNonMovableEntityContainer;
+	return &mGameObjectNonMovableEntityContainer;
 }
 
-TGameObjectOnyContainer GameWorldManager::getGameObjectOnyContainer()
+TGameObjectOnyContainer * GameWorldManager::getGameObjectOnyContainer()
 {
-	return mGameObjectOnyContainer;
+	return &mGameObjectOnyContainer;
 }
 
-TGameObjectPositionalContainer GameWorldManager::getGameObjectPositionalContainer()
+TGameObjectPositionalContainer * GameWorldManager::getGameObjectPositionalContainer()
 {
-	return mGameObjectPositionalContainer;
+	return &mGameObjectPositionalContainer;
 }
 
-TGameObjectSceneContainer GameWorldManager::getGameObjectSceneContainer()
+TGameObjectSceneContainer * GameWorldManager::getGameObjectSceneContainer()
 {
-	return mGameObjectSceneContainer;
+	return &mGameObjectSceneContainer;
 }
 
-TGameObjectTripolloDreamsContainer GameWorldManager::getGameObjectTripolloDreamsContainer()
+TGameObjectTripolloDreamsContainer * GameWorldManager::getGameObjectTripolloDreamsContainer()
 {
-	return mGameObjectTripolloDreamsContainer;
+	return &mGameObjectTripolloDreamsContainer;
 }
 
-TGameObjectTripollitoContainer GameWorldManager::getGameObjectTripollitoContainer()
+TGameObjectTripollitoContainer * GameWorldManager::getGameObjectTripollitoContainer()
 {
-	return mGameObjectTripollitoContainer;
+	return &mGameObjectTripollitoContainer;
 }
 
-TGameObjectTentetiesoContainer GameWorldManager::getGameObjectTentetiesoContainer()
+TGameObjectTentetiesoContainer * GameWorldManager::getGameObjectTentetiesoContainer()
 {
-	return mGameObjectTentetiesoContainer;
+	return &mGameObjectTentetiesoContainer;
 }
 
-TGameObjectEyeContainer GameWorldManager::getGameObjectEyeContainer()
+TGameObjectEyeContainer * GameWorldManager::getGameObjectEyeContainer()
 {
-	return mGameObjectEyeContainer;
+	return &mGameObjectEyeContainer;
 
 }
-TGameObjectSnakeCreeperContainer GameWorldManager::getGameObjectSnakeCreeperContainer()
+TGameObjectSnakeCreeperContainer * GameWorldManager::getGameObjectSnakeCreeperContainer()
 {
-	return mGameObjectSnakeCreeperContainer;
+	return &mGameObjectSnakeCreeperContainer;
 }
-TGameObjectScaredPlantContainer GameWorldManager::getGameObjectScaredPlantContainer()
+TGameObjectScaredPlantContainer * GameWorldManager::getGameObjectScaredPlantContainer()
 {
-	return mGameObjectScaredPlantContainer;
+	return &mGameObjectScaredPlantContainer;
 }
-TGameObjectBee_ButterflyContainer GameWorldManager::getGameObjectBeeButterflyContainer()
+TGameObjectBee_ButterflyContainer * GameWorldManager::getGameObjectBeeButterflyContainer()
 {
-	return mGameObjectBeeButterflyContainer;
+	return &mGameObjectBeeButterflyContainer;
 }
-TGameObjectCarnivorousPlantContainer GameWorldManager::getGameObjectCarnivorousPlantContainer()
+TGameObjectCarnivorousPlantContainer * GameWorldManager::getGameObjectCarnivorousPlantContainer()
 {
-	return mGameObjectCarnivorousPlantContainer;
+	return &mGameObjectCarnivorousPlantContainer;
 }
-TGameObjectTerrainConvexContainer GameWorldManager::getGameObjectTerrainConvexContainer()
+TGameObjectTerrainConvexContainer * GameWorldManager::getGameObjectTerrainConvexContainer()
 {
-	return mGameObjectTerrainConvexContainer;
+	return &mGameObjectTerrainConvexContainer;
 }
-TGameObjectTerrainTriangleContainer GameWorldManager::getGameObjectTerrainTriangleContainer()
+TGameObjectTerrainTriangleContainer * GameWorldManager::getGameObjectTerrainTriangleContainer()
 {
-	return mGameObjectTerrainTriangleContainer;
-}
-
-TGameObjectBillboardSetContainer GameWorldManager::getGameObjectBillboardSetContainer()
-{
-	return mGameObjectBillboardSetContainer;
+	return &mGameObjectTerrainTriangleContainer;
 }
 
-TGameObjectParticleSystemContainer GameWorldManager::getGameObjectParticleSystemContainer()
+TGameObjectBillboardSetContainer * GameWorldManager::getGameObjectBillboardSetContainer()
 {
-	return mGameObjectParticleSystemContainer;
+	return &mGameObjectBillboardSetContainer;
 }
 
-TGameObjectPortalContainer GameWorldManager::getGameObjectPortalContainer()
+TGameObjectParticleSystemContainer * GameWorldManager::getGameObjectParticleSystemContainer()
 {
-	return mGameObjectPortalContainer;
+	return &mGameObjectParticleSystemContainer;
 }
 
-TGameObjectViewportContainer GameWorldManager::getGameObjectViewportContainer()
+TGameObjectPortalContainer * GameWorldManager::getGameObjectPortalContainer()
 {
-	return mGameObjectViewportContainer;
+	return &mGameObjectPortalContainer;
 }
 
-TGameObjectTriggerBoxContainer GameWorldManager::getGameObjectTriggerBoxContainer()
+TGameObjectViewportContainer * GameWorldManager::getGameObjectViewportContainer()
 {
-	return mGameObjectTriggerBoxContainer;
+	return &mGameObjectViewportContainer;
 }
 
-TGameObjectTriggerCapsuleContainer GameWorldManager::getGameObjectTriggerCapsuleContainer()
+TGameObjectTriggerBoxContainer * GameWorldManager::getGameObjectTriggerBoxContainer()
 {
-	return mGameObjectTriggerCapsuleContainer;
+	return &mGameObjectTriggerBoxContainer;
 }
 
-TGameObjectPhysicsContainer GameWorldManager::getGameObjectPhysicsContainer()
+TGameObjectTriggerCapsuleContainer * GameWorldManager::getGameObjectTriggerCapsuleContainer()
 {
-	return mGameObjectPhysicsContainer;
+	return &mGameObjectTriggerCapsuleContainer;
 }
 
-TGameObjectPhysicsCharacterContainer GameWorldManager::getGameObjectPhysicsCharacterContainer()
+TGameObjectPhysicsContainer * GameWorldManager::getGameObjectPhysicsContainer()
 {
-	return mGameObjectPhysicsCharacterContainer;
+	return &mGameObjectPhysicsContainer;
 }
 
-TGameObjectPhysicsComplexContainer GameWorldManager::getGameObjectPhysicsComplexContainer()
+TGameObjectPhysicsCharacterContainer * GameWorldManager::getGameObjectPhysicsCharacterContainer()
 {
-	return mGameObjectPhysicsComplexContainer;
+	return &mGameObjectPhysicsCharacterContainer;
 }
 
-TGameObjectPhysicsComplexConvexContainer GameWorldManager::getGameObjectPhysicsComplexConvexContainer()
+TGameObjectPhysicsComplexContainer * GameWorldManager::getGameObjectPhysicsComplexContainer()
 {
-	return mGameObjectPhysicsComplexConvexContainer;
+	return &mGameObjectPhysicsComplexContainer;
 }
 
-TGameObjectPhysicsComplexTriangleContainer GameWorldManager::getGameObjectPhysicsComplexTriangleContainer()
+TGameObjectPhysicsComplexConvexContainer * GameWorldManager::getGameObjectPhysicsComplexConvexContainer()
 {
-	return mGameObjectPhysicsComplexTriangleContainer;
+	return &mGameObjectPhysicsComplexConvexContainer;
 }
 
-TGameObjectPhysicsSimpleContainer GameWorldManager::getGameObjectPhysicsSimpleContainer()
+TGameObjectPhysicsComplexTriangleContainer * GameWorldManager::getGameObjectPhysicsComplexTriangleContainer()
 {
-	return mGameObjectPhysicsSimpleContainer;
+	return &mGameObjectPhysicsComplexTriangleContainer;
 }
 
-TGameObjectPhysicsSimpleBoxContainer GameWorldManager::getGameObjectPhysicsSimpleBoxContainer()
+TGameObjectPhysicsSimpleContainer * GameWorldManager::getGameObjectPhysicsSimpleContainer()
 {
-	return mGameObjectPhysicsSimpleBoxContainer;
+	return &mGameObjectPhysicsSimpleContainer;
 }
 
-TGameObjectPhysicsSimpleCapsuleContainer GameWorldManager::getGameObjectPhysicsSimpleCapsuleContainer()
+TGameObjectPhysicsSimpleBoxContainer * GameWorldManager::getGameObjectPhysicsSimpleBoxContainer()
 {
-	return mGameObjectPhysicsSimpleCapsuleContainer;
+	return &mGameObjectPhysicsSimpleBoxContainer;
 }
 
-TGameObjectPhysicsVolumeContainer GameWorldManager::getGameObjectPhysicsVolumeContainer()
+TGameObjectPhysicsSimpleCapsuleContainer * GameWorldManager::getGameObjectPhysicsSimpleCapsuleContainer()
 {
-	return mGameObjectPhysicsVolumeContainer;
+	return &mGameObjectPhysicsSimpleCapsuleContainer;
 }
 
-TGameObjectPhysicsVolumeBoxContainer GameWorldManager::getGameObjectPhysicsVolumeBoxContainer()
+TGameObjectPhysicsVolumeContainer * GameWorldManager::getGameObjectPhysicsVolumeContainer()
 {
-	return mGameObjectPhysicsVolumeBoxContainer;
+	return &mGameObjectPhysicsVolumeContainer;
 }
 
-TGameObjectPhysicsVolumeCapsuleContainer GameWorldManager::getGameObjectPhysicsVolumeCapsuleContainer()
+TGameObjectPhysicsVolumeBoxContainer * GameWorldManager::getGameObjectPhysicsVolumeBoxContainer()
 {
-	return mGameObjectPhysicsVolumeCapsuleContainer;
+	return &mGameObjectPhysicsVolumeBoxContainer;
 }
 
-TGameObjectLogicContainer GameWorldManager::getGameObjectLogicContainer()
+TGameObjectPhysicsVolumeCapsuleContainer * GameWorldManager::getGameObjectPhysicsVolumeCapsuleContainer()
 {
-	return mGameObjectLogicContainer;
+	return &mGameObjectPhysicsVolumeCapsuleContainer;
 }
-TGameObjectUsableContainer GameWorldManager::getGameObjectUsableContainer()
+
+TGameObjectLogicContainer * GameWorldManager::getGameObjectLogicContainer()
 {
-	return mGameObjectUsableContainer;
+	return &mGameObjectLogicContainer;
+}
+TGameObjectUsableContainer * GameWorldManager::getGameObjectUsableContainer()
+{
+	return &mGameObjectUsableContainer;
 }
 
 void GameWorldManager::clearContainers()

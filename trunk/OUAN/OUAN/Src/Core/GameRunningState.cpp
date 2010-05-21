@@ -511,16 +511,16 @@ void GameRunningState::toggleVolumes()
 {
 	Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
 
-	TGameObjectTriggerBoxContainer cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
-	for(unsigned int i=0; i<cBox.size(); i++)
+	TGameObjectTriggerBoxContainer * cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
+	for(unsigned int i=0; i<cBox->size(); i++)
 	{
-		cBox[i]->changeVisibility();
+		cBox->at(i)->changeVisibility();
 	}
 
-	TGameObjectTriggerCapsuleContainer cCapsule = mApp->getGameWorldManager()->getGameObjectTriggerCapsuleContainer();
-	for(unsigned int i=0; i<cCapsule.size(); i++)
+	TGameObjectTriggerCapsuleContainer * cCapsule = mApp->getGameWorldManager()->getGameObjectTriggerCapsuleContainer();
+	for(unsigned int i=0; i<cCapsule->size(); i++)
 	{
-		cCapsule[i]->changeVisibility();
+		cCapsule->at(i)->changeVisibility();
 	}
 }
 

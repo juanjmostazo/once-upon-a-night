@@ -95,40 +95,40 @@ void LogicSubsystem::loadScripts()
 
 	GameWorldManagerPtr worldMgr=mApp->getGameWorldManager();
 	std::string currentFilename;
-	TGameObjectTripolloDreamsContainer tripolloList= worldMgr->getGameObjectTripolloDreamsContainer();
-	if (!tripolloList.empty() && !(currentFilename=tripolloList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectTripolloDreamsContainer * tripolloList= worldMgr->getGameObjectTripolloDreamsContainer();
+	if (!tripolloList->empty() && !(currentFilename=tripolloList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectEyeContainer eyeList=worldMgr->getGameObjectEyeContainer();
-	if(!eyeList.empty() && !(currentFilename=eyeList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectEyeContainer  * eyeList=worldMgr->getGameObjectEyeContainer();
+	if(!eyeList->empty() && !(currentFilename=eyeList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectTentetiesoContainer tentetiesoList=worldMgr->getGameObjectTentetiesoContainer();
-	if(!tentetiesoList.empty() && !(currentFilename=tentetiesoList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectTentetiesoContainer  * tentetiesoList=worldMgr->getGameObjectTentetiesoContainer();
+	if(!tentetiesoList->empty() && !(currentFilename=tentetiesoList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectTripollitoContainer tripollitoList=worldMgr->getGameObjectTripollitoContainer();
-	if(!tripollitoList.empty() && !(currentFilename=tripollitoList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectTripollitoContainer  * tripollitoList=worldMgr->getGameObjectTripollitoContainer();
+	if(!tripollitoList->empty() && !(currentFilename=tripollitoList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectBee_ButterflyContainer bbList=worldMgr->getGameObjectBeeButterflyContainer();
-	if(!bbList.empty() && !(currentFilename=bbList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectBee_ButterflyContainer  * bbList=worldMgr->getGameObjectBeeButterflyContainer();
+	if(!bbList->empty() && !(currentFilename=bbList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectCarnivorousPlantContainer cpList=worldMgr->getGameObjectCarnivorousPlantContainer();
-	if(!cpList.empty() && !(currentFilename=cpList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectCarnivorousPlantContainer  * cpList=worldMgr->getGameObjectCarnivorousPlantContainer();
+	if(!cpList->empty() && !(currentFilename=cpList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectSnakeCreeperContainer scList=worldMgr->getGameObjectSnakeCreeperContainer();
-	if(!scList.empty() && !(currentFilename=scList.at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectSnakeCreeperContainer  * scList=worldMgr->getGameObjectSnakeCreeperContainer();
+	if(!scList->empty() && !(currentFilename=scList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectPortalContainer ptList=worldMgr->getGameObjectPortalContainer();
-	if (!ptList.empty())
+	TGameObjectPortalContainer  * ptList=worldMgr->getGameObjectPortalContainer();
+	if (!ptList->empty())
 	{
-		GameObjectPortalPtr portal= boost::dynamic_pointer_cast<GameObjectPortal>(ptList.at(0));
+		GameObjectPortalPtr portal= boost::dynamic_pointer_cast<GameObjectPortal>(ptList->at(0));
 		if (portal && portal.get() && !portal->getLogicComponentUsable()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentUsable()->getScriptFilename());
 		}
 	}
-	TGameObjectScaredPlantContainer spList=worldMgr->getGameObjectScaredPlantContainer();
-	if (!spList.empty())
+	TGameObjectScaredPlantContainer * spList=worldMgr->getGameObjectScaredPlantContainer();
+	if (!spList->empty())
 	{
-		GameObjectScaredPlantPtr scplant= boost::dynamic_pointer_cast<GameObjectScaredPlant>(spList.at(0));
+		GameObjectScaredPlantPtr scplant= boost::dynamic_pointer_cast<GameObjectScaredPlant>(spList->at(0));
 		if (scplant && scplant.get() && !scplant->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+scplant->getLogicComponent()->getScriptFilename());
