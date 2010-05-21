@@ -6,9 +6,6 @@
 namespace OUAN
 {
 
-	//ChangeWorldMaterial names
-	const std::string MATERIAL_BLENDING="blending";
-
 	typedef std::map<std::string, Ogre::AnimationState*> TAnimationStateMap;
 	class RenderComponentEntity: public RenderComponent
 	{
@@ -27,6 +24,7 @@ namespace OUAN
 		bool mIsAnimated;
 
 		std::vector<std::string> mOriginalMaterials;
+		std::vector<ChangeWorldMaterialPtr> mChangeWorldMaterials;
 
 	public:
 
@@ -50,10 +48,10 @@ namespace OUAN
 		void detachGameObject(GameObjectPtr gameObject);
 
 		void setMaterial(std::string material);
-		void setOriginalMaterial();
-
-		static void setChangeWorldMaterial(RenderComponentEntityPtr pComponentEntityDreams,RenderComponentEntityPtr pComponentEntityNightmares,std::string material);
-
+		void setOriginalMaterials();
+		void setChangeWorldMaterials();
+		void initChangeWorldMaterials(ChangeWorldType type,RenderComponentEntityPtr pOtherComponentEntity);
+		void setChangeWorldFactor(double factor);
 
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{

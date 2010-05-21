@@ -26,13 +26,7 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
-		//TODO: think what happens when world changes with the rendercomponent
-		std::vector<std::string> mChangeWorldMaterial;
-		std::vector<std::string> mOriginalMaterialDreams;
-		std::vector<std::string> mOriginalMaterialNightmares;
-		void setChangeWorldMaterials(std::string changeWorldMaterialName,RenderComponentEntityPtr source, RenderComponentEntityPtr target);
-		void createChangeWorldMaterial(std::string cloneName,std::string changeWorldMaterialName,Ogre::TextureUnitState * source,Ogre::TextureUnitState * target);
-		void setChangeWorldFactor(double factor);
+
 	public:
 		//Constructor
 		GameObjectTerrainTriangle(const std::string& name);

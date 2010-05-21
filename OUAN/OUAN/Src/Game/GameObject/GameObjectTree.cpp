@@ -58,7 +58,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
+	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE);
 
 	switch(newWorld)
 	{

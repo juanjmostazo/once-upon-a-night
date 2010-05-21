@@ -1,7 +1,9 @@
 #include "RenderComponentEntity.h"
+#include "ChangeWorldMaterial.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Event/EventDefs.h"
+
 using namespace OUAN;
 
 RenderComponentEntity::RenderComponentEntity(const std::string& type)
@@ -183,7 +185,7 @@ void RenderComponentEntity::setMaterial(std::string material)
 	}
 }
 
-void RenderComponentEntity::setOriginalMaterial()
+void RenderComponentEntity::setOriginalMaterials()
 {
 	Ogre::SubEntity* subEnt;
 	unsigned int i;
@@ -203,6 +205,81 @@ void RenderComponentEntity::setOriginalMaterial()
 		{
 			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+mOriginalMaterials[i]+" does not exist.");
 		}
+	}
+}
+
+void RenderComponentEntity::setChangeWorldMaterials()
+{
+	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
+
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	for ( i = 0; i < mChangeWorldMaterials.size() && i <mEntity->getNumSubEntities(); i++)
+	{
+
+		subEnt = mEntity->getSubEntity(i);
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterials[i]->getMaterialName()))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterials[i]->getMaterialName()));
+		}
+		else
+		{
+			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
+		}
+	}
+}
+
+void RenderComponentEntity::initChangeWorldMaterials(ChangeWorldType type,RenderComponentEntityPtr pOtherComponentEntity)
+{
+	unsigned int i;
+	
+	Ogre::Entity * pOtherEntity;
+
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
+
+	pOtherEntity=pOtherComponentEntity->getEntity();
+
+	mChangeWorldMaterials.clear();
+
+	bool materialCreated;
+
+	for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
+	{
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),type,
+			mEntity->getSubEntity(i)->getMaterial(),
+			pOtherEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
+	//{
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+	//}
+
+}
+
+void RenderComponentEntity::setChangeWorldFactor(double factor)
+{
+	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
 	}
 }
 
