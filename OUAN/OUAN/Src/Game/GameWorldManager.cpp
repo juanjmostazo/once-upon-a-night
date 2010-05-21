@@ -139,9 +139,9 @@ GameObjectPtr GameWorldManager::getObject(const std::string& objectId)
 	return GameObjectPtr();
 }
 
-TGameObjectContainer GameWorldManager::getAllGameObjects()
+TGameObjectContainer * GameWorldManager::getAllGameObjects()
 {
-	return mGameObjects;
+	return &mGameObjects;
 }
 
 TGameObjectMovableContainer GameWorldManager::getGameObjectMovableContainer()
@@ -418,9 +418,9 @@ void GameWorldManager::unloadLevel()
 
 
 	TGameObjectContainerIterator it;
-	TGameObjectContainer container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
+	TGameObjectContainer * container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
 
-	for(it = container.begin(); it != container.end(); it++)
+	for(it = container->begin(); it != container->end(); it++)
 	{
 		it->second.get()->~GameObject();
 	}

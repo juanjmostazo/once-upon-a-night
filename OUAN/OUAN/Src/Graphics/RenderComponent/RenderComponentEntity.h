@@ -5,6 +5,10 @@
 
 namespace OUAN
 {
+
+	//ChangeWorldMaterial names
+	const std::string MATERIAL_BLENDING="blending";
+
 	typedef std::map<std::string, Ogre::AnimationState*> TAnimationStateMap;
 	class RenderComponentEntity: public RenderComponent
 	{
@@ -47,6 +51,10 @@ namespace OUAN
 
 		void setMaterial(std::string material);
 		void setOriginalMaterial();
+
+		static void setChangeWorldMaterial(RenderComponentEntityPtr pComponentEntityDreams,RenderComponentEntityPtr pComponentEntityNightmares,std::string material);
+
+
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{
 		public: 

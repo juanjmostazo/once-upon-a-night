@@ -19,7 +19,7 @@ namespace OUAN
 
 		/// Return all game objects
 		/// @return the game object container
-		TGameObjectContainer getAllGameObjects();
+		TGameObjectContainer * getAllGameObjects();
 
 		TGameObjectMovableContainer getGameObjectMovableContainer();
 		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
