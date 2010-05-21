@@ -21,47 +21,47 @@ namespace OUAN
 		/// @return the game object container
 		TGameObjectContainer * getAllGameObjects();
 
-		TGameObjectMovableContainer getGameObjectMovableContainer();
-		TGameObjectMovableEntityContainer getGameObjectMovableEntityContainer();
-		TGameObjectNonMovableContainer getGameObjectNonMovableContainer();
-		TGameObjectNonMovableEntityContainer getGameObjectNonMovableEntityContainer();
-		TGameObjectTerrainConvexContainer getGameObjectTerrainConvexContainer();
-		TGameObjectTerrainTriangleContainer getGameObjectTerrainTriangleContainer();
-		TGameObjectLightContainer getGameObjectLightContainer();
-		TGameObjectParticleSystemContainer getGameObjectParticleSystemContainer();
-		TGameObjectBillboardSetContainer getGameObjectBillboardSetContainer();
-		TGameObjectOnyContainer getGameObjectOnyContainer();
-		TGameObjectPositionalContainer getGameObjectPositionalContainer();
-		TGameObjectSceneContainer getGameObjectSceneContainer();
-		TGameObjectTripolloDreamsContainer getGameObjectTripolloDreamsContainer();
-		TGameObjectTripollitoContainer getGameObjectTripollitoContainer();
-		TGameObjectTentetiesoContainer getGameObjectTentetiesoContainer();
-		TGameObjectEyeContainer getGameObjectEyeContainer();
-		TGameObjectBee_ButterflyContainer getGameObjectBeeButterflyContainer();
-		TGameObjectCarnivorousPlantContainer getGameObjectCarnivorousPlantContainer();
-		TGameObjectScaredPlantContainer getGameObjectScaredPlantContainer();
-		TGameObjectSnakeCreeperContainer getGameObjectSnakeCreeperContainer();
-		TGameObjectTriggerBoxContainer getGameObjectTriggerBoxContainer();
-		TGameObjectTriggerCapsuleContainer getGameObjectTriggerCapsuleContainer();
-		TGameObjectViewportContainer getGameObjectViewportContainer();
+		TGameObjectMovableContainer * getGameObjectMovableContainer();
+		TGameObjectMovableEntityContainer * getGameObjectMovableEntityContainer();
+		TGameObjectNonMovableContainer * getGameObjectNonMovableContainer();
+		TGameObjectNonMovableEntityContainer * getGameObjectNonMovableEntityContainer();
+		TGameObjectTerrainConvexContainer * getGameObjectTerrainConvexContainer();
+		TGameObjectTerrainTriangleContainer * getGameObjectTerrainTriangleContainer();
+		TGameObjectLightContainer * getGameObjectLightContainer();
+		TGameObjectParticleSystemContainer * getGameObjectParticleSystemContainer();
+		TGameObjectBillboardSetContainer * getGameObjectBillboardSetContainer();
+		TGameObjectOnyContainer * getGameObjectOnyContainer();
+		TGameObjectPositionalContainer * getGameObjectPositionalContainer();
+		TGameObjectSceneContainer * getGameObjectSceneContainer();
+		TGameObjectTripolloDreamsContainer * getGameObjectTripolloDreamsContainer();
+		TGameObjectTripollitoContainer * getGameObjectTripollitoContainer();
+		TGameObjectTentetiesoContainer * getGameObjectTentetiesoContainer();
+		TGameObjectEyeContainer * getGameObjectEyeContainer();
+		TGameObjectBee_ButterflyContainer * getGameObjectBeeButterflyContainer();
+		TGameObjectCarnivorousPlantContainer * getGameObjectCarnivorousPlantContainer();
+		TGameObjectScaredPlantContainer * getGameObjectScaredPlantContainer();
+		TGameObjectSnakeCreeperContainer * getGameObjectSnakeCreeperContainer();
+		TGameObjectTriggerBoxContainer * getGameObjectTriggerBoxContainer();
+		TGameObjectTriggerCapsuleContainer * getGameObjectTriggerCapsuleContainer();
+		TGameObjectViewportContainer * getGameObjectViewportContainer();
 
-		TGameObjectPortalContainer getGameObjectPortalContainer();
+		TGameObjectPortalContainer * getGameObjectPortalContainer();
 
-		TGameObjectPhysicsContainer getGameObjectPhysicsContainer();
-		TGameObjectPhysicsCharacterContainer getGameObjectPhysicsCharacterContainer();
-		TGameObjectPhysicsComplexContainer getGameObjectPhysicsComplexContainer();
-		TGameObjectPhysicsComplexConvexContainer getGameObjectPhysicsComplexConvexContainer();
-		TGameObjectPhysicsComplexTriangleContainer getGameObjectPhysicsComplexTriangleContainer();
-		TGameObjectPhysicsSimpleContainer getGameObjectPhysicsSimpleContainer();
-		TGameObjectPhysicsSimpleBoxContainer getGameObjectPhysicsSimpleBoxContainer();
-		TGameObjectPhysicsSimpleCapsuleContainer getGameObjectPhysicsSimpleCapsuleContainer();
-		TGameObjectPhysicsVolumeContainer getGameObjectPhysicsVolumeContainer();
-		TGameObjectPhysicsVolumeBoxContainer getGameObjectPhysicsVolumeBoxContainer();
-		TGameObjectPhysicsVolumeCapsuleContainer getGameObjectPhysicsVolumeCapsuleContainer();
+		TGameObjectPhysicsContainer * getGameObjectPhysicsContainer();
+		TGameObjectPhysicsCharacterContainer * getGameObjectPhysicsCharacterContainer();
+		TGameObjectPhysicsComplexContainer * getGameObjectPhysicsComplexContainer();
+		TGameObjectPhysicsComplexConvexContainer * getGameObjectPhysicsComplexConvexContainer();
+		TGameObjectPhysicsComplexTriangleContainer * getGameObjectPhysicsComplexTriangleContainer();
+		TGameObjectPhysicsSimpleContainer * getGameObjectPhysicsSimpleContainer();
+		TGameObjectPhysicsSimpleBoxContainer * getGameObjectPhysicsSimpleBoxContainer();
+		TGameObjectPhysicsSimpleCapsuleContainer * getGameObjectPhysicsSimpleCapsuleContainer();
+		TGameObjectPhysicsVolumeContainer * getGameObjectPhysicsVolumeContainer();
+		TGameObjectPhysicsVolumeBoxContainer * getGameObjectPhysicsVolumeBoxContainer();
+		TGameObjectPhysicsVolumeCapsuleContainer * getGameObjectPhysicsVolumeCapsuleContainer();
 
-		TGameObjectLogicContainer getGameObjectLogicContainer();
+		TGameObjectLogicContainer * getGameObjectLogicContainer();
 
-		TGameObjectUsableContainer getGameObjectUsableContainer();
+		TGameObjectUsableContainer * getGameObjectUsableContainer();
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
