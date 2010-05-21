@@ -1,3 +1,23 @@
+vertex_program erosionFS cg
+{
+	source erosion.cg
+	entry_point erosionFS
+	profiles vs_1_1 arbvp1
+
+	default_params	
+	{	
+	  param_named_auto worldViewProj worldviewproj_matrix
+	  param_named Factor float 0.0
+   	}
+}
+
+vertex_program erosionVS cg
+{
+	source erosion.cg
+	entry_point erosionVS
+	profiles vs_1_1 arbvp1
+}
+
 material blending
 {
    technique
@@ -18,4 +38,29 @@ material blending
          }
       }
    }
+}
+
+material erosion
+{
+	technique
+	{
+		pass
+		{
+			
+	                      vertex_program_ref erosionVS 
+	                      {
+	                      }
+	                      fragment_program_ref erosionFS
+	                      {
+	                      }
+	                      texture_unit 0
+	                      {
+	                             texture random.png
+	                      }
+	                      texture_unit 1
+	                      {
+	                             texture random.png
+                                  }
+                        }
+             }
 }

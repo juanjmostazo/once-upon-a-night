@@ -1742,6 +1742,13 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 	pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
 		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
+	
+	//Init ChangeWorldMaterials
+	pGameObjectTerrainTriangle->getRenderComponentEntityDreams()->initChangeWorldMaterials(CW_BLENDING,
+		pGameObjectTerrainTriangle->getRenderComponentEntityNightmares());
+	pGameObjectTerrainTriangle->getRenderComponentEntityNightmares()->initChangeWorldMaterials(CW_BLENDING,
+		pGameObjectTerrainTriangle->getRenderComponentEntityDreams());
+
 
 	//Create PhysicsComponent
 	pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(mComponentFactory->createPhysicsComponentComplexTriangle(

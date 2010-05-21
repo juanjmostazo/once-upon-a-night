@@ -176,6 +176,15 @@ namespace OUAN
 
 		const std::string LIGHTMAP_PREFIX="lightmap#";
 
+		class ChangeWorldMaterial;
+		typedef boost::shared_ptr<ChangeWorldMaterial> ChangeWorldMaterialPtr;
+
+		enum ChangeWorldType
+		{
+			CW_BLENDING,
+			CW_EROSION
+		};
+
 		//RayCasting
 		class RayCasting;
 		typedef boost::shared_ptr<RayCasting> RayCastingPtr;

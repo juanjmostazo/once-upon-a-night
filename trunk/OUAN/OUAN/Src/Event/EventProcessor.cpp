@@ -179,13 +179,13 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		{
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
-				if(it->second->isChangingWorld())
+				if(!it->second->isChangingWorld())
 				{
-					it->second->setChangeWorldElapsedTime(mWorldManager->getChangeWorldGameObjectTime()-it->second->getChangeWorldElapsedTime());
+					it->second->setChangeWorldDelay(changeTime*Utils::Random::getInstance()->getRandomDouble());
 				}
 				else
 				{
-					it->second->setChangeWorldDelay(changeTime*Utils::Random::getInstance()->getRandomDouble());
+					it->second->setChangeWorldElapsedTime(mWorldManager->getChangeWorldGameObjectTime()-it->second->getChangeWorldElapsedTime());
 				}
 			}
 		}

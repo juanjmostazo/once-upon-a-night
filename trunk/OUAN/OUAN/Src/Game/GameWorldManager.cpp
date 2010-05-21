@@ -1002,11 +1002,6 @@ double GameWorldManager::getChangeWorldGameObjectTime() const
 	return mChangeWorldGameObjectTime;
 }
 
-double GameWorldManager::getChangeWorldElapsedTime() const
-{
-	return mChangeWorldElapsedTime;
-}
-
 void GameWorldManager::changeWorld()
 {	
 	if (mWorld==DREAMS)
@@ -1024,6 +1019,12 @@ void GameWorldManager::changeWorld()
 	evt->time=mChangeWorldTotalTime;
 	addEvent(evt);
 }
+
+double GameWorldManager::getChangeWorldElapsedTime() const
+{
+	return mChangeWorldElapsedTime;
+}
+
 
 void GameWorldManager::activateChangeWorldFast()
 {

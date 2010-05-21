@@ -11,9 +11,9 @@
 namespace OUAN
 {
 	//Animation names
-	const std::string TREE_ANIM_UP="up_clip";
-	const std::string TREE_ANIM_DOWN="down_Clip";
-	const std::string TREE_ANIM_IDLE="repos_Clip";
+	const std::string TREE_ANIM_UP="up";
+	const std::string TREE_ANIM_DOWN="down";
+	const std::string TREE_ANIM_IDLE="idle";
 
 	/// Class to hold GameObjectTree information
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
