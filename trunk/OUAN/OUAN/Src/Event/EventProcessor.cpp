@@ -155,7 +155,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 	if (mWorldManager.get())
 	{
 		mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
-		TGameObjectContainer objs=mWorldManager->getAllGameObjects();
+		TGameObjectContainer * objs=mWorldManager->getAllGameObjects();
 
 		if(mWorldManager->getChangeWorldGameObjectTime()<mWorldManager->getChangeWorldElapsedTime())
 		{
@@ -168,7 +168,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 
 		if(evt->fast)
 		{
-			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
+			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
 				it->second->setChangeWorldDelay(0);
 				it->second->activateChangeWorldFast();
@@ -177,7 +177,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		}
 		else
 		{
-			for (TGameObjectContainerIterator it = objs.begin(); it!=objs.end();++it)
+			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
 				if(it->second->isChangingWorld())
 				{

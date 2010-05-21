@@ -147,11 +147,11 @@ void LogicSubsystem::update (double elapsedSeconds)
 {
 	if (mApp)
 	{
-		TGameObjectContainer container = mApp->getGameWorldManager()->getAllGameObjects();
+		TGameObjectContainer * container = mApp->getGameWorldManager()->getAllGameObjects();
 		
-		if (!container.empty())
+		if (!container->empty())
 		{
-			for (TGameObjectContainer::iterator it=container.begin();it!=container.end();++it)
+			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
 			{
 				it->second->updateLogic(elapsedSeconds);
 			}

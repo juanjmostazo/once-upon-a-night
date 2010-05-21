@@ -99,7 +99,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.296438 -0.0103765 -0.954491 -0.0311376"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.296437 -0.0103765 -0.954488 -0.0311375"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="473.072 188.7 -286.701"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -110,7 +110,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="overlays" type="12" value="true"></PROPERTY>
     <PROPERTY id="placement" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="shadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="shadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="skies" type="12" value="true"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>

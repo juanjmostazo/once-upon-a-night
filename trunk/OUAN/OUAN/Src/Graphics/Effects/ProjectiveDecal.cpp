@@ -43,10 +43,10 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 	mFilterTextureName=decalParams.filterTextureName;
 
 	Ogre::Entity* entity;
-	TGameObjectContainer objs=gameWorldManager->getAllGameObjects();
-	if (!objs.empty())
+	TGameObjectContainer * objs=gameWorldManager->getAllGameObjects();
+	if (!objs->empty())
 	{
-		for (TGameObjectContainerIterator it=objs.begin();it!=objs.end();++it)
+		for (TGameObjectContainerIterator it=objs->begin();it!=objs->end();++it)
 		{
 			//NOTE: Ideally, there should be a set of already processed game objects so we avoid processing them again.
 			//However, since there are instances of the same type using different materials, we can't do that, so we'll
