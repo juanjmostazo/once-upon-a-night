@@ -2,6 +2,7 @@
 #define COMPONENTFACTORYH_H
 
 #include "../OUAN.h"
+#include "../Audio/AudioDefs.h"
 
 namespace OUAN
 {
@@ -99,8 +100,8 @@ namespace OUAN
 
 		//trajectory component
 		TrajectoryComponentPtr createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions);
-
-		//[TODO: Others]
+		
+		AudioComponentPtr createAudioComponent(GameObjectPtr gameObject, const TAudioComponentMap& audioComponentSounds, AudioSubsystemPtr audioSubsystem);
 	};
 }
 

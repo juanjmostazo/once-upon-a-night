@@ -4110,6 +4110,25 @@ TWeaponComponentParameters LevelLoader::processWeaponComponent(TiXmlElement* XML
 	}
 	return params;
 }
+TAudioComponentMap LevelLoader::processAudioComponent(TiXmlElement* XMLNode)
+{
+	TAudioComponentMap audioComponentSounds;
+	audioComponentSounds.clear();
+	int i=0;
+	std::string soundId;
+	while(true)
+	{
+		soundId=getPropertyString(XMLNode,"soundID"+StringConverter::toString(i),
+			false);		
+		if (soundId.compare("")==0) break;
+
+		Ogre::LogManager::getSingleton().logMessage("Adding soundID: "+soundId);
+
+		audioComponentSounds[soundId]=-1;//No channel assigned yet (Careful on how FMOD processes access attempts with negative channels)
+		++i;
+	}
+	return audioComponentSounds;
+}
 TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNodeDreams,
 												TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {

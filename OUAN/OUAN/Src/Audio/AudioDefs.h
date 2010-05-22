@@ -12,6 +12,7 @@
 
 namespace OUAN
 {
+
 	//Channel groups names
 	const std::string SM_CHANNEL_MASTER_GROUP		=	"MasterGroup";
 	const std::string SM_CHANNEL_MUSIC_GROUP		=	"MusicGroup";
@@ -30,6 +31,16 @@ namespace OUAN
 	const double DOPPLER_SCALE=0.0;
 	const double DISTANCE_FACTOR=10;
 	const double ROLLOFF_SCALE= 1.0;
+
+	const int DEFAULT_AUDIO_SUBSYSTEM_FRAME_SKIP=0;
+
+	class AudioComponent;
+	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
+	const std::string COMPONENT_TYPE_AUDIO="AudioComponent";
+
+	/// The keys represent sound identifiers, whereas the values
+	/// will be the channel indexes.
+	typedef std::map<std::string, int> TAudioComponentMap;
 
 	//Forwarded declarations and typedefs
 	class AudioSubsystem;
@@ -84,6 +95,8 @@ namespace OUAN
 	const std::string CONFIG_KEYS_SFX_ENABLED="SFX_ENABLED";
 	const std::string CONFIG_KEYS_SFX_NUM_CHANNELS="SFX_NUM_CHANNELS";
 	
+	const std::string CONFIG_KEYS_AUDIO_SUBSYSTEM_FRAME_SKIP="AUDIO_SUBSYSTEM_FRAME_SKIP";
+	
 	typedef struct  
 	{
 		// 3D sound attributes
@@ -108,6 +121,8 @@ namespace OUAN
 		double mMusicPitch;
 		bool mMusicVolumeEnabled;
 		int mMusicNumChannels;
+
+		int mFrameSkip;
 
 		void set(ConfigurationPtr config);
 

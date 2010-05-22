@@ -51,7 +51,7 @@ void GameOptionsState::cleanUp()
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	if (mMusicChannel!=-1)
-		mApp->getAudioSubsystem()->stopSound(mMusicChannel);
+		mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
 	mApp->getAudioSubsystem()->removeSound("MUSIC");
 }
 
