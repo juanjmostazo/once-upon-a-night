@@ -29,6 +29,7 @@ using namespace OUAN;
 /// Default constructor
 GameRunningState::GameRunningState()
 :GameState()
+,mIsChangingWorld(false)
 {
 
 }
@@ -105,6 +106,15 @@ void GameRunningState::cleanUp()
 	
 	//Destroy HUD
 	mHUD->destroy();
+
+	if (mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannels[DREAMS].channelId))
+	{
+		mApp->getAudioSubsystem()->stopMusic(mMusicChannels[DREAMS].channelId);
+	}
+	if (mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannels[NIGHTMARES].channelId))
+	{
+		mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
+	}
 }
 
 /// pause state
@@ -588,7 +598,7 @@ void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 
 void GameRunningState::activateChangeWorldFast()
 {
-	changeWorldFinished(mChangeWorldTotalTime);
+	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
 }
 
 void GameRunningState::activateChangeWorld()
@@ -604,46 +614,92 @@ void GameRunningState::activateChangeWorld()
 		changeWorldStarted(mWorld);
 	}
 }
+void GameRunningState::initMusicFading(int newWorld)
+{
+	AudioSubsystemPtr audioSS=mApp->getAudioSubsystem();
+	int oldWorld=newWorld==DREAMS?NIGHTMARES:DREAMS;	
+	double startVolume=0.0;
+	bool mute=false;
+	try
+	{		
+		mute=fabs(audioSS->getMusicVolume(mMusicChannels[oldWorld].channelId)-0.0)<.0000001;
+	}
+	catch(const std::exception&)
+	{
 
+	}
+	if (!audioSS->isMusicPlaying(mMusicChannels[oldWorld].channelId) || mute)
+		startVolume=1.0;
+	audioSS->playMusic(mMusicChannels[newWorld].id,mMusicChannels[newWorld].channelId,true);
+	audioSS->setMusicVolume(mMusicChannels[newWorld].channelId,startVolume);
+}
+void GameRunningState::advanceMusicFading(int newWorld,double percentage)
+{
+	AudioSubsystemPtr audioSS=mApp->getAudioSubsystem();
+	int oldWorld=newWorld==DREAMS?NIGHTMARES:DREAMS;
+	if (audioSS->isMusicPlaying(mMusicChannels[oldWorld].channelId))
+	{
+		audioSS->setMusicVolume(mMusicChannels[oldWorld].channelId,(1-percentage));	
+	}
+	audioSS->setMusicVolume(mMusicChannels[newWorld].channelId,percentage);
+}
+void GameRunningState::endMusicFading(int newWorld)
+{
+	try{
+		AudioSubsystemPtr audioSS=mApp->getAudioSubsystem();
+		int oldWorld=newWorld==DREAMS?NIGHTMARES:DREAMS;
+		audioSS->stopMusic(mMusicChannels[oldWorld].channelId);
+		if (!audioSS->isMusicPlaying(mMusicChannels[newWorld].channelId))
+		{
+			audioSS->playMusic(mMusicChannels[newWorld].id,mMusicChannels[newWorld].channelId,true);
+		}	
+	}
+	catch (const std::exception& e)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage("GameRunningState::endMusicFading CRASH");
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+	}
+}
 void GameRunningState::changeWorldFinished(int newWorld)
 {
-	switch(newWorld)
-	{
-	case DREAMS:
-		changeMusic(DREAMS);
-		break;
-	case NIGHTMARES:
-		changeMusic(NIGHTMARES);
-		break;
-	default:
-		break;
-	}
+	endMusicFading(newWorld);
+	//switch(newWorld)
+	//{
+	//	case DREAMS:
+	//		break;
+	//	case NIGHTMARES:
+	//		break;
+	//	default:
+	//		break;
+	//}
 }
 
 void GameRunningState::changeWorldStarted(int newWorld)
 {
-	switch(newWorld)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
+	initMusicFading(newWorld);
+	//switch(newWorld)
+	//{
+	//	case DREAMS:
+	//		break;
+	//	case NIGHTMARES:
+	//		break;
+	//	default:
+	//		break;
+	//}
 }
 
 void GameRunningState::changeToWorld(int newWorld, double perc)
 {
-	switch(newWorld)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
+	advanceMusicFading(newWorld,perc);
+	//switch(newWorld)
+	//{
+	//	case DREAMS:
+	//		break;
+	//	case NIGHTMARES:
+	//		break;
+	//	default:
+	//		break;
+	//}
 }
 
 void GameRunningState::clearMusic()

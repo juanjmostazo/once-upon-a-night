@@ -820,7 +820,8 @@ bool AudioSubsystem::stopMusic(int channelIndex)
 {
 	try
 	{
-		if (channelIndex>=0)
+		
+		if (channelIndex>=0 && isMusicPlaying(channelIndex))
 			return stopSound(channelIndex,SM_CHANNEL_MUSIC_GROUP);
 		else return false;
 	}
@@ -922,14 +923,16 @@ bool AudioSubsystem::is3DSound(const std::string& soundID)
 	msg<<"AudioSubsystem::is3DSound - Sound with id "<<soundID<<" does not exist";
 	throw std::exception (msg.str().c_str());
 }
-bool AudioSubsystem::isChannelPlaying(int channelID)
+bool AudioSubsystem::isChannelPlaying(int channelID,const std::string& channelGroupID)
 {
-	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelID);
+	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelID);
 	if (ch)
 		return ch->isPlaying();
-	std::stringstream msg("");
-	msg<<"AudioSubsystem::isChannelPlaying- Channel with id "<<channelID<<" is NULL";
-	throw std::exception (msg.str().c_str());
+	return false;
+}
+bool AudioSubsystem::isMusicPlaying(int channelID)
+{
+	return isChannelPlaying(channelID,SM_CHANNEL_MUSIC_GROUP);
 }
 void AudioSubsystem::updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity)
 {
@@ -963,9 +966,9 @@ void AudioSubsystem::setFrameSkip(int frameSkip)
 {
 	mFrameSkip=frameSkip;
 }
-bool AudioSubsystem::setChannelVolume(int channelID,double volume)
+bool AudioSubsystem::setChannelVolume(int channelID,double volume, const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP)
 {
-	FMOD::Channel* ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannel(channelID);
+	FMOD::Channel* ch=mChannelGroupMap[channelGroupID]->getChannel(channelID);
 	if (ch)
 		return (ch->setVolume(static_cast<float>(volume)))?true:false;
 	else 
@@ -975,9 +978,9 @@ bool AudioSubsystem::setChannelVolume(int channelID,double volume)
 		throw std::exception (msg.str().c_str());
 	}
 }
-double AudioSubsystem::getChannelVolume(int channelID,double volume)
+double AudioSubsystem::getChannelVolume(int channelID,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP)
 {
-	FMOD::Channel* ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannel(channelID);
+	FMOD::Channel* ch=mChannelGroupMap[channelGroupID]->getChannel(channelID);
 	if (ch)
 	{
 		float retVal;
@@ -990,4 +993,12 @@ double AudioSubsystem::getChannelVolume(int channelID,double volume)
 		msg<<"AudioSubsystem::getChannelVolume() - Channel at index"<<channelID<<" is NULL";
 		throw std::exception (msg.str().c_str());
 	}
+}
+void AudioSubsystem::setMusicVolume(int channelID,double volume)
+{
+	setChannelVolume(channelID,volume,SM_CHANNEL_MUSIC_GROUP);
+}
+double AudioSubsystem::getMusicVolume(int channelID)
+{
+	return getChannelVolume(channelID,SM_CHANNEL_MUSIC_GROUP);
 }

@@ -120,7 +120,7 @@ namespace OUAN
 		virtual SoundPtr getSound(const std::string& soundID);
 
 		virtual bool is3DSound(const std::string& soundID);
-		virtual bool isChannelPlaying(int channelID);
+		virtual bool isChannelPlaying(int channelID,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP);
 		virtual void updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity);
 		virtual void updateChannel3DMinMaxDistance(int channelID, double minDistance, double maxDistance);
 
@@ -128,8 +128,11 @@ namespace OUAN
 		virtual bool setChannelGroupPitch(const std::string& channelGroupID, double pitch);
 		virtual bool pauseChannelGroup(const std::string& channelGroupID, bool overrideMute);
 		//virtual bool stopChannelGroup(const std::string& channelGroupID);
-		virtual bool setChannelVolume(int channelID,double volume);
-		virtual double getChannelVolume(int channelID,double volume);
+		virtual bool setChannelVolume(int channelID,double volume, const std::string& channelGroupID);
+		virtual double getChannelVolume(int channelID, const std::string& channelGroupID);
+		virtual void setMusicVolume(int channelID,double volume);
+		virtual double getMusicVolume(int channelID);
+		virtual bool isMusicPlaying(int channelID);
 		
 		virtual bool playSound(const std::string& id, int& channelIndex);
 		virtual bool play3DSound(const std::string& id, const Ogre::Vector3& position, 

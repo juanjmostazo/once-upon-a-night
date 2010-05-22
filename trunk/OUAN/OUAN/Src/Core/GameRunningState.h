@@ -63,6 +63,10 @@ namespace OUAN
 		bool mIsChangingWorld;
 		int mWorld;
 
+		void initMusicFading(int newWorld);
+		void advanceMusicFading(int newWorld,double percentage);
+		void endMusicFading(int newWorld);
+
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
