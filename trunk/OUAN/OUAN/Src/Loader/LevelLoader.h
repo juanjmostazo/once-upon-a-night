@@ -3,6 +3,7 @@
 
 //OUAN
 #include "../OUAN.h"
+#include "../Audio/AudioDefs.h"
 #include "XMLParser.h"
 #include "Configuration.h"
 
@@ -147,6 +148,9 @@ namespace OUAN
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentTriggerParameters processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+
+		//
+		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 

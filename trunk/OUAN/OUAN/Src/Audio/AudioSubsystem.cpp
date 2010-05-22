@@ -34,6 +34,7 @@ void TAudioSubsystemConfigData::set(ConfigurationPtr config)
 			mSfxPitch=config->parseDouble(CONFIG_KEYS_SFX_PITCH);
 			mSfxVolumeEnabled=config->parseBool(CONFIG_KEYS_SFX_ENABLED);
 			mSfxNumChannels=config->parseInt(CONFIG_KEYS_SFX_NUM_CHANNELS);
+			mFrameSkip=config->parseInt(CONFIG_KEYS_AUDIO_SUBSYSTEM_FRAME_SKIP);
 		}
 		catch (const std::exception& e)
 		{
@@ -301,7 +302,12 @@ double ChannelGroup::getPitch()
 	}
 	return val;
 }
-
+ChannelPtr ChannelGroup::getChannelObject(int index)
+{
+	if (!mChannels.empty() && index>=0 && (unsigned int)index<mChannels.size())
+		return mChannels[index];
+	return ChannelPtr();
+}
 //--- AUDIO SUBSYSTEM DEFS
 
 AudioSubsystem::AudioSubsystem()
@@ -332,6 +338,7 @@ void AudioSubsystem::cleanUp()
 bool AudioSubsystem::init(TAudioSubsystemConfigData& desc, ApplicationPtr app)
 {
 	mApp=app;
+	mFrameSkip=desc.mFrameSkip;
 
 	bool rc = false;
 	//attempt to create the system
@@ -652,6 +659,10 @@ bool AudioSubsystem::_playSound(const std::string& id,
 							true, 
 							&channel);
 						outChannel->setChannel(tmp,channel);
+						if (soundPtr->mSoundData.m3D)
+						{
+							channel->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
+						}
 
 						rc = true;
 					}
@@ -794,25 +805,42 @@ double AudioSubsystem::getChannelGroupPitch(const std::string& id)
 	}
 	return pitch;
 }
-bool AudioSubsystem::stopSound(int channelIndex)
+bool AudioSubsystem::stopSound(int channelIndex, const std::string& channelGroupID)
 {
-	bool result=false;
-	if(mSystem)
+	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelIndex);
+	if (ch.get())
 	{
-		ChannelGroupPtr currentGroup;
-		for (TChannelGroupMap::iterator it=mChannelGroupMap.begin();it!=mChannelGroupMap.end();++it)
-		{
-			currentGroup=it->second;
-			FMOD::Channel* ch;
-			if (ch=currentGroup->getChannel(channelIndex))
-			{
-				result= currentGroup->stop(channelIndex);				
-				break;
-			}
-		}
+		return (ch->getChannel()->stop())?true:false;
 	}
-	return result;
+	std::stringstream msg("");
+	msg<<"AudioSubsystem::stopSound() - Channel at index "<<channelIndex<<" is NULL";
+	throw std::exception (msg.str().c_str());
 }
+bool AudioSubsystem::stopMusic(int channelIndex)
+{
+	try
+	{
+		if (channelIndex>=0)
+			return stopSound(channelIndex,SM_CHANNEL_MUSIC_GROUP);
+		else return false;
+	}
+	catch (std::exception& e)
+	{
+		throw e;
+	}	
+}
+bool AudioSubsystem::setPause(int channelIndex, bool pause)
+{
+	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelIndex);
+	if (ch.get())
+	{
+		return ch->setPaused(pause);
+	}
+	std::stringstream msg("");
+	msg<<"AudioSubsystem::setPause() - Channel at index "<<channelIndex<<" is NULL";
+	throw std::exception (msg.str().c_str());
+}
+
 ApplicationPtr AudioSubsystem::getApplication()
 {
 	return mApp;
@@ -876,4 +904,90 @@ void AudioSubsystem::saveCurrentConfigData(const std::string& configFileName)
 	config->addOptions(options);
 	std::string filePath = SOUND_RESOURCES_PATH+"/"+configFileName;
 	config->saveToFile(filePath);
+}
+SoundPtr AudioSubsystem::getSound(const std::string& soundID)
+{
+	if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
+		return mSoundMap[soundID];
+	return SoundPtr();
+}
+bool AudioSubsystem::is3DSound(const std::string& soundID)
+{
+	SoundPtr sound=getSound(soundID);
+	if (sound.get())
+	{
+		return sound->mSoundData.m3D;
+	}
+	std::stringstream msg("");
+	msg<<"AudioSubsystem::is3DSound - Sound with id "<<soundID<<" does not exist";
+	throw std::exception (msg.str().c_str());
+}
+bool AudioSubsystem::isChannelPlaying(int channelID)
+{
+	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelID);
+	if (ch)
+		return ch->isPlaying();
+	std::stringstream msg("");
+	msg<<"AudioSubsystem::isChannelPlaying- Channel with id "<<channelID<<" is NULL";
+	throw std::exception (msg.str().c_str());
+}
+void AudioSubsystem::updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity)
+{
+	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelID);
+	if (ch.get())
+		ch->set3DAttributes(position,velocity);
+	else 
+	{
+		std::stringstream msg("");
+		msg<<"AudioSubsystem::updateChannel3DAttributes- Channel at index"<<channelID<<" is NULL";
+		throw std::exception (msg.str().c_str());
+	}
+}
+void AudioSubsystem::updateChannel3DMinMaxDistance(int channelID, double minDistance, double maxDistance)
+{
+	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelID);
+	if (ch.get())
+		ch->set3DMinMaxDistance(minDistance,maxDistance);
+	else 
+	{
+		std::stringstream msg("");
+		msg<<"AudioSubsystem::updateChannel3DMinMaxDistance() - Channel at index"<<channelID<<" is NULL";
+		throw std::exception (msg.str().c_str());
+	}
+}
+int AudioSubsystem::getFrameSkip() const
+{
+	return mFrameSkip;
+}
+void AudioSubsystem::setFrameSkip(int frameSkip)
+{
+	mFrameSkip=frameSkip;
+}
+bool AudioSubsystem::setChannelVolume(int channelID,double volume)
+{
+	FMOD::Channel* ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannel(channelID);
+	if (ch)
+		return (ch->setVolume(static_cast<float>(volume)))?true:false;
+	else 
+	{
+		std::stringstream msg("");
+		msg<<"AudioSubsystem::setChannelVolume() - Channel at index"<<channelID<<" is NULL";
+		throw std::exception (msg.str().c_str());
+	}
+}
+double AudioSubsystem::getChannelVolume(int channelID,double volume)
+{
+	FMOD::Channel* ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannel(channelID);
+	if (ch)
+	{
+		float retVal;
+		ch->getVolume(&retVal);		
+		return static_cast<double>(retVal);
+	}
+	else 
+	{
+		std::stringstream msg("");
+		msg<<"AudioSubsystem::getChannelVolume() - Channel at index"<<channelID<<" is NULL";
+		throw std::exception (msg.str().c_str());
+	}
 }

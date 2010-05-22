@@ -17,6 +17,11 @@ namespace OUAN
 		bool mHardware;
 		bool m3D;
 		bool mStream;
+		//These arguments are used on a per-channel basis. However, since
+		//all the instances will most likely be using the same values, I'm creating
+		//them here so that this information is loaded together with the rest of sound data
+		double minDistance;
+		double maxDistance;
 	}TSoundData;
 
 	class Sound
@@ -79,6 +84,7 @@ namespace OUAN
 
 		FMOD_CHANNELINDEX getChannelIndex(int channelIndex);
 		FMOD::Channel* getChannel(int index);
+		ChannelPtr getChannelObject(int index);
 		int getFreeChannelIndex();
 	};
 
@@ -111,18 +117,28 @@ namespace OUAN
 		virtual void removeSound(const std::string& soundID);
 		virtual void loadSounds(std::vector<TSoundData> soundBank);
 		virtual void unloadSounds();
+		virtual SoundPtr getSound(const std::string& soundID);
+
+		virtual bool is3DSound(const std::string& soundID);
+		virtual bool isChannelPlaying(int channelID);
+		virtual void updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity);
+		virtual void updateChannel3DMinMaxDistance(int channelID, double minDistance, double maxDistance);
 
 		virtual bool setChannelGroupVolume(const std::string& channelGroupID, double volume);
 		virtual bool setChannelGroupPitch(const std::string& channelGroupID, double pitch);
 		virtual bool pauseChannelGroup(const std::string& channelGroupID, bool overrideMute);
 		//virtual bool stopChannelGroup(const std::string& channelGroupID);
-
+		virtual bool setChannelVolume(int channelID,double volume);
+		virtual double getChannelVolume(int channelID,double volume);
+		
 		virtual bool playSound(const std::string& id, int& channelIndex);
 		virtual bool play3DSound(const std::string& id, const Ogre::Vector3& position, 
 			int& channelIndex,const Ogre::Vector3& velocity = Ogre::Vector3::ZERO);
 		virtual bool playMusic(const std::string& id,int& channelIndex,bool override=false);
 
-		virtual bool stopSound(int channelIndex);
+		virtual bool stopSound(int channelIndex,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP);
+		virtual bool stopMusic(int channelIndex);
+		virtual bool setPause(int channelIndex, bool pause);
 
 		virtual void set3DAttributes(const Ogre::Vector3& position,const Ogre::Vector3& velocity,const Ogre::Vector3& forward,const Ogre::Vector3& up);
 		virtual bool update(double elapsedTime);
@@ -137,6 +153,9 @@ namespace OUAN
 
 		ApplicationPtr getApplication();
 
+		int getFrameSkip() const;
+		void setFrameSkip(int frameSkip);
+
 	private:
 		FMOD::System* mSystem;
 		TChannelGroupMap mChannelGroupMap;
@@ -150,7 +169,8 @@ namespace OUAN
 		virtual bool _playSound(const std::string& id, ChannelGroupPtr outChannel, int& channelIndex);
 
 		ApplicationPtr mApp;
-
+		
+		int mFrameSkip;
 
 	};
 }

@@ -51,7 +51,7 @@ void MainMenuState::cleanUp()
 	//Unsubscribe from events
 	mGUI->destroy();
 	if (mMusicChannel!=-1)
-	mApp->getAudioSubsystem()->stopSound(mMusicChannel);
+		mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
 	mApp->getAudioSubsystem()->removeSound("MUSIC");
 	mApp->getGUISubsystem()->destroyGUI();
 	//mApp->getGUISubsystem()->unbindAllEvents();

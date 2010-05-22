@@ -28,6 +28,9 @@ namespace OUAN
 		GUIConsolePtr mGUI;
 		HUDInGamePtr mHUD;
 
+		int mAudioFrameCnt;
+		int mAudioFrameSkip;
+
 		//Refactored code into functions to improve legibility
 		void checkDebuggingKeys();
 		void toggleDebugPerformance();

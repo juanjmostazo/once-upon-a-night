@@ -72,6 +72,8 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getWorld()].id,
 		mMusicChannels[mApp->getGameWorldManager()->getWorld()].channelId,
 		true);
+	mAudioFrameCnt=0;
+	mAudioFrameSkip=mApp->getAudioSubsystem()->getFrameSkip();
 	
 	if (mApp->getGameWorldManager()->getEventManager().get())
 	{
@@ -399,6 +401,13 @@ void GameRunningState::update(long elapsedTime)
 		}
 	}
 	mGUI->update(elapsedSeconds);
+
+	if (mAudioFrameSkip==0 || mAudioFrameCnt==0)
+	{
+		mApp->getAudioSubsystem()->update(elapsedSeconds);
+	}
+	if ((mAudioFrameCnt++)>mAudioFrameSkip)
+		mAudioFrameCnt=0;
 }
 
 TWeaponMode GameRunningState::convertRouletteValue(TRouletteState rouletteValue)
@@ -557,7 +566,8 @@ void GameRunningState::loadMusic()
 
 void GameRunningState::changeMusic(int world)
 {
-	mApp->getAudioSubsystem()->stopSound(mMusicChannels[world].channelId);
+	int oldWorld=world==DREAMS?NIGHTMARES:DREAMS;
+	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[oldWorld].channelId);
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[world].id,mMusicChannels[world].channelId,true);
 }
 
@@ -638,9 +648,9 @@ void GameRunningState::changeToWorld(int newWorld, double perc)
 
 void GameRunningState::clearMusic()
 {
-	mApp->getAudioSubsystem()->stopSound(mMusicChannels[DREAMS].channelId);
+	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[DREAMS].channelId);
 	mApp->getAudioSubsystem()->removeSound(mMusicChannels[DREAMS].id);
-	mApp->getAudioSubsystem()->stopSound(mMusicChannels[NIGHTMARES].channelId);
+	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
 	mApp->getAudioSubsystem()->removeSound(mMusicChannels[NIGHTMARES].id);
 	mMusicChannels.clear();
 }

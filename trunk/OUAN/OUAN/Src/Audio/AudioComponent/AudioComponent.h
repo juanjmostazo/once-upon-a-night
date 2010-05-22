@@ -4,21 +4,28 @@
 #include "../../Component/Component.h"
 
 namespace OUAN{
-	
+	/// The keys represent sound identifiers, whereas the values
+	/// will be the channel indexes.
+	typedef std::map<std::string, int> TAudioComponentMap;
+
+	class AudioSubsystem;
+	typedef boost::shared_ptr<AudioSubsystem> AudioSubsystemPtr;
+
 	class AudioComponent: public Component
 	{
 	public:
-		AudioComponent(const std::string& type="");
+		AudioComponent(AudioSubsystemPtr audioSS);
 		~AudioComponent();
 
-		virtual void update(long elapsedTime);
-	private:
-		// WIP for me: Define the data structure here.
-		// It should contain keys linking states/sounds to entries
-		// in the audio subsystem cache
-		// The update method might have to fetch positional data
-		// from its sibling
+		void update(long elapsedTime);
+		void playSound(const std::string& soundID);
+		void stopSound(const std::string& soundID);
+		void setPauseSound(const std::string& soundID,bool pause);
 
+		void setSounds(const TAudioComponentMap& sounds);
+	private:
+		TAudioComponentMap mSounds;
+		AudioSubsystemPtr mAudioSS;
 	};
 }
 #endif

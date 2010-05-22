@@ -41,6 +41,7 @@
 #include "../Logic/LogicComponent/LogicComponentTrigger.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
+#include "../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -680,4 +681,11 @@ TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr
 	pTrajectoryComponent->setParent(gameObject);
 
 	return pTrajectoryComponent;
+}
+AudioComponentPtr ComponentFactory::createAudioComponent(GameObjectPtr gameObject, const TAudioComponentMap& audioComponentSounds, AudioSubsystemPtr audioSubsystem)
+{
+	AudioComponentPtr audioComponentPtr=AudioComponentPtr(new AudioComponent(audioSubsystem));
+	audioComponentPtr->setSounds(audioComponentSounds);
+	audioComponentPtr->setParent(gameObject);
+	return audioComponentPtr;
 }
