@@ -3,13 +3,14 @@ using namespace OUAN;
 
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
+,mPointRenderable(NULL)
 {
 	reset();
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
 {
-
+	mPointRenderable=NULL;//NxOgre will handle the destruction of these objects.
 }
 
 void PhysicsComponentCharacter::reset()
@@ -44,13 +45,18 @@ void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
 
+	if (!mPointRenderable)
+	{
+		mPointRenderable= Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
+			createPointRenderable(getSceneNode());
+	}
+
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
 			getNxOgreSize(), 
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
-			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
-				createPointRenderable(getSceneNode()),			
+			mPointRenderable,			
 			NxOgre::String(this->getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees(),

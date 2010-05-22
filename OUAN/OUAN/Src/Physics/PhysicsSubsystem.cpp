@@ -137,7 +137,14 @@ void PhysicsSubsystem::clear()
 	if (mNxOgreRenderSystem)
 	{
 		Ogre::LogManager::getSingleton().logMessage("PHYSICS: render system");
-		delete mNxOgreRenderSystem;
+		try
+		{
+			delete mNxOgreRenderSystem;
+		}
+		catch (...)
+		{
+			throw std::exception ("PhysicsSubsystem::clear - Exception deleting mNxOgreRenderSystem");
+		}
 		mNxOgreRenderSystem=NULL;
 	}
 	

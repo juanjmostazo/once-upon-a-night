@@ -411,7 +411,14 @@ void GameWorldManager::unloadLevel()
 {
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
 
-	mApp->getPhysicsSubsystem()->clear();
+	try
+	{
+		mApp->getPhysicsSubsystem()->clear();
+	}
+	catch (const std::exception& e)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+	}
 	mApp->getRenderSubsystem()->clear();
 	mApp->getTrajectoryManager()->clear();
 	mApp->getCameraManager()->clear();

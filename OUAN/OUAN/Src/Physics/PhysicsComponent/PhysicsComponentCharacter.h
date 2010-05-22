@@ -73,6 +73,8 @@ namespace OUAN
 		/// Entiti's last movement: it'll be used to follow a path.
 		NxOgre::Vec3 mLastMovement;
 
+		OGRE3DPointRenderable* mPointRenderable;
+
 		// Physics states
 		bool mJumping;
 		bool mFalling;

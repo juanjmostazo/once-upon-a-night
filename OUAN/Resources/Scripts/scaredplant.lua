@@ -30,9 +30,6 @@ function scaredplantLogic(pScaredPlant,state)
 		elseif timeSpent>=delay then		
 			newState=SP_STATE_IDLE
 		end		
-	end
-	if newState==SP_STATE_IDLE and state ~= SP_STATE_IDLE then
-		log("back to idle!!")
-	end
+	end	
 	return newState
 end

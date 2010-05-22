@@ -148,6 +148,9 @@ void ProjectiveDecal::makeMaterialsReceiveDecal()
 				texState->setProjectiveTexturing(true, mFilterFrustum);
 				texState->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
 				texState->setTextureFiltering(Ogre::TFO_NONE);
+
+				if (mat->getTechnique(0)->getNumPasses()>1)
+					mat->getTechnique(0)->movePass(pass->getIndex(),mat->getTechnique(0)->getNumPasses()-1);
 			}
 		}		
 	}
