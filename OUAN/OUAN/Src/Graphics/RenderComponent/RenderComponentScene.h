@@ -49,6 +49,11 @@ namespace OUAN
 		Ogre::SceneManager * mSceneManager;
 		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
 		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
+
+		ChangeWorldMaterialPtr mSkyDomeChangeWorldMaterialDreams;
+		ChangeWorldMaterialPtr mSkyDomeChangeWorldMaterialNightmares;
+		ChangeWorldMaterialPtr mSkyBoxChangeWorldMaterialDreams;
+		ChangeWorldMaterialPtr mSkyBoxChangeWorldMaterialNightmares;
 	public:
 
 		RenderComponentScene(const std::string& type="");
@@ -62,6 +67,10 @@ namespace OUAN
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
+
+		void setOriginalMaterials(int world);
+		void setChangeWorldMaterials(int world);
+		void initChangeWorldMaterials(ChangeWorldType type);
 	};
 
 }

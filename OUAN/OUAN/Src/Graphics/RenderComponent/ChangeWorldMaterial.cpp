@@ -30,7 +30,7 @@ Ogre::MaterialPtr ChangeWorldMaterial::findMaterial(std::string name)
 	return material;
 }
 
-std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::string diffuseTexture1, std::string diffuseTexture2)
+std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
 {
 	Ogre::MaterialPtr changeworld_clone;
 	Ogre::MaterialPtr changeworld_material;
@@ -57,10 +57,10 @@ std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::strin
 			switch(type)
 			{
 			case CW_BLENDING:
-				createMaterialBlending(changeworld_clone,diffuseTexture1,diffuseTexture2);
+				createMaterialBlending(changeworld_clone,diffuseTexture1,diffuseTexture2,lighting,depth_write);
 				break;
 			case CW_EROSION:
-				createMaterialErosion(changeworld_clone,diffuseTexture1,diffuseTexture2);
+				createMaterialErosion(changeworld_clone,diffuseTexture1,diffuseTexture2,lighting,depth_write);
 				break;
 			default:
 				return "";
@@ -77,7 +77,7 @@ std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::strin
 	return newMaterialName;
 }
 
-void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2)
+void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
@@ -85,6 +85,8 @@ void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::st
 
 	technique=clone->getTechnique(0);
 	pass=technique->getPass(0);
+	pass->setLightingEnabled(lighting);
+	pass->setDepthWriteEnabled(depth_write);
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
 
@@ -93,7 +95,7 @@ void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::st
 	texture->setTextureName(diffuseTexture2);
 }
 
-void ChangeWorldMaterial::createMaterialErosion(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2)
+void ChangeWorldMaterial::createMaterialErosion(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
@@ -101,6 +103,8 @@ void ChangeWorldMaterial::createMaterialErosion(Ogre::MaterialPtr clone,std::str
 
 	technique=clone->getTechnique(0);
 	pass=technique->getPass(0);
+	pass->setLightingEnabled(lighting);
+	pass->setDepthWriteEnabled(depth_write);
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
 
@@ -133,21 +137,27 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 		case CW_EROSION:
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
-			params->setNamedConstant("Factor",Ogre::Real(factor));
+			params->setNamedConstant("mix_factor",Ogre::Real(factor));
 			break;
 		default:
 			break;
 		}
 	}
+	//Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" DONE");
+
 }
 
 bool ChangeWorldMaterial::init(std::string id,ChangeWorldType type, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2)
 {
 	std::string diffuseTexture1;
 	std::string diffuseTexture2;
+	bool lighting;
+	bool depth_write;
 
 	diffuseTexture1=getDiffuseTexture(pMaterial1);
 	diffuseTexture2=getDiffuseTexture(pMaterial2);
+	lighting=getLighting(pMaterial1);
+	depth_write=getDepthWrite(pMaterial1);
 
 	if(diffuseTexture1.compare("")!=0 && diffuseTexture2.compare("")!=0)
 	{
@@ -156,7 +166,9 @@ bool ChangeWorldMaterial::init(std::string id,ChangeWorldType type, Ogre::Materi
 
 		mName = createMaterial(type,
 			diffuseTexture1,
-			diffuseTexture2
+			diffuseTexture2,
+			lighting,
+			depth_write
 			);
 
 		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+mName+" initialized.");
@@ -197,4 +209,26 @@ std::string ChangeWorldMaterial::getDiffuseTexture(Ogre::MaterialPtr material)
 	{
 		return "";
 	}
+}
+
+bool ChangeWorldMaterial::getLighting(Ogre::MaterialPtr material)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+
+	// Get diffuse texture
+	technique = material->getBestTechnique();
+	pass = technique->getPass(0);
+	return pass->getLightingEnabled();
+}
+
+bool ChangeWorldMaterial::getDepthWrite(Ogre::MaterialPtr material)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+
+	// Get diffuse texture
+	technique = material->getBestTechnique();
+	pass = technique->getPass(0);
+	return pass->getDepthWriteEnabled();
 }

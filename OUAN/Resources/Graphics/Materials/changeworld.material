@@ -1,23 +1,4 @@
-vertex_program erosionFS cg
-{
-	source erosion.cg
-	entry_point erosionFS
-	profiles vs_1_1 arbvp1
-
-	default_params	
-	{	
-	  param_named_auto worldViewProj worldviewproj_matrix
-	  param_named Factor float 0.0
-   	}
-}
-
-vertex_program erosionVS cg
-{
-	source erosion.cg
-	entry_point erosionVS
-	profiles vs_1_1 arbvp1
-}
-
+//BLENDING
 material blending
 {
    technique
@@ -31,6 +12,7 @@ material blending
       }
       pass
       {
+	
          scene_blend alpha_blend
          texture_unit
          {
@@ -40,6 +22,33 @@ material blending
    }
 }
 
+//EROSION
+vertex_program erosion_vs cg
+{
+	source erosion.cg
+	entry_point erosionVS
+	profiles vs_1_1 arbvp1 vs_2_0
+	default_params	
+	{	
+	  param_named_auto worldViewProj worldviewproj_matrix
+            }	
+}
+
+fragment_program erosion_fs cg
+{
+	source erosion.cg
+	entry_point erosionFS
+	profiles ps_3_0 arbfp1 ps_2_0
+
+	default_params	
+	{
+	  param_named mix_factor float 0.5
+	  param_named displacement float 0.0
+	  param_named blending float 0.03
+	  param_named tiling float 2.5
+   	}
+}
+
 material erosion
 {
 	technique
@@ -47,10 +56,10 @@ material erosion
 		pass
 		{
 			
-	                      vertex_program_ref erosionVS 
+	                      vertex_program_ref erosion_vs 
 	                      {
 	                      }
-	                      fragment_program_ref erosionFS
+	                      fragment_program_ref erosion_fs
 	                      {
 	                      }
 	                      texture_unit 0
@@ -60,6 +69,12 @@ material erosion
 	                      texture_unit 1
 	                      {
 	                             texture random.png
+                                  }
+	                      texture_unit 2
+	                      {
+		                 texture Water01.jpg
+	                            // texture quads.png
+	                            // scroll_anim 0.03 0
                                   }
                         }
              }

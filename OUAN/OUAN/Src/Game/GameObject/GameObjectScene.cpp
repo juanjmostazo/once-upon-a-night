@@ -28,6 +28,8 @@ void GameObjectScene::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentScene->setOriginalMaterials(newWorld);
+
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -37,13 +39,13 @@ void GameObjectScene::changeWorldFinished(int newWorld)
 	default:
 		break;
 	}
-
-	mRenderComponentScene->changeToWorld(newWorld,1);
 }
 
 void GameObjectScene::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentScene->setChangeWorldMaterials(mWorld);
 
 	switch(newWorld)
 	{
@@ -59,6 +61,8 @@ void GameObjectScene::changeWorldStarted(int newWorld)
 void GameObjectScene::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentScene->changeToWorld(newWorld,perc);
 
 	switch(newWorld)
 	{

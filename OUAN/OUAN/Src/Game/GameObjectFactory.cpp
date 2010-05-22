@@ -1744,9 +1744,9 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
 	
 	//Init ChangeWorldMaterials
-	pGameObjectTerrainTriangle->getRenderComponentEntityDreams()->initChangeWorldMaterials(CW_BLENDING,
+	pGameObjectTerrainTriangle->getRenderComponentEntityDreams()->initChangeWorldMaterials(CW_EROSION,
 		pGameObjectTerrainTriangle->getRenderComponentEntityNightmares());
-	pGameObjectTerrainTriangle->getRenderComponentEntityNightmares()->initChangeWorldMaterials(CW_BLENDING,
+	pGameObjectTerrainTriangle->getRenderComponentEntityNightmares()->initChangeWorldMaterials(CW_EROSION,
 		pGameObjectTerrainTriangle->getRenderComponentEntityDreams());
 
 

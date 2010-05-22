@@ -130,7 +130,7 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 		break;
 	}
 
-	displayText("CHANGING WORLD "+Ogre::StringConverter::toString(Ogre::Real(perc))+" delay:"+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay)));
+	//displayText("CHANGING WORLD "+Ogre::StringConverter::toString(Ogre::Real(perc))+" delay:"+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay)));
 }
 
 void GameObjectPortal::reset()

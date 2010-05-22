@@ -25,10 +25,12 @@ namespace OUAN
 		ChangeWorldType mType; 
 
 		std::string getDiffuseTexture(Ogre::MaterialPtr material);
-		std::string createMaterial(ChangeWorldType type, std::string diffuseTexture1, std::string diffuseTexture2);
+		bool getLighting(Ogre::MaterialPtr material);
+		bool getDepthWrite(Ogre::MaterialPtr material);
+		std::string createMaterial(ChangeWorldType type, std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write);
 
-		void createMaterialBlending(Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2);
-		void createMaterialErosion(Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2);
+		void createMaterialBlending(Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write);
+		void createMaterialErosion(Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write);
 	
 		std::string getChangeWorldTypeName(ChangeWorldType type);
 
