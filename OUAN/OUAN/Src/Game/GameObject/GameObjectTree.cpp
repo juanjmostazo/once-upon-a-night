@@ -214,6 +214,56 @@ bool GameObjectTree::hasRenderComponentEntity() const
 {
 	return true;
 }
+
+void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+{
+	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
+}
+
+void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
+{
+	double changeTime;
+	//Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime))+" mIsChangingWorld "+Ogre::StringConverter::toString(mIsChangingWorld));
+
+	if(totalTime*0.5f>totalElapsedTime)
+	{
+		changeTime=totalTime*0.25f;
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime))+" mIsChangingWorld "+Ogre::StringConverter::toString(mIsChangingWorld));
+		changeTime=totalElapsedTime-totalTime*0.25f;
+	}
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mChangeWorldDelay=changeTime*random+totalTime*0.25f;
+		}
+		else if(mLogicComponent->existsInNightmares())
+		{
+			mChangeWorldDelay=changeTime*random;
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInDreams())
+		{
+			mChangeWorldDelay=changeTime*random;
+		}
+		else if(mLogicComponent->existsInNightmares())
+		{
+			mChangeWorldDelay=changeTime*random+totalTime*0.25f;
+		}
+		break;
+	default:
+		break;
+	}
+
+	//Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  mChangeWorldDelay "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay))+" mChangeWorldTotalTime "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldTotalTime)));
+}
+
 RenderComponentEntityPtr GameObjectTree::getEntityComponent() const
 {
 	return mRenderComponentEntity;

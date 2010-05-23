@@ -10,4 +10,15 @@
   <PROPERTY id="RenderComponentSkyBox::distance" type="6" value="500" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyBox::materialDreams" type="6" value="Examples/SceneSkyBox1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyBox::materialNightmares" type="6" value="Examples/SceneSkyBox2" fields="X;Y;Z;W"></PROPERTY>
+
+  <!-- ChangeWorldMaterial parameters -->
+  <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="random.png" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="6" value="0.03 0 0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="0 0.05 0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="0.05" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::type" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+
+
+
 </CUSTOMPROPERTIES>

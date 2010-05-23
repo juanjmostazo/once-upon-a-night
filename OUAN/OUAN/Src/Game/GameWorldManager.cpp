@@ -377,9 +377,6 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 	mApp->getPhysicsSubsystem()->initLevel(levelFileName);
 	mApp->getTrajectoryManager()->clear();
 
-	//Set world to dreams
-	setWorld(DREAMS); 
-
 	//Parse Level File and Create GameObjects
 	mApp->getLevelLoader()->loadLevel(levelFileName);
 
@@ -402,6 +399,10 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
+
+	//Set world to dreams
+	setChangeWorldTimes();
+	setWorld(DREAMS); 
 
 	level=levelFileName;
 	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
@@ -446,7 +447,6 @@ bool GameWorldManager::loadConfig()
 	{
 		config.getOption("CHANGE_WORLD_TIME", value); 
 		mChangeWorldTotalTime = atof(value.c_str());
-		mChangeWorldGameObjectTime = mChangeWorldTotalTime/2;
 
 		success = true;
 	} 
@@ -1004,11 +1004,6 @@ int GameWorldManager::getWorld()
 	return mWorld;
 }
 
-double GameWorldManager::getChangeWorldGameObjectTime() const
-{
-	return mChangeWorldGameObjectTime;
-}
-
 void GameWorldManager::changeWorld()
 {	
 	if (mWorld==DREAMS)
@@ -1268,4 +1263,19 @@ void GameWorldManager::victory()
 {
 	GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 	mInst->addEvent(evt);
+}
+
+void GameWorldManager::setChangeWorldTimes()
+{
+	TGameObjectContainerIterator it;
+	
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		it->second->calculateChangeWorldTotalTime(mChangeWorldTotalTime);
+	}
+}
+
+double GameWorldManager::getChangeWorldTotalTime() const
+{
+	return mChangeWorldTotalTime;
 }

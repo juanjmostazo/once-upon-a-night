@@ -1,6 +1,7 @@
 #include "GameObjectScene.h"
 #include "../GameWorldManager.h"
 
+
 using namespace OUAN;
 
 GameObjectScene::GameObjectScene(const std::string& name)
@@ -28,7 +29,7 @@ void GameObjectScene::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentScene->setOriginalMaterials(newWorld);
+	mRenderComponentScene->setChangeWorldMaterials(newWorld);
 
 	switch(newWorld)
 	{
@@ -45,7 +46,7 @@ void GameObjectScene::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentScene->setChangeWorldMaterials(mWorld);
+	mRenderComponentScene->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -73,6 +74,12 @@ void GameObjectScene::changeToWorld(int newWorld, double perc)
 	default:
 		break;
 	}
+}
+
+void GameObjectScene::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	mRenderComponentScene->update(elapsedSeconds);
 }
 
 //-------------------------------------------------------------------------------------------

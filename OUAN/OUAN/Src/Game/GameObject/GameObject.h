@@ -33,6 +33,7 @@ namespace OUAN
 		virtual void changeWorldFinished(int newWorld);
 		virtual void changeWorldStarted(int newWorld);
 
+		double mChangeWorldTotalTime;
 		double mChangeWorldElapsedTime;
 		bool mIsChangingWorld;
 		double mChangeWorldDelay;
@@ -172,6 +173,12 @@ namespace OUAN
 
 		void setChangeWorldElapsedTime(double time);
 		double getChangeWorldElapsedTime() const;
+		void setChangeWorldTotalTime(double time);
+		double getChangeWorldTotalTime() const;
+
+		virtual void calculateChangeWorldTotalTime(double changeWorldTotalTime);
+		virtual void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random);
+
 		int getWorld();
 		void setWorld(int world);
 	};
