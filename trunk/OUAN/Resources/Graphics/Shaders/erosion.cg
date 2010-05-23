@@ -41,11 +41,11 @@ out float4 oColor : COLOR)
     uv.x=uv.x+scroll_animation.x;
     uv.y=uv.y+scroll_animation.y;
     
-    if(random.x>=mix_factor+blending)
+    if(random.x>=mix_factor+blending || mix_factor==0.0f)
     {
        oColor=tex2D(texture0,uv);
     }
-    else if(random.x<=mix_factor-blending)
+    else if(random.x<=mix_factor-blending || mix_factor==1.0f)
     {
        oColor=tex2D(texture1,uv);
     }   
