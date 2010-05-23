@@ -223,17 +223,8 @@ void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
 {
 	double changeTime;
-	//Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime))+" mIsChangingWorld "+Ogre::StringConverter::toString(mIsChangingWorld));
 
-	if(totalTime*0.5f>totalElapsedTime)
-	{
-		changeTime=totalTime*0.25f;
-	}
-	else
-	{
-		Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime))+" mIsChangingWorld "+Ogre::StringConverter::toString(mIsChangingWorld));
-		changeTime=totalElapsedTime-totalTime*0.25f;
-	}
+	changeTime=totalTime*0.25f;
 
 	switch(newWorld)
 	{
@@ -261,7 +252,7 @@ void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double to
 		break;
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  mChangeWorldDelay "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay))+" mChangeWorldTotalTime "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldTotalTime)));
+	Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  mChangeWorldDelay "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay))+" totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime)));
 }
 
 RenderComponentEntityPtr GameObjectTree::getEntityComponent() const

@@ -42,7 +42,7 @@ fragment_program erosion_FS_CG cg
 
 	default_params	
 	{
-	  param_named mix_factor float 0.5
+	  param_named mix_factor float 0.0
 	  param_named scroll_animation float3 0.0 0.0 0.0	  
 	  param_named scroll_blending float3 0.0 0.0 0.0	
 	  param_named displacement float3 0.0 0.0 0.0	  

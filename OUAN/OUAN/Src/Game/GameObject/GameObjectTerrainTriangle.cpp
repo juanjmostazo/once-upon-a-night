@@ -74,12 +74,16 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			break;
 		case NIGHTMARES:
 
 			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			break;
 		default:break;
 	}

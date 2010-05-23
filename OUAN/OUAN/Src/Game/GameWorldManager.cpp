@@ -106,6 +106,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	if(mIsChangingWorld)
 	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 		{
@@ -986,10 +987,14 @@ std::string GameWorldManager::getCurrentLevel() const
 void GameWorldManager::setWorld(int newWorld)
 {
 	mWorld=newWorld;
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
+
 	activateChangeWorldFast();
+
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
 	evt->fast=true;
 	evt->time=mChangeWorldTotalTime;
+	evt->change_world_elapsed_time=mChangeWorldElapsedTime;
+
 	addEvent(evt);
 }
 
@@ -1015,10 +1020,14 @@ void GameWorldManager::changeWorld()
 		mWorld=DREAMS;
 	}
 
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
 	activateChangeWorld();
+
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
+
 	evt->fast=false;
 	evt->time=mChangeWorldTotalTime;
+	evt->change_world_elapsed_time=mChangeWorldElapsedTime;
+
 	addEvent(evt);
 }
 
@@ -1035,9 +1044,16 @@ void GameWorldManager::activateChangeWorldFast()
 
 void GameWorldManager::activateChangeWorld()
 {
-	mChangeWorldElapsedTime=0;
-	mIsChangingWorld=true;
-	changeWorldStarted(mWorld);
+	if(!mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+		changeWorldStarted(mWorld);
+	}
+	else
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
 }
 
 void GameWorldManager::changeWorldFinished(int newWorld)

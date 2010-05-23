@@ -304,14 +304,14 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 	Ogre::GpuProgramParametersSharedPtr params;
 
 	mScrollAnimationCurrent-=mScrollAnimationSpeed*elapsedSeconds;
-	if(mScrollAnimationCurrent.x<=0) mScrollAnimationCurrent+=1;
-	if(mScrollAnimationCurrent.y<=0) mScrollAnimationCurrent+=1;
-	if(mScrollAnimationCurrent.z<=0) mScrollAnimationCurrent+=1;
+	if(mScrollAnimationCurrent.x<=0) mScrollAnimationCurrent.x+=1;
+	if(mScrollAnimationCurrent.y<=0) mScrollAnimationCurrent.y+=1;
+	if(mScrollAnimationCurrent.z<=0) mScrollAnimationCurrent.z+=1;
 
 	mScrollBlendingCurrent-=mScrollBlendingSpeed*elapsedSeconds;
-	if(mScrollBlendingCurrent.x<=0) mScrollBlendingCurrent+=1;
-	if(mScrollBlendingCurrent.y<=0) mScrollBlendingCurrent+=1;
-	if(mScrollBlendingCurrent.z<=0) mScrollBlendingCurrent+=1;
+	if(mScrollBlendingCurrent.x<=0) mScrollBlendingCurrent.x+=1;
+	if(mScrollBlendingCurrent.y<=0) mScrollBlendingCurrent.y+=1;
+	if(mScrollBlendingCurrent.z<=0) mScrollBlendingCurrent.z+=1;
 
 	material=findMaterial(mName);
 	if(!material.isNull())
