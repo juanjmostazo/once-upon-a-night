@@ -18,7 +18,7 @@ ProjectiveDecal::~ProjectiveDecal()
 
 }
 
-void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManager* sceneManager, GameWorldManagerPtr gameWorldManager)
+void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManager* sceneManager, TGameObjectContainer *objs)
 {
 	destroyProjector();
 	mSceneManager = sceneManager;
@@ -43,8 +43,7 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 	mFilterTextureName=decalParams.filterTextureName;
 
 	Ogre::Entity* entity;
-	TGameObjectContainer * objs=gameWorldManager->getAllGameObjects();
-	if (!objs->empty())
+	if (objs && !objs->empty())
 	{
 		for (TGameObjectContainerIterator it=objs->begin();it!=objs->end();++it)
 		{
@@ -149,8 +148,8 @@ void ProjectiveDecal::makeMaterialsReceiveDecal()
 				texState->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
 				texState->setTextureFiltering(Ogre::TFO_NONE);
 
-				if (mat->getTechnique(0)->getNumPasses()>1)
-					mat->getTechnique(0)->movePass(pass->getIndex(),mat->getTechnique(0)->getNumPasses()-1);
+				//if (mat->getTechnique(0)->getNumPasses()>1)
+				//	mat->getTechnique(0)->movePass(pass->getIndex(),mat->getTechnique(0)->getNumPasses()-1);
 			}
 		}		
 	}

@@ -182,6 +182,8 @@ namespace OUAN
 
 		static std::string getColourName(int colour);
 		int getAttackDamage() const;
+
+		void createProjector(TGameObjectContainer* objs);
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters

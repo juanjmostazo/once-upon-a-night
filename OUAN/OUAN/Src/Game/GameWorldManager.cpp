@@ -1047,11 +1047,14 @@ void GameWorldManager::activateChangeWorld()
 
 void GameWorldManager::changeWorldFinished(int newWorld)
 {
+	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
 	switch(newWorld)
 	{
 	case DREAMS:
 		break;
 	case NIGHTMARES:
+		if (flashlight.get())
+			flashlight->createProjector(&mGameObjects);
 		break;
 	default:
 		break;

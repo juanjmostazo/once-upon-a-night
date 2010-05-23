@@ -23,7 +23,7 @@ material blending
 }
 
 //EROSION
-vertex_program erosion_vs cg
+vertex_program erosion_VS_CG cg
 {
 	source erosion.cg
 	entry_point erosionVS
@@ -31,10 +31,10 @@ vertex_program erosion_vs cg
 	default_params	
 	{	
 	  param_named_auto worldViewProj worldviewproj_matrix
-            }	
+    }	
 }
 
-fragment_program erosion_fs cg
+fragment_program erosion_FS_CG cg
 {
 	source erosion.cg
 	entry_point erosionFS
@@ -46,7 +46,46 @@ fragment_program erosion_fs cg
 	  param_named displacement float 0.0
 	  param_named blending float 0.03
 	  param_named tiling float 2.5
+	  
    	}
+}
+
+
+vertex_program erosion_VS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionVS
+	target vs_2_0
+	default_params	
+	{	
+	  param_named_auto matViewProjection worldviewproj_matrix
+    }	
+}
+fragment_program erosion_FS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionFS_2
+	target ps_2_0
+	
+	default_params	
+	{
+	  param_named mix_factor float 0.5	  
+	  param_named displacement float 0.0
+	  param_named blending float 0.03
+	  param_named tiling float 2.5
+   	}	
+}
+
+// Unified definition
+vertex_program erosion_vs unified
+{
+	delegate erosion_VS_HLSL
+	delegate erosion_VS_CG
+}
+fragment_program erosion_fs unified
+{
+	delegate erosion_FS_HLSL
+	delegate erosion_FS_CG
 }
 
 material erosion
@@ -55,27 +94,26 @@ material erosion
 	{
 		pass
 		{
-			
-	                      vertex_program_ref erosion_vs 
-	                      {
-	                      }
-	                      fragment_program_ref erosion_fs
-	                      {
-	                      }
-	                      texture_unit 0
-	                      {
-	                             texture random.png
-	                      }
-	                      texture_unit 1
-	                      {
-	                             texture random.png
-                                  }
-	                      texture_unit 2
-	                      {
-		                 texture Water01.jpg
-	                            // texture quads.png
-	                            // scroll_anim 0.03 0
-                                  }
-                        }
-             }
+			vertex_program_ref erosion_vs 
+	        {
+	        }
+	        fragment_program_ref erosion_fs
+	        {
+	        }
+	        texture_unit 0
+	        {
+				texture random.png
+	        }
+	        texture_unit 1
+	        {
+				texture random.png
+            }
+	        texture_unit 2
+	        {
+		    texture Water01.jpg
+	        //texture quads.png
+	        scroll_anim 0.03 0
+            }
+        }
+    }
 }
