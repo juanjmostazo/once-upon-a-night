@@ -84,9 +84,6 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 		default:break;
 	}
 
-	mRenderComponentEntityDreams->setOriginalMaterials();
-	mRenderComponentEntityNightmares->setOriginalMaterials();
-
 	//Ogre::LogManager::getSingleton().logMessage("changeWorldFinished"+getName()+" ");
 }
 
@@ -94,8 +91,8 @@ void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -206,9 +203,16 @@ RenderComponentEntityPtr GameObjectTerrainTriangle::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
+
+void GameObjectTerrainTriangle::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	mRenderComponentEntityDreams->update(elapsedSeconds);
+	mRenderComponentEntityNightmares->update(elapsedSeconds);
+}
+
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
-
 }
 
 TGameObjectTerrainTriangleParameters::~TGameObjectTerrainTriangleParameters()

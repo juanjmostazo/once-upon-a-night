@@ -137,8 +137,6 @@ namespace OUAN
 		/// returns NIGHTMARES or DREAMS depending on current world state
 		int getWorld();
 		static int getMyInstanceWorld();
-		double getChangeWorldGameObjectTime() const;
-		double getChangeWorldElapsedTime() const;
 
 		/// gets current Loaded Level
 		std::string getCurrentLevel() const;
@@ -188,6 +186,10 @@ namespace OUAN
 
 		void setGodMode(bool activated);
 		bool getGodMode();
+
+		void setChangeWorldTimes();
+		double getChangeWorldElapsedTime() const;
+		double getChangeWorldTotalTime() const;
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
@@ -311,8 +313,6 @@ namespace OUAN
 		// Current level
 		std::string level;
 
-		// Current world (DREAMS or NIGHTMARES)
-		double mChangeWorldGameObjectTime;
 		//Changeworld functions and variables
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);

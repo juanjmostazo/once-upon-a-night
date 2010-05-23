@@ -5,8 +5,10 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
+
 
 namespace OUAN
 {
@@ -101,6 +103,7 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+		void update(double elapsedSeconds);
 
 	};
 
@@ -113,6 +116,9 @@ namespace OUAN
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+
+		//ChangeWorldMaterial Parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

@@ -39,6 +39,7 @@ void GameObject::reset()
 {
 	mEnabled=true;
 	mNumUpdates=0;
+	mChangeWorldDelay=0;
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
 }
@@ -58,7 +59,7 @@ void GameObject::activateChangeWorld()
 	//Ogre::LogManager::getSingleton().logMessage("Activate ChangeWorld" + mName + " to "+Ogre::StringConverter::toString(mGameWorldManager->getWorld()));
 	if(mIsChangingWorld)
 	{
-		mChangeWorldElapsedTime=mGameWorldManager->getChangeWorldGameObjectTime()-mChangeWorldElapsedTime;
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
 	}
 	else
 	{
@@ -135,7 +136,7 @@ void GameObject::update(double elapsedSeconds)
 	if(mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime+=elapsedSeconds;
-		if(mChangeWorldElapsedTime>=mGameWorldManager->getChangeWorldGameObjectTime())
+		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 		{
 			mIsChangingWorld=false;
 			changeToWorld(mGameWorldManager->getWorld(),1.0f);
@@ -144,7 +145,7 @@ void GameObject::update(double elapsedSeconds)
 		}
 		else
 		{
-			changeToWorld(mGameWorldManager->getWorld(),mChangeWorldElapsedTime/mGameWorldManager->getChangeWorldGameObjectTime());
+			changeToWorld(mGameWorldManager->getWorld(),mChangeWorldElapsedTime/mChangeWorldTotalTime);
 		}
 	}
 }
@@ -367,10 +368,17 @@ void GameObject::setChangeWorldElapsedTime(double time)
 {
 	mChangeWorldElapsedTime=time;
 }
+
 double GameObject::getChangeWorldElapsedTime() const
 {
 	return mChangeWorldElapsedTime;
 }
+
+double GameObject::getChangeWorldTotalTime() const
+{
+	return mChangeWorldTotalTime;
+}
+
 
 int GameObject::getWorld()
 {
@@ -380,6 +388,16 @@ int GameObject::getWorld()
 void GameObject::setWorld(int world)
 {
 	mWorld=world;
+}
+
+void GameObject::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+{
+	mChangeWorldTotalTime=changeWorldTotalTime;
+}
+
+void GameObject::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
+{
+	mChangeWorldDelay=0.0f;
 }
 
 //-------------------------------------------------------

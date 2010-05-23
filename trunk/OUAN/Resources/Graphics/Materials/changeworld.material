@@ -27,7 +27,7 @@ vertex_program erosion_VS_CG cg
 {
 	source erosion.cg
 	entry_point erosionVS
-	profiles vs_1_1 arbvp1 vs_2_0
+	profiles vs_1_1 arbvp1 vp20
 	default_params	
 	{	
 	  param_named_auto worldViewProj worldviewproj_matrix
@@ -38,15 +38,16 @@ fragment_program erosion_FS_CG cg
 {
 	source erosion.cg
 	entry_point erosionFS
-	profiles ps_3_0 arbfp1 ps_2_0
+	profiles ps_2_0 arbfp1 fp20
 
 	default_params	
 	{
 	  param_named mix_factor float 0.5
-	  param_named displacement float 0.0
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	
+	  param_named displacement float3 0.0 0.0 0.0	  
 	  param_named blending float 0.03
 	  param_named tiling float 2.5
-	  
    	}
 }
 
@@ -92,28 +93,86 @@ material erosion
 {
 	technique
 	{
+	        pass
+	        {
+		        vertex_program_ref erosion_VS_CG
+		        {
+		        }
+		        fragment_program_ref erosion_FS_CG 
+		        {
+		        }
+		        texture_unit 0
+		        {
+					texture random.png
+		        }
+		        texture_unit 1
+		        {
+					texture random.png
+	                    }
+		        texture_unit 2
+		        {
+			    texture Water01.jpg
+	                    }
+                    }
+            }
+}
+
+vertex_program erosion_transparent_vs cg
+{
+	source erosion_transparent.cg
+	entry_point erosion_transparentVS
+	profiles vs_1_1 arbvp1 vs_2_0
+	default_params	
+	{	
+	  param_named_auto worldViewProj worldviewproj_matrix
+            }	
+}
+
+fragment_program erosion_transparent_fs cg
+{
+	source erosion_transparent.cg
+	entry_point erosion_transparentFS
+	profiles ps_3_0 arbfp1 ps_2_0
+
+	default_params	
+	{
+	  param_named mix_factor float 0.5
+	  param_named scroll_animation float3 0.0 0.0 0.0
+	  param_named scroll_blending float3 0.0 0.0 0.0	  
+	  param_named displacement float3 0.0 0.0 0.0
+	  param_named blending float 0.03
+	  param_named tiling float 2.5
+   	}
+}
+
+material erosion_transparent
+{
+	technique
+	{
 		pass
 		{
-			vertex_program_ref erosion_vs 
-	        {
-	        }
-	        fragment_program_ref erosion_fs
-	        {
-	        }
-	        texture_unit 0
-	        {
-				texture random.png
-	        }
-	        texture_unit 1
-	        {
-				texture random.png
-            }
-	        texture_unit 2
-	        {
-		    texture Water01.jpg
-	        //texture quads.png
-	        scroll_anim 0.03 0
-            }
-        }
-    }
+		          scene_blend alpha_blend
+		          depth_write off
+	                      vertex_program_ref erosion_transparent_vs 
+	                      {
+	                      }
+	                      fragment_program_ref erosion_transparent_fs
+	                      {
+	                      }
+	                      texture_unit 0
+	                      {
+	                             texture random.png
+	                      }
+	                      texture_unit 1
+	                      {
+	                             texture random.png
+                                  }
+	                      texture_unit 2
+	                      {
+		                 texture Water01.jpg
+	                            // texture quads.png
+	                            // scroll_anim 0.03 0
+                                  }
+                        }
+             }
 }

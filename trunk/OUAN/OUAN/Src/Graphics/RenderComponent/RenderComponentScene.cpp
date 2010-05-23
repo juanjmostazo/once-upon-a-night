@@ -20,12 +20,12 @@ void RenderComponentScene::setSceneManager(Ogre::SceneManager* sceneManager)
 	mSceneManager=sceneManager;
 }
 
-void RenderComponentScene::setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters)
+void RenderComponentScene::setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters,TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {	
 	this->tRenderComponentSkyDomeParameters=tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters;
 	this->tRenderComponentSkyBoxParameters=tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters;
 
-	initChangeWorldMaterials(CW_EROSION);
+	initChangeWorldMaterials(tChangeWorldMaterialParameters);
 
 	setChangeWorldMaterials(NIGHTMARES);
 	setChangeWorldMaterials(DREAMS);
@@ -56,6 +56,15 @@ void RenderComponentScene::changeToWorld(int newWorld, double perc)
 		default:break;
 		}
 	}
+}
+
+void RenderComponentScene::randomizeChangeWorldMaterials()
+{
+	mSkyDomeChangeWorldMaterialDreams->randomize();
+	mSkyDomeChangeWorldMaterialNightmares->randomize();
+
+	//mSkyBoxChangeWorldMaterialDreams->randomize();
+	//mSkyBoxChangeWorldMaterialNightmares->randomize();
 }
 
 void RenderComponentScene::setOriginalMaterials(int world)
@@ -154,7 +163,7 @@ void RenderComponentScene::setChangeWorldMaterials(int world)
 
 	//Ogre::LogManager::getSingleton().logMessage("[setChangeWorldMaterials] materials");
 }
-void RenderComponentScene::initChangeWorldMaterials(ChangeWorldType type)
+void RenderComponentScene::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
 	//mSkyBoxChangeWorldMaterialDreams.reset(new ChangeWorldMaterial);
 	//mSkyBoxChangeWorldMaterialDreams->init("skyboxdreams",type,
@@ -167,15 +176,24 @@ void RenderComponentScene::initChangeWorldMaterials(ChangeWorldType type)
 	//	Ogre::MaterialManager::getSingleton().getByName(tRenderComponentSkyBoxParameters.materialDreams));
 
 	mSkyDomeChangeWorldMaterialDreams.reset(new ChangeWorldMaterial);
-	mSkyDomeChangeWorldMaterialDreams->init("skydomedreams",type,
+	mSkyDomeChangeWorldMaterialDreams->init("skydomedreams",tChangeWorldMaterialParameters,
 		Ogre::MaterialManager::getSingleton().getByName(tRenderComponentSkyDomeParameters.materialDreams),
 		Ogre::MaterialManager::getSingleton().getByName(tRenderComponentSkyDomeParameters.materialNightmares));
 
 	mSkyDomeChangeWorldMaterialNightmares.reset(new ChangeWorldMaterial);
-	mSkyDomeChangeWorldMaterialNightmares->init("skydomenightmares",type,
+	mSkyDomeChangeWorldMaterialNightmares->init("skydomenightmares",tChangeWorldMaterialParameters,
 		Ogre::MaterialManager::getSingleton().getByName(tRenderComponentSkyDomeParameters.materialNightmares),
 		Ogre::MaterialManager::getSingleton().getByName(tRenderComponentSkyDomeParameters.materialDreams));
 
+}
+
+void RenderComponentScene::update(double elapsedSeconds)
+{
+	//mSkyBoxChangeWorldMaterialDreams->update(elapsedSeconds);
+	//mSkyBoxChangeWorldMaterialNightmares->update(elapsedSeconds);
+
+	mSkyDomeChangeWorldMaterialDreams->update(elapsedSeconds);
+	mSkyDomeChangeWorldMaterialNightmares->update(elapsedSeconds);
 }
 
 TRenderComponentSceneParameters::TRenderComponentSceneParameters() : TRenderComponentParameters()

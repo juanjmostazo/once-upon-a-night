@@ -1463,7 +1463,7 @@ GameObjectScenePtr GameObjectFactory::createGameObjectScene(TGameObjectScenePara
 
 	//Create RenderComponentViewport
 	pGameObjectScene->setRenderComponentScene(mComponentFactory->createRenderComponentScene(
-		pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters));
+		pGameObjectScene,tGameObjectSceneParameters.tRenderComponentSceneParameters,tGameObjectSceneParameters.tChangeWorldMaterialParameters));
 
 	// Add a reference to this
 	pGameObjectScene->setGameWorldManager(gameWorldMgr);
@@ -1744,9 +1744,9 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
 	
 	//Init ChangeWorldMaterials
-	pGameObjectTerrainTriangle->getRenderComponentEntityDreams()->initChangeWorldMaterials(CW_EROSION,
+	pGameObjectTerrainTriangle->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectTerrainTriangleParameters.tChangeWorldMaterialParameters,
 		pGameObjectTerrainTriangle->getRenderComponentEntityNightmares());
-	pGameObjectTerrainTriangle->getRenderComponentEntityNightmares()->initChangeWorldMaterials(CW_EROSION,
+	pGameObjectTerrainTriangle->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectTerrainTriangleParameters.tChangeWorldMaterialParameters,
 		pGameObjectTerrainTriangle->getRenderComponentEntityDreams());
 
 

@@ -11458,6 +11458,12 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_texture" type="7" value="quads.png" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.05" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

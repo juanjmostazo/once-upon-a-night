@@ -151,26 +151,15 @@ void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
 
 void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 {
-	double changeTime;
 	if (mWorldManager.get())
 	{
 		mWorldManager->getParent()->getTrajectoryManager()->changeWorld(evt->getNewWorld());
 		TGameObjectContainer * objs=mWorldManager->getAllGameObjects();
 
-		if(mWorldManager->getChangeWorldGameObjectTime()<mWorldManager->getChangeWorldElapsedTime())
-		{
-			changeTime=mWorldManager->getChangeWorldElapsedTime();
-		}
-		else
-		{
-			changeTime=mWorldManager->getChangeWorldGameObjectTime();
-		}
-
 		if(evt->fast)
 		{
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
-				it->second->setChangeWorldDelay(0);
 				it->second->activateChangeWorldFast();
 				it->second->setWorld(evt->getNewWorld());
 			}
@@ -179,14 +168,11 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		{
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
-				if(!it->second->isChangingWorld())
+				if(it->second->isChangingWorld())
 				{
-					it->second->setChangeWorldDelay(changeTime*Utils::Random::getInstance()->getRandomDouble());
+					it->second->setChangeWorldElapsedTime(it->second->getChangeWorldTotalTime()-it->second->getChangeWorldElapsedTime());				
 				}
-				else
-				{
-					it->second->setChangeWorldElapsedTime(mWorldManager->getChangeWorldGameObjectTime()-it->second->getChangeWorldElapsedTime());
-				}
+				it->second->calculateChangeWorldDelay(mWorldManager->getChangeWorldElapsedTime(),evt->time,evt->getNewWorld(),Utils::Random::getInstance()->getRandomDouble());
 			}
 		}
 	}

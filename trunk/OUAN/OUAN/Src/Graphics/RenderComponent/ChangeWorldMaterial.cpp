@@ -1,4 +1,6 @@
 #include "ChangeWorldMaterial.h"
+#include "../../Utils/Utils.h"
+
 using namespace OUAN;
 
 ChangeWorldMaterial::ChangeWorldMaterial()
@@ -30,7 +32,7 @@ Ogre::MaterialPtr ChangeWorldMaterial::findMaterial(std::string name)
 	return material;
 }
 
-std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
+std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters tChangeWorldMaterialParameters, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
 {
 	Ogre::MaterialPtr changeworld_clone;
 	Ogre::MaterialPtr changeworld_material;
@@ -38,7 +40,7 @@ std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::strin
 	std::string baseMaterialName;
 	std::string newMaterialName;
 
-	baseMaterialName=getChangeWorldTypeName(type);
+	baseMaterialName=getChangeWorldTypeName(tChangeWorldMaterialParameters.type);
 	newMaterialName=mId+"#"+baseMaterialName+"#"+diffuseTexture1+"#"+diffuseTexture2;
 
 	if (Ogre::MaterialManager::getSingleton().resourceExists(newMaterialName))
@@ -54,13 +56,13 @@ std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::strin
 		if(!changeworld_material.isNull())
 		{
 			changeworld_clone=changeworld_material->clone(newMaterialName);
-			switch(type)
+			switch(tChangeWorldMaterialParameters.type)
 			{
 			case CW_BLENDING:
-				createMaterialBlending(changeworld_clone,diffuseTexture1,diffuseTexture2,lighting,depth_write);
+				createMaterialBlending(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,diffuseTexture2,passParameters);
 				break;
 			case CW_EROSION:
-				createMaterialErosion(changeworld_clone,diffuseTexture1,diffuseTexture2,lighting,depth_write);
+				createMaterialErosion(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,diffuseTexture2,passParameters);
 				break;
 			default:
 				return "";
@@ -77,7 +79,13 @@ std::string ChangeWorldMaterial::createMaterial(ChangeWorldType type, std::strin
 	return newMaterialName;
 }
 
-void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
+void ChangeWorldMaterial::setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters)
+{
+	pass->setLightingEnabled(passParameters.lighting);
+	pass->setDepthWriteEnabled(passParameters.depth_write);
+}
+
+void ChangeWorldMaterial::createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
@@ -85,8 +93,8 @@ void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::st
 
 	technique=clone->getTechnique(0);
 	pass=technique->getPass(0);
-	pass->setLightingEnabled(lighting);
-	pass->setDepthWriteEnabled(depth_write);
+	setTPassParameters(pass,passParameters);
+
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
 
@@ -95,21 +103,31 @@ void ChangeWorldMaterial::createMaterialBlending(Ogre::MaterialPtr clone,std::st
 	texture->setTextureName(diffuseTexture2);
 }
 
-void ChangeWorldMaterial::createMaterialErosion(Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,bool lighting,bool depth_write)
+void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
 	Ogre::TextureUnitState * texture;
+	Ogre::GpuProgramParametersSharedPtr params;
 
 	technique=clone->getTechnique(0);
 	pass=technique->getPass(0);
-	pass->setLightingEnabled(lighting);
-	pass->setDepthWriteEnabled(depth_write);
+	setTPassParameters(pass,passParameters);
+
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
 
 	texture=pass->getTextureUnitState(1);
 	texture->setTextureName(diffuseTexture2);
+
+	//set shader constant parameters
+	params = pass->getFragmentProgramParameters();
+	params->setNamedConstant("blending",Ogre::Real(tChangeWorldMaterialParameters.blending_amount));
+	params->setNamedConstant("tiling",Ogre::Real(tChangeWorldMaterialParameters.tiling));
+
+	texture=pass->getTextureUnitState(2);
+	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
+
 }
 
 void ChangeWorldMaterial::setChangeWorldFactor(double factor)
@@ -147,28 +165,28 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 
 }
 
-bool ChangeWorldMaterial::init(std::string id,ChangeWorldType type, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2)
+bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2)
 {
 	std::string diffuseTexture1;
 	std::string diffuseTexture2;
-	bool lighting;
-	bool depth_write;
 
 	diffuseTexture1=getDiffuseTexture(pMaterial1);
 	diffuseTexture2=getDiffuseTexture(pMaterial2);
-	lighting=getLighting(pMaterial1);
-	depth_write=getDepthWrite(pMaterial1);
 
 	if(diffuseTexture1.compare("")!=0 && diffuseTexture2.compare("")!=0)
 	{
 		mId=id;
-		mType = type;
+		mType = tChangeWorldMaterialParameters.type;
 
-		mName = createMaterial(type,
+		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
+		mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
+		mScrollAnimationCurrent=getCurrentScrollAnimation(pMaterial1);
+		mScrollBlendingCurrent=getCurrentScrollAnimation(pMaterial1);
+
+		mName = createMaterial(tChangeWorldMaterialParameters,
 			diffuseTexture1,
 			diffuseTexture2,
-			lighting,
-			depth_write
+			getPassParameters(pMaterial1)
 			);
 
 		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+mName+" initialized.");
@@ -193,6 +211,58 @@ std::string ChangeWorldMaterial::getChangeWorldTypeName(ChangeWorldType type)
 	}
 }
 
+void ChangeWorldMaterial::randomize()
+{
+	Ogre::MaterialPtr material;
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	//Ogre::TextureUnitState * texture;
+	Ogre::GpuProgramParametersSharedPtr params;
+
+	material=findMaterial(mName);
+	if(!material.isNull())
+	{
+		technique = material->getBestTechnique();
+
+		switch(mType)
+		{
+		case CW_BLENDING:
+			break;
+		case CW_EROSION:
+			pass = technique->getPass(0);
+			params = pass->getFragmentProgramParameters();
+			params->setNamedConstant("displacement",Vector3(
+				Utils::Random::getInstance()->getRandomDouble(),
+				Utils::Random::getInstance()->getRandomDouble(),
+				0.0f)
+				);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+Vector3 ChangeWorldMaterial::getCurrentScrollAnimation(Ogre::MaterialPtr material)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+
+	// Get diffuse texture
+	technique = material->getBestTechnique();
+	pass = technique->getPass(0);
+	if(pass->getTextureUnitStateIterator().hasMoreElements())
+	{
+		return Vector3(pass->getTextureUnitState(0)->getTextureUScroll(),
+					   pass->getTextureUnitState(0)->getTextureVScroll(),
+					   0);
+	}
+	else
+	{
+		return Vector3::ZERO;
+	}
+}
+
 std::string ChangeWorldMaterial::getDiffuseTexture(Ogre::MaterialPtr material)
 {
 	Ogre::Technique * technique;
@@ -211,24 +281,75 @@ std::string ChangeWorldMaterial::getDiffuseTexture(Ogre::MaterialPtr material)
 	}
 }
 
-bool ChangeWorldMaterial::getLighting(Ogre::MaterialPtr material)
+TPassParameters ChangeWorldMaterial::getPassParameters(Ogre::MaterialPtr material)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
-
+	TPassParameters passParameters;
 	// Get diffuse texture
 	technique = material->getBestTechnique();
 	pass = technique->getPass(0);
-	return pass->getLightingEnabled();
+	passParameters.lighting = pass->getLightingEnabled();
+	passParameters.depth_write = pass->getDepthWriteEnabled();
+
+	return passParameters;
 }
 
-bool ChangeWorldMaterial::getDepthWrite(Ogre::MaterialPtr material)
+void ChangeWorldMaterial::update(double elapsedSeconds)
 {
+	Ogre::MaterialPtr material;
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
+	//Ogre::TextureUnitState * texture;
+	Ogre::GpuProgramParametersSharedPtr params;
 
-	// Get diffuse texture
-	technique = material->getBestTechnique();
-	pass = technique->getPass(0);
-	return pass->getDepthWriteEnabled();
+	mScrollAnimationCurrent-=mScrollAnimationSpeed*elapsedSeconds;
+	if(mScrollAnimationCurrent.x<=0) mScrollAnimationCurrent+=1;
+	if(mScrollAnimationCurrent.y<=0) mScrollAnimationCurrent+=1;
+	if(mScrollAnimationCurrent.z<=0) mScrollAnimationCurrent+=1;
+
+	mScrollBlendingCurrent-=mScrollBlendingSpeed*elapsedSeconds;
+	if(mScrollBlendingCurrent.x<=0) mScrollBlendingCurrent+=1;
+	if(mScrollBlendingCurrent.y<=0) mScrollBlendingCurrent+=1;
+	if(mScrollBlendingCurrent.z<=0) mScrollBlendingCurrent+=1;
+
+	material=findMaterial(mName);
+	if(!material.isNull())
+	{
+		technique = material->getBestTechnique();
+
+		switch(mType)
+		{
+		case CW_BLENDING:
+			break;
+		case CW_EROSION:
+			pass = technique->getPass(0);
+			params = pass->getFragmentProgramParameters();
+			params->setNamedConstant("scroll_animation",mScrollAnimationCurrent);
+			params->setNamedConstant("scroll_blending",mScrollBlendingCurrent);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+TPassParameters::TPassParameters()
+{
+
+}
+
+TPassParameters::~TPassParameters()
+{
+
+}
+
+TChangeWorldMaterialParameters::TChangeWorldMaterialParameters()
+{
+
+}
+
+TChangeWorldMaterialParameters::~TChangeWorldMaterialParameters()
+{
+
 }

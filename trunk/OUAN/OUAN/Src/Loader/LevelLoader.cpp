@@ -67,6 +67,7 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
+#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
@@ -2118,6 +2119,8 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 
 		//Get SceneManager properties
 		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode(),gameObject->XMLNodeCustomProperties);
+
+		tGameObjectSceneParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -2397,6 +2400,8 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 					DREAMS, gameObject->XMLNodeCustomProperties);
 
 				tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
+
+				tGameObjectTerrainTriangleParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 			}
 			catch( std::string error )
 			{
@@ -4179,6 +4184,49 @@ TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNo
 		}
 	}
 	return tLogicComponentParameters;
+}
+
+TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters(TiXmlElement* XMLNode)
+{
+	TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
+
+	try
+	{
+		tChangeWorldMaterialParameters.blending_amount=getPropertyReal(XMLNode, "ChangeWorldMaterial::blending_amount");
+		tChangeWorldMaterialParameters.blending_texture=getPropertyString(XMLNode, "ChangeWorldMaterial::blending_texture");
+		tChangeWorldMaterialParameters.scroll_animation=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_animation");
+		tChangeWorldMaterialParameters.scroll_blending=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_blending");
+		tChangeWorldMaterialParameters.tiling=getPropertyReal(XMLNode, "ChangeWorldMaterial::tiling");
+
+		//Billboard Rotation Conversion
+		int change_world_type = getPropertyInt(XMLNode, "ChangeWorldMaterial::type");
+		switch(change_world_type)
+		{
+			case OGITOR_CW_BLENDING:
+				tChangeWorldMaterialParameters.type=CW_BLENDING;
+				break;
+			case OGITOR_CW_EROSION:
+				tChangeWorldMaterialParameters.type=CW_EROSION;
+				break;
+			case OGITOR_CW_EROSION_TRANSPARENT:
+				tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
+				break;
+			default:
+				Ogre::LogManager::getSingleton().logMessage("ChangeWorldMaterial has unrecognised ChangeWorldMaterialType!");
+				break;
+		}
+	}
+	catch(std::string error)
+	{
+		tChangeWorldMaterialParameters.blending_amount=0.03;
+		tChangeWorldMaterialParameters.blending_texture="Water01.jpg";
+		tChangeWorldMaterialParameters.scroll_animation=Vector3::ZERO;
+		tChangeWorldMaterialParameters.scroll_blending=Vector3::ZERO;
+		tChangeWorldMaterialParameters.tiling=2.5;
+		tChangeWorldMaterialParameters.type=CW_EROSION;
+	}
+
+	return tChangeWorldMaterialParameters;
 }
 
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)

@@ -122,6 +122,8 @@ bool RenderComponentEntity::isAnimated() const
 }
 void RenderComponentEntity::update(double elapsedTime)
 {
+	unsigned int i;
+
 	if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 	{
 		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
@@ -130,6 +132,11 @@ void RenderComponentEntity::update(double elapsedTime)
 			AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
 			getParent()->getGameWorldManager()->addEvent(evt);
 		}
+	}
+
+	for ( i=0; i<mChangeWorldMaterials.size(); i++)
+	{
+		mChangeWorldMaterials[i]->update(elapsedTime);
 	}
 }
 void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)
@@ -233,7 +240,7 @@ void RenderComponentEntity::setChangeWorldMaterials()
 	}
 }
 
-void RenderComponentEntity::initChangeWorldMaterials(ChangeWorldType type,RenderComponentEntityPtr pOtherComponentEntity)
+void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)
 {
 	unsigned int i;
 	
@@ -251,7 +258,7 @@ void RenderComponentEntity::initChangeWorldMaterials(ChangeWorldType type,Render
 	{
 		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
-		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),type,
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
 			mEntity->getSubEntity(i)->getMaterial(),
 			pOtherEntity->getSubEntity(i)->getMaterial());
 
@@ -271,6 +278,7 @@ void RenderComponentEntity::initChangeWorldMaterials(ChangeWorldType type,Render
 	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
 
+	setChangeWorldMaterials();
 }
 
 void RenderComponentEntity::setChangeWorldFactor(double factor)
@@ -282,6 +290,16 @@ void RenderComponentEntity::setChangeWorldFactor(double factor)
 		mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
 	}
 }
+
+void RenderComponentEntity::randomizeChangeWorldMaterials()
+{
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->randomize();
+	}
+}
+
 
 //--- Entity parameters
 

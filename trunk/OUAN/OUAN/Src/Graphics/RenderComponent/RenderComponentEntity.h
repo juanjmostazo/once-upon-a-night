@@ -50,8 +50,9 @@ namespace OUAN
 		void setMaterial(std::string material);
 		void setOriginalMaterials();
 		void setChangeWorldMaterials();
-		void initChangeWorldMaterials(ChangeWorldType type,RenderComponentEntityPtr pOtherComponentEntity);
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity);
 		void setChangeWorldFactor(double factor);
+		void randomizeChangeWorldMaterials();
 
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{

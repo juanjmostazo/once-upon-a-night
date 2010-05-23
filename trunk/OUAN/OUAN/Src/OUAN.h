@@ -178,11 +178,14 @@ namespace OUAN
 
 		class ChangeWorldMaterial;
 		typedef boost::shared_ptr<ChangeWorldMaterial> ChangeWorldMaterialPtr;
+		class TChangeWorldMaterialParameters;
+
 
 		enum ChangeWorldType
 		{
 			CW_BLENDING,
-			CW_EROSION
+			CW_EROSION,
+			CW_EROSION_TRANSPARENT
 		};
 
 		//RayCasting

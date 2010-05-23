@@ -18,6 +18,7 @@
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
+#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../Graphics/Volume/BufferManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -183,7 +184,7 @@ RenderComponentPlanePtr ComponentFactory::createRenderComponentPlane(std::string
 	return pRenderComponentPlane;
 }
 
-RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectPtr gameObject,TRenderComponentSceneParameters tRenderComponentSceneParameters)
+RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectPtr gameObject,TRenderComponentSceneParameters tRenderComponentSceneParameters,TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
 	//Create void Render Component
 	RenderComponentScenePtr pRenderComponentScene = RenderComponentScenePtr(new RenderComponentScene()); 
@@ -194,7 +195,7 @@ RenderComponentScenePtr ComponentFactory::createRenderComponentScene(GameObjectP
 	pRenderComponentScene->setSceneManager(mApp->getRenderSubsystem()->setSceneParameters(gameObject->getName(),tRenderComponentSceneParameters));
 	
 	//set Sky materials
-	pRenderComponentScene->setSkyMaterials(tRenderComponentSceneParameters);
+	pRenderComponentScene->setSkyMaterials(tRenderComponentSceneParameters,tChangeWorldMaterialParameters);
 
 	return pRenderComponentScene;
 }

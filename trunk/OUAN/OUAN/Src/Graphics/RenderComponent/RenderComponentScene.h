@@ -62,7 +62,7 @@ namespace OUAN
 		Ogre::SceneManager * getSceneManager() const;
 		void setSceneManager(Ogre::SceneManager * sceneManager);
 
-		void setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters);
+		void setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters,TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -70,7 +70,11 @@ namespace OUAN
 
 		void setOriginalMaterials(int world);
 		void setChangeWorldMaterials(int world);
-		void initChangeWorldMaterials(ChangeWorldType type);
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
+		void randomizeChangeWorldMaterials();
+
+		void update(double elapsedSeconds);
+
 	};
 
 }
