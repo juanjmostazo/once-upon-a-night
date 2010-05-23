@@ -30,6 +30,7 @@ void GameObjectScene::changeWorldFinished(int newWorld)
 	if (!isEnabled()) return;
 
 	mRenderComponentScene->setChangeWorldMaterials(newWorld);
+	mRenderComponentScene->changeToWorld(newWorld,1.0f);
 
 	switch(newWorld)
 	{

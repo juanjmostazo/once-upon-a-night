@@ -51,6 +51,7 @@ namespace OUAN
 		int getNewWorld() const;
 		bool fast;
 		double time;
+		double change_world_elapsed_time;
 
 	private:
 		int mNewWorld;
