@@ -46,7 +46,7 @@ namespace OUAN
 		ProjectiveDecal();
 		virtual ~ProjectiveDecal();
 
-		void createProjector(TDecalParams decalParams, Ogre::SceneManager* sceneManager, GameWorldManagerPtr gameWorldManager);
+		void createProjector(TDecalParams decalParams, Ogre::SceneManager* sceneManager, TGameObjectContainer* objs);
 		void destroyProjector();
 		//void update(double elapsedSeconds);
 		void show();

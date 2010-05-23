@@ -104,19 +104,8 @@ void GameObjectFlashLight::changeWorldFinished(int newWorld)
 		}
 		break;
 	case NIGHTMARES:
-		if (!mFlashlightDecal.get())
-		{
-			mFlashlightDecal = ProjectiveDecalPtr(new ProjectiveDecal());
-		}
-		TDecalParams decalSettings;
-		decalSettings.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
-		decalSettings.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
-		decalSettings.projectorNode=getRenderComponentPositional()->getSceneNode();
-		decalSettings.projectorOffset=Ogre::Vector3::ZERO;
-		decalSettings.textureName=FLASHLIGHT_DECAL_TEX_NAME;
-		decalSettings.tintColour=getColour();
-		
-		mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),mGameWorldManager);
+		//The decal projector will be created after all the gameObjects have finished
+		//changing the world. Otherwise, the materials it got might be messed up.
 		break;
 	}
 
@@ -464,6 +453,22 @@ std::string GameObjectFlashLight::getColourName(int colour)
 	default:
 		return "";
 	}
+}
+void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
+{
+	if (!mFlashlightDecal.get())
+	{
+		mFlashlightDecal = ProjectiveDecalPtr(new ProjectiveDecal());
+	}
+	TDecalParams decalSettings;
+	decalSettings.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
+	decalSettings.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
+	decalSettings.projectorNode=getRenderComponentPositional()->getSceneNode();
+	decalSettings.projectorOffset=Ogre::Vector3::ZERO;
+	decalSettings.textureName=FLASHLIGHT_DECAL_TEX_NAME;
+	decalSettings.tintColour=getColour();
+
+	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
 }
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
