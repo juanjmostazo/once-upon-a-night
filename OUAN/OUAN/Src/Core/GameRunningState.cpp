@@ -552,26 +552,12 @@ TWeaponMode GameRunningState::getCurrentWeaponMode()
 
 void GameRunningState::loadMusic()
 {
-	TSoundData desc;
-	desc.mId="DREAMS00";
-	desc.mFileName=DREAMS00_MUSIC_TRACK;
-	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
-	desc.mHardware=true;
-	desc.m3D=false;
-	desc.mStream=true;
-	desc.mLoop=true;
-	mApp->getAudioSubsystem()->addSound(desc);
-	mMusicChannels[DREAMS].id=desc.mId;
+
 	
-	desc.mId="NIGHTMARES00";
-	desc.mFileName=NIGHTMARES00_MUSIC_TRACK;
-	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
-	desc.mHardware=true;
-	desc.m3D=false;
-	desc.mStream=true;
-	desc.mLoop=true;
-	mApp->getAudioSubsystem()->addSound(desc);
-	mMusicChannels[NIGHTMARES].id=desc.mId;
+	mApp->getAudioSubsystem()->load("DREAMS00","General");
+	mMusicChannels[DREAMS].id="DREAMS00";
+	mApp->getAudioSubsystem()->load("NIGHTMARES00","General");
+	mMusicChannels[NIGHTMARES].id="NIGHTMARES00";
 }
 
 void GameRunningState::changeMusic(int world)
@@ -705,9 +691,9 @@ void GameRunningState::changeToWorld(int newWorld, double perc)
 void GameRunningState::clearMusic()
 {
 	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[DREAMS].channelId);
-	mApp->getAudioSubsystem()->removeSound(mMusicChannels[DREAMS].id);
+	mApp->getAudioSubsystem()->unload(mMusicChannels[DREAMS].id);
 	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
-	mApp->getAudioSubsystem()->removeSound(mMusicChannels[NIGHTMARES].id);
+	mApp->getAudioSubsystem()->unload(mMusicChannels[NIGHTMARES].id);
 	mMusicChannels.clear();
 }
 

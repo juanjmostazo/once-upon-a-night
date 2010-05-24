@@ -32,15 +32,7 @@ void GameOptionsState::init(ApplicationPtr app)
 	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
 	mGUI->initGUI(shared_from_this());
 
-	TSoundData desc;
-	desc.mId="MUSIC";
-	desc.mFileName=MAINMENU_MUSIC_TRACK;
-	desc.mChannelGroupID=SM_CHANNEL_MUSIC_GROUP;
-	desc.mHardware=true;
-	desc.m3D=false;
-	desc.mStream=true;
-	desc.mLoop=true;
-	mApp->getAudioSubsystem()->addSound(desc);
+	mApp->getAudioSubsystem()->load("MUSIC","General");
 	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
 
@@ -52,7 +44,7 @@ void GameOptionsState::cleanUp()
 	mApp->getGUISubsystem()->destroyGUI();
 	if (mMusicChannel!=-1)
 		mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
-	mApp->getAudioSubsystem()->removeSound("MUSIC");
+	mApp->getAudioSubsystem()->unload("MUSIC");
 }
 
 /// pause state

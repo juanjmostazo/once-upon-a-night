@@ -1,4 +1,6 @@
 #include "AudioSubsystem.h"
+#include "Channel.h"
+#include "AudioScriptLoader.h"
 
 #include "../Application.h"
 #include "../Utils/Utils.h"
@@ -64,250 +66,7 @@ Ogre::Vector3  FMODHelper::toOgreVec3(const FMOD_VECTOR& vec)
 	return rc;
 }
 
-//--- CHANNEL DEFINITIONS
 
-Channel::Channel(FMOD::System* system,int index)
-{
-	mIsFree=true;
-	mTimeAlive=0;
-	mIndex = index;
-	if(system->getChannel(mIndex,&mChannel) == FMOD_OK)
-	{
-	}
-}
-
-void Channel::set3DMinMaxDistance(double minDistance, double maxDistance)
-{
-	if (mChannel)
-	{
-		mChannel->set3DMinMaxDistance(minDistance,maxDistance);
-	}
-}
-bool Channel::setChannelGroup(FMOD::ChannelGroup* channelGroup)
-{
-	return mChannel && mChannel->setChannelGroup(channelGroup)==FMOD_OK;
-}
-void Channel::setPanningPosition(int pos)
-{
-	if (mChannel)
-	{
-		mChannel->setPosition(pos,FMOD_TIMEUNIT_MS);
-	}
-}
-bool Channel::isPlaying() const
-{
-	return mChannel && mChannel->isPlaying(NULL);
-}
-void Channel::setChannel(FMOD::Channel* channel)
-{
-	mChannel=channel;
-}
-bool Channel::setPaused(bool paused)
-{
-	return mChannel && mChannel->setPaused(paused)==FMOD_OK;
-}
-void Channel::resetTime()
-{
-	mTimeAlive=0.0;
-}
-void Channel::updateTime(double elapsedTime)
-{
-	mTimeAlive+=elapsedTime;
-}
-double Channel::getTime() const
-{
-	return mTimeAlive;
-}
-void Channel::set3DAttributes(const Ogre::Vector3& position, const Ogre::Vector3& velocity/* =Ogre::Vector3::ZERO */)
-{
-	FMOD_VECTOR pos = FMODHelper::toFMODVec(position);
-	FMOD_VECTOR vel = FMODHelper::toFMODVec(velocity);
-	if (mChannel)
-		mChannel->set3DAttributes(&pos,&vel);
-}
-void Channel::setFree(bool free)
-{
-	mIsFree=free;
-}
-bool Channel::isFree() const
-{
-	return mIsFree;
-}
-FMOD_CHANNELINDEX Channel::getIndex(){
-	return (FMOD_CHANNELINDEX)mIndex;
-}
-
-FMOD::Channel* Channel::getChannel()
-{
-	return mChannel;
-}
-
-//--- CHANNEL GROUP DEFINITIONS
-
-ChannelGroup::ChannelGroup(FMOD::ChannelGroup* cg)
-{
-	mChannelGroup = cg;
-	mNumChannels=-1;
-}
-FMOD_CHANNELINDEX ChannelGroup::getChannelIndex(int channelIndex)
-{
-	return mChannels[channelIndex]->getIndex();
-}
-
-ChannelGroup::ChannelGroup(FMOD::ChannelGroup* cg,
-						   int nc,FMOD::System* system,int& offset)
-{
-	mChannelGroup = cg;
-	mNumChannels = nc;
-	mChannels.clear();
-	mChannels.assign(mNumChannels,ChannelPtr());
-	for(int i=0; i<mNumChannels; i++)
-	{
-		mChannels[i] = ChannelPtr(new Channel(system,offset+i));
-	}
-	offset+=mNumChannels;
-}
-void ChannelGroup::release()
-{
-	if(mChannelGroup)
-	{
-		mChannelGroup->release();
-	}
-
-}
-void ChannelGroup::setChannel(int index,
-							  FMOD::Channel* channel)
-{
-	mChannels[index]->setChannel(channel);
-}
-void ChannelGroup::set3DMinMaxDistance(double minDistance,
-									   double maxDistance)
-{
-	for(int i=0; i<mNumChannels; i++)
-	{
-		mChannels[i]->set3DMinMaxDistance(minDistance,maxDistance);
-	}
-}
-void ChannelGroup::set3DAttributes(int index,
-								   const Ogre::Vector3& pos,
-								   const Ogre::Vector3& vel)
-{
-	mChannels[index]->set3DAttributes(pos,vel);
-}
-bool ChannelGroup::play(int index)
-{
-	bool rc = false;
-	if(mChannels[index]->setChannelGroup(mChannelGroup))
-	{
-		mChannels[index]->setPaused(false);
-		mChannels[index]->setPanningPosition(0);
-		rc = true;
-	}
-	return rc;
-}
-bool ChannelGroup::stop (int channelIndex)
-{
-	bool rc=false;
-	FMOD::Channel* channel=getChannel(channelIndex);
-	if (channel)
-	{
-		rc=(channel->stop()==FMOD_OK);
-		mChannels[channelIndex]->setFree(true);
-	}
-	return rc;
-}
-void ChannelGroup::update(double dt)
-{
-	for(int i=0; i<mNumChannels; i++)
-	{
-		if(mChannels[i]->isPlaying())
-		{
-			mChannels[i]->setFree(false);
-			mChannels[i]->updateTime(dt);
-		}else{
-			mChannels[i]->setFree(true);
-		}
-	}
-}
-bool ChannelGroup::setVolume(double val)
-{
-	return mChannelGroup && mChannelGroup->setVolume(val)==FMOD_OK;
-}
-bool ChannelGroup::setPitch(double val)
-{
-	return mChannelGroup && mChannelGroup->setPitch(val)==FMOD_OK;
-}
-bool ChannelGroup::setPaused(bool val)
-{
-	return mChannelGroup && mChannelGroup->setPaused(val)==FMOD_OK;
-}
-FMOD::Channel* ChannelGroup::getChannel(int index)
-{
-	if (index>=0 && (unsigned int)index<mChannels.size())	
-		return mChannels[index]->getChannel();
-	return NULL;
-}
-
-
-int ChannelGroup::getFreeChannelIndex()
-{
-	int rc = -1;
-	float oldest = -1;
-	//first look to see if there is a free channel
-	for(int i=0; i<mNumChannels && rc==-1; i++)
-	{
-		if(mChannels[i]->isFree())
-		{
-			rc = i;
-		}
-	}
-
-	if(rc==-1)
-	{
-		for(int i=0; i<mNumChannels; i++)
-		{
-			float time = mChannels[i]->getTime();
-			if(time > oldest)
-			{
-				oldest = time;
-				rc = i;
-			}
-		}
-	}
-	//we have found the oldest, now reset the time it has been alive.
-	if(rc!=-1)
-	{
-		mChannels[rc]->setFree(true);
-		mChannels[rc]->resetTime();
-	}
-
-	return rc;
-}
-double ChannelGroup::getVolume()
-{
-	float val = 1.0;
-	if(mChannelGroup)
-	{
-		mChannelGroup->getVolume(&val);
-	}
-	return val;
-}
-
-double ChannelGroup::getPitch()
-{
-	float val = 1.0;
-	if(mChannelGroup)
-	{
-		mChannelGroup->getPitch(&val);
-	}
-	return val;
-}
-ChannelPtr ChannelGroup::getChannelObject(int index)
-{
-	if (!mChannels.empty() && index>=0 && (unsigned int)index<mChannels.size())
-		return mChannels[index];
-	return ChannelPtr();
-}
 //--- AUDIO SUBSYSTEM DEFS
 
 AudioSubsystem::AudioSubsystem()
@@ -316,24 +75,22 @@ AudioSubsystem::AudioSubsystem()
 }
 AudioSubsystem::~AudioSubsystem()
 {
+	
 }
 
 void AudioSubsystem::cleanUp()
 {
-	for(TSoundMapIterator i=mSoundMap.begin();i!=mSoundMap.end(); i++)
-	{
-		(i->second)->mFMODSound->release();
-	}
-	mSoundMap.clear();
 	for(TChannelGroupMap::iterator i=mChannelGroupMap.begin();
 		i!=mChannelGroupMap.end(); i++)
 	{
 		(i->second)->release();
 	}
-	mLastMusic = "";
+	mLastMusic.clear();
 	mChannelGroupMap.clear();
 	mSystem->close();
 	mSystem->release();
+	
+	Ogre::ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);
 }
 bool AudioSubsystem::init(TAudioSubsystemConfigData& desc, ApplicationPtr app)
 {
@@ -411,6 +168,19 @@ bool AudioSubsystem::init(TAudioSubsystemConfigData& desc, ApplicationPtr app)
 			pauseChannelGroup(SM_CHANNEL_SFX_GROUP,true);
 		}
 	}
+
+	//Resource management init
+	mResourceType = "Sound";
+
+	// low, because it will likely reference other resources
+	mLoadOrder = 30.0f;
+
+	mScriptPatterns.push_back("*.sound");
+	Ogre::ResourceGroupManager::getSingleton()._registerScriptLoader(this);
+
+	// this is how we register the ResourceManager with OGRE
+	Ogre::ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType, this);
+
 	return rc;
 }
 void AudioSubsystem::set3DMinMaxDistance(const std::string& channelID,	
@@ -425,85 +195,85 @@ void AudioSubsystem::set3DMinMaxDistance(const std::string& channelID,
 	}
 }
 
-
-bool AudioSubsystem::addSound(const std::string& soundID,
-							  const std::string& sound,
-							  const std::string& channelID,
-							  int soundFlag)
-{
-	TSoundData sndData;
-	sndData.mId=soundID;
-	sndData.mFileName=sound;
-	sndData.mChannelGroupID= channelID;
-	sndData.mLoop=sndData.mStream=sndData.m3D=sndData.mHardware=false;
-
-	if(soundFlag&SOUND_FLAG_LOOP)
-	{
-		sndData.mLoop=true;
-	}
-	if(soundFlag&SOUND_FLAG_HARDWARE)
-	{
-		sndData.mHardware=true;
-	}
-	if(soundFlag&SOUND_FLAG_3D)
-	{
-		sndData.m3D=true;
-	}
-	if(soundFlag&SOUND_FLAG_STREAM)
-	{
-		sndData.mStream=true;
-	}
-
-	return addSound(sndData);
-}
-
-bool AudioSubsystem::addSound(const TSoundData& desc)
-{
-	bool rc = false;
-	FMOD_MODE   flag = 0;
-	FMOD_RESULT result;
-	if(mSystem)
-	{
-		if(desc.mLoop)
-		{
-			flag |= FMOD_LOOP_NORMAL;
-		}
-		if(desc.mHardware)
-		{
-			flag |= FMOD_HARDWARE;
-		}
-
-		if(desc.m3D)
-		{
-			flag |= FMOD_3D;
-		}else{
-			flag |= FMOD_2D;
-		}
-		//m_logFile.push_back("AddSound" + desc.id + " fn: " + desc.fn);
-		FMOD::Sound* soundPtr;
-		std::string filename=AUDIO_RESOURCE_PATH+desc.mFileName;
-		if(desc.mStream)
-		{
-			result = mSystem->createStream(filename.c_str(), flag, 0, &soundPtr);
-		}else{
-			//MessageBox(0,desc.fn.c_str(),"FILE",0);
-			result = mSystem->createSound(filename.c_str(), flag,0, &soundPtr);
-		}
-		if (result == FMOD_OK)
-		{
-			rc = true;
-
-			//m_logFile.push_back("AddSound" + desc.id + " fn: " + desc.fn + "Ok");
-
-			SoundPtr sound(new Sound());
-			sound->mChannelGroupID = desc.mChannelGroupID;
-			sound->mFMODSound= soundPtr;
-			mSoundMap[desc.mId] = sound;
-
-		}
-	}
-	return rc;	
-}
+//
+//bool AudioSubsystem::addSound(const std::string& soundID,
+//							  const std::string& sound,
+//							  const std::string& channelID,
+//							  int soundFlag)
+//{
+//	TSoundData sndData;
+//	sndData.mId=soundID;
+//	sndData.mFileName=sound;
+//	sndData.mChannelGroupID= channelID;
+//	sndData.mLoop=sndData.mStream=sndData.m3D=sndData.mHardware=false;
+//
+//	if(soundFlag&SOUND_FLAG_LOOP)
+//	{
+//		sndData.mLoop=true;
+//	}
+//	if(soundFlag&SOUND_FLAG_HARDWARE)
+//	{
+//		sndData.mHardware=true;
+//	}
+//	if(soundFlag&SOUND_FLAG_3D)
+//	{
+//		sndData.m3D=true;
+//	}
+//	if(soundFlag&SOUND_FLAG_STREAM)
+//	{
+//		sndData.mStream=true;
+//	}
+//
+//	return addSound(sndData);
+//}
+//
+//bool AudioSubsystem::addSound(const TSoundData& desc)
+//{
+//	bool rc = false;
+//	FMOD_MODE   flag = 0;
+//	FMOD_RESULT result;
+//	if(mSystem)
+//	{
+//		if(desc.mLoop)
+//		{
+//			flag |= FMOD_LOOP_NORMAL;
+//		}
+//		if(desc.mHardware)
+//		{
+//			flag |= FMOD_HARDWARE;
+//		}
+//
+//		if(desc.m3D)
+//		{
+//			flag |= FMOD_3D;
+//		}else{
+//			flag |= FMOD_2D;
+//		}
+//		//m_logFile.push_back("AddSound" + desc.id + " fn: " + desc.fn);
+//		FMOD::Sound* soundPtr;
+//		std::string filename=AUDIO_RESOURCE_PATH+desc.mFileName;
+//		if(desc.mStream)
+//		{
+//			result = mSystem->createStream(filename.c_str(), flag, 0, &soundPtr);
+//		}else{
+//			//MessageBox(0,desc.fn.c_str(),"FILE",0);
+//			result = mSystem->createSound(filename.c_str(), flag,0, &soundPtr);
+//		}
+//		if (result == FMOD_OK)
+//		{
+//			rc = true;
+//
+//			//m_logFile.push_back("AddSound" + desc.id + " fn: " + desc.fn + "Ok");
+//
+//			SoundPtr sound(new Sound());
+//			sound->mSoundData.mChannelGroupID = desc.mChannelGroupID;
+//			sound->mFMODSound= soundPtr;
+//			mSoundMap[desc.mId] = sound;
+//
+//		}
+//	}
+//	return rc;	
+//}
 
 
 
@@ -557,18 +327,18 @@ bool AudioSubsystem::play3DSound(const std::string& id,
 	int cIndex;
 	if(_playSound(id,outChannel,cIndex))
 	{
-		SoundPtr soundPtr = SoundPtr();
-		if(mSoundMap.find(id)!=mSoundMap.end())
+		SoundPtr soundPtr = getByName(id);
+		if (!soundPtr.isNull())
 		{
-			soundPtr = mSoundMap[id];
-			std::string cgid = soundPtr->mChannelGroupID;
+			std::string cgid = soundPtr->mSoundData.mChannelGroupID;
 
 			mChannelGroupMap[cgid]->set3DAttributes( cIndex,pos,vel );
-			mChannelGroupMap[cgid]->play( cIndex);
+			mChannelGroupMap[cgid]->play( cIndex);		
+			soundPtr.setNull();
 		}
-
 		channelIndex=cIndex;
 		rc = true;
+
 	}
 	return rc;
 }
@@ -582,16 +352,14 @@ bool AudioSubsystem::playMusic(const std::string& id, int& channelIndex,
 	{
 		if(_playSound(id,outChannel,cIndex))
 		{
-			SoundPtr soundPtr = SoundPtr();
-			if(mSoundMap.find(id)!=mSoundMap.end())
+			SoundPtr soundPtr = getByName(id);
+			if (!soundPtr.isNull())
 			{
-				soundPtr = mSoundMap[id];
-				std::string cgid = soundPtr->mChannelGroupID;
-
+				std::string cgid = soundPtr->mSoundData.mChannelGroupID;			
 				mChannelGroupMap[cgid]->play( cIndex);
-
 				mLastMusic= id;
-			}
+				soundPtr.setNull();
+			}			
 			channelIndex=cIndex;
 			rc = true;
 		}
@@ -607,12 +375,12 @@ bool AudioSubsystem::playSound(const std::string& id,int& channelIndex)
 	int cIndex;
 	if(_playSound(id,outChannel,cIndex))
 	{
-		SoundPtr soundPtr = SoundPtr();
-		if(mSoundMap.find(id)!=mSoundMap.end())
+		SoundPtr soundPtr = getByName(id);
+		if (!soundPtr.isNull())
 		{
-			soundPtr = mSoundMap[id];
-			std::string cgid = soundPtr->mChannelGroupID;
-			mChannelGroupMap[cgid]->play(cIndex);
+			std::string cgid = soundPtr->mSoundData.mChannelGroupID;			
+			mChannelGroupMap[cgid]->play( cIndex);
+			soundPtr.setNull();
 		}
 		rc = true;
 		channelIndex=cIndex;
@@ -624,15 +392,15 @@ bool AudioSubsystem::_playSound(const std::string& id,
 								ChannelGroupPtr outChannel,
 								int& channelIndex)
 {
-	SoundPtr soundPtr = SoundPtr();
 	bool rc = false;
 	if(mSystem)
 	{
-		if(mSoundMap.find(id)!=mSoundMap.end())
+		SoundPtr soundPtr = getByName(id);
+		if(!soundPtr.isNull())
 		{
-			soundPtr = mSoundMap[id];
-			std::string cgid = soundPtr->mChannelGroupID;
-			if(soundPtr && mChannelGroupMap.find(cgid)!=mChannelGroupMap.end())
+
+			std::string cgid = soundPtr->mSoundData.mChannelGroupID;
+			if(mChannelGroupMap.find(cgid)!=mChannelGroupMap.end())
 			{
 				FMOD_RESULT hr;
 				outChannel = mChannelGroupMap[cgid];
@@ -655,7 +423,7 @@ bool AudioSubsystem::_playSound(const std::string& id,
 						FMOD::Channel* channel = outChannel->getChannel(tmp);
 
 						hr = mSystem->playSound(cid,
-							soundPtr->mFMODSound, 
+							soundPtr->getFMODSound(), 
 							true, 
 							&channel);
 						outChannel->setChannel(tmp,channel);
@@ -668,6 +436,7 @@ bool AudioSubsystem::_playSound(const std::string& id,
 					}
 				}
 			}
+			soundPtr.setNull();
 		}
 	}
 	return rc;
@@ -846,39 +615,38 @@ ApplicationPtr AudioSubsystem::getApplication()
 {
 	return mApp;
 }
-
-void AudioSubsystem::removeSound(const std::string& soundID)
-{
-	if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
-	{
-		SoundPtr sound= mSoundMap[soundID];
-		sound->mFMODSound->release();
-		sound.reset();
-		mSoundMap.erase(soundID);
-	}
-}
-void AudioSubsystem::loadSounds(std::vector<TSoundData> soundBank)
-{
-	unloadSounds();
-	if (!soundBank.empty())
-	{
-		for (std::vector<TSoundData>::iterator it = soundBank.begin();it!=soundBank.end();++it)
-		{
-
-			addSound(*it);		
-		}
-	}
-}
-void AudioSubsystem::unloadSounds()
-{
-	// NOTE: Check if channels should be released as well, in case FMOD
-	// does not handle that.
-	for(TSoundMapIterator i=mSoundMap.begin();i!=mSoundMap.end(); i++)
-	{
-		(i->second)->mFMODSound->release();
-	}
-	mSoundMap.clear();	
-}
+//void AudioSubsystem::removeSound(const std::string& soundID)
+//{
+//	if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
+//	{
+//		SoundPtr sound= mSoundMap[soundID];
+//		sound->mFMODSound->release();
+//		sound.reset();
+//		mSoundMap.erase(soundID);
+//	}
+//}
+//void AudioSubsystem::loadSounds(std::vector<TSoundData> soundBank)
+//{
+//	unloadSounds();
+//	if (!soundBank.empty())
+//	{
+//		for (std::vector<TSoundData>::iterator it = soundBank.begin();it!=soundBank.end();++it)
+//		{
+//
+//			addSound(*it);		
+//		}
+//	}
+//}
+//void AudioSubsystem::unloadSounds()
+//{
+//	// NOTE: Check if channels should be released as well, in case FMOD
+//	// does not handle that.
+//	for(TSoundMapIterator i=mSoundMap.begin();i!=mSoundMap.end(); i++)
+//	{
+//		(i->second)->mFMODSound->release();
+//	}
+//	mSoundMap.clear();	
+//}
 
 void AudioSubsystem::saveCurrentConfigData(const std::string& configFileName)
 {
@@ -902,20 +670,22 @@ void AudioSubsystem::saveCurrentConfigData(const std::string& configFileName)
 	options[CONFIG_KEYS_MUSIC_ENABLED]= Utils::toString(mConfigData.mMusicVolumeEnabled);
 	options[CONFIG_KEYS_MUSIC_NUM_CHANNELS]= Utils::toString(mConfigData.mMusicNumChannels);
 
+	options[CONFIG_KEYS_AUDIO_SUBSYSTEM_FRAME_SKIP]= Utils::toString(mConfigData.mFrameSkip);
+
 	config->addOptions(options);
 	std::string filePath = SOUND_RESOURCES_PATH+"/"+configFileName;
 	config->saveToFile(filePath);
 }
 SoundPtr AudioSubsystem::getSound(const std::string& soundID)
 {
-	if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
-		return mSoundMap[soundID];
-	return SoundPtr();
+	/*if (!mSoundMap.empty() && mSoundMap.find(soundID)!=mSoundMap.end())
+		return mSoundMap[soundID];*/
+	return getByName(soundID);
 }
 bool AudioSubsystem::is3DSound(const std::string& soundID)
 {
 	SoundPtr sound=getSound(soundID);
-	if (sound.get())
+	if (!sound.isNull())
 	{
 		return sound->mSoundData.m3D;
 	}
@@ -1001,4 +771,83 @@ void AudioSubsystem::setMusicVolume(int channelID,double volume)
 double AudioSubsystem::getMusicVolume(int channelID)
 {
 	return getChannelVolume(channelID,SM_CHANNEL_MUSIC_GROUP);
+}
+bool AudioSubsystem::createSoundImplementation(const TSoundData& soundData, FMOD::Sound*& FMODSound)
+{
+	bool rc = false;
+	FMOD_MODE   flag = 0;
+	FMOD_RESULT result;
+	if(mSystem)
+	{
+		if(soundData.mLoop)
+		{
+			flag |= FMOD_LOOP_NORMAL;
+		}
+		if(soundData.mHardware)
+		{
+			flag |= FMOD_HARDWARE;
+		}
+
+		if(soundData.m3D)
+		{
+			flag |= FMOD_3D;
+		}else{
+			flag |= FMOD_2D;
+		}
+
+		std::string filename=AUDIO_RESOURCE_PATH+soundData.mFileName;
+		if(soundData.mStream)
+		{
+			result = mSystem->createStream(filename.c_str(), flag, 0, &FMODSound);
+		}else{
+			//MessageBox(0,desc.fn.c_str(),"FILE",0);
+			result = mSystem->createSound(filename.c_str(), flag,0, &FMODSound);
+		}
+		if (result==FMOD_OK)
+		{
+			rc=true;
+		}	
+		else
+		{
+			std::stringstream errMsg("");
+			errMsg<<"Error creating FMOD Sound. Error message returned - "<<FMOD_ErrorString(result);
+			Ogre::LogManager::getSingleton().logMessage(errMsg.str());
+				
+		}
+	}	
+	return rc;	
+}
+bool AudioSubsystem::destroySoundImplementation(FMOD::Sound*& FMODSound)
+{
+	if (FMODSound)
+	{
+		return (FMODSound->release()==FMOD_OK);
+	}
+	return false;
+}
+//------------------------------
+// Resource manager methods
+//------------------------------
+SoundPtr AudioSubsystem::load(const Ogre::String &name, const Ogre::String &group)
+{
+	SoundPtr textf = getByName(name);
+
+	if (textf.isNull())
+		textf = create(name, group);
+
+	textf->load();
+	return textf;
+}
+Ogre::Resource* AudioSubsystem::createImpl(const Ogre::String &name, Ogre::ResourceHandle handle, 
+											const Ogre::String &group, bool isManual, Ogre::ManualResourceLoader *loader, 
+											const Ogre::NameValuePairList *createParams)
+{
+	return new Sound(this, name, handle, group, isManual, loader);
+}
+
+void AudioSubsystem::parseScript(Ogre::DataStreamPtr& stream, const Ogre::String& groupName)
+{
+
+	AudioScriptLoader audioScriptLoader(shared_from_this());
+	audioScriptLoader.parseScript(stream,groupName);
 }

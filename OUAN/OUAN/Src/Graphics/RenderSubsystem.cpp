@@ -34,13 +34,15 @@ RenderSubsystem::~RenderSubsystem()
 {
 
 }
-
-bool RenderSubsystem::init(ApplicationPtr app, ConfigurationPtr config)
+void RenderSubsystem::create(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
-	this->mApp=app;
-	this->debugMessage = "";
+	mApp=app;
+	debugMessage = "";
 
 	createRoot(config);
+}
+bool RenderSubsystem::init(ConfigurationPtr config)
+{
 	defineResources(config);
 
 	if (!setupRenderSystem(config))
@@ -91,7 +93,6 @@ void RenderSubsystem::cleanUp()
 {
 	clearScene();
 }
-
 void RenderSubsystem::createRoot(ConfigurationPtr config)
 {
 	std::string pluginsPath=DEFAULT_OGRE_PLUGINS_PATH;
