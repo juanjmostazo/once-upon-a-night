@@ -85,6 +85,11 @@ GameWorldManager::GameWorldManager()
 	mGodMode=false;
 	ParticleTemplates::getInstance()->loadConfig();
 
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=false;
+
+
+
 }
 
 GameWorldManager::~GameWorldManager()
@@ -467,6 +472,9 @@ void GameWorldManager::init(ApplicationPtr app)
 	mWorld=DREAMS;
 	mGameOver=false;
 	mApp=app;
+
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=false;
 
 	clearContainers();
 	mThis=shared_from_this();
@@ -1059,6 +1067,7 @@ void GameWorldManager::activateChangeWorld()
 void GameWorldManager::changeWorldFinished(int newWorld)
 {
 	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
+
 	switch(newWorld)
 	{
 	case DREAMS:

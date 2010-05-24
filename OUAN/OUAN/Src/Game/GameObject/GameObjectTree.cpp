@@ -217,42 +217,39 @@ bool GameObjectTree::hasRenderComponentEntity() const
 
 void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 {
-	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
+	mChangeWorldTotalTime=changeWorldTotalTime*(1.0f/3.0f);
 }
 
 void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
 {
-	double changeTime;
+	double fraction;
 
-	changeTime=totalTime*0.25f;
-
+	fraction=1.0f/3.0f;
 	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=changeTime*random+totalTime*0.25f;
+			mChangeWorldDelay=fraction*totalTime+fraction*totalTime*random;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=changeTime*random;
+			mChangeWorldDelay=fraction*totalTime*random;
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=changeTime*random;
+			mChangeWorldDelay=fraction*totalTime*random;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=changeTime*random+totalTime*0.25f;
+			mChangeWorldDelay=fraction*totalTime+fraction*totalTime*random;
 		}
 		break;
 	default:
 		break;
-	}
-
-	Ogre::LogManager::getSingleton().logMessage("mChangeWorldDelay  mChangeWorldDelay "+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay))+" totalElapsedTime "+Ogre::StringConverter::toString(Ogre::Real(totalElapsedTime)));
+	}	
 }
 
 RenderComponentEntityPtr GameObjectTree::getEntityComponent() const

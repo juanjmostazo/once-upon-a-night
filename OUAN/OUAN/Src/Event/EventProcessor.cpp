@@ -172,7 +172,10 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 				{
 					it->second->setChangeWorldElapsedTime(it->second->getChangeWorldTotalTime()-it->second->getChangeWorldElapsedTime());				
 				}
-				it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Utils::Random::getInstance()->getRandomDouble());
+				else
+				{
+					it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Utils::Random::getInstance()->getRandomDouble());
+				}
 			}
 		}
 	}
