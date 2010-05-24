@@ -47,6 +47,7 @@
 #include "GameObject/GameObjectWater.h"
 
 #include "../Graphics/RenderSubsystem.h"
+#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -103,12 +104,6 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	dispatchEvents();
 
-	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
-		it->second->update(elapsedSeconds);
-	}
-
 	if(mIsChangingWorld)
 	{
 		//Ogre::LogManager::getSingleton().logMessage("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
@@ -124,6 +119,16 @@ void GameWorldManager::update(double elapsedSeconds)
 			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
 		}
 	}
+
+	dispatchEvents();
+
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		it->second->update(elapsedSeconds);
+	}
+
+	dispatchEvents();
 }
 
 void GameWorldManager::setGodMode(bool activated)
@@ -453,6 +458,36 @@ bool GameWorldManager::loadConfig()
 	{
 		config.getOption("CHANGE_WORLD_TIME", value); 
 		mChangeWorldTotalTime = atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_TYPE", value); 
+		mDefaultChangeWorldMaterialParameters.type= ChangeWorldType(atoi(value.c_str()));
+
+		config.getOption("CHANGE_WORLD_BLENDING_AMOUNT", value); 
+		mDefaultChangeWorldMaterialParameters.blending_amount = atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_BLENDING_TEXTURE", value); 
+		mDefaultChangeWorldMaterialParameters.blending_texture=value;
+
+		config.getOption("MATERIAL_SCROLL_ANIMATION_X", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_animation.x= atof(value.c_str());
+
+		config.getOption("MATERIAL_SCROLL_ANIMATION_Y", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_animation.y= atof(value.c_str());
+
+		config.getOption("MATERIAL_SCROLL_ANIMATION_Z", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_animation.z= atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_X", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_blending.x= atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_Y", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_blending.y= atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_Z", value); 
+		mDefaultChangeWorldMaterialParameters.scroll_blending.z= atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_TILING", value); 
+		mDefaultChangeWorldMaterialParameters.tiling= atof(value.c_str());
 
 		success = true;
 	} 
@@ -1303,4 +1338,9 @@ void GameWorldManager::setChangeWorldTimes()
 double GameWorldManager::getChangeWorldTotalTime() const
 {
 	return mChangeWorldTotalTime;
+}
+
+TChangeWorldMaterialParameters GameWorldManager::getDefaultChangeWorldMaterialParameters()
+{
+	return mDefaultChangeWorldMaterialParameters;
 }
