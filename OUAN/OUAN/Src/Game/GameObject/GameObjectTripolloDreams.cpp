@@ -296,6 +296,10 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 				break;
 		}
 		activateTrajectory(newWorld);
+		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
 	}
 	else
 	{
