@@ -267,7 +267,7 @@ void ChangeWorldMaterial::randomize()
 			params->setNamedConstant("displacement",Vector3(
 				Utils::Random::getInstance()->getRandomDouble(),
 				Utils::Random::getInstance()->getRandomDouble(),
-				0.0f)
+				Utils::Random::getInstance()->getRandomDouble()*Ogre::Math::TWO_PI)
 				);
 			break;
 		case CW_EROSION_TRANSPARENT:
@@ -276,7 +276,7 @@ void ChangeWorldMaterial::randomize()
 			params->setNamedConstant("displacement",Vector3(
 				Utils::Random::getInstance()->getRandomDouble(),
 				Utils::Random::getInstance()->getRandomDouble(),
-				0.0f)
+				Utils::Random::getInstance()->getRandomDouble()*Ogre::Math::TWO_PI)
 				);
 			break;
 		default:
@@ -348,12 +348,12 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 	mScrollAnimationCurrent-=mScrollAnimationSpeed*elapsedSeconds;
 	if(mScrollAnimationCurrent.x<=0) mScrollAnimationCurrent.x+=1;
 	if(mScrollAnimationCurrent.y<=0) mScrollAnimationCurrent.y+=1;
-	if(mScrollAnimationCurrent.z<=0) mScrollAnimationCurrent.z+=1;
+	if(mScrollAnimationCurrent.z<=0) mScrollAnimationCurrent.z+=Ogre::Math::TWO_PI;
 
 	mScrollBlendingCurrent-=mScrollBlendingSpeed*elapsedSeconds;
 	if(mScrollBlendingCurrent.x<=0) mScrollBlendingCurrent.x+=1;
 	if(mScrollBlendingCurrent.y<=0) mScrollBlendingCurrent.y+=1;
-	if(mScrollBlendingCurrent.z<=0) mScrollBlendingCurrent.z+=1;
+	if(mScrollBlendingCurrent.z<=0) mScrollBlendingCurrent.z+=Ogre::Math::TWO_PI;
 
 	material=findMaterial(mName);
 	if(!material.isNull())

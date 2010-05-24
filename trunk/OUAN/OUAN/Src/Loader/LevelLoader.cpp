@@ -4195,7 +4195,9 @@ TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters
 		tChangeWorldMaterialParameters.blending_amount=getPropertyReal(XMLNode, "ChangeWorldMaterial::blending_amount");
 		tChangeWorldMaterialParameters.blending_texture=getPropertyString(XMLNode, "ChangeWorldMaterial::blending_texture");
 		tChangeWorldMaterialParameters.scroll_animation=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_animation");
+		tChangeWorldMaterialParameters.scroll_animation.z=tChangeWorldMaterialParameters.scroll_animation.z/Ogre::Math::TWO_PI;
 		tChangeWorldMaterialParameters.scroll_blending=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_blending");
+		tChangeWorldMaterialParameters.scroll_blending.z=tChangeWorldMaterialParameters.scroll_blending.z/Ogre::Math::TWO_PI;
 		tChangeWorldMaterialParameters.tiling=getPropertyReal(XMLNode, "ChangeWorldMaterial::tiling");
 
 		//Billboard Rotation Conversion
@@ -4218,12 +4220,7 @@ TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters
 	}
 	catch(std::string error)
 	{
-		tChangeWorldMaterialParameters.blending_amount=0.03;
-		tChangeWorldMaterialParameters.blending_texture="Water01.jpg";
-		tChangeWorldMaterialParameters.scroll_animation=Vector3::ZERO;
-		tChangeWorldMaterialParameters.scroll_blending=Vector3::ZERO;
-		tChangeWorldMaterialParameters.tiling=2.5;
-		tChangeWorldMaterialParameters.type=CW_EROSION;
+		tChangeWorldMaterialParameters=mGameWorldManager->getDefaultChangeWorldMaterialParameters();
 	}
 
 	return tChangeWorldMaterialParameters;

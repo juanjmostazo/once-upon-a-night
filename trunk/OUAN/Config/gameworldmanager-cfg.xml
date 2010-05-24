@@ -2,5 +2,17 @@
 <Configuration>
   <Options>
 	<Option key="CHANGE_WORLD_TIME">5</Option>
+
+    	<!--Change World Material Default Parameters-->
+	<Option key="CHANGE_WORLD_TYPE">1</Option>
+	<Option key="CHANGE_WORLD_BLENDING_AMOUNT">0.03</Option>
+	<Option key="CHANGE_WORLD_BLENDING_TEXTURE">Water01.jpg</Option>
+	<Option key="MATERIAL_SCROLL_ANIMATION_X">0</Option>
+	<Option key="MATERIAL_SCROLL_ANIMATION_Y">0</Option>
+	<Option key="MATERIAL_SCROLL_ANIMATION_Z">0</Option>
+	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_X">0</Option>
+	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Y">0</Option>
+	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Z">0</Option>
+	<Option key="CHANGE_WORLD_TILING">2.5</Option>
   </Options>
 </Configuration>

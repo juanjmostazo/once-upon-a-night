@@ -2,7 +2,7 @@
 #define GAMEWORLDMANAGERH_H
 #include "../OUAN.h"
 #include "../Event/Event.h"
-
+#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 namespace OUAN
 {
 	/// Manages the game scene:
@@ -190,6 +190,7 @@ namespace OUAN
 		void setChangeWorldTimes();
 		double getChangeWorldElapsedTime() const;
 		double getChangeWorldTotalTime() const;
+		TChangeWorldMaterialParameters getDefaultChangeWorldMaterialParameters();
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
@@ -324,6 +325,7 @@ namespace OUAN
 		double mChangeWorldElapsedTime;
 		bool mIsChangingWorld;
 		int mWorld;
+		TChangeWorldMaterialParameters mDefaultChangeWorldMaterialParameters;
 
 
 		EventManagerPtr mEventManager;
