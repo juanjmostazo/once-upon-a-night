@@ -4199,6 +4199,7 @@ TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters
 		tChangeWorldMaterialParameters.scroll_blending=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_blending");
 		tChangeWorldMaterialParameters.scroll_blending.z=tChangeWorldMaterialParameters.scroll_blending.z/Ogre::Math::TWO_PI;
 		tChangeWorldMaterialParameters.tiling=getPropertyReal(XMLNode, "ChangeWorldMaterial::tiling");
+		tChangeWorldMaterialParameters.randomize=getPropertyBool(XMLNode, "ChangeWorldMaterial::randomize");
 
 		//Billboard Rotation Conversion
 		int change_world_type = getPropertyInt(XMLNode, "ChangeWorldMaterial::type");

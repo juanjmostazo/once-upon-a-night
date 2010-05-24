@@ -104,6 +104,14 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	dispatchEvents();
 
+	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		it->second->update(elapsedSeconds);
+	}
+
+	dispatchEvents();
+
 	if(mIsChangingWorld)
 	{
 		//Ogre::LogManager::getSingleton().logMessage("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
@@ -118,14 +126,6 @@ void GameWorldManager::update(double elapsedSeconds)
 		{
 			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
 		}
-	}
-
-	dispatchEvents();
-
-	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
-	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
-		it->second->update(elapsedSeconds);
 	}
 
 	dispatchEvents();
@@ -488,6 +488,9 @@ bool GameWorldManager::loadConfig()
 
 		config.getOption("CHANGE_WORLD_TILING", value); 
 		mDefaultChangeWorldMaterialParameters.tiling= atof(value.c_str());
+
+		config.getOption("CHANGE_WORLD_RANDOMIZE", value); 
+		mDefaultChangeWorldMaterialParameters.randomize= Ogre::StringConverter::parseBool(value);
 
 		success = true;
 	} 

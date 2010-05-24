@@ -18,7 +18,7 @@
   <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="1 1 0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::type" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
-
+  <PROPERTY id="ChangeWorldMaterial::randomize" type="6" value="false" fields="X;Y;Z;W"></PROPERTY>
 
 
 </CUSTOMPROPERTIES>

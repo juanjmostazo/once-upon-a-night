@@ -4,6 +4,7 @@
   <PROPERTY id="ChangeWorldMaterial::blending_texture" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
 </CUSTOMPROPERTIES>

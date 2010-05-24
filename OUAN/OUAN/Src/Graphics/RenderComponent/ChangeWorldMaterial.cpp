@@ -207,6 +207,7 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 	{
 		mId=id;
 		mType = tChangeWorldMaterialParameters.type;
+		mRandomize=tChangeWorldMaterialParameters.randomize;
 
 		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
 		mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
@@ -253,7 +254,7 @@ void ChangeWorldMaterial::randomize()
 	Ogre::GpuProgramParametersSharedPtr params;
 
 	material=findMaterial(mName);
-	if(!material.isNull())
+	if(!material.isNull() && mRandomize)
 	{
 		technique = material->getBestTechnique();
 

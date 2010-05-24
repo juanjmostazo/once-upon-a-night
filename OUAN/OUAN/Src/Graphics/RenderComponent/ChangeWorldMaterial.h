@@ -30,6 +30,7 @@ namespace OUAN
 		Vector3 scroll_blending;
 		double tiling;
 		double blending_amount;
+		bool randomize;
 
 	};
 
@@ -55,6 +56,7 @@ namespace OUAN
 
 		double mDisplacement;
 		double mFactor;
+		bool mRandomize;
 
 		Vector3 mScrollAnimationSpeed;
 		Vector3 mScrollBlendingSpeed;
