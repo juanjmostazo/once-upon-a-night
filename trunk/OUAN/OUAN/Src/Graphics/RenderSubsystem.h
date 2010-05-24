@@ -57,10 +57,15 @@ namespace OUAN
 		virtual ~RenderSubsystem();
 
 		/// init the subsystem from the options read in the configuration file
-		bool init (ApplicationPtr app,OUAN::ConfigurationPtr config);
+		bool init (OUAN::ConfigurationPtr config);
+
+		void create(ApplicationPtr app,OUAN::ConfigurationPtr config);
 
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
+
+
+
 
 		/// Create Ogre root object
 		void createRoot(OUAN::ConfigurationPtr config);

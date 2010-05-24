@@ -3,12 +3,16 @@
 
 #include <windows.h>
 #include <fmod.hpp>
-#include <Ogre.h>
 
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <vector>
 #include "../Loader/Configuration.h"
+
+namespace Ogre
+{
+	class Vector3;
+}
 
 namespace OUAN
 {
@@ -46,11 +50,8 @@ namespace OUAN
 	class AudioSubsystem;
 	typedef boost::shared_ptr<AudioSubsystem> AudioSubsystemPtr;
 
-	class Sound;
-	typedef boost::shared_ptr<Sound> SoundPtr;
-
-	typedef std::map<std::string,SoundPtr>   TSoundMap;
-	typedef TSoundMap::iterator  TSoundMapIterator;
+	//typedef std::map<std::string,SoundPtr>   TSoundMap;
+	//typedef TSoundMap::iterator  TSoundMapIterator;
 
 	class Channel;
 	typedef boost::shared_ptr<Channel> ChannelPtr;
@@ -127,5 +128,30 @@ namespace OUAN
 		void set(ConfigurationPtr config);
 
 	} TAudioSubsystemConfigData;
+
+	//typedef struct  
+	//{
+	//	std::string mId;
+	//	std::string mFileName;
+	//	std::string mChannelGroupID;
+	//	bool mLoop;
+	//	bool mHardware;
+	//	bool m3D;
+	//	bool mStream;
+	//	//These arguments are used on a per-channel basis. However, since
+	//	//all the instances will most likely be using the same values, I'm creating
+	//	//them here so that this information is loaded together with the rest of sound data
+	//	double minDistance;
+	//	double maxDistance;
+	//}TSoundData;
+
+	//class Sound
+	//{
+	//public:
+	//	TSoundData mSoundData;
+	//	FMOD::Sound* mFMODSound;
+	//	std::string mChannelGroupID;
+	//};
+	//typedef boost::shared_ptr<Sound> SoundPtr;
 }
 #endif

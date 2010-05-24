@@ -57,11 +57,11 @@ Application* Application::getInstance()
 
 void Application::cleanUp()
 {
+	mAudioSubsystem->cleanUp();
 	mPhysicsSubsystem->cleanUp();
 	mGUISubsystem->cleanUp();
 	mRenderSubsystem->cleanUp();
 	mLogicSubsystem->cleanUp();
-	mAudioSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
 bool Application::init(int argc,char** argv)
@@ -90,10 +90,23 @@ bool Application::init()
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
 
+
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	
-	if (!mRenderSubsystem->init(this_, mConfiguration))
-	{
+	// Initialization has been split into two stages so the resourceManager for the
+	// audio can be successfully registered
+	mRenderSubsystem->create(this_, mConfiguration);
+
+	ConfigurationPtr audioCfg(new Configuration());
+	audioCfg->loadFromFile(SOUND_CONFIG_FILE);
+	TAudioSubsystemConfigData audioDesc;
+	audioDesc.set(audioCfg);
+	mAudioSubsystem.reset(new AudioSubsystem());
+	mAudioSubsystem->init(audioDesc,this_);
+	//mSoundFileManager=SoundFileManagerPtr(new SoundFileManager());
+
+	//Initialization is now effective.
+	if (!mRenderSubsystem->init(mConfiguration)){
 		return false;
 	}
 
@@ -120,13 +133,6 @@ bool Application::init()
 
 	mLevelLoader.reset(new LevelLoader());
 	mLevelLoader->init(this_);
-
-	ConfigurationPtr audioCfg(new Configuration());
-	audioCfg->loadFromFile(SOUND_CONFIG_FILE);
-	TAudioSubsystemConfigData audioDesc;
-	audioDesc.set(audioCfg);
-	mAudioSubsystem.reset(new AudioSubsystem());
-	mAudioSubsystem->init(audioDesc,this_);
 
 	//TODO: Add remaining subsystems ()
 
