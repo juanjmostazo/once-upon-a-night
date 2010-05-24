@@ -7,6 +7,7 @@ namespace OUAN
 	//ChangeWorldMaterial names
 	const std::string MATERIAL_BLENDING_NAME="blending";
 	const std::string MATERIAL_EROSION_NAME="erosion";
+	const std::string MATERIAL_EROSION_TRANSPARENT_NAME="erosion_transparent";
 
 	class TPassParameters
 	{
@@ -70,7 +71,8 @@ namespace OUAN
 
 		void createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters TPassParameters);
 		void createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters TPassParameters);
-	
+		void createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1,TPassParameters passParameters);
+
 		std::string getChangeWorldTypeName(ChangeWorldType type);
 
 		Ogre::MaterialPtr findMaterial(std::string name);

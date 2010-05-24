@@ -64,6 +64,9 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 			case CW_EROSION:
 				createMaterialErosion(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,diffuseTexture2,passParameters);
 				break;
+			case CW_EROSION_TRANSPARENT:
+				createMaterialErosionTransparent(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,passParameters);
+				break;
 			default:
 				return "";
 				break;
@@ -127,7 +130,29 @@ void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters t
 
 	texture=pass->getTextureUnitState(2);
 	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
+}
 
+void ChangeWorldMaterial::createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1,TPassParameters passParameters)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	Ogre::TextureUnitState * texture;
+	Ogre::GpuProgramParametersSharedPtr params;
+
+	technique=clone->getTechnique(0);
+	pass=technique->getPass(0);
+	setTPassParameters(pass,passParameters);
+
+	texture=pass->getTextureUnitState(0);
+	texture->setTextureName(diffuseTexture1);
+
+	//set shader constant parameters
+	params = pass->getFragmentProgramParameters();
+	params->setNamedConstant("blending",Ogre::Real(tChangeWorldMaterialParameters.blending_amount));
+	params->setNamedConstant("tiling",Ogre::Real(tChangeWorldMaterialParameters.tiling));
+
+	texture=pass->getTextureUnitState(2);
+	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
 }
 
 void ChangeWorldMaterial::setChangeWorldFactor(double factor)
@@ -153,6 +178,11 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 			texture->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_TEXTURE, factor);
 			break;
 		case CW_EROSION:
+			pass = technique->getPass(0);
+			params = pass->getFragmentProgramParameters();
+			params->setNamedConstant("mix_factor",Ogre::Real(factor));
+			break;
+		case CW_EROSION_TRANSPARENT:
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("mix_factor",Ogre::Real(factor));
@@ -205,6 +235,9 @@ std::string ChangeWorldMaterial::getChangeWorldTypeName(ChangeWorldType type)
 	case CW_EROSION:
 		return MATERIAL_EROSION_NAME;
 		break;
+	case CW_EROSION_TRANSPARENT:
+		return MATERIAL_EROSION_TRANSPARENT_NAME;
+		break;
 	default:
 		return MATERIAL_BLENDING_NAME;
 		break;
@@ -229,6 +262,15 @@ void ChangeWorldMaterial::randomize()
 		case CW_BLENDING:
 			break;
 		case CW_EROSION:
+			pass = technique->getPass(0);
+			params = pass->getFragmentProgramParameters();
+			params->setNamedConstant("displacement",Vector3(
+				Utils::Random::getInstance()->getRandomDouble(),
+				Utils::Random::getInstance()->getRandomDouble(),
+				0.0f)
+				);
+			break;
+		case CW_EROSION_TRANSPARENT:
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("displacement",Vector3(
@@ -323,6 +365,12 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 		case CW_BLENDING:
 			break;
 		case CW_EROSION:
+			pass = technique->getPass(0);
+			params = pass->getFragmentProgramParameters();
+			params->setNamedConstant("scroll_animation",mScrollAnimationCurrent);
+			params->setNamedConstant("scroll_blending",mScrollBlendingCurrent);
+			break;
+		case CW_EROSION_TRANSPARENT:
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("scroll_animation",mScrollAnimationCurrent);
