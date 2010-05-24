@@ -117,29 +117,20 @@ material erosion
             }
 }
 
-vertex_program erosion_transparent_vs cg
-{
-	source erosion_transparent.cg
-	entry_point erosion_transparentVS
-	profiles vs_1_1 arbvp1 vs_2_0
-	default_params	
-	{	
-	  param_named_auto worldViewProj worldviewproj_matrix
-            }	
-}
+//EROSION TRANSPARENT
 
-fragment_program erosion_transparent_fs cg
+fragment_program erosion_transparent_FS_CG cg
 {
-	source erosion_transparent.cg
+	source erosion.cg
 	entry_point erosion_transparentFS
-	profiles ps_3_0 arbfp1 ps_2_0
+	profiles ps_2_0 arbfp1 fp20
 
 	default_params	
 	{
-	  param_named mix_factor float 0.5
-	  param_named scroll_animation float3 0.0 0.0 0.0
-	  param_named scroll_blending float3 0.0 0.0 0.0	  
-	  param_named displacement float3 0.0 0.0 0.0
+	  param_named mix_factor float 0.0
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	
+	  param_named displacement float3 0.0 0.0 0.0	  
 	  param_named blending float 0.03
 	  param_named tiling float 2.5
    	}
@@ -153,10 +144,10 @@ material erosion_transparent
 		{
 		          scene_blend alpha_blend
 		          depth_write off
-	                      vertex_program_ref erosion_transparent_vs 
+	                      vertex_program_ref erosion_VS_CG
 	                      {
 	                      }
-	                      fragment_program_ref erosion_transparent_fs
+	                      fragment_program_ref erosion_transparent_FS_CG
 	                      {
 	                      }
 	                      texture_unit 0

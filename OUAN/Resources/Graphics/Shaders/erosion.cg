@@ -1,3 +1,34 @@
+//Texture samplers
+
+sampler texture0 : register(s0);
+sampler texture1 : register(s1);
+sampler texture2 : register(s2);
+
+// General functions
+
+float2 calculateBlendingTextureUV(float2 uv,float3 displacement,float3 scroll_blending,double tiling)
+{
+    float2 blending_texture_uv;
+           
+    blending_texture_uv.x=uv.x+displacement.x+scroll_blending.x;
+    blending_texture_uv.y=uv.y+displacement.y+scroll_blending.y; 
+    
+    blending_texture_uv=blending_texture_uv*tiling;    
+        
+    return blending_texture_uv;
+}
+
+float2 calculateUV(float2 uv,float3 scroll_animation)
+{
+    uv.x=uv.x+scroll_animation.x;
+    uv.y=uv.y+scroll_animation.y;
+    
+    return uv;
+}
+
+// Erosion VS main
+
+
 void erosionVS
 (
     in float4 inPos : POSITION,
@@ -14,9 +45,7 @@ void erosionVS
     UV0 = inUV0;
 }
 
-sampler texture0 : register(s0);
-sampler texture1 : register(s1);
-sampler texture2 : register(s2);
+// Erosion FS main
 
 void erosionFS(
 in float4 color : COLOR,
@@ -30,16 +59,10 @@ uniform float tiling,
 out float4 oColor : COLOR)
 {
     float4 random;
-    float2 blending_texture_uv;
     float normalized_blending_factor;
     
-    blending_texture_uv.x=uv.x+displacement.x+scroll_blending.x;
-    blending_texture_uv.y=uv.y+displacement.y+scroll_blending.y;    
-    random=tex2D(texture2,blending_texture_uv*tiling);
-    random=random;
-    
-    uv.x=uv.x+scroll_animation.x;
-    uv.y=uv.y+scroll_animation.y;
+    random=tex2D(texture2,calculateBlendingTextureUV(uv,displacement,scroll_blending,tiling));  
+    uv=calculateUV(uv,scroll_animation);
     
     if(random.x>=mix_factor+blending || mix_factor==0.0f)
     {
@@ -54,30 +77,41 @@ out float4 oColor : COLOR)
        normalized_blending_factor=(random.x-(mix_factor-blending))/(2*blending);
        oColor=normalized_blending_factor*tex2D(texture0,uv)+(1-normalized_blending_factor)*tex2D(texture1,uv); 
     }
-
 }
 
-//WORKING RANDOM SHADER
-//void erosionFS(
-//in float4 color : COLOR,
-//in float2 uv : TEXCOORD0,
-//uniform float mix_factor,
-//uniform sampler2D texture0 : TEXUNIT0,
-//uniform sampler2D texture1 : TEXUNIT1,
-//uniform sampler2D texture2 : TEXUNIT2,
-//out float4 oColor : COLOR)
-//{
-//    float4 random;
-//    random=tex2D(texture2,uv);
-//    
-//    if(random.x>mix_factor)
-//    {
-//       oColor=tex2D(texture0,uv);
-//    }
-//    else
-//    {
-//       oColor=tex2D(texture1,uv);
-//    }
-//    //oColor=(1.0f-mix_factor)*tex2D(texture0,uv)+mix_factor*tex2D(texture1,uv);
-//}
+// Erosion Transparent FS main
 
+void erosion_transparentFS(
+in float4 color : COLOR,
+in float2 uv : TEXCOORD0,
+uniform float3 displacement,
+uniform float3 scroll_animation,
+uniform float3 scroll_blending,
+uniform float mix_factor,
+uniform float blending,
+uniform float tiling,
+out float4 oColor : COLOR)
+{
+    float4 random;
+    float normalized_blending_factor;
+    
+    random=tex2D(texture2,calculateBlendingTextureUV(uv,displacement,scroll_blending,tiling));  
+    uv=calculateUV(uv,scroll_animation);
+    
+    oColor=tex2D(texture0,uv);
+    
+    if(random.x>=mix_factor+blending || mix_factor==0.0f)
+    {
+       oColor.w=1.0f;
+    }
+    else if(random.x<=mix_factor-blending || mix_factor==1.0f)
+    {
+       oColor.w=0.0f;
+    }   
+    else
+    {
+       normalized_blending_factor=(random.x-(mix_factor-blending))/(2*blending);
+       oColor.w=normalized_blending_factor;
+    }
+
+}
