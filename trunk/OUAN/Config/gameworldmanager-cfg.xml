@@ -14,5 +14,6 @@
 	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Y">0</Option>
 	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Z">0</Option>
 	<Option key="CHANGE_WORLD_TILING">2.5</Option>
+	<Option key="CHANGE_WORLD_RANDOMIZE">true</Option>
   </Options>
 </Configuration>
