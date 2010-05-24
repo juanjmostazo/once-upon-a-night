@@ -23,6 +23,9 @@ void HUDInGame::init(int healthPoints, int numLives, int world)
 
 	mLives=Ogre::OverlayManager::getSingleton().getOverlayElement(OVERLAY_INGAME_HUD_LIVES_TEXT);
 
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=false;
+
 	initRouletteData();
 	mCurrentRouletteState=ROULETTE_STATE_0;
 	updateRouletteHUD();

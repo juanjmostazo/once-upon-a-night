@@ -31,7 +31,8 @@ GameRunningState::GameRunningState()
 :GameState()
 ,mIsChangingWorld(false)
 {
-
+	mChangeWorldElapsedTime=0;
+	mIsChangingWorld=false;
 }
 
 /// Destructor
