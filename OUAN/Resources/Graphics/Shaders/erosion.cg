@@ -34,8 +34,7 @@ float2 calculateBlendingTextureUV(in float2 uv, in float3 displacement, in float
     float angle=displacement.x;
                 
     uv = scrollUV(uv,float2(scroll_blending.x+displacement.x,scroll_blending.y+displacement.y));  
-    //uv.x=uv.x*cos(angle)+uv.y*sin(angle);
-    //uv.y=uv.y*cos(angle)+uv.x*sin(angle); 
+    uv = rotateUV(uv,scroll_blending.z+displacement.z);
     uv = uv*tiling;    
         
     return uv;

@@ -52,6 +52,7 @@ namespace OUAN
 		bool fast;
 		double time;
 		double change_world_elapsed_time;
+		bool random_trees;
 
 	private:
 		int mNewWorld;

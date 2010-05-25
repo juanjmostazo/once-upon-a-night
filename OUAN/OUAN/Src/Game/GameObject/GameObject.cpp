@@ -397,7 +397,7 @@ void GameObject::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 	mChangeWorldTotalTime=changeWorldTotalTime;
 }
 
-void GameObject::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
+void GameObject::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
 {
 	mChangeWorldDelay=0.0f;
 }

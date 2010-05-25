@@ -41,6 +41,7 @@ namespace OUAN
 		~ChangeWorldMaterial();
 
 		void setChangeWorldFactor(double factor);
+
 		bool init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2);
 
 		std::string getMaterialName();
@@ -48,11 +49,15 @@ namespace OUAN
 
 		void update(double elapsedSeconds);
 
+		void setPointOfInterest(Vector3 pointOfInterest);
+
 	protected:
 
 		std::string mName;
 		std::string mId;
 		ChangeWorldType mType; 
+
+		Vector3 mPointOfInterest;
 
 		double mDisplacement;
 		double mFactor;

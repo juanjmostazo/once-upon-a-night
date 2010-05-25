@@ -327,6 +327,7 @@ namespace OUAN
 
 		double mChangeWorldTotalTime;
 		double mChangeWorldElapsedTime;
+		bool mRandomChangeWorld;
 		bool mIsChangingWorld;
 		int mWorld;
 		TChangeWorldMaterialParameters mDefaultChangeWorldMaterialParameters;

@@ -489,8 +489,11 @@ bool GameWorldManager::loadConfig()
 		config.getOption("CHANGE_WORLD_TILING", value); 
 		mDefaultChangeWorldMaterialParameters.tiling= atof(value.c_str());
 
-		config.getOption("CHANGE_WORLD_RANDOMIZE", value); 
+		config.getOption("CHANGE_WORLD_TEXTURE_COORDS_RANDOMIZE", value); 
 		mDefaultChangeWorldMaterialParameters.randomize= Ogre::StringConverter::parseBool(value);
+
+		config.getOption("CHANGE_WORLD_TREES_RANDOM", value); 
+		mRandomChangeWorld= Ogre::StringConverter::parseBool(value);
 
 		success = true;
 	} 
@@ -1038,6 +1041,7 @@ void GameWorldManager::setWorld(int newWorld)
 	evt->fast=true;
 	evt->time=mChangeWorldTotalTime;
 	evt->change_world_elapsed_time=mChangeWorldElapsedTime;
+	evt->random_trees=mRandomChangeWorld;
 
 	addEvent(evt);
 }
@@ -1071,6 +1075,7 @@ void GameWorldManager::changeWorld()
 	evt->fast=false;
 	evt->time=mChangeWorldTotalTime;
 	evt->change_world_elapsed_time=mChangeWorldElapsedTime;
+	evt->random_trees=mRandomChangeWorld;
 
 	addEvent(evt);
 }

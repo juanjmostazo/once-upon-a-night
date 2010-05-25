@@ -291,6 +291,16 @@ void RenderComponentEntity::setChangeWorldFactor(double factor)
 	}
 }
 
+void RenderComponentEntity::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
+{
+	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setPointOfInterest(pointOfInterest);
+	}
+}
+
 void RenderComponentEntity::randomizeChangeWorldMaterials()
 {
 	unsigned int i;

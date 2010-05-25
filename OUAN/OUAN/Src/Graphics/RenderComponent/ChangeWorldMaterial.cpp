@@ -7,6 +7,7 @@ ChangeWorldMaterial::ChangeWorldMaterial()
 {
 	mName="";
 	mId="";
+	mPointOfInterest=Vector3::ZERO;
 }
 
 ChangeWorldMaterial::~ChangeWorldMaterial()
@@ -367,12 +368,16 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 			break;
 		case CW_EROSION:
 			pass = technique->getPass(0);
+			//params = pass->getVertexProgramParameters();
+			//params->setNamedConstant("point_of_interest",Vector4(mPointOfInterest.x,mPointOfInterest.y,mPointOfInterest.z,0.0f));
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("scroll_animation",mScrollAnimationCurrent);
 			params->setNamedConstant("scroll_blending",mScrollBlendingCurrent);
 			break;
 		case CW_EROSION_TRANSPARENT:
 			pass = technique->getPass(0);
+			//params = pass->getVertexProgramParameters();
+			//params->setNamedConstant("point_of_interest",Vector4(mPointOfInterest.x,mPointOfInterest.y,mPointOfInterest.z,0.0f));
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("scroll_animation",mScrollAnimationCurrent);
 			params->setNamedConstant("scroll_blending",mScrollBlendingCurrent);
@@ -381,6 +386,12 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 			break;
 		}
 	}
+}
+
+
+void ChangeWorldMaterial::setPointOfInterest(Vector3 pointOfInterest)
+{
+	mPointOfInterest=pointOfInterest;
 }
 
 TPassParameters::TPassParameters()
