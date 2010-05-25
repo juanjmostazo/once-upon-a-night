@@ -51,6 +51,7 @@ namespace OUAN
 		void setOriginalMaterials();
 		void setChangeWorldMaterials();
 		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity);
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
 		void setChangeWorldFactor(double factor);
 		void randomizeChangeWorldMaterials();
 		void setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest);

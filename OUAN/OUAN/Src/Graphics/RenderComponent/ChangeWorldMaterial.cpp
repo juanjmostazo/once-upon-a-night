@@ -44,6 +44,12 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 	baseMaterialName=getChangeWorldTypeName(tChangeWorldMaterialParameters.type);
 	newMaterialName=mId+"#"+baseMaterialName+"#"+diffuseTexture1+"#"+diffuseTexture2;
 
+	if(diffuseTexture1.compare(diffuseTexture2)==0 && tChangeWorldMaterialParameters.type==CW_BLENDING)
+	{
+		tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
+		mType=CW_EROSION_TRANSPARENT;
+	}
+
 	if (Ogre::MaterialManager::getSingleton().resourceExists(newMaterialName))
 	{	
 		//material already exists, no need to create it
@@ -52,7 +58,6 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 	else
 	{
 		//create the material
-		
 		changeworld_material=findMaterial(baseMaterialName);
 		if(!changeworld_material.isNull())
 		{
