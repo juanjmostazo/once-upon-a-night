@@ -1,4 +1,6 @@
 function goalEnterFunction(pOny)
+	playMusic("SUCCESS")
+	playSoundFromGameObject(pOny:getName(),"any_triumph")
 	victory()
 return
 end

@@ -1,0 +1,52 @@
+sound any_dies
+{
+	sound_file 	Any/any_dies.mp3
+	sound_type	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 50 500
+}
+sound any_takes_hit
+{
+	sound_file 	Any/any_takes_hit.mp3
+	sound_type 	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 100 500
+}
+
+sound any_step_grass_00
+{
+	sound_file 	Any/any_step_grass_00.mp3
+	sound_type 	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 100 500
+}
+
+sound any_step_grass_01
+{
+	sound_file 	Any/any_step_grass_01.mp3
+	sound_type 	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 100 500
+}
+
+sound any_triumph
+{
+	sound_file 	Any/any_triumph.mp3
+	sound_type 	sfx
+	3D			false
+	hardware	true
+	stream		false
+	loop		false	
+}

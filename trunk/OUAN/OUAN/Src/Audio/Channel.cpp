@@ -126,6 +126,10 @@ void ChannelGroup::set3DMinMaxDistance(double minDistance,
 		mChannels[i]->set3DMinMaxDistance(minDistance,maxDistance);
 	}
 }
+void ChannelGroup::set3DMinMaxDistance(int channelIndex, double minDistance, double maxDistance)
+{
+	mChannels[channelIndex]->set3DMinMaxDistance(minDistance,maxDistance);
+}
 void ChannelGroup::set3DAttributes(int index,
 								   const Ogre::Vector3& pos,
 								   const Ogre::Vector3& vel)

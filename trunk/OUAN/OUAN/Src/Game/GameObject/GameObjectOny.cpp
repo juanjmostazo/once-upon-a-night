@@ -1,6 +1,7 @@
 #include "GameObjectOny.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -80,6 +81,15 @@ RenderComponentFractalVolumePtr GameObjectOny::getRenderComponentFractalVolume()
 void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+}
+
+AudioComponentPtr GameObjectOny::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+void GameObjectOny::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
 }
 
 PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter() const
@@ -397,6 +407,7 @@ void GameObjectOny::postUpdate()
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
 		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
 	{
+		mAudioComponent->playSound(ONY_SOUND_DIE);
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
 	}
 
@@ -404,6 +415,7 @@ void GameObjectOny::postUpdate()
 		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
 		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
 	{
+		mAudioComponent->playSound(ONY_SOUND_HIT);
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
@@ -435,7 +447,14 @@ void GameObjectOny::postUpdate()
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
 	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-12,0));
 }
-
+AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
+{
+	return mAudioComponent;
+}
+bool GameObjectOny::hasAudioComponent() const
+{
+	return true;
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

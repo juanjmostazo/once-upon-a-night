@@ -5,6 +5,7 @@
 #include "../../Utils/Utils.h"
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -178,6 +179,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
+					mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_HIT01);
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
@@ -186,6 +188,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
+					mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_DIE);
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
@@ -478,6 +481,24 @@ bool GameObjectTripolloDreams::hasDied() const
 	if (mLogicComponentEnemy.get())
 		return mLogicComponentEnemy->hasDied();
 	return false;
+}
+
+AudioComponentPtr GameObjectTripolloDreams::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+void GameObjectTripolloDreams::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
+AudioComponentPtr GameObjectTripolloDreams::getAudioComponentInstance() const
+{
+	return mAudioComponent;
+}
+bool GameObjectTripolloDreams::hasAudioComponent() const
+{
+	return true;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()

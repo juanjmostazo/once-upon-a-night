@@ -33,9 +33,12 @@ void MainMenuState::init(ApplicationPtr app)
 	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 	mGUI->initGUI(shared_from_this());
 
-	mApp->getAudioSubsystem()->load("MUSIC","General");
-	mApp->getAudioSubsystem()->load("CLICK","General");
-	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
+	if (!mApp->getAudioSubsystem()->isLoaded("MUSIC"))
+		mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
+		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
+	if (!mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannel))
+		mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
 
 /// Clean up main menu's resources
@@ -55,12 +58,23 @@ void MainMenuState::cleanUp()
 /// pause state
 void MainMenuState::pause()
 {
+	//mApp->getGUISubsystem()->hideGUI();
+	mGUI->destroy();
+	mApp->getGUISubsystem()->destroyGUI();
 
 }
 /// resume state
 void MainMenuState::resume()
 {
-
+	//mApp->getGUISubsystem()->showGUI();
+	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
+	mGUI->initGUI(shared_from_this());
+	if (!mApp->getAudioSubsystem()->isLoaded("MUSIC"))
+		mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
+		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
+	if (!mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannel))
+		mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
 
 /// process input events
@@ -82,21 +96,23 @@ void MainMenuState::gotoPlay()
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	//TODO: Change to ProfileSelectState when it's implemented
 	GameStatePtr nextState(new GameRunningState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);
+	mApp->getGameStateManager()->changeState(nextState,mApp);	
 }
 
 void MainMenuState::gotoOptions()
 {
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	GameStatePtr nextState(new GameOptionsState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);
+	//mApp->getGameStateManager()->changeState(nextState,mApp);
+	mApp->getGameStateManager()->pushState(nextState,mApp);
 }
 
 void MainMenuState::gotoExtras()
 {
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	GameStatePtr nextState(new ExtrasState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);
+	//mApp->getGameStateManager()->changeState(nextState,mApp);
+	mApp->getGameStateManager()->pushState(nextState,mApp);
 }
 
 void MainMenuState::quit()

@@ -6,6 +6,7 @@
 #include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
 #include "../../Graphics/CameraManager/CameraManager.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -399,6 +400,21 @@ void GameObject::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 void GameObject::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
 {
 	mChangeWorldDelay=0.0f;
+}
+void GameObject::playSound(const std::string& soundID)
+{
+	if (hasAudioComponent() && getAudioComponentInstance().get())
+	{
+		getAudioComponentInstance()->playSound(soundID);
+	}
+}
+bool GameObject::hasAudioComponent() const
+{
+	return false;
+}
+AudioComponentPtr GameObject::getAudioComponentInstance() const
+{
+	return AudioComponentPtr();
 }
 
 //-------------------------------------------------------

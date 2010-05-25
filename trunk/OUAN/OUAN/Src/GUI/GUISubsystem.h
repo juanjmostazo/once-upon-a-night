@@ -62,6 +62,11 @@ namespace OUAN
 		/// Destroys current GUI
 		void destroyGUI();
 
+		/// Hide GUI
+		void hideGUI();
+		/// Show GUI
+		void showGUI();
+
 		/// [TODO]Create GUI using a custom-built GUI creator object
 		/// @param	guiCreator GUI creator object
 		// void createGUI (const GUICreator* guiCreator);

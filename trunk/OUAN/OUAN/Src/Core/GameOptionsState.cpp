@@ -32,8 +32,8 @@ void GameOptionsState::init(ApplicationPtr app)
 	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
 	mGUI->initGUI(shared_from_this());
 
-	mApp->getAudioSubsystem()->load("MUSIC","General");
-	mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
+	//mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+	//mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
 
 /// Clean up main menu's resources
@@ -42,9 +42,9 @@ void GameOptionsState::cleanUp()
 	//mApp->getGUISubsystem()->unbindAllEvents();
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
-	if (mMusicChannel!=-1)
-		mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
-	mApp->getAudioSubsystem()->unload("MUSIC");
+	//if (mMusicChannel!=-1)
+	//	mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
+	//mApp->getAudioSubsystem()->unload("MUSIC");
 }
 
 /// pause state
@@ -72,8 +72,9 @@ void GameOptionsState::update(long elapsedTime)
 
 void GameOptionsState::backToMenu()
 {
-	GameStatePtr nextState(new MainMenuState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);
+	mApp->getGameStateManager()->popState();
+	//GameStatePtr nextState(new MainMenuState());
+	//mApp->getGameStateManager()->changeState(nextState,mApp);
 }
 bool GameOptionsState::keyPressed( const OIS::KeyEvent& e )
 {

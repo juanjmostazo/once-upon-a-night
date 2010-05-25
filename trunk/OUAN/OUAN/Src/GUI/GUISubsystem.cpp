@@ -136,6 +136,14 @@ void GUISubsystem::destroyGUI()
 	CEGUI::System::getSingleton().getGUISheet()->destroy();
 	CEGUI::System::getSingleton().setGUISheet(NULL);
 }
+void GUISubsystem::hideGUI()
+{
+	CEGUI::System::getSingleton().getGUISheet()->hide();
+}
+void GUISubsystem::showGUI()
+{
+	CEGUI::System::getSingleton().getGUISheet()->show();
+}
 
 void GUISubsystem::bindEvent(const CEGUI::String& eventName, const std::string& windowName,CEGUI::Event::Subscriber subscriber)
 {

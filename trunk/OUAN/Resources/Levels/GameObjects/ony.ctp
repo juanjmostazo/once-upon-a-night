@@ -108,4 +108,11 @@
   <!--<PROPERTY id="animation1::name" type="7" value="idle03" ></PROPERTY>
   <PROPERTY id="animation1::loop" type="12" value="true" ></PROPERTY>-->
   
+  <!-- Audio component -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="any_takes_hit"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="any_dies"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#2" type="7" value="any_step_grass_00"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#3" type="7" value="any_step_grass_01"></PROPERTY>  
+  <PROPERTY id="AudioComponent::soundID#4" type="7" value="any_triumph"></PROPERTY>   
+  
 </CUSTOMPROPERTIES>

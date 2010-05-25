@@ -30,6 +30,9 @@ namespace OUAN
 	const std::string TRIPOLLO_ANIM_DIE="die";
 	const std::string TRIPOLLO_ANIM_HIT01="hit01";
 
+	const std::string TRIPOLLO_SOUND_HIT="tripollo_is_hit";
+	const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
+
 	/// Class modelling a particular enemy type
 	class GameObjectTripolloDreams : public GameObject, public boost::enable_shared_from_this<GameObjectTripolloDreams>
 	{
@@ -46,6 +49,8 @@ namespace OUAN
 		TrajectoryComponentPtr mTrajectoryComponent;
 
 		AttackComponentPtr mAttackComponent;
+
+		AudioComponentPtr mAudioComponent;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -106,6 +111,10 @@ namespace OUAN
 		void setAttackComponent(AttackComponentPtr attackComponent);
 		std::string getDefaultAttack();
 
+		/// Return audio component
+		AudioComponentPtr getAudioComponent() const; //GETTER!
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 		/// Update object
 		virtual void update(double elapsedSeconds);
 		
@@ -149,6 +158,9 @@ namespace OUAN
 		bool hasBeenHit() const;
 		bool hasDied() const;
 
+		bool hasAudioComponent()const;
+		AudioComponentPtr getAudioComponentInstance() const; //INHERITED!!
+
 	};
 	
 	/// Information data structure to carry around data between the
@@ -176,6 +188,8 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
+
+		TAudioComponentMap tAudioComponentParameters;
 	};
 
 }

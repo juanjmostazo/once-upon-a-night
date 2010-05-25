@@ -83,6 +83,11 @@ namespace OUAN
 	const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
 	const std::string ONY_ANIM_SHOOT_DOWN="shoot_down";
 
+	const std::string ONY_SOUND_DIE="any_dies";
+	const std::string ONY_SOUND_HIT="any_takes_hit";
+	const std::string ONY_SOUND_STEP_GRASS_00="any_step_grass_00";
+	const std::string ONY_SOUND_STEP_GRASS_01="any_step_grass_01";
+
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
@@ -105,6 +110,9 @@ namespace OUAN
 		LogicComponentOnyPtr mLogicComponentOny;
 		/// Weapon wielding component
 		WeaponComponentPtr mWeaponComponent;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
+
 		//TODO: move to LogicComponentOny
 		std::string mDreamsWeapon;
 		std::string mNightmaresWeapon;
@@ -181,6 +189,9 @@ namespace OUAN
 		/// return logic component
 		LogicComponentOnyPtr getLogicComponentOny();
 
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 		/// Update object
 		virtual void update(double elapsedSeconds);
 
@@ -237,6 +248,9 @@ namespace OUAN
 		void processAnimationEnded(const std::string& animationName);
 
 		void postUpdate();
+
+		AudioComponentPtr getAudioComponentInstance() const;
+		bool hasAudioComponent() const;
 	};
 
 	/// Carries data between the level loader and the object factories
@@ -268,6 +282,9 @@ namespace OUAN
 		
 		///Weapon parameters
 		TWeaponComponentParameters tWeaponComponentParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
 	};
 
 }

@@ -17,6 +17,8 @@ namespace Ogre
 namespace OUAN
 {
 
+	const std::string AUDIO_RESOURCES_GROUP_NAME="Sounds";
+
 	//Channel groups names
 	const std::string SM_CHANNEL_MASTER_GROUP		=	"MasterGroup";
 	const std::string SM_CHANNEL_MUSIC_GROUP		=	"MusicGroup";

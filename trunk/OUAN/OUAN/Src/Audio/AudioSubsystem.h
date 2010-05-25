@@ -89,6 +89,7 @@ namespace OUAN
 		void setFrameSkip(int frameSkip);
 
 		virtual SoundPtr load(const Ogre::String &name, const Ogre::String &group);
+		bool isLoaded(const Ogre::String& soundName);
 		
 		void parseScript(Ogre::DataStreamPtr& stream, const Ogre::String& groupName);
 

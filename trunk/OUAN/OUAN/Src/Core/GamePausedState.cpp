@@ -48,9 +48,9 @@ void GamePausedState::handleEvents()
 {
 	if (mApp && mApp->isPressedPause() && mApp->mKeyBuffer<0)
 	{
-		mApp->getGameStateManager()->popState();
 		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
-		mApp->mKeyBuffer=500000; //0.5s
+		//mApp->mKeyBuffer=500000; //0.5s
+		mApp->getGameStateManager()->popState();
 	}
 }
 

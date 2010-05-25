@@ -55,6 +55,7 @@ namespace OUAN
 		virtual void setChannel(int index, FMOD::Channel* channel);
 		virtual void release();
 		virtual void set3DMinMaxDistance(double minDistance, double maxDistance);
+		virtual void set3DMinMaxDistance(int channelIndex, double minDistance, double maxDistance);
 		virtual void set3DAttributes(int channelIndex, const Ogre::Vector3& position, 
 			const Ogre::Vector3& vel = Ogre::Vector3::ZERO);
 		virtual bool setVolume(double volume);
