@@ -55,29 +55,29 @@ void GameObjectBillboardSet::changeWorldFinished(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+			mRenderComponentBillboardSet->setVisible(true);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+			mRenderComponentBillboardSet->setVisible(true);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(false);
+			mRenderComponentBillboardSet->setVisible(false);
 		}		
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+			mRenderComponentBillboardSet->setVisible(true);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(false);
+			mRenderComponentBillboardSet->setVisible(false);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentBillboardSet->getBillboardSet()->setVisible(true);
+			mRenderComponentBillboardSet->setVisible(true);
 		}	
 		break;
 	default:break;
