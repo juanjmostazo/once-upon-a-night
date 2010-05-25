@@ -114,7 +114,12 @@ void RenderComponentBillboardSet::randomizeChangeWorldMaterials()
 
 void RenderComponentBillboardSet::update(double elapsedTime)
 {
-	mChangeWorldMaterial->update(elapsedTime);
+	//mChangeWorldMaterial->update(elapsedTime);
+}
+
+void RenderComponentBillboardSet::setVisible(bool visible)
+{
+	mBillboardSet->setVisible(visible);
 }
 
 

@@ -20,6 +20,8 @@ namespace OUAN
 		Ogre::BillboardSet * getBillboardSet() const;
 		void setBillboardSet(Ogre::BillboardSet *);
 
+		void setVisible(bool visible);
+
 		void setMaterial(std::string material);
 		void setOriginalMaterials();
 		void setChangeWorldMaterials();
