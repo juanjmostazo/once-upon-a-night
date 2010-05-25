@@ -217,34 +217,35 @@ bool GameObjectTree::hasRenderComponentEntity() const
 
 void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 {
-	mChangeWorldTotalTime=changeWorldTotalTime*(1.0f/3.0f);
+	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
 }
 
 void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
 {
-	double fraction;
+	double fraction,intersection;
 
-	fraction=1.0f/3.0f;
+	fraction=0.25f;
+	intersection=0.25f;
 	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=fraction*totalTime+fraction*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*random+(2*fraction-intersection)*totalTime;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=fraction*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*random;
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=fraction*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*random;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=fraction*totalTime+fraction*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*random+(2*fraction-intersection)*totalTime;
 		}
 		break;
 	default:

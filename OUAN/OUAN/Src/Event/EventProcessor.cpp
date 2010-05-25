@@ -158,6 +158,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 
 		if(evt->fast)
 		{
+			mWorldManager->activateChangeWorldFast();
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
 				it->second->activateChangeWorldFast();
@@ -166,6 +167,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		}
 		else
 		{
+			mWorldManager->activateChangeWorld();
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
 				if(it->second->isChangingWorld())

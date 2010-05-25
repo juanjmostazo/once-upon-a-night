@@ -52,6 +52,7 @@ bool GameObject::isFirstUpdate()
 void GameObject::activateChangeWorldFast()
 {
 	changeWorldFinished(mGameWorldManager->getWorld());
+	mIsChangingWorld=false;
 }
 
 void GameObject::activateChangeWorld()

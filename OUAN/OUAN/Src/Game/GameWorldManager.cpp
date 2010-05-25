@@ -1034,8 +1034,6 @@ void GameWorldManager::setWorld(int newWorld)
 {
 	mWorld=newWorld;
 
-	activateChangeWorldFast();
-
 	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
 	evt->fast=true;
 	evt->time=mChangeWorldTotalTime;
@@ -1057,18 +1055,18 @@ int GameWorldManager::getWorld()
 
 void GameWorldManager::changeWorld()
 {	
+	int newWorld;
+
 	if (mWorld==DREAMS)
 	{
-		mWorld=NIGHTMARES;
+		newWorld=NIGHTMARES;
 	}
 	else if (mWorld==NIGHTMARES)
 	{
-		mWorld=DREAMS;
+		newWorld=DREAMS;
 	}
 
-	activateChangeWorld();
-
-	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(mWorld));
+	ChangeWorldEventPtr evt = ChangeWorldEventPtr(new ChangeWorldEvent(newWorld));
 
 	evt->fast=false;
 	evt->time=mChangeWorldTotalTime;
@@ -1090,6 +1088,15 @@ void GameWorldManager::activateChangeWorldFast()
 
 void GameWorldManager::activateChangeWorld()
 {
+	if (mWorld==DREAMS)
+	{
+		mWorld=NIGHTMARES;
+	}
+	else if (mWorld==NIGHTMARES)
+	{
+		mWorld=DREAMS;
+	}
+
 	if(!mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime=0;
