@@ -14,29 +14,16 @@ float2 scrollUV(in float2 uv,in float2 scroll)
     return uv;
 }
 
-float2 rotateUV(in float2 uv,in float angle)
-{
-    uv.x=uv.x*cos(angle)+uv.y*sin(angle);
-    uv.y=uv.y*cos(angle)+uv.x*sin(angle); 
-    return uv;
-}
-
 float2 calculateUV(in float2 uv,in float3 scroll_animation)
 {
     uv = scrollUV(uv,float2(scroll_animation.x,scroll_animation.y));
-    uv = rotateUV(uv,scroll_animation.z);
-    
     return uv;
 }
 
 float2 calculateBlendingTextureUV(in float2 uv, in float3 displacement, in float3 scroll_blending,in float tiling)
-{   
-    float angle=displacement.x;
-                
+{                  
     uv = scrollUV(uv,float2(scroll_blending.x+displacement.x,scroll_blending.y+displacement.y));  
-    uv = rotateUV(uv,scroll_blending.z+displacement.z);
     uv = uv*tiling;    
-        
     return uv;
 }
 
@@ -53,9 +40,7 @@ void erosionVS
     uniform float4x4 worldViewProj
 )
 {
-
     pos = mul(worldViewProj, inPos);
-
     UV0 = inUV0;
 }
 

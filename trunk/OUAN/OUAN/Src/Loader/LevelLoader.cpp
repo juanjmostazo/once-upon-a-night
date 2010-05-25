@@ -264,7 +264,7 @@ void LevelLoader::processGameObjectBillboardClouds()
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
 
-		//tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(NULL);
+		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(NULL);
 
 		///////////////////////
 
@@ -1092,6 +1092,10 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectBushParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectBushParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
 
 	}
 	catch( std::string error )

@@ -51,17 +51,14 @@ void RenderComponentBillboardSet::setOriginalMaterials()
 
 void RenderComponentBillboardSet::setChangeWorldMaterials()
 {
-	//if(!mChangeWorldMaterial.isNull())
-	//{
-		if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterial->getMaterialName()))
-		{
-			mBillboardSet->setMaterialName(mChangeWorldMaterial->getMaterialName());
-		}
-		else
-		{
-			Ogre::LogManager::getSingleton().logMessage("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
-		}
-	//}
+	if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterial->getMaterialName()))
+	{
+		mBillboardSet->setMaterialName(mChangeWorldMaterial->getMaterialName());
+	}
+	else
+	{
+		Ogre::LogManager::getSingleton().logMessage("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
+	}
 }
 
 void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
@@ -75,7 +72,6 @@ void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialP
 	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
 	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,
-		mBillboardSet->getMaterial(),
 		mBillboardSet->getMaterial());
 
 	if(materialCreated)
@@ -83,10 +79,10 @@ void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialP
 		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
 		mChangeWorldMaterial=pChangeWorldMaterial;
 	}
-	//else
-	//{
-	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//}
+	else
+	{
+		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
+	}
 
 
 	//for ( ; i < mEntity->getNumSubEntities(); i++)
@@ -114,7 +110,7 @@ void RenderComponentBillboardSet::randomizeChangeWorldMaterials()
 
 void RenderComponentBillboardSet::update(double elapsedTime)
 {
-	//mChangeWorldMaterial->update(elapsedTime);
+	mChangeWorldMaterial->update(elapsedTime);
 }
 
 void RenderComponentBillboardSet::setVisible(bool visible)

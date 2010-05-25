@@ -43,6 +43,7 @@ namespace OUAN
 		void setChangeWorldFactor(double factor);
 
 		bool init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2);
+		bool init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1);
 
 		std::string getMaterialName();
 		void randomize();
