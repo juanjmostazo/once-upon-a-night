@@ -1,0 +1,15 @@
+material flowers_d_billboard
+{
+	technique
+	{
+		pass
+		{
+		      scene_blend alpha_blend
+		      depth_write off
+			texture_unit
+			{
+				texture flowers_d.dds
+			}
+		}
+	}
+}
