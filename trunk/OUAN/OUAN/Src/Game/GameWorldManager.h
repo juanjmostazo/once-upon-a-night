@@ -239,6 +239,9 @@ namespace OUAN
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
 		void addGameObjectWater(GameObjectWaterPtr pGameObjectWater);
 
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
 	private:		
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
@@ -318,8 +321,7 @@ namespace OUAN
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
-		void activateChangeWorld();
-		void activateChangeWorldFast();
+
 
 		double mChangeWorldTotalTime;
 		double mChangeWorldElapsedTime;
