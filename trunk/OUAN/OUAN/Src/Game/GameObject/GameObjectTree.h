@@ -13,7 +13,8 @@ namespace OUAN
 	//Animation names
 	const std::string TREE_ANIM_UP="up";
 	const std::string TREE_ANIM_DOWN="down";
-	const std::string TREE_ANIM_IDLE="idle";
+	const std::string TREE_ANIM_IDLE_UP="idle01";
+	const std::string TREE_ANIM_IDLE_DOWN="idle02";
 
 	/// Class to hold GameObjectTree information
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
@@ -77,7 +78,7 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
-		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random);
+		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
 		/// Reset object
 		virtual void reset();

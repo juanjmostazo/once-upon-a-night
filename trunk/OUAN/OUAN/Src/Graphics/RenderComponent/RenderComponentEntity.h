@@ -53,6 +53,7 @@ namespace OUAN
 		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity);
 		void setChangeWorldFactor(double factor);
 		void randomizeChangeWorldMaterials();
+		void setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest);
 
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{

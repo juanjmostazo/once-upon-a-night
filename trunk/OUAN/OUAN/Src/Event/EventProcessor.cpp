@@ -167,6 +167,9 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 		}
 		else
 		{
+			double max_distance=-1;
+			double current_distance;
+			std::vector<double> distances;
 			mWorldManager->activateChangeWorld();
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
@@ -176,7 +179,37 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 				}
 				else
 				{
-					it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Utils::Random::getInstance()->getRandomDouble());
+					if(evt->random_trees)
+					{
+						it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Utils::Random::getInstance()->getRandomDouble(),0.25f);
+					}
+					else
+					{
+						current_distance=mWorldManager->getPlayerDistance(it->second->getName());
+						if(current_distance>max_distance)
+						{
+							max_distance=current_distance;
+						}
+						distances.push_back(current_distance);
+						//Ogre::LogManager::getSingletonPtr()->logMessage("getPlayerDistance "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(current_distance)));
+					}
+				}
+			}
+			//BUG WHEN TRIPOLLO FALLS
+			//Ogre::LogManager::getSingletonPtr()->logMessage("MAX DISTANCE "+Ogre::StringConverter::toString(Ogre::Real(max_distance)));
+
+			if(!evt->random_trees)
+			{
+				int k=0;
+				for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
+				{
+					if(!it->second->isChangingWorld())
+					{
+						it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Ogre::Math::Clamp<double>(distances[k]/1000.0f,0.0f,1.0f),0.5f);
+						//Ogre::LogManager::getSingletonPtr()->logMessage("calculateChangeWorldDelay "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(distances[k]/max_distance)));
+
+						k++;
+					}
 				}
 			}
 		}

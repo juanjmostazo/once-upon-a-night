@@ -5,7 +5,9 @@
   <!-- Animations -->
     <PROPERTY id="animation0::name" type="7" value="down" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="animation0::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="animation1::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="animation1::name" type="7" value="idle01" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="animation1::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="animation1::name" type="7" value="idle02" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="animation1::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="animation2::name" type="7" value="up" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="animation2::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>

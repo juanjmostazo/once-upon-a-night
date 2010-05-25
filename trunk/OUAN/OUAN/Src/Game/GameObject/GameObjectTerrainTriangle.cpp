@@ -1,5 +1,7 @@
 #include "GameObjectTerrainTriangle.h"
 #include "../GameWorldManager.h"
+#include "GameObjectOny.h"
+#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -213,6 +215,9 @@ void GameObjectTerrainTriangle::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 	mRenderComponentEntityDreams->update(elapsedSeconds);
 	mRenderComponentEntityNightmares->update(elapsedSeconds);
+
+	//mRenderComponentEntityDreams->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
+	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
 
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()

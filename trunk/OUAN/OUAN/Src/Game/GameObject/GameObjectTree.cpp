@@ -58,8 +58,6 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE);
-
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -70,6 +68,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
@@ -78,6 +77,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}		
 			break;
 		case NIGHTMARES:
@@ -88,6 +88,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}
 			else
 			{
@@ -96,6 +97,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			break;
 		default:
@@ -138,7 +140,7 @@ void GameObjectTree::changeToWorld(int newWorld, double perc)
 void GameObjectTree::reset()
 {
 	GameObject::reset();
-	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE);
+	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 }
 
 bool GameObjectTree::hasPositionalComponent() const
@@ -220,32 +222,30 @@ void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
 }
 
-void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random)
+void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
 {
-	double fraction,intersection;
+	double fraction=0.25f;
 
-	fraction=0.25f;
-	intersection=0.25f;
 	switch(newWorld)
 	{
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*random+(2*fraction-intersection)*totalTime;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams())
 		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*random;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
 		}
 		else if(mLogicComponent->existsInNightmares())
 		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*random+(2*fraction-intersection)*totalTime;
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
 		}
 		break;
 	default:

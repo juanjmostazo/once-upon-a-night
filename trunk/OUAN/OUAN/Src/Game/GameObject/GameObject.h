@@ -181,7 +181,7 @@ namespace OUAN
 		double getChangeWorldTotalTime() const;
 
 		virtual void calculateChangeWorldTotalTime(double changeWorldTotalTime);
-		virtual void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double random);
+		virtual void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
 		int getWorld();
 		void setWorld(int world);
