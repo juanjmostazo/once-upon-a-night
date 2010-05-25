@@ -77,7 +77,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}		
 			break;
 		case NIGHTMARES:
@@ -88,7 +88,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{

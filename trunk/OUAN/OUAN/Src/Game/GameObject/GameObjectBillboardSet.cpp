@@ -48,6 +48,8 @@ void GameObjectBillboardSet::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	//mRenderComponentBillboardSet->setOriginalMaterials();
+
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -86,6 +88,8 @@ void GameObjectBillboardSet::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	//mRenderComponentBillboardSet->setChangeWorldMaterials();
+
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -100,6 +104,8 @@ void GameObjectBillboardSet::changeWorldStarted(int newWorld)
 void GameObjectBillboardSet::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
+
+	//mRenderComponentBillboardSet->setChangeWorldFactor(perc);
 
 	switch(newWorld)
 	{

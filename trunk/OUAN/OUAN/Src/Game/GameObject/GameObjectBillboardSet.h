@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
+#include "../../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
 namespace OUAN
@@ -103,6 +104,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
+
+		//ChangeWorld parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

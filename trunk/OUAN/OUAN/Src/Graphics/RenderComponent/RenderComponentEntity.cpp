@@ -240,6 +240,13 @@ void RenderComponentEntity::setChangeWorldMaterials()
 	}
 }
 
+void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
+{
+	RenderComponentEntityPtr pRenderComponentEntity;
+	pRenderComponentEntity.reset(this);
+	initChangeWorldMaterials(tChangeWorldMaterialParameters,pRenderComponentEntity);
+}
+
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)
 {
 	unsigned int i;
