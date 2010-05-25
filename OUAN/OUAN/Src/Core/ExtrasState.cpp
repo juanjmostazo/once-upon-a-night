@@ -62,6 +62,7 @@ void ExtrasState::update(long elapsedTime)
 }
 void ExtrasState::backToMenu()
 {
-	GameStatePtr nextState(new MainMenuState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);
+	/*GameStatePtr nextState(new MainMenuState());
+	mApp->getGameStateManager()->changeState(nextState,mApp);*/
+	mApp->getGameStateManager()->popState();
 }

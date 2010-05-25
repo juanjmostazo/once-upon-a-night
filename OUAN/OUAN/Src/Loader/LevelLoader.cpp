@@ -1785,6 +1785,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentCharacter
 		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+		//Get AudioComponent
+		tGameObjectOnyParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -2628,6 +2631,8 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectTripolloDreamsParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectTripolloDreamsParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -4123,10 +4128,10 @@ TAudioComponentMap LevelLoader::processAudioComponent(TiXmlElement* XMLNode)
 	std::string soundId;
 	while(true)
 	{
-		soundId=getPropertyString(XMLNode,"soundID"+StringConverter::toString(i),
+		soundId=getPropertyString(XMLNode,"AudioComponent::soundID#"+StringConverter::toString(i),
 			false);		
 		if (soundId.compare("")==0) break;
-
+	
 		Ogre::LogManager::getSingleton().logMessage("Adding soundID: "+soundId);
 
 		audioComponentSounds[soundId]=-1;//No channel assigned yet (Careful on how FMOD processes access attempts with negative channels)

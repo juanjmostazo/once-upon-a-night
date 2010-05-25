@@ -10,3 +10,10 @@ function getStateName(state,stateNames)
 	end
 	return retVal
 end
+
+function wait(seconds)
+	local _start = os.time()
+	local _end = _start+seconds
+	while (_end ~= os.time()) do
+	end
+end

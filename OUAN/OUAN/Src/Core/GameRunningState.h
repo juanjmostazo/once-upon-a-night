@@ -45,8 +45,9 @@ namespace OUAN
 		void processChangeWorld(ChangeWorldEventPtr evt);
 		void pauseMusic();
 		void unpauseMusic();
+		//void playMusic(const std::string& musicID);
 
-		std::map<int,TMusicTrackInfo> mMusicChannels;
+		std::map<int,TMusicTrackInfo> mMusicChannels;		
 
 		//Changeworld functions and variables
 		void changeToWorld(int newWorld, double perc);
@@ -63,7 +64,10 @@ namespace OUAN
 		void initMusicFading(int newWorld);
 		void advanceMusicFading(int newWorld,double percentage);
 		void endMusicFading(int newWorld);
+		
+		static GameRunningState* mInst;
 
+		bool mayProceedToGameOver();
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
@@ -86,6 +90,9 @@ namespace OUAN
 		/// Renders game's visuals to the screen
 		/// @param app the parent app
 		bool render();
+
+		static void playMusic(const std::string& musicID);
+		static void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
 	
 		/// Default constructor
 		GameRunningState();

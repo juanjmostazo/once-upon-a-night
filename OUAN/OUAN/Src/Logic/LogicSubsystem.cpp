@@ -11,6 +11,7 @@
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectPortal.h"
+#include "../Core/GameRunningState.h"
 #include "LogicComponent/LogicComponent.h"
 #include "LogicComponent/LogicComponentOny.h"
 #include "LogicComponent/LogicComponentItem.h"
@@ -58,6 +59,8 @@ void LogicSubsystem::registerModules()
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getWorld",&GameWorldManager::getMyInstanceWorld),
 		def("victory",&GameWorldManager::victory),
+		def("playMusic",&GameRunningState::playMusic),
+		def("playSoundFromGameObject",&GameRunningState::playSoundFromGameObject),
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())
 			.def("getName",&LogicComponent::getParentName),

@@ -9,6 +9,10 @@ namespace OUAN
 {
 	class ObjectTextDisplay;
 	const double DEFAULT_DISPLAY_LIFETIME=2.0;
+
+	class AudioComponent;
+	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
+
 	class GameObject
 	{
 	private:
@@ -181,6 +185,10 @@ namespace OUAN
 
 		int getWorld();
 		void setWorld(int world);
+
+		virtual bool hasAudioComponent() const;
+		virtual AudioComponentPtr getAudioComponentInstance() const;
+		virtual void playSound(const std::string& soundID);
 	};
 
 	class TGameObjectParameters

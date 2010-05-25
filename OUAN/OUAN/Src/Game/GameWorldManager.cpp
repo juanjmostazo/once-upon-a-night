@@ -1354,3 +1354,15 @@ TChangeWorldMaterialParameters GameWorldManager::getDefaultChangeWorldMaterialPa
 {
 	return mDefaultChangeWorldMaterialParameters;
 }
+
+void GameWorldManager::playSoundFromGameObject(const std::string& objectName, const std::string& soundID)
+{
+	GameObjectPtr go;
+	if (mGameObjects.find(objectName)!=mGameObjects.end())
+	{
+		if ((go=mGameObjects[objectName]).get())
+		{
+			go->playSound(soundID);
+		}
+	}
+}

@@ -12,11 +12,21 @@ sound DREAMS00
 }
 sound NIGHTMARES00
 {
-	sound_file 	nightmares00.mp3
+	sound_file 	nightmares00b.mp3
 	sound_type	music
 	3D			false
 	hardware	true
 	stream		true
 // This will probably be changed to false if at some time we implement a track list	
 	loop		true
+}
+
+sound SUCCESS
+{
+	sound_file 	win.wav
+	sound_type	music
+	3D			false
+	hardware	true
+	stream		true
+	loop		false
 }

@@ -73,4 +73,9 @@ void AudioComponent::setPauseSound(const std::string& soundID,bool pause)
 void AudioComponent::setSounds(const TAudioComponentMap& sounds)
 {
 	mSounds=sounds;
+	for (TAudioComponentMap::const_iterator it=mSounds.begin();it!=mSounds.end();++it)
+	{
+		if (!mAudioSS->isLoaded(it->first))
+			mAudioSS->load(it->first,AUDIO_RESOURCES_GROUP_NAME);
+	}	
 }

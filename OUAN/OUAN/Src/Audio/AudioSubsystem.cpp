@@ -332,6 +332,7 @@ bool AudioSubsystem::play3DSound(const std::string& id,
 		{
 			std::string cgid = soundPtr->mSoundData.mChannelGroupID;
 
+			mChannelGroupMap[cgid]->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
 			mChannelGroupMap[cgid]->set3DAttributes( cIndex,pos,vel );
 			mChannelGroupMap[cgid]->play( cIndex);		
 			soundPtr.setNull();
@@ -827,16 +828,21 @@ bool AudioSubsystem::destroySoundImplementation(FMOD::Sound*& FMODSound)
 }
 //------------------------------
 // Resource manager methods
-//------------------------------
+//------------------------------	
 SoundPtr AudioSubsystem::load(const Ogre::String &name, const Ogre::String &group)
 {
-	SoundPtr textf = getByName(name);
+	SoundPtr snd = getByName(name);
 
-	if (textf.isNull())
-		textf = create(name, group);
+	if (snd.isNull())
+		snd= create(name, group);
 
-	textf->load();
-	return textf;
+	snd->load();
+	return snd;
+}
+bool AudioSubsystem::isLoaded(const Ogre::String& soundName)
+{
+	SoundPtr snd = getByName(soundName);
+	return (!snd.isNull() && snd->isLoaded());
 }
 Ogre::Resource* AudioSubsystem::createImpl(const Ogre::String &name, Ogre::ResourceHandle handle, 
 											const Ogre::String &group, bool isManual, Ogre::ManualResourceLoader *loader, 

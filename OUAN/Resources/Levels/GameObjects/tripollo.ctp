@@ -78,4 +78,8 @@
   <PROPERTY id="animation9n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>  
   <PROPERTY id="animation10n::name" type="7" value="walk02" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation10n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>  
+  
+  <!-- Sounds -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="tripollo_is_hit"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="tripollo_dies"></PROPERTY>
 </CUSTOMPROPERTIES>

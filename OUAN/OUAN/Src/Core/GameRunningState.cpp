@@ -26,11 +26,14 @@
 
 using namespace OUAN;
 
+GameRunningState* GameRunningState::mInst=NULL;
+
 /// Default constructor
 GameRunningState::GameRunningState()
 :GameState()
 ,mIsChangingWorld(false)
 {
+	mInst=this;
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
 }
@@ -116,6 +119,8 @@ void GameRunningState::cleanUp()
 	{
 		mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
 	}
+	//Unload all sounds: the ones in-game and the interface ones, as well as the music
+	mApp->getAudioSubsystem()->unloadAll();
 }
 
 /// pause state
@@ -352,73 +357,94 @@ void GameRunningState::checkDebuggingKeys()
 
 void GameRunningState::update(long elapsedTime)
 {
-	double elapsedSeconds=(double)elapsedTime * 0.000001f;
 
-	if(mIsChangingWorld)
-	{
-		mChangeWorldElapsedTime+=elapsedSeconds;
-		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
-		{
-			changeToWorld(mWorld,1);
-			changeWorldFinished(mWorld);
-			mIsChangingWorld=false;
-		}
-		else
-		{
-			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
-		}
-	}
-
-	//std::stringstream out;
-	//out << elapsedSeconds;
-	//std::string elapsedTimeDebug = out.str();
-	//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
-
-	//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
-
-	//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
-	mApp->getCameraManager()->update(elapsedSeconds);
-
-	mApp->getGameWorldManager()->update(elapsedSeconds);	
-
-	mApp->getPhysicsSubsystem()->update(elapsedSeconds);
-
-	mApp->getLogicSubsystem()->update(elapsedSeconds);
-
-	mApp->getGameWorldManager()->postUpdate();
-
-
-	//Ogre::LogManager::getSingleton().logMessage("Other stuff");
-	mApp->mKeyBuffer-=elapsedTime;
-
-	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->isGameOver())
+	if (mayProceedToGameOver())
 	{
 		mApp->getRenderSubsystem()->captureScene(SAVED_RTT_FILENAME);
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
 	}
-
-	if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
+	else
 	{
-		LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
-		mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives());
-		if (mHUD->isSelectedModeChanged())
+		double elapsedSeconds=(double)elapsedTime * 0.000001f;
+		if (!mApp->getGameWorldManager()->isGameOver())
 		{
-			TWeaponMode newWeaponMode = convertRouletteValue(mHUD->getCurrentState());
-			mHUD->setSelectedModeChanged(false);
-			WeaponModeChangedEventPtr evt(new WeaponModeChangedEvent(newWeaponMode));
-			mApp->getGameWorldManager()->addEvent(evt);
-		}
-	}
-	mGUI->update(elapsedSeconds);
 
-	if (mAudioFrameSkip==0 || mAudioFrameCnt==0)
-	{
-		mApp->getAudioSubsystem()->update(elapsedSeconds);
+			if(mIsChangingWorld)
+			{
+				mChangeWorldElapsedTime+=elapsedSeconds;
+				if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+				{
+					changeToWorld(mWorld,1);
+					changeWorldFinished(mWorld);
+					mIsChangingWorld=false;
+				}
+				else
+				{
+					changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+				}
+			}
+
+			//std::stringstream out;
+			//out << elapsedSeconds;
+			//std::string elapsedTimeDebug = out.str();
+			//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
+			//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
+
+			//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
+
+			//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
+
+		}
+
+		mApp->getCameraManager()->update(elapsedSeconds);
+
+		if (!mApp->getGameWorldManager()->isGameOver())
+		{
+			mApp->getGameWorldManager()->update(elapsedSeconds);	
+
+			mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+
+			mApp->getLogicSubsystem()->update(elapsedSeconds);
+
+			mApp->getGameWorldManager()->postUpdate();
+
+
+			//Ogre::LogManager::getSingleton().logMessage("Other stuff");
+			mApp->mKeyBuffer-=elapsedTime;
+
+			if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
+			{
+				LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
+				mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+				if (mHUD->isSelectedModeChanged())
+				{
+					TWeaponMode newWeaponMode = convertRouletteValue(mHUD->getCurrentState());
+					mHUD->setSelectedModeChanged(false);
+					WeaponModeChangedEventPtr evt(new WeaponModeChangedEvent(newWeaponMode));
+					mApp->getGameWorldManager()->addEvent(evt);
+				}
+			}
+			
+			// Update 3D sound listener's position
+			Ogre::Camera* activeCam = mApp->getCameraManager()->getActiveCamera();
+			if (activeCam)
+			{
+				mApp->getAudioSubsystem()->set3DAttributes(activeCam->getPosition(),Ogre::Vector3::ZERO,
+					activeCam->getOrientation()*Ogre::Vector3::UNIT_Z,Ogre::Vector3::UNIT_Y);
+			}
+
+		}
+		mGUI->update(elapsedSeconds);
+
+		if (mAudioFrameSkip==0 || mAudioFrameCnt==0)
+		{
+			mApp->getAudioSubsystem()->update(elapsedSeconds);
+		}
+		if ((mAudioFrameCnt++)>mAudioFrameSkip)
+			mAudioFrameCnt=0;
 	}
-	if ((mAudioFrameCnt++)>mAudioFrameSkip)
-		mAudioFrameCnt=0;
+	
 }
 
 TWeaponMode GameRunningState::convertRouletteValue(TRouletteState rouletteValue)
@@ -555,10 +581,14 @@ void GameRunningState::loadMusic()
 {
 
 	
-	mApp->getAudioSubsystem()->load("DREAMS00","General");
+	mApp->getAudioSubsystem()->load("DREAMS00",AUDIO_RESOURCES_GROUP_NAME);
 	mMusicChannels[DREAMS].id="DREAMS00";
-	mApp->getAudioSubsystem()->load("NIGHTMARES00","General");
+	mApp->getAudioSubsystem()->load("NIGHTMARES00",AUDIO_RESOURCES_GROUP_NAME);
 	mMusicChannels[NIGHTMARES].id="NIGHTMARES00";
+
+	mApp->getAudioSubsystem()->load("SUCCESS",AUDIO_RESOURCES_GROUP_NAME);
+	mMusicChannels[-1].id="SUCCESS";
+
 }
 
 void GameRunningState::changeMusic(int world)
@@ -566,6 +596,20 @@ void GameRunningState::changeMusic(int world)
 	int oldWorld=world==DREAMS?NIGHTMARES:DREAMS;
 	mApp->getAudioSubsystem()->stopMusic(mMusicChannels[oldWorld].channelId);
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[world].id,mMusicChannels[world].channelId,true);
+}
+void GameRunningState::playMusic(const std::string& musicID)
+{
+	int world = mInst->getApp()->getGameWorldManager()->getWorld();
+	mInst->getApp()->getAudioSubsystem()->stopMusic(mInst->mMusicChannels[world].channelId);
+	
+	if (!mInst->getApp()->getAudioSubsystem()->isLoaded(musicID))
+		mInst->getApp()->getAudioSubsystem()->load(musicID,AUDIO_RESOURCES_GROUP_NAME);
+	mInst->mMusicChannels[-1].id=musicID;
+	mInst->getApp()->getAudioSubsystem()->playMusic(musicID, mInst->mMusicChannels[-1].channelId,true);
+}
+void GameRunningState::playSoundFromGameObject(const std::string& objectName, const std::string& soundID)
+{
+	mInst->getApp()->getGameWorldManager()->playSoundFromGameObject(objectName,soundID);
 }
 
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
@@ -706,4 +750,10 @@ void GameRunningState::pauseMusic()
 void GameRunningState::unpauseMusic()
 {
 	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,false);
+}
+bool GameRunningState::mayProceedToGameOver()
+{
+	int channel=mMusicChannels[-1].channelId;
+	return mApp->getGameWorldManager()->isGameOver() && 
+		!mApp->getAudioSubsystem()->isMusicPlaying(channel);
 }

@@ -242,6 +242,8 @@ namespace OUAN
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 
+		void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
+
 	private:		
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"

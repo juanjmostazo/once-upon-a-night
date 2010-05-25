@@ -67,6 +67,9 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 
+#include "../Audio/AudioComponent/AudioComponent.h"
+#include "../Audio/AudioSubsystem.h"
+
 #include "../Component/ComponentFactory.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../RayCasting/RayCasting.h"
@@ -1094,8 +1097,15 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
 			pGameObjectOny->getRenderComponentPositional()));
 
+	pGameObjectOny->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 	//Set Ony as camera target
 	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
+
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
@@ -1984,6 +1994,13 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		mComponentFactory->createAttackComponent(
 		pGameObjectTripolloDreams,
 		tGameObjectTripolloDreamsParameters.tAttackComponentParameters));
+
+	// Create audio component
+	pGameObjectTripolloDreams->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+		pGameObjectTripolloDreams,
+		tGameObjectTripolloDreamsParameters.tAudioComponentParameters
+		,gameWorldMgr->getParent()->getAudioSubsystem()));
 
 	// Add a reference to this
 	pGameObjectTripolloDreams->setGameWorldManager(gameWorldMgr);
