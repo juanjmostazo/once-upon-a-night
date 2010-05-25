@@ -12,11 +12,11 @@
   <PROPERTY id="RenderComponentSkyBox::materialNightmares" type="6" value="Examples/SceneSkyBox2" fields="X;Y;Z;W"></PROPERTY>
 
   <!-- ChangeWorldMaterial parameters -->
-  <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="random.png" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.03" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="Water01.jpg" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="6" value="0.01 0 0" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="1 1 0" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="0.25" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::type" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::randomize" type="6" value="false" fields="X;Y;Z;W"></PROPERTY>
 
