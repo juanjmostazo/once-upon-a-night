@@ -131,6 +131,7 @@ void GameRunningState::pause()
 	//elements
 	mApp->getRenderSubsystem()->pauseRendering();
 	pauseMusic();
+	mApp->mKeyBuffer=500000;
 }
 /// resume state
 void GameRunningState::resume()
@@ -410,9 +411,6 @@ void GameRunningState::update(long elapsedTime)
 			mApp->getGameWorldManager()->postUpdate();
 
 
-			//Ogre::LogManager::getSingleton().logMessage("Other stuff");
-			mApp->mKeyBuffer-=elapsedTime;
-
 			if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 			{
 				LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
@@ -443,6 +441,9 @@ void GameRunningState::update(long elapsedTime)
 		}
 		if ((mAudioFrameCnt++)>mAudioFrameSkip)
 			mAudioFrameCnt=0;
+
+		//Ogre::LogManager::getSingleton().logMessage("Other stuff");
+		mApp->mKeyBuffer-=elapsedTime;
 	}
 	
 }

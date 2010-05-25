@@ -28,7 +28,7 @@ void GamePausedState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void GamePausedState::cleanUp()
 {
-	mApp->mKeyBuffer=-1;
+	mApp->mKeyBuffer=500000; //0.5s
 }
 
 /// pause state
@@ -49,7 +49,6 @@ void GamePausedState::handleEvents()
 	if (mApp && mApp->isPressedPause() && mApp->mKeyBuffer<0)
 	{
 		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
-		mApp->mKeyBuffer=500000; //0.5s
 		mApp->getGameStateManager()->popState();
 	}
 }
