@@ -242,9 +242,38 @@ void RenderComponentEntity::setChangeWorldMaterials()
 
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
-	RenderComponentEntityPtr pRenderComponentEntity;
-	pRenderComponentEntity.reset(this);
-	initChangeWorldMaterials(tChangeWorldMaterialParameters,pRenderComponentEntity);
+	unsigned int i;
+	
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
+
+	mChangeWorldMaterials.clear();
+
+	bool materialCreated;
+
+	for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
+	{
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
+			mEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
+	//{
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+	//}
+
+	setChangeWorldMaterials();
 }
 
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)

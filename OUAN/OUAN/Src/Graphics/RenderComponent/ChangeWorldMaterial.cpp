@@ -232,6 +232,35 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 	return mName.compare("")!=0;
 }
 
+bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1)
+{
+	std::string diffuseTexture1;
+
+	diffuseTexture1=getDiffuseTexture(pMaterial1);
+
+	if(diffuseTexture1.compare("")!=0)
+	{
+		mId=id;
+		mType = CW_EROSION_TRANSPARENT;
+		mRandomize=tChangeWorldMaterialParameters.randomize;
+
+		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
+		mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
+		mScrollAnimationCurrent=getCurrentScrollAnimation(pMaterial1);
+		mScrollBlendingCurrent=getCurrentScrollAnimation(pMaterial1);
+
+		mName = createMaterial(tChangeWorldMaterialParameters,
+			diffuseTexture1,
+			diffuseTexture1,
+			getPassParameters(pMaterial1)
+			);
+
+		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+mName+" initialized.");
+	}
+
+	return mName.compare("")!=0;
+}
+
 std::string ChangeWorldMaterial::getChangeWorldTypeName(ChangeWorldType type)
 {
 	switch(type)

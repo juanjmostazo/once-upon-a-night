@@ -112,6 +112,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
+
+		//ChangeWorld parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

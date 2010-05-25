@@ -211,19 +211,38 @@ GameObjectBushPtr GameObjectFactory::createGameObjectBush(TGameObjectBushParamet
 	pGameObjectBush->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectBush->getRenderComponentPositional()));
 
-	if(pGameObjectBush->getLogicComponent()->existsInDreams())
+	if(pGameObjectBush->getLogicComponent()->existsInDreams() && pGameObjectBush->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Dreams
 		pGameObjectBush->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.dreamsName,
 			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntity Nightmares
+		pGameObjectBush->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.nightmaresName,
+			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectBush->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectBushParameters.tChangeWorldMaterialParameters,pGameObjectBush->getRenderComponentEntityDreams());
+		pGameObjectBush->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectBushParameters.tChangeWorldMaterialParameters,pGameObjectBush->getRenderComponentEntityNightmares());
 	}
-	if(pGameObjectBush->getLogicComponent()->existsInNightmares())
+	else if(pGameObjectBush->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntity Dreams
+		pGameObjectBush->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.dreamsName,
+			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityDreamsParameters));
+
+		pGameObjectBush->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectBushParameters.tChangeWorldMaterialParameters);
+	}
+	else if(pGameObjectBush->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectBush->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.nightmaresName,
 			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectBush->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectBushParameters.tChangeWorldMaterialParameters);
 	}
 
 	//Add reference to this
