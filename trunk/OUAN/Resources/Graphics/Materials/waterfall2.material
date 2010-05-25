@@ -1,0 +1,20 @@
+
+material waterfall2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0.7 0.7 0.7 1
+
+			texture_unit
+			{
+				watterfall2.dds
+		}
+
+	}
+
+}
+
+
