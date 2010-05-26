@@ -102,6 +102,8 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
+		void update(double elapsedSeconds);
+
 	};
 
 	class TGameObjectTerrainConvexParameters: public TGameObjectParameters
@@ -122,6 +124,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
+
+		//ChangeWorldMaterial Parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 
 	};
 }

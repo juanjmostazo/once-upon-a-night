@@ -65,19 +65,14 @@ void GameObjectBush::changeWorldFinished(int newWorld)
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityNightmares->setVisible(false);
-
-				mRenderComponentEntityNightmares->setOriginalMaterials();
-				mRenderComponentEntityDreams->setOriginalMaterials();
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
 			}		
 			break;
 		case NIGHTMARES:
@@ -85,23 +80,17 @@ void GameObjectBush::changeWorldFinished(int newWorld)
 			{
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
-				mRenderComponentEntityDreams->setOriginalMaterials();
-
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
-			}		
+			}	
 			break;
-		default:
-			break;
+		default:break;
 	}
 }
 
@@ -111,21 +100,27 @@ void GameObjectBush::changeWorldStarted(int newWorld)
 
 	if(mLogicComponent->existsInDreams())
 	{
-		mRenderComponentEntityDreams->setChangeWorldMaterials();
 		mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
 	}
 
 	if(mLogicComponent->existsInNightmares())
 	{
-		mRenderComponentEntityNightmares->setChangeWorldMaterials();
 		mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 	}
 
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -142,21 +137,21 @@ void GameObjectBush::changeToWorld(int newWorld, double perc)
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
-				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);;
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
 			}		
 			break;
 		case NIGHTMARES:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
 				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
@@ -165,7 +160,7 @@ void GameObjectBush::changeToWorld(int newWorld, double perc)
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);;
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
 			}		
 			break;
 		default:

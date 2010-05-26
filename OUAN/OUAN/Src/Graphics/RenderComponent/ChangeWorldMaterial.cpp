@@ -44,12 +44,6 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 	baseMaterialName=getChangeWorldTypeName(tChangeWorldMaterialParameters.type);
 	newMaterialName=mId+"#"+baseMaterialName+"#"+diffuseTexture1+"#"+diffuseTexture2;
 
-	if(diffuseTexture1.compare(diffuseTexture2)==0 && tChangeWorldMaterialParameters.type==CW_BLENDING)
-	{
-		tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
-		mType=CW_EROSION_TRANSPARENT;
-	}
-
 	if (Ogre::MaterialManager::getSingleton().resourceExists(newMaterialName))
 	{	
 		//material already exists, no need to create it
@@ -88,10 +82,31 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 	return newMaterialName;
 }
 
+TPassParameters ChangeWorldMaterial::getPassParameters(Ogre::MaterialPtr material)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	TPassParameters passParameters;
+	// Get diffuse texture
+	technique = material->getBestTechnique();
+	pass = technique->getPass(0);
+	passParameters.lighting = pass->getLightingEnabled();
+	passParameters.depth_write = pass->getDepthWriteEnabled();
+
+	return passParameters;
+}
+
 void ChangeWorldMaterial::setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters)
 {
 	pass->setLightingEnabled(passParameters.lighting);
 	pass->setDepthWriteEnabled(passParameters.depth_write);
+
+	if(!passParameters.depth_write)
+	{
+		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+		pass->setTransparentSortingEnabled(true);
+	}
+
 }
 
 void ChangeWorldMaterial::createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
@@ -242,6 +257,7 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 	{
 		mId=id;
 		mType = CW_EROSION_TRANSPARENT;
+		tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
 		mRandomize=tChangeWorldMaterialParameters.randomize;
 
 		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
@@ -301,8 +317,8 @@ void ChangeWorldMaterial::randomize()
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("displacement",Vector3(
-				Utils::Random::getInstance()->getRandomDouble(),
-				Utils::Random::getInstance()->getRandomDouble(),
+				2*Utils::Random::getInstance()->getRandomDouble()-1,
+				2*Utils::Random::getInstance()->getRandomDouble()-1,
 				Utils::Random::getInstance()->getRandomDouble()*Ogre::Math::TWO_PI)
 				);
 			break;
@@ -310,8 +326,8 @@ void ChangeWorldMaterial::randomize()
 			pass = technique->getPass(0);
 			params = pass->getFragmentProgramParameters();
 			params->setNamedConstant("displacement",Vector3(
-				Utils::Random::getInstance()->getRandomDouble(),
-				Utils::Random::getInstance()->getRandomDouble(),
+				2*Utils::Random::getInstance()->getRandomDouble()-1,
+				2*Utils::Random::getInstance()->getRandomDouble()-1,
 				Utils::Random::getInstance()->getRandomDouble()*Ogre::Math::TWO_PI)
 				);
 			break;
@@ -341,6 +357,28 @@ Vector3 ChangeWorldMaterial::getCurrentScrollAnimation(Ogre::MaterialPtr materia
 	}
 }
 
+void ChangeWorldMaterial::getTextureParameters(Ogre::MaterialPtr material)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+
+	// Get diffuse texture
+	technique = material->getBestTechnique();
+	pass = technique->getPass(0);
+	if(pass->getTextureUnitStateIterator().hasMoreElements())
+	{
+		if(pass->getTextureUnitState(0)->getTextureUScroll()!=0)
+		{
+			mScrollAnimationSpeed.x=pass->getTextureUnitState(0)->getTextureUScroll();
+		}
+		if(pass->getTextureUnitState(0)->getTextureVScroll()!=0)
+		{
+			mScrollAnimationSpeed.y=pass->getTextureUnitState(0)->getTextureVScroll();
+		}
+	}
+
+}
+
 std::string ChangeWorldMaterial::getDiffuseTexture(Ogre::MaterialPtr material)
 {
 	Ogre::Technique * technique;
@@ -357,20 +395,6 @@ std::string ChangeWorldMaterial::getDiffuseTexture(Ogre::MaterialPtr material)
 	{
 		return "";
 	}
-}
-
-TPassParameters ChangeWorldMaterial::getPassParameters(Ogre::MaterialPtr material)
-{
-	Ogre::Technique * technique;
-	Ogre::Pass * pass;
-	TPassParameters passParameters;
-	// Get diffuse texture
-	technique = material->getBestTechnique();
-	pass = technique->getPass(0);
-	passParameters.lighting = pass->getLightingEnabled();
-	passParameters.depth_write = pass->getDepthWriteEnabled();
-
-	return passParameters;
 }
 
 void ChangeWorldMaterial::update(double elapsedSeconds)

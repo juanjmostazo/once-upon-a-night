@@ -1716,20 +1716,42 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 	pGameObjectTerrainConvex->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectTerrainConvex->getRenderComponentPositional()));
 
-	if(pGameObjectTerrainConvex->getLogicComponent()->existsInDreams())
+	if(pGameObjectTerrainConvex->getLogicComponent()->existsInDreams() && pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
 			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
+		//Create RenderComponentEntityNightmares
+		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectTerrainConvex->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters,pGameObjectTerrainConvex->getRenderComponentEntityDreams());
+		pGameObjectTerrainConvex->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters,pGameObjectTerrainConvex->getRenderComponentEntityNightmares());
+
+
 	}
-	if(pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
+	else if(pGameObjectTerrainConvex->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
+
+		pGameObjectTerrainConvex->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters);
+
+	}
+	else if(pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
 			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectTerrainConvex->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters);
 	}
+
 	//Create PhysicsComponent
 	pGameObjectTerrainConvex->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
 		pGameObjectTerrainConvex,
