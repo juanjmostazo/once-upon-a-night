@@ -313,7 +313,7 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" SceneManager!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" SceneManager!");
 	}
 	return mSceneManager;
 }
@@ -357,7 +357,7 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Light!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Light!");
 	}
 	return pLight;
 }
@@ -393,7 +393,7 @@ Ogre::Entity* RenderSubsystem::createPlane(Ogre::String nodeName,Ogre::String na
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Plane!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Plane!");
 	}
 	return pPlaneEntity;
 }
@@ -434,7 +434,7 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 	}
 	catch(Ogre::Exception &e)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" SceneNode!: "+e.getDescription());
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" SceneNode!: "+e.getDescription());
 	}
 	return sceneNode;
 }
@@ -446,13 +446,13 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile)
 		//Create the mesh file
 		if (!MeshManager::getSingleton().resourceExists(meshfile))
 		{
-			//LogManager::getSingleton().logMessage("[LevelLoader] creating "+meshfile+" meshfile");
+			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
 			MeshManager::getSingleton().load(meshfile,"General");
 		}
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+meshfile+" mesh!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+meshfile+" mesh!");
 	}
 }
 
@@ -542,7 +542,7 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 	{
 		try
 		{
-			//LogManager::getSingleton().logMessage("[setLightmaps] Adding "+lightmapName+" Lightmap...");
+			//Logger::getInstance()->log("[setLightmaps] Adding "+lightmapName+" Lightmap...");
 			for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
 			{
 				// Get the material of this sub entity and build the clone material name
@@ -587,12 +587,12 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 		}
 		catch(Ogre::Exception &/*e*/)
 		{
-			LogManager::getSingleton().logMessage("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
+			Logger::getInstance()->log("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
 		}
 	}
 	else
 	{
-		LogManager::getSingleton().logMessage("[setLightmaps] "+lightmapName+" Lightmap does not exist");
+		Logger::getInstance()->log("[setLightmaps] "+lightmapName+" Lightmap does not exist");
 	}
 }
 
@@ -631,7 +631,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Entity!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Entity!");
 	}
 	return pEntity;
 }
@@ -651,7 +651,7 @@ void RenderSubsystem::createSubEntity(Ogre::Entity *pEntity,int num,OUAN::String
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+pEntity->getName()+"'s SubEntity #"+StringConverter::toString(num)+"!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+pEntity->getName()+"'s SubEntity #"+StringConverter::toString(num)+"!");
 	}
 }
 
@@ -665,11 +665,11 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 		Ogre::SceneNode* particleSystemNode = 0;
 		Ogre::String particleName = name + "#" + Application::getInstance()->getStringUniqueId();
 		/*
-		Ogre::LogManager::getSingleton().logMessage("INNER CREATION OF PARTICLE SYSTEM");
-		Ogre::LogManager::getSingleton().logMessage("PS INIT INFO");
-		Ogre::LogManager::getSingleton().logMessage(particleName);
-		Ogre::LogManager::getSingleton().logMessage(tRenderComponentParticleSystemParameters.templateName);
-		Ogre::LogManager::getSingleton().logMessage("PS INFO END");
+		Logger::getInstance()->log("INNER CREATION OF PARTICLE SYSTEM");
+		Logger::getInstance()->log("PS INIT INFO");
+		Logger::getInstance()->log(particleName);
+		Logger::getInstance()->log(tRenderComponentParticleSystemParameters.templateName);
+		Logger::getInstance()->log("PS INFO END");
 		*/
 		try
 		{
@@ -695,7 +695,7 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 		}
 		catch(Ogre::Exception &/*e*/)
 		{
-			LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+particleName+" ParticleSystem!");
+			Logger::getInstance()->log("[LevelLoader] Error creating "+particleName+" ParticleSystem!");
 		}
 		
 		pParticleSystems[i] = pParticleSystem;
@@ -723,7 +723,7 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+pBillboardSet->getName()+"'s Billboard!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+pBillboardSet->getName()+"'s Billboard!");
 	}
 }
 
@@ -768,7 +768,7 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" BillboardSet!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" BillboardSet!");
 	}
 	return billBoardSet;
 }
@@ -862,14 +862,14 @@ void RenderSubsystem::showOverlay(const std::string& overlayName)
 	Ogre::Overlay* ovl;
 	if (ovl=Ogre::OverlayManager::getSingleton().getByName(overlayName))
 		ovl->show();
-	else LogManager::getSingleton().logMessage("[ShowOverlay] Error loading "+overlayName+" Overlay!");
+	else Logger::getInstance()->log("[ShowOverlay] Error loading "+overlayName+" Overlay!");
 }
 void RenderSubsystem::hideOverlay(const std::string& overlayName)
 {
 	Ogre::Overlay* ovl;
 	if (ovl=Ogre::OverlayManager::getSingleton().getByName(overlayName))
 		ovl->hide();
-	else LogManager::getSingleton().logMessage("[ShowOverlay] Error loading "+overlayName+" Overlay!");
+	else Logger::getInstance()->log("[ShowOverlay] Error loading "+overlayName+" Overlay!");
 }
 void RenderSubsystem::pauseRendering()
 {

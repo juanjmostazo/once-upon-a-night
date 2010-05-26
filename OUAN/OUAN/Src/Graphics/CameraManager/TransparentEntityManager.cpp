@@ -45,7 +45,7 @@ bool TransparentEntityManager::loadConfig()
 	} 
 	else 
 	{
-		Ogre::LogManager::getSingleton().logMessage(CAMERA_CFG + " COULD NOT BE LOADED!");
+		Logger::getInstance()->log(CAMERA_CFG + " COULD NOT BE LOADED!");
 		success = false;
 	}
 
@@ -65,7 +65,7 @@ void TransparentEntityManager::add(Ogre::Entity * pEntity)
 {
 	if(!hasTransparentEntity(pEntity->getName()))
 	{
-		Ogre::LogManager::getSingleton().logMessage("[TransparentEntityManager] adding "+pEntity->getName());
+		Logger::getInstance()->log("[TransparentEntityManager] adding "+pEntity->getName());
 		mTransparentEntities[pEntity->getName()].reset(new TransparentEntity());
 		mTransparentEntities[pEntity->getName()]->init(pEntity,mMinAlphaBlending,mAlphaBlendingSpeed);
 	}
@@ -91,7 +91,7 @@ void TransparentEntityManager::update(double elapsedTime)
 
 	for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("update collision entity: "+tit->first);
+		//Logger::getInstance()->log("update collision entity: "+tit->first);
 		tit->second->update(elapsedTime);
 	}
 
@@ -113,20 +113,20 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 	TTransparentEntities tit,lastTit;
 	bool found;
 
-	//Ogre::LogManager::getSingleton().logMessage("UPDATING TRANSPARENT ENTITIES");
-	//Ogre::LogManager::getSingleton().logMessage("current list");
+	//Logger::getInstance()->log("UPDATING TRANSPARENT ENTITIES");
+	//Logger::getInstance()->log("current list");
 	//for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
 	//{	
-	//	Ogre::LogManager::getSingleton().logMessage(tit->first);
+	//	Logger::getInstance()->log(tit->first);
 	//}
-	//Ogre::LogManager::getSingleton().logMessage("making transparent");
+	//Logger::getInstance()->log("making transparent");
 	for(unsigned int i=0;i<collisionEntities.size();i++)
 	{
-		//Ogre::LogManager::getSingleton().logMessage(collisionEntities[i]->getName());
+		//Logger::getInstance()->log(collisionEntities[i]->getName());
 		add(collisionEntities[i]);
 		mTransparentEntities[collisionEntities[i]->getName()]->makeTransparent();
 	}
-	//Ogre::LogManager::getSingleton().logMessage("making solid");
+	//Logger::getInstance()->log("making solid");
 	for(tit=mTransparentEntities.begin();tit!=mTransparentEntities.end();tit++)
 	{	
 		found=false;
@@ -140,7 +140,7 @@ void TransparentEntityManager::addCurrentCollisionTransparentEntities(std::vecto
 
 		if(!found)
 		{
-			//Ogre::LogManager::getSingleton().logMessage(tit->first);
+			//Logger::getInstance()->log(tit->first);
 			tit->second->makeSolid();
 		}
 	}

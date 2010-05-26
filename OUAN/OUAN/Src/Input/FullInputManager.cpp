@@ -141,7 +141,7 @@ bool FullInputManager::loadConfig()
 	} 
 	else 
 	{
-		//LogManager::getSingleton().logMessage(PSXPAD_CFG + " COULD NOT BE LOADED!");
+		//Logger::getInstance()->log(PSXPAD_CFG + " COULD NOT BE LOADED!");
 
 		defaultPadId = -1;
 		padSelect = -1, padStart = -1;
@@ -168,7 +168,7 @@ void FullInputManager::readOption(Configuration cfg,const std::string& key, int&
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("ERROR! [FullInputManager] Error reading key "+key);
+		Logger::getInstance()->log("ERROR! [FullInputManager] Error reading key "+key);
 	}
 }
 
@@ -210,7 +210,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 	}
 	else
 	{
-		//LogManager::getSingleton().logMessage(configFilePath + " COULD NOT BE LOADED!");
+		//Logger::getInstance()->log(configFilePath + " COULD NOT BE LOADED!");
 
 		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
@@ -383,11 +383,11 @@ void FullInputManager::getJoystickStateAxes(int index, double & leftX, double & 
 		rightY = getJoystickNormalisedAxe(state.mAxes[padRightJoystickY].abs, maxAxis, errorBorder);
 
 
-		//Ogre::LogManager::getSingleton().logMessage("JOYSTICKS");
-		//Ogre::LogManager::getSingleton().logMessage("[leftX] "+Ogre::StringConverter::toString(Ogre::Real(leftX)));
-		//Ogre::LogManager::getSingleton().logMessage("[leftY] "+Ogre::StringConverter::toString(Ogre::Real(leftY)));
-		//Ogre::LogManager::getSingleton().logMessage("[rightX] "+Ogre::StringConverter::toString(Ogre::Real(rightX)));
-		//Ogre::LogManager::getSingleton().logMessage("[rightY] "+Ogre::StringConverter::toString(Ogre::Real(rightY)));
+		//Logger::getInstance()->log("JOYSTICKS");
+		//Logger::getInstance()->log("[leftX] "+Ogre::StringConverter::toString(Ogre::Real(leftX)));
+		//Logger::getInstance()->log("[leftY] "+Ogre::StringConverter::toString(Ogre::Real(leftY)));
+		//Logger::getInstance()->log("[rightX] "+Ogre::StringConverter::toString(Ogre::Real(rightX)));
+		//Logger::getInstance()->log("[rightY] "+Ogre::StringConverter::toString(Ogre::Real(rightY)));
 	}
 	else
 	{

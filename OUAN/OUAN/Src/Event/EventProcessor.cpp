@@ -191,12 +191,12 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 							max_distance=current_distance;
 						}
 						distances.push_back(current_distance);
-						//Ogre::LogManager::getSingletonPtr()->logMessage("getPlayerDistance "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(current_distance)));
+						//Logger::getInstance()->log("getPlayerDistance "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(current_distance)));
 					}
 				}
 			}
 			//BUG WHEN TRIPOLLO FALLS
-			//Ogre::LogManager::getSingletonPtr()->logMessage("MAX DISTANCE "+Ogre::StringConverter::toString(Ogre::Real(max_distance)));
+			//Logger::getInstance()->log("MAX DISTANCE "+Ogre::StringConverter::toString(Ogre::Real(max_distance)));
 
 			if(!evt->random_trees)
 			{
@@ -206,7 +206,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 					if(!it->second->isChangingWorld())
 					{
 						it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Ogre::Math::Clamp<double>(distances[k]/1000.0f,0.0f,1.0f),0.5f);
-						//Ogre::LogManager::getSingletonPtr()->logMessage("calculateChangeWorldDelay "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(distances[k]/max_distance)));
+						//Logger::getInstance()->log("calculateChangeWorldDelay "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(distances[k]/max_distance)));
 
 						k++;
 					}
@@ -220,14 +220,14 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 {
 	if (evt->getGameObject1() && evt->getGameObject2())
 	{
-		//Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
+		//Logger::getInstance()->log("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
 		
 		 evt->getGameObject1()->processCollision( evt->getGameObject2());
 		 evt->getGameObject2()->processCollision( evt->getGameObject1());
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processCollision with unknown data!");
+		Logger::getInstance()->log("EventProcessor: processCollision with unknown data!");
 	}
 }
 
@@ -240,7 +240,7 @@ void EventProcessor::processEnterTrigger(EnterTriggerEventPtr evt)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processEnterTrigger with unknown data!");
+		Logger::getInstance()->log("EventProcessor: processEnterTrigger with unknown data!");
 	}
 }
 
@@ -253,7 +253,7 @@ void EventProcessor::processExitTrigger(ExitTriggerEventPtr evt)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("EventProcessor: processExitTrigger with unknown data!");
+		Logger::getInstance()->log("EventProcessor: processExitTrigger with unknown data!");
 	}
 }
 

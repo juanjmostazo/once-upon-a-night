@@ -29,12 +29,14 @@
    distribution.
 
 */
+
 #include "OgreDirectShow.h"
 #include "OgreDirectShowPrivate.h"
 #include <OgreStringConverter.h>
 #include <dshow.h>
 #include "CVDShowUtil.h"
 
+using namespace OUAN;
 
 namespace OgreUtils
 {
@@ -62,7 +64,7 @@ namespace OgreUtils
 		}
 
 		// log it
-		Ogre::LogManager::getSingletonPtr()->logMessage(
+		Logger::getInstance()->log(
 			Ogre::String("[DSHOW] Creating texture with dimensions ")+
 			Ogre::StringConverter::toString(mTexWidth)+"x"+
 			Ogre::StringConverter::toString(mTexHeight)+".");
@@ -116,7 +118,7 @@ namespace OgreUtils
 		HRESULT hr;
 
 		// log it!
-		Ogre::LogManager::getSingletonPtr()->logMessage(
+		Logger::getInstance()->log(
 			Ogre::String("[DSHOW] Loading movie named '")+
 			moviePath+"'.");
 
@@ -220,11 +222,10 @@ namespace OgreUtils
 		}
 
 		// log it
-		Ogre::LogManager::getSingletonPtr()->logMessage(
+		Logger::getInstance()->log(
 			Ogre::String("[DSHOW] -> This movie has dimensions: ")+
 			Ogre::StringConverter::toString(dsdata->videoWidth)+"x"+
 			Ogre::StringConverter::toString(dsdata->videoHeight)+".");
-
 
 		// set sampling options
 		dsdata->pGrabber->SetOneShot(FALSE);

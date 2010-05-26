@@ -289,9 +289,9 @@ void Trajectory::update(double elapsedTime)
 
 	updateTrajectoryNodes(elapsedTime);
 
-	//Ogre::LogManager::getSingleton().logMessage("Updating position "+Ogre::StringConverter::toString(currentPosition));
-	//Ogre::LogManager::getSingleton().logMessage("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
-	//Ogre::LogManager::getSingleton().logMessage("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
+	//Logger::getInstance()->log("Updating position "+Ogre::StringConverter::toString(currentPosition));
+	//Logger::getInstance()->log("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
+	//Logger::getInstance()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
 }
 
 void Trajectory::updateTrajectoryNodes(double elapsedTime)
@@ -371,8 +371,8 @@ void Trajectory::setCurrentNode(int node)
 
 	if(mTrajectoryNodes.size()>0)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("Current Node "+mTrajectoryNodes[node]->getSceneNode()->getName());
-		//Ogre::LogManager::getSingleton().logMessage("Current Node "+Ogre::StringConverter::toString(currentNode));
+		//Logger::getInstance()->log("Current Node "+mTrajectoryNodes[node]->getSceneNode()->getName());
+		//Logger::getInstance()->log("Current Node "+Ogre::StringConverter::toString(currentNode));
 
 		mCurrentPosition=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition();
 		mCurrentOrientation=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation();
@@ -527,7 +527,7 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 
 	initPathfinding();
 
-	//Ogre::LogManager::getSingleton().logMessage("Pathfinding to predefined trajectory "+trajectory);
+	//Logger::getInstance()->log("Pathfinding to predefined trajectory "+trajectory);
 
 }
 
@@ -579,7 +579,7 @@ void Trajectory::initPathfinding()
 	TrajectoryNode * pTrajectoryNode;
 	std::vector<Ogre::SceneNode *> path;
 
-	//Ogre::LogManager::getSingleton().logMessage("FULL");
+	//Logger::getInstance()->log("FULL");
 
 	clear();
 	path=mTrajectoryManager->calculatePathFinding(
@@ -609,7 +609,7 @@ void Trajectory::recalculatePathfinding()
 	TrajectoryNode * pNextNode;
 	int nextNode=getNextNode();
 
-	//Ogre::LogManager::getSingleton().logMessage("PARTIAL");
+	//Logger::getInstance()->log("PARTIAL");
 
 	pCurrentNode = new TrajectoryNode();
 	pCurrentNode->setSceneNode(mTrajectoryNodes[mCurrentNode]->getSceneNode());
@@ -673,8 +673,8 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 	activatePredefinedTrajectory(trajectory);
 	unsigned int i;
 	int current=-1;
-	//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode");
-	//Ogre::LogManager::getSingleton().logMessage("Predefined Trajectory");
+	//Logger::getInstance()->log("setPredefinedTrajectoryFromNode");
+	//Logger::getInstance()->log("Predefined Trajectory");
 
 	for(i=0;i<mTrajectoryNodes.size();i++)
 	{
@@ -683,16 +683,16 @@ void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::str
 			current=i;
 			break;
 		}
-		//Ogre::LogManager::getSingleton().logMessage("Node "+mTrajectoryNodes[i]->getSceneNode()->getName());
+		//Logger::getInstance()->log("Node "+mTrajectoryNodes[i]->getSceneNode()->getName());
 	}
 
 	if(current==-1)
 	{
-		Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode Node does not exist");
+		Logger::getInstance()->log("setPredefinedTrajectoryFromNode Node does not exist");
 	}
 	else
 	{
-		//Ogre::LogManager::getSingleton().logMessage("setPredefinedTrajectoryFromNode Node "+node+" "+mTrajectoryNodes[current]->getSceneNode()->getName());
+		//Logger::getInstance()->log("setPredefinedTrajectoryFromNode Node "+node+" "+mTrajectoryNodes[current]->getSceneNode()->getName());
 		setCurrentNode(current);
 	}
 

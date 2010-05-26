@@ -129,7 +129,7 @@ void RenderComponentWater::initAnimations(std::vector<TRenderComponentEntityAnim
 				}
 				catch(Ogre::ItemIdentityException)
 				{
-					Ogre::LogManager::getSingletonPtr()->logMessage("ANIMATION STATE NOT FOUND: "+animName);
+					Logger::getInstance()->log("ANIMATION STATE NOT FOUND: "+animName);
 				}
 				if (mAnimations[animName])
 				{

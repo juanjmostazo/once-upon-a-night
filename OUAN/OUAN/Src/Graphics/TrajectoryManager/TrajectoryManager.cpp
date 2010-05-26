@@ -33,7 +33,7 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 	Ogre::SceneNode * pSceneNode;
 	std::vector<TrajectoryNode *> mTrajectoryNodes;
 	TrajectoryNode * pTrajectoryNode;
-	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
+	Logger::getInstance()->log("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
 	
 	trajectoryContainer[tTrajectoryParameters.name]= new Trajectory();
 
@@ -44,7 +44,7 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 	for(i=0;i<tTrajectoryParameters.tTrajectoryNodeParameters.size();i++)
 	{
 		//create scene node
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating trajectory node "+tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
+		Logger::getInstance()->log("[TrajectoryManager] Creating trajectory node "+tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
 		if(mSceneManager->hasSceneNode(tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName))
 		{
 			pSceneNode=mSceneManager->getSceneNode(tTrajectoryParameters.tTrajectoryNodeParameters[i].nodeName);
@@ -73,7 +73,7 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 {
 	WalkabilityMap * pWalkabilityMap;
 
-	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Creating walkability map "+tWalkabilityMapParameters.name);
+	Logger::getInstance()->log("[TrajectoryManager] Creating walkability map "+tWalkabilityMapParameters.name);
 
 	pWalkabilityMap= new WalkabilityMap();
 
@@ -91,7 +91,7 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 
 void TrajectoryManager::clear()
 {
-	Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Clearing All Trajectories and Walkability maps");
+	Logger::getInstance()->log("[TrajectoryManager] Clearing All Trajectories and Walkability maps");
 
 	trajectoryContainer.clear();
 	walkabilityMapContainer.clear();
@@ -179,7 +179,7 @@ void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::str
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Trajectory with name "+trajectoryName+" does not exist.");
+		Logger::getInstance()->log("[TrajectoryManager] Trajectory with name "+trajectoryName+" does not exist.");
 	}
 }
 
@@ -193,7 +193,7 @@ std::vector<Ogre::SceneNode *> TrajectoryManager::calculatePathFinding(std::stri
 	else
 	{
 
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Walkability Map with name "+walkabilityMapName+" does not exist.");
+		Logger::getInstance()->log("[TrajectoryManager] Walkability Map with name "+walkabilityMapName+" does not exist.");
 	}
 	return path;
 }
@@ -207,7 +207,7 @@ void TrajectoryManager::destroyTrajectory(std::string name)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Trajectory with name "+name+" does not exist.");
+		Logger::getInstance()->log("[TrajectoryManager] Trajectory with name "+name+" does not exist.");
 	}
 }
 
@@ -225,7 +225,7 @@ std::string TrajectoryManager::getNearestNodeToTrajectory(std::string trajectory
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Trajectory with name "+trajectory+" does not exist.");
+		Logger::getInstance()->log("[TrajectoryManager] Trajectory with name "+trajectory+" does not exist.");
 		return "";
 	}
 }

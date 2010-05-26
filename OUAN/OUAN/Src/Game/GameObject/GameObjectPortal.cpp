@@ -83,14 +83,14 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			//Ogre::LogManager::getSingleton().logMessage("DREAMS " + getName());
+			//Logger::getInstance()->log("DREAMS " + getName());
 
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
 			mRenderComponentEntityDreams->changeAnimation("turn_Clip");
 			break;
 		case NIGHTMARES:
-			//Ogre::LogManager::getSingleton().logMessage("NIGHT " + getName());
+			//Logger::getInstance()->log("NIGHT " + getName());
 	
 			mRenderComponentEntityDreams->setVisible(false);
 			mRenderComponentEntityNightmares->setVisible(true);

@@ -8,7 +8,7 @@ void logParseError(const Ogre::String& error, const TAudioScriptContext& context
 	// log material name only if filename not specified
 	if (context.mFileName.empty() && !context.mSound.isNull())
 	{
-		Ogre::LogManager::getSingleton().logMessage(
+		Logger::getInstance()->log(
 			"Error in sound " + context.mSound->getName() +
 			" : " + error);
 	}
@@ -16,14 +16,14 @@ void logParseError(const Ogre::String& error, const TAudioScriptContext& context
 	{
 		if (!context.mSound.isNull())
 		{
-			Ogre::LogManager::getSingleton().logMessage(
+			Logger::getInstance()->log(
 				"Error in sound " + context.mSound->getName() +
 				" at line " + Ogre::StringConverter::toString(context.mLineNo) +
 				" of " + context.mFileName+ ": " + error);
 		}
 		else
 		{
-			Ogre::LogManager::getSingleton().logMessage(
+			Logger::getInstance()->log(
 				"Error at line " + Ogre::StringConverter::toString(context.mLineNo) +
 				" of " + context.mFileName+ ": " + error);
 		}
@@ -154,7 +154,7 @@ void AudioScriptLoader::parseScript(Ogre::DataStreamPtr& dataStream, const Ogre:
 	mScriptContext.mFileName=dataStream->getName();
 	mScriptContext.mGroupName=groupName;
 
-	Ogre::LogManager::getSingleton().logMessage("About to start parsing sound script "+dataStream->getName());
+	Logger::getInstance()->log("About to start parsing sound script "+dataStream->getName());
 
 	while(!dataStream->eof())
 	{
@@ -162,7 +162,7 @@ void AudioScriptLoader::parseScript(Ogre::DataStreamPtr& dataStream, const Ogre:
 		mScriptContext.mLineNo++;
 
 		// DEBUG LINE
-		//Ogre::LogManager::getSingletonPtr()->logMessage("About to attempt line(#" +
+		//Logger::getInstance()->log("About to attempt line(#" +
 		//	Ogre::StringConverter::toString(mScriptContext.mLineNo) + "): " + line);
 
 		// Ignore comments & blanks

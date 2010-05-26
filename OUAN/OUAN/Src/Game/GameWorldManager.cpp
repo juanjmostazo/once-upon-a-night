@@ -106,7 +106,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		//Logger::getInstance()->log("Updating game object " + it->second->getName());
 		it->second->update(elapsedSeconds);
 	}
 
@@ -114,7 +114,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	if(mIsChangingWorld)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
+		//Logger::getInstance()->log("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 		{
@@ -374,7 +374,7 @@ void GameWorldManager::clearContainers()
 
 void GameWorldManager::loadLevel(const std::string& levelFileName)
 {
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD STARTED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD STARTED]");
 
 	//Unload current level
 	unloadLevel();
@@ -416,12 +416,12 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 	setWorld(DREAMS); 
 
 	level=levelFileName;
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
 
 void GameWorldManager::unloadLevel()
 {
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
 
 	try
 	{
@@ -429,7 +429,7 @@ void GameWorldManager::unloadLevel()
 	}
 	catch (const std::exception& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+		Logger::getInstance()->log(e.what());
 	}
 	mApp->getRenderSubsystem()->clear();
 	mApp->getTrajectoryManager()->clear();
@@ -445,7 +445,7 @@ void GameWorldManager::unloadLevel()
 	}
 
 	clearContainers();
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER LEVEL UNLOAD FINISHED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL UNLOAD FINISHED]");
 }
 
 bool GameWorldManager::loadConfig()
@@ -499,7 +499,7 @@ bool GameWorldManager::loadConfig()
 	} 
 	else 
 	{
-		Ogre::LogManager::getSingleton().logMessage(CAMERA_CFG + " COULD NOT BE LOADED!");
+		Logger::getInstance()->log(CAMERA_CFG + " COULD NOT BE LOADED!");
 		success = false;
 	}
 
@@ -509,7 +509,7 @@ bool GameWorldManager::loadConfig()
 /// init object
 void GameWorldManager::init(ApplicationPtr app)
 {
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT STARTED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL INIT STARTED]");
 	mWorld=DREAMS;
 	mGameOver=false;
 	mApp=app;
@@ -527,12 +527,12 @@ void GameWorldManager::init(ApplicationPtr app)
 	loadConfig();
 
 	//landscape.reset() | landscape->initBlank() | ...
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
 }
 
 void GameWorldManager::cleanUp()
 {
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP STARTED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL CLEANUP STARTED]");
 
 	// Careful with how game objects
 	// (well, their components)
@@ -541,18 +541,18 @@ void GameWorldManager::cleanUp()
 	clearContainers();
 	mEventProcessor->cleanUp();	
 
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER GENERAL CLEANUP FINISHED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL CLEANUP FINISHED]");
 }
 
 void GameWorldManager::resetAll()
 {
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER RESET ALL STARTED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL STARTED]");
 
 	TGameObjectContainerIterator it;
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("Reseting game object " + it->second->getName());
+		//Logger::getInstance()->log("Reseting game object " + it->second->getName());
 		it->second->reset();
 	}
 
@@ -563,7 +563,7 @@ void GameWorldManager::resetAll()
 	mApp->getCameraManager()->setCameraTarget(
 		getGameObjectOny()->getRenderComponentPositional());
 
-	Ogre::LogManager::getSingleton().logMessage("[GAME WORLD MANAGER RESET ALL FINISHED]");
+	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
@@ -1171,19 +1171,19 @@ void GameWorldManager::win()
 {
 	setGameOver(true);
 	setGameBeaten(true);
-	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::win exec");
+	Logger::getInstance()->log("GameWorldManager::win exec");
 }
 
 void GameWorldManager::lose()
 {
 	setGameOver(true);
 	setGameBeaten(false);
-	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::lose exec");
+	Logger::getInstance()->log("GameWorldManager::lose exec");
 }
 
 void GameWorldManager::onyDied()
 {
-	Ogre::LogManager::getSingleton().logMessage("GameWorldManager::onyDied exec");
+	Logger::getInstance()->log("GameWorldManager::onyDied exec");
 	resetAll();
 }
 bool GameWorldManager::isOnyDying() const
@@ -1259,13 +1259,13 @@ double GameWorldManager::getDistance(const std::string& obj1Name, const std::str
 	//std::ostringstream distanceText;
 	//distanceText.str("");
 	//distanceText<<"Distance between "<<obj1Name<<" and "<<obj2Name<<": "<<distance<<std::endl;
-	//Ogre::LogManager::getSingletonPtr()->logMessage(distanceText.str());
+	//Logger::getInstance()->log(distanceText.str());
 	return distance;
 }
 
 double GameWorldManager::getPlayerDistance(const std::string& objName)
 {
-	//Ogre::LogManager::getSingletonPtr()->logMessage("getPlayerDistance "+objName);
+	//Logger::getInstance()->log("getPlayerDistance "+objName);
 	if (mInst->getGameObjectOny().get())
 	{
 		return getDistance(mInst->getGameObjectOny()->getName(),objName);
@@ -1312,7 +1312,7 @@ void GameWorldManager::postUpdate()
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("Updating game object " + it->second->getName());
+		//Logger::getInstance()->log("Updating game object " + it->second->getName());
 		it->second->postUpdate();
 	}
 }

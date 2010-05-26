@@ -64,7 +64,7 @@ Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
 void CameraManager::setCameraTrajectory(std::string name)
 {
 
-	Ogre::LogManager::getSingleton().logMessage("[Camera Manager] Setting trajectory "+name+" to Camera Controller Trajectory");
+	Logger::getInstance()->log("[Camera Manager] Setting trajectory "+name+" to Camera Controller Trajectory");
 
 	try
 	{
@@ -83,7 +83,7 @@ void CameraManager::setCameraTrajectory(std::string name)
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[CameraManager] "+error);
+		Logger::getInstance()->log("[CameraManager] "+error);
 	}
 }
 void CameraManager::createMainCamera()
@@ -152,7 +152,7 @@ RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderCom
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Camera!");
+		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Camera!");
 	}
 	return pRenderComponentCamera;
 }
@@ -184,11 +184,11 @@ void CameraManager::setActiveCamera(std::string name)
 	{
 		activeCameraController->setCamera(pCamera);
 		mViewport->setCamera(pCamera);
-		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" activated");
+		Logger::getInstance()->log("[Camera Manager] Camera "+name+" activated");
 	}
 	else
 	{
-		LogManager::getSingleton().logMessage("[Camera Manager] Camera "+name+" does not exist!");
+		Logger::getInstance()->log("[Camera Manager] Camera "+name+" does not exist!");
 	}
 }
 
@@ -206,24 +206,24 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 		case CAMERA_FIXED_FIRST_PERSON:
 			mCameraControllerFixedFirstPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerFixedFirstPerson;
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Fixed First person activated");
+			Logger::getInstance()->log("[Camera Manager] Camera controller Fixed First person activated");
 			break;
 		case CAMERA_FIXED_THIRD_PERSON:
 			mCameraControllerFixedThirdPerson->setCamera(activeCameraController->getCamera());
 			mCameraControllerFixedThirdPerson->calculateRotY();
 			activeCameraController=mCameraControllerFixedThirdPerson;
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Fixed Third Person activated");
+			Logger::getInstance()->log("[Camera Manager] Camera controller Fixed Third Person activated");
 			break;
 		case CAMERA_FIRST_PERSON:
 			mCameraControllerFirstPerson->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerFirstPerson;
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller First Person activated");
+			Logger::getInstance()->log("[Camera Manager] Camera controller First Person activated");
 			break;
 		case CAMERA_THIRD_PERSON:
 			mCameraControllerThirdPerson->setCamera(activeCameraController->getCamera());
 			mCameraControllerThirdPerson->resetPosition();
 			activeCameraController=mCameraControllerThirdPerson;
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Third Person activated");
+			Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
 			break;
 		case CAMERA_TRAJECTORY:
 			//TODO: ERASE THIS
@@ -231,10 +231,10 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			mCameraControllerTrajectory->resetTrajectory();
 			mCameraControllerTrajectory->setCamera(activeCameraController->getCamera());
 			activeCameraController=mCameraControllerTrajectory;
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera controller Trajectory Activated");
+			Logger::getInstance()->log("[Camera Manager] Camera controller Trajectory Activated");
 			break;
 		default:
-			LogManager::getSingleton().logMessage("[Camera Manager] Camera type does not exist!");
+			Logger::getInstance()->log("[Camera Manager] Camera type does not exist!");
 			break;		
 	}
 }

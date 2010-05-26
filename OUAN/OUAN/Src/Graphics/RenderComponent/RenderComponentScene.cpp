@@ -161,7 +161,7 @@ void RenderComponentScene::setChangeWorldMaterials(int world)
 		}
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("[setChangeWorldMaterials] materials");
+	//Logger::getInstance()->log("[setChangeWorldMaterials] materials");
 }
 void RenderComponentScene::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {

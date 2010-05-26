@@ -22,7 +22,7 @@ void RayCasting::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pP
     m_pray_scene_query = m_pscene_manager->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
     if (NULL == m_pray_scene_query)
     {
-        Ogre::LogManager::getSingleton().logMessage("[RayCasting] Failed to create Ogre::RaySceneQuery instance");
+        Logger::getInstance()->log("[RayCasting] Failed to create Ogre::RaySceneQuery instance");
 		return;
     }
     m_pray_scene_query->setSortByDistance(true); 
@@ -87,7 +87,7 @@ bool RayCasting::raycastRenderClosestBoundings(const Vector3 point,
     }
     else
     {
-        Ogre::LogManager::getSingleton().logMessage("[RayCasting] Cannot raycast without RaySceneQuery instance");
+        Logger::getInstance()->log("[RayCasting] Cannot raycast without RaySceneQuery instance");
         return (false);
     }   
 
@@ -176,7 +176,7 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
     }
     else
     {
-        Ogre::LogManager::getSingleton().logMessage("[RayCasting] Cannot raycast without RaySceneQuery instance");
+        Logger::getInstance()->log("[RayCasting] Cannot raycast without RaySceneQuery instance");
         return (false);
     }   
 
@@ -213,7 +213,7 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
 				 break;
 			}
 
-			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
+			//Logger::getInstance()->log("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
 			allCollisions.push_back(pentity);
@@ -315,7 +315,7 @@ bool RayCasting::raycastRenderClosestGeometry(const Vector3 point,
     }
     else
     {
-        Ogre::LogManager::getSingleton().logMessage("[RayCasting] Cannot raycast without RaySceneQuery instance");
+        Logger::getInstance()->log("[RayCasting] Cannot raycast without RaySceneQuery instance");
         return (false);
     }   
 
@@ -347,7 +347,7 @@ bool RayCasting::raycastRenderClosestGeometry(const Vector3 point,
         if ((query_result[qr_idx].movable != NULL) &&
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
-			//Ogre::LogManager::getSingleton().logMessage("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
+			//Logger::getInstance()->log("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
             // get the entity to check
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);           
 

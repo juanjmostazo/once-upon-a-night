@@ -124,7 +124,7 @@ bool CameraControllerThirdPerson::loadConfig()
 	} 
 	else 
 	{
-		Ogre::LogManager::getSingleton().logMessage(CAMERA_CFG + " COULD NOT BE LOADED!");
+		Logger::getInstance()->log(CAMERA_CFG + " COULD NOT BE LOADED!");
 		success = false;
 	}
 
@@ -184,7 +184,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distan
 	//	//newCameraPosition.y=mCamera->getPosition().y;
 	//}
 
-	//Ogre::LogManager::getSingleton().logMessage("y_correction "+Ogre::StringConverter::toString(y_correction));
+	//Logger::getInstance()->log("y_correction "+Ogre::StringConverter::toString(y_correction));
 
 	return newCameraPosition;
 }
@@ -437,7 +437,7 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 	}
 
 
-	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+	//Logger::getInstance()->log("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }
 void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)

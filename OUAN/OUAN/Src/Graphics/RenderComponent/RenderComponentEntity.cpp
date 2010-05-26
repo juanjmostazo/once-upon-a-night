@@ -81,7 +81,7 @@ void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAni
 				}
 				catch(Ogre::ItemIdentityException)
 				{
-					Ogre::LogManager::getSingletonPtr()->logMessage("ANIMATION STATE NOT FOUND: "+animName);
+					Logger::getInstance()->log("ANIMATION STATE NOT FOUND: "+animName);
 				}
 				if (mAnimations[animName])
 				{
@@ -152,7 +152,7 @@ void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,G
 		std::string msg = "RCENTITY - Invalid attempt to attach ";
 		msg.append(gameObject.get()?gameObject->getName():"NULL");
 		msg.append(" game object to ").append(getParent()->getName());
-		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+		Logger::getInstance()->log(msg);
 	}
 		
 }
@@ -184,7 +184,7 @@ void RenderComponentEntity::setMaterial(std::string material)
 		}
 		else
 		{
-			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+material+" does not exist.");
+			Logger::getInstance()->log("[RenderComponentEntity] material "+material+" does not exist.");
 		}
 
 		//Add material to the material stack 
@@ -210,14 +210,14 @@ void RenderComponentEntity::setOriginalMaterials()
 		}
 		else
 		{
-			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+mOriginalMaterials[i]+" does not exist.");
+			Logger::getInstance()->log("[RenderComponentEntity] material "+mOriginalMaterials[i]+" does not exist.");
 		}
 	}
 }
 
 void RenderComponentEntity::setChangeWorldMaterials()
 {
-	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
 
 	Ogre::SubEntity* subEnt;
 	unsigned int i;
@@ -235,7 +235,7 @@ void RenderComponentEntity::setChangeWorldMaterials()
 		}
 		else
 		{
-			Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
+			Logger::getInstance()->log("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
 		}
 	}
 }
@@ -319,7 +319,7 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 
 void RenderComponentEntity::setChangeWorldFactor(double factor)
 {
-	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
 	unsigned int i;
 	for(i=0;i<mChangeWorldMaterials.size();i++)
 	{
@@ -329,7 +329,7 @@ void RenderComponentEntity::setChangeWorldFactor(double factor)
 
 void RenderComponentEntity::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
 {
-	//Ogre::LogManager::getSingleton().logMessage("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
 	unsigned int i;
 	for(i=0;i<mChangeWorldMaterials.size();i++)
 	{

@@ -174,7 +174,7 @@ void LogicSubsystem::loadScript(const std::string& filename)
 			std::string errString = "LUA Function call failed: ";
 			errString.append(err.what()).append(" - ");
 			errString.append(lua_tostring(err.state(),-1));
-			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+			Logger::getInstance()->log(errString);
 		}
 	}
 }
@@ -204,7 +204,7 @@ int LogicSubsystem::invokeStateFunction(const std::string& functionName,int stat
 			std::string errString = "LUA Function call failed: ";
 			errString.append(err.what()).append(" - ");
 			errString.append(lua_tostring(err.state(),-1));
-			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+			Logger::getInstance()->log(errString);
 		}
 
 	}
@@ -227,7 +227,7 @@ bool LogicSubsystem::invokeConditionFunction(const std::string& functionName, Lo
 			std::string errString = "LUA Function call failed: ";
 			errString.append(err.what()).append(" - ");
 			errString.append(lua_tostring(err.state(),-1));
-			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+			Logger::getInstance()->log(errString);
 		}
 
 	}
@@ -249,7 +249,7 @@ void LogicSubsystem::invokeActionFunction(const std::string& functionName, Logic
 			std::string errString = "LUA Function call failed: ";
 			errString.append(err.what()).append(" - ");
 			errString.append(lua_tostring(err.state(),-1));
-			Ogre::LogManager::getSingletonPtr()->logMessage(errString);
+			Logger::getInstance()->log(errString);
 		}
 	}
 }

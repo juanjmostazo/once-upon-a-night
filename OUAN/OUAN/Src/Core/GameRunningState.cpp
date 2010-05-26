@@ -150,7 +150,7 @@ void GameRunningState::handleEvents()
 
 		if (mApp->isPressedQuickExit())
 		{
-			//Ogre::LogManager::getSingleton().logMessage("isPressedQuickExit IN");
+			//Logger::getInstance()->log("isPressedQuickExit IN");
 			mApp->mExitRequested=true;
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
@@ -305,13 +305,13 @@ void GameRunningState::checkDebuggingKeys()
 		}
 		else if (mApp->isPressedToggleDebugTrajectory())
 		{
-			Ogre::LogManager::getSingleton().logMessage("ToggleDebugTrajectory key pressed");
+			Logger::getInstance()->log("ToggleDebugTrajectory key pressed");
 			mApp->getTrajectoryManager()->toggleDebugMode(mApp->getGameWorldManager()->getWorld());
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeCamera())
 		{
-			Ogre::LogManager::getSingleton().logMessage("ToggleChangeCamera key pressed");
+			Logger::getInstance()->log("ToggleChangeCamera key pressed");
 			mApp->getCameraManager()->changeCamera();
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
@@ -322,7 +322,7 @@ void GameRunningState::checkDebuggingKeys()
 		}
 		else if (mApp->isPressedToggleChangeWorld())
 		{
-			Ogre::LogManager::getSingleton().logMessage("ToggleChangeWorld key pressed");
+			Logger::getInstance()->log("ToggleChangeWorld key pressed");
 			mApp->getGameWorldManager()->changeWorld();
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
@@ -333,7 +333,7 @@ void GameRunningState::checkDebuggingKeys()
 		}
 		else if (mApp->isPressedToggleConsole())
 		{
-			Ogre::LogManager::getSingleton().logMessage("ToggleConsole key pressed");
+			Logger::getInstance()->log("ToggleConsole key pressed");
 			if (mGUI->isVisible())
 				mGUI->hideConsole();
 			else
@@ -342,13 +342,13 @@ void GameRunningState::checkDebuggingKeys()
 		}
 		else if (mApp->isPressedToggleVolumes())
 		{
-			Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
+			Logger::getInstance()->log("ToggleVolumes key pressed");
 			toggleVolumes();		
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleGodMode())
 		{	
-			Ogre::LogManager::getSingleton().logMessage("ToggleGodMode key pressed");
+			Logger::getInstance()->log("ToggleGodMode key pressed");
 
 			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->getGodMode());
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
@@ -389,10 +389,10 @@ void GameRunningState::update(long elapsedTime)
 			//std::stringstream out;
 			//out << elapsedSeconds;
 			//std::string elapsedTimeDebug = out.str();
-			//Ogre::LogManager::getSingleton().logMessage("Updating " + elapsedTimeDebug);
-			//Ogre::LogManager::getSingleton().logMessage("* Updating Game World Manager");
+			//Logger::getInstance()->log("Updating " + elapsedTimeDebug);
+			//Logger::getInstance()->log("* Updating Game World Manager");
 
-			//Ogre::LogManager::getSingleton().logMessage("* Updating Camera Params");
+			//Logger::getInstance()->log("* Updating Camera Params");
 
 			//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
 
@@ -442,7 +442,7 @@ void GameRunningState::update(long elapsedTime)
 		if ((mAudioFrameCnt++)>mAudioFrameSkip)
 			mAudioFrameCnt=0;
 
-		//Ogre::LogManager::getSingleton().logMessage("Other stuff");
+		//Logger::getInstance()->log("Other stuff");
 		mApp->mKeyBuffer-=elapsedTime;
 	}
 	
@@ -488,7 +488,7 @@ bool GameRunningState::render()
 
 void GameRunningState::toggleDebugPerformance()
 {
-	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPerformance key pressed");
+	Logger::getInstance()->log("ToggleDebugPerformance key pressed");
 
 	if (mApp->getDebugMode()!=DEBUGMODE_PERFORMANCE)
 	{
@@ -505,7 +505,7 @@ void GameRunningState::toggleDebugPerformance()
 
 void GameRunningState::toggleDebugPhysics()
 {
-	Ogre::LogManager::getSingleton().logMessage("ToggleDebugPhysics key pressed");
+	Logger::getInstance()->log("ToggleDebugPhysics key pressed");
 
 	if (mApp->getDebugMode()!=DEBUGMODE_PHYSICS)
 	{
@@ -523,8 +523,8 @@ void GameRunningState::toggleDebugPhysics()
 
 void GameRunningState::toggleChangeLevel()
 {
-	Ogre::LogManager::getSingleton().logMessage("ToggleChangeLevel key pressed");
-	Ogre::LogManager::getSingleton().logMessage("isPressedToggleChangeLevel IN");
+	Logger::getInstance()->log("ToggleChangeLevel key pressed");
+	Logger::getInstance()->log("isPressedToggleChangeLevel IN");
 	if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
 	{
 		mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
@@ -545,7 +545,7 @@ void GameRunningState::toggleChangeLevel()
 
 void GameRunningState::changeCameraController()
 {
-	Ogre::LogManager::getSingleton().logMessage("ToggleChangeCameraController key pressed");
+	Logger::getInstance()->log("ToggleChangeCameraController key pressed");
 
 	mApp->getCameraManager()->changeCameraController();
 	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
@@ -556,7 +556,7 @@ void GameRunningState::changeCameraController()
 
 void GameRunningState::toggleVolumes()
 {
-	Ogre::LogManager::getSingleton().logMessage("ToggleVolumes key pressed");
+	Logger::getInstance()->log("ToggleVolumes key pressed");
 
 	TGameObjectTriggerBoxContainer * cBox = mApp->getGameWorldManager()->getGameObjectTriggerBoxContainer();
 	for(unsigned int i=0; i<cBox->size(); i++)
@@ -688,8 +688,8 @@ void GameRunningState::endMusicFading(int newWorld)
 	}
 	catch (const std::exception& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage("GameRunningState::endMusicFading CRASH");
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+		Logger::getInstance()->log("GameRunningState::endMusicFading CRASH");
+		Logger::getInstance()->log(e.what());
 	}
 }
 void GameRunningState::changeWorldFinished(int newWorld)

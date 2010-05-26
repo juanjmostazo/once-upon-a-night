@@ -45,7 +45,7 @@ void CameraControllerFixedThirdPerson::setCamera(Ogre::Camera * pCamera)
 void CameraControllerFixedThirdPerson::calculateRotY()
 {
 	rotY=180+mCamera->getOrientation().getYaw().valueDegrees();
-	//Ogre::LogManager::getSingleton().logMessage("[rotY] "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+	//Logger::getInstance()->log("[rotY] "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 }
 
 Ogre::Vector3 CameraControllerFixedThirdPerson::rotateMovementVector(Ogre::Vector3 movement)
