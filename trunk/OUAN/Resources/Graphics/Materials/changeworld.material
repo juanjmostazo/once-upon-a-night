@@ -47,7 +47,8 @@ fragment_program erosion_FS_CG cg
 	  param_named scroll_blending float3 0.0 0.0 0.0	
 	  param_named displacement float3 0.0 0.0 0.0  
 	  param_named blending float 0.03
-	  param_named tiling float 2.5
+	  param_named tiling float3 1 1 0.0
+	  param_named blending_tiling float3 2.5 2.5 0.0
    	}
 }
 
@@ -94,7 +95,8 @@ fragment_program erosion_transparent_FS_CG cg
 	  param_named scroll_blending float3 0.0 0.0 0.0	
 	  param_named displacement float3 0.0 0.0 0.0	  
 	  param_named blending float 0.03
-	  param_named tiling float 2.5
+	  param_named tiling float3 1 1 0.0
+	  param_named blending_tiling float3 2.5 2.5 0.0
    	}
 }
 

@@ -16,6 +16,7 @@ namespace OUAN
 		~TPassParameters();
 		bool depth_write;
 		bool lighting;
+		bool transparent_sorting;
 	};
 
 	class TChangeWorldMaterialParameters
@@ -70,9 +71,13 @@ namespace OUAN
 		Vector3 mScrollAnimationCurrent;
 		Vector3 mScrollBlendingCurrent;
 
+		Vector3 mChangeWorldBlendingTiling;
+		Vector3 mTiling;
+
+		void getMaterialParameters(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr material);
+
 		std::string getDiffuseTexture(Ogre::MaterialPtr material);
 		void getTextureParameters(Ogre::MaterialPtr material);
-		Vector3 getCurrentScrollAnimation(Ogre::MaterialPtr material);
 		TPassParameters getPassParameters(Ogre::MaterialPtr material);
 		void setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters);
 

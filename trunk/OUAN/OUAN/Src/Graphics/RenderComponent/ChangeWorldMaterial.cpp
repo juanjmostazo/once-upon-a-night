@@ -8,6 +8,8 @@ ChangeWorldMaterial::ChangeWorldMaterial()
 	mName="";
 	mId="";
 	mPointOfInterest=Vector3::ZERO;
+	mChangeWorldBlendingTiling=Vector3(1,1,1);
+	mTiling=Vector3(1,1,1);
 }
 
 ChangeWorldMaterial::~ChangeWorldMaterial()
@@ -92,6 +94,7 @@ TPassParameters ChangeWorldMaterial::getPassParameters(Ogre::MaterialPtr materia
 	pass = technique->getPass(0);
 	passParameters.lighting = pass->getLightingEnabled();
 	passParameters.depth_write = pass->getDepthWriteEnabled();
+	passParameters.transparent_sorting = pass->getTransparentSortingEnabled();
 
 	return passParameters;
 }
@@ -100,6 +103,7 @@ void ChangeWorldMaterial::setTPassParameters(Ogre::Pass * pass,TPassParameters p
 {
 	pass->setLightingEnabled(passParameters.lighting);
 	pass->setDepthWriteEnabled(passParameters.depth_write);
+	pass->setTransparentSortingEnabled(passParameters.transparent_sorting);
 
 	if(!passParameters.depth_write)
 	{
@@ -147,7 +151,10 @@ void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters t
 	//set shader constant parameters
 	params = pass->getFragmentProgramParameters();
 	params->setNamedConstant("blending",Ogre::Real(tChangeWorldMaterialParameters.blending_amount));
-	params->setNamedConstant("tiling",Ogre::Real(tChangeWorldMaterialParameters.tiling));
+	params->setNamedConstant("blending_tiling",mChangeWorldBlendingTiling);
+	params->setNamedConstant("tiling",mTiling);
+
+	Logger::getInstance()->log("mTiling "+mId+" "+Ogre::StringConverter::toString(mTiling));
 
 	texture=pass->getTextureUnitState(2);
 	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
@@ -164,13 +171,18 @@ void ChangeWorldMaterial::createMaterialErosionTransparent(TChangeWorldMaterialP
 	pass=technique->getPass(0);
 	setTPassParameters(pass,passParameters);
 
+	pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+	pass->setDepthWriteEnabled(false);
+	pass->setTransparentSortingEnabled(true);
+
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
 
 	//set shader constant parameters
 	params = pass->getFragmentProgramParameters();
 	params->setNamedConstant("blending",Ogre::Real(tChangeWorldMaterialParameters.blending_amount));
-	params->setNamedConstant("tiling",Ogre::Real(tChangeWorldMaterialParameters.tiling));
+	params->setNamedConstant("blending_tiling",mChangeWorldBlendingTiling);
+	params->setNamedConstant("tiling",mTiling);
 
 	texture=pass->getTextureUnitState(2);
 	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
@@ -216,6 +228,18 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 
 }
 
+void ChangeWorldMaterial::getMaterialParameters(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr material)
+{
+	mType = tChangeWorldMaterialParameters.type;
+	mRandomize=tChangeWorldMaterialParameters.randomize;
+
+	mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
+	mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
+    mChangeWorldBlendingTiling=Vector3(tChangeWorldMaterialParameters.tiling,tChangeWorldMaterialParameters.tiling,tChangeWorldMaterialParameters.tiling);
+
+	getTextureParameters(material);
+}
+
 bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr pMaterial1, Ogre::MaterialPtr pMaterial2)
 {
 	std::string diffuseTexture1;
@@ -227,13 +251,7 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 	if(diffuseTexture1.compare("")!=0 && diffuseTexture2.compare("")!=0)
 	{
 		mId=id;
-		mType = tChangeWorldMaterialParameters.type;
-		mRandomize=tChangeWorldMaterialParameters.randomize;
-
-		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
-		mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
-		mScrollAnimationCurrent=getCurrentScrollAnimation(pMaterial1);
-		mScrollBlendingCurrent=getCurrentScrollAnimation(pMaterial1);
+		getMaterialParameters(tChangeWorldMaterialParameters,pMaterial1);
 
 		mName = createMaterial(tChangeWorldMaterialParameters,
 			diffuseTexture1,
@@ -256,14 +274,8 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 	if(diffuseTexture1.compare("")!=0)
 	{
 		mId=id;
-		mType = CW_EROSION_TRANSPARENT;
 		tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
-		mRandomize=tChangeWorldMaterialParameters.randomize;
-
-		mScrollAnimationSpeed=tChangeWorldMaterialParameters.scroll_animation;
-		mScrollBlendingSpeed=tChangeWorldMaterialParameters.scroll_blending;
-		mScrollAnimationCurrent=getCurrentScrollAnimation(pMaterial1);
-		mScrollBlendingCurrent=getCurrentScrollAnimation(pMaterial1);
+		getMaterialParameters(tChangeWorldMaterialParameters,pMaterial1);
 
 		mName = createMaterial(tChangeWorldMaterialParameters,
 			diffuseTexture1,
@@ -271,7 +283,7 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 			getPassParameters(pMaterial1)
 			);
 
-		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+mName+" initialized.");
+		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
 	}
 
 	return mName.compare("")!=0;
@@ -337,26 +349,6 @@ void ChangeWorldMaterial::randomize()
 	}
 }
 
-Vector3 ChangeWorldMaterial::getCurrentScrollAnimation(Ogre::MaterialPtr material)
-{
-	Ogre::Technique * technique;
-	Ogre::Pass * pass;
-
-	// Get diffuse texture
-	technique = material->getBestTechnique();
-	pass = technique->getPass(0);
-	if(pass->getTextureUnitStateIterator().hasMoreElements())
-	{
-		return Vector3(pass->getTextureUnitState(0)->getTextureUScroll(),
-					   pass->getTextureUnitState(0)->getTextureVScroll(),
-					   0);
-	}
-	else
-	{
-		return Vector3::ZERO;
-	}
-}
-
 void ChangeWorldMaterial::getTextureParameters(Ogre::MaterialPtr material)
 {
 	Ogre::Technique * technique;
@@ -367,14 +359,12 @@ void ChangeWorldMaterial::getTextureParameters(Ogre::MaterialPtr material)
 	pass = technique->getPass(0);
 	if(pass->getTextureUnitStateIterator().hasMoreElements())
 	{
-		if(pass->getTextureUnitState(0)->getTextureUScroll()!=0)
+		if(mScrollAnimationSpeed==Vector3::ZERO)
 		{
-			mScrollAnimationSpeed.x=pass->getTextureUnitState(0)->getTextureUScroll();
+			//mScrollAnimationSpeed.x=pass->getTextureUnitState(0)->getTextureUScroll();
+			//mScrollAnimationSpeed.y=pass->getTextureUnitState(0)->getTextureVScroll();
 		}
-		if(pass->getTextureUnitState(0)->getTextureVScroll()!=0)
-		{
-			mScrollAnimationSpeed.y=pass->getTextureUnitState(0)->getTextureVScroll();
-		}
+		mTiling=Vector3(1.0f/pass->getTextureUnitState(0)->getTextureUScale(),1.0f/pass->getTextureUnitState(0)->getTextureVScale(),0.0f);
 	}
 
 }
