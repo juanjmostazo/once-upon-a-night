@@ -118,11 +118,31 @@ void GameObjectDiamond::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+	{
+		mRenderComponentEntity->setChangeWorldMaterials();
+		mRenderComponentEntity->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponentItem->existsInNightmares()&& !mLogicComponentItem->existsInNightmares())
+	{
+		mRenderComponentEntity->setChangeWorldMaterials();
+		mRenderComponentEntity->randomizeChangeWorldMaterials();
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -135,13 +155,65 @@ void GameObjectDiamond::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
+		case DREAMS:
+			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
+	}
+}
+
+void GameObjectDiamond::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+{
+	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
+}
+
+void GameObjectDiamond::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
+{
+	double fraction=0.25f;
+
+	switch(newWorld)
+	{
 	case DREAMS:
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
+		else if(mLogicComponentItem->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
 		break;
 	case NIGHTMARES:
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
+		else if(mLogicComponentItem->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
 		break;
 	default:
 		break;
-	}
+	}	
 }
 
 void GameObjectDiamond::reset()

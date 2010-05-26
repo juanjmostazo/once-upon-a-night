@@ -71,58 +71,44 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
-			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			else
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityDreams->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
+				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}		
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			if(mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			else
 			{
-				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
+				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
-			}		
 			break;
 		default:
 			break;
@@ -136,8 +122,16 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP);
+		}
 		break;
 	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN);
+		}
 		break;
 	default:
 		break;
@@ -157,6 +151,42 @@ void GameObjectDiamondTree::changeToWorld(int newWorld, double perc)
 	default:
 		break;
 	}
+}
+
+void GameObjectDiamondTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+{
+	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
+}
+
+void GameObjectDiamondTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
+{
+	double fraction=0.25f;
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
+		else if(mLogicComponent->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
+		else if(mLogicComponent->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
+		break;
+	default:
+		break;
+	}	
 }
 
 void GameObjectDiamondTree::reset()

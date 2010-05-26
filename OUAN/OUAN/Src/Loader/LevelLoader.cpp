@@ -1224,6 +1224,9 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(), 
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
+		//Get ChangeWorldMaterialParameters
+		tGameObjectClockPieceParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
 		//Get RenderComponentPositional
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1308,6 +1311,9 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectDiamondParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectDiamondParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
 		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1570,6 +1576,9 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
+		//Get ChangeWorldMaterialParameters
+		tGameObjectHeartParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
 		//Get RenderComponentPositional
 		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1610,6 +1619,9 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
+		//Get ChangeWorldMaterialParameters
+		tGameObjectItem1UPParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
 		//Get RenderComponentPositional
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1649,6 +1661,9 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectItemMaxHPParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2274,6 +2289,9 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectStoryBookParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
 		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
