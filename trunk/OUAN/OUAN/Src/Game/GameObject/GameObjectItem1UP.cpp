@@ -70,6 +70,8 @@ void GameObjectItem1UP::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentEntity->setOriginalMaterials();
+
 	switch(newWorld)
 	{
 	case DREAMS:
