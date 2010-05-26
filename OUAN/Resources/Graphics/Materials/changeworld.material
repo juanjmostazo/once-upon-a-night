@@ -38,7 +38,7 @@ fragment_program erosion_FS_CG cg
 {
 	source erosion.cg
 	entry_point erosionFS
-	profiles ps_3_0 arbfp1 fp20
+	profiles ps_2_0 arbfp1 fp20
 
 	default_params	
 	{
@@ -85,7 +85,7 @@ fragment_program erosion_transparent_FS_CG cg
 {
 	source erosion.cg
 	entry_point erosion_transparentFS
-	profiles ps_3_0 arbfp1 fp20
+	profiles ps_2_0 arbfp1 fp20
 
 	default_params	
 	{
