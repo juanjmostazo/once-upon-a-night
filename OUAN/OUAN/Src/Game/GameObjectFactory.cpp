@@ -179,7 +179,7 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 		pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
 
 	//Init ChangeWorldMaterials
-	//pGameObjectBillboardSet->getRenderComponentBillboardSet()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters);
+	pGameObjectBillboardSet->getRenderComponentBillboardSet()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters);
 
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(gameWorldMgr);
