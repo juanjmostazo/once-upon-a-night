@@ -352,6 +352,9 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 		mComponentFactory->createRenderComponentEntity(tGameObjectClockPieceParameters.name,
 		pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentEntityParameters));
 
+	//Init ChangeWorldMaterials
+	pGameObjectClockPiece->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectClockPieceParameters.tChangeWorldMaterialParameters);
+
 	//Create PhysicsComponent
 	pGameObjectClockPiece->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
@@ -526,6 +529,10 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	pGameObjectDiamond->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectDiamondParameters.name,
 		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters));
+
+	//Init ChangeWorldMaterials
+	pGameObjectDiamond->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectDiamondParameters.tChangeWorldMaterialParameters);
+
 
 	//Create PhysicsComponent
 	pGameObjectDiamond->setPhysicsComponentVolumeBox(
@@ -842,6 +849,9 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 		mComponentFactory->createRenderComponentEntity(tGameObjectHeartParameters.name,
 		pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentEntityParameters));
 
+	//Init ChangeWorldMaterials
+	pGameObjectHeart->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectHeartParameters.tChangeWorldMaterialParameters);
+
 	//Create PhysicsComponent
 	pGameObjectHeart->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
@@ -885,6 +895,10 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 		mComponentFactory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
 		pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
 
+	//Init ChangeWorldMaterials
+	pGameObjectItem1UP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItem1UPParameters.tChangeWorldMaterialParameters);
+
+
 	//Create PhysicsComponent
 	pGameObjectItem1UP->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
@@ -926,6 +940,9 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 	pGameObjectItemMaxHP->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
 		pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+
+	//Init ChangeWorldMaterials
+	pGameObjectItemMaxHP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItemMaxHPParameters.tChangeWorldMaterialParameters);
 
 	//Create PhysicsComponent
 	pGameObjectItemMaxHP->setPhysicsComponentVolumeBox(
@@ -1626,6 +1643,10 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 	pGameObjectStoryBook->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectStoryBookParameters.name,
 		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters));
+
+	//Init ChangeWorldMaterials
+	pGameObjectStoryBook->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectStoryBookParameters.tChangeWorldMaterialParameters);
+
 
 	//Create PhysicsComponent
 	pGameObjectStoryBook->setPhysicsComponentVolumeBox(

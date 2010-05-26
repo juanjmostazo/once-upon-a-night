@@ -58,6 +58,8 @@ void GameObjectClockPiece::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentEntity->setOriginalMaterials();
+
 	if(mLogicComponentItem->existsInDreams() && mLogicComponentItem->existsInNightmares())
 	{
 		if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
@@ -120,11 +122,31 @@ void GameObjectClockPiece::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+	{
+		mRenderComponentEntity->setChangeWorldMaterials();
+		mRenderComponentEntity->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponentItem->existsInNightmares()&& !mLogicComponentItem->existsInNightmares())
+	{
+		mRenderComponentEntity->setChangeWorldMaterials();
+		mRenderComponentEntity->randomizeChangeWorldMaterials();
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -137,12 +159,28 @@ void GameObjectClockPiece::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
 	}
 }
 

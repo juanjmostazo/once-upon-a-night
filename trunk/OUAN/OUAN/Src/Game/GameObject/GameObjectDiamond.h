@@ -73,6 +73,8 @@ namespace OUAN
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
+		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
 
 		/// Reset object
@@ -103,7 +105,6 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 		void update(double elapsedSeconds);
-
 	};
 
 	class TGameObjectDiamondParameters: public TGameObjectParameters
@@ -123,6 +124,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;
+
+		//ChangeWorld parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif
