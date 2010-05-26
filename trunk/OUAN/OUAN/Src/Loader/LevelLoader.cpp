@@ -158,8 +158,8 @@ void LevelLoader::processGameObjects()
 
 void LevelLoader::processGameObjectBillboardClouds()
 {
-	std::string dreamsClouds[] = {"cloud_d", "cloud2_d", "cloud3_d"} ;
-	std::string nightmaresClouds[] = {"cloud_n", "cloud2_n", "cloud3_n"} ;
+	std::string dreamsClouds[] = {"cloud1_d", "cloud2_d", "cloud3_d"} ;
+	std::string nightmaresClouds[] = {"cloud1_n", "cloud2_n", "cloud3_n"} ;
 	int numTypeClouds = 3;
 
 	Configuration config;

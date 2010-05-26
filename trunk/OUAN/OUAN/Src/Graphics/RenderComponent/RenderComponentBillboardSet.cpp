@@ -74,8 +74,7 @@ void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialP
 
 	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
-	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,
-		mBillboardSet->getMaterial());
+	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial());
 
 	if(materialCreated)
 	{

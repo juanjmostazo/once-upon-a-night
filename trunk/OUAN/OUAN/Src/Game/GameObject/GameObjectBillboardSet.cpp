@@ -48,7 +48,7 @@ void GameObjectBillboardSet::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentBillboardSet->setOriginalMaterials();
+	mRenderComponentBillboardSet->setOriginalMaterials();
 
 	switch(newWorld)
 	{
@@ -88,13 +88,31 @@ void GameObjectBillboardSet::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentBillboardSet->setChangeWorldMaterials();
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentBillboardSet->setChangeWorldMaterials();
+		mRenderComponentBillboardSet->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentBillboardSet->setChangeWorldMaterials();
+		mRenderComponentBillboardSet->randomizeChangeWorldMaterials();
+	}
 
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentBillboardSet->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -105,16 +123,30 @@ void GameObjectBillboardSet::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentBillboardSet->setChangeWorldFactor(perc);
-
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSet->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSet->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSet->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSet->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
 	}
 }
 
