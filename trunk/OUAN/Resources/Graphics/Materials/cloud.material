@@ -9,8 +9,8 @@ material cloud_terrain_d#0
 			depth_write off
 			texture_unit
 			{
-				scale 0.1 0.1
-				scroll_anim 0.03 0
+				scale 0.4 0.4
+				scroll_anim 0.04 0
 				texture fog_d.dds
 			}
 		}
@@ -28,8 +28,8 @@ material cloud_terrain_n#0
 			depth_write off
 			texture_unit
 			{
-				scale 0.1 0.1
-				scroll_anim 0.03 0
+				scale 0.4 0.4
+				scroll_anim 0.04 0
 				texture fog_n.dds
 			}
 		}
@@ -48,8 +48,8 @@ material cloud_terrain_d#1
 			depth_write off
 			texture_unit
 			{
-				scale 0.1 0.1
-				scroll_anim 0 0.05
+				scale 0.4 0.4
+				scroll_anim 0.06 0
 				texture fog2_d.dds
 			}
 		}
@@ -67,8 +67,8 @@ material cloud_terrain_n#1
 			depth_write off
 			texture_unit
 			{
-				scale 0.1 0.1
-				scroll_anim 0 0.05
+				scale 0.4 0.4
+				scroll_anim 0.06 0
 				texture fog2_n.dds
 			}
 		}

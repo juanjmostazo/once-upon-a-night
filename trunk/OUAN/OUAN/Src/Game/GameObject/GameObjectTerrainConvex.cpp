@@ -133,11 +133,29 @@ void GameObjectTerrainConvex::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -150,13 +168,55 @@ void GameObjectTerrainConvex::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			}
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
 	}
+}
+
+void GameObjectTerrainConvex::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->update(elapsedSeconds);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->update(elapsedSeconds);
+	}
+
+	//mRenderComponentEntityDreams->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
+	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
 
 void GameObjectTerrainConvex::reset()

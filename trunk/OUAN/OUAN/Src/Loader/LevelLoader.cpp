@@ -2389,6 +2389,8 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 					tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
 						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 				}
+
+				tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 			}
 			catch( std::string error )
 			{

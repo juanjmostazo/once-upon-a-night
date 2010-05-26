@@ -71,6 +71,7 @@ namespace OUAN
 		Vector3 mScrollBlendingCurrent;
 
 		std::string getDiffuseTexture(Ogre::MaterialPtr material);
+		void getTextureParameters(Ogre::MaterialPtr material);
 		Vector3 getCurrentScrollAnimation(Ogre::MaterialPtr material);
 		TPassParameters getPassParameters(Ogre::MaterialPtr material);
 		void setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters);

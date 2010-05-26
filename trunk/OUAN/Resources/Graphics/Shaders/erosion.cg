@@ -97,20 +97,27 @@ out float4 oColor : COLOR)
     uv=calculateUV(uv,scroll_animation);
     erosion_info=tex2D(texture2,calculateBlendingTextureUV(uv,displacement,scroll_blending,tiling));  
     
-    oColor=tex2D(texture0,uv);
+    color=tex2D(texture0,uv);
+    
+    oColor=color;
     
     if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
     {
-       oColor.w=1.0f;
+       color.w=1.0f;
     }
     else if(erosion_info.x<=mix_factor-blending || mix_factor==1.0f)
     {
-       oColor.w=0.0f;
+       color.w=0.0f;
     }   
     else
     {
        normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
-       oColor.w=normalized_blending_factor;
+       color.w=normalized_blending_factor;
+    }
+    
+    if(oColor.w>color.w)
+    {
+        oColor.w=color.w;
     }
 
 }
