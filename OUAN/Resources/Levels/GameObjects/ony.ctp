@@ -27,10 +27,13 @@
   <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondX" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondY" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondZ" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::colorR" type="6" value="-1" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::colorG" type="6" value="-1" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::colorB" type="6" value="-1" ></PROPERTY>
-	
+  <PROPERTY id="RenderComponentFractalVolume::initColorR" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::initColorG" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::initColorB" type="6" value="0" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::endColorR" type="6" value="1" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::endColorG" type="6" value="1" ></PROPERTY>
+  <PROPERTY id="RenderComponentFractalVolume::endColorB" type="6" value="1" ></PROPERTY>
+  
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="66" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="14" ></PROPERTY>

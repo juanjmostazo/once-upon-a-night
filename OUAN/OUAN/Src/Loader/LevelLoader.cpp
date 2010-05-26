@@ -448,14 +448,23 @@ void LevelLoader::processGameObjectFractalClouds()
 		config.getOption("DREAMS_ROTATION_DEGREES_PER_SECOND_Z", value); 
 		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.rotationDegreesPerSecondZ = atof(value.c_str());
 
-		config.getOption("DREAMS_COLOR_R", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorR = atof(value.c_str());
+		config.getOption("DREAMS_INIT_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.initColorR = atof(value.c_str());
 
-		config.getOption("DREAMS_COLOR_G", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorG = atof(value.c_str());
+		config.getOption("DREAMS_INIT_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.initColorG = atof(value.c_str());
 
-		config.getOption("DREAMS_COLOR_B", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.colorB = atof(value.c_str());
+		config.getOption("DREAMS_INIT_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.initColorB = atof(value.c_str());
+
+		config.getOption("DREAMS_END_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.endColorR = atof(value.c_str());
+
+		config.getOption("DREAMS_END_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.endColorG = atof(value.c_str());
+
+		config.getOption("DREAMS_END_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetDreamsParameters.endColorB = atof(value.c_str());
 
 		config.getOption("DREAMS_SEPARATION_PROPORTION", value); 
 		tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
@@ -514,14 +523,23 @@ void LevelLoader::processGameObjectFractalClouds()
 		config.getOption("NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Z", value); 
 		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.rotationDegreesPerSecondZ = atof(value.c_str());
 
-		config.getOption("NIGHTMARES_COLOR_R", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorR = atof(value.c_str());
+		config.getOption("NIGHTMARES_INIT_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.initColorR = atof(value.c_str());
 
-		config.getOption("NIGHTMARES_COLOR_G", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorG = atof(value.c_str());
+		config.getOption("NIGHTMARES_INIT_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.initColorG = atof(value.c_str());
 
-		config.getOption("NIGHTMARES_COLOR_B", value); 
-		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.colorB = atof(value.c_str());
+		config.getOption("NIGHTMARES_INIT_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.initColorB = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_END_COLOR_R", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.endColorR = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_END_COLOR_G", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.endColorG = atof(value.c_str());
+
+		config.getOption("NIGHTMARES_END_COLOR_B", value); 
+		tGameObjectCloudParameters.tRenderComponentFractalVolumeSetNightmaresParameters.endColorB = atof(value.c_str());
 
 		config.getOption("NIGHTMARES_SEPARATION_PROPORTION", value); 
 		tGameObjectCloudParameters.tFractalVolumeSetInnerSeparation = 
@@ -3170,7 +3188,7 @@ TRenderComponentFractalVolumeParameters LevelLoader::processRenderComponentFract
 {
 	OUAN::TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters;
 
-	//Process Quad Halo properties
+	//Process Fractal Volume properties
 	tRenderComponentFractalVolumeParameters.texture3D = getPropertyString(XMLNode, "RenderComponentFractalVolume::texture3D");
 	tRenderComponentFractalVolumeParameters.juliaGlobalReal = getPropertyReal(XMLNode, "RenderComponentFractalVolume::juliaGlobalReal");
 	tRenderComponentFractalVolumeParameters.juliaGlobalImag = getPropertyReal(XMLNode, "RenderComponentFractalVolume::juliaGlobalImag");
@@ -3188,9 +3206,12 @@ TRenderComponentFractalVolumeParameters LevelLoader::processRenderComponentFract
 	tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondX = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesPerSecondX");
 	tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondY = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesPerSecondY");
 	tRenderComponentFractalVolumeParameters.rotationDegreesPerSecondZ = getPropertyReal(XMLNode, "RenderComponentFractalVolume::rotationDegreesPerSecondZ");
-	tRenderComponentFractalVolumeParameters.colorR = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorR");
-	tRenderComponentFractalVolumeParameters.colorG = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorG");
-	tRenderComponentFractalVolumeParameters.colorB = getPropertyReal(XMLNode, "RenderComponentFractalVolume::colorB");
+	tRenderComponentFractalVolumeParameters.initColorR = getPropertyReal(XMLNode, "RenderComponentFractalVolume::initColorR");
+	tRenderComponentFractalVolumeParameters.initColorG = getPropertyReal(XMLNode, "RenderComponentFractalVolume::initColorG");
+	tRenderComponentFractalVolumeParameters.initColorB = getPropertyReal(XMLNode, "RenderComponentFractalVolume::initColorB");
+	tRenderComponentFractalVolumeParameters.endColorR = getPropertyReal(XMLNode, "RenderComponentFractalVolume::endColorR");
+	tRenderComponentFractalVolumeParameters.endColorG = getPropertyReal(XMLNode, "RenderComponentFractalVolume::endColorG");
+	tRenderComponentFractalVolumeParameters.endColorB = getPropertyReal(XMLNode, "RenderComponentFractalVolume::endColorB");
 
 	return tRenderComponentFractalVolumeParameters;
 }

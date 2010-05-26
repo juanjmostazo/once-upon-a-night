@@ -33,11 +33,20 @@ BufferManager* BufferManager::getInstance()
 	return mInstance;
 }
 
-void BufferManager::setBuffer(std::string texture3DName, double vCut, double vScale, double juliaGlobalReal, double juliaGlobalImag, double juliaGlobalTheta)
+void BufferManager::setBuffer(std::string texture3DName, double vCut, double vScale, 
+							  double juliaGlobalReal, double juliaGlobalImag, double juliaGlobalTheta,
+							  double initColorR, double initColorG, double initColorB,
+							  double endColorR, double endColorG, double endColorB)
 {
 	if (mTexture3DName.compare(texture3DName) != 0 ||
 		mVCut != vCut ||
-		mVScale != vScale)
+		mVScale != vScale ||
+		mInitColorR != initColorR ||
+		mInitColorG != initColorG ||
+		mInitColorB != initColorB ||
+		mEndColorR != endColorR ||
+		mEndColorR != endColorG ||
+		mEndColorR != endColorB)
 	{
 		Logger::getInstance()->log("[BUFFER MANAGER] Re-Setting buffer");
 
@@ -78,9 +87,6 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 						}
 
 						Ogre::PixelUtil::packColour(
-							//(float)(tRenderComponentFractalVolumeParameters.colorR < 0 ? x/pb.getWidth() : tRenderComponentFractalVolumeParameters.colorR), 
-							//(float)(tRenderComponentFractalVolumeParameters.colorG < 0 ? y/pb.getHeight() : tRenderComponentFractalVolumeParameters.colorG), 
-							//(float)(tRenderComponentFractalVolumeParameters.colorB < 0 ? z/pb.getDepth() : tRenderComponentFractalVolumeParameters.colorB), 
 							(float)x/pb.getWidth(), 
 							(float)y/pb.getHeight(), 
 							(float)z/pb.getDepth(),
@@ -101,5 +107,13 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 		mTexture3DName = texture3DName;
 		mVCut = vCut;
 		mVScale = vScale;
+
+		mInitColorR = initColorR;
+		mInitColorG = initColorG;
+		mInitColorB = initColorB;
+
+		mEndColorR = endColorR;
+		mEndColorG = endColorG;
+		mEndColorB = endColorB;
 	}
 }
