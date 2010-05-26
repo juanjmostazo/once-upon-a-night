@@ -9,9 +9,8 @@ BufferManager* BufferManager::mInstance = 0;
 
 BufferManager::BufferManager()
 {
-	mTexture3DName = "";
-	mVCut = 0;
-	mVScale = 0;
+	mTexture3DName_1 = "";
+	mTexture3DName_2 = "";
 }
 
 BufferManager::~BufferManager()
@@ -33,22 +32,22 @@ BufferManager* BufferManager::getInstance()
 	return mInstance;
 }
 
+//TODO IMPROVE TEXTURES USING A POOL
 void BufferManager::setBuffer(std::string texture3DName, double vCut, double vScale, 
 							  double juliaGlobalReal, double juliaGlobalImag, double juliaGlobalTheta,
 							  double initColorR, double initColorG, double initColorB,
 							  double endColorR, double endColorG, double endColorB)
 {
-	if (mTexture3DName.compare(texture3DName) != 0 ||
-		mVCut != vCut ||
-		mVScale != vScale ||
-		mInitColorR != initColorR ||
-		mInitColorG != initColorG ||
-		mInitColorB != initColorB ||
-		mEndColorR != endColorR ||
-		mEndColorR != endColorG ||
-		mEndColorR != endColorB)
+	if (mTexture3DName_1.compare(texture3DName) == 0 || 
+		mTexture3DName_2.compare(texture3DName) == 0)
 	{
-		Logger::getInstance()->log("[BUFFER MANAGER] Re-Setting buffer");
+		//DO NOTHING
+	}
+	else
+	{
+		Logger::getInstance()->log("[BUFFER MANAGER] Setting buffer for " + texture3DName);
+		Logger::getInstance()->log("COLOR INIT: " + Ogre::StringConverter::toString(Ogre::Real(initColorR)) + "," + Ogre::StringConverter::toString(Ogre::Real(initColorG)) + "," + Ogre::StringConverter::toString(Ogre::Real(initColorB)));
+		Logger::getInstance()->log("COLOR END: " + Ogre::StringConverter::toString(Ogre::Real(endColorR)) + "," + Ogre::StringConverter::toString(Ogre::Real(endColorG)) + "," + Ogre::StringConverter::toString(Ogre::Real(endColorB)));
 
 		Julia julia = JuliaManager::getInstance()->getJulia(juliaGlobalReal, juliaGlobalImag, juliaGlobalTheta);
 
@@ -62,6 +61,7 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 		const Ogre::PixelBox &pb = buffer->getCurrentLock();
 
 		double vCutInv = 1.0f / vCut;
+		float colorR, colorG, colorB;
 
 		unsigned int* pbptr = static_cast<unsigned int*>(pb.data);
 		for(size_t z=pb.front; z<pb.back; z++) 
@@ -86,10 +86,20 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 							val = vCut;
 						}
 
+						colorR = (float)x/pb.getWidth();
+						colorG = (float)y/pb.getHeight();
+						colorB = (float)z/pb.getDepth();
+						
+						colorR = ((endColorR - initColorR) * colorR) + initColorR;
+						colorG = ((endColorG - initColorG) * colorG) + initColorG;
+						colorB = ((endColorB - initColorB) * colorB) + initColorB;
+
+						//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(x)) + "," + Ogre::StringConverter::toString(Ogre::Real(y)) + "," + Ogre::StringConverter::toString(Ogre::Real(z)) + " : " + Ogre::StringConverter::toString(Ogre::Real(colorR)) + "," + Ogre::StringConverter::toString(Ogre::Real(colorG)) + "," + Ogre::StringConverter::toString(Ogre::Real(colorB)));
+
 						Ogre::PixelUtil::packColour(
-							(float)x/pb.getWidth(), 
-							(float)y/pb.getHeight(), 
-							(float)z/pb.getDepth(),
+							colorR, 
+							colorG, 
+							colorB,
 							(1.0f-(val*vCutInv))*0.7f, 
 							Ogre::PF_A8R8G8B8, 
 							&pbptr[x]);
@@ -104,16 +114,13 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 
 		buffer->unlock();
 
-		mTexture3DName = texture3DName;
-		mVCut = vCut;
-		mVScale = vScale;
-
-		mInitColorR = initColorR;
-		mInitColorG = initColorG;
-		mInitColorB = initColorB;
-
-		mEndColorR = endColorR;
-		mEndColorG = endColorG;
-		mEndColorB = endColorB;
+		if (texture3DName.find("texture3D_1") != std::string::npos)
+		{
+			mTexture3DName_1 = texture3DName;
+		}
+		else if (texture3DName.find("texture3D_2") != std::string::npos)
+		{
+			mTexture3DName_2 = texture3DName;
+		}
 	}
 }

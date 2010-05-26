@@ -1122,13 +1122,6 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			tGameObjectOnyParameters.tRenderComponentQuadHaloParameters,
 			pGameObjectOny->getRenderComponentPositional()));
 
-	//Create RenderComponentFractalVolume
-	pGameObjectOny->setRenderComponentFractalVolume(
-		mComponentFactory->createRenderComponentFractalVolume(
-			pGameObjectOny,
-			tGameObjectOnyParameters.tRenderComponentFractalVolumeParameters,
-			pGameObjectOny->getRenderComponentPositional()));
-
 	//Create PhysicsComponent
 	pGameObjectOny->setPhysicsComponentCharacter(
 		mComponentFactory->createPhysicsComponentCharacter(

@@ -36,7 +36,7 @@ Julia JuliaManager::getJulia(double globalReal, double globalImag, double global
 		globalImag != mLastGlobalImag || 
 		globalTheta != mLastGlobalTheta)
 	{
-		Logger::getInstance()->log("[Julia MANAGER] Re-Setting julia");
+		Logger::getInstance()->log("[Julia MANAGER] Setting julia");
 
 		Julia julia((float)globalReal, (float)globalImag, (float)globalTheta);
 		

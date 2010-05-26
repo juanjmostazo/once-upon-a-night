@@ -1823,9 +1823,6 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		//Get RenderComponentQuadHalo
 		tGameObjectOnyParameters.tRenderComponentQuadHaloParameters = processRenderComponentQuadHalo(gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentFractalVolume
-		tGameObjectOnyParameters.tRenderComponentFractalVolumeParameters = processRenderComponentFractalVolume(gameObject->XMLNodeCustomProperties);
-
 		//Get PhysicsComponentCharacter
 		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 
