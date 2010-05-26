@@ -35,7 +35,7 @@ Ogre::MaterialPtr ChangeWorldMaterial::findMaterial(std::string name)
 	return material;
 }
 
-std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters tChangeWorldMaterialParameters, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
+std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters tChangeWorldMaterialParameters, Ogre::MaterialPtr original_material,std::string diffuseTexture1, std::string diffuseTexture2)
 {
 	Ogre::MaterialPtr changeworld_clone;
 	Ogre::MaterialPtr changeworld_material;
@@ -61,13 +61,13 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 			switch(tChangeWorldMaterialParameters.type)
 			{
 			case CW_BLENDING:
-				createMaterialBlending(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,diffuseTexture2,passParameters);
+				createMaterialBlending(tChangeWorldMaterialParameters,original_material,changeworld_clone,diffuseTexture1,diffuseTexture2);
 				break;
 			case CW_EROSION:
-				createMaterialErosion(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,diffuseTexture2,passParameters);
+				createMaterialErosion(tChangeWorldMaterialParameters,original_material,changeworld_clone,diffuseTexture1,diffuseTexture2);
 				break;
 			case CW_EROSION_TRANSPARENT:
-				createMaterialErosionTransparent(tChangeWorldMaterialParameters,changeworld_clone,diffuseTexture1,passParameters);
+				createMaterialErosionTransparent(tChangeWorldMaterialParameters,original_material,changeworld_clone,diffuseTexture1);
 				break;
 			default:
 				return "";
@@ -84,44 +84,42 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 	return newMaterialName;
 }
 
-TPassParameters ChangeWorldMaterial::getPassParameters(Ogre::MaterialPtr material)
+void ChangeWorldMaterial::setPassParameters(Ogre::Pass * pass,Ogre::MaterialPtr original_material)
 {
 	Ogre::Technique * technique;
-	Ogre::Pass * pass;
-	TPassParameters passParameters;
-	// Get diffuse texture
-	technique = material->getBestTechnique();
-	pass = technique->getPass(0);
-	passParameters.lighting = pass->getLightingEnabled();
-	passParameters.depth_write = pass->getDepthWriteEnabled();
-	passParameters.transparent_sorting = pass->getTransparentSortingEnabled();
+	Ogre::Pass * original_pass;
 
-	return passParameters;
-}
+	technique = original_material->getBestTechnique();
+	original_pass = technique->getPass(0);
 
-void ChangeWorldMaterial::setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters)
-{
-	pass->setLightingEnabled(passParameters.lighting);
-	pass->setDepthWriteEnabled(passParameters.depth_write);
-	pass->setTransparentSortingEnabled(passParameters.transparent_sorting);
-
-	if(!passParameters.depth_write)
-	{
-		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-		pass->setTransparentSortingEnabled(true);
-	}
+	pass->setAlphaRejectFunction(original_pass->getAlphaRejectFunction());
+	pass->setAlphaRejectValue(original_pass->getAlphaRejectValue());
+	pass->setAmbient(original_pass->getAmbient());
+	pass->setColourWriteEnabled(original_pass->getColourWriteEnabled());
+	pass->setCullingMode(original_pass->getCullingMode());
+	pass->setDepthBias(original_pass->getDepthBiasConstant());
+	pass->setDepthCheckEnabled(original_pass->getDepthCheckEnabled());
+	pass->setDepthFunction(original_pass->getDepthFunction());
+	pass->setDepthWriteEnabled(original_pass->getDepthWriteEnabled());
+	pass->setSceneBlending(original_pass->getSourceBlendFactor(),original_pass->getDestBlendFactor());
+	pass->setDiffuse(original_pass->getDiffuse());
+	pass->setLightingEnabled(original_pass->getLightingEnabled());
+	pass->setPolygonMode(original_pass->getPolygonMode());
+	pass->setShadingMode(original_pass->getShadingMode());
+	pass->setTransparentSortingEnabled(original_pass->getTransparentSortingEnabled());
+	pass->setPointAttenuation(original_pass->isPointAttenuationEnabled(),original_pass->getPointAttenuationConstant(),original_pass->getPointAttenuationLinear(),original_pass->getPointAttenuationQuadratic());
 
 }
 
-void ChangeWorldMaterial::createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
+void ChangeWorldMaterial::createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone,std::string diffuseTexture1, std::string diffuseTexture2)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
 	Ogre::TextureUnitState * texture;
 
-	technique=clone->getTechnique(0);
+	technique=change_world_material_clone->getTechnique(0);
 	pass=technique->getPass(0);
-	setTPassParameters(pass,passParameters);
+	setPassParameters(pass,original_material);
 
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
@@ -131,16 +129,16 @@ void ChangeWorldMaterial::createMaterialBlending(TChangeWorldMaterialParameters 
 	texture->setTextureName(diffuseTexture2);
 }
 
-void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters passParameters)
+void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone,std::string diffuseTexture1, std::string diffuseTexture2)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
 	Ogre::TextureUnitState * texture;
 	Ogre::GpuProgramParametersSharedPtr params;
 
-	technique=clone->getTechnique(0);
+	technique=change_world_material_clone->getTechnique(0);
 	pass=technique->getPass(0);
-	setTPassParameters(pass,passParameters);
+	setPassParameters(pass,original_material);
 
 	texture=pass->getTextureUnitState(0);
 	texture->setTextureName(diffuseTexture1);
@@ -160,16 +158,16 @@ void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters t
 	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
 }
 
-void ChangeWorldMaterial::createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1,TPassParameters passParameters)
+void ChangeWorldMaterial::createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone,std::string diffuseTexture1)
 {
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
 	Ogre::TextureUnitState * texture;
 	Ogre::GpuProgramParametersSharedPtr params;
 
-	technique=clone->getTechnique(0);
+	technique=change_world_material_clone->getTechnique(0);
 	pass=technique->getPass(0);
-	setTPassParameters(pass,passParameters);
+	setPassParameters(pass,original_material);
 
 	pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
 	pass->setDepthWriteEnabled(false);
@@ -254,9 +252,9 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 		getMaterialParameters(tChangeWorldMaterialParameters,pMaterial1);
 
 		mName = createMaterial(tChangeWorldMaterialParameters,
+			pMaterial1,
 			diffuseTexture1,
-			diffuseTexture2,
-			getPassParameters(pMaterial1)
+			diffuseTexture2
 			);
 
 		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
@@ -278,9 +276,9 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 		getMaterialParameters(tChangeWorldMaterialParameters,pMaterial1);
 
 		mName = createMaterial(tChangeWorldMaterialParameters,
+			pMaterial1,
 			diffuseTexture1,
-			diffuseTexture1,
-			getPassParameters(pMaterial1)
+			diffuseTexture1
 			);
 
 		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
@@ -440,16 +438,6 @@ void ChangeWorldMaterial::update(double elapsedSeconds)
 void ChangeWorldMaterial::setPointOfInterest(Vector3 pointOfInterest)
 {
 	mPointOfInterest=pointOfInterest;
-}
-
-TPassParameters::TPassParameters()
-{
-
-}
-
-TPassParameters::~TPassParameters()
-{
-
 }
 
 TChangeWorldMaterialParameters::TChangeWorldMaterialParameters()

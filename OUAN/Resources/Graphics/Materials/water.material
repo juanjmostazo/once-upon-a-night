@@ -1,56 +1,4 @@
-material waterA
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.7 0.7 0.7
-			cull_hardware none
-			cull_software none
-
-			texture_unit
-			{
-				texture Water01.jpg
-				scroll_anim -0.25 0.1
-			}
-
-			texture_unit
-			{
-				texture Water01.jpg
-				colour_op_ex add src_texture src_current
-				colour_op_multipass_fallback one one
-				scroll_anim -0.1 0.25
-			}
-		}
-	}
-}
-
-material waterB
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.2 0.2 0.2
-			scene_blend add
-			depth_write off
-
-			texture_unit
-			{
-				texture Water01.jpg
-				scroll_anim 0.05 0
-			}
-
-			texture_unit
-			{
-				texture Water01.jpg
-				wave_xform scroll_y sine 0 0.1 0 0.5
-			}
-		}
-	}
-}
-
-material water
+material water_foam
 {
 	technique
 	{
@@ -69,23 +17,67 @@ material water
 	}
 }
 
-material waterfall
+material water_seabet_lake1
 {
 	technique
 	{
 		pass
 		{
-			ambient 0.2 0.2 0.2
-			scene_blend alpha_blend
-			depth_write off
-
 			texture_unit
 			{
-				alpha_op_ex modulate src_manual src_current 0.5 	
-				texture Water01.jpg
-				scroll_anim 0 0.8
+				watter.dds
 			}
 		}
+	}
+}
+
+material water_seabet_lake2
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				lake_mountain2.dds
+			}
+		}
+	}
+}
+
+material waterfall_foam
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+	                        depth_write off	
+			texture_unit
+			{
+				scroll_anim 0 0.6
+				texture foam_watterfall01_mountain2.dds
+			}
+		}
+
+	}
+}
+
+material waterfall_blue
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+	                        depth_write off	
+			texture_unit
+			{
+				scroll_anim 0 0.62
+				texture watterfall01_mountain2.dds
+			}
+		}
+
 	}
 }
 

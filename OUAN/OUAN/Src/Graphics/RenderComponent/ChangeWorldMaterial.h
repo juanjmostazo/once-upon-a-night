@@ -9,16 +9,6 @@ namespace OUAN
 	const std::string MATERIAL_EROSION_NAME="erosion";
 	const std::string MATERIAL_EROSION_TRANSPARENT_NAME="erosion_transparent";
 
-	class TPassParameters
-	{
-	public:
-		TPassParameters();
-		~TPassParameters();
-		bool depth_write;
-		bool lighting;
-		bool transparent_sorting;
-	};
-
 	class TChangeWorldMaterialParameters
 	{
 	public:
@@ -78,14 +68,14 @@ namespace OUAN
 
 		std::string getDiffuseTexture(Ogre::MaterialPtr material);
 		void getTextureParameters(Ogre::MaterialPtr material);
-		TPassParameters getPassParameters(Ogre::MaterialPtr material);
-		void setTPassParameters(Ogre::Pass * pass,TPassParameters passParameters);
 
-		std::string createMaterial(TChangeWorldMaterialParameters tChangeWorldMaterialParameters, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters TPassParameters);
+		void setPassParameters(Ogre::Pass * pass,Ogre::MaterialPtr original_material);
 
-		void createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters TPassParameters);
-		void createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone, std::string diffuseTexture1, std::string diffuseTexture2,TPassParameters TPassParameters);
-		void createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr clone,std::string diffuseTexture1,TPassParameters passParameters);
+		std::string createMaterial(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material, std::string diffuseTexture1, std::string diffuseTexture2);
+
+		void createMaterialBlending(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone, std::string diffuseTexture1, std::string diffuseTexture2);
+		void createMaterialErosion(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone, std::string diffuseTexture1, std::string diffuseTexture2);
+		void createMaterialErosionTransparent(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,Ogre::MaterialPtr original_material,Ogre::MaterialPtr change_world_material_clone,std::string diffuseTexture1);
 
 		std::string getChangeWorldTypeName(ChangeWorldType type);
 

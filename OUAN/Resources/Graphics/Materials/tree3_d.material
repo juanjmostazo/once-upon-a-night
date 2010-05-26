@@ -7,6 +7,7 @@ material tree3_d
             {
 	    scene_blend alpha_blend
 	    depth_write off
+	    alpha_to_coverage on
                 texture_unit
                 {
                     texture tree3_d_texture.dds

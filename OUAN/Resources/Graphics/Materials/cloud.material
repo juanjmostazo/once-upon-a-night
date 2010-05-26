@@ -7,9 +7,10 @@ material cloud_terrain_d#0
 		{
 			scene_blend alpha_blend
 			depth_write off
+			transparent_sorting on
 			texture_unit
 			{
-				scale 0.1 0.1
+				scale 0.3 0.3
 				texture fog_d.dds
 			}
 		}
@@ -25,9 +26,10 @@ material cloud_terrain_n#0
 		{
 			scene_blend alpha_blend
 			depth_write off
+			transparent_sorting on
 			texture_unit
 			{
-				scale 0.1 0.1
+				scale 0.3 0.3
 				texture fog_n.dds
 			}
 		}
@@ -44,9 +46,10 @@ material cloud_terrain_d#1
 		{
 			scene_blend alpha_blend
 			depth_write off
+			transparent_sorting on
 			texture_unit
 			{
-				scale 0.1 0.1
+				scale 0.3 0.3
 				texture fog2_d.dds
 			}
 		}
@@ -62,9 +65,10 @@ material cloud_terrain_n#1
 		{
 			scene_blend alpha_blend
 			depth_write off
+			transparent_sorting on
 			texture_unit
 			{
-				scale 0.1 0.1
+				scale 0.3 0.3
 				texture fog2_n.dds
 			}
 		}
