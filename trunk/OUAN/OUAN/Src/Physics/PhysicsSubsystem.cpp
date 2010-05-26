@@ -57,70 +57,70 @@ PhysicsSubsystem::~PhysicsSubsystem()
 
 void PhysicsSubsystem::init(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL INIT STARTED]");
+	Logger::getInstance()->log("[PHYSICS GENERAL INIT STARTED]");
 
 	loadConfig();
 
 	mApp=app;
 	mConfig=config;
 
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL INIT FINISHED]");
+	Logger::getInstance()->log("[PHYSICS GENERAL INIT FINISHED]");
 }
 
 void PhysicsSubsystem::cleanUp()
 {
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP STARTED]");
+	Logger::getInstance()->log("[PHYSICS GENERAL CLEANUP STARTED]");
 	clear();
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS GENERAL CLEANUP FINISHED]");
+	Logger::getInstance()->log("[PHYSICS GENERAL CLEANUP FINISHED]");
 }
 
 void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL INIT STARTED]");
+	Logger::getInstance()->log("[PHYSICS LEVEL INIT STARTED]");
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating NxOgre::World");
+	Logger::getInstance()->log("PHYSICS: Creating NxOgre::World");
 	mNxOgreWorld = NxOgre::World::createWorld();
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Loading nxs resources");
+	Logger::getInstance()->log("PHYSICS: Loading nxs resources");
 	NxOgre::ResourceSystem::getSingleton()->openArchive("nxs", NXS_PATH);
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Setting up scene description");
+	Logger::getInstance()->log("PHYSICS: Setting up scene description");
 	NxOgre::SceneDescription sceneDesc;
 	sceneDesc.mGravity = mGravity * mGravityBodiesFactor;
 	sceneDesc.mName = NxOgre::String(sceneName.c_str());
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating scene");
+	Logger::getInstance()->log("PHYSICS: Creating scene");
 	mNxOgreScene = mNxOgreWorld->createScene(sceneDesc);
 	
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating render system");
+	Logger::getInstance()->log("PHYSICS: Creating render system");
 	mNxOgreRenderSystem = new OGRE3DRenderSystem(mNxOgreScene);
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating time controller");
+	Logger::getInstance()->log("PHYSICS: Creating time controller");
 	mNxOgreTimeController = NxOgre::TimeController::getSingleton();
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating controller manager");
+	Logger::getInstance()->log("PHYSICS: Creating controller manager");
 	mNxOgreControllerManager = new NxOgre::ControllerManager();
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Setting up scene");
+	Logger::getInstance()->log("PHYSICS: Setting up scene");
 	mNxOgreScene->getMaterial(0)->setStaticFriction(mStaticFriction);
 	mNxOgreScene->getMaterial(0)->setDynamicFriction(mDynamicFriction);
 	mNxOgreScene->getMaterial(0)->setRestitution(mRestitution);
 
-	Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating visual debugger");
+	Logger::getInstance()->log("PHYSICS: Creating visual debugger");
 	mApp->getRenderSubsystem()->createVisualDebugger(mConfig);
 	
-	//Ogre::LogManager::getSingleton().logMessage("PHYSICS: Creating debug floor");
+	//Logger::getInstance()->log("PHYSICS: Creating debug floor");
 	//NxOgre::PlaneGeometry* pDebugPlane = new NxOgre::PlaneGeometry(0, NxOgre::Vec3(0, 1, 0));
 	//pDebugPlane->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 	//mNxOgreScene->createSceneGeometry(pDebugPlane, Matrix44_Identity);
 	//mApp->getRenderSubsystem()->createDebugFloor(mConfig);
 
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL INIT FINISHED]");
+	Logger::getInstance()->log("[PHYSICS LEVEL INIT FINISHED]");
 }
 
 void PhysicsSubsystem::clear()
 {
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL CLEAR STARTED]");
+	Logger::getInstance()->log("[PHYSICS LEVEL CLEAR STARTED]");
 
 	//We destroy the scene, is this needed?
 	// TODO: Iterate over 
@@ -129,14 +129,14 @@ void PhysicsSubsystem::clear()
 
 	if (mNxOgreControllerManager)
 	{
-		Ogre::LogManager::getSingleton().logMessage("PHYSICS: destroying controller manager");
+		Logger::getInstance()->log("PHYSICS: destroying controller manager");
 		delete mNxOgreControllerManager;
 		mNxOgreControllerManager=NULL;
 	}
 
 	if (mNxOgreRenderSystem)
 	{
-		Ogre::LogManager::getSingleton().logMessage("PHYSICS: render system");
+		Logger::getInstance()->log("PHYSICS: render system");
 		try
 		{
 			delete mNxOgreRenderSystem;
@@ -150,13 +150,13 @@ void PhysicsSubsystem::clear()
 	
 	if (mNxOgreWorld)
 	{
-		Ogre::LogManager::getSingleton().logMessage("PHYSICS: Destroying world & scene");
+		Logger::getInstance()->log("PHYSICS: Destroying world & scene");
 		mNxOgreWorld->destroyWorld(); //Scene is also destroyed here
 		mNxOgreWorld=NULL;
 		mNxOgreScene=NULL; 
 	}
 
-	Ogre::LogManager::getSingleton().logMessage("[PHYSICS LEVEL CLEAR FINISHED]");
+	Logger::getInstance()->log("[PHYSICS LEVEL CLEAR FINISHED]");
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
@@ -165,7 +165,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::stringstream out;
 	out << elapsedSeconds;
 	std::string elapsedTime = out.str();
-	Ogre::LogManager::getSingleton().logMessage("Advancing " + elapsedTime + " seconds");
+	Logger::getInstance()->log("Advancing " + elapsedTime + " seconds");
 	*/
 
 	unsigned int i;
@@ -306,7 +306,7 @@ bool PhysicsSubsystem::loadConfig()
 	} 
 	else 
 	{
-		//Ogre::LogManager::getSingleton().logMessage(PHYSICS_CFG + " COULD NOT BE LOADED!");
+		//Logger::getInstance()->log(PHYSICS_CFG + " COULD NOT BE LOADED!");
 
 		mGravity = NxOgre::Vec3(0,0,0);
 		mStaticFriction = 0;
@@ -370,7 +370,7 @@ GameObjectPtr PhysicsSubsystem::getGameObject(NxOgre::String name)
 
 bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 {
-	//Ogre::LogManager::getSingleton().logMessage("On Hit Event");
+	//Logger::getInstance()->log("On Hit Event");
 
 	GameObjectPtr pGameObject;
 
@@ -379,7 +379,7 @@ bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 	{
 		if(pGameObject->getType()!=GAME_OBJECT_TYPE_ONY)
 		{
-			Ogre::LogManager::getSingleton().logMessage("RAYCAST HIT "+pGameObject->getName());
+			Logger::getInstance()->log("RAYCAST HIT "+pGameObject->getName());
 		}
 		////
 		//CharacterShapeFrontCollisionEventPtr evt = CharacterShapeFrontCollisionEventPtr(
@@ -391,7 +391,7 @@ bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 	}
 	else
 	{
-		//Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onHitEvent called!");
+		//Logger::getInstance()->log("General-Physics-Function onHitEvent called!");
 	}
 
 	return true;
@@ -399,7 +399,7 @@ bool PhysicsSubsystem::onHitEvent(const NxOgre::RaycastHit& raycastHit)
 
 void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 {
-	Ogre::LogManager::getSingleton().logMessage("General-Physics-Function onContact called!");
+	Logger::getInstance()->log("General-Physics-Function onContact called!");
 }
 
 //////////////////////////////////////////////////////////////////
@@ -434,7 +434,7 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::Con
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectOtherController = getGameObject(hit.mOtherControllerName);
 
-	//Ogre::LogManager::getSingleton().logMessage("ON CONTROLLER");
+	//Logger::getInstance()->log("ON CONTROLLER");
 
 	sendCollision(pGameObjectController,pGameObjectOtherController);
 	
@@ -443,8 +443,8 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::Con
 
 void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String collisionName, unsigned int collisionEventType  )
 {
-	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT volume "+std::string(hit.mVolumeShapeName.c_str()));//+" "+std::string(collisionShape->getName().c_str()));
-	//Ogre::LogManager::getSingleton().logMessage("ON VOLUME EVENT character "+std::string(hit.mCollisionShapeName.c_str()));
+	//Logger::getInstance()->log("ON VOLUME EVENT volume "+std::string(hit.mVolumeShapeName.c_str()));//+" "+std::string(collisionShape->getName().c_str()));
+	//Logger::getInstance()->log("ON VOLUME EVENT character "+std::string(hit.mCollisionShapeName.c_str()));
 
 	GameObjectPtr pGameObjectVolume=getGameObject(volume->getName());
 	GameObjectPtr pGameObjectShape=getGameObject(collisionName);

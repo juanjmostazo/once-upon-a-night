@@ -116,7 +116,7 @@ void LevelLoader::init(OUAN::ApplicationPtr app)
 
 void LevelLoader::loadLevel(String level)
 {
-	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level);
+	Logger::getInstance()->log("[LevelLoader] Loading level "+level);
 
 	//clear parser content
 	mXMLParser.clearLevelInfo();
@@ -143,7 +143,7 @@ void LevelLoader::loadLevel(String level)
 	//clear information, as we do not need it anymore
 	mXMLParser.clearLevelInfo();
 
-	Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading level "+level+" Done!");
+	Logger::getInstance()->log("[LevelLoader] Loading level "+level+" Done!");
 }
 
 void LevelLoader::processGameObjects()
@@ -299,12 +299,12 @@ void LevelLoader::processGameObjectBillboardClouds()
 				mGameWorldManager->addGameObjectBillboardSet(mGameObjectFactory->createGameObjectBillboardSet(
 					tGameObjectBillboardSetParameters,mGameWorldManager));
 
-				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
+				Logger::getInstance()->log("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
 					Ogre::StringConverter::toString(tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position));
 			} 
 			catch( std::string error )
 			{
-				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
+				Logger::getInstance()->log("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
 			}
 
 			///////////////////
@@ -323,18 +323,18 @@ void LevelLoader::processGameObjectBillboardClouds()
 				mGameWorldManager->addGameObjectBillboardSet(mGameObjectFactory->createGameObjectBillboardSet(
 					tGameObjectBillboardSetParameters,mGameWorldManager));
 
-				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
+				Logger::getInstance()->log("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
 					Ogre::StringConverter::toString(tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position));
 			} 
 			catch( std::string error )
 			{
-				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
+				Logger::getInstance()->log("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
 			}
 		}
 	} 
 	else 
 	{
-		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD CFG FILE");
+		Logger::getInstance()->log("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD CFG FILE");
 	}
 }
 
@@ -566,18 +566,18 @@ void LevelLoader::processGameObjectFractalClouds()
 				mGameWorldManager->addGameObjectCloud(mGameObjectFactory->createGameObjectCloud(
 					tGameObjectCloudParameters,mGameWorldManager));
 
-				Ogre::LogManager::getSingleton().logMessage("[LevelLoader] CREATING FRACTAL CLOUD " + tGameObjectCloudParameters.name + " in " + 
+				Logger::getInstance()->log("[LevelLoader] CREATING FRACTAL CLOUD " + tGameObjectCloudParameters.name + " in " + 
 					Ogre::StringConverter::toString(tGameObjectCloudParameters.tRenderComponentPositionalParameters.position));
 			} 
 			catch( std::string error )
 			{
-				Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing FRACTAL CLOUD " + tGameObjectCloudParameters.name + ": " + error);
+				Logger::getInstance()->log("ERROR! [LevelLoader] Error processing FRACTAL CLOUD " + tGameObjectCloudParameters.name + ": " + error);
 			}
 		}
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing FRACTAL CLOUD CFG FILE");
+		Logger::getInstance()->log("ERROR! [LevelLoader] Error processing FRACTAL CLOUD CFG FILE");
 	}
 }
 
@@ -589,7 +589,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 	{
 		gameObjectType=gameObject->gameObjectType;
 
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading GameObject "+gameObject->name);
+		Logger::getInstance()->log("[LevelLoader] Loading GameObject "+gameObject->name);
 
 		if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
@@ -816,12 +816,12 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else
 		{
 			processGameObjectProvisionalEntity(gameObject);
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
+			Logger::getInstance()->log("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
 		}
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("ERROR! [LevelLoader] Error processing Game Object "+gameObject->name+": "+error);
+		Logger::getInstance()->log("ERROR! [LevelLoader] Error processing Game Object "+gameObject->name+": "+error);
 	}
 
 }
@@ -834,7 +834,7 @@ void LevelLoader::processTrajectories()
 	{
 		for(it = mXMLParser.mXMLTrajectoryContainer.begin(); it !=mXMLParser.mXMLTrajectoryContainer.end(); it++)
 		{
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading Trajectory "+it->first);
+			Logger::getInstance()->log("[LevelLoader] Loading Trajectory "+it->first);
 
 			processTrajectory(&it->second);
 
@@ -842,7 +842,7 @@ void LevelLoader::processTrajectories()
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Trajectory "+it->first+": "+error);
+		Logger::getInstance()->log("[LevelLoader] Error processing Trajectory "+it->first+": "+error);
 	}
 
 }
@@ -903,7 +903,7 @@ void LevelLoader::processWalkabilityMaps()
 	{
 		for(it = mXMLParser.mXMLWalkabilityMapContainer.begin(); it !=mXMLParser.mXMLWalkabilityMapContainer.end(); it++)
 		{
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Loading Walkability Map "+it->first);
+			Logger::getInstance()->log("[LevelLoader] Loading Walkability Map "+it->first);
 
 			processWalkabilityMap(&it->second);
 
@@ -911,7 +911,7 @@ void LevelLoader::processWalkabilityMaps()
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[LevelLoader] Error processing Walkability Map "+it->first+": "+error);
+		Logger::getInstance()->log("[LevelLoader] Error processing Walkability Map "+it->first+": "+error);
 	}
 }
 
@@ -957,7 +957,7 @@ TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElemen
 		currentNeighborName=getPropertyString(XMLNode,"walkability::node#"+StringConverter::toString(i),false);
 
 
-		//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] currentNeighborName" +currentNeighborName);
+		//Logger::getInstance()->log("[LevelLoader] currentNeighborName" +currentNeighborName);
 
 		//there is no more neighbors
 		if(currentNeighborName.compare("")==0) break;
@@ -2383,7 +2383,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 			mGameWorldManager->addGameObjectTerrainConvex(mGameObjectFactory->createGameObjectTerrainConvex(tGameObjectTerrainConvexParameters,
 				mGameWorldManager));
 
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexConvex);
+			Logger::getInstance()->log("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexConvex);
 
 		}
 		else if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,complexTriangle))
@@ -2427,7 +2427,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 			mGameWorldManager->addGameObjectTerrainTriangle(mGameObjectFactory->createGameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters,
 				mGameWorldManager));
 
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexTriangle);
+			Logger::getInstance()->log("[LevelLoader] "+gameObject->name+" uses .nxs complex physics file "+complexTriangle);
 		}
 		else
 		{
@@ -2816,7 +2816,7 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			mGameWorldManager->addGameObjectWater(mGameObjectFactory->createGameObjectWater(tGameObjectWaterParameters,
 				mGameWorldManager));
 
-			Ogre::LogManager::getSingleton().logMessage("[LevelLoader] "+gameObject->name+" uses .nxs convex physics file "+volumeConvex);
+			Logger::getInstance()->log("[LevelLoader] "+gameObject->name+" uses .nxs convex physics file "+volumeConvex);
 		}
 		else
 		{
@@ -2902,7 +2902,7 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXml
 				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("Camera has unrecognised PolygonMode!");
+				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
 				break;
 		}
 
@@ -2943,7 +2943,7 @@ TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewpo
 				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("Camera has unrecognised PolygonMode!");
+				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
 				break;
 		}
 
@@ -3001,7 +3001,7 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 				false);
 			if (currentAnimParams.name.compare("")==0) break;
 
-			Ogre::LogManager::getSingleton().logMessage("Parsing animation "+currentAnimParams.name);
+			Logger::getInstance()->log("Parsing animation "+currentAnimParams.name);
 
 			renderComponentEntityAnimParams.push_back(currentAnimParams);
 			++i;
@@ -3129,7 +3129,7 @@ TRenderComponentLightParameters LevelLoader::processRenderComponentLight(TiXmlEl
 				tRenderComponentLightParameters.lighttype=Ogre::Light::LT_SPOTLIGHT;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("Light has unrecognised light type!");
+				Logger::getInstance()->log("Light has unrecognised light type!");
 				break;
 	}
 
@@ -3227,7 +3227,7 @@ TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillbo
 			tRenderComponentBillboardSetParameters.billboardtype=Ogre::BBT_POINT;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardType!");
+			Logger::getInstance()->log("Billboard has unrecognised BillboardType!");
 			break;
 	}
 		//BillboardOrigin Conversion
@@ -3262,7 +3262,7 @@ TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillbo
 			tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_TOP_RIGHT;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardOrigin!");
+			Logger::getInstance()->log("Billboard has unrecognised BillboardOrigin!");
 			break;
 	}
 
@@ -3277,7 +3277,7 @@ TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillbo
 			tRenderComponentBillboardSetParameters.billboardrotation=Ogre::BBR_VERTEX;
 			break;
 		default:
-			Ogre::LogManager::getSingleton().logMessage("Billboard has unrecognised BillboardRotationType!");
+			Logger::getInstance()->log("Billboard has unrecognised BillboardRotationType!");
 			break;
 	}
 
@@ -4068,10 +4068,10 @@ TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XML
 				}
 				catch(const std::exception& e)
 				{
-					Ogre::LogManager::getSingletonPtr()->logMessage("Couldn't parse RGB value: defaulting to 0x000000ff");
+					Logger::getInstance()->log("Couldn't parse RGB value: defaulting to 0x000000ff");
 					std::string msg="Exception message: ";
 					msg.append(e.what());
-					Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+					Logger::getInstance()->log(msg);
 					rgb=0x000000ff;
 				}
 				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->rgb=rgb;
@@ -4142,7 +4142,7 @@ TAudioComponentMap LevelLoader::processAudioComponent(TiXmlElement* XMLNode)
 			false);		
 		if (soundId.compare("")==0) break;
 	
-		Ogre::LogManager::getSingleton().logMessage("Adding soundID: "+soundId);
+		Logger::getInstance()->log("Adding soundID: "+soundId);
 
 		audioComponentSounds[soundId]=-1;//No channel assigned yet (Careful on how FMOD processes access attempts with negative channels)
 		++i;
@@ -4230,7 +4230,7 @@ TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters
 				tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
 				break;
 			default:
-				Ogre::LogManager::getSingleton().logMessage("ChangeWorldMaterial has unrecognised ChangeWorldMaterialType!");
+				Logger::getInstance()->log("ChangeWorldMaterial has unrecognised ChangeWorldMaterialType!");
 				break;
 		}
 	}
@@ -4270,7 +4270,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 		{
 			propertyName = getAttrib(pElement, "id");
 
-			//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+			//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property!");
 
 			if(propertyName.compare(attrib_name)==0)
 			{
@@ -4291,7 +4291,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 			{
 				propertyName = getAttrib(pElement, "id");
 
-				//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+				//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property!");
 
 				if(propertyName.compare(attrib_name)==0)
 				{

@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include "Logger.h"
 #include <Ogre.h>
 #include <OgreTagPoint.h>
 #include <ctime>
@@ -64,7 +65,7 @@ double Random::getRandomDouble(double low, double high)
 
 void OUAN::Utils::scriptLog (const std::string& logMsg)
 {
-	Ogre::LogManager::getSingletonPtr()->logMessage("LUA: "+logMsg);
+	Logger::getInstance()->log("LUA: "+logMsg);
 }
 
 int OUAN::Utils::parseInt(std::string& strValue)
@@ -81,7 +82,7 @@ int OUAN::Utils::parseInt(std::string& strValue)
 	}
 	catch (const std::exception&)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage("Couldn't parse string to an hex value: string was empty");
+		Logger::getInstance()->log("Couldn't parse string to an hex value: string was empty");
 	}
 	return static_cast<int>(hexValue);
 }

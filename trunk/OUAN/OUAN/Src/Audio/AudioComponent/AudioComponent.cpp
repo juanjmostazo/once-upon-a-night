@@ -35,7 +35,7 @@ void AudioComponent::update(long elapsedTime)
 			}
 			catch (std::exception& e)
 			{
-				Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+				Logger::getInstance()->log(e.what());
 			}
 		}
 	}

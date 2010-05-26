@@ -36,7 +36,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 				decreaseHP(flashlight->getAttackDamage());
 				std::stringstream msg("");
 				msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
-				Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+				Logger::getInstance()->log(msg.str());
 				mHitRecoveryTime=1;//TODO: use animation instead of hit time
 			}		
 			else
@@ -57,7 +57,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
 			decreaseHP(pillow->getAttackDamage());
 			std::stringstream msg("");
 			msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
-			Ogre::LogManager::getSingletonPtr()->logMessage(msg.str());
+			Logger::getInstance()->log(msg.str());
 
 			mHitRecoveryTime=1;
 		}		

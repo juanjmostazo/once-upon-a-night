@@ -87,10 +87,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 											getNxOgreController()->getPosition().y,
 											getNxOgreController()->getPosition().z
 			));
-		//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
+		//Logger::getInstance()->log(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 		return;
 	}
-	//Ogre::LogManager::getSingleton().logMessage(getParent()->getName() + " updated, position " + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
+	//Logger::getInstance()->log(getParent()->getName() + " updated, position " + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
@@ -153,7 +153,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 			mNextMovement.x *= mAccelerationFactor;
 			mNextMovement.z *= mAccelerationFactor;
-			//Ogre::LogManager::getSingleton().logMessage("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
+			//Logger::getInstance()->log("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
 		}
 
 		setCharactersDisplayYaw();
@@ -179,7 +179,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			));
 
 		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//	Ogre::LogManager::getSingleton().logMessage("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+		//	Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 	}
 
 	setLastMovement(mNextMovement);
@@ -282,8 +282,8 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 		mIsNotApplyingDash=false;
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("dashMovement "+Ogre::StringConverter::toString(dashMovement));
-	//Ogre::LogManager::getSingleton().logMessage("mNextMovement "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+	//Logger::getInstance()->log("dashMovement "+Ogre::StringConverter::toString(dashMovement));
+	//Logger::getInstance()->log("mNextMovement "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 
 	return dashMovement;
 }
@@ -328,8 +328,8 @@ void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
 			mNextMovement+=getDashMovement(elapsedSeconds);
 		}
 
-		//Ogre::LogManager::getSingleton().logMessage("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
-		//Ogre::LogManager::getSingleton().logMessage("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
+		//Logger::getInstance()->log("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
+		//Logger::getInstance()->log("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
 }
 
 void PhysicsComponentCharacter::jump()
@@ -461,7 +461,7 @@ void PhysicsComponentCharacter::resetSliding()
 
 void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
-	//Ogre::LogManager::getSingleton().logMessage("* * Setting sliding!");
+	//Logger::getInstance()->log("* * Setting sliding!");
 	if(!getParent()->getGameWorldManager()->getGodMode())
 	{
 		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 

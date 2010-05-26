@@ -24,7 +24,7 @@ int WalkabilityMap::getNodeNumber(std::string nodeName)
 
 	if(it==mNodeNumbers.end())
 	{
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Walkability Map Node "+
+		Logger::getInstance()->log("[TrajectoryManager] Walkability Map Node "+
 			nodeName+" does not exist");
 		return -1;
 	}
@@ -70,7 +70,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		//create graph nodes
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
 		{
-			//Ogre::LogManager::getSingleton().logMessage("Adding node "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+			//Logger::getInstance()->log("Adding node "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
 
 			if(pSceneManager->hasSceneNode(tWalkabilityMapParameters.walkabilityNodes[i].nodeName))
 			{
@@ -104,7 +104,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		{
 			for(j=0;j<tWalkabilityMapParameters.walkabilityNodes[i].neighbors.size();j++)
 			{
-				//Ogre::LogManager::getSingleton().logMessage("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+"-"
+				//Logger::getInstance()->log("Adding edge "+tWalkabilityMapParameters.walkabilityNodes[i].nodeName+"-"
 				//	+tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]);
 
 				if(hasNode(tWalkabilityMapParameters.walkabilityNodes[i].neighbors[j]))
@@ -154,20 +154,20 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		}
 
 		//print graph information
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Walkability map vertices");
+		Logger::getInstance()->log("[TrajectoryManager] Walkability map vertices");
 		boost::graph_traits<Graph>::vertex_iterator vit,vend;
 		for (tie(vit, vend) = vertices(mGraph); vit != vend; ++vit) 
 		{
-			Ogre::LogManager::getSingleton().logMessage("Vertex "+mGraph[*vit].mSceneNode->getName());
+			Logger::getInstance()->log("Vertex "+mGraph[*vit].mSceneNode->getName());
 		}
 
-		Ogre::LogManager::getSingleton().logMessage("[TrajectoryManager] Walkability map edges");
+		Logger::getInstance()->log("[TrajectoryManager] Walkability map edges");
 		for (tie(eit, eend) = edges(mGraph); eit != eend; ++eit) 
 		{
 			v1=source(*eit, mGraph);
 			v2=target(*eit, mGraph);
 
-			Ogre::LogManager::getSingleton().logMessage("Edge "+mGraph[v1].mSceneNode->getName()+"-"+mGraph[v2].mSceneNode->getName()+
+			Logger::getInstance()->log("Edge "+mGraph[v1].mSceneNode->getName()+"-"+mGraph[v2].mSceneNode->getName()+
 				" distance:"+Ogre::StringConverter::toString(Ogre::Real(weightmap[*eit])));
 		}
 }
@@ -208,7 +208,7 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 	bool createdTarget=false;
 
 
-	//Ogre::LogManager::getSingleton().logMessage("PATHFINDING "+sourceNode->getName()+" to "+targetNode->getName());
+	//Logger::getInstance()->log("PATHFINDING "+sourceNode->getName()+" to "+targetNode->getName());
 
 	//add source and target nodes to graph
 	if(!hasNode(sourceNode->getName()))
@@ -293,14 +293,14 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 			break;
 		  }
 		}
-		//Ogre::LogManager::getSingleton().logMessage(mGraph[source].mSceneNode->getName());
+		//Logger::getInstance()->log(mGraph[source].mSceneNode->getName());
 		path.push_back(mGraph[source].mSceneNode);
 
 		std::list<Vertex>::iterator spi = shortest_path.begin();
 		for(++spi; spi != shortest_path.end(); ++spi)
 		{
 			path.push_back(mGraph[*spi].mSceneNode);
-			//Ogre::LogManager::getSingleton().logMessage(mGraph[*spi].mSceneNode->getName());
+			//Logger::getInstance()->log(mGraph[*spi].mSceneNode->getName());
 		}
 
 		fg.info="";
@@ -319,7 +319,7 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 		return path;
   }
 
-  Ogre::LogManager::getSingleton().logMessage("Path not found");
+  Logger::getInstance()->log("Path not found");
 
 	if(createdTarget)
 	{

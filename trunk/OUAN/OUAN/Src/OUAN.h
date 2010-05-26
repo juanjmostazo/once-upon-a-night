@@ -18,6 +18,8 @@
 
 #include "Logic/LogicDefs.h"
 
+#include "Utils/Logger.h"
+
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -34,7 +36,6 @@ namespace OUAN
 		typedef Ogre::Quaternion Quaternion;
 		typedef Ogre::Real Real;
 		typedef Ogre::ColourValue ColourValue;
-
 
 	//-------------------------------------
 	//	Input module-related constants, type definitions and forwarded declarations
@@ -205,7 +206,6 @@ namespace OUAN
 			QUERYFLAGS_CAMERA_COLLISION=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET | QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE | QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE | QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID
 			//QUERYFLAGS... = 1<<3
 		};
-
 
 		//Physics components
 		class PhysicsComponent;
@@ -852,6 +852,12 @@ namespace OUAN
 
 		const int MOV_FORWARD_OR_BACK = MOV_GO_FORWARD | MOV_GO_BACK;
 		const int MOV_LEFT_OR_RIGHT = MOV_GO_LEFT | MOV_GO_RIGHT;
+
+		//-------------------------------------
+		//  Logger stuff
+		//-------------------------------------
+
+		#define LOGGER_CFG "../../Config/logger-cfg.xml"
 }
 
 #endif

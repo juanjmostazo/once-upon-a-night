@@ -39,7 +39,7 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 		mVCut != vCut ||
 		mVScale != vScale)
 	{
-		Ogre::LogManager::getSingleton().logMessage("[BUFFER MANAGER] Re-Setting buffer");
+		Logger::getInstance()->log("[BUFFER MANAGER] Re-Setting buffer");
 
 		Julia julia = JuliaManager::getInstance()->getJulia(juliaGlobalReal, juliaGlobalImag, juliaGlobalTheta);
 

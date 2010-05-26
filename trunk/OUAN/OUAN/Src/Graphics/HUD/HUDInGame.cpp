@@ -141,7 +141,7 @@ bool HUDInGame::isRouletteAnimationFinished()
 			int lastFrame=mRouletteMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->getNumFrames()-1;
 			return currentFrame==lastFrame;
 		}
-		else Ogre::LogManager::getSingletonPtr()->logMessage("Material name not found. Function HUDInGame::isRouletteAnimationFinished");
+		else Logger::getInstance()->log("Material name not found. Function HUDInGame::isRouletteAnimationFinished");
 		return false;
 	}
 	return false;
@@ -162,7 +162,7 @@ void HUDInGame::updateRouletteHUD()
 				mRouletteData[mCurrentRouletteState].textureName
 			);		
 	}
-	else Ogre::LogManager::getSingletonPtr()->logMessage("Material name not found. Function HUDInGame::setTextureData");
+	else Logger::getInstance()->log("Material name not found. Function HUDInGame::setTextureData");
 }
 
 void HUDInGame::updateHealthHUD(int healthPoints, int numLives)

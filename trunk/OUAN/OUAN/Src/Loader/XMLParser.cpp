@@ -110,7 +110,7 @@ void XMLParser::parseCustomProperties(std::string gameObjectType)
 	XMLCustomProperties[gameObjectType] = new TiXmlDocument(customPropertiesFilePath.c_str());
 
 	if (!XMLCustomProperties[gameObjectType]->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error reading "+customPropertiesFilePath);
+		Logger::getInstance()->log("[XMLParser] Error reading "+customPropertiesFilePath);
 	} 
 }
 
@@ -131,13 +131,13 @@ void XMLParser::parseLevel(String level)
 	XMLDoc= new TiXmlDocument(fullLevelPath.c_str());
 
 	if (!XMLDoc->LoadFile()){
-		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error reading "+fullLevelPath);
+		Logger::getInstance()->log("[XMLParser] Error reading "+fullLevelPath);
 	}
 
 	// Validate the File
 	TiXmlElement * XMLRoot = XMLDoc->RootElement();
 	if( String( XMLRoot->Value()) != "OGITORSCENE"  ) {
-		Ogre::LogManager::getSingleton().logMessage( "[XMLParser] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
+		Logger::getInstance()->log( "[XMLParser] Error: Invalid .ogscene File. Missing <OGITORSCENE>" );
 		delete XMLDoc;      
 		return;
 	}
@@ -288,7 +288,7 @@ void XMLParser::parseWalkabilityMap(TiXmlElement *XMLWalkabilityMap)
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing walkablity map "+walkabilityMapName+": "+error);	
+		Logger::getInstance()->log("[XMLParser] Error parsing walkablity map "+walkabilityMapName+": "+error);	
 		return;
 	}
 }
@@ -326,7 +326,7 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 	}
 	catch( std::string error )
 	{
-		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Error parsing trajectory "+trajectoryName+": "+error);	
+		Logger::getInstance()->log("[XMLParser] Error parsing trajectory "+trajectoryName+": "+error);	
 		return;
 	}
 }
@@ -377,12 +377,12 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 
 	if(found)
 	{
-		//Ogre::LogManager::getSingleton().logMessage("[XMLParser] Game Object "+gameObjectType);
+		//Logger::getInstance()->log("[XMLParser] Game Object "+gameObjectType);
 		addXMLGameObjectNode(name,gameObjectType,XMLNode);
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[XMLParser] Game Object "+name+" has unrecognised Game Object Type");
+		Logger::getInstance()->log("[XMLParser] Game Object "+name+" has unrecognised Game Object Type");
 	}
 }
 
@@ -499,7 +499,7 @@ String XMLParser::getPropertyString(TiXmlElement *XMLNode, const String &attrib_
 		{
 			propertyName = getAttrib(pElement, "id");
 
-			//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+			//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property!");
 
 			if(propertyName.compare(attrib_name)==0)
 			{
@@ -520,7 +520,7 @@ String XMLParser::getPropertyString(TiXmlElement *XMLNode, const String &attrib_
 			{
 				propertyName = getAttrib(pElement, "id");
 
-				//Ogre::LogManager::getSingleton().logMessage("[LevelLoader] parsing "+propertyName+" property!");
+				//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property!");
 
 				if(propertyName.compare(attrib_name)==0)
 				{

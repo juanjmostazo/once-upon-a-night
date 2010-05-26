@@ -33,11 +33,9 @@
 #ifndef __FILE_UTILSOGREDSHOW_INCLUDED
 #define __FILE_UTILSOGREDSHOW_INCLUDED
 
-
 #define __FILE_UTILSOGREDSHOW_VERSION "11-18-2008a"
 
-#include <Ogre.h>
-#include <OgreVector2.h>
+#include "../../OUAN.h"
 
 namespace OgreUtils
 {
@@ -89,6 +87,7 @@ namespace OgreUtils
 		Ogre::TexturePtr getMovieTexture();
 		/// Render a movie frame in the ogre texture
 		void updateMovieTexture(bool& finishedPlaying);
+
 	protected:
 		/// Texture where to render the movie
 		Ogre::TexturePtr mTexture;
@@ -105,6 +104,5 @@ namespace OgreUtils
 		void cleanTextureContents();
 	};
 }
-
 
 #endif // __FILE_UTILSOGREDSHOW_INCLUDED

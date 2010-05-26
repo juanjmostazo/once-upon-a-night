@@ -58,7 +58,7 @@ void GameObject::activateChangeWorldFast()
 
 void GameObject::activateChangeWorld()
 {
-	//Ogre::LogManager::getSingleton().logMessage("Activate ChangeWorld" + mName + " to "+Ogre::StringConverter::toString(mGameWorldManager->getWorld()));
+	//Logger::getInstance()->log("Activate ChangeWorld" + mName + " to "+Ogre::StringConverter::toString(mGameWorldManager->getWorld()));
 	if(mIsChangingWorld)
 	{
 		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
@@ -164,13 +164,13 @@ const std::string& GameObject::getType() const
 
 void GameObject::disable()
 {
-	Ogre::LogManager::getSingleton().logMessage("Disabling Game Object '" + mName + "'");
+	Logger::getInstance()->log("Disabling Game Object '" + mName + "'");
 	mEnabled = false;
 }
 
 void GameObject::enable()
 {
-	Ogre::LogManager::getSingleton().logMessage("Enabling Game Object '" + mName + "'");
+	Logger::getInstance()->log("Enabling Game Object '" + mName + "'");
 	mEnabled = true;
 }
 

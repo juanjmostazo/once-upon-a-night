@@ -212,7 +212,7 @@ bool GameObjectPillow::canInitiateAttack()
 
 void GameObjectPillow::beginAttack()
 {
-	Ogre::LogManager::getSingletonPtr()->logMessage("PILLOW ATTACK LAUNCHED!");
+	Logger::getInstance()->log("PILLOW ATTACK LAUNCHED!");
 	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 	std::stringstream textMsg("");
 
@@ -232,13 +232,13 @@ void GameObjectPillow::beginAttack()
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
 	{
 		//NEW COMBO: CHANGE ATTACK
-		Ogre::LogManager::getSingletonPtr()->logMessage("COMBO!!");
+		Logger::getInstance()->log("COMBO!!");
 		setAttack(attackData->nextComboAttack);
 		attackData=boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 		textMsg<<"It's a COMBO! ";
 	}
 
-	Ogre::LogManager::getSingletonPtr()->logMessage("AttackName: "+attackData->attackName);
+	Logger::getInstance()->log("AttackName: "+attackData->attackName);
 	textMsg<<attackData->attackName<<", "<<attackData->damage<<" HP";
 	displayText(textMsg.str());
 
@@ -265,7 +265,7 @@ void GameObjectPillow::endAttack()
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse() && 
 		mParentWeaponComponent.get() && mParentWeaponComponent->isActiveWeaponInUse())
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage("ATTACK ENDED");
+		Logger::getInstance()->log("ATTACK ENDED");
 		mPhysicsComponentVolumeBox->destroy();		
 		mRenderComponentEntity->getEntity()->setVisible(false);
 		mParentWeaponComponent->setActiveWeaponInUse(false);

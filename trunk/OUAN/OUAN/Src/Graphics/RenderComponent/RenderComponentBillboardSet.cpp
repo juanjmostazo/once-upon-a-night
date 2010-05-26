@@ -1,11 +1,14 @@
 #include "RenderComponentBillboardSet.h"
 #include "ChangeWorldMaterial.h"
+
 using namespace OUAN;
 
 RenderComponentBillboardSet::RenderComponentBillboardSet(const std::string& type)
 :RenderComponent(COMPONENT_TYPE_RENDER_BILLBOARD_SET)
 {
+
 }
+
 RenderComponentBillboardSet::~RenderComponentBillboardSet()
 {
 	mBillboardSet=NULL;
@@ -15,6 +18,7 @@ Ogre::BillboardSet* RenderComponentBillboardSet::getBillboardSet() const
 {
 	return mBillboardSet;
 }
+
 void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardSet)
 {
 	mBillboardSet=billboardSet;
@@ -31,7 +35,7 @@ void RenderComponentBillboardSet::setMaterial(std::string material)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[RenderComponentBillboardSet] material "+material+" does not exist.");
+		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+material+" does not exist.");
 	}
 
 	mOriginalMaterial=material;
@@ -45,7 +49,7 @@ void RenderComponentBillboardSet::setOriginalMaterials()
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[RenderComponentBillboardSet] material "+mOriginalMaterial+" does not exist.");
+		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mOriginalMaterial+" does not exist.");
 	}
 }
 
@@ -57,7 +61,7 @@ void RenderComponentBillboardSet::setChangeWorldMaterials()
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
+		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
 	}
 }
 
@@ -67,7 +71,6 @@ void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialP
 	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
 	bool materialCreated;
-
 
 	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 

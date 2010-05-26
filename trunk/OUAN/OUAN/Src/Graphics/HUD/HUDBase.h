@@ -1,6 +1,7 @@
 #ifndef HUDBASEH_H
 #define HUDBASEH_H
-#include <Ogre.h>
+
+#include "../../OUAN.h"
 
 namespace OUAN
 {
@@ -9,6 +10,7 @@ namespace OUAN
 	protected:
 		Ogre::Overlay* mOverlay;
 		std::string mOverlayName;
+
 	public:
 		HUDBase();
 		virtual ~HUDBase();

@@ -164,7 +164,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))
 			{
-				//Ogre::LogManager::getSingleton().logMessage("FIND");
+				//Logger::getInstance()->log("FIND");
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
@@ -195,7 +195,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_CHASE))
 			{
-				//Ogre::LogManager::getSingleton().logMessage("CHASE");
+				//Logger::getInstance()->log("CHASE");
 				if (entityToUpdate.get() && mLogicComponentEnemy->isStateChanged())
 				{
 					entityToUpdate->changeAnimation(TRIPOLLO_ANIM_WALK);
@@ -220,7 +220,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 			{
 				//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
 
-				//Ogre::LogManager::getSingleton().logMessage("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
+				//Logger::getInstance()->log("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
 				mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
 			}
 		}
@@ -465,7 +465,7 @@ void GameObjectTripolloDreams::processAnimationEnded(const std::string& animatio
 		disableDisplayMsg();
 		std::string msg="Enemy ";
 		msg.append(getName()).append(" died");
-		Ogre::LogManager::getSingletonPtr()->logMessage(msg);
+		Logger::getInstance()->log(msg);
 		disable();		
 	}
 }

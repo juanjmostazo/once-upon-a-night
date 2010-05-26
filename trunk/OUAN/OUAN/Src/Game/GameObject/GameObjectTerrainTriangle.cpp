@@ -90,7 +90,7 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 		default:break;
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("changeWorldFinished"+getName()+" ");
+	//Logger::getInstance()->log("changeWorldFinished"+getName()+" ");
 }
 
 void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
@@ -110,7 +110,7 @@ void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 		break;
 	}
 
-	//Ogre::LogManager::getSingleton().logMessage("changeWorldStarted"+getName()+" ");
+	//Logger::getInstance()->log("changeWorldStarted"+getName()+" ");
 }
 
 void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)

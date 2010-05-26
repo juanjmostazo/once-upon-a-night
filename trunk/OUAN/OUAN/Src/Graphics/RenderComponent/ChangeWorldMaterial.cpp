@@ -28,7 +28,7 @@ Ogre::MaterialPtr ChangeWorldMaterial::findMaterial(std::string name)
 	}
 	else
 	{
-		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+name+" does not exist.");
+		Logger::getInstance()->log("[ChangeWorldMaterial] material "+name+" does not exist.");
 	}
 	return material;
 }
@@ -80,7 +80,7 @@ std::string ChangeWorldMaterial::createMaterial(TChangeWorldMaterialParameters t
 		}
 		else
 		{
-			Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+baseMaterialName+" does not exist.");
+			Logger::getInstance()->log("[ChangeWorldMaterial] material "+baseMaterialName+" does not exist.");
 			return "";
 		}
 
@@ -169,7 +169,7 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 	Ogre::TextureUnitState * texture;
 	Ogre::GpuProgramParametersSharedPtr params;
 
-	//Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" "+Ogre::StringConverter::toString(Ogre::Real(factor)));
+	//Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" "+Ogre::StringConverter::toString(Ogre::Real(factor)));
 
 	material=findMaterial(mName);
 	if(!material.isNull())
@@ -197,7 +197,7 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 			break;
 		}
 	}
-	//Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" DONE");
+	//Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" DONE");
 
 }
 
@@ -226,7 +226,7 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 			getPassParameters(pMaterial1)
 			);
 
-		Ogre::LogManager::getSingleton().logMessage("[ChangeWorldMaterial] material "+mName+" initialized.");
+		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
 	}
 
 	return mName.compare("")!=0;

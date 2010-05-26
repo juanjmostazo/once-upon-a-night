@@ -89,6 +89,6 @@ void CameraControllerFixedFirstPerson::processCameraRotation(Ogre::Vector2 camer
 	{
 		rotY=minRotY;
 	}
-	//Ogre::LogManager::getSingleton().logMessage("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
+	//Logger::getInstance()->log("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 
 }

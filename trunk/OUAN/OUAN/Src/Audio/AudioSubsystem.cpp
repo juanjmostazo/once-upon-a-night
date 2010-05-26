@@ -40,8 +40,8 @@ void TAudioSubsystemConfigData::set(ConfigurationPtr config)
 		}
 		catch (const std::exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("[AudioSubsystemConfigData::set]An error happened while parsing the audio config file");
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.what());
+			Logger::getInstance()->log("[AudioSubsystemConfigData::set]An error happened while parsing the audio config file");
+			Logger::getInstance()->log(e.what());
 		}
 	}
 }
@@ -812,7 +812,7 @@ bool AudioSubsystem::createSoundImplementation(const TSoundData& soundData, FMOD
 		{
 			std::stringstream errMsg("");
 			errMsg<<"Error creating FMOD Sound. Error message returned - "<<FMOD_ErrorString(result);
-			Ogre::LogManager::getSingleton().logMessage(errMsg.str());
+			Logger::getInstance()->log(errMsg.str());
 				
 		}
 	}	

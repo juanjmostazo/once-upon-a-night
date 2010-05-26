@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="OUAN"
 	ProjectGUID="{AFEE2E6F-C32A-4DBC-A1B1-ABCC3EA43F23}"
 	RootNamespace="OUAN"
@@ -987,6 +987,10 @@
 				Name="Utils"
 				>
 				<File
+					RelativePath=".\Src\Utils\Logger.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Utils\Utils.cpp"
 					>
 				</File>
@@ -1792,6 +1796,10 @@
 			<Filter
 				Name="Utils"
 				>
+				<File
+					RelativePath=".\Src\Utils\Logger.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Utils\Utils.h"
 					>
