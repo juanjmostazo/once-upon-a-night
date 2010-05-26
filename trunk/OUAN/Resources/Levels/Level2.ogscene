@@ -25,7 +25,7 @@
   <CAMERASPEED value="28"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-432.822 377.775 1289.29" orientation="0.997756 -0.0578376 -0.033714 -0.00119047"></OPTION>
+    <OPTION id="1" position="-37.1255 552.8 1155.88" orientation="-0.98054 0.170672 -0.0954432 -0.0173997"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.997819 -0.0578413 -0.0337161 -0.00119055"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.980585 0.17068 -0.0954476 -0.0174005"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-432.822 377.775 1289.29"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-37.1255 552.8 1155.88"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>

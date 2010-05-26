@@ -1,16 +1,12 @@
 
-material terrain_island1
+material mountain2
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
-
-			texture_unit
-			{
-				texture terrain1_d.dds
-			}
+			diffuse 0.7 0.726 0.442 1
 		}
 
 	}
