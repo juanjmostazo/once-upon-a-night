@@ -11,16 +11,8 @@ namespace OUAN
 		BufferManager();
 		static BufferManager* mInstance;
 
-		std::string mTexture3DName;
-		double mVCut;
-		double mVScale;
-
-		double mInitColorR;
-		double mInitColorG;
-		double mInitColorB;
-		double mEndColorR;
-		double mEndColorG;
-		double mEndColorB;
+		std::string mTexture3DName_1;
+		std::string mTexture3DName_2;
 
 	public:
 		~BufferManager();

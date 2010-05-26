@@ -9,30 +9,6 @@
   <PROPERTY id="RenderComponentQuadHalo::offsetX" type="6" value="0" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="15" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetZ" type="6" value="0" ></PROPERTY>
-	
-  <PROPERTY id="RenderComponentFractalVolume::texture3D" type="7" value="texture3D_32" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::juliaGlobalReal" type="6" value="0.4" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::juliaGlobalImag" type="6" value="0.5" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::juliaGlobalTheta" type="6" value="0.1" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::vScale" type="6" value="2.5" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::vCut" type="6" value="29.0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::vSlices" type="6" value="16" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::vSize" type="6" value="250" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::offsetX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::offsetY" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::offsetZ" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialY" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesInitialZ" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondY" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::rotationDegreesPerSecondZ" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::initColorR" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::initColorG" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::initColorB" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::endColorR" type="6" value="1" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::endColorG" type="6" value="1" ></PROPERTY>
-  <PROPERTY id="RenderComponentFractalVolume::endColorB" type="6" value="1" ></PROPERTY>
   
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="66" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" ></PROPERTY>
