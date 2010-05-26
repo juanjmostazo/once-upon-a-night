@@ -300,7 +300,13 @@ RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVo
 		tRenderComponentFractalVolumeParameters.vScale,
 		tRenderComponentFractalVolumeParameters.juliaGlobalReal,
 		tRenderComponentFractalVolumeParameters.juliaGlobalImag, 
-		tRenderComponentFractalVolumeParameters.juliaGlobalTheta);
+		tRenderComponentFractalVolumeParameters.juliaGlobalTheta,
+		tRenderComponentFractalVolumeParameters.initColorR,
+		tRenderComponentFractalVolumeParameters.initColorG,
+		tRenderComponentFractalVolumeParameters.initColorB,
+		tRenderComponentFractalVolumeParameters.endColorR,
+		tRenderComponentFractalVolumeParameters.endColorG,
+		tRenderComponentFractalVolumeParameters.endColorB);
 
 	pRenderComponentFractalVolume->setFractalVolume(fractalVolume);
 

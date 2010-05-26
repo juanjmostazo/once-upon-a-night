@@ -27,9 +27,12 @@
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_X">0</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_Y">15</Option>
 	<Option key="DREAMS_ROTATION_DEGREES_PER_SECOND_Z">0</Option>
-	<Option key="DREAMS_COLOR_R">-1</Option>
-	<Option key="DREAMS_COLOR_G">-1</Option>
-	<Option key="DREAMS_COLOR_B">-1</Option>
+	<Option key="DREAMS_INIT_COLOR_R">0.706</Option>
+	<Option key="DREAMS_INIT_COLOR_G">0.619</Option>
+	<Option key="DREAMS_INIT_COLOR_B">0.592</Option>
+	<Option key="DREAMS_END_COLOR_R">0.992</Option>
+	<Option key="DREAMS_END_COLOR_G">0.968</Option>
+	<Option key="DREAMS_END_COLOR_B">0.929</Option>
 	<Option key="DREAMS_SEPARATION_PROPORTION">10</Option>
 	
 	<Option key="NIGHTMARES_TEXTURE_3D">texture3D_64</Option>
@@ -49,9 +52,12 @@
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_X">0</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Y">15</Option>
 	<Option key="NIGHTMARES_ROTATION_DEGREES_PER_SECOND_Z">0</Option>
-	<Option key="NIGHTMARES_COLOR_R">-1</Option>
-	<Option key="NIGHTMARES_COLOR_G">-1</Option>
-	<Option key="NIGHTMARES_COLOR_B">-1</Option>
+	<Option key="NIGHTMARES_INIT_COLOR_R">0.074</Option>
+	<Option key="NIGHTMARES_INIT_COLOR_G">0.035</Option>
+	<Option key="NIGHTMARES_INIT_COLOR_B">0.106</Option>
+	<Option key="NIGHTMARES_END_COLOR_R">0.235</Option>
+	<Option key="NIGHTMARES_END_COLOR_G">0.067</Option>
+	<Option key="NIGHTMARES_END_COLOR_B">0.353</Option>
 	<Option key="NIGHTMARES_SEPARATION_PROPORTION">10</Option>
   </Options>
 </Configuration>

@@ -60,9 +60,13 @@ namespace OUAN
 		double rotationDegreesPerSecondY;
 		double rotationDegreesPerSecondZ;
 
-		double colorR;
-		double colorG;
-		double colorB;
+		double initColorR;
+		double initColorG;
+		double initColorB;
+
+		double endColorR;
+		double endColorG;
+		double endColorB;
 	};
 }
 
