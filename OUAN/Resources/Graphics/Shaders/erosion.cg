@@ -7,26 +7,16 @@ sampler texture2 : register(s2);
 
 // General functions
 
-float2 scrollUV(in float2 uv,in float2 scroll)
+float2 calculateUV(in float2 uv,in float3 scroll, in float3 tiling)
 {
     uv.x=uv.x+scroll.x;
-    uv.y=uv.y+scroll.y; 
+    uv.y=uv.y+scroll.y;
+    
+    uv.x = uv.x*tiling.x; 
+    uv.y = uv.y*tiling.y;  
+        
     return uv;
 }
-
-float2 calculateUV(in float2 uv,in float3 scroll_animation)
-{
-    uv = scrollUV(uv,float2(scroll_animation.x,scroll_animation.y));
-    return uv;
-}
-
-float2 calculateBlendingTextureUV(in float2 uv, in float3 displacement, in float3 scroll_blending,in float tiling)
-{                  
-    uv = scrollUV(uv,float2(scroll_blending.x+displacement.x,scroll_blending.y+displacement.y));  
-    uv = uv*tiling;    
-    return uv;
-}
-
 
 // Basic VS main
 
@@ -54,14 +44,15 @@ uniform float3 scroll_blending,
 uniform float3 scroll_animation,
 uniform float mix_factor,
 uniform float blending,
-uniform float tiling,
+uniform float3 tiling,
+uniform float3 blending_tiling,
 out float4 oColor : COLOR)
 {
     float4 erosion_info;
     float normalized_blending_factor;  
     
-    uv=calculateUV(uv,scroll_animation);
-    erosion_info=tex2D(texture2,calculateBlendingTextureUV(uv,displacement,scroll_blending,tiling));  
+    uv=calculateUV(uv,scroll_animation,tiling);
+    erosion_info=tex2D(texture2,calculateUV(uv,displacement+scroll_blending,blending_tiling));  
     
     if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
     {
@@ -88,14 +79,15 @@ uniform float3 scroll_blending,
 uniform float3 scroll_animation,
 uniform float mix_factor,
 uniform float blending,
-uniform float tiling,
+uniform float3 tiling,
+uniform float3 blending_tiling,
 out float4 oColor : COLOR)
 {
     float4 erosion_info;
     float normalized_blending_factor;
     
-    uv=calculateUV(uv,scroll_animation);
-    erosion_info=tex2D(texture2,calculateBlendingTextureUV(uv,displacement,scroll_blending,tiling));  
+    uv=calculateUV(uv,scroll_animation,tiling);
+    erosion_info=tex2D(texture2,calculateUV(uv,displacement+scroll_blending,blending_tiling));   
     
     color=tex2D(texture0,uv);
     
