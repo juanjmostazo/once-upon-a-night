@@ -1,0 +1,12 @@
+sound portal_close
+{
+	sound_file fantasy.wav
+	sound_type sfx
+	sound_type	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 5 10000
+
+}

@@ -33,8 +33,13 @@ void Channel::setPanningPosition(int pos)
 }
 bool Channel::isPlaying() const
 {
-	bool isPlaying;
+	bool isPlaying=false;
 	return mChannel && (mChannel->isPlaying(&isPlaying)==FMOD_OK) && isPlaying;
+}
+bool Channel::isPaused() const
+{
+	bool isPaused=false;
+	return mChannel && (mChannel->getPaused(&isPaused)==FMOD_OK) && isPaused;
 }
 void Channel::setChannel(FMOD::Channel* channel)
 {

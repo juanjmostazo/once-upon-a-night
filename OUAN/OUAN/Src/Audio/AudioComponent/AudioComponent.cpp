@@ -79,3 +79,13 @@ void AudioComponent::setSounds(const TAudioComponentMap& sounds)
 			mAudioSS->load(it->first,AUDIO_RESOURCES_GROUP_NAME);
 	}	
 }
+bool AudioComponent::isPlaying(const std::string& soundID)
+{
+	return (mSounds.find(soundID)!=mSounds.end() && 
+		mAudioSS.get() && mAudioSS->isChannelPlaying(mSounds[soundID]));
+}
+bool AudioComponent::isPaused(const std::string& soundID)
+{
+	return (mSounds.find(soundID)!=mSounds.end() &&
+		mAudioSS.get() && mAudioSS->isChannelPaused(mSounds[soundID]));
+}

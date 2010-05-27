@@ -356,6 +356,8 @@ namespace OUAN
 		typedef std::vector<GameObjectPtr> TGameObjectLogicContainer;
 		typedef std::vector<GameObjectPtr> TGameObjectUsableContainer;
 
+		typedef std::vector<GameObjectPtr> TGameObjectSoundContainer;
+
 		////////////////////////////////////////////////////////////////////
 
 		const int HIT_RECOVERY_TIME=500;
@@ -615,6 +617,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SCAREDPLANT="scaredplant";
 		const std::string GAME_OBJECT_TYPE_CLOCKPIECE="clockpiece";
 		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
+		const std::string GAME_OBJECT_TYPE_SOUND="sound";
 
 		const std::string GAME_OBJECT_TYPE_TRIPOLLITO="tripollito";
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";

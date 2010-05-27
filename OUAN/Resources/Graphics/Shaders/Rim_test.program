@@ -1,0 +1,58 @@
+vertex_program rim_vs_hlsl hlsl
+{
+	source Rim_test.hlsl
+	target vs_2_0
+	entry_point vs_main
+	
+	default_params
+	{
+		param_named_auto matView worldview_matrix
+		param_named_auto matViewProjection worldviewproj_matrix
+	}
+}
+fragment_program rim_fs_hlsl hlsl
+{
+	source Rim_test.hlsl
+	target ps_2_0
+	entry_point ps_main
+	default_params
+	{
+		param_named_auto eyePosition camera_position_object_space
+	}
+}
+
+vertex_program rim_vs_cg cg
+{
+	source Rim_test.cg
+	entry_point rim_vs	
+	profiles vs_1_1 arbvp1 vp20
+	
+	default_params
+	{
+		param_named_auto worldView worldview_matrix
+		param_named_auto worldViewProj worldviewproj_matrix
+	}
+}
+fragment_program rim_fs_cg cg
+{
+	source Rim_test.cg	
+	entry_point rim_fs
+	profiles vs_1_1 arbvp1 vp20
+	default_params
+	{
+		param_named_auto eyePosition camera_position_object_space
+	}
+}
+
+// Unified definition
+// TODO: Add cg
+vertex_program rim_vs unified
+{
+	delegate rim_vs_hlsl
+	delegate rim_vs_cg
+}
+fragment_program rim_fs unified
+{
+	delegate rim_fs_hlsl
+	delegate erosion_FS_CG
+}

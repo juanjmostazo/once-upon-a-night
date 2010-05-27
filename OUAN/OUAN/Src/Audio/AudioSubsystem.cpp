@@ -332,7 +332,7 @@ bool AudioSubsystem::play3DSound(const std::string& id,
 		{
 			std::string cgid = soundPtr->mSoundData.mChannelGroupID;
 
-			mChannelGroupMap[cgid]->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
+			mChannelGroupMap[cgid]->set3DMinMaxDistance(cIndex,soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
 			mChannelGroupMap[cgid]->set3DAttributes( cIndex,pos,vel );
 			mChannelGroupMap[cgid]->play( cIndex);		
 			soundPtr.setNull();
@@ -428,10 +428,11 @@ bool AudioSubsystem::_playSound(const std::string& id,
 							true, 
 							&channel);
 						outChannel->setChannel(tmp,channel);
-						if (soundPtr->mSoundData.m3D)
-						{
-							channel->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
-						}
+						//if (soundPtr->mSoundData.m3D)
+						//{
+						//	//channel->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
+						//	soundPtr->getFMODSound()->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
+						//}
 
 						rc = true;
 					}
@@ -699,6 +700,13 @@ bool AudioSubsystem::isChannelPlaying(int channelID,const std::string& channelGr
 	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelID);
 	if (ch)
 		return ch->isPlaying();
+	return false;
+}
+bool AudioSubsystem::isChannelPaused(int channelID,const std::string& channelGroupID)
+{
+	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelID);
+	if (ch)
+		return ch->isPaused();
 	return false;
 }
 bool AudioSubsystem::isMusicPlaying(int channelID)

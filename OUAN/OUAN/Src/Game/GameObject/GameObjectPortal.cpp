@@ -2,6 +2,7 @@
 #include "../GameWorldManager.h"
 
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -136,6 +137,8 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 void GameObjectPortal::reset()
 {
 	GameObject::reset();
+	if (mAudioComponent->isPlaying("portal_close"))
+		mAudioComponent->stopSound("portal_close");
 }
 
 bool GameObjectPortal::hasPositionalComponent() const
@@ -240,6 +243,8 @@ void GameObjectPortal::update(double elapsedSeconds)
 				if (mLogicComponentUsable->isStateChanged())
 				{
 					mLogicComponentUsable->setCanBeActivated(false);
+					if (mAudioComponent->isPlaying("portal_close"))
+						mAudioComponent->stopSound("portal_close");
 					//particleSystem->hide();
 					//entityToUpdate()->setAnimationState(PORTAL_ANIMATION_IDLE);
 					//overlay->hide();
@@ -250,6 +255,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 				if (mLogicComponentUsable->isStateChanged())
 				{
 					mLogicComponentUsable->setCanBeActivated(false);
+					mAudioComponent->playSound("portal_close");
 					displayText("ONY IS CLOSE");
 					//particleSystem->show(approaching);
 					//overlay->hide();
@@ -294,6 +300,26 @@ RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
+
+bool GameObjectPortal::hasAudioComponent() const
+{
+	return true;
+}
+
+AudioComponentPtr GameObjectPortal::getAudioComponentInstance() const
+{
+	return mAudioComponent;
+}
+
+AudioComponentPtr GameObjectPortal::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+void GameObjectPortal::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()

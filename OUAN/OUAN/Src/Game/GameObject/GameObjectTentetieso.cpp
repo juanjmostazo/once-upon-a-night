@@ -217,6 +217,15 @@ RenderComponentEntityPtr GameObjectTentetieso::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
+
+bool GameObjectTentetieso::hasBeenHit() const
+{
+	return false;
+}
+bool GameObjectTentetieso::hasDied() const
+{
+	return false;
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()
 {

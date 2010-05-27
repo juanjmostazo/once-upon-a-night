@@ -77,6 +77,7 @@ namespace OUAN
 		void processGameObjectScene(XMLGameObject* gameObject);
 		void processGameObjectScepter(XMLGameObject* gameObject);
 		void processGameObjectSnakeCreeper(XMLGameObject* gameObject);
+		void processGameObjectSound(XMLGameObject* gameObject);
 		void processGameObjectStoryBook(XMLGameObject* gameObject);
 		void processGameObjectTentetieso(XMLGameObject* gameObject);
 		void processGameObjectTerrain(XMLGameObject* gameObject);

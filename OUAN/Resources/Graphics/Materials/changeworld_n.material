@@ -5,6 +5,12 @@ material changeworld_n
 	{
 		pass
 		{
+			vertex_program_ref rim_vs
+	        {
+	        }
+	        fragment_program_ref rim_fs
+	        {
+	        }
 			ambient 0.3 0.3 0.3 1
 			specular 1 1 1 1 50
 

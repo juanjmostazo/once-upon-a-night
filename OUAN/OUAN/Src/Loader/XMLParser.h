@@ -13,24 +13,24 @@ namespace OUAN
 			void parseLevelRoot(TiXmlElement *XMLNode);
 			void parseElements(TiXmlElement *XMLNode);
 			void parseElement(TiXmlElement *XMLNode);
-			void addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode);
+			void addXMLGameObjectNode(const std::string& worldName,const std::string& gameObjectType,TiXmlElement *XMLNode);
 			void addXMLNodeCustomProperties();
 			void setNames();
 
 			//Trajectory Parsing
 			void parseTrajectory(TiXmlElement *XMLTrajectoryStartNode);
-			TiXmlElement * findNode(std::string nodeName);
+			TiXmlElement * findNode(const std::string&  nodeName);
 
 			//WalkabilityMapParsing
 			void parseWalkabilityMap(TiXmlElement *XMLWalkabilityMap);
 
 
 			//Game Object names processors
-			bool isDreams(std::string worldName,std::string gameObjectType);
-			bool isNightmares(std::string worldName,std::string gameObjectType);
-			std::string getBaseName(std::string worldName,std::string gameObjectType);
-			std::string getNightmaresName(std::string baseName,std::string gameObjectType);
-			std::string getDreamsName(std::string baseName,std::string gameObjectType);
+			bool isDreams(const std::string&  worldName,const std::string&  gameObjectType);
+			bool isNightmares(const std::string&  worldName,const std::string&  gameObjectType);
+			std::string getBaseName(const std::string&  worldName,const std::string&  gameObjectType);
+			std::string getNightmaresName(const std::string&  baseName,const std::string&  gameObjectType);
+			std::string getDreamsName(const std::string&  baseName,const std::string&  gameObjectType);
 
 			//Vector containing all GameObject types
 			std::vector<std::string> gameObjectTypes;
@@ -41,10 +41,10 @@ namespace OUAN
 			//Parse all GameObject's types and its custom properties file .ctp
 			void parseGameObjectTypes();
 			//Parses custom properties file (.ctp) the specifies game object type and adds it to XMLCustomProperties map 
-			void parseCustomProperties(std::string gameObjectType);
+			void parseCustomProperties(const std::string&  gameObjectType);
 
 			//Returns a node containing the custom properties for the specified game object type
-			TiXmlElement * getXMLCustomProperties(std::string gameObjectType);
+			TiXmlElement * getXMLCustomProperties(const std::string&  gameObjectType);
 
 			//Attribute parser
 			OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
@@ -59,7 +59,7 @@ namespace OUAN
 			void init();
 			void clearLevelInfo();
 
-			void parseLevel(String SceneName);
+			void parseLevel(const String& SceneName);
 
 			//Map containing all the parsed game objects
 			XMLGameObjectContainer mXMLGameObjectContainer;

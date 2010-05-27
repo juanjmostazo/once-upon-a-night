@@ -5,6 +5,7 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../../Game/GameObject/GameObjectTentetieso.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Event/Event.h"
 
@@ -54,7 +55,27 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->getGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
-		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
+		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
+			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
+		{		
+			int oldLives=getNumLives();
+			decreaseHP();
+			mHitRecoveryTime=2;
+
+			if (getNumLives()==oldLives)
+			{
+				OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
+				getParent()->getGameWorldManager()->addEvent(evt);
+			}			
+		}
+	}
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TENTETIESO)==0 
+		&& pGameObject->getGameWorldManager()->getWorld()==NIGHTMARES 
+		&& !getParent()->getGameWorldManager()->getGodMode())
+	{
+		GameObjectTentetiesoPtr tentetieso= boost::dynamic_pointer_cast<GameObjectTentetieso>(pGameObject);
+		if(tentetieso.get() && !tentetieso->hasBeenHit() &&!tentetieso->hasDied() 
+			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();

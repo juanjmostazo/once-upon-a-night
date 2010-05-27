@@ -13,4 +13,6 @@
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::name" type="7" value="turn_Clip" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+	
+	<PROPERTY id="AudioComponent::soundID#0" type="7" value="portal_close"></PROPERTY>
   </CUSTOMPROPERTIES>

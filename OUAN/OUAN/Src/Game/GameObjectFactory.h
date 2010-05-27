@@ -5,6 +5,11 @@ namespace OUAN
 {
 	class ComponentFactory;
 	typedef boost::shared_ptr<ComponentFactory> ComponentFactoryPtr;
+
+	class GameObjectSound;
+	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
+	class TGameObjectSoundParameters;
+
 	class GameObjectFactory
 	{
 	private:
@@ -77,6 +82,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectSnakeCreeperPtr createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters, 
 			GameWorldManagerPtr gameWorldMgr);
+		GameObjectSoundPtr createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr);
 		GameObjectStoryBookPtr createGameObjectStoryBook(TGameObjectStoryBookParameters tGameObjectStoryBookParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectTentetiesoPtr createGameObjectTentetieso(TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters, 

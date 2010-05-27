@@ -1,0 +1,30 @@
+sound waterfall00
+{
+	sound_file waterfall00.mp3
+	sound_type	sfx
+	3D			true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 10 10000
+}
+
+sound birds_chirp
+{
+	sound_file birds_chirping.mp3
+	sound_type sfx
+	3D false
+	hardware true
+	stream false
+	loop true	
+}
+
+sound scary
+{
+	sound_file scary02.mp3
+	sound_type sfx
+	3D false
+	hardware true
+	stream false
+	loop true	
+}

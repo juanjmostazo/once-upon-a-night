@@ -50,6 +50,7 @@ namespace OUAN
 
 		 bool is3DSound(const std::string& soundID);
 		 bool isChannelPlaying(int channelID,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP);
+		 bool isChannelPaused(int channelID,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP);
 		 void updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity);
 		 void updateChannel3DMinMaxDistance(int channelID, double minDistance, double maxDistance);
 

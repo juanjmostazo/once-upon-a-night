@@ -42,6 +42,7 @@
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectScepter.h"
 #include "../Game/GameObject/GameObjectSnakeCreeper.h"
+#include "../Game/GameObject/GameObjectSound.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectTenteTieso.h"
 #include "../Game/GameObject/GameObjectTerrainTriangle.h"
@@ -830,6 +831,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
 		{
 			processGameObjectWater(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_SOUND)==0)
+		{
+			processGameObjectSound(gameObject);
 		}
 		else
 		{
@@ -2044,6 +2049,8 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		
 		//Get PhysicsComponentSimpleBox
 		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectPortalParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -2794,7 +2801,67 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectWoodBox(tGameObjectWoodBoxParameters);
 	mGameWorldManager->addGameObjectWoodBox(mGameObjectFactory->createGameObjectWoodBox(tGameObjectWoodBoxParameters,mGameWorldManager));
 }
+void LevelLoader::processGameObjectSound(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectSoundParameters  params;
 
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		params.dreamsName = gameObject->dreamsName;
+		params.nightmaresName = gameObject->nightmaresName;
+		params.name = gameObject->name;
+		
+		try
+		{
+			params.soundType = static_cast<TGameObjectSoundType> (getPropertyInt(gameObject->getMainXMLNode(),"gameObjectSound::type",false));
+		}
+		catch(std::string&)
+		{
+			params.soundType=SOUNDTYPE_POSITIONAL;
+		}
+
+		try
+		{
+			params.currentDreamsSoundID= getPropertyString(gameObject->XMLNodeDreams,
+				"gameObjectSound::currentSoundID",false);
+		}
+		catch(std::string&)
+		{
+			params.currentDreamsSoundID="";
+		}
+
+		try
+		{
+			params.currentNightmaresSoundID= getPropertyString(gameObject->XMLNodeNightmares,
+				"gameObjectSound::currentSoundID",false);
+		}
+		catch(std::string&)
+		{
+			params.currentNightmaresSoundID="";
+		}
+
+		if (gameObject->XMLNodeDreams)
+			params.tAudioComponentDreamsParameters=processAudioComponent(gameObject->XMLNodeDreams);
+		if (gameObject->XMLNodeNightmares)
+			params.tAudioComponentNightmaresParameters=processAudioComponent(gameObject->XMLNodeNightmares);
+
+		//Get RenderComponentPositional
+		params.tRenderComponentPositionalParameters=processRenderComponentPositionalNoScale(gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectLight(tGameObjectLightParameters);
+	mGameWorldManager->addGameObjectSound(mGameObjectFactory->createGameObjectSound(params,mGameWorldManager));
+}
 
 void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 {

@@ -33,6 +33,7 @@
 #include "GameObject/GameObjectScaredPlant.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSound.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
 #include "GameObject/GameObjectStoryBook.h"
 #include "GameObject/GameObjectTentetieso.h"
@@ -1392,6 +1393,12 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectPortal->getRenderComponentPositional()));
 
+	pGameObjectPortal->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+		pGameObjectPortal,
+		tGameObjectPortalParameters.tAudioComponentParameters,
+		gameWorldMgr->getParent()->getAudioSubsystem()));
+
 	// Add a reference to this
 	pGameObjectPortal->setGameWorldManager(gameWorldMgr);
 
@@ -1608,6 +1615,31 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 	//Add Object to GameWorldManager
 	//addGameObjectSnakeCreeper(pGameObjectSnakeCreeper);
 	return pGameObjectSnakeCreeper;
+}
+GameObjectSoundPtr GameObjectFactory::createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectSoundPtr sound = GameObjectSoundPtr(new GameObjectSound(params.name));
+
+	sound->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		sound,params.tRenderComponentPositionalParameters));
+
+	sound->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		sound->getRenderComponentPositional()));
+
+	AudioSubsystemPtr audioSS = gameWorldMgr->getParent()->getAudioSubsystem();
+
+	sound->setAudioComponentDreams(mComponentFactory->createAudioComponent(sound,
+		params.tAudioComponentDreamsParameters, audioSS));
+	sound->setAudioComponentNightmares(mComponentFactory->createAudioComponent(sound,
+		params.tAudioComponentNightmaresParameters, audioSS));
+
+	sound->setSoundType(params.soundType);
+	sound->setCurrentDreamsSoundId(params.currentDreamsSoundID);
+	sound->setCurrentNightmaresSoundId(params.currentNightmaresSoundID);
+
+	sound->setGameWorldManager(gameWorldMgr);
+
+	return sound;
 }
 
 GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectStoryBookParameters tGameObjectStoryBookParameters, 
