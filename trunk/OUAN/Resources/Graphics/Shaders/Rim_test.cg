@@ -1,0 +1,60 @@
+float4x4 matViewProjection;
+float4x4 matView;
+
+struct VS_INPUT 
+{
+   float4 Position : POSITION;
+   float2 Texcoord : TEXCOORD0;
+   float3 Normal: NORMAL;
+   
+};
+
+struct VS_OUTPUT 
+{
+   float4 Position : POSITION;
+   float2 Texcoord : TEXCOORD0;
+   float3 VertexPosition: TEXCOORD1;
+   float3 Normal: TEXCOORD2;
+   
+   
+};
+
+void rim_vs( 
+	in float4 inPos: POSITION,
+	in float2 inUV0: TEXCOORD0,
+	in float3 inNormal: NORMAL,
+	out float4 outPos: POSITION,
+	out float2 outUV0: TEXCOORD0,
+	out float3 outVertexPosition: TEXCOORD1,
+	out float3 outNormal: TEXCOORD2,
+	
+	uniform float4x4 worldViewProj,
+	uniform float4x4 worldView
+)
+{
+	outPos=mul(worldViewProj, inPos);
+	outUV0=inUV0;
+	float4 vertexPos = mul (worldView, inPos);
+	outVertexPosition=vertexPos.xyz;
+	outNormal = inNormal;
+}
+
+sampler baseMap: register(s0);
+
+float4 rim_fs(
+	in float2 TexCoord: TEXCOORD0,
+	in float3 Position: TEXCOORD1,
+	in float3 Normal: TEXCOORD2,
+	out float4 outColour: TEXCOORD0,
+	
+	uniform float4 eyePosition) 
+{
+   float3 n = normalize(Normal);
+   float3 eyeDir = normalize(eyePosition.xyz-Position.xyz);
+   
+   outColour=tex2D( baseMap, TexCoord );
+   
+   outColour += 1-(max(dot(eyeDir,n),0));
+   return outColour;
+   
+}

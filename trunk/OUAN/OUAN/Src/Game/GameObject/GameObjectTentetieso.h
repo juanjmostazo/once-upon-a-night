@@ -106,6 +106,9 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		bool hasBeenHit() const;
+		bool hasDied() const;
 	};
 	
 	/// Information data structure to carry around data between the

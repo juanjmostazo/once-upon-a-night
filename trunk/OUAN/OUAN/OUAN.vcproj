@@ -754,6 +754,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSound.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectStoryBook.cpp"
 						>
 					</File>
@@ -1489,6 +1493,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSound.h"
 						>
 					</File>
 					<File

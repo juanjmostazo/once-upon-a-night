@@ -31,6 +31,7 @@ namespace OUAN
 		virtual bool setPaused(bool paused);
 		virtual bool setChannelGroup(FMOD::ChannelGroup* channelGroup);
 		virtual bool isPlaying() const;
+		virtual bool isPaused() const;
 		virtual void resetTime();
 		virtual void updateTime(double elapsedTime);
 		virtual double getTime() const;

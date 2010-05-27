@@ -33,6 +33,7 @@
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
+#include "GameObject/GameObjectSound.h"
 #include "GameObject/GameObjectStoryBook.h"
 #include "GameObject/GameObjectTentetieso.h"
 #include "GameObject/GameObjectTerrainConvex.h"
@@ -88,6 +89,10 @@ GameWorldManager::GameWorldManager()
 
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
+
+	mDefaultAmbientSound="sound#1";
+	mDefaultAmbientSoundIDDreams="birds_chirp";
+	mDefaultAmbientSoundIDNightmares="scary";
 
 
 
@@ -213,6 +218,14 @@ TGameObjectEyeContainer * GameWorldManager::getGameObjectEyeContainer()
 TGameObjectSnakeCreeperContainer * GameWorldManager::getGameObjectSnakeCreeperContainer()
 {
 	return &mGameObjectSnakeCreeperContainer;
+}
+TGameObjectSoundContainer* GameWorldManager::getGameObjectSoundContainer()
+{
+	return &mGameObjectSoundContainer;
+}
+TGameObjectContainer* GameWorldManager::getAmbientSoundContainer()
+{
+	return &mAmbientSoundContainer;
 }
 TGameObjectScaredPlantContainer * GameWorldManager::getGameObjectScaredPlantContainer()
 {
@@ -354,6 +367,8 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectBee_ButterflyContainer,mGameObjectBeeButterflyContainer);
 	EMPTY_VECTOR(TGameObjectCarnivorousPlantContainer,mGameObjectCarnivorousPlantContainer);
 	EMPTY_VECTOR(TGameObjectSnakeCreeperContainer,mGameObjectSnakeCreeperContainer);
+	EMPTY_VECTOR(TGameObjectSoundContainer, mGameObjectSoundContainer);
+	EMPTY_MAP(TGameObjectContainer, mAmbientSoundContainer);
 	EMPTY_VECTOR(TGameObjectTentetiesoContainer,mGameObjectTentetiesoContainer);
 	EMPTY_VECTOR(TGameObjectScaredPlantContainer,mGameObjectScaredPlantContainer);
 
@@ -851,6 +866,17 @@ void GameWorldManager::addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr gameO
 	mGameObjectLogicContainer.push_back(gameObjectSnakeCreeper);
 }
 
+void GameWorldManager::addGameObjectSound(GameObjectSoundPtr gameObjectSound)
+{
+	mGameObjects[gameObjectSound->getName()]=gameObjectSound;
+	mGameObjectSoundContainer.push_back(gameObjectSound);
+	mGameObjectPositionalContainer.push_back(gameObjectSound);
+	if (gameObjectSound->getSoundType()==SOUNDTYPE_AMBIENT)
+	{
+		mAmbientSoundContainer[gameObjectSound->getName()]=gameObjectSound;
+	}
+}
+
 void GameWorldManager::addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook)
 {
 	mGameObjects[pGameObjectStoryBook->getName()]=pGameObjectStoryBook;
@@ -1117,18 +1143,34 @@ void GameWorldManager::activateChangeWorld()
 void GameWorldManager::changeWorldFinished(int newWorld)
 {
 	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
+	GameObjectSoundPtr sound;
 
 	switch(newWorld)
 	{
+		//TODO: Fade ambient sounds.
 	case DREAMS:
+		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+		if (sound.get())
+		{
+			sound->stop(mDefaultAmbientSoundIDNightmares);
+			sound->play(mDefaultAmbientSoundIDDreams);
+		}
 		break;
 	case NIGHTMARES:
+		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+		if (sound.get())
+		{
+			sound->stop(mDefaultAmbientSoundIDDreams);
+			sound->play(mDefaultAmbientSoundIDNightmares);
+		}
 		if (flashlight.get())
 			flashlight->createProjector(&mGameObjects);
 		break;
 	default:
 		break;
 	}
+	if (sound.get())
+		sound.reset();
 }
 
 void GameWorldManager::changeWorldStarted(int newWorld)

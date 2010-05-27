@@ -5,6 +5,10 @@
 #include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 namespace OUAN
 {
+	//forward declarations
+	class GameObjectSound;
+	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
+
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
 	class GameWorldManager: public boost::enable_shared_from_this<GameWorldManager>
@@ -62,6 +66,11 @@ namespace OUAN
 		TGameObjectLogicContainer * getGameObjectLogicContainer();
 
 		TGameObjectUsableContainer * getGameObjectUsableContainer();
+
+		TGameObjectSoundContainer* getGameObjectSoundContainer();
+		TGameObjectContainer* getAmbientSoundContainer();
+
+
 
 		/// Load level from the given file
 		/// @param levelFileName name of the level file
@@ -226,6 +235,7 @@ namespace OUAN
 		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectScepter(GameObjectScepterPtr pGameObjectScepter);
 		void addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper);
+		void addGameObjectSound(GameObjectSoundPtr pGameObjectSound);
 		void addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook);
 		void addGameObjectTentetieso(GameObjectTentetiesoPtr pGameObjectTentetieso);
 		void addGameObjectTerrainConvex(GameObjectTerrainConvexPtr pGameObjectTerrainConvex);
@@ -306,6 +316,13 @@ namespace OUAN
 		TGameObjectUsableContainer mGameObjectUsableContainer;
 
 		TGameObjectViewportContainer mGameObjectViewportContainer;
+
+		TGameObjectSoundContainer mGameObjectSoundContainer;
+		TGameObjectContainer mAmbientSoundContainer;
+
+		std::string mDefaultAmbientSoundIDDreams; //Sound id
+		std::string mDefaultAmbientSound;//Game object name
+		std::string mDefaultAmbientSoundIDNightmares;
 
 		void clearContainers();
 

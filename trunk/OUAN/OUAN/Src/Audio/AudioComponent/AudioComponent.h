@@ -23,6 +23,9 @@ namespace OUAN{
 		void setPauseSound(const std::string& soundID,bool pause);
 
 		void setSounds(const TAudioComponentMap& sounds);
+
+		bool isPlaying(const std::string& soundID);
+		bool isPaused(const std::string& soundID);
 	private:
 		TAudioComponentMap mSounds;
 		AudioSubsystemPtr mAudioSS;

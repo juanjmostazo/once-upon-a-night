@@ -21,6 +21,10 @@ namespace OUAN
 	const std::string PORTAL_STATE_ONY_MAY_ACTIVATE="PORTAL_STATE_ONY_MAY_ACTIVATE";
 	const std::string PORTAL_STATE_CHANGING_WORLD="PORTAL_STATE_CHANGING_WORLD";
 
+	class AudioComponent;
+	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
+	typedef std::map<std::string, int> TAudioComponentMap;
+
 	/// Class to hold Portal information
 	class GameObjectPortal : public GameObject, public boost::enable_shared_from_this<GameObjectPortal>
 	{
@@ -38,8 +42,10 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentUsablePtr mLogicComponentUsable;
-		//TODO: think what happens when world changes with the rendercomponent
+		LogicComponentUsablePtr mLogicComponentUsable;		
+
+		AudioComponentPtr mAudioComponent;
+
 	public:
 		//Constructor
 		GameObjectPortal(const std::string& name);
@@ -93,6 +99,12 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		AudioComponentPtr getAudioComponentInstance() const;
+		bool hasAudioComponent() const;
+
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 		/// Reset object
 		virtual void reset();
 
@@ -144,6 +156,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentUsableParameters tLogicComponentParameters;
+
+		///Audio params
+		TAudioComponentMap tAudioComponentParameters;
 	};
 }
 #endif

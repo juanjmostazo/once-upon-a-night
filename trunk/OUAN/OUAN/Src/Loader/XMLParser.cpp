@@ -69,6 +69,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCKPIECE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLITO);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKECREEPER);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SOUND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CARNIVOROUSPLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCEPTER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE12);
@@ -94,13 +95,14 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WATER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PLANE);
 
+
 	for(i=0;i<gameObjectTypes.size();i++)
 	{
 		parseCustomProperties(gameObjectTypes[i]);
 	}	
 }
 
-void XMLParser::parseCustomProperties(std::string gameObjectType)
+void XMLParser::parseCustomProperties(const std::string& gameObjectType)
 {
 	std::string customPropertiesFilePath;
 
@@ -114,7 +116,7 @@ void XMLParser::parseCustomProperties(std::string gameObjectType)
 	} 
 }
 
-TiXmlElement * XMLParser::getXMLCustomProperties(std::string gameObjectType)
+TiXmlElement * XMLParser::getXMLCustomProperties(const std::string& gameObjectType)
 {
 
 	TiXmlHandle docHandle(XMLCustomProperties[gameObjectType]);
@@ -123,7 +125,7 @@ TiXmlElement * XMLParser::getXMLCustomProperties(std::string gameObjectType)
 	return XMLNodeCustomProperties;
 }
 
-void XMLParser::parseLevel(String level)
+void XMLParser::parseLevel(const String& level)
 {
 
 	std::string fullLevelPath=LEVELS_PATH+level+".ogscene";
@@ -226,7 +228,7 @@ void XMLParser::parseElements(TiXmlElement *XMLNode)
 	}
 }
 
-TiXmlElement * XMLParser::findNode(std::string nodeName)
+TiXmlElement * XMLParser::findNode(const std::string& nodeName)
 {
 	TiXmlElement *pElement;
 	String name;
@@ -357,6 +359,13 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 			//Trajectory start node
 			parseWalkabilityMap(XMLNode);
 		}
+
+		//Parse Sound
+		if (name.substr(0,GAME_OBJECT_TYPE_SOUND.length()).compare(GAME_OBJECT_TYPE_SOUND)==0)
+		{
+			addXMLGameObjectNode(name,GAME_OBJECT_TYPE_SOUND,XMLNode);
+		}
+
 		return;
 	}
 	else if(type.compare("Node Object")==0)
@@ -386,7 +395,7 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 	}
 }
 
-void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjectType,TiXmlElement *XMLNode)
+void XMLParser::addXMLGameObjectNode(const std::string& worldName, const std::string& gameObjectType,TiXmlElement *XMLNode)
 {
 	std::string baseName;
 
@@ -434,17 +443,17 @@ void XMLParser::addXMLGameObjectNode(std::string worldName,std::string gameObjec
 	}
 }
 
-bool XMLParser::isDreams(std::string worldName,std::string gameObjectType)
+bool XMLParser::isDreams(const std::string& worldName,const std::string& gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='d';
 }
 
-bool XMLParser::isNightmares(std::string worldName,std::string gameObjectType)
+bool XMLParser::isNightmares(const std::string& worldName,const std::string& gameObjectType)
 {
 	return 	worldName[gameObjectType.size()+1]=='n';
 }
 
-std::string XMLParser::getBaseName(std::string worldName,std::string gameObjectType)
+std::string XMLParser::getBaseName(const std::string& worldName, const std::string& gameObjectType)
 {
 	std::string baseName;
 
@@ -453,7 +462,7 @@ std::string XMLParser::getBaseName(std::string worldName,std::string gameObjectT
 	return	baseName;
 }		
 
-std::string XMLParser::getNightmaresName(std::string baseName,std::string gameObjectType)
+std::string XMLParser::getNightmaresName(const std::string& baseName,const std::string& gameObjectType)
 {
 	std::string nightmaresName;
 
@@ -461,7 +470,7 @@ std::string XMLParser::getNightmaresName(std::string baseName,std::string gameOb
 
 	return	nightmaresName;
 }
-std::string XMLParser::getDreamsName(std::string baseName,std::string gameObjectType)
+std::string XMLParser::getDreamsName(const std::string& baseName,const std::string & gameObjectType)
 {
 	std::string dreamsName;
 

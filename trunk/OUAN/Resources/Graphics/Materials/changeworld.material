@@ -52,16 +52,55 @@ fragment_program erosion_FS_CG cg
    	}
 }
 
+vertex_program erosion_VS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionVS
+	target vs_2_0
+	default_params	
+	{	
+	  param_named_auto matViewProjection worldviewproj_matrix
+    }	
+}
+fragment_program erosion_FS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionFS
+	target ps_2_0
+	
+	default_params	
+	{
+	  param_named mix_factor float 0.5	  
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	  
+	  param_named displacement float 0.0
+	  param_named blending float 0.03
+	  param_named tiling float 2.5
+   	}	
+}
+
+// Unified definition
+vertex_program erosion_vs unified
+{
+	//delegate erosion_VS_HLSL
+	delegate erosion_VS_CG
+}
+fragment_program erosion_fs unified
+{
+	//delegate erosion_FS_HLSL
+	delegate erosion_FS_CG
+}
+
 material erosion
 {
 	technique
 	{
 	        pass
 	        {
-		        vertex_program_ref erosion_VS_CG
+		        vertex_program_ref erosion_vs
 		        {
 		        }
-		        fragment_program_ref erosion_FS_CG 
+		        fragment_program_ref erosion_fs
 		        {
 		        }
 		        texture_unit 0
@@ -100,6 +139,29 @@ fragment_program erosion_transparent_FS_CG cg
    	}
 }
 
+fragment_program erosion_transparent_FS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosion_transparentFS
+	target ps_2_0
+	
+	default_params	
+	{
+	  param_named mix_factor float 0.0
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	
+	  param_named displacement float3 0.0 0.0 0.0	  
+	  param_named blending float 0.03
+	  param_named tiling float 2.5
+   	}	
+}
+
+fragment_program erosion_transparent_fs unified
+{
+	//delegate erosion_transparent_FS_HLSL
+	delegate erosion_transparent_FS_CG
+}
+
 material erosion_transparent
 {
 	technique
@@ -108,10 +170,10 @@ material erosion_transparent
 		{
 		          scene_blend alpha_blend
 		          depth_write off
-	                      vertex_program_ref erosion_VS_CG
+	                      vertex_program_ref erosion_vs
 	                      {
 	                      }
-	                      fragment_program_ref erosion_transparent_FS_CG
+	                      fragment_program_ref erosion_transparent_fs
 	                      {
 	                      }
 	                      texture_unit 0
