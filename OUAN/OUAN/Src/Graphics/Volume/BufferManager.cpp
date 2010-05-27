@@ -61,6 +61,7 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 		const Ogre::PixelBox &pb = buffer->getCurrentLock();
 
 		double vCutInv = 1.0f / vCut;
+		float factorW, factorH, factorD;
 		float colorR, colorG, colorB;
 
 		unsigned int* pbptr = static_cast<unsigned int*>(pb.data);
@@ -86,13 +87,13 @@ void BufferManager::setBuffer(std::string texture3DName, double vCut, double vSc
 							val = vCut;
 						}
 
-						colorR = (float)x/pb.getWidth();
-						colorG = (float)y/pb.getHeight();
-						colorB = (float)z/pb.getDepth();
+						factorW = (float)x/pb.getWidth();
+						factorH = (float)y/pb.getHeight();
+						factorD = (float)z/pb.getDepth();
 						
-						colorR = ((endColorR - initColorR) * colorR) + initColorR;
-						colorG = ((endColorG - initColorG) * colorG) + initColorG;
-						colorB = ((endColorB - initColorB) * colorB) + initColorB;
+						colorR = ((endColorR - initColorR) * factorH) + initColorR;
+						colorG = ((endColorG - initColorG) * factorH) + initColorG;
+						colorB = ((endColorB - initColorB) * factorH) + initColorB;
 
 						//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(x)) + "," + Ogre::StringConverter::toString(Ogre::Real(y)) + "," + Ogre::StringConverter::toString(Ogre::Real(z)) + " : " + Ogre::StringConverter::toString(Ogre::Real(colorR)) + "," + Ogre::StringConverter::toString(Ogre::Real(colorG)) + "," + Ogre::StringConverter::toString(Ogre::Real(colorB)));
 
