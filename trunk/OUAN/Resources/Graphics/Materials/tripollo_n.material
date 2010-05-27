@@ -22,3 +22,57 @@ material tripollo_n
 
 	}
 }
+
+material tripollo_n_red
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_red.dds
+			}
+		}
+
+	}
+}
+
+material tripollo_n_green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_green.dds
+			}
+		}
+
+	}
+}
+
+material tripollo_n_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_blue.dds
+			}
+		}
+
+	}
+}
