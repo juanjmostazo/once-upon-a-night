@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="NUM_CLOUDS">500</Option>
-    <Option key="GENERATION_RADIO">3500</Option>
+    <Option key="NUM_CLOUDS">50</Option>
+    <Option key="GENERATION_RADIO_X">2000</Option>
+    <Option key="GENERATION_RADIO_Y">400</Option>
+    <Option key="GENERATION_RADIO_Z">2000</Option>
     <Option key="CENTER_POSITION_X">0</Option>
-    <Option key="CENTER_POSITION_Y">-200</Option>
-	<Option key="CENTER_POSITION_Z">0</Option>
-	<Option key="WIDTH">250</Option>
-	<Option key="WIDTH_RANDOM_OFFSET">100</Option>
-	<Option key="HEIGHT">250</Option>
-	<Option key="HEIGHT_RANDOM_OFFSET">100</Option>
-	<Option key="BILLBOARD_TYPE">POINT</Option><!--BBT_POINT,BBT_ORIENTED_COMMON,BBT_ORIENTED_SELF,BBT_PERPENDICULAR_COMMON,BBT_PERPENDICULAR_SELF-->
-	<Option key="BILLBOARD_ROTATION">VERTEX</Option><!--BBR_TEXCOORD,BBR_VERTEX-->
+    <Option key="CENTER_POSITION_Y">0</Option>
+    <Option key="CENTER_POSITION_Z">0</Option>
+    <Option key="WIDTH">250</Option>
+    <Option key="WIDTH_RANDOM_OFFSET">100</Option>
+    <Option key="HEIGHT">250</Option>
+    <Option key="HEIGHT_RANDOM_OFFSET">100</Option>
+    <Option key="BILLBOARD_TYPE">POINT</Option><!--BBT_POINT,BBT_ORIENTED_COMMON,BBT_ORIENTED_SELF,BBT_PERPENDICULAR_COMMON,BBT_PERPENDICULAR_SELF-->
+    <Option key="BILLBOARD_ROTATION">VERTEX</Option><!--BBR_TEXCOORD,BBR_VERTEX-->
   </Options>
 </Configuration>

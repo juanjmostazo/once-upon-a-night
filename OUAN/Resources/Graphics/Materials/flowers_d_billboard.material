@@ -4,8 +4,8 @@ material flowers_d_billboard
 	{
 		pass
 		{
-		      scene_blend alpha_blend
-		      depth_write off
+         depth_write on
+         alpha_rejection   greater 128
 			texture_unit
 			{
 				texture flowers_d.dds
