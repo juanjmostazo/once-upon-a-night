@@ -37,6 +37,8 @@ void PhysicsComponentCharacter::reset()
 	mDashDirection=Ogre::Vector3::ZERO;
 	mIsNotApplyingDash=true;
 
+	mOffsetRenderPosition=Ogre::Vector3::ZERO;
+
 	mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
 	mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinAccelerationFactor;
 }
@@ -572,6 +574,16 @@ bool PhysicsComponentCharacter::isSliding() const
 bool PhysicsComponentCharacter::isOnSurface() const
 {
 	return mOnSurface;
+}
+
+void PhysicsComponentCharacter::setOffsetRenderPosition(Vector3 offsetRenderPosition)
+{
+	mOffsetRenderPosition=offsetRenderPosition;
+}
+
+Vector3 PhysicsComponentCharacter::getOffsetRenderPosition() const
+{
+	return mOffsetRenderPosition;
 }
 
 TPhysicsComponentCharacterParameters::TPhysicsComponentCharacterParameters() : TPhysicsComponentParameters()

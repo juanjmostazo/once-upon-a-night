@@ -1093,6 +1093,9 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 		mComponentFactory->createRenderComponentPositional(
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
+	//TODO ERASE THIS WHEN ONY IS PROPERLY SCALED
+	pGameObjectOny->getRenderComponentPositional()->setScale(Vector3(0.7,0.7,0.7));
+
 	//Create RenderComponentInitial
 	pGameObjectOny->setRenderComponentInitial(
 		mComponentFactory->createRenderComponentInitial(
