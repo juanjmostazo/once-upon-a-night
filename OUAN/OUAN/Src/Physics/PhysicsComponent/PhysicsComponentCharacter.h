@@ -48,6 +48,9 @@ namespace OUAN
 		bool isOnSurface() const;
 		void setOnSurface(bool pOnSurface);
 
+		void setOffsetRenderPosition(Vector3 offsetRenderPosition);
+		Vector3 getOffsetRenderPosition() const;
+
 	protected:
 		void applyDash(double elapsedSeconds);
 		Vector3 getDashMovement(double elapsedSeconds);
@@ -102,6 +105,9 @@ namespace OUAN
 
 		/// Acceleration
 		double mAccelerationFactor;
+
+		// Other values
+		Vector3 mOffsetRenderPosition;
 
 		void initJump();
 		void initFall();

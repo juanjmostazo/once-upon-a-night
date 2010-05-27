@@ -423,8 +423,6 @@ void GameObjectOny::postUpdate()
 		}		
 	}
 
-	//TODO ERASE THIS WHEN ONY IS PROPERLY SCALED
-	getRenderComponentPositional()->setScale(Vector3(0.7,0.7,0.7));
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
 	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-12,0));
 }
