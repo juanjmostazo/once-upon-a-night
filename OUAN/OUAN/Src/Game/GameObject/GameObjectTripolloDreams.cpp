@@ -239,8 +239,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 void GameObjectTripolloDreams::postUpdate()
 {
 	GameObject::postUpdate();
-	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-9.7,0));
 }
 
 AttackComponentPtr GameObjectTripolloDreams::getAttackComponent() const

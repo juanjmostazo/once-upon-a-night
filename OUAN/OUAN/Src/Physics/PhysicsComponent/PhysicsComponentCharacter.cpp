@@ -75,7 +75,6 @@ void PhysicsComponentCharacter::destroy()
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
-
 	if(!getParent()->isEnabled())
 	{
 		setLastMovement(NxOgre::Vec3::ZERO);
@@ -85,10 +84,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding && !getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		setLastMovement(NxOgre::Vec3::ZERO);
-		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
-											getNxOgreController()->getPosition().y,
-											getNxOgreController()->getPosition().z
-			));
+		getSceneNode()->setPosition(
+			Vector3(getNxOgreController()->getPosition().x,
+					getNxOgreController()->getPosition().y,
+					getNxOgreController()->getPosition().z)
+			+ mOffsetRenderPosition);
 		//Logger::getInstance()->log(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 		return;
 	}
@@ -175,10 +175,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		getSceneNode()->setPosition(Vector3(getNxOgreController()->getPosition().x,
-											getNxOgreController()->getPosition().y,
-											getNxOgreController()->getPosition().z
-			));
+		getSceneNode()->setPosition(
+			Vector3(getNxOgreController()->getPosition().x,
+					getNxOgreController()->getPosition().y,
+					getNxOgreController()->getPosition().z)
+			+ mOffsetRenderPosition);
 
 		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		//	Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
