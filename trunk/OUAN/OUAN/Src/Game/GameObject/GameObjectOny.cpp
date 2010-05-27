@@ -422,18 +422,18 @@ void GameObjectOny::postUpdate()
 			}
 		}		
 	}
-
-	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,-12,0));
 }
+
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
 {
 	return mAudioComponent;
 }
+
 bool GameObjectOny::hasAudioComponent() const
 {
 	return true;
 }
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
