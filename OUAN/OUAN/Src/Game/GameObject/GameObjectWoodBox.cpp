@@ -286,13 +286,18 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 	{
 		mPhysicsComponentVolumeBox->setPosition(mPhysicsComponentSimpleBox->getNxOgrePosition());
 	}
+
 	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
+
 	if (entityToUpdate.get())
+	{
 		entityToUpdate->update(elapsedSeconds);
+	}
 }
 
+//TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponentBreakable->isStateChanged())
@@ -312,16 +317,16 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mLogicComponentBreakable->existsInDreams())
 			{
 				mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_BREAK01);
-				//mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityNightmares->setVisible(false);
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_BREAK01);
-				//mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityDreams->setVisible(false);
 			}		
 		}
-	}
+	}	
 
 	mLogicComponentBreakable->update(elapsedSeconds);
 }

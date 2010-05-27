@@ -834,7 +834,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
-			//processGameObjectWoodBox(gameObject);
+			processGameObjectWoodBox(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
 		{
@@ -2781,7 +2781,7 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentVolumeBox
 		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
-
+		
 		tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters=processLogicComponentBreakable(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
