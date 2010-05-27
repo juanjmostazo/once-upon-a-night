@@ -1,5 +1,5 @@
 
-material wall01
+material wall03_d
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material wall01
 
 			texture_unit
 			{
-				texture wall01_d.dds
+				texture wall03_d.dds
 			}
 		}
 
