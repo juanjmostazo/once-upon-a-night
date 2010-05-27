@@ -6,11 +6,11 @@ material Examples/CloudySky1
 		{
 			lighting off
 			depth_write off
-
 			texture_unit
 			{
 				texture sky_dreams.dds
 				scroll_anim 0.03 0
+				scale 1 1
 			}
 		}
 	}
@@ -24,11 +24,11 @@ material Examples/CloudySky2
 		{
 			lighting off
 			depth_write off
-
 			texture_unit
 			{
 				texture sky_nightmare.dds
 				scroll_anim 0.03 0
+				scale 1 1
 			}
 		}
 	}

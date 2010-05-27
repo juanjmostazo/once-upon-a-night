@@ -5,9 +5,8 @@ material tree3_d
         {
             pass
             {
-	    scene_blend alpha_blend
-	    depth_write off
-	    alpha_to_coverage on
+         depth_write on
+         alpha_rejection   greater 128
                 texture_unit
                 {
                     texture tree3_d_texture.dds

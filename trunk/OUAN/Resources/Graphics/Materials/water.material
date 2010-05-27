@@ -4,6 +4,7 @@ material water_foam
 	{
 		pass
 		{
+			depth_bias 10
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit
@@ -35,6 +36,7 @@ material waterfall_foam
 	{
 		pass
 		{
+			cull_software none
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit
@@ -53,6 +55,7 @@ material waterfall_blue
 	{
 		pass
 		{
+			cull_software none
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit

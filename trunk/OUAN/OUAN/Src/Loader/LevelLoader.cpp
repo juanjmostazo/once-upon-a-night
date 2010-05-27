@@ -175,8 +175,14 @@ void LevelLoader::processGameObjectBillboardClouds()
 		config.getOption("NUM_CLOUDS", value); 
 		double numClouds = atoi(value.c_str());
 
-		config.getOption("GENERATION_RADIO", value); 
-		double generationRadio = atof(value.c_str());
+		config.getOption("GENERATION_RADIO_X", value); 
+		double generationRadioX = atof(value.c_str());
+
+		config.getOption("GENERATION_RADIO_Y", value); 
+		double generationRadioY = atof(value.c_str());
+
+		config.getOption("GENERATION_RADIO_Z", value); 
+		double generationRadioZ = atof(value.c_str());
 
 		config.getOption("CENTER_POSITION_X", value); 
 		double centerPositionX = atoi(value.c_str());
@@ -272,12 +278,14 @@ void LevelLoader::processGameObjectBillboardClouds()
 		for (int i=0; i<numClouds; i++)
 		{
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioX, generationRadioX);
 
-			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionY;
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.y = centerPositionY + 
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioY, generationRadioY);
 
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadio, generationRadio);
+				Utils::Random::getInstance()->getRandomDouble(-generationRadioZ, generationRadioZ);
+
 
 			double randomOffset = Utils::Random::getInstance()->getRandomDouble(-sizeRandomOffset, sizeRandomOffset);
 

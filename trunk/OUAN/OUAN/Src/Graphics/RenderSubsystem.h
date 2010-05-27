@@ -254,6 +254,18 @@ namespace OUAN
 
 		// For the soft shadows: WORK IN PROGRESS
 		ShadowListener shadowListener;
+
+
+		Ogre::TexturePtr mTexture3D_8;
+
+		Ogre::TexturePtr mTexture3D_16;
+
+		Ogre::TexturePtr mTexture3D_32;
+
+		Ogre::TexturePtr mTexture3D_64;
+
+		Ogre::TexturePtr mTexture3D_128;
+
 	};
 }
 #endif

@@ -93,7 +93,6 @@ void RenderSubsystem::cleanUp()
 {
 	clearScene();
 }
-
 void RenderSubsystem::createRoot(ConfigurationPtr config)
 {
 	std::string pluginsPath=DEFAULT_OGRE_PLUGINS_PATH;
@@ -484,86 +483,52 @@ void RenderSubsystem::initTextures3D()
 {
 	if (!mTexturesInitialized)
 	{
-		mTexture3D_1_8 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_1_8", "General", Ogre::TEX_TYPE_3D, 8, 8, 8, 0, Ogre::PF_A8R8G8B8);
+		mTexture3D_8 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_8", "General", Ogre::TEX_TYPE_3D, 8, 8, 8, 0, Ogre::PF_A8R8G8B8);
 
-		mTexture3D_1_16 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_1_16", "General", Ogre::TEX_TYPE_3D, 16, 16, 16, 0, Ogre::PF_A8R8G8B8);
+		mTexture3D_16 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_16", "General", Ogre::TEX_TYPE_3D, 16, 16, 16, 0, Ogre::PF_A8R8G8B8);
 
-		mTexture3D_1_32 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_1_32", "General", Ogre::TEX_TYPE_3D, 32, 32, 32, 0, Ogre::PF_A8R8G8B8);
+		mTexture3D_32 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_32", "General", Ogre::TEX_TYPE_3D, 32, 32, 32, 0, Ogre::PF_A8R8G8B8);
 
-		mTexture3D_1_64 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_1_64", "General", Ogre::TEX_TYPE_3D, 64, 64, 64, 0, Ogre::PF_A8R8G8B8);
+		mTexture3D_64 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_64", "General", Ogre::TEX_TYPE_3D, 64, 64, 64, 0, Ogre::PF_A8R8G8B8);
 
-		mTexture3D_1_128 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_1_128", "General", Ogre::TEX_TYPE_3D, 128, 128, 128, 0, Ogre::PF_A8R8G8B8);
-
-		mTexture3D_2_8 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_2_8", "General", Ogre::TEX_TYPE_3D, 8, 8, 8, 0, Ogre::PF_A8R8G8B8);
-
-		mTexture3D_2_16 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_2_16", "General", Ogre::TEX_TYPE_3D, 16, 16, 16, 0, Ogre::PF_A8R8G8B8);
-
-		mTexture3D_2_32 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_2_32", "General", Ogre::TEX_TYPE_3D, 32, 32, 32, 0, Ogre::PF_A8R8G8B8);
-
-		mTexture3D_2_64 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_2_64", "General", Ogre::TEX_TYPE_3D, 64, 64, 64, 0, Ogre::PF_A8R8G8B8);
-
-		mTexture3D_2_128 = Ogre::TextureManager::getSingleton().createManual(
-			"texture3D_2_128", "General", Ogre::TEX_TYPE_3D, 128, 128, 128, 0, Ogre::PF_A8R8G8B8);
+		mTexture3D_128 = Ogre::TextureManager::getSingleton().createManual(
+			"texture3D_128", "General", Ogre::TEX_TYPE_3D, 128, 128, 128, 0, Ogre::PF_A8R8G8B8);
 
 		mTexturesInitialized = true;
 	}
 }
 
 //TODO DO IT USING A MAP
-Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D)
-{	
-	if (texture3D.compare("texture3D_1_8")==0)
+Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D){
+
+	if (texture3D.compare("texture3D_8")==0)
 	{
-		return mTexture3D_1_8;
+		return mTexture3D_8;
 	} 
-	else if (texture3D.compare("texture3D_1_16")==0)
+	else if (texture3D.compare("texture3D_16")==0)
 	{
-		return mTexture3D_1_16;
+		return mTexture3D_16;
 	} 
-	else if (texture3D.compare("texture3D_1_32")==0)
+	else if (texture3D.compare("texture3D_32")==0)
 	{
-		return mTexture3D_1_32;
+		return mTexture3D_32;
 	} 
-	else if (texture3D.compare("texture3D_1_64")==0)
+	else if (texture3D.compare("texture3D_64")==0)
 	{
-		return mTexture3D_1_64;
+		return mTexture3D_64;
 	} 
-	else if (texture3D.compare("texture3D_1_128")==0)
+	else if (texture3D.compare("texture3D_128")==0)
 	{
-		return mTexture3D_1_128;
+		return mTexture3D_128;
 	} 
-	else if (texture3D.compare("texture3D_2_8")==0)
+	else 
 	{
-		return mTexture3D_2_8;
-	} 
-	else if (texture3D.compare("texture3D_2_16")==0)
-	{
-		return mTexture3D_2_16;
-	} 
-	else if (texture3D.compare("texture3D_2_32")==0)
-	{
-		return mTexture3D_2_32;
-	} 
-	else if (texture3D.compare("texture3D_2_64")==0)
-	{
-		return mTexture3D_2_64;
-	} 
-	else if (texture3D.compare("texture3D_2_128")==0)
-	{
-		return mTexture3D_2_128;
-	} 
-	else // IT SHOULD NEVER ENTER HERE
-	{
-		return mTexture3D_1_8;
+		//TODO SET NULL POINTER HERE
+		return mTexture3D_8;
 	}
 }
 
