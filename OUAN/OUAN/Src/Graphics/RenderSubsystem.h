@@ -64,9 +64,6 @@ namespace OUAN
 		/// Free memory used by the rendering subsystem
 		void cleanUp();
 
-
-
-
 		/// Create Ogre root object
 		void createRoot(OUAN::ConfigurationPtr config);
 
@@ -190,21 +187,6 @@ namespace OUAN
 		// WORK IN PROGRESS!!!
 		SSAOListener ssaoListener;
 
-		// Texture 3D variables
-		bool mTexturesInitialized;
-
-		Ogre::TexturePtr mTexture3D_1_8;
-		Ogre::TexturePtr mTexture3D_1_16;
-		Ogre::TexturePtr mTexture3D_1_32;
-		Ogre::TexturePtr mTexture3D_1_64;
-		Ogre::TexturePtr mTexture3D_1_128;
-
-		Ogre::TexturePtr mTexture3D_2_8;
-		Ogre::TexturePtr mTexture3D_2_16;
-		Ogre::TexturePtr mTexture3D_2_32;
-		Ogre::TexturePtr mTexture3D_2_64;
-		Ogre::TexturePtr mTexture3D_2_128;
-
 		Ogre::TexturePtr getTexture3D(std::string texture3D);
 
 	protected:
@@ -255,17 +237,20 @@ namespace OUAN
 		// For the soft shadows: WORK IN PROGRESS
 		ShadowListener shadowListener;
 
+		// Texture 3D variables
+		bool mTexturesInitialized;
 
-		Ogre::TexturePtr mTexture3D_8;
+		Ogre::TexturePtr mTexture3D_1_8;
+		Ogre::TexturePtr mTexture3D_1_16;
+		Ogre::TexturePtr mTexture3D_1_32;
+		Ogre::TexturePtr mTexture3D_1_64;
+		Ogre::TexturePtr mTexture3D_1_128;
 
-		Ogre::TexturePtr mTexture3D_16;
-
-		Ogre::TexturePtr mTexture3D_32;
-
-		Ogre::TexturePtr mTexture3D_64;
-
-		Ogre::TexturePtr mTexture3D_128;
-
+		Ogre::TexturePtr mTexture3D_2_8;
+		Ogre::TexturePtr mTexture3D_2_16;
+		Ogre::TexturePtr mTexture3D_2_32;
+		Ogre::TexturePtr mTexture3D_2_64;
+		Ogre::TexturePtr mTexture3D_2_128;
 	};
 }
 #endif

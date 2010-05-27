@@ -846,7 +846,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else
 		{
-			processGameObjectProvisionalEntity(gameObject);
+			//processGameObjectProvisionalEntity(gameObject);
 			Logger::getInstance()->log("[LevelLoader] Error processing Game Object with type "+gameObjectType+" , the specified type does not exist");
 		}
 	}
