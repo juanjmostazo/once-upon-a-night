@@ -576,6 +576,18 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 	Ogre::String materialName = LIGHTMAP_PREFIX+pEntity->getName();
 	Ogre::String lightmapName = materialName+".dds";
 
+	Ogre::TexturePtr original_texture;
+	Ogre::TexturePtr lightmap_texture;
+	Ogre::TexturePtr new_texture;
+
+	Ogre::HardwarePixelBufferSharedPtr original_pixel_buffer;
+	Ogre::HardwarePixelBufferSharedPtr lightmap_pixel_buffer;
+	Ogre::HardwarePixelBufferSharedPtr new_pixel_buffer;
+
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	Ogre::TextureUnitState * texture_unit;
+
 	if( Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,lightmapName))
 	{
 		try
@@ -595,19 +607,68 @@ void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
 				}
 				else
 				{
-					// Clone the material and set the fade limits for the shader
+					// Clone the material
 					clone = material->clone(materialName);
 				}
 
 				// Apply the lightmap
-				Ogre::Technique * technique;
-				Ogre::Pass * pass;
-				Ogre::TextureUnitState * texture_unit;
+
 					//get technique
 				technique = clone->getTechnique(0);
 					//set current pass attributes
 				pass = technique->getPass(0);
 				texture_unit = pass->getTextureUnitState(0);
+
+				//clone original texture
+				original_texture=Ogre::TextureManager::getSingleton().getByName(texture_unit->getTextureName());
+				original_texture->copyToTexture(new_texture);
+
+				//apply lightmap
+				lightmap_texture=Ogre::TextureManager::getSingleton().getByName(lightmapName);
+				original_pixel_buffer = original_texture->getBuffer();
+				lightmap_pixel_buffer = lightmap_texture->getBuffer();
+				new_pixel_buffer = new_texture->getBuffer();
+
+				// create pixel boxes
+				//PixelBox original_pixelbox(
+				//	original_pixel_buffer->getWidth(), 
+				//	original_pixel_buffer->getHeight(),
+				//	original_pixel_buffer->getDepth(), 
+				//	original_pixel_buffer->getFormat(), 
+				//	buffer);          
+				//original_pixel_buffer->blitToMemory(original_pixelbox);
+
+				//PixelBox lightmap_pixelbox(
+				//	lightmap_pixel_buffer->getWidth(), 
+				//	lightmap_pixel_buffer->getHeight(),
+				//	lightmap_pixel_buffer->getDepth(), 
+				//	lightmap_pixel_buffer->getFormat(), 
+				//	buffer);          
+				//lightmap_pixel_buffer->blitToMemory(lightmap_pixelbox);
+
+				//PixelBox new_pixelbox(
+				//	new_pixel_buffer->getWidth(), 
+				//	new_pixel_buffer->getHeight(),
+				//	new_pixel_buffer->getDepth(), 
+				//	new_pixel_buffer->getFormat(), 
+				//	buffer); 
+
+				//PixelUtil::get
+
+				//new_pixelbox.
+				//original_pixel_buffer->blitToMemory(new_pixelbox);
+
+				//new_pixel_buffer->
+
+				//new_texture->setB
+
+				//load lightmap
+				new_texture->load();
+
+				//unload original texture and lightmap
+				original_texture->unload();
+				lightmap_texture->unload();
+
 				texture_unit->setTextureCoordSet(0);
 				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
 					//create lightmap pass
