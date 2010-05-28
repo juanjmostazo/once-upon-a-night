@@ -750,6 +750,18 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSkyBody.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper.cpp"
 						>
 					</File>
@@ -1489,6 +1501,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectScepter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSkyBody.h"
 						>
 					</File>
 					<File

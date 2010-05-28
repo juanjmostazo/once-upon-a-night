@@ -57,6 +57,8 @@
 #include "../Event/EventManager.h"
 #include "../Event/EventProcessor.h"
 
+#include "../Audio/AudioComponent/AudioComponent.h"
+
 /// These macros will reset the shared pointers, just in case 
 /// clearing the containers will mess with the pointers' references count
 #define EMPTY_VECTOR(T,v) \
@@ -426,6 +428,15 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 
+	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+	if (sound.get())
+	{
+		sound->getAudioComponentNightmares()->playSound(mDefaultAmbientSoundIDNightmares);
+		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
+		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
+		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
+	}
+
 	//Set world to dreams
 	setChangeWorldTimes();
 	setWorld(DREAMS); 
@@ -437,7 +448,13 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 void GameWorldManager::unloadLevel()
 {
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
-
+	
+	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+	if (sound.get())
+	{
+		sound->getAudioComponentNightmares()->stopSound(mDefaultAmbientSoundIDNightmares);
+		sound->getAudioComponentDreams()->stopSound(mDefaultAmbientSoundIDDreams);
+	}
 	try
 	{
 		mApp->getPhysicsSubsystem()->clear();
@@ -1152,16 +1169,16 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
 		if (sound.get())
 		{
-			sound->stop(mDefaultAmbientSoundIDNightmares);
-			sound->play(mDefaultAmbientSoundIDDreams);
+			sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
+			sound->getAudioComponentDreams()->setPauseSound(mDefaultAmbientSoundIDDreams,false);
 		}
 		break;
 	case NIGHTMARES:
 		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
 		if (sound.get())
 		{
-			sound->stop(mDefaultAmbientSoundIDDreams);
-			sound->play(mDefaultAmbientSoundIDNightmares);
+			sound->getAudioComponentDreams()->setPauseSound(mDefaultAmbientSoundIDDreams,true);
+			sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 		}
 		if (flashlight.get())
 			flashlight->createProjector(&mGameObjects);
