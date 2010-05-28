@@ -1106,6 +1106,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = 1;
+	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectOny->setRenderComponentParticleSystemLand(
 		mComponentFactory->createRenderComponentParticleSystem(
 			pGameObjectOny,
@@ -1227,6 +1228,7 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PILLOW_ATTACK;
 	tRenderComponentParticleSystemParameters.attached = false;
 	tRenderComponentParticleSystemParameters.poolSize = 5;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectPillow->setRenderComponentParticleSystemAttack(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectPillow,tRenderComponentParticleSystemParameters,pGameObjectPillow->getRenderComponentPositional()));
 
@@ -1379,6 +1381,7 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = 1;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectPortal->setRenderComponentParticleSystemChangeWorld(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectPortal,tRenderComponentParticleSystemParameters,pGameObjectPortal->getRenderComponentPositional()));
 

@@ -407,7 +407,8 @@ bool AudioSubsystem::_playSound(const std::string& id,
 				outChannel = mChannelGroupMap[cgid];
 
 				//find a free channel.
-				channelIndex = mChannelGroupMap[cgid]->getFreeChannelIndex();
+				if (!(outChannel->getChannelObject(channelIndex).get() && outChannel->getChannelObject(channelIndex)->isFree()))
+					channelIndex = mChannelGroupMap[cgid]->getFreeChannelIndex();
 				if(channelIndex!=-1)
 				{
 					bool masterEnabled = mConfigData.mMasterVolumeEnabled;
@@ -428,6 +429,7 @@ bool AudioSubsystem::_playSound(const std::string& id,
 							true, 
 							&channel);
 						outChannel->setChannel(tmp,channel);
+						outChannel->getChannelObject(tmp)->setFree(false);
 						//if (soundPtr->mSoundData.m3D)
 						//{
 						//	//channel->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
@@ -578,14 +580,7 @@ double AudioSubsystem::getChannelGroupPitch(const std::string& id)
 }
 bool AudioSubsystem::stopSound(int channelIndex, const std::string& channelGroupID)
 {
-	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelIndex);
-	if (ch.get())
-	{
-		return (ch->getChannel()->stop())?true:false;
-	}
-	std::stringstream msg("");
-	msg<<"AudioSubsystem::stopSound() - Channel at index "<<channelIndex<<" is NULL";
-	throw std::exception (msg.str().c_str());
+	return mChannelGroupMap[channelGroupID]->stop(channelIndex);
 }
 bool AudioSubsystem::stopMusic(int channelIndex)
 {
@@ -601,9 +596,9 @@ bool AudioSubsystem::stopMusic(int channelIndex)
 		throw e;
 	}	
 }
-bool AudioSubsystem::setPause(int channelIndex, bool pause)
+bool AudioSubsystem::setPause(int channelIndex, bool pause, const std::string& channelGroup)
 {
-	ChannelPtr ch=mChannelGroupMap[SM_CHANNEL_MASTER_GROUP]->getChannelObject(channelIndex);
+	ChannelPtr ch=mChannelGroupMap[channelGroup]->getChannelObject(channelIndex);
 	if (ch.get())
 	{
 		return ch->setPaused(pause);
