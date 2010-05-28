@@ -4,7 +4,6 @@ material water_foam
 	{
 		pass
 		{
-			depth_bias 10
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit
@@ -16,7 +15,7 @@ material water_foam
 	}
 }
 
-material water_seabed
+material water_lake_seabed
 {
 	technique
 	{
@@ -24,7 +23,9 @@ material water_seabed
 		{
 			texture_unit
 			{
-				water_seabed.dds
+				scroll_anim 0 0.1
+				scroll 0 0.2
+				texture water_seabed.dds
 			}
 		}
 	}
@@ -36,12 +37,11 @@ material waterfall_foam
 	{
 		pass
 		{
-			cull_software none
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit
 			{
-				scroll_anim 0 0.6
+				scroll_anim 0 0.18
 				texture waterfall_foam.dds
 			}
 		}
@@ -55,12 +55,11 @@ material waterfall_blue
 	{
 		pass
 		{
-			cull_software none
 			scene_blend alpha_blend
 	                        depth_write off	
 			texture_unit
 			{
-				scroll_anim 0 0.62
+				scroll_anim 0 0.2
 				texture waterfall_blue.dds
 			}
 		}

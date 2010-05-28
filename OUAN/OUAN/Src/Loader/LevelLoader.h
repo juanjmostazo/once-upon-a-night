@@ -115,7 +115,7 @@ namespace OUAN
 		void processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParameters,
 			TiXmlElement* XMLNode, int world);
 		QueryFlags processCameraCollisionType(TiXmlElement *XMLNode);
-
+		Ogre::uint8 processRenderQueueId(TiXmlElement *XMLNode);
 
 		//PhysicComponent Processors
 		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix="");

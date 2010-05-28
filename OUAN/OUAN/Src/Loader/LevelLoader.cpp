@@ -275,6 +275,10 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		///////////////////////
 
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.queueID=Ogre::RENDER_QUEUE_4;
+
+		///////////////////////
+
 		for (int i=0; i<numClouds; i++)
 		{
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
@@ -3162,6 +3166,8 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	//Process Query flags
 	tRenderComponentEntityParameters.cameraCollisionType=processCameraCollisionType(XMLNode);
 
+	tRenderComponentEntityParameters.queueID=processRenderQueueId(XMLNode);
+
 	return tRenderComponentEntityParameters;
 }
 
@@ -3255,6 +3261,8 @@ TRenderComponentParticleSystemParameters LevelLoader::processRenderComponentPart
 	tRenderComponentParticleSystemParameters.templateName = getPropertyString(XMLNode, "templateName");
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = 1;
+
+	tRenderComponentParticleSystemParameters.queueID=processRenderQueueId(XMLNode);
 	
 	return tRenderComponentParticleSystemParameters;
 }
@@ -3397,6 +3405,8 @@ TRenderComponentBillboardSetParameters LevelLoader::processRenderComponentBillbo
 	//process BillboardSet's Billboards
 	processRenderComponentBillboards(tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters,XMLNode);
 
+	tRenderComponentBillboardSetParameters.queueID=processRenderQueueId(XMLNode);
+
 	return tRenderComponentBillboardSetParameters;
 }
 
@@ -3468,6 +3478,7 @@ TRenderComponentPlaneParameters LevelLoader::processRenderComponentPlane(TiXmlEl
 	tRenderComponentPlaneParameters.Vtile=getPropertyInt(XMLNode, "vtile");
 	tRenderComponentPlaneParameters.Xsegments=getPropertyInt(XMLNode, "xsegments");
 	tRenderComponentPlaneParameters.Ysegments=getPropertyInt(XMLNode, "ysegments");
+	tRenderComponentPlaneParameters.queueID=processRenderQueueId(XMLNode);
 
 	//Process Query flags
 	tRenderComponentPlaneParameters.cameraCollisionType=processCameraCollisionType(XMLNode);
@@ -4353,6 +4364,20 @@ TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters
 	}
 
 	return tChangeWorldMaterialParameters;
+}
+
+Ogre::uint8 LevelLoader::processRenderQueueId(TiXmlElement *XMLNode)
+{
+	Ogre::uint8 renderQueueId;
+	try
+	{
+		renderQueueId=getPropertyInt(XMLNode, "RenderQueue::id");
+	}
+	catch(std::string error)
+	{
+		renderQueueId=Ogre::RENDER_QUEUE_MAIN;
+	}
+	return renderQueueId;
 }
 
 String LevelLoader::getAttrib(TiXmlElement *XMLNode, const String &attrib, const String &defaultValue)

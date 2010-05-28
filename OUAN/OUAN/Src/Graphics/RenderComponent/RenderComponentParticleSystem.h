@@ -45,6 +45,8 @@ namespace OUAN
 		String templateName;
 		bool attached;
 		int poolSize;
+
+		Ogre::uint8 queueID;
 	};
 }
 

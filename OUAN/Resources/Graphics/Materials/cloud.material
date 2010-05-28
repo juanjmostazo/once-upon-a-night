@@ -5,9 +5,7 @@ material cloud_terrain_d#0
 	{
 		pass
 		{
-			transparent_sorting force
 			scene_blend alpha_blend
-			scene_blend_op subtract
 			depth_write off
 			texture_unit
 			{
@@ -25,9 +23,7 @@ material cloud_terrain_n#0
 	{
 		pass
 		{
-			transparent_sorting force
 			scene_blend alpha_blend
-			scene_blend_op subtract
 			depth_write off
 			texture_unit
 			{
@@ -46,9 +42,7 @@ material cloud_terrain_d#1
 	{
 		pass
 		{
-			transparent_sorting off
 			scene_blend alpha_blend
-			scene_blend_op subtract
 			depth_write off
 			texture_unit
 			{
@@ -66,9 +60,7 @@ material cloud_terrain_n#1
 	{
 		pass
 		{
-			transparent_sorting off
 			scene_blend alpha_blend
-			
 			depth_write off
 			texture_unit
 			{

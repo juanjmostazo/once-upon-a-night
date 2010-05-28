@@ -88,6 +88,7 @@ namespace OUAN
 		std::vector<TRenderComponentSubEntityParameters> tRenderComponentSubEntityParameters;
 		std::vector<TRenderComponentEntityAnimParams> tRenderComponentEntityAnimParams;
 
+		Ogre::uint8 queueID;
 	};
 }
 

@@ -38,6 +38,8 @@ namespace OUAN
 		int Ysegments;
 
 		QueryFlags cameraCollisionType;
+
+		Ogre::uint8 queueID;
 	};
 
 
