@@ -386,6 +386,9 @@ Ogre::Entity* RenderSubsystem::createPlane(Ogre::String nodeName,Ogre::String na
 		//set Query flags
 		pPlaneEntity->setQueryFlags(tPlaneParameters.cameraCollisionType);
 
+		//set RenderQueue priortiy and group
+		pPlaneEntity->setRenderQueueGroup(tPlaneParameters.queueID);
+
 		//attach to Scene Manager
 		planeNode=mSceneManager->getSceneNode(nodeName);
 		planeNode->attachObject(pPlaneEntity);
@@ -660,6 +663,9 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 		//set Query flags
 		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
 
+		//set RenderQueue priortiy and group
+		pEntity->setRenderQueueGroup(tRenderComponentEntityParameters.queueID);
+
 		//attach to Scene Manager
 		pEntityNode=mSceneManager->getSceneNode(nodeName);
 		pEntityNode->attachObject(pEntity);
@@ -715,6 +721,10 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 				mApp->getRenderSubsystem()->getSceneManager());
 
 			pParticleSystem->setQueryFlags(OUAN::QUERYFLAGS_NONE);
+
+			//set RenderQueue priortiy and group
+			pParticleSystem->setRenderQueueGroup(tRenderComponentParticleSystemParameters.queueID);
+
 			// Create Particle System scene node where required
 			if (tRenderComponentParticleSystemParameters.attached)
 			{
@@ -787,6 +797,9 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		billBoardSet->setBillboardRotationType(tRenderComponentBillboardSetParameters.billboardrotation);
 
 		billBoardSet->setQueryFlags(QUERYFLAGS_NONE);
+
+		//set RenderQueue priortiy and group
+		billBoardSet->setRenderQueueGroup(tRenderComponentBillboardSetParameters.queueID);
 
 		// Create BillboardSet's Billboards
 		for(unsigned int i=0;i<tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.size();i++)

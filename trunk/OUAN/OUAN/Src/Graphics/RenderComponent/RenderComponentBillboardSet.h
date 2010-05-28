@@ -65,6 +65,7 @@ namespace OUAN
 		bool sorting;
 		std::vector<TRenderComponentBillboardParameters> tRenderComponentBillboardParameters;
 
+		Ogre::uint8 queueID;
 	};
 
 
