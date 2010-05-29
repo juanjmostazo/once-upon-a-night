@@ -2256,21 +2256,49 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		params.nightmaresName = gameObject->nightmaresName;
 		params.name = gameObject->name;
 
+		params.useEntityDreams= getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityDreams",false);
+		params.useEntityNightmares= getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityNightmares",false);
+
 		//Get Logic component
 		params.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		if(params.tLogicComponentParameters.existsInDreams)
 		{
-			//Get RenderComponentEntityDreams
-			params.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-				DREAMS, gameObject->XMLNodeCustomProperties);
+			//Init light properties
+			params.lightDreamsParams.lighttype=Ogre::Light::LT_SPOTLIGHT;
+			params.lightDreamsParams.diffuse=Ogre::ColourValue(1.0,1.0,0.9);
+			params.lightDreamsParams.specular=Ogre::ColourValue::Black;
+			params.lightDreamsParams.direction = Ogre::Vector3(0,-1,-1);
+			params.lightDreamsParams.castshadows = true;
+			params.lightDreamsParams.lightrange = Ogre::Vector3(15,80,1);
+			params.lightDreamsParams.attenuation = Ogre::Vector4(3500,1,0,0);
+			params.lightDreamsParams.power = 1;
+
+			if (params.useEntityDreams)
+				//Get RenderComponentEntityDreams
+				params.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+					DREAMS, gameObject->XMLNodeCustomProperties);
+			else
+				params.bbsDreamsParams=processRenderComponentBillboardSet(gameObject->XMLNodeDreams);
 		}
 		if(params.tLogicComponentParameters.existsInNightmares)
 		{
-			//Get RenderComponentEntityNightmares
-			params.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-				NIGHTMARES,gameObject->XMLNodeCustomProperties);
+			params.lightNightmaresParams.lighttype=Ogre::Light::LT_SPOTLIGHT;
+			params.lightNightmaresParams.diffuse=Ogre::ColourValue(0.9,0.9,1.0);
+			params.lightNightmaresParams.specular=Ogre::ColourValue::Black;			
+			params.lightNightmaresParams.direction = Ogre::Vector3(0,-1,-1);
+			params.lightNightmaresParams.castshadows = true;
+			params.lightNightmaresParams.lightrange = Ogre::Vector3(15,80,1);
+			params.lightNightmaresParams.attenuation = Ogre::Vector4(3500,1,0,0);
+			params.lightNightmaresParams.power = 1;
+
+			if (params.useEntityNightmares)
+				//Get RenderComponentEntityNightmares
+				params.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+					NIGHTMARES,gameObject->XMLNodeCustomProperties);
+			else
+				params.bbsNightmaresParams=processRenderComponentBillboardSet(gameObject->XMLNodeNightmares);
 		}
 
 		//Get RenderComponentPositional

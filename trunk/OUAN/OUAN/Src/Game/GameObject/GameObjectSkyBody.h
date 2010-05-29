@@ -5,6 +5,8 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
+#include "../../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
@@ -22,6 +24,15 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+
+		RenderComponentBillboardSetPtr mBBSComponentDreams;
+		RenderComponentBillboardSetPtr mBBSComponentNightmares;
+
+		RenderComponentLightPtr mLightComponentDreams;
+		RenderComponentLightPtr mLightComponentNightmares;
+
+		bool mUseEntityDreams;
+		bool mUseEntityNightmares;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -48,6 +59,24 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+
+		RenderComponentBillboardSetPtr getRenderComponentBillboardSetDreams() const;
+		void setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr bbsDreams);
+
+		RenderComponentBillboardSetPtr getRenderComponentBillboardSetNightmares() const;
+		void setRenderComponentBillboardSetNightmares(RenderComponentBillboardSetPtr bbsNightmares);
+
+		RenderComponentLightPtr getLightDreams() const;
+		void setLightDreams(RenderComponentLightPtr lightComponent);
+		RenderComponentLightPtr getLightNightmares() const;
+		void setLightNightmares(RenderComponentLightPtr lightComponent);
+
+		bool isUsingEntityDreams();
+		void setUseEntityDreams(bool useEntity);
+
+		bool isUsingEntityNightmares();
+		void setUseEntityNightmares(bool useEntity);
+
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -104,9 +133,18 @@ namespace OUAN
 		TGameObjectSkyBodyParameters();
 		~TGameObjectSkyBodyParameters();
 
+		bool useEntityDreams;
+		bool useEntityNightmares;
+
+		TRenderComponentLightParameters lightDreamsParams;
+		TRenderComponentLightParameters lightNightmaresParams;
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+
+		TRenderComponentBillboardSetParameters bbsDreamsParams;
+		TRenderComponentBillboardSetParameters bbsNightmaresParams;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

@@ -113,8 +113,14 @@ void GameObjectSound::reset()
 		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
 		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
 	}
-	stop(mCurrentDreamsSoundID);
-	stop(mCurrentNightmaresSoundID);
+	if (mAudioComponentDreams.get())
+	{
+		mAudioComponentDreams->setPauseSound(mCurrentDreamsSoundID,true);
+	}
+	if (mAudioComponentNightmares.get())
+	{
+		mAudioComponentNightmares->setPauseSound(mCurrentDreamsSoundID,true);
+	}
 }
 
 bool GameObjectSound::hasPositionalComponent() const

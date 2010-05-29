@@ -5,11 +5,17 @@ material sun
 	{
 		pass
 		{
+			vertex_program_ref rim_vs
+	        {
+	        }
+	        fragment_program_ref rim_fs
+	        {
+	        }
 			ambient 0.3 0.3 0.3 1
 			diffuse 0.5 0.5 0.5 1
 			specular 0.7 0.7 0.7 1 10
-			cull_hardware none
-			cull_software none
+			//cull_hardware none
+			//cull_software none
 
 			texture_unit
 			{
@@ -19,4 +25,20 @@ material sun
 
 	}
 
+}
+
+material sun_billboard
+{
+	technique
+	{
+		pass
+		{
+         depth_write on
+         alpha_rejection   greater 128
+			texture_unit
+			{
+				texture sun.png
+			}
+		}
+	}
 }
