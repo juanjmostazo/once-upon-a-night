@@ -33,9 +33,7 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
-
 		void setEffect(std::string effectName, bool activated);
-
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters
@@ -46,7 +44,6 @@ namespace OUAN
 		
 		///Parameters specific Viewport
 		TRenderComponentViewportParameters tRenderComponentViewportParameters;
-
 	};
 }
 #endif

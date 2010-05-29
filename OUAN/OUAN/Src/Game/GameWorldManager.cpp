@@ -1287,6 +1287,18 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 	return nullPtr;
 }
 
+GameObjectViewportPtr GameWorldManager::getGameObjectViewport()
+{
+	if (!mGameObjectViewportContainer.empty())
+	{
+		return mGameObjectViewportContainer[0];
+	}
+
+	GameObjectViewportPtr nullPtr;
+	nullPtr.reset();
+	return nullPtr;
+
+}
 GameObjectFlashLightPtr GameWorldManager::getGameObjectFlashLight()
 {
 	if (!mGameObjectFlashLightContainer.empty())

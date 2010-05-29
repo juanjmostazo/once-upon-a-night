@@ -232,9 +232,11 @@ bool PhysicsSubsystem::loadConfig()
 
 		config.getOption("MOVEMENT_UNITS_PER_SECOND", value); 
 		mMovementUnitsPerSecond = atof(value.c_str());
+		mMovementUnitsPerSecondInverseScaled = mMovementUnitsPerSecond / mDisplacementScale;
 
 		config.getOption("MOVEMENT_LIMIT_UNITS_PER_SECOND", value); 
 		mMovementLimitUnitsPerSecond = atof(value.c_str());
+		mMovementLimitUnitsPerSecondInverseScaled = mMovementLimitUnitsPerSecond / mDisplacementScale;
 
 		config.getOption("TURN_DEGREES_PER_SECOND", value); 
 		mTurnDegreesPerSecond = atof(value.c_str());

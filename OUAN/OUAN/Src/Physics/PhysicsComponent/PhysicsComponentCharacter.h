@@ -43,6 +43,7 @@ namespace OUAN
 		//character is jumping/etc
 		bool isJumping() const;
 		bool isFalling() const;
+		bool isFallingLimit() const;
 		bool isSliding() const;
 		bool isMoving() const;
 		bool isOnSurface() const;
@@ -81,6 +82,7 @@ namespace OUAN
 		// Physics states
 		bool mJumping;
 		bool mFalling;
+		bool mFallingLimit;
 		bool mSliding;
 		bool mIsWalking;
 
