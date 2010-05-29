@@ -13,5 +13,8 @@
 	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS">false</Option>
 	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
 	
+	<Option key="MOTION_BLUR">Motion Blur</Option>
+	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS">false</Option>
+	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
   </Options>
 </Configuration>

@@ -75,6 +75,7 @@ bool RenderSubsystem::loadConfig()
 		config.getOption("BLOOM", BLOOM); 
 		config.getOption("HDR", HDR); 
 		config.getOption("RADIAL_BLUR", RADIAL_BLUR); 
+		config.getOption("MOTION_BLUR", MOTION_BLUR); 
 
 		config.getOption("BLOOM_ACTIVATED_ALWAYS_DREAMS", value); 
 		BLOOM_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
@@ -93,6 +94,12 @@ bool RenderSubsystem::loadConfig()
 
 		config.getOption("RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES", value); 
 		RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS", value); 
+		MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES", value); 
+		MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
 
 		success = true;
 	}

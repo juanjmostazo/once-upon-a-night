@@ -23,6 +23,7 @@ namespace OUAN
 		void setRenderSubsystem(RenderSubsystemPtr pRenderSubsystem);
 		RenderSubsystemPtr getRenderSubsystem() const;
 
+		void prepareEffects();
 		void initEffects();
 	};
 

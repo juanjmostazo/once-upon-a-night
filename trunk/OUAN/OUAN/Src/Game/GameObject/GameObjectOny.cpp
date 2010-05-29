@@ -240,13 +240,17 @@ LogicComponentOnyPtr GameObjectOny::getLogicComponentOny()
 void GameObjectOny::increaseWeaponPower(int powerUnits)
 {
 	if (mWeaponComponent.get())
+	{
 		mWeaponComponent->increaseWeaponPower(powerUnits);
+	}
 }
 
 void GameObjectOny::decreaseWeaponPower(int powerUnits)
 {
 	if (mWeaponComponent.get())
+	{
 		mWeaponComponent->decreaseWeaponPower(powerUnits);
+	}
 }
 
 bool GameObjectOny::hasPositionalComponent() const
