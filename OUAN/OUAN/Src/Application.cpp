@@ -64,19 +64,23 @@ void Application::cleanUp()
 	mLogicSubsystem->cleanUp();
 	ControlInputManager::finalise();
 }
+
 bool Application::init(int argc,char** argv)
 {
 	if (argc>1)
 	{
 		std::string option=argv[1];
 		if (option.compare(SKIP_INTRO_CMD_LONG)==0 || option.compare(SKIP_INTRO_CMD_SHORT)==0)
+		{
 			mSkipIntro=true;
+		}
 	}
 	//TODO: Reverse order, as the logical thing would be that the command line superceded
 	// the config file options (since no options other than sound's are being processed at the moment,
 	// it doesn't matter)
 	return init();
 }
+
 //Application initialization
 bool Application::init()
 {	
@@ -89,7 +93,6 @@ bool Application::init()
 
 	mConfiguration.reset(new Configuration());
 	//mConfiguration->loadFromFile("something")
-
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	

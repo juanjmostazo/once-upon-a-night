@@ -7,6 +7,7 @@
 #include <NxOgreAddonCharacterController.h>
 
 #include "ParticleUniverseSystemManager.h"
+#include "Bar/LoadingBar.h"
 
 namespace OUAN
 {
@@ -101,10 +102,6 @@ namespace OUAN
 
 		/// Create overlays
 		void createOverlays();
-
-		/// Translate camera according to the given coordinate axis
-		/// @param worldCoordinateAxis
-		//void translateCamera(TCoordinateAxis worldCoordinateAxis);
 
 		/// Render scene at current frame
 		/// @return <b>true</b> if the frame was successfully rendered
@@ -218,6 +215,9 @@ namespace OUAN
 
 		/// Window name
 		std::string mWindowName;
+
+		/// Loading bar
+		LoadingBar mLoadingBar;
 
 		//Attributes used to handle the default
 		//camera movements

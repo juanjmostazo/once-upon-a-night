@@ -9,6 +9,8 @@
 #include <Ogre.h>
 #include <ois/OIS.h>
 
+#include "stdlib.h"
+
 #include "ConfigKeys.h"
 
 #include <boost/shared_ptr.hpp>

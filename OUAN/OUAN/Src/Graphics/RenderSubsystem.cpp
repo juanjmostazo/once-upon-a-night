@@ -34,6 +34,7 @@ RenderSubsystem::~RenderSubsystem()
 {
 
 }
+
 void RenderSubsystem::create(ApplicationPtr app,OUAN::ConfigurationPtr config)
 {
 	mApp=app;
@@ -41,6 +42,7 @@ void RenderSubsystem::create(ApplicationPtr app,OUAN::ConfigurationPtr config)
 
 	createRoot(config);
 }
+
 bool RenderSubsystem::init(ConfigurationPtr config)
 {
 	defineResources(config);
@@ -51,9 +53,8 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 	}
 
 	createRenderWindow(config);
-	initResourceGroups(config);
 
-	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
+	initResourceGroups(config);
 
 	loadConfig();
 
@@ -130,7 +131,7 @@ void RenderSubsystem::createRoot(ConfigurationPtr config)
 		}
 	}
 
-	mRoot.reset(new Ogre::Root(pluginsPath,configPath,logPath));
+	mRoot.reset(new Ogre::Root(pluginsPath, configPath, logPath));
 }
 
 RootPtr RenderSubsystem::getRoot() const
@@ -177,8 +178,9 @@ bool RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 
 void RenderSubsystem::createRenderWindow(ConfigurationPtr config)
 {
-	mRoot->initialise(true,mWindowName);
+	mRoot->initialise(true, mWindowName);
 	mWindow=mRoot->getAutoCreatedWindow();
+	mSceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "Default Scene Manager");
 }
 
 void RenderSubsystem::createVisualDebugger(ConfigurationPtr config)
@@ -216,13 +218,47 @@ void RenderSubsystem::createDebugFloor(ConfigurationPtr config)
 void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 {
 	std::string mipmapNumber;
+
 	if(config.get() && config->hasOption(CONFIG_KEYS_OGRE_DEFAULT_MIPMAPS_NUMBER))
 	{
 		config->getOption(CONFIG_KEYS_OGRE_DEFAULT_MIPMAPS_NUMBER,mipmapNumber);
 	}
-	else mipmapNumber=DEFAULT_OGRE_MIPMAPS_NUMBER;
+	else 
+	{
+		mipmapNumber=DEFAULT_OGRE_MIPMAPS_NUMBER;
+	}
+	
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(DEFAULT_OGRE_MIPMAPS_NUMBER);
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	//Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+	///////////////////////////////////////////////
+
+	Camera* mCamera = mSceneManager->createCamera("LoadingBarCam");
+
+	Viewport* vp = mWindow->addViewport(mCamera);
+    vp->setBackgroundColour(ColourValue(0,0,0));
+
+	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
+    
+	mLoadingBar.start(mWindow, 3, 3, 0.9);
+
+	// Turn off rendering of everything except overlays
+	mSceneManager->clearSpecialCaseRenderQueues();
+	mSceneManager->addSpecialCaseRenderQueue(RENDER_QUEUE_OVERLAY);
+	mSceneManager->setSpecialCaseRenderQueueMode(SceneManager::SCRQM_INCLUDE);
+
+	// Initialise resource groups, parse scripts etc
+	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	ResourceGroupManager::getSingleton().loadResourceGroup(
+		ResourceGroupManager::getSingleton().getWorldResourceGroupName(),
+		false, true);
+
+	// Back to full rendering
+	mSceneManager->clearSpecialCaseRenderQueues();
+	mSceneManager->setSpecialCaseRenderQueueMode(SceneManager::SCRQM_EXCLUDE);
+
+	mLoadingBar.finish();
+	mWindow->removeAllViewports();
 }
 
 void RenderSubsystem::createOverlays()
@@ -245,12 +281,6 @@ RenderWindow* RenderSubsystem::getWindow() const
 	return mWindow;
 }
 
-//CameraControllerFirstPerson* RenderSubsystem::getCameraControllerFirstPerson() const
-//{
-//	return mCameraControllerFirstPerson;
-//}
-
-
 void RenderSubsystem::updateVisualDebugger()
 {	
 	mNxOgreVisualDebugger->draw();
@@ -267,33 +297,6 @@ bool RenderSubsystem::isWindowClosed() const
 	return !mWindow || mWindow->isClosed();
 }
 
-//void RenderSubsystem::translateCamera(TCoordinateAxis worldCoordinateAxis)
-//{
-//	Ogre::Vector3 unitTranslationVector;
-//	switch (worldCoordinateAxis)
-//	{
-//		case AXIS_NEG_X:
-//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_X;
-//			break;
-//		case AXIS_POS_X:
-//			unitTranslationVector=Ogre::Vector3::UNIT_X;
-//			break;
-//		case AXIS_NEG_Z:
-//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Z;
-//			break;
-//		case AXIS_POS_Z:
-//			unitTranslationVector=Ogre::Vector3::UNIT_Z;
-//			break;
-//		case AXIS_NEG_Y:
-//			unitTranslationVector=Ogre::Vector3::NEGATIVE_UNIT_Y;
-//			break;
-//		case AXIS_POS_Y:
-//			unitTranslationVector=Ogre::Vector3::UNIT_Y;
-//			break;
-//	}
-//	mCameraManager->processSimpleTranslation(unitTranslationVector);
-//}
-
 Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 {
 	return mSceneManager;
@@ -303,7 +306,6 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 {
 	try
 	{
-
 		initShadows();
 		//mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
@@ -998,6 +1000,7 @@ void RenderSubsystem::showOverlay(const std::string& overlayName)
 		ovl->show();
 	else Logger::getInstance()->log("[ShowOverlay] Error loading "+overlayName+" Overlay!");
 }
+
 void RenderSubsystem::hideOverlay(const std::string& overlayName)
 {
 	Ogre::Overlay* ovl;
@@ -1005,10 +1008,12 @@ void RenderSubsystem::hideOverlay(const std::string& overlayName)
 		ovl->hide();
 	else Logger::getInstance()->log("[ShowOverlay] Error loading "+overlayName+" Overlay!");
 }
+
 void RenderSubsystem::pauseRendering()
 {
 	Ogre::ControllerManager::getSingleton().setTimeFactor(0);
 }
+
 void RenderSubsystem::resumeRendering()
 {
 	Ogre::ControllerManager::getSingleton().setTimeFactor(1.0);
@@ -1021,7 +1026,6 @@ void RenderSubsystem::clearScene()
 	mRoot->destroySceneManager(mSceneManager);
 	mWindow->removeAllViewports();
 	//mApp->getGUISubsystem()->clearRenderer();
-
 }
 
 void RenderSubsystem::resetScene()
@@ -1049,16 +1053,20 @@ void RenderSubsystem::hideOverlayElement(const std::string& overlayName)
 {
 	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
 	if (overlayElem)
+	{
 		overlayElem->hide();
+	}
 }
 
 void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 {
 	Ogre::OverlayElement* overlayElem = Ogre::OverlayManager::getSingleton().getOverlayElement(overlayName);
 	if (overlayElem)
+	{
 		overlayElem->show();
-
+	}
 }
+
 void RenderSubsystem::initShadows()
 {
 	// enable integrated additive shadows
@@ -1075,7 +1083,6 @@ void RenderSubsystem::initShadows()
 	Ogre::PixelFormat shadowTexturePixelFormat=DEFAULT_SHADOW_TEXTURE_PIXEL_FORMAT;
 	bool shadowRenderBackFaces=DEFAULT_SHADOW_CASTER_RENDER_BACK_FACES;
 
-
 	Configuration config;
 	//TODO: Replace this with a more general graphics-config.
 	if (config.loadFromFile(SHADOWS_CONFIG_PATH))
@@ -1086,27 +1093,27 @@ void RenderSubsystem::initShadows()
 		shadowTexturePixelFormat=(Ogre::PixelFormat)config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_PIXEL_FORMAT);
 		shadowRenderBackFaces=config.parseBool(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_RENDER_BACK_FACES);
 	}
-		// our caster material
-		mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
-		// note we have no "receiver".  all the "receivers" are integrated.
+	// our caster material
+	mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
+	// note we have no "receiver".  all the "receivers" are integrated.
 
-		// get the shadow texture count from the cfg file
-		// (each light needs a shadow text.)
-		mSceneManager->setShadowTextureCount(shadowTextureCount);
-		// the size, too (1024 looks good with 3x3 or more filtering)
-		mSceneManager->setShadowTextureSize(shadowTextureSize);
+	// get the shadow texture count from the cfg file
+	// (each light needs a shadow text.)
+	mSceneManager->setShadowTextureCount(shadowTextureCount);
+	// the size, too (1024 looks good with 3x3 or more filtering)
+	mSceneManager->setShadowTextureSize(shadowTextureSize);
 
-		// float 16 here.  we need the R and G channels.
-		// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
-		// but float 16 is good enough and supports bilinear filtering on a lot of cards
-		// (we should use _GR, but OpenGL doesn't really like it for some reason)
-		mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
+	// float 16 here.  we need the R and G channels.
+	// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
+	// but float 16 is good enough and supports bilinear filtering on a lot of cards
+	// (we should use _GR, but OpenGL doesn't really like it for some reason)
+	mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
 
-		// big NONO to render back faces for VSM.  it doesn't need any biasing 
-		// so it's worthless (and rather problematic) to use the back face hack that
-		// works so well for normal depth shadow mapping (you know, so you don't
-		// get surface acne)
-		mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
+	// big NONO to render back faces for VSM.  it doesn't need any biasing 
+	// so it's worthless (and rather problematic) to use the back face hack that
+	// works so well for normal depth shadow mapping (you know, so you don't
+	// get surface acne)
+	mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
 
 	const unsigned numShadowRTTs = mSceneManager->getShadowTextureCount();
 	for (unsigned i = 0; i < numShadowRTTs; ++i)
@@ -1120,16 +1127,20 @@ void RenderSubsystem::initShadows()
 	// and add the shader listener
 	mSceneManager->addListener(&shadowListener);
 }
+
 //---------------------------
 SSAOListener::SSAOListener()
 :mCam(NULL)
 {
+
 }
+
 void SSAOListener::setCamera(Ogre::Camera* cam)
 {
 	mCam=cam;
 }
-	// this callback we will use to modify SSAO parameters
+
+// this callback we will use to modify SSAO parameters
 void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr &mat)
 {
 	if (pass_id != 42 || !mCam) // not SSAO, return
@@ -1156,10 +1167,15 @@ void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr 
 		0,      0,    1,    0,
 		0,      0,    0,    1);
 	if (params->_findNamedConstantDefinition("ptMat"))
+	{
 		params->setNamedConstant("ptMat", CLIP_SPACE_TO_IMAGE_SPACE * mCam->getProjectionMatrixWithRSDepth());
+	}
 	if (params->_findNamedConstantDefinition("far"))
+	{
 		params->setNamedConstant("far", mCam->getFarClipDistance());
+	}
 }
+
 //---------------------------
 // this is a callback we'll be using to set up our shadow camera
 void ShadowListener::shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Camera *cam, size_t)
@@ -1179,7 +1195,22 @@ void ShadowListener::shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Ca
 // these are pure virtual but we don't need them...  so just make them empty
 // otherwise we get "cannot declare of type Mgr due to missing abstract
 // functions" and so on
-void ShadowListener::shadowTexturesUpdated(size_t) {}
-void ShadowListener::shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*) {}
-void ShadowListener::preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
-void ShadowListener::postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
+void ShadowListener::shadowTexturesUpdated(size_t)
+{
+
+}
+
+void ShadowListener::shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*)
+{
+
+}
+
+void ShadowListener::preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) 
+{
+
+}
+
+void ShadowListener::postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) 
+{
+
+}
