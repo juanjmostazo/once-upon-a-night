@@ -1,0 +1,23 @@
+
+material Ground
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588235 0.588235 0.588235 1
+			diffuse 0.588235 0.588235 0.588235 1
+			specular 0 0 0 1 10
+			
+			texture_unit
+			{
+				texture ground.dds
+				scale 0.1 0.1
+				filtering anisotropic
+				max_anisotropy 16
+			}
+		}
+
+	}
+
+}
