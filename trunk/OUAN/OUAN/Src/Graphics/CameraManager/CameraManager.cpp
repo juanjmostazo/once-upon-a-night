@@ -12,6 +12,7 @@
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
+
 using namespace OUAN;
 using namespace Ogre;
 
@@ -19,6 +20,7 @@ CameraManager::CameraManager()
 {
 
 }
+
 CameraManager::~CameraManager()
 {
 
@@ -51,9 +53,11 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
+	//TODO REMOVE THIS
+	mViewport = pRenderSubsystem->getRoot()->getAutoCreatedWindow()->getViewport(0);
+
 	//Make it the active camera
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
-
 }
 
 Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
@@ -63,7 +67,6 @@ Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
 
 void CameraManager::setCameraTrajectory(std::string name)
 {
-
 	Logger::getInstance()->log("[Camera Manager] Setting trajectory "+name+" to Camera Controller Trajectory");
 
 	try
@@ -74,7 +77,6 @@ void CameraManager::setCameraTrajectory(std::string name)
 			trajectory=mTrajectoryManager->getTrajectoryInstance("CameraTrajectory");
 			mTrajectoryManager->setPredefinedTrajectory(*trajectory,"a","blue");
 			mCameraControllerTrajectory->setTrajectory(trajectory);
-
 		}
 		else
 		{
@@ -86,6 +88,7 @@ void CameraManager::setCameraTrajectory(std::string name)
 		Logger::getInstance()->log("[CameraManager] "+error);
 	}
 }
+
 void CameraManager::createMainCamera()
 {
 	//Create Main Camera (Default Camera)
@@ -107,7 +110,6 @@ Viewport* CameraManager::getViewport() const
 {
 	return mViewport;
 }
-
 
 void CameraManager::cleanUp()
 {
@@ -255,7 +257,6 @@ Ogre::Viewport* CameraManager::setViewportParameters(Ogre::String name,TRenderCo
 	return mViewport;
 }
 
-
 void CameraManager::update(double elapsedTime)
 {
 	activeCameraController->update(elapsedTime);
@@ -326,4 +327,3 @@ void CameraManager::setCameraTarget(RenderComponentPositionalPtr target)
 	mCameraControllerFixedThirdPerson->setTarget(target);
 	mCameraControllerFixedFirstPerson->setTarget(target);
 }
-

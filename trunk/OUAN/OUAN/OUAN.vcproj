@@ -752,13 +752,6 @@
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectSkyBody.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectSnakeCreeper.cpp"
@@ -1360,6 +1353,14 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\VideoPlayer\OgreDirectShowPrivate.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Bar"
+					>
+					<File
+						RelativePath=".\Src\Graphics\Bar\LoadingBar.h"
 						>
 					</File>
 				</Filter>
