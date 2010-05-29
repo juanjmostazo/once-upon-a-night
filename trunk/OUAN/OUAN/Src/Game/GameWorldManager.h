@@ -234,6 +234,7 @@ namespace OUAN
 		void addGameObjectScaredPlant(GameObjectScaredPlantPtr pGameObjectScaredPlant);
 		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectScepter(GameObjectScepterPtr pGameObjectScepter);
+		void addGameObjectSkyBody(GameObjectSkyBodyPtr pGameObjectSkyBody);
 		void addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper);
 		void addGameObjectSound(GameObjectSoundPtr pGameObjectSound);
 		void addGameObjectStoryBook(GameObjectStoryBookPtr pGameObjectStoryBook);

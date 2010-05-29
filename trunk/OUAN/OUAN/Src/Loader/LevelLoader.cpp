@@ -41,6 +41,7 @@
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectScepter.h"
+#include "../Game/GameObject/GameObjectSkyBody.h"
 #include "../Game/GameObject/GameObjectSnakeCreeper.h"
 #include "../Game/GameObject/GameObjectSound.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
@@ -743,6 +744,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLITO)==0)
 		{
 			processGameObjectTripollito(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_SKYBODY)==0)
+		{
+			processGameObjectSkyBody(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_SNAKECREEPER)==0)
 		{
@@ -2234,7 +2239,56 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectScepter(tGameObjectScepterParameters);
 	mGameWorldManager->addGameObjectScepter(mGameObjectFactory->createGameObjectScepter(tGameObjectScepterParameters,mGameWorldManager));
 }
+void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
+{
+	TGameObjectSkyBodyParameters params;
 
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		params.dreamsName = gameObject->dreamsName;
+		params.nightmaresName = gameObject->nightmaresName;
+		params.name = gameObject->name;
+
+		//Get Logic component
+		params.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(params.tLogicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			params.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
+		}
+		if(params.tLogicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			params.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		}
+
+		//Get RenderComponentPositional
+		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get ChangeWorldMaterialParameters
+		params.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
+	mGameWorldManager->addGameObjectSkyBody(
+		mGameObjectFactory->createGameObjectSkyBody(params,mGameWorldManager));
+}
 void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters;

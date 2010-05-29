@@ -544,6 +544,10 @@ namespace OUAN
 		class TGameObjectWaterParameters;
 		typedef boost::shared_ptr<GameObjectWater> GameObjectWaterPtr;
 
+		class GameObjectSkyBody;
+		class TGameObjectSkyBodyParameters;
+		typedef boost::shared_ptr<GameObjectSkyBody> GameObjectSkyBodyPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -646,6 +650,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_WOODBOX="woodbox";
 		const std::string GAME_OBJECT_TYPE_WATER="water";
 		const std::string GAME_OBJECT_TYPE_PLANE="Plane";
+		const std::string GAME_OBJECT_TYPE_SKYBODY="skybody";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";

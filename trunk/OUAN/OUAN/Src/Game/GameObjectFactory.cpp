@@ -33,6 +33,7 @@
 #include "GameObject/GameObjectScaredPlant.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSkyBody.h"
 #include "GameObject/GameObjectSound.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
 #include "GameObject/GameObjectStoryBook.h"
@@ -1573,7 +1574,71 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 	//addGameObjectScepter(pGameObjectScepter);
 	return pGameObjectScepter;
 }
+GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBodyParameters params,
+																GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectSkyBodyPtr gameObject;
 
+	//Create GameObject
+	gameObject = GameObjectSkyBodyPtr(new GameObjectSkyBody(params.name));
+
+	//Create LogicComponent
+	gameObject->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		gameObject,
+		params.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	gameObject->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		gameObject,params.tRenderComponentPositionalParameters));
+	//gameObject->getRenderComponentPositional()->setScale(Vector3(10,10,10));
+
+	//Create RenderComponentInitial
+	gameObject->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		gameObject->getRenderComponentPositional()));
+
+	if(gameObject->getLogicComponent()->existsInDreams() && gameObject->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntity Dreams
+		gameObject->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(params.dreamsName,
+			gameObject,params.tRenderComponentEntityDreamsParameters));
+
+		//Create RenderComponentEntity Nightmares
+		gameObject->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(params.nightmaresName,
+			gameObject,params.tRenderComponentEntityNightmaresParameters));
+
+		gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters,
+			gameObject->getRenderComponentEntityDreams());
+		gameObject->getRenderComponentEntityDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters,
+			gameObject->getRenderComponentEntityNightmares());
+	}
+	else if(gameObject->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntity Dreams
+		gameObject->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(params.dreamsName,
+			gameObject,params.tRenderComponentEntityDreamsParameters));
+
+		gameObject->getRenderComponentEntityDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+	}
+	else if(gameObject->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntity Nightmares
+		gameObject->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(params.nightmaresName,
+			gameObject,params.tRenderComponentEntityNightmaresParameters));
+
+		gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+	}
+
+	//Add reference to this
+	gameObject->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	return gameObject;
+}
 GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {

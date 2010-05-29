@@ -32,6 +32,7 @@
 #include "GameObject/GameObjectScaredPlant.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSkyBody.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
 #include "GameObject/GameObjectSound.h"
 #include "GameObject/GameObjectStoryBook.h"
@@ -610,7 +611,6 @@ void GameWorldManager::addGameObject(GameObjectPtr gameObject)
 {
 	mGameObjects[gameObject->getName()]=gameObject;
 }
-
 void GameWorldManager::addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly)
 {
 	mGameObjects[gameObjectBee_Butterfly->getName()]=gameObjectBee_Butterfly;
@@ -1039,6 +1039,15 @@ void GameWorldManager::addGameObjectWater(GameObjectWaterPtr pGameObjectWater)
 {
 	mGameObjects[pGameObjectWater->getName()]=pGameObjectWater;
 	mGameObjectPhysicsContainer.push_back(pGameObjectWater);
+}
+
+void GameWorldManager::addGameObjectSkyBody(GameObjectSkyBodyPtr gameObject)
+{
+	mGameObjects[gameObject->getName()]=gameObject;
+	mGameObjectLogicContainer.push_back(gameObject);
+	mGameObjectNonMovableContainer.push_back(gameObject);
+	mGameObjectNonMovableEntityContainer.push_back(gameObject);
+	mGameObjectPositionalContainer.push_back(gameObject);
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)

@@ -80,6 +80,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectScepterPtr createGameObjectScepter(TGameObjectScepterParameters tGameObjectScepterParameters, 
 			GameWorldManagerPtr gameWorldMgr);
+		GameObjectSkyBodyPtr createGameObjectSkyBody(TGameObjectSkyBodyParameters params,
+			GameWorldManagerPtr gameWorldMgr);
 		GameObjectSnakeCreeperPtr createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectSoundPtr createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr);
