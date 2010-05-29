@@ -244,7 +244,8 @@ namespace OUAN
 		AudioComponentPtr getAudioComponentInstance() const;
 		bool hasAudioComponent() const;
 
-		void setFallingEffect(bool enabled);
+		void setRadialBlurEffect(bool enabled);
+		void setMotionBlurEffect(bool enabled);
 	};
 
 	/// Carries data between the level loader and the object factories

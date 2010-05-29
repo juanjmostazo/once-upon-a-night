@@ -430,8 +430,11 @@ void GameObjectOny::postUpdate()
 		}		
 	}
 
-	//Apply falling efect when reached fall speed limit
-	setFallingEffect(mPhysicsComponentCharacter->isFallingLimit());
+	//Apply radial blur effect when reached fall speed limit
+	setRadialBlurEffect(mPhysicsComponentCharacter->isFallingLimit());
+
+	//Apply motion blur effect when ... TODO
+	setMotionBlurEffect(false);
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
@@ -444,7 +447,7 @@ bool GameObjectOny::hasAudioComponent() const
 	return true;
 }
 
-void GameObjectOny::setFallingEffect(bool enabled)
+void GameObjectOny::setRadialBlurEffect(bool enabled)
 {
 	if ((mGameWorldManager->getWorld() == DREAMS && 
 		 !Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS) ||	
@@ -456,6 +459,20 @@ void GameObjectOny::setFallingEffect(bool enabled)
 			enabled);
 	}
 }
+
+void GameObjectOny::setMotionBlurEffect(bool enabled)
+{
+	if ((mGameWorldManager->getWorld() == DREAMS && 
+		 !Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS) ||	
+		(mGameWorldManager->getWorld() == NIGHTMARES && 
+		 !Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(
+			Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, 
+			enabled);
+	}
+}
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
