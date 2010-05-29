@@ -24,7 +24,7 @@ namespace OUAN
 		/// @param gameObject the component's parent object and render component parameters
 		/// @return pointer to the newly created Ogre component instance
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject,TRenderComponentParameters tRenderComponentParameters);
-		RenderComponentBillboardSetPtr createRenderComponentBillboardSet(GameObjectPtr gameObject,
+		RenderComponentBillboardSetPtr createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,
 			TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters);
 		RenderComponentCameraPtr createRenderComponentCamera(GameObjectPtr gameObject,
 			TRenderComponentCameraParameters tRenderComponentCameraParameters);

@@ -65,6 +65,29 @@ void RenderComponentBillboardSet::setChangeWorldMaterials()
 	}
 }
 
+void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentBillboardSetPtr pOtherComponentBillboard)
+{
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
+
+	bool materialCreated;
+
+	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial(),pOtherComponentBillboard->getBillboardSet()->getMaterial());
+
+	if(materialCreated)
+	{
+		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
+		mChangeWorldMaterial=pChangeWorldMaterial;
+	}
+	else
+	{
+		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
+	}
+
+}
+
+
 void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
 

@@ -176,13 +176,41 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	pGameObjectBillboardSet->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectBillboardSet->getRenderComponentPositional()));
 
-	//Create RenderComponentBillboardSet
-	pGameObjectBillboardSet->setRenderComponentBillboardSet(mComponentFactory->createRenderComponentBillboardSet(
-		pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters));
+	if(pGameObjectBillboardSet->getLogicComponent()->existsInDreams() && pGameObjectBillboardSet->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentBillboardSetDreams
+		pGameObjectBillboardSet->setRenderComponentBillboardSetDreams(
+			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.dreamsName,
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters));
+		//Create RenderComponentBillboardSetNightmares
+		pGameObjectBillboardSet->setRenderComponentBillboardSetNightmares(
+			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.nightmaresName,
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters));
 
-	//Init ChangeWorldMaterials
-	pGameObjectBillboardSet->getRenderComponentBillboardSet()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters);
+		pGameObjectBillboardSet->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters,pGameObjectBillboardSet->getRenderComponentBillboardSetDreams());
+		pGameObjectBillboardSet->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters,pGameObjectBillboardSet->getRenderComponentBillboardSetNightmares());
 
+
+	}
+	else if(pGameObjectBillboardSet->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentBillboardSetDreams
+		pGameObjectBillboardSet->setRenderComponentBillboardSetDreams(
+			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.dreamsName,
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters));
+
+		pGameObjectBillboardSet->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters);
+
+	}
+	else if(pGameObjectBillboardSet->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentBillboardSetNightmares
+		pGameObjectBillboardSet->setRenderComponentBillboardSetNightmares(
+			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.nightmaresName,
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters));
+
+		pGameObjectBillboardSet->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters);
+	}
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(gameWorldMgr);
 

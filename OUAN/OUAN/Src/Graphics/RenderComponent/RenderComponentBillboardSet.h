@@ -25,6 +25,7 @@ namespace OUAN
 		void setMaterial(std::string material);
 		void setOriginalMaterials();
 		void setChangeWorldMaterials();
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentBillboardSetPtr pOtherComponentBillboard);
 		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
 		void setChangeWorldFactor(double factor);
 		void randomizeChangeWorldMaterials();

@@ -860,7 +860,7 @@ void RenderSubsystem::createBillboard(Ogre::BillboardSet * pBillboardSet,OUAN::C
 	}
 }
 
-Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
+Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String nodeName,Ogre::String name,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
 {
 	BillboardSet *billBoardSet = 0;
 	SceneNode *billBoardSetNode = 0;
@@ -870,7 +870,7 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String name,TRend
 		billBoardSet = mSceneManager->createBillboardSet(name);
 
 		//Attach BillboardSet to SceneNode
-		billBoardSetNode = mSceneManager->getSceneNode(name);
+		billBoardSetNode = mSceneManager->getSceneNode(nodeName);
 		billBoardSetNode->attachObject(billBoardSet);
 
 		//Set BillboardSet Attributes

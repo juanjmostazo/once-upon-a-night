@@ -15,7 +15,8 @@ namespace OUAN
 	{
 	private:
 		/// Holds the information related to visual rendering
-		RenderComponentBillboardSetPtr mRenderComponentBillboardSet;
+		RenderComponentBillboardSetPtr mRenderComponentBillboardSetDreams;
+		RenderComponentBillboardSetPtr mRenderComponentBillboardSetNightmares;
 		/// Holds information related to the object's position in space
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -37,11 +38,13 @@ namespace OUAN
 
 		/// Get billboardset component
 		/// @return billboardset component
-		RenderComponentBillboardSetPtr getRenderComponentBillboardSet() const;
+		RenderComponentBillboardSetPtr getRenderComponentBillboardSetDreams() const;
+		RenderComponentBillboardSetPtr getRenderComponentBillboardSetNightmares() const;
 
 		/// Set billboardset component
 		/// @param pRenderComponentLight the billboardset component to set
-		void setRenderComponentBillboardSet(RenderComponentBillboardSetPtr pRenderComponentBillboardSet);
+		void setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr pRenderComponentBillboardSet);
+		void setRenderComponentBillboardSetNightmares(RenderComponentBillboardSetPtr pRenderComponentBillboardSet);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -100,7 +103,9 @@ namespace OUAN
 		~TGameObjectBillboardSetParameters();
 
 		/// billboardset-specific parameters
-		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters;
+		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetDreamsParameters;
+		TRenderComponentBillboardSetParameters tRenderComponentBillboardSetNightmaresParameters;
+
 		/// Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
