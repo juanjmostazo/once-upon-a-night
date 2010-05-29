@@ -1,5 +1,7 @@
 #include "GameObjectViewport.h"
 #include "../GameWorldManager.h"
+#include "../../Application.h"
+#include "../../Graphics/RenderSubsystem.h"
 
 using namespace OUAN;
 
@@ -31,8 +33,64 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+
+		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, false);
+		}
+
+		if (Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, false);
+		}
+
+		if (Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
+		}
+
 		break;
 	case NIGHTMARES:
+
+		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, false);
+		}
+
+		if (Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, false);
+		}
+
+		if (Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
+		}
+
 		break;
 	default:
 		break;

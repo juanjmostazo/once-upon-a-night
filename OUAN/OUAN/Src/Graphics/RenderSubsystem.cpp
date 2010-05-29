@@ -73,11 +73,25 @@ bool RenderSubsystem::loadConfig()
 	{
 		config.getOption("BLOOM", BLOOM); 
 		config.getOption("HDR", HDR); 
+		config.getOption("RADIAL_BLUR", RADIAL_BLUR); 
 
-		config.getOption("BLOOM_ACTIVATED", value); 
-		BLOOM_ACTIVATED=Ogre::StringConverter::parseBool(value);
-		config.getOption("HDR_ACTIVATED", value); 
-		HDR_ACTIVATED=Ogre::StringConverter::parseBool(value);
+		config.getOption("BLOOM_ACTIVATED_ALWAYS_DREAMS", value); 
+		BLOOM_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("BLOOM_ACTIVATED_ALWAYS_NIGHTMARES", value); 
+		BLOOM_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("HDR_ACTIVATED_ALWAYS_DREAMS", value); 
+		HDR_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("HDR_ACTIVATED_ALWAYS_NIGHTMARES", value); 
+		HDR_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS", value); 
+		RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
+
+		config.getOption("RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES", value); 
+		RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
 
 		success = true;
 	}
@@ -93,20 +107,29 @@ void RenderSubsystem::cleanUp()
 {
 	clearScene();
 }
+
 void RenderSubsystem::createRoot(ConfigurationPtr config)
 {
 	std::string pluginsPath=DEFAULT_OGRE_PLUGINS_PATH;
 	std::string configPath=DEFAULT_OGRE_CONFIG_PATH;
 	std::string logPath=DEFAULT_OGRE_LOG_PATH;
+
 	if (config.get())
 	{
 		if(config->hasOption(CONFIG_KEYS_OGRE_PLUGINS_PATH))
+		{
 			config->getOption(CONFIG_KEYS_OGRE_PLUGINS_PATH,pluginsPath);
+		}
 		if(config->hasOption(CONFIG_KEYS_OGRE_CONFIG_PATH))
+		{
 			config->getOption(CONFIG_KEYS_OGRE_CONFIG_PATH,configPath);
+		}
 		if(config->hasOption(CONFIG_KEYS_OGRE_LOG_PATH))
+		{
 			config->getOption(CONFIG_KEYS_OGRE_LOG_PATH,logPath);
+		}
 	}
+
 	mRoot.reset(new Ogre::Root(pluginsPath,configPath,logPath));
 }
 
@@ -122,8 +145,13 @@ void RenderSubsystem::defineResources(ConfigurationPtr config)
 	std::string resourcesPath;
 
 	if(config.get() && config->hasOption(CONFIG_KEYS_OGRE_RESOURCES_PATH))
+	{
 		config->getOption(CONFIG_KEYS_OGRE_RESOURCES_PATH,resourcesPath);
-	else resourcesPath=DEFAULT_OGRE_RESOURCES_PATH;
+	}
+	else 
+	{
+		resourcesPath=DEFAULT_OGRE_RESOURCES_PATH;
+	}
 
 	cFile.load(resourcesPath);
 	Ogre::ConfigFile::SectionIterator secIt = cFile.getSectionIterator();

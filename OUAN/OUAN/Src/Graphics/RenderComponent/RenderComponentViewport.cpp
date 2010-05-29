@@ -19,12 +19,17 @@ Ogre::Viewport* RenderComponentViewport::getViewport() const
 
 void RenderComponentViewport::initEffects()
 {
-	Ogre::CompositorInstance* inst=	Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->BLOOM);
-	inst->setEnabled(mRenderSubsystem->BLOOM_ACTIVATED);
+	Ogre::CompositorInstance* inst;
+	
+	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->BLOOM);
+	inst->setEnabled(false);
 	
 	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->HDR);
-	inst->setEnabled(mRenderSubsystem->HDR_ACTIVATED);
+	inst->setEnabled(false);
 	
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,mRenderSubsystem->RADIAL_BLUR);
+	inst->setEnabled(false);
+
 	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,"ssao");
 	//inst->setEnabled(true);
 }
