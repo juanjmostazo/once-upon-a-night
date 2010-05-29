@@ -61,6 +61,15 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
 		}
 
+		if (Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, false);
+		}
+
 		break;
 	case NIGHTMARES:
 
@@ -89,6 +98,15 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 		else
 		{
 			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
+		}
+
+		if (Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES)
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, true);
+		}
+		else
+		{
+			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, false);
 		}
 
 		break;

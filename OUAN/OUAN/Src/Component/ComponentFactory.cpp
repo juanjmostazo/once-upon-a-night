@@ -349,6 +349,7 @@ RenderComponentViewportPtr ComponentFactory::createRenderComponentViewport(GameO
 
 	pRenderComponentViewport->setRenderSubsystem(mApp->getRenderSubsystem());
 
+	pRenderComponentViewport->prepareEffects();
 	pRenderComponentViewport->initEffects();
 
 	return pRenderComponentViewport;
