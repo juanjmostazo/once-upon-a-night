@@ -254,31 +254,31 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		///////////////////////
 
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultheight = 1;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.defaultwidth = 1;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.pointrendering = false;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.renderdistance = 0;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.sorting = false;
-
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardtype=billboardType;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardorigin=Ogre::BBO_CENTER;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.billboardrotation=billboardRotation;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.queueID=Ogre::RENDER_QUEUE_4;
 
 		///////////////////////
 
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters.resize(1);
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.defaultheight = 1;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.defaultwidth = 1;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.pointrendering = false;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.renderdistance = 0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.sorting = false;
 
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].colour=ColourValue::White;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].position=Ogre::Vector3(0,0,0);
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].rotation=0;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.billboardtype=billboardType;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.billboardorigin=Ogre::BBO_CENTER;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.billboardrotation=billboardRotation;
+
+		///////////////////////
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters.resize(1);
+
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].colour=ColourValue::White;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].position=Ogre::Vector3(0,0,0);
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].rotation=0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
+		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
 
 		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(NULL);
-
-		///////////////////////
-
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.queueID=Ogre::RENDER_QUEUE_4;
 
 		///////////////////////
 
@@ -308,43 +308,25 @@ void LevelLoader::processGameObjectBillboardClouds()
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.y = positionY;
 			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = positionZ;
 
-			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].dimensions=
 				Ogre::Vector2(width+randomOffset, height+randomOffset);
 
 			///////////////////
 
 			tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = DREAMS;
 			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = true;
-			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = false;
-			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = dreamsClouds[i%numTypeClouds];
+			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = true;
+
+			//copy parameters for nightmares entity
+		    tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters=tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters;
+
+			//set materials
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.material = dreamsClouds[i%numTypeClouds];
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters.material = nightmaresClouds[i%numTypeClouds];
 
 			tGameObjectBillboardSetParameters.dreamsName = dreamsName + Ogre::StringConverter::toString(Ogre::Real(i));
-			tGameObjectBillboardSetParameters.nightmaresName = "";
+			tGameObjectBillboardSetParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i));
 			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i));
-
-			try 
-			{
-				mGameWorldManager->addGameObjectBillboardSet(mGameObjectFactory->createGameObjectBillboardSet(
-					tGameObjectBillboardSetParameters,mGameWorldManager));
-
-				Logger::getInstance()->log("[LevelLoader] CREATING BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + " in " + 
-					Ogre::StringConverter::toString(tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position));
-			} 
-			catch( std::string error )
-			{
-				Logger::getInstance()->log("ERROR! [LevelLoader] Error processing BILLBOARD CLOUD " + tGameObjectBillboardSetParameters.name + ": " + error);
-			}
-
-			///////////////////
-
-			tGameObjectBillboardSetParameters.tLogicComponentParameters.defaultState = NIGHTMARES;
-			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams = false;
-			tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares = true;
-			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.material = nightmaresClouds[i%numTypeClouds];
-
-			tGameObjectBillboardSetParameters.dreamsName = "";
-			tGameObjectBillboardSetParameters.nightmaresName = nightmaresName + Ogre::StringConverter::toString(Ogre::Real(i+numClouds));
-			tGameObjectBillboardSetParameters.name = name + Ogre::StringConverter::toString(Ogre::Real(i+numClouds));
 
 			try 
 			{
@@ -1092,8 +1074,15 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 		tGameObjectBillboardSetParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentBillboardSet
-		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters=processRenderComponentBillboardSet(gameObject->getMainXMLNode());
+		if(tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInDreams)
+		{
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters=processRenderComponentBillboardSet(gameObject->XMLNodeDreams);
+		}
+		
+		if(tGameObjectBillboardSetParameters.tLogicComponentParameters.existsInNightmares)
+		{
+			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters=processRenderComponentBillboardSet(gameObject->XMLNodeNightmares);
+		}
 
 		//Get RenderComponentPositional
 		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());

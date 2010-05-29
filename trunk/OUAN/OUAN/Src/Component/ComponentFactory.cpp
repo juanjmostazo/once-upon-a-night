@@ -74,7 +74,7 @@ RenderComponentPtr ComponentFactory::createRenderComponent(GameObjectPtr gameObj
 	return pRenderComponent;
 }
 
-RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardSet(GameObjectPtr gameObject,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
+RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
 {
 	//Create void Render Component
 	RenderComponentBillboardSetPtr pRenderComponentBillboardSetPtr = RenderComponentBillboardSetPtr(new RenderComponentBillboardSet()); 
@@ -82,7 +82,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 	pRenderComponentBillboardSetPtr->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),tRenderComponentBillboardSetParameters));
+	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),name,tRenderComponentBillboardSetParameters));
 
 	return pRenderComponentBillboardSetPtr;
 }
