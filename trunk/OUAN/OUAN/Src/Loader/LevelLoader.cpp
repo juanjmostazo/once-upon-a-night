@@ -163,6 +163,8 @@ void LevelLoader::processGameObjectBillboardClouds()
 	std::string dreamsClouds[] = {"cloud1_d", "cloud2_d", "cloud3_d"} ;
 	std::string nightmaresClouds[] = {"cloud1_n", "cloud2_n", "cloud3_n"} ;
 	int numTypeClouds = 3;
+	int numIteration = 0;
+	int maxIterations = 10;
 
 	Configuration config;
 	std::string value;
@@ -176,14 +178,14 @@ void LevelLoader::processGameObjectBillboardClouds()
 		config.getOption("NUM_CLOUDS", value); 
 		double numClouds = atoi(value.c_str());
 
-		config.getOption("GENERATION_RADIO_X", value); 
-		double generationRadioX = atof(value.c_str());
+		config.getOption("GENERATION_RADIO_XZ_MIN", value); 
+		double generationRadioXZMIN = atof(value.c_str());
+
+		config.getOption("GENERATION_RADIO_XZ_MAX", value); 
+		double generationRadioXZMAX = atof(value.c_str());
 
 		config.getOption("GENERATION_RADIO_Y", value); 
 		double generationRadioY = atof(value.c_str());
-
-		config.getOption("GENERATION_RADIO_Z", value); 
-		double generationRadioZ = atof(value.c_str());
 
 		config.getOption("CENTER_POSITION_X", value); 
 		double centerPositionX = atoi(value.c_str());
@@ -282,17 +284,29 @@ void LevelLoader::processGameObjectBillboardClouds()
 
 		for (int i=0; i<numClouds; i++)
 		{
-			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = centerPositionX + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadioX, generationRadioX);
+			double positionX, positionY, positionZ, distance, randomOffset;
 
-			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.y = centerPositionY + 
+			positionY = centerPositionY + 
 				Utils::Random::getInstance()->getRandomDouble(-generationRadioY, generationRadioY);
+			randomOffset = Utils::Random::getInstance()->getRandomDouble(-sizeRandomOffset, sizeRandomOffset);
 
-			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = centerPositionZ + 
-				Utils::Random::getInstance()->getRandomDouble(-generationRadioZ, generationRadioZ);
+			numIteration = 0;
+			do 
+			{
+				numIteration++;
 
+				positionX = centerPositionX + 
+					Utils::Random::getInstance()->getRandomDouble(-generationRadioXZMAX, generationRadioXZMAX);
+				positionZ = centerPositionZ + 
+					Utils::Random::getInstance()->getRandomDouble(-generationRadioXZMAX, generationRadioXZMAX);
 
-			double randomOffset = Utils::Random::getInstance()->getRandomDouble(-sizeRandomOffset, sizeRandomOffset);
+				distance = Ogre::Math::Sqrt(Ogre::Math::Sqr(positionX) + Ogre::Math::Sqr(positionZ));
+
+			} while (distance < generationRadioXZMIN && numIteration < maxIterations);
+
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.x = positionX;
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.y = positionY;
+			tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters.position.z = positionZ;
 
 			tGameObjectBillboardSetParameters.tRenderComponentBillboardSetParameters.tRenderComponentBillboardParameters[0].dimensions=
 				Ogre::Vector2(width+randomOffset, height+randomOffset);
