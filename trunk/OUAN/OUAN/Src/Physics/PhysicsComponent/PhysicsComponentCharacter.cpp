@@ -20,10 +20,11 @@ void PhysicsComponentCharacter::reset()
 
 	mJumping = false;
 	mFalling = true;
+	mFallingLimit = false;
 	mSliding = false;
 	mOnSurface = false;
 	mIsWalking = false;
-
+	
 	mFallTime = 0;
 
 	mJumpSpeed = 0;
@@ -108,7 +109,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
 		}
 
-
 		// Scale next movement using time and speed
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
@@ -146,7 +146,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		// Applying global factor to displacement and calculate dash
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-
 			calculateAngleDifference();
 			if(mOnSurface)
 			{
@@ -165,7 +164,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			applyDash(elapsedSeconds);
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
-
 
 		setOnSurface(false);
 
@@ -193,9 +191,9 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
-		setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
-		mFallTime += elapsedSeconds;
-		mNextMovement.y += mFallSpeed * elapsedSeconds;
+	setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
+	mFallTime += elapsedSeconds;
+	mNextMovement.y += mFallSpeed * elapsedSeconds;
 }
 
 bool PhysicsComponentCharacter::isMoving() const
@@ -519,10 +517,15 @@ void PhysicsComponentCharacter::setJumpSpeed(double pJumpSpeed)
 void PhysicsComponentCharacter::setFallSpeed(double pFallSpeed)
 {
 	mFallSpeed = pFallSpeed;
-
-	if(mFallSpeed>Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond)
+	
+	if(mFallSpeed <= -Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecondInverseScaled)
 	{
-		mFallSpeed=Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecond;
+		mFallingLimit = true;
+		mFallSpeed = -Application::getInstance()->getPhysicsSubsystem()->mMovementLimitUnitsPerSecondInverseScaled;
+	}
+	else
+	{
+		mFallingLimit = false;
 	}
 }
 
@@ -565,6 +568,11 @@ bool PhysicsComponentCharacter::isJumping() const
 bool PhysicsComponentCharacter::isFalling() const
 {
 	return mFalling;
+}
+
+bool PhysicsComponentCharacter::isFallingLimit() const
+{
+	return mFallingLimit;
 }
 
 bool PhysicsComponentCharacter::isSliding() const

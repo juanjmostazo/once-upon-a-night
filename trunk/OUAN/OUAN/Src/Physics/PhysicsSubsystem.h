@@ -63,7 +63,9 @@ namespace OUAN
 		double mDisplacementScale;
 		double mMinDistance;
 		double mMovementUnitsPerSecond;
+		double mMovementUnitsPerSecondInverseScaled;
 		double mMovementLimitUnitsPerSecond;
+		double mMovementLimitUnitsPerSecondInverseScaled;
 		double mTurnDegreesPerSecond;
 		double mInitialJumpSpeed;		
 		double mMinAllowedY;

@@ -162,6 +162,9 @@ namespace OUAN
 		/// Return GameObjectOny
 		GameObjectOnyPtr getGameObjectOny();
 
+		/// Return GameObjectViewport
+		GameObjectViewportPtr getGameObjectViewport();
+
 		/// Return GameObjectFlashLight
 		GameObjectFlashLightPtr getGameObjectFlashLight();
 		GameObjectPillowPtr getGameObjectPillow();
