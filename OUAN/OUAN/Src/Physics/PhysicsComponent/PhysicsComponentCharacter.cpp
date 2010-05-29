@@ -256,9 +256,9 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 	Vector3 dashMovement;
 
 	dashMovement = Vector3::ZERO;
-	dashPower=0;
+	dashPower = 0;
 
-	if(mDash>0)
+	if(mDash > 0)
 	{
 		dashPower=elapsedSeconds*mDashAccelerationFactor*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
 		mDashAccelerationFactor-=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashAccelerationIncrement;
@@ -272,15 +272,15 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 		dashMovement = mDashDirection * dashPower;
 	}
 
-	if(mDash<0.1)
+	if(mDash < 0.1)
 	{
-		mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
-		mDash=0;
-		mIsNotApplyingDash=true;
+		mDashAccelerationFactor = Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
+		mDash = 0;
+		mIsNotApplyingDash = true;
 	}
 	else
 	{
-		mIsNotApplyingDash=false;
+		mIsNotApplyingDash = false;
 	}
 
 	//Logger::getInstance()->log("dashMovement "+Ogre::StringConverter::toString(dashMovement));
@@ -289,48 +289,45 @@ Vector3 PhysicsComponentCharacter::getDashMovement(double elapsedSeconds)
 	return dashMovement;
 }
 
-
 void PhysicsComponentCharacter::applyDash(double elapsedSeconds)
 {
-		//if(mNextMovement!=Vector3::ZERO)
-		//{
-		if(isMoving())
+	if(isMoving())
+	{
+		if(mAngleDifference<Application::getInstance()->getPhysicsSubsystem()->mMaxSameDirectionAngle && mIsNotApplyingDash)
 		{
-			if(mAngleDifference<Application::getInstance()->getPhysicsSubsystem()->mMaxSameDirectionAngle && mIsNotApplyingDash)
+			//same direction
+			mDashAccelerationFactor+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashAccelerationIncrement;
+
+			if(mDashAccelerationFactor>Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor)
 			{
-				//same direction
-				mDashAccelerationFactor+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashAccelerationIncrement;
-
-				if(mDashAccelerationFactor>Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor)
-				{
-					mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor;
-				}
-
-				mDash+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
-	
-				if(mDash>Application::getInstance()->getPhysicsSubsystem()->mDashMax)
-				{
-					mDash=Application::getInstance()->getPhysicsSubsystem()->mDashMax;
-				}
-
-				mDashDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
-				mDashDirection.normalise();
-
+				mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMaxDashAccelerationFactor*mAccelerationFactor;
 			}
-			else
+
+			mDash+=elapsedSeconds*Application::getInstance()->getPhysicsSubsystem()->mDashFactor;
+
+			if(mDash > Application::getInstance()->getPhysicsSubsystem()->mDashMax)
 			{
-				//different direction
-				mNextMovement+=getDashMovement(elapsedSeconds);
+				mDash = Application::getInstance()->getPhysicsSubsystem()->mDashMax;
 			}
+
+			mDashDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
+			mDashDirection.normalise();
+
 		}
 		else
 		{
 			//different direction
 			mNextMovement+=getDashMovement(elapsedSeconds);
 		}
+	}
+	else
+	{
+		//different direction
+		mNextMovement+=getDashMovement(elapsedSeconds);
+	}
 
-		//Logger::getInstance()->log("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
-		//Logger::getInstance()->log("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
+	//Logger::getInstance()->log("mDash "+Ogre::StringConverter::toString(Ogre::Real(mDash)));
+	//Logger::getInstance()->log("mIsNotApplyingDash "+Ogre::StringConverter::toString(mIsNotApplyingDash));
 }
 
 void PhysicsComponentCharacter::jump()
@@ -482,7 +479,7 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 			//mSlideDisplacement.z = pNormal.z * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
 		}
 
-		if(mSlideDisplacement.y>0)
+		if(mSlideDisplacement.y > 0)
 		{
 			mSlideDisplacement.y=0;
 		}
