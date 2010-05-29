@@ -597,131 +597,131 @@ Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D){
 		return nullPtr;
 	}
 }
-
-void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
-{
-	unsigned int i;
-	Ogre::String materialName = LIGHTMAP_PREFIX+pEntity->getName();
-	Ogre::String lightmapName = materialName+".dds";
-
-	Ogre::TexturePtr original_texture;
-	Ogre::TexturePtr lightmap_texture;
-	Ogre::TexturePtr new_texture;
-
-	Ogre::HardwarePixelBufferSharedPtr original_pixel_buffer;
-	Ogre::HardwarePixelBufferSharedPtr lightmap_pixel_buffer;
-	Ogre::HardwarePixelBufferSharedPtr new_pixel_buffer;
-
-	Ogre::Technique * technique;
-	Ogre::Pass * pass;
-	Ogre::TextureUnitState * texture_unit;
-
-	if( Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,lightmapName))
-	{
-		try
-		{
-			//Logger::getInstance()->log("[setLightmaps] Adding "+lightmapName+" Lightmap...");
-			for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
-			{
-				// Get the material of this sub entity and build the clone material name
-				Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
-				Ogre::MaterialPtr material = subEnt->getMaterial();
-
-				// Get/Create the clone material
-				Ogre::MaterialPtr clone;
-				if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
-				{
-					clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
-				}
-				else
-				{
-					// Clone the material
-					clone = material->clone(materialName);
-				}
-
-				// Apply the lightmap
-
-					//get technique
-				technique = clone->getTechnique(0);
-					//set current pass attributes
-				pass = technique->getPass(0);
-				texture_unit = pass->getTextureUnitState(0);
-
-				//clone original texture
-				original_texture=Ogre::TextureManager::getSingleton().getByName(texture_unit->getTextureName());
-				original_texture->copyToTexture(new_texture);
-
-				//apply lightmap
-				lightmap_texture=Ogre::TextureManager::getSingleton().getByName(lightmapName);
-				original_pixel_buffer = original_texture->getBuffer();
-				lightmap_pixel_buffer = lightmap_texture->getBuffer();
-				new_pixel_buffer = new_texture->getBuffer();
-
-				// create pixel boxes
-				//PixelBox original_pixelbox(
-				//	original_pixel_buffer->getWidth(), 
-				//	original_pixel_buffer->getHeight(),
-				//	original_pixel_buffer->getDepth(), 
-				//	original_pixel_buffer->getFormat(), 
-				//	buffer);          
-				//original_pixel_buffer->blitToMemory(original_pixelbox);
-
-				//PixelBox lightmap_pixelbox(
-				//	lightmap_pixel_buffer->getWidth(), 
-				//	lightmap_pixel_buffer->getHeight(),
-				//	lightmap_pixel_buffer->getDepth(), 
-				//	lightmap_pixel_buffer->getFormat(), 
-				//	buffer);          
-				//lightmap_pixel_buffer->blitToMemory(lightmap_pixelbox);
-
-				//PixelBox new_pixelbox(
-				//	new_pixel_buffer->getWidth(), 
-				//	new_pixel_buffer->getHeight(),
-				//	new_pixel_buffer->getDepth(), 
-				//	new_pixel_buffer->getFormat(), 
-				//	buffer); 
-
-				//PixelUtil::get
-
-				//new_pixelbox.
-				//original_pixel_buffer->blitToMemory(new_pixelbox);
-
-				//new_pixel_buffer->
-
-				//new_texture->setB
-
-				//load lightmap
-				new_texture->load();
-
-				//unload original texture and lightmap
-				original_texture->unload();
-				lightmap_texture->unload();
-
-				texture_unit->setTextureCoordSet(0);
-				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
-					//create lightmap pass
-				pass = technique->createPass();
-				pass->setSceneBlending(Ogre::SBT_MODULATE);
-				pass->setDepthBias(1);
-				texture_unit = pass->createTextureUnitState();
-				texture_unit->setTextureName(lightmapName);
-				texture_unit->setTextureCoordSet(0);
-				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
-
-				// Apply the cloned material to the sub entity.
-				subEnt->setMaterial(clone);
-			}
-		}
-		catch(Ogre::Exception &/*e*/)
-		{
-			Logger::getInstance()->log("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
-		}
-	}
-	else
-	{
-		Logger::getInstance()->log("[setLightmaps] "+lightmapName+" Lightmap does not exist");
-	}
-}
+//
+//void RenderSubsystem::setLightmaps(Ogre::Entity * pEntity)
+//{
+//	unsigned int i;
+//	Ogre::String materialName = LIGHTMAP_PREFIX+pEntity->getName();
+//	Ogre::String lightmapName = materialName+".dds";
+//
+//	Ogre::TexturePtr original_texture;
+//	Ogre::TexturePtr lightmap_texture;
+//	Ogre::TexturePtr new_texture;
+//
+//	Ogre::HardwarePixelBufferSharedPtr original_pixel_buffer;
+//	Ogre::HardwarePixelBufferSharedPtr lightmap_pixel_buffer;
+//	Ogre::HardwarePixelBufferSharedPtr new_pixel_buffer;
+//
+//	Ogre::Technique * technique;
+//	Ogre::Pass * pass;
+//	Ogre::TextureUnitState * texture_unit;
+//
+//	if( Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,lightmapName))
+//	{
+//		try
+//		{
+//			//Logger::getInstance()->log("[setLightmaps] Adding "+lightmapName+" Lightmap...");
+//			for ( i = 0; i < pEntity->getNumSubEntities(); ++i)
+//			{
+//				// Get the material of this sub entity and build the clone material name
+//				Ogre::SubEntity* subEnt = pEntity->getSubEntity(i);
+//				Ogre::MaterialPtr material = subEnt->getMaterial();
+//
+//				// Get/Create the clone material
+//				Ogre::MaterialPtr clone;
+//				if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
+//				{
+//					clone = Ogre::MaterialManager::getSingleton().getByName(materialName);
+//				}
+//				else
+//				{
+//					// Clone the material
+//					clone = material->clone(materialName);
+//				}
+//
+//				// Apply the lightmap
+//
+//					//get technique
+//				technique = clone->getTechnique(0);
+//					//set current pass attributes
+//				pass = technique->getPass(0);
+//				texture_unit = pass->getTextureUnitState(0);
+//
+//				//clone original texture
+//				original_texture=Ogre::TextureManager::getSingleton().getByName(texture_unit->getTextureName());
+//				original_texture->copyToTexture(new_texture);
+//
+//				//apply lightmap
+//				lightmap_texture=Ogre::TextureManager::getSingleton().getByName(lightmapName);
+//				original_pixel_buffer = original_texture->getBuffer();
+//				lightmap_pixel_buffer = lightmap_texture->getBuffer();
+//				new_pixel_buffer = new_texture->getBuffer();
+//
+//				// create pixel boxes
+//				//PixelBox original_pixelbox(
+//				//	original_pixel_buffer->getWidth(), 
+//				//	original_pixel_buffer->getHeight(),
+//				//	original_pixel_buffer->getDepth(), 
+//				//	original_pixel_buffer->getFormat(), 
+//				//	buffer);          
+//				//original_pixel_buffer->blitToMemory(original_pixelbox);
+//
+//				//PixelBox lightmap_pixelbox(
+//				//	lightmap_pixel_buffer->getWidth(), 
+//				//	lightmap_pixel_buffer->getHeight(),
+//				//	lightmap_pixel_buffer->getDepth(), 
+//				//	lightmap_pixel_buffer->getFormat(), 
+//				//	buffer);          
+//				//lightmap_pixel_buffer->blitToMemory(lightmap_pixelbox);
+//
+//				//PixelBox new_pixelbox(
+//				//	new_pixel_buffer->getWidth(), 
+//				//	new_pixel_buffer->getHeight(),
+//				//	new_pixel_buffer->getDepth(), 
+//				//	new_pixel_buffer->getFormat(), 
+//				//	buffer); 
+//
+//				//PixelUtil::get
+//
+//				//new_pixelbox.
+//				//original_pixel_buffer->blitToMemory(new_pixelbox);
+//
+//				//new_pixel_buffer->
+//
+//				//new_texture->setB
+//
+//				//load lightmap
+//				new_texture->load();
+//
+//				//unload original texture and lightmap
+//				original_texture->unload();
+//				lightmap_texture->unload();
+//
+//				texture_unit->setTextureCoordSet(0);
+//				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
+//					//create lightmap pass
+//				pass = technique->createPass();
+//				pass->setSceneBlending(Ogre::SBT_MODULATE);
+//				pass->setDepthBias(1);
+//				texture_unit = pass->createTextureUnitState();
+//				texture_unit->setTextureName(lightmapName);
+//				texture_unit->setTextureCoordSet(0);
+//				texture_unit->setColourOperationEx(Ogre::LBX_MODULATE);
+//
+//				// Apply the cloned material to the sub entity.
+//				subEnt->setMaterial(clone);
+//			}
+//		}
+//		catch(Ogre::Exception &/*e*/)
+//		{
+//			Logger::getInstance()->log("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
+//		}
+//	}
+//	else
+//	{
+//		Logger::getInstance()->log("[setLightmaps] "+lightmapName+" Lightmap does not exist");
+//	}
+//}
 
 Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
 {
@@ -745,9 +745,6 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].material,
 				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].visible);
 		}
-
-		//set lightmaps
-		//setLightmaps(pEntity);
 
 		//set Query flags
 		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
