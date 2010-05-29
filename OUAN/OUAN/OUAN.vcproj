@@ -534,7 +534,23 @@
 					Name="Effects"
 					>
 					<File
+						RelativePath=".\Src\Graphics\Effects\LensFlare.cpp"
+						>
+						<FileConfiguration
+							Name="Release|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\Effects\LightShafts.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\Effects\ProjectiveDecal.cpp"
 						>
 					</File>
 				</Filter>
@@ -807,10 +823,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectWoodBox.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\Effects\ProjectiveDecal.cpp"
 						>
 					</File>
 				</Filter>
@@ -1295,6 +1307,18 @@
 				<Filter
 					Name="Effects"
 					>
+					<File
+						RelativePath=".\Src\Graphics\Effects\LensFlare.h"
+						>
+						<FileConfiguration
+							Name="Release|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
+					</File>
 					<File
 						RelativePath=".\Src\Graphics\Effects\LightShafts.h"
 						>

@@ -63,31 +63,54 @@ void GameObjectSkyBody::changeWorldFinished(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setVisible(true);
+			else
+				mBBSComponentDreams->setVisible(true);
+
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setVisible(false);
+			else
+				mBBSComponentNightmares->setVisible(false);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setVisible(true);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setVisible(true);
+			else
+				mBBSComponentDreams->setVisible(true);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setVisible(false);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setVisible(false);
+			else
+				mBBSComponentNightmares->setVisible(false);
 		}		
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setVisible(false);
+			else 
+				mBBSComponentDreams->setVisible(false);
+			
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setVisible(true);
+			else mBBSComponentNightmares->setVisible(true);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setVisible(false);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setVisible(false);
+			else mBBSComponentDreams->setVisible(false);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setVisible(true);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setVisible(true);
+			else mBBSComponentNightmares->setVisible(true);
 		}	
 		break;
 	default:break;
@@ -100,12 +123,16 @@ void GameObjectSkyBody::changeWorldStarted(int newWorld)
 
 	if(mLogicComponent->existsInDreams())
 	{
-		mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+		if (mUseEntityDreams)
+			mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+		else mBBSComponentDreams->randomizeChangeWorldMaterials();
 	}
 
 	if(mLogicComponent->existsInNightmares())
 	{
-		mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
+		if (mUseEntityNightmares)
+			mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
+		else mBBSComponentNightmares->randomizeChangeWorldMaterials();
 	}
 
 	switch(newWorld)
@@ -113,13 +140,17 @@ void GameObjectSkyBody::changeWorldStarted(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setVisible(true);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setVisible(true);
+			else mBBSComponentDreams->setVisible(true);
 		}
 		break;
 	case NIGHTMARES:
 		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setVisible(true);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setVisible(true);
+			else mBBSComponentNightmares->setVisible(true);
 		}	
 		break;
 	default:
@@ -136,31 +167,55 @@ void GameObjectSkyBody::changeToWorld(int newWorld, double perc)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
-			mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			else
+				mBBSComponentDreams->setChangeWorldFactor(1-perc);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+			else 
+				mBBSComponentNightmares->setChangeWorldFactor(perc);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			else
+				mBBSComponentDreams->setChangeWorldFactor(1-perc);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+			else
+				mBBSComponentNightmares->setChangeWorldFactor(perc);
 		}		
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
-			mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			else
+				mBBSComponentDreams->setChangeWorldFactor(perc);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+			else 
+				mBBSComponentNightmares->setChangeWorldFactor(1-perc);
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			if (mUseEntityDreams)
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			else
+				mBBSComponentDreams->setChangeWorldFactor(perc);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+			if (mUseEntityNightmares)
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+			else
+				mBBSComponentNightmares->setChangeWorldFactor(1-perc);
 		}		
 		break;
 	default:
@@ -235,6 +290,59 @@ bool GameObjectSkyBody::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectSkyBody::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+RenderComponentBillboardSetPtr GameObjectSkyBody::getRenderComponentBillboardSetDreams() const
+{
+	return mBBSComponentDreams;
+
+}
+void GameObjectSkyBody::setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr bbsDreams)
+{
+	mBBSComponentDreams=bbsDreams;
+}
+
+RenderComponentBillboardSetPtr GameObjectSkyBody::getRenderComponentBillboardSetNightmares() const
+{
+	return mBBSComponentNightmares;
+}
+void GameObjectSkyBody::setRenderComponentBillboardSetNightmares(RenderComponentBillboardSetPtr bbsNightmares)
+{
+	mBBSComponentNightmares=bbsNightmares;
+}
+
+RenderComponentLightPtr GameObjectSkyBody::getLightDreams() const
+{
+	return mLightComponentDreams;
+}
+void GameObjectSkyBody::setLightDreams(RenderComponentLightPtr lightComponent)
+{
+	mLightComponentDreams=lightComponent;
+}
+RenderComponentLightPtr GameObjectSkyBody::getLightNightmares() const
+{
+	return mLightComponentNightmares;
+}
+void GameObjectSkyBody::setLightNightmares(RenderComponentLightPtr lightComponent)
+{
+	mLightComponentNightmares=lightComponent;
+}
+
+bool GameObjectSkyBody::isUsingEntityDreams()
+{
+	return mUseEntityDreams;
+}
+void GameObjectSkyBody::setUseEntityDreams(bool useEntity)
+{
+	mUseEntityDreams=useEntity;
+}
+
+bool GameObjectSkyBody::isUsingEntityNightmares()
+{
+	return mUseEntityNightmares;
+}
+void GameObjectSkyBody::setUseEntityNightmares(bool useEntity)
+{
+	mUseEntityNightmares=useEntity;
 }
 //-------------------------------------------------------------------------------------------
 
