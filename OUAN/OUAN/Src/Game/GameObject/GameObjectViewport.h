@@ -34,6 +34,11 @@ namespace OUAN
 		void changeWorldStarted(int newWorld);
 
 		void setEffect(std::string effectName, bool activated);
+
+		void setBloomEffectIfPossible(int world, bool enabled);
+		void setHDREffectIfPossible(int world, bool enabled);
+		void setRadialBlurEffectIfPossible(int world, bool enabled);
+		void setMotionBlurEffectIfPossible(int world, bool enabled);
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters
