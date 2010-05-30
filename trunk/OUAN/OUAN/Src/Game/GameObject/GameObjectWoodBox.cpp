@@ -86,9 +86,7 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -101,7 +99,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -114,7 +111,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -129,9 +125,7 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
 					mPhysicsComponentVolumeBox->create();
@@ -140,7 +134,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityDreams->setOriginalMaterials();
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -153,7 +146,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 			else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setOriginalMaterials();
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 				{
 					mPhysicsComponentVolumeBox->create();
@@ -171,13 +163,11 @@ void GameObjectWoodBox::changeWorldStarted(int newWorld)
 	if(mLogicComponentBreakable->existsInDreams())
 	{
 		mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-		mRenderComponentEntityDreams->setChangeWorldMaterials();
 	}
 
 	if(mLogicComponentBreakable->existsInNightmares())
 	{
 		mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
-		mRenderComponentEntityNightmares->setChangeWorldMaterials();
 	}
 
 	switch(newWorld)
