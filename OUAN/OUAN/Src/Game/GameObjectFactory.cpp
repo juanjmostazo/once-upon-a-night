@@ -1424,6 +1424,9 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
 		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters));
 
+	pGameObjectPortal->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectPortalParameters.tChangeWorldMaterialParameters,pGameObjectPortal->getRenderComponentEntityDreams());
+	pGameObjectPortal->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectPortalParameters.tChangeWorldMaterialParameters,pGameObjectPortal->getRenderComponentEntityNightmares());
+
 	//Create PhysicsComponent
 	pGameObjectPortal->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
@@ -1927,6 +1930,9 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 		mComponentFactory->createRenderComponentEntity(tGameObjectTentetiesoParameters.nightmaresName,
 		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters));
 
+	pGameObjectTentetieso->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectTentetiesoParameters.tChangeWorldMaterialParameters,pGameObjectTentetieso->getRenderComponentEntityDreams());
+	pGameObjectTentetieso->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectTentetiesoParameters.tChangeWorldMaterialParameters,pGameObjectTentetieso->getRenderComponentEntityNightmares());
+
 	//Create PhysicsComponent
 	pGameObjectTentetieso->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectTentetieso,
@@ -2270,6 +2276,10 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
 		pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters));
 
+//	pGameObjectTripolloDreams->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters,pGameObjectTripolloDreams->getRenderComponentEntityDreams());
+//	pGameObjectTripolloDreams->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters,pGameObjectTripolloDreams->getRenderComponentEntityNightmares());
+
+
 	//Create PhysicsComponent
 	pGameObjectTripolloDreams->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectTripolloDreams,
@@ -2353,23 +2363,40 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 		mComponentFactory->createRenderComponentInitial(
 			pGameObjectWoodBox->getRenderComponentPositional()));
 
-	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
+	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams() && pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(
-				tGameObjectWoodBoxParameters.dreamsName,
-				pGameObjectWoodBox,
-				tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+		//Create RenderComponentEntityNightmares
+		pGameObjectWoodBox->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectWoodBox->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters,pGameObjectWoodBox->getRenderComponentEntityDreams());
+		pGameObjectWoodBox->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters,pGameObjectWoodBox->getRenderComponentEntityNightmares());
+
+
 	}
-	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
+	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectWoodBox->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+
+		pGameObjectWoodBox->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters);
+
+	}
+	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(
-				tGameObjectWoodBoxParameters.nightmaresName,
-				pGameObjectWoodBox,
-				tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+
+		pGameObjectWoodBox->getRenderComponentEntityNightmares()->initChangeWorldMaterials(tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters);
 	}
 
 	//Create PhysicsComponent

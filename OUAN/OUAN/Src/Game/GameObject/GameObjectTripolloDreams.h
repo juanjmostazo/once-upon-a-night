@@ -123,6 +123,8 @@ namespace OUAN
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
+		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
 
 		/// Reset object
@@ -190,6 +192,9 @@ namespace OUAN
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
 
 		TAudioComponentMap tAudioComponentParameters;
+
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
+
 	};
 
 }
