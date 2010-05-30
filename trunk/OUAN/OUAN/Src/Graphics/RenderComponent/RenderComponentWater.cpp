@@ -191,7 +191,7 @@ void RenderComponentWater::update(double elapsedTime)
  //   //{
  //   //    (*i)->setVisible(false);
  //   //}
-	//mGameWorldManager->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
+	//mGameWorldManager->getGameObjectOny()->getRenderComponentWater()->setVisible(false);
  //   mCameraManager->getActiveCamera()->enableReflection(mReflectionPlane);
 
 }
@@ -207,8 +207,191 @@ void RenderComponentWater::postUpdate()
  //   //{
  //   //    (*i)->setVisible(true);
  //   //}
-	//mGameWorldManager->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
+	//mGameWorldManager->getGameObjectOny()->getRenderComponentWater()->setVisible(true);
  //   mCameraManager->getActiveCamera()->disableReflection();
+}
+
+
+void RenderComponentWater::setMaterial(std::string material)
+{
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr original_material;
+	unsigned int i;
+
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	{
+		// Get the material of this sub entity and build the clone material name
+		subEnt = mEntity->getSubEntity(i);
+		original_material = subEnt->getMaterial();
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(material))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material));
+		}
+		else
+		{
+			Logger::getInstance()->log("[RenderComponentWater] material "+material+" does not exist.");
+		}
+
+		//Add material to the material stack 
+		mOriginalMaterials.push_back(original_material->getName());
+	}
+}
+
+void RenderComponentWater::setOriginalMaterials()
+{
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	{
+		// Get the material of this sub entity and build the clone material name
+		subEnt = mEntity->getSubEntity(i);
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mOriginalMaterials[i]))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mOriginalMaterials[i]));
+		}
+		else
+		{
+			Logger::getInstance()->log("[RenderComponentWater] material "+mOriginalMaterials[i]+" does not exist.");
+		}
+	}
+}
+
+void RenderComponentWater::setChangeWorldMaterials()
+{
+	//Logger::getInstance()->log("[RenderComponentWater] setChangeWorldMaterials "+mEntity->getName());
+
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	for ( i = 0; i < mChangeWorldMaterials.size() && i <mEntity->getNumSubEntities(); i++)
+	{
+
+		subEnt = mEntity->getSubEntity(i);
+
+		// Get/Create the clone material
+
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterials[i]->getMaterialName()))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterials[i]->getMaterialName()));
+		}
+		else
+		{
+			Logger::getInstance()->log("[RenderComponentWater] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
+		}
+	}
+}
+
+void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
+{
+	unsigned int i;
+	
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
+
+	mChangeWorldMaterials.clear();
+
+	bool materialCreated;
+
+	for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
+	{
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
+			mEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
+	//{
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+	//}
+
+	setChangeWorldMaterials();
+}
+
+void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentWaterPtr pOtherComponentEntity)
+{
+	unsigned int i;
+	
+	Ogre::Entity * pOtherEntity;
+
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
+
+	pOtherEntity=pOtherComponentEntity->getEntity();
+
+	mChangeWorldMaterials.clear();
+
+	bool materialCreated;
+
+	for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
+	{
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
+			mEntity->getSubEntity(i)->getMaterial(),
+			pOtherEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
+	//{
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+	//}
+
+	setChangeWorldMaterials();
+}
+
+void RenderComponentWater::setChangeWorldFactor(double factor)
+{
+	//Logger::getInstance()->log("[RenderComponentWater] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
+	}
+}
+
+void RenderComponentWater::setChangeWorldMaterialsPointOfInterest(Ogre::Vector3 pointOfInterest)
+{
+	//Logger::getInstance()->log("[RenderComponentWater] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setPointOfInterest(pointOfInterest);
+	}
+}
+
+void RenderComponentWater::randomizeChangeWorldMaterials()
+{
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->randomize();
+	}
 }
 
 TRenderComponentWaterParameters::TRenderComponentWaterParameters() : TRenderComponentParameters()

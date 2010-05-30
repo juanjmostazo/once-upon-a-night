@@ -73,24 +73,58 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(true);
+				mRenderComponentWaterNightmares->setVisible(false);
+				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->create();
+				}
 			}
-			if(mLogicComponent->existsInNightmares())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterDreams->setVisible(true);
+				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->create();
+				}
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterNightmares->setVisible(false);
-			}
+				if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->destroy();
+				}
+			}		
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(false);
+				mRenderComponentWaterNightmares->setVisible(true);
+				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->create();
+				}
 			}
-			if(mLogicComponent->existsInNightmares())
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterDreams->setVisible(false);
+				if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->destroy();
+				}
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterNightmares->setVisible(true);
-			}
+				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
+				{
+					mPhysicsComponentVolumeConvex->create();
+				}
+			}	
 			break;
 		default:break;
 	}
@@ -100,11 +134,29 @@ void GameObjectWater::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentWaterDreams->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentWaterNightmares->randomizeChangeWorldMaterials();
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentWaterDreams->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentWaterNightmares->setVisible(true);
+		}	
 		break;
 	default:
 		break;
@@ -117,12 +169,38 @@ void GameObjectWater::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setChangeWorldFactor(perc);
+				mRenderComponentWaterDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setChangeWorldFactor(1-perc);
+				mRenderComponentWaterDreams->setChangeWorldFactor(perc);
+			}
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterDreams->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentWaterNightmares->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
 	}
 }
 
@@ -239,15 +317,15 @@ void GameObjectWater::postUpdate()
 }
 
 
-//bool GameObjectWater::hasRenderComponentEntity() const
+//bool GameObjectWater::hasRenderComponentWater() const
 //{
 //	return true;
 //}
-//RenderComponentEntityPtr GameObjectWater::getEntityComponent() const
+//RenderComponentWaterPtr GameObjectWater::getWaterComponent() const
 //{
 //	if(mGameWorldManager->getWorld()==DREAMS)
 //	{
-//		return mRenderComponentWaterDreams->getRenderComponentEntity()
+//		return mRenderComponentWaterDreams->getRenderComponentWater()
 //	}
 //	else:mRenderComponentWaterNightmares;
 //}

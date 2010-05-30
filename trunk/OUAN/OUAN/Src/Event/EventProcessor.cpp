@@ -185,13 +185,20 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 					}
 					else
 					{
-						current_distance=mWorldManager->getPlayerDistance(it->second->getName());
-						if(current_distance>max_distance)
+						if(it->second->hasPositionalComponent())
 						{
-							max_distance=current_distance;
+							current_distance=mWorldManager->getClosestChangeWorldDistance(it->second->getPositionalComponent()->getPosition());
+							if(current_distance>max_distance)
+							{
+								max_distance=current_distance;
+							}
+							distances.push_back(current_distance);
+							//Logger::getInstance()->log("getPlayerDistance "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(current_distance)));
 						}
-						distances.push_back(current_distance);
-						//Logger::getInstance()->log("getPlayerDistance "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(current_distance)));
+						else
+						{
+							distances.push_back(0.0f);
+						}
 					}
 				}
 			}

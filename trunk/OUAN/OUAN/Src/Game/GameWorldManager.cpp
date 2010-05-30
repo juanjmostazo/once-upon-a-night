@@ -1343,6 +1343,33 @@ double GameWorldManager::getDistance(const std::string& obj1Name, const std::str
 	return distance;
 }
 
+double GameWorldManager::getClosestChangeWorldDistance(Vector3 objectPosition)
+{
+	double currentChangeWorldDistance;
+	double minChangeWorldDistance;
+
+	unsigned int i;
+	for(i=0;i<mGameObjectPortalContainer.size();i++)
+	{
+		if(i==0)
+		{
+			minChangeWorldDistance=mGameObjectPortalContainer[i]->getRenderComponentPositional()->getPosition().distance(objectPosition);
+		}
+		else
+		{	
+			currentChangeWorldDistance=mGameObjectPortalContainer[i]->getRenderComponentPositional()->getPosition().distance(objectPosition);
+
+			if(currentChangeWorldDistance<minChangeWorldDistance)
+			{
+				minChangeWorldDistance=currentChangeWorldDistance;
+			}
+		}
+
+	}
+
+	return minChangeWorldDistance;
+}
+
 double GameWorldManager::getPlayerDistance(const std::string& objName)
 {
 	//Logger::getInstance()->log("getPlayerDistance "+objName);

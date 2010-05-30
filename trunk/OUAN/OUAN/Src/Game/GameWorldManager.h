@@ -188,6 +188,8 @@ namespace OUAN
 		/// @return distance between Ony and the object with its name equal to the passed one
 		static double getPlayerDistance(const std::string& obj);
 
+		double getClosestChangeWorldDistance(Vector3 objectPosition);
+
 
 		static void victory();
 
