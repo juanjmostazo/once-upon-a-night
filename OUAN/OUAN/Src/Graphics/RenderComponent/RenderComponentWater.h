@@ -90,6 +90,9 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
+		std::vector<std::string> mOriginalMaterials;
+		std::vector<ChangeWorldMaterialPtr> mChangeWorldMaterials;
+
 	public:
 
 		RenderComponentWater(const std::string& type="");
@@ -109,6 +112,15 @@ namespace OUAN
 		Ogre::AnimationState* getCurrentAnimation() const;
 		std::string getCurrentAnimationName() const;
 		bool isAnimated() const;	
+
+		void setMaterial(std::string material);
+		void setOriginalMaterials();
+		void setChangeWorldMaterials();
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentWaterPtr pOtherComponentWater);
+		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
+		void setChangeWorldFactor(double factor);
+		void randomizeChangeWorldMaterials();
+		void setChangeWorldMaterialsPointOfInterest(Ogre::Vector3 pointOfInterest);
 	};
 
 

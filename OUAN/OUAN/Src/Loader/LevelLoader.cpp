@@ -2167,6 +2167,10 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 		//Get PhysicsComponentCharacter
 		tGameObjectScaredPlantParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
+		//Get ChangeWorldMaterialParameters
+		tGameObjectScaredPlantParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
+
 	}
 	catch( std::string error )
 	{
@@ -3028,7 +3032,7 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 				tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 			}
-
+			tGameObjectWaterParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 			//Create GameObject
 			//mGameWorldManager->createGameObjectTerrainConvex(tGameObjectWaterParameters);

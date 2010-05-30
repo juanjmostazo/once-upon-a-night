@@ -113,24 +113,23 @@ void GameObjectScaredPlant::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntityDreams->setOriginalMaterials();
-
 	switch(newWorld)
 	{
 		case DREAMS:
-			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			mRenderComponentEntityDreams->setVisible(true);
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
-			mRenderComponentEntityDreams->setVisible(true);
+
+	
 			break;
 		case NIGHTMARES:
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			mRenderComponentEntityDreams->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
 			}
-			mRenderComponentEntityDreams->setVisible(false);
-			break;
 		default:break;
 	}
 }
@@ -139,18 +138,21 @@ void GameObjectScaredPlant::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+
 	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityDreams->setVisible(true);
+
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntityDreams->setVisible(true);
 		break;
 	case NIGHTMARES:
+
 		break;
 	default:
 		break;
-	}
+	}	
 }
 
 void GameObjectScaredPlant::changeToWorld(int newWorld, double perc)
@@ -159,14 +161,14 @@ void GameObjectScaredPlant::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		mRenderComponentEntityDreams->setChangeWorldFactor(perc);
-		break;
-	case NIGHTMARES:
-		mRenderComponentEntityDreams->setChangeWorldFactor(1.0f-perc);
-		break;
-	default:
-		break;
+		case DREAMS:
+			mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);	
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityDreams->setChangeWorldFactor(perc);	
+			break;
+		default:
+			break;
 	}
 }
 

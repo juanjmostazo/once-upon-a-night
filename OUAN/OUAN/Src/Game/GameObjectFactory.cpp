@@ -1528,6 +1528,8 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 		mComponentFactory->createRenderComponentEntity(tGameObjectScaredPlantParameters.name,
 		pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters));
 
+	pGameObjectScaredPlant->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectScaredPlantParameters.tChangeWorldMaterialParameters);
+
 	//Create PhysicsComponent
 	pGameObjectScaredPlant->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectScaredPlant,
@@ -2442,20 +2444,42 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 	pGameObjectWater->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectWater->getRenderComponentPositional()));
 
-	if(pGameObjectWater->getLogicComponent()->existsInDreams())
+	if(pGameObjectWater->getLogicComponent()->existsInDreams() && pGameObjectWater->getLogicComponent()->existsInNightmares())
 	{
-		//Create RenderComponentEntityDreams
+		//Create RenderComponentWaterDreams
 		pGameObjectWater->setRenderComponentWaterDreams(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.dreamsName,
 			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters));
-	}
-	if(pGameObjectWater->getLogicComponent()->existsInNightmares())
-	{
-		//Create RenderComponentEntityNightmares
+		//Create RenderComponentWaterNightmares
 		pGameObjectWater->setRenderComponentWaterNightmares(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.nightmaresName,
 			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters));
+
+		pGameObjectWater->getRenderComponentWaterNightmares()->initChangeWorldMaterials(tGameObjectWaterParameters.tChangeWorldMaterialParameters,pGameObjectWater->getRenderComponentWaterDreams());
+		pGameObjectWater->getRenderComponentWaterDreams()->initChangeWorldMaterials(tGameObjectWaterParameters.tChangeWorldMaterialParameters,pGameObjectWater->getRenderComponentWaterNightmares());
+
+
 	}
+	else if(pGameObjectWater->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentWaterDreams
+		pGameObjectWater->setRenderComponentWaterDreams(
+			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.dreamsName,
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters));
+
+		pGameObjectWater->getRenderComponentWaterDreams()->initChangeWorldMaterials(tGameObjectWaterParameters.tChangeWorldMaterialParameters);
+
+	}
+	else if(pGameObjectWater->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentWaterNightmares
+		pGameObjectWater->setRenderComponentWaterNightmares(
+			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.nightmaresName,
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters));
+
+		pGameObjectWater->getRenderComponentWaterNightmares()->initChangeWorldMaterials(tGameObjectWaterParameters.tChangeWorldMaterialParameters);
+	}
+
 	//Create PhysicsComponent
 	pGameObjectWater->setPhysicsComponentVolumeConvex(mComponentFactory->createPhysicsComponentVolumeConvex(
 		pGameObjectWater,
