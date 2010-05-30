@@ -87,14 +87,18 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 			//Logger::getInstance()->log("DREAMS " + getName());
 
 			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityDreams->changeAnimation("turn_Clip");
 			break;
 		case NIGHTMARES:
 			//Logger::getInstance()->log("NIGHT " + getName());
 	
 			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->changeAnimation("turn_Clip");
 			break;
 		default:
@@ -105,6 +109,9 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 void GameObjectPortal::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -124,8 +131,12 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+		mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+		mRenderComponentEntityDreams->setChangeWorldFactor(perc);
 		break;
 	default:
 		break;

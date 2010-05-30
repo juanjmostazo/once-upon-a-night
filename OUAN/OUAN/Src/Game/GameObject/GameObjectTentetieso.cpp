@@ -114,18 +114,13 @@ void GameObjectTentetieso::changeWorldFinished(int newWorld)
 		default:break;
 	}
 
-	mRenderComponentEntityDreams->setOriginalMaterials();
-	mRenderComponentEntityNightmares->setOriginalMaterials();
-
 }
 
 void GameObjectTentetieso::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
 	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
