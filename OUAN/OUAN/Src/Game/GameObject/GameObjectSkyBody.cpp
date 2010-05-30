@@ -1,5 +1,6 @@
 #include "GameObjectSkyBody.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/Effects/LensFlare.h"
 
 using namespace OUAN;
 
@@ -11,7 +12,16 @@ GameObjectSkyBody::GameObjectSkyBody(const std::string& name)
 
 GameObjectSkyBody::~GameObjectSkyBody()
 {
-
+	mRenderComponentEntityDreams.reset();
+	mRenderComponentEntityNightmares.reset();
+	mRenderComponentPositional.reset();
+	mRenderComponentInitial.reset();
+	mBBSComponentDreams.reset();
+	mBBSComponentNightmares.reset();
+	mLogicComponent.reset();
+	mLightComponentDreams.reset();
+	mLightComponentNightmares.reset();
+	mLensFlare.reset();
 }
 
 void GameObjectSkyBody::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
@@ -343,6 +353,28 @@ bool GameObjectSkyBody::isUsingEntityNightmares()
 void GameObjectSkyBody::setUseEntityNightmares(bool useEntity)
 {
 	mUseEntityNightmares=useEntity;
+}
+
+LensFlarePtr GameObjectSkyBody::getLensFlare() const
+{
+	return mLensFlare;
+}
+void GameObjectSkyBody::setLensFlare(LensFlarePtr lensFlare)
+{
+	mLensFlare=lensFlare;
+}
+void GameObjectSkyBody::initLensFlare(Ogre::Camera* cam, Ogre::SceneManager* sceneMgr)
+{
+	Ogre::SceneNode* currentNode = mRenderComponentPositional->getSceneNode();
+	mLensFlare.reset(new LensFlare(cam,sceneMgr,currentNode));
+}
+void GameObjectSkyBody::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	if (mLensFlare.get())
+	{
+		mLensFlare->update();
+	}
 }
 //-------------------------------------------------------------------------------------------
 

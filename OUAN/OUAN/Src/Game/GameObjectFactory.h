@@ -81,7 +81,7 @@ namespace OUAN
 		GameObjectScepterPtr createGameObjectScepter(TGameObjectScepterParameters tGameObjectScepterParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectSkyBodyPtr createGameObjectSkyBody(TGameObjectSkyBodyParameters params,
-			GameWorldManagerPtr gameWorldMgr);
+			GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraManager, Ogre::SceneManager* sceneManager );
 		GameObjectSnakeCreeperPtr createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectSoundPtr createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr);

@@ -2271,8 +2271,8 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 			params.lightDreamsParams.specular=Ogre::ColourValue::Black;
 			params.lightDreamsParams.direction = Ogre::Vector3(0,-1,-1);
 			params.lightDreamsParams.castshadows = true;
-			params.lightDreamsParams.lightrange = Ogre::Vector3(15,80,1);
-			params.lightDreamsParams.attenuation = Ogre::Vector4(3500,1,0,0);
+			params.lightDreamsParams.lightrange = Ogre::Vector3(45,80,1);
+			params.lightDreamsParams.attenuation = Ogre::Vector4(10000,1,0,0);
 			params.lightDreamsParams.power = 1;
 
 			if (params.useEntityDreams)
@@ -2289,8 +2289,8 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 			params.lightNightmaresParams.specular=Ogre::ColourValue::Black;			
 			params.lightNightmaresParams.direction = Ogre::Vector3(0,-1,-1);
 			params.lightNightmaresParams.castshadows = true;
-			params.lightNightmaresParams.lightrange = Ogre::Vector3(15,80,1);
-			params.lightNightmaresParams.attenuation = Ogre::Vector4(3500,1,0,0);
+			params.lightNightmaresParams.lightrange = Ogre::Vector3(45,80,1);
+			params.lightNightmaresParams.attenuation = Ogre::Vector4(10000,1,0,0);
 			params.lightNightmaresParams.power = 1;
 
 			if (params.useEntityNightmares)
@@ -2318,7 +2318,9 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
 	mGameWorldManager->addGameObjectSkyBody(
-		mGameObjectFactory->createGameObjectSkyBody(params,mGameWorldManager));
+		mGameObjectFactory->createGameObjectSkyBody(params,mGameWorldManager, 
+		mGameWorldManager->getParent()->getCameraManager(),
+		mGameWorldManager->getParent()->getRenderSubsystem()->getSceneManager()));
 }
 void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 {

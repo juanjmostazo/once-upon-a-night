@@ -12,6 +12,9 @@
 
 namespace OUAN
 {
+
+	class LensFlare;
+	typedef boost::shared_ptr<LensFlare> LensFlarePtr;
 	/// Class to hold Bush information
 	class GameObjectSkyBody: public GameObject, public boost::enable_shared_from_this<GameObjectSkyBody>
 	{
@@ -38,6 +41,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
+
+		LensFlarePtr mLensFlare;
 
 	public:
 		//Constructor
@@ -99,6 +104,10 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		LensFlarePtr getLensFlare() const;
+		void setLensFlare(LensFlarePtr lensFlare);
+		void initLensFlare(Ogre::Camera*, Ogre::SceneManager*);
+
 
 		/// Reset object
 		virtual void reset();
@@ -125,6 +134,8 @@ namespace OUAN
 		/// 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
+
+		void update(double elapsedSeconds);
 	};
 
 	class TGameObjectSkyBodyParameters: public TGameObjectParameters

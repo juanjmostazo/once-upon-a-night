@@ -8,7 +8,7 @@
 
 #define VOIDOBJECT 0
 
-//#include <Ogre.h>
+#include <Ogre.h>
  
  /* ------------------------------------------------------------------------- */
  /// A lens Flare effect.
@@ -19,36 +19,32 @@
  light, for instance.
  */
  /* ------------------------------------------------------------------------- */
-namespace Ogre
-{
-	class Vector3;
-	class Camera;
-	class SceneManager;
-}
 
 namespace OUAN
 {
- class LensFlare
- {
- public:
-	LensFlare(Ogre::Vector3 LightPosition, Ogre::Camera* camera, Ogre::SceneManager* SceneMgr);
- 	virtual ~LensFlare();
- 	void    createLensFlare();
- 	void    update();
- 	void    setVisible(bool visible);
- 	void    setLightPosition(Vector3 pos);
- 	void    setHaloColour(ColourValue color);
- 	void    setBurstColour(ColourValue color);
- 
- protected:
- 	Ogre::SceneManager* mSceneMgr;
- 	Ogre::Camera*       mCamera;
- 	Ogre::ColourValue   mColour;
- 	Ogre::SceneNode*    mNode;
-    Ogre::BillboardSet* mHaloSet;
-   	Ogre::BillboardSet* mBurstSet;
- 	Ogre::Vector3       mLightPosition;
- 	bool          mHidden;
- };
- 
+	 class LensFlare
+	 {
+	 public:
+		 LensFlare(Ogre::Camera* camera, Ogre::SceneManager* sceneMgr,Ogre::SceneNode* node);
+ 		virtual ~LensFlare();
+ 		void    createLensFlare();
+ 		void    update();
+ 		void    setVisible(bool visible);
+		void    setLightPosition(Ogre::Vector3 pos);
+		void    setHaloColour(Ogre::ColourValue color);
+ 		void    setBurstColour(Ogre::ColourValue color);
+
+		void changeCamera(Ogre::Camera* cam);
+	 
+	 protected:
+ 		Ogre::SceneManager* mSceneMgr;
+ 		Ogre::Camera*       mCamera;
+ 		Ogre::ColourValue   mColour;
+ 		Ogre::SceneNode*    mNode;
+		Ogre::BillboardSet* mHaloSet;
+   		Ogre::BillboardSet* mBurstSet;
+ 		Ogre::Vector3       mLightPosition;
+ 		bool          mHidden;
+	 };
+}
  #endif
