@@ -132,6 +132,22 @@ RenderSubsystemPtr RenderComponentViewport::getRenderSubsystem() const
 	return mRenderSubsystem;
 }
 
+void RenderComponentViewport::setBloomAmount(double perc)
+{
+	//Ogre::MaterialPtr material;
+	//Ogre::Technique * technique;
+	//Ogre::Pass * pass;
+	//Ogre::GpuProgramParametersSharedPtr params;
+
+	//material=Ogre::MaterialManager::getSingleton().getByName("Ogre/Compositor/BloomBlend2");
+
+	//technique=material->getTechnique(0);
+	//pass=technique->getPass(1);
+	//params = pass->getFragmentProgramParameters();
+	//params->setNamedConstant("BlurWeight",Ogre::Real(perc));
+
+}
+
 TRenderComponentViewportParameters::TRenderComponentViewportParameters() : TRenderComponentParameters()
 {
 }

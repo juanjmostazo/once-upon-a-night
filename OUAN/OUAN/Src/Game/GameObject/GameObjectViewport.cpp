@@ -34,6 +34,8 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 	{
 	case DREAMS:
 
+		mRenderComponentViewport->setBloomAmount(0.0f);
+
 		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS)
 		{
 			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, true);
@@ -72,6 +74,8 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 
 		break;
 	case NIGHTMARES:
+
+		mRenderComponentViewport->setBloomAmount(0.3f);
 
 		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES)
 		{
@@ -137,8 +141,10 @@ void GameObjectViewport::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentViewport->setBloomAmount(0.3*(1-perc));
 		break;
 	case NIGHTMARES:
+		mRenderComponentViewport->setBloomAmount(0.3*perc);
 		break;
 	default:
 		break;

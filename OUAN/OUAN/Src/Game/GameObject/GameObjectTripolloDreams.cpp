@@ -283,72 +283,43 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
+	switch(newWorld)
 	{
-		switch(newWorld)
-		{
-			case DREAMS:
+		case DREAMS:
+			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
+			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityNightmares->setVisible(false);
-				break;
-			case NIGHTMARES:
+			}
+			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				activateTrajectory(newWorld);
+			}
+			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+				activateTrajectory(newWorld);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
+			{
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
-				break;
-		}
-		activateTrajectory(newWorld);
-		if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-		{
-			mPhysicsComponentCharacter->create();
-		}
-	}
-	else
-	{
-		switch(newWorld)
-		{
-			case DREAMS:
-				
-				if(mLogicComponentEnemy->existsInDreams())
-				{
-					mRenderComponentEntityDreams->setVisible(true);
-					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-					{
-						mPhysicsComponentCharacter->create();
-					}
-				}
-				else
-				{
-					mRenderComponentEntityNightmares->setVisible(false);
-					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-					{
-						mPhysicsComponentCharacter->destroy();
-					}
-				}		
-				break;
-			case NIGHTMARES:
-				
-				if(mLogicComponentEnemy->existsInNightmares())
-				{
-					mRenderComponentEntityNightmares->setVisible(true);
-					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-					{
-						mPhysicsComponentCharacter->create();
-					}
-				}
-				else
-				{
-					mRenderComponentEntityDreams->setVisible(false);
-					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-					{
-						mPhysicsComponentCharacter->destroy();
-					}
-				}
-				break;
-			default:
-				break;
-		}
-		activateTrajectory(newWorld);
-
+			}
+			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+				activateTrajectory(newWorld);
+			}
+			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				activateTrajectory(newWorld);
+			}	
+			break;
+		default:break;
 	}
 }
 
@@ -356,15 +327,33 @@ void GameObjectTripolloDreams::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	if(mLogicComponentEnemy->existsInDreams())
+	{
+		mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+	}
+
+	if(mLogicComponentEnemy->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
+		{
+			mRenderComponentEntityDreams->setVisible(true);
+		}
 		break;
 	case NIGHTMARES:
+		if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(true);
+		}	
 		break;
 	default:
 		break;
-	}
+	}	
 }
 
 void GameObjectTripolloDreams::changeToWorld(int newWorld, double perc)
@@ -373,12 +362,38 @@ void GameObjectTripolloDreams::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
+		case DREAMS:
+			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+			}
+			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
+			}		
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			}
+			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
+			}
+			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+			}		
+			break;
+		default:
+			break;
 	}
 }
 

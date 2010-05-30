@@ -2,7 +2,7 @@
 <Configuration>
   <Options>
 	<Option key="BLOOM">Bloom</Option>
-	<Option key="BLOOM_ACTIVATED_ALWAYS_DREAMS">false</Option>
+	<Option key="BLOOM_ACTIVATED_ALWAYS_DREAMS">true</Option>
 	<Option key="BLOOM_ACTIVATED_ALWAYS_NIGHTMARES">true</Option>
 	
 	<Option key="HDR">HDR</Option>
