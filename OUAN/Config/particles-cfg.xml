@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="PORTAL_CHANGE_WORLD">PUMediaPack/Atomicity</Option>
+    <Option key="PORTAL_CHANGE_WORLD">PU/changeworld01</Option>
 	<Option key="ONY_LAND">PUMediaPack/SpiralStars</Option>
 	<Option key="PILLOW_ATTACK">PUMediaPack/Atomicity2</Option>
   </Options>
