@@ -30,6 +30,9 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	//Disable motion blur effect when finished changing world
+	setMotionBlurEffectIfPossible(newWorld, false);
+
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -119,6 +122,9 @@ void GameObjectViewport::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	//Apply motion blur effect when started changing world
+	setMotionBlurEffectIfPossible(newWorld, true);
+
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -148,6 +154,58 @@ void GameObjectViewport::changeToWorld(int newWorld, double perc)
 void GameObjectViewport::setEffect(std::string effectName, bool activated)
 {
 	mRenderComponentViewport->setEffect(effectName,activated);
+}
+
+void GameObjectViewport::setBloomEffectIfPossible(int world, bool enabled)
+{
+	if ((world == DREAMS && 
+		 !Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS) ||	
+		(world == NIGHTMARES && 
+		 !Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(
+			Application::getInstance()->getRenderSubsystem()->BLOOM, 
+			enabled);
+	}
+}
+
+void GameObjectViewport::setHDREffectIfPossible(int world, bool enabled)
+{
+	if ((world == DREAMS && 
+		 !Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS) ||	
+		(world == NIGHTMARES && 
+		 !Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(
+			Application::getInstance()->getRenderSubsystem()->HDR, 
+			enabled);
+	}
+}
+
+void GameObjectViewport::setRadialBlurEffectIfPossible(int world, bool enabled)
+{
+	if ((world == DREAMS && 
+		 !Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS) ||	
+		(world == NIGHTMARES && 
+		 !Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(
+			Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, 
+			enabled);
+	}
+}
+
+void GameObjectViewport::setMotionBlurEffectIfPossible(int world, bool enabled)
+{
+	if ((world == DREAMS && 
+		 !Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS) ||	
+		(world == NIGHTMARES && 
+		 !Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(
+			Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, 
+			enabled);
+	}
 }
 
 //-------------------------------------------------------------------------------------------
