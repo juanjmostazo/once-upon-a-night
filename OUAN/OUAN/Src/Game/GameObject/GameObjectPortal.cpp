@@ -255,10 +255,9 @@ void GameObjectPortal::update(double elapsedSeconds)
 				{
 					mLogicComponentUsable->setCanBeActivated(false);
 					if (mAudioComponent->isPlaying("portal_close"))
+					{
 						mAudioComponent->stopSound("portal_close");
-					//particleSystem->hide();
-					//entityToUpdate()->setAnimationState(PORTAL_ANIMATION_IDLE);
-					//overlay->hide();
+					}
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
@@ -268,9 +267,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 					mLogicComponentUsable->setCanBeActivated(false);
 					mAudioComponent->playSound("portal_close");
 					displayText("ONY IS CLOSE");
-					//particleSystem->show(approaching);
-					//overlay->hide();
-					//audio->playSound("sparks")
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE))
@@ -279,8 +275,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 				{
 					displayText("PRESS ACTION TO CHANGE WORLD");
 					mLogicComponentUsable->setCanBeActivated(true);
-					//overlay->show(getTexture(ActionButton)/"Press action button");
-					//particleSystem->show(may_activate)
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
@@ -288,7 +282,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 				if (mLogicComponentUsable->isStateChanged())
 				{
 					getGameWorldManager()->changeWorld();				
-					//NOTE: Maybe this flag could be reset after the changeWorld animation has ended.
 					mLogicComponentUsable->setIsActivated(false);
 					mRenderComponentParticleSystemChangeWorld->start();
 				}
