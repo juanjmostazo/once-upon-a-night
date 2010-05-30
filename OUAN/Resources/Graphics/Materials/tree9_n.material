@@ -1,12 +1,20 @@
 
-material tree9_n
+material tree01_n
 {
-        technique
-        {
-            pass
-            {
-                texture_unit
-                {
-                    texture tree9_n.dds
-                    tex_coord_set 0 
-                    colour_op modulate
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
+
+			texture_unit
+			{
+				texture tree9_n.dds
+			}
+		}
+
+	}
+
+}
