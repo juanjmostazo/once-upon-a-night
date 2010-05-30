@@ -1603,7 +1603,7 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 	return pGameObjectScepter;
 }
 GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBodyParameters params,
-																GameWorldManagerPtr gameWorldMgr)
+	GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraManager, Ogre::SceneManager* sceneManager)
 {
 	GameObjectSkyBodyPtr gameObject;
 
@@ -1757,6 +1757,8 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			params.lightNightmaresParams
 			));		
 	}
+
+	gameObject->initLensFlare(cameraManager->getActiveCamera(), sceneManager);
 
 	//Add reference to this
 	gameObject->setGameWorldManager(gameWorldMgr);
