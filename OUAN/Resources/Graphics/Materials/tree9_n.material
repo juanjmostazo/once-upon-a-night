@@ -7,20 +7,6 @@ material tree9_n
             {
                 texture_unit
                 {
-                    texture tree01_nightmare_texture.tga
+                    texture tree9_n.dds
                     tex_coord_set 0 
                     colour_op modulate
-                }
-            }
-            pass
-            {
-                scene_blend modulate
-                texture_unit
-                {
-                    texture lightmap#tree9.dds
-                    tex_coord_set 0
-                    colour_op modulate
-                }
-            }
-        }
-}
