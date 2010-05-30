@@ -30,9 +30,6 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//Disable motion blur effect when finished changing world
-	setMotionBlurEffectIfPossible(newWorld, false);
-
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -121,9 +118,6 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 void GameObjectViewport::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
-
-	//Apply motion blur effect when started changing world
-	//setMotionBlurEffectIfPossible(newWorld, true);
 
 	switch(newWorld)
 	{
