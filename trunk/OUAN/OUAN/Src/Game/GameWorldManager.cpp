@@ -114,7 +114,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{
-		//Logger::getInstance()->log("Updating game object " + it->second->getName());
+		Logger::getInstance()->log("Updating game object " + it->second->getName());
 		it->second->update(elapsedSeconds);
 	}
 
@@ -122,7 +122,7 @@ void GameWorldManager::update(double elapsedSeconds)
 
 	if(mIsChangingWorld)
 	{
-		//Logger::getInstance()->log("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
+		Logger::getInstance()->log("Updating gameworldmanager " + Ogre::StringConverter::toString(Ogre::Real(mChangeWorldElapsedTime)));
 		mChangeWorldElapsedTime+=elapsedSeconds;
 		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 		{

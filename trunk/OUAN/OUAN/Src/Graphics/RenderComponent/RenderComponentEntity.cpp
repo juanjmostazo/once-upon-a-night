@@ -243,6 +243,7 @@ void RenderComponentEntity::setChangeWorldMaterials()
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
 	unsigned int i;
+			Logger::getInstance()->log("[RenderComponentEntity] INIT CHANGEWORLDMATERIALS");
 	
 	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
@@ -252,6 +253,9 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 
 	for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
 	{
+
+		Logger::getInstance()->log("[RenderComponentEntity] material for subentity"+Ogre::StringConverter::toString(i)+" creating TRANSPARENT");
+
 		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
 		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
@@ -266,6 +270,7 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 		//{
 		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 		//}
+		Logger::getInstance()->log("[RenderComponentEntity] material for subentity"+Ogre::StringConverter::toString(i)+" DONE");
 
 	}
 	//for ( ; i < mEntity->getNumSubEntities(); i++)
@@ -279,12 +284,19 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)
 {
 	unsigned int i;
-	
+			Logger::getInstance()->log("[RenderComponentEntity] INIT CHANGEWORLDMATERIALS");
+
 	Ogre::Entity * pOtherEntity;
 
 	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
 	pOtherEntity=pOtherComponentEntity->getEntity();
+
+	if(!pOtherEntity)
+	{
+		initChangeWorldMaterials(tChangeWorldMaterialParameters);
+		return;
+	}
 
 	mChangeWorldMaterials.clear();
 
@@ -292,6 +304,8 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 
 	for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
 	{
+		Logger::getInstance()->log("[RenderComponentEntity] material for subentity"+Ogre::StringConverter::toString(i)+" creating");
+
 		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
 		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
@@ -307,6 +321,7 @@ void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParamet
 		//{
 		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 		//}
+		Logger::getInstance()->log("[RenderComponentEntity] material for subentity"+Ogre::StringConverter::toString(i)+" DONE");
 
 	}
 	//for ( ; i < mEntity->getNumSubEntities(); i++)
