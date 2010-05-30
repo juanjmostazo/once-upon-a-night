@@ -159,6 +159,9 @@ namespace OUAN
 
 		///Audio params
 		TAudioComponentMap tAudioComponentParameters;
+
+		//ChangeWorld parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

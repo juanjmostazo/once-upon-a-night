@@ -169,8 +169,8 @@ void ChangeWorldMaterial::createMaterialErosionTransparent(TChangeWorldMaterialP
 	pass=technique->getPass(0);
 	setPassParameters(pass,original_material);
 
-	pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-	pass->setDepthWriteEnabled(false);
+	pass->setAlphaRejectSettings(Ogre::CMPF_GREATER,128);
+	pass->setDepthWriteEnabled(true);
 	pass->setTransparentSortingEnabled(true);
 
 	texture=pass->getTextureUnitState(0);

@@ -2071,6 +2071,11 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectPortalParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectPortalParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
+
 	}
 	catch( std::string error )
 	{
@@ -2447,6 +2452,10 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 		//Get PhysicsComponentCharacter
 		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 
+		//Get ChangeWorldMaterialParameters
+		tGameObjectTentetiesoParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
+
 	}
 	catch( std::string error )
 	{
@@ -2784,6 +2793,10 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 		tGameObjectTripolloDreamsParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectTripolloDreamsParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
 	}
 	catch( std::string error )
 	{
@@ -2889,6 +2902,11 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 			tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
+
+		//Get ChangeWorldMaterialParameters
+		tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+
+
 	}
 	catch( std::string error )
 	{

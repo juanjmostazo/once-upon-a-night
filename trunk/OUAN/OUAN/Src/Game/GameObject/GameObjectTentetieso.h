@@ -81,6 +81,8 @@ namespace OUAN
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
+		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
 
 		bool hasPositionalComponent() const;
@@ -133,6 +135,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
+
+		//ChangeWorld parameters
+		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 
 	};
 

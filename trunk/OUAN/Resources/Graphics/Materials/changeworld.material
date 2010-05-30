@@ -168,8 +168,8 @@ material erosion_transparent
 	{
 		pass
 		{
-		          scene_blend alpha_blend
-		          depth_write off
+		          alpha_rejection greater 128
+		          depth_write on
 	                      vertex_program_ref erosion_vs
 	                      {
 	                      }

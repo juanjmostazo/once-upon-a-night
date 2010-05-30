@@ -123,7 +123,7 @@ void GameObjectViewport::changeWorldStarted(int newWorld)
 	if (!isEnabled()) return;
 
 	//Apply motion blur effect when started changing world
-	setMotionBlurEffectIfPossible(newWorld, true);
+	//setMotionBlurEffectIfPossible(newWorld, true);
 
 	switch(newWorld)
 	{

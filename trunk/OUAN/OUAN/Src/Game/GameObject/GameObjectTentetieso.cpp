@@ -99,21 +99,34 @@ void GameObjectTentetieso::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);			
+			mRenderComponentEntityDreams->setVisible(false);	
+			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 			break;
 		default:break;
 	}
+
+	mRenderComponentEntityDreams->setOriginalMaterials();
+	mRenderComponentEntityNightmares->setOriginalMaterials();
+
 }
 
 void GameObjectTentetieso::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentEntityDreams->setChangeWorldMaterials();
+	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
+	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -133,12 +146,52 @@ void GameObjectTentetieso::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
+		mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
+		mRenderComponentEntityDreams->setChangeWorldFactor(perc);
 		break;
 	default:
 		break;
 	}
+}
+
+void GameObjectTentetieso::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+{
+	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
+}
+
+void GameObjectTentetieso::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
+{
+	double fraction=0.25f;
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentEnemy->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
+		else if(mLogicComponentEnemy->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentEnemy->existsInDreams())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
+		}
+		else if(mLogicComponentEnemy->existsInNightmares())
+		{
+			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
+		}
+		break;
+	default:
+		break;
+	}	
 }
 
 void GameObjectTentetieso::reset()
