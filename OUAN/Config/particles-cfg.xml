@@ -2,7 +2,7 @@
 <Configuration>
   <Options>
     <Option key="PORTAL_CHANGE_WORLD">PU/changeworld01</Option>
-	<Option key="ONY_LAND">PUMediaPack/SpiralStars</Option>
+	<Option key="ONY_LAND">PU/any_jump</Option>
 	<Option key="PILLOW_ATTACK">PUMediaPack/Atomicity2</Option>
   </Options>
 </Configuration>
