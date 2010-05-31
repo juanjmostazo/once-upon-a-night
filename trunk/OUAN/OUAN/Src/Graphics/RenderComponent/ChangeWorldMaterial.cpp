@@ -194,7 +194,7 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 	Ogre::TextureUnitState * texture;
 	Ogre::GpuProgramParametersSharedPtr params;
 
-	Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" "+Ogre::StringConverter::toString(Ogre::Real(factor)));
+	//Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" "+Ogre::StringConverter::toString(Ogre::Real(factor)));
 
 	material=findMaterial(mName);
 	if(!material.isNull())
@@ -222,7 +222,7 @@ void ChangeWorldMaterial::setChangeWorldFactor(double factor)
 			break;
 		}
 	}
-	Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" DONE");
+	//Logger::getInstance()->log("[ChangeWorldMaterial] setChangeWorldFactor "+mName+" DONE");
 
 }
 

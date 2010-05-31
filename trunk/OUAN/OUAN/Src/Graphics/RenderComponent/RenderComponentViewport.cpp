@@ -96,16 +96,16 @@ void RenderComponentViewport::initEffects()
 {
 	Ogre::CompositorInstance* inst;
 	
-	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->BLOOM);
+	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->BLOOM,0);
 	inst->setEnabled(false);
 	
-	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->HDR);
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->HDR,1);
 	inst->setEnabled(false);
 	
-	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->RADIAL_BLUR);
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->RADIAL_BLUR,2);
 	inst->setEnabled(false);
 
-	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR);
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR,3);
 	inst->setEnabled(false);
 
 	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,"ssao");
@@ -139,13 +139,14 @@ void RenderComponentViewport::setBloomAmount(double perc)
 	//Ogre::Pass * pass;
 	//Ogre::GpuProgramParametersSharedPtr params;
 
-	//material=Ogre::MaterialManager::getSingleton().getByName("Ogre/Compositor/BloomBlend2");
+	////perc=Ogre::Math::Clamp<double>(perc,0.0f,1.0f);
+
+	//material=Ogre::MaterialManager::getSingleton().getByName(mRenderSubsystem->BLOOM_BLEND_MATERIAL);
 
 	//technique=material->getTechnique(0);
-	//pass=technique->getPass(1);
+	//pass=technique->getPass(0);
 	//params = pass->getFragmentProgramParameters();
-	//params->setNamedConstant("BlurWeight",Ogre::Real(perc));
-
+	//params->setNamedConstant("BlurWeight",Ogre::Real(mRenderSubsystem->MAX_BLOOM_BLEND*perc));
 }
 
 TRenderComponentViewportParameters::TRenderComponentViewportParameters() : TRenderComponentParameters()

@@ -171,6 +171,7 @@ bool RenderComponentWater::isAnimated() const
 
 void RenderComponentWater::update(double elapsedTime)
 {
+	unsigned int i;
 	RenderComponent::update(elapsedTime);
 
 	//if (mCurrentAnimation && mCurrentAnimation->getEnabled())
@@ -193,6 +194,11 @@ void RenderComponentWater::update(double elapsedTime)
  //   //}
 	//mGameWorldManager->getGameObjectOny()->getRenderComponentWater()->setVisible(false);
  //   mCameraManager->getActiveCamera()->enableReflection(mReflectionPlane);
+
+	for ( i=0; i<mChangeWorldMaterials.size(); i++)
+	{
+		mChangeWorldMaterials[i]->update(elapsedTime);
+	}
 
 }
 
@@ -305,11 +311,11 @@ void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParamete
 		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
 			mEntity->getSubEntity(i)->getMaterial());
 
-		if(materialCreated)
-		{
+		//if(materialCreated)
+		//{
 			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
 			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-		}
+		//}
 		//else
 		//{
 		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
@@ -320,11 +326,10 @@ void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParamete
 	//{
 	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
-
 	setChangeWorldMaterials();
 }
 
-void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentWaterPtr pOtherComponentEntity)
+void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentWaterPtr pOtherComponentWater)
 {
 	unsigned int i;
 	
@@ -332,7 +337,7 @@ void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParamete
 
 	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
-	pOtherEntity=pOtherComponentEntity->getEntity();
+	pOtherEntity=pOtherComponentWater->getEntity();
 
 	mChangeWorldMaterials.clear();
 
