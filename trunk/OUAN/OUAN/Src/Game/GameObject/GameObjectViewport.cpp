@@ -34,7 +34,7 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 	{
 	case DREAMS:
 
-		mRenderComponentViewport->setBloomAmount(0.0f);
+		//mRenderComponentViewport->setBloomAmount(0.0f);
 		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS);
 		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS);
 		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS);
@@ -44,7 +44,7 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 		break;
 	case NIGHTMARES:
 
-		mRenderComponentViewport->setBloomAmount(1.0f);
+		//mRenderComponentViewport->setBloomAmount(1.0f);
 		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES);
 		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES);
 		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
@@ -78,14 +78,14 @@ void GameObjectViewport::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentViewport->setBloomAmount(1-perc);
-		setBloomEffectIfPossible(DREAMS,false);
-		setBloomEffectIfPossible(DREAMS,true);
+		//mRenderComponentViewport->setBloomAmount(1-perc);
+		//setBloomEffectIfPossible(DREAMS,false);
+		//setBloomEffectIfPossible(DREAMS,true);
 		break;
 	case NIGHTMARES:
-		mRenderComponentViewport->setBloomAmount(perc);
-		setBloomEffectIfPossible(NIGHTMARES,false);
-		setBloomEffectIfPossible(NIGHTMARES,true);
+		//mRenderComponentViewport->setBloomAmount(perc);
+		//setBloomEffectIfPossible(NIGHTMARES,false);
+		//setBloomEffectIfPossible(NIGHTMARES,true);
 		break;
 	default:
 		break;
