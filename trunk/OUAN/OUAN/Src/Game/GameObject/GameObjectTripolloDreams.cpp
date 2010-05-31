@@ -500,7 +500,7 @@ bool GameObjectTripolloDreams::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTripolloDreams::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //
 void GameObjectTripolloDreams::processAnimationEnded(const std::string& animationName)

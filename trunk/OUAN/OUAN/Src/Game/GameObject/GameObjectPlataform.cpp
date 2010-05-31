@@ -234,7 +234,7 @@ bool GameObjectPlataform::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectPlataform::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectPlataformParameters::TGameObjectPlataformParameters() : TGameObjectParameters()

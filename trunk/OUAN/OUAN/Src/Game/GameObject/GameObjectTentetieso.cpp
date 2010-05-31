@@ -263,7 +263,7 @@ bool GameObjectTentetieso::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTentetieso::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
 bool GameObjectTentetieso::hasBeenHit() const

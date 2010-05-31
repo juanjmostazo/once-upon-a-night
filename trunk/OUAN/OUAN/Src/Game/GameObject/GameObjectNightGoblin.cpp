@@ -203,7 +203,7 @@ bool GameObjectNightGoblin::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectNightGoblin::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectNightGoblinParameters::TGameObjectNightGoblinParameters() : TGameObjectParameters()

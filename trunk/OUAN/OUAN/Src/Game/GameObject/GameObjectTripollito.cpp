@@ -204,7 +204,7 @@ bool GameObjectTripollito::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTripollito::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripollitoParameters::TGameObjectTripollitoParameters() : TGameObjectParameters()

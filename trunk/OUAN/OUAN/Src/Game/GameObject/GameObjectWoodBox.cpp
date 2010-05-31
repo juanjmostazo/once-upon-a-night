@@ -419,7 +419,7 @@ bool GameObjectWoodBox::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectWoodBox::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
 void GameObjectWoodBox::updatePhysicsComponents(double elapsedSeconds)

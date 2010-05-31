@@ -201,7 +201,7 @@ bool GameObjectSnakeCreeper::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectSnakeCreeper::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectSnakeCreeperParameters::TGameObjectSnakeCreeperParameters() : TGameObjectParameters()

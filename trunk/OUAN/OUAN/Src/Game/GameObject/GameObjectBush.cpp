@@ -234,7 +234,7 @@ bool GameObjectBush::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectBush::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

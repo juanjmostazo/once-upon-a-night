@@ -203,7 +203,7 @@ bool GameObjectCryKing::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()

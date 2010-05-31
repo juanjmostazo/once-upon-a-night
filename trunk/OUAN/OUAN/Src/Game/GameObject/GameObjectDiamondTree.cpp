@@ -296,7 +296,7 @@ bool GameObjectDiamondTree::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDiamondTree::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
 TGameObjectDiamondContainer* GameObjectDiamondTree::getDiamonds()
