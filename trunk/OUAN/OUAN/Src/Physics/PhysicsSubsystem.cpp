@@ -167,7 +167,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Logger::getInstance()->log("Advancing " + elapsedTime + " seconds");
 	*/
-
+	Logger::getInstance()->log("[PHYSICS UPDATE]");
 	unsigned int i;
 
 	if (mApp)

@@ -383,7 +383,7 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 		pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectClockPiece->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectClockPieceParameters.tChangeWorldMaterialParameters);
+	//pGameObjectClockPiece->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectClockPieceParameters.tChangeWorldMaterialParameters);
 
 	//Create PhysicsComponent
 	pGameObjectClockPiece->setPhysicsComponentVolumeBox(
@@ -561,7 +561,7 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectDiamond->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectDiamondParameters.tChangeWorldMaterialParameters);
+	//pGameObjectDiamond->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectDiamondParameters.tChangeWorldMaterialParameters);
 
 
 	//Create PhysicsComponent
@@ -880,7 +880,7 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 		pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectHeart->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectHeartParameters.tChangeWorldMaterialParameters);
+	//pGameObjectHeart->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectHeartParameters.tChangeWorldMaterialParameters);
 
 	//Create PhysicsComponent
 	pGameObjectHeart->setPhysicsComponentVolumeBox(
@@ -926,7 +926,7 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 		pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectItem1UP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItem1UPParameters.tChangeWorldMaterialParameters);
+	//pGameObjectItem1UP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItem1UPParameters.tChangeWorldMaterialParameters);
 
 
 	//Create PhysicsComponent
@@ -972,7 +972,7 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 		pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectItemMaxHP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItemMaxHPParameters.tChangeWorldMaterialParameters);
+	//pGameObjectItemMaxHP->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectItemMaxHPParameters.tChangeWorldMaterialParameters);
 
 	//Create PhysicsComponent
 	pGameObjectItemMaxHP->setPhysicsComponentVolumeBox(
@@ -1528,7 +1528,7 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 		mComponentFactory->createRenderComponentEntity(tGameObjectScaredPlantParameters.name,
 		pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters));
 
-	pGameObjectScaredPlant->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectScaredPlantParameters.tChangeWorldMaterialParameters);
+	//pGameObjectScaredPlant->getRenderComponentEntityDreams()->initChangeWorldMaterials(tGameObjectScaredPlantParameters.tChangeWorldMaterialParameters);
 
 
 	//Create PhysicsComponent
@@ -1877,7 +1877,7 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters));
 
 	//Init ChangeWorldMaterials
-	pGameObjectStoryBook->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectStoryBookParameters.tChangeWorldMaterialParameters);
+	//pGameObjectStoryBook->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectStoryBookParameters.tChangeWorldMaterialParameters);
 
 
 	//Create PhysicsComponent

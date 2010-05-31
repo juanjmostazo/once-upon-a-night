@@ -72,6 +72,9 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentEntityDreams->setOriginalMaterials();
+	mRenderComponentEntityNightmares->setOriginalMaterials();
+
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -97,6 +100,8 @@ void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentEntityDreams->setChangeWorldMaterials();
+	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
 	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 

@@ -155,24 +155,25 @@ void Application::go()
 	unsigned long nextGameTicks = loopTimer.getMicroseconds();
 	unsigned long lastTick=nextGameTicks;
 	unsigned long currentTime;
-	int loops;
 
 	while ( continueRunning )
 	{
-		loops=0;
-		while((currentTime=loopTimer.getMicroseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
-		{
+		//int loops=0;
+		//while((currentTime=loopTimer.getMicroseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
+		//{
 			Ogre::WindowEventUtilities::messagePump();
 			ControlInputManager::capture();
+
+			currentTime=loopTimer.getMicroseconds();
 
 			mGUISubsystem->injectTimePulse((currentTime-lastTick)*0.000001);
 			mStateManager->getCurrentState()->handleEvents();
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
 
-			nextGameTicks+=SKIP_TICKS;
-			loops++;
+			//nextGameTicks+=SKIP_TICKS;
+			//loops++;
 			lastTick=currentTime;
-		}
+		//}
 
 		bool windowClosed = mRenderSubsystem->isWindowClosed();
 		continueRunning &= ! windowClosed;
