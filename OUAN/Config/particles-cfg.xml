@@ -3,6 +3,6 @@
   <Options>
     <Option key="PORTAL_CHANGE_WORLD">PU/changeworld01</Option>
 	<Option key="ONY_LAND">PU/any_jump</Option>
-	<Option key="PILLOW_ATTACK">PUMediaPack/Atomicity2</Option>
+	<Option key="PILLOW_ATTACK">PU/feather</Option>
   </Options>
 </Configuration>

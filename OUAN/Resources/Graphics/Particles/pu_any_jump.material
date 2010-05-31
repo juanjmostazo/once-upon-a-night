@@ -20,7 +20,7 @@ material PU/any_jump
 
             texture_unit
             {
-                texture any_jump.png
+                texture pu_any_jump.png
             }
         }
     }

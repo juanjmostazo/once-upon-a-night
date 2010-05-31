@@ -1,0 +1,48 @@
+system PU/feather
+{
+	scale_velocity                              0.2
+    scale                                       0.05 0.05 0.05
+    technique Technique3
+    {
+        visual_particle_quota                   5
+        emitted_emitter_quota                   1
+        material                                PU/feather
+        spatial_hashing_update_interval         -2
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter14
+        {
+            time_to_live                        dyn_random
+            {
+                min                             0.2
+                max                             0.4
+            }
+            mass                                dyn_random
+            {
+                min                             1
+                max                             2
+            }
+        }
+        observer                                OnTime Observer5
+        {
+            observe_interval                    1
+            observe_until_event                 true
+            handler                             DoStopSystem Handler8
+            {
+            }
+            on_time                             less_than 2
+        }
+    }
+    technique Technique10
+    {
+        material                                PU/feather
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter15
+        {
+            direction                           0 -1 -1
+        }
+    }
+}
