@@ -18,7 +18,7 @@ system PU/changeworld01
             emission_rate                       3
             angle                               0
             velocity                            100
-            duration                            4
+            duration                            3
             emits                               emitter_particle CircleEmitter
         }
         emitter                                 Circle CircleEmitter
@@ -39,7 +39,7 @@ system PU/changeworld01
             keep_local                          true
             direction                           0 0 0
             colour                              0.7 0.8 1 1
-            circle_em_radius                    12
+            circle_em_radius                    18
         }
         affector                                Vortex 
         {

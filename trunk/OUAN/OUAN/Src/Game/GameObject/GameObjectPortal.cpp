@@ -283,6 +283,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 				{
 					getGameWorldManager()->changeWorld();				
 					mLogicComponentUsable->setIsActivated(false);
+					mRenderComponentParticleSystemChangeWorld->stop();
 					mRenderComponentParticleSystemChangeWorld->start();
 				}
 			}
