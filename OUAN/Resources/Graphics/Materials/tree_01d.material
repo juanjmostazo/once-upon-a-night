@@ -12,16 +12,6 @@ material tree01_d
                     colour_op modulate
                 }
             }
-            pass
-            {
-                scene_blend modulate
-                texture_unit
-                {
-                    texture lightmap#tree1.dds
-                    tex_coord_set 0
-                    colour_op modulate
-                }
-            }
         }
 }
 

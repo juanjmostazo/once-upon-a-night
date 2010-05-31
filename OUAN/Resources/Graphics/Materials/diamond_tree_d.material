@@ -1,51 +1,17 @@
 
-material Scene_Material
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.7 1
-			specular 1 1 1 1 50
-		}
-
-	}
-
-}
-
-
-
-material diamondtree_d
-{
-
-material diamond_tree_n
+material diamond_tree_d
 {
         technique
         {
             pass
             {
+	  scene_blend alpha_blend
                 texture_unit
                 {
                     texture diamond_tree_d.dds
-                    tex_coord_set 0 
-                    colour_op modulate
-                }
-            }
-            pass
-            {
-                scene_blend modulate
-                texture_unit
-                {
-                    texture lightmap#diamondtree_d.dds
-                    tex_coord_set 0
-                    colour_op modulate
                 }
             }
         }
-
-}
-
 }
 
 

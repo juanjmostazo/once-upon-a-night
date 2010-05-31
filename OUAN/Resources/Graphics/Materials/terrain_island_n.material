@@ -10,7 +10,7 @@ material terrain_island2_n
 
 			texture_unit
 			{
-				texture terrain_island2_n.tga
+				texture terrain_island2_n.dds
 			}
 		}
 

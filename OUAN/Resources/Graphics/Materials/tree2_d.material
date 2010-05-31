@@ -8,20 +8,10 @@ material tree2_d
                 texture_unit
                 {
                     texture tree2_d_texture.dds
-                    tex_coord_set 0 
-                    colour_op modulate
+
                 }
             }
-            pass
-            {
-                scene_blend modulate
-                texture_unit
-                {
-                    texture lightmap#tree2.dds
-                    tex_coord_set 0
-                    colour_op modulate
-                }
-            }
+
         }
 }
 
