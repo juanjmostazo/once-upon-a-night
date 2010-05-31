@@ -277,28 +277,20 @@ void GameObjectWater::updateLogic(double elapsedSeconds)
 void GameObjectWater::update(double elapsedTime)
 {
 	GameObject::update(elapsedTime);
-	switch(mGameWorldManager->getWorld())
+	if(mLogicComponent->existsInDreams())
 	{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentWaterDreams->update(elapsedTime);
-			}
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentWaterNightmares->update(elapsedTime);
-			}
-			break;
-		default:break;
+		mRenderComponentWaterDreams->update(elapsedTime);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentWaterNightmares->update(elapsedTime);
 	}
 }
 
 void GameObjectWater::postUpdate()
 {
 	GameObject::postUpdate();
-	switch(mGameWorldManager->getWorld())
+	switch(mWorld)
 	{
 		case DREAMS:	
 			if(mLogicComponent->existsInDreams())

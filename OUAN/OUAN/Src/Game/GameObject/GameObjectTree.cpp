@@ -88,7 +88,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}
 			else
 			{
@@ -97,7 +97,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}
 			break;
 		default:

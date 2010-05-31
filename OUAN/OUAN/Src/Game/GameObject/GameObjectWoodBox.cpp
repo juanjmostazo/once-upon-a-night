@@ -368,7 +368,7 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 		mPhysicsComponentVolumeBox->setPosition(mPhysicsComponentSimpleBox->getNxOgrePosition());
 	}
 
-	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
 

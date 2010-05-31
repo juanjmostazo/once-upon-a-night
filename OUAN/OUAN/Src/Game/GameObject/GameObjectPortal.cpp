@@ -235,7 +235,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 	if (isEnabled())
 	{
-		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 
