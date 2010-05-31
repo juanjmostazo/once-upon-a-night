@@ -9,7 +9,7 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
-		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting);
+		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager);
 
 		void update(double elapsedTime);
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
@@ -23,13 +23,20 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 
 		void clear();
+
+		void setChangeWorldMaxDistance();
+		void setOriginalMaxDistance();
 	private:
 		Ogre::SceneManager * mSceneManager;
 		RayCastingPtr mRayCasting;
 		RenderComponentPositionalPtr target;
+		GameWorldManagerPtr mGameWorldManager;
+		RenderSubsystemPtr mRenderSubsystem;
 
 		Ogre::Vector3 initialDirection;
 		double maxDistance;
+		double originalMaxDistance;
+		double maxDistanceChangeWorld;
 		double currentDistance;
 		double height;
 
@@ -69,6 +76,8 @@ namespace OUAN
 		double maxYMovementPerFrame;
 		double minCameraCenterRotX;
 		double maxCameraCenterRotX;
+		double mMinCameraRotationMotionBlurActivation;
+		double mMinCameraRotationMotionBlurDisactivation;
 
 		//transparent collision objects
 		TransparentEntityManagerPtr mTransparentEntityManager;
@@ -94,7 +103,7 @@ namespace OUAN
 
 		Ogre::Vector3 calculateCameraPosition(double distance,bool y_correction=true,bool applyCollisionMargin=false);
 		Ogre::Vector3 calculateCameraLookAt();
-
+		void calculateMotionBlur(double elapsedTime);
 
 		bool calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt,Ogre::uint32 & collisionType);
 

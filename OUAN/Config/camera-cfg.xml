@@ -6,6 +6,7 @@
     <Option key="INITIAL_DIRECTION_Z">-1</Option>
     <Option key="MAX_COLLISION_Y_MARGIN">11.5</Option>
     <Option key="MAX_DISTANCE">93</Option>
+    <Option key="MAX_DISTANCE_CHANGEWORLD">200</Option>
     <Option key="MIN_DISTANCE">50</Option>
     <Option key="TARGET_HEIGHT">17</Option>
     <Option key="SPEED_X">0.04</Option>
@@ -28,5 +29,7 @@
     <Option key="MAX_CAMERA_CENTER_ROT_X">20</Option>
     <Option key="MIN_ALPHA_BLENDING">0.5</Option>
     <Option key="ALPHA_BLENDING_SPEED">1.5</Option>
+    <Option key="MIN_CAMERA_ROTATION_MOTION_BLUR_ACTIVATION">1</Option>
+    <Option key="MIN_CAMERA_ROTATION_MOTION_BLUR_DISACTIVATION">0.5</Option>
   </Options>
 </Configuration>

@@ -122,14 +122,16 @@ bool Application::init()
 	mTrajectoryManager.reset(new TrajectoryManager());
 	mTrajectoryManager->init(mRenderSubsystem);
 
+	mGameWorldManager.reset(new GameWorldManager());
+	mGameWorldManager->init(this_);
+
 	mCameraManager.reset(new CameraManager());
-	mCameraManager->init(mRenderSubsystem,mTrajectoryManager,mPhysicsSubsystem,mRayCasting);
+	mCameraManager->init(mRenderSubsystem,mTrajectoryManager,mPhysicsSubsystem,mRayCasting,mGameWorldManager);
 
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);
 
-	mGameWorldManager.reset(new GameWorldManager());
-	mGameWorldManager->init(this_);
+
 
 	mLogicSubsystem.reset(new LogicSubsystem());
 	mLogicSubsystem->init(this_);
