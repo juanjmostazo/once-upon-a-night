@@ -1,20 +1,20 @@
 
-material terrain_island1
+material terrain_2
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
 
 			texture_unit
 			{
-				texture terrain1_d.dds
+				texture terrain2_d.dds
 			}
 		}
 
 	}
 
 }
-
-
