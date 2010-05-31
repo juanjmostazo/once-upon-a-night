@@ -491,28 +491,8 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 		//Create the mesh file
 		if (!MeshManager::getSingleton().resourceExists(meshfile))
 		{
-			if (prepareForNormalMapping)
-			{
-				Ogre::MeshPtr mesh=Ogre::MeshManager::getSingleton().load(
-					meshfile,
-					Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-					Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY,
-					Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
-					true,true);
-						
-				// Build tangent vectors, all our meshes use only 1 texture coordset 
-				// Note we can build into VES_TANGENT now (SM2+)
-				unsigned short src, dest;
-				if (!mesh->suggestTangentVectorBuildParams(Ogre::VES_TANGENT, src, dest))
-				{
-					mesh->buildTangentVectors(Ogre::VES_TANGENT, src, dest);
-					// Second mode cleans mirrored / rotated UVs but requires quality models
-					//pMesh->buildTangentVectors(VES_TANGENT, src, dest, true, true);
-				}
-			}
-			else
-				//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
-				MeshManager::getSingleton().load(meshfile,"General");
+			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
+			MeshManager::getSingleton().load(meshfile,"General");
 		}
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -542,7 +522,7 @@ void RenderSubsystem::initMaterials()
 			}
 		}
 	}
-
+	//TODO: DO THIS PROPERLY
 	//LOAD DECAL TEXTURES
 	Ogre::TextureManager::getSingleton().load("FlashlightDecal02.png","General");
 	Ogre::TextureManager::getSingleton().load("Decal_filter.png","General");
@@ -769,7 +749,7 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 	try
 	{
 		//Create meshfile
-		createMeshFile(tRenderComponentEntityParameters.meshfile,tRenderComponentEntityParameters.prepareForNormalMapping);
+		createMeshFile(tRenderComponentEntityParameters.meshfile);
 
 		//create entity and set its parameters
 		pEntity = mSceneManager->createEntity(name, tRenderComponentEntityParameters.meshfile);
