@@ -99,7 +99,8 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares;
 		/// Quad Halo
 		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
 		/// Physics information
@@ -148,10 +149,16 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set Particle Systems
-		void setRenderComponentParticleSystemLand(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLand);
+		void setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams);
 
 		/// Get Particle Systems
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLand() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandDreams() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandNightmares() const;
 
 		/// Set Quad Halo
 		void setRenderComponentQuadHalo(RenderComponentQuadHaloPtr mRenderComponentQuadHalo);

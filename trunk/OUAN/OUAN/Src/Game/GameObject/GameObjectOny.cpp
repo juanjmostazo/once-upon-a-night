@@ -51,14 +51,24 @@ RenderComponentEntityPtr GameObjectOny::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
-void GameObjectOny::setRenderComponentParticleSystemLand(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLand)
+void GameObjectOny::setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandDreams)
 {
-	mRenderComponentParticleSystemLand = pRenderComponentParticleSystemLand;
+	mRenderComponentParticleSystemLandDreams = pRenderComponentParticleSystemLandDreams;
 }
 
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLand() const
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandDreams() const
 {
-	return mRenderComponentParticleSystemLand;
+	return mRenderComponentParticleSystemLandDreams;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandNightmares)
+{
+	mRenderComponentParticleSystemLandNightmares = pRenderComponentParticleSystemLandNightmares;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandNightmares() const
+{
+	return mRenderComponentParticleSystemLandNightmares;
 }
 
 void GameObjectOny::setRenderComponentQuadHalo(RenderComponentQuadHaloPtr pRenderComponentQuadHalo)
@@ -378,7 +388,14 @@ void GameObjectOny::postUpdate()
 
 			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 			{
-				mRenderComponentParticleSystemLand->start();
+				if (mGameWorldManager->getWorld() == DREAMS)
+				{
+					mRenderComponentParticleSystemLandDreams->start();
+				}
+				else if (mGameWorldManager->getWorld() == NIGHTMARES)
+				{
+					mRenderComponentParticleSystemLandNightmares->start();
+				}
 			}
 		}
 		else

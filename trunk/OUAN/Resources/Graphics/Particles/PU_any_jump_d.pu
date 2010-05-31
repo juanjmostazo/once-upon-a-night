@@ -1,0 +1,44 @@
+system PU/any_jump_d
+{
+    scale_velocity                              0.5
+    scale                                       0.1 0.1 0.1
+    technique Technique43
+    {
+        visual_particle_quota                   10
+        emitted_emitter_quota                   20
+        material                                PU/any_jump_d
+        spatial_hashtable_size                  2
+        renderer                                Billboard
+        {
+            render_queue_group                  100
+            common_direction                    1 1 1
+        }
+        emitter                                 Circle Emitter3
+        {
+            emission_rate                       8
+            time_to_live                        dyn_random
+            {
+                min                             0.5
+                max                             1
+            }
+            mass                                2
+            duration                            1
+        }
+        affector                                Randomiser Affector119
+        {
+        }
+        observer                                OnTime Observer1
+        {
+            observe_interval                    13
+            handler                             DoStopSystem Handler1
+            {
+            }
+            on_time                             greater_than 2
+        }
+        observer                                OnRandom Observer2
+        {
+            observe_particle_type               technique_particle
+            observe_interval                    9
+        }
+    }
+}
