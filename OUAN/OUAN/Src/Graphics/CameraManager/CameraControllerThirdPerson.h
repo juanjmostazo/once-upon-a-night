@@ -38,7 +38,13 @@ namespace OUAN
 		double originalMaxDistance;
 		double maxDistanceChangeWorld;
 		double currentDistance;
-		double height;
+
+		double orignalHeight;
+		double targetHeight;
+		double currentHeight;
+		double changeWorldHeight;
+		double heightSpeed;
+		double heightMargin;
 
 		double mMaxCollisionYMargin;
 		double mCurrentCollisionMargin;
@@ -49,6 +55,7 @@ namespace OUAN
 		double minDistance;
 
 		double collisionDisplacementDistance;
+
 
 		//camera relative rotation to target's X axe
 		double rotX;
@@ -116,6 +123,7 @@ namespace OUAN
 		void rotateX(double rotation);
 		void rotateY(double rotation);
 
+		void calculateCurrentHeight(double elapsedTime);
 	};
 }
 
