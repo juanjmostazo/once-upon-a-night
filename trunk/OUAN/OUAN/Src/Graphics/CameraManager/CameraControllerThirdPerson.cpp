@@ -38,10 +38,28 @@ void CameraControllerThirdPerson::reset()
 void CameraControllerThirdPerson::setChangeWorldMaxDistance()
 {
 	maxDistance=maxDistanceChangeWorld;
+	targetHeight=changeWorldHeight;
 }
 void CameraControllerThirdPerson::setOriginalMaxDistance()
 {
 	maxDistance=originalMaxDistance;
+	targetHeight=orignalHeight;
+}
+
+void CameraControllerThirdPerson::calculateCurrentHeight(double elapsedTime)
+{
+	if(currentHeight<(targetHeight-heightMargin))
+	{
+		currentHeight+=elapsedTime*heightSpeed;
+	}
+	else if(currentHeight>(targetHeight+heightMargin))
+	{
+		currentHeight-=elapsedTime*heightSpeed;
+	}
+	else
+	{
+		currentHeight=targetHeight;
+	}
 }
 
 bool CameraControllerThirdPerson::loadConfig()
@@ -79,7 +97,18 @@ bool CameraControllerThirdPerson::loadConfig()
 		maxDistanceChangeWorld = atof(value.c_str());
 
 		config.getOption("TARGET_HEIGHT", value); 
-		height = atof(value.c_str());
+		orignalHeight = atof(value.c_str());
+		currentHeight=orignalHeight;
+		targetHeight=orignalHeight;
+
+		config.getOption("TARGET_HEIGHT_CHANGEWORLD", value); 
+		changeWorldHeight = atof(value.c_str());
+
+		config.getOption("TARGET_HEIGHT_SPEED", value); 
+		heightSpeed = atof(value.c_str());
+
+		config.getOption("TARGET_HEIGHT_MARGIN", value); 
+		heightMargin = atof(value.c_str());
 
 		config.getOption("SPEED_X", value); 
 		speedX = atof(value.c_str());
@@ -219,7 +248,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraLookAt()
 	Ogre::Vector3 cameraLookAt;
 
 	//Calculate Camera look at
-	cameraLookAt=target->getPosition()+Vector3(0,height,0);
+	cameraLookAt=target->getPosition()+Vector3(0,currentHeight,0);
 
 	return cameraLookAt;
 }
@@ -347,6 +376,8 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Vector3 newCameraPosition;
 	Vector3 cameraLookAt;
 	Ogre::uint32 collisionType;
+
+	calculateCurrentHeight(elapsedTime);
 
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
