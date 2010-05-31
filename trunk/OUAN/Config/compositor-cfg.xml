@@ -3,7 +3,7 @@
   <Options>
 	<Option key="BLOOM">Bloom</Option>
 	<Option key="BLOOM_ACTIVATED_ALWAYS_DREAMS">false</Option>
-	<Option key="BLOOM_ACTIVATED_ALWAYS_NIGHTMARES">true</Option>
+	<Option key="BLOOM_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
 	<Option key="MAX_BLOOM_BLEND">0.3</Option>
 	<Option key="BLOOM_BLEND_MATERIAL">Ogre/Compositor/BloomBlend2</Option>
 

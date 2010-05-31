@@ -327,7 +327,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 	{	
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 

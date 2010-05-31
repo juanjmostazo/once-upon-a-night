@@ -124,7 +124,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		//if(getName().compare("tripollo#12")!=0)
 		//	return;
 
-		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 

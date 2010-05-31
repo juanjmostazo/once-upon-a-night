@@ -79,7 +79,7 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
 
