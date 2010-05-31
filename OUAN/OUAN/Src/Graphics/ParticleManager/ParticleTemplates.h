@@ -22,8 +22,12 @@ namespace OUAN
 
 		/// Particle name values
 		std::string PORTAL_CHANGE_WORLD;
-		std::string ONY_LAND;
+		std::string ONY_LAND_DREAMS;
+		std::string ONY_LAND_NIGHTMARES;
 		std::string PILLOW_ATTACK;
+
+		/// General particle system params
+		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 
 	protected:
 		/// Singleton instance

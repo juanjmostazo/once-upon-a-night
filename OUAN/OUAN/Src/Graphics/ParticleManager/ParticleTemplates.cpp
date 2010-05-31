@@ -34,16 +34,23 @@ bool ParticleTemplates::loadConfig()
 	if (config.loadFromFile(PARTICLES_CFG))
 	{
 		config.getOption("PORTAL_CHANGE_WORLD", PORTAL_CHANGE_WORLD); 
-		config.getOption("ONY_LAND", ONY_LAND); 
+		config.getOption("ONY_LAND_DREAMS", ONY_LAND_DREAMS); 
+		config.getOption("ONY_LAND_NIGHTMARES", ONY_LAND_NIGHTMARES); 
 		config.getOption("PILLOW_ATTACK", PILLOW_ATTACK); 
+
+		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
+		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
 
 		success = true;
 	}
 	else
 	{
 		PORTAL_CHANGE_WORLD="";
-		ONY_LAND="";
+		ONY_LAND_DREAMS="";
+		ONY_LAND_NIGHTMARES="";
 		PILLOW_ATTACK="";
+
+		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE=1;
 
 		success = false;
 	}
