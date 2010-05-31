@@ -1,5 +1,5 @@
 
-material terrain02
+material terrain03
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material terrain02
 
 			texture_unit
 			{
-				texture terrain02.dds
+				texture terrain03.dds
 			}
 		}
 
