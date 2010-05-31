@@ -542,6 +542,10 @@ void RenderSubsystem::initMaterials()
 			}
 		}
 	}
+
+	//LOAD DECAL TEXTURES
+	Ogre::TextureManager::getSingleton().load("FlashlightDecal02.png","General");
+	Ogre::TextureManager::getSingleton().load("Decal_filter.png","General");
 }
 
 void RenderSubsystem::initTextures3D()

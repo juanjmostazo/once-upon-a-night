@@ -152,7 +152,7 @@ void ChangeWorldMaterial::createMaterialErosion(TChangeWorldMaterialParameters t
 	params->setNamedConstant("blending_tiling",mChangeWorldBlendingTiling);
 	params->setNamedConstant("tiling",mTiling);
 
-	Logger::getInstance()->log("mTiling "+mId+" "+Ogre::StringConverter::toString(mTiling));
+	//Logger::getInstance()->log("mTiling "+mId+" "+Ogre::StringConverter::toString(mTiling));
 
 	texture=pass->getTextureUnitState(2);
 	texture->setTextureName(tChangeWorldMaterialParameters.blending_texture);
