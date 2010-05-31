@@ -1,6 +1,9 @@
 #ifndef CameraManagerH_H
 #define CameraManagerH_H
 #include "../../OUAN.h"
+#include "../../Event/EventDefs.h"
+#include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	class CameraManager
@@ -9,7 +12,7 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
-		void init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting);
+		void init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting, GameWorldManagerPtr pGameWorldManager);
 
 		/// Free resources
 		void cleanUp();
@@ -57,6 +60,12 @@ namespace OUAN
 
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 
+
+		//register/unregister
+		void registerEventHandlers(EventManagerPtr evtMgr);
+		void unregisterEventHandlers(EventManagerPtr evtMgr);
+		void processChangeWorld(ChangeWorldEventPtr evt);
+
 	private:
 		/// GameWorldManager
 		GameWorldManagerPtr mGameWorldManager;
@@ -79,6 +88,19 @@ namespace OUAN
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 		CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 		CameraControllerTrajectory * mCameraControllerTrajectory;
+
+		//Changeworld functions and variables
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
+		double mChangeWorldTotalTime;
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		int mWorld;
+
 		
 	};
 }

@@ -12,7 +12,9 @@
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
-
+#include "../../Event/EventDefs.h"
+#include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/enable_shared_from_this.hpp>
 using namespace OUAN;
 using namespace Ogre;
 
@@ -26,10 +28,12 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting)
+void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager)
 {
 	mSceneManager= pRenderSubsystem->getSceneManager();
 	mTrajectoryManager=pTrajectoryManager;
+
+	mGameWorldManager=pGameWorldManager;
 
 	//Clear all cameras
 	camera.clear();
@@ -37,7 +41,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
 	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
-	mCameraControllerThirdPerson->init( pRenderSubsystem,pPhysicsSubsystem,pRayCasting);
+	mCameraControllerThirdPerson->init( pRenderSubsystem,pPhysicsSubsystem,pRayCasting,pGameWorldManager);
 	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
 	mCameraControllerFixedThirdPerson->init( pRenderSubsystem->getSceneManager());
 	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
@@ -58,6 +62,8 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	//Make it the active camera
 	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
+
+	registerEventHandlers(mGameWorldManager->getEventManager());
 }
 
 Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
@@ -115,7 +121,7 @@ void CameraManager::cleanUp()
 {
 	//Clear all cameras
 	camera.clear();
-
+	unregisterEventHandlers(mGameWorldManager->getEventManager());
 	delete mCameraControllerFirstPerson;
 }
 
@@ -260,6 +266,21 @@ Ogre::Viewport* CameraManager::setViewportParameters(Ogre::String name,TRenderCo
 void CameraManager::update(double elapsedTime)
 {
 	activeCameraController->update(elapsedTime);
+
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime+=elapsedTime;
+		if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+		{
+			changeToWorld(mWorld,1);
+			changeWorldFinished(mWorld);
+			mIsChangingWorld=false;
+		}
+		else
+		{
+			changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+		}
+	}
 }
 
 void CameraManager::processCameraRotation(Ogre::Vector2 cameraRotation)
@@ -326,4 +347,105 @@ void CameraManager::setCameraTarget(RenderComponentPositionalPtr target)
 	mCameraControllerThirdPerson->setTarget(target);
 	mCameraControllerFixedThirdPerson->setTarget(target);
 	mCameraControllerFixedFirstPerson->setTarget(target);
+}
+
+void CameraManager::activateChangeWorldFast()
+{
+	changeWorldFinished(mChangeWorldTotalTime);
+}
+
+void CameraManager::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		changeWorldStarted(mWorld);
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+	}
+
+}
+
+void CameraManager::changeWorldFinished(int newWorld)
+{
+	mCameraControllerThirdPerson->setOriginalMaxDistance();
+	switch(newWorld)
+	{
+	case DREAMS:
+
+		break;
+	case NIGHTMARES:
+
+		break;
+	default:
+		break;
+	}
+}
+
+void CameraManager::changeWorldStarted(int newWorld)
+{
+	mCameraControllerThirdPerson->setChangeWorldMaxDistance();
+	switch(newWorld)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void CameraManager::changeToWorld(int newWorld, double perc)
+{
+	switch(newWorld)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void CameraManager::registerEventHandlers(EventManagerPtr evtMgr)
+{
+	boost::shared_ptr<CameraManager> this_;
+	this_.reset(this);
+	if (evtMgr.get())
+	{
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<CameraManager,ChangeWorldEvent>(this_,&CameraManager::processChangeWorld));
+		evtMgr->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+	}
+}
+
+void CameraManager::unregisterEventHandlers(EventManagerPtr evtMgr)
+{
+	boost::shared_ptr<CameraManager> this_;
+	this_.reset(this);
+	if (evtMgr.get())
+	{
+		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<CameraManager,ChangeWorldEvent>(this_,&CameraManager::processChangeWorld));
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+	}
+}
+
+void CameraManager::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	mWorld=evt->getNewWorld();
+	mChangeWorldTotalTime=evt->time;
+
+	if (evt->fast)
+	{
+		activateChangeWorldFast();
+	}
+	else
+	{
+		activateChangeWorld();
+	}
 }

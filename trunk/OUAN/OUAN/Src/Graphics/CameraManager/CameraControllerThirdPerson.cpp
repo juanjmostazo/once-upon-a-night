@@ -5,6 +5,8 @@
 #include "../../RayCasting/RayCasting.h"
 #include "../../Loader/Configuration.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameObject/GameObjectViewport.h"
+#include "../../Game/GameWorldManager.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -31,6 +33,15 @@ void CameraControllerThirdPerson::reset()
 	currentCollisionTime=0;
 	currentDistance=maxDistance;
 	mCurrentCollisionMargin=0;
+}
+
+void CameraControllerThirdPerson::setChangeWorldMaxDistance()
+{
+	maxDistance=maxDistanceChangeWorld;
+}
+void CameraControllerThirdPerson::setOriginalMaxDistance()
+{
+	maxDistance=originalMaxDistance;
 }
 
 bool CameraControllerThirdPerson::loadConfig()
@@ -62,6 +73,10 @@ bool CameraControllerThirdPerson::loadConfig()
 
 		config.getOption("MAX_DISTANCE", value); 
 		maxDistance = atof(value.c_str());
+		originalMaxDistance=maxDistance;
+
+		config.getOption("MAX_DISTANCE_CHANGEWORLD", value); 
+		maxDistanceChangeWorld = atof(value.c_str());
 
 		config.getOption("TARGET_HEIGHT", value); 
 		height = atof(value.c_str());
@@ -120,6 +135,12 @@ bool CameraControllerThirdPerson::loadConfig()
 		config.getOption("MAX_CAMERA_CENTER_ROT_X", value); 
 		maxCameraCenterRotX = atof(value.c_str());
 
+		config.getOption("MIN_CAMERA_ROTATION_MOTION_BLUR_ACTIVATION", value); 
+		mMinCameraRotationMotionBlurActivation = atof(value.c_str());
+
+		config.getOption("MIN_CAMERA_ROTATION_MOTION_BLUR_DISACTIVATION", value); 
+		mMinCameraRotationMotionBlurDisactivation = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -131,14 +152,18 @@ bool CameraControllerThirdPerson::loadConfig()
 	return success;
 }
 
-void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting)
+void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager)
 {
 	mSceneManager = pRenderSubsystem->getSceneManager();
+
+	mRenderSubsystem = pRenderSubsystem;
 
 	mRayCasting = pRayCasting;
 
 	mTransparentEntityManager.reset(new TransparentEntityManager());
 	mTransparentEntityManager->init();
+
+	mGameWorldManager = pGameWorldManager;
 
 	CameraController::init(pRenderSubsystem->getSceneManager());
 }
@@ -300,6 +325,22 @@ void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedT
 	}
 }
 
+void CameraControllerThirdPerson::calculateMotionBlur(double elapsedTime)
+{
+	if((Ogre::Math::Abs(lastRotX)>=mMinCameraRotationMotionBlurActivation) || (Ogre::Math::Abs(lastRotY)>=mMinCameraRotationMotionBlurActivation))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,true);
+		Logger::getInstance()->log("MOTION BLUR ACTIVATED x "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotX))+" y "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotY)));
+
+	}
+	else if((Ogre::Math::Abs(lastRotX)<=mMinCameraRotationMotionBlurDisactivation) || (Ogre::Math::Abs(lastRotY)<=mMinCameraRotationMotionBlurDisactivation))
+	{
+		mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,false);
+		Logger::getInstance()->log("MOTION BLUR DIS-ACTIVATED x "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotX))+" y "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotY)));
+
+	}
+}
+
 void CameraControllerThirdPerson::update(double elapsedTime)
 {
 	Vector3 cameraCollisionPosition;
@@ -356,7 +397,14 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	{
 		mCorrectingCameraPosition=false;
 		currentCollisionTime=0;
-		currentDistance=calculateCameraReturningFromTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
+		if(currentDistance<=maxDistance)
+		{
+			currentDistance=calculateCameraReturningFromTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
+		}
+		else
+		{
+			currentDistance=calculateCameraMoveToTarget(currentDistance,mCamera->getPosition(),newCameraPosition,elapsedTime);
+		}
 	}
 
 	//set camera position
@@ -368,6 +416,8 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	mCamera->lookAt(cameraLookAt);
 
 	mTransparentEntityManager->update(elapsedTime);
+
+	calculateMotionBlur(elapsedTime);
 }
 
 void CameraControllerThirdPerson::clear()
