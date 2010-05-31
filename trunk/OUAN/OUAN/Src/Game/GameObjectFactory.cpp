@@ -1164,7 +1164,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-12,0));
+	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-12.5,0));
 
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
@@ -2311,7 +2311,7 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		pGameObjectTripolloDreams->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-9.7,0));
+	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-15,0));
 
 	//Create TrajectoryComponent
 	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(

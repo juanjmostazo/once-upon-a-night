@@ -128,7 +128,7 @@ POut diffuse_ps(
     float4 diffuseTex = tex2D(dMap, IN.uv);
     //float4 specTex = tex2D(sMap, IN.uv);
 
-    float3 diffuseContrib = (diffuseTex.rgb); //diffuse * lightDif0 *);
+    float3 diffuseContrib = (diffuse * lightDif0 * diffuseTex.rgb);
     float3 specularContrib = (specular * lightSpec0);// * specTex.rgb);
     float3 light0C = (diffuseContrib + specularContrib) * la * spot;
 
