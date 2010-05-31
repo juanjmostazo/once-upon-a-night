@@ -300,7 +300,7 @@ void RenderSubsystem::updateVisualDebugger()
 
 bool RenderSubsystem::render()
 {
-	Logger::getInstance()->log("[PHYSICS RENDER]");
+	//Logger::getInstance()->log("[PHYSICS RENDER]");
 	return mRoot->renderOneFrame();
 }
 

@@ -222,7 +222,7 @@ bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectProvisionalEntity::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

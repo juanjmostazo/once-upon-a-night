@@ -157,7 +157,7 @@ void PhysicsSubsystem::clear()
 		mNxOgreScene=NULL; 
 	}
 
-	Logger::getInstance()->log("[PHYSICS LEVEL CLEAR FINISHED]");
+	//Logger::getInstance()->log("[PHYSICS LEVEL CLEAR FINISHED]");
 }
 
 void PhysicsSubsystem::update(double elapsedSeconds)
@@ -168,7 +168,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	std::string elapsedTime = out.str();
 	Logger::getInstance()->log("Advancing " + elapsedTime + " seconds");
 	*/
-	Logger::getInstance()->log("[PHYSICS UPDATE]");
+	//Logger::getInstance()->log("[PHYSICS UPDATE]");
 	unsigned int i;
 
 	if (mApp)

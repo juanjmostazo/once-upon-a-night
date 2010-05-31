@@ -304,7 +304,7 @@ bool GameObjectPortal::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
 bool GameObjectPortal::hasAudioComponent() const

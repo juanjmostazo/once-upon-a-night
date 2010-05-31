@@ -212,7 +212,7 @@ bool GameObjectDragon::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDragon::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()

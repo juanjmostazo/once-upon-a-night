@@ -233,7 +233,7 @@ bool GameObjectDoor::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDoor::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
 

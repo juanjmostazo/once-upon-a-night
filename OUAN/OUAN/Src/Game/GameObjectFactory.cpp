@@ -1719,22 +1719,24 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->getRenderComponentEntityDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters,
 				gameObject->getRenderComponentEntityNightmares());
 		}
-		if (!gameObject->isUsingEntityNightmares())
+		else if (!gameObject->isUsingEntityNightmares() && !gameObject->isUsingEntityDreams())
 		{
-			gameObject->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+			gameObject->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters,
+				gameObject->getRenderComponentBillboardSetDreams());
+			gameObject->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters,
+				gameObject->getRenderComponentBillboardSetNightmares());
 		}
-		else
-		{
-			gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
-		}
-		if (!gameObject->isUsingEntityDreams())
-		{
-			gameObject->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
-		}
-		else
+		else if (gameObject->isUsingEntityDreams() && !gameObject->isUsingEntityNightmares())
 		{
 			gameObject->getRenderComponentEntityDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+			gameObject->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 		}
+		else if (!gameObject->isUsingEntityDreams() && gameObject->isUsingEntityNightmares())
+		{
+			gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+			gameObject->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
+		}
+
 
 	}
 	else if(gameObject->getLogicComponent()->existsInDreams())

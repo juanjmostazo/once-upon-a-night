@@ -212,7 +212,7 @@ bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTerrainTriangle::getEntityComponent() const
 {
-	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
 void GameObjectTerrainTriangle::update(double elapsedSeconds)
