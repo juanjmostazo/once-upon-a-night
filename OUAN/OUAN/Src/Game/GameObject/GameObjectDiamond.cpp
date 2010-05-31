@@ -1,4 +1,5 @@
 #include "GameObjectDiamond.h"
+#include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -314,6 +315,28 @@ bool GameObjectDiamond::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectDiamond::getEntityComponent() const
 {
 	return mRenderComponentEntity;
+}
+
+std::string& GameObjectDiamond::getParentDiamondTreeName()
+{
+	return mParentDiamondTreeName;
+}
+void GameObjectDiamond::setParentDiamondTreeName(const std::string& parentName)
+{
+	mParentDiamondTreeName=parentName;
+}
+
+GameObjectDiamondTreePtr GameObjectDiamond::getParentDiamondTree() const
+{
+	if (!mParentDiamondTree.get() && !mParentDiamondTreeName.empty())
+	{
+		return boost::dynamic_pointer_cast<GameObjectDiamondTree>(mGameWorldManager->getObject(mParentDiamondTreeName));
+	}
+	return GameObjectDiamondTreePtr();
+}
+void GameObjectDiamond::setParentDiamondTree(GameObjectDiamondTreePtr parent)
+{
+	mParentDiamondTree=parent;
 }
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {

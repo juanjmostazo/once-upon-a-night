@@ -82,6 +82,8 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 
+		void updatePhysicsComponents(double elapsedSeconds);
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);

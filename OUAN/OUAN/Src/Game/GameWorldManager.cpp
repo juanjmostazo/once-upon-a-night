@@ -344,6 +344,14 @@ TGameObjectUsableContainer * GameWorldManager::getGameObjectUsableContainer()
 {
 	return &mGameObjectUsableContainer;
 }
+TGameObjectDiamondContainer * GameWorldManager::getGameObjectDiamondContainer()
+{
+	return &mGameObjectDiamondContainer;
+}
+TGameObjectDiamondTreeContainer * GameWorldManager::getGameObjectDiamondTreeContainer()
+{
+	return &mGameObjectDiamondTreeContainer;
+}
 
 void GameWorldManager::clearContainers()
 {
@@ -385,6 +393,9 @@ void GameWorldManager::clearContainers()
 
 	EMPTY_VECTOR(TGameObjectUsableContainer,mGameObjectUsableContainer);
 	EMPTY_VECTOR(TGameObjectLogicContainer,mGameObjectLogicContainer);
+
+	EMPTY_VECTOR(TGameObjectDiamondTreeContainer, mGameObjectDiamondTreeContainer);
+	EMPTY_VECTOR(TGameObjectDiamondContainer, mGameObjectDiamondContainer);
 
 	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
 	mGameObjectPillow.reset();
@@ -678,11 +689,16 @@ void GameWorldManager::addGameObjectDiamond(GameObjectDiamondPtr pGameObjectDiam
 	mGameObjectPhysicsContainer.push_back(pGameObjectDiamond);
 	mGameObjectPhysicsVolumeContainer.push_back(pGameObjectDiamond);
 	mGameObjectPhysicsVolumeBoxContainer.push_back(pGameObjectDiamond);
+
+	mGameObjectDiamondContainer.push_back(pGameObjectDiamond);
 }
 
 void GameWorldManager::addGameObjectDiamondTree(GameObjectDiamondTreePtr gameObjectDiamondTree)
 {
 	mGameObjects[gameObjectDiamondTree->getName()]=gameObjectDiamondTree;
+	mGameObjectDiamondTreeContainer.push_back(gameObjectDiamondTree);
+	mGameObjectPhysicsContainer.push_back(gameObjectDiamondTree);
+	mGameObjectPhysicsCharacterContainer.push_back(gameObjectDiamondTree);
 }
 
 void GameWorldManager::addGameObjectDoor(GameObjectDoorPtr gameObjectDoor)

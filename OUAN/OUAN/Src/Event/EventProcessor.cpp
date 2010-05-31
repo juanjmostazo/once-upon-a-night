@@ -227,6 +227,14 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 {
 	if (evt->getGameObject1() && evt->getGameObject2())
 	{
+		//bool dTree=evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0 ||
+		//	evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+		//bool dWeapon=evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 
+		//	|| evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+		//if (dTree && dWeapon)
+		//std::stringstream msg("");
+		//msg<<"COLLISION: "<<evt->getGameObject1()->getName()<<" and "<<evt->getGameObject2()->getName();
+		//	Logger::getInstance()->log(msg.str());
 		//Logger::getInstance()->log("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
 		
 		 evt->getGameObject1()->processCollision( evt->getGameObject2());

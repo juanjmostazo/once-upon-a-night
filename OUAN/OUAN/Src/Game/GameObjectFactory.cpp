@@ -589,7 +589,7 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 
 	//Create LogicComponent
 	pGameObjectDiamondTree->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectDiamondTree,
 		tGameObjectDiamondTreeParameters.tLogicComponentParameters));
 
@@ -622,6 +622,25 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 		pGameObjectDiamondTree, 
 		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDiamondTree->getRenderComponentPositional()));
+
+	pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
+		mComponentFactory->createPhysicsComponentVolumeBox(
+		pGameObjectDiamondTree, 
+		tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters, 
+		pGameObjectDiamondTree->getRenderComponentPositional()));
+						
+	//Create PhysicsComponent
+	//pGameObjectDiamondTree->setPhysicsComponentCharacter(
+	//	mComponentFactory->createPhysicsComponentCharacter(
+	//	pGameObjectDiamondTree, 
+	//	tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters, 
+	//	pGameObjectDiamondTree->getRenderComponentPositional()));
+
+	/*pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
+		mComponentFactory->createPhysicsComponentVolumeBox(
+		pGameObjectDiamondTree,
+		tGameObjectDiamondTreeParameters.TPhysicsComponentVolumeBoxParameters,
+		pGameObjectDiamondTree->getRenderComponentPositional()));*/
 
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
@@ -1872,9 +1891,13 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 		pGameObjectStoryBook->getRenderComponentPositional()));
 
 	//Create RenderComponentEntity
+	tGameObjectStoryBookParameters.tRenderComponentEntityParameters.prepareForNormalMapping=false;
+
 	pGameObjectStoryBook->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectStoryBookParameters.name,
 		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters));
+
+	//pGameObjectStoryBook->getRenderComponentEntity()->prepareForNormalMapping();
 
 	//Init ChangeWorldMaterials
 	//pGameObjectStoryBook->getRenderComponentEntity()->initChangeWorldMaterials(tGameObjectStoryBookParameters.tChangeWorldMaterialParameters);

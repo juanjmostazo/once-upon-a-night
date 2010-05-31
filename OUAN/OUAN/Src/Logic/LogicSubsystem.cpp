@@ -4,7 +4,7 @@
 #include "../Game/GameObject/GameObjectBee_Butterfly.h"
 #include "../Game/GameObject/GameObjectCarnivorousPlant.h"
 #include "../Game/GameObject/GameObjectSnakeCreeper.h"
-#include "../Game/GameObject/GameObjectDragon.h"
+#include "../Game/GameObject/GameObjectDiamondTree.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectTentetieso.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
@@ -89,6 +89,8 @@ void LogicSubsystem::registerModules()
 			.def("getApproachDistance",&LogicComponentProp::getApproachDistance)
 			.def("getDelay",&LogicComponentProp::getDelay)
 			.def("getTimeSpent",&LogicComponentProp::getTimeSpent)
+			.def("hasTakenHit", &LogicComponentProp::hasTakenHit)
+			.def("isReloadSet", &LogicComponentProp::isReload)
 	];
 
 }
@@ -137,10 +139,19 @@ void LogicSubsystem::loadScripts()
 			loadScript(SCRIPTS_PATH+"/"+scplant->getLogicComponent()->getScriptFilename());
 		}
 	}
+	TGameObjectDiamondTreeContainer* dtList = worldMgr->getGameObjectDiamondTreeContainer();
+	if (!dtList->empty())
+	{
+		GameObjectDiamondTreePtr dtree = boost::dynamic_pointer_cast<GameObjectDiamondTree>(dtList->at(0));
+		if (dtree.get() && !dtree->getLogicComponent()->getScriptFilename().empty())
+		{
+			loadScript(SCRIPTS_PATH+"/"+dtree->getLogicComponent()->getScriptFilename());
+		}
+	}
 	//TODO: CHANGE THIS!!!
-	GameObjectDragonPtr dragon = boost::dynamic_pointer_cast<GameObjectDragon> (worldMgr->getObject("dragon#0"));
-	if (dragon.get() && !(currentFilename=dragon->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
+	//GameObjectDragonPtr dragon = boost::dynamic_pointer_cast<GameObjectDragon> (worldMgr->getObject("dragon#0"));
+	//if (dragon.get() && !(currentFilename=dragon->getLogicComponentEnemy()->getScriptFilename()).empty())
+	//	loadScript(SCRIPTS_PATH+"/"+currentFilename);
 }
 void LogicSubsystem::cleanUp()
 {

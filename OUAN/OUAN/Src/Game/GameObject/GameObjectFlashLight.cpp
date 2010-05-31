@@ -470,6 +470,15 @@ void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 
 	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
 }
+
+RenderComponentBillboardSetPtr GameObjectFlashLight::getLightConeBBS() const
+{
+	return mLightConeBBS;
+}
+void GameObjectFlashLight::setLightConeBBS(RenderComponentBillboardSetPtr lightConeBBS)
+{
+	mLightConeBBS=lightConeBBS;
+}
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {

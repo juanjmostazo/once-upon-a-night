@@ -27,6 +27,11 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentItemPtr mLogicComponentItem;
+
+		/// Empty if the diamond isn't part of a diamond tree's set
+		std::string mParentDiamondTreeName;
+		GameObjectDiamondTreePtr mParentDiamondTree;
+
 	public:
 		//Constructor
 		GameObjectDiamond(const std::string& name);
@@ -105,6 +110,12 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 		void update(double elapsedSeconds);
+
+		std::string& getParentDiamondTreeName();
+		void setParentDiamondTreeName(const std::string& parentName);
+		
+		GameObjectDiamondTreePtr getParentDiamondTree() const;
+		void setParentDiamondTree(GameObjectDiamondTreePtr parent) ;
 	};
 
 	class TGameObjectDiamondParameters: public TGameObjectParameters

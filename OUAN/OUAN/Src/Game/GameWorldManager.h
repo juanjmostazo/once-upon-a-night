@@ -34,6 +34,8 @@ namespace OUAN
 		TGameObjectLightContainer * getGameObjectLightContainer();
 		TGameObjectParticleSystemContainer * getGameObjectParticleSystemContainer();
 		TGameObjectBillboardSetContainer * getGameObjectBillboardSetContainer();
+		TGameObjectDiamondContainer * getGameObjectDiamondContainer();
+		TGameObjectDiamondTreeContainer * getGameObjectDiamondTreeContainer();
 		TGameObjectOnyContainer * getGameObjectOnyContainer();
 		TGameObjectPositionalContainer * getGameObjectPositionalContainer();
 		TGameObjectSceneContainer * getGameObjectSceneContainer();
@@ -300,6 +302,8 @@ namespace OUAN
 		TGameObjectCarnivorousPlantContainer mGameObjectCarnivorousPlantContainer;
 		TGameObjectSnakeCreeperContainer mGameObjectSnakeCreeperContainer;
 		TGameObjectScaredPlantContainer mGameObjectScaredPlantContainer;
+		TGameObjectDiamondTreeContainer mGameObjectDiamondTreeContainer;
+		TGameObjectDiamondContainer mGameObjectDiamondContainer;
 
 		TGameObjectPortalContainer mGameObjectPortalContainer;
 
