@@ -1,4 +1,4 @@
-material water_foam
+material water_foam_d
 {
 	technique
 	{
@@ -9,13 +9,13 @@ material water_foam
 			texture_unit
 			{
 				scroll_anim 0 0.1
-				texture water_foam.dds
+				texture water_foam_d.dds
 			}
 		}
 	}
 }
 
-material water_lake_seabed
+material water_lake_seabed_d
 {
 	technique
 	{
@@ -25,13 +25,13 @@ material water_lake_seabed
 			{
 				scroll_anim 0 0.1
 				scroll 0 0.2
-				texture water_seabed.dds
+				texture water_seabed_d.dds
 			}
 		}
 	}
 }
 
-material waterfall_foam
+material waterfall_foam_d
 {
 	technique
 	{
@@ -42,14 +42,14 @@ material waterfall_foam
 			texture_unit
 			{
 				scroll_anim 0 0.18
-				texture waterfall_foam.dds
+				texture waterfall_foam_d.dds
 			}
 		}
 
 	}
 }
 
-material waterfall_blue
+material waterfall_blue_d
 {
 	technique
 	{
@@ -60,14 +60,14 @@ material waterfall_blue
 			texture_unit
 			{
 				scroll_anim 0 0.2
-				texture waterfall_blue.dds
+				texture waterfall_blue_d.dds
 			}
 		}
 
 	}
 }
 
-material waterfall_splash
+material waterfall_splash_d
 {
 	technique
 	{
@@ -93,3 +93,97 @@ material waterfall_splash
 	}
 }
 
+material water_foam_n
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+	                        depth_write off	
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				texture water_foam_n.dds
+			}
+		}
+	}
+}
+
+material water_lake_seabed_n
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				scroll 0 0.2
+				texture water_seabed_n.dds
+			}
+		}
+	}
+}
+
+material waterfall_foam_n
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+	                        depth_write off	
+			texture_unit
+			{
+				scroll_anim 0 0.18
+				texture waterfall_foam_n.dds
+			}
+		}
+
+	}
+}
+
+material waterfall_blue_n
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+	                        depth_write off	
+			texture_unit
+			{
+				scroll_anim 0 0.2
+				texture waterfall_blue_n.dds
+			}
+		}
+
+	}
+}
+
+material waterfall_splash_n
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.2 0.2 0.2
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 
+				texture Water01.jpg
+			}
+
+			texture_unit
+			{
+				alpha_op_ex modulate src_manual src_current 0.5 				
+				texture Water01.jpg
+				wave_xform scroll_y sine 0 0.1 0 0.5
+			}
+		}
+	}
+}
