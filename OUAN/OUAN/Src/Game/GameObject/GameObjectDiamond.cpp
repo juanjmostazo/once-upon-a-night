@@ -69,7 +69,8 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->setOriginalMaterials();
+	//mRenderComponentEntity->setOriginalMaterials();
+	mRenderComponentPositional->setScale(Vector3(1,1,1));
 
 	switch(newWorld)
 	{
@@ -120,17 +121,17 @@ void GameObjectDiamond::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
-	{
-		mRenderComponentEntity->setChangeWorldMaterials();
-		mRenderComponentEntity->randomizeChangeWorldMaterials();
-	}
+	//if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
+	//{
+	//	mRenderComponentEntity->setChangeWorldMaterials();
+	//	mRenderComponentEntity->randomizeChangeWorldMaterials();
+	//}
 
-	if(mLogicComponentItem->existsInNightmares()&& !mLogicComponentItem->existsInNightmares())
-	{
-		mRenderComponentEntity->setChangeWorldMaterials();
-		mRenderComponentEntity->randomizeChangeWorldMaterials();
-	}
+	//if(mLogicComponentItem->existsInNightmares()&& !mLogicComponentItem->existsInNightmares())
+	//{
+	//	mRenderComponentEntity->setChangeWorldMaterials();
+	//	mRenderComponentEntity->randomizeChangeWorldMaterials();
+	//}
 
 	switch(newWorld)
 	{
@@ -138,12 +139,14 @@ void GameObjectDiamond::changeWorldStarted(int newWorld)
 		if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
 		{
 			mRenderComponentEntity->setVisible(true);
+			mRenderComponentPositional->setScale(Vector3(0,0,0));
 		}
 		break;
 	case NIGHTMARES:
 		if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
 		{
 			mRenderComponentEntity->setVisible(true);
+			mRenderComponentPositional->setScale(Vector3(0,0,0));
 		}	
 		break;
 	default:
@@ -160,21 +163,25 @@ void GameObjectDiamond::changeToWorld(int newWorld, double perc)
 		case DREAMS:
 			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
 			{
-				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+				//mRenderComponentEntity->setChangeWorldFactor(1-perc);
+				mRenderComponentPositional->setScale(Vector3(perc,perc,perc));
 			}
 			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
 			{
-				mRenderComponentEntity->setChangeWorldFactor(perc);
+				//mRenderComponentEntity->setChangeWorldFactor(perc);
+				mRenderComponentPositional->setScale(Vector3(1-perc,1-perc,1-perc));
 			}		
 			break;
 		case NIGHTMARES:
 			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
 			{
-				mRenderComponentEntity->setChangeWorldFactor(perc);
+				//mRenderComponentEntity->setChangeWorldFactor(perc);
+				mRenderComponentPositional->setScale(Vector3(1-perc,1-perc,1-perc));
 			}
 			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
 			{
-				mRenderComponentEntity->setChangeWorldFactor(1-perc);
+				//mRenderComponentEntity->setChangeWorldFactor(1-perc);
+				mRenderComponentPositional->setScale(Vector3(perc,perc,perc));
 			}		
 			break;
 		default:

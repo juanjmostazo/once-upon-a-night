@@ -138,9 +138,7 @@ void GameObjectScaredPlant::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-
-	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-
+	//mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
