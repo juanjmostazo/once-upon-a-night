@@ -31,7 +31,26 @@ Ogre::Entity* RenderComponentWater::getEntity() const
 
 void RenderComponentWater::setEntity(Ogre::Entity* entity)
 {
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr original_material;
+	unsigned int i;
+
 	mEntity=entity;
+
+	if(mEntity)
+	{
+		mOriginalMaterials.clear();
+
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Get the material of this sub entity and build the clone material name
+			subEnt = mEntity->getSubEntity(i);
+			original_material = subEnt->getMaterial();
+
+			//Add material to the material stack 
+			mOriginalMaterials.push_back(original_material->getName());
+		}
+	}
 }
 
 void RenderComponentWater::setVisible(bool visible)
@@ -292,6 +311,8 @@ void RenderComponentWater::setChangeWorldMaterials()
 			Logger::getInstance()->log("[RenderComponentWater] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
 		}
 	}
+
+	Logger::getInstance()->log("[RenderComponentWater] mChangeWorldMaterials.size() "+Ogre::StringConverter::toString(mChangeWorldMaterials.size())+" mEntity->getNumSubEntities() "+Ogre::StringConverter::toString(mEntity->getNumSubEntities()));
 }
 
 void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
@@ -311,11 +332,11 @@ void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParamete
 		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
 			mEntity->getSubEntity(i)->getMaterial());
 
-		//if(materialCreated)
-		//{
+		if(materialCreated)
+		{
 			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
 			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-		//}
+		}
 		//else
 		//{
 		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
@@ -326,6 +347,7 @@ void RenderComponentWater::initChangeWorldMaterials(TChangeWorldMaterialParamete
 	//{
 	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
+
 	setChangeWorldMaterials();
 }
 
