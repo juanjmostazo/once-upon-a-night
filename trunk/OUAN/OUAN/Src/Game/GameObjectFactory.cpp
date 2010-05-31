@@ -2467,6 +2467,12 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 	pGameObjectWater->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectWater->getRenderComponentPositional()));
 
+	//Create PhysicsComponent
+	pGameObjectWater->setPhysicsComponentVolumeConvex(mComponentFactory->createPhysicsComponentVolumeConvex(
+		pGameObjectWater,
+		tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters,
+		pGameObjectWater->getRenderComponentPositional()));
+
 	if(pGameObjectWater->getLogicComponent()->existsInDreams() && pGameObjectWater->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentWaterDreams
@@ -2502,12 +2508,6 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 
 		pGameObjectWater->getRenderComponentWaterNightmares()->initChangeWorldMaterials(tGameObjectWaterParameters.tChangeWorldMaterialParameters);
 	}
-
-	//Create PhysicsComponent
-	pGameObjectWater->setPhysicsComponentVolumeConvex(mComponentFactory->createPhysicsComponentVolumeConvex(
-		pGameObjectWater,
-		tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters,
-		pGameObjectWater->getRenderComponentPositional()));
 
 	// Add a reference to this
 	pGameObjectWater->setGameWorldManager(gameWorldMgr);
