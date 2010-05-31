@@ -35,83 +35,20 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 	case DREAMS:
 
 		mRenderComponentViewport->setBloomAmount(0.0f);
+		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS);
+		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS);
+		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS);
+		setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS);
 
-		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, false);
-		}
 
 		break;
 	case NIGHTMARES:
 
-		mRenderComponentViewport->setBloomAmount(0.3f);
-
-		if (Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->HDR, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, false);
-		}
-
-		if (Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES)
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, true);
-		}
-		else
-		{
-			setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, false);
-		}
+		mRenderComponentViewport->setBloomAmount(1.0f);
+		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES);
+		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES);
+		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
+		setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
 
 		break;
 	default:
@@ -141,10 +78,14 @@ void GameObjectViewport::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentViewport->setBloomAmount(0.3*(1-perc));
+		mRenderComponentViewport->setBloomAmount(1-perc);
+		setBloomEffectIfPossible(DREAMS,false);
+		setBloomEffectIfPossible(DREAMS,true);
 		break;
 	case NIGHTMARES:
-		mRenderComponentViewport->setBloomAmount(0.3*perc);
+		mRenderComponentViewport->setBloomAmount(perc);
+		setBloomEffectIfPossible(NIGHTMARES,false);
+		setBloomEffectIfPossible(NIGHTMARES,true);
 		break;
 	default:
 		break;

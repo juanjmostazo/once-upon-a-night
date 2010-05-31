@@ -2251,9 +2251,6 @@ GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjec
 GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-		Logger::getInstance()->log("[pGameObjectTripolloDreams] CREATING GMA EOBJECT TRIPOLLO");
-
-
 	GameObjectTripolloDreamsPtr pGameObjectTripolloDreams;
 
 	//Create GameObject
@@ -2264,13 +2261,9 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		mComponentFactory->createLogicComponentEnemy(pGameObjectTripolloDreams,
 		tGameObjectTripolloDreamsParameters.tLogicComponentEnemyParameters));
 
-	Logger::getInstance()->log("[pGameObjectTripolloDreams] isetLogicComponentEnemy"+pGameObjectTripolloDreams->getName());
-
 	//Create RenderComponentPositional
 	pGameObjectTripolloDreams->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
 		pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentPositionalParameters));
-
-	Logger::getInstance()->log("[pGameObjectTripolloDreams] pGameObjectTripolloDreams"+pGameObjectTripolloDreams->getName());
 
 	//Create RenderComponentInitial
 	pGameObjectTripolloDreams->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
@@ -2278,8 +2271,6 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 
 	if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams() && pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares())
 	{
-		Logger::getInstance()->log("[pGameObjectTripolloDreams] ini material both worlds "+pGameObjectTripolloDreams->getName());
-
 		//Create RenderComponentEntityDreams
 		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
@@ -2295,8 +2286,6 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 	}
 	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams())
 	{
-		Logger::getInstance()->log("[pGameObjectTripolloDreams] ini material dreams "+pGameObjectTripolloDreams->getName());
-
 		//Create RenderComponentEntityDreams
 		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
@@ -2307,8 +2296,6 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 	}
 	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares())
 	{
-		Logger::getInstance()->log("[pGameObjectTripolloDreams] ini material nightmares "+pGameObjectTripolloDreams->getName());
-
 		//Create RenderComponentEntityNightmares
 		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,

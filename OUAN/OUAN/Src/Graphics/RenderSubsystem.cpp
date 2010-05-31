@@ -83,6 +83,10 @@ bool RenderSubsystem::loadConfig()
 		config.getOption("BLOOM_ACTIVATED_ALWAYS_NIGHTMARES", value); 
 		BLOOM_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
 
+		config.getOption("BLOOM_BLEND_MATERIAL", BLOOM_BLEND_MATERIAL); 
+		config.getOption("MAX_BLOOM_BLEND", value); 
+		MAX_BLOOM_BLEND=atof(value.c_str());
+
 		config.getOption("HDR_ACTIVATED_ALWAYS_DREAMS", value); 
 		HDR_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
 

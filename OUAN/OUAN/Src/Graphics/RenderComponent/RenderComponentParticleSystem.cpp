@@ -49,6 +49,7 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 
 void RenderComponentParticleSystem::start()
 {
+	stop();
 	start(Ogre::Vector3::ZERO);
 }
 
