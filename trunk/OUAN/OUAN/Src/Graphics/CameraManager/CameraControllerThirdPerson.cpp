@@ -376,7 +376,7 @@ void CameraControllerThirdPerson::update(double elapsedTime)
 	Vector3 cameraLookAt;
 	Ogre::uint32 collisionType;
 
-	calculateCurrentHeight(elapsedTime);
+	//calculateCurrentHeight(elapsedTime);
 
 	newCameraPosition=calculateCameraPosition(maxDistance);
 	cameraLookAt=calculateCameraLookAt();
