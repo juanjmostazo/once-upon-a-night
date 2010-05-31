@@ -320,7 +320,7 @@ bool GameObjectWoodBox::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectWoodBox::getPhysicsComponent() const
 {
-	return getPhysicsComponentSimpleBox();
+	return mPhysicsComponentSimpleBox;
 }
 
 /// Set logic component
@@ -420,6 +420,12 @@ bool GameObjectWoodBox::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectWoodBox::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+
+void GameObjectWoodBox::updatePhysicsComponents(double elapsedSeconds)
+{
+	GameObject::updatePhysicsComponents(elapsedSeconds);
+	mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
 //-------------------------------------------------------------------------------------------
 

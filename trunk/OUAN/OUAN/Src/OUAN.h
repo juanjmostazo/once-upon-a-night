@@ -616,7 +616,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
 		const std::string GAME_OBJECT_TYPE_TENTETIESO="tentetieso";
 		const std::string GAME_OBJECT_TYPE_BEE_BUTTERFLY="bee%butterfly";
-		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamond_tree";
+		const std::string GAME_OBJECT_TYPE_DIAMONDTREE="diamondtree";
 		const std::string GAME_OBJECT_TYPE_STORYBOOK="storybook";
 		const std::string GAME_OBJECT_TYPE_HEART="heart";
 		const std::string GAME_OBJECT_TYPE_DIAMOND="diamond";

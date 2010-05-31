@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
@@ -40,6 +41,8 @@ namespace OUAN
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		RenderComponentLightPtr mRenderComponentLight;
+
+		RenderComponentBillboardSetPtr mLightConeBBS;
 
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
@@ -114,6 +117,9 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex() const;
+
+		RenderComponentBillboardSetPtr getLightConeBBS() const;
+		void setLightConeBBS(RenderComponentBillboardSetPtr lightConeBBS);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -205,6 +211,8 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
+
+		TRenderComponentBillboardSetParameters lightConeBBSParams;
 
 	};
 }

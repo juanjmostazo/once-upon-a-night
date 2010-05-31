@@ -22,6 +22,7 @@
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
 #include "../Game/GameObject/GameObjectHeart.h"
 #include "../Game/GameObject/GameObjectDiamond.h"
+#include "../Game/GameObject/GameObjectDiamondTree.h"
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
@@ -178,10 +179,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 		{
 			for (i=0;i<container->size();i++)
 			{
-				if(container->at(i)->hasPhysicsComponent())
-				{
-					container->at(i)->getPhysicsComponent()->update(elapsedSeconds);
-				}
+				container->at(i)->updatePhysicsComponents(elapsedSeconds);
 			}
 		}
 	}
@@ -415,6 +413,11 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
+	bool dTree=pGameObjectController->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+	bool dWeapon=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+	if (dTree && dWeapon)
+		Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+
 	//CORRECTING JUMP BUG TODO: DO THIS PROPERLY
 	if( (pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) &&
 		(pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0) &&
@@ -450,6 +453,11 @@ void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String c
 
 	GameObjectPtr pGameObjectVolume=getGameObject(volume->getName());
 	GameObjectPtr pGameObjectShape=getGameObject(collisionName);
+	
+	bool dTree=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+	bool dWeapon=pGameObjectVolume->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+	if (dTree && dWeapon)
+		Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
 
 	switch (collisionEventType)
 	{

@@ -56,6 +56,8 @@ namespace OUAN
 		void randomizeChangeWorldMaterials();
 		void setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest);
 
+		//void prepareForNormalMapping();
+
 	};
 	class TRenderComponentEntityAnimParams: public TRenderComponentParameters{
 		public: 
@@ -84,6 +86,7 @@ namespace OUAN
 		String meshfile;
 		bool castshadows;
 		QueryFlags cameraCollisionType;
+		bool prepareForNormalMapping;
 
 		std::vector<TRenderComponentSubEntityParameters> tRenderComponentSubEntityParameters;
 		std::vector<TRenderComponentEntityAnimParams> tRenderComponentEntityAnimParams;

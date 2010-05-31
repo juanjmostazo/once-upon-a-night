@@ -7,10 +7,24 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
+	//State names
+	const std::string DT_STATE_IDLE="DT_STATE_IDLE";
+	const std::string DT_STATE_HIT="DT_STATE_HIT";
+	const std::string DT_STATE_RELOAD="DT_STATE_RELOAD";
+
+	//Animation names
+	const std::string DT_ANIM_IDLE="static_pose";
+	const std::string DT_ANIM_HIT="hit";
+
+	//Sounds
+	//const std::string TRIPOLLO_SOUND_HIT="tripollo_is_hit";
+	//const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
+
 	/// Class to hold DiamondTree information
 	class GameObjectDiamondTree : public GameObject, public boost::enable_shared_from_this<GameObjectDiamondTree>
 	{
@@ -24,21 +38,26 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+
+		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
+		TGameObjectDiamondContainer mDiamonds;
 	public:
 		//Constructor
 		GameObjectDiamondTree(const std::string& name);
 		//Destructor
 		~GameObjectDiamondTree();
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponent(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponent();
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -65,11 +84,11 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		/// Set physics component
-		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
-
-		/// Get physics component
 		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox);
+
+		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
+		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -78,7 +97,6 @@ namespace OUAN
 		void changeWorldStarted(int newWorld);
 		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
 		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
-
 
 		/// Reset object
 		virtual void reset();
@@ -89,9 +107,10 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
+		void updatePhysicsComponents(double elapsedSeconds);
+
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
-
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -107,6 +126,14 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		TGameObjectDiamondContainer* getDiamonds();
+		void setDiamonds(const TGameObjectDiamondContainer& diamonds);
+		void addDiamond(GameObjectDiamondPtr diamond);
+
+		void processAnimationEnded(const std::string& animationName);
+
+		void update(double elapsedSeconds);
 
 	};
 
@@ -125,9 +152,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentParameters;
 	};
 }
 #endif

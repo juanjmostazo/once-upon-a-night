@@ -205,7 +205,7 @@ namespace OUAN
 
 		/// Creators not used outside the render subsystem
 		void createSubEntity(Ogre::Entity *pEntity,int num,String material,bool visible);
-		void createMeshFile(String meshfile);
+		void createMeshFile(String meshfile, bool prepareForNormalMapping=false);
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 
 		/// Ogre root object

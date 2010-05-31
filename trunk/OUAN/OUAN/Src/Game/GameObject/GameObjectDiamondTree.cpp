@@ -1,5 +1,6 @@
 #include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"
+#include "../../Logic/LogicSubsystem.h"
 
 using namespace OUAN;
 
@@ -64,6 +65,15 @@ PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectDiamondTree::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox)
+{
+	mPhysicsComponentVolumeBox=physicsComponentVolumeBox;
+}
+
+PhysicsComponentVolumeBoxPtr GameObjectDiamondTree::getPhysicsComponentVolumeBox() const{
+	return mPhysicsComponentVolumeBox;
+}
+
 void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -78,14 +88,22 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->create();
+				}
 				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
+				}
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->destroy();
 				}
 				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}		
@@ -98,14 +116,22 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->create();
+				}
 				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
+				}
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
+					mPhysicsComponentVolumeBox->destroy();
 				}
 				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
@@ -192,6 +218,13 @@ void GameObjectDiamondTree::calculateChangeWorldDelay(double totalElapsedTime,do
 void GameObjectDiamondTree::reset()
 {
 	GameObject::reset();
+
+	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(DT_STATE_IDLE));
+
+	if (mLogicComponent->existsInNightmares())
+		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);
+	else if (mLogicComponent->existsInDreams())
+		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
 }
 
 bool GameObjectDiamondTree::hasPositionalComponent() const
@@ -208,20 +241,20 @@ bool GameObjectDiamondTree::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectDiamondTree::getPhysicsComponent() const
 {
-	return getPhysicsComponentSimpleBox();
+	return mPhysicsComponentSimpleBox;
 }
 
-
 /// Set logic component
-void GameObjectDiamondTree::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectDiamondTree::setLogicComponent(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectDiamondTree::getLogicComponent()
+LogicComponentPropPtr GameObjectDiamondTree::getLogicComponent()
 {
 	return mLogicComponent;
 }
@@ -264,6 +297,83 @@ bool GameObjectDiamondTree::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectDiamondTree::getEntityComponent() const
 {
 	return (mGameWorldManager->getWorld()==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+
+TGameObjectDiamondContainer* GameObjectDiamondTree::getDiamonds()
+{
+	return &mDiamonds;
+}
+void GameObjectDiamondTree::setDiamonds(const TGameObjectDiamondContainer& diamonds)
+{
+	mDiamonds=diamonds;
+}
+void GameObjectDiamondTree::addDiamond(GameObjectDiamondPtr diamond)
+{
+	mDiamonds.push_back(diamond);
+}
+void GameObjectDiamondTree::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(DT_ANIM_HIT)==0)
+	{
+		mLogicComponent->setHasTakenHit(false);
+		mLogicComponent->setReload(true);
+	}
+}
+void GameObjectDiamondTree::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	if (isEnabled())
+	{	
+		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+		RenderComponentEntityPtr entityToUpdate = (mGameWorldManager->getWorld()==DREAMS)
+			?mRenderComponentEntityDreams
+			:mRenderComponentEntityNightmares;
+
+		int currentState=mLogicComponent->getState();
+		
+		if (currentState==logicSS->getGlobalInt(DT_STATE_IDLE))
+		{
+			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			{
+				displayText("Now loaded");
+				mLogicComponent->setHasTakenHit(false);
+				mLogicComponent->setReload(false);
+				entityToUpdate->changeAnimation(DT_ANIM_IDLE);					
+			}
+		}
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
+		{				
+			entityToUpdate->changeAnimation(DT_STATE_HIT);			
+			//play sound
+			//enable children diamonds!
+		}
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_RELOAD) && entityToUpdate.get() && mLogicComponent->isStateChanged())
+		{				
+			//play some particles to show the reloading state
+			std::stringstream msg;
+			msg<<"Reload started: "<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
+			displayText(msg.str());
+			entityToUpdate->changeAnimation(DT_STATE_IDLE);
+			mLogicComponent->setTimeSpent(0);
+		}
+		if (entityToUpdate.get())
+		{
+			entityToUpdate->update(elapsedSeconds);
+		}
+
+		//if (mPhysicsComponent.get() && mPhysicsComponent->isInUse())
+		//{
+		//	mPhysicsComponent->setNextMovement(NxOgre::Vec3::ZERO);
+		//}
+	}
+}
+
+void GameObjectDiamondTree::updatePhysicsComponents(double elapsedSeconds)
+{
+	GameObject::updatePhysicsComponents(elapsedSeconds);
+	mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
 //-------------------------------------------------------------------------------------------
 

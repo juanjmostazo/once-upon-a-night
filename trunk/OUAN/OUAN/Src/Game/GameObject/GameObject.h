@@ -133,6 +133,7 @@ namespace OUAN
 
 		virtual bool hasPhysicsComponent() const;
 		virtual PhysicsComponentPtr getPhysicsComponent() const;
+		virtual void updatePhysicsComponents(double elapsedSeconds);
 
 		virtual bool hasRenderComponentEntity() const;
 		virtual RenderComponentEntityPtr getEntityComponent() const;

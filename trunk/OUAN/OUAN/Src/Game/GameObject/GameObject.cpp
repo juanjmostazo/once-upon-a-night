@@ -7,6 +7,7 @@
 #include "../../Graphics/CameraManager/CameraManager.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -416,7 +417,13 @@ AudioComponentPtr GameObject::getAudioComponentInstance() const
 {
 	return AudioComponentPtr();
 }
-
+void GameObject::updatePhysicsComponents(double elapsedSeconds)
+{
+	if (hasPhysicsComponent())
+	{
+		getPhysicsComponent()->update(elapsedSeconds);
+	}
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

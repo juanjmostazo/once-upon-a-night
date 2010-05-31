@@ -1373,7 +1373,7 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 		tGameObjectDiamondTreeParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectDiamondTreeParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectDiamondTreeParameters.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		if(tGameObjectDiamondTreeParameters.tLogicComponentParameters.existsInDreams)
@@ -1393,7 +1393,11 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 		tGameObjectDiamondTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentSimpleBox
-		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		//tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);		
+		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(
+			gameObject->XMLNodeCustomProperties);
+		tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBox(
+			gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{

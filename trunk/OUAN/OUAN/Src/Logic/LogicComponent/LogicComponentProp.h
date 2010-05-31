@@ -25,10 +25,19 @@ namespace OUAN
 		double getDelay() const;
 		void setDelay(double delay);
 
+		bool hasTakenHit() const;
+		void setHasTakenHit(bool hasTakenHit);
+
+		bool isReload() const;
+		void setReload(bool reload);
+
 	private:
 		double mApproachDistance;
 		double mDelay;
 		double mTimeSpent;
+		bool mHasTakenHit;
+		double mHitRecoveryTime;
+		bool mReload;
 	};
 
 	class TLogicComponentPropParameters: public TLogicComponentParameters
