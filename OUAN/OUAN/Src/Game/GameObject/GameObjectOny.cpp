@@ -147,18 +147,18 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
-		if (!mGameWorldManager->getGodMode())
-		{
+		//if (!mGameWorldManager->getGodMode())
+		//{
 			OnyFallsEventPtr evt(new OnyFallsEvent());
 			mGameWorldManager->addEvent(evt);
-		}
-		else
-		{
-			mPhysicsComponentCharacter->jump();
-			int newState = mLogicComponentOny->getNewState();
-			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
-			mLogicComponentOny->setNewState(newState);
-		}
+		//}
+		//else
+		//{
+		//	mPhysicsComponentCharacter->jump();
+		//	int newState = mLogicComponentOny->getNewState();
+		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
+		//	mLogicComponentOny->setNewState(newState);
+		//}
 	}
 
 	//QuadHalo god mode effect

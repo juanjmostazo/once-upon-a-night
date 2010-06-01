@@ -124,10 +124,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		{
 			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 			{
-				if(!getParent()->getGameWorldManager()->getGodMode())
-				{
-					applyGravity(elapsedSeconds);
-				}
+				applyGravity(elapsedSeconds);
 			}
 			else
 			{
@@ -460,8 +457,8 @@ void PhysicsComponentCharacter::resetSliding()
 void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
 	//Logger::getInstance()->log("* * Setting sliding!");
-	if(!getParent()->getGameWorldManager()->getGodMode())
-	{
+	//if(!getParent()->getGameWorldManager()->getGodMode())
+	//{
 		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 
 			pNormalAngle < Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
 		{
@@ -483,7 +480,7 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 		{
 			mSlideDisplacement.y=0;
 		}
-	}
+	//}
 }
 
 void PhysicsComponentCharacter::initJump()
