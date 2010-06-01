@@ -7,12 +7,14 @@
   <PROPERTY id="RenderComponentQuadHalo::quadSize" type="6" value="0.25" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::speedScale" type="6" value="0.1" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="15" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="15.3" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetZ" type="6" value="0" ></PROPERTY>
   
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="66" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="4" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="14" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::position_corretion" type="6" value="0 -12 0" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::scale_corretion" type="6" value="0.7 0.7 0.7" ></PROPERTY>
   
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" ></PROPERTY>
   <PROPERTY id="LogicComponent::defaultState" type="2" value="-1" ></PROPERTY>
