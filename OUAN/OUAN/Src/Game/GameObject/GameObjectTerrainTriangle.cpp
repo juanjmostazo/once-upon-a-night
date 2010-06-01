@@ -72,8 +72,8 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentEntityDreams->setOriginalMaterials();
-	//mRenderComponentEntityNightmares->setOriginalMaterials();
+	mRenderComponentEntityDreams->setOriginalMaterials();
+	mRenderComponentEntityNightmares->setOriginalMaterials();
 
 	switch(newWorld)
 	{
@@ -100,8 +100,8 @@ void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentEntityDreams->setChangeWorldMaterials();
-	//mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	mRenderComponentEntityDreams->setChangeWorldMaterials();
+	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
 	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 

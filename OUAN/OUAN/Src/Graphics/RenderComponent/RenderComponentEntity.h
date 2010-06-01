@@ -50,6 +50,11 @@ namespace OUAN
 		void setMaterial(std::string material);
 		void setOriginalMaterials();
 		void setChangeWorldMaterials();
+
+		std::vector<std::string>& getOriginalMaterials();
+		std::vector<ChangeWorldMaterialPtr>& getChangeWorldMaterials();
+		
+
 		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity);
 		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
 		void setChangeWorldFactor(double factor);

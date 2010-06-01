@@ -1569,6 +1569,27 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 		tGameObjectFlashLightParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectFlashLightParameters.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectFlashLightParameters.lightConeBBSParams.billboardorigin=Ogre::BBO_CENTER;
+		tGameObjectFlashLightParameters.lightConeBBSParams.billboardrotation=Ogre::BBR_VERTEX;
+		tGameObjectFlashLightParameters.lightConeBBSParams.billboardtype=Ogre::BBT_ORIENTED_COMMON;
+		tGameObjectFlashLightParameters.lightConeBBSParams.defaultheight=10;
+		tGameObjectFlashLightParameters.lightConeBBSParams.defaultwidth=10;
+		tGameObjectFlashLightParameters.lightConeBBSParams.material="flashlighthalo";
+		tGameObjectFlashLightParameters.lightConeBBSParams.pointrendering=false;
+		tGameObjectFlashLightParameters.lightConeBBSParams.queueID=Ogre::RENDER_QUEUE_MAIN;
+		tGameObjectFlashLightParameters.lightConeBBSParams.renderdistance=0.0;
+		tGameObjectFlashLightParameters.lightConeBBSParams.sorting=true;
+		tGameObjectFlashLightParameters.lightConeBBSParams.tRenderComponentBillboardParameters.clear();
+		TRenderComponentBillboardParameters billboard;
+		billboard.colour=Ogre::ColourValue();
+		billboard.dimensions=Ogre::Vector2(20,20);
+		billboard.position=Ogre::Vector3::ZERO;
+		billboard.rotation=-90;
+		billboard.texcoordindex=0;
+		billboard.texrect=Ogre::Vector4(0,0,1,1);
+		tGameObjectFlashLightParameters.lightConeBBSParams.tRenderComponentBillboardParameters.push_back(billboard);
+
 	}
 	catch( std::string error )
 	{

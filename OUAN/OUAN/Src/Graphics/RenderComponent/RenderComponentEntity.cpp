@@ -354,6 +354,14 @@ void RenderComponentEntity::randomizeChangeWorldMaterials()
 		mChangeWorldMaterials[i]->randomize();
 	}
 }
+std::vector<std::string>& RenderComponentEntity::getOriginalMaterials()
+{
+	return mOriginalMaterials;
+}
+std::vector<ChangeWorldMaterialPtr>& RenderComponentEntity::getChangeWorldMaterials()
+{
+	return mChangeWorldMaterials;
+}
 //void RenderComponentEntity::prepareForNormalMapping()
 //{
 //	//Ogre::MeshPtr mesh=mEntity->getMesh();

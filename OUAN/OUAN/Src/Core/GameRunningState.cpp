@@ -190,7 +190,7 @@ void GameRunningState::handleEvents()
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
-	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying())
+	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying() && !mApp->getGameWorldManager()->isOnyHit())
 	{
 		if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || mApp->mKeyBuffer<DEFAULT_KEY_BUFFER/2)
 		{
@@ -239,12 +239,13 @@ void GameRunningState::handleEvents()
 		}
 		
 		
-		// TODO: Uncomment when the attack logic is fully implemented
-		// as it is now it interferes with returning to IDLE state
-		//if (useWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK))
-		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_ATTACK);
-		//if (useSpWeaponKeyPressed && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK))
-		//	currentState=SET_BIT(currentState,ONY_STATE_BIT_FIELD_SP_ATTACK);
+		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
+		{
+			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
+			Logger::getInstance()->log("SETTING ATTACK FLAG");
+		}
+		//if (useSpWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK))
+		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK);
 
 		bool zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
 		newState=zeroMovement

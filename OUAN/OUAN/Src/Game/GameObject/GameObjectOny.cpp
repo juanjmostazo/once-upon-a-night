@@ -137,7 +137,12 @@ void GameObjectOny::update(double elapsedSeconds)
 		mIdleTime+=elapsedSeconds;
 	}
 
-	mRenderComponentEntity->update(elapsedSeconds);
+	double animationTime=elapsedSeconds;
+	if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_STAB_PILLOW)==0)
+	{
+		animationTime=animationTime/3;
+	}
+	mRenderComponentEntity->update(animationTime);
 
 	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
@@ -372,6 +377,11 @@ bool GameObjectOny::isDying() const
 	return CHECK_BIT(mLogicComponentOny->getState(),ONY_STATE_BIT_FIELD_DIE);
 }
 
+bool GameObjectOny::isHit() const
+{
+	return CHECK_BIT(mLogicComponentOny->getState(),ONY_STATE_BIT_FIELD_HIT);
+}
+
 void GameObjectOny::postUpdate()
 {
 	GameObject::postUpdate();
@@ -422,6 +432,21 @@ void GameObjectOny::postUpdate()
 	{
 		mAudioComponent->playSound(ONY_SOUND_HIT);
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
+	}
+	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
+	{
+		switch(mWorld)
+		{
+			case DREAMS:
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
+				break;
+			case NIGHTMARES:
+				//get Camera Direction and change animation accordingly:
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+				break;
+			default:break;
+		}
+
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
 		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))

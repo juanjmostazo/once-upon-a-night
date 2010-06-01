@@ -1279,6 +1279,12 @@ bool GameWorldManager::isOnyDying() const
 		return mGameObjectOnyContainer[0]->isDying();
 	return false;
 }
+bool GameWorldManager::isOnyHit() const
+{	
+	if (!mGameObjectOnyContainer.empty() && mGameObjectOnyContainer[0].get())
+		return mGameObjectOnyContainer[0]->isHit();
+	return false;
+}
 void GameWorldManager::addEvent(OUAN::EventPtr event)
 {
 	mEventManager->addEvent(event);

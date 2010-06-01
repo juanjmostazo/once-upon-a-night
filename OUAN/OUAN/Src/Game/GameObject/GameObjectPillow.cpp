@@ -4,6 +4,7 @@
 #include "../../Graphics/CameraManager/CameraManager.h"
 
 #include "../../Utils/Utils.h"
+#include "../../Event/EventDefs.h"
 
 using namespace OUAN;
 
@@ -212,7 +213,6 @@ bool GameObjectPillow::canInitiateAttack()
 
 void GameObjectPillow::beginAttack()
 {
-	Logger::getInstance()->log("PILLOW ATTACK LAUNCHED!");
 	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 	std::stringstream textMsg("");
 
@@ -232,19 +232,19 @@ void GameObjectPillow::beginAttack()
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
 	{
 		//NEW COMBO: CHANGE ATTACK
-		Logger::getInstance()->log("COMBO!!");
+		//Logger::getInstance()->log("COMBO!!");
 		setAttack(attackData->nextComboAttack);
 		attackData=boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 		textMsg<<"It's a COMBO! ";
 	}
 
-	Logger::getInstance()->log("AttackName: "+attackData->attackName);
+	//Logger::getInstance()->log("AttackName: "+attackData->attackName);
 	textMsg<<attackData->attackName<<", "<<attackData->damage<<" HP";
 	displayText(textMsg.str());
 
 	if (!mRenderComponentEntity->getEntity()->isVisible())
 	{
-		mRenderComponentEntity->getEntity()->setVisible(true);
+		//mRenderComponentEntity->getEntity()->setVisible(true);
 	}
 
 	if (mPhysicsComponentVolumeBox.get())
@@ -265,11 +265,16 @@ void GameObjectPillow::endAttack()
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse() && 
 		mParentWeaponComponent.get() && mParentWeaponComponent->isActiveWeaponInUse())
 	{
-		Logger::getInstance()->log("ATTACK ENDED");
+		PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
+		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
+		mGameWorldManager->addEvent(evt);
+
 		mPhysicsComponentVolumeBox->destroy();		
-		mRenderComponentEntity->getEntity()->setVisible(false);
+		//mRenderComponentEntity->getEntity()->setVisible(false);
 		mParentWeaponComponent->setActiveWeaponInUse(false);
 		setAttack(getDefaultAttack());
+
+		
 	}
 }
 
@@ -407,7 +412,7 @@ bool GameObjectPillow::hasParentWeaponComponent() const
 void GameObjectPillow::enable()
 {
 	GameObject::enable();
-	mRenderComponentEntity->setVisible(true);
+	//mRenderComponentEntity->setVisible(true);
 	//decide what to do with physics component
 }
 

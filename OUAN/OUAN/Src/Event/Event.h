@@ -189,5 +189,16 @@ namespace OUAN
 	//remaining info?
 	};
 
+	class AttackEndedEvent: public Event
+	{
+	public:
+		AttackEndedEvent(const std::string& attackName, GameObjectPtr attackingObject);
+		GameObjectPtr getAttackingObject() const;
+		const std::string& getAttackName() const;
+	private:
+		std::string mAttackName;
+		GameObjectPtr mAttackingObject;
+	};
+
 }
 #endif

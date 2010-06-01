@@ -64,6 +64,9 @@ namespace OUAN
 		/// Process the 'ony takes hit' event
 		void processOnyTakesHit(OnyTakesHitEventPtr evt);
 
+		/// Process the 'ony takes hit' event
+		void processAttackEnded(AttackEndedEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

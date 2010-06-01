@@ -38,7 +38,7 @@ void PhysicsComponentCharacter::reset()
 	mDashDirection=Ogre::Vector3::ZERO;
 	mIsNotApplyingDash=true;
 
-	mOffsetRenderPosition=Ogre::Vector3::ZERO;
+	//mOffsetRenderPosition=Ogre::Vector3::ZERO;
 
 	mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
 	mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinAccelerationFactor;

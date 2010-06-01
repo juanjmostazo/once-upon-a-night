@@ -824,6 +824,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	pGameObjectFlashLight->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectFlashLightParameters.name,
 		pGameObjectFlashLight,tGameObjectFlashLightParameters.tRenderComponentEntityParameters));
+	pGameObjectFlashLight->getRenderComponentEntity()->setVisible(false);
 
 	////Create PhysicsComponent
 	pGameObjectFlashLight->setPhysicsComponentVolumeConvex(
@@ -860,6 +861,16 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	pGameObjectFlashLight->setRenderComponentLight(
 		mComponentFactory->createRenderComponentLight(tGameObjectFlashLightParameters.name+"#Light",
 		pGameObjectFlashLight,tRenderComponentLightParameters));
+
+	pGameObjectFlashLight->setLightConeBBS(
+		mComponentFactory->createRenderComponentBillboardSet(
+		tGameObjectFlashLightParameters.name,
+		pGameObjectFlashLight,
+		tGameObjectFlashLightParameters.lightConeBBSParams
+		));
+	pGameObjectFlashLight->getLightConeBBS()->setVisible(false);
+	pGameObjectFlashLight->getLightConeBBS()->initChangeWorldMaterials(gameWorldMgr->getDefaultChangeWorldMaterialParameters());
+
 
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(gameWorldMgr);
@@ -1194,7 +1205,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.position_correction);
+	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-14,0));
 
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
@@ -1295,6 +1306,7 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	pGameObjectPillow->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPillowParameters.name,
 		pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentEntityParameters));
+	pGameObjectPillow->getRenderComponentEntity()->setVisible(false);
 
 	//Create PhysicsComponent
 	//UNCOMMENT WHEN THE FAKE COMPONENT ISN'T NEEDED ANYMORE
@@ -2347,7 +2359,7 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		pGameObjectTripolloDreams->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.position_correction);
+	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-14,0));
 
 	//Create TrajectoryComponent
 	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(

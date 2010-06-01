@@ -214,3 +214,22 @@ OnyTakesHitEvent::OnyTakesHitEvent()
 :Event(EVT_PRIORITY_ONY_TAKES_HIT, EVENT_TYPE_ONY_TAKES_HIT)
 {
 }
+
+//---------
+AttackEndedEvent::AttackEndedEvent(const std::string& attackName, GameObjectPtr attackingObject)
+:Event(EVT_PRIORITY_ATTACK_ENDED, EVENT_TYPE_ATTACK_ENDED)
+,mAttackingObject(attackingObject)
+,mAttackName(attackName)
+{
+	std::stringstream msg("");
+	msg<<"ATTACK "<<attackName<<" ended";
+	Logger::getInstance()->log(msg.str());
+}
+GameObjectPtr AttackEndedEvent::getAttackingObject() const
+{
+	return mAttackingObject;
+}
+const std::string& AttackEndedEvent::getAttackName() const
+{
+	return mAttackName;
+}
