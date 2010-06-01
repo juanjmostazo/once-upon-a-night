@@ -75,7 +75,9 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0);
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->create();
@@ -84,6 +86,7 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->create();
@@ -92,6 +95,7 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->destroy();
@@ -102,7 +106,9 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0);
 				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->create();
@@ -111,6 +117,7 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->destroy();
@@ -119,6 +126,7 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0);
 				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
 				{
 					mPhysicsComponentComplexConvex->create();

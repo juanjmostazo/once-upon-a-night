@@ -76,7 +76,9 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(true);
+				mRenderComponentWaterDreams->setChangeWorldFactor(0.0f);
 				mRenderComponentWaterNightmares->setVisible(false);
+				mRenderComponentWaterNightmares->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->create();
@@ -85,6 +87,7 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(true);
+				mRenderComponentWaterDreams->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->create();
@@ -93,6 +96,7 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterNightmares->setVisible(false);
+				mRenderComponentWaterNightmares->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->destroy();
@@ -103,7 +107,9 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(false);
+				mRenderComponentWaterDreams->setChangeWorldFactor(0.0f);
 				mRenderComponentWaterNightmares->setVisible(true);
+				mRenderComponentWaterNightmares->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->create();
@@ -112,6 +118,7 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterDreams->setVisible(false);
+				mRenderComponentWaterDreams->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->destroy();
@@ -120,6 +127,7 @@ void GameObjectWater::changeWorldFinished(int newWorld)
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentWaterNightmares->setVisible(true);
+				mRenderComponentWaterNightmares->setChangeWorldFactor(0.0f);
 				if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 				{
 					mPhysicsComponentVolumeConvex->create();
