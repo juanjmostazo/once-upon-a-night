@@ -2803,7 +2803,7 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 		tGameObjectTripolloDreamsParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get ChangeWorldMaterialParameters
-		tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
+		tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )

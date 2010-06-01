@@ -539,6 +539,9 @@ bool GameWorldManager::loadConfig()
 		config.getOption("CHANGE_WORLD_TREES_RANDOM", value); 
 		mRandomChangeWorld= Ogre::StringConverter::parseBool(value);
 
+		config.getOption("CHANGE_WORLD_RADIUM", value); 
+		CHANGE_WORLD_RADIUM= atof(value.c_str());
+
 		success = true;
 	} 
 	else 

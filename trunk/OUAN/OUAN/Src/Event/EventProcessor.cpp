@@ -212,7 +212,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 				{
 					if(!it->second->isChangingWorld())
 					{
-						it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Ogre::Math::Clamp<double>(distances[k]/1000.0f,0.0f,1.0f),0.5f);
+						it->second->calculateChangeWorldDelay(evt->change_world_elapsed_time,evt->time,evt->getNewWorld(),Ogre::Math::Clamp<double>(distances[k]/mWorldManager->CHANGE_WORLD_RADIUM,0.0f,1.0f),0.5f);
 						//Logger::getInstance()->log("calculateChangeWorldDelay "+it->second->getName()+" "+Ogre::StringConverter::toString(Ogre::Real(distances[k]/max_distance)));
 
 						k++;

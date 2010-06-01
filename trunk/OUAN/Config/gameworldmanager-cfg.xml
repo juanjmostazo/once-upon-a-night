@@ -12,12 +12,14 @@
 	<Option key="MATERIAL_SCROLL_ANIMATION_Z">0</Option>
 	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_X">0</Option>
 	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Y">0</Option>
-	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Z">0.00000</Option>
+	<Option key="CHANGE_WORLD_SCROLL_ANIMATION_Z">0</Option>
 	<Option key="CHANGE_WORLD_TILING">2.5</Option>
 	<Option key="CHANGE_WORLD_TEXTURE_COORDS_RANDOMIZE">true</Option>
 
     	<!--Change World Trees Options-->
 	<Option key="CHANGE_WORLD_TREES_RANDOM">false</Option>
+	<Option key="CHANGE_WORLD_RADIUM">800</Option>
+			
 
   </Options>
 </Configuration>
