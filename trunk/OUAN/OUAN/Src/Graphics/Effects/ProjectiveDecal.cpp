@@ -1,6 +1,7 @@
 #include "ProjectiveDecal.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameObject/GameObjectTerrainTriangle.h"
 #include "../RenderComponent/ChangeWorldMaterial.h"
 #include "../RenderComponent/RenderComponentEntity.h"
 using namespace OUAN;
@@ -54,25 +55,30 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 			if (it->second->hasRenderComponentEntity() && it->second->getEntityComponent().get() && 
 				(entity=it->second->getEntityComponent()->getEntity()))
 			{		
-				if (it->second->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE)==0 || 
-					it->second->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
+				if (it->second->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE)==0)
 				{
-					std::vector<std::string> origMatNames=it->second->getEntityComponent()->getOriginalMaterials();
-					for (std::vector<std::string>::iterator it2 = origMatNames.begin();it2!=origMatNames.end();++it2)
+					GameObjectTerrainTrianglePtr triangle = boost::dynamic_pointer_cast<GameObjectTerrainTriangle>(it->second);
+					if (triangle.get())
 					{
-						if (mTargets.find(*it2)==mTargets.end())
+						Ogre::Entity* entity=triangle->getRenderComponentEntityDreams()->getEntity();
+						for (unsigned int i=0;i<entity->getNumSubEntities();++i)
 						{
-							mTargets.insert(*it2);
-							Logger::getInstance()->log("Adding material" + Ogre::String(*it2));
+							Ogre::SubEntity* subEnt = entity->getSubEntity(i);
+
+							if (subEnt && !subEnt->getMaterial().isNull() && mTargets.find(subEnt->getMaterial()->getName())==mTargets.end())
+							{
+								mTargets.insert(subEnt->getMaterial()->getName());
+							}							
 						}
-					}
-					std::vector<ChangeWorldMaterialPtr> cwMats = it->second->getEntityComponent()->getChangeWorldMaterials();
-					for (std::vector<ChangeWorldMaterialPtr>::iterator it2=cwMats.begin();it2!=cwMats.end();++it2)
-					{
-						if (mTargets.find((*it2)->getMaterialName())==mTargets.end())
+						entity=triangle->getRenderComponentEntityNightmares()->getEntity();
+						for (unsigned int i=0;i<entity->getNumSubEntities();++i)
 						{
-							mTargets.insert((*it2)->getMaterialName());
-							Logger::getInstance()->log("Adding material" + Ogre::String((*it2)->getMaterialName()));
+							Ogre::SubEntity* subEnt = entity->getSubEntity(i);
+
+							if (subEnt && !subEnt->getMaterial().isNull() && mTargets.find(subEnt->getMaterial()->getName())==mTargets.end())
+							{
+								mTargets.insert(subEnt->getMaterial()->getName());
+							}
 						}
 					}
 				}
