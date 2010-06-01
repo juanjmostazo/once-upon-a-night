@@ -397,41 +397,6 @@ void GameObjectTripolloDreams::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectTripolloDreams::calculateChangeWorldTotalTime(double changeWorldTotalTime)
-{
-	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
-}
-
-void GameObjectTripolloDreams::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
-{
-	double fraction=0.25f;
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		if(mLogicComponentEnemy->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		else if(mLogicComponentEnemy->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentEnemy->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		else if(mLogicComponentEnemy->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		break;
-	default:
-		break;
-	}	
-}
 
 void GameObjectTripolloDreams::setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent)
 {

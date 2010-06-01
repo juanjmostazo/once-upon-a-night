@@ -5,6 +5,8 @@ material tree5_n
 	{
 		pass
 		{
+			alpha_rejection greater 128
+			depth_write on
 			texture_unit
 			{
 				texture tree01_nightmare_texture.tga

@@ -262,6 +262,8 @@ namespace OUAN
 
 		void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
 
+		double CHANGE_WORLD_RADIUM;
+
 	private:		
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
@@ -358,6 +360,8 @@ namespace OUAN
 		bool mIsChangingWorld;
 		int mWorld;
 		TChangeWorldMaterialParameters mDefaultChangeWorldMaterialParameters;
+
+
 
 
 		EventManagerPtr mEventManager;
