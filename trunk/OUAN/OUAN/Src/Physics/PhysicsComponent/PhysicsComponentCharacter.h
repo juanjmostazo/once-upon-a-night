@@ -127,6 +127,8 @@ namespace OUAN
 
 		double radius;
 		double height;
+		Vector3 scale_corretion;
+		Vector3 position_correction;
 	};
 }
 

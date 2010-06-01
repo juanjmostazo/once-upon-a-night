@@ -3607,6 +3607,20 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	tPhysicsComponentCharacterParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::mass");
 	tPhysicsComponentCharacterParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::radius");
 	tPhysicsComponentCharacterParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::height");
+	try{
+		tPhysicsComponentCharacterParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacter"+suffix+"::position_corretion");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentCharacterParameters.position_correction=Vector3::ZERO;
+	}
+	try{
+		tPhysicsComponentCharacterParameters.scale_corretion=getPropertyVector3(XMLNode,"PhysicsComponentCharacter"+suffix+"::scale_corretion");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentCharacterParameters.scale_corretion=Vector3(1,1,1);
+	}
 
 	return tPhysicsComponentCharacterParameters;
 
