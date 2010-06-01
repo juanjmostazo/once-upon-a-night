@@ -25,10 +25,10 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-55.4088 1536.62 -1088.5" orientation="0.303941 -0.139135 -0.860484 -0.384484"></OPTION>
+    <OPTION id="1" position="-163.547 1460.4 -485.853" orientation="0.145522 -0.0558224 -0.928674 -0.33656"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
       <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.303947 -0.139138 -0.860501 -0.384492"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.145525 -0.0558235 -0.928692 -0.336566"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-55.4088 1536.62 -1088.5"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-163.547 1460.4 -485.853"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -927,7 +927,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2857,7 +2857,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3267,7 +3267,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5419,7 +5419,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7187,7 +7187,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7751,7 +7751,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -9689,7 +9689,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12210,6 +12210,8 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
