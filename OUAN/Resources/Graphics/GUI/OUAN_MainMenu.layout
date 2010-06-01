@@ -7,31 +7,31 @@
         <Window Type="OUANLook/StaticImage" Name="OUANMainMenu/Background" >
             <Property Name="Image" Value="set:OUANLook-BG-Logo image:OUAN-BG-Logo" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1.00292,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{-0.00122699,0},{0,0},{0.998773,0},{1.00292,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Options" >
             <Property Name="Text" Value="Options" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.308282,0},{0.410584,0},{0.708282,0},{0.510584,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.562409,0},{0.710736,0},{0.662408,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Extras" >
             <Property Name="Text" Value="Extras" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.308282,0},{0.561679,0},{0.708282,0},{0.661678,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.308282,0},{0.694526,0},{0.708282,0},{0.794525,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Play" >
             <Property Name="Text" Value="Play" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.278468,0},{0.710736,0},{0.378467,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.425914,0},{0.710736,0},{0.525913,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Quit" >
             <Property Name="Text" Value="Quit" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.307055,0},{0.690876,0},{0.707055,0},{0.790875,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.309509,0},{0.832482,0},{0.709509,0},{0.932481,0}}" />
         </Window>
     </Window>
 </GUILayout>
