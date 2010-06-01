@@ -25,11 +25,11 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-835.575 649.488 -731.039" orientation="0.25475 -0.0482989 -0.950896 -0.16902"></OPTION>
+    <OPTION id="1" position="-637.581 1451.8 176.047" orientation="-0.24031 0.191713 0.749655 0.586101"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="false"></LAYER>
@@ -99,9 +99,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.254783 -0.0483053 -0.951022 -0.169042"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.24031 0.191713 0.749655 0.586101"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-835.575 649.488 -731.039"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-637.581 1451.8 176.047"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -953,12 +953,12 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="onytest_weapons.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ony.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.7 0 -0.7 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="755.99 258.375 -24.0078"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1469,7 +1469,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="853663744" name="terrain_d#terrain1_01" typename="Entity Object" parentnode="Mountains">
+  <OBJECT object_id="949766528" name="terrain_d#terrain1_01" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1484,7 +1484,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2176,14 +2176,14 @@
   <OBJECT object_id="26337476" name="terrain_n#wall02" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="wall02.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall02"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall02_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2678,7 +2678,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="324533824" name="diamondtree_n#1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="324533824" name="diamond_tree_n#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -3106,6 +3106,33 @@
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="806695744" name="water_d#lake1_surface_lightmap" typename="Entity Object" parentnode="WaterIsla1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="lake_island1.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.375 207.78 336.445"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="lake_island_lightmap_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="RenderQueue::id" type="2" value="80" fields="X;Y;Z;W" options="RENDER_QUEUE_BACKGROUND;0;RENDER_QUEUE_SKIES_EARLY;5;RENDER_QUEUE_1;10;RENDER_QUEUE_2;20;RENDER_QUEUE_WORLD_GEOMETRY_1;25;RENDER_QUEUE_3;30;RENDER_QUEUE_4;40;RENDER_QUEUE_MAIN;50;RENDER_QUEUE_6;60;RENDER_QUEUE_7;70;RENDER_QUEUE_WORLD_GEOMETRY_2;75;RENDER_QUEUE_8;80;RENDER_QUEUE_9;90;RENDER_QUEUE_SKIES_LATE;95;RENDER_QUEUE_OVERLAY;100;RENDER_QUEUE_MAX;105;"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_texture" type="7" value="Water01.jpg" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.03" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3761,7 +3788,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="623462592" name="terrain_d#terrain1_02" typename="Entity Object" parentnode="Mountains">
+  <OBJECT object_id="775322752" name="terrain_d#terrain1_02" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3776,7 +3803,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3984,7 +4011,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain1_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain02_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4858,7 +4885,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="403759872" name="diamondtree_n#0" typename="Entity Object" parentnode="diamond_tree">
+  <OBJECT object_id="403759872" name="diamond_tree_n#0" typename="Entity Object" parentnode="diamond_tree">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -5905,7 +5932,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_foam_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
@@ -6019,7 +6046,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="704855488" name="terrain_d#terrain1_03" typename="Entity Object" parentnode="Mountains">
+  <OBJECT object_id="654164224" name="terrain_d#terrain1_03" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -6034,7 +6061,7 @@
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6198,7 +6225,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain1_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain03_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7899,7 +7926,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_foam_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -8204,7 +8231,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="217169712" name="diamondtree_d#1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="217169712" name="diamond_tree_d#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8447,14 +8474,14 @@
   <OBJECT object_id="751945536" name="terrain_n#wall01" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="wall01.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall01"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall03_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8663,7 +8690,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_blue_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
@@ -9213,7 +9240,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall03"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall01_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10411,7 +10438,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_blue_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
@@ -10740,7 +10767,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="933042432" name="diamondtree_d#0" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="933042432" name="diamond_tree_d#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -11044,6 +11071,33 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="100894192" name="water_n#lake1_surface_lightmap" typename="Entity Object" parentnode="WaterIsla1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="lake_island1.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.375 207.78 336.445"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="lake_island_lightmap_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="RenderQueue::id" type="2" value="80" fields="X;Y;Z;W" options="RENDER_QUEUE_BACKGROUND;0;RENDER_QUEUE_SKIES_EARLY;5;RENDER_QUEUE_1;10;RENDER_QUEUE_2;20;RENDER_QUEUE_WORLD_GEOMETRY_1;25;RENDER_QUEUE_3;30;RENDER_QUEUE_4;40;RENDER_QUEUE_MAIN;50;RENDER_QUEUE_6;60;RENDER_QUEUE_7;70;RENDER_QUEUE_WORLD_GEOMETRY_2;75;RENDER_QUEUE_8;80;RENDER_QUEUE_9;90;RENDER_QUEUE_SKIES_LATE;95;RENDER_QUEUE_OVERLAY;100;RENDER_QUEUE_MAX;105;"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_texture" type="7" value="Water01.jpg" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.03" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="167638160" name="terrain_n#terrain1_01" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -11054,7 +11108,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain1_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11140,7 +11194,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_blue_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -11712,7 +11766,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall02"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall02_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12136,12 +12190,12 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="onytest_weapons.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="ony.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.7 0 -0.7 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-364.598 331.991 229.971"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13463,14 +13517,14 @@
   <OBJECT object_id="70650344" name="terrain_n#wall03" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="wall03.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall03"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14012,7 +14066,7 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_foam_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ChangeWorldMaterial::type" type="2" value="1" fields="X;Y;Z;W" options="CW_BLENDING;0;CW_EROSION;1;CW_EROSION_TRANSPARENT;2;"></PROPERTY>
@@ -14093,7 +14147,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="wall01"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="wall03_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14385,160 +14439,6 @@
     <PROPERTY id="position" type="9" value="-619.401 119.328 -778.56"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.1 0.1 0.1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="109775080" name="Particle_d#waterfalltopA4" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-710.319 507.157 170.862"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="140079968" name="Particle_d#waterfalltopB3" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-710.075 30.0679 558.996"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="3784296" name="Particle_d#waterfalltopB2" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-587.899 30.0679 558.996"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="562089920" name="Particle_d#waterfallsplash4" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-659.711 274.995 170.887"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="257484672" name="Particle_d#waterfalltopA2" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-747.565 545.078 400.883"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="18616292" name="Particle_d#waterfalltopB1" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-471.827 30.0679 558.996"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="274667" name="Particle_d#waterfallsplash3" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-675.259 274.995 283.524"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="794030592" name="Particle_d#waterfalltopA3" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-729.631 516.102 302.637"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="298623616" name="Particle_d#waterfallsplash2" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-687.692 274.995 389.408"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="39063692" name="Particle_d#waterfallsplash1" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-687.692 274.995 483.815"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="377147744" name="Particle_d#waterfalltopA1" typename="Particle Object" parentnode="particulas">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="particle" type="7" value="Examples/JetEngine2"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-747.565 545.078 483.815"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="templateName" type="7" value="PUMediaPack/Propulsion" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

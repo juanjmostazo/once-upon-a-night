@@ -260,6 +260,9 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
 	}
 
+	mScrollAnimationCurrent=Vector3::ZERO;
+	mScrollBlendingCurrent=Vector3::ZERO;
+
 	return mName.compare("")!=0;
 }
 
@@ -283,6 +286,9 @@ bool ChangeWorldMaterial::init(std::string id,TChangeWorldMaterialParameters tCh
 
 		Logger::getInstance()->log("[ChangeWorldMaterial] material "+mName+" initialized.");
 	}
+
+	mScrollAnimationCurrent=Vector3::ZERO;
+	mScrollBlendingCurrent=Vector3::ZERO;
 
 	return mName.compare("")!=0;
 }
