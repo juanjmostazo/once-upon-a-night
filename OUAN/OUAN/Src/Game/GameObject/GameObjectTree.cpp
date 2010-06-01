@@ -77,7 +77,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				//mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}		
 			break;
 		case NIGHTMARES:
@@ -97,7 +97,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				//mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}
 			break;
 		default:
@@ -114,12 +114,11 @@ void GameObjectTree::changeWorldStarted(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
-			mRenderComponentEntity->setVisible(true);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
 			mRenderComponentEntity->setVisible(true);
 		}
 		break;
@@ -127,7 +126,6 @@ void GameObjectTree::changeWorldStarted(int newWorld)
 		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
 			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
-			mRenderComponentEntity->setVisible(true);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
@@ -144,35 +142,35 @@ void GameObjectTree::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
-	//Ogre::AnimationState * pAnimation = mRenderComponentEntity->getCurrentAnimation();
+	Ogre::AnimationState * pAnimation = mRenderComponentEntity->getCurrentAnimation();
 
-	//if(!pAnimation) return;
+	if(!pAnimation) return;
 
-	//switch(newWorld)
-	//{
-	//case DREAMS:
-	//	if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-	//	{
-	//		pAnimation->setTimePosition(pAnimation->getLength()*perc);
-	//	}
-	//	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-	//	{
-	//		pAnimation->setTimePosition(pAnimation->getLength()*(1-perc));
-	//	}
-	//	break;
-	//case NIGHTMARES:
-	//	if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-	//	{
-	//		pAnimation->setTimePosition(pAnimation->getLength()*(1-perc));
-	//	}
-	//	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-	//	{
-	//		pAnimation->setTimePosition(pAnimation->getLength()*perc);
-	//	}
-	//	break;
-	//default:
-	//	break;
-	//}
+	switch(newWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			pAnimation->setTimePosition(pAnimation->getLength()*(perc));
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			pAnimation->setTimePosition(pAnimation->getLength()*(1-perc));
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			pAnimation->setTimePosition(pAnimation->getLength()*(1-perc));
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			pAnimation->setTimePosition(pAnimation->getLength()*(perc));
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 void GameObjectTree::reset()
