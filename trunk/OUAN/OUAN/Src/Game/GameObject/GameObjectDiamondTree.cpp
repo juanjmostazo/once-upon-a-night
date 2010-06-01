@@ -222,9 +222,15 @@ void GameObjectDiamondTree::reset()
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(DT_STATE_IDLE));
 
 	if (mLogicComponent->existsInNightmares())
-		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);
+	{
+		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);		
+		mRenderComponentEntityNightmares->setVisible(mWorld==NIGHTMARES);
+	}
 	else if (mLogicComponent->existsInDreams())
+	{
 		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
+		mRenderComponentEntityDreams->setVisible(mWorld==DREAMS);
+	}
 }
 
 bool GameObjectDiamondTree::hasPositionalComponent() const
@@ -344,18 +350,19 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
-		{				
-			entityToUpdate->changeAnimation(DT_STATE_HIT);			
+		{	
+			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
 			//play sound
 			//enable children diamonds!
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_RELOAD) && entityToUpdate.get() && mLogicComponent->isStateChanged())
-		{				
+		{
+			Logger::getInstance()->log("STATE CHANGED TO RELOAD!");
 			//play some particles to show the reloading state
 			std::stringstream msg;
 			msg<<"Reload started: "<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
 			displayText(msg.str());
-			entityToUpdate->changeAnimation(DT_STATE_IDLE);
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
 			mLogicComponent->setTimeSpent(0);
 		}
 		if (entityToUpdate.get())
