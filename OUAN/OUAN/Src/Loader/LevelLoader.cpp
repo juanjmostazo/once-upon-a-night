@@ -279,6 +279,7 @@ void LevelLoader::processGameObjectBillboardClouds()
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
 
 		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(NULL);
+		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters.tiling=0.4;
 
 		///////////////////////
 
