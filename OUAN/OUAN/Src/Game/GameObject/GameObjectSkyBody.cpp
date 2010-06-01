@@ -74,53 +74,104 @@ void GameObjectSkyBody::changeWorldFinished(int newWorld)
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityDreams)
+			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
+			}
 			else
+			{
 				mBBSComponentDreams->setVisible(true);
+				mBBSComponentDreams->setChangeWorldFactor(0.0f);
+			}
 
 			if (mUseEntityNightmares)
+			{
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			}
 			else
+			{
 				mBBSComponentNightmares->setVisible(false);
+				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
+			}
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityDreams)
+			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
+			}
 			else
+			{
 				mBBSComponentDreams->setVisible(true);
+				mBBSComponentDreams->setChangeWorldFactor(0.0f);
+			}
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityNightmares)
+			{
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			}
 			else
+			{
 				mBBSComponentNightmares->setVisible(false);
+				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
+			}
 		}		
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityDreams)
+			{
 				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
+			}
 			else 
+			{
 				mBBSComponentDreams->setVisible(false);
+				mBBSComponentDreams->setChangeWorldFactor(0.0f);
+			}
 			
 			if (mUseEntityNightmares)
+			{
 				mRenderComponentEntityNightmares->setVisible(true);
-			else mBBSComponentNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(true);
+				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
+			}
 		}
 		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityDreams)
+			{
 				mRenderComponentEntityDreams->setVisible(false);
-			else mBBSComponentDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
+			}
+			else
+			{
+				mBBSComponentDreams->setVisible(false);
+				mBBSComponentDreams->setChangeWorldFactor(0.0f);
+			}
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
 			if (mUseEntityNightmares)
+			{
 				mRenderComponentEntityNightmares->setVisible(true);
-			else mBBSComponentNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(true);
+				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
+			}
 		}	
 		break;
 	default:break;

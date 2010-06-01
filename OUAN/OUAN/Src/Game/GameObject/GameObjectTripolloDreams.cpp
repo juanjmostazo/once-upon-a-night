@@ -289,16 +289,20 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 				activateTrajectory(newWorld);
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 				activateTrajectory(newWorld);
 			}		
 			break;
@@ -306,16 +310,20 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
 				activateTrajectory(newWorld);
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
 				activateTrajectory(newWorld);
 			}	
 			break;
