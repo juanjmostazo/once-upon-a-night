@@ -3,7 +3,7 @@
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::position_corretion" type="6" value="0 -6.5 0" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::position_corretion" type="6" value="0 -2 0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::scale_corretion" type="6" value="1 1 1" ></PROPERTY>
 
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="tripollo.lua" fields="X;Y;Z;W"></PROPERTY>

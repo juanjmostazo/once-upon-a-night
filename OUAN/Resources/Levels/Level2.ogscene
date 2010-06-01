@@ -12165,7 +12165,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="onytest_weapons.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.7 0 -0.7 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="538.139 140.45 43.0592"></PROPERTY>
+    <PROPERTY id="position" type="9" value="523.556 140.45 83.6296"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>

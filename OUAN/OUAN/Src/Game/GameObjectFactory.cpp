@@ -2359,7 +2359,7 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		pGameObjectTripolloDreams->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-14,0));
+	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.position_correction);
 
 	//Create TrajectoryComponent
 	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
