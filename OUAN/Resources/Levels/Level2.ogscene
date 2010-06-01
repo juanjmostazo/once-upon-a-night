@@ -2680,7 +2680,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="324533824" name="diamond_tree_n#1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="324533824" name="diamondtree_n#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -4872,7 +4872,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="403759872" name="diamond_tree_n#0" typename="Entity Object" parentnode="diamond_tree">
+  <OBJECT object_id="403759872" name="diamondtree_n#0" typename="Entity Object" parentnode="diamond_tree">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -8220,7 +8220,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="217169712" name="diamond_tree_d#1" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="217169712" name="diamondtree_d#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -10758,7 +10758,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="933042432" name="diamond_tree_d#0" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="933042432" name="diamondtree_d#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
