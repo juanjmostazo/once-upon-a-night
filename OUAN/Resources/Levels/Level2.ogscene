@@ -953,12 +953,12 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ony.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="onytest_weapons.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.7 0 -0.7 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="755.99 258.375 -24.0078"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12183,12 +12183,12 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="ony.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="onytest_weapons.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.7 0 -0.7 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-364.598 331.991 229.971"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
