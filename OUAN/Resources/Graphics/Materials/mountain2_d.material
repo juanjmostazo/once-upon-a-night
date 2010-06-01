@@ -1,5 +1,5 @@
 
-material mountain2
+material mountain2_d
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material mountain2
 
 			texture_unit
 			{
-				texture terrain1_d.dds
+				texture mountain2_d.dds
 			}
 		}
 

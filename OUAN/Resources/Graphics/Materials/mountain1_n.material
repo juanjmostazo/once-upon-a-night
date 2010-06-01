@@ -6,6 +6,8 @@ material mountain1_n
 		pass
 		{
 			ambient 0.3 0.3 0.3 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
 
 			texture_unit
 			{
@@ -16,5 +18,3 @@ material mountain1_n
 	}
 
 }
-
-
