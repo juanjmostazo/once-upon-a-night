@@ -52,23 +52,27 @@ namespace OUAN
 	#define RESET_BIT_FIELD(var) var=0;
 
 	//Animation names
-	const std::string ONY_ANIM_IDLE01="idle01";
-	const std::string ONY_ANIM_IDLE02="idle02";
-	const std::string ONY_ANIM_WALK="walk";
+	const std::string ONY_ANIM_IDLE01="idle1";
+	const std::string ONY_ANIM_IDLE02="idle2";
+	const std::string ONY_ANIM_WALK="walk2";
 	const std::string ONY_ANIM_RUN="run";
 	const std::string ONY_ANIM_JUMP="jump";
+	const std::string ONY_ANIM_JUMP_START="jump_init1";
+	const std::string ONY_ANIM_JUMP_KEEP="jump_up";
+	const std::string ONY_ANIM_JUMP_END="jump_end";
 	const std::string ONY_ANIM_GET_PILLOW="get_pillow";
 	const std::string ONY_ANIM_STAB_RIGHT_PILLOW="stab_right_pillow";
 	const std::string ONY_ANIM_STAB_LEFT_PILLOW="stab_left_pillow";
+	const std::string ONY_ANIM_STAB_PILLOW="stab_pillow";
 	const std::string ONY_ANIM_LEAVE_PILLOW="leave_pillow";
 	const std::string ONY_ANIM_SPECIAL_PILLOW_ATTACK="special_pillow_attack";
 	const std::string ONY_ANIM_GET_FLASH="get_flash";
 	const std::string ONY_ANIM_SHOOT_SPECIAL="shoot_special";
 	const std::string ONY_ANIM_ALERT="alert";
-	const std::string ONY_ANIM_HIT01="hit01";
-	const std::string ONY_ANIM_HIT02="hit02";
-	const std::string ONY_ANIM_DIE01="die01";
-	const std::string ONY_ANIM_DIE02="die02";
+	const std::string ONY_ANIM_HIT01="hit1";
+	const std::string ONY_ANIM_HIT02="hit2";
+	const std::string ONY_ANIM_DIE01="die";
+	const std::string ONY_ANIM_DIE02="die2";
 	const std::string ONY_ANIM_TIRED="tired";
 	const std::string ONY_ANIM_HANDLE="handle";
 	const std::string ONY_ANIM_OPEN_DOOR="open_door";
@@ -80,8 +84,14 @@ namespace OUAN
 	const std::string ONY_ANIM_SPEAK="speak";
 	const std::string ONY_ANIM_FALLING="falling";
 	const std::string ONY_ANIM_SHOOT_UP="shoot_up";
+	const std::string ONY_ANIM_SHOOT_UP_LEFT="shoot_up_left";
+	const std::string ONY_ANIM_SHOOT_UP_RIGHT="shoot_up_right";
 	const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
+	const std::string ONY_ANIM_SHOOT_CENTER_LEFT="shoot_center_left";
+	const std::string ONY_ANIM_SHOOT_CENTER_RIGHT="shoot_center_right";
 	const std::string ONY_ANIM_SHOOT_DOWN="shoot_down";
+	const std::string ONY_ANIM_SHOOT_DOWN_LEFT="shoot_down_left";
+	const std::string ONY_ANIM_SHOOT_DOWN_RIGHT="shoot_down_right";
 
 	const std::string ONY_SOUND_DIE="any_dies";
 	const std::string ONY_SOUND_HIT="any_takes_hit";
@@ -224,6 +234,7 @@ namespace OUAN
 		RenderComponentEntityPtr getEntityComponent() const;
 
 		bool isDying() const;
+		bool isHit() const;
 
 		bool isMoving();
 		bool isJumping();

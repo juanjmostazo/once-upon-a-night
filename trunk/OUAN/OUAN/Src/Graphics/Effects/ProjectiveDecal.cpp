@@ -1,6 +1,7 @@
 #include "ProjectiveDecal.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../RenderComponent/ChangeWorldMaterial.h"
 #include "../RenderComponent/RenderComponentEntity.h"
 using namespace OUAN;
 
@@ -52,14 +53,39 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 			//be only filtering by material names.
 			if (it->second->hasRenderComponentEntity() && it->second->getEntityComponent().get() && 
 				(entity=it->second->getEntityComponent()->getEntity()))
-			{					
-				for (unsigned int i = 0; i < entity->getNumSubEntities(); ++i)
+			{		
+				if (it->second->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE)==0 || 
+					it->second->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
 				{
-					Ogre::SubEntity* subEnt = entity->getSubEntity(i);
-
-					if (subEnt && !subEnt->getMaterial().isNull() && mTargets.find(subEnt->getMaterial()->getName())==mTargets.end())
+					std::vector<std::string> origMatNames=it->second->getEntityComponent()->getOriginalMaterials();
+					for (std::vector<std::string>::iterator it2 = origMatNames.begin();it2!=origMatNames.end();++it2)
 					{
-						mTargets.insert(subEnt->getMaterial()->getName());
+						if (mTargets.find(*it2)==mTargets.end())
+						{
+							mTargets.insert(*it2);
+							Logger::getInstance()->log("Adding material" + Ogre::String(*it2));
+						}
+					}
+					std::vector<ChangeWorldMaterialPtr> cwMats = it->second->getEntityComponent()->getChangeWorldMaterials();
+					for (std::vector<ChangeWorldMaterialPtr>::iterator it2=cwMats.begin();it2!=cwMats.end();++it2)
+					{
+						if (mTargets.find((*it2)->getMaterialName())==mTargets.end())
+						{
+							mTargets.insert((*it2)->getMaterialName());
+							Logger::getInstance()->log("Adding material" + Ogre::String((*it2)->getMaterialName()));
+						}
+					}
+				}
+				else
+				{
+					for (unsigned int i = 0; i < entity->getNumSubEntities(); ++i)
+					{
+						Ogre::SubEntity* subEnt = entity->getSubEntity(i);
+
+						if (subEnt && !subEnt->getMaterial().isNull() && mTargets.find(subEnt->getMaterial()->getName())==mTargets.end())
+						{
+							mTargets.insert(subEnt->getMaterial()->getName());
+						}
 					}
 				}
 			}

@@ -419,7 +419,7 @@ AudioComponentPtr GameObject::getAudioComponentInstance() const
 }
 void GameObject::updatePhysicsComponents(double elapsedSeconds)
 {
-	if (hasPhysicsComponent())
+	if (hasPhysicsComponent() && getPhysicsComponent().get() && getPhysicsComponent()->isInUse())
 	{
 		getPhysicsComponent()->update(elapsedSeconds);
 	}

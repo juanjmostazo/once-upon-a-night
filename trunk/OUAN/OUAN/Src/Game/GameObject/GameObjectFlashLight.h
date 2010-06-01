@@ -190,6 +190,8 @@ namespace OUAN
 		int getAttackDamage() const;
 
 		void createProjector(TGameObjectContainer* objs);
+
+		void applyTintColour(int colour);
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters

@@ -137,6 +137,7 @@ namespace OUAN
 
 		/// Facade method to prevent input handling when ony's playing his 'dying' animation
 		bool isOnyDying() const;
+		bool isOnyHit() const;
 
 		/// 
 		void toggleTreeVisibility();

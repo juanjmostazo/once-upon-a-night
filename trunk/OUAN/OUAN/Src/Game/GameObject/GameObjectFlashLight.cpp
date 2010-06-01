@@ -281,6 +281,10 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 				mFlashlightDecal->show();
 			}
 		}
+		if (mLightConeBBS)
+		{
+			applyTintColour(attackData->rgb);
+		}
 	}
 
 }
@@ -289,7 +293,7 @@ void GameObjectFlashLight::switchOn()
 	std::stringstream colourStream("");
 	colourStream<<GameObjectFlashLight::getColourName(getColour());
 	displayText(colourStream.str());
-	mRenderComponentLight->getLight()->setVisible(true);
+	//mRenderComponentLight->getLight()->setVisible(true);
 	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->create();
@@ -312,14 +316,23 @@ void GameObjectFlashLight::switchOff()
 	{
 		mFlashlightDecal->hide();
 	}
+	if (mAttackComponent->getSelectedAttack().get())
+	{
+		FlashlightAttackDataPtr attackData = boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName,shared_from_this()));
+		mGameWorldManager->addEvent(evt);
+	}
 }
 void GameObjectFlashLight::show()
 {
-	mRenderComponentEntity->getEntity()->setVisible(true);
+	//mRenderComponentEntity->getEntity()->setVisible(true);
+	mLightConeBBS->setVisible(true);
+	Logger::getInstance()->log("LIGHT CONE NOW VISIBLE -theoretically -_-");
 }
 void GameObjectFlashLight::hide()
 {
-	mRenderComponentEntity->getEntity()->setVisible(false);
+	//mRenderComponentEntity->getEntity()->setVisible(false);
+	mLightConeBBS->setVisible(false);
 }
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
 {
@@ -454,6 +467,17 @@ std::string GameObjectFlashLight::getColourName(int colour)
 		return "";
 	}
 }
+void GameObjectFlashLight::applyTintColour(int colour)
+{
+	Ogre::ColourValue tint;
+	tint.setAsRGBA(colour);
+	Ogre::MaterialPtr mat=Ogre::MaterialManager::getSingleton().getByName("flashlighthalo");
+	Ogre::TextureUnitState* tex= mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+	if (tex)
+	{
+		tex->setColourOperationEx(Ogre::LBX_MODULATE,Ogre::LBS_MANUAL,Ogre::LBS_CURRENT,tint);
+	}
+}
 void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 {
 	if (!mFlashlightDecal.get())
@@ -469,6 +493,9 @@ void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 	decalSettings.tintColour=getColour();
 
 	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
+
+	if (mLightConeBBS);
+		//applyTintColour(getColour());
 }
 
 RenderComponentBillboardSetPtr GameObjectFlashLight::getLightConeBBS() const

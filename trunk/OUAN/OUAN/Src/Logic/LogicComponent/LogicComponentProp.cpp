@@ -4,6 +4,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectDiamondTree.h"
+#include "../../Game/GameObject/GameObjectOny.h"
 
 using namespace OUAN;
 
@@ -24,7 +25,7 @@ LogicComponentProp::~LogicComponentProp()
 void LogicComponentProp::processCollision(GameObjectPtr pGameObject)
 {
 	
- 	bool isParentDiamondTree = mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+/* 	bool isParentDiamondTree = mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 	bool isWeaponCollision=pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 
 		|| pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0;
 	LogicSubsystemPtr logicSS = mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
@@ -37,7 +38,21 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject)
 			mHasTakenHit=true;			
 			mHitRecoveryTime=1;
 		}		
-	}	
+	}*/	
+	if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);
+		if (ony.get() && CHECK_BIT(ony->getLogicComponentOny()->getState(),ONY_STATE_BIT_FIELD_ATTACK)
+			&& mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0)
+		{
+			if (mHitRecoveryTime<0)
+			{
+				getParent()->displayText("THUD!");
+				mHasTakenHit=true;			
+				mHitRecoveryTime=1;
+			}			
+		}
+	}
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);

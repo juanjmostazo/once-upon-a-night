@@ -26,11 +26,11 @@
   <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow#0"></PROPERTY>
   
   <!-- Animations -->
-  <PROPERTY id="animation0::name" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation0::name" type="7" value="idle1"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
-  <PROPERTY id="animation1::name" type="7" value="idle02" ></PROPERTY>
+  <PROPERTY id="animation1::name" type="7" value="idle2" ></PROPERTY>
   <PROPERTY id="animation1::loop" type="12" value="false" ></PROPERTY>
-  <PROPERTY id="animation2::name" type="7" value="walk" ></PROPERTY>
+  <PROPERTY id="animation2::name" type="7" value="walk2" ></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation3::name" type="7" value="run" ></PROPERTY>
   <PROPERTY id="animation3::loop" type="12" value="true" ></PROPERTY>
@@ -52,13 +52,13 @@
   <PROPERTY id="animation11::loop" type="12" value="false" ></PROPERTY>  
   <PROPERTY id="animation12::name" type="7" value="alert" ></PROPERTY>
   <PROPERTY id="animation12::loop" type="12" value="false" ></PROPERTY>  
-  <PROPERTY id="animation13::name" type="7" value="hit01" ></PROPERTY>
+  <PROPERTY id="animation13::name" type="7" value="hit1" ></PROPERTY>
   <PROPERTY id="animation13::loop" type="12" value="false" ></PROPERTY>    
-  <PROPERTY id="animation14::name" type="7" value="hit02" ></PROPERTY>
+  <PROPERTY id="animation14::name" type="7" value="hit2" ></PROPERTY>
   <PROPERTY id="animation14::loop" type="12" value="false" ></PROPERTY>
-  <PROPERTY id="animation15::name" type="7" value="die01" ></PROPERTY>
+  <PROPERTY id="animation15::name" type="7" value="die" ></PROPERTY>
   <PROPERTY id="animation15::loop" type="12" value="false" ></PROPERTY>  
-  <PROPERTY id="animation16::name" type="7" value="die02" ></PROPERTY>
+  <PROPERTY id="animation16::name" type="7" value="die2" ></PROPERTY>
   <PROPERTY id="animation16::loop" type="12" value="false" ></PROPERTY>  
   <PROPERTY id="animation17::name" type="7" value="tired" ></PROPERTY>
   <PROPERTY id="animation17::loop" type="12" value="true" ></PROPERTY>
@@ -86,6 +86,26 @@
   <PROPERTY id="animation28::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation29::name" type="7" value="shoot_down" ></PROPERTY>
   <PROPERTY id="animation29::loop" type="12" value="false" ></PROPERTY> 
+  <PROPERTY id="animation30::name" type="7" value="stab_pillow" ></PROPERTY>  
+  <PROPERTY id="animation30::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation31::name" type="7" value="jump_init1" ></PROPERTY>  
+  <PROPERTY id="animation31::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation32::name" type="7" value="jump_up" ></PROPERTY>  
+  <PROPERTY id="animation32::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation33::name" type="7" value="jump_end" ></PROPERTY>  
+  <PROPERTY id="animation33::loop" type="12" value="false" ></PROPERTY>  
+  <PROPERTY id="animation34::name" type="7" value="shoot_center_left" ></PROPERTY>  
+  <PROPERTY id="animation34::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation35::name" type="7" value="shoot_center_right" ></PROPERTY>  
+  <PROPERTY id="animation35::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation36::name" type="7" value="shoot_down_left" ></PROPERTY>  
+  <PROPERTY id="animation36::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation37::name" type="7" value="shoot_down_right" ></PROPERTY>  
+  <PROPERTY id="animation37::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation38::name" type="7" value="shoot_up_left" ></PROPERTY>  
+  <PROPERTY id="animation38::loop" type="12" value="false" ></PROPERTY>
+  <PROPERTY id="animation39::name" type="7" value="shoot_up_right" ></PROPERTY>  
+  <PROPERTY id="animation39::loop" type="12" value="false" ></PROPERTY>  
   <!--<PROPERTY id="animation1::name" type="7" value="idle03" ></PROPERTY>
   <PROPERTY id="animation1::loop" type="12" value="true" ></PROPERTY>-->
   

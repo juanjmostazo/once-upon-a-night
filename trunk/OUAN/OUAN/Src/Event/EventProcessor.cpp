@@ -72,6 +72,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
 			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
+
+		registerEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
+			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
 	}
 }
 
@@ -116,6 +119,9 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,OnyTakesHitEvent,EVENT_TYPE_ONY_TAKES_HIT>
 			(this_,&EventProcessor::processOnyTakesHit,mWorldManager->getEventManager());
+		
+		unregisterEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
+			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
 	}
 }
 
@@ -318,4 +324,13 @@ void EventProcessor::processOnyTakesHit(OnyTakesHitEventPtr evt)
 	{
 		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_HIT));
 	}	
+}
+void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
+{
+	if (mWorldManager->getGameObjectOny().get())
+	{
+		int newState =mWorldManager->getGameObjectOny()->getLogicComponentOny()->getNewState();
+		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK));
+		Logger::getInstance()->log("CLEARING ATTACK FLAG");
+	}
 }
