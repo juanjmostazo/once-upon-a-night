@@ -82,7 +82,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		return;
 	}
 
-	if(mNextMovement==NxOgre::Vec3::ZERO && mOnSurface && !mJumping && !mSliding && !getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	if(	mNextMovement==NxOgre::Vec3::ZERO && 
+		mOnSurface && 
+		!mJumping && 
+		!mSliding && 
+		!getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		setLastMovement(NxOgre::Vec3::ZERO);
 		getSceneNode()->setPosition(
@@ -118,19 +122,9 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		if (mJumping)
 		{
 			mNextMovement.y += mJumpSpeed * elapsedSeconds;
-			applyGravity(elapsedSeconds);
 		} 
-		else if (mFalling) 
-		{
-			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-			{
-				applyGravity(elapsedSeconds);
-			}
-			else
-			{
-				applyGravity(elapsedSeconds);
-			}
-		}
+
+		applyGravity(elapsedSeconds);
 
 		// Perform last frame sliding displacement
 		if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
@@ -162,8 +156,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
-		setOnSurface(false);
-
 		getNxOgreController()->move(
 			mNextMovement,
 			collisionFlags,
@@ -176,12 +168,13 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 					getNxOgreController()->getPosition().z)
 			+ mOffsetRenderPosition);
 
+		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
+
 		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//	Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+		//Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 	}
 
 	setLastMovement(mNextMovement);
-	//Set movement to zero for the next frame
 	mNextMovement=NxOgre::Vec3::ZERO;
 	mIsWalking=false;
 }
@@ -466,14 +459,14 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 			mNormalAngle = pNormalAngle;
 
 			//TODO ADJUST THIS VALUES
-			mSlideDisplacement.x = pNormal.x;
-			mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
-			mSlideDisplacement.z = pNormal.z;
+			//mSlideDisplacement.x = pNormal.x;
+			//mSlideDisplacement.y = -pNormal.y * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+			//mSlideDisplacement.z = pNormal.z;
 
 			//TEST THIS
-			//mSlideDisplacement.x = pNormal.x * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
-			//mSlideDisplacement.y = 0;
-			//mSlideDisplacement.z = pNormal.z * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+			mSlideDisplacement.x = pNormal.x * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
+			mSlideDisplacement.y = 0;
+			mSlideDisplacement.z = pNormal.z * Application::getInstance()->getPhysicsSubsystem()->mSlidingFactor;
 		}
 
 		if(mSlideDisplacement.y > 0)
