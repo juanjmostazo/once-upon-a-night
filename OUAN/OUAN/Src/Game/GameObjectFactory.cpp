@@ -1153,7 +1153,8 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny,tGameObjectOnyParameters.tRenderComponentPositionalParameters));
 
 	//TODO ERASE THIS WHEN ONY IS PROPERLY SCALED
-	pGameObjectOny->getRenderComponentPositional()->setScale(tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.scale_corretion);
+	pGameObjectOny->getRenderComponentPositional()->setScale(
+		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.scale_correction);
 
 	//Create RenderComponentInitial
 	pGameObjectOny->setRenderComponentInitial(
@@ -1205,7 +1206,8 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(Ogre::Vector3(0,-14,0));
+	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(
+		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.position_correction);
 
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
@@ -2313,6 +2315,10 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 	pGameObjectTripolloDreams->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
 		pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentPositionalParameters));
 
+	//TODO ERASE THIS WHEN TRIPOLLO IS PROPERLY SCALED
+	pGameObjectTripolloDreams->getRenderComponentPositional()->setScale(
+		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.scale_correction);
+
 	//Create RenderComponentInitial
 	pGameObjectTripolloDreams->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectTripolloDreams->getRenderComponentPositional()));
@@ -2359,7 +2365,8 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		pGameObjectTripolloDreams->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.position_correction);
+	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(
+		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.position_correction);
 
 	//Create TrajectoryComponent
 	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(

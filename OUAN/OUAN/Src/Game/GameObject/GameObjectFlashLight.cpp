@@ -494,8 +494,10 @@ void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 
 	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
 
-	if (mLightConeBBS);
+	if (mLightConeBBS)
+	{
 		//applyTintColour(getColour());
+	}
 }
 
 RenderComponentBillboardSetPtr GameObjectFlashLight::getLightConeBBS() const

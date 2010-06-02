@@ -415,8 +415,11 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 	bool dTree=pGameObjectController->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 	bool dWeapon=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+
 	if (dTree && dWeapon)
+	{
 		Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+	}
 
 	//CORRECTING JUMP BUG TODO: DO THIS PROPERLY
 	if( (pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) &&
