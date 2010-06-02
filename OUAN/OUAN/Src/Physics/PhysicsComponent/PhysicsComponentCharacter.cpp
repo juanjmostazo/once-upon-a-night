@@ -94,9 +94,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 					getNxOgreController()->getPosition().y,
 					getNxOgreController()->getPosition().z)
 			+ mOffsetRenderPosition);
+
 		//Logger::getInstance()->log(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 		return;
 	}
+
 	//Logger::getInstance()->log(getParent()->getName() + " updated, position " + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
@@ -109,14 +111,16 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mWalkDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
 			mWalkDirection.normalise();
 			
-			mNextMovement.x=mWalkDirection.x*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
-			mNextMovement.z=mWalkDirection.z*Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+			mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
+			mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
 		}
 
 		// Scale next movement using time and speed
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			mNextMovement=mNextMovement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+			mNextMovement *= 
+				Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * 
+				elapsedSeconds;
 		}
 
 		if (mJumping)
@@ -129,7 +133,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		// Perform last frame sliding displacement
 		if (mSliding && mNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle)
 		{
-			mNextMovement = mSlideDisplacement * Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+			mNextMovement = 
+				mSlideDisplacement * 
+				Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * 
+				elapsedSeconds;
+
 			resetSliding();
 		}
 
@@ -138,6 +146,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
 			calculateAngleDifference();
+
 			if(mOnSurface)
 			{
 				calculateAcceleration(elapsedSeconds);
@@ -145,6 +154,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 			mNextMovement.x *= mAccelerationFactor;
 			mNextMovement.z *= mAccelerationFactor;
+
 			//Logger::getInstance()->log("Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale "+Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale)));
 		}
 
@@ -171,7 +181,10 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 
 		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+		//{
+		//	Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
+		//	Logger::getInstance()->log("* * mOnSurface! "+Ogre::StringConverter::toString(mOnSurface));
+		//}
 	}
 
 	setLastMovement(mNextMovement);
@@ -182,8 +195,15 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
 	setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
-	mFallTime += elapsedSeconds;
-	mNextMovement.y += mFallSpeed * elapsedSeconds;
+		mFallTime += elapsedSeconds;
+		mNextMovement.y += mFallSpeed * elapsedSeconds;
+
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//{
+		//	Logger::getInstance()->log("* * mNextMovementY! "+Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)));
+		//	Logger::getInstance()->log("* * mFallTime! "+Ogre::StringConverter::toString(Ogre::Real(mFallTime)));
+		//	Logger::getInstance()->log("* * mFallSpeed! "+Ogre::StringConverter::toString(Ogre::Real(mFallSpeed)));
+		//}
 }
 
 bool PhysicsComponentCharacter::isMoving() const
@@ -324,10 +344,20 @@ void PhysicsComponentCharacter::jump()
 {
 	if(!mJumping && !mSliding && mOnSurface)
 	{
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//{
+		//    Logger::getInstance()->log("* * INIT JUMP NORMAL");
+		//}
+		
 		initJump();
 	}
 	else if(getParent()->getGameWorldManager()->getGodMode())
 	{
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//{
+		//    Logger::getInstance()->log("* * INIT JUMP GOD MODE");
+		//}
+
 		initJump();
 	}
 }
@@ -481,6 +511,11 @@ void PhysicsComponentCharacter::initJump()
 	mJumping = true;
 	mJumpSpeed = Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed;
 
+	//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	//{
+	//	Logger::getInstance()->log("* * INIT FALL JUMP");
+	//}
+
 	initFall();
 }
 
@@ -518,11 +553,35 @@ void PhysicsComponentCharacter::setFallSpeed(double pFallSpeed)
 
 void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 {
+	//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	//{
+	//	Logger::getInstance()->log("* * PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+	//	Logger::getInstance()->log("* * minSurfaceY! " + Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mSurfaceMinY)));
+	//}
+
+	//HACK TO AVOID GOD MODE FALLING BUG (PROVISIONAL)
+	//if (mFallSpeed > 0 &&
+	//	getNxOgreController()->getPosition().y > Application::getInstance()->getPhysicsSubsystem()->mSurfaceMinY)
+	//{
+	//	getNxOgreController()->setPosition(
+	//		NxOgre::Vec3(	getNxOgreController()->getPosition().x,
+	//						getNxOgreController()->getPosition().y - 10,
+	//						getNxOgreController()->getPosition().z));
+	//	return;
+	//}
+
 	mOnSurface=pOnSurface;
 
 	if (pOnSurface)
 	{
 		mJumping = false;
+		
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//{
+		//	Logger::getInstance()->log("* * PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+		//	Logger::getInstance()->log("* * INIT FALL SET ON SURFACE");
+		//}
+
 		initFall();
 	}
 }

@@ -33,5 +33,6 @@
     <Option key="STEP_OFFSET">5</Option>
     <Option key="SKIN_WIDTH">0.2</Option>
     <Option key="GRAVITY_BODIES_FACTOR">50</Option>
+	<Option key="SURFACE_MIN_Y">350</Option>
   </Options>
 </Configuration>
