@@ -89,11 +89,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		!getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		setLastMovement(NxOgre::Vec3::ZERO);
-		getSceneNode()->setPosition(
-			Vector3(getNxOgreController()->getPosition().x,
-					getNxOgreController()->getPosition().y,
-					getNxOgreController()->getPosition().z)
-			+ mOffsetRenderPosition);
+		correctSceneNodePosition();
 
 		//Logger::getInstance()->log(getParent()->getName() + " Not updated, position" + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 		return;
@@ -172,11 +168,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		getSceneNode()->setPosition(
-			Vector3(getNxOgreController()->getPosition().x,
-					getNxOgreController()->getPosition().y,
-					getNxOgreController()->getPosition().z)
-			+ mOffsetRenderPosition);
+		correctSceneNodePosition();
 
 		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 
@@ -192,18 +184,27 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	mIsWalking=false;
 }
 
+void PhysicsComponentCharacter::correctSceneNodePosition()
+{
+	getSceneNode()->setPosition(
+		Vector3(getNxOgreController()->getPosition().x,
+				getNxOgreController()->getPosition().y,
+				getNxOgreController()->getPosition().z)
+		+ mOffsetRenderPosition);
+}
+
 void PhysicsComponentCharacter::applyGravity(double elapsedSeconds)
 {
 	setFallSpeed(mFallSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallTime);
-		mFallTime += elapsedSeconds;
-		mNextMovement.y += mFallSpeed * elapsedSeconds;
+	mFallTime += elapsedSeconds;
+	mNextMovement.y += mFallSpeed * elapsedSeconds;
 
-		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//{
-		//	Logger::getInstance()->log("* * mNextMovementY! "+Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)));
-		//	Logger::getInstance()->log("* * mFallTime! "+Ogre::StringConverter::toString(Ogre::Real(mFallTime)));
-		//	Logger::getInstance()->log("* * mFallSpeed! "+Ogre::StringConverter::toString(Ogre::Real(mFallSpeed)));
-		//}
+	//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	//{
+	//	Logger::getInstance()->log("* * mNextMovementY! "+Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)));
+	//	Logger::getInstance()->log("* * mFallTime! "+Ogre::StringConverter::toString(Ogre::Real(mFallTime)));
+	//	Logger::getInstance()->log("* * mFallSpeed! "+Ogre::StringConverter::toString(Ogre::Real(mFallSpeed)));
+	//}
 }
 
 bool PhysicsComponentCharacter::isMoving() const
@@ -480,8 +481,8 @@ void PhysicsComponentCharacter::resetSliding()
 void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle)
 {
 	//Logger::getInstance()->log("* * Setting sliding!");
-	//if(!getParent()->getGameWorldManager()->getGodMode())
-	//{
+	if(!getParent()->getGameWorldManager()->getGodMode())
+	{
 		if (pNormalAngle > Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle && 
 			pNormalAngle < Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngleFall)
 		{
@@ -501,9 +502,9 @@ void PhysicsComponentCharacter::setSlidingValues(NxOgre::Vec3 pNormal, double pN
 
 		if(mSlideDisplacement.y > 0)
 		{
-			mSlideDisplacement.y=0;
+			mSlideDisplacement.y = 0;
 		}
-	//}
+	}
 }
 
 void PhysicsComponentCharacter::initJump()
@@ -560,15 +561,24 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 	//}
 
 	//HACK TO AVOID GOD MODE FALLING BUG (PROVISIONAL)
-	//if (mFallSpeed > 0 &&
-	//	getNxOgreController()->getPosition().y > Application::getInstance()->getPhysicsSubsystem()->mSurfaceMinY)
-	//{
-	//	getNxOgreController()->setPosition(
-	//		NxOgre::Vec3(	getNxOgreController()->getPosition().x,
-	//						getNxOgreController()->getPosition().y - 10,
-	//						getNxOgreController()->getPosition().z));
-	//	return;
-	//}
+	if (mNextMovement.y < 0 &&
+		getNxOgreController()->getPosition().y > Application::getInstance()->getPhysicsSubsystem()->mSurfaceMinY)
+	{
+		getNxOgreController()->setPosition(
+			NxOgre::Vec3(	getNxOgreController()->getPosition().x,
+							getNxOgreController()->getPosition().y - 0.1,
+							getNxOgreController()->getPosition().z));
+
+		correctSceneNodePosition();
+
+		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		//{
+		//	Logger::getInstance()->log("* * IN HACK");
+		//	Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+		//}
+		
+		return;
+	}
 
 	mOnSurface=pOnSurface;
 
