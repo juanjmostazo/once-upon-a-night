@@ -31,6 +31,8 @@ namespace OUAN
 
 		NxOgre::Vec3 getLastMovement();
 
+		void correctSceneNodePosition();
+
 		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
 
 		void jump();
