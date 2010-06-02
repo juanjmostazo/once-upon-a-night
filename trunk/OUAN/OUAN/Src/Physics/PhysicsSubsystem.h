@@ -88,6 +88,7 @@ namespace OUAN
 		double mStepOffset;
 		double mSkinWidth;
 		double mGravityBodiesFactor;
+		double mSurfaceMinY;
 
 		/// Load params from config file
 		virtual bool loadConfig();
