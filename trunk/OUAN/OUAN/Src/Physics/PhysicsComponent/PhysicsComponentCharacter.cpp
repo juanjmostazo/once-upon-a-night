@@ -591,23 +591,23 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 
 			correctSceneNodePosition();
 
-			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-			{
-				Logger::getInstance()->log("* * GOD MODE HACK :: NO COLLISION");
-				Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
-			}
+			//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			//{
+			//	Logger::getInstance()->log("* * GOD MODE HACK :: NO COLLISION");
+			//	Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+			//}
 
 			return;
 		}
-		else
-		{
-			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-			{
-				Logger::getInstance()->log("* * GOD MODE HACK :: COLLISION");
-				Logger::getInstance()->log("* * RayCastPositionY! " + Ogre::StringConverter::toString(Ogre::Real(rayCastResult.y)));
-				Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
-			}
-		}
+		//else
+		//{
+			//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			//{
+			//	Logger::getInstance()->log("* * GOD MODE HACK :: COLLISION");
+			//	Logger::getInstance()->log("* * RayCastPositionY! " + Ogre::StringConverter::toString(Ogre::Real(rayCastResult.y)));
+			//	Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+			//}
+		//}
 	}
 
 	mOnSurface=pOnSurface;
