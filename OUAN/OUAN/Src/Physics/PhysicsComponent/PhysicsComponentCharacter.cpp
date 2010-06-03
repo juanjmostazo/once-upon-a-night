@@ -1,4 +1,6 @@
 #include "PhysicsComponentCharacter.h"
+#include "../../RayCasting/RayCasting.h"
+
 using namespace OUAN;
 
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
@@ -561,23 +563,51 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 	//}
 
 	//HACK TO AVOID GOD MODE FALLING BUG (PROVISIONAL)
-	if (mNextMovement.y < 0 &&
-		getNxOgreController()->getPosition().y > Application::getInstance()->getPhysicsSubsystem()->mSurfaceMinY)
+	if (mNextMovement.y < 0)
 	{
-		getNxOgreController()->setPosition(
+		Vector3 rayCastResult;
+		Ogre::uint32 collisionType;
+		bool pCollision = false;
+
+		Vector3 position = getNxOgreController()->getPosition().as<Vector3>();
+		position.y += 1;
+
+		Vector3 direction(0,-1,-0);
+
+		pCollision = Application::getInstance()->getRayCasting()->
+			raycastPhysicsClosestGeometry(
+				position,
+				direction,
+				rayCastResult,
+				collisionType,
+				100);
+
+		if (!pCollision)
+		{
+			getNxOgreController()->setPosition(
 			NxOgre::Vec3(	getNxOgreController()->getPosition().x,
 							getNxOgreController()->getPosition().y - 0.1,
 							getNxOgreController()->getPosition().z));
 
-		correctSceneNodePosition();
+			correctSceneNodePosition();
 
-		//if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-		//{
-		//	Logger::getInstance()->log("* * IN HACK");
-		//	Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
-		//}
-		
-		return;
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			{
+				Logger::getInstance()->log("* * GOD MODE HACK :: NO COLLISION");
+				Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+			}
+
+			return;
+		}
+		else
+		{
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+			{
+				Logger::getInstance()->log("* * GOD MODE HACK :: COLLISION");
+				Logger::getInstance()->log("* * RayCastPositionY! " + Ogre::StringConverter::toString(Ogre::Real(rayCastResult.y)));
+				Logger::getInstance()->log("* * New PositionY! " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+			}
+		}
 	}
 
 	mOnSurface=pOnSurface;
