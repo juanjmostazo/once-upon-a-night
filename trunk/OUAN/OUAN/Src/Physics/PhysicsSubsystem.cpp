@@ -302,9 +302,6 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("GRAVITY_BODIES_FACTOR", value); 
 		mGravityBodiesFactor = atof(value.c_str());
 
-		config.getOption("SURFACE_MIN_Y", value); 
-		mSurfaceMinY = atof(value.c_str());
-
 		success = true;
 	} 
 	else 
@@ -330,7 +327,6 @@ bool PhysicsSubsystem::loadConfig()
 		mStepOffset = 0;
 		mSkinWidth = 0;
 		mGravityBodiesFactor = 0;
-		mSurfaceMinY = 500;
 
 		success = false;
 	}
