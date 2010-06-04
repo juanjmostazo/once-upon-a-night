@@ -4,11 +4,6 @@
     <Window Type="DefaultWindow" Name="OUANMainMenu" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="OUANLook/StaticImage" Name="OUANMainMenu/Background" >
-            <Property Name="Image" Value="set:OUANLook-BG-Logo image:OUAN-BG-Logo" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{-0.00122699,0},{0,0},{0.998773,0},{1.00292,0}}" />
-        </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Options" >
             <Property Name="Text" Value="Options" />
             <Property Name="AlwaysOnTop" Value="True" />

@@ -31,6 +31,32 @@ void MainMenuState::init(ApplicationPtr app)
 	mApp=app;	
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
 	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
+
+	mScreen= new Ogre::Rectangle2D(true);
+	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
+	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
+	mScreen->setBoundingBox(Ogre::AxisAlignedBox(-100000.0*Ogre::Vector3::UNIT_SCALE, 100000.0*Ogre::Vector3::UNIT_SCALE));
+	// Create background material
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(MAINMENU_MATERIAL_NAME, MAINMENU_GROUP);
+
+	material->getTechnique(0)->getPass(0)->createTextureUnitState(MAINMENU_IMG);
+	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+	mScreen->setMaterial(MAINMENU_MATERIAL_NAME);
+
+	RenderSubsystemPtr renderSS =mApp->getRenderSubsystem(); 
+	Ogre::SceneNode* screenNode;
+	if (!renderSS->getSceneManager()->hasSceneNode(MAINMENU_SCREENNODE))
+	{
+		screenNode= renderSS->getSceneManager()->getRootSceneNode()->createChildSceneNode(MAINMENU_SCREENNODE);
+	}
+	else
+	{
+		screenNode= renderSS->getSceneManager()->getSceneNode(MAINMENU_SCREENNODE);
+	}
+	screenNode ->attachObject(mScreen);
+
 	mGUI->initGUI(shared_from_this());
 
 	if (!mApp->getAudioSubsystem()->isLoaded("MUSIC"))
@@ -53,6 +79,23 @@ void MainMenuState::cleanUp()
 	mApp->getAudioSubsystem()->unload("CLICK");
 	mApp->getGUISubsystem()->destroyGUI();
 	//mApp->getGUISubsystem()->unbindAllEvents();
+	if (Ogre::MaterialManager::getSingleton().resourceExists(MAINMENU_MATERIAL_NAME))
+	{
+		Ogre::MaterialPtr mat;
+		Ogre::TextureUnitState* tex;
+
+		mat=Ogre::MaterialManager::getSingleton().getByName(MAINMENU_MATERIAL_NAME);
+		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+		tex->setTextureName(Ogre::String(""));
+	}
+	if (mScreen)
+	{
+		std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
+		mScreen->detatchFromParent();
+		mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
+		delete mScreen;
+		mScreen=NULL;
+	}	
 }
 
 /// pause state

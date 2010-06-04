@@ -7,11 +7,18 @@ namespace OUAN
 {
 	typedef std::vector<CEGUI::Event::Connection> TGUIConnections;
 
+	const std::string MAINMENU_IMG="ouan-logo-bg.png";
+	const std::string MAINMENU_MATERIAL_NAME="MainMenuBg";
+	const std::string MAINMENU_GROUP=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+	const std::string MAINMENU_SCREENNODE="MMScreen";
+
 	///State corresponding to the game's main menu
 	class MainMenuState: public GameState, public boost::enable_shared_from_this<MainMenuState>{
 	private:
 		int mMusicChannel;
 		int mClickChannel;
+		
+		Ogre::Rectangle2D* mScreen;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
