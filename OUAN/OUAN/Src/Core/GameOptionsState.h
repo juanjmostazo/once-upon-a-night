@@ -8,6 +8,11 @@
 
 namespace OUAN
 {
+	const std::string OPTIONS_IMG="ouan-nologo-bg.png";
+	const std::string OPTIONS_MATERIAL_NAME="OptionsBg";
+	const std::string OPTIONS_GROUP=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+	const std::string OPTIONS_SCREENNODE="OptionsScreen";
+
 	class GameOptionsState: public GameState, 
 		public boost::enable_shared_from_this<GameOptionsState>
 	{
@@ -44,6 +49,8 @@ namespace OUAN
 	private:
 		int mMusicChannel;
 		GUIOptionsMenuPtr mGUI;
+
+		Ogre::Rectangle2D* mScreen;
 
 	};
 }

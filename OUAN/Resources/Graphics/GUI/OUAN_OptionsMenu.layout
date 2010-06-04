@@ -256,11 +256,6 @@ The checks on their right sides will inmediately switch them to 0.</Property>
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
         </Window>
-        <Window Type="OUANLook/StaticImage" Name="OUANOptions/Background" >
-            <Property Name="Image" Value="set:OUANLook-BG-NoLogo image:OUAN-BG-NoLogo" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        </Window>
         <Window Type="OUANLook/Button" Name="OUANOptions/Back" >
             <Property Name="Font" Value="BlueHighway-10" />
             <Property Name="Text" Value="Back to menu" />
