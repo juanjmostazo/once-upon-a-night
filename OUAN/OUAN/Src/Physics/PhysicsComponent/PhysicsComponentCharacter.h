@@ -54,6 +54,9 @@ namespace OUAN
 		void setOffsetRenderPosition(Vector3 offsetRenderPosition);
 		Vector3 getOffsetRenderPosition() const;
 
+		void setCyclicCharacter(bool pCyclicCharacter);
+		bool isCyclicCharacter();
+
 	protected:
 		void applyDash(double elapsedSeconds);
 		Vector3 getDashMovement(double elapsedSeconds);
@@ -119,6 +122,14 @@ namespace OUAN
 
 		void setJumpSpeed(double pJumpSpeed);
 		void setFallSpeed(double pFallSpeed);
+
+		// Cyclic stuff
+		bool mCyclicCharacter;
+		double mCyclicDirection;
+		double mCyclicOffset;
+
+		void performCyclicMovement(double elapsedSeconds);
+		void performCharacterMovement(double elapsedSeconds);
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters

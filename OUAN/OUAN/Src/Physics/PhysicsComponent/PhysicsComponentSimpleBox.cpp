@@ -41,7 +41,9 @@ void PhysicsComponentSimpleBox::create()
 				pDesc));
 
 		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
-		//getNxOgreBody()->setQueryFlags((int)mQueryFlags);
+
+		//Logger::getInstance()->log(getParent()->getName() + " OGRE3DBODY: " + Ogre::StringConverter::toString(
+		//	getNxOgreBody()->getContactReportFlags()));
 	}
 	else
 	{
@@ -56,7 +58,9 @@ void PhysicsComponentSimpleBox::create()
 				getSceneNode()));
 
 		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
-		//getNxOgreKinematicBody()->setQueryFlags((int)mQueryFlags);
+
+		//Logger::getInstance()->log(getParent()->getName() + " OGRE3DKINEMATICBODY: " + Ogre::StringConverter::toString(
+		//	pBox->getFlag()));
 	}
 }
 

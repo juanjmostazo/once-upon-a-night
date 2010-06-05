@@ -617,30 +617,26 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	}
 
 	//Create PhysicsComponent
-	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
-		mComponentFactory->createPhysicsComponentSimpleBox(
-		pGameObjectDiamondTree, 
-		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
-		pGameObjectDiamondTree->getRenderComponentPositional()));
-
-	pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
-		mComponentFactory->createPhysicsComponentVolumeBox(
-		pGameObjectDiamondTree, 
-		tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters, 
-		pGameObjectDiamondTree->getRenderComponentPositional()));
-						
-	//Create PhysicsComponent
-	//pGameObjectDiamondTree->setPhysicsComponentCharacter(
-	//	mComponentFactory->createPhysicsComponentCharacter(
+	//pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
+	//	mComponentFactory->createPhysicsComponentSimpleBox(
 	//	pGameObjectDiamondTree, 
-	//	tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters, 
+	//	tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 	//	pGameObjectDiamondTree->getRenderComponentPositional()));
 
-	/*pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
-		mComponentFactory->createPhysicsComponentVolumeBox(
-		pGameObjectDiamondTree,
-		tGameObjectDiamondTreeParameters.TPhysicsComponentVolumeBoxParameters,
-		pGameObjectDiamondTree->getRenderComponentPositional()));*/
+	//pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
+	//	mComponentFactory->createPhysicsComponentVolumeBox(
+	//	pGameObjectDiamondTree, 
+	//	tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters, 
+	//	pGameObjectDiamondTree->getRenderComponentPositional()));
+						
+	//Create PhysicsComponent
+	pGameObjectDiamondTree->setPhysicsComponentCharacter(
+		mComponentFactory->createPhysicsComponentCharacter(
+		pGameObjectDiamondTree, 
+		tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters, 
+		pGameObjectDiamondTree->getRenderComponentPositional()));
+
+	pGameObjectDiamondTree->getPhysicsComponentCharacter()->setCyclicCharacter(true);
 
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
