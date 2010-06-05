@@ -82,7 +82,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 	pRenderComponentBillboardSetPtr->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),name+"#BBS",tRenderComponentBillboardSetParameters));
+	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),name,tRenderComponentBillboardSetParameters));
 
 	return pRenderComponentBillboardSetPtr;
 }
