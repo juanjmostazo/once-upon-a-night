@@ -152,11 +152,6 @@ void GameRunningState::resume()
 		unpauseMusic();
 		mHUD->show();
 	}
-	else
-	{
-		GameStatePtr menuState = GameStatePtr(new MainMenuState());
-		mApp->getGameStateManager()->changeState(menuState,mApp);
-	}
 
 }
 void GameRunningState::handleEvents()
@@ -399,6 +394,12 @@ void GameRunningState::update(long elapsedTime)
 		mApp->getRenderSubsystem()->captureScene(SAVED_RTT_FILENAME);
 		GameStatePtr nextState(new GameOverState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);
+	}
+	else if (mApp->mBackToMenu)
+	{
+		mApp->mBackToMenu=false;
+		GameStatePtr menuState = GameStatePtr(new MainMenuState());
+		mApp->getGameStateManager()->changeState(menuState,mApp);
 	}
 	else
 	{

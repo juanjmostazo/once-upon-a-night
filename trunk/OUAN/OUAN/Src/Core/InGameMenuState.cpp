@@ -90,8 +90,8 @@ void InGameMenuState::backToMenu()
 {
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	// if (openYesNoDialog("Are you sure you want to quit?"))
-	//mApp->mBackToMenu=true;
-	//mApp->getGameStateManager()->popState();
+	mApp->mBackToMenu=true;
+	mApp->getGameStateManager()->popState();
 }
 void InGameMenuState::quit()
 {
