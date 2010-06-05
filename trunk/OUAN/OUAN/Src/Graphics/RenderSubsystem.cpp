@@ -46,8 +46,10 @@ void RenderSubsystem::create(ApplicationPtr app,OUAN::ConfigurationPtr config)
 
 bool RenderSubsystem::init(ConfigurationPtr config)
 {
-	defineResources(config);
+	loadConfig();
 
+	defineResources(config);
+	
 	if (!setupRenderSystem(config))
 	{
 		return false;
@@ -56,8 +58,6 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 	createRenderWindow(config);
 
 	initResourceGroups(config);
-
-	loadConfig();
 
 	initTextures3D();
 
@@ -79,9 +79,25 @@ bool RenderSubsystem::loadConfig()
 {
 	Configuration config;
 	std::string value;
-	bool success;
+	bool successBar, successCompositor;
 
-	//TODO: Replace this with a more general graphics-config.
+	if (config.loadFromFile(BAR_CFG))
+	{
+		config.getOption("NUM_GROUPS", value); 
+		mNumGroups = atoi(value.c_str());
+
+		config.getOption("READ_PROPORTION", value); 
+		mReadProportion = atof(value.c_str());
+
+		successBar = true;
+	}
+	else
+	{
+		mNumGroups = 1;
+		mReadProportion = 0.5f;
+		successBar = false;
+	}
+
 	if (config.loadFromFile(COMPOSITOR_CFG))
 	{
 		config.getOption("BLOOM", BLOOM); 
@@ -117,14 +133,14 @@ bool RenderSubsystem::loadConfig()
 		config.getOption("MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES", value); 
 		MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES=Ogre::StringConverter::parseBool(value);
 
-		success = true;
+		successCompositor = true;
 	}
 	else
 	{
-		success = false;
+		successCompositor = false;
 	}
 
-	return success;
+	return successBar && successCompositor;
 }
 
 void RenderSubsystem::cleanUp()
@@ -263,7 +279,7 @@ void RenderSubsystem::initResourceGroups(ConfigurationPtr config)
 
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
     
-	mLoadingBar.start(mWindow, 3, 3, 0.9);
+	mLoadingBar.start(mWindow, (unsigned short)mNumGroups, (unsigned short)mNumGroups, mReadProportion);
 
 	// Turn off rendering of everything except overlays
 	mSceneManager->clearSpecialCaseRenderQueues();

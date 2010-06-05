@@ -194,6 +194,10 @@ namespace OUAN
 		bool MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS;
 		bool MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES;
 
+		// BAR STUFF
+		int mNumGroups;
+		double mReadProportion;
+
 		// WORK IN PROGRESS!!!
 		SSAOListener ssaoListener;
 
