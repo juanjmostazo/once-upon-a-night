@@ -17,11 +17,6 @@ function diamondTreeLogic(pDiamondTree,state)
 	local reload = pDiamondTree:isReloadSet()
 	local newState=state
 	
-	log ("DIAMOND TREE LOGIC:")
-	log ("HIT =>"..(hit and "TRUE" or "FALSE"))
-	log ("RELOAD =>"..(reload and "TRUE" or "FALSE"))
-	log ("TIMESPENT=>"..timeSpent.. "DELAY=>"..delay)
-	
 	if state==DT_STATE_IDLE and hit then
 		newState=DT_STATE_HIT
 		log ("now in hit state")
