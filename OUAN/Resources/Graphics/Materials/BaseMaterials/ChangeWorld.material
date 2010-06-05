@@ -1,0 +1,10 @@
+import basic_texture from BasicTexture.material
+material default_changeworld : basic_texture
+{
+	set_texture_alias diffuse_texture changeworld_default.jpg
+}
+
+material no_changeworld : basic_texture
+{
+	set_texture_alias diffuse_texture white.bmp
+}
