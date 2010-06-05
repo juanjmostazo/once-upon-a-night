@@ -27,5 +27,6 @@
         <Option key="Walk">0x12</Option>
 	<Option key="ToggleVolumes">0x3E</Option>
 	<Option key="ToggleGodMode">0x3B</Option>
+	<Option key="ToggleChangeWorldDebug">0x3C</Option>
     </Options>
 </Configuration>

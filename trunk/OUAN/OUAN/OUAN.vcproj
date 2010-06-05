@@ -790,6 +790,10 @@
 					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\Src\Graphics\TextureRenderer.cpp"
+					>
+				</File>
 				<Filter
 					Name="RenderComponent"
 					>
@@ -1138,6 +1142,10 @@
 				>
 				<File
 					RelativePath=".\Src\Graphics\RenderSubsystem.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Graphics\TextureRenderer.h"
 					>
 				</File>
 				<Filter

@@ -132,8 +132,6 @@ bool Application::init()
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);
 
-
-
 	mLogicSubsystem.reset(new LogicSubsystem());
 	mLogicSubsystem->init(this_);
 

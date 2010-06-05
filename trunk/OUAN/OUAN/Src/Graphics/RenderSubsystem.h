@@ -199,6 +199,10 @@ namespace OUAN
 
 		Ogre::TexturePtr getTexture3D(std::string texture3D);
 
+		TextureRendererPtr getTextureRenderer();
+
+		void initTextureRenderer();
+
 	protected:
 		/// the application
 		OUAN::ApplicationPtr mApp;
@@ -264,6 +268,8 @@ namespace OUAN
 		Ogre::TexturePtr mTexture3D_2_32;
 		Ogre::TexturePtr mTexture3D_2_64;
 		Ogre::TexturePtr mTexture3D_2_128;
+
+		TextureRendererPtr mTextureRenderer;
 	};
 }
 #endif

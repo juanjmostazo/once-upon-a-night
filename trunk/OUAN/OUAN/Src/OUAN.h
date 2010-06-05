@@ -779,8 +779,10 @@ namespace OUAN
 		}TCoordinateAxis;
 
 		class RenderSubsystem;
-		
 		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
+
+		class TextureRenderer;
+		typedef boost::shared_ptr<TextureRenderer> TextureRendererPtr;
 
 		///Camera Manager
 		const std::string CAMERA_CFG="../../Config/camera-cfg.xml";

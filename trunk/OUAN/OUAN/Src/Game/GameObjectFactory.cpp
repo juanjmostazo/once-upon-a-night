@@ -864,7 +864,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 
 	pGameObjectFlashLight->setLightConeBBS(
 		mComponentFactory->createRenderComponentBillboardSet(
-		tGameObjectFlashLightParameters.name,
+		tGameObjectFlashLightParameters.name+"#light",
 		pGameObjectFlashLight,
 		tGameObjectFlashLightParameters.lightConeBBSParams
 		));
