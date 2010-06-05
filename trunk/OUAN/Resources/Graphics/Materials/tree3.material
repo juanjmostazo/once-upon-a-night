@@ -1,0 +1,16 @@
+import alpha_test_texture from BasicTexture.material
+import basic_texture from BasicTexture.material
+import no_changeworld from ChangeWorld.material
+
+material tree3_d : alpha_test_texture
+{
+	set_texture_alias diffuse_texture tree3_d.dds
+}
+
+material tree3_n : basic_texture
+{
+}
+
+material tree3_cw : no_changeworld
+{
+}

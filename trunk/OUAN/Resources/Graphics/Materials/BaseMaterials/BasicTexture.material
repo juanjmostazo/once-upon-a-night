@@ -1,0 +1,45 @@
+material basic_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture default.png
+			}
+		}
+	}
+}
+
+material alpha_test_texture
+{
+	technique
+	{
+		pass
+		{
+			alpha_rejection greater 128
+			depth_write on
+			texture_unit diffuse_texture
+			{
+				texture default.png
+			}
+		}
+	}
+}
+
+material alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit diffuse_texture
+			{
+				texture default.png
+			}
+		}
+	}
+}

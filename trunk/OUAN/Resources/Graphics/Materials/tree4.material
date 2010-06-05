@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import no_changeworld from ChangeWorld.material
+
+material tree4_d : basic_texture
+{
+	set_texture_alias diffuse_texture tree4_d.dds
+}
+
+material tree4_n : basic_texture
+{
+}
+
+material tree4_cw : no_changeworld
+{
+}
+
