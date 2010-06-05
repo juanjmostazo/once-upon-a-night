@@ -451,7 +451,10 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 
 	//Set world to dreams
 	setChangeWorldTimes();
-	setWorld(DREAMS); 
+	setWorld(DREAMS);
+
+	mApp->getRenderSubsystem()->initTextureRenderer();
+
 
 	level=levelFileName;
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");

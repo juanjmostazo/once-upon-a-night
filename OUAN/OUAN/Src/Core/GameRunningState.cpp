@@ -9,6 +9,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/TextureRenderer.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/HUD/HUDInGame.h"
 #include "../GUI/GUISubsystem.h"
@@ -379,6 +380,14 @@ void GameRunningState::checkDebuggingKeys()
 			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->getGodMode());
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
+		else if (mApp->isPressedToggleChangeWorldDebug())
+		{
+			Logger::getInstance()->log("ToggleChangeWorldDebug key pressed");
+			mApp->getRenderSubsystem()->getTextureRenderer()->setDebugScreensActive(
+				!mApp->getRenderSubsystem()->getTextureRenderer()->getDebugScreensActive()
+				);
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
 	}
 }
 
@@ -508,6 +517,14 @@ bool GameRunningState::render()
 	renderSubsystem->updateVisualDebugger();
 
 	mHUD->show();
+
+	renderSubsystem->getTextureRenderer()->renderToTextureDreams();
+	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
+	renderSubsystem->getTextureRenderer()->renderToTextureNightmares();
+	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
+	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setMaterial("cloud_terrain_d#0");
+	renderSubsystem->getTextureRenderer()->renderToTextureChangeWorld();
+	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setOriginalMaterials();
 
 	return renderSubsystem->render();
 }

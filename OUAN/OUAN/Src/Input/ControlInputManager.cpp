@@ -306,6 +306,11 @@ bool ControlInputManager::isPressedToggleGodMode()
 	return isPressed(-1,mDefaultInputData.keyToggleGodMode);
 }
 
+bool ControlInputManager::isPressedToggleChangeWorldDebug()
+{
+	return isPressed(-1,mDefaultInputData.keyToggleChangeWorldDebug);
+}
+
 //////////////////////////////////////////////////////////////
 
 void ControlInputManager::getMouseStateRelValues(double & x, double & y, double & z)
@@ -464,6 +469,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleConsole,KEY_TOGGLE_CONSOLE,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleVolumes,KEY_TOGGLE_VOLUMES,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleChangeWorldDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
 
 	c.saveToFile(DEFAULTINPUT_CFG);
 }

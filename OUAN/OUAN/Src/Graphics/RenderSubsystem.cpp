@@ -5,6 +5,7 @@
 #include "../Physics/PhysicsSubsystem.h"
 #include "../GUI/GUISubsystem.h"
 #include "CameraManager/CameraManager.h"
+#include "TextureRenderer.h"
 #include "CameraManager/CameraControllerFirstPerson.h"
 #include "TrajectoryManager/TrajectoryManager.h"
 #include "RenderComponent/RenderComponent.h"
@@ -61,6 +62,17 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 	initTextures3D();
 
 	return true;
+}
+
+void RenderSubsystem::initTextureRenderer()
+{
+	mTextureRenderer.reset(new TextureRenderer());
+	mTextureRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getActiveCamera());
+}
+
+TextureRendererPtr RenderSubsystem::getTextureRenderer()
+{
+	return mTextureRenderer;
 }
 
 bool RenderSubsystem::loadConfig()
