@@ -1,12 +1,16 @@
-#ifndef GAMEPAUSEDSTATEH_H
-#define GAMEPAUSEDSTATEH_H
+#ifndef INGAMEMENUSTATEH_H
+#define INGAMEMENUSTATEH_H
 
 #include "../OUAN.h"
 #include "GameState.h"
 namespace OUAN
 {
 	///State corresponding to the game's extras menu
-	class InGameMenuState: public GameState{
+	class InGameMenuState: public GameState, public boost::enable_shared_from_this<InGameMenuState>
+	{
+	private:
+		GUIInGamePtr mGUI;
+		int mClickChannel;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -31,6 +35,10 @@ namespace OUAN
 		/// Destructor
 		~InGameMenuState();
 
+		void backToGame();
+		void goToOptions();
+		void backToMenu();
+		void quit();
 	};
 }
 #endif

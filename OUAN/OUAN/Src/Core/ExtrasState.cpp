@@ -1,6 +1,7 @@
 #include "ExtrasState.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Audio/AudioSubsystem.h"
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIExtrasMenu.h"
 #include "GameStateManager.h"
@@ -13,6 +14,7 @@ using namespace OUAN;
 /// Default constructor
 ExtrasState::ExtrasState()
 :GameState()
+,mClickChannel(-1)
 {
 
 }
@@ -108,5 +110,6 @@ void ExtrasState::backToMenu()
 {
 	/*GameStatePtr nextState(new MainMenuState());
 	mApp->getGameStateManager()->changeState(nextState,mApp);*/
+	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	mApp->getGameStateManager()->popState();
 }

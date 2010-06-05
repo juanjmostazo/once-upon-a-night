@@ -29,6 +29,7 @@ MainMenuState::~MainMenuState()
 void MainMenuState::init(ApplicationPtr app)
 {
 	mApp=app;	
+	mApp->mBackToMenu=false;
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
 	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 

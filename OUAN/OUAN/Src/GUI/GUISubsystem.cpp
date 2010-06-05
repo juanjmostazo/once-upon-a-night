@@ -7,6 +7,7 @@
 #include "GUIMainMenu.h"
 #include "GUIConsole.h"
 #include "GUIExtrasMenu.h"
+#include "GUIInGame.h"
 #include <algorithm>
 
 using namespace OUAN;
@@ -123,6 +124,8 @@ GUIWindowPtr GUISubsystem::createGUI(const std::string& guiLayout)
 			ptr.reset(new GUIExtrasMenu());
 		else if (guiLayout.compare(GUI_LAYOUT_CONSOLE)==0)
 			ptr.reset(new GUIConsole());
+		else if (guiLayout.compare(GUI_LAYOUT_INGAMEMENU)==0)
+			ptr.reset(new GUIInGame());
 		//Add more inits as needed
 		else ptr.reset(new GUIWindow());
 		ptr->init(guiLayout,sheet);
@@ -150,4 +153,16 @@ void GUISubsystem::bindEvent(const CEGUI::String& eventName, const std::string& 
 	CEGUI::WindowManager *wmgr = CEGUI::WindowManager::getSingletonPtr();
 	CEGUI::Window *triggerWindow = wmgr->getWindow((CEGUI::utf8*)windowName.c_str());	
 	triggerWindow->subscribeEvent(eventName,subscriber);
+}
+void GUISubsystem::setCursorVisibility(bool visible)
+{
+	CEGUI::MouseCursor::getSingleton().setVisible(visible);
+}
+void GUISubsystem::showCursor()
+{
+	CEGUI::MouseCursor::getSingleton().show();
+}
+void GUISubsystem::hideCursor()
+{
+	CEGUI::MouseCursor::getSingleton().hide();
 }

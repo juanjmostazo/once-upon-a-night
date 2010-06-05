@@ -18,6 +18,8 @@ namespace OUAN
 		virtual void initGUI(GameStatePtr parentGameState);
 		virtual void destroy();
 		CEGUI::Window* getSheet() const;
+		void show();
+		void hide();
 	};
 }
 #endif

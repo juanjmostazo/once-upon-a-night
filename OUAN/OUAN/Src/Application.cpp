@@ -39,6 +39,7 @@ Application::Application(const std::string& windowName) : mWindowName(windowName
 ,mKeyBuffer(-1)
 ,mUniqueId(1000)
 ,mSkipIntro(false)
+,mBackToMenu(false)
 {
 	instance = this;
 }
