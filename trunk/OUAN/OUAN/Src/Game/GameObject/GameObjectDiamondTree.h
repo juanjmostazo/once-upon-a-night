@@ -6,8 +6,9 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+//#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+//#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
@@ -37,9 +38,9 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
-
-		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+		//PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+		//PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -84,11 +85,14 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
-		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox);
+		//PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+		//void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox);
 
-		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
-		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox);
+		//PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
+		//void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox);
+
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -151,8 +155,9 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
-		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+		//TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		//TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;

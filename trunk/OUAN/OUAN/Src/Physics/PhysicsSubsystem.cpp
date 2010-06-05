@@ -189,7 +189,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 
 void PhysicsSubsystem::stabilize()
 {
-	update(1000.0f);
+	update(mStabilizeSeconds);
 }
 
 bool PhysicsSubsystem::loadConfig()
@@ -302,6 +302,15 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("GRAVITY_BODIES_FACTOR", value); 
 		mGravityBodiesFactor = atof(value.c_str());
 
+		config.getOption("CYCLIC_MAX_OFFSET", value); 
+		mCyclicMaxOffset = atof(value.c_str());
+
+		config.getOption("CYCLIC_SPEED", value); 
+		mCyclicSpeed = atof(value.c_str());
+
+		config.getOption("STABILIZE_SECONDS", value); 
+		mStabilizeSeconds = atof(value.c_str());
+
 		success = true;
 	} 
 	else 
@@ -327,6 +336,9 @@ bool PhysicsSubsystem::loadConfig()
 		mStepOffset = 0;
 		mSkinWidth = 0;
 		mGravityBodiesFactor = 0;
+		mCyclicMaxOffset = 10;
+		mCyclicSpeed = 1;
+		mStabilizeSeconds = 100;
 
 		success = false;
 	}
@@ -413,15 +425,14 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
-	bool dTree=pGameObjectController->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
-	bool dWeapon=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+	//bool dTree=pGameObjectController->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+	//bool dWeapon=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
 
-	if (dTree && dWeapon)
-	{
-		Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
-	}
+	//if (dTree && dWeapon)
+	//{
+	//	Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+	//}
 
-	//CORRECTING JUMP BUG TODO: DO THIS PROPERLY
 	if( (pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) &&
 		(pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0) &&
 		(normalAngle<=mMinSlidingAngleFall))
@@ -457,10 +468,12 @@ void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String c
 	GameObjectPtr pGameObjectVolume=getGameObject(volume->getName());
 	GameObjectPtr pGameObjectShape=getGameObject(collisionName);
 	
-	bool dTree=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
-	bool dWeapon=pGameObjectVolume->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
-	if (dTree && dWeapon)
-		Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+	//bool dTree=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
+	//bool dWeapon=pGameObjectVolume->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
+	//if (dTree && dWeapon)
+	//{
+	//	Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+	//}
 
 	switch (collisionEventType)
 	{

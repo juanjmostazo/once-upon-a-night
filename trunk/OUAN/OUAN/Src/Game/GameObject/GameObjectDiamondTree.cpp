@@ -55,23 +55,34 @@ RenderComponentInitialPtr GameObjectDiamondTree::getRenderComponentInitial() con
 	return mRenderComponentInitial;
 }
 
-void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+//void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+//{
+//	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+//}
+
+//PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox() const
+//{
+//	return mPhysicsComponentSimpleBox;
+//}
+
+//void GameObjectDiamondTree::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox)
+//{
+//	mPhysicsComponentVolumeBox=physicsComponentVolumeBox;
+//}
+
+//PhysicsComponentVolumeBoxPtr GameObjectDiamondTree::getPhysicsComponentVolumeBox() const
+//{
+//	return mPhysicsComponentVolumeBox;
+//}
+
+void GameObjectDiamondTree::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
 {
-	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+	mPhysicsComponentCharacter=physicsComponentCharacter;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox() const
+PhysicsComponentCharacterPtr GameObjectDiamondTree::getPhysicsComponentCharacter() const
 {
-	return mPhysicsComponentSimpleBox;
-}
-
-void GameObjectDiamondTree::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox)
-{
-	mPhysicsComponentVolumeBox=physicsComponentVolumeBox;
-}
-
-PhysicsComponentVolumeBoxPtr GameObjectDiamondTree::getPhysicsComponentVolumeBox() const{
-	return mPhysicsComponentVolumeBox;
+	return mPhysicsComponentCharacter;
 }
 
 void GameObjectDiamondTree::changeWorldFinished(int newWorld)
@@ -84,26 +95,34 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInDreams())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
+				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				//{
+				//	mPhysicsComponentVolumeBox->create();
+				//}
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
-					mPhysicsComponentSimpleBox->create();
-				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
+					mPhysicsComponentCharacter->create();
 				}
 				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->destroy();
+				//}
+				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				//{
+				//	mPhysicsComponentVolumeBox->destroy();
+				//}
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
+					mPhysicsComponentCharacter->destroy();
 				}
 				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			}		
@@ -112,26 +131,34 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			if(mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
+				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				//{
+				//	mPhysicsComponentVolumeBox->create();
+				//}
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
-					mPhysicsComponentSimpleBox->create();
-				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
+					mPhysicsComponentCharacter->create();
 				}
 				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->destroy();
+				//}
+				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				//{
+				//	mPhysicsComponentVolumeBox->destroy();
+				//}
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
+					mPhysicsComponentCharacter->destroy();
 				}
 				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
@@ -250,7 +277,7 @@ bool GameObjectDiamondTree::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectDiamondTree::getPhysicsComponent() const
 {
-	return mPhysicsComponentSimpleBox;
+	return mPhysicsComponentCharacter;
 }
 
 /// Set logic component
@@ -380,7 +407,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 void GameObjectDiamondTree::updatePhysicsComponents(double elapsedSeconds)
 {
 	GameObject::updatePhysicsComponents(elapsedSeconds);
-	mPhysicsComponentVolumeBox->update(elapsedSeconds);
+	//mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
 //-------------------------------------------------------------------------------------------
 

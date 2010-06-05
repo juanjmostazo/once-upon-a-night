@@ -44,6 +44,10 @@ void PhysicsComponentCharacter::reset()
 
 	mDashAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinDashAccelerationFactor;
 	mAccelerationFactor=Application::getInstance()->getPhysicsSubsystem()->mMinAccelerationFactor;
+
+	mCyclicCharacter = false;
+	mCyclicDirection = 1;
+	mCyclicOffset = 0;
 }
 
 void PhysicsComponentCharacter::create()
@@ -80,10 +84,82 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
 	if(!getParent()->isEnabled())
 	{
-		setLastMovement(NxOgre::Vec3::ZERO);
+		mNextMovement=NxOgre::Vec3::ZERO;
+	} 
+	else if (isCyclicCharacter())
+	{
+		performCyclicMovement(elapsedSeconds);
+	}
+	else
+	{
+		performCharacterMovement(elapsedSeconds);
+	}
+}
+
+void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
+{
+	if (getParent()->isFirstUpdate())
+	{
 		return;
 	}
 
+	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+
+	mNextMovement = NxOgre::Vec3(0, Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed * mCyclicDirection, 0);
+	mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+
+	double cyclicLastPositionY = getNxOgreController()->getPosition().y;
+	double sceneNodeLastPositionY = getSceneNode()->getPosition().y;
+
+	getNxOgreController()->move(
+		mNextMovement,
+		collisionFlags,
+		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+		collisionFlags);
+
+	//correctSceneNodePosition();
+
+	getSceneNode()->setPosition(
+		getSceneNode()->getPosition().x,
+		sceneNodeLastPositionY,
+		getSceneNode()->getPosition().z);
+
+	mCyclicDirection = (collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? 1 : mCyclicDirection;
+	mCyclicDirection = (collisionFlags & NxOgre::Enums::ControllerFlag_Up) ? -1 : mCyclicDirection;
+
+	setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
+
+	mCyclicOffset += getNxOgreController()->getPosition().y - cyclicLastPositionY;
+
+	if (mCyclicOffset >= Application::getInstance()->getPhysicsSubsystem()->mCyclicMaxOffset)
+	{
+		mCyclicDirection = -1;
+	}
+	else if (mCyclicOffset <= -Application::getInstance()->getPhysicsSubsystem()->mCyclicMaxOffset)
+	{
+		mCyclicDirection = 1;
+	}
+
+	//if (getParent()->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0)
+	//{
+	//	Logger::getInstance()->log("####################################");
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC NEW OFFSET: " + Ogre::StringConverter::toString(Ogre::Real(mCyclicOffset)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC NEW DIRECTION: " + Ogre::StringConverter::toString(Ogre::Real(mCyclicDirection)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC NEXT MOVEMENT: " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC LAST POSY: " + Ogre::StringConverter::toString(Ogre::Real(cyclicLastPositionY)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC NEW POSY: " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC SPEED: " + Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC MUPS: " + Ogre::StringConverter::toString(Ogre::Real(Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond)));
+	//	Logger::getInstance()->log("DIAMONDTREE CYCLIC ES: " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+	//}
+
+	setLastMovement(mNextMovement);
+	mNextMovement=NxOgre::Vec3::ZERO;
+	mIsWalking=false;
+}
+
+void PhysicsComponentCharacter::performCharacterMovement(double elapsedSeconds)
+{
 	if(	mNextMovement==NxOgre::Vec3::ZERO && 
 		mOnSurface && 
 		!mJumping && 
@@ -99,8 +175,6 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 
 	//Logger::getInstance()->log(getParent()->getName() + " updated, position " + Ogre::StringConverter::toString(getSceneNode()->getPosition().y));
 
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-
 	if (isInUse())
 	{
 		if(mIsWalking)
@@ -108,7 +182,7 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			Vector3 mWalkDirection;
 			mWalkDirection=Vector3(mNextMovement.x,0,mNextMovement.z);
 			mWalkDirection.normalise();
-			
+
 			mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
 			mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeed;
 		}
@@ -164,6 +238,8 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 			mNextMovement *= Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale;
 		}
 
+		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+
 		getNxOgreController()->move(
 			mNextMovement,
 			collisionFlags,
@@ -179,11 +255,11 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 		//	Logger::getInstance()->log("* * mNextMovement! "+Ogre::StringConverter::toString(Vector3(mNextMovement.x,mNextMovement.y,mNextMovement.z)));
 		//	Logger::getInstance()->log("* * mOnSurface! "+Ogre::StringConverter::toString(mOnSurface));
 		//}
-	}
 
-	setLastMovement(mNextMovement);
-	mNextMovement=NxOgre::Vec3::ZERO;
-	mIsWalking=false;
+		setLastMovement(mNextMovement);
+		mNextMovement=NxOgre::Vec3::ZERO;
+		mIsWalking=false;
+	}
 }
 
 void PhysicsComponentCharacter::correctSceneNodePosition()
@@ -679,6 +755,16 @@ void PhysicsComponentCharacter::setOffsetRenderPosition(Vector3 offsetRenderPosi
 Vector3 PhysicsComponentCharacter::getOffsetRenderPosition() const
 {
 	return mOffsetRenderPosition;
+}
+
+void PhysicsComponentCharacter::setCyclicCharacter(bool pCyclicCharacter)
+{
+	mCyclicCharacter = pCyclicCharacter;
+}
+
+bool PhysicsComponentCharacter::isCyclicCharacter()
+{
+	return mCyclicCharacter;
 }
 
 TPhysicsComponentCharacterParameters::TPhysicsComponentCharacterParameters() : TPhysicsComponentParameters()

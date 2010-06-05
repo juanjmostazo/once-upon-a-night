@@ -39,6 +39,10 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject)
 			mHitRecoveryTime=1;
 		}		
 	}*/	
+
+	Logger::getInstance()->log(getParent()->getName() + " LOGICCOMPONENTPROP COLLISION: " +
+		pGameObject->getName() + ", " + mParent->getName());
+
 	if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);
