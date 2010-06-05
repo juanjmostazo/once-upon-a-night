@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+	<Option key="NUM_GROUPS">3</Option>
+	<Option key="READ_PROPORTION">0.9</Option>
+  </Options>
+</Configuration>
