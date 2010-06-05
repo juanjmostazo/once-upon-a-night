@@ -58,14 +58,14 @@ void GUIConsole::hideConsole()
 {
 	setConsoleVisibility(false);
 	mNextLogRefresh=-1;
-	CEGUI::MouseCursor::getSingleton().hide();
+	mParentGameState->getApp()->getGUISubsystem()->hideCursor();
 }
 void GUIConsole::showConsole()
 {
 	setConsoleVisibility(true);
 	updateLog();
 	mNextLogRefresh=LOG_REFRESH_TIME;
-	CEGUI::MouseCursor::getSingleton().show();
+	mParentGameState->getApp()->getGUISubsystem()->showCursor();
 }
 void GUIConsole::setConsoleVisibility(bool visible)
 {

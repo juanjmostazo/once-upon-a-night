@@ -15,8 +15,9 @@ using namespace OUAN;
 /// Default constructor
 GameOptionsState::GameOptionsState()
 :GameState()
+,mClickChannel(-1)
+,mMusicChannel(-1)
 {
-	mMusicChannel=-1;
 }
 /// Destructor
 GameOptionsState::~GameOptionsState()
@@ -56,6 +57,9 @@ void GameOptionsState::init(ApplicationPtr app)
 		screenNode= renderSS->getSceneManager()->getSceneNode(OPTIONS_SCREENNODE);
 	}
 	screenNode ->attachObject(mScreen);
+
+	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
+		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
 
 	//mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
 	//mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
@@ -98,7 +102,8 @@ void GameOptionsState::pause()
 /// resume state
 void GameOptionsState::resume()
 {
-
+	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
+		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
 }
 
 /// process input events

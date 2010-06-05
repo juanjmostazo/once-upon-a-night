@@ -375,6 +375,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\GUI\GUIInGame.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\GUI\GUIMainMenu.cpp"
 					>
 				</File>
@@ -1593,6 +1597,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\GUI\GUIExtrasMenu.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIInGame.h"
 					>
 				</File>
 				<File

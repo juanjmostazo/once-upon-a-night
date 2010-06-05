@@ -118,6 +118,10 @@ namespace OUAN
 			/// toggling on/off certain actions
 			int mKeyBuffer;
 
+			/// Used to properly reset the game after selecting the "exit to menu" option
+			/// at the in-game menu
+			bool mBackToMenu;
+
 			/// Auxiliar functions
 			int getUniqueId();
 			std::string getStringUniqueId();
@@ -172,6 +176,7 @@ namespace OUAN
 
 			/// If true, jump directly to GameRunningState
 			bool mSkipIntro;
+
 		};
 }
 #endif

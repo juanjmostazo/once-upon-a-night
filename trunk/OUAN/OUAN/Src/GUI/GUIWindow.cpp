@@ -26,3 +26,13 @@ void GUIWindow::initGUI(GameStatePtr parentGameState)
 {
 	mParentGameState=parentGameState;
 }
+void GUIWindow::show()
+{
+	if (mSheet)
+		mSheet->show();
+}
+void GUIWindow::hide()
+{
+	if (mSheet)
+		mSheet->hide();
+}

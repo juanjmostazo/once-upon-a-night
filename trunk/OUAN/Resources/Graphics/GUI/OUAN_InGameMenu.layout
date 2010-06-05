@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="DefaultWindow" Name="OUANInGameMenu/" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window Type="OUANLook/Button" Name="OUANInGameMenu/Return" >
+            <Property Name="Text" Value="Back to game" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.323313,0},{0.308759,0},{0.675155,0},{0.558759,0}}" />
+        </Window>
+        <Window Type="OUANLook/Button" Name="OUANInGameMenu/Options" >
+            <Property Name="Text" Value="Options" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.326994,0},{0.409489,0},{0.677609,0},{0.659489,0}}" />
+        </Window>
+        <Window Type="OUANLook/Button" Name="OUANInGameMenu/GameQuit" >
+            <Property Name="Text" Value="Back to main menu" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.326381,0},{0.518248,0},{0.675767,0},{0.768248,0}}" />
+        </Window>
+        <Window Type="OUANLook/Button" Name="OUANInGameMenu/AppQuit" >
+            <Property Name="Text" Value="Exit" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.32454,0},{0.629927,0},{0.673926,0},{0.879927,0}}" />
+        </Window>
+    </Window>
+</GUILayout>

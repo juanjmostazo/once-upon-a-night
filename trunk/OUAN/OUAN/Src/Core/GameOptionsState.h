@@ -48,6 +48,7 @@ namespace OUAN
 
 	private:
 		int mMusicChannel;
+		int mClickChannel;
 		GUIOptionsMenuPtr mGUI;
 
 		Ogre::Rectangle2D* mScreen;

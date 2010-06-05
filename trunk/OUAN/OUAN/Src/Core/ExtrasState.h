@@ -17,6 +17,8 @@ namespace OUAN
 		GUIExtrasMenuPtr mGUI;
 
 		Ogre::Rectangle2D* mScreen;
+
+		int mClickChannel;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);

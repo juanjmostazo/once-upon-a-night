@@ -86,6 +86,10 @@ namespace OUAN
 		void clearRenderer();
 
 		void loadScheme(std::string schemeName, std::string mouseCursor);
+
+		void setCursorVisibility(bool visible);
+		void showCursor();
+		void hideCursor();
 	};
 }
 #endif

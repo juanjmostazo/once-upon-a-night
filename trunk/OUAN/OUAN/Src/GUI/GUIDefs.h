@@ -22,6 +22,10 @@ namespace OUAN
 	typedef boost::shared_ptr<GUIExtrasMenu> GUIExtrasMenuPtr;
 	class GUIConsole;
 	typedef boost::shared_ptr<GUIConsole> GUIConsolePtr;
+
+	class GUIInGame;
+	typedef boost::shared_ptr<GUIInGame> GUIInGamePtr;
+
 	/// Keyboard event types
 	typedef enum{
 		GUI_KEYDOWN,
@@ -38,5 +42,6 @@ namespace OUAN
 	const std::string GUI_LAYOUT_MAINMENU="OUAN_MainMenu.layout";
 	const std::string GUI_LAYOUT_EXTRAS="OUAN_ExtrasMenu.layout";
 	const std::string GUI_LAYOUT_CONSOLE="OUAN_Console.layout";
+	const std::string GUI_LAYOUT_INGAMEMENU="OUAN_InGameMenu.layout";
 }
 #endif

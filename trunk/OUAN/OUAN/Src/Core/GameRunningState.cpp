@@ -1,8 +1,10 @@
 #include "GameRunningState.h"
 
 #include "GameStateManager.h"
+#include "MainMenuState.h"
 #include "GameOverState.h"
 #include "GamePausedState.h"
+#include "InGameMenuState.h"
 
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -132,12 +134,29 @@ void GameRunningState::pause()
 	mApp->getRenderSubsystem()->pauseRendering();
 	pauseMusic();
 	mApp->mKeyBuffer=500000;
+	mHUD->hide();
+	mGUI->destroy();
+	mApp->getGUISubsystem()->destroyGUI();
 }
 /// resume state
 void GameRunningState::resume()
 {
-	mApp->getRenderSubsystem()->resumeRendering();
-	unpauseMusic();
+	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
+	mGUI->initGUI(shared_from_this());
+	mGUI->hideConsole();
+
+	if (!mApp->mBackToMenu)
+	{
+		mApp->getRenderSubsystem()->resumeRendering();
+		unpauseMusic();
+		mHUD->show();
+	}
+	else
+	{
+		GameStatePtr menuState = GameStatePtr(new MainMenuState());
+		mApp->getGameStateManager()->changeState(menuState,mApp);
+	}
+
 }
 void GameRunningState::handleEvents()
 {
@@ -187,6 +206,12 @@ void GameRunningState::handleEvents()
 		{
 			actionKeyPressed=true;
 			mApp->getGameWorldManager()->useObject();
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
+		else if (mApp->isPressedMenu())
+		{
+			GameStatePtr nextState(new InGameMenuState());
+			mApp->getGameStateManager()->pushState(nextState,mApp);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 	}
