@@ -285,12 +285,20 @@ RenderComponentGlowPtr ComponentFactory::createRenderComponentGlow(GameObjectPtr
 
 	pRenderComponentGlow->setParent(gameObject);	
 
-	Logger::getInstance()->log("CREATE RENDER COMPONENT GLOW!");
-	Logger::getInstance()->log(tRenderComponentGlowParameters.material);
-	Logger::getInstance()->log(tRenderComponentGlowParameters.visibility ? "visibility:true" : "visibility:false");
+	pRenderComponentGlow->setEntity(
+		pRenderComponentEntity->getEntity()->clone(
+			pRenderComponentEntity->getEntity()->getName() + "_" + tRenderComponentGlowParameters.material));
 
-	//pRenderComponentGlow->getSceneNode()->setVisible(false);
-	//pRenderComponentGlow->getEntity()->setQueryFlags(QUERYFLAGS_NONE);
+	pRenderComponentGlow->getEntity()->setMaterialName(tRenderComponentGlowParameters.material);
+	pRenderComponentGlow->getEntity()->setQueryFlags(QUERYFLAGS_NONE);
+	
+
+	pRenderComponentGlow->setSceneNode(
+		pRenderComponentPositional->getSceneNode()->createChildSceneNode(
+		"glow#" + Application::getInstance()->getStringUniqueId()));
+
+	pRenderComponentGlow->getSceneNode()->attachObject(pRenderComponentGlow->getEntity());
+	pRenderComponentGlow->getSceneNode()->setVisible(tRenderComponentGlowParameters.visibility);
 
 	return pRenderComponentGlow;
 }
