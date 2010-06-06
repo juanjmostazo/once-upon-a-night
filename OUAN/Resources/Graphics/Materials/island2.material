@@ -1,5 +1,5 @@
 import basic_texture from BasicTexture.material
-import no_changeworld from ChangeWorld.material
+import default_changeworld from ChangeWorld.material
 
 //ALMENA
 material almena2_d : basic_texture
@@ -12,7 +12,7 @@ material almena2_n : basic_texture
 	set_texture_alias diffuse_texture almena2_n.dds
 }
 
-material almena2_cw : no_changeworld
+material almena2_cw : default_changeworld
 {
 }
 
@@ -27,7 +27,7 @@ material bridge_n : basic_texture
 	set_texture_alias diffuse_texture bridge_n.tga
 }
 
-material bridge_cw : no_changeworld
+material bridge_cw : default_changeworld
 {
 }
 
@@ -42,7 +42,7 @@ material bridge_little_n : basic_texture
 	set_texture_alias diffuse_texture bridge_little_n.tga
 }
 
-material bridge_little_cw : no_changeworld
+material bridge_little_cw : default_changeworld
 {
 }
 
@@ -57,7 +57,7 @@ material entry_n : basic_texture
 	set_texture_alias diffuse_texture entry_n.tga
 }
 
-material entry_cw : no_changeworld
+material entry_cw : default_changeworld
 {
 }
 
@@ -72,7 +72,7 @@ material island2_tower1_n : basic_texture
 	set_texture_alias diffuse_texture island2_tower1_n.tga
 }
 
-material island2_tower1_cw : no_changeworld
+material island2_tower1_cw : default_changeworld
 {
 }
 
@@ -87,7 +87,7 @@ material island2_tower2_n : basic_texture
 	set_texture_alias diffuse_texture island2_tower2_n.tga
 }
 
-material island2_tower2_cw : no_changeworld
+material island2_tower2_cw : default_changeworld
 {
 }
 

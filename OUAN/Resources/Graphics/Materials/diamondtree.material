@@ -1,0 +1,17 @@
+import alpha_blending_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+//FOG1
+material diamondtree_d : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture diamondtree_d.dds
+}
+
+material diamondtree_n : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture diamondtree_n.dds
+}
+
+material diamondtree_cw : default_changeworld
+{
+}
