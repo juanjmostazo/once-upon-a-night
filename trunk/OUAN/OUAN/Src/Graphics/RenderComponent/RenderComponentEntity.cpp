@@ -136,10 +136,10 @@ void RenderComponentEntity::update(double elapsedTime)
 		}
 	}
 
-	//for ( i=0; i<mChangeWorldMaterials.size(); i++)
-	//{
-	//	mChangeWorldMaterials[i]->update(elapsedTime);
-	//}
+	for ( i=0; i<mChangeWorldMaterials.size(); i++)
+	{
+		mChangeWorldMaterials[i]->update(elapsedTime);
+	}
 }
 void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)
 {
@@ -219,140 +219,140 @@ void RenderComponentEntity::setOriginalMaterials()
 
 void RenderComponentEntity::setChangeWorldMaterials()
 {
-	////Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
 
-	//Ogre::SubEntity* subEnt;
-	//unsigned int i;
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
 
-	//for ( i = 0; i < mChangeWorldMaterials.size() && i <mEntity->getNumSubEntities(); i++)
-	//{
+	for ( i = 0; i < mChangeWorldMaterials.size() && i <mEntity->getNumSubEntities(); i++)
+	{
 
-	//	subEnt = mEntity->getSubEntity(i);
+		subEnt = mEntity->getSubEntity(i);
 
-	//	// Get/Create the clone material
+		// Get/Create the clone material
 
-	//	if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterials[i]->getMaterialName()))
-	//	{
-	//		subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterials[i]->getMaterialName()));
-	//	}
-	//	else
-	//	{
-	//		Logger::getInstance()->log("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
-	//	}
-	//}
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterials[i]->getMaterialName()))
+		{
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterials[i]->getMaterialName()));
+		}
+		else
+		{
+			Logger::getInstance()->log("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
+		}
+	}
 }
 
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
-	//unsigned int i;
-	//
-	//ChangeWorldMaterialPtr pChangeWorldMaterial;
+	unsigned int i;
+	
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
-	//mChangeWorldMaterials.clear();
+	mChangeWorldMaterials.clear();
 
-	//bool materialCreated;
+	bool materialCreated;
 
-	//for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
+	for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
+	{
+
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
+			mEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
 	//{
-
-	//	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-	//	materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
-	//		mEntity->getSubEntity(i)->getMaterial());
-
-	//	if(materialCreated)
-	//	{
-	//		mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
-	//		mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-	//	}
-	//	//else
-	//	//{
-	//	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//	//}
-
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
-	////for ( ; i < mEntity->getNumSubEntities(); i++)
-	////{
-	////	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	////}
 
-	//setChangeWorldMaterials();
+	setChangeWorldMaterials();
 }
 
 void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)
 {
-	//unsigned int i;
+	unsigned int i;
 
-	//Ogre::Entity * pOtherEntity;
+	Ogre::Entity * pOtherEntity;
 
-	//ChangeWorldMaterialPtr pChangeWorldMaterial;
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
-	//pOtherEntity=pOtherComponentEntity->getEntity();
+	pOtherEntity=pOtherComponentEntity->getEntity();
 
-	//if(!pOtherEntity)
+	if(!pOtherEntity)
+	{
+		initChangeWorldMaterials(tChangeWorldMaterialParameters);
+		return;
+	}
+
+	mChangeWorldMaterials.clear();
+
+	bool materialCreated;
+
+	for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
+	{
+
+		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+
+		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
+			mEntity->getSubEntity(i)->getMaterial(),
+			pOtherEntity->getSubEntity(i)->getMaterial());
+
+		if(materialCreated)
+		{
+			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
+			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
+		}
+		//else
+		//{
+		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
+		//}
+	}
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
 	//{
-	//	initChangeWorldMaterials(tChangeWorldMaterialParameters);
-	//	return;
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
 
-	//mChangeWorldMaterials.clear();
-
-	//bool materialCreated;
-
-	//for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
-	//{
-
-	//	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-	//	materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
-	//		mEntity->getSubEntity(i)->getMaterial(),
-	//		pOtherEntity->getSubEntity(i)->getMaterial());
-
-	//	if(materialCreated)
-	//	{
-	//		mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
-	//		mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-	//	}
-	//	//else
-	//	//{
-	//	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//	//}
-	//}
-	////for ( ; i < mEntity->getNumSubEntities(); i++)
-	////{
-	////	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	////}
-
-	//setChangeWorldMaterials();
+	setChangeWorldMaterials();
 }
 
 void RenderComponentEntity::setChangeWorldFactor(double factor)
 {
-	////Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
-	//unsigned int i;
-	//for(i=0;i<mChangeWorldMaterials.size();i++)
-	//{
-	//	mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
-	//}
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
+	}
 }
 
 void RenderComponentEntity::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
 {
-	////Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
-	//unsigned int i;
-	//for(i=0;i<mChangeWorldMaterials.size();i++)
-	//{
-	//	mChangeWorldMaterials[i]->setPointOfInterest(pointOfInterest);
-	//}
+	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->setPointOfInterest(pointOfInterest);
+	}
 }
 
 void RenderComponentEntity::randomizeChangeWorldMaterials()
 {
-	//unsigned int i;
-	//for(i=0;i<mChangeWorldMaterials.size();i++)
-	//{
-	//	mChangeWorldMaterials[i]->randomize();
-	//}
+	unsigned int i;
+	for(i=0;i<mChangeWorldMaterials.size();i++)
+	{
+		mChangeWorldMaterials[i]->randomize();
+	}
 }
 std::vector<std::string>& RenderComponentEntity::getOriginalMaterials()
 {

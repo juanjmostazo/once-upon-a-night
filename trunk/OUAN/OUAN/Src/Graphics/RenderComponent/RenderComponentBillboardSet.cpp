@@ -55,35 +55,35 @@ void RenderComponentBillboardSet::setOriginalMaterials()
 
 void RenderComponentBillboardSet::setChangeWorldMaterials()
 {
-	//if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterial->getMaterialName()))
-	//{
-	//	mBillboardSet->setMaterialName(mChangeWorldMaterial->getMaterialName());
-	//}
-	//else
-	//{
-	//	Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
-	//}
+	if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterial->getMaterialName()))
+	{
+		mBillboardSet->setMaterialName(mChangeWorldMaterial->getMaterialName());
+	}
+	else
+	{
+		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
+	}
 }
 
 void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentBillboardSetPtr pOtherComponentBillboard)
 {
-	//ChangeWorldMaterialPtr pChangeWorldMaterial;
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
-	//bool materialCreated;
+	bool materialCreated;
 
-	//pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
-	//materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial(),pOtherComponentBillboard->getBillboardSet()->getMaterial());
+	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial(),pOtherComponentBillboard->getBillboardSet()->getMaterial());
 
-	//if(materialCreated)
-	//{
-	//	mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
-	//	mChangeWorldMaterial=pChangeWorldMaterial;
-	//}
-	//else
-	//{
-	//	//mChangeWorldMaterial=mBillboardSet->getMaterialName();
-	//}
+	if(materialCreated)
+	{
+		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
+		mChangeWorldMaterial=pChangeWorldMaterial;
+	}
+	else
+	{
+		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
+	}
 
 }
 
@@ -91,51 +91,51 @@ void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialP
 void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
 {
 
-	//ChangeWorldMaterialPtr pChangeWorldMaterial;
+	ChangeWorldMaterialPtr pChangeWorldMaterial;
 
-	//bool materialCreated;
+	bool materialCreated;
 
-	//pChangeWorldMaterial.reset(new ChangeWorldMaterial());
+	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
 
-	//materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial());
+	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial());
 
-	//if(materialCreated)
+	if(materialCreated)
+	{
+		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
+		mChangeWorldMaterial=pChangeWorldMaterial;
+	}
+	else
+	{
+		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
+	}
+
+
+	//for ( ; i < mEntity->getNumSubEntities(); i++)
 	//{
-	//	mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
-	//	mChangeWorldMaterial=pChangeWorldMaterial;
-	//}
-	//else
-	//{
-	//	//mChangeWorldMaterial=mBillboardSet->getMaterialName();
+	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
 	//}
 
-
-	////for ( ; i < mEntity->getNumSubEntities(); i++)
-	////{
-	////	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	////}
-
-	////setChangeWorldMaterials();
+	//setChangeWorldMaterials();
 }
 
 void RenderComponentBillboardSet::setChangeWorldFactor(double factor)
 {
-	//mChangeWorldMaterial->setChangeWorldFactor(factor);
+	mChangeWorldMaterial->setChangeWorldFactor(factor);
 }
 
 void RenderComponentBillboardSet::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
 {
-	//mChangeWorldMaterial->setPointOfInterest(pointOfInterest);
+	mChangeWorldMaterial->setPointOfInterest(pointOfInterest);
 }
 
 void RenderComponentBillboardSet::randomizeChangeWorldMaterials()
 {
-	//mChangeWorldMaterial->randomize();
+	mChangeWorldMaterial->randomize();
 }
 
 void RenderComponentBillboardSet::update(double elapsedTime)
 {
-	//mChangeWorldMaterial->update(elapsedTime);
+	mChangeWorldMaterial->update(elapsedTime);
 }
 
 void RenderComponentBillboardSet::setVisible(bool visible)
