@@ -1,22 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material munyequito
+material item1up_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
-			cull_hardware none
-			cull_software none
+	set_texture_alias diffuse_texture item1up.dds
+}
 
-			texture_unit
-			{
-				texture munyequito.dds
-			}
-		}
+material item1up_n : basic_texture
+{
+	set_texture_alias diffuse_texture item1up.dds
+}
 
-	}
-
+material item1up_cw : default_changeworld
+{
 }
