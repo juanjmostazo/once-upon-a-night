@@ -1695,8 +1695,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
 				params.dreamsName,
 				gameObject,
-				params.lightDreamsParams
-			));
+				params.lightDreamsParams));
 
 		if (gameObject->isUsingEntityNightmares())
 		{
@@ -1718,9 +1717,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
 			params.nightmaresName,
 			gameObject,
-			params.lightNightmaresParams
-			));
-
+			params.lightNightmaresParams));
 
 		if (gameObject->isUsingEntityNightmares() && gameObject->isUsingEntityDreams())
 		{
@@ -1746,8 +1743,6 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 			gameObject->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 		}
-
-
 	}
 	else if(gameObject->getLogicComponent()->existsInDreams())
 	{
@@ -1758,6 +1753,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentEntityDreams(
 				mComponentFactory->createRenderComponentEntity(params.dreamsName,
 				gameObject,params.tRenderComponentEntityDreamsParameters));
+
 			gameObject->setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr());
 			gameObject->getRenderComponentEntityDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 		}
@@ -1768,15 +1764,14 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 				params.dreamsName,
 				gameObject,
 				params.bbsDreamsParams));
+
 			gameObject->getRenderComponentBillboardSetDreams()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 
 		}
 		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
 			params.dreamsName,
 			gameObject,
-			params.lightDreamsParams
-			));
-		
+			params.lightDreamsParams));
 	}
 	else if(gameObject->getLogicComponent()->existsInNightmares())
 	{
@@ -1787,6 +1782,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentEntityNightmares(
 				mComponentFactory->createRenderComponentEntity(params.nightmaresName,
 				gameObject,params.tRenderComponentEntityNightmaresParameters));
+
 			gameObject->getRenderComponentEntityNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 		}
 		else
@@ -1796,14 +1792,14 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 				params.nightmaresName,
 				gameObject,
 				params.bbsNightmaresParams));
+
 			gameObject->getRenderComponentBillboardSetNightmares()->initChangeWorldMaterials(params.tChangeWorldMaterialParameters);
 		}
 
 		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
 			params.nightmaresName,
 			gameObject,
-			params.lightNightmaresParams
-			));		
+			params.lightNightmaresParams));		
 	}
 
 	gameObject->initLensFlare(cameraManager->getActiveCamera(), sceneManager);
@@ -1814,6 +1810,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 	//Add Object to GameWorldManager
 	return gameObject;
 }
+
 GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {

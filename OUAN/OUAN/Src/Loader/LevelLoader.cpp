@@ -2291,8 +2291,14 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		params.nightmaresName = gameObject->nightmaresName;
 		params.name = gameObject->name;
 
-		params.useEntityDreams= getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityDreams",false);
-		params.useEntityNightmares= getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityNightmares",false);
+		params.useEntityDreams = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityDreams",false);
+		params.useEntityNightmares = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityNightmares",false);
+
+		params.useDreamsGlow = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useDreamsGlow",false);
+		params.useNightmaresGlow = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useNightmaresGlow",false);
+
+		params.dreamsGlowMaterial = getPropertyString(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::dreamsGlowMaterial",false);
+		params.nightmaresGlowMaterial = getPropertyString(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::nightmaresGlowMaterial",false);
 
 		//Get Logic component
 		params.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
