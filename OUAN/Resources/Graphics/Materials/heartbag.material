@@ -1,16 +1,21 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
 
-material heartbag_d : basic_texture
+material heartbag
 {
-	set_texture_alias diffuse_texture heartbag.dds
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture heartbag.dds
+			}
+		}
+
+	}
+
 }
 
-material heartbag_n : basic_texture
-{
-	set_texture_alias diffuse_texture heartbag.dds
-}
 
-material heartbag_cw : default_changeworld
-{
-}

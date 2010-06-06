@@ -1,0 +1,15 @@
+material cloud2_n
+{
+	technique
+	{
+		pass
+		{
+         depth_write on
+         alpha_rejection   greater 128
+			texture_unit
+			{
+				texture cloud2_n.dds
+			}
+		}
+	}
+}

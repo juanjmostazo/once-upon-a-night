@@ -1,0 +1,78 @@
+//import diffuse_template from "diffuse.material"
+
+//material tripollo_n: diffuse_template
+//{	
+//	set_texture_alias ambient_tex  tripollo_n.dds
+//    set_texture_alias diffuse_tex  tripollo_n.dds
+//}
+material tripollo_n
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n.dds
+			}
+		}
+
+	}
+}
+
+material tripollo_n_red
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_red.dds
+			}
+		}
+
+	}
+}
+
+material tripollo_n_green
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_green.dds
+			}
+		}
+
+	}
+}
+
+material tripollo_n_blue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture tripollo_n_blue.dds
+			}
+		}
+
+	}
+}

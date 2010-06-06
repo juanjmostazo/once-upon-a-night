@@ -1,0 +1,25 @@
+
+material changeworld_n
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref rim_vs
+	        {
+	        }
+	        fragment_program_ref rim_fs
+	        {
+	        }
+			ambient 0.3 0.3 0.3 1
+			specular 1 1 1 1 50
+
+			texture_unit
+			{
+				texture changeworld_n.dds
+			}
+		}
+
+	}
+
+}

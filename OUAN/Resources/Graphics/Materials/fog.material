@@ -1,50 +1,16 @@
-import alpha_blending_texture from BasicTexture.material
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
 
-//FOG1
-material fog1_d : alpha_blending_texture
+material cloud1
 {
-	set_texture_alias diffuse_texture fog1_d.dds
-}
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.7 0.7 0.7 1
+		}
 
-material fog1_n : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture fog1_n.dds
-}
+	}
 
-material fog1_cw : default_changeworld
-{
-}
-
-//FOG2
-material fog2_d : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture fog2_d.dds
-}
-
-material fog2_n : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture fog2_n.dds
-}
-
-material fog2_cw : default_changeworld
-{
-}
-
-FOG3
-material fog3_d : basic_texture
-{
-	set_texture_alias diffuse_texture fog3_d.dds
-}
-
-material fog3_n : basic_texture
-{
-	set_texture_alias diffuse_texture fog3_n.dds
-}
-
-material fog3_cw : default_changeworld
-{
 }
 
 

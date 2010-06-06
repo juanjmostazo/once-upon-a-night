@@ -1,5 +1,5 @@
 import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import no_changeworld from ChangeWorld.material
 
 material tripollo_d : basic_texture
 {
@@ -26,6 +26,6 @@ material tripollo_n_blue : basic_texture
 	set_texture_alias diffuse_texture tripollo_n_blue.dds
 }
 
-material tripollo_cw : default_changeworld
+material tripollo_cw : no_changeworld
 {
 }
