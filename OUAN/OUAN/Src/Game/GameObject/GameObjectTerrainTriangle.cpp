@@ -225,27 +225,6 @@ void GameObjectTerrainTriangle::update(double elapsedSeconds)
 	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
 
-void GameObjectTerrainTriangle::setDreamsRenderComponents()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setMaterial("red");
-	mRenderComponentEntityNightmares->setMaterial("red");
-}
-
-void GameObjectTerrainTriangle::setNightmaresRenderComponents()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setMaterial("blue");
-	mRenderComponentEntityNightmares->setMaterial("blue");
-}
-
-void GameObjectTerrainTriangle::setChangeWorldRenderComponents()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setMaterial("green");
-	mRenderComponentEntityNightmares->setMaterial("green");
-}
-
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
 }

@@ -1485,36 +1485,6 @@ void GameWorldManager::setChangeWorldTimes()
 	}
 }
 
-void GameWorldManager::setDreamsRenderComponents()
-{
-	TGameObjectContainerIterator it;
-	
-	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
-	{
-		it->second->setDreamsRenderComponents();
-	}
-}
-
-void GameWorldManager::setNightmaresRenderComponents()
-{
-	TGameObjectContainerIterator it;
-	
-	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
-	{
-		it->second->setNightmaresRenderComponents();
-	}
-}
-
-void GameWorldManager::setChangeWorldRenderComponents()
-{
-	TGameObjectContainerIterator it;
-	
-	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
-	{
-		it->second->setChangeWorldRenderComponents();
-	}
-}
-
 double GameWorldManager::getChangeWorldTotalTime() const
 {
 	return mChangeWorldTotalTime;
