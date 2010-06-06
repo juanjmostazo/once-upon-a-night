@@ -1,16 +1,21 @@
-import alpha_test_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
 
-material bush3_d : alpha_test_texture
+material bush_3
 {
-	set_texture_alias diffuse_texture bush3_d.dds
-}
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
+			scene_blend alpha_blend
 
-material bush3_n : alpha_test_texture
-{
-	set_texture_alias diffuse_texture bush3_n.dds
-}
+			texture_unit
+			{
+				texture bush_3.dds
+			}
+		}
 
-material bush3_cw : default_changeworld
-{
+	}
+
 }

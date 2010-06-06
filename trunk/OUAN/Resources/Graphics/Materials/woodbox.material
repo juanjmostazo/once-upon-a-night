@@ -1,5 +1,5 @@
 import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import no_changeworld from ChangeWorld.material
 
 material woodbox_d : basic_texture
 {
@@ -11,6 +11,6 @@ material woodbox_n : basic_texture
 	set_texture_alias diffuse_texture woodbox_n.dds
 }
 
-material woodbox_cw : default_changeworld
+material woodbox_cw : no_changeworld
 {
 }

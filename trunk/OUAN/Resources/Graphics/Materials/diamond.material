@@ -1,17 +1,23 @@
-import alpha_blending_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
 
-//FOG1
-material diamond_d : alpha_blending_texture
+material diamont
 {
-	set_texture_alias diffuse_texture diamond.dds
-}
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+			diffuse 0.5 0.5 0.5 1
+			specular 0.7 0.7 0.7 1 10
+			scene_blend one_minus_src_alpha one_minus_src_alpha
+			cull_hardware none
+			cull_software none
 
-material diamond_n : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture diamond.dds
-}
+			texture_unit
+			{
+				texture diamont.dds
+			}
+		}
 
-material diamond_cw : default_changeworld
-{
+	}
+
 }

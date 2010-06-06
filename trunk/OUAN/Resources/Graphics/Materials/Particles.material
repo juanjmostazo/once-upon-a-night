@@ -54,25 +54,6 @@ material Examples/Flare
 		}
 	}
 }
-material Examples/PurpleFountain
-{
-	technique
-	{
-		pass
-		{
-			lighting off
-			scene_blend alpha_blend
-			depth_write off
-			cull_hardware none
-
-			texture_unit
-			{
-				texture aureola.png PF_BYTE_LA
-				tex_address_mode clamp
-			}
-		}
-	}
-}
 material Examples/Aureola
 {
 	technique

@@ -1,0 +1,15 @@
+material grassbillboard
+{
+	technique
+	{
+		pass
+		{
+		      scene_blend alpha_blend
+		      depth_write off
+			texture_unit
+			{
+				texture grass.png
+			}
+		}
+	}
+}

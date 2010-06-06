@@ -1,0 +1,15 @@
+material cloud1_d
+{
+	technique
+	{
+		pass
+		{
+         depth_write on
+         alpha_rejection   greater 128
+			texture_unit
+			{
+				texture cloud1_d.dds
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+
+material column_d
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3 1
+
+			texture_unit
+			{
+				texture column_d.dds
+			}
+		}
+
+	}
+
+}
+
+
