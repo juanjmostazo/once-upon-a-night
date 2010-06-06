@@ -1,9 +1,0 @@
-import diffuse_template from "diffuse.material"
-
-material terrain1_d: diffuse_template
-{	
-	set_texture_alias ambient_tex terrain1_d.dds
-    set_texture_alias diffuse_tex terrain1_d.dds
-}
-
-
