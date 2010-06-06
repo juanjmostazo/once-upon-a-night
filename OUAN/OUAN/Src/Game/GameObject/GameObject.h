@@ -93,6 +93,10 @@ namespace OUAN
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 
+		virtual void setDreamsRenderComponents();
+		virtual void setNightmaresRenderComponents();
+		virtual void setChangeWorldRenderComponents();
+
 		// update logic component
 		virtual void updateLogic(double elapsedSeconds);
 

@@ -519,13 +519,16 @@ bool GameRunningState::render()
 
 	mHUD->show();
 
+	mApp->getGameWorldManager()->setDreamsRenderComponents();
 	renderSubsystem->getTextureRenderer()->renderToTextureDreams();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
+
+	mApp->getGameWorldManager()->setNightmaresRenderComponents();
 	renderSubsystem->getTextureRenderer()->renderToTextureNightmares();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setMaterial("cloud_terrain_d#0");
+
+	mApp->getGameWorldManager()->setChangeWorldRenderComponents();
 	renderSubsystem->getTextureRenderer()->renderToTextureChangeWorld();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setOriginalMaterials();
+
+	mApp->getGameWorldManager()->setDreamsRenderComponents();
 
 	return renderSubsystem->render();
 }

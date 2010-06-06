@@ -76,6 +76,9 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRenderComponents();
+		void setNightmaresRenderComponents();
+		void setChangeWorldRenderComponents();
 
 		/// Reset object
 		virtual void reset();

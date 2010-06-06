@@ -153,6 +153,21 @@ void GameObject::update(double elapsedSeconds)
 	}
 }
 
+void GameObject::setDreamsRenderComponents()
+{
+
+}
+
+void GameObject::setNightmaresRenderComponents()
+{
+
+}
+
+void GameObject::setChangeWorldRenderComponents()
+{
+
+}
+
 const std::string& GameObject::getName()
 {
 	return mName;

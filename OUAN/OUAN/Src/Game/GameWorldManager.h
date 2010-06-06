@@ -127,6 +127,11 @@ namespace OUAN
 		/// Sets the world to Nightmares if it was Dreams or Dreams if it was Nightmares
 		void changeWorld();
 
+		//Sets indicated render state to all gameobjects
+		void setDreamsRenderComponents();
+		void setNightmaresRenderComponents();
+		void setChangeWorldRenderComponents();
+
 		/// Pass current level
 		void win();
 		/// Lose game
