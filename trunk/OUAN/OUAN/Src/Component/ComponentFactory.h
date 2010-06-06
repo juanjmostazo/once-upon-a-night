@@ -48,6 +48,10 @@ namespace OUAN
 		RenderComponentQuadHaloPtr createRenderComponentQuadHalo(GameObjectPtr gameObject,
 			TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters,
 			RenderComponentPositionalPtr pRenderComponentPositional);
+		RenderComponentGlowPtr createRenderComponentGlow(GameObjectPtr gameObject,
+			TRenderComponentGlowParameters tRenderComponentGlowParameters,
+			RenderComponentPositionalPtr pRenderComponentPositional,
+			RenderComponentEntityPtr pRenderComponentEntity);
 		RenderComponentFractalVolumePtr createRenderComponentFractalVolume(GameObjectPtr gameObject,
 			TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters,
 			RenderComponentPositionalPtr pRenderComponentPositional);

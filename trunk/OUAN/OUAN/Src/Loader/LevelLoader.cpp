@@ -2294,12 +2294,6 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		params.useEntityDreams = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityDreams",false);
 		params.useEntityNightmares = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityNightmares",false);
 
-		params.useDreamsGlow = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useDreamsGlow",false);
-		params.useNightmaresGlow = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useNightmaresGlow",false);
-
-		params.dreamsGlowMaterial = getPropertyString(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::dreamsGlowMaterial",false);
-		params.nightmaresGlowMaterial = getPropertyString(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::nightmaresGlowMaterial",false);
-
 		//Get Logic component
 		params.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
@@ -2341,6 +2335,9 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 			else
 				params.bbsNightmaresParams=processRenderComponentBillboardSet(gameObject->XMLNodeNightmares);
 		}
+
+		//Get RenderComponentGlow
+		params.tRenderComponentGlowParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -3423,6 +3420,17 @@ TRenderComponentQuadHaloParameters LevelLoader::processRenderComponentQuadHalo(T
 	tRenderComponentQuadHaloParameters.offsetZ = getPropertyReal(XMLNode, "RenderComponentQuadHalo::offsetZ");;
 
 	return tRenderComponentQuadHaloParameters;
+}
+
+TRenderComponentGlowParameters LevelLoader::processRenderComponentGlow(TiXmlElement *XMLNode)
+{
+	OUAN::TRenderComponentGlowParameters tRenderComponentGlowParameters;
+
+	//Process Glow properties
+	tRenderComponentGlowParameters.material = getPropertyString(XMLNode, "RenderComponentGlow::material");
+	tRenderComponentGlowParameters.visibility = getPropertyBool(XMLNode, "RenderComponentGlow::visibility");
+
+	return tRenderComponentGlowParameters;
 }
 
 TRenderComponentFractalVolumeParameters LevelLoader::processRenderComponentFractalVolume(TiXmlElement *XMLNode)
