@@ -82,7 +82,6 @@ namespace OUAN
 		bool isUsingEntityNightmares();
 		void setUseEntityNightmares(bool useEntity);
 
-
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
@@ -107,7 +106,6 @@ namespace OUAN
 		LensFlarePtr getLensFlare() const;
 		void setLensFlare(LensFlarePtr lensFlare);
 		void initLensFlare(Ogre::Camera*, Ogre::SceneManager*);
-
 
 		/// Reset object
 		virtual void reset();
@@ -146,6 +144,12 @@ namespace OUAN
 
 		bool useEntityDreams;
 		bool useEntityNightmares;
+
+		bool useDreamsGlow;
+		bool useNightmaresGlow;
+
+		std::string dreamsGlowMaterial;
+		std::string nightmaresGlowMaterial;
 
 		TRenderComponentLightParameters lightDreamsParams;
 		TRenderComponentLightParameters lightNightmaresParams;
