@@ -14,6 +14,8 @@ GameObjectSkyBody::~GameObjectSkyBody()
 {
 	mRenderComponentEntityDreams.reset();
 	mRenderComponentEntityNightmares.reset();
+	mRenderComponentGlowDreams.reset();
+	mRenderComponentGlowNightmares.reset();
 	mRenderComponentPositional.reset();
 	mRenderComponentInitial.reset();
 	mBBSComponentDreams.reset();
@@ -42,6 +44,26 @@ RenderComponentEntityPtr GameObjectSkyBody::getRenderComponentEntityDreams() con
 RenderComponentEntityPtr GameObjectSkyBody::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
+}
+
+void GameObjectSkyBody::setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlow)
+{
+	mRenderComponentGlowDreams=pRenderComponentGlow;
+}
+
+void GameObjectSkyBody::setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlow)
+{
+	mRenderComponentGlowNightmares=pRenderComponentGlow;
+}
+
+RenderComponentGlowPtr GameObjectSkyBody::getRenderComponentGlowDreams() const
+{
+	return mRenderComponentGlowDreams;
+}
+
+RenderComponentGlowPtr GameObjectSkyBody::getRenderComponentGlowNightmares() const
+{
+	return mRenderComponentGlowNightmares;
 }
 
 void GameObjectSkyBody::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)

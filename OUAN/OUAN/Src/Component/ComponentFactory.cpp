@@ -13,6 +13,7 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentQuadHalo.h"
+#include "../Graphics/RenderComponent/RenderComponentGlow.h"
 #include "../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
@@ -126,7 +127,6 @@ RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string
 	pRenderComponentWater->initFresnelReflection(mApp->getCameraManager(),mApp->getGameWorldManager());
 	return pRenderComponentWater;
 }
-
 
 RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string name,GameObjectPtr gameObject,TRenderComponentLightParameters tRenderComponentLightParameters)
 {
@@ -276,6 +276,23 @@ RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameO
 	pRenderComponentQuadHalo->getSceneNode()->setVisible(false);
 
 	return pRenderComponentQuadHalo;
+}
+
+RenderComponentGlowPtr ComponentFactory::createRenderComponentGlow(GameObjectPtr gameObject,TRenderComponentGlowParameters tRenderComponentGlowParameters, RenderComponentPositionalPtr pRenderComponentPositional, RenderComponentEntityPtr pRenderComponentEntity)
+{
+	//Create void Render Component
+	RenderComponentGlowPtr pRenderComponentGlow = RenderComponentGlowPtr(new RenderComponentGlow()); 
+
+	pRenderComponentGlow->setParent(gameObject);	
+
+	Logger::getInstance()->log("CREATE RENDER COMPONENT GLOW!");
+	Logger::getInstance()->log(tRenderComponentGlowParameters.material);
+	Logger::getInstance()->log(tRenderComponentGlowParameters.visibility ? "visibility:true" : "visibility:false");
+
+	//pRenderComponentGlow->getSceneNode()->setVisible(false);
+	//pRenderComponentGlow->getEntity()->setQueryFlags(QUERYFLAGS_NONE);
+
+	return pRenderComponentGlow;
 }
 
 RenderComponentFractalVolumePtr ComponentFactory::createRenderComponentFractalVolume(GameObjectPtr gameObject,TRenderComponentFractalVolumeParameters tRenderComponentFractalVolumeParameters, RenderComponentPositionalPtr pRenderComponentPositional)

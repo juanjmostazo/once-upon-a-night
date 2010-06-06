@@ -826,6 +826,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentGlow.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentInitial.cpp"
 						>
 					</File>
@@ -1177,6 +1181,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentFractalVolume.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentGlow.h"
 						>
 					</File>
 					<File

@@ -390,7 +390,6 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 
 Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLightParameters tRenderComponentLightParameters)
 {
-
 	SceneNode *lightNode=0;
 	Light *pLight=0;
 	// Set light parameters and create it

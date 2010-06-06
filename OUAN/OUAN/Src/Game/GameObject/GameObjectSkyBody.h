@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
+#include "../../Graphics/RenderComponent/RenderComponentGlow.h"
 #include "../../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
@@ -24,6 +25,9 @@ namespace OUAN
 		/// Visual component
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentGlowPtr mRenderComponentGlowDreams;
+		RenderComponentGlowPtr mRenderComponentGlowNightmares;
+
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -64,6 +68,16 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+
+		/// Return render component entity 
+		/// @return render component entity
+		RenderComponentGlowPtr getRenderComponentGlowDreams() const;
+		RenderComponentGlowPtr getRenderComponentGlowNightmares() const;
+
+		/// Set render component
+		/// @param pRenderComponentEntity
+		void setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlowDreams);
+		void setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlowNightmares);
 
 		RenderComponentBillboardSetPtr getRenderComponentBillboardSetDreams() const;
 		void setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr bbsDreams);
@@ -163,6 +177,9 @@ namespace OUAN
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
+
+		///RenderComponentGlow parameters
+		TRenderComponentGlowParameters tRenderComponentGlowParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

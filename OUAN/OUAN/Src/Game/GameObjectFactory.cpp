@@ -1648,6 +1648,7 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 	//addGameObjectScepter(pGameObjectScepter);
 	return pGameObjectScepter;
 }
+
 GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBodyParameters params,
 	GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraManager, Ogre::SceneManager* sceneManager)
 {
@@ -1802,6 +1803,41 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			params.lightNightmaresParams));		
 	}
 
+	////////////////////////////////////////////////////////
+	// Glow stuff
+
+	if (gameObject->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentGlow Dreams
+		gameObject->setRenderComponentGlowDreams(
+			mComponentFactory->createRenderComponentGlow(
+			gameObject,
+			params.tRenderComponentGlowParameters,
+			gameObject->getRenderComponentPositional(),
+			gameObject->getRenderComponentEntityDreams()));
+	}
+	else
+	{
+		gameObject->setRenderComponentGlowDreams(RenderComponentGlowPtr());
+	}
+
+	if (gameObject->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentGlow Nightmares
+		gameObject->setRenderComponentGlowNightmares(
+			mComponentFactory->createRenderComponentGlow(
+			gameObject,
+			params.tRenderComponentGlowParameters,
+			gameObject->getRenderComponentPositional(),
+			gameObject->getRenderComponentEntityNightmares()));
+	}
+	else
+	{
+		gameObject->setRenderComponentGlowNightmares(RenderComponentGlowPtr());
+	}
+	
+	////////////////////////////////////////////////////////
+	// Lens flare initialization
 	gameObject->initLensFlare(cameraManager->getActiveCamera(), sceneManager);
 
 	//Add reference to this
