@@ -1,20 +1,17 @@
+import alpha_blending_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material flashlighthalo
+//FOG1
+material flashlighthalo_d : alpha_blending_texture
 {
-	technique
-	{
-		pass
-		{
-			depth_write off
-			//alpha_rejection   greater 128
-			scene_blend alpha_blend
-			texture_unit
-			{
-				texture flashlightbillboard-test00.png
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture flashlighthalo.dds
 }
 
+material flashlighthalo_n : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture flashlighthalo.dds
+}
+
+material flashlighthalo_cw : default_changeworld
+{
+}
