@@ -1,7 +1,7 @@
 import basic_texture from BasicTexture.material
 material default_changeworld : basic_texture
 {
-	set_texture_alias diffuse_texture changeworld_default.jpg
+	set_texture_alias diffuse_texture default_changeworld.jpg
 }
 
 material no_changeworld : basic_texture

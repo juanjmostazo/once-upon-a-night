@@ -1,5 +1,5 @@
 import basic_texture from BasicTexture.material
-import no_changeworld from ChangeWorld.material
+import default_changeworld from ChangeWorld.material
 
 material almena1_d : basic_texture
 {
@@ -11,7 +11,7 @@ material almena1_n : basic_texture
 	set_texture_alias diffuse_texture almena1_n.dds
 }
 
-material almena1_cw : no_changeworld
+material almena1_cw : default_changeworld
 {
 }
 
