@@ -1,0 +1,15 @@
+import alpha_test_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material bush1_d : alpha_test_texture
+{
+	set_texture_alias diffuse_texture bush1_d.dds
+}
+
+material bush1_n : alpha_test_texture
+{
+	set_texture_alias diffuse_texture bush1_n.dds
+}
+
+material bush1_cw : default_changeworld
+{
