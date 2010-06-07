@@ -1,20 +1,15 @@
+import basic_texture from BasicTexture.material
+import no_changeworld from ChangeWorld.material
 
-material scared_plant7
+material scared_plant_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
+	set_texture_alias diffuse_texture scared_plant_d.dds
+}
 
-			texture_unit
-			{
-				texture scared_plant.dds
-			}
-		}
+material scared_plant_n : basic_texture
+{
+}
 
-	}
-
+material scared_plant_cw : no_changeworld
+{
 }
