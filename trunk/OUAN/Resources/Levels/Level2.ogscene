@@ -31,11 +31,11 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="209.184 932.003 -62.4715" orientation="0.395505 -0.264283 -0.734666 -0.483731"></OPTION>
+    <OPTION id="1" position="584.231 156.356 33.3545" orientation="-0.0475629 -0.000856454 -0.997996 -0.0417293"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="false"></LAYER>
@@ -105,9 +105,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.395506 -0.264284 -0.734669 -0.483733"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.0475637 -0.000856467 -0.998011 -0.0417299"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="209.184 932.003 -62.4715"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="584.231 156.356 33.3545"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -788,7 +788,7 @@
     <PROPERTY id="position" type="9" value="-568.037 208.5 311.193"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1017,7 +1017,7 @@
     <PROPERTY id="position" type="9" value="818.513 110.945 226.629"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1513,6 +1513,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="374462112" name="bush_n#6" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="179.483 75.7971 -479.642"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="774803968" name="tree7_n#20" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1777,24 +1794,7 @@
     <PROPERTY id="position" type="9" value="135.056 81.1583 -548.063"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="948728896" name="bush_n2#14" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-360.417 210.661 474.619"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2218,7 +2218,7 @@
     <PROPERTY id="position" type="9" value="145.011 63.5422 -528.599"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2235,24 +2235,7 @@
     <PROPERTY id="position" type="9" value="578.936 132.951 100.24"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="924802368" name="bush_n2#12" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-387.4 221.419 374.837"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2333,6 +2316,23 @@
       <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0.18 0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="577379712" name="bush_n#10" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="577.514 133.49 107.556"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2435,7 +2435,7 @@
     <PROPERTY id="position" type="9" value="577.372 133.944 107.368"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2582,7 +2582,7 @@
     <PROPERTY id="position" type="9" value="166.949 75.9542 -486.395"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2694,23 +2694,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="342783904" name="bush3_d#2" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush3.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.140665 0.115974 0.755862 0.628837"></PROPERTY>
-    <PROPERTY id="position" type="9" value="754.198 221.23 20.7509"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="855372800" name="terrain_d#terrain2" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2740,7 +2723,7 @@
     <PROPERTY id="position" type="9" value="-645.588 80.9666 -630.656"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2849,23 +2832,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="374462112" name="bush_n2#6" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="179.483 75.7971 -479.642"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3279,7 +3245,7 @@
     <PROPERTY id="position" type="9" value="152.941 89.2386 -441.824"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3370,7 +3336,7 @@
     <PROPERTY id="position" type="9" value="113.596 52.2372 -592.186"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3712,6 +3678,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="511246080" name="bush_n#7" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="178.87 86.5725 -433.193"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="379131424" name="tripollo_n#9" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3887,6 +3870,23 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="881069376" name="bush_n#15" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="678.881 221.098 -5.077"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4164,7 +4164,7 @@
     <PROPERTY id="position" type="9" value="-712.678 60.7785 -577.73"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4326,7 +4326,7 @@
     <PROPERTY id="position" type="9" value="679.95 222.408 -13.2847"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4444,23 +4444,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="158391056" name="bush3#1" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush3.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.419864 -0.412942 0.524377 0.614997"></PROPERTY>
-    <PROPERTY id="position" type="9" value="668.43 223.255 -63.4761"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="945860160" name="terrain_n#fog3" typename="Entity Object" parentnode="fog">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -4542,7 +4525,7 @@
     <PROPERTY id="position" type="9" value="-680.727 67.3223 -591.668"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4666,7 +4649,7 @@
     <PROPERTY id="position" type="9" value="183.715 83.7565 -436.724"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4796,7 +4779,7 @@
     <PROPERTY id="position" type="9" value="778.793 130.619 167.737"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4922,23 +4905,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="511246080" name="bush_n2#7" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="178.87 86.5725 -433.193"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5118,7 +5084,7 @@
     <PROPERTY id="position" type="9" value="-539.566 198.548 360.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5618,7 +5584,7 @@
     <PROPERTY id="position" type="9" value="185.404 72.2441 -490.425"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5859,6 +5825,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="712057920" name="bush_n#4" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="202.334 73.6806 -470.599"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="114535968" name="tripollo_n#8" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6075,6 +6058,23 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="948728896" name="bush_n#14" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-360.417 210.661 474.619"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6561,23 +6561,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="308450592" name="bush_n2#2" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="190.94 71.9529 -489.237"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="838435008" name="tree8_n#13" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6832,6 +6815,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="756096064" name="bush_n#8" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="120.472 99.1892 -528.726"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="799127168" name="changeworld_n#2" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6964,7 +6964,7 @@
     <PROPERTY id="position" type="9" value="-603.469 67.2089 -588.342"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7117,23 +7117,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="756096064" name="bush_n2#8" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="120.472 99.1892 -528.726"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="651264960" name="tree8_n#15" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -7279,7 +7262,7 @@
     <PROPERTY id="position" type="9" value="-568.037 198.637 360.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7472,7 +7455,7 @@
     <PROPERTY id="position" type="9" value="680.519 221.968 -4.47205"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7646,7 +7629,7 @@
     <PROPERTY id="position" type="9" value="201.5 73.0443 -471.48"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8015,6 +7998,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="938016896" name="bush_n#5" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="145.635 70.316 -528.454"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="525986496" name="water_d#waterfall3_foam" typename="Entity Object" parentnode="WaterIsla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8148,23 +8148,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="611713024" name="bush_n3#0" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n3.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.967944 -0.0282511 0.214588 -0.127432"></PROPERTY>
-    <PROPERTY id="position" type="9" value="164.465 73.0272 -509.963"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="53834652" name="tree1_d#28" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8195,23 +8178,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree5_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="482161952" name="bush_n2#11" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="580.013 133.697 100.612"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8276,6 +8242,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="447187712" name="bush_n#13" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-355.13 227.763 409.115"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="293984800" name="tree8_n#18" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8303,7 +8286,7 @@
     <PROPERTY id="position" type="9" value="759.575 219.393 115.331"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8441,7 +8424,7 @@
     <PROPERTY id="position" type="9" value="-636.448 40.7122 -524.239"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8841,23 +8824,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="16296885" name="bush_n2#3" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="173.403 78.3398 -485.679"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="536759552" name="tree8_n#12" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -9199,6 +9165,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="499557504" name="bush_n#9" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="570.347 131.721 102.108"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="324533824" name="diamondtree_n#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -9350,7 +9333,7 @@
     <PROPERTY id="position" type="9" value="570.177 131.998 103.171"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9495,23 +9478,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="499557504" name="bush_n2#9" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="570.347 131.721 102.108"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10089,7 +10055,7 @@
     <PROPERTY id="position" type="9" value="-705.853 58.1919 -568.666"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10379,6 +10345,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="308450592" name="bush_n#2" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="190.94 71.9529 -489.237"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="933042432" name="diamondtree_d#0" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -10602,24 +10585,7 @@
     <PROPERTY id="position" type="9" value="-708.522 77.7984 -626.25"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="577379712" name="bush_n2#10" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="577.514 133.49 107.556"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10655,6 +10621,23 @@
     <PROPERTY id="scale" type="9" value="1 3 2.5119"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="waterfall_blue_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="false"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="924802368" name="bush_n#12" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-387.4 221.419 374.837"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -10767,7 +10750,7 @@
     <PROPERTY id="position" type="9" value="717.509 220.668 26.2629"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11093,23 +11076,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="374431584" name="bush3_d#0" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush3.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.123334 0.120011 0.705157 0.687852"></PROPERTY>
-    <PROPERTY id="position" type="9" value="736.764 221.382 27.3728"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="762718528" name="tentetieso_n#4" typename="Entity Object" parentnode="tentetieso1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -11228,23 +11194,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::triggerScript" type="7" value="goal_trigger.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="goalEnterFunction" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="712057920" name="bush_n2#4" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="202.334 73.6806 -470.599"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11410,7 +11359,7 @@
     <PROPERTY id="position" type="9" value="854.743 123.72 202.606"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12345,23 +12294,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="881069376" name="bush_n2#15" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="678.881 221.098 -5.077"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="753318912" name="tree9_n#8" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -12725,6 +12657,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="16296885" name="bush_n#3" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="173.403 78.3398 -485.679"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="217169712" name="diamondtree_d#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -12834,24 +12783,7 @@
     <PROPERTY id="position" type="9" value="175.317 77.5385 -479.042"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="447187712" name="bush_n2#13" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-355.13 227.763 409.115"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12896,6 +12828,23 @@
       <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0.18 0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="482161952" name="bush_n#11" typename="Entity Object" parentnode="Bush">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="580.013 133.697 100.612"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -13435,23 +13384,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="938016896" name="bush_n2#5" typename="Entity Object" parentnode="Bush">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="145.635 70.316 -528.454"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="bush_n2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
