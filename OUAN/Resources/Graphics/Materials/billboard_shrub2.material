@@ -1,6 +1,6 @@
 import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
-import no_changeworld from ChangeWorld.material
+import default_changeworld from ChangeWorld.material
 
 material billboard_shrub2_d : alpha_test_texture
 {
@@ -11,6 +11,6 @@ material billboard_shrub2_n : basic_texture
 {
 }
 
-material billboard_shrub2_cw : no_changeworld
+material billboard_shrub2_cw : default_changeworld
 {
 }
