@@ -1,0 +1,47 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+//WALL1
+material terrain1_wall01_d : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall01_d.dds
+}
+
+material terrain1_wall01_n : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall01_n.dds
+}
+
+material terrain1_wall01_cw : default_changeworld
+{
+}
+
+//WALL2
+material terrain1_wall02_d : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall02_d.dds
+}
+
+material terrain1_wall02_n : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall02_n.dds
+}
+
+material terrain1_wall02_cw : default_changeworld
+{
+}
+
+//WALL3
+material terrain1_wall03_d : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall03_d.dds
+}
+
+material terrain1_wall03_n : basic_texture
+{
+	set_texture_alias diffuse_texture terrain1_wall03_n.dds
+}
+
+material terrain1_wall03_cw : default_changeworld
+{
+}
