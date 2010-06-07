@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material stairs_d : basic_texture
+{
+	set_texture_alias diffuse_texture stairs_d.dds
+}
+
+material stairs_n : basic_texture
+{
+	set_texture_alias diffuse_texture stairs_n.dds
+}
+
+material stairs_cw : default_changeworld
+{
+}
