@@ -1,0 +1,6 @@
+#summary MSDN Guide to precompiled headers.
+#labels Phase-Implementation
+
+= Introduction =
+
+Refer to this link http://msdn.microsoft.com/en-us/library/szfdksca(VS.71).aspx
