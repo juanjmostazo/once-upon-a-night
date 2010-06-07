@@ -13,7 +13,7 @@
 
   <!-- ChangeWorldMaterial parameters -->
   <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.03" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="Water01.jpg" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="changeworld_default.jpg" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="6" value="0.01 0 0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="0.25" fields="X;Y;Z;W"></PROPERTY>
