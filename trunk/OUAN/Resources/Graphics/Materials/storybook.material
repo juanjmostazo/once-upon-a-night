@@ -1,54 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material Scene_Material
+material storybook_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.7 1
-			specular 1 1 1 1 50
-		}
-
-	}
-
+	set_texture_alias diffuse_texture storybook.dds
 }
 
-
-
-material sotrybook_n
+material storybook_n : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.248 0.248 0.248 1
-
-			texture_unit
-			{
-				texture storybook_textura.tga
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture storybook.dds
 }
 
-
-
-material scene_material1
+material storybook_cw : default_changeworld
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.7 0.7 0.7 1
-			specular 1 1 1 1 50
-		}
-
-	}
-
 }
-
-
