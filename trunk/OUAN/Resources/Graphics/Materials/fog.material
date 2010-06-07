@@ -5,12 +5,34 @@ import default_changeworld from ChangeWorld.material
 //FOG1
 material fog1_d : alpha_blending_texture
 {
-	set_texture_alias diffuse_texture fog1_d.dds
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture fog1_d.dds
+				scroll_anim 3 0
+				scale 0.5 0.5
+			}
+		}
+	}
 }
 
 material fog1_n : alpha_blending_texture
 {
-	set_texture_alias diffuse_texture fog1_n.dds
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture fog1_n.dds
+				scroll_anim 3 0
+				scale 0.5 0.5
+			}
+		}
+	}
 }
 
 material fog1_cw : default_changeworld
@@ -20,12 +42,34 @@ material fog1_cw : default_changeworld
 //FOG2
 material fog2_d : alpha_blending_texture
 {
-	set_texture_alias diffuse_texture fog2_d.dds
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture fog2_d.dds
+				scroll_anim 1 0
+				scale 0.5 0.5
+			}
+		}
+	}
 }
 
 material fog2_n : alpha_blending_texture
 {
-	set_texture_alias diffuse_texture fog2_n.dds
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture fog2_n.dds
+				scroll_anim 1 0
+				scale 0.5 0.5
+			}
+		}
+	}
 }
 
 material fog2_cw : default_changeworld
