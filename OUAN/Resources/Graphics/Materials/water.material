@@ -1,0 +1,133 @@
+import basic_texture from BasicTexture.material
+import alpha_blending_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+//WATER FOAM
+material water_foam_d : alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				texture water_foam_d.dds
+			}
+		}
+	}
+}
+
+material water_foam_n : alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{	
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				texture water_foam_n.dds
+			}
+		}
+	}
+}
+
+//WATER SEABED
+material water_lake_seabed_d : basic_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				scroll 0 0.2
+				texture water_seabed_d.dds
+			}
+		}
+	}
+}
+
+material water_lake_seabed_n : basic_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.1
+				scroll 0 0.2
+				texture water_seabed_n.dds
+			}
+		}
+	}
+}
+
+//WATERFALL FOAM
+material waterfall_foam_d : alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.25
+				texture waterfall_foam_d.dds
+			}
+		}
+
+	}
+}
+
+material waterfall_foam_n : alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.25
+				texture waterfall_foam_n.dds
+			}
+		}
+
+	}
+}
+
+//WATERFALL BLUE WATER
+material waterfall_blue_d  : basic_texture
+{
+	technique
+	{
+		pass
+		{	
+			texture_unit
+			{
+				scroll_anim 0 0.2
+				texture waterfall_blue_d.dds
+			}
+		}
+
+	}
+}
+
+material waterfall_blue_n  : basic_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				scroll_anim 0 0.2
+				texture waterfall_blue_n.dds
+			}
+		}
+
+	}
+}

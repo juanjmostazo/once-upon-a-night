@@ -10,7 +10,7 @@ material level2_sky_d : basic_texture
 			depth_write off
 			texture_unit
 			{
-				texture sky_dreams.dds
+				texture level2_sky_d.dds
 				scroll_anim 0.03 0
 				scale 1 1
 			}
@@ -27,7 +27,7 @@ material level2_sky_n : basic_texture
 			depth_write off
 			texture_unit
 			{
-				texture sky_nightmare.dds
+				texture level2_sky_n.dds
 				scroll_anim 0.03 0
 				scale 1 1
 			}
