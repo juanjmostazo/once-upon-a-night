@@ -33,6 +33,10 @@ material water_foam_n : alpha_blending_texture
 	}
 }
 
+material water_foam_cw : default_changeworld
+{
+}
+
 //WATER SEABED
 material water_lake_seabed_d : basic_texture
 {
@@ -64,6 +68,10 @@ material water_lake_seabed_n : basic_texture
 			}
 		}
 	}
+}
+
+material water_lake_seabed_cw : default_changeworld
+{
 }
 
 //WATERFALL FOAM
@@ -99,6 +107,10 @@ material waterfall_foam_n : alpha_blending_texture
 	}
 }
 
+material waterfall_foam_cw : default_changeworld
+{
+}
+
 //WATERFALL BLUE WATER
 material waterfall_blue_d  : basic_texture
 {
@@ -130,4 +142,8 @@ material waterfall_blue_n  : basic_texture
 		}
 
 	}
+}
+
+material waterfall_blue_cw : default_changeworld
+{
 }

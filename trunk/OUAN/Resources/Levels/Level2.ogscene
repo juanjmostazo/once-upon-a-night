@@ -32,11 +32,11 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="599.167 587.374 -162.965" orientation="0.249699 -0.220698 -0.712047 -0.618007"></OPTION>
+    <OPTION id="1" position="582.45 315.989 8.11806" orientation="-0.241249 0.116322 -0.863209 -0.427946"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="false"></LAYER>
@@ -98,7 +98,7 @@
     <PROPERTY id="skybox::distance" type="6" value="500"></PROPERTY>
     <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="true"></PROPERTY>
-    <PROPERTY id="skydome::material" type="7" value="Examples/CloudySky1"></PROPERTY>
+    <PROPERTY id="skydome::material" type="7" value="level2_sky_d"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -106,9 +106,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.249704 -0.220702 -0.71206 -0.618018"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.241251 0.116323 -0.863217 -0.42795"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="599.167 587.374 -162.965"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="582.45 315.989 8.11806"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -967,7 +967,7 @@
     <PROPERTY id="position" type="9" value="755.99 258.375 -24.0078"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11504,7 +11504,7 @@
     <PROPERTY id="position" type="9" value="523.556 140.45 83.6296"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="Ony"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ony_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
