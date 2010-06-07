@@ -13,11 +13,15 @@
       <DIRECTORY type="FileSystem" value="../Graphics/Materials"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Materials/BaseMaterials"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Materials/CompositorMaterials"></DIRECTORY>
+      <DIRECTORY type="FileSystem" value="../Graphics/Materials/GUI"></DIRECTORY>
+      <DIRECTORY type="FileSystem" value="../Graphics/Materials/Utils"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Models"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Overlays"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Particles"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Shaders"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Textures"></DIRECTORY>
+      <DIRECTORY type="FileSystem" value="../Graphics/Textures/GUI"></DIRECTORY>
+      <DIRECTORY type="FileSystem" value="../Graphics/Textures/Utils"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Graphics/Skeletons"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="./"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="./Custom Properties"></DIRECTORY>

@@ -34,7 +34,7 @@ material _Onyhair
 
 			texture_unit
 			{
-				texture clip_negro.dds
+				texture ony_hair.dds
 			}
 		}
 
