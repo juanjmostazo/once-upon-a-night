@@ -135,8 +135,15 @@ RenderComponentLightPtr ComponentFactory::createRenderComponentLight(std::string
 
 	pRenderComponentLight->setParent(gameObject);
 
+	std::string sceneNodeName="";
+	if (gameObject->hasPositionalComponent() && gameObject->getPositionalComponent().get() 
+		&& gameObject->getPositionalComponent()->getSceneNode()->getName().compare(name)!=0)
+	{
+		sceneNodeName=gameObject->getPositionalComponent()->getSceneNode()->getName();
+	}
+
 	//init Render Component
-	pRenderComponentLight->setLight(mApp->getRenderSubsystem()->createLight(name,tRenderComponentLightParameters));
+	pRenderComponentLight->setLight(mApp->getRenderSubsystem()->createLight(name,tRenderComponentLightParameters,sceneNodeName));
 
 	return pRenderComponentLight;
 }
