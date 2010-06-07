@@ -1,0 +1,105 @@
+material cloud_terrain_d#0
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				scale 0.3 0.3
+				texture fog1_d.dds
+			}
+		}
+
+	}
+}
+
+material cloud_terrain_n#0
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				scale 0.3 0.3
+				texture fog1_n.dds
+			}
+		}
+
+	}
+}
+
+
+material cloud_terrain_d#1
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				scale 0.3 0.3
+				texture fog2_d.dds
+			}
+		}
+
+	}
+}
+
+material cloud_terrain_n#1
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				scale 0.3 0.3
+				texture fog2_n.dds
+			}
+		}
+
+	}
+}
+
+
+material cloud_terrain_d#2
+{
+	technique
+	{
+		pass
+		{	
+			depth_write off
+			texture_unit
+			{
+				texture fog3_d.dds
+			}
+		}
+
+	}
+}
+
+material cloud_terrain_n#2
+{
+	technique
+	{
+		pass
+		{
+			depth_write off
+			texture_unit
+			{
+				texture fog3_n.dds
+			}
+		}
+
+	}
+}
