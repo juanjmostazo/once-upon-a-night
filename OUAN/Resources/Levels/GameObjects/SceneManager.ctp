@@ -4,8 +4,8 @@
   <PROPERTY id="RenderComponentSkyDome::curvature" type="2" value="80" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyDome::tiling" type="6" value="12" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyDome::distance" type="6" value="10000" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="RenderComponentSkyDome::materialDreams" type="6" value="Examples/CloudySky1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="RenderComponentSkyDome::materialNightmares" type="6" value="Examples/CloudySky2" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="RenderComponentSkyDome::materialDreams" type="6" value="level2_sky_d" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="RenderComponentSkyDome::materialNightmares" type="6" value="level2_sky_n" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyBox::active" type="6" value="false" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyBox::distance" type="6" value="500" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="RenderComponentSkyBox::materialDreams" type="6" value="Examples/SceneSkyBox1" fields="X;Y;Z;W"></PROPERTY>

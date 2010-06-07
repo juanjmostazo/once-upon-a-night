@@ -1,10 +1,12 @@
-material Examples/CloudySky1
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material level2_sky_d : basic_texture
 {
 	technique
 	{
 		pass
 		{
-			lighting off
 			depth_write off
 			texture_unit
 			{
@@ -16,13 +18,12 @@ material Examples/CloudySky1
 	}
 }
 
-material Examples/CloudySky2
+material level2_sky_n : basic_texture
 {
 	technique
 	{
 		pass
 		{
-			lighting off
 			depth_write off
 			texture_unit
 			{
