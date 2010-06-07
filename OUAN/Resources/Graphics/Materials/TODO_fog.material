@@ -1,105 +1,48 @@
-material cloud_terrain_d#0
-{
-	technique
-	{
-		pass
-		{
-			scene_blend alpha_blend
-			depth_write off
-			texture_unit
-			{
-				scale 0.3 0.3
-				texture fog1_d.dds
-			}
-		}
+import basic_texture from BasicTexture.material
+import alpha_blending_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-	}
+//FOG1
+material fog1_d : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture fog1_d.dds
 }
 
-material cloud_terrain_n#0
+material fog1_n : alpha_blending_texture
 {
-	technique
-	{
-		pass
-		{
-			scene_blend alpha_blend
-			depth_write off
-			texture_unit
-			{
-				scale 0.3 0.3
-				texture fog1_n.dds
-			}
-		}
-
-	}
+	set_texture_alias diffuse_texture fog1_n.dds
 }
 
-
-material cloud_terrain_d#1
+material fog1_cw : default_changeworld
 {
-	technique
-	{
-		pass
-		{
-			scene_blend alpha_blend
-			depth_write off
-			texture_unit
-			{
-				scale 0.3 0.3
-				texture fog2_d.dds
-			}
-		}
-
-	}
 }
 
-material cloud_terrain_n#1
+//FOG2
+material fog2_d : alpha_blending_texture
 {
-	technique
-	{
-		pass
-		{
-			scene_blend alpha_blend
-			depth_write off
-			texture_unit
-			{
-				scale 0.3 0.3
-				texture fog2_n.dds
-			}
-		}
-
-	}
+	set_texture_alias diffuse_texture fog2_d.dds
 }
 
-
-material cloud_terrain_d#2
+material fog2_n : alpha_blending_texture
 {
-	technique
-	{
-		pass
-		{	
-			depth_write off
-			texture_unit
-			{
-				texture fog3_d.dds
-			}
-		}
-
-	}
+	set_texture_alias diffuse_texture fog2_n.dds
 }
 
-material cloud_terrain_n#2
+material fog2_cw : default_changeworld
 {
-	technique
-	{
-		pass
-		{
-			depth_write off
-			texture_unit
-			{
-				texture fog3_n.dds
-			}
-		}
+}
 
-	}
+//FOG3
+material fog3_d : basic_texture
+{
+	set_texture_alias diffuse_texture fog3_d.dds
+}
+
+material fog3_n : basic_texture
+{
+	set_texture_alias diffuse_texture fog3_n.dds
+}
+
+material fog3_cw : default_changeworld
+{
 }
