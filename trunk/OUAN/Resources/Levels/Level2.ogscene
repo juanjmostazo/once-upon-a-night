@@ -14366,7 +14366,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass03_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="429.903 114.663 -86.1208"></PROPERTY>
@@ -14393,7 +14393,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass03_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="414.487 113.139 -100.552"></PROPERTY>
@@ -14447,7 +14447,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass03_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="430.922 115.176 -105.686"></PROPERTY>
@@ -14528,7 +14528,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass03_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="431.97 114.939 -96.6347"></PROPERTY>
@@ -14615,7 +14615,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass03_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="428.116 115.758 -101.019"></PROPERTY>
@@ -14696,7 +14696,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="grass01_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_grass1_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.200442 0.124167 0.687686 0.686654"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="555.217 134.824 -6.93706"></PROPERTY>
