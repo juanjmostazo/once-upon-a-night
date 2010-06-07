@@ -1716,7 +1716,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		}
 
 		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
-			params.nightmaresName,
+			params.nightmaresName+"#light",
 			gameObject,
 			params.lightNightmaresParams));
 
