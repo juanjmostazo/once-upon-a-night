@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material itemmaxhp_d : basic_texture
+{
+	set_texture_alias diffuse_texture itemmaxhp.tga
+}
+
+material itemmaxhp_n : basic_texture
+{
+	set_texture_alias diffuse_texture itemmaxhp.tga
+}
+
+material itemmaxhp_cw : default_changeworld
+{
+}
