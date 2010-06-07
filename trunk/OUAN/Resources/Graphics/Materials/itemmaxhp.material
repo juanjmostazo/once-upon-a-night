@@ -3,12 +3,12 @@ import default_changeworld from ChangeWorld.material
 
 material itemmaxhp_d : basic_texture
 {
-	set_texture_alias diffuse_texture itemmaxhp.tga
+	set_texture_alias diffuse_texture itemmaxhp.dds
 }
 
 material itemmaxhp_n : basic_texture
 {
-	set_texture_alias diffuse_texture itemmaxhp.tga
+	set_texture_alias diffuse_texture itemmaxhp.dds
 }
 
 material itemmaxhp_cw : default_changeworld
