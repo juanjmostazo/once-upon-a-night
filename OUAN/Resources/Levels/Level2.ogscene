@@ -27,7 +27,7 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="187.546 148.956 -450.692" orientation="0.689579 -0.171595 0.681772 0.173847"></OPTION>
+    <OPTION id="1" position="781.396 332.319 -20.5239" orientation="-0.962293 0.184514 -0.195716 -0.0405252"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -101,9 +101,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.689601 -0.171601 0.681794 0.173853"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.962304 0.184517 -0.195719 -0.0405257"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="187.546 148.956 -450.692"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="781.396 332.319 -20.5239"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1225,7 +1225,7 @@
     <PROPERTY id="position" type="9" value="744.185 311.209 -66.357"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="sotrybook_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="storybook_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1439,7 +1439,7 @@
     <PROPERTY id="position" type="9" value="744.185 311.209 -66.357"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="sotrybook_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="storybook_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
