@@ -14535,7 +14535,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="shrub01_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_shrub1_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.506424 -0.475509 -0.493338 -0.523491"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="356.087 107.813 -119.803"></PROPERTY>
@@ -14757,7 +14757,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="shrub02_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_shrub2_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="369.725 109.954 -126.3"></PROPERTY>
