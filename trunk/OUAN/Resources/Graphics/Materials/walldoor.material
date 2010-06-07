@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material walldoor_d : basic_texture
+{
+	set_texture_alias diffuse_texture walldoor_d.dds
+}
+
+material walldoor_n : basic_texture
+{
+	set_texture_alias diffuse_texture walldoor_n.dds
+}
+
+material walldoor_cw : default_changeworld
+{
+}
