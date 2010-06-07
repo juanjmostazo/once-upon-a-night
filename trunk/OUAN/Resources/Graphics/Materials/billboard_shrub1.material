@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
+import no_changeworld from ChangeWorld.material
+
+material billboard_shrub1_d : alpha_test_texture
+{
+	set_texture_alias diffuse_texture billboard_shrub1_d.dds
+}
+
+material billboard_shrub1_n : basic_texture
+{
+}
+
+material billboard_shrub1_cw : no_changeworld
+{
+}
