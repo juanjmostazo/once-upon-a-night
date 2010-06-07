@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material billboard_grass1_d : alpha_test_texture
+{
+	set_texture_alias diffuse_texture billboard_grass1_d.dds
+}
+
+material billboard_grass1_n : basic_texture
+{
+}
+
+material billboard_grass1_cw : default_changeworld
+{
+}
