@@ -27,7 +27,7 @@
   <CAMERASPEED value="37"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-488.857 1963.99 -560.339" orientation="0.167586 -0.112784 -0.820418 -0.534891"></OPTION>
+    <OPTION id="1" position="187.546 148.956 -450.692" orientation="0.689579 -0.171595 0.681772 0.173847"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -101,9 +101,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.16759 -0.112787 -0.820438 -0.534904"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.689601 -0.171601 0.681794 0.173853"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-488.857 1963.99 -560.339"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="187.546 148.956 -450.692"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1117,11 +1117,11 @@
     <PROPERTY id="position" type="9" value="78.9667 69.5292 -543.643"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1748,11 +1748,11 @@
     <PROPERTY id="position" type="9" value="-697.205 41.6869 -497.799"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2022,11 +2022,11 @@
     <PROPERTY id="position" type="9" value="-697.205 51.8377 -497.799"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2113,11 +2113,11 @@
     <PROPERTY id="position" type="9" value="-345.859 242.628 393.336"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2134,11 +2134,11 @@
     <PROPERTY id="position" type="9" value="-619.046 94.8654 -627.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2621,11 +2621,11 @@
     <PROPERTY id="position" type="9" value="317.993 173.103 295.083"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2642,11 +2642,11 @@
     <PROPERTY id="position" type="9" value="-345.859 230.714 393.336"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -2838,11 +2838,11 @@
     <PROPERTY id="position" type="9" value="-214.602 36.3466 -485.446"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3126,11 +3126,11 @@
     <PROPERTY id="position" type="9" value="-619.046 95.9235 -627.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3754,11 +3754,11 @@
     <PROPERTY id="position" type="9" value="-269.465 96.4826 -521.273"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4196,11 +4196,11 @@
     <PROPERTY id="position" type="9" value="-283.085 56.8261 -456.651"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4313,11 +4313,11 @@
     <PROPERTY id="position" type="9" value="735.526 232.844 -27.4286"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4334,11 +4334,11 @@
     <PROPERTY id="position" type="9" value="735.526 225.353 -27.4286"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5039,11 +5039,11 @@
     <PROPERTY id="position" type="9" value="-269.465 38.7362 -521.273"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5323,11 +5323,11 @@
     <PROPERTY id="position" type="9" value="-721.81 92.9434 -615.954"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6007,11 +6007,11 @@
     <PROPERTY id="position" type="9" value="-21.5725 77.9795 -470.165"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6560,11 +6560,11 @@
     <PROPERTY id="position" type="9" value="-214.602 57.1474 -485.446"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6692,11 +6692,11 @@
     <PROPERTY id="position" type="9" value="559.396 145.788 60.9262"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6713,11 +6713,11 @@
     <PROPERTY id="position" type="9" value="-431.306 177.083 -1336.16"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7408,11 +7408,11 @@
     <PROPERTY id="position" type="9" value="163.607 107.697 -466.52"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8309,11 +8309,11 @@
     <PROPERTY id="position" type="9" value="7.57841 81.0453 -538.198"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8402,11 +8402,11 @@
     <PROPERTY id="position" type="9" value="-721.81 78.96 -615.954"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9047,11 +9047,11 @@
     <PROPERTY id="position" type="9" value="133.592 85.5512 -511.153"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9068,11 +9068,11 @@
     <PROPERTY id="position" type="9" value="597.938 137.115 101.113"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9645,11 +9645,11 @@
     <PROPERTY id="position" type="9" value="145.118 107.253 -424.39"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9877,11 +9877,11 @@
     <PROPERTY id="position" type="9" value="134.066 95.2526 -521.451"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -10852,11 +10852,11 @@
     <PROPERTY id="position" type="9" value="-735.458 61.3509 -572.112"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11381,11 +11381,11 @@
     <PROPERTY id="position" type="9" value="-431.306 220.265 -1336.16"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11489,11 +11489,11 @@
     <PROPERTY id="position" type="9" value="163.681 107.339 -466.432"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11510,11 +11510,11 @@
     <PROPERTY id="position" type="9" value="559.396 132.476 60.9262"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11691,11 +11691,11 @@
     <PROPERTY id="position" type="9" value="-21.5725 66.2118 -470.165"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_n_blue"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_n_blue"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_n_blue"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12069,11 +12069,11 @@
     <PROPERTY id="position" type="9" value="141.886 109.985 -384.924"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12318,11 +12318,11 @@
     <PROPERTY id="position" type="9" value="145.118 95.821 -424.39"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12988,11 +12988,11 @@
     <PROPERTY id="position" type="9" value="-283.085 38.1537 -456.651"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13243,11 +13243,11 @@
     <PROPERTY id="position" type="9" value="-735.458 91.5998 -572.112"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13379,11 +13379,11 @@
     <PROPERTY id="position" type="9" value="598.181 148.087 101.841"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13400,11 +13400,11 @@
     <PROPERTY id="position" type="9" value="-463.491 175.33 -1347.99"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13799,11 +13799,11 @@
     <PROPERTY id="position" type="9" value="-463.491 233.292 -1347.99"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13839,11 +13839,11 @@
     <PROPERTY id="position" type="9" value="304.928 160.991 239.907"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13860,11 +13860,11 @@
     <PROPERTY id="position" type="9" value="764.689 253.146 -2.52757"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14064,11 +14064,11 @@
     <PROPERTY id="position" type="9" value="7.57841 68.5499 -538.198"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14142,11 +14142,11 @@
     <PROPERTY id="position" type="9" value="711.518 292.153 -31.4122"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tentetieso1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="tentetieso2"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="tentetieso_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>

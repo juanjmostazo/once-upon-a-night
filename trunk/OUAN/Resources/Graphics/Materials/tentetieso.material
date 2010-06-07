@@ -1,60 +1,33 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material tentetieso1
+material tentetieso_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
-
-			texture_unit
-			{
-				texture tentetieso_d.dds
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture tentetieso_d.tga
 }
 
-material tentetieso2
+material tentetieso_n : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
-
-			texture_unit
-			{
-				texture tentetieso_d.dds
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture tentetieso_n.dds
 }
 
-material tentetieso3
+material tentetieso_n_red : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
-
-			texture_unit
-			{
-				texture tentetieso_d.dds
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture tentetieso_n_red.dds
 }
+
+material tentetieso_n_green : basic_texture
+{
+	set_texture_alias diffuse_texture tentetieso_n_green.dds
+}
+
+material tentetieso_n_blue : basic_texture
+{
+	set_texture_alias diffuse_texture tentetieso_n_blue.dds
+}
+
+material tentetieso_cw : default_changeworld
+{
+}
+
+
