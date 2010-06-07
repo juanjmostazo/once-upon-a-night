@@ -388,7 +388,8 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	return mSceneManager;
 }
 
-Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLightParameters tRenderComponentLightParameters)
+Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLightParameters tRenderComponentLightParameters,
+										  Ogre::String sceneNodeName)
 {
 	SceneNode *lightNode=0;
 	Light *pLight=0;
@@ -401,7 +402,9 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		pLight->setQueryFlags(QUERYFLAGS_NONE);
 
 		// Attach to Scene Manager
-		lightNode=mSceneManager->getSceneNode(name);
+		if (sceneNodeName.empty())
+			sceneNodeName=name;
+		lightNode=mSceneManager->getSceneNode(sceneNodeName);
 		lightNode->attachObject(pLight);
 
 		//Set Light Parameters

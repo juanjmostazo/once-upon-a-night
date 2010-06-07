@@ -1694,7 +1694,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 				params.bbsDreamsParams));
 		}
 		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
-				params.dreamsName,
+			params.dreamsName+"#light",
 				gameObject,
 				params.lightDreamsParams));
 
