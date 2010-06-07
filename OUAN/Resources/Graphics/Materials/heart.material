@@ -1,20 +1,17 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material heart
+material heart_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-
-			texture_unit
-			{
-				texture heart_texture.tga
-			}
-		}
-
-	}
-
+	set_texture_alias diffuse_texture heart.dds
 }
 
+material heart_n : basic_texture
+{
+	set_texture_alias diffuse_texture heart.dds
+}
+
+material heart_cw : default_changeworld
+{
+}
 
