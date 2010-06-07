@@ -1,20 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
 
-material pillow
+material pillow_d : basic_texture
 {
-	technique
-	{
-		pass
-		{
-			ambient 0.3 0.3 0.3 1
-			diffuse 0.5 0.5 0.5 1
-			specular 0.7 0.7 0.7 1 10
+	set_texture_alias diffuse_texture pillow.dds
+}
 
-			texture_unit
-			{
-				texture pillow.dds
-			}
-		}
+material pillow_n : basic_texture
+{
+	set_texture_alias diffuse_texture pillow.dds
+}
 
-	}
-
+material pillow_cw : default_changeworld
+{
 }
