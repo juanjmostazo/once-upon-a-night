@@ -62,19 +62,22 @@ void GameOverState::resume()
 /// @param app	the parent application
 void GameOverState::handleEvents()
 {
-	if (mApp && (mApp->isPressedJump() || mApp->isPressedPause()) && mApp->mKeyBuffer<0)
+	if (mApp.get() && mApp->mKeyBuffer<0)
 	{
-		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-		mApp->mKeyBuffer=500000;
-		GameStatePtr continueGameState = GameStatePtr(new GameRunningState());
-		mApp->getGameStateManager()->changeState(continueGameState,mApp);
-	}
-	if (mApp && mApp->isPressedWeaponAction() && mApp->mKeyBuffer<0)
-	{
-		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-		mApp->mKeyBuffer=500000;
-		GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
-		mApp->getGameStateManager()->changeState(mainMenuState,mApp);
+		if ((mApp->isPressedJump() || mApp->isPressedPause()) && mApp->mKeyBuffer<0)
+		{
+			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+			mApp->mKeyBuffer=500000;
+			GameStatePtr continueGameState = GameStatePtr(new GameRunningState());
+			mApp->getGameStateManager()->changeState(continueGameState,mApp);
+		}
+		else if (mApp->isPressedWeaponAction())
+		{
+			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+			mApp->mKeyBuffer=500000;
+			GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
+			mApp->getGameStateManager()->changeState(mainMenuState,mApp);
+		}
 	}
 }
 

@@ -58,6 +58,7 @@ void GameRunningState::init(ApplicationPtr app)
 	//mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
 	mApp->getLogicSubsystem()->loadScripts();
 
+
 	//...and initialise the active weapon according to the current world
 	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
 
@@ -99,6 +100,7 @@ void GameRunningState::cleanUp()
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	mApp->getRenderSubsystem()->hideOverlay(OVERLAY_DEBUG_PANEL);
+	mApp->getRenderSubsystem()->resumeRendering();
 	mApp->getGameWorldManager()->unloadLevel();
 	mApp->getGUISubsystem()->cleanUp();	
 	mApp->getGUISubsystem()->init(mApp);
@@ -397,6 +399,7 @@ void GameRunningState::update(long elapsedTime)
 	}
 	else if (mApp->mBackToMenu)
 	{
+		Logger::getInstance()->log("Back to menu is set!!");
 		mApp->mBackToMenu=false;
 		GameStatePtr menuState = GameStatePtr(new MainMenuState());
 		mApp->getGameStateManager()->changeState(menuState,mApp);
@@ -798,6 +801,10 @@ void GameRunningState::unpauseMusic()
 }
 bool GameRunningState::mayProceedToGameOver()
 {
+	if (mApp->getGameWorldManager()->isGameOver())
+	{
+		Logger::getInstance()->log("Game over is set!");
+	}
 	int channel=mMusicChannels[-1].channelId;
 	return mApp->getGameWorldManager()->isGameOver() && 
 		!mApp->getAudioSubsystem()->isMusicPlaying(channel);
