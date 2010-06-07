@@ -14416,7 +14416,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="rush_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.671776 -0.726723 -0.0974029 0.10537"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="-408.741 218.751 306.237"></PROPERTY>
@@ -14470,7 +14470,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="rush_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="-425.889 209.339 314.916"></PROPERTY>
@@ -14551,7 +14551,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="rush_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="-420.217 209.674 319.18"></PROPERTY>
@@ -14638,7 +14638,7 @@
     <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="rush_d_billboard"></PROPERTY>
+    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
     <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
     <PROPERTY id="position" type="9" value="-425.889 208.718 307.027"></PROPERTY>
