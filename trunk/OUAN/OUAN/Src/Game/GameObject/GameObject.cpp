@@ -354,6 +354,21 @@ bool GameObject::cancelAutoCameraMovement()
 	return false;
 }
 
+void GameObject::setDreamsRender()
+{
+
+}
+
+void GameObject::setNightmaresRender()
+{
+
+}
+
+void GameObject::setChangeWorldRender()
+{
+
+}
+
 void GameObject::setChangeWorldDelay(double delay)
 {
 	mChangeWorldDelay=delay;

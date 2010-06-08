@@ -19,19 +19,6 @@ namespace OUAN
 		String materialNightmares;
 	};
 
-	class TRenderComponentSkyBoxParameters: public TRenderComponentParameters
-	{
-	public:
-		TRenderComponentSkyBoxParameters();
-		~TRenderComponentSkyBoxParameters();
-
-		bool active;
-		Real distance;
-		String materialDreams;
-		String materialNightmares;
-
-	};
-
 	class TRenderComponentSceneParameters: public TRenderComponentParameters
 	{
 	public:
@@ -39,7 +26,6 @@ namespace OUAN
 		~TRenderComponentSceneParameters();
 
 		ColourValue ambient;
-		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
 		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
 	};
 
@@ -48,12 +34,11 @@ namespace OUAN
 	private:
 		Ogre::SceneManager * mSceneManager;
 		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
-		TRenderComponentSkyBoxParameters tRenderComponentSkyBoxParameters;
 
-		ChangeWorldMaterialPtr mSkyDomeChangeWorldMaterialDreams;
-		ChangeWorldMaterialPtr mSkyDomeChangeWorldMaterialNightmares;
-		ChangeWorldMaterialPtr mSkyBoxChangeWorldMaterialDreams;
-		ChangeWorldMaterialPtr mSkyBoxChangeWorldMaterialNightmares;
+		std::string mDreamsMaterial;
+		std::string mNightmaresMaterial;
+		std::string mChangeWorldMaterial;
+
 	public:
 
 		RenderComponentScene(const std::string& type="");
@@ -62,18 +47,12 @@ namespace OUAN
 		Ogre::SceneManager * getSceneManager() const;
 		void setSceneManager(Ogre::SceneManager * sceneManager);
 
-		void setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters,TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
+		void setSkyMaterials(TRenderComponentSceneParameters tRenderComponentSceneParameters);
 
-		/// React to a world change to the one given as a parameter
-		/// @param world world to change to
-		void changeToWorld(int newWorld, double perc);
-
-		void setOriginalMaterials(int world);
-		void setChangeWorldMaterials(int world);
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
-		void randomizeChangeWorldMaterials();
-
-		void update(double elapsedSeconds);
+		void setMaterial(std::string material);
+		void setDreamsMaterials();
+		void setNightmaresMaterials();
+		void setChangeWorldMaterials();
 
 	};
 

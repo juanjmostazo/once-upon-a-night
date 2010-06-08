@@ -81,6 +81,9 @@ namespace OUAN
 		void calculateChangeWorldTotalTime(double changeWorldTotalTime);
 		void calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
 
 		/// Reset object
 		virtual void reset();
@@ -136,8 +139,6 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;
 
-		//ChangeWorld parameters
-		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

@@ -71,7 +71,6 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
-#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
@@ -279,9 +278,6 @@ void LevelLoader::processGameObjectBillboardClouds()
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].rotation=0;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].texcoordindex=0;
 		tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters.tRenderComponentBillboardParameters[0].texrect=Ogre::Vector4(0,0,1,1);
-
-		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(NULL);
-		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters.tiling=0.4;
 
 		///////////////////////
 
@@ -1090,9 +1086,6 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectBillboardSetParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 		
-		//Get ChangeWorldMaterialParameters
-		tGameObjectBillboardSetParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 	}
 	catch( std::string error )
 	{
@@ -1138,10 +1131,6 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectBushParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//Get ChangeWorldMaterialParameters
-		tGameObjectBushParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 
 	}
 	catch( std::string error )
@@ -1252,9 +1241,6 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(), 
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectClockPieceParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 		//Get RenderComponentPositional
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1339,9 +1325,6 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectDiamondParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
-
-		//Get ChangeWorldMaterialParameters
-		tGameObjectDiamondParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
 		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1629,9 +1612,6 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectHeartParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 		//Get RenderComponentPositional
 		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1672,9 +1652,6 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectItem1UPParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 		//Get RenderComponentPositional
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -1714,9 +1691,6 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
-
-		//Get ChangeWorldMaterialParameters
-		tGameObjectItemMaxHPParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 		//Get RenderComponentPositional
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2100,10 +2074,6 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 
 		tGameObjectPortalParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectPortalParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
-
 	}
 	catch( std::string error )
 	{
@@ -2195,10 +2165,6 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 		//Get PhysicsComponentCharacter
 		tGameObjectScaredPlantParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectScaredPlantParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
-
 	}
 	catch( std::string error )
 	{
@@ -2226,8 +2192,6 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 
 		//Get SceneManager properties
 		tGameObjectSceneParameters.tRenderComponentSceneParameters = processRenderComponentScene(gameObject->getMainXMLNode(),gameObject->XMLNodeCustomProperties);
-
-		tGameObjectSceneParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -2344,10 +2308,6 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get ChangeWorldMaterialParameters
-		params.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
-
 	}
 	catch( std::string error )
 	{
@@ -2433,9 +2393,6 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectStoryBookParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 		//Get RenderComponentPositional
 		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -2486,10 +2443,6 @@ void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentCharacter
 		tGameObjectTentetiesoParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
-
-		//Get ChangeWorldMaterialParameters
-		tGameObjectTentetiesoParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 
 	}
 	catch( std::string error )
@@ -2555,7 +2508,6 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 				}
 
-				tGameObjectTerrainConvexParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 			}
 			catch( std::string error )
 			{
@@ -2599,7 +2551,6 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 				tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 
-				tGameObjectTerrainTriangleParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 			}
 			catch( std::string error )
 			{
@@ -2829,9 +2780,6 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 
 		tGameObjectTripolloDreamsParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
-		//Get ChangeWorldMaterialParameters
-		tGameObjectTripolloDreamsParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->XMLNodeCustomProperties);
-
 	}
 	catch( std::string error )
 	{
@@ -2937,10 +2885,6 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 			tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
-
-		//Get ChangeWorldMaterialParameters
-		tGameObjectWoodBoxParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
-
 
 	}
 	catch( std::string error )
@@ -3063,7 +3007,6 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 				tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 			}
-			tGameObjectWaterParameters.tChangeWorldMaterialParameters=processChangeWorldMaterialParameters(gameObject->getMainXMLNode());
 
 			//Create GameObject
 			//mGameWorldManager->createGameObjectTerrainConvex(tGameObjectWaterParameters);
@@ -3090,9 +3033,6 @@ TRenderComponentSceneParameters LevelLoader::processRenderComponentScene(TiXmlEl
 	OUAN::TRenderComponentSceneParameters tRenderComponentSceneParameters;
 
 	tRenderComponentSceneParameters.ambient=getPropertyColourValue(XMLOgitorNode,"ambient");
-
-	//Process SkyBox
-	tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters=processRenderComponentSkyBox(XMLCustomPropertiesNode);
 
 	//Process SkyDome
 	tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters=processRenderComponentSkyDome(XMLCustomPropertiesNode);
@@ -3582,20 +3522,6 @@ void LevelLoader::processRenderComponentBillboards(std::vector<TRenderComponentB
 
 		tRenderComponentBillboardParameters.push_back(currentTRenderComponentBillboardParameters);
 	}
-}
-
-TRenderComponentSkyBoxParameters LevelLoader::processRenderComponentSkyBox(TiXmlElement *XMLCustomPropertiesNode)
-{
-	TRenderComponentSkyBoxParameters TRenderComponentSkyBoxParameters;
-	// Process SkyBox properties
-	TRenderComponentSkyBoxParameters.active = getPropertyBool(XMLCustomPropertiesNode, "RenderComponentSkyBox::active");
-	TRenderComponentSkyBoxParameters.distance = getPropertyReal(XMLCustomPropertiesNode, "RenderComponentSkyBox::distance");
-	// Process SkyBox materials
-	TRenderComponentSkyBoxParameters.materialDreams = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyBox::materialDreams");
-	TRenderComponentSkyBoxParameters.materialNightmares = getPropertyString(XMLCustomPropertiesNode, "RenderComponentSkyBox::materialNightmares");
-
-
-	return TRenderComponentSkyBoxParameters;
 }
 
 TRenderComponentSkyDomeParameters LevelLoader::processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode)
@@ -4488,47 +4414,6 @@ TLogicComponentParameters LevelLoader::processLogicComponent(TiXmlElement *XMLNo
 		}
 	}
 	return tLogicComponentParameters;
-}
-
-TChangeWorldMaterialParameters LevelLoader::processChangeWorldMaterialParameters(TiXmlElement* XMLNode)
-{
-	TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
-
-	try
-	{
-		tChangeWorldMaterialParameters.blending_amount=getPropertyReal(XMLNode, "ChangeWorldMaterial::blending_amount");
-		tChangeWorldMaterialParameters.blending_texture=getPropertyString(XMLNode, "ChangeWorldMaterial::blending_texture");
-		tChangeWorldMaterialParameters.scroll_animation=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_animation");
-		tChangeWorldMaterialParameters.scroll_animation.z=tChangeWorldMaterialParameters.scroll_animation.z/Ogre::Math::TWO_PI;
-		tChangeWorldMaterialParameters.scroll_blending=getPropertyVector3(XMLNode, "ChangeWorldMaterial::scroll_blending");
-		tChangeWorldMaterialParameters.scroll_blending.z=tChangeWorldMaterialParameters.scroll_blending.z/Ogre::Math::TWO_PI;
-		tChangeWorldMaterialParameters.tiling=getPropertyReal(XMLNode, "ChangeWorldMaterial::tiling");
-		tChangeWorldMaterialParameters.randomize=getPropertyBool(XMLNode, "ChangeWorldMaterial::randomize");
-
-		//Billboard Rotation Conversion
-		int change_world_type = getPropertyInt(XMLNode, "ChangeWorldMaterial::type");
-		switch(change_world_type)
-		{
-			case OGITOR_CW_BLENDING:
-				tChangeWorldMaterialParameters.type=CW_BLENDING;
-				break;
-			case OGITOR_CW_EROSION:
-				tChangeWorldMaterialParameters.type=CW_EROSION;
-				break;
-			case OGITOR_CW_EROSION_TRANSPARENT:
-				tChangeWorldMaterialParameters.type=CW_EROSION_TRANSPARENT;
-				break;
-			default:
-				Logger::getInstance()->log("ChangeWorldMaterial has unrecognised ChangeWorldMaterialType!");
-				break;
-		}
-	}
-	catch(std::string error)
-	{
-		tChangeWorldMaterialParameters=mGameWorldManager->getDefaultChangeWorldMaterialParameters();
-	}
-
-	return tChangeWorldMaterialParameters;
 }
 
 Ogre::uint8 LevelLoader::processRenderQueueId(TiXmlElement *XMLNode)

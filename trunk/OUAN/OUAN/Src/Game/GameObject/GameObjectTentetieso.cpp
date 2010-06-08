@@ -93,6 +93,27 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 	entityToUpdate->update(elapsedSeconds/2);
 }
 
+void GameObjectTentetieso::setDreamsRender()
+{
+	mRenderComponentEntityDreams->setVisible(true);
+	mRenderComponentEntityDreams->setDreamsMaterials();
+	mRenderComponentEntityNightmares->setVisible(false);
+}
+
+void GameObjectTentetieso::setNightmaresRender()
+{
+	mRenderComponentEntityDreams->setVisible(false);
+	mRenderComponentEntityNightmares->setVisible(true);
+	mRenderComponentEntityNightmares->setNightmaresMaterials();
+}
+
+void GameObjectTentetieso::setChangeWorldRender()
+{
+	mRenderComponentEntityDreams->setChangeWorldMaterials();
+	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+}
+
+
 void GameObjectTentetieso::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -100,17 +121,11 @@ void GameObjectTentetieso::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			mRenderComponentEntityNightmares->setVisible(false);
-			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			setDreamsRender();
 			mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);	
-			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			mRenderComponentEntityNightmares->setVisible(true);
-			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			setNightmaresRender();
 			mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 			break;
 		default:break;
@@ -121,9 +136,6 @@ void GameObjectTentetieso::changeWorldFinished(int newWorld)
 void GameObjectTentetieso::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
-
-	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -143,12 +155,8 @@ void GameObjectTentetieso::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
-		mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
 		break;
 	case NIGHTMARES:
-		mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
-		mRenderComponentEntityDreams->setChangeWorldFactor(perc);
 		break;
 	default:
 		break;

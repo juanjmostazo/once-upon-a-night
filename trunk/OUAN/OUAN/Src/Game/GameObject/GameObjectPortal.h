@@ -99,6 +99,10 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+
 		AudioComponentPtr getAudioComponentInstance() const;
 		bool hasAudioComponent() const;
 
@@ -159,9 +163,6 @@ namespace OUAN
 
 		///Audio params
 		TAudioComponentMap tAudioComponentParameters;
-
-		//ChangeWorld parameters
-		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

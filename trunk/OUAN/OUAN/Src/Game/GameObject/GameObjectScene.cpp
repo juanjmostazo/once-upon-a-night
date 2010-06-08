@@ -27,29 +27,40 @@ void GameObjectScene::setRenderComponentScene(RenderComponentScenePtr pRenderCom
 	mRenderComponentScene=pRenderComponentScene;
 }
 
+void GameObjectScene::setDreamsRender()
+{
+	mRenderComponentScene->setDreamsMaterials();
+}
+
+void GameObjectScene::setNightmaresRender()
+{
+	mRenderComponentScene->setNightmaresMaterials();
+}
+
+void GameObjectScene::setChangeWorldRender()
+{
+	mRenderComponentScene->setChangeWorldMaterials();
+}
+
 void GameObjectScene::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentScene->setChangeWorldMaterials(newWorld);
-	mRenderComponentScene->changeToWorld(newWorld,1.0f);
-
 	switch(newWorld)
 	{
 	case DREAMS:
+		setDreamsRender();
 		break;
 	case NIGHTMARES:
+		setNightmaresRender();
 		break;
-	default:
-		break;
+	default:break;
 	}
 }
 
 void GameObjectScene::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
-
-	mRenderComponentScene->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -65,8 +76,6 @@ void GameObjectScene::changeWorldStarted(int newWorld)
 void GameObjectScene::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
-
-	mRenderComponentScene->changeToWorld(newWorld,perc);
 
 	switch(newWorld)
 	{

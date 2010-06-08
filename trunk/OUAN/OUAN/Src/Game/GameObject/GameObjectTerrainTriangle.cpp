@@ -74,23 +74,13 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentEntityDreams->setOriginalMaterials();
-	//mRenderComponentEntityNightmares->setOriginalMaterials();
-
 	switch(newWorld)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			mRenderComponentEntityNightmares->setVisible(false);
-			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			setDreamsRender();
 			break;
 		case NIGHTMARES:
-
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			mRenderComponentEntityNightmares->setVisible(true);
-			mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
+			setNightmaresRender();
 			break;
 		default:break;
 	}
@@ -101,11 +91,6 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
-
-	//mRenderComponentEntityDreams->setChangeWorldMaterials();
-	//mRenderComponentEntityNightmares->setChangeWorldMaterials();
-	mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-	mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
 
 	switch(newWorld)
 	{
@@ -127,16 +112,32 @@ void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
-		mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
 		break;
 	case NIGHTMARES:
-		mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
-		mRenderComponentEntityDreams->setChangeWorldFactor(perc);
 		break;
 	default:
 		break;
 	}
+}
+
+void GameObjectTerrainTriangle::setDreamsRender()
+{
+	mRenderComponentEntityDreams->setVisible(true);
+	mRenderComponentEntityDreams->setDreamsMaterials();
+	mRenderComponentEntityNightmares->setVisible(false);
+}
+
+void GameObjectTerrainTriangle::setNightmaresRender()
+{
+	mRenderComponentEntityDreams->setVisible(false);
+	mRenderComponentEntityNightmares->setVisible(true);
+	mRenderComponentEntityNightmares->setNightmaresMaterials();
+}
+
+void GameObjectTerrainTriangle::setChangeWorldRender()
+{
+	mRenderComponentEntityDreams->setChangeWorldMaterials();
+	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }
 
 void GameObjectTerrainTriangle::reset()

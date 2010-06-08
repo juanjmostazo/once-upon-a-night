@@ -37,20 +37,20 @@ void GameObjectViewport::changeWorldFinished(int newWorld)
 	case DREAMS:
 
 		//mRenderComponentViewport->setBloomAmount(0.0f);
-		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS);
-		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS);
-		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS);
-		setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_DREAMS);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_DREAMS);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS);
 
 
 		break;
 	case NIGHTMARES:
 
 		//mRenderComponentViewport->setBloomAmount(1.0f);
-		setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES);
-		setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES);
-		setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
-		setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->BLOOM, Application::getInstance()->getRenderSubsystem()->BLOOM_ACTIVATED_ALWAYS_NIGHTMARES);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->HDR, Application::getInstance()->getRenderSubsystem()->HDR_ACTIVATED_ALWAYS_NIGHTMARES);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR, Application::getInstance()->getRenderSubsystem()->RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
+		//setEffect(Application::getInstance()->getRenderSubsystem()->MOTION_BLUR, Application::getInstance()->getRenderSubsystem()->MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES);
 
 		break;
 	default:

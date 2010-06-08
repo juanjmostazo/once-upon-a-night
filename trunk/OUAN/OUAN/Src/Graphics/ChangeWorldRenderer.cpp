@@ -1,18 +1,18 @@
 #include "OUAN_Precompiled.h"
 
-#include "TextureRenderer.h"
+#include "ChangeWorldRenderer.h"
 using namespace OUAN;
 using namespace Ogre;
-TextureRenderer::TextureRenderer()
+ChangeWorldRenderer::ChangeWorldRenderer()
 {
 	mDebugScreensActive=false;
 }
 
-TextureRenderer::~TextureRenderer()
+ChangeWorldRenderer::~ChangeWorldRenderer()
 {
 }
 
-void TextureRenderer::setDebugScreensActive(bool active)
+void ChangeWorldRenderer::setDebugScreensActive(bool active)
 {
 	mDebugScreensActive=active;
 	if(mDebugScreensActive)
@@ -29,12 +29,12 @@ void TextureRenderer::setDebugScreensActive(bool active)
 	}
 }
 
-bool TextureRenderer::getDebugScreensActive() const
+bool ChangeWorldRenderer::getDebugScreensActive() const
 {
 	return mDebugScreensActive;
 }
 
-void TextureRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera)
+void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera)
 {
 	mSceneManager=pSceneManager;
 	mWindow=pWindow;
@@ -115,11 +115,47 @@ void TextureRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow
 	materialChangeWorld->getTechnique(0)->getPass(0)->setLightingEnabled(false);
 	materialChangeWorld->getTechnique(0)->getPass(0)->createTextureUnitState("mRenderTextureChangeWorld");
 	mMiniScreenChangeWorld->setMaterial("mMiniScreenMatChangeWorld");
-
+ 
 	setDebugScreensActive(false);
+	setChangeWorldToNightmares();
 }
 
-void TextureRenderer::renderToTextureDreams()
+void ChangeWorldRenderer::setChangeWorldToNightmares()
+{
+	Ogre::Technique * technique;
+	//FINAL SCREEN
+	   //set textures to changeworld compositor
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName("changeworld");
+	technique= material->getTechnique(0);
+	technique->getPass(0)->getTextureUnitState(0)->setTextureName("mRenderTextureChangeWorld");
+	technique->getPass(0)->getTextureUnitState(2)->setTextureName("mRenderTextureNightmares");
+}
+
+void ChangeWorldRenderer::setChangeWorldToDreams()
+{
+	Ogre::Technique * technique;
+	//FINAL SCREEN
+	   //set textures to changeworld compositor
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName("changeworld");
+	technique= material->getTechnique(0);
+	technique->getPass(0)->getTextureUnitState(0)->setTextureName("mRenderTextureChangeWorld");
+	technique->getPass(0)->getTextureUnitState(2)->setTextureName("mRenderTextureDreams");
+}
+
+void ChangeWorldRenderer::setChangeWorldFactor(float factor)
+{
+	Ogre::Technique * technique;
+	Ogre::GpuProgramParametersSharedPtr params;
+	//FINAL SCREEN
+	   //set textures to changeworld compositor
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName("changeworld");
+	technique= material->getTechnique(0);
+	params=technique->getPass(0)->getFragmentProgramParameters();
+
+	params->setNamedConstant("mix_factor",factor);
+}
+
+void ChangeWorldRenderer::renderToTextureDreams()
 {
 	mMiniScreenDreams->setVisible(false);
 	mMiniScreenNightmares->setVisible(false);
@@ -136,7 +172,7 @@ void TextureRenderer::renderToTextureDreams()
 	}
 }
 
-void TextureRenderer::renderToTextureNightmares()
+void ChangeWorldRenderer::renderToTextureNightmares()
 {
 	mMiniScreenDreams->setVisible(false);
 	mMiniScreenNightmares->setVisible(false);
@@ -153,7 +189,7 @@ void TextureRenderer::renderToTextureNightmares()
 	}
 }
 
-void TextureRenderer::renderToTextureChangeWorld()
+void ChangeWorldRenderer::renderToTextureChangeWorld()
 {
 	mMiniScreenDreams->setVisible(false);
 	mMiniScreenNightmares->setVisible(false);
@@ -170,12 +206,12 @@ void TextureRenderer::renderToTextureChangeWorld()
 	}
 }
 
-void TextureRenderer::setCamera(Ogre::Camera * pCamera)
+void ChangeWorldRenderer::setCamera(Ogre::Camera * pCamera)
 {
 	mCamera=pCamera;
 }
 
-Ogre::Camera * TextureRenderer::getCamera() const
+Ogre::Camera * ChangeWorldRenderer::getCamera() const
 {
 	return mCamera;
 }

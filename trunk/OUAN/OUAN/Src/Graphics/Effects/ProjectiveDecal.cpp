@@ -4,7 +4,6 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectTerrainTriangle.h"
-#include "../RenderComponent/ChangeWorldMaterial.h"
 #include "../RenderComponent/RenderComponentEntity.h"
 using namespace OUAN;
 

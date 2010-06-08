@@ -1,15 +1,31 @@
-#ifndef TextureRendererH_H
-#define TextureRendererH_H
+#ifndef ChangeWorldRendererH_H
+#define ChangeWorldRendererH_H
 
 #include "../OUAN.h"
 #include "RenderSubsystem.h"
 namespace OUAN
 {
-	class TextureRenderer
+
+	class ChangeWorldCompositorListener : public Ogre::CompositorInstance::Listener
+	{
+	   public:
+		  void notifyMaterialSetup( Ogre::uint32 pass_id, Ogre::MaterialPtr & mat )
+		  {
+				// modify material here (wont alter the base material!) in the setup stage
+		  }
+
+			void setChangeWorldFactor(float factor)
+			{
+				
+			}
+	 
+	};
+
+	class ChangeWorldRenderer
 	{
 	public:
-		TextureRenderer();
-		~TextureRenderer();
+		ChangeWorldRenderer();
+		~ChangeWorldRenderer();
 
 
 		void setDebugScreensActive(bool active);
@@ -23,6 +39,10 @@ namespace OUAN
 
 		void setCamera(Ogre::Camera * pCamera);
 		Ogre::Camera * getCamera() const;
+
+		void setChangeWorldToDreams();
+		void setChangeWorldToNightmares();
+		void setChangeWorldFactor(float factor);
 
 	protected:
 		Ogre::SceneManager * mSceneManager;

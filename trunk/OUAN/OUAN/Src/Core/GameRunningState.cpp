@@ -11,7 +11,7 @@
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
-#include "../Graphics/TextureRenderer.h"
+#include "../Graphics/ChangeWorldRenderer.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/HUD/HUDInGame.h"
 #include "../GUI/GUISubsystem.h"
@@ -24,6 +24,7 @@
 #include "../Game/GameObject/GameObjectFlashLight.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
+#include "../Game/GameObject/GameObjectViewport.h"
 #include "../Audio/AudioSubsystem.h"
 #include "../Utils/Utils.h"
 
@@ -380,8 +381,8 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleChangeWorldDebug())
 		{
 			Logger::getInstance()->log("ToggleChangeWorldDebug key pressed");
-			mApp->getRenderSubsystem()->getTextureRenderer()->setDebugScreensActive(
-				!mApp->getRenderSubsystem()->getTextureRenderer()->getDebugScreensActive()
+			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setDebugScreensActive(
+				!mApp->getRenderSubsystem()->getChangeWorldRenderer()->getDebugScreensActive()
 				);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
@@ -522,13 +523,40 @@ bool GameRunningState::render()
 
 	mHUD->show();
 
-	renderSubsystem->getTextureRenderer()->renderToTextureDreams();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
-	renderSubsystem->getTextureRenderer()->renderToTextureNightmares();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setMaterial("cloud_terrain_d#0");
-	renderSubsystem->getTextureRenderer()->renderToTextureChangeWorld();
-	mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setOriginalMaterials();
+	if(mIsChangingWorld)
+	{
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,false);
+
+		switch(mWorld)
+		{
+		case DREAMS:
+			mApp->getGameWorldManager()->setDreamsRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+
+			mApp->getGameWorldManager()->setChangeWorldRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureChangeWorld();
+
+			mApp->getGameWorldManager()->setNightmaresRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+			break;
+		case NIGHTMARES:
+			mApp->getGameWorldManager()->setNightmaresRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+
+			mApp->getGameWorldManager()->setChangeWorldRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureChangeWorld();
+
+			mApp->getGameWorldManager()->setDreamsRender();
+			renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+			break;
+		default:
+			break;
+		}
+
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,true);
+	}
 
 	return renderSubsystem->render();
 }
@@ -662,7 +690,7 @@ void GameRunningState::playSoundFromGameObject(const std::string& objectName, co
 
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
-	mWorld=evt->getNewWorld();
+	mNewWorld=evt->getNewWorld();
 
 	mChangeWorldTotalTime=evt->time;
 	if (evt->fast)
@@ -742,6 +770,12 @@ void GameRunningState::endMusicFading(int newWorld)
 void GameRunningState::changeWorldFinished(int newWorld)
 {
 	endMusicFading(newWorld);
+
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,false);
+
+	mWorld=newWorld;
+
 	//switch(newWorld)
 	//{
 	//	case DREAMS:
@@ -756,25 +790,53 @@ void GameRunningState::changeWorldFinished(int newWorld)
 void GameRunningState::changeWorldStarted(int newWorld)
 {
 	initMusicFading(newWorld);
-	//switch(newWorld)
-	//{
-	//	case DREAMS:
-	//		break;
-	//	case NIGHTMARES:
-	//		break;
-	//	default:
-	//		break;
-	//}
+
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,true);
+
+	mNewWorld=newWorld;
+
+	switch(newWorld)
+	{
+		case DREAMS:
+			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldToDreams();
+			break;
+		case NIGHTMARES:
+			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldToNightmares();
+			break;
+		default:
+			break;
+	}
 }
 
 void GameRunningState::changeToWorld(int newWorld, double perc)
 {
 	advanceMusicFading(newWorld,perc);
+
+	mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(perc);
+
+	//Logger::getInstance()->log("GameRunningState::changeToWorld " + Ogre::StringConverter::toString(Ogre::Real(perc)));
 	//switch(newWorld)
 	//{
 	//	case DREAMS:
+	//		if(mWorld==DREAMS)
+	//		{
+	//			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(1-perc);
+	//		}
+	//		else if(mWorld==NIGHTMARES)
+	//		{
+	//			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(perc);
+	//		}
 	//		break;
 	//	case NIGHTMARES:
+	//		if(mWorld==DREAMS)
+	//		{
+	//			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(perc);
+	//		}
+	//		else if(mWorld==NIGHTMARES)
+	//		{
+	//			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(1-perc);
+	//		}
 	//		break;
 	//	default:
 	//		break;

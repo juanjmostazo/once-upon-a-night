@@ -7,7 +7,7 @@
 #include "../Physics/PhysicsSubsystem.h"
 #include "../GUI/GUISubsystem.h"
 #include "CameraManager/CameraManager.h"
-#include "TextureRenderer.h"
+#include "ChangeWorldRenderer.h"
 #include "CameraManager/CameraControllerFirstPerson.h"
 #include "TrajectoryManager/TrajectoryManager.h"
 #include "RenderComponent/RenderComponent.h"
@@ -66,15 +66,15 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 	return true;
 }
 
-void RenderSubsystem::initTextureRenderer()
+void RenderSubsystem::initChangeWorldRenderer()
 {
-	mTextureRenderer.reset(new TextureRenderer());
-	mTextureRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getActiveCamera());
+	mChangeWorldRenderer.reset(new ChangeWorldRenderer());
+	mChangeWorldRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getActiveCamera());
 }
 
-TextureRendererPtr RenderSubsystem::getTextureRenderer()
+ChangeWorldRendererPtr RenderSubsystem::getChangeWorldRenderer()
 {
-	return mTextureRenderer;
+	return mChangeWorldRenderer;
 }
 
 bool RenderSubsystem::loadConfig()
@@ -106,6 +106,7 @@ bool RenderSubsystem::loadConfig()
 		config.getOption("HDR", HDR); 
 		config.getOption("RADIAL_BLUR", RADIAL_BLUR); 
 		config.getOption("MOTION_BLUR", MOTION_BLUR); 
+		config.getOption("CHANGEWORLD", CHANGEWORLD); 
 
 		config.getOption("BLOOM_ACTIVATED_ALWAYS_DREAMS", value); 
 		BLOOM_ACTIVATED_ALWAYS_DREAMS=Ogre::StringConverter::parseBool(value);
@@ -353,18 +354,6 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
-
-		if(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active)
-		{
-			//Set SkyBox Dreams
-			mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
-				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialDreams,
-				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
-			//Set SkyBox Nightmares
-			mSceneManager->setSkyBox(tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.active,
-				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.materialNightmares,
-				tRenderComponentSceneParameters.tRenderComponentSkyBoxParameters.distance);
-		}
 
 		if(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active)
 		{

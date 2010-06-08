@@ -69,12 +69,53 @@ PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox()
 	return mPhysicsComponentVolumeBox;
 }
 
+void GameObjectItemMaxHP::setDreamsRender()
+{
+	if(mLogicComponentItem->existsInDreams())
+	{
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntity->setDreamsMaterials();
+	}
+	else
+	{
+		mRenderComponentEntity->setVisible(false);
+	}
+}
+
+void GameObjectItemMaxHP::setNightmaresRender()
+{
+	if(mLogicComponentItem->existsInDreams())
+	{
+		mRenderComponentEntity->setVisible(false);
+	}
+	else
+	{
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntity->setNightmaresMaterials();
+	}
+}
+
+void GameObjectItemMaxHP::setChangeWorldRender()
+{
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentEntity->setChangeWorldMaterials();
+}
+
 void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//mRenderComponentEntity->setOriginalMaterials();
-	mRenderComponentPositional->setScale(Vector3(1,1,1));
+	switch(newWorld)
+	{
+		case DREAMS:
+			setDreamsRender();
+			break;
+		case NIGHTMARES:
+			setNightmaresRender();
+			break;
+		default:
+			break;
+	}
 
 	switch(newWorld)
 	{
@@ -82,7 +123,6 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 
 		if(mLogicComponentItem->existsInDreams())
 		{
-			mRenderComponentEntity->setVisible(true);
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
@@ -90,7 +130,6 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 		}
 		else
 		{
-			mRenderComponentEntity->setVisible(false);
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
@@ -101,7 +140,6 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 
 		if(mLogicComponentItem->existsInNightmares())
 		{
-			mRenderComponentEntity->setVisible(true);
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
@@ -109,7 +147,6 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 		}
 		else
 		{
-			mRenderComponentEntity->setVisible(false);
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
@@ -125,33 +162,11 @@ void GameObjectItemMaxHP::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	//if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
-	//{
-	//	mRenderComponentEntity->setChangeWorldMaterials();
-	//	mRenderComponentEntity->randomizeChangeWorldMaterials();
-	//}
-
-	//if(mLogicComponentItem->existsInNightmares()&& !mLogicComponentItem->existsInNightmares())
-	//{
-	//	mRenderComponentEntity->setChangeWorldMaterials();
-	//	mRenderComponentEntity->randomizeChangeWorldMaterials();
-	//}
-
 	switch(newWorld)
 	{
 	case DREAMS:
-		if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
-		{
-			mRenderComponentEntity->setVisible(true);
-			mRenderComponentPositional->setScale(Vector3(0,0,0));
-		}
 		break;
 	case NIGHTMARES:
-		if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
-		{
-			mRenderComponentEntity->setVisible(true);
-			mRenderComponentPositional->setScale(Vector3(0,0,0));
-		}	
 		break;
 	default:
 		break;
@@ -164,29 +179,9 @@ void GameObjectItemMaxHP::changeToWorld(int newWorld, double perc)
 
 	switch(newWorld)
 	{
-		case DREAMS:
-			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
-			{
-				//mRenderComponentEntity->setChangeWorldFactor(1-perc);
-				mRenderComponentPositional->setScale(Vector3(perc,perc,perc));
-			}
-			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
-			{
-				//mRenderComponentEntity->setChangeWorldFactor(perc);
-				mRenderComponentPositional->setScale(Vector3(1-perc,1-perc,1-perc));
-			}		
+		case DREAMS:	
 			break;
-		case NIGHTMARES:
-			if(mLogicComponentItem->existsInDreams()&& !mLogicComponentItem->existsInNightmares())
-			{
-				//mRenderComponentEntity->setChangeWorldFactor(perc);
-				mRenderComponentPositional->setScale(Vector3(1-perc,1-perc,1-perc));
-			}
-			else if(!mLogicComponentItem->existsInDreams()&& mLogicComponentItem->existsInNightmares())
-			{
-				//mRenderComponentEntity->setChangeWorldFactor(1-perc);
-				mRenderComponentPositional->setScale(Vector3(perc,perc,perc));
-			}		
+		case NIGHTMARES:	
 			break;
 		default:
 			break;

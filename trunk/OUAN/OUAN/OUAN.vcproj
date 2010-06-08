@@ -439,11 +439,19 @@
 				Name="Game"
 				>
 				<File
+					RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Game\GameObjectFactory.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Game\WorldNameConverter.cpp"
 					>
 				</File>
 				<Filter
@@ -827,20 +835,16 @@
 				Name="Graphics"
 				>
 				<File
-					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
+					RelativePath=".\Src\Graphics\ChangeWorldRenderer.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Graphics\TextureRenderer.cpp"
+					RelativePath=".\Src\Graphics\RenderSubsystem.cpp"
 					>
 				</File>
 				<Filter
 					Name="RenderComponent"
 					>
-					<File
-						RelativePath=".\Src\Graphics\RenderComponent\ChangeWorldMaterial.cpp"
-						>
-					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponent.cpp"
 						>
@@ -915,10 +919,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFirstPerson.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
 						>
 					</File>
 					<File
@@ -1189,20 +1189,16 @@
 				Name="Graphics"
 				>
 				<File
-					RelativePath=".\Src\Graphics\RenderSubsystem.h"
+					RelativePath=".\Src\Graphics\ChangeWorldRenderer.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Graphics\TextureRenderer.h"
+					RelativePath=".\Src\Graphics\RenderSubsystem.h"
 					>
 				</File>
 				<Filter
 					Name="RenderComponent"
 					>
-					<File
-						RelativePath=".\Src\Graphics\RenderComponent\ChangeWorldMaterial.h"
-						>
-					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponent.h"
 						>
@@ -1453,6 +1449,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\Game\GameWorldManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Game\WorldNameConverter.h"
 					>
 				</File>
 				<Filter

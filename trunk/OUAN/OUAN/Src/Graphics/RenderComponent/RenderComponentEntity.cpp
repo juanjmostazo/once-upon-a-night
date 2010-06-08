@@ -1,12 +1,12 @@
 #include "OUAN_Precompiled.h"
 
 #include "RenderComponentEntity.h"
-#include "ChangeWorldMaterial.h"
 #include "../RenderSubsystem.h"
 #include "../../Application.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Event/EventDefs.h"
+#include "../../Game/WorldNameConverter.h"
 
 using namespace OUAN;
 
@@ -35,25 +35,13 @@ Ogre::Entity* RenderComponentEntity::getEntity() const
 
 void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 {
-	Ogre::SubEntity* subEnt;
-	Ogre::MaterialPtr original_material;
-	unsigned int i;
-
 	mEntity=entity;
 
 	if(mEntity)
 	{
-		mOriginalMaterials.clear();
-
-		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
-		{
-			// Get the material of this sub entity and build the clone material name
-			subEnt = mEntity->getSubEntity(i);
-			original_material = subEnt->getMaterial();
-
-			//Add material to the material stack 
-			mOriginalMaterials.push_back(original_material->getName());
-		}
+		mDreamsMaterial=WorldNameConverter::getDreamsName(mEntity->getSubEntity(0)->getMaterialName().c_str());
+		mNightmaresMaterial=WorldNameConverter::getNightmaresName(mEntity->getSubEntity(0)->getMaterialName().c_str());
+		mChangeWorldMaterial=WorldNameConverter::getChangeWorldName(mEntity->getSubEntity(0)->getMaterialName().c_str());
 	}
 }
 
@@ -126,8 +114,6 @@ bool RenderComponentEntity::isAnimated() const
 }
 void RenderComponentEntity::update(double elapsedTime)
 {
-	unsigned int i;
-
 	if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 	{
 		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
@@ -136,11 +122,6 @@ void RenderComponentEntity::update(double elapsedTime)
 			AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
 			getParent()->getGameWorldManager()->addEvent(evt);
 		}
-	}
-
-	for ( i=0; i<mChangeWorldMaterials.size(); i++)
-	{
-		mChangeWorldMaterials[i]->update(elapsedTime);
 	}
 }
 void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)
@@ -190,180 +171,25 @@ void RenderComponentEntity::setMaterial(std::string material)
 		{
 			Logger::getInstance()->log("[RenderComponentEntity] material "+material+" does not exist.");
 		}
-
-		//Add material to the material stack 
-		mOriginalMaterials.push_back(original_material->getName());
-	}
-}
-
-void RenderComponentEntity::setOriginalMaterials()
-{
-	Ogre::SubEntity* subEnt;
-	unsigned int i;
-
-	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
-	{
-		// Get the material of this sub entity and build the clone material name
-		subEnt = mEntity->getSubEntity(i);
-
-		// Get/Create the clone material
-
-		if (Ogre::MaterialManager::getSingleton().resourceExists(mOriginalMaterials[i]))
-		{
-			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mOriginalMaterials[i]));
-		}
-		else
-		{
-			Logger::getInstance()->log("[RenderComponentEntity] material "+mOriginalMaterials[i]+" does not exist.");
-		}
 	}
 }
 
 void RenderComponentEntity::setChangeWorldMaterials()
 {
-	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldMaterials "+mEntity->getName());
-
-	Ogre::SubEntity* subEnt;
-	unsigned int i;
-
-	for ( i = 0; i < mChangeWorldMaterials.size() && i <mEntity->getNumSubEntities(); i++)
-	{
-
-		subEnt = mEntity->getSubEntity(i);
-
-		// Get/Create the clone material
-
-		if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterials[i]->getMaterialName()))
-		{
-			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterials[i]->getMaterialName()));
-		}
-		else
-		{
-			Logger::getInstance()->log("[RenderComponentEntity] material "+mChangeWorldMaterials[i]->getMaterialName()+" does not exist.");
-		}
-	}
+	setMaterial(mChangeWorldMaterial);
 }
 
-void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
+void RenderComponentEntity::setDreamsMaterials()
 {
-	unsigned int i;
-	
-	ChangeWorldMaterialPtr pChangeWorldMaterial;
-
-	mChangeWorldMaterials.clear();
-
-	bool materialCreated;
-
-	for ( i = 0; i < mEntity->getNumSubEntities() ; i++)
-	{
-
-		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
-			mEntity->getSubEntity(i)->getMaterial());
-
-		if(materialCreated)
-		{
-			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
-			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-		}
-		//else
-		//{
-		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-		//}
-
-	}
-	//for ( ; i < mEntity->getNumSubEntities(); i++)
-	//{
-	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//}
-
-	setChangeWorldMaterials();
+	setMaterial(mDreamsMaterial);
 }
 
-void RenderComponentEntity::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity)
+void RenderComponentEntity::setNightmaresMaterials()
 {
-	unsigned int i;
-
-	Ogre::Entity * pOtherEntity;
-
-	ChangeWorldMaterialPtr pChangeWorldMaterial;
-
-	pOtherEntity=pOtherComponentEntity->getEntity();
-
-	if(!pOtherEntity)
-	{
-		initChangeWorldMaterials(tChangeWorldMaterialParameters);
-		return;
-	}
-
-	mChangeWorldMaterials.clear();
-
-	bool materialCreated;
-
-	for ( i = 0; (i < mEntity->getNumSubEntities()) &&  (i < pOtherEntity->getNumSubEntities()) ; i++)
-	{
-
-		pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-		materialCreated=pChangeWorldMaterial->init(mEntity->getName(),tChangeWorldMaterialParameters,
-			mEntity->getSubEntity(i)->getMaterial(),
-			pOtherEntity->getSubEntity(i)->getMaterial());
-
-		if(materialCreated)
-		{
-			mEntity->getSubEntity(i)->setMaterialName(pChangeWorldMaterial->getMaterialName());
-			mChangeWorldMaterials.push_back(pChangeWorldMaterial);
-		}
-		//else
-		//{
-		//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-		//}
-	}
-	//for ( ; i < mEntity->getNumSubEntities(); i++)
-	//{
-	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//}
-
-	setChangeWorldMaterials();
+	setMaterial(mNightmaresMaterial);
 }
 
-void RenderComponentEntity::setChangeWorldFactor(double factor)
-{
-	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
-	unsigned int i;
-	for(i=0;i<mChangeWorldMaterials.size();i++)
-	{
-		mChangeWorldMaterials[i]->setChangeWorldFactor(factor);
-	}
-}
 
-void RenderComponentEntity::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
-{
-	//Logger::getInstance()->log("[RenderComponentEntity] setChangeWorldFactor "+mEntity->getName());
-	unsigned int i;
-	for(i=0;i<mChangeWorldMaterials.size();i++)
-	{
-		mChangeWorldMaterials[i]->setPointOfInterest(pointOfInterest);
-	}
-}
-
-void RenderComponentEntity::randomizeChangeWorldMaterials()
-{
-	unsigned int i;
-	for(i=0;i<mChangeWorldMaterials.size();i++)
-	{
-		mChangeWorldMaterials[i]->randomize();
-	}
-}
-std::vector<std::string>& RenderComponentEntity::getOriginalMaterials()
-{
-	return mOriginalMaterials;
-}
-std::vector<ChangeWorldMaterialPtr>& RenderComponentEntity::getChangeWorldMaterials()
-{
-	return mChangeWorldMaterials;
-}
 //void RenderComponentEntity::prepareForNormalMapping()
 //{
 //	//Ogre::MeshPtr mesh=mEntity->getMesh();

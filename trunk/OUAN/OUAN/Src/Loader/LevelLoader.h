@@ -95,7 +95,6 @@ namespace OUAN
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);
-		TRenderComponentSkyBoxParameters processRenderComponentSkyBox(TiXmlElement *XMLCustomPropertiesNode);
 		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode);
 		TRenderComponentPositionalParameters processRenderComponentPositional(TiXmlElement *XMLNode);
 		TRenderComponentPositionalParameters processRenderComponentPositionalNoScale(TiXmlElement *XMLNode);
@@ -154,9 +153,6 @@ namespace OUAN
 
 		//
 		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);
-
-		//ChangeWorldMaterials parameters
-		TChangeWorldMaterialParameters processChangeWorldMaterialParameters(TiXmlElement* XMLNode);
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 
@@ -219,13 +215,6 @@ namespace OUAN
 			OGITOR_CAMERA_COLLISION_ROTX_POSITIVE,
 			OGITOR_CAMERA_COLLISION_ROTX_NEGATIVE,
 			OGITOR_NONE
-		};
-
-		enum OgitorChangeWorldTypes
-		{
-			OGITOR_CW_BLENDING,
-			OGITOR_CW_EROSION,
-			OGITOR_CW_EROSION_TRANSPARENT
 		};
 
 	};

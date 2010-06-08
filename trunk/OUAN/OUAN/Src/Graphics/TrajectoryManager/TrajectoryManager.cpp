@@ -241,13 +241,13 @@ void TrajectoryManager::changeWorldTrajectories(int world)
 
 	if(world==DREAMS)
 	{
-		suffix_show=SUFFIX_TRAJECTORY_DREAMS;
-		suffix_hide=SUFFIX_TRAJECTORY_NIGHTMARES;
+		suffix_show=SUFFIX_DREAMS;
+		suffix_hide=SUFFIX_NIGHTMARES;
 	}
 	else if(world==NIGHTMARES)
 	{
-		suffix_show=SUFFIX_TRAJECTORY_NIGHTMARES;
-		suffix_hide=SUFFIX_TRAJECTORY_DREAMS;
+		suffix_show=SUFFIX_NIGHTMARES;
+		suffix_hide=SUFFIX_DREAMS;
 	}
 
 	for(tit=trajectoryContainer.begin();tit!=trajectoryContainer.end();tit++)

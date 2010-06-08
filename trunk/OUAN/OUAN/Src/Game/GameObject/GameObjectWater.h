@@ -73,6 +73,9 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
 
 		/// Reset object
 		virtual void reset();
@@ -124,10 +127,6 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
-
-		//ChangeWorldMaterial Parameters
-		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
-
 	};
 }
 #endif

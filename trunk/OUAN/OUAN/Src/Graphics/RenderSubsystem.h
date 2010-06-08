@@ -176,6 +176,7 @@ namespace OUAN
 		std::string HDR;
 		std::string RADIAL_BLUR;
 		std::string MOTION_BLUR;
+		std::string CHANGEWORLD;
 
 		bool BLOOM_ACTIVATED_ALWAYS_DREAMS;
 		bool BLOOM_ACTIVATED_ALWAYS_NIGHTMARES;
@@ -200,9 +201,9 @@ namespace OUAN
 
 		Ogre::TexturePtr getTexture3D(std::string texture3D);
 
-		TextureRendererPtr getTextureRenderer();
+		ChangeWorldRendererPtr getChangeWorldRenderer();
 
-		void initTextureRenderer();
+		void initChangeWorldRenderer();
 
 	protected:
 		/// the application
@@ -270,7 +271,7 @@ namespace OUAN
 		Ogre::TexturePtr mTexture3D_2_64;
 		Ogre::TexturePtr mTexture3D_2_128;
 
-		TextureRendererPtr mTextureRenderer;
+		ChangeWorldRendererPtr mChangeWorldRenderer;
 	};
 }
 #endif
