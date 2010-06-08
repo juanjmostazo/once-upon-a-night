@@ -76,8 +76,8 @@ material cg/wrapping_glow
 			fragment_program_ref glow_ps_cg 
 			{
 				param_named_auto time time_0_x 100
-				param_named alpha float 0.5
 				param_named time_scale float 2.0
+				param_named alpha float 0.5
 				param_named color_r float 1.0
 				param_named color_g float 1.0
 				param_named color_b float 0.0
