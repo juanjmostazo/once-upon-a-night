@@ -31,7 +31,6 @@ namespace OUAN
 		~TRenderComponentGlowParameters();
 
 		std::string material;
-		bool visibility;
 	};
 }
 

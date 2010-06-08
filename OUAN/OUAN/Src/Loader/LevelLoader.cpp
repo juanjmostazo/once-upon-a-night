@@ -2295,19 +2295,23 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 			params.lightNightmaresParams.power = 1;
 
 			if (params.useEntityNightmares)
+			{
 				//Get RenderComponentEntityNightmares
 				params.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 					NIGHTMARES,gameObject->XMLNodeCustomProperties);
+			}
 			else
+			{
 				params.bbsNightmaresParams=processRenderComponentBillboardSet(gameObject->XMLNodeNightmares);
+			}
 		}
 
 		//Get RenderComponentGlow
-		params.tRenderComponentGlowParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties);
+		params.tRenderComponentGlowDreamsParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties, DREAMS);
+		params.tRenderComponentGlowNightmaresParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties, NIGHTMARES);
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
 	}
 	catch( std::string error )
 	{
@@ -3366,11 +3370,24 @@ TRenderComponentQuadHaloParameters LevelLoader::processRenderComponentQuadHalo(T
 
 TRenderComponentGlowParameters LevelLoader::processRenderComponentGlow(TiXmlElement *XMLNode)
 {
+	return processRenderComponentGlow(XMLNode, BOTH_WORLDS);
+}
+
+TRenderComponentGlowParameters LevelLoader::processRenderComponentGlow(TiXmlElement *XMLNode, int world)
+{
 	OUAN::TRenderComponentGlowParameters tRenderComponentGlowParameters;
 
+	std::string attributeHeader;
+
+	switch (world)
+	{
+	case DREAMS:		attributeHeader = "RenderComponentGlowDreams";		break;
+	case NIGHTMARES:	attributeHeader = "RenderComponentGlowNightmares";	break;
+	default:			attributeHeader = "RenderComponentGlow";			break;
+	}
+
 	//Process Glow properties
-	tRenderComponentGlowParameters.material = getPropertyString(XMLNode, "RenderComponentGlow::material");
-	tRenderComponentGlowParameters.visibility = getPropertyBool(XMLNode, "RenderComponentGlow::visibility");
+	tRenderComponentGlowParameters.material = getPropertyString(XMLNode, attributeHeader + "::material");
 
 	return tRenderComponentGlowParameters;
 }

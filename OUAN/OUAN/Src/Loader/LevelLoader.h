@@ -103,6 +103,7 @@ namespace OUAN
 		TRenderComponentParticleSystemParameters processRenderComponentParticleSystem(TiXmlElement *XMLNode);
 		TRenderComponentQuadHaloParameters processRenderComponentQuadHalo(TiXmlElement *XMLNode);
 		TRenderComponentGlowParameters processRenderComponentGlow(TiXmlElement *XMLNode);
+		TRenderComponentGlowParameters processRenderComponentGlow(TiXmlElement *XMLNode, int world);
 		TRenderComponentFractalVolumeParameters processRenderComponentFractalVolume(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);

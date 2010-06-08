@@ -90,94 +90,102 @@ RenderComponentInitialPtr GameObjectSkyBody::getRenderComponentInitial() const
 
 void GameObjectSkyBody::setDreamsRender()
 {
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityDreams)
 		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(true);
-			}
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentGlowDreams->setVisible(true);
+		}
+		else
+		{
+			mBBSComponentDreams->setVisible(true);
+		}
 
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(false);
-			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		if (mUseEntityNightmares)
 		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(true);
-			}
+			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentGlowNightmares->setVisible(false);
 		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		else
 		{
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(false);
-			}
-		}		
+			mBBSComponentNightmares->setVisible(false);
+		}
+	}
+	else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityDreams)
+		{
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentGlowDreams->setVisible(true);
+		}
+		else
+		{
+			mBBSComponentDreams->setVisible(true);
+		}
+	}
+	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityNightmares)
+		{
+			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentGlowNightmares->setVisible(false);
+		}
+		else
+		{
+			mBBSComponentNightmares->setVisible(false);
+		}
+	}		
 }
 
 void GameObjectSkyBody::setNightmaresRender()
 {
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityDreams)
 		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-			}
-			else 
-			{
-				mBBSComponentDreams->setVisible(false);
-			}
-			
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(true);
-			}
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentGlowDreams->setVisible(false);
 		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		else 
 		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(false);
-			}
+			mBBSComponentDreams->setVisible(false);
 		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		
+		if (mUseEntityNightmares)
 		{
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(true);
-			}
-		}	
+			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentGlowNightmares->setVisible(true);
+		}
+		else
+		{
+			mBBSComponentNightmares->setVisible(true);
+		}
+	}
+	else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityDreams)
+		{
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentGlowDreams->setVisible(false);
+		}
+		else
+		{
+			mBBSComponentDreams->setVisible(false);
+		}
+	}
+	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+	{
+		if (mUseEntityNightmares)
+		{
+			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentGlowNightmares->setVisible(true);
+		}
+		else
+		{
+			mBBSComponentNightmares->setVisible(true);
+		}
+	}	
 }
 
 void GameObjectSkyBody::setChangeWorldRender()
@@ -297,13 +305,14 @@ bool GameObjectSkyBody::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectSkyBody::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mWorld==DREAMS) ? mRenderComponentEntityDreams : mRenderComponentEntityNightmares;
 }
+
 RenderComponentBillboardSetPtr GameObjectSkyBody::getRenderComponentBillboardSetDreams() const
 {
 	return mBBSComponentDreams;
-
 }
+
 void GameObjectSkyBody::setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr bbsDreams)
 {
 	mBBSComponentDreams=bbsDreams;
@@ -313,6 +322,7 @@ RenderComponentBillboardSetPtr GameObjectSkyBody::getRenderComponentBillboardSet
 {
 	return mBBSComponentNightmares;
 }
+
 void GameObjectSkyBody::setRenderComponentBillboardSetNightmares(RenderComponentBillboardSetPtr bbsNightmares)
 {
 	mBBSComponentNightmares=bbsNightmares;
@@ -322,14 +332,17 @@ RenderComponentLightPtr GameObjectSkyBody::getLightDreams() const
 {
 	return mLightComponentDreams;
 }
+
 void GameObjectSkyBody::setLightDreams(RenderComponentLightPtr lightComponent)
 {
 	mLightComponentDreams=lightComponent;
 }
+
 RenderComponentLightPtr GameObjectSkyBody::getLightNightmares() const
 {
 	return mLightComponentNightmares;
 }
+
 void GameObjectSkyBody::setLightNightmares(RenderComponentLightPtr lightComponent)
 {
 	mLightComponentNightmares=lightComponent;
@@ -339,6 +352,7 @@ bool GameObjectSkyBody::isUsingEntityDreams()
 {
 	return mUseEntityDreams;
 }
+
 void GameObjectSkyBody::setUseEntityDreams(bool useEntity)
 {
 	mUseEntityDreams=useEntity;
@@ -348,6 +362,7 @@ bool GameObjectSkyBody::isUsingEntityNightmares()
 {
 	return mUseEntityNightmares;
 }
+
 void GameObjectSkyBody::setUseEntityNightmares(bool useEntity)
 {
 	mUseEntityNightmares=useEntity;
@@ -357,15 +372,18 @@ LensFlarePtr GameObjectSkyBody::getLensFlare() const
 {
 	return mLensFlare;
 }
+
 void GameObjectSkyBody::setLensFlare(LensFlarePtr lensFlare)
 {
 	mLensFlare=lensFlare;
 }
+
 void GameObjectSkyBody::initLensFlare(Ogre::Camera* cam, Ogre::SceneManager* sceneMgr)
 {
 	Ogre::SceneNode* currentNode = mRenderComponentPositional->getSceneNode();
 	mLensFlare.reset(new LensFlare(cam,sceneMgr,currentNode));
 }
+
 void GameObjectSkyBody::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);

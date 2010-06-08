@@ -306,7 +306,7 @@ RenderComponentGlowPtr ComponentFactory::createRenderComponentGlow(GameObjectPtr
 		"glow#" + Application::getInstance()->getStringUniqueId()));
 
 	pRenderComponentGlow->getSceneNode()->attachObject(pRenderComponentGlow->getEntity());
-	pRenderComponentGlow->getSceneNode()->setVisible(tRenderComponentGlowParameters.visibility);
+	pRenderComponentGlow->getSceneNode()->setVisible(false);
 
 	return pRenderComponentGlow;
 }
