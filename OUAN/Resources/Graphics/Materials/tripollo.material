@@ -11,21 +11,33 @@ material tripollo_n : basic_texture
 	set_texture_alias diffuse_texture tripollo_n.dds
 }
 
-material tripollo_n_red : basic_texture
+material tripollo_red_n : basic_texture
 {
-	set_texture_alias diffuse_texture tripollo_n_red.dds
+	set_texture_alias diffuse_texture tripollo_red_n.dds
 }
 
-material tripollo_n_green : basic_texture
+material tripollo_green_n : basic_texture
 {
-	set_texture_alias diffuse_texture tripollo_n_green.dds
+	set_texture_alias diffuse_texture tripollo_green_n.dds
 }
 
-material tripollo_n_blue : basic_texture
+material tripollo_blue_n : basic_texture
 {
-	set_texture_alias diffuse_texture tripollo_n_blue.dds
+	set_texture_alias diffuse_texture tripollo_blue_n.dds
 }
 
 material tripollo_cw : default_changeworld
+{
+}
+
+material tripollo_red_cw : default_changeworld
+{
+}
+
+material tripollo_green_cw : default_changeworld
+{
+}
+
+material tripollo_blue_cw : default_changeworld
 {
 }

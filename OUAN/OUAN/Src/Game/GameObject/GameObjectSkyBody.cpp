@@ -88,6 +88,103 @@ RenderComponentInitialPtr GameObjectSkyBody::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectSkyBody::setDreamsRender()
+{
+		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityDreams)
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+			}
+			else
+			{
+				mBBSComponentDreams->setVisible(true);
+			}
+
+			if (mUseEntityNightmares)
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(false);
+			}
+		}
+		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityDreams)
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+			}
+			else
+			{
+				mBBSComponentDreams->setVisible(true);
+			}
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityNightmares)
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(false);
+			}
+		}		
+}
+
+void GameObjectSkyBody::setNightmaresRender()
+{
+		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityDreams)
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else 
+			{
+				mBBSComponentDreams->setVisible(false);
+			}
+			
+			if (mUseEntityNightmares)
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(true);
+			}
+		}
+		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityDreams)
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else
+			{
+				mBBSComponentDreams->setVisible(false);
+			}
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+			if (mUseEntityNightmares)
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+			}
+			else
+			{
+				mBBSComponentNightmares->setVisible(true);
+			}
+		}	
+}
+
+void GameObjectSkyBody::setChangeWorldRender()
+{
+
+}
+
 void GameObjectSkyBody::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -95,108 +192,10 @@ void GameObjectSkyBody::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(true);
-				mBBSComponentDreams->setChangeWorldFactor(0.0f);
-			}
-
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(false);
-				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
-			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(true);
-				mBBSComponentDreams->setChangeWorldFactor(0.0f);
-			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(false);
-				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
-			}
-		}		
+		setDreamsRender();
 		break;
 	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			}
-			else 
-			{
-				mBBSComponentDreams->setVisible(false);
-				mBBSComponentDreams->setChangeWorldFactor(0.0f);
-			}
-			
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(true);
-				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
-			}
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityDreams->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentDreams->setVisible(false);
-				mBBSComponentDreams->setChangeWorldFactor(0.0f);
-			}
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityNightmares)
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setChangeWorldFactor(0.0f);
-			}
-			else
-			{
-				mBBSComponentNightmares->setVisible(true);
-				mBBSComponentNightmares->setChangeWorldFactor(0.0f);
-			}
-		}	
+		setNightmaresRender();
 		break;
 	default:break;
 	}
@@ -206,37 +205,11 @@ void GameObjectSkyBody::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	if(mLogicComponent->existsInDreams())
-	{
-		if (mUseEntityDreams)
-			mRenderComponentEntityDreams->randomizeChangeWorldMaterials();
-		else mBBSComponentDreams->randomizeChangeWorldMaterials();
-	}
-
-	if(mLogicComponent->existsInNightmares())
-	{
-		if (mUseEntityNightmares)
-			mRenderComponentEntityNightmares->randomizeChangeWorldMaterials();
-		else mBBSComponentNightmares->randomizeChangeWorldMaterials();
-	}
-
 	switch(newWorld)
 	{
 	case DREAMS:
-		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-				mRenderComponentEntityDreams->setVisible(true);
-			else mBBSComponentDreams->setVisible(true);
-		}
 		break;
-	case NIGHTMARES:
-		if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityNightmares)
-				mRenderComponentEntityNightmares->setVisible(true);
-			else mBBSComponentNightmares->setVisible(true);
-		}	
+	case NIGHTMARES:	
 		break;
 	default:
 		break;
@@ -250,58 +223,8 @@ void GameObjectSkyBody::changeToWorld(int newWorld, double perc)
 	switch(newWorld)
 	{
 	case DREAMS:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
-			else
-				mBBSComponentDreams->setChangeWorldFactor(1-perc);
-			if (mUseEntityNightmares)
-				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
-			else 
-				mBBSComponentNightmares->setChangeWorldFactor(perc);
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-				mRenderComponentEntityDreams->setChangeWorldFactor(1-perc);
-			else
-				mBBSComponentDreams->setChangeWorldFactor(1-perc);
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityNightmares)
-				mRenderComponentEntityNightmares->setChangeWorldFactor(perc);
-			else
-				mBBSComponentNightmares->setChangeWorldFactor(perc);
-		}		
 		break;
 	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
-			else
-				mBBSComponentDreams->setChangeWorldFactor(perc);
-			if (mUseEntityNightmares)
-				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
-			else 
-				mBBSComponentNightmares->setChangeWorldFactor(1-perc);
-		}
-		else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityDreams)
-				mRenderComponentEntityDreams->setChangeWorldFactor(perc);
-			else
-				mBBSComponentDreams->setChangeWorldFactor(perc);
-		}
-		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-		{
-			if (mUseEntityNightmares)
-				mRenderComponentEntityNightmares->setChangeWorldFactor(1-perc);
-			else
-				mBBSComponentNightmares->setChangeWorldFactor(1-perc);
-		}		
 		break;
 	default:
 		break;

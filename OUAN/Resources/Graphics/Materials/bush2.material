@@ -13,3 +13,4 @@ material bush2_n : alpha_test_texture
 
 material bush2_cw : default_changeworld
 {
+}

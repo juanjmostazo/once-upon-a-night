@@ -23,8 +23,9 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
-		std::vector<std::string> mOriginalMaterials;
-		std::vector<ChangeWorldMaterialPtr> mChangeWorldMaterials;
+		std::string mDreamsMaterial;
+		std::string mNightmaresMaterial;
+		std::string mChangeWorldMaterial;
 
 	public:
 
@@ -48,18 +49,9 @@ namespace OUAN
 		void detachGameObject(GameObjectPtr gameObject);
 
 		void setMaterial(std::string material);
-		void setOriginalMaterials();
+		void setDreamsMaterials();
+		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
-
-		std::vector<std::string>& getOriginalMaterials();
-		std::vector<ChangeWorldMaterialPtr>& getChangeWorldMaterials();
-		
-
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentEntityPtr pOtherComponentEntity);
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
-		void setChangeWorldFactor(double factor);
-		void randomizeChangeWorldMaterials();
-		void setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest);
 
 		//void prepareForNormalMapping();
 

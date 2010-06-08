@@ -1,0 +1,96 @@
+//EROSION
+vertex_program erosion_VS_CG cg
+{
+	source erosion.cg
+	entry_point erosionVS
+	profiles vs_1_1 arbvp1 vp20
+	default_params	
+	{	
+	  param_named_auto worldViewProj worldviewproj_matrix
+            }	
+}
+
+fragment_program erosion_FS_CG cg
+{
+	source erosion.cg
+	entry_point erosionFS
+	profiles ps_2_0 arbfp1 fp20
+
+	default_params	
+	{
+	  param_named mix_factor float 0.0
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	
+	  param_named displacement float3 0.0 0.0 0.0  
+	  param_named blending float 0.03
+	  param_named tiling float3 1 1 1
+	  param_named blending_tiling float3 1 1 1
+   	}
+}
+
+vertex_program erosion_VS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionVS
+	target vs_2_0
+	default_params	
+	{	
+	  param_named_auto matViewProjection worldviewproj_matrix
+    }	
+}
+fragment_program erosion_FS_HLSL hlsl
+{
+	source erosion.hlsl
+	entry_point erosionFS
+	target ps_2_0
+	
+	default_params	
+	{
+	  param_named mix_factor float 0.0
+	  param_named scroll_animation float3 0.0 0.0 0.0	  
+	  param_named scroll_blending float3 0.0 0.0 0.0	  
+	  param_named displacement float 0.0
+	  param_named blending float 0.03
+	  param_named tiling float 1 1 1
+   	}	
+}
+
+// Unified definition
+vertex_program erosion_vs unified
+{
+	//delegate erosion_VS_HLSL
+	delegate erosion_VS_CG
+}
+fragment_program erosion_fs unified
+{
+	//delegate erosion_FS_HLSL
+	delegate erosion_FS_CG
+}
+
+material changeworld
+{
+	technique
+	{
+	        pass
+	        {
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+		        texture_unit 0
+		        {
+			 	texture blending_texture
+		        }
+		        texture_unit 1
+		        {
+				texture diffuse_color_base
+		        }
+		        texture_unit 2
+		        {
+				 texture diffuse_color_blended
+	              }
+              }
+      }
+}

@@ -5,7 +5,6 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
-#include "../../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
 namespace OUAN
@@ -67,6 +66,10 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+
 		/// Reset object
 		virtual void reset();
 
@@ -110,8 +113,6 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
 
-		//ChangeWorld parameters
-		TChangeWorldMaterialParameters tChangeWorldMaterialParameters;
 	};
 }
 #endif

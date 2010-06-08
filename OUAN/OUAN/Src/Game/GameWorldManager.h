@@ -2,7 +2,6 @@
 #define GAMEWORLDMANAGERH_H
 #include "../OUAN.h"
 #include "../Event/Event.h"
-#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 namespace OUAN
 {
 	//forward declarations
@@ -207,7 +206,6 @@ namespace OUAN
 		void setChangeWorldTimes();
 		double getChangeWorldElapsedTime() const;
 		double getChangeWorldTotalTime() const;
-		TChangeWorldMaterialParameters getDefaultChangeWorldMaterialParameters();
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
@@ -260,6 +258,10 @@ namespace OUAN
 
 		void activateChangeWorld();
 		void activateChangeWorldFast();
+
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
 
 		void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
 
@@ -360,10 +362,6 @@ namespace OUAN
 		bool mRandomChangeWorld;
 		bool mIsChangingWorld;
 		int mWorld;
-		TChangeWorldMaterialParameters mDefaultChangeWorldMaterialParameters;
-
-
-
 
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;

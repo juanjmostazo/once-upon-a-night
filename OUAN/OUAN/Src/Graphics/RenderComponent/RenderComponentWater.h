@@ -90,8 +90,9 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
-		std::vector<std::string> mOriginalMaterials;
-		std::vector<ChangeWorldMaterialPtr> mChangeWorldMaterials;
+		std::string mDreamsMaterial;
+		std::string mNightmaresMaterial;
+		std::string mChangeWorldMaterial;
 
 	public:
 
@@ -114,13 +115,10 @@ namespace OUAN
 		bool isAnimated() const;	
 
 		void setMaterial(std::string material);
-		void setOriginalMaterials();
+		void setDreamsMaterials();
+		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentWaterPtr pOtherComponentWater);
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
-		void setChangeWorldFactor(double factor);
-		void randomizeChangeWorldMaterials();
-		void setChangeWorldMaterialsPointOfInterest(Ogre::Vector3 pointOfInterest);
+
 	};
 
 

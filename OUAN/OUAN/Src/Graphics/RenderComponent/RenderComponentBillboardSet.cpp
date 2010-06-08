@@ -1,8 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "RenderComponentBillboardSet.h"
-#include "ChangeWorldMaterial.h"
-
+#include "../../Game/WorldNameConverter.h"
 using namespace OUAN;
 
 RenderComponentBillboardSet::RenderComponentBillboardSet(const std::string& type)
@@ -24,6 +23,13 @@ Ogre::BillboardSet* RenderComponentBillboardSet::getBillboardSet() const
 void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardSet)
 {
 	mBillboardSet=billboardSet;
+
+	if(mBillboardSet)
+	{
+		mDreamsMaterial=WorldNameConverter::getDreamsName(mBillboardSet->getMaterialName());
+		mNightmaresMaterial=WorldNameConverter::getNightmaresName(mBillboardSet->getMaterialName());
+		mChangeWorldMaterial=WorldNameConverter::getChangeWorldName(mBillboardSet->getMaterialName());
+	}
 }
 
 void RenderComponentBillboardSet::setMaterial(std::string material)
@@ -39,105 +45,21 @@ void RenderComponentBillboardSet::setMaterial(std::string material)
 	{
 		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+material+" does not exist.");
 	}
-
-	mOriginalMaterial=material;
-}
-
-void RenderComponentBillboardSet::setOriginalMaterials()
-{
-	if (Ogre::MaterialManager::getSingleton().resourceExists(mOriginalMaterial))
-	{
-		mBillboardSet->setMaterialName(mOriginalMaterial);
-	}
-	else
-	{
-		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mOriginalMaterial+" does not exist.");
-	}
 }
 
 void RenderComponentBillboardSet::setChangeWorldMaterials()
 {
-	if (Ogre::MaterialManager::getSingleton().resourceExists(mChangeWorldMaterial->getMaterialName()))
-	{
-		mBillboardSet->setMaterialName(mChangeWorldMaterial->getMaterialName());
-	}
-	else
-	{
-		Logger::getInstance()->log("[RenderComponentBillboardSet] material "+mChangeWorldMaterial->getMaterialName()+" does not exist.");
-	}
+	setMaterial(mChangeWorldMaterial);
 }
 
-void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentBillboardSetPtr pOtherComponentBillboard)
+void RenderComponentBillboardSet::setDreamsMaterials()
 {
-	ChangeWorldMaterialPtr pChangeWorldMaterial;
-
-	bool materialCreated;
-
-	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial(),pOtherComponentBillboard->getBillboardSet()->getMaterial());
-
-	if(materialCreated)
-	{
-		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
-		mChangeWorldMaterial=pChangeWorldMaterial;
-	}
-	else
-	{
-		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
-	}
-
+	setMaterial(mDreamsMaterial);
 }
 
-
-void RenderComponentBillboardSet::initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters)
+void RenderComponentBillboardSet::setNightmaresMaterials()
 {
-
-	ChangeWorldMaterialPtr pChangeWorldMaterial;
-
-	bool materialCreated;
-
-	pChangeWorldMaterial.reset(new ChangeWorldMaterial());
-
-	materialCreated=pChangeWorldMaterial->init(mBillboardSet->getName(),tChangeWorldMaterialParameters,mBillboardSet->getMaterial());
-
-	if(materialCreated)
-	{
-		mBillboardSet->setMaterialName(pChangeWorldMaterial->getMaterialName());
-		mChangeWorldMaterial=pChangeWorldMaterial;
-	}
-	else
-	{
-		//mChangeWorldMaterial=mBillboardSet->getMaterialName();
-	}
-
-
-	//for ( ; i < mEntity->getNumSubEntities(); i++)
-	//{
-	//	mChangeWorldMaterials.push_back(mEntity->getSubEntity(i)->getMaterial()->getName());
-	//}
-
-	//setChangeWorldMaterials();
-}
-
-void RenderComponentBillboardSet::setChangeWorldFactor(double factor)
-{
-	mChangeWorldMaterial->setChangeWorldFactor(factor);
-}
-
-void RenderComponentBillboardSet::setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest)
-{
-	mChangeWorldMaterial->setPointOfInterest(pointOfInterest);
-}
-
-void RenderComponentBillboardSet::randomizeChangeWorldMaterials()
-{
-	mChangeWorldMaterial->randomize();
-}
-
-void RenderComponentBillboardSet::update(double elapsedTime)
-{
-	mChangeWorldMaterial->update(elapsedTime);
+	setMaterial(mNightmaresMaterial);
 }
 
 void RenderComponentBillboardSet::setVisible(bool visible)

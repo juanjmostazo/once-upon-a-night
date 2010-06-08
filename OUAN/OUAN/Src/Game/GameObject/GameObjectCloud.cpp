@@ -60,6 +60,47 @@ RenderComponentInitialPtr GameObjectCloud::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectCloud::setDreamsRender()
+{
+	if(mLogicComponent->existsInDreams())
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetDreams[i]->setVisible(true);
+		}
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetNightmares[i]->setVisible(false);
+		}
+	}
+}
+
+void GameObjectCloud::setNightmaresRender()
+{
+	if(mLogicComponent->existsInDreams())
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetDreams[i]->setVisible(false);
+		}
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
+		{
+			mRenderComponentFractalVolumeSetNightmares[i]->setVisible(true);
+		}
+	}
+}
+
+void GameObjectCloud::setChangeWorldRender()
+{
+
+}
+
 void GameObjectCloud::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -67,52 +108,10 @@ void GameObjectCloud::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetDreams[i]->setVisible(true);
-					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(false);
-				}
-			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetDreams[i]->setVisible(true);
-				}
-			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(false);
-				}
-			}		
+			setDreamsRender();
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetDreams[i]->setVisible(false);
-					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(true);
-				}
-			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetDreams[i]->setVisible(false);
-				}
-			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-			{
-				for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
-				{
-					mRenderComponentFractalVolumeSetNightmares[i]->setVisible(true);
-				}
-			}		
+			setNightmaresRender();
 			break;
 		default:
 			break;

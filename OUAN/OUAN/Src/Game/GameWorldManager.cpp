@@ -51,7 +51,6 @@
 #include "GameObject/GameObjectWater.h"
 
 #include "../Graphics/RenderSubsystem.h"
-#include "../Graphics/RenderComponent/ChangeWorldMaterial.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -437,7 +436,7 @@ void GameWorldManager::loadLevel(const std::string& levelFileName)
 	setChangeWorldTimes();
 	setWorld(DREAMS);
 
-	mApp->getRenderSubsystem()->initTextureRenderer();
+	mApp->getRenderSubsystem()->initChangeWorldRenderer();
 
 
 	level=levelFileName;
@@ -489,39 +488,6 @@ bool GameWorldManager::loadConfig()
 	{
 		config.getOption("CHANGE_WORLD_TIME", value); 
 		mChangeWorldTotalTime = atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_TYPE", value); 
-		mDefaultChangeWorldMaterialParameters.type= ChangeWorldType(atoi(value.c_str()));
-
-		config.getOption("CHANGE_WORLD_BLENDING_AMOUNT", value); 
-		mDefaultChangeWorldMaterialParameters.blending_amount = atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_BLENDING_TEXTURE", value); 
-		mDefaultChangeWorldMaterialParameters.blending_texture=value;
-
-		config.getOption("MATERIAL_SCROLL_ANIMATION_X", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_animation.x= atof(value.c_str());
-
-		config.getOption("MATERIAL_SCROLL_ANIMATION_Y", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_animation.y= atof(value.c_str());
-
-		config.getOption("MATERIAL_SCROLL_ANIMATION_Z", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_animation.z= atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_X", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_blending.x= atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_Y", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_blending.y= atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_SCROLL_ANIMATION_Z", value); 
-		mDefaultChangeWorldMaterialParameters.scroll_blending.z= atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_TILING", value); 
-		mDefaultChangeWorldMaterialParameters.tiling= atof(value.c_str());
-
-		config.getOption("CHANGE_WORLD_TEXTURE_COORDS_RANDOMIZE", value); 
-		mDefaultChangeWorldMaterialParameters.randomize= Ogre::StringConverter::parseBool(value);
 
 		config.getOption("CHANGE_WORLD_TREES_RANDOM", value); 
 		mRandomChangeWorld= Ogre::StringConverter::parseBool(value);
@@ -1241,6 +1207,33 @@ void GameWorldManager::changeToWorld(int newWorld, double perc)
 	//}
 }
 
+void GameWorldManager::setDreamsRender()
+{
+	TGameObjectContainerIterator it;
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		it->second->setDreamsRender();
+	}
+}
+
+void GameWorldManager::setNightmaresRender()
+{
+	TGameObjectContainerIterator it;
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		it->second->setNightmaresRender();
+	}
+}
+
+void GameWorldManager::setChangeWorldRender()
+{
+	TGameObjectContainerIterator it;
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		it->second->setChangeWorldRender();
+	}
+}
+
 void GameWorldManager::win()
 {
 	setGameOver(true);
@@ -1472,11 +1465,6 @@ void GameWorldManager::setChangeWorldTimes()
 double GameWorldManager::getChangeWorldTotalTime() const
 {
 	return mChangeWorldTotalTime;
-}
-
-TChangeWorldMaterialParameters GameWorldManager::getDefaultChangeWorldMaterialParameters()
-{
-	return mDefaultChangeWorldMaterialParameters;
 }
 
 void GameWorldManager::playSoundFromGameObject(const std::string& objectName, const std::string& soundID)

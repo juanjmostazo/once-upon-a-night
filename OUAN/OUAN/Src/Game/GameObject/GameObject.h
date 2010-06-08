@@ -172,6 +172,10 @@ namespace OUAN
 		void displayText(const std::string& msg, const double& displayLifetime=DEFAULT_DISPLAY_LIFETIME);
 		void disableDisplayMsg();
 
+		virtual void setDreamsRender();
+		virtual void setNightmaresRender();
+		virtual void setChangeWorldRender();
+
 		void setChangeWorldDelay(double delay);
 		double getChangeWorldDelay() const;
 		bool isChangingWorld() const;

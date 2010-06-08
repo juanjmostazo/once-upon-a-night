@@ -1,9 +1,9 @@
 
 //Texture samplers
 
-sampler texture0 : register(s0);
-sampler texture1 : register(s1);
-sampler texture2 : register(s2);
+sampler blending_texture : register(s0);
+sampler diffuse_color_base : register(s1);
+sampler diffuse_color_blended : register(s2);
 
 // General functions
 
@@ -52,64 +52,21 @@ out float4 oColor : COLOR)
     float normalized_blending_factor;  
     
     uv=calculateUV(uv,scroll_animation,tiling);
-    erosion_info=tex2D(texture2,calculateUV(uv,displacement+scroll_blending,blending_tiling));  
+    erosion_info=tex2D(blending_texture,calculateUV(uv,displacement+scroll_blending,blending_tiling));  
     
     if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
     {
-       oColor=tex2D(texture0,uv);
+       oColor=tex2D(diffuse_color_base,uv);                                   
+
     }
     else if(erosion_info.x<=mix_factor-blending || mix_factor==1.0f)
     {
-       oColor=tex2D(texture1,uv);
+       oColor=tex2D(diffuse_color_blended,uv);
     }   
     else
     {
        normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
-       oColor=normalized_blending_factor*tex2D(texture0,uv)+(1-normalized_blending_factor)*tex2D(texture1,uv); 
-    }
-}
-
-// Erosion Transparent FS main
-
-void erosion_transparentFS(
-in float4 color : COLOR,
-in float2 uv : TEXCOORD0,
-uniform float3 displacement,
-uniform float3 scroll_blending,
-uniform float3 scroll_animation,
-uniform float mix_factor,
-uniform float blending,
-uniform float3 tiling,
-uniform float3 blending_tiling,
-out float4 oColor : COLOR)
-{
-    float4 erosion_info;
-    float normalized_blending_factor;
-    
-    uv=calculateUV(uv,scroll_animation,tiling);
-    erosion_info=tex2D(texture2,calculateUV(uv,displacement+scroll_blending,blending_tiling));   
-    
-    color=tex2D(texture0,uv);
-    
-    oColor=color;
-    
-    if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
-    {
-       color.w=1.0f;
-    }
-    else if(erosion_info.x<=mix_factor-blending || mix_factor==1.0f)
-    {
-       color.w=0.0f;
-    }   
-    else
-    {
-       normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
-       color.w=normalized_blending_factor;
-    }
-    
-    if(oColor.w>color.w)
-    {
-        oColor.w=color.w;
+       oColor=normalized_blending_factor*tex2D(diffuse_color_base,uv)+(1-normalized_blending_factor)*tex2D(diffuse_color_blended,uv); 
     }
 
 }

@@ -10,8 +10,9 @@ namespace OUAN
 	private:
 		Ogre::BillboardSet * mBillboardSet;
 
-		std::string mOriginalMaterial;
-		ChangeWorldMaterialPtr mChangeWorldMaterial;
+		std::string mDreamsMaterial;
+		std::string mNightmaresMaterial;
+		std::string mChangeWorldMaterial;
 	public:
 
 		RenderComponentBillboardSet(const std::string& type="");
@@ -23,15 +24,10 @@ namespace OUAN
 		void setVisible(bool visible);
 
 		void setMaterial(std::string material);
-		void setOriginalMaterials();
+		void setDreamsMaterials();
+		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters,RenderComponentBillboardSetPtr pOtherComponentBillboard);
-		void initChangeWorldMaterials(TChangeWorldMaterialParameters tChangeWorldMaterialParameters);
-		void setChangeWorldFactor(double factor);
-		void randomizeChangeWorldMaterials();
-		void setChangeWorldMaterialsPointOfInterest(Vector3 pointOfInterest);
 
-		void update(double elapsedTime);
 	};
 
 	class TRenderComponentBillboardParameters: public TRenderComponentParameters

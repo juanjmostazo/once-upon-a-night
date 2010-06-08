@@ -71,6 +71,12 @@ namespace OUAN
 		const int NIGHTMARES=1;
 		const int BOTH_WORLDS=2;
 
+		const std::string SUFFIX_DREAMS="_d";
+		const std::string SUFFIX_NIGHTMARES="_n";	
+		const std::string SUFFIX_CHANGEWORLD="_cw";
+
+		class WorldNameConverter;
+
 		const std::string LEVEL_NONE="None";
 		const std::string LEVEL_TEST="TestLevel";
 		const std::string LEVEL_SANDBOX="Sandbox";
@@ -132,7 +138,6 @@ namespace OUAN
 
 		class RenderComponentScene;
 		class TRenderComponentSkyDomeParameters;
-		class TRenderComponentSkyBoxParameters;
 		class TRenderComponentSceneParameters;
 		typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
 
@@ -165,20 +170,6 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";
-
-		const std::string LIGHTMAP_PREFIX="lightmap#";
-
-		class ChangeWorldMaterial;
-		typedef boost::shared_ptr<ChangeWorldMaterial> ChangeWorldMaterialPtr;
-		class TChangeWorldMaterialParameters;
-
-
-		enum ChangeWorldType
-		{
-			CW_BLENDING,
-			CW_EROSION,
-			CW_EROSION_TRANSPARENT
-		};
 
 		//RayCasting
 		class RayCasting;
@@ -644,8 +635,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SKYBODY="skybody";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
-		const std::string SUFFIX_TRAJECTORY_DREAMS="_d";
-		const std::string SUFFIX_TRAJECTORY_NIGHTMARES="_n";	
+
 
 		///////////////////////////////////////////////////////////////////
 
@@ -772,8 +762,8 @@ namespace OUAN
 		class RenderSubsystem;
 		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
 
-		class TextureRenderer;
-		typedef boost::shared_ptr<TextureRenderer> TextureRendererPtr;
+		class ChangeWorldRenderer;
+		typedef boost::shared_ptr<ChangeWorldRenderer> ChangeWorldRendererPtr;
 
 		///Camera Manager
 		const std::string CAMERA_CFG="../../Config/camera-cfg.xml";

@@ -14,15 +14,6 @@
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY> 
 
-  <!-- ChangeWorldMaterial parameters -->
-  <PROPERTY id="ChangeWorldMaterial::blending_amount" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::blending_texture" type="6" value="random.png" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="6" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="6" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::tiling" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::type" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="ChangeWorldMaterial::randomize" type="6" value="true" fields="X;Y;Z;W"></PROPERTY>
- 
   <!-- Available attacks -->
   <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::selectedAttack" type="7" value="peck" fields="X;Y;Z;W"></PROPERTY>

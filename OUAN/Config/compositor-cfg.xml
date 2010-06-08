@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
+
+	<Option key="CHANGEWORLD">changeworld_compositor</Option>
+
 	<Option key="BLOOM">Bloom</Option>
 	<Option key="BLOOM_ACTIVATED_ALWAYS_DREAMS">false</Option>
 	<Option key="BLOOM_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
