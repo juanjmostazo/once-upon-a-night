@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentScene.h"
 #include "ChangeWorldMaterial.h"
 using namespace OUAN;

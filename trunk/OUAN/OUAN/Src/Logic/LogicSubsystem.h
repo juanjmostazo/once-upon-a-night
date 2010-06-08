@@ -2,9 +2,6 @@
 #define LOGICSUBSYSTEMH_H
 #include "../OUAN.h"
 
-extern "C" {
-#include "lua.h"
-}
 namespace OUAN
 {
 	const std::string SCRIPTS_PATH ="../../Resources/Scripts";

@@ -1,5 +1,5 @@
-#include <sstream>
-#include <stdlib.h>
+#include "OUAN_Precompiled.h"
+
 #include "ControlInputManager.h"
 
 using namespace OUAN;

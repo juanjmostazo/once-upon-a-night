@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectCarnivorousPlant.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"

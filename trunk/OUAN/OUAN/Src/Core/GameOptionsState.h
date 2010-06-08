@@ -4,7 +4,6 @@
 #include "GameState.h"
 #include "../OUAN.h"
 #include "../Input/InputDefs.h"
-#include <boost/enable_shared_from_this.hpp>
 
 namespace OUAN
 {

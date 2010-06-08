@@ -3,7 +3,6 @@
 
 #include "../OUAN.h"
 #include "GameState.h"
-#include <boost/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	const std::string EXTRAS_IMG="ouan-nologo-bg.png";

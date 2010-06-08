@@ -2,9 +2,6 @@
 #define RENDERSUBSYSTEMH_H
 
 #include "../OUAN.h"
-#include <NxOgre.h>
-#include <NxOgreOGRE3D.h>
-#include <NxOgreAddonCharacterController.h>
 
 #include "ParticleUniverseSystemManager.h"
 #include "Bar/LoadingBar.h"

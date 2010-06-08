@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TextureRenderer.h"
 using namespace OUAN;
 using namespace Ogre;

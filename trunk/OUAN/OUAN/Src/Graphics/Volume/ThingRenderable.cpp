@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 /*
 -----------------------------------------------------------------------------
 This source file is part of OGRE
@@ -12,10 +14,6 @@ LGPL like the rest of the engine.
 -----------------------------------------------------------------------------
 */
 #include "ThingRenderable.h"
-#include <OgreHardwareVertexBuffer.h>
-#include <OgreHardwareIndexBuffer.h>
-#include <OgreHardwareBufferManager.h>
-#include <OgreCamera.h>
 using namespace Ogre;
 
 ThingRenderable::ThingRenderable(float radius, size_t count, float qsize):

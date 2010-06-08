@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "LogicSubsystem.h"
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
@@ -21,14 +23,6 @@
 
 #include "../Utils/Utils.h"
 
-
-
-extern "C" {
-	#include "lua.h"
-	#include "lualib.h"
-	#include "lauxlib.h"
-}
-#include <luabind/luabind.hpp>
 
 using namespace OUAN;
 LogicSubsystem::LogicSubsystem()

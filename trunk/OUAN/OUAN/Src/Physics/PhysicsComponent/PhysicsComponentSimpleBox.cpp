@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentSimpleBox.h"
 using namespace OUAN;
 

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "AudioComponent.h"
 
 #include "../AudioSubsystem.h"

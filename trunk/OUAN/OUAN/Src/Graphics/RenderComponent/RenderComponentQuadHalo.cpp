@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentQuadHalo.h"
 
 using namespace OUAN;

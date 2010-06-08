@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectTerrainTriangle.h"
 #include "../GameWorldManager.h"
 #include "GameObjectOny.h"

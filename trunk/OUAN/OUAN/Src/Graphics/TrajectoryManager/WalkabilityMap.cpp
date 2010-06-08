@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "WalkabilityMap.h"
 #include "../Line3D/Line3D.h"
 

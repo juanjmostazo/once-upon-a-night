@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 // Ogre Dshow: small wrapper for video reproduction in Ogre, using Direct Show 9.
 /*
    Wrapper for video reproduction using Direct Show in the Ogre 3d engine.
@@ -32,8 +34,6 @@
 
 #include "OgreDirectShow.h"
 #include "OgreDirectShowPrivate.h"
-#include <OgreStringConverter.h>
-#include <dshow.h>
 #include "CVDShowUtil.h"
 
 using namespace OUAN;

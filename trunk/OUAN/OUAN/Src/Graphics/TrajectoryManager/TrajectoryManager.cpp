@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TrajectoryManager.h"
 #include "Trajectory.h"
 #include "TrajectoryNode.h"

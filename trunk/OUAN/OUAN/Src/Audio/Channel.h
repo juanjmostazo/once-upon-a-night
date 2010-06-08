@@ -1,10 +1,6 @@
 #ifndef CHANNELH_H
 #define CHANNELH_H
 
-#include <Ogre.h>
-#include <fmod.hpp>
-#include <boost/shared_ptr.hpp>
-
 namespace FMOD
 {
 	class Channel;

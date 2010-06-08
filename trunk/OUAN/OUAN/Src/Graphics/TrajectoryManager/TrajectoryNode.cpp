@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TrajectoryNode.h"
 using namespace OUAN;
 

@@ -7,8 +7,6 @@
  #define _LENSFLARE_H_
 
 #define VOIDOBJECT 0
-
-#include <Ogre.h>
  
  /* ------------------------------------------------------------------------- */
  /// A lens Flare effect.

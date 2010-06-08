@@ -1,6 +1,5 @@
 #ifndef CONFIGKEYSH_H
 #define CONFIGKEYSH_H
-#include <string>
 
 namespace OUAN
 {

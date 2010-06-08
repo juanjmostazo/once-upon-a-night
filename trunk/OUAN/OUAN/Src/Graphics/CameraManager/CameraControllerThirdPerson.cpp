@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "CameraControllerThirdPerson.h"
 #include "TransparentEntityManager.h"
 #include "../RenderComponent/RenderComponentPositional.h"

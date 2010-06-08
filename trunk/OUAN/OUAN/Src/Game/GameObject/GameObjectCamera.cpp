@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectCamera.h"
 #include "../GameWorldManager.h"
 

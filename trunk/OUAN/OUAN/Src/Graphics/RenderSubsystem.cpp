@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderSubsystem.h"
 #include "../Application.h"
 #include "../Loader/Configuration.h"

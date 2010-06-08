@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectSkyBody.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/Effects/LensFlare.h"

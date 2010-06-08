@@ -1,8 +1,6 @@
 #ifndef GUIDEFSH_H
 #define GUIDEFSH_H
-#include <boost/shared_ptr.hpp>
-#include <cegui/CEGUI.h>
-#include <OgreCEGUIRenderer.h>
+
 namespace OUAN
 {
 	//-------------------------------------

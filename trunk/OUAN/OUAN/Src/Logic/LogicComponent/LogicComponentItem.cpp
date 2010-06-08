@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "LogicComponentItem.h"
 #include "../LogicSubsystem.h"
 #include "../../Game/GameWorldManager.h"

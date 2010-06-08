@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameOptionsState.h"
 #include "../Application.h"
 #include "../GUI/GUISubsystem.h"
@@ -7,7 +9,6 @@
 #include "GameStateManager.h"
 
 #include "MainMenuState.h"
-#include <sstream>
 
 using namespace OUAN;
 

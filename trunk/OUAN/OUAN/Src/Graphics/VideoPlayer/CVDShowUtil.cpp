@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 /// \file CVDShowUtil.cpp   
 /// \brief DirectShow utility functions straight out of the DirectX 9.0 documentation.   
 #include "CVDShowUtil.h"   

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameRunningState.h"
 
 #include "GameStateManager.h"
@@ -24,8 +26,6 @@
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Audio/AudioSubsystem.h"
 #include "../Utils/Utils.h"
-
-#include <fstream>
 
 using namespace OUAN;
 

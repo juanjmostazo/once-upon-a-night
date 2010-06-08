@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "Application.h"
 
 #include "Graphics/RenderSubsystem.h"
@@ -29,8 +31,6 @@
 #include "Graphics/RenderComponent/RenderComponentPositional.h"
 
 #include "Utils/Utils.h"
-
-#include <ctime>
 
 using namespace OUAN;
 

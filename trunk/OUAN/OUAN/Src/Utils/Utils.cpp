@@ -1,11 +1,6 @@
+#include "OUAN_Precompiled.h"
 #include "Utils.h"
 #include "Logger.h"
-#include <Ogre.h>
-#include <OgreTagPoint.h>
-#include <ctime>
-#include <iostream>
-#include <sstream>
-#include <iomanip>
 
 using namespace OUAN;
 using namespace Utils;

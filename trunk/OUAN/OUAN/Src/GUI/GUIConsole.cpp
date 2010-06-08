@@ -1,8 +1,9 @@
+#include "OUAN_Precompiled.h"
+
 #include "GUIConsole.h"
 #include "GUISubsystem.h"
 #include "../Core/GameRunningState.h"
 #include "../Application.h"
-#include <fstream>
 using namespace OUAN;
 void GUIConsole::initGUI(GameStatePtr parentGameState)
 {

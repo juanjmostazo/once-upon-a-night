@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 /* ------------------------------------------------------------------------- */
  // File       : LensFlare.cpp
  // Project    : Long Forgotten Earth

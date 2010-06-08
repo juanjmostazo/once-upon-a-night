@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "EventProcessor.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Game/GameWorldManager.h"

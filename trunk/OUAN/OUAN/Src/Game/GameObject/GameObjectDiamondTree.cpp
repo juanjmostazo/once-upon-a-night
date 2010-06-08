@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "Event.h"
 
 using namespace OUAN;

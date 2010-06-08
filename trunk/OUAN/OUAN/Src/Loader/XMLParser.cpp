@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "XMLParser.h"
 #include "XMLGameObject.h"
 #include "XMLTrajectory.h"

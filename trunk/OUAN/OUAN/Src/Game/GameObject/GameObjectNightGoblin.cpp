@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectNightGoblin.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"

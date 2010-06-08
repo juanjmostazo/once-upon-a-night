@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentVolumeBox.h"
 using namespace OUAN;
 

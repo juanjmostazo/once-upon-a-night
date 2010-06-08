@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectFlashLight.h"
 #include "GameObjectOny.h"
 #include "../GameWorldManager.h"

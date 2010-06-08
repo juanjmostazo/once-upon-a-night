@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "XMLGameObject.h"
 
 using namespace OUAN;
