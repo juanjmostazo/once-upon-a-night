@@ -1,18 +1,18 @@
-vertex_program glow_vs_cg cg
+vertex_program TESTING_glow_vs_cg cg
 {
 	source TESTING_vs_glow.cg
 	entry_point main
 	profiles vs_1_1 arbvp1
 }
 
-fragment_program glow_ps_cg cg
+fragment_program TESTING_glow_ps_cg cg
 {
 	source TESTING_ps_glow.cg
 	entry_point main
 	profiles ps_2_0 arbfp1	
 }
 
-material cg/mod_glow
+material cg/single_glow
 {
 	technique
 	{
@@ -22,61 +22,27 @@ material cg/mod_glow
 			depth_check on
 			lighting off
 			
-			vertex_program_ref glow_vs_cg
+			vertex_program_ref TESTING_glow_vs_cg
 			{
 				param_named_auto worldViewProjMatrix worldviewproj_matrix
 				param_named size_value float 1.1
 				param_named_auto time time_0_x 100
 			}
 			
-			fragment_program_ref glow_ps_cg 
+			fragment_program_ref TESTING_glow_ps_cg 
 			{
-				param_named alpha_value float 0.4
+				param_named alpha_value float 0.5
 				param_named_auto time time_0_x 100
+				param_named time_factor float 1.0
+				param_named color_r float 2.0
+				param_named color_g float 0.0
+				param_named color_b float 0.0
 			}
 		}
 	}
 }
 
-material cg/mod_alpha_glow
-{
-	technique
-	{
-		pass
-		{
-			scene_blend alpha_blend
-			depth_check on
-			lighting off
-			
-			fragment_program_ref glow_ps_cg 
-			{
-				param_named_auto time time_0_x 100
-				param_named alpha_value float 0.0
-			}
-			vertex_program_ref glow_vs_cg 
-			{
-				param_named_auto worldViewProjMatrix worldviewproj_matrix
-				param_named size_value float 1.1
-				param_named_auto time time_0_x 100
-			}
-		}
-		
-	pass
-		{
-			scene_blend alpha_blend
-			depth_check on
-			lighting off
-			
-			fragment_program_ref glow_ps_cg 
-			{
-				param_named_auto time time_0_x 100
-				param_named alpha_value float 0.0
-			}
-		}		
-	}
-}
-
-material cg/mod_no_depth_check_glow
+material cg/wrapping_glow
 {
 	technique
 	{
@@ -86,10 +52,14 @@ material cg/mod_no_depth_check_glow
 			depth_check off
 			lighting off
 			
-			fragment_program_ref glow_ps_cg 
+			fragment_program_ref TESTING_glow_ps_cg 
 			{
 				param_named_auto time time_0_x 100
-				param_named alpha_value float 0.4
+				param_named alpha_value float 0.5
+				param_named time_factor float 2.0
+				param_named color_r float 1.0
+				param_named color_g float 0.0
+				param_named color_b float 0.0
 			}
 		}
 		pass
@@ -98,12 +68,16 @@ material cg/mod_no_depth_check_glow
 			depth_check off
 			lighting off
 			
-			fragment_program_ref glow_ps_cg 
+			fragment_program_ref TESTING_glow_ps_cg 
 			{
 				param_named_auto time time_0_x 100
-				param_named alpha_value float 0.4
+				param_named alpha_value float 0.5
+				param_named time_factor float 2.0
+				param_named color_r float 1.0
+				param_named color_g float 0.0
+				param_named color_b float 0.0
 			}
-			vertex_program_ref glow_vs_cg 
+			vertex_program_ref TESTING_glow_vs_cg 
 			{
 				param_named_auto worldViewProjMatrix worldviewproj_matrix
 				param_named size_value float 1.1

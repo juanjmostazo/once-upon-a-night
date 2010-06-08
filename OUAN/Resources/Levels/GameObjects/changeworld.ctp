@@ -3,8 +3,8 @@
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="5 8 5" fields="X;Y;Z;W"></PROPERTY>
 	
-	<PROPERTY id="RenderComponentGlowDreams::material" type="7" value="cg/mod_no_depth_check_glow"></PROPERTY>
-	<PROPERTY id="RenderComponentGlowNightmares::material" type="7" value="cg/mod_no_depth_check_glow"></PROPERTY>
+	<PROPERTY id="RenderComponentGlowDreams::material" type="7" value="cg/single_glow"></PROPERTY>
+	<PROPERTY id="RenderComponentGlowNightmares::material" type="7" value="cg/single_glow"></PROPERTY>
 	
 	<!-- Logic component attributes -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="portal.lua"></PROPERTY>
