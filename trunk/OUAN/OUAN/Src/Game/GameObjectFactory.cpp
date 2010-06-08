@@ -88,13 +88,17 @@ GameObjectFactory::GameObjectFactory()
 GameObjectFactory::~GameObjectFactory()
 {
 	if (mComponentFactory.get())
+	{
 		mComponentFactory.reset();
+	}
 }
 
 void GameObjectFactory::init(ApplicationPtr app)
 {
 	if (mComponentFactory.get())
+	{
 		mComponentFactory->init(app);
+	}
 }
 
 GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters, 
@@ -1740,7 +1744,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->setRenderComponentGlowDreams(
 			mComponentFactory->createRenderComponentGlow(
 			gameObject,
-			params.tRenderComponentGlowParameters,
+			params.tRenderComponentGlowDreamsParameters,
 			gameObject->getRenderComponentPositional(),
 			gameObject->getRenderComponentEntityDreams()));
 	}
@@ -1755,7 +1759,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->setRenderComponentGlowNightmares(
 			mComponentFactory->createRenderComponentGlow(
 			gameObject,
-			params.tRenderComponentGlowParameters,
+			params.tRenderComponentGlowNightmaresParameters,
 			gameObject->getRenderComponentPositional(),
 			gameObject->getRenderComponentEntityNightmares()));
 	}

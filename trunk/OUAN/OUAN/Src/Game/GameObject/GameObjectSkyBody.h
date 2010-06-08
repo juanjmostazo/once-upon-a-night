@@ -182,7 +182,8 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///RenderComponentGlow parameters
-		TRenderComponentGlowParameters tRenderComponentGlowParameters;
+		TRenderComponentGlowParameters tRenderComponentGlowDreamsParameters;
+		TRenderComponentGlowParameters tRenderComponentGlowNightmaresParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
