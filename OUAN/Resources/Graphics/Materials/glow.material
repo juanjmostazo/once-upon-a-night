@@ -20,6 +20,7 @@ material cg/single_glow
 		{
 			scene_blend alpha_blend
 			depth_check on
+			depth_write off
 			lighting off
 			
 			vertex_program_ref glow_vs_cg
@@ -51,7 +52,8 @@ material cg/wrapping_glow
 		pass
 		{
 			scene_blend alpha_blend
-			depth_check off
+			depth_check on
+			depth_write off
 			lighting off
 			
 			fragment_program_ref glow_ps_cg 
@@ -67,7 +69,8 @@ material cg/wrapping_glow
 		pass
 		{
 			scene_blend alpha_blend
-			depth_check off
+			depth_check on
+			depth_write off
 			lighting off
 			
 			fragment_program_ref glow_ps_cg 
