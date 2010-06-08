@@ -6,15 +6,15 @@ void main(float4 position : POSITION,
 			  out float4 colour    : COLOR,
 			
 			  uniform float4x4 worldViewProjMatrix,
-			  uniform float size_value,
 			  uniform float time,
-			  uniform float time_factor,
-			  uniform float expand_width_factor,
-			  uniform float expand_grow_factor
+			  uniform float time_scale,
+			  uniform float size_scale,
+			  uniform float expand_width,
+			  uniform float expand_grow
 			)
 {
    float4 mypos = position;
-   mypos.xyz += size_value * (expand_width_factor + (sin(time * time_factor) + 1.0) * expand_grow_factor) * normal; 
+   mypos.xyz += size_scale * (expand_width + (sin(time * time_scale) + 1.0) * expand_grow) * normal; 
    oPosition = mul(worldViewProjMatrix, mypos);
 }
 
