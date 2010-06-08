@@ -26,6 +26,16 @@ void GameObjectClockPiece::setRenderComponentEntity(RenderComponentEntityPtr pRe
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
+void GameObjectClockPiece::setRenderComponentGlow(RenderComponentGlowPtr pRenderComponentGlow)
+{
+	mRenderComponentGlow=pRenderComponentGlow;
+}
+
+RenderComponentGlowPtr GameObjectClockPiece::getRenderComponentGlow() const
+{
+	return mRenderComponentGlow;
+}
+
 void GameObjectClockPiece::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -62,23 +72,27 @@ void GameObjectClockPiece::setDreamsRender()
 	{
 		mRenderComponentEntity->setVisible(true);
 		mRenderComponentEntity->setDreamsMaterials();
+		mRenderComponentGlow->setVisible(true);
 	}
 	else
 	{
 		mRenderComponentEntity->setVisible(false);
+		mRenderComponentGlow->setVisible(false);
 	}
 }
 
 void GameObjectClockPiece::setNightmaresRender()
 {
-	if(mLogicComponentItem->existsInDreams())
-	{
-		mRenderComponentEntity->setVisible(false);
-	}
-	else
+	if(mLogicComponentItem->existsInNightmares())
 	{
 		mRenderComponentEntity->setVisible(true);
 		mRenderComponentEntity->setNightmaresMaterials();
+		mRenderComponentGlow->setVisible(true);
+	}
+	else
+	{
+		mRenderComponentEntity->setVisible(false);
+		mRenderComponentGlow->setVisible(false);
 	}
 }
 

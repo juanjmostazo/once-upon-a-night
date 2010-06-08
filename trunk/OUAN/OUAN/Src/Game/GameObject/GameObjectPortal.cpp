@@ -39,6 +39,26 @@ void GameObjectPortal::setRenderComponentEntityNightmares(RenderComponentEntityP
 	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
 }
 
+void GameObjectPortal::setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlow)
+{
+	mRenderComponentGlowDreams=pRenderComponentGlow;
+}
+
+void GameObjectPortal::setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlow)
+{
+	mRenderComponentGlowNightmares=pRenderComponentGlow;
+}
+
+RenderComponentGlowPtr GameObjectPortal::getRenderComponentGlowDreams() const
+{
+	return mRenderComponentGlowDreams;
+}
+
+RenderComponentGlowPtr GameObjectPortal::getRenderComponentGlowNightmares() const
+{
+	return mRenderComponentGlowNightmares;
+}
+
 void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -84,6 +104,9 @@ void GameObjectPortal::setDreamsRender()
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
+	
+	mRenderComponentGlowDreams->setVisible(true);
+	mRenderComponentGlowNightmares->setVisible(false);
 }
 
 void GameObjectPortal::setNightmaresRender()
@@ -91,6 +114,9 @@ void GameObjectPortal::setNightmaresRender()
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
+
+	mRenderComponentGlowDreams->setVisible(false);
+	mRenderComponentGlowDreams->setVisible(true);
 }
 
 void GameObjectPortal::setChangeWorldRender()
