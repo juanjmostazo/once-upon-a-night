@@ -1,7 +1,5 @@
 #ifndef AUDIOSCRIPTLOADERH_H
 #define AUDIOSCRIPTLOADERH_H
-#include <boost/shared_ptr.hpp>
-#include <Ogre.h>
 #include "Sound.h"
 namespace OUAN
 {

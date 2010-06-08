@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectPortal.h"
 #include "../GameWorldManager.h"
 

@@ -2,7 +2,6 @@
 #define HUDINGAMEH_H
 #include "HUDBase.h"
 #include "../../Event/EventDefs.h"
-#include <boost/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	const std::string OVERLAY_INGAME_HUD = "OUAN/HUDOverlay";

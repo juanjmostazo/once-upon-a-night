@@ -1,3 +1,4 @@
+#include "OUAN_Precompiled.h"
 /*
 www.sourceforge.net/projects/tinyxml
 Original file by Yves Berquin.

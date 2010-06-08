@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TrajectoryComponent.h"
 #include "Trajectory.h"
 #include "../../Game/GameObject/GameObject.h"

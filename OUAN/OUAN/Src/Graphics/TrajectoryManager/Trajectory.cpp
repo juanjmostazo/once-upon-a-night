@@ -1,9 +1,11 @@
+#include "OUAN_Precompiled.h"
+
 #include "Trajectory.h"
 #include "TrajectoryManager.h"
 #include "TrajectoryNode.h"
 #include "../Line3D/Line3D.h"
 #include "../../Utils/Utils.h"
-#include <stdlib.h>
+
 using namespace OUAN;
 
 Trajectory::Trajectory()

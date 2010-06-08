@@ -8,8 +8,6 @@
 #ifndef CVDShowUtil_H_ 
 #define CVDShowUtil_H_ 
 
-#include <windows.h>
-#include <Dshow.h>   // DirectShow (using DirectX 9.0 for dev)
 #include <qedit.h>   // Sample grabber defines
 
 

@@ -1,6 +1,5 @@
+#include "OUAN_Precompiled.h"
 #include "FullInputManager.h"
-#include <OgreRenderWindow.h>
-#include <math.h>
 
 using namespace OUAN;
 

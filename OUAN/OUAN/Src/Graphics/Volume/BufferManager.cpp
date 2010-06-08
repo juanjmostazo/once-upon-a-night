@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "BufferManager.h"
 #include "JuliaManager.h"
 #include "../../Application.h"

@@ -1,10 +1,6 @@
 #ifndef UTILSH_H
 #define UTILSH_H
 
-#include <string>
-#include <boost/random.hpp>
-#include <boost/nondet_random.hpp>
-
 namespace Ogre
 {
 	class Entity;

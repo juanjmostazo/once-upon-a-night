@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentPlane.h"
 using namespace OUAN;
 

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "HUDBase.h"
 
 using namespace OUAN;

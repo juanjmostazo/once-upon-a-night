@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GUISubsystem.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -8,7 +10,6 @@
 #include "GUIConsole.h"
 #include "GUIExtrasMenu.h"
 #include "GUIInGame.h"
-#include <algorithm>
 
 using namespace OUAN;
 CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)

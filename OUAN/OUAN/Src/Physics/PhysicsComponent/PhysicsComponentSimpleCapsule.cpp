@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentSimpleCapsule.h"
 using namespace OUAN;
 

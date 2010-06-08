@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GUIWindow.h"
 using namespace OUAN;
 GUIWindow::GUIWindow()

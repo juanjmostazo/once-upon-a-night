@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "LevelLoader.h"
 #include "XMLParser.h"
 #include "XMLTrajectory.h"

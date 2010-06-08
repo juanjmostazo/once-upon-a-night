@@ -39,12 +39,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm178"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				PreprocessorDefinitions="OUAN_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="OUAN_Precompiled.h"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -115,13 +118,18 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="-Zm178"
 				Optimization="0"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="OUAN_Precompiled.h"
 				WarningLevel="3"
 				DebugInformationFormat="0"
+				CompileAs="2"
+				ShowIncludes="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -189,11 +197,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="-Zm178"
 				Optimization="3"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="OUAN_Precompiled.h"
 				WarningLevel="3"
 				DebugInformationFormat="0"
 			/>
@@ -254,6 +265,35 @@
 			<File
 				RelativePath=".\Src\main.cpp"
 				>
+			</File>
+			<File
+				RelativePath=".\Src\OUAN_Precompiled.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="OUAN_Precompiled.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_Optimised|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<Filter
 				Name="Input"
@@ -1035,6 +1075,10 @@
 			</File>
 			<File
 				RelativePath=".\Src\OUAN.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Src\OUAN_Precompiled.h"
 				>
 			</File>
 			<Filter

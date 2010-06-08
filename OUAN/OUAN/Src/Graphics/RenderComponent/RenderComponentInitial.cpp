@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentInitial.h"
 
 using namespace OUAN;

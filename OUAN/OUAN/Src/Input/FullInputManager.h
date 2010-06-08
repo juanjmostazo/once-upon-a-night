@@ -1,7 +1,6 @@
 #ifndef __FULL_INPUT_MANAGER__H__
 #define __FULL_INPUT_MANAGER__H__
 
-#include <ois/OIS.h>
 #include "../Loader/Configuration.h"
 
 namespace Ogre

@@ -1,7 +1,5 @@
 #ifndef INPUTDEFSH_H
 #define INPUTDEFSH_H
-#include <map>
-#include <string>
 //--------
 //-- Input-related typedefs
 //-----

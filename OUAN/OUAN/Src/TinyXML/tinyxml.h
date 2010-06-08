@@ -31,12 +31,6 @@ distribution.
 #pragma warning( disable : 4786 )
 #endif
 
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-
 // Help out windows:
 #if defined( _DEBUG ) && !defined( DEBUG )
 #define DEBUG

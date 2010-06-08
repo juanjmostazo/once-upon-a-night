@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentDecal.h"
 using namespace OUAN;
 

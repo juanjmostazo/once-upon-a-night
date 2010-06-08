@@ -4,11 +4,6 @@
 #include "../OUAN.h"
 #include "Event.h"
 #include "EventHandler.h"
-
-#include <queue>
-#include <vector>
-#include <list>
-
 namespace OUAN
 {
 	typedef std::priority_queue<EventPtr,std::vector<EventPtr>,EventComparator> TEventQueue;

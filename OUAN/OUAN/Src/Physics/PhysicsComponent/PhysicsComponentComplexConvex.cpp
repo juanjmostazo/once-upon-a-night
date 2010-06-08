@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentComplexConvex.h"
 using namespace OUAN;
 

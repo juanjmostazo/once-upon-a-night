@@ -1,8 +1,5 @@
 #ifndef LOGGERH_H
 #define LOGGERH_H
-
-#include <Ogre.h>
-
 namespace OUAN
 {
 	class Logger

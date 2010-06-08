@@ -1,7 +1,6 @@
 #ifndef SOUNDH_H
 #define SOUNDH_H
 
-#include <Ogre.h>
 namespace FMOD
 {
 	class Sound;

@@ -1,29 +1,13 @@
 #ifndef __OUAN__H__
 #define __OUAN__H__
 
-#include <map>
-#include <string>
-#include <iostream>
-#include <fstream> 
-#include <sys/stat.h>
-#include <Ogre.h>
-#include <ois/OIS.h>
-
-#include "stdlib.h"
-
 #include "ConfigKeys.h"
-
-#include <boost/shared_ptr.hpp>
-#include <boost/smart_ptr/enable_shared_from_this.hpp>
 
 #include "TinyXML/tinyxml.h"
 
 #include "Logic/LogicDefs.h"
 
 #include "Utils/Logger.h"
-
-#define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
-#define _CRT_SECURE_NO_WARNINGS
 
 namespace OUAN
 {

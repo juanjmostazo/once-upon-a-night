@@ -1,7 +1,5 @@
 #ifndef EVENTPRIORITIESH_H
 #define EVENTPRIORITIESH_H
-#include <boost/shared_ptr.hpp>
-
 namespace OUAN
 {
 	// Event manager-related constants, typedefs and forwarded declarations

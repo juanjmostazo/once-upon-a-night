@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameWorldManager.h"
 #include "../Application.h"
 #include "../Loader/LevelLoader.h"
@@ -59,24 +61,6 @@
 #include "../Event/EventProcessor.h"
 
 #include "../Audio/AudioComponent/AudioComponent.h"
-
-/// These macros will reset the shared pointers, just in case 
-/// clearing the containers will mess with the pointers' references count
-#define EMPTY_VECTOR(T,v) \
-	for (T::iterator it=v.begin();it!=v.end();++it) \
-	{ \
-		(*it).reset(); \
-	}\
-	v.clear();
-#define EMPTY_MAP(T,v) \
-	for (T::iterator it=v.begin();it!=v.end();++it) \
-	{ \
-	(it->second).reset(); \
-	}\
-	v.clear();
-
-#include <iomanip>
-#include <sstream>
 
 using namespace OUAN;
 

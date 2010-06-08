@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectCryKing.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"

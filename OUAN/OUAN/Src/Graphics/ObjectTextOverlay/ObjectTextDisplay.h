@@ -1,6 +1,5 @@
 #ifndef OBJECT_TEXT_DISPLAYH_H
 #define OBJECT_TEXT_DISPLAYH_H
-#include <Ogre.h>
 namespace OUAN
 {
 	// Code taken from

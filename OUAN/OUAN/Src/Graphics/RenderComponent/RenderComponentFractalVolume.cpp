@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RenderComponentFractalVolume.h"
 
 using namespace OUAN;

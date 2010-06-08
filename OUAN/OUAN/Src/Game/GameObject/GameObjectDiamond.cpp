@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectDiamond.h"
 #include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"

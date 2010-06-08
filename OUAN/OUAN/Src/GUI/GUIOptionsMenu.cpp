@@ -1,8 +1,9 @@
+#include "OUAN_Precompiled.h"
+
 #include "GUIOptionsMenu.h"
 #include "GUISubsystem.h"
 #include "../Application.h"
 #include "../Core/GameOptionsState.h"
-#include <sstream>
 using namespace OUAN;
 
 void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)

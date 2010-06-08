@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "ParticleTemplates.h"
 #include "../../Loader/Configuration.h"
 

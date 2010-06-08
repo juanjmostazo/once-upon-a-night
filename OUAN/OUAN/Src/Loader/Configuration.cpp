@@ -1,8 +1,8 @@
-//
+#include "OUAN_Precompiled.h"
 #include "Configuration.h"
 
 #include "../TinyXML/tinyxml.h"
-#include <iostream>
+
 
 using namespace OUAN;
 

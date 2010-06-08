@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GamePausedState.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"

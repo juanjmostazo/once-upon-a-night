@@ -1,5 +1,6 @@
+#include "OUAN_Precompiled.h"
+
 #include "HUDInGame.h"
-#include <Ogre.h>
 #include "../../Event/Event.h"
 #include "../../Event/EventManager.h"
 using namespace OUAN;

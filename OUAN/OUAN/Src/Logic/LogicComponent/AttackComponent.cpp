@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "AttackComponent.h"
 using namespace OUAN;
 

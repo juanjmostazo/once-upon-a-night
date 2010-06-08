@@ -6,9 +6,6 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Application.h"
 #include "../PhysicsSubsystem.h"
-#include <NxOgre.h>
-#include <NxOgreOGRE3D.h>
-#include <NxOgreAddonCharacterController.h>
 
 namespace OUAN
 {

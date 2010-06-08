@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TransparentEntityManager.h"
 #include "TransparentEntity.h"
 #include "../../Loader/Configuration.h"

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "CameraControllerTrajectory.h"
 #include "../RenderComponent/RenderComponentPositional.h"
 #include "../TrajectoryManager/Trajectory.h"

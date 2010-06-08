@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "LogicComponent.h"
 #include "../LogicSubsystem.h"
 #include "../../Application.h"

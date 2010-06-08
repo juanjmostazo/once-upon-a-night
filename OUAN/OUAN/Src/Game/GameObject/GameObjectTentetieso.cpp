@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectTentetieso.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"

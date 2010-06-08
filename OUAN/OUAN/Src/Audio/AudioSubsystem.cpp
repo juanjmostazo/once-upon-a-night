@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "AudioSubsystem.h"
 #include "Channel.h"
 #include "AudioScriptLoader.h"
@@ -8,8 +10,6 @@
 #include "../Event/Event.h"
 #include "../Event/EventManager.h"
 
-#include <fmod_errors.h>
-#include <algorithm>
 
 using namespace OUAN;
 

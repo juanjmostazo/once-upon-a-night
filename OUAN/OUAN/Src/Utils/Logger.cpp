@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "Logger.h"
 #include "../Loader/Configuration.h"
 

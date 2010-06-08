@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObject.h"
 #include "../../Application.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"

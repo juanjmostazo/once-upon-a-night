@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "ProjectiveDecal.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"

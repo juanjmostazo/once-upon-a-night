@@ -2,8 +2,6 @@
 #define CameraManagerH_H
 #include "../../OUAN.h"
 #include "../../Event/EventDefs.h"
-#include <boost/shared_ptr.hpp>
-#include <boost/smart_ptr/enable_shared_from_this.hpp>
 namespace OUAN
 {
 	class CameraManager

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "../OUAN.h"
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"

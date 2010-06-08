@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "TransparentEntity.h"
 
 using namespace OUAN;

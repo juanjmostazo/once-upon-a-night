@@ -34,10 +34,7 @@
 #ifndef __FILE_UTILSOGREDSHOW_PRIVATE_INCLUDED
 #define __FILE_UTILSOGREDSHOW_PRIVATE_INCLUDED
 
-#include <dshow.h>
 #include <Qedit.h>// for sample grabber
-#include <windows.h>
-
 
 namespace OgreUtils
 {

@@ -3,9 +3,6 @@
 
 #include "../OUAN.h"
 #include "../Loader/Configuration.h"
-#include <NxOgre.h>
-#include <NxOgreOGRE3D.h>
-#include <NxOgreAddonCharacterController.h>
 
 namespace OUAN
 {

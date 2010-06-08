@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentCharacter.h"
 #include "../../RayCasting/RayCasting.h"
 

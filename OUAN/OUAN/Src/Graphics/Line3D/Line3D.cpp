@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "Line3D.h"
 
 using namespace OUAN;

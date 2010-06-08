@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "ObjectTextDisplay.h"
 using namespace OUAN;
 

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "PhysicsComponentComplex.h"
 using namespace OUAN;
 

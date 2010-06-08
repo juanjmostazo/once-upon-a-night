@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "CameraManager.h"
 #include "CameraController.h"
 #include "CameraControllerFixedFirstPerson.h"
@@ -13,8 +15,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObjectCamera.h"
 #include "../../Event/EventDefs.h"
-#include <boost/shared_ptr.hpp>
-#include <boost/smart_ptr/enable_shared_from_this.hpp>
+
 using namespace OUAN;
 using namespace Ogre;
 

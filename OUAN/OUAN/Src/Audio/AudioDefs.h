@@ -1,12 +1,6 @@
 #ifndef AUDIODEFSH_H
 #define AUDIODEFSH_H
 
-#include <windows.h>
-#include <fmod.hpp>
-
-#include <boost/shared_ptr.hpp>
-#include <string>
-#include <vector>
 #include "../Loader/Configuration.h"
 
 namespace Ogre

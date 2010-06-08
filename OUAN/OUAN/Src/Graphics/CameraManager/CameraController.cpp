@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "CameraController.h"
 #include "../RenderComponent/RenderComponentPositional.h"
 

@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "RayCasting.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Graphics/RenderSubsystem.h"

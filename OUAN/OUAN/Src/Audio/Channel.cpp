@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "Channel.h"
 #include "AudioDefs.h"
 using namespace OUAN;

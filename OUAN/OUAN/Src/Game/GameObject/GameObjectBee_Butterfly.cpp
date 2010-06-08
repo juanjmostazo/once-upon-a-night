@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "GameObjectBee_Butterfly.h"
 #include "../GameWorldManager.h"
 

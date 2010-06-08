@@ -1,6 +1,6 @@
-#include "EventManager.h"
-#include <algorithm>
+#include "OUAN_Precompiled.h"
 
+#include "EventManager.h"
 using namespace OUAN;
 
 EventManager::EventManager()

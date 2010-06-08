@@ -1,3 +1,5 @@
+#include "OUAN_Precompiled.h"
+
 #include "LightShafts.h"
 
 using namespace OUAN;

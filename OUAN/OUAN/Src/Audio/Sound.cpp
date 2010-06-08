@@ -1,6 +1,8 @@
+#include "OUAN_Precompiled.h"
+
 #include "Sound.h"
 #include "AudioSubsystem.h"
-#include <fmod.h>
+
 using namespace OUAN;
 
 Sound::Sound(Ogre::ResourceManager* creator, const Ogre::String& name,
