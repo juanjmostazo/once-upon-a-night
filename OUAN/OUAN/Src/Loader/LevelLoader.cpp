@@ -1241,6 +1241,9 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 		tGameObjectClockPieceParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(), 
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
+		//Get RenderComponentGlow
+		tGameObjectClockPieceParameters.tRenderComponentGlowParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties);
+
 		//Get RenderComponentPositional
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
@@ -2065,6 +2068,10 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		//Get RenderComponentEntityNightmares
 		tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentGlow
+		tGameObjectPortalParameters.tRenderComponentGlowDreamsParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties, DREAMS);
+		tGameObjectPortalParameters.tRenderComponentGlowNightmaresParameters=processRenderComponentGlow(gameObject->XMLNodeCustomProperties, NIGHTMARES);
 
 		//Get RenderComponentPositional
 		tGameObjectPortalParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());

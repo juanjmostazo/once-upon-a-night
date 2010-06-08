@@ -372,13 +372,20 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 		mComponentFactory->createRenderComponentEntity(tGameObjectClockPieceParameters.name,
 		pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentEntityParameters));
 
+	//Create RenderComponentGlowDreams
+	pGameObjectClockPiece->setRenderComponentGlow(
+		mComponentFactory->createRenderComponentGlow(
+			pGameObjectClockPiece,
+			tGameObjectClockPieceParameters.tRenderComponentGlowParameters,
+			pGameObjectClockPiece->getRenderComponentPositional(),
+			pGameObjectClockPiece->getRenderComponentEntity()));
+
 	//Create PhysicsComponent
 	pGameObjectClockPiece->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
 		pGameObjectClockPiece, 
 		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectClockPiece->getRenderComponentPositional()));
-
 
 	//Add reference to this
 	pGameObjectClockPiece->setGameWorldManager(gameWorldMgr);
@@ -1435,6 +1442,23 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
 		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters));
 
+
+	//Create RenderComponentGlowDreams
+	pGameObjectPortal->setRenderComponentGlowDreams(
+		mComponentFactory->createRenderComponentGlow(
+			pGameObjectPortal,
+			tGameObjectPortalParameters.tRenderComponentGlowDreamsParameters,
+			pGameObjectPortal->getRenderComponentPositional(),
+			pGameObjectPortal->getRenderComponentEntityDreams()));
+
+	//Create RenderComponentGlowNightmares
+	pGameObjectPortal->setRenderComponentGlowNightmares(
+		mComponentFactory->createRenderComponentGlow(
+			pGameObjectPortal,
+			tGameObjectPortalParameters.tRenderComponentGlowNightmaresParameters,
+			pGameObjectPortal->getRenderComponentPositional(),
+			pGameObjectPortal->getRenderComponentEntityNightmares()));
+	
 	//Create PhysicsComponent
 	pGameObjectPortal->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(

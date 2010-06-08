@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Graphics/RenderComponent/RenderComponentGlow.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentUsable.h"
 
@@ -32,6 +33,9 @@ namespace OUAN
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentGlowPtr mRenderComponentGlowDreams;
+		RenderComponentGlowPtr mRenderComponentGlowNightmares;
+
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -65,6 +69,16 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+
+		/// Set render component
+		/// @param pRenderComponentEntity
+		void setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlowDreams);
+		void setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlowNightmares);
+
+		/// Return render component entity 
+		/// @return render component entity
+		RenderComponentGlowPtr getRenderComponentGlowDreams() const;
+		RenderComponentGlowPtr getRenderComponentGlowNightmares() const;
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -151,6 +165,10 @@ namespace OUAN
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+
+		///RenderComponentGlow parameters
+		TRenderComponentGlowParameters tRenderComponentGlowDreamsParameters;
+		TRenderComponentGlowParameters tRenderComponentGlowNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/RenderComponentGlow.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../../Logic/LogicComponent/LogicComponentItem.h"
 
@@ -17,6 +18,8 @@ namespace OUAN
 		
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentGlowPtr mRenderComponentGlow;		
+
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -39,7 +42,6 @@ namespace OUAN
 		/// return logic component
 		LogicComponentItemPtr getLogicComponentItem();
 
-
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -47,6 +49,14 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+
+		/// Set render component
+		/// @param pRenderComponentEntity
+		void setRenderComponentGlow(RenderComponentGlowPtr pRenderComponentGlow);
+
+		/// Return render component entity 
+		/// @return render component entity
+		RenderComponentGlowPtr getRenderComponentGlow() const;
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -119,6 +129,9 @@ namespace OUAN
 		
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+
+		///RenderComponentGlow parameters
+		TRenderComponentGlowParameters tRenderComponentGlowParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
