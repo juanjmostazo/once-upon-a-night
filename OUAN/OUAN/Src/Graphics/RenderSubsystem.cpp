@@ -1181,7 +1181,9 @@ void SSAOListener::setCamera(Ogre::Camera* cam)
 void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr &mat)
 {
 	if (pass_id != 42 || !mCam) // not SSAO, return
+	{
 		return;
+	}
 
 	// calculate the far-top-right corner in view-space
 	Ogre::Vector3 farCorner = mCam->getViewMatrix(true) * mCam->getWorldSpaceCorners()[4];
@@ -1193,7 +1195,9 @@ void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr 
 	Ogre::GpuProgramParametersSharedPtr params = pass->getVertexProgramParameters();
 	// set the camera's far-top-right corner
 	if (params->_findNamedConstantDefinition("farCorner"))
+	{
 		params->setNamedConstant("farCorner", farCorner);
+	}
 
 	// get the fragment shader parameters
 	params = pass->getFragmentProgramParameters();
@@ -1203,10 +1207,12 @@ void SSAOListener::notifyMaterialRender(Ogre::uint32 pass_id, Ogre::MaterialPtr 
 		0,   -0.5,    0,  0.5,
 		0,      0,    1,    0,
 		0,      0,    0,    1);
+
 	if (params->_findNamedConstantDefinition("ptMat"))
 	{
 		params->setNamedConstant("ptMat", CLIP_SPACE_TO_IMAGE_SPACE * mCam->getProjectionMatrixWithRSDepth());
 	}
+
 	if (params->_findNamedConstantDefinition("far"))
 	{
 		params->setNamedConstant("far", mCam->getFarClipDistance());

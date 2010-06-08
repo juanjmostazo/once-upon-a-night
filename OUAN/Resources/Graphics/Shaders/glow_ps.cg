@@ -1,7 +1,7 @@
 
-float4 main(uniform float alpha_value,
-			uniform float time,
-			uniform float time_factor,
+float4 main(uniform float time,
+			uniform float time_scale,
+			uniform float alpha,
 			uniform float color_r,
 			uniform float color_g,
 			uniform float color_b
@@ -11,6 +11,6 @@ float4 main(uniform float alpha_value,
    color.x = color_r;
    color.y = color_g;
    color.z = color_b;
-   color.w =  alpha_value * ((sin(time * time_factor) / 3.14 + 1.0) / 2.0);
+   color.w =  alpha * ((sin(time * time_scale) / 3.14 + 1.0) / 2.0);
    return color;
 }

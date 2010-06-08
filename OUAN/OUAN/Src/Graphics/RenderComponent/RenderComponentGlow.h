@@ -31,6 +31,14 @@ namespace OUAN
 		~TRenderComponentGlowParameters();
 
 		std::string material;
+		double time_scale;
+		double size_scale;
+		double expand_width;
+		double expand_grow;
+		double alpha;
+		double color_r;
+		double color_g;
+		double color_b;
 	};
 }
 

@@ -3395,6 +3395,14 @@ TRenderComponentGlowParameters LevelLoader::processRenderComponentGlow(TiXmlElem
 
 	//Process Glow properties
 	tRenderComponentGlowParameters.material = getPropertyString(XMLNode, attributeHeader + "::material");
+	tRenderComponentGlowParameters.time_scale = getPropertyReal(XMLNode, attributeHeader + "::time_scale");
+	tRenderComponentGlowParameters.size_scale = getPropertyReal(XMLNode, attributeHeader + "::size_scale");
+	tRenderComponentGlowParameters.expand_width = getPropertyReal(XMLNode, attributeHeader + "::expand_width");
+	tRenderComponentGlowParameters.expand_grow = getPropertyReal(XMLNode, attributeHeader + "::expand_grow");
+	tRenderComponentGlowParameters.alpha = getPropertyReal(XMLNode, attributeHeader + "::alpha");
+	tRenderComponentGlowParameters.color_r = getPropertyReal(XMLNode, attributeHeader + "::color_r");
+	tRenderComponentGlowParameters.color_g = getPropertyReal(XMLNode, attributeHeader + "::color_g");
+	tRenderComponentGlowParameters.color_b = getPropertyReal(XMLNode, attributeHeader + "::color_b");
 
 	return tRenderComponentGlowParameters;
 }
