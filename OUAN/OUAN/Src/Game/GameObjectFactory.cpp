@@ -1442,7 +1442,6 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
 		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters));
 
-
 	//Create RenderComponentGlowDreams
 	pGameObjectPortal->setRenderComponentGlowDreams(
 		mComponentFactory->createRenderComponentGlow(

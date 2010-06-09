@@ -12,6 +12,17 @@ namespace OUAN
 		Ogre::Entity* mEntity;
 		bool mVisible;
 
+		double mTime_scale;
+		double mSize_scale;
+		double mExpand_width;
+		double mExpand_grow;
+		double mAlpha;
+		double mColor_r;
+		double mColor_g;
+		double mColor_b;
+
+		void setUpShaders();
+
 	public:
 		RenderComponentGlow(const std::string& type="");
 		~RenderComponentGlow();
@@ -24,6 +35,8 @@ namespace OUAN
 
 		void setVisible(bool visible);
 		bool isVisible();
+
+		void setParams(double time_scale, double size_scale, double expand_width, double expand_grow, double alpha, double color_r, double color_g, double color_b);
 	};
 
 	class TRenderComponentGlowParameters: public TRenderComponentParameters
