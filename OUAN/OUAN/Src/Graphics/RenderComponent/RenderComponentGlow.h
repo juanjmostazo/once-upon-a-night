@@ -10,6 +10,7 @@ namespace OUAN
 	private:
 		Ogre::SceneNode* mSceneNode;
 		Ogre::Entity* mEntity;
+		bool mVisible;
 
 	public:
 		RenderComponentGlow(const std::string& type="");
@@ -22,6 +23,7 @@ namespace OUAN
 		void setEntity(Ogre::Entity* entity);
 
 		void setVisible(bool visible);
+		bool isVisible();
 	};
 
 	class TRenderComponentGlowParameters: public TRenderComponentParameters

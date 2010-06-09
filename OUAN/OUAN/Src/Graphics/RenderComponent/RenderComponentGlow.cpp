@@ -6,6 +6,7 @@ using namespace OUAN;
 
 RenderComponentGlow::RenderComponentGlow(const std::string& type)
 :RenderComponent(COMPONENT_TYPE_RENDER_GLOW)
+,mVisible(false)
 {
 
 }
@@ -37,7 +38,13 @@ void RenderComponentGlow::setEntity(Ogre::Entity* entity)
 
 void RenderComponentGlow::setVisible(bool visible)
 {
-	mSceneNode->setVisible(visible);	
+	mVisible=visible;
+	mSceneNode->setVisible(mVisible);	
+}
+
+bool RenderComponentGlow::isVisible()
+{
+	return mVisible;
 }
 
 TRenderComponentGlowParameters::TRenderComponentGlowParameters() : TRenderComponentParameters()
