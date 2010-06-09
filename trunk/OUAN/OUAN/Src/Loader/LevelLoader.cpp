@@ -2080,7 +2080,6 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		tGameObjectPortalParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectPortalParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
-
 	}
 	catch( std::string error )
 	{

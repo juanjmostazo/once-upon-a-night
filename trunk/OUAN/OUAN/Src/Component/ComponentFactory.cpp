@@ -299,61 +299,16 @@ RenderComponentGlowPtr ComponentFactory::createRenderComponentGlow(GameObjectPtr
 
 	pRenderComponentGlow->getEntity()->setMaterialName(tRenderComponentGlowParameters.material);
 	pRenderComponentGlow->getEntity()->setQueryFlags(QUERYFLAGS_NONE);
-	
-	//////////////////
-	
-	Ogre::MaterialPtr glowMaterial = pRenderComponentGlow->getEntity()->getSubEntity(0)->getMaterial();
 
-	for (unsigned int i=0; i<glowMaterial->getBestTechnique()->getNumPasses(); i++)
-	{
-		if (glowMaterial->getBestTechnique()->getPass(i)->hasVertexProgram())
-		{
-			Ogre::GpuProgramParametersSharedPtr vertexParams = 
-				glowMaterial->getBestTechnique()->getPass(i)->getVertexProgramParameters();
-
-			if (vertexParams->_findNamedConstantDefinition("time_scale"))
-			{
-				vertexParams->setNamedConstant("time_scale", Ogre::Real(tRenderComponentGlowParameters.time_scale));
-			}
-			if (vertexParams->_findNamedConstantDefinition("size_scale"))
-			{
-				vertexParams->setNamedConstant("size_scale", Ogre::Real(tRenderComponentGlowParameters.size_scale));
-			}
-			if (vertexParams->_findNamedConstantDefinition("expand_width"))
-			{
-				vertexParams->setNamedConstant("expand_width", Ogre::Real(tRenderComponentGlowParameters.expand_width));
-			}
-			if (vertexParams->_findNamedConstantDefinition("expand_grow"))
-			{
-				vertexParams->setNamedConstant("expand_grow", Ogre::Real(tRenderComponentGlowParameters.expand_grow));
-			}
-		}
-
-		if (glowMaterial->getBestTechnique()->getPass(i)->hasFragmentProgram())
-		{
-			Ogre::GpuProgramParametersSharedPtr pixelParams = 
-				glowMaterial->getBestTechnique()->getPass(i)->getFragmentProgramParameters();
-
-			if (pixelParams->_findNamedConstantDefinition("time_scale"))
-			{
-				pixelParams->setNamedConstant("time_scale", Ogre::Real(tRenderComponentGlowParameters.time_scale));
-			}
-			if (pixelParams->_findNamedConstantDefinition("color_r"))
-			{
-				pixelParams->setNamedConstant("color_r", Ogre::Real(tRenderComponentGlowParameters.color_r));
-			}
-			if (pixelParams->_findNamedConstantDefinition("color_g"))
-			{
-				pixelParams->setNamedConstant("color_g", Ogre::Real(tRenderComponentGlowParameters.color_g));
-			}
-			if (pixelParams->_findNamedConstantDefinition("color_b"))
-			{
-				pixelParams->setNamedConstant("color_b", Ogre::Real(tRenderComponentGlowParameters.color_b));
-			}
-		}
-	}
-
-	//////////////////
+	pRenderComponentGlow->setParams(
+		tRenderComponentGlowParameters.time_scale,
+		tRenderComponentGlowParameters.size_scale,
+		tRenderComponentGlowParameters.expand_width,
+		tRenderComponentGlowParameters.expand_grow,
+		tRenderComponentGlowParameters.alpha,
+		tRenderComponentGlowParameters.color_r,
+		tRenderComponentGlowParameters.color_g,
+		tRenderComponentGlowParameters.color_b);
 
 	pRenderComponentGlow->setSceneNode(
 		pRenderComponentPositional->getSceneNode()->createChildSceneNode(
