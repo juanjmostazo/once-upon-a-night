@@ -13,10 +13,11 @@ namespace OUAN
 		PhysicsComponentCharacter(const std::string& type="");
 		~PhysicsComponentCharacter();
 
+		void reset();
+		void update(double elapsedSeconds);
+
 		virtual void create();
 		virtual void destroy();
-
-		void update(double elapsedSeconds);
 
 		void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		NxOgre::Controller* getNxOgreController();
@@ -39,8 +40,6 @@ namespace OUAN
 		void jump();
 
 		void walk();
-
-		void reset();
 
 		//Query methods used by the logic component, between others, to check if the
 		//character is jumping/etc

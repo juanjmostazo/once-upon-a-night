@@ -13,6 +13,9 @@ namespace OUAN
 		PhysicsComponentCharacterOny(const std::string& type="");
 		~PhysicsComponentCharacterOny();
 
+		void reset();
+		void update(double elapsedSeconds);
+
 	protected:
 		
 	};
