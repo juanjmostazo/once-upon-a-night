@@ -15,11 +15,11 @@
 	<Option key="HDR_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
 	
 	<Option key="RADIAL_BLUR">Radial Blur</Option>
-	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS">false</Option>
-	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
+	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_DREAMS">true</Option>
+	<Option key="RADIAL_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">true</Option>
 	
 	<Option key="MOTION_BLUR">Motion Blur</Option>
-	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS">false</Option>
-	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">false</Option>
+	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_DREAMS">true</Option>
+	<Option key="MOTION_BLUR_ACTIVATED_ALWAYS_NIGHTMARES">true</Option>
   </Options>
 </Configuration>

@@ -360,13 +360,13 @@ void CameraControllerThirdPerson::calculateMotionBlur(double elapsedTime)
 {
 	if((Ogre::Math::Abs(lastRotX)>=mMinCameraRotationMotionBlurActivation) || (Ogre::Math::Abs(lastRotY)>=mMinCameraRotationMotionBlurActivation))
 	{
-		//mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,true);
+		mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,true);
 		//Logger::getInstance()->log("MOTION BLUR ACTIVATED x "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotX))+" y "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotY)));
 
 	}
 	else if((Ogre::Math::Abs(lastRotX)<=mMinCameraRotationMotionBlurDisactivation) || (Ogre::Math::Abs(lastRotY)<=mMinCameraRotationMotionBlurDisactivation))
 	{
-		//mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,false);
+		mGameWorldManager->getGameObjectViewport()->setEffect(mRenderSubsystem->MOTION_BLUR,false);
 		//Logger::getInstance()->log("MOTION BLUR DIS-ACTIVATED x "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotX))+" y "+Ogre::StringConverter::toString(Ogre::Math::Abs(lastRotY)));
 	}
 }

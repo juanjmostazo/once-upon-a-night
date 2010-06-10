@@ -98,21 +98,20 @@ void RenderComponentViewport::initEffects()
 {
 	Ogre::CompositorInstance* inst;
 
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR);
+	inst->setEnabled(false);
+
 	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->CHANGEWORLD);
 	inst->setEnabled(false);
-	//inst->addListener( new ChangeWorldCompositorListener );
-	
-	//inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->BLOOM,1);
-	//inst->setEnabled(false);
-	//
-	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->HDR,2);
-	//inst->setEnabled(false);
-	//
-	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->RADIAL_BLUR,3);
-	//inst->setEnabled(false);
 
-	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR,4);
+	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->BLOOM);
+	inst->setEnabled(false);
+	
+	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->HDR);
 	//inst->setEnabled(false);
+	
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->RADIAL_BLUR);
+	inst->setEnabled(false);
 
 	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,"ssao");
 	//inst->setEnabled(true);
