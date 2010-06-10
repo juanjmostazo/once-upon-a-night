@@ -40,8 +40,8 @@ namespace OUAN
 		void setCamera(Ogre::Camera * pCamera);
 		Ogre::Camera * getCamera() const;
 
-		void setChangeWorldToDreams();
-		void setChangeWorldToNightmares();
+		void setToDreams();
+		void setToNightmares();
 		void setChangeWorldFactor(float factor);
 
 	protected:
@@ -50,14 +50,21 @@ namespace OUAN
 		Ogre::Camera * mCamera;
 
 		bool mDebugScreensActive;
+		int mChangingWorldTo;
 
 		Ogre::TexturePtr mTextureChangeWorld;
 		Ogre::TexturePtr mTextureNightmares;
 		Ogre::TexturePtr mTextureDreams;
 
+		Ogre::TexturePtr mTextureNightmaresWithMiniScreen;
+		Ogre::TexturePtr mTextureDreamsWithMiniScreen;
+
 		Ogre::RenderTexture	   *mRenderTextureDreams;
 		Ogre::RenderTexture	   *mRenderTextureNightmares;
 		Ogre::RenderTexture	   *mRenderTextureChangeWorld;
+
+		Ogre::RenderTexture	   *mRenderTextureDreamsWithMiniScreen;
+		Ogre::RenderTexture	   *mRenderTextureNightmaresWithMiniScreen;
 
 		Ogre::Rectangle2D *mMiniScreenDreams; 
 		Ogre::Rectangle2D *mMiniScreenNightmares;

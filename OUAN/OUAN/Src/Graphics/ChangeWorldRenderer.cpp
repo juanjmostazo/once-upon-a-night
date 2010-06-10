@@ -27,6 +27,15 @@ void ChangeWorldRenderer::setDebugScreensActive(bool active)
 		mMiniScreenNightmares->setVisible(false);
 		mMiniScreenChangeWorld->setVisible(false);
 	}
+
+	if(mChangingWorldTo==NIGHTMARES)
+	{
+		setToNightmares();
+	}
+	else if(mChangingWorldTo==DREAMS)
+	{
+		setToDreams();
+	}
 }
 
 bool ChangeWorldRenderer::getDebugScreensActive() const
@@ -70,6 +79,26 @@ void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWi
 	mRenderTextureChangeWorld->getViewport(0)->setClearEveryFrame(true);
 	mRenderTextureChangeWorld->getViewport(0)->setBackgroundColour(ColourValue::Black);
 	mRenderTextureChangeWorld->setAutoUpdated(false);
+
+		//dreams with screens
+	mTextureDreamsWithMiniScreen = Ogre::TextureManager::getSingleton().createManual("mRenderTextureDreamsWithMiniScreen",
+	ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, mWindow->getWidth(), mWindow->getHeight(), 0, PF_R8G8B8,
+	TU_RENDERTARGET);
+	mRenderTextureDreamsWithMiniScreen = mTextureDreamsWithMiniScreen->getBuffer()->getRenderTarget();
+	mRenderTextureDreamsWithMiniScreen->addViewport(mCamera);
+	mRenderTextureDreamsWithMiniScreen->getViewport(0)->setClearEveryFrame(true);
+	mRenderTextureDreamsWithMiniScreen->getViewport(0)->setBackgroundColour(ColourValue::Black);
+	mRenderTextureDreamsWithMiniScreen->setAutoUpdated(false);
+
+		//nightmares with screens
+	mTextureNightmaresWithMiniScreen = Ogre::TextureManager::getSingleton().createManual("mRenderTextureNightmaresWithMiniScreen",
+	ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, mWindow->getWidth(), mWindow->getHeight(), 0, PF_R8G8B8,
+	TU_RENDERTARGET);
+	mRenderTextureNightmaresWithMiniScreen = mTextureNightmaresWithMiniScreen->getBuffer()->getRenderTarget();
+	mRenderTextureNightmaresWithMiniScreen->addViewport(mCamera);
+	mRenderTextureNightmaresWithMiniScreen->getViewport(0)->setClearEveryFrame(true);
+	mRenderTextureNightmaresWithMiniScreen->getViewport(0)->setBackgroundColour(ColourValue::Black);
+	mRenderTextureNightmaresWithMiniScreen->setAutoUpdated(false);
 
 	//CREATE MINISCREENS
 	Ogre::Technique * technique;
@@ -117,10 +146,10 @@ void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWi
 	mMiniScreenChangeWorld->setMaterial("mMiniScreenMatChangeWorld");
  
 	setDebugScreensActive(false);
-	setChangeWorldToNightmares();
+	setToDreams();
 }
 
-void ChangeWorldRenderer::setChangeWorldToNightmares()
+void ChangeWorldRenderer::setToDreams()
 {
 	Ogre::Technique * technique;
 	//FINAL SCREEN
@@ -128,10 +157,18 @@ void ChangeWorldRenderer::setChangeWorldToNightmares()
 	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName("changeworld");
 	technique= material->getTechnique(0);
 	technique->getPass(0)->getTextureUnitState(0)->setTextureName("mRenderTextureChangeWorld");
-	technique->getPass(0)->getTextureUnitState(2)->setTextureName("mRenderTextureNightmares");
+	if(mDebugScreensActive)
+	{
+		technique->getPass(0)->getTextureUnitState(1)->setTextureName("mRenderTextureNightmaresWithMiniScreen");
+	}
+	else
+	{
+		technique->getPass(0)->getTextureUnitState(1)->setTextureName("mRenderTextureNightmares");
+	}
+	mChangingWorldTo=DREAMS;
 }
 
-void ChangeWorldRenderer::setChangeWorldToDreams()
+void ChangeWorldRenderer::setToNightmares()
 {
 	Ogre::Technique * technique;
 	//FINAL SCREEN
@@ -139,7 +176,15 @@ void ChangeWorldRenderer::setChangeWorldToDreams()
 	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName("changeworld");
 	technique= material->getTechnique(0);
 	technique->getPass(0)->getTextureUnitState(0)->setTextureName("mRenderTextureChangeWorld");
-	technique->getPass(0)->getTextureUnitState(2)->setTextureName("mRenderTextureDreams");
+	if(mDebugScreensActive)
+	{
+		technique->getPass(0)->getTextureUnitState(1)->setTextureName("mRenderTextureDreamsWithMiniScreen");
+	}
+	else
+	{
+		technique->getPass(0)->getTextureUnitState(1)->setTextureName("mRenderTextureDreams");
+	}
+	mChangingWorldTo=NIGHTMARES;
 }
 
 void ChangeWorldRenderer::setChangeWorldFactor(float factor)
@@ -169,6 +214,7 @@ void ChangeWorldRenderer::renderToTextureDreams()
 		mMiniScreenDreams->setVisible(true);
 		mMiniScreenNightmares->setVisible(true);
 		mMiniScreenChangeWorld->setVisible(true);
+		mRenderTextureDreamsWithMiniScreen->update();
 	}
 }
 
@@ -186,6 +232,7 @@ void ChangeWorldRenderer::renderToTextureNightmares()
 		mMiniScreenDreams->setVisible(true);
 		mMiniScreenNightmares->setVisible(true);
 		mMiniScreenChangeWorld->setVisible(true);
+		mRenderTextureNightmaresWithMiniScreen->update();
 	}
 }
 

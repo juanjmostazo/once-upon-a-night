@@ -7,7 +7,7 @@ vertex_program erosion_VS_CG cg
 	default_params	
 	{	
 	  param_named_auto worldViewProj worldviewproj_matrix
-            }	
+      }	
 }
 
 fragment_program erosion_FS_CG cg
