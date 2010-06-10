@@ -98,9 +98,6 @@ void RenderComponentViewport::initEffects()
 {
 	Ogre::CompositorInstance* inst;
 
-	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR);
-	inst->setEnabled(false);
-
 	inst = Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->CHANGEWORLD);
 	inst->setEnabled(false);
 
@@ -111,6 +108,9 @@ void RenderComponentViewport::initEffects()
 	//inst->setEnabled(false);
 	
 	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->RADIAL_BLUR);
+	inst->setEnabled(false);
+
+	inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport, mRenderSubsystem->MOTION_BLUR);
 	inst->setEnabled(false);
 
 	//inst=Ogre::CompositorManager::getSingleton().addCompositor(mViewport,"ssao");
@@ -152,6 +152,14 @@ void RenderComponentViewport::setBloomAmount(double perc)
 	//pass=technique->getPass(0);
 	//params = pass->getFragmentProgramParameters();
 	//params->setNamedConstant("BlurWeight",Ogre::Real(mRenderSubsystem->MAX_BLOOM_BLEND*perc));
+}
+
+void RenderComponentViewport::disableAllCompositors()
+{
+	setEffect(mRenderSubsystem->MOTION_BLUR,false);
+	setEffect(mRenderSubsystem->CHANGEWORLD,false);
+	setEffect(mRenderSubsystem->BLOOM,false);
+	setEffect(mRenderSubsystem->RADIAL_BLUR,false);
 }
 
 TRenderComponentViewportParameters::TRenderComponentViewportParameters() : TRenderComponentParameters()

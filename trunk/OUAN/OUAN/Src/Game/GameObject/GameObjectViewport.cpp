@@ -94,6 +94,11 @@ void GameObjectViewport::changeToWorld(int newWorld, double perc)
 	}
 }
 
+void GameObjectViewport::disableAllCompositors()
+{
+	mRenderComponentViewport->disableAllCompositors();
+}
+
 void GameObjectViewport::setEffect(std::string effectName, bool activated)
 {
 	mRenderComponentViewport->setEffect(effectName,activated);

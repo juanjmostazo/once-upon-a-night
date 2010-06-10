@@ -27,6 +27,8 @@ namespace OUAN
 
 		void prepareEffects();
 		void initEffects();
+
+		void disableAllCompositors();
 	};
 
 	class TRenderComponentViewportParameters: public TRenderComponentParameters

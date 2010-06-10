@@ -689,7 +689,7 @@ bool GameRunningState::render()
 	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
 		mApp->getRenderSubsystem()->CHANGEWORLD,false);
 
-	if(mIsChangingWorld)
+	if(mIsChangingWorld || renderSubsystem->getChangeWorldRenderer()->getDebugScreensActive())
 	{
 		mApp->getGameWorldManager()->setDreamsRender();
 		renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
