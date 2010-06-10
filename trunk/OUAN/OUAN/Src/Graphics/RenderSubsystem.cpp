@@ -507,13 +507,20 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 
 void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNormalMapping)
 {
+	MeshPtr mesh;
+	Ogre::Mesh::LodDistanceList distanceList;
+
+	distanceList.push_back(100);
 	try
 	{
 		//Create the mesh file
 		if (!MeshManager::getSingleton().resourceExists(meshfile))
 		{
 			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
-			MeshManager::getSingleton().load(meshfile,"General");
+			mesh=MeshManager::getSingleton().load(meshfile,"General");
+			//mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_CONSTANT,0.3);
+		   // mesh->createManualLodLevel(300, "node.mesh");
+			//mesh->createManualLodLevel(500, "animallod3.mesh");
 		}
 	}
 	catch(Ogre::Exception &/*e*/)
