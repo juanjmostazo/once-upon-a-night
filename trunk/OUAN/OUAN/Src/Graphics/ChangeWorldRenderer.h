@@ -6,21 +6,6 @@
 namespace OUAN
 {
 
-	class ChangeWorldCompositorListener : public Ogre::CompositorInstance::Listener
-	{
-	   public:
-		  void notifyMaterialSetup( Ogre::uint32 pass_id, Ogre::MaterialPtr & mat )
-		  {
-				// modify material here (wont alter the base material!) in the setup stage
-		  }
-
-			void setChangeWorldFactor(float factor)
-			{
-				
-			}
-	 
-	};
-
 	class ChangeWorldRenderer
 	{
 	public:

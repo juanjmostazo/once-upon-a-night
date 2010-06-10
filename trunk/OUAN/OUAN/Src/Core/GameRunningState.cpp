@@ -701,7 +701,6 @@ bool GameRunningState::render()
 		switch(mWorld)
 		{
 		case DREAMS:
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToDreams();
 			if(mWorld!=mOldWorld)
 			{
 				mApp->getGameWorldManager()->setDreamsRender();
@@ -710,12 +709,8 @@ bool GameRunningState::render()
 			{
 				mApp->getGameWorldManager()->setNightmaresRender();
 			}
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(0);
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToDreams();
-			//Logger::getInstance()->log("DREAMS");
 			break;
 		case NIGHTMARES:
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToNightmares();
 			if(mWorld!=mOldWorld)
 			{
 				mApp->getGameWorldManager()->setNightmaresRender();
@@ -724,12 +719,8 @@ bool GameRunningState::render()
 			{
 				mApp->getGameWorldManager()->setDreamsRender();
 			}
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(0);
-			//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToNightmares();
-			//Logger::getInstance()->log("NIGHTMARES");
 			break;
 		default:
-			//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(mWorld)));
 			break;
 		}
 
@@ -746,9 +737,6 @@ void GameRunningState::changeWorldFinished(int newWorld)
 	endMusicFading(newWorld);
 
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(0);
-
-	//mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(1);
-
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -762,16 +750,6 @@ void GameRunningState::changeWorldFinished(int newWorld)
 		default:
 			break;
 	}
-
-	//switch(newWorld)
-	//{
-	//	case DREAMS:
-	//		break;
-	//	case NIGHTMARES:
-	//		break;
-	//	default:
-	//		break;
-	//}
 }
 
 void GameRunningState::changeWorldStarted(int newWorld)

@@ -475,10 +475,10 @@ void GameObjectOny::postUpdate()
 	}
 
 	//Apply radial blur effect when reached fall speed limit
-	//mGameWorldManager->getGameObjectViewport()->
-	//	setRadialBlurEffectIfPossible(
-	//		mGameWorldManager->getWorld(),
-	//		mPhysicsComponentCharacter->isFallingLimit());
+	mGameWorldManager->getGameObjectViewport()->
+		setRadialBlurEffectIfPossible(
+			mGameWorldManager->getWorld(),
+			mPhysicsComponentCharacter->isFallingLimit());
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
