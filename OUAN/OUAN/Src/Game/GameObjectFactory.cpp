@@ -64,6 +64,7 @@
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
@@ -1128,7 +1129,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//TODO ERASE THIS WHEN ONY IS PROPERLY SCALED
 	pGameObjectOny->getRenderComponentPositional()->setScale(
-		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.scale_correction);
+		tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters.scale_correction);
 
 	//Create RenderComponentInitial
 	pGameObjectOny->setRenderComponentInitial(
@@ -1173,15 +1174,15 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
-	pGameObjectOny->setPhysicsComponentCharacter(
-		mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectOny->setPhysicsComponentCharacterOny(
+		mComponentFactory->createPhysicsComponentCharacterOny(
 			pGameObjectOny,
-			tGameObjectOnyParameters.tPhysicsComponentCharacterParameters,
+			tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters,
 			pGameObjectOny->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectOny->getPhysicsComponentCharacter()->setOffsetRenderPosition(
-		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters.position_correction);
+	pGameObjectOny->getPhysicsComponentCharacterOny()->setOffsetRenderPosition(
+		tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters.position_correction);
 
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
@@ -1191,7 +1192,6 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Set Ony as camera target
 	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
-
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);

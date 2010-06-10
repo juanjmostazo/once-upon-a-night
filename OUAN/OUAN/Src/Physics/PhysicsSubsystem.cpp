@@ -478,9 +478,9 @@ bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 		if ((*container)[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
 		{
 			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>((*container)[i]);
-			if (tmpObject->getPhysicsComponentCharacter()->getNxOgreController() == controller)
+			if (tmpObject->getPhysicsComponentCharacterOny()->getNxOgreController() == controller)
 			{
-				tmpObject->getPhysicsComponentCharacter()->setSlidingValues(slideDiplacement, normalAngle);
+				tmpObject->getPhysicsComponentCharacterOny()->setSlidingValues(slideDiplacement, normalAngle);
 				found = true;
 				isOny = true;
 			}

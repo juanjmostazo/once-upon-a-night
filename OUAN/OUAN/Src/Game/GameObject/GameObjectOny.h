@@ -8,7 +8,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentQuadHalo.h"
 #include "../../Graphics/RenderComponent/RenderComponentFractalVolume.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentOny.h"
 
@@ -114,7 +114,7 @@ namespace OUAN
 		/// Quad Halo
 		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
 		/// Physics information
-		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentCharacterOnyPtr mPhysicsComponentCharacterOny;
 		/// Logic information
 		LogicComponentOnyPtr mLogicComponentOny;
 		/// Weapon wielding component
@@ -177,10 +177,10 @@ namespace OUAN
 		RenderComponentQuadHaloPtr getRenderComponentQuadHalo() const;
 
 		/// Set physics component
-		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+		void setPhysicsComponentCharacterOny(PhysicsComponentCharacterOnyPtr pPhysicsComponentCharacterOny);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+		PhysicsComponentCharacterOnyPtr getPhysicsComponentCharacterOny() const;
 
 		/// set weapon component
 		void setWeaponComponent(WeaponComponentPtr weaponComponent);
@@ -282,7 +282,7 @@ namespace OUAN
 		TRenderComponentQuadHaloParameters tRenderComponentQuadHaloParameters;
 
 		///Physics parameters
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;	
+		TPhysicsComponentCharacterOnyParameters tPhysicsComponentCharacterOnyParameters;	
 
 		///Logic parameters
 		TLogicComponentOnyParameters tLogicComponentOnyParameters;

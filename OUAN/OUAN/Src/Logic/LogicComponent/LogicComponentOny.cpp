@@ -8,7 +8,7 @@
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../../Game/GameObject/GameObjectTentetieso.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -247,7 +247,7 @@ void LogicComponentOny::update(double elapsedTime)
 		}
 		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP))
 		{
-			if (!ony->getPhysicsComponentCharacter()->isJumping())
+			if (!ony->getPhysicsComponentCharacterOny()->isJumping())
 			{
 				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP);
 			}

@@ -198,6 +198,10 @@ namespace OUAN
 		class TPhysicsComponentCharacterParameters;
 		typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
 
+		class PhysicsComponentCharacterOny;
+		class TPhysicsComponentCharacterOnyParameters;
+		typedef boost::shared_ptr<PhysicsComponentCharacterOny> PhysicsComponentCharacterOnyPtr;
+
 		class PhysicsComponentComplex;
 		class TPhysicsComponentComplexParameters;
 		typedef boost::shared_ptr<PhysicsComponentComplex> PhysicsComponentComplexPtr;
@@ -232,6 +236,7 @@ namespace OUAN
 
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
+		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER_ONY="PhysicsComponentCharacterOny";
 		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX="PhysicsComponentComplex";
 		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_CONVEX="PhysicsComponentComplexConvex";
 		const std::string COMPONENT_TYPE_PHYSICS_COMPLEX_TRIANGLE="PhysicsComponentComplexTriangle";

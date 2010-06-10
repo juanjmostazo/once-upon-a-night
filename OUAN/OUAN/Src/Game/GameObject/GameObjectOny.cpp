@@ -83,9 +83,9 @@ RenderComponentQuadHaloPtr GameObjectOny::getRenderComponentQuadHalo() const
 	return mRenderComponentQuadHalo;
 }
 
-void GameObjectOny::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectOny::setPhysicsComponentCharacterOny(PhysicsComponentCharacterOnyPtr pPhysicsComponentCharacterOny)
 {
-	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+	mPhysicsComponentCharacterOny=pPhysicsComponentCharacterOny;
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponent() const
@@ -97,19 +97,19 @@ void GameObjectOny::setAudioComponent(AudioComponentPtr audioComponent)
 	mAudioComponent=audioComponent;
 }
 
-PhysicsComponentCharacterPtr GameObjectOny::getPhysicsComponentCharacter() const
+PhysicsComponentCharacterOnyPtr GameObjectOny::getPhysicsComponentCharacterOny() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentCharacterOny;
 }
 
 bool GameObjectOny::isMoving()
 {
-	return mPhysicsComponentCharacter->isMoving();
+	return mPhysicsComponentCharacterOny->isMoving();
 }
 
 bool GameObjectOny::isJumping()
 {
-	return mPhysicsComponentCharacter->isJumping();
+	return mPhysicsComponentCharacterOny->isJumping();
 }
 
 bool GameObjectOny::cancelAutoCameraMovement()
@@ -146,7 +146,7 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 	mRenderComponentEntity->update(animationTime);
 
-	if (mPhysicsComponentCharacter->getNxOgreController()->getPosition().y < 
+	if (mPhysicsComponentCharacterOny->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
 		//if (!mGameWorldManager->getGodMode())
@@ -156,7 +156,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		//}
 		//else
 		//{
-		//	mPhysicsComponentCharacter->jump();
+		//	mPhysicsComponentCharacterOny->jump();
 		//	int newState = mLogicComponentOny->getNewState();
 		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
 		//	mLogicComponentOny->setNewState(newState);
@@ -175,16 +175,16 @@ void GameObjectOny::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	if (mPhysicsComponentCharacterOny.get() && mPhysicsComponentCharacterOny->isInUse())
 	{
-		mPhysicsComponentCharacter->reset();
-		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
+		mPhysicsComponentCharacterOny->reset();
+		mPhysicsComponentCharacterOny->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacterOny->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
 	}
 	else
 	{
-		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
+		mPhysicsComponentCharacterOny->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentCharacterOny->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
 	}
 
 	mLogicComponentOny->initStateHistory();
@@ -287,7 +287,7 @@ bool GameObjectOny::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectOny::getPhysicsComponent() const
 {
-	return getPhysicsComponentCharacter();
+	return getPhysicsComponentCharacterOny();
 }
 
 void GameObjectOny::setWeaponComponent(WeaponComponentPtr weaponComponent)
@@ -478,7 +478,7 @@ void GameObjectOny::postUpdate()
 	mGameWorldManager->getGameObjectViewport()->
 		setRadialBlurEffectIfPossible(
 			mGameWorldManager->getWorld(),
-			mPhysicsComponentCharacter->isFallingLimit());
+			mPhysicsComponentCharacterOny->isFallingLimit());
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const

@@ -73,6 +73,7 @@
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
@@ -1854,7 +1855,7 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		tGameObjectOnyParameters.tRenderComponentQuadHaloParameters = processRenderComponentQuadHalo(gameObject->XMLNodeCustomProperties);
 
 		//Get PhysicsComponentCharacter
-		tGameObjectOnyParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters = processPhysicsComponentCharacterOny(gameObject->XMLNodeCustomProperties);
 
 		//Get AudioComponent
 		tGameObjectOnyParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
@@ -3618,7 +3619,32 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	}
 
 	return tPhysicsComponentCharacterParameters;
+}
 
+TPhysicsComponentCharacterOnyParameters LevelLoader::processPhysicsComponentCharacterOny(TiXmlElement *XMLNode,std::string suffix)
+{
+	TPhysicsComponentCharacterOnyParameters tPhysicsComponentCharacterOnyParameters;
+
+	//Get Component properties
+	tPhysicsComponentCharacterOnyParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::mass");
+	tPhysicsComponentCharacterOnyParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::radius");
+	tPhysicsComponentCharacterOnyParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::height");
+	try{
+		tPhysicsComponentCharacterOnyParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacterOny"+suffix+"::position_correction");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentCharacterOnyParameters.position_correction=Vector3::ZERO;
+	}
+	try{
+		tPhysicsComponentCharacterOnyParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacterOny"+suffix+"::scale_correction");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentCharacterOnyParameters.scale_correction=Vector3(1,1,1);
+	}
+
+	return tPhysicsComponentCharacterOnyParameters;
 }
 
 TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix)

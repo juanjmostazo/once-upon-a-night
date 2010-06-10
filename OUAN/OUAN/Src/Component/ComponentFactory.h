@@ -67,6 +67,9 @@ namespace OUAN
 		PhysicsComponentCharacterPtr createPhysicsComponentCharacter(GameObjectPtr gameObject,
 			TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
+		PhysicsComponentCharacterOnyPtr createPhysicsComponentCharacterOny(GameObjectPtr gameObject,
+			TPhysicsComponentCharacterOnyParameters tPhysicsComponentCharacterOnyParameters,
+			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
 		PhysicsComponentComplexConvexPtr createPhysicsComponentComplexConvex(GameObjectPtr gameObject,
 			TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
