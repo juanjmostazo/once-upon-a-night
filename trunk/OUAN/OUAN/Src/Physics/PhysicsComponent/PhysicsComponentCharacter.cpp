@@ -7,8 +7,8 @@ using namespace OUAN;
 
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
-,mPointRenderable(NULL)
 {
+	mPointRenderable = NULL;
 	reset();
 }
 

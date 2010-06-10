@@ -27,6 +27,7 @@
 #include "../Graphics/TrajectoryManager/TrajectoryComponent.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
@@ -418,6 +419,30 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	pPhysicsComponentCharacter->create();
 
 	return pPhysicsComponentCharacter;
+}
+
+PhysicsComponentCharacterOnyPtr ComponentFactory::createPhysicsComponentCharacterOny(GameObjectPtr gameObject,TPhysicsComponentCharacterOnyParameters tPhysicsComponentCharacterOnyParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
+{
+	PhysicsComponentCharacterOnyPtr pPhysicsComponentCharacterOny = 
+		PhysicsComponentCharacterOnyPtr(new PhysicsComponentCharacterOny(COMPONENT_TYPE_PHYSICS_CHARACTER_ONY)); 
+
+	pPhysicsComponentCharacterOny->setParent(gameObject);	
+	pPhysicsComponentCharacterOny->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentCharacterOny->setMass(tPhysicsComponentCharacterOnyParameters.mass);
+	//pPhysicsComponentCharacter->setQueryFlags(flags);
+	pPhysicsComponentCharacterOny->setNxOgreSize(
+		NxOgre::Vec2(
+			tPhysicsComponentCharacterOnyParameters.radius, 
+			tPhysicsComponentCharacterOnyParameters.height));
+
+	NxOgre::ControllerDescription mNxOgreControllerDescription;
+	mNxOgreControllerDescription.mCallback=mApp->getPhysicsSubsystem().get();
+	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
+	pPhysicsComponentCharacterOny->setNxOgreControllerDescription(mNxOgreControllerDescription);
+
+	pPhysicsComponentCharacterOny->create();
+
+	return pPhysicsComponentCharacterOny;
 }
 
 PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplexConvex(GameObjectPtr gameObject,TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)

@@ -662,6 +662,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentCharacterOny.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplex.cpp"
 						>
 					</File>
@@ -1710,6 +1714,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentCharacter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentCharacterOny.h"
 						>
 					</File>
 					<File

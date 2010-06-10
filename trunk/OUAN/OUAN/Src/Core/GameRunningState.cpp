@@ -277,14 +277,14 @@ void GameRunningState::handleEvents()
 			:SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
 		if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
 		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacter()->walk();
+			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 		}
 		else newState=CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 
 		if (mApp->isPressedJump() && !mApp->getGameWorldManager()->isOnyDying())
 		{
-			ony->getPhysicsComponentCharacter()->jump();
+			ony->getPhysicsComponentCharacterOny()->jump();
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
 			
 		}	
@@ -298,7 +298,7 @@ void GameRunningState::handleEvents()
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
 			nextMovement=mApp->getCameraManager()->rotateMovementVector(nextMovement);
-			ony->getPhysicsComponentCharacter()->setNextMovement(nextMovement);
+			ony->getPhysicsComponentCharacterOny()->setNextMovement(nextMovement);
 			
 			zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
 			newState =zeroMovement

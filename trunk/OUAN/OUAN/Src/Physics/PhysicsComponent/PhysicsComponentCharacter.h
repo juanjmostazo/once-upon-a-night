@@ -2,6 +2,7 @@
 #define PhysicsComponentCharacterH_H
 
 #include "PhysicsComponent.h"
+
 namespace OUAN
 {
 	// Elements with physics which are moved by us: Ony, enemies, etc.
