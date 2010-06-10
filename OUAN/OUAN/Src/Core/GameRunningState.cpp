@@ -671,6 +671,8 @@ void GameRunningState::activateChangeWorld()
 
 bool GameRunningState::render()
 {
+	Logger::getInstance()->log("RENDERING...");
+
 	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
 
 	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
@@ -684,11 +686,11 @@ bool GameRunningState::render()
 
 	mHUD->show();
 
-	//if(mIsChangingWorld)
-	//{
-		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
-			mApp->getRenderSubsystem()->CHANGEWORLD,false);
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,false);
 
+	if(mIsChangingWorld)
+	{
 		mApp->getGameWorldManager()->setDreamsRender();
 		renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
 
@@ -723,11 +725,9 @@ bool GameRunningState::render()
 		default:
 			break;
 		}
-
-
 		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
 			mApp->getRenderSubsystem()->CHANGEWORLD,true);
-	//}
+	}
 
 	return renderSubsystem->render();
 }
