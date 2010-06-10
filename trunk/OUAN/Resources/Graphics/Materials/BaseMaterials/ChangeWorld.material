@@ -1,10 +1,36 @@
 import basic_texture from BasicTexture.material
-material default_changeworld : basic_texture
-{
-	set_texture_alias diffuse_texture default_changeworld.jpg
-}
 
 material no_changeworld : basic_texture
 {
 	set_texture_alias diffuse_texture white.bmp
 }
+
+material default_changeworld : basic_texture
+{
+	set_texture_alias diffuse_texture default_changeworld.jpg
+}
+
+material default_changeworld_alpha_test : default_changeworld
+{
+	technique
+	{
+		pass
+		{
+			alpha_rejection greater 128
+			depth_write on
+			texture_unit diffuse_texture
+			{
+				colour_op alpha_blend
+			}
+		}
+		pass
+		{
+			texture_unit alpha_blending_texture
+			{
+				texture default.png
+				colour_op_ex blend_current_alpha src_texture src_current
+			}
+		}
+	}
+}
+

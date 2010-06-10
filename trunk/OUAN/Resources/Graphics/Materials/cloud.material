@@ -12,8 +12,9 @@ material cloud1_n : alpha_test_texture
 	set_texture_alias diffuse_texture cloud1_n.dds
 }
 
-material cloud1_cw : default_changeworld
+material cloud1_cw : default_changeworld_alpha_test
 {
+	set_texture_alias alpha_blending_texture cloud1_d.dds
 }
 
 //cloud2
@@ -27,8 +28,9 @@ material cloud2_n : alpha_test_texture
 	set_texture_alias diffuse_texture cloud2_n.dds
 }
 
-material cloud2_cw : default_changeworld
+material cloud2_cw : default_changeworld_alpha_test
 {
+	set_texture_alias alpha_blending_texture cloud2_d.dds
 }
 
 //cloud3
@@ -42,6 +44,7 @@ material cloud3_n : alpha_test_texture
 	set_texture_alias diffuse_texture cloud3_n.dds
 }
 
-material cloud3_cw : default_changeworld
+material cloud3_cw : default_changeworld_alpha_test
 {
+	set_texture_alias alpha_blending_texture cloud3_d.dds
 }
