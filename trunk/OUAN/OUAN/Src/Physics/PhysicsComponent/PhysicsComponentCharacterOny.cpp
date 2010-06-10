@@ -17,6 +17,16 @@ PhysicsComponentCharacterOny::~PhysicsComponentCharacterOny()
 	mPointRenderable=NULL;//NxOgre will handle the destruction of these objects.
 }
 
+void PhysicsComponentCharacterOny::reset()
+{
+	PhysicsComponentCharacter::reset();
+}
+
+void PhysicsComponentCharacterOny::update(double elapsedSeconds)
+{
+	PhysicsComponentCharacter::update(elapsedSeconds);
+}
+
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()
 {
 
