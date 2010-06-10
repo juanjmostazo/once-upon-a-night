@@ -8,6 +8,7 @@
 
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectViewport.h"
 #include "../Graphics/RenderSubsystem.h"
 
 
@@ -31,6 +32,9 @@ void GameOverState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	mApp->mKeyBuffer=-1;
+
+	mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
+
 	if (mApp->getGameWorldManager()->isGameBeaten())
 	{
 		mApp->getRenderSubsystem()->showOverlayElement("OUAN/GameOver/Gratz");

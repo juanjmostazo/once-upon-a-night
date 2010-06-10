@@ -39,6 +39,8 @@ namespace OUAN
 		void setHDREffectIfPossible(int world, bool enabled);
 		void setRadialBlurEffectIfPossible(int world, bool enabled);
 		void setMotionBlurEffectIfPossible(int world, bool enabled);
+
+		void disableAllCompositors();
 	};
 
 	class TGameObjectViewportParameters: public TGameObjectParameters
