@@ -79,14 +79,41 @@ material fog2_cw : default_changeworld
 //FOG3
 material fog3_d : basic_texture
 {
-	set_texture_alias diffuse_texture fog3_d.dds
+	technique
+	{
+		pass
+		{
+			depth_write off
+			texture_unit diffuse_texture
+			{
+				texture fog3_d.dds
+			}
+		}
+	}
 }
 
 material fog3_n : basic_texture
 {
-	set_texture_alias diffuse_texture fog3_n.dds
+	technique
+	{
+		pass
+		{
+			depth_write off
+			texture_unit diffuse_texture
+			{
+				texture fog3_n.dds
+			}
+		}
+	}
 }
 
 material fog3_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+			depth_write off
+		}
+	}
 }
