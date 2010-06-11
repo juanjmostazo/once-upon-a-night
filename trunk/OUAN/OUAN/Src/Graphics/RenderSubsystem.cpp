@@ -511,6 +511,10 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 	Ogre::Mesh::LodDistanceList distanceList;
 
 	distanceList.push_back(100);
+	//distanceList.push_back(200);
+	//distanceList.push_back(500);
+	//distanceList.push_back(1000);
+	//distanceList.push_back(1000);
 	try
 	{
 		//Create the mesh file
@@ -518,8 +522,8 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 		{
 			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
 			mesh=MeshManager::getSingleton().load(meshfile,"General");
-			//mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_CONSTANT,0.3);
-		   // mesh->createManualLodLevel(300, "node.mesh");
+			//mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_CONSTANT,0.0001);
+		    //mesh->createManualLodLevel(500, "node.mesh");
 			//mesh->createManualLodLevel(500, "animallod3.mesh");
 		}
 	}

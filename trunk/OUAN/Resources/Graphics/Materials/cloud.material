@@ -1,5 +1,6 @@
 import alpha_test_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
+import default_changeworld_alpha_test from ChangeWorld.material
 
 //cloud1
 material cloud1_d : alpha_test_texture
@@ -14,7 +15,7 @@ material cloud1_n : alpha_test_texture
 
 material cloud1_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_blending_texture cloud1_d.dds
+	set_texture_alias alpha_texture cloud1_d.dds
 }
 
 //cloud2
@@ -30,7 +31,7 @@ material cloud2_n : alpha_test_texture
 
 material cloud2_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_blending_texture cloud2_d.dds
+	set_texture_alias alpha_texture cloud2_d.dds
 }
 
 //cloud3
@@ -46,5 +47,5 @@ material cloud3_n : alpha_test_texture
 
 material cloud3_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_blending_texture cloud3_d.dds
+	set_texture_alias alpha_texture cloud3_d.dds
 }

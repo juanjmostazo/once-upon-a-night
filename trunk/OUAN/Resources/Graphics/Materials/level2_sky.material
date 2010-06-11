@@ -37,4 +37,14 @@ material level2_sky_n : basic_texture
 
 material level2_sky_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				scale 3 3
+			}
+		}
+	}
 }

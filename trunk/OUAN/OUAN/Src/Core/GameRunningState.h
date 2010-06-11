@@ -43,6 +43,7 @@ namespace OUAN
 		void changeMusic(int newWorld);
 		void clearMusic();
 		void processChangeWorld(ChangeWorldEventPtr evt);
+
 		void pauseMusic();
 		void unpauseMusic();
 		//void playMusic(const std::string& musicID);
@@ -69,6 +70,8 @@ namespace OUAN
 		static GameRunningState* mInst;
 
 		bool mayProceedToGameOver();
+
+		void renderChangeWorldTextures();
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);

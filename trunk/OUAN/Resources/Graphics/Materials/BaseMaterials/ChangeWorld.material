@@ -10,7 +10,7 @@ material default_changeworld : basic_texture
 	set_texture_alias diffuse_texture default_changeworld.jpg
 }
 
-material default_changeworld_alpha_test : default_changeworld
+material default_changeworld_alpha_test
 {
 	technique
 	{
@@ -18,18 +18,34 @@ material default_changeworld_alpha_test : default_changeworld
 		{
 			alpha_rejection greater 128
 			depth_write on
-			texture_unit diffuse_texture
+
+			texture_unit base_texture
 			{
-				colour_op alpha_blend
+				colour_op_ex source1 src_manual src_current 0 0 0 0
 			}
-		}
-		pass
-		{
-			texture_unit alpha_blending_texture
+			texture_unit alpha_texture
 			{
 				texture default.png
+				colour_op alpha_blend
+			}
+			texture_unit diffuse_texture
+			{
+				texture default_changeworld.jpg
 				colour_op_ex blend_current_alpha src_texture src_current
 			}
+		}
+	}
+}
+
+material default_changeworld_alpha_blending : default_changeworld_alpha_test
+
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
 		}
 	}
 }

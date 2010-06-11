@@ -172,6 +172,7 @@ void GameRunningState::handleEvents()
 		{
 			//Logger::getInstance()->log("isPressedQuickExit IN");
 			mApp->mExitRequested=true;
+			mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedPause())
@@ -669,10 +670,76 @@ void GameRunningState::activateChangeWorld()
 	}
 }
 
+void GameRunningState::renderChangeWorldTextures()
+{
+	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
+
+	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+		mApp->getRenderSubsystem()->CHANGEWORLD,false);
+
+	if(mIsChangingWorld || renderSubsystem->getChangeWorldRenderer()->getDebugScreensActive())
+	{
+		mApp->getGameWorldManager()->setChangeWorldRender();
+		renderSubsystem->getChangeWorldRenderer()->renderToTextureChangeWorld();
+
+		switch(mWorld)
+		{
+		case DREAMS:
+			if(mWorld!=mOldWorld)
+			{
+				mApp->getGameWorldManager()->setNightmaresRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+				mApp->getGameWorldManager()->setDreamsRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+			}
+			else
+			{
+				mApp->getGameWorldManager()->setDreamsRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+				mApp->getGameWorldManager()->setNightmaresRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+			}
+			break;
+		case NIGHTMARES:
+			if(mWorld!=mOldWorld)
+			{
+				mApp->getGameWorldManager()->setDreamsRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+				mApp->getGameWorldManager()->setNightmaresRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+			}
+			else
+			{
+				mApp->getGameWorldManager()->setNightmaresRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
+				mApp->getGameWorldManager()->setDreamsRender();
+				renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
+			}
+			break;
+		default:
+			break;
+		}
+		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
+			mApp->getRenderSubsystem()->CHANGEWORLD,true);
+	}
+	else
+	{
+		switch(mWorld)
+		{
+		case DREAMS:
+			mApp->getGameWorldManager()->setDreamsRender();
+			break;
+		case NIGHTMARES:
+			mApp->getGameWorldManager()->setNightmaresRender();
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 bool GameRunningState::render()
 {
-	Logger::getInstance()->log("RENDERING...");
-
 	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
 
 	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
@@ -686,48 +753,7 @@ bool GameRunningState::render()
 
 	mHUD->show();
 
-	mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
-		mApp->getRenderSubsystem()->CHANGEWORLD,false);
-
-	if(mIsChangingWorld || renderSubsystem->getChangeWorldRenderer()->getDebugScreensActive())
-	{
-		mApp->getGameWorldManager()->setDreamsRender();
-		renderSubsystem->getChangeWorldRenderer()->renderToTextureDreams();
-
-		mApp->getGameWorldManager()->setNightmaresRender();
-		renderSubsystem->getChangeWorldRenderer()->renderToTextureNightmares();
-
-		mApp->getGameWorldManager()->setChangeWorldRender();
-		renderSubsystem->getChangeWorldRenderer()->renderToTextureChangeWorld();
-
-		switch(mWorld)
-		{
-		case DREAMS:
-			if(mWorld!=mOldWorld)
-			{
-				mApp->getGameWorldManager()->setDreamsRender();
-			}
-			else
-			{
-				mApp->getGameWorldManager()->setNightmaresRender();
-			}
-			break;
-		case NIGHTMARES:
-			if(mWorld!=mOldWorld)
-			{
-				mApp->getGameWorldManager()->setNightmaresRender();
-			}
-			else
-			{
-				mApp->getGameWorldManager()->setDreamsRender();
-			}
-			break;
-		default:
-			break;
-		}
-		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
-			mApp->getRenderSubsystem()->CHANGEWORLD,true);
-	}
+	renderChangeWorldTextures();
 
 	return renderSubsystem->render();
 }
