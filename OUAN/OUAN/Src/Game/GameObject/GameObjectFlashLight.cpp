@@ -304,10 +304,12 @@ void GameObjectFlashLight::switchOn()
 	{
 		mFlashlightDecal->show();
 	}
+	mLightConeBBS->setVisible(true);
 }
 void GameObjectFlashLight::switchOff()
 {
 	mRenderComponentLight->getLight()->setVisible(false);
+	mLightConeBBS->setVisible(false);
 	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->destroy();

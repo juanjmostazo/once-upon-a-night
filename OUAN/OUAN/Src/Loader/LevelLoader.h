@@ -22,6 +22,20 @@ namespace OUAN
 
 		void loadLevel(String SceneName);
 
+		int getGameObjectsNumber();
+		void initializeParser(const std::string& levelFilename);
+
+		XMLGameObjectContainerIterator getGameObjectIterator();
+		XMLGameObjectContainerIterator getGameObjectIteratorEnd();
+
+		void processGameObject(XMLGameObject *gameObject);
+		void processGameObjectBillboardClouds();
+		void processGameObjectFractalClouds();
+		void processWalkabilityMaps();
+		void processTrajectories();
+		
+		void clearXMLParser();
+
 	protected:
 		GameWorldManagerPtr mGameWorldManager;
 		GameObjectFactoryPtr mGameObjectFactory;
@@ -30,17 +44,14 @@ namespace OUAN
 
 		//Process GameObjects
 		void processGameObjects();
-		void processGameObjectBillboardClouds();
-		void processGameObjectFractalClouds();
-		void processGameObject(XMLGameObject *gameObject);
+
+
 
 		//ProcessTrajectories
-		void processTrajectories();
 		void processTrajectory(XMLTrajectory *trajectory);
 		TTrajectoryNodeParameters processTrajectoryNode(TiXmlElement *XMLNode);
 
 		//ProcessWalkabilityMaps
-		void processWalkabilityMaps();
 		void processWalkabilityMap(XMLWalkabilityMap *walkabilityMap);
 		TWalkabilityMapNodeParameters processWalkabilityMapNode(TiXmlElement *XMLNode);
 

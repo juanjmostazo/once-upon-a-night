@@ -122,6 +122,10 @@ void LevelLoader::loadLevel(String level)
 {
 	Logger::getInstance()->log("[LevelLoader] Loading level "+level);
 
+	//IMPORTANT: THIS METHOD ISN'T CALLED ANYMORE. THE LOADING PROCESS IS NOW
+	//MANAGED AT THE LEVEL LOADING STATE, CALLING THESE METHODS ONE BY ONE AT EACH
+	//LOADING STAGE
+
 	//clear parser content
 	mXMLParser.clearLevelInfo();
 
@@ -1575,7 +1579,7 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 		billboard.colour=Ogre::ColourValue();
 		billboard.dimensions=Ogre::Vector2(20,20);
 		billboard.position=Ogre::Vector3::ZERO;
-		billboard.rotation=-90;
+		billboard.rotation=0;
 		billboard.texcoordindex=0;
 		billboard.texrect=Ogre::Vector4(0,0,1,1);
 		tGameObjectFlashLightParameters.lightConeBBSParams.tRenderComponentBillboardParameters.push_back(billboard);
@@ -4597,4 +4601,30 @@ int LevelLoader::getPropertyInt(TiXmlElement *XMLNode, const String &attrib_name
 Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_name, bool logErrors)
 {
 	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name,logErrors));
+}
+int LevelLoader::getGameObjectsNumber()
+{
+	if (!mXMLParser.mXMLGameObjectContainer.empty())
+		return mXMLParser.mXMLGameObjectContainer.size();
+	return 0;
+}
+void LevelLoader::initializeParser(const std::string& levelFilename)
+{
+	//clear parser content
+	mXMLParser.clearLevelInfo();
+
+	//Parse Level's GameObjects
+	mXMLParser.parseLevel(levelFilename);
+}
+XMLGameObjectContainerIterator LevelLoader::getGameObjectIterator()
+{
+	return mXMLParser.mXMLGameObjectContainer.begin();
+}
+XMLGameObjectContainerIterator LevelLoader::getGameObjectIteratorEnd()
+{
+	return mXMLParser.mXMLGameObjectContainer.end();
+}
+void LevelLoader::clearXMLParser()
+{
+	mXMLParser.clearLevelInfo();
 }
