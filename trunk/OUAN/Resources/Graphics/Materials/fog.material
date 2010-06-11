@@ -10,11 +10,16 @@ material fog1_d : alpha_blending_texture
 	{
 		pass
 		{
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				texture fog1_d.dds
 				scroll_anim 0.02 0
 				scale 0.3 0.3
+				colour_op replace
 			}
 		}
 	}
@@ -26,11 +31,16 @@ material fog1_n : alpha_blending_texture
 	{
 		pass
 		{
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				texture fog1_n.dds
 				scroll_anim 0.02 0
 				scale 0.3 0.3
+				colour_op replace
 			}
 		}
 	}
@@ -64,11 +74,16 @@ material fog2_d : alpha_blending_texture
 	{
 		pass
 		{
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				texture fog2_d.dds
 				scroll_anim 0.01 0
 				scale 0.3 0.3
+				colour_op replace
 			}
 		}
 	}
@@ -80,11 +95,16 @@ material fog2_n : alpha_blending_texture
 	{
 		pass
 		{
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				texture fog2_n.dds
 				scroll_anim 0.01 0
 				scale 0.3 0.3
+				colour_op replace
 			}
 		}
 	}
@@ -111,31 +131,43 @@ material fog2_cw : default_changeworld_alpha_blending
 }
 
 //FOG3
-material fog3_d : basic_texture
+material fog3_d
 {
 	technique
 	{
 		pass
 		{
+       		scene_blend alpha_blend
 			depth_write off
 			texture_unit diffuse_texture
 			{
+				texture fog_mask.dds
+			}
+			texture_unit alpha_texture
+			{
 				texture fog3_d.dds
+				colour_op replace
 			}
 		}
 	}
 }
 
-material fog3_n : basic_texture
+material fog3_n
 {
 	technique
 	{
 		pass
 		{
+			scene_blend alpha_blend
 			depth_write off
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				texture fog3_n.dds
+				colour_op replace
 			}
 		}
 	}
@@ -147,7 +179,10 @@ material fog3_cw : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			depth_write off
+			texture_unit alpha_texture
+			{
+				texture fog_mask.dds
+			}
 			texture_unit diffuse_texture
 			{
 				scale 0.05 0.05
