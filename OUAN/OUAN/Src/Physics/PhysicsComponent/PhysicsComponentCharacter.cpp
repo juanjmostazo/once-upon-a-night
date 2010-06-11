@@ -113,7 +113,7 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 	double cyclicLastPositionY = getNxOgreController()->getPosition().y;
 	double sceneNodeLastPositionY = getSceneNode()->getPosition().y;
 
-	if(getParent()->getType()!=GAME_OBJECT_TYPE_ONY==0)
+	//if(getParent()->getType()!=GAME_OBJECT_TYPE_ONY==0)
 
 	getNxOgreController()->move(
 		mNextMovement,
