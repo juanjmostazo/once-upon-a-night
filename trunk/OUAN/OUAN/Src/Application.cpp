@@ -10,6 +10,7 @@
 #include "Core/GameState.h"
 #include "Core/IntroState.h"
 #include "Core/GameRunningState.h"
+#include "Core/LevelLoadingState.h"
 
 #include "GUI/GUISubsystem.h"
 
@@ -240,7 +241,14 @@ void Application::loadInitialState()
 	//GameStatePtr initialState(new GameRunningState());
 	GameStatePtr initialState;
 	if (mSkipIntro)
-		initialState.reset(new GameRunningState());
+	{
+		initialState.reset(new LevelLoadingState());
+		LevelLoadingStatePtr ll = boost::dynamic_pointer_cast<LevelLoadingState>(initialState);
+		if (ll.get())
+		{
+			ll->setLevelFileName(LEVEL_2);
+		}
+	}
 	else
 		initialState.reset(new IntroState());
 	ApplicationPtr this_ = shared_from_this();

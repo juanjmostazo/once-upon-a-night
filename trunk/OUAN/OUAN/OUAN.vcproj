@@ -395,6 +395,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\LevelLoadingState.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\MainMenuState.cpp"
 					>
 				</File>
@@ -985,6 +989,10 @@
 						RelativePath=".\Src\Graphics\HUD\HUDInGame.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDLoading.cpp"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Line3D"
@@ -1181,6 +1189,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Core\LevelLoadingState.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Core\MainMenuState.h"
 					>
 				</File>
@@ -1341,6 +1353,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\HUD\HUDInGame.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\HUD\HUDLoading.h"
 						>
 					</File>
 				</Filter>

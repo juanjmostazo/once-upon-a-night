@@ -53,11 +53,13 @@ void GameRunningState::init(ApplicationPtr app)
 {
 	mApp=app;	
 
-	mApp->getGameWorldManager()->setWorld(DREAMS);
-	mApp->getGameWorldManager()->loadLevel(LEVEL_2);
+	//mApp->getGameWorldManager()->setWorld(DREAMS);
+	//mApp->getGameWorldManager()->loadLevel(LEVEL_2);
 
 	//mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
-	mApp->getLogicSubsystem()->loadScripts();
+	//mApp->getLogicSubsystem()->loadScripts();
+
+	mApp->getGameWorldManager()->initGame();
 
 
 	//...and initialise the active weapon according to the current world
@@ -603,7 +605,6 @@ TWeaponMode GameRunningState::getCurrentWeaponMode()
 
 void GameRunningState::loadMusic()
 {
-
 	
 	mApp->getAudioSubsystem()->load("DREAMS00",AUDIO_RESOURCES_GROUP_NAME);
 	mMusicChannels[DREAMS].id="DREAMS00";
@@ -612,7 +613,6 @@ void GameRunningState::loadMusic()
 
 	mApp->getAudioSubsystem()->load("SUCCESS",AUDIO_RESOURCES_GROUP_NAME);
 	mMusicChannels[-1].id="SUCCESS";
-
 }
 
 void GameRunningState::changeMusic(int world)

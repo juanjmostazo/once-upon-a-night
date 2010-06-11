@@ -349,8 +349,8 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 {
 	try
 	{
-		initShadows();
-		//mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		//initShadows();
+		mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);

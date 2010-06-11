@@ -86,6 +86,9 @@ namespace OUAN
 		/// @param pointer to the application object
 		void init(ApplicationPtr app);
 
+		void initGame();
+		void setLevelname(const std::string& filename);
+
 		bool loadConfig();
 
 		/// Free resources

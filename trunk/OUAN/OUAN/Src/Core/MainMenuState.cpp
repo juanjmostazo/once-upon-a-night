@@ -8,6 +8,7 @@
 #include "GameStateManager.h"
 #include "GameRunningState.h"
 #include "GameOptionsState.h"
+#include "LevelLoadingState.h"
 #include "ExtrasState.h"
 
 #include "../Audio/AudioDefs.h"
@@ -90,15 +91,16 @@ void MainMenuState::cleanUp()
 		mat=Ogre::MaterialManager::getSingleton().getByName(MAINMENU_MATERIAL_NAME);
 		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 		tex->setTextureName(Ogre::String(""));
+		if (mScreen)
+		{
+			std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
+			mScreen->detatchFromParent();
+			mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
+			delete mScreen;
+			mScreen=NULL;
+			Ogre::MaterialManager::getSingleton().remove(MAINMENU_MATERIAL_NAME);
+		}	
 	}
-	if (mScreen)
-	{
-		std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
-		mScreen->detatchFromParent();
-		mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-		delete mScreen;
-		mScreen=NULL;
-	}	
 }
 
 /// pause state
@@ -141,8 +143,11 @@ void MainMenuState::gotoPlay()
 {
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	//TODO: Change to ProfileSelectState when it's implemented
-	GameStatePtr nextState(new GameRunningState());
-	mApp->getGameStateManager()->changeState(nextState,mApp);	
+	//GameStatePtr nextState(new GameRunningState());
+	//GameStatePtr nextState(new LevelLoadingState());
+	LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
+	levelLoadingState->setLevelFileName(LEVEL_2);
+	mApp->getGameStateManager()->changeState(levelLoadingState,mApp);	
 }
 
 void MainMenuState::gotoOptions()

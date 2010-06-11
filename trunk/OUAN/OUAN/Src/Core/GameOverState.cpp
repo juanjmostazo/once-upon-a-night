@@ -5,6 +5,7 @@
 #include "GameStateManager.h"
 #include "MainMenuState.h"
 #include "GameRunningState.h"
+#include "LevelLoadingState.h"
 
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
@@ -74,8 +75,10 @@ void GameOverState::handleEvents()
 		{
 			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 			mApp->mKeyBuffer=500000;
-			GameStatePtr continueGameState = GameStatePtr(new GameRunningState());
-			mApp->getGameStateManager()->changeState(continueGameState,mApp);
+			//GameStatePtr continueGameState = GameStatePtr(new GameRunningState());
+			LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
+			levelLoadingState->setLevelFileName(LEVEL_2);
+			mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
 		}
 		else if (mApp->isPressedWeaponAction())
 		{
@@ -100,6 +103,6 @@ bool GameOverState::render()
 	{
 		mApp->getRenderSubsystem()->showOverlay(OVERLAY_GAMEOVER_SCREEN);
 		return mApp->getRenderSubsystem()->render();
-	}
+	} 
 	return false;
 }

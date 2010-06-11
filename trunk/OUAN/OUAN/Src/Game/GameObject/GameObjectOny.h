@@ -18,7 +18,7 @@ namespace OUAN
 	const double IDLE_SECONDS_TO_NAP=15.0;
 
 	//Name of the bone whose position to retrieve to attach  to Ony
-	const std::string ATTACH_BONE_NAME="RThumbRoot";
+	const std::string ATTACH_BONE_NAME="LThumbRoot";
 
 	//Default state
 	const int ONY_STATE_IDLE=0;
