@@ -120,11 +120,9 @@ void GameObjectTentetieso::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			setDreamsRender();
-			mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
-			mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 			break;
 		default:break;
 	}
