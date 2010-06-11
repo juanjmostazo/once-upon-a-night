@@ -111,26 +111,40 @@ void GameObjectWoodBox::setChangeWorldRender()
 	switch(mWorld)
 	{
 		case DREAMS:
-			if(mLogicComponentBreakable->existsInDreams())
+			if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else if(!mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponentBreakable->existsInDreams() && !mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityDreams->setChangeWorldMaterials();
 			}
-			if(mLogicComponentBreakable->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-			}	
 			break;
 		case NIGHTMARES:
-			if(mLogicComponentBreakable->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-			}
-			if(mLogicComponentBreakable->existsInNightmares())
+			if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
 				mRenderComponentEntityNightmares->setChangeWorldMaterials();
-			}	
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else if(!mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponentBreakable->existsInDreams() && !mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
 			break;
 		default:break;
 	}

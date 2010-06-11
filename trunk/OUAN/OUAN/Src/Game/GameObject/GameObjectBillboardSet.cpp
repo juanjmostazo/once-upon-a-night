@@ -106,26 +106,40 @@ void GameObjectBillboardSet::setChangeWorldRender()
 	switch(mWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSetDreams->setVisible(true);
+				mRenderComponentBillboardSetDreams->setChangeWorldMaterials();
+				mRenderComponentBillboardSetNightmares->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSetNightmares->setVisible(true);
+				mRenderComponentBillboardSetNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentBillboardSetDreams->setVisible(true);
 				mRenderComponentBillboardSetDreams->setChangeWorldMaterials();
 			}
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentBillboardSetNightmares->setVisible(false);
-			}	
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentBillboardSetDreams->setVisible(false);
-			}
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentBillboardSetNightmares->setVisible(true);
 				mRenderComponentBillboardSetNightmares->setChangeWorldMaterials();
-			}	
+				mRenderComponentBillboardSetDreams->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSetNightmares->setVisible(true);
+				mRenderComponentBillboardSetNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentBillboardSetDreams->setVisible(true);
+				mRenderComponentBillboardSetDreams->setChangeWorldMaterials();
+			}
 			break;
 		default:break;
 	}
