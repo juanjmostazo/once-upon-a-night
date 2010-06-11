@@ -48,23 +48,7 @@ material fog1_n : alpha_blending_texture
 
 material fog1_cw : default_changeworld_alpha_blending
 {
-	technique
-	{
-		pass
-		{
-			texture_unit alpha_texture
-			{
-				texture fog1_n.dds
-				scroll_anim 0.02 0
-				scale 0.3 0.3
-			}
-			texture_unit diffuse_texture
-			{
-				scroll_anim 0.02 0
-				scale 0.05 0.05
-			}
-		}
-	}
+	set_texture_alias alpha_texture fog_mask.dds
 }
 
 //FOG2
@@ -112,22 +96,7 @@ material fog2_n : alpha_blending_texture
 
 material fog2_cw : default_changeworld_alpha_blending
 {
-	technique
-	{
-		pass
-		{
-			texture_unit alpha_texture
-			{
-				texture fog2_n.dds
-				scroll_anim 0.01 0
-				scale 0.3 0.3
-			}
-			texture_unit diffuse_texture
-			{
-				scale 0.05 0.05
-			}
-		}
-	}
+	set_texture_alias alpha_texture fog_mask.dds
 }
 
 //FOG3
@@ -175,18 +144,5 @@ material fog3_n
 
 material fog3_cw : default_changeworld_alpha_blending
 {
-	technique
-	{
-		pass
-		{
-			texture_unit alpha_texture
-			{
-				texture fog_mask.dds
-			}
-			texture_unit diffuse_texture
-			{
-				scale 0.05 0.05
-			}
-		}
-	}
+	set_texture_alias alpha_texture fog_mask.dds
 }
