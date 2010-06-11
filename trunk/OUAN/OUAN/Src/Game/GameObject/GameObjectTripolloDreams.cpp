@@ -297,6 +297,7 @@ void GameObjectTripolloDreams::reset()
 
 void GameObjectTripolloDreams::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentEnemy->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(true);
@@ -311,6 +312,8 @@ void GameObjectTripolloDreams::setDreamsRender()
 
 void GameObjectTripolloDreams::setNightmaresRender()
 {
+	if (!isEnabled()) return;
+
 	if(mLogicComponentEnemy->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(false);
@@ -325,6 +328,7 @@ void GameObjectTripolloDreams::setNightmaresRender()
 
 void GameObjectTripolloDreams::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:
