@@ -81,16 +81,14 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
-		?mRenderComponentEntityDreams
-		:mRenderComponentEntityNightmares;
-
 	if (isFirstUpdate())
 	{
-		entityToUpdate->changeAnimation("attack01_Clip");
+		mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
+		mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 	}
 
-	entityToUpdate->update(elapsedSeconds/2);
+	mRenderComponentEntityDreams->update(elapsedSeconds/2);
+	mRenderComponentEntityNightmares->update(elapsedSeconds/2);
 }
 
 void GameObjectTentetieso::setDreamsRender()
