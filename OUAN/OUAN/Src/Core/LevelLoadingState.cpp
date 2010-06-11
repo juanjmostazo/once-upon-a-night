@@ -239,7 +239,7 @@ void LevelLoadingState::processStage(const TLoadingStage& stage)
 	delete mBar;
 	mBar= new Ogre::Rectangle2D(true);
 	mBar->setCorners(leftCorner,topCorner,currentRightCorner,bottomCorner);	
-	mBar->setRenderQueueGroup(Ogre::RENDER_QUEUE_OVERLAY);
+	mBar->setRenderQueueGroup(Ogre::RENDER_QUEUE_MAX);
 	mBar->setBoundingBox(Ogre::AxisAlignedBox::BOX_INFINITE);
 	mApp->getRenderSubsystem()->getSceneManager()->getSceneNode(LEVELLOAD_BAR_NODE)->attachObject(mBar);
 	mBar->setMaterial(LEVELLOAD_BAR_MATERIAL_NAME);
