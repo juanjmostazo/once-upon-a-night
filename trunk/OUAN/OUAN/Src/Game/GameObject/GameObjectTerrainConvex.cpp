@@ -101,26 +101,40 @@ void GameObjectTerrainConvex::setChangeWorldRender()
 	switch(mWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityDreams->setChangeWorldMaterials();
 			}
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-			}	
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-			}
-			if(mLogicComponent->existsInNightmares())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
 				mRenderComponentEntityNightmares->setChangeWorldMaterials();
-			}	
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
 			break;
 		default:break;
 	}
