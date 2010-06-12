@@ -415,6 +415,9 @@ void GameWorldManager::initGame()
 	setChangeWorldTimes();
 	setWorld(DREAMS);
 
+	dispatchEvents();
+
+	mApp->getCameraManager()->resetActiveCameraController();
 	mApp->getRenderSubsystem()->initChangeWorldRenderer();
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");

@@ -61,7 +61,6 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mApp->getGameWorldManager()->initGame();
 
-
 	//...and initialise the active weapon according to the current world
 	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
 
@@ -97,6 +96,8 @@ void GameRunningState::init(ApplicationPtr app)
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_ONY_DEATH);
 	}
+
+	mIsChangingWorld=false;
 }
 
 /// Clean up main menu's resources
@@ -775,6 +776,8 @@ void GameRunningState::changeWorldFinished(int newWorld)
 {
 	endMusicFading(newWorld);
 
+	mWorld=newWorld;
+
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(0);
 	switch(newWorld)
 	{
@@ -789,23 +792,21 @@ void GameRunningState::changeWorldFinished(int newWorld)
 		default:
 			break;
 	}
-
-	mIsChangingWorld=false;
 }
 
 void GameRunningState::changeWorldStarted(int newWorld)
 {
 	initMusicFading(newWorld);
-
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->setChangeWorldFactor(0);
-
 	switch(newWorld)
 	{
 		case DREAMS:
 			mOldWorld=NIGHTMARES;
+			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToDreams();
 			break;
 		case NIGHTMARES:
 			mOldWorld=DREAMS;
+			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setToNightmares();
 			break;
 		default:
 			break;

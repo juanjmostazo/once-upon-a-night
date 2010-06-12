@@ -67,6 +67,11 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	registerEventHandlers(mGameWorldManager->getEventManager());
 }
 
+void CameraManager::resetActiveCameraController()
+{
+	activeCameraController->reset();
+}
+
 Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement)
 {
 	return activeCameraController->rotateMovementVector(movement);
@@ -230,7 +235,7 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 			break;
 		case CAMERA_THIRD_PERSON:
 			mCameraControllerThirdPerson->setCamera(activeCameraController->getCamera());
-			mCameraControllerThirdPerson->resetPosition();
+			mCameraControllerThirdPerson->reset();
 			activeCameraController=mCameraControllerThirdPerson;
 			Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
 			break;

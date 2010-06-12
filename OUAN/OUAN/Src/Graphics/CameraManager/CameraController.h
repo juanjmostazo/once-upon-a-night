@@ -22,6 +22,7 @@ namespace OUAN
 		virtual void setTarget(RenderComponentPositionalPtr target);
 		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
+		virtual void reset();
 	protected:
 		Ogre::Camera *mCamera;
 	};

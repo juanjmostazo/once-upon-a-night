@@ -16,8 +16,6 @@ namespace OUAN
 
 		void setTarget(RenderComponentPositionalPtr target);
 
-		void resetPosition();
-
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 		TCameraControllerType getControllerType();
@@ -26,6 +24,8 @@ namespace OUAN
 
 		void setChangeWorldMaxDistance();
 		void setOriginalMaxDistance();
+
+		void reset();
 	private:
 		Ogre::SceneManager * mSceneManager;
 		RayCastingPtr mRayCasting;
@@ -105,7 +105,6 @@ namespace OUAN
 		double rotXDistanceAttenuationNegative;
 		double rotXDistanceAttenuationPositive;
 
-		void reset();
 		bool loadConfig();
 
 		Ogre::Vector3 calculateCameraPosition(double distance,bool y_correction=true,bool applyCollisionMargin=false);

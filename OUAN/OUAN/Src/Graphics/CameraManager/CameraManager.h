@@ -35,6 +35,8 @@ namespace OUAN
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
 		void processSimpleTranslation(Ogre::Vector3 nextMovement);
 
+		void resetActiveCameraController();
+
 		// Process a movement vector in order to fit with the current active camera.
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
