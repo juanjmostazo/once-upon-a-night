@@ -89,10 +89,13 @@ void GameRunningState::init(ApplicationPtr app)
 	
 	if (mApp->getGameWorldManager()->getEventManager().get())
 	{
+		EventHandlerPtr eh;
 		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
-		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
+		eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
+		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
+		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_ONY_DEATH);
 	}
 }
 
@@ -111,9 +114,13 @@ void GameRunningState::cleanUp()
 
 	if (mApp->getGameWorldManager()->getEventManager().get())
 	{
+		EventHandlerPtr eh;
 		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
-		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
+		eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
 		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
+		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_ONY_DEATH);
 	}
 	
 	//Destroy HUD
@@ -651,6 +658,11 @@ void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 	}
 }
 
+void GameRunningState::processOnyDies(OnyDiesEventPtr evt)
+{
+
+}
+
 void GameRunningState::activateChangeWorldFast()
 {
 	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
@@ -776,6 +788,8 @@ void GameRunningState::changeWorldFinished(int newWorld)
 		default:
 			break;
 	}
+
+	mIsChangingWorld=false;
 }
 
 void GameRunningState::changeWorldStarted(int newWorld)

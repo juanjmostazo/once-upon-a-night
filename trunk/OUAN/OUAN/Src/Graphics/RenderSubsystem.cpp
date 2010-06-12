@@ -510,8 +510,8 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 	MeshPtr mesh;
 	Ogre::Mesh::LodDistanceList distanceList;
 
-	distanceList.push_back(100);
-	//distanceList.push_back(200);
+	distanceList.push_back(200);
+	distanceList.push_back(500);
 	//distanceList.push_back(500);
 	//distanceList.push_back(1000);
 	//distanceList.push_back(1000);
@@ -522,7 +522,10 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 		{
 			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
 			mesh=MeshManager::getSingleton().load(meshfile,"General");
-			//mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_CONSTANT,0.0001);
+			//if(meshfile.compare("terrain02.mesh")!=0 && meshfile.compare("terrain03.mesh")!=0 && meshfile.compare("tripollo_d.mesh")!=0)
+			//{
+			//	mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_PROPORTIONAL,0.5);
+			//}
 		    //mesh->createManualLodLevel(500, "node.mesh");
 			//mesh->createManualLodLevel(500, "animallod3.mesh");
 		}
@@ -763,7 +766,7 @@ Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D){
 //			}
 //		}
 //		catch(Ogre::Exception &/*e*/)
-//		{
+//		{	
 //			Logger::getInstance()->log("[setLightmaps] Error adding "+lightmapName+" Lightmap!");
 //		}
 //	}
