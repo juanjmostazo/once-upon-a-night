@@ -68,6 +68,7 @@ PhysicsComponentVolumeBoxPtr GameObjectClockPiece::getPhysicsComponentVolumeBox(
 
 void GameObjectClockPiece::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -83,6 +84,7 @@ void GameObjectClockPiece::setDreamsRender()
 
 void GameObjectClockPiece::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInNightmares())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -98,6 +100,7 @@ void GameObjectClockPiece::setNightmaresRender()
 
 void GameObjectClockPiece::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }

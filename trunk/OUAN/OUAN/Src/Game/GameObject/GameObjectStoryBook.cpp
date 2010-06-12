@@ -71,6 +71,7 @@ PhysicsComponentVolumeBoxPtr GameObjectStoryBook::getPhysicsComponentVolumeBox()
 
 void GameObjectStoryBook::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -84,6 +85,7 @@ void GameObjectStoryBook::setDreamsRender()
 
 void GameObjectStoryBook::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(false);
@@ -97,6 +99,7 @@ void GameObjectStoryBook::setNightmaresRender()
 
 void GameObjectStoryBook::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }

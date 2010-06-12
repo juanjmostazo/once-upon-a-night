@@ -1154,6 +1154,7 @@ double GameWorldManager::getChangeWorldElapsedTime() const
 void GameWorldManager::activateChangeWorldFast()
 {
 	changeWorldFinished(mWorld);
+	mIsChangingWorld=false;
 }
 
 void GameWorldManager::activateChangeWorld()

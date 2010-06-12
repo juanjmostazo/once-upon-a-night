@@ -665,6 +665,7 @@ void GameRunningState::processOnyDies(OnyDiesEventPtr evt)
 
 void GameRunningState::activateChangeWorldFast()
 {
+	mIsChangingWorld=false;
 	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
 }
 

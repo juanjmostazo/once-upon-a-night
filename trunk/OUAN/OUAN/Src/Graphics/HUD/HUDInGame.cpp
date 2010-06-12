@@ -255,6 +255,7 @@ void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 void HUDInGame::activateChangeWorldFast()
 {
 	changeWorldFinished(mChangeWorldTotalTime);
+	mIsChangingWorld=false;
 }
 
 void HUDInGame::activateChangeWorld()

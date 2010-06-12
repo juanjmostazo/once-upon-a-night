@@ -80,6 +80,7 @@ PhysicsComponentVolumeBoxPtr GameObjectWoodBox::getPhysicsComponentVolumeBox() c
 
 void GameObjectWoodBox::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentBreakable->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(true);
@@ -94,6 +95,7 @@ void GameObjectWoodBox::setDreamsRender()
 
 void GameObjectWoodBox::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentBreakable->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(false);
@@ -108,6 +110,7 @@ void GameObjectWoodBox::setNightmaresRender()
 
 void GameObjectWoodBox::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:

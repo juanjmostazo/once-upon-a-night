@@ -86,6 +86,7 @@ void GameObjectHeart::setNightmaresRender()
 
 void GameObjectHeart::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }

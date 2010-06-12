@@ -99,6 +99,7 @@ void GameObjectItemMaxHP::setNightmaresRender()
 
 void GameObjectItemMaxHP::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }
