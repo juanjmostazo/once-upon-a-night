@@ -353,6 +353,7 @@ void CameraManager::setCameraTarget(RenderComponentPositionalPtr target)
 void CameraManager::activateChangeWorldFast()
 {
 	changeWorldFinished(mChangeWorldTotalTime);
+	mIsChangingWorld=false;
 }
 
 void CameraManager::activateChangeWorld()

@@ -70,7 +70,7 @@ PhysicsComponentVolumeConvexPtr GameObjectWater::getPhysicsComponentVolumeConvex
 
 void GameObjectWater::setDreamsRender()
 {
-
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentWaterDreams->setVisible(true);
@@ -85,6 +85,7 @@ void GameObjectWater::setDreamsRender()
 
 void GameObjectWater::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentWaterDreams->setVisible(false);
@@ -99,6 +100,7 @@ void GameObjectWater::setNightmaresRender()
 
 void GameObjectWater::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:

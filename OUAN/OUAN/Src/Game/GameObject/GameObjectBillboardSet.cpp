@@ -74,7 +74,7 @@ void GameObjectBillboardSet::changeWorldFinished(int newWorld)
 
 void GameObjectBillboardSet::setDreamsRender()
 {
-
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentBillboardSetDreams->setVisible(true);
@@ -89,6 +89,7 @@ void GameObjectBillboardSet::setDreamsRender()
 
 void GameObjectBillboardSet::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentBillboardSetDreams->setVisible(false);
@@ -103,6 +104,7 @@ void GameObjectBillboardSet::setNightmaresRender()
 
 void GameObjectBillboardSet::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:

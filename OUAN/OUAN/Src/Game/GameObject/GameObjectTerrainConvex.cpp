@@ -69,7 +69,7 @@ PhysicsComponentComplexConvexPtr GameObjectTerrainConvex::getPhysicsComponentCom
 
 void GameObjectTerrainConvex::setDreamsRender()
 {
-
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(true);
@@ -84,6 +84,7 @@ void GameObjectTerrainConvex::setDreamsRender()
 
 void GameObjectTerrainConvex::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(false);
@@ -98,6 +99,7 @@ void GameObjectTerrainConvex::setNightmaresRender()
 
 void GameObjectTerrainConvex::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:

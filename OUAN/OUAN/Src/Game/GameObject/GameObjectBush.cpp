@@ -104,7 +104,7 @@ void GameObjectBush::changeToWorld(int newWorld, double perc)
 
 void GameObjectBush::setDreamsRender()
 {
-
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(true);
@@ -119,6 +119,7 @@ void GameObjectBush::setDreamsRender()
 
 void GameObjectBush::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentEntityDreams->setVisible(false);
@@ -133,6 +134,7 @@ void GameObjectBush::setNightmaresRender()
 
 void GameObjectBush::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	switch(mWorld)
 	{
 		case DREAMS:

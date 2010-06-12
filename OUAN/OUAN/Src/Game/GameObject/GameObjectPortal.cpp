@@ -101,6 +101,7 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox() co
 
 void GameObjectPortal::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
@@ -111,6 +112,7 @@ void GameObjectPortal::setDreamsRender()
 
 void GameObjectPortal::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
@@ -121,6 +123,7 @@ void GameObjectPortal::setNightmaresRender()
 
 void GameObjectPortal::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setChangeWorldMaterials();
 	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }

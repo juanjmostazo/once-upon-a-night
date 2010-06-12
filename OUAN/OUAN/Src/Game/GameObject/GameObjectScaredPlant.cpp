@@ -113,17 +113,20 @@ void GameObjectScaredPlant::reset()
 
 void GameObjectScaredPlant::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 }
 
 void GameObjectScaredPlant::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(false);
 }
 
 void GameObjectScaredPlant::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setChangeWorldMaterials();
 }

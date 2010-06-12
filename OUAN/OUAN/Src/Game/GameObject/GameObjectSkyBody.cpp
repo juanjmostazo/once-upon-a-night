@@ -90,6 +90,7 @@ RenderComponentInitialPtr GameObjectSkyBody::getRenderComponentInitial() const
 
 void GameObjectSkyBody::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		if (mUseEntityDreams)
@@ -140,6 +141,7 @@ void GameObjectSkyBody::setDreamsRender()
 
 void GameObjectSkyBody::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 	{
 		if (mUseEntityDreams)
@@ -190,7 +192,7 @@ void GameObjectSkyBody::setNightmaresRender()
 
 void GameObjectSkyBody::setChangeWorldRender()
 {
-
+	if (!isEnabled()) return;
 }
 
 void GameObjectSkyBody::changeWorldFinished(int newWorld)

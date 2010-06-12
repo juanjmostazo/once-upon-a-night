@@ -98,6 +98,7 @@ void GameObjectItem1UP::setNightmaresRender()
 
 void GameObjectItem1UP::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }
@@ -232,7 +233,6 @@ void GameObjectItem1UP::reset()
 	if (mLogicComponentItem->getIsTaken())
 	{
 		mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
-		disable();
 	}
 }
 

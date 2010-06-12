@@ -122,6 +122,7 @@ void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)
 
 void GameObjectTerrainTriangle::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
@@ -129,6 +130,7 @@ void GameObjectTerrainTriangle::setDreamsRender()
 
 void GameObjectTerrainTriangle::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
@@ -136,6 +138,7 @@ void GameObjectTerrainTriangle::setNightmaresRender()
 
 void GameObjectTerrainTriangle::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setChangeWorldMaterials();
 	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }

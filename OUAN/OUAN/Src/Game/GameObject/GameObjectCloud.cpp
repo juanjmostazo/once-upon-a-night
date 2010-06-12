@@ -62,6 +62,7 @@ RenderComponentInitialPtr GameObjectCloud::getRenderComponentInitial() const
 
 void GameObjectCloud::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
@@ -80,6 +81,7 @@ void GameObjectCloud::setDreamsRender()
 
 void GameObjectCloud::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
 	{
 		for (int i=0; i<CLOUD_FRACTAL_VOLUME_SET_SIZE; i++)
@@ -98,7 +100,7 @@ void GameObjectCloud::setNightmaresRender()
 
 void GameObjectCloud::setChangeWorldRender()
 {
-
+	if (!isEnabled()) return;
 }
 
 void GameObjectCloud::changeWorldFinished(int newWorld)

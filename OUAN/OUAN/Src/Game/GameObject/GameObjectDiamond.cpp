@@ -70,6 +70,7 @@ PhysicsComponentVolumeBoxPtr GameObjectDiamond::getPhysicsComponentVolumeBox() c
 
 void GameObjectDiamond::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -83,6 +84,7 @@ void GameObjectDiamond::setDreamsRender()
 
 void GameObjectDiamond::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(false);
@@ -96,6 +98,7 @@ void GameObjectDiamond::setNightmaresRender()
 
 void GameObjectDiamond::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }

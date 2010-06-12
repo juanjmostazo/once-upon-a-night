@@ -93,6 +93,7 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 
 void GameObjectTentetieso::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
@@ -100,6 +101,7 @@ void GameObjectTentetieso::setDreamsRender()
 
 void GameObjectTentetieso::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
@@ -107,6 +109,7 @@ void GameObjectTentetieso::setNightmaresRender()
 
 void GameObjectTentetieso::setChangeWorldRender()
 {
+	if (!isEnabled()) return;
 	mRenderComponentEntityDreams->setChangeWorldMaterials();
 	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }
