@@ -62,7 +62,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();
-			mHitRecoveryTime=2;
+			mHitRecoveryTime=POST_HIT_INVULNERABILITY;
 
 			if (getNumLives()==oldLives)
 			{
@@ -81,7 +81,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();
-			mHitRecoveryTime=2;
+			mHitRecoveryTime=POST_HIT_INVULNERABILITY;
 
 			if (getNumLives()==oldLives)
 			{
@@ -98,7 +98,8 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 	{
 		//if (mHitRecoveryTime<0)
 		//{								
-			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);
+			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);			
+			//mInvulnerabilityCounter=POST_HIT_INVULNERABILITY;
 		//}
 	}
 	else if (animationName.compare(ONY_ANIM_DIE01)==0)
@@ -259,13 +260,17 @@ void LogicComponentOny::update(double elapsedTime)
 		}
 	}
 
-	setState(finalState);
-	setNewState(finalState);
-
 	if(mHitRecoveryTime>=0)
 	{
 		mHitRecoveryTime-=elapsedTime;
 	}
+	else
+	{
+		finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_INVULNERABLE);
+	}
+
+	setState(finalState);
+	setNewState(finalState);
 	// mEventInducedStateChange=false;
 }
 
@@ -278,7 +283,10 @@ int LogicComponentOny::getNewState()const
 {
 	return mNewState;
 }
-
+double LogicComponentOny::getHitRecoveryTime() const
+{
+	return mHitRecoveryTime;
+}
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {

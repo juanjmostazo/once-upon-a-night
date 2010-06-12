@@ -25,7 +25,7 @@ vertex_program rim_vs_cg cg
 {
 	source Rim_test.cg
 	entry_point rim_vs	
-	profiles vs_1_1 arbvp1 vp20
+	profiles vs_1_1 arbvp1
 	
 	default_params
 	{
@@ -37,7 +37,7 @@ fragment_program rim_fs_cg cg
 {
 	source Rim_test.cg	
 	entry_point rim_fs
-	profiles vs_1_1 arbvp1 vp20
+	profiles ps_2_0 arbfp1
 	default_params
 	{
 		param_named_auto eyePosition camera_position_object_space

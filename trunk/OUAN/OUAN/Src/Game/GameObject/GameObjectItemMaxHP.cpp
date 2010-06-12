@@ -71,6 +71,7 @@ PhysicsComponentVolumeBoxPtr GameObjectItemMaxHP::getPhysicsComponentVolumeBox()
 
 void GameObjectItemMaxHP::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -84,6 +85,7 @@ void GameObjectItemMaxHP::setDreamsRender()
 
 void GameObjectItemMaxHP::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(false);

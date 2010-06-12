@@ -1,5 +1,6 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
+import tint_texture from Tint.material
 
 //ONY
 material ony_d : basic_texture
@@ -16,12 +17,16 @@ material ony_cw : default_changeworld
 {
 }
 
+material ony_tint: tint_texture
+{
+	set_texture_alias diffuse_texture ony.dds
+}
+
 //HAIR
 material ony_hair_d : basic_texture
 {
 	set_texture_alias diffuse_texture ony_hair.dds
 }
-
 material ony_hair_n : basic_texture
 {
 	set_texture_alias diffuse_texture ony_hair.dds
@@ -29,6 +34,10 @@ material ony_hair_n : basic_texture
 
 material ony_hair_cw : default_changeworld
 {
+}
+material ony_hair_tint: tint_texture
+{
+	set_texture_alias diffuse_texture ony_hair.dds
 }
 
 //FLASHLIGHT
@@ -45,6 +54,10 @@ material flashlight_n : basic_texture
 material flashlight_cw : default_changeworld
 {
 }
+material flashlight_tint: tint_texture
+{
+	set_texture_alias diffuse_texture flashlight.dds
+}
 
 //PILLOW
 material pillow_d : basic_texture
@@ -59,4 +72,8 @@ material pillow_n : basic_texture
 
 material pillow_cw : default_changeworld
 {
+}
+material pillow_tint: tint_texture
+{
+	set_texture_alias diffuse_texture pillow.dds
 }

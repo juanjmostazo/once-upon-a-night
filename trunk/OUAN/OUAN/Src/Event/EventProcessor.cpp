@@ -324,7 +324,9 @@ void EventProcessor::processOnyTakesHit(OnyTakesHitEventPtr evt)
 {
 	if (mWorldManager->getGameObjectOny().get())
 	{
-		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_HIT));
+		int newState=SET_BIT(0,ONY_STATE_BIT_FIELD_HIT);
+		newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_INVULNERABLE);
+		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(newState);
 	}	
 }
 void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)

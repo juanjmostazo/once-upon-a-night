@@ -16,6 +16,7 @@ RenderComponentEntity::RenderComponentEntity(const std::string& type)
 	mCurrentAnimation=NULL;
 	mCurrentAnimationName="";
 	mEntity=NULL;
+	mOldMaterials.clear();
 }
 
 RenderComponentEntity::~RenderComponentEntity()
@@ -188,7 +189,76 @@ void RenderComponentEntity::setNightmaresMaterials()
 {
 	setMaterial(mNightmaresMaterial);
 }
+void RenderComponentEntity::applyTint(const Ogre::ColourValue& tintColour)
+{
+	Ogre::SubEntity* subEnt;
+	Ogre::MaterialPtr material;
+	Ogre::Pass* pass; 
+	mTintColour=tintColour;
 
+	for (unsigned int  i = 0; i < mEntity->getNumSubEntities(); i++)
+	{		
+		subEnt = mEntity->getSubEntity(i);
+		material= subEnt->getMaterial();
+		mOldMaterials[i]=material->getName();
+		std::string oldMaterial=material->getName();
+
+		int underscorePos=oldMaterial.find_last_of("_");
+		if (underscorePos!=std::string::npos)
+		{
+			std::stringstream newName("");
+			newName<<oldMaterial.substr(0,underscorePos)<<"_tint";
+			if (Ogre::MaterialManager::getSingleton().resourceExists(newName.str()))
+			{
+				subEnt->setMaterialName(newName.str());
+				material = subEnt->getMaterial();
+				pass = material->getTechnique(0)->getPass(0);
+				Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+				if (params->_findNamedConstantDefinition("tintColour"))
+				{
+					params->setNamedConstant("tintColour", mTintColour);
+				}
+				if (params->_findNamedConstantDefinition("tintFactor"))
+				{
+					params->setNamedConstant("tintFactor", Ogre::Real(0.0));
+				}				
+			}
+		}
+	}
+}
+void RenderComponentEntity::removeTint()
+{
+	if (isTintBeingApplied())
+	{
+		Ogre::SubEntity* subEnt;
+		Ogre::MaterialPtr material;
+		for (unsigned int  i = 0; i < mEntity->getNumSubEntities(); i++)
+		{		
+			subEnt = mEntity->getSubEntity(i);
+			subEnt->setMaterialName(mOldMaterials[i]);
+		}
+		mOldMaterials.clear();
+	}	
+}
+void RenderComponentEntity::setTintFactor(double tintFactor)
+{
+	Ogre::MaterialPtr material;
+	Ogre::Pass* pass; 
+	for (unsigned int  i = 0; i < mEntity->getNumSubEntities(); i++)
+	{	
+		material = mEntity->getSubEntity(i)->getMaterial();
+		pass = material->getTechnique(0)->getPass(0);
+		Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+		if (params->_findNamedConstantDefinition("tintFactor"))
+		{
+			params->setNamedConstant("tintFactor", Ogre::Real(tintFactor));
+		}						
+	}
+}
+bool RenderComponentEntity::isTintBeingApplied() const
+{
+	return !mOldMaterials.empty();
+}
 
 //void RenderComponentEntity::prepareForNormalMapping()
 //{

@@ -1,0 +1,40 @@
+struct VS_INPUT
+{
+	float4 position: POSITION;
+	float2 texCoord: TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+	float4 position: POSITION;
+	float2 texCoord: TEXCOORD0;
+};
+
+
+void vs_main(
+	in float4 inPos: POSITION,
+	in float2 inTexCoord: TEXCOORD0,
+	out float4 outPos: POSITION,
+	out float2 outTexCoord: TEXCOORD0,
+	
+	uniform float4x4 worldViewProj)
+{
+	outPos= mul(worldViewProj, inPos);
+	outTexCoord = inTexCoord;
+}
+
+struct FINPUT
+{
+	float2 texCoord: TEXCOORD0;
+};
+
+sampler diffuse_texture: register(s0);
+
+
+float4 fs_main(FINPUT IN,
+	uniform float4 tintColour,
+	uniform float tintFactor): COLOR0
+{
+	float4 texColour=tex2D(diffuse_texture,IN.texCoord);   
+	return lerp(texColour, texColour*tintColour, tintFactor);
+}
