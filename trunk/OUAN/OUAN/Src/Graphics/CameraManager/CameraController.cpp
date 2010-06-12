@@ -48,6 +48,10 @@ void CameraController::setTarget(RenderComponentPositionalPtr target)
 
 }
 
+void CameraController::reset()
+{
+}
+
 Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement)
 {
 	return movement;

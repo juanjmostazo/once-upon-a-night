@@ -18,16 +18,7 @@ CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
 	//Set CameraControllerThirdPerson Initial Parameters
 
 	loadConfig();
-	reset();
-}
 
-CameraControllerThirdPerson::~CameraControllerThirdPerson()
-{
-
-}
-
-void CameraControllerThirdPerson::reset()
-{
 	rotX=0;
 	rotY=0;
 	cameraMoved=false;
@@ -35,6 +26,12 @@ void CameraControllerThirdPerson::reset()
 	currentCollisionTime=0;
 	currentDistance=maxDistance;
 	mCurrentCollisionMargin=0;
+
+}
+
+CameraControllerThirdPerson::~CameraControllerThirdPerson()
+{
+
 }
 
 void CameraControllerThirdPerson::setChangeWorldMaxDistance()
@@ -525,14 +522,24 @@ void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRota
 void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
 {
 	this->target=target;
-	resetPosition();
+	reset();
 }
 
-void CameraControllerThirdPerson::resetPosition()
+void CameraControllerThirdPerson::reset()
 {
-	reset();
+	rotX=0;
+	rotY=0;
+	cameraMoved=false;
+
+	currentCollisionTime=0;
+	currentDistance=maxDistance;
+	mCurrentCollisionMargin=0;
+
+
 	rotY=target->getOrientation().getYaw().valueDegrees();
-	mCamera->setPosition(calculateCameraPosition(maxDistance,false));
+
+	mCamera->setPosition(calculateCameraPosition(maxDistance));
+	mCamera->lookAt(calculateCameraLookAt());
 }
 
 TCameraControllerType CameraControllerThirdPerson::getControllerType()
