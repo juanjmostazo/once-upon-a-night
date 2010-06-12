@@ -147,3 +147,17 @@ material waterfall_blue_n  : basic_texture
 material waterfall_blue_cw : default_changeworld
 {
 }
+
+//WATER LIGHTMAPS
+material lake1_lightmap_d : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture lake1_lightmap_d.dds
+}
+material lake1_lightmap_n : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture lake1_lightmap_n.dds
+}
+material lake1_lightmap_cw : default_changeworld
+{
+}
+

@@ -94,76 +94,32 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams())
+
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
+
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
-				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				//{
-				//	mPhysicsComponentSimpleBox->create();
-				//}
-				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				//{
-				//	mPhysicsComponentVolumeBox->create();
-				//}
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-				{
-					mPhysicsComponentCharacter->create();
-				}
-				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
+				mPhysicsComponentCharacter->create();
 			}
-			else
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				//{
-				//	mPhysicsComponentSimpleBox->destroy();
-				//}
-				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				//{
-				//	mPhysicsComponentVolumeBox->destroy();
-				//}
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-				{
-					mPhysicsComponentCharacter->destroy();
-				}
-				mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
-			}		
+			mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
+			
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
+
+			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntityDreams->setVisible(false);
+
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				//{
-				//	mPhysicsComponentSimpleBox->create();
-				//}
-				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				//{
-				//	mPhysicsComponentVolumeBox->create();
-				//}
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-				{
-					mPhysicsComponentCharacter->create();
-				}
-				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
+				mPhysicsComponentCharacter->create();
 			}
-			else
+			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
+			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
-				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				//{
-				//	mPhysicsComponentSimpleBox->destroy();
-				//}
-				//if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				//{
-				//	mPhysicsComponentVolumeBox->destroy();
-				//}
-				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-				{
-					mPhysicsComponentCharacter->destroy();
-				}
-				mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
+				mPhysicsComponentCharacter->destroy();
 			}
+
 			break;
 		default:
 			break;
@@ -177,16 +133,12 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		if(mLogicComponent->existsInDreams())
-		{
-			mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP);
-		}
+		mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP);
+		mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN);
 		break;
 	case NIGHTMARES:
-		if(mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN);
-		}
+		mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_DOWN);
+		mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_UP);
 		break;
 	default:
 		break;

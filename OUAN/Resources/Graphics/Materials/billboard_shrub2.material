@@ -1,8 +1,8 @@
 import basic_texture from BasicTexture.material
-import alpha_test_texture from BasicTexture.material
+import alpha_test_anisotropic from BasicTexture.material
 import default_changeworld_alpha_test from ChangeWorld.material
 
-material billboard_shrub2_d : alpha_test_texture
+material billboard_shrub2_d : alpha_test_anisotropic
 {
 	set_texture_alias diffuse_texture billboard_shrub2_d.dds
 }

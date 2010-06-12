@@ -11,19 +11,19 @@ material tentetieso_n : basic_texture
 	set_texture_alias diffuse_texture tentetieso_n.dds
 }
 
-material tentetieso_n_red : basic_texture
+material tentetieso_red_n : basic_texture
 {
-	set_texture_alias diffuse_texture tentetieso_n_red.dds
+	set_texture_alias diffuse_texture tentetieso_red_n.dds
 }
 
-material tentetieso_n_green : basic_texture
+material tentetieso_green_n : basic_texture
 {
-	set_texture_alias diffuse_texture tentetieso_n_green.dds
+	set_texture_alias diffuse_texture tentetieso_green_n.dds
 }
 
-material tentetieso_n_blue : basic_texture
+material tentetieso_blue_n : basic_texture
 {
-	set_texture_alias diffuse_texture tentetieso_n_blue.dds
+	set_texture_alias diffuse_texture tentetieso_blue_n.dds
 }
 
 material tentetieso_cw : default_changeworld

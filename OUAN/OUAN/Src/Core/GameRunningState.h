@@ -43,6 +43,7 @@ namespace OUAN
 		void changeMusic(int newWorld);
 		void clearMusic();
 		void processChangeWorld(ChangeWorldEventPtr evt);
+		void processOnyDies(OnyDiesEventPtr evt);
 
 		void pauseMusic();
 		void unpauseMusic();

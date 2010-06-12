@@ -28,6 +28,26 @@ material alpha_test_texture
 	}
 }
 
+material alpha_test_anisotropic
+{
+	technique
+	{
+		pass
+		{
+			alpha_rejection greater 128
+			depth_write on
+			texture_unit diffuse_texture
+			{
+				max_anisotropy 16
+				mipmap_bias -2
+				filtering anisotropic
+				texture default.png
+			}
+		}
+	}
+}
+
+
 material alpha_blending_texture
 {
 	technique
