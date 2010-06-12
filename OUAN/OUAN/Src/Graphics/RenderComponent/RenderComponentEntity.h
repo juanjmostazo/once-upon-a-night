@@ -27,6 +27,9 @@ namespace OUAN
 		std::string mNightmaresMaterial;
 		std::string mChangeWorldMaterial;
 
+		Ogre::ColourValue mTintColour;
+		std::map<int,std::string> mOldMaterials;
+
 	public:
 
 		RenderComponentEntity(const std::string& type="");
@@ -52,6 +55,11 @@ namespace OUAN
 		void setDreamsMaterials();
 		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
+
+		void applyTint(const Ogre::ColourValue& tintColour);
+		void removeTint();
+		void setTintFactor(double tintFactor);
+		bool isTintBeingApplied() const;
 
 		//void prepareForNormalMapping();
 

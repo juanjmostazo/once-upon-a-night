@@ -146,6 +146,12 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 	mRenderComponentEntity->update(animationTime);
 
+	if (mRenderComponentEntity->isTintBeingApplied())
+	{
+		double invulnerabilityTime = POST_HIT_INVULNERABILITY-mLogicComponentOny->getHitRecoveryTime();
+		mRenderComponentEntity->setTintFactor(0.5*(1+Ogre::Math::Sin(invulnerabilityTime*5)));
+	}
+
 	if (mPhysicsComponentCharacterOny->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
@@ -391,7 +397,7 @@ void GameObjectOny::postUpdate()
 	int currentState=mLogicComponentOny->getState();
 	int lastState=mLogicComponentOny->getOldState();
 
-	if (currentState==ONY_STATE_IDLE)
+	if (currentState==ONY_STATE_IDLE || currentState==(1<<ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
 		if (mLogicComponentOny->isStateChanged())
 		{
@@ -472,6 +478,14 @@ void GameObjectOny::postUpdate()
 				mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
 			}
 		}		
+	}
+	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
+	{
+		mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
+	}
+	else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
+	{
+		mRenderComponentEntity->removeTint();
 	}
 
 	//Apply radial blur effect when reached fall speed limit

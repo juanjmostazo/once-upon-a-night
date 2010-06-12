@@ -45,14 +45,14 @@ float4 rim_fs(
 	in float2 TexCoord: TEXCOORD0,
 	in float3 Position: TEXCOORD1,
 	in float3 Normal: TEXCOORD2,
-	out float4 outColour: TEXCOORD0,
+	//out float4 outColour: TEXCOORD0,
 	
-	uniform float4 eyePosition) 
+	uniform float4 eyePosition): COLOR0
 {
    float3 n = normalize(Normal);
    float3 eyeDir = normalize(eyePosition.xyz-Position.xyz);
    
-   outColour=tex2D( baseMap, TexCoord );
+   float4 outColour=tex2D( baseMap, TexCoord );
    
    outColour += 1-(max(dot(eyeDir,n),0));
    return outColour;

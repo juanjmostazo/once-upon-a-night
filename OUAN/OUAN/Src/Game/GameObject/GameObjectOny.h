@@ -17,6 +17,9 @@ namespace OUAN
 	//Time to be spent in idle state before the animation changes to 'napping'
 	const double IDLE_SECONDS_TO_NAP=15.0;
 
+	//Time during which Ony will be invulnerable, after having taken a hit.
+	const double POST_HIT_INVULNERABILITY=5.0;
+
 	//Name of the bone whose position to retrieve to attach  to Ony
 	const std::string ATTACH_BONE_NAME="LThumbRoot";
 
@@ -44,6 +47,7 @@ namespace OUAN
 														//11: last hit
 	const unsigned int ONY_STATE_BIT_FIELD_HIT=11; //Ony being hit
 	const unsigned int ONY_STATE_BIT_FIELD_DIE=12; //Ony is dying
+	const unsigned int ONY_STATE_BIT_FIELD_INVULNERABLE=13;
 
 	#define SET_BIT(var,pos) var|(1<<pos)
 	#define CLEAR_BIT(var,pos) var& ~(1<<pos)
@@ -261,6 +265,7 @@ namespace OUAN
 
 		AudioComponentPtr getAudioComponentInstance() const;
 		bool hasAudioComponent() const;
+
 	};
 
 	/// Carries data between the level loader and the object factories

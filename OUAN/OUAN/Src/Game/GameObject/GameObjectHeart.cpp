@@ -58,6 +58,7 @@ PhysicsComponentVolumeBoxPtr GameObjectHeart::getPhysicsComponentVolumeBox() con
 
 void GameObjectHeart::setDreamsRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(true);
@@ -71,6 +72,7 @@ void GameObjectHeart::setDreamsRender()
 
 void GameObjectHeart::setNightmaresRender()
 {
+	if (!isEnabled()) return;
 	if(mLogicComponentItem->existsInDreams())
 	{
 		mRenderComponentEntity->setVisible(false);

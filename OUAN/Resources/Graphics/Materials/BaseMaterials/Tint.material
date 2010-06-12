@@ -1,0 +1,19 @@
+material tint_texture
+{
+	technique
+	{
+		pass
+		{
+			fragment_program_ref tint_fs
+			{
+			}
+			vertex_program_ref tint_vs
+			{				
+			}
+			texture_unit diffuse_texture
+			{
+				texture default.png
+			}
+		}
+	}
+}
