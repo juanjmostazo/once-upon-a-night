@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 #include "Utils.h"
 #include "Logger.h"
+#include "../Graphics/RenderSubsystem.h"
 
 using namespace OUAN;
 using namespace Utils;
@@ -181,4 +182,57 @@ std::string OUAN::Utils::toString(bool boolValue)
 	outStr.str("");
 	outStr<<boolValue;
 	return outStr.str();
+}
+
+void OUAN::Utils::createTexturedRectangle (const TTexturedRectangleDesc& description, 
+	Ogre::Rectangle2D*& rectangle, RenderSubsystemPtr renderSS)
+{
+	rectangle= new Ogre::Rectangle2D(true);
+	rectangle->setCorners(description.leftCorner, description.topCorner, 
+		description.rightCorner, description.bottomCorner);
+	rectangle->setRenderQueueGroup(description.renderQueue);
+	rectangle->setBoundingBox(description.axisAlignedBox);
+	// Create background material
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(description.materialName,
+		description.materialGroup);
+
+	material->getTechnique(0)->getPass(0)->createTextureUnitState(description.textureName);
+	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+	rectangle->setMaterial(description.materialName);
+
+	Ogre::SceneNode* screenNode;
+	if (!renderSS->getSceneManager()->hasSceneNode(description.sceneNodeName))
+	{
+		Ogre::SceneNode* root = renderSS->getSceneManager()->getRootSceneNode();
+		screenNode= root->createChildSceneNode(description.sceneNodeName);
+	}
+	else
+	{
+		screenNode= renderSS->getSceneManager()->getSceneNode(description.sceneNodeName);
+	}
+	screenNode->attachObject(rectangle);
+}
+
+void OUAN::Utils::destroyTexturedRectangle(Ogre::Rectangle2D*& rect,const std::string& materialName, 
+	RenderSubsystemPtr renderSs)
+{
+	if (Ogre::MaterialManager::getSingleton().resourceExists(materialName))
+	{
+		Ogre::MaterialPtr mat;
+		Ogre::TextureUnitState* tex;
+
+		mat=Ogre::MaterialManager::getSingleton().getByName(materialName);
+		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+		tex->setTextureName(Ogre::String(""));
+		if (rect)
+		{
+			std::string sceneNodeName=rect->getParentSceneNode()->getName();
+			rect->detatchFromParent();
+			renderSs->getSceneManager()->destroySceneNode(sceneNodeName);
+			SAFEDELETE(rect);
+			Ogre::MaterialManager::getSingleton().remove(materialName);
+		}
+	}
 }

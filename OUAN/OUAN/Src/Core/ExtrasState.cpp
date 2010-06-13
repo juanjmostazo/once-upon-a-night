@@ -6,6 +6,7 @@
 #include "../Audio/AudioSubsystem.h"
 #include "../GUI/GUISubsystem.h"
 #include "../GUI/GUIExtrasMenu.h"
+#include "../Utils/Utils.h"
 #include "GameStateManager.h"
 
 #include "MainMenuState.h"
@@ -30,31 +31,17 @@ ExtrasState::~ExtrasState()
 void ExtrasState::init(ApplicationPtr app)
 {
 	mApp=app;
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=EXTRAS_MATERIAL_NAME;
+	desc.materialGroup=EXTRAS_GROUP;
+	desc.textureName=EXTRAS_IMG;
+	desc.sceneNodeName=EXTRAS_SCREENNODE;
 
-	mScreen= new Ogre::Rectangle2D(true);
-	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
-	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
-	mScreen->setBoundingBox(Ogre::AxisAlignedBox(-100000.0*Ogre::Vector3::UNIT_SCALE, 100000.0*Ogre::Vector3::UNIT_SCALE));
-	// Create background material
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(EXTRAS_MATERIAL_NAME, EXTRAS_GROUP);
-
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(EXTRAS_IMG);
-	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-	mScreen->setMaterial(EXTRAS_MATERIAL_NAME);
-
-	RenderSubsystemPtr renderSS =mApp->getRenderSubsystem(); 
-	Ogre::SceneNode* screenNode;
-	if (!renderSS->getSceneManager()->hasSceneNode(EXTRAS_SCREENNODE))
-	{
-		screenNode= renderSS->getSceneManager()->getRootSceneNode()->createChildSceneNode(EXTRAS_SCREENNODE);
-	}
-	else
-	{
-		screenNode= renderSS->getSceneManager()->getSceneNode(EXTRAS_SCREENNODE);
-	}
-	screenNode ->attachObject(mScreen);
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
 	mGUI=boost::dynamic_pointer_cast<GUIExtrasMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_EXTRAS));
 	mGUI->initGUI(shared_from_this());
@@ -65,23 +52,7 @@ void ExtrasState::cleanUp()
 {
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
-	if (Ogre::MaterialManager::getSingleton().resourceExists(EXTRAS_MATERIAL_NAME))
-	{
-		Ogre::MaterialPtr mat;
-		Ogre::TextureUnitState* tex;
-
-		mat=Ogre::MaterialManager::getSingleton().getByName(EXTRAS_MATERIAL_NAME);
-		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-		tex->setTextureName(Ogre::String(""));
-	}
-	if (mScreen)
-	{
-		std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
-		mScreen->detatchFromParent();
-		mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-		delete mScreen;
-		mScreen=NULL;
-	}
+	Utils::destroyTexturedRectangle(mScreen, EXTRAS_MATERIAL_NAME,mApp->getRenderSubsystem());	
 }
 
 /// pause state
