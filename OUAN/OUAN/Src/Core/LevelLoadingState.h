@@ -30,8 +30,6 @@ namespace OUAN
 
 			int mMusicChannel;
 
-			float mTimeToGo;//TEST!!
-
 			Ogre::Rectangle2D* mScreen;
 			Ogre::Rectangle2D* mBar;
 

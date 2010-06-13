@@ -56,9 +56,8 @@ void LevelLoadingState::init(ApplicationPtr app)
 {
 	mApp=app;
 	mApp->getGameWorldManager()->unloadLevel();
-	mApp->getGameWorldManager()->setWorld(DREAMS);
+	//mApp->getGameWorldManager()->setWorld(DREAMS);
 
-	mTimeToGo=5;
 	mScreen= new Ogre::Rectangle2D(true);
 	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
 	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_OVERLAY);
@@ -124,7 +123,7 @@ void LevelLoadingState::init(ApplicationPtr app)
 
 /// Clean up main menu's resources
 void LevelLoadingState::cleanUp()
-{	
+{		
 	if (Ogre::MaterialManager::getSingleton().resourceExists(LEVELLOAD_MATERIAL_NAME))
 	{
 		Ogre::MaterialPtr mat;

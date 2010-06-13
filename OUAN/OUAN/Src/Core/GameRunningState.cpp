@@ -51,7 +51,8 @@ GameRunningState::~GameRunningState()
 /// init game running state's resources
 void GameRunningState::init(ApplicationPtr app)
 {
-	mApp=app;	
+	mApp=app;
+	firstRender=true;
 
 	//mApp->getGameWorldManager()->setWorld(DREAMS);
 	//mApp->getGameWorldManager()->loadLevel(LEVEL_2);
@@ -403,7 +404,7 @@ void GameRunningState::checkDebuggingKeys()
 
 void GameRunningState::update(long elapsedTime)
 {
-
+	firstRender=false;
 	if (mayProceedToGameOver())
 	{
 		mApp->getRenderSubsystem()->captureScene(SAVED_RTT_FILENAME);
@@ -754,22 +755,27 @@ void GameRunningState::renderChangeWorldTextures()
 
 bool GameRunningState::render()
 {
-	RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
-
-	if (mApp->getDebugMode()!=DEBUGMODE_NONE)
+	if (!firstRender)
 	{
-		renderSubsystem->updateStats();
-		renderSubsystem->updateDebugInfo();
-		renderSubsystem->showOverlay(OVERLAY_DEBUG_PANEL);
+		RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
+
+		if (mApp->getDebugMode()!=DEBUGMODE_NONE)
+		{
+			renderSubsystem->updateStats();
+			renderSubsystem->updateDebugInfo();
+			renderSubsystem->showOverlay(OVERLAY_DEBUG_PANEL);
+		}
+
+		renderSubsystem->updateVisualDebugger();
+
+		mHUD->show();
+
+		renderChangeWorldTextures();
+
+		return renderSubsystem->render();
 	}
+	return true;
 
-	renderSubsystem->updateVisualDebugger();
-
-	mHUD->show();
-
-	renderChangeWorldTextures();
-
-	return renderSubsystem->render();
 }
 
 void GameRunningState::changeWorldFinished(int newWorld)

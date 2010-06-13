@@ -73,6 +73,8 @@ namespace OUAN
 		bool mayProceedToGameOver();
 
 		void renderChangeWorldTextures();
+
+		bool firstRender;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
