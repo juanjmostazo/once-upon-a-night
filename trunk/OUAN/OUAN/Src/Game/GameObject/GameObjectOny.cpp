@@ -149,7 +149,7 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mRenderComponentEntity->isTintBeingApplied())
 	{
 		double invulnerabilityTime = POST_HIT_INVULNERABILITY-mLogicComponentOny->getHitRecoveryTime();
-		mRenderComponentEntity->setTintFactor(0.5*(1+Ogre::Math::Sin(invulnerabilityTime*5)));
+		mRenderComponentEntity->setTintFactor(0.5*(1+Ogre::Math::Sin(invulnerabilityTime*10)));
 	}
 
 	if (mPhysicsComponentCharacterOny->getNxOgreController()->getPosition().y < 
@@ -481,7 +481,7 @@ void GameObjectOny::postUpdate()
 	}
 	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
-		mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
+		mRenderComponentEntity->applyTint(Ogre::ColourValue(1,1,0,1));
 	}
 	else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
