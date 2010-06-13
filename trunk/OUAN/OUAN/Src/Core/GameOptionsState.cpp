@@ -6,6 +6,7 @@
 #include "../GUI/GUIOptionsMenu.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Audio/AudioSubsystem.h"
+#include "../Utils/Utils.h"
 #include "GameStateManager.h"
 
 #include "MainMenuState.h"
@@ -34,30 +35,17 @@ void GameOptionsState::init(ApplicationPtr app)
 	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
 	mGUI->initGUI(shared_from_this());
 
-	mScreen= new Ogre::Rectangle2D(true);
-	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
-	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
-	mScreen->setBoundingBox(Ogre::AxisAlignedBox(-100000.0*Ogre::Vector3::UNIT_SCALE, 100000.0*Ogre::Vector3::UNIT_SCALE));
-	// Create background material
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(OPTIONS_MATERIAL_NAME, OPTIONS_GROUP);
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=OPTIONS_MATERIAL_NAME;
+	desc.materialGroup=OPTIONS_GROUP;
+	desc.textureName=OPTIONS_IMG;
+	desc.sceneNodeName=OPTIONS_SCREENNODE;
 
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(OPTIONS_IMG);
-	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-	mScreen->setMaterial(OPTIONS_MATERIAL_NAME);
-
-	RenderSubsystemPtr renderSS =mApp->getRenderSubsystem(); 
-	Ogre::SceneNode* screenNode;
-	if (!renderSS->getSceneManager()->hasSceneNode(OPTIONS_SCREENNODE))
-	{
-		screenNode= renderSS->getSceneManager()->getRootSceneNode()->createChildSceneNode(OPTIONS_SCREENNODE);
-	}
-	else
-	{
-		screenNode= renderSS->getSceneManager()->getSceneNode(OPTIONS_SCREENNODE);
-	}
-	screenNode ->attachObject(mScreen);
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());	
 
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
@@ -75,24 +63,8 @@ void GameOptionsState::cleanUp()
 	//if (mMusicChannel!=-1)
 	//	mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
 	//mApp->getAudioSubsystem()->unload("MUSIC");
-
-	if (Ogre::MaterialManager::getSingleton().resourceExists(OPTIONS_MATERIAL_NAME))
-	{
-		Ogre::MaterialPtr mat;
-		Ogre::TextureUnitState* tex;
-
-		mat=Ogre::MaterialManager::getSingleton().getByName(OPTIONS_MATERIAL_NAME);
-		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-		tex->setTextureName(Ogre::String(""));
-	}
-	if (mScreen)
-	{
-		std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
-		mScreen->detatchFromParent();
-		mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-		delete mScreen;
-		mScreen=NULL;
-	}
+	
+	Utils::destroyTexturedRectangle(mScreen,OPTIONS_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
 
 /// pause state

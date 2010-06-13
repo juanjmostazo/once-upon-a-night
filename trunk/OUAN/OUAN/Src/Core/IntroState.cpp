@@ -6,6 +6,7 @@ using namespace OUAN;
 #include "../Application.h"
 #include "../Graphics/VideoPlayer/OgreDirectShow.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Utils/Utils.h"
 
 #include "MainMenuState.h"
 #include "GameStateManager.h"
@@ -53,24 +54,20 @@ void IntroState::init(ApplicationPtr app)
 	//delete mMovieTexture;
 	//mMovieTexture = new OgreUtils::DirectShowMovieTexture(movDim.x, movDim.y);
 	//mMovieTexture->loadMovie(MOVIE_PATH);
-	mScreen= new Ogre::Rectangle2D(true);
-	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
-	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_BACKGROUND);
-	mScreen->setBoundingBox(Ogre::AxisAlignedBox(-100000.0*Ogre::Vector3::UNIT_SCALE, 100000.0*Ogre::Vector3::UNIT_SCALE));
-	// Create background material
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(MOVIE_MATERIAL_NAME, MOVIE_MATERIAL_GROUP);
-
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(mMovieTexture
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=MOVIE_MATERIAL_NAME;
+	desc.materialGroup=MOVIE_MATERIAL_GROUP;
+	desc.textureName=mMovieTexture
 		?mMovieTexture->getMovieTexture()->getName()
-		:DEFAULT_IMG);
-	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-	mScreen->setMaterial(MOVIE_MATERIAL_NAME);
+		:DEFAULT_IMG;
+	desc.sceneNodeName=SCREEN_SCENE_NODE;
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
 
-	Ogre::SceneNode* screenNode = mApp->getRenderSubsystem()->getSceneManager()->getRootSceneNode()->createChildSceneNode(SCREEN_SCENE_NODE);
-	screenNode ->attachObject(mScreen);
 	if (mMovieTexture)
 		mMovieTexture->playMovie();
 }
@@ -78,27 +75,11 @@ void IntroState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void IntroState::cleanUp()
 {
-	if (Ogre::MaterialManager::getSingleton().resourceExists(MOVIE_MATERIAL_NAME))
-	{
-		Ogre::MaterialPtr mat;
-		Ogre::TextureUnitState* tex;
-
-		mat=Ogre::MaterialManager::getSingleton().getByName(MOVIE_MATERIAL_NAME);
-		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-		tex->setTextureName(Ogre::String(""));
-	}
+	Utils::destroyTexturedRectangle(mScreen,MOVIE_MATERIAL_NAME,mApp->getRenderSubsystem());
 	if (mMovieTexture)
 	{
 		delete mMovieTexture;
 		mMovieTexture=NULL;	
-	}
-	if (mScreen)
-	{
-		std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
-		mScreen->detatchFromParent();
-		mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-		delete mScreen;
-		mScreen=NULL;
 	}	
 }
 

@@ -11,6 +11,9 @@ namespace Ogre
 
 namespace OUAN
 {
+	class RenderSubsystem;
+	typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
+
 	namespace Utils
 	{
 		const double DOUBLE_COMPARISON_DELTA=0.000001;
@@ -39,6 +42,23 @@ namespace OUAN
 		std::string toString(int intValue);
 		std::string toString(char charValue);
 		std::string toString(bool boolValue);
+
+
+		struct TTexturedRectangleDesc
+		{
+			double leftCorner, rightCorner, topCorner, bottomCorner;
+			Ogre::RenderQueueGroupID renderQueue;
+			Ogre::AxisAlignedBox axisAlignedBox;
+
+			std::string materialName;
+			std::string materialGroup;
+			std::string textureName;
+			std::string sceneNodeName;
+		};
+
+		void createTexturedRectangle (const TTexturedRectangleDesc& description, Ogre::Rectangle2D*& rectangle,
+			RenderSubsystemPtr renderSS);
+		void destroyTexturedRectangle (Ogre::Rectangle2D*&, const std::string& materialName, RenderSubsystemPtr renderSs);
 	}
 }
 #endif

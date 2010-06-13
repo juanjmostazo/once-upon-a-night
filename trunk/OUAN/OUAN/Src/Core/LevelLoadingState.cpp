@@ -18,6 +18,8 @@
 #include "../Audio/AudioDefs.h"
 #include "../Audio/AudioSubsystem.h"
 
+#include "../Utils/Utils.h"
+
 using namespace OUAN;
 
 TLoadingStage gStages[]=
@@ -57,32 +59,17 @@ void LevelLoadingState::init(ApplicationPtr app)
 	mApp=app;
 	mApp->getGameWorldManager()->unloadLevel();
 	//mApp->getGameWorldManager()->setWorld(DREAMS);
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=LEVELLOAD_MATERIAL_NAME;
+	desc.materialGroup=LEVELLOAD_GROUP;
+	desc.textureName=LEVELLOAD_IMG;
+	desc.sceneNodeName=LEVELLOAD_SCREENNODE;
 
-	mScreen= new Ogre::Rectangle2D(true);
-	mScreen->setCorners(-1.0, 1.0, 1.0, -1.0);	//Full screen
-	mScreen->setRenderQueueGroup(Ogre::RENDER_QUEUE_OVERLAY);
-	mScreen->setBoundingBox(Ogre::AxisAlignedBox::BOX_INFINITE);
-	// Create background material
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(LEVELLOAD_MATERIAL_NAME,
-		LEVELLOAD_GROUP);
-
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(LEVELLOAD_IMG);
-	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-	mScreen->setMaterial(LEVELLOAD_MATERIAL_NAME);
-
-	RenderSubsystemPtr renderSS =mApp->getRenderSubsystem(); 
-	Ogre::SceneNode* screenNode;
-	if (!renderSS->getSceneManager()->hasSceneNode(LEVELLOAD_SCREENNODE))
-	{
-		screenNode= renderSS->getSceneManager()->getRootSceneNode()->createChildSceneNode(LEVELLOAD_SCREENNODE);
-	}
-	else
-	{
-		screenNode= renderSS->getSceneManager()->getSceneNode(LEVELLOAD_SCREENNODE);
-	}
-	screenNode ->attachObject(mScreen);
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
 	leftCorner=-0.8;
 	topCorner=-0.4;
@@ -93,29 +80,20 @@ void LevelLoadingState::init(ApplicationPtr app)
 	currentStage=0;
 
 	mTotalWidth=rightCorner-leftCorner;
-	mBar= new Ogre::Rectangle2D(true);
-	mBar->setCorners(leftCorner,topCorner,currentRightCorner,bottomCorner);
-	mBar->setRenderQueueGroup(Ogre::RENDER_QUEUE_MAX);
-	mBar->setBoundingBox(Ogre::AxisAlignedBox::BOX_INFINITE);
-	// Create background material
-	material = Ogre::MaterialManager::getSingleton().create(LEVELLOAD_BAR_MATERIAL_NAME,
-		LEVELLOAD_GROUP);
 
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(LEVELLOAD_BAR_IMG);
-	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-	mBar->setMaterial(LEVELLOAD_BAR_MATERIAL_NAME);
-
-	if (!renderSS->getSceneManager()->hasSceneNode(LEVELLOAD_BAR_NODE))
-	{
-		screenNode= renderSS->getSceneManager()->getRootSceneNode()->createChildSceneNode(LEVELLOAD_BAR_NODE);
-	}
-	else
-	{
-		screenNode= renderSS->getSceneManager()->getSceneNode(LEVELLOAD_BAR_NODE);
-	}	
-	screenNode->attachObject(mBar);
+	memset(&desc,0,sizeof(desc));
+	desc.bottomCorner=bottomCorner;
+	desc.leftCorner=leftCorner;
+	desc.topCorner=topCorner;
+	desc.rightCorner=currentRightCorner;
+	desc.renderQueue=Ogre::RENDER_QUEUE_MAX;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialGroup=LEVELLOAD_GROUP;
+	desc.materialName=LEVELLOAD_BAR_MATERIAL_NAME;
+	desc.textureName = LEVELLOAD_BAR_IMG;
+	desc.sceneNodeName=LEVELLOAD_BAR_NODE;
+	
+	Utils::createTexturedRectangle(desc,mBar,mApp->getRenderSubsystem());
 
 	mIteratorInUse=false;
 	mProcessingGameObjects=false;
@@ -124,45 +102,8 @@ void LevelLoadingState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void LevelLoadingState::cleanUp()
 {		
-	if (Ogre::MaterialManager::getSingleton().resourceExists(LEVELLOAD_MATERIAL_NAME))
-	{
-		Ogre::MaterialPtr mat;
-		Ogre::TextureUnitState* tex;
-
-		mat=Ogre::MaterialManager::getSingleton().getByName(LEVELLOAD_MATERIAL_NAME);
-		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-		tex->setTextureName(Ogre::String(""));
-		if (mScreen)
-		{
-			std::string sceneNodeName=mScreen->getParentSceneNode()->getName();
-			mScreen->detatchFromParent();
-			mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-			delete mScreen;
-			mScreen=NULL;
-			Ogre::MaterialManager::getSingleton().remove(LEVELLOAD_MATERIAL_NAME);
-		}
-	}
-
-
-	if (Ogre::MaterialManager::getSingleton().resourceExists(LEVELLOAD_BAR_MATERIAL_NAME))
-	{
-		Ogre::MaterialPtr mat;
-		Ogre::TextureUnitState* tex;
-
-		mat=Ogre::MaterialManager::getSingleton().getByName(LEVELLOAD_BAR_MATERIAL_NAME);
-		tex=mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
-		tex->setTextureName(Ogre::String(""));
-		if (mBar)
-		{
-			std::string sceneNodeName=mBar->getParentSceneNode()->getName();
-			mBar->detatchFromParent();
-			mApp->getRenderSubsystem()->getSceneManager()->destroySceneNode(sceneNodeName);
-			delete mBar;
-			mBar=NULL;
-			Ogre::MaterialManager::getSingleton().remove(LEVELLOAD_BAR_MATERIAL_NAME);	
-		}
-	}
-
+	Utils::destroyTexturedRectangle(mScreen,LEVELLOAD_MATERIAL_NAME,mApp->getRenderSubsystem());
+	Utils::destroyTexturedRectangle(mBar,LEVELLOAD_BAR_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
 
 /// pause state
