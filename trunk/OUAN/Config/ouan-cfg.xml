@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+	<!--	Skip intro -->
+	<Option key="SKIP_INTRO">false</Option>
+	<!--	Language options -->
+	<Option key="SUPPORTED_LANGUAGES">en;es</Option>
+	<Option key="INITIAL_LANGUAGE">en</Option>
+	<!--	Video options		-->
+	<Option key="RENDER_SYSTEM">D3D</Option>
+    <Option key="HORIZ_RESOLUTION">800</Option>
+	<Option key="VERT_RESOLUTION">600</Option>
+	<Option key="BPP">32</Option>
+	<Option key="FULLSCREEN">No</Option>
+	<Option key="ANTIALIASING">8</Option>
+	<Option key="V_SYNC">false</Option>
+	
+	<!--	Misc. options		-->
+    <Option key="HIT_RECOVERY_DELAY">500000</Option>   
+  </Options>
+</Configuration>

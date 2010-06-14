@@ -69,6 +69,19 @@ void Application::cleanUp()
 
 bool Application::init(int argc,char** argv)
 {
+	mConfiguration.reset(new Configuration());
+	mConfiguration->loadFromFile(OUAN_CONFIG_FILE);
+
+	mSkipIntro = mConfiguration->parseBool(CONFIG_KEYS_SKIP_INTRO);
+
+	std::string languages;
+	mConfiguration->getOption(CONFIG_KEYS_SUPPORTED_LANGUAGES,languages);
+	mSupportedLanguages=Ogre::StringUtil::split(Ogre::String(languages),";");
+
+	mConfiguration->getOption(CONFIG_KEYS_INITIAL_LANGUAGE, mLanguage);
+	if (mLanguage.empty())
+		mLanguage=DEFAULT_LANGUAGE;
+
 	if (argc>1)
 	{
 		std::string option=argv[1];
@@ -93,8 +106,6 @@ bool Application::init()
 
 	mStateManager.reset(new GameStateManager());
 
-	mConfiguration.reset(new Configuration());
-	//mConfiguration->loadFromFile("something")
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	
@@ -368,4 +379,21 @@ int Application::getUniqueId()
 
 std::string Application::getStringUniqueId(){
 	return Ogre::StringConverter::toString(Ogre::Real(getUniqueId()));
+}
+
+std::vector<std::string>& Application::getSupportedLanguages()
+{
+	return mSupportedLanguages;
+}
+void Application::changeCurrentLanguage(const std::string& newLanguage)
+{
+	if (find(mSupportedLanguages.begin(),mSupportedLanguages.end(),newLanguage)!=mSupportedLanguages.end())
+	{
+		mLanguage=newLanguage;
+		//TODO: mStateManager->getCurrentState()->languageChanged(newLanguage);
+	}
+}
+const std::string& Application::getCurrentLanguage() const
+{
+	return mLanguage;
 }
