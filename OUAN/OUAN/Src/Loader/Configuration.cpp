@@ -198,7 +198,7 @@ bool Configuration::parseBool(const std::string& key)
 	if (!value.empty())
 	{
 		strm.str(value);
-		strm>>boolVal;
+		strm>>std::boolalpha>>boolVal;
 		return boolVal;
 	}
 	else throw std::exception("An error happened while parsing a bool: Key wasn't found in the map, or its value is empty");

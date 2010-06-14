@@ -67,7 +67,7 @@ void AudioComponent::stopSound(const std::string& soundID)
 }
 void AudioComponent::setPauseSound(const std::string& soundID,bool pause)
 {
-	if(mSounds.find(soundID)!=mSounds.end())
+	if(mSounds.find(soundID)!=mSounds.end() && isPlaying(soundID))
 	{
 		mAudioSS->setPause(mSounds[soundID],pause);
 	}

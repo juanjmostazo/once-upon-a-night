@@ -10,6 +10,10 @@ namespace OUAN
 {
 	const std::string SKIP_INTRO_CMD_SHORT="-s";
 	const std::string SKIP_INTRO_CMD_LONG="--skipIntro";
+
+	const std::string OUAN_CONFIG_FILE="../../Config/ouan-cfg.xml";
+
+	const std::string DEFAULT_LANGUAGE="en";
 	/// Main application class which will hold all of the game's
 	/// subsystems.
 	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
@@ -126,6 +130,10 @@ namespace OUAN
 			int getUniqueId();
 			std::string getStringUniqueId();
 
+			std::vector<std::string>& getSupportedLanguages();
+			void changeCurrentLanguage(const std::string& newLanguage);
+			const std::string& getCurrentLanguage() const;
+
 		protected:
 			/// Singleton instance
 			static Application* instance;
@@ -177,6 +185,8 @@ namespace OUAN
 			/// If true, jump directly to GameRunningState
 			bool mSkipIntro;
 
+			std::string mLanguage;
+			std::vector<std::string> mSupportedLanguages;
 		};
 }
 #endif

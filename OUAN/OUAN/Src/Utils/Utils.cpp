@@ -180,7 +180,7 @@ std::string OUAN::Utils::toString(bool boolValue)
 {
 	std::ostringstream outStr;
 	outStr.str("");
-	outStr<<boolValue;
+	outStr<<std::boolalpha<<boolValue;
 	return outStr.str();
 }
 
