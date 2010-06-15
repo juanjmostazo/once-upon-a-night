@@ -1071,6 +1071,11 @@ void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParamet
 	mApp->getTrajectoryManager()->createTrajectory(tTrajectoryParameters);
 }
 
+void GameWorldManager::createSceneNode(std::string name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters)
+{
+	mApp->getRenderSubsystem()->createSceneNode(name,tRenderComponentPositionalParameters);
+}
+
 void GameWorldManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters)
 {
 	mApp->getTrajectoryManager()->createWalkabilityMap(tWalkabilityMapParameters);

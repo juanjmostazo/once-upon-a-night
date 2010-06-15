@@ -20,7 +20,7 @@ namespace OUAN
 
 		void init(OUAN::ApplicationPtr app);
 
-		void loadLevel(String SceneName);
+		//void loadLevel(String SceneName);
 
 		int getGameObjectsNumber();
 		void initializeParser(const std::string& levelFilename);
@@ -33,6 +33,8 @@ namespace OUAN
 		void processGameObjectFractalClouds();
 		void processWalkabilityMaps();
 		void processTrajectories();
+		void processSceneNodes();
+		void processSceneNode(XMLSceneNode* sceneNode);
 		
 		void clearXMLParser();
 
@@ -44,8 +46,6 @@ namespace OUAN
 
 		//Process GameObjects
 		void processGameObjects();
-
-
 
 		//ProcessTrajectories
 		void processTrajectory(XMLTrajectory *trajectory);

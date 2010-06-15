@@ -469,6 +469,8 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 
 	SceneNode *pParentSceneNode = 0;
 	SceneNode *sceneNode = 0;
+
+	Logger::getInstance()->log("[RenderSubsystem] Creating "+name+" SceneNode!");
 	
 	// Set SceneNode parameters and create it
 	try

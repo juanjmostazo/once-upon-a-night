@@ -688,6 +688,9 @@ namespace OUAN
 		typedef std::map<std::string,XMLGameObject> XMLGameObjectContainer;
 		typedef std::map<std::string,XMLGameObject>::iterator XMLGameObjectContainerIterator;
 
+		class XMLSceneNode;
+		typedef std::vector<XMLSceneNode> XMLSceneNodeContainer;
+
 		class XMLTrajectory;
 		typedef std::map<std::string,XMLTrajectory> XMLTrajectoryContainer;
 		typedef std::map<std::string,XMLTrajectory>::iterator XMLTrajectoryContainerIterator;

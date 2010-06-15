@@ -84,6 +84,7 @@ namespace OUAN
 			void initPhysics();
 			void resetTrajectories();
 			void initParser();
+			void processSceneNodes();
 			void processGameObjects();
 			void processGameObject();
 			void processFractalClouds();

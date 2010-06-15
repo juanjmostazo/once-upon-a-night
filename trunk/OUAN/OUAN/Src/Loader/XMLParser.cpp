@@ -4,6 +4,7 @@
 #include "XMLGameObject.h"
 #include "XMLTrajectory.h"
 #include "XMLWalkabilityMap.h"
+#include "XMLSceneNode.h"
 
 using namespace OUAN;
 
@@ -373,7 +374,11 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 	}
 	else if(type.compare("Node Object")==0)
 	{
-		//Not a GameObject
+		//Node Object
+		XMLSceneNode node;
+		node.name=name;
+		node.XMLNode=XMLNode;
+		mXMLSceneNodeContainer.push_back(node);
 		return;
 	}
 	//Find out game object type

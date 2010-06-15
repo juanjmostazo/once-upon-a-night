@@ -100,6 +100,9 @@ namespace OUAN
 		//Trajectory Creator
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
 
+		//Scene Node Creator
+		void createSceneNode(std::string name,TRenderComponentPositionalParameters tRenderComponentPositionalParameters);
+
 		//Walkability Map Creator
 		void createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters);
 

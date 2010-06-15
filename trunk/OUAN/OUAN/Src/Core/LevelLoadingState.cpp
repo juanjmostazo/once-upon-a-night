@@ -27,7 +27,8 @@ TLoadingStage gStages[]=
 	//{&LevelLoadingState::unloadAll, "UNLOAD_EVERYTHING", 0.01},
 	{&LevelLoadingState::initPhysics, "INIT_PHYSICS",0.015},
 	{&LevelLoadingState::resetTrajectories, "RESET_TRAJECTORIES",0.0025},
-	{&LevelLoadingState::initParser, "INIT_PARSER",0.05},
+	{&LevelLoadingState::initParser, "INIT_PARSER",0.04},
+	{&LevelLoadingState::processSceneNodes, "PROCESS_SCENE_NODES",0.01},
 	{&LevelLoadingState::processGameObjects, "PROCESS_GAME_OBJECTS",0.8},
 	{&LevelLoadingState::processGameObject, "PROCESS_GAME_OBJECT",-1.0},
 	{&LevelLoadingState::processFractalClouds, "PROCESS_FRACTAL_CLOUDS",0.02},
@@ -246,6 +247,13 @@ void LevelLoadingState::processTrajectories()
 	//Process Level's Trajectories
 	mApp->getLevelLoader()->processTrajectories();
 }
+
+void LevelLoadingState::processSceneNodes()
+{
+	//Process Level's Trajectories
+	mApp->getLevelLoader()->processSceneNodes();
+}
+
 void LevelLoadingState::processWalkabilityMap()
 {
 	//Process Level's Walkability Maps
