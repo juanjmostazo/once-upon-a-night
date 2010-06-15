@@ -107,7 +107,7 @@ void TrajectoryManager::clear()
 	}
 
 	mDebugObjects=mSceneManager->getRootSceneNode()->createChildSceneNode("trajectory manager debug");
-	//mDebugObjects->setVisible(false);
+	mSceneManager->getRootSceneNode()->removeChild(mDebugObjects->getName());
 }
 
 Trajectory * TrajectoryManager::getTrajectoryInstance(std::string parent)
@@ -298,6 +298,11 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 
 	if(mVisible)
 	{
+		if(!mDebugObjects->isInSceneGraph())
+		{
+			mSceneManager->getRootSceneNode()->addChild(mDebugObjects);
+		}
+
 		if(currentWorld==DREAMS)
 		{
 			if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
@@ -316,10 +321,15 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 	}
 	else
 	{
-		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
+		/*if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
 			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
 		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
-		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
+		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);*/
+
+		if(mDebugObjects->isInSceneGraph())
+		{
+			mSceneManager->getRootSceneNode()->removeChild(mDebugObjects->getName());
+		}
 	}
 
 }
