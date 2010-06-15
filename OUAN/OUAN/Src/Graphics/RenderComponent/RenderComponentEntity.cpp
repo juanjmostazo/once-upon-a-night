@@ -49,33 +49,23 @@ void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 
 void RenderComponentEntity::setVisible(bool visible)
 {
-	mEntity->setVisible(visible);
-	//Ogre::SceneNode * pSceneNode;
-	//Ogre::SceneNode::ConstObjectIterator it;
-	//pSceneNode=getParent()->getPositionalComponent()->getSceneNode();
-	//bool hasObject=false;
+	Ogre::SceneNode * pSceneNode;
+	pSceneNode=getParent()->getPositionalComponent()->getSceneNode();
 
-	//it=pSceneNode->getAttachedObjectIterator();
-	//while(it.hasMoreElements())
-	//{
-	//	it.
-	//	it.moveNext();
-	//}
-
-	//if(visible)
-	//{
-	//	if(!pSceneNode->getAttachedObject(mEntity->getName()))
-	//	{
-	//		pSceneNode->attachObject(mEntity);
-	//	}
-	//}
-	//else
-	//{
-	//	if(pSceneNode->getA)
-	//	{
-	//		pSceneNode->detachObject(mEntity->getName());
-	//	}
-	//}
+	if(visible)
+	{
+		if(!mEntity->isAttached())
+		{
+			pSceneNode->attachObject(mEntity);
+		}
+	}
+	else
+	{
+		if(mEntity->isAttached() && mEntity->getParentSceneNode()->getName().compare(pSceneNode->getName())==0)
+		{
+			pSceneNode->detachObject(mEntity->getName());
+		}
+	}
 }
 void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
 {

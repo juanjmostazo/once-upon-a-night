@@ -1,6 +1,8 @@
 #include "OUAN_Precompiled.h"
 
 #include "RenderComponentBillboardSet.h"
+#include "RenderComponentPositional.h"
+#include "../../Game/GameObject/GameObject.h"
 #include "../../Game/WorldNameConverter.h"
 using namespace OUAN;
 
@@ -64,7 +66,23 @@ void RenderComponentBillboardSet::setNightmaresMaterials()
 
 void RenderComponentBillboardSet::setVisible(bool visible)
 {
-	mBillboardSet->setVisible(visible);
+	Ogre::SceneNode * pSceneNode;
+	pSceneNode=getParent()->getPositionalComponent()->getSceneNode();
+
+	if(visible)
+	{
+		if(!mBillboardSet->isAttached())
+		{
+			pSceneNode->attachObject(mBillboardSet);
+		}
+	}
+	else
+	{
+		if(mBillboardSet->isAttached() && mBillboardSet->getParentSceneNode()->getName().compare(pSceneNode->getName())==0)
+		{
+			pSceneNode->detachObject(mBillboardSet->getName());
+		}
+	}
 }
 
 
