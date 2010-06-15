@@ -345,6 +345,11 @@ Ogre::SceneManager* RenderSubsystem::getSceneManager() const
 	return mSceneManager;
 }
 
+void RenderSubsystem::toggleDisplaySceneNodes()
+{
+	mSceneManager->setDisplaySceneNodes(!mSceneManager->getDisplaySceneNodes());
+}
+
 Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRenderComponentSceneParameters tRenderComponentSceneParameters)
 {
 	try

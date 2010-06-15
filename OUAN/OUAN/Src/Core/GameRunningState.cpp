@@ -399,6 +399,13 @@ void GameRunningState::checkDebuggingKeys()
 				);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
+		else if (mApp->isPressedToggleShowSceneNodes())
+		{	
+			Logger::getInstance()->log("ToggleShowSceneNodes key pressed");
+
+			mApp->getRenderSubsystem()->toggleDisplaySceneNodes();
+			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+		}
 	}
 }
 

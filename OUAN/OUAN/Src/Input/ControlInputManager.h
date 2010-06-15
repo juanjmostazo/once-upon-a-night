@@ -66,6 +66,9 @@ namespace OUAN
 		/// Detect if the 'toggle-changeworlddebug' key has been pressed
 		/// @return true if there has been a 'toggle-changeworlddebug' key press
 		bool isPressedToggleChangeWorldDebug();
+		/// Detect if the 'toggle-showscenenodes' key has been pressed
+		/// @return true if there has been a 'toggle-showscenenodes' key press
+		bool isPressedToggleShowSceneNodes();
 
 
 		void getMouseStateRelValues(

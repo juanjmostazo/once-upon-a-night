@@ -311,6 +311,12 @@ bool ControlInputManager::isPressedToggleChangeWorldDebug()
 	return isPressed(-1,mDefaultInputData.keyToggleChangeWorldDebug);
 }
 
+bool ControlInputManager::isPressedToggleShowSceneNodes()
+{
+	return isPressed(-1,mDefaultInputData.keyToggleShowSceneNodes);
+}
+
+
 //////////////////////////////////////////////////////////////
 
 void ControlInputManager::getMouseStateRelValues(double & x, double & y, double & z)
@@ -470,6 +476,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleConsole,KEY_TOGGLE_CONSOLE,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleVolumes,KEY_TOGGLE_VOLUMES,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleChangeWorldDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleShowSceneNodes,KEY_TOGGLE_SHOW_SCENE_NODES,false);
 
 	c.saveToFile(DEFAULTINPUT_CFG);
 }

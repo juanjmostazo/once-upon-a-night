@@ -134,6 +134,9 @@ namespace OUAN
 		Ogre::String getDebugMessage();
 		void setDebugMessage(Ogre::String debugMessage);
 
+		/// Display scene nodes
+		void toggleDisplaySceneNodes();
+
 		/// Update stats
 		void updateStats();
 
