@@ -47,7 +47,23 @@ void RenderComponentWater::setEntity(Ogre::Entity* entity)
 
 void RenderComponentWater::setVisible(bool visible)
 {
-	mEntity->setVisible(visible);
+	Ogre::SceneNode * pSceneNode;
+	pSceneNode=getParent()->getPositionalComponent()->getSceneNode();
+
+	if(visible)
+	{
+		if(!mEntity->isAttached())
+		{
+			pSceneNode->attachObject(mEntity);
+		}
+	}
+	else
+	{
+		if(mEntity->isAttached() && mEntity->getParentSceneNode()->getName().compare(pSceneNode->getName())==0)
+		{
+			pSceneNode->detachObject(mEntity->getName());
+		}
+	}
 }
 
 void RenderComponentWater::initFresnelReflection(CameraManagerPtr pCameraManager,GameWorldManagerPtr pGameWorldManager)
