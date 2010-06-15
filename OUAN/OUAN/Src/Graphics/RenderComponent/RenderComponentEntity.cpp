@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "RenderComponentEntity.h"
+#include "RenderComponentPositional.h"
 #include "../RenderSubsystem.h"
 #include "../../Application.h"
 #include "../../Game/GameObject/GameObject.h"
@@ -49,6 +50,32 @@ void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 void RenderComponentEntity::setVisible(bool visible)
 {
 	mEntity->setVisible(visible);
+	//Ogre::SceneNode * pSceneNode;
+	//Ogre::SceneNode::ConstObjectIterator it;
+	//pSceneNode=getParent()->getPositionalComponent()->getSceneNode();
+	//bool hasObject=false;
+
+	//it=pSceneNode->getAttachedObjectIterator();
+	//while(it.hasMoreElements())
+	//{
+	//	it.
+	//	it.moveNext();
+	//}
+
+	//if(visible)
+	//{
+	//	if(!pSceneNode->getAttachedObject(mEntity->getName()))
+	//	{
+	//		pSceneNode->attachObject(mEntity);
+	//	}
+	//}
+	//else
+	//{
+	//	if(pSceneNode->getA)
+	//	{
+	//		pSceneNode->detachObject(mEntity->getName());
+	//	}
+	//}
 }
 void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
 {

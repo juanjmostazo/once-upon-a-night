@@ -69,6 +69,9 @@ namespace OUAN
 
 			//Map containing all the parsed walkability maps
 			XMLWalkabilityMapContainer mXMLWalkabilityMapContainer;
+
+			//Map containing all the parsed scene nodes
+			XMLSceneNodeContainer mXMLSceneNodeContainer;
 	};
 
 }
