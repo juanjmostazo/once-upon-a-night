@@ -63,6 +63,7 @@ namespace OUAN
 		 void setMusicVolume(int channelID,double volume);
 		 double getMusicVolume(int channelID);
 		 bool isMusicPlaying(int channelID);
+		 bool isSfxPlaying(int channelID);
 		
 		 bool playSound(const std::string& id, int& channelIndex);
 		 bool play3DSound(const std::string& id, const Ogre::Vector3& position, 

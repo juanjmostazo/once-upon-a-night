@@ -127,7 +127,7 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="OUAN_Precompiled.h"
 				WarningLevel="3"
-				DebugInformationFormat="0"
+				DebugInformationFormat="3"
 				CompileAs="2"
 				ShowIncludes="false"
 			/>

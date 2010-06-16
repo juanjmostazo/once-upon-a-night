@@ -12,7 +12,7 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	mParentGameState->getApp()->getInputMappings(mCurrentConfig);
 	mNewConfig=mCurrentConfig;
 	mButtonTextStrings.reset(new Configuration());
-	mButtonTextStrings->loadFromFile(MENUSTRINGS_CFG);
+	mButtonTextStrings->loadFromFile(MENUSTRINGS);
 	bindEvents();
 	mCurrentlyEditedDevice=DEVICE_KEYB_MOUSE;
 	mCurrentlyEditedMapping="";
