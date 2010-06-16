@@ -14,7 +14,7 @@ namespace OUAN
 	} TButtonData;
 
 	typedef std::map<std::string, TButtonData> TButtonDataMapping;
-	const std::string MENUSTRINGS_CFG = "../../Config/menu-strings_en.xml";
+	const std::string MENUSTRINGS = "../../Resources/Text/en/menu-strings.xml";
 
 	// Keys for the button texts
 	const std::string BUTTON_TEXT_FORWARD="BUTTON_TEXT_FORWARD";

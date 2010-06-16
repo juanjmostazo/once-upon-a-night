@@ -62,7 +62,7 @@ void MainMenuState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void MainMenuState::cleanUp()
 {
-	while(mApp->getAudioSubsystem()->isChannelPlaying(mClickChannel));
+	while(mApp->getAudioSubsystem()->isSfxPlaying(mClickChannel));
 	//Unsubscribe from events
 	mGUI->destroy();
 	if (mMusicChannel!=-1)

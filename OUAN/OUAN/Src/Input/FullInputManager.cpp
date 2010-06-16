@@ -247,7 +247,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 bool FullInputManager::loadStrings()
 {
 	mInputTextStrings.reset(new Configuration());
-	return mInputTextStrings->loadFromFile(INPUTSTRINGS_CFG);
+	return mInputTextStrings->loadFromFile(INPUTSTRINGS);
 }
 
 void FullInputManager::finalise()

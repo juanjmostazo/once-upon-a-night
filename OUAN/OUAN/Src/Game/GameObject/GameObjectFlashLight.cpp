@@ -176,7 +176,7 @@ void GameObjectFlashLight::reset()
 void GameObjectFlashLight::enable()
 {
 	GameObject::enable();
-	show();
+	//show();
 	mRenderComponentLight->getLight()->setVisible(false);
 }
 void GameObjectFlashLight::disable()
@@ -330,7 +330,7 @@ void GameObjectFlashLight::switchOff()
 void GameObjectFlashLight::show()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(true);
-	mLightConeBBS->setVisible(true);
+	//mLightConeBBS->setVisible(true);
 	Logger::getInstance()->log("LIGHT CONE NOW VISIBLE -theoretically -_-");
 }
 void GameObjectFlashLight::hide()

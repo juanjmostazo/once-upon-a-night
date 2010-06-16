@@ -12,7 +12,7 @@ namespace OUAN
 {
 	const std::string PSXPAD_CFG="../../Config/psxpad-cfg.xml";
 	const std::string DEFAULTINPUT_CFG = "../../Config/defaultinput-cfg.xml";
-	const std::string INPUTSTRINGS_CFG = "../../Config/input-strings_en.xml";
+	const std::string INPUTSTRINGS = "../../Resources/Text/en/input-strings.xml";
 	const std::string INPUTCOMMONJOYSTICK_CFG = "../../Config/input-common_joystick.xml";
 	// Config FILE keys
 	const std::string KEY_MENU  = "Menu";

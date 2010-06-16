@@ -706,7 +706,11 @@ bool AudioSubsystem::isChannelPaused(int channelID,const std::string& channelGro
 }
 bool AudioSubsystem::isMusicPlaying(int channelID)
 {
-	return isChannelPlaying(channelID,SM_CHANNEL_MUSIC_GROUP);
+	return mConfigData.mMasterVolumeEnabled && mConfigData.mMusicVolumeEnabled && isChannelPlaying(channelID,SM_CHANNEL_MUSIC_GROUP);
+}
+bool AudioSubsystem::isSfxPlaying(int channelID)
+{
+	return mConfigData.mMasterVolumeEnabled && mConfigData.mSfxVolumeEnabled && isChannelPlaying(channelID,SM_CHANNEL_SFX_GROUP);
 }
 void AudioSubsystem::updateChannel3DAttributes(int channelID, const Ogre::Vector3& position,const Ogre::Vector3& velocity)
 {

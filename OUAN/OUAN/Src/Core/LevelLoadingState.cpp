@@ -40,7 +40,7 @@ TLoadingStage gStages[]=
 	{&LevelLoadingState::initScripts, "INIT_SCRIPTS",0.0025},
 	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0025}
 };
-int gNumStages=13;
+const int gNumStages=14;
 
 /// Default constructor
 LevelLoadingState::LevelLoadingState()
@@ -218,11 +218,11 @@ void LevelLoadingState::processGameObject()
 		if (!mProcessingGameObjects) mProcessingGameObjects=true;
 		mApp->getLevelLoader()->processGameObject(&mGameObjectIterator->second);
 		++mGameObjectIterator;
-	}
-	else 
-	{
-		mProcessingGameObjects=false;
-		if (mIteratorInUse) mIteratorInUse=false;
+		if (mGameObjectIterator==mApp->getLevelLoader()->getGameObjectIteratorEnd())
+		{
+			mProcessingGameObjects=false;
+			mIteratorInUse=false;
+		}
 	}
 }
 void LevelLoadingState::processFractalClouds()
