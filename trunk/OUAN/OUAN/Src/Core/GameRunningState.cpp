@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameRunningState.h"
+#include "LevelLoadingState.h"
 
 #include "GameStateManager.h"
 #include "MainMenuState.h"
@@ -566,23 +567,21 @@ void GameRunningState::toggleDebugPhysics()
 void GameRunningState::toggleChangeLevel()
 {
 	Logger::getInstance()->log("ToggleChangeLevel key pressed");
-	Logger::getInstance()->log("isPressedToggleChangeLevel IN");
-	if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_TEST)==0)
+
+	LevelLoadingState * levelLoadingState = new LevelLoadingState();
+
+	if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
 	{
-		mApp->getGameWorldManager()->loadLevel(LEVEL_CLOCK);
+		levelLoadingState->setLevelFileName(LEVEL_2);
 	}
 	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
 	{
-		mApp->getGameWorldManager()->loadLevel(LEVEL_1);
+		levelLoadingState->setLevelFileName(LEVEL_CLOCK);
 	}
-	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_1)==0)
-	{
-		mApp->getGameWorldManager()->loadLevel(LEVEL_2);
-	}
-	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
-	{
-		mApp->getGameWorldManager()->loadLevel(LEVEL_TEST);
-	}
+
+	mApp->getGameWorldManager()->unloadLevel();
+	GameStatePtr nextState(levelLoadingState);
+	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
 
 void GameRunningState::changeCameraController()

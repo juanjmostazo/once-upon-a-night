@@ -257,7 +257,7 @@ void Application::loadInitialState()
 		LevelLoadingStatePtr ll = boost::dynamic_pointer_cast<LevelLoadingState>(initialState);
 		if (ll.get())
 		{
-			ll->setLevelFileName(LEVEL_2);
+			ll->setLevelFileName(LEVEL_CLOCK);
 		}
 	}
 	else

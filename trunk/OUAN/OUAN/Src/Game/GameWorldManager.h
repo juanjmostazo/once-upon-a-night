@@ -73,9 +73,9 @@ namespace OUAN
 
 
 
-		/// Load level from the given file
-		/// @param levelFileName name of the level file
-		void loadLevel (const std::string& levelFileName);
+		///// Load level from the given file
+		///// @param levelFileName name of the level file
+		//void loadLevel (const std::string& levelFileName);
 
 		/// Unload data from current level
 		/// (i.e, clear all object lists, destroy landscape

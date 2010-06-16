@@ -132,13 +132,16 @@ bool RenderComponentEntity::isAnimated() const
 }
 void RenderComponentEntity::update(double elapsedTime)
 {
-	if (mCurrentAnimation && mCurrentAnimation->getEnabled())
+	if(mEntity->isAttached())
 	{
-		mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
-		if (mCurrentAnimation->hasEnded())
+		if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 		{
-			AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
-			getParent()->getGameWorldManager()->addEvent(evt);
+			mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
+			if (mCurrentAnimation->hasEnded())
+			{
+				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
+				getParent()->getGameWorldManager()->addEvent(evt);
+			}
 		}
 	}
 }
