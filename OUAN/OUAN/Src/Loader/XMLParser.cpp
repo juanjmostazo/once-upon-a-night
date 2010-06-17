@@ -98,7 +98,9 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WATER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PLANE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SKYBODY);
-
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TOWER);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FOG);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIGGER_CAMERA);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

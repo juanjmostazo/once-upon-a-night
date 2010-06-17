@@ -17,7 +17,6 @@
 #include "../Game/GameObject/GameObjectBee_Butterfly.h"
 #include "../Game/GameObject/GameObjectBillboardSet.h"
 #include "../Game/GameObject/GameObjectBush.h"
-#include "../Game/GameObject/GameObjectCamera.h"
 #include "../Game/GameObject/GameObjectCarnivorousPlant.h"
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectCloud.h"
@@ -28,6 +27,7 @@
 #include "../Game/GameObject/GameObjectDragon.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectFlashLight.h"
+#include "../Game/GameObject/GameObjectFog.h"
 #include "../Game/GameObject/GameObjectHeart.h"
 #include "../Game/GameObject/GameObjectItem1UP.h"
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
@@ -52,17 +52,20 @@
 #include "../Game/GameObject/GameObjectTerrainTriangle.h"
 #include "../Game/GameObject/GameObjectTerrainConvex.h"
 #include "../Game/GameObject/GameObjectTree.h"
+#include "../Game/GameObject/GameObjectTreeComplex.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
+#include "../Game/GameObject/GameObjectTriggerCamera.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../Game/GameObject/GameObjectTower.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Game/GameObject/GameObjectWoodBox.h"
 #include "../Game/GameObject/GameObjectWater.h"
+
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
-#include "../Graphics/RenderComponent/RenderComponentCamera.h"
 #include "../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
@@ -203,8 +206,6 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_VIEWPORT)==0)
 		{
 			processGameObjectViewport(gameObject);
-			//Process Viewport Camera
-			processGameObjectViewportCamera(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
@@ -241,10 +242,6 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PORTAL)==0)
 		{
 			processGameObjectPortal(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_CAMERA)==0)
-		{
-			processGameObjectCamera(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGERBOX)==0)
 		{
@@ -421,6 +418,18 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_SOUND)==0)
 		{
 			processGameObjectSound(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TOWER)==0)
+		{
+			processGameObjectTower(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_FOG)==0)
+		{
+			processGameObjectFog(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_CAMERA)==0)
+		{
+			processGameObjectTriggerCamera(gameObject);
 		}
 		else
 		{
@@ -717,32 +726,6 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
 	mGameWorldManager->addGameObjectBush(
 		mGameObjectFactory->createGameObjectBush(tGameObjectBushParameters,mGameWorldManager));
-}
-
-void LevelLoader::processGameObjectCamera(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectCameraParameters.name = gameObject->name;
-
-		//Get RenderComponentCamera
-		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCamera(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	//mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
-	mGameWorldManager->addGameObjectCamera(mGameObjectFactory->createGameObjectCamera(tGameObjectCameraParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
@@ -1166,6 +1149,54 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 		mGameWorldManager->getParent()->getCameraManager(),mGameWorldManager->getParent()->getRayCasting(),
 		mGameWorldManager->getParent()->getRenderSubsystem()));
 }
+
+void LevelLoader::processGameObjectFog(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectFogParameters tGameObjectFogParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectFogParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectFogParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectFogParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectFogParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		if(tGameObjectFogParameters.tLogicComponentParameters.existsInDreams)
+		{
+			//Get RenderComponentEntityDreams
+			tGameObjectFogParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+				DREAMS, gameObject->XMLNodeCustomProperties);
+		}
+		if(tGameObjectFogParameters.tLogicComponentParameters.existsInNightmares)
+		{
+			//Get RenderComponentEntityNightmares
+			tGameObjectFogParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+				NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		}
+
+		//Get RenderComponentPositional
+		tGameObjectFogParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectFog(tGameObjectFogParameters);
+	mGameWorldManager->addGameObjectFog(
+		mGameObjectFactory->createGameObjectFog(tGameObjectFogParameters,mGameWorldManager));
+}
+
 
 void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 {
@@ -1900,7 +1931,6 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	//mGameWorldManager->createGameObjectBush(tGameObjectBushParameters);
 	mGameWorldManager->addGameObjectSkyBody(
 		mGameObjectFactory->createGameObjectSkyBody(params,mGameWorldManager, 
 		mGameWorldManager->getParent()->getCameraManager(),
@@ -2202,6 +2232,95 @@ void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 	mGameWorldManager->addGameObjectTree(mGameObjectFactory->createGameObjectTree(tGameObjectTreeParameters,mGameWorldManager));
 }
 
+void LevelLoader::processGameObjectTreeComplex(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectTreeComplexParameters tGameObjectTreeComplexParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectTreeComplexParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTreeComplexParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTreeComplexParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectTreeComplexParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectTreeComplexParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		tGameObjectTreeComplexParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentComplexConvex
+		std::string nxsfile = "CONVEX_"+tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.substr(0,
+			tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.size()-5)+".nxs";
+		tGameObjectTreeComplexParameters.tPhysicsComponentComplexConvexParameters=processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,nxsfile);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectTreeComplex(tGameObjectTreeComplexParameters);
+	mGameWorldManager->addGameObjectTreeComplex(mGameObjectFactory->createGameObjectTreeComplex(tGameObjectTreeComplexParameters,mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectTower(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectTowerParameters tGameObjectTowerParameters;
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectTowerParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTowerParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTowerParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectTowerParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityDreams
+		tGameObjectTowerParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntityNightmares
+		tGameObjectTowerParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
+			DREAMS, gameObject->XMLNodeCustomProperties);
+
+
+		//Get RenderComponentPositional
+		tGameObjectTowerParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentComplexTriangle
+		std::string nxsfile = "TRIANGLE_"+tGameObjectTowerParameters.tRenderComponentEntityDreamsParameters.meshfile.substr(0,
+			tGameObjectTowerParameters.tRenderComponentEntityDreamsParameters.meshfile.size()-5)+".nxs";
+		tGameObjectTowerParameters.tPhysicsComponentComplexTriangleParameters=processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,nxsfile);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectTower(tGameObjectTowerParameters);
+	mGameWorldManager->addGameObjectTower(mGameObjectFactory->createGameObjectTower(tGameObjectTowerParameters,mGameWorldManager));
+}
+
 void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters;
@@ -2275,6 +2394,43 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters);
 	mGameWorldManager->addGameObjectTriggerCapsule(mGameObjectFactory->createGameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters,
 		mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectTriggerCameraParameters tGameObjectTriggerCameraParameters;
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectTriggerCameraParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTriggerCameraParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTriggerCameraParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectTriggerCameraParameters.tLogicComponentParameters=processLogicComponentTrigger(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectTriggerCameraParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		tGameObjectTriggerCameraParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectTriggerCameraParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+	//Create GameObject
+	//mGameWorldManager->createGameObjectTriggerCamera(tGameObjectTriggerCameraParameters);
+	mGameWorldManager->addGameObjectTriggerCamera(mGameObjectFactory->createGameObjectTriggerCamera(tGameObjectTriggerCameraParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
@@ -2398,29 +2554,6 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectViewport(tGameObjectViewportParameters);
 	mGameWorldManager->addGameObjectViewport(mGameObjectFactory->createGameObjectViewport(tGameObjectViewportParameters,mGameWorldManager));
-}
-
-void LevelLoader::processGameObjectViewportCamera(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectCameraParameters  tGameObjectCameraParameters;
-
-	try
-	{
-		//Get names
-		tGameObjectCameraParameters.name = "Camera#Viewport";
-
-		//Get RenderComponentCamera
-		tGameObjectCameraParameters.tRenderComponentCameraParameters=processRenderComponentCameraViewport(gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-
-	//Create GameObject
-	//mGameWorldManager->createGameObjectCamera(tGameObjectCameraParameters);
-	mGameWorldManager->addGameObjectCamera(mGameObjectFactory->createGameObjectCamera(tGameObjectCameraParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
@@ -2646,87 +2779,87 @@ TRenderComponentViewportParameters LevelLoader::processRenderComponentViewport(T
 	
 }
 
-TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXmlElement *XMLNode)
-{
-	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
-
-	//Get Camera properties
-	tRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
-	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
-	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
-	tRenderComponentCameraParameters.autoaspectratio = false;//getPropertyBool(XMLNode,"autoaspectratio");
-	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
-	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
-
-	//set FOVy
-	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
-	Real FOVy = getPropertyReal(XMLNode,"fov");
-	FOVy=FOVy*55.0f;
-	if(FOVy>180.0) FOVy=179.99;
-	else if(FOVy<=0) FOVy=0.01;
-	tRenderComponentCameraParameters.FOVy=FOVy;
-
-		//PolygonModeConversion
-	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
-	switch(polygonmode)
-		{
-			case OGITOR_PM_SOLID:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
-				break;
-			case OGITOR_PM_POINTS:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
-				break;
-			case OGITOR_PM_WIREFRAME:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
-				break;
-			default:
-				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
-				break;
-		}
-
-	return tRenderComponentCameraParameters;
-}
-TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewport(TiXmlElement *XMLNode)
-{
-
-	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
-
-	//Get Camera properties
-	tRenderComponentCameraParameters.autotracktarget = "None";
-	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
-	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
-	tRenderComponentCameraParameters.autoaspectratio = false;
-	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
-	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
-
-	//set FOVy
-	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
-	Real FOVy = getPropertyReal(XMLNode,"camera::fov");
-	FOVy=FOVy*55.0f;
-	if(FOVy>180.0) FOVy=179.99;
-	else if(FOVy<=0) FOVy=0.01;
-	tRenderComponentCameraParameters.FOVy=FOVy;
-
-		//PolygonModeConversion
-	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
-	switch(polygonmode)
-		{
-			case OGITOR_PM_SOLID:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
-				break;
-			case OGITOR_PM_POINTS:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
-				break;
-			case OGITOR_PM_WIREFRAME:
-				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
-				break;
-			default:
-				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
-				break;
-		}
-
-	return tRenderComponentCameraParameters;
-}
+//TRenderComponentCameraParameters LevelLoader::processRenderComponentCamera(TiXmlElement *XMLNode)
+//{
+//	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
+//
+//	//Get Camera properties
+//	tRenderComponentCameraParameters.autotracktarget = getPropertyString(XMLNode,"autotracktarget");
+//	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"orientation");
+//	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"position");
+//	tRenderComponentCameraParameters.autoaspectratio = false;//getPropertyBool(XMLNode,"autoaspectratio");
+//	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"clipdistance");
+//	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"viewmode");
+//
+//	//set FOVy
+//	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
+//	Real FOVy = getPropertyReal(XMLNode,"fov");
+//	FOVy=FOVy*55.0f;
+//	if(FOVy>180.0) FOVy=179.99;
+//	else if(FOVy<=0) FOVy=0.01;
+//	tRenderComponentCameraParameters.FOVy=FOVy;
+//
+//		//PolygonModeConversion
+//	int polygonmode = getPropertyInt(XMLNode,"polygonmode");
+//	switch(polygonmode)
+//		{
+//			case OGITOR_PM_SOLID:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
+//				break;
+//			case OGITOR_PM_POINTS:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
+//				break;
+//			case OGITOR_PM_WIREFRAME:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
+//				break;
+//			default:
+//				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
+//				break;
+//		}
+//
+//	return tRenderComponentCameraParameters;
+//}
+//TRenderComponentCameraParameters LevelLoader::processRenderComponentCameraViewport(TiXmlElement *XMLNode)
+//{
+//
+//	OUAN::TRenderComponentCameraParameters tRenderComponentCameraParameters;
+//
+//	//Get Camera properties
+//	tRenderComponentCameraParameters.autotracktarget = "None";
+//	tRenderComponentCameraParameters.orientation = getPropertyQuaternion(XMLNode,"camera::orientation");
+//	tRenderComponentCameraParameters.position = getPropertyVector3(XMLNode,"camera::position");
+//	tRenderComponentCameraParameters.autoaspectratio = false;
+//	tRenderComponentCameraParameters.clipdistance = getPropertyVector2(XMLNode,"camera::clipdistance");
+//	tRenderComponentCameraParameters.viewmode = getPropertyInt(XMLNode,"camera::viewmode");
+//
+//	//set FOVy
+//	//In Ogitor default value is 1, which in Ogitor is 55 degree. FOV has to be in (0,180)
+//	Real FOVy = getPropertyReal(XMLNode,"camera::fov");
+//	FOVy=FOVy*55.0f;
+//	if(FOVy>180.0) FOVy=179.99;
+//	else if(FOVy<=0) FOVy=0.01;
+//	tRenderComponentCameraParameters.FOVy=FOVy;
+//
+//		//PolygonModeConversion
+//	int polygonmode = getPropertyInt(XMLNode,"camera::polymode");
+//	switch(polygonmode)
+//		{
+//			case OGITOR_PM_SOLID:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
+//				break;
+//			case OGITOR_PM_POINTS:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_POINTS;
+//				break;
+//			case OGITOR_PM_WIREFRAME:
+//				tRenderComponentCameraParameters.polygonmode=Ogre::PM_WIREFRAME;
+//				break;
+//			default:
+//				Logger::getInstance()->log("Camera has unrecognised PolygonMode!");
+//				break;
+//		}
+//
+//	return tRenderComponentCameraParameters;
+//}
 TRenderComponentPositionalParameters LevelLoader::processRenderComponentPositional(TiXmlElement *XMLNode)
 {
 	OUAN::TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

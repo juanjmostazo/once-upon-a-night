@@ -7,7 +7,6 @@
 #include "GameObject/GameObjectBee_Butterfly.h"
 #include "GameObject/GameObjectBillboardSet.h"
 #include "GameObject/GameObjectBush.h"
-#include "GameObject/GameObjectCamera.h"
 #include "GameObject/GameObjectCarnivorousPlant.h"
 #include "GameObject/GameObjectClockPiece.h"
 #include "GameObject/GameObjectCloud.h"
@@ -49,6 +48,10 @@
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 #include "GameObject/GameObjectWater.h"
+#include "GameObject/GameObjectTreeComplex.h"
+#include "GameObject/GameObjectTower.h"
+#include "GameObject/GameObjectFog.h"
+#include "GameObject/GameObjectTriggerCamera.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -395,10 +398,6 @@ void GameWorldManager::initGame()
 
 	mApp->getPhysicsSubsystem()->stabilize();
 
-	//Set Active Camera
-	mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-	mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
-
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 
@@ -641,11 +640,6 @@ void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGame
 void GameWorldManager::addGameObjectBush(GameObjectBushPtr gameObjectBush)
 {
 	mGameObjects[gameObjectBush->getName()]=gameObjectBush;
-}
-
-void GameWorldManager::addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera)
-{
-	mGameObjects[pGameObjectCamera->getName()]=pGameObjectCamera;
 }
 
 void GameWorldManager::addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr gameObjectCarnivorousPlant)
@@ -1064,6 +1058,26 @@ void GameWorldManager::addGameObjectSkyBody(GameObjectSkyBodyPtr gameObject)
 	mGameObjectNonMovableContainer.push_back(gameObject);
 	mGameObjectNonMovableEntityContainer.push_back(gameObject);
 	mGameObjectPositionalContainer.push_back(gameObject);
+}
+
+void GameWorldManager::addGameObjectTreeComplex(GameObjectTreeComplexPtr pGameObjectTreeComplex)
+{
+	mGameObjects[pGameObjectTreeComplex->getName()]=pGameObjectTreeComplex;
+}
+
+void GameWorldManager::addGameObjectFog(GameObjectFogPtr pGameObjectFog)
+{
+	mGameObjects[pGameObjectFog->getName()]=pGameObjectFog;
+}
+
+void GameWorldManager::addGameObjectTower(GameObjectTowerPtr pGameObjectTower)
+{
+	mGameObjects[pGameObjectTower->getName()]=pGameObjectTower;
+}
+
+void GameWorldManager::addGameObjectTriggerCamera(GameObjectTriggerCameraPtr pGameObjectTriggerCamera)
+{
+	mGameObjects[pGameObjectTriggerCamera->getName()]=pGameObjectTriggerCamera;
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)

@@ -321,7 +321,7 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 	if (hasRenderComponentEntity())
 	{
 		RenderComponentEntityPtr entityComp = getEntityComponent();
-		Ogre::Camera* camera = Application::getInstance()->getCameraManager()->getActiveCamera();
+		Ogre::Camera* camera = Application::getInstance()->getCameraManager()->getCamera();
 		mDisplayMsg = new ObjectTextDisplay(entityComp->getEntity(),camera);
 		mDisplayMsg->enable(true);
 		mDisplayMsg->setText(msg);

@@ -61,7 +61,6 @@ namespace OUAN
 		void processGameObjectBee_Butterfly(XMLGameObject* gameObject);
 		void processGameObjectBillboardSet(XMLGameObject* gameObject);
 		void processGameObjectBush(XMLGameObject* gameObject);
-		void processGameObjectCamera(XMLGameObject* gameObject);
 		void processGameObjectCarnivorousPlant(XMLGameObject* gameObject);
 		void processGameObjectClockPiece(XMLGameObject* gameObject);
 		void processGameObjectCryKing(XMLGameObject* gameObject);
@@ -101,8 +100,10 @@ namespace OUAN
 		void processGameObjectViewport(XMLGameObject* gameObject);
 		void processGameObjectWoodBox(XMLGameObject* gameObject);
 		void processGameObjectWater(XMLGameObject* gameObject);
-			//Special function to create a GameObjectCamera using Ogitor's viewport camera
-		void processGameObjectViewportCamera(XMLGameObject* gameObject);
+		void processGameObjectTreeComplex(XMLGameObject* gameObject);
+		void processGameObjectTriggerCamera(XMLGameObject* gameObject);
+		void processGameObjectTower(XMLGameObject* gameObject);
+		void processGameObjectFog(XMLGameObject* gameObject);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);
@@ -117,8 +118,8 @@ namespace OUAN
 		TRenderComponentGlowParameters processRenderComponentGlow(TiXmlElement *XMLNode, int world);
 		TRenderComponentFractalVolumeParameters processRenderComponentFractalVolume(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
-		TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
-		TRenderComponentCameraParameters processRenderComponentCameraViewport(TiXmlElement *XMLNode);
+		//TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
+
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
 		TRenderComponentPlaneParameters processRenderComponentPlane(TiXmlElement *XMLNode);
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters,

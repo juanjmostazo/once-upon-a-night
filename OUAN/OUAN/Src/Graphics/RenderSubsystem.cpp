@@ -12,7 +12,6 @@
 #include "TrajectoryManager/TrajectoryManager.h"
 #include "RenderComponent/RenderComponent.h"
 #include "RenderComponent/RenderComponentBillboardSet.h"
-#include "RenderComponent/RenderComponentCamera.h"
 #include "RenderComponent/RenderComponentEntity.h"
 #include "RenderComponent/RenderComponentLight.h"
 #include "RenderComponent/RenderComponentParticleSystem.h"
@@ -69,7 +68,7 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 void RenderSubsystem::initChangeWorldRenderer()
 {
 	mChangeWorldRenderer.reset(new ChangeWorldRenderer());
-	mChangeWorldRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getActiveCamera());
+	mChangeWorldRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getCamera());
 }
 
 ChangeWorldRendererPtr RenderSubsystem::getChangeWorldRenderer()
@@ -1099,7 +1098,7 @@ void RenderSubsystem::captureScene(const std::string& name)
 		TU_RENDERTARGET);
 	Ogre::RenderTexture *renderTexture = texture->getBuffer()->getRenderTarget();
 
-	renderTexture->addViewport(mApp->getCameraManager()->getActiveCamera());
+	renderTexture->addViewport(mApp->getCameraManager()->getCamera());
 	renderTexture->getViewport(0)->setClearEveryFrame(true);
 	renderTexture->getViewport(0)->setBackgroundColour(ColourValue::Black);
 	renderTexture->getViewport(0)->setOverlaysEnabled(false);		

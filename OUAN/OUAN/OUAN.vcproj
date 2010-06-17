@@ -482,10 +482,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectCamera.cpp"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.cpp"
 						>
 					</File>
@@ -523,6 +519,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectFlashLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectFog.cpp"
 						>
 					</File>
 					<File
@@ -618,11 +618,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTower.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTree.cpp"
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTreeComplex.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCamera.cpp"
 						>
 					</File>
 					<File
@@ -866,10 +878,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentCamera.cpp"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentDecal.cpp"
 						>
 					</File>
@@ -947,6 +955,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\CameraParameters.cpp"
 						>
 					</File>
 					<File
@@ -1232,10 +1244,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentCamera.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentDecal.h"
 						>
 					</File>
@@ -1317,6 +1325,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\CameraParameters.h"
 						>
 					</File>
 					<File
@@ -1503,10 +1515,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectCamera.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.h"
 						>
 					</File>
@@ -1544,6 +1552,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectFlashLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectFog.h"
 						>
 					</File>
 					<File
@@ -1639,11 +1651,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTower.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTree.h"
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTreeComplex.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCamera.h"
 						>
 					</File>
 					<File

@@ -351,7 +351,8 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleChangeCamera())
 		{
 			Logger::getInstance()->log("ToggleChangeCamera key pressed");
-			mApp->getCameraManager()->changeCamera();
+			//mApp->getCameraManager()->changeCamera();
+			//NOT IN USE ANYMORE
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeCameraController())
@@ -486,7 +487,7 @@ void GameRunningState::update(long elapsedTime)
 			}
 			
 			// Update 3D sound listener's position
-			Ogre::Camera* activeCam = mApp->getCameraManager()->getActiveCamera();
+			Ogre::Camera* activeCam = mApp->getCameraManager()->getCamera();
 			if (activeCam)
 			{
 				mApp->getAudioSubsystem()->set3DAttributes(activeCam->getPosition(),Ogre::Vector3::ZERO,

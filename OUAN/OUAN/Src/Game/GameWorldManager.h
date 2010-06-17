@@ -219,7 +219,6 @@ namespace OUAN
 		void addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly);
 		void addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet);
 		void addGameObjectBush(GameObjectBushPtr gameObjectBush);
-		void addGameObjectCamera(GameObjectCameraPtr pGameObjectCamera);
 		void addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr pGameObjectCarnivorousPlant);
 		void addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece);
 		void addGameObjectCloud(GameObjectCloudPtr gameObjectCloud);
@@ -261,6 +260,11 @@ namespace OUAN
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
 		void addGameObjectWater(GameObjectWaterPtr pGameObjectWater);
+		void addGameObjectTreeComplex(GameObjectTreeComplexPtr pGameObjectTreeComplex);
+		void addGameObjectFog(GameObjectFogPtr pGameObjectFog);
+		void addGameObjectTower(GameObjectTowerPtr pGameObjectTower);
+		void addGameObjectTriggerCamera(GameObjectTriggerCameraPtr pGameObjectTriggerCamera);
+
 
 		void activateChangeWorld();
 		void activateChangeWorldFast();

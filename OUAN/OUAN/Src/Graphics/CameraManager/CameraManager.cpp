@@ -1,5 +1,8 @@
 #include "OUAN_Precompiled.h"
 
+#include "../../Event/EventDefs.h"
+#include "../../Event/EventHandler.h"
+#include "../../Event/EventManager.h"
 #include "CameraManager.h"
 #include "CameraController.h"
 #include "CameraControllerFixedFirstPerson.h"
@@ -8,13 +11,10 @@
 #include "CameraControllerThirdPerson.h"
 #include "CameraControllerTrajectory.h"
 #include "../RenderSubsystem.h"
-#include "../RenderComponent/RenderComponentCamera.h"
 #include "../RenderComponent/RenderComponentViewport.h"
 #include "../TrajectoryManager/TrajectoryManager.h"
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
-#include "../../Game/GameObject/GameObjectCamera.h"
-#include "../../Event/EventDefs.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -29,40 +29,46 @@ CameraManager::~CameraManager()
 
 }
 
+Ogre::Camera * CameraManager::getCamera() const
+{
+	return mCamera;
+}
+
 void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager)
 {
+	Logger::getInstance()->log("[Camera Manager] INITIALISING CAMERA MANAGER");
+
 	mSceneManager= pRenderSubsystem->getSceneManager();
 	mTrajectoryManager=pTrajectoryManager;
 
 	mGameWorldManager=pGameWorldManager;
 
-	//Clear all cameras
-	camera.clear();
+	createMainCamera();
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
+	mCameraControllerFirstPerson->setCamera(mCamera);
 	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
 	mCameraControllerThirdPerson->init( pRenderSubsystem,pPhysicsSubsystem,pRayCasting,pGameWorldManager);
+	mCameraControllerThirdPerson->setCamera(mCamera);
 	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
 	mCameraControllerFixedThirdPerson->init( pRenderSubsystem->getSceneManager());
+	mCameraControllerFixedThirdPerson->setCamera(mCamera);
 	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
 	mCameraControllerFixedFirstPerson->init( pRenderSubsystem->getSceneManager());
+	mCameraControllerFixedFirstPerson->setCamera(mCamera);
 	mCameraControllerTrajectory= new CameraControllerTrajectory();
 	mCameraControllerTrajectory->init( pRenderSubsystem->getSceneManager());
+	mCameraControllerTrajectory->setCamera(mCamera);
 
 	activeCameraController=mCameraControllerThirdPerson;
 
-	createMainCamera();
-
 	//Set Default camera to viewport
-	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(camera[OUAN::MAIN_CAMERA_NAME]->getCamera());
+	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(mCamera);
 	mViewport->setBackgroundColour(Ogre::ColourValue::Black);
 
 	//TODO REMOVE THIS
 	mViewport = pRenderSubsystem->getRoot()->getAutoCreatedWindow()->getViewport(0);
-
-	//Make it the active camera
-	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
 
 	registerEventHandlers(mGameWorldManager->getEventManager());
 }
@@ -103,19 +109,22 @@ void CameraManager::setCameraTrajectory(std::string name)
 
 void CameraManager::createMainCamera()
 {
-	//Create Main Camera (Default Camera)
-	TRenderComponentCameraParameters tRenderComponentCameraParameters;
+	// Set Camera parameters and create it
+	try
+	{
+		// Create the Camera
+		mCamera = mSceneManager->createCamera(OUAN::MAIN_CAMERA_NAME);
 
-	tRenderComponentCameraParameters.FOVy=55;
-	tRenderComponentCameraParameters.position=Vector3(0,0,0);
-	tRenderComponentCameraParameters.orientation=Quaternion();
-	tRenderComponentCameraParameters.autotracktarget="None";
-	tRenderComponentCameraParameters.viewmode=0;
-	tRenderComponentCameraParameters.autoaspectratio=false;
-	tRenderComponentCameraParameters.clipdistance=Vector2(0.1,25000);
-	tRenderComponentCameraParameters.polygonmode=Ogre::PM_SOLID;
-
-	createCamera(OUAN::MAIN_CAMERA_NAME,tRenderComponentCameraParameters);
+		mCamera->setFOVy(Ogre::Radian(Ogre::Math::DegreesToRadians(55)));
+		mCamera->setPosition(Vector3(0,0,0));
+		mCamera->setOrientation(Quaternion());
+		mCamera->setNearClipDistance(0.1);
+		mCamera->setFarClipDistance(25000);
+	}
+	catch(Ogre::Exception &/*e*/)
+	{
+		Logger::getInstance()->log("[LevelLoader] Error creating main Camera!");
+	}
 }
 
 Viewport* CameraManager::getViewport() const
@@ -125,8 +134,6 @@ Viewport* CameraManager::getViewport() const
 
 void CameraManager::cleanUp()
 {
-	//Clear all cameras
-	camera.clear();
 	unregisterEventHandlers(mGameWorldManager->getEventManager());
 	delete mCameraControllerFirstPerson;
 }
@@ -141,74 +148,15 @@ TCameraControllerType CameraManager::getActiveCameraControllerType()
 	return activeCameraController->getControllerType();
 }
 
-RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
-{
-	RenderComponentCameraPtr pRenderComponentCamera;
-	Ogre::Camera * pCamera;
-
-	//Create void RenderComponentCamera
-	pRenderComponentCamera = RenderComponentCameraPtr(new RenderComponentCamera());
-
-	// Set Camera parameters and create it
-	try
-	{
-		// Create the Camera
-		pCamera = mSceneManager->createCamera(name);
-
-		// Set RenderComponentCamera's Camera
-		pRenderComponentCamera->setCamera(pCamera);
-
-		// Set RenderComponentCamera Parameters
-		pRenderComponentCamera->setCameraParameters(tRenderComponentCameraParameters);
-
-		// Add RenderComponentCamera to Container
-		camera[name]=pRenderComponentCamera;
-	}
-	catch(Ogre::Exception &/*e*/)
-	{
-		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Camera!");
-	}
-	return pRenderComponentCamera;
-}
+//RenderComponentCameraPtr CameraManager::createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+//{
+//
+//	return pRenderComponentCamera;
+//}
 
 void CameraManager::clear()
 {
-	mSceneManager->destroyAllCameras(); 
-	//Clear all cameras
-	camera.clear();
-	//We guarantee that at least main camera exists
-	createMainCamera();
 
-	mCameraControllerThirdPerson->clear();
-
-	//Make it the active camera
-	setActiveCamera(OUAN::MAIN_CAMERA_NAME);
-}
-
-Camera * CameraManager::getActiveCamera()
-{
-	return activeCameraController->getCamera();
-}
-
-void CameraManager::setActiveCamera(std::string name)
-{
-	Camera * pCamera;
-	pCamera=camera[name]->getCamera();
-	if(pCamera)
-	{
-		activeCameraController->setCamera(pCamera);
-		mViewport->setCamera(pCamera);
-		Logger::getInstance()->log("[Camera Manager] Camera "+name+" activated");
-	}
-	else
-	{
-		Logger::getInstance()->log("[Camera Manager] Camera "+name+" does not exist!");
-	}
-}
-
-std::string CameraManager::getActiveCameraName()
-{
-	return activeCameraController->getCamera()->getName();
 }
 
 void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
@@ -253,11 +201,6 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 	}
 }
 
-void CameraManager::resetActiveCameraPosition()
-{
-	camera[getActiveCameraName()]->resetCameraParameters();
-}
-
 Ogre::Viewport* CameraManager::setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters)
 {
 	//// Set the Viewport parameters
@@ -297,23 +240,6 @@ void CameraManager::processCameraRotation(Ogre::Vector2 cameraRotation)
 void CameraManager::processSimpleTranslation(Ogre::Vector3 nextMovement)
 {
 	activeCameraController->processSimpleTranslation(nextMovement);
-}
-
-void CameraManager::changeCamera()
-{
-	TCameraIterator it;
-
-	it = camera.find(getActiveCameraName());
-	it++;
-
-	if( it==camera.end())
-	{
-		it=camera.begin();
-	}
-
-	resetActiveCameraPosition();
-
-	setActiveCamera(it->first);
 }
 
 void CameraManager::changeCameraController()
@@ -427,7 +353,6 @@ void CameraManager::registerEventHandlers(EventManagerPtr evtMgr)
 	{
 		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<CameraManager,ChangeWorldEvent>(this_,&CameraManager::processChangeWorld));
 		evtMgr->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
-
 	}
 }
 
