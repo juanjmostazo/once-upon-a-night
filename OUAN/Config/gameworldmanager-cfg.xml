@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-	<Option key="CHANGE_WORLD_TIME">5</Option>
+	<Option key="CHANGE_WORLD_TIME">6</Option>
 
     	<!--Change World Trees Options-->
 	<Option key="CHANGE_WORLD_TREES_RANDOM">false</Option>
