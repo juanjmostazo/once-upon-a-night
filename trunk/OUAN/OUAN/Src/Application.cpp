@@ -90,9 +90,6 @@ bool Application::init(int argc,char** argv)
 			mSkipIntro=true;
 		}
 	}
-	//TODO: Reverse order, as the logical thing would be that the command line superceded
-	// the config file options (since no options other than sound's are being processed at the moment,
-	// it doesn't matter)
 	return init();
 }
 
@@ -143,6 +140,13 @@ bool Application::init()
 
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);
+	
+	mMenusTextStrings.reset(new Configuration());
+	std::stringstream menusStringsPath("");
+	std::string lang= mLanguage;
+	std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
+	menusStringsPath<<MENUSSTRINGS_PATH<<lang<<"/"<<MENUSSTRINGS;
+	mMenusTextStrings->loadFromFile(menusStringsPath.str());
 
 	mLogicSubsystem.reset(new LogicSubsystem());
 	mLogicSubsystem->init(this_);
@@ -245,7 +249,7 @@ bool Application::buttonReleased( const OIS::JoyStickEvent& e, int button )
 void Application::setupInputSystem()
 {
 	//Set mouse pointer non-visible
-	ControlInputManager::init( mRenderSubsystem->getWindow(), false );
+	ControlInputManager::init( mRenderSubsystem->getWindow(), mLanguage,false);
 }
 void Application::loadInitialState()
 {
@@ -310,9 +314,9 @@ ConfigurationPtr Application::getConfiguration() const
 	return mConfiguration;
 }
 
-ConfigurationPtr Application::getTextStrings() const
+ConfigurationPtr Application::getMenusTextStrings() const
 {
-	return mTextStrings;
+	return mMenusTextStrings;
 }
 
 LogicSubsystemPtr Application::getLogicSubsystem() const

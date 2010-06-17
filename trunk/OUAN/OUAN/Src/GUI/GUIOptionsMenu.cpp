@@ -226,7 +226,7 @@ void GUIOptionsMenu::initButton(const std::string& buttonName, const std::string
 		keyName=mParentGameState->getApp()->getPadButtonName(mCurrentConfig[mappingName].second);
 
 	stream<<mButtonData[buttonName].buttonText<<' '<<keyName;
-	radio->setText((CEGUI::utf8*)stream.str().c_str());		
+	radio->setText(stream.str().c_str());		
 }
 void GUIOptionsMenu::destroy()
 {
@@ -375,7 +375,7 @@ bool GUIOptionsMenu::keyPressed(const OIS::KeyEvent &e)
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
 			stream.str("");
 			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getAsString(kc);
-			radio->setText((CEGUI::utf8*)stream.str().c_str());		
+			radio->setText(stream.str().c_str());		
 			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)e.key;
 
 			mCurrentlyEditedMapping="";
@@ -398,7 +398,7 @@ bool GUIOptionsMenu::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID i
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
 			stream.str("");
 			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getMouseButtonName(buttonPressed);
-			radio->setText((CEGUI::utf8*)stream.str().c_str());		
+			radio->setText(stream.str().c_str());		
 			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)buttonPressed;
 
 			mCurrentlyEditedMapping="";
@@ -419,7 +419,7 @@ bool GUIOptionsMenu::buttonPressed( const OIS::JoyStickEvent &e, int button )
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
 			stream.str("");
 			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getPadButtonName(button);
-			radio->setText((CEGUI::utf8*)stream.str().c_str());		
+			radio->setText(stream.str().c_str());		
 			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].second=button;
 
 			mCurrentlyEditedMapping="";

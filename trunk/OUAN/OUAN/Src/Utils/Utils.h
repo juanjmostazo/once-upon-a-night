@@ -43,6 +43,9 @@ namespace OUAN
 		std::string toString(char charValue);
 		std::string toString(bool boolValue);
 
+		const std::string replaceAll(const std::string& source, const std::string& replaceWhat, 
+			const std::string& replaceWithWhat);
+
 
 		struct TTexturedRectangleDesc
 		{

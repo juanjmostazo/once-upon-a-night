@@ -1,15 +1,15 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>				
 		<!-- Pad button names -->
-		<Option key="PAD_BUTTON_NAME_UP">Up</Option>
-		<Option key="PAD_BUTTON_NAME_DOWN">Down</Option>
-		<Option key="PAD_BUTTON_NAME_LEFT">Left</Option>
-		<Option key="PAD_BUTTON_NAME_RIGHT">Right</Option>
+		<Option key="PAD_BUTTON_NAME_UP">Arriba</Option>
+		<Option key="PAD_BUTTON_NAME_DOWN">Abajo</Option>
+		<Option key="PAD_BUTTON_NAME_LEFT">Izquierda</Option>
+		<Option key="PAD_BUTTON_NAME_RIGHT">Derecha</Option>
 
-		<Option key="PAD_BUTTON_NAME_SQUARE">Square</Option>
-		<Option key="PAD_BUTTON_NAME_CIRCLE">Circle</Option>
-		<Option key="PAD_BUTTON_NAME_TRIANGLE">Triangle</Option>
+		<Option key="PAD_BUTTON_NAME_SQUARE">Cuadrado</Option>
+		<Option key="PAD_BUTTON_NAME_CIRCLE">Círculo</Option>
+		<Option key="PAD_BUTTON_NAME_TRIANGLE">Triángulo</Option>
 		<Option key="PAD_BUTTON_NAME_X">X</Option>
 
 		<Option key="PAD_BUTTON_NAME_L1">L1</Option>
@@ -21,14 +21,14 @@
 		<Option key="PAD_BUTTON_NAME_START">Start</Option>
 		<Option key="PAD_BUTTON_NAME_SELECT">Select</Option>
 		<!-- Mouse buttons' names -->
-		<Option key="MOUSE_BUTTON_NAME_LEFT">MouseLeft</Option>
-		<Option key="MOUSE_BUTTON_NAME_RIGHT">MouseRight</Option>
-		<Option key="MOUSE_BUTTON_NAME_MIDDLE">MouseMiddle</Option>
-		<Option key="MOUSE_BUTTON_NAME_MB3">Mouse03</Option>
-		<Option key="MOUSE_BUTTON_NAME_MB4">Mouse04</Option>
-		<Option key="MOUSE_BUTTON_NAME_MB5">Mouse05</Option>
-		<Option key="MOUSE_BUTTON_NAME_MB6">Mouse06</Option>
-		<Option key="MOUSE_BUTTON_NAME_MB7">Mouse07</Option>		
+		<Option key="MOUSE_BUTTON_NAME_LEFT">Ratón Izq.</Option>
+		<Option key="MOUSE_BUTTON_NAME_RIGHT">Ratón Der.</Option>
+		<Option key="MOUSE_BUTTON_NAME_MIDDLE">Ratón Cen.</Option>
+		<Option key="MOUSE_BUTTON_NAME_MB3">Ratón03</Option>
+		<Option key="MOUSE_BUTTON_NAME_MB4">Ratón04</Option>
+		<Option key="MOUSE_BUTTON_NAME_MB5">Ratón05</Option>
+		<Option key="MOUSE_BUTTON_NAME_MB6">Ratón06</Option>
+		<Option key="MOUSE_BUTTON_NAME_MB7">Ratón07</Option>		
 		<!-- Key code names -->		
 		<Option key="0x01">ESCAPE</Option>		
 		<Option key="0x02">1</Option>		
@@ -43,7 +43,7 @@
 		<Option key="0x0B">0</Option>
 		<Option key="0x0C">-</Option>
 		<Option key="0x0D">=</Option>
-		<Option key="0x0E">Backspace</Option>
+		<Option key="0x0E">Retroceso</Option>
 		<Option key="0x0F">Tab</Option>
 		<Option key="0x10">Q</Option>
 		<Option key="0x11">W</Option>
@@ -58,7 +58,7 @@
 		<Option key="0x1A">]</Option>		
 		<Option key="0x1B">[</Option>		
 		<Option key="0x1C">Enter</Option>
-		<Option key="0x1D">LControl</Option>
+		<Option key="0x1D">Control izq.</Option>
 		<Option key="0x1E">A</Option>
 		<Option key="0x1F">S</Option>
 		<Option key="0x20">D</Option>
@@ -71,7 +71,7 @@
 		<Option key="0x27">;</Option>		
 		<Option key="0x28">'</Option>		
 		<Option key="0x29">`</Option>
-		<Option key="0x2A">LShift</Option>
+		<Option key="0x2A">May. izq.</Option>
 		<Option key="0x2B">\</Option>		
 		<Option key="0x2C">Z</Option>		
 		<Option key="0x2D">X</Option>
@@ -83,11 +83,11 @@
 		<Option key="0x33">,</Option>		
 		<Option key="0x34">.</Option>
 		<Option key="0x35">/</Option>
-		<Option key="0x36">RShift</Option>		
+		<Option key="0x36">May. der.</Option>		
 		<Option key="0x37">*</Option>		
-		<Option key="0x38">LAlt</Option>		
-		<Option key="0x39">Space</Option>
-		<Option key="0x3A">Caps.Lock</Option>		
+		<Option key="0x38">Alt. izq.</Option>		
+		<Option key="0x39">Barra esp.</Option>
+		<Option key="0x3A">Bloq. May.</Option>		
 		<Option key="0x3B">F1</Option>		
 		<Option key="0x3C">F2</Option>
 		<Option key="0x3D">F3</Option>
@@ -112,17 +112,17 @@
 		<Option key="0x52">NPAD-0</Option>
 		<Option key="0x53">NPAD-.</Option>
 		<Option key="0x4E">NPAD-+</Option>
-		<Option key="0x9D">RControl</Option>		
-		<Option key="0xB8">RAlt</Option>		
-		<Option key="0xC7">Home</Option>
-		<Option key="0xC8">Up</Option>
-		<Option key="0xC9">PageUp</Option>
-		<Option key="0xCB">Left</Option>		
-		<Option key="0xCD">Right</Option>
-		<Option key="0xCF">End</Option>		
-		<Option key="0xD0">Down</Option>
-		<Option key="0xD1">PageDown</Option>
+		<Option key="0x9D">Control Der.</Option>		
+		<Option key="0xB8">Alt Der.</Option>		
+		<Option key="0xC7">Inicio</Option>
+		<Option key="0xC8">Arriba</Option>
+		<Option key="0xC9">Av. pág</Option>
+		<Option key="0xCB">Izquierda</Option>		
+		<Option key="0xCD">Derecha</Option>
+		<Option key="0xCF">Fin</Option>		
+		<Option key="0xD0">Abajo</Option>
+		<Option key="0xD1">Re Pág.</Option>
 		<Option key="0xD2">Insert</Option>
-		<Option key="0xD3">Delete</Option>
+		<Option key="0xD3">Supr</Option>
 	</Options>
 </Configuration>

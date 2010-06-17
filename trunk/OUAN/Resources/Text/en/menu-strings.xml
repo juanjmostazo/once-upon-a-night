@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>
 		<!-- MAIN MENU -->
@@ -6,7 +6,40 @@
 		<Option key="MAIN_MENU_OPTIONS">Options</Option>
 		<Option key="MAIN_MENU_EXTRAS">Extras</Option>
 		<Option key="MAIN_MENU_QUIT">Quit</Option>
+		<!-- EXTRAS MENU -->
+		<Option key="EXTRAS_SCREEN_CREDITS">Design:\n
+Aniol Alcaraz\n
+Tania Anta\n
+Judith Balagueró\n
+Juan J. Mostazo\n
+Lourdes Nicolich\n
+\n
+---\n
+\n
+Programming:\n
+Aniol Alcaraz\n
+Tania Anta\n
+Juan J. Mostazo\n
+\n
+---\n
+\n
+Art:\n
+Judith Balagueró\n
+Lourdes Nicolich\n
+\n
+---\n
+\n
+Sound/Music:\n
+Pere Ferrera\n</Option>
+		<Option key="EXTRAS_SCREEN_BACK">Back to main menu</Option>
+		<Option key="EXTRAS_SCREEN_LABEL">Once Upon a Night - Credits</Option>
+		<!-- IN-GAME MENU -->		
+		<Option key="INGAME_MENU_SCREEN_BTG">Back to game</Option>
+		<Option key="INGAME_MENU_SCREEN_BTM">Back to main menu</Option>
+		<Option key="INGAME_MENU_SCREEN_OPTIONS">Back to main menu</Option>
+		<Option key="INGAME_MENU_SCREEN_EXIT">Exit</Option>		
 		<!-- OPTIONS MENU -->
+		<!-- TODO: ADD MORE!! -->
 		<!-- Device selection combo items -->
 		<Option key="COMBO_ITEM_DEVICE_MOUSEKEYBOARD">Mouse 'n' Keyboard</Option>
 		<Option key="COMBO_ITEM_DEVICE_PSXPAD">Psx Pad</Option>

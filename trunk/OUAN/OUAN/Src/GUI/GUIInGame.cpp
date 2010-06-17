@@ -11,6 +11,7 @@ void GUIInGame::initGUI(GameStatePtr parentGameState)
 {
 	GUIWindow::initGUI(parentGameState);
 	bindEvents();
+	setStrings(parentGameState->getApp()->getCurrentLanguage());
 }
 void GUIInGame::bindEvents()
 {
@@ -46,4 +47,28 @@ bool GUIInGame::onQuit(const CEGUI::EventArgs& args)
 {
 	(static_cast<InGameMenuState*>(mParentGameState.get()))->quit();
 	return true;
+}
+void GUIInGame::setStrings(const std::string& language)
+{
+	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
+	if (texts.get())
+	{
+
+		std::string windowNames[] = {INGAME_CEGUIWIN_ID_BTG,INGAME_CEGUIWIN_ID_BTM,
+			INGAME_CEGUIWIN_ID_EXIT,INGAME_CEGUIWIN_ID_OPTIONS};
+		int windowNamesLen=4;
+		std::string stringKey="";
+		std::string stringVal="";
+		CEGUI::Window* win=NULL;
+		for (int i=0;i<windowNamesLen;i++)
+		{
+			win=CEGUI::WindowManager::getSingletonPtr()->getWindow(windowNames[i]);
+			if (win)
+			{
+				stringKey=win->getText().c_str();
+				texts->getOption(stringKey,stringVal);
+				win->setText(stringVal);
+			}
+		}
+	}	 
 }

@@ -236,3 +236,16 @@ void OUAN::Utils::destroyTexturedRectangle(Ogre::Rectangle2D*& rect,const std::s
 		}
 	}
 }
+
+const std::string OUAN::Utils::replaceAll(const std::string& source, const std::string& replaceWhat, 
+										  const std::string& replaceWithWhat)
+{
+	std::string result = source;
+	while(1)
+	{
+		std::string::size_type pos = result.find(replaceWhat);
+		if (pos == String::npos) break;
+		result.replace(pos,replaceWhat.size(),replaceWithWhat);
+	}
+	return result;
+}
