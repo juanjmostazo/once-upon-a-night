@@ -2,10 +2,11 @@
 <Configuration>
   <Options>
 	<!--	Skip intro -->
+	<Option key="LAUNCH_OGRE_CONFIG">false</Option>
 	<Option key="SKIP_INTRO">false</Option>
 	<!--	Language options -->
 	<Option key="SUPPORTED_LANGUAGES">en;es</Option>
-	<Option key="INITIAL_LANGUAGE">en</Option>
+	<Option key="INITIAL_LANGUAGE">es</Option>
 	<!--	Video options		-->
 	<Option key="RENDER_SYSTEM">D3D</Option>
     <Option key="HORIZ_RESOLUTION">800</Option>

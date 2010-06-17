@@ -22,6 +22,9 @@ void GUIMainMenu::initGUI(GameStatePtr parentGameState)
 	mParentGameState->getApp()->getGUISubsystem()->bindEvent(CEGUI::PushButton::EventClicked,
 		"OUANMainMenu/Extras",
 		CEGUI::Event::Subscriber(&GUIMainMenu::onExtras,this));
+
+	ConfigurationPtr config = ConfigurationPtr(new Configuration());
+	setStrings(parentGameState->getApp()->getCurrentLanguage());
 }
 bool GUIMainMenu::onPlay(const CEGUI::EventArgs& args)
 {
@@ -42,4 +45,28 @@ bool GUIMainMenu::onQuit(const CEGUI::EventArgs& args)
 {
 	(static_cast<MainMenuState*>(mParentGameState.get()))->quit();
 	return true;
+}
+void GUIMainMenu::setStrings(const std::string& language)
+{
+	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
+	if (texts.get())
+	{
+
+		std::string windowNames[] = {MAINMENU_CEGUIWIN_ID_PLAY,MAINMENU_CEGUIWIN_ID_OPTIONS,
+			MAINMENU_CEGUIWIN_ID_EXTRAS,MAINMENU_CEGUIWIN_ID_EXIT};
+		int windowNamesLen=4;
+		std::string stringKey="";
+		std::string stringVal="";
+		CEGUI::Window* win=NULL;
+		for (int i=0;i<windowNamesLen;i++)
+		{
+			win=CEGUI::WindowManager::getSingletonPtr()->getWindow(windowNames[i]);
+			if (win)
+			{
+				stringKey=win->getText().c_str();
+				texts->getOption(stringKey,stringVal);
+				win->setText(stringVal);
+			}
+		}
+	}	 
 }

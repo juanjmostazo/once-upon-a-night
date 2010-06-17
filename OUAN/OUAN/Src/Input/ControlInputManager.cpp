@@ -16,9 +16,9 @@ ControlInputManager::~ControlInputManager()
 
 //////////////////////////////////////////////////////////////
 
-void ControlInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer)
+void ControlInputManager::init( Ogre::RenderWindow* window, const std::string& language,bool showDefaultMousePointer)
 {
-	FullInputManager::init(window,showDefaultMousePointer);
+	FullInputManager::init(window, language, showDefaultMousePointer);
 }
 
 void ControlInputManager::finalise()

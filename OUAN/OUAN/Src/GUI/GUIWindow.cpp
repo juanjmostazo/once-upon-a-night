@@ -38,3 +38,8 @@ void GUIWindow::hide()
 	if (mSheet)
 		mSheet->hide();
 }
+
+void GUIWindow::setStrings(const std::string &language)
+{
+
+}

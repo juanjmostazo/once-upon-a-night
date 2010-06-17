@@ -1,23 +1,61 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>
+		<!-- MAIN MENU -->
+		<Option key="MAINMENU_SCREEN_PLAY">Jugar</Option>
+		<Option key="MAINMENU_SCREEN_OPTIONS">Opciones</Option>
+		<Option key="MAINMENU_SCREEN_EXTRAS">Extras</Option>
+		<Option key="MAINMENU_SCREEN_QUIT">Salir</Option>
+		<!-- EXTRAS MENU -->
+		<Option key="EXTRAS_SCREEN_CREDITS">Diseño:\n
+Aniol Alcaraz\n
+Tania Anta\n
+Judith Balagueró\n
+Juan J. Mostazo\n
+Lourdes Nicolich\n
+\n
+---\n
+\n
+Programación:\n
+Aniol Alcaraz\n
+Tania Anta\n
+Juan J. Mostazo\n
+\n
+---\n
+\n
+Arte:\n
+Judith Balagueró\n
+Lourdes Nicolich\n
+\n
+---\n
+\n
+Sonido/Música:\n
+Pere Ferrera\n</Option>
+		<Option key="EXTRAS_SCREEN_BACK">Volver al menú</Option>
+		<Option key="EXTRAS_SCREEN_LABEL">Once Upon a Night - Créditos</Option>
+		
+		<!-- IN-GAME MENU -->		
+		<Option key="INGAME_MENU_SCREEN_BTG">Volver al juego</Option>
+		<Option key="INGAME_MENU_SCREEN_BTM">Volver al menú principal</Option>
+		<Option key="INGAME_MENU_SCREEN_OPTIONS">Opciones</Option>
+		<Option key="INGAME_MENU_SCREEN_EXIT">Salir</Option>		
 		<!-- Device selection combo items -->
-		<Option key="COMBO_ITEM_DEVICE_MOUSEKEYBOARD">Mouse 'n' Keyboard</Option>
-		<Option key="COMBO_ITEM_DEVICE_PSXPAD">Psx Pad</Option>
+		<Option key="COMBO_ITEM_DEVICE_MOUSEKEYBOARD">Teclado y ratón</Option>
+		<Option key="COMBO_ITEM_DEVICE_PSXPAD">Mando PSX</Option>
 		<!-- Control buttons' names -->
-		<Option key="BUTTON_TEXT_MENU">Menu: </Option>
-		<Option key="BUTTON_TEXT_PAUSE">Pause: </Option>
-		<Option key="BUTTON_TEXT_FORWARD">Forward: </Option>
-		<Option key="BUTTON_TEXT_BACKWARDS">Backwards: </Option>
-		<Option key="BUTTON_TEXT_LEFT">Left: </Option>
-		<Option key="BUTTON_TEXT_RIGHT">Right: </Option>
-		<Option key="BUTTON_TEXT_JUMP">Jump: </Option>
-		<Option key="BUTTON_TEXT_ACTION">Action: </Option>
-		<Option key="BUTTON_TEXT_RELOAD">Reload: </Option>		
-		<Option key="BUTTON_TEXT_USEWEAPON">Weapon: </Option>
-		<Option key="BUTTON_TEXT_WALK">Walk: </Option>	
-		<Option key="BUTTON_TEXT_RROTATE">Rotate-R: </Option>			
-		<Option key="BUTTON_TEXT_LROTATE">Rotate-L: </Option>					
-		<Option key="BUTTON_TEXT_AUTOTARGET">Auto-target: </Option>	
+		<Option key="BUTTON_TEXT_MENU">Menú: </Option>
+		<Option key="BUTTON_TEXT_PAUSE">Pausa: </Option>
+		<Option key="BUTTON_TEXT_FORWARD">Adelante: </Option>
+		<Option key="BUTTON_TEXT_BACKWARDS">Atrás: </Option>
+		<Option key="BUTTON_TEXT_LEFT">Izquierda: </Option>
+		<Option key="BUTTON_TEXT_RIGHT">Derecha: </Option>
+		<Option key="BUTTON_TEXT_JUMP">Salto: </Option>
+		<Option key="BUTTON_TEXT_ACTION">Acción: </Option>
+		<Option key="BUTTON_TEXT_RELOAD">Recargar: </Option>		
+		<Option key="BUTTON_TEXT_USEWEAPON">Arma: </Option>
+		<Option key="BUTTON_TEXT_WALK">Caminar: </Option>	
+		<Option key="BUTTON_TEXT_RROTATE">Rotar ruleta der.: </Option>			
+		<Option key="BUTTON_TEXT_LROTATE">Rotar ruleta izq: </Option>					
+		<Option key="BUTTON_TEXT_AUTOTARGET">Auto-apuntado: </Option>	
 	</Options>
 </Configuration>

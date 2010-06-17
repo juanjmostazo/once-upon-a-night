@@ -5,25 +5,25 @@
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Options" >
-            <Property Name="Text" Value="Options" />
+            <Property Name="Text" Value="MAINMENU_SCREEN_OPTIONS" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.562409,0},{0.710736,0},{0.662408,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Extras" >
-            <Property Name="Text" Value="Extras" />
+            <Property Name="Text" Value="MAINMENU_SCREEN_EXTRAS" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.308282,0},{0.694526,0},{0.708282,0},{0.794525,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Play" >
-            <Property Name="Text" Value="Play" />
+            <Property Name="Text" Value="MAINMENU_SCREEN_PLAY" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.425914,0},{0.710736,0},{0.525913,0}}" />
         </Window>
         <Window Type="OUANLook/Button" Name="OUANMainMenu/Quit" >
-            <Property Name="Text" Value="Quit" />
+            <Property Name="Text" Value="MAINMENU_SCREEN_QUIT" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.309509,0},{0.832482,0},{0.709509,0},{0.932481,0}}" />

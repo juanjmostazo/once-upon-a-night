@@ -1,5 +1,6 @@
 #include "OUAN_Precompiled.h"
 #include "Configuration.h"
+#include "../Utils/Utils.h"
 
 #include "../TinyXML/tinyxml.h"
 
@@ -21,6 +22,7 @@ bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags
 	TiXmlDocument doc(fileName.c_str());
 	if (!doc.LoadFile()){
 		Logger::getInstance()->log("ERROR! [Configuration] Error reading file "+fileName);
+		Logger::getInstance()->log(doc.ErrorDesc());
 		return  false; //Let the client of this class handle this
 	} 
 
@@ -40,7 +42,7 @@ bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags
 		{
 			std::string key=elementPtr->Attribute(XML_ELEMENT_OPTION_ATTRIBUTE_KEY.c_str());
 			std::string value=elementPtr->GetText();
-			configMap[key]=value;
+			configMap[key]=Utils::replaceAll(value,"\\n","\n");
 		}
 	}
 
@@ -92,7 +94,7 @@ void Configuration::addOptions(const TConfigMap& newMap, bool replaceExisting)
 
 bool Configuration::hasOption(const std::string& key) const
 {
-	return configMap.count(key)>0;
+	return configMap.find(key)!=configMap.end();
 }
 bool Configuration::getOption(const std::string& key, std::string& value)
 {

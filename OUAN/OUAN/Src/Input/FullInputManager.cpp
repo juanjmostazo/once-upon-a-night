@@ -16,7 +16,7 @@ FullInputManager::~FullInputManager()
 
 }
 
-void FullInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePointer )
+void FullInputManager::init( Ogre::RenderWindow* window,const std::string& language, bool showDefaultMousePointer )
 {
 	size_t windowHandle = 0;
 	window->getCustomAttribute( "WINDOW", &windowHandle );
@@ -63,7 +63,7 @@ void FullInputManager::init( Ogre::RenderWindow* window, bool showDefaultMousePo
 	m_keyboard->setEventCallback( this );
 
 	loadConfig();
-	loadStrings();
+	loadStrings(language);
 }
 
 
@@ -244,10 +244,14 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 	}
 }
 
-bool FullInputManager::loadStrings()
+bool FullInputManager::loadStrings(const std::string& language)
 {
-	mInputTextStrings.reset(new Configuration());
-	return mInputTextStrings->loadFromFile(INPUTSTRINGS);
+		mInputTextStrings.reset(new Configuration());
+	std::stringstream path("");
+	std::string langPath=language;
+	std::transform(langPath.begin(), langPath.end(), langPath.begin(), tolower);
+	path<<INPUTSTRINGS_PATH<<langPath<<"/"<<INPUTSTRINGS;
+	return mInputTextStrings->loadFromFile(path.str());
 }
 
 void FullInputManager::finalise()

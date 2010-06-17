@@ -14,6 +14,8 @@ namespace OUAN
 	const std::string OUAN_CONFIG_FILE="../../Config/ouan-cfg.xml";
 
 	const std::string DEFAULT_LANGUAGE="en";
+	const std::string MENUSSTRINGS_PATH="../../Resources/Text/";
+	const std::string MENUSSTRINGS = "menu-strings.xml";
 	/// Main application class which will hold all of the game's
 	/// subsystems.
 	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
@@ -95,7 +97,7 @@ namespace OUAN
 			AudioSubsystemPtr getAudioSubsystem() const;
 			ConfigurationPtr getConfiguration() const;
 
-			ConfigurationPtr getTextStrings() const;
+			ConfigurationPtr getMenusTextStrings() const;
 
 			///Return a data structure containing the audio subsystem config information
 			void getAudioConfig(TAudioSubsystemConfigData& audioCfg);
@@ -177,7 +179,7 @@ namespace OUAN
 			int mDebugMode;
 
 			/// Map containing text strings
-			ConfigurationPtr mTextStrings;
+			ConfigurationPtr mMenusTextStrings;
 
 			/// UniqueId
 			int mUniqueId;

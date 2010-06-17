@@ -12,7 +12,8 @@ namespace OUAN
 {
 	const std::string PSXPAD_CFG="../../Config/psxpad-cfg.xml";
 	const std::string DEFAULTINPUT_CFG = "../../Config/defaultinput-cfg.xml";
-	const std::string INPUTSTRINGS = "../../Resources/Text/en/input-strings.xml";
+	const std::string INPUTSTRINGS_PATH="../../Resources/Text/";
+	const std::string INPUTSTRINGS = "input-strings.xml";
 	const std::string INPUTCOMMONJOYSTICK_CFG = "../../Config/input-common_joystick.xml";
 	// Config FILE keys
 	const std::string KEY_MENU  = "Menu";
@@ -160,7 +161,7 @@ namespace OUAN
 		virtual void getJoystickStateAxes( int index, double & leftX, double & leftY, double & rightX, double & rightY);
 		
 
-		virtual void init( Ogre::RenderWindow* window, bool showDefaultMousePointer = true );
+		virtual void init( Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
 		virtual void finalise();
 	protected:
 
@@ -169,8 +170,10 @@ namespace OUAN
 		/// Parse configuration files for the input device button mappings
 		bool loadConfig();
 
-		/// TODO COMMENT
-		bool loadStrings();
+		/// Load the internationalized names of the key codes and mouse presses
+		/// @param language the language the strings will be translated into.
+		/// @return true if the configuration file was read correctly; false otherwise
+		bool loadStrings(const std::string& language);
 
 		/// Load config file for the default input method, i.e, the good old mouse-keyboard combo
 		/// @param configFilePath configuration path

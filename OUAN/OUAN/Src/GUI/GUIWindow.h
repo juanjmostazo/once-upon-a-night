@@ -17,6 +17,7 @@ namespace OUAN
 		virtual void init(const std::string& layoutName,CEGUI::Window* sheet);
 		virtual void initGUI(GameStatePtr parentGameState);
 		virtual void destroy();
+		virtual void setStrings(const std::string& language);
 		CEGUI::Window* getSheet() const;
 		void show();
 		void hide();
