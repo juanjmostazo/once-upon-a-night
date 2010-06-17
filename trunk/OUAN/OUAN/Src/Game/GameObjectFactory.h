@@ -26,8 +26,6 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectBushPtr createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectCameraPtr createGameObjectCamera(TGameObjectCameraParameters tGameObjectCameraParameters, 
-			GameWorldManagerPtr gameWorldMgr);
 		GameObjectCarnivorousPlantPtr createGameObjectCarnivorousPlant(TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectClockPiecePtr createGameObjectClockPiece(TGameObjectClockPieceParameters tGameObjectClockPieceParameters, 
@@ -109,6 +107,15 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);		
 		GameObjectWaterPtr createGameObjectWater(TGameObjectWaterParameters tGameObjectWaterParameters, 
 			GameWorldManagerPtr gameWorldMgr);		
+
+		GameObjectTowerPtr createGameObjectTower(TGameObjectTowerParameters tGameObjectTowerParameters, 
+			GameWorldManagerPtr gameWorldMgr);
+		GameObjectTreeComplexPtr createGameObjectTreeComplex(TGameObjectTreeComplexParameters tGameObjectTreeComplexParameters, 
+			GameWorldManagerPtr gameWorldMgr);
+		GameObjectFogPtr createGameObjectFog(TGameObjectFogParameters tGameObjectFogParameters, 
+			GameWorldManagerPtr gameWorldMgr);		
+		GameObjectTriggerCameraPtr createGameObjectTriggerCamera(TGameObjectTriggerCameraParameters tGameObjectTriggerCameraParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 	};
 }
 #endif

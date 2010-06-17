@@ -6,8 +6,6 @@
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
-#include "../Graphics/RenderComponent/RenderComponentCamera.h"
-#include "../Graphics/RenderComponent/RenderComponentCamera.h"
 #include "../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../Graphics/RenderComponent/RenderComponentParticleSystem.h"
@@ -90,15 +88,15 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 	return pRenderComponentBillboardSetPtr;
 }
 
-RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)
-{
-	//Create and init Render Component Camera
-	RenderComponentCameraPtr pRenderComponentCameraPtr = mApp->getCameraManager()->createCamera(gameObject->getName(),tRenderComponentCameraParameters);
-
-	pRenderComponentCameraPtr->setParent(gameObject);	
-
-	return pRenderComponentCameraPtr;
-}
+//RenderComponentCameraPtr ComponentFactory::createRenderComponentCamera(GameObjectPtr gameObject,TRenderComponentCameraParameters tRenderComponentCameraParameters)
+//{
+//	//Create and init Render Component Camera
+//	RenderComponentCameraPtr pRenderComponentCameraPtr = mApp->getCameraManager()->createCamera(gameObject->getName(),tRenderComponentCameraParameters);
+//
+//	pRenderComponentCameraPtr->setParent(gameObject);	
+//
+//	return pRenderComponentCameraPtr;
+//}
 
 RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters)
 {

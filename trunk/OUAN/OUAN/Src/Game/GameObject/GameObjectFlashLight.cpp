@@ -214,7 +214,7 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 
 		GameObject::update(elapsedSeconds);
 
-		camera=mCameraManager->getActiveCamera();
+		camera=mCameraManager->getCamera();
 
 		if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
 		{
@@ -247,7 +247,7 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 				//mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
 				mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
 
-				camera=mCameraManager->getActiveCamera();
+				camera=mCameraManager->getCamera();
 				mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
 				//mPhysicsComponentVolumeConvex->setOrientation(mRenderComponentPositional->getOrientation());
 			}

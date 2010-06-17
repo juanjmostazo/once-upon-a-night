@@ -60,7 +60,7 @@ void CameraControllerTrajectory::setCamera(Camera * pCamera)
 	mCamera->setPosition(Vector3::ZERO);
 	mCamera->setOrientation(Quaternion::IDENTITY);
 	mSceneNode->attachObject(mCamera);
-	resetTrajectory();
+	//resetTrajectory();
 }
 
 void CameraControllerTrajectory::update(double elapsedTime)

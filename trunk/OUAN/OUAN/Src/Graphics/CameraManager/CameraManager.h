@@ -15,19 +15,13 @@ namespace OUAN
 		/// Free resources
 		void cleanUp();
 
-		RenderComponentCameraPtr createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		//void createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
 
 		void clear();
 
-		void setActiveCamera(std::string name);
-		std::string getActiveCameraName();
-
-		Ogre::Camera * getActiveCamera();
 		Ogre::Camera * getCamera(std::string name);
 
 		void setCameraType(TCameraControllerType cameraControllerType);
-
-		void resetActiveCameraPosition();
 
 		void update(double elapsedTime);
 
@@ -44,8 +38,6 @@ namespace OUAN
 		/// @return viewport
 		Ogre::Viewport* getViewport() const;
 
-		/// Activates next camera
-		void changeCamera();
 		/// Activates next camera controller type
 		void changeCameraController();
 
@@ -60,6 +52,7 @@ namespace OUAN
 
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 
+		Ogre::Camera * getCamera() const;
 
 		//register/unregister
 		void registerEventHandlers(EventManagerPtr evtMgr);
@@ -79,8 +72,7 @@ namespace OUAN
 		//Creates main camera, which always exists
 		void createMainCamera();
 
-		std::map<std::string,RenderComponentCameraPtr> camera;
-		typedef std::map<std::string,RenderComponentCameraPtr>::iterator TCameraIterator;
+		Ogre::Camera * mCamera;
 
 		CameraController * activeCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;

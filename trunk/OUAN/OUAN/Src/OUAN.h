@@ -94,10 +94,6 @@ namespace OUAN
 		class TRenderComponentBillboardParameters;
 		typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
 
-		class RenderComponentCamera;
-		class TRenderComponentCameraParameters;
-		typedef boost::shared_ptr<RenderComponentCamera> RenderComponentCameraPtr;
-
 		class RenderComponentEntity;
 		class TRenderComponentEntityParameters;
 		class TRenderComponentSubEntityParameters;
@@ -345,6 +341,8 @@ namespace OUAN
 
 		typedef std::vector<GameObjectPtr> TGameObjectSoundContainer;
 
+
+
 		////////////////////////////////////////////////////////////////////
 
 		const int HIT_RECOVERY_TIME=500;
@@ -374,10 +372,6 @@ namespace OUAN
 		class GameObjectLight;
 		class TGameObjectLightParameters;
 		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
-
-		class GameObjectCamera;
-		class TGameObjectCameraParameters;
-		typedef boost::shared_ptr<GameObjectCamera> GameObjectCameraPtr;
 
 		class GameObjectBillboardSet;
 		class TGameObjectBillboardSetParameters;
@@ -535,12 +529,27 @@ namespace OUAN
 		class TGameObjectSkyBodyParameters;
 		typedef boost::shared_ptr<GameObjectSkyBody> GameObjectSkyBodyPtr;
 
+		class GameObjectFog;
+		class TGameObjectFogParameters;
+		typedef boost::shared_ptr<GameObjectFog> GameObjectFogPtr;
+
+		class GameObjectTower;
+		class TGameObjectTowerParameters;
+		typedef boost::shared_ptr<GameObjectTower> GameObjectTowerPtr;
+
+		class GameObjectTreeComplex;
+		class TGameObjectTreeComplexParameters;
+		typedef boost::shared_ptr<GameObjectTreeComplex> GameObjectTreeComplexPtr;
+
+		class GameObjectTriggerCamera;
+		class TGameObjectTriggerCameraParameters;
+		typedef boost::shared_ptr<GameObjectTriggerCamera> GameObjectTriggerCameraPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
 		typedef std::vector<GameObjectTerrainTrianglePtr> TGameObjectTerrainTriangleContainer;
 		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
-		typedef std::vector<GameObjectCameraPtr> TGameObjectCameraContainer;
 		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
@@ -573,6 +582,10 @@ namespace OUAN
 		typedef std::vector<GameObjectWoodBoxPtr> TGameObjectWoodBoxContainer;
 		typedef std::vector<GameObjectWaterPtr> TGameObjectWaterContainer;
 		typedef std::vector<GameObjectPlanePtr> TGameObjectPlaneContainer;
+		typedef std::vector<GameObjectFogPtr> TGameObjectFogContainer;
+		typedef std::vector<GameObjectTowerPtr> TGameObjectTowerContainer;
+		typedef std::vector<GameObjectTreeComplexPtr> TGameObjectTreeComplexContainer;
+		typedef std::vector<GameObjectTriggerCameraPtr> TGameObjectTriggerCameraContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -615,6 +628,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_CARNIVOROUSPLANT="carnivorousplant";
 		const std::string GAME_OBJECT_TYPE_SCEPTER="scepter";
 		const std::string GAME_OBJECT_TYPE_TREE="tree";
+		const std::string GAME_OBJECT_TYPE_TREE_COMPLEX="tree_complex";
 		const std::string GAME_OBJECT_TYPE_TREE1="tree1";
 		const std::string GAME_OBJECT_TYPE_TREE2="tree2";
 		const std::string GAME_OBJECT_TYPE_TREE3="tree3";
@@ -638,6 +652,9 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_WATER="water";
 		const std::string GAME_OBJECT_TYPE_PLANE="Plane";
 		const std::string GAME_OBJECT_TYPE_SKYBODY="skybody";
+		const std::string GAME_OBJECT_TYPE_TOWER="tower";
+		const std::string GAME_OBJECT_TYPE_FOG="fog";
+		const std::string GAME_OBJECT_TYPE_TRIGGER_CAMERA="trigger-camera";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 
@@ -741,7 +758,6 @@ namespace OUAN
 
 		const int DEFAULT_OGRE_MIPMAPS_NUMBER=5;
 		const std::string MAIN_CAMERA_NAME="Camera";
-		const std::string RUNNING_CAMERA_NAME="Camera";
 		// Default path constants
 		const std::string DEFAULT_OGRE_RESOURCES_PATH="../../Config/resources.cfg";
 		const std::string DEFAULT_OGRE_CONFIG_PATH  = "../../Config/ogre.cfg";
@@ -784,9 +800,6 @@ namespace OUAN
 		class CameraControllerFixedFirstPerson;
 		class CameraControllerFixedThirdPerson;
 		class CameraControllerTrajectory;
-
-		typedef std::map<std::string,TRenderComponentCameraParameters> TCameraParamsContainer;
-		typedef TCameraParamsContainer::iterator TCameraParamsContainerIterator;
 
 		class TransparentEntityManager;
 		typedef boost::shared_ptr<TransparentEntityManager> TransparentEntityManagerPtr;

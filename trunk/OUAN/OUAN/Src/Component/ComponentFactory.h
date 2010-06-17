@@ -26,8 +26,8 @@ namespace OUAN
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject,TRenderComponentParameters tRenderComponentParameters);
 		RenderComponentBillboardSetPtr createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,
 			TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters);
-		RenderComponentCameraPtr createRenderComponentCamera(GameObjectPtr gameObject,
-			TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		//RenderComponentCameraPtr createRenderComponentCamera(GameObjectPtr gameObject,
+		//	TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		RenderComponentEntityPtr createRenderComponentEntity(std::string name,GameObjectPtr gameObject,
 			TRenderComponentEntityParameters tRenderComponentEntityParameters);
 		RenderComponentLightPtr createRenderComponentLight(std::string name,GameObjectPtr gameObject,
