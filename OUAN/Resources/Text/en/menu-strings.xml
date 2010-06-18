@@ -70,6 +70,7 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_SOUND_TAB">Sound</Option>		
 		<Option key="OPTIONS_SOUND_INFO">Drag the sliders to increase or decrease the volume of either the sound subsystem as a whole, or the SFX or music volume individually.\n
 		The checks on their right sides will inmediately switch them to 0.
+		</Option>
 		<Option key="OPTIONS_SOUND_ENABLED">Enabled</Option>
 		<Option key="OPTIONS_SOUND_MASTER_VOL">Master volume</Option>
 		<Option key="OPTIONS_SOUND_SFX_VOL">SFX Volume</Option>
