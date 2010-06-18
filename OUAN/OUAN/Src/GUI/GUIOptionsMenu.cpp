@@ -22,6 +22,7 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	mNewAudioConfig=mCurrentAudioConfig;
 	initSoundTab();
 	initGraphicsTab();
+	setStrings(parentGameState->getApp()->getCurrentLanguage());
 
 }
 void GUIOptionsMenu::initTabs()
@@ -41,13 +42,16 @@ void GUIOptionsMenu::initControlsTab()
 	using namespace CEGUI;
 	CEGUI::Combobox* combo=(CEGUI::Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Controls/DeviceSelect");
 	std::string itemName="";
-	mButtonTextStrings->getOption(COMBO_ITEM_DEVICE_MOUSEKEYBOARD,itemName);
+	ConfigurationPtr menuStrings=mParentGameState->getApp()->getMenusTextStrings();
+	menuStrings->getOption("OPTIONS_CONTROLS_COMBO_DEFAULT",itemName);
+	combo->setText(itemName);
+	menuStrings->getOption(COMBO_ITEM_DEVICE_MOUSEKEYBOARD,itemName);	
 	ListboxTextItem* lti = new ListboxTextItem(itemName,0);
 	lti->setSelected(true);
 	lti->setAutoDeleted(true);
 	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
 	combo->addItem(lti);
-	mButtonTextStrings->getOption(COMBO_ITEM_DEVICE_PSXPAD,itemName);
+	menuStrings->getOption(COMBO_ITEM_DEVICE_PSXPAD,itemName);
 	lti= new ListboxTextItem(itemName,1);
 	lti->setAutoDeleted(true);
 	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
@@ -219,13 +223,15 @@ void GUIOptionsMenu::initButton(const std::string& buttonName, const std::string
 	stream.str("");
 	std::string keyName;
 	if (mCurrentlyEditedDevice==DEVICE_KEYB_MOUSE)
-		keyName=(mCurrentConfig[mappingName].first<0)
-		?mParentGameState->getApp()->getMouseButtonName(mCurrentConfig[mappingName].first)
-		:mParentGameState->getApp()->getAsString(static_cast<OIS::KeyCode>(mCurrentConfig[mappingName].first));
+		keyName=(mCurrentConfig[mappingName].keyCode<0)
+		?mParentGameState->getApp()->getMouseButtonName(mCurrentConfig[mappingName].keyCode)
+		:mParentGameState->getApp()->getAsString(static_cast<OIS::KeyCode>(mCurrentConfig[mappingName].keyCode));
 	else
-		keyName=mParentGameState->getApp()->getPadButtonName(mCurrentConfig[mappingName].second);
-
-	stream<<mButtonData[buttonName].buttonText<<' '<<keyName;
+		keyName=mParentGameState->getApp()->getPadButtonName(mCurrentConfig[mappingName].padId);
+	ConfigurationPtr menuTexts = mParentGameState->getApp()->getMenusTextStrings();
+	std::string actionName="";
+	menuTexts->getOption(mCurrentConfig[mappingName].stringKey,actionName);
+	stream<<actionName<<' '<<keyName;
 	radio->setText(stream.str().c_str());		
 }
 void GUIOptionsMenu::destroy()
@@ -373,10 +379,13 @@ bool GUIOptionsMenu::keyPressed(const OIS::KeyEvent &e)
 			std::ostringstream stream;
 			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
+			ConfigurationPtr strings = mParentGameState->getApp()->getMenusTextStrings();
 			stream.str("");
-			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getAsString(kc);
+			std::string stringVal;
+			strings->getOption(mCurrentConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].stringKey,stringVal);
+			stream<<stringVal<<mParentGameState->getApp()->getAsString(kc);
 			radio->setText(stream.str().c_str());		
-			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)e.key;
+			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].keyCode=(int)e.key;
 
 			mCurrentlyEditedMapping="";
 			mExpectingPress=false;
@@ -396,10 +405,14 @@ bool GUIOptionsMenu::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID i
 			std::ostringstream stream;
 			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
+			ConfigurationPtr strings = mParentGameState->getApp()->getMenusTextStrings();
 			stream.str("");
-			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getMouseButtonName(buttonPressed);
+			std::string stringVal;
+			strings->getOption(mCurrentConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].stringKey,stringVal);
+			stream<<stringVal<<mParentGameState->getApp()->getMouseButtonName(buttonPressed);
+/*			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getMouseButtonName(buttonPressed)*/;
 			radio->setText(stream.str().c_str());		
-			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].first=(int)buttonPressed;
+			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].keyCode=(int)buttonPressed;
 
 			mCurrentlyEditedMapping="";
 			mExpectingPress=false;
@@ -415,12 +428,15 @@ bool GUIOptionsMenu::buttonPressed( const OIS::JoyStickEvent &e, int button )
 		if (!mappingAlreadyFound(button))
 		{
 			std::ostringstream stream;
-			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);
+			//inputConfig->setNewMapping(mCurrentlyEditedDevice,mCurrentlyEditedMapping,key);			
 			CEGUI::RadioButton* radio=(CEGUI::RadioButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow(mCurrentlyEditedMapping);
+			ConfigurationPtr strings = mParentGameState->getApp()->getMenusTextStrings();
 			stream.str("");
-			stream<<mButtonData[mCurrentlyEditedMapping].buttonText<<mParentGameState->getApp()->getPadButtonName(button);
+			std::string stringVal;
+			strings->getOption(mCurrentConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].stringKey,stringVal);
+			stream<<stringVal<<mParentGameState->getApp()->getPadButtonName(button);
 			radio->setText(stream.str().c_str());		
-			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].second=button;
+			mNewConfig[mButtonData[mCurrentlyEditedMapping].keyMapping].padId=button;
 
 			mCurrentlyEditedMapping="";
 			mExpectingPress=false;
@@ -452,9 +468,9 @@ bool GUIOptionsMenu::mappingAlreadyFound(int code)
 	while (!found && it!=mNewConfig.end())
 	{
 		if (mCurrentlyEditedDevice==DEVICE_KEYB_MOUSE)
-			found=(it->second.first==code);
+			found=(it->second.keyCode==code);
 		else if (mCurrentlyEditedDevice==DEVICE_PAD_PSX)
-			found=(it->second.second==code);
+			found=(it->second.padId==code);
 		if (!found) ++it;
 	}
 	return found;
@@ -488,4 +504,41 @@ bool GUIOptionsMenu::onSfxCheckBoxStateChanged(const CEGUI::EventArgs& args)
 		mParentGameState->getApp()->modifyEnable(SM_CHANNEL_SFX_GROUP,check->isSelected());
 	}
 	return true;
+}
+void GUIOptionsMenu::setStrings(const std::string& language)
+{
+	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
+	if (texts.get())
+	{
+
+		std::string windowNames[] = {
+			OPTIONS_CEGUI_ID_CONTROLS_APPLY,OPTIONS_CEGUI_ID_CONTROLS_RESET,
+			OPTIONS_CEGUI_ID_CONTROLS_INFO,OPTIONS_CEGUI_ID_CONTROLS_TAB,
+			OPTIONS_CEGUI_ID_GRAPHICS_TAB,OPTIONS_CEGUI_ID_GRAPHICS_UNAVAILABLE,	
+			OPTIONS_CEGUI_ID_MASTERDISABLELABEL,OPTIONS_CEGUI_ID_MASTERVOLUMELABEL,
+			OPTIONS_CEGUI_ID_MUSICDISABLELABEL,OPTIONS_CEGUI_ID_MUSICVOLUMELABEL,
+			OPTIONS_CEGUI_ID_SFXDISABLELABEL,OPTIONS_CEGUI_ID_SFXVOLUMELABEL,
+			OPTIONS_CEGUI_ID_SOUND_APPLY,OPTIONS_CEGUI_ID_SOUND_CANCEL,
+			OPTIONS_CEGUI_ID_SOUND_INFO,OPTIONS_CEGUI_ID_SOUND_TAB,
+			OPTIONS_CEGUI_ID_BACK,OPTIONS_CEGUI_ID_TITLE
+		};
+
+		int windowNamesLen=18;
+		std::string stringKey="";
+		std::string stringVal="";
+		CEGUI::Window* win=NULL;
+		for (int i=0;i<windowNamesLen;i++)
+		{
+			win=CEGUI::WindowManager::getSingletonPtr()->getWindow(windowNames[i]);
+			if (win)
+			{
+				if (windowNames[i].compare(OPTIONS_CEGUI_ID_CONTROLS_INFO)==0)				
+					stringKey="OPTIONS_CONTROLS_INFO";
+				else
+					stringKey=win->getText().c_str();
+				texts->getOption(stringKey,stringVal);
+				win->setText(stringVal);
+			}
+		}
+	}	 
 }

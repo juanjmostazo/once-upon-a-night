@@ -45,7 +45,6 @@ void GUIExtrasMenu::setStrings(const std::string& language)
 				// states that getText may be used as well @_@)
 				if (windowNames[i].compare(CEGUIWIN_ID_CREDITS)==0)				
 					stringKey=STRING_KEY_CREDITS;
-				bool tst =stringKey.compare(STRING_KEY_CREDITS);
 				texts->getOption(stringKey,stringVal);
 				win->setText(stringVal);
 			}

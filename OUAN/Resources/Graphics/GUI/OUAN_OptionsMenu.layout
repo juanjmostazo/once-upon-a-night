@@ -6,12 +6,12 @@
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
         <Window Type="DefaultWindow" Name="OUANOptions/ControlsTab" >
             <Property Name="Font" Value="BlueHighway-10" />
-            <Property Name="Text" Value="Controls" />
+            <Property Name="Text" Value="OPTIONS_CONTROLS_TAB" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.00182551,0},{0.00722983,0},{1.00183,0},{1.00722,0}}" />
             <Window Type="OUANLook/Combobox" Name="OUANOptions/Controls/DeviceSelect" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Select device" />
+                <Property Name="Text" Value="OPTIONS_CONTROLS_COMBO_DEFAULT" />
                 <Property Name="ReadOnly" Value="True" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.404623,0},{0.212456,0},{0.654623,0},{0.421748,0}}" />
@@ -19,103 +19,103 @@
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Controls/Apply" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Apply changes" />
+                <Property Name="Text" Value="OPTIONS_APPLY" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.122765,0},{0.9,0},{0.372765,0},{0.968191,0}}" />
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Controls/Cancel" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Reset changes" />
+                <Property Name="Text" Value="OPTIONS_RESET" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.636178,0},{0.900624,0},{0.886179,0},{0.968815,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ForwardBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Forward: " />
+                <Property Name="Text" Value="BUTTON_TEXT_FORWARD" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.190935,0},{0.469146,0},{0.349808,0},{0.529146,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/BackwardsBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Backwards: " />
+                <Property Name="Text" Value="BUTTON_TEXT_BACKWARDS" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.182298,0},{0.592358,0},{0.347556,0},{0.652358,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/LeftBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Left: " />
+                <Property Name="Text" Value="BUTTON_TEXT_LEFT" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.0731085,0},{0.533578,0},{0.226874,0},{0.593578,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RightBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Right: " />
+                <Property Name="Text" Value="BUTTON_TEXT_RIGHT" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.317631,0},{0.532118,0},{0.465012,0},{0.592118,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ReloadBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Reload: " />
+                <Property Name="Text" Value="BUTTON_TEXT_RELOAD" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.660195,0},{0.459256,0},{0.819068,0},{0.508382,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/JumpBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Jump: " />
+                <Property Name="Text" Value="BUTTON_TEXT_JUMP" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.665256,0},{0.58978,0},{0.824129,0},{0.638907,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/WeaponBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Use Weapon: " />
+                <Property Name="Text" Value="BUTTON_TEXT_USEWEAPON" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.54723,0},{0.529834,0},{0.720826,0},{0.577505,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/ActionBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Action: " />
+                <Property Name="Text" Value="BUTTON_TEXT_ACTION" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.763581,0},{0.528161,0},{0.922454,0},{0.578743,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/MenuBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="In-game menu: " />
+                <Property Name="Text" Value="BUTTON_TEXT_MENU" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.263032,0},{0.734727,0},{0.498228,0},{0.794043,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/PauseBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Pause: " />
+                <Property Name="Text" Value="BUTTON_TEXT_PAUSE" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.548165,0},{0.734509,0},{0.724464,0},{0.789458,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RotateLeftBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Weapon left:" />
+                <Property Name="Text" Value="BUTTON_TEXT_LROTATE" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.083107,0},{0.310722,0},{0.248365,0},{0.36276,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/RotateRightBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Weapon right:" />
+                <Property Name="Text" Value="BUTTON_TEXT_RROTATE" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.770261,0},{0.309056,0},{0.935518,0},{0.359638,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/WalkBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Walk:" />
+                <Property Name="Text" Value="BUTTON_TEXT_WALK" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.774294,0},{0.373655,0},{0.939552,0},{0.43006,0}}" />
             </Window>
             <Window Type="OUANLook/ToggleButton" Name="OUANOptions/Controls/AutoTargetBtn" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Auto target:" />
+                <Property Name="Text" Value="BUTTON_TEXT_AUTOTARGET" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.082537,0},{0.377807,0},{0.247795,0},{0.438578,0}}" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Controls/Explanation" >
                 <Property Name="Font" Value="BlueHighway-12" />
-                <Property Name="Text" Value="First, select the input device you want to config. Click on an action button and press the key/joystick button you want to use for that action. Then, press &apos;Apply changes&apos; to save the new controls&apos; configuration." />
+                <Property Name="Text" Value="OPTION_CONTROLS_INFO" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="HorzFormatting" Value="WordWrapJustified" />
@@ -125,7 +125,7 @@
             </Window>
         </Window>
         <Window Type="DefaultWindow" Name="OUANOptions/SoundTab" >
-            <Property Name="Text" Value="Sound" />
+            <Property Name="Text" Value="OPTIONS_SOUND_TAB" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.00162585,0},{-0.000784635,0},{1.00163,0},{0.99922,0}}" />
             <Window Type="OUANLook/SliderHoriz" Name="OUANOptions/Sound/MasterSlider" >
@@ -162,7 +162,7 @@
                 <Property Name="UnifiedAreaRect" Value="{{0.582123,0},{0.583625,0},{0.602287,0},{0.638939,0}}" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/MasterDisableLabel" >
-                <Property Name="Text" Value="Disable" />
+                <Property Name="Text" Value="OPTIONS_SOUND_ENABLED" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -171,7 +171,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/SfxDisableLabel" >
-                <Property Name="Text" Value="Disable" />
+                <Property Name="Text" Value="OPTIONS_SOUND_ENABLED" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -180,7 +180,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/MusicDisableLabel" >
-                <Property Name="Text" Value="Disable" />
+                <Property Name="Text" Value="OPTIONS_SOUND_ENABLED" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -189,7 +189,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/MasterVolumeLabel" >
-                <Property Name="Text" Value="Master Volume" />
+                <Property Name="Text" Value="OPTIONS_SOUND_MASTER_VOL" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -199,7 +199,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/SfxVolumeLabel" >
-                <Property Name="Text" Value="Sfx Volume" />
+                <Property Name="Text" Value="OPTIONS_SOUND_SFX_VOL" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -209,7 +209,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/MusicVolumeLabel" >
-                <Property Name="Text" Value="Music Volume" />
+                <Property Name="Text" Value="OPTIONS_SOUND_MUSIC_VOL" />
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -219,8 +219,7 @@
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Sound/Explanation" >
-                <Property Name="Text" >Drag the sliders to increase or decrease the volume of the sound subsystem as a whole, or the sfx or music volume individually. 
-The checks on their right sides will inmediately switch them to 0.</Property>
+                <Property Name="Text">OPTIONS_SOUND_INFO</Property>
                 <Property Name="Tooltip" Value="Check to turn all sounds off" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
@@ -231,24 +230,24 @@ The checks on their right sides will inmediately switch them to 0.</Property>
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Sound/Apply" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Apply changes" />
+                <Property Name="Text" Value="OPTIONS_APPLY" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.103814,0},{0.911791,0},{0.353814,0},{0.979982,0}}" />
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Sound/Cancel" >
                 <Property Name="Font" Value="BlueHighway-10" />
-                <Property Name="Text" Value="Reset changes" />
+                <Property Name="Text" Value="OPTIONS_RESET" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="UnifiedAreaRect" Value="{{0.630084,0},{0.905387,0},{0.880084,0},{0.973578,0}}" />
             </Window>
         </Window>
         <Window Type="DefaultWindow" Name="OUANOptions/GraphicsTab" >
             <Property Name="Font" Value="BlueHighway-10" />
-            <Property Name="Text" Value="Graphics" />
+            <Property Name="Text" Value="OPTIONS_GRAPHICS_TAB" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/UnderConstructionLabel" >
-                <Property Name="Text" Value="COMING SOON!" />
+                <Property Name="Text" Value="OPTIONS_GRAPHICS_UNAVAILABLE" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="HorzFormatting" Value="HorzCentred" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -258,7 +257,7 @@ The checks on their right sides will inmediately switch them to 0.</Property>
         </Window>
         <Window Type="OUANLook/Button" Name="OUANOptions/Back" >
             <Property Name="Font" Value="BlueHighway-10" />
-            <Property Name="Text" Value="Back to menu" />
+            <Property Name="Text" Value="OPTIONS_SCREEN_BACK" />
             <Property Name="Tooltip" Value="Return to main menu" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -272,7 +271,7 @@ The checks on their right sides will inmediately switch them to 0.</Property>
             <Property Name="UnifiedAreaRect" Value="{{0.023438,0},{0.072917,0},{0.984375,0},{0.872917,0}}" />
         </Window>
         <Window Type="OUANLook/StaticText" Name="OUANOptions/OptionsLabel" >
-            <Property Name="Text" Value="OPTIONS" />
+            <Property Name="Text" Value="OPTIONS_SCREEN_TITLE" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="HorzFormatting" Value="HorzCentred" />
