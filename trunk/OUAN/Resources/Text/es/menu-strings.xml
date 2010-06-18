@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>
-		<!-- MAIN MENU -->
+		<!-- MENÚ PRINCIPAL -->
 		<Option key="MAINMENU_SCREEN_PLAY">Jugar</Option>
 		<Option key="MAINMENU_SCREEN_OPTIONS">Opciones</Option>
 		<Option key="MAINMENU_SCREEN_EXTRAS">Extras</Option>
 		<Option key="MAINMENU_SCREEN_QUIT">Salir</Option>
-		<!-- EXTRAS MENU -->
+		<!-- MENÚ DE EXTRAS -->
 		<Option key="EXTRAS_SCREEN_CREDITS">Diseño:\n
 Aniol Alcaraz\n
 Tania Anta\n
@@ -34,15 +34,15 @@ Pere Ferrera\n</Option>
 		<Option key="EXTRAS_SCREEN_BACK">Volver al menú</Option>
 		<Option key="EXTRAS_SCREEN_LABEL">Once Upon a Night - Créditos</Option>
 		
-		<!-- IN-GAME MENU -->		
+		<!-- MENÚ IN-GAME -->		
 		<Option key="INGAME_MENU_SCREEN_BTG">Volver al juego</Option>
 		<Option key="INGAME_MENU_SCREEN_BTM">Volver al menú principal</Option>
 		<Option key="INGAME_MENU_SCREEN_OPTIONS">Opciones</Option>
 		<Option key="INGAME_MENU_SCREEN_EXIT">Salir</Option>		
-		<!-- Device selection combo items -->
+		<!-- Elementos del combo de selección de dispositivo -->
 		<Option key="COMBO_ITEM_DEVICE_MOUSEKEYBOARD">Teclado y ratón</Option>
 		<Option key="COMBO_ITEM_DEVICE_PSXPAD">Mando PSX</Option>
-		<!-- Control buttons' names -->
+		<!-- Nombre de los botones de los controles -->
 		<Option key="BUTTON_TEXT_MENU">Menú: </Option>
 		<Option key="BUTTON_TEXT_PAUSE">Pausa: </Option>
 		<Option key="BUTTON_TEXT_FORWARD">Adelante: </Option>
@@ -57,5 +57,26 @@ Pere Ferrera\n</Option>
 		<Option key="BUTTON_TEXT_RROTATE">Rotar ruleta der.: </Option>			
 		<Option key="BUTTON_TEXT_LROTATE">Rotar ruleta izq: </Option>					
 		<Option key="BUTTON_TEXT_AUTOTARGET">Auto-apuntado: </Option>	
+		<!-- Resto de texto de las opciones -->
+		<Option key="OPTIONS_SCREEN_BACK">Volver al menú</Option>
+		<Option key="OPTIONS_SCREEN_TITLE">Opciones</Option>
+		<Option key="OPTIONS_APPLY">Aplicar cambios</Option>
+		<Option key="OPTIONS_RESET">Descartar cambios</Option>
+		<Option key="OPTIONS_CONTROLS_TAB">Controles</Option>	
+		<Option key="OPTIONS_CONTROLS_INFO">En primer lugar, selecciona el dispositivo de entrada a configurar. Haz clic sobre un botón de acción y a continuación pulsa el botón/tecla que desees utilizar para ella. Cuando termines, haz click en 'Aplicar cambios' para guardar la nueva configuración.</Option>
+		<Option key="OPTIONS_CONTROLS_COMBO_DEFAULT">Selecciona un dispositivo</Option>
+
+		<Option key="OPTIONS_SOUND_TAB">Sonido</Option>		
+		<Option key="OPTIONS_SOUND_INFO">Arrastra los marcadores para incrementar o decrementar el volumen de, o bien todos los sonidos, o bien de los efectos sonoros y la música por separado.\n
+		Las casillas a la derecha establecerán el volumen a 0 si se desactivan.
+		<Option key="OPTIONS_SOUND_ENABLED">Habilitado</Option>
+		<Option key="OPTIONS_SOUND_MASTER_VOL">Vol. maestro</Option>
+		<Option key="OPTIONS_SOUND_SFX_VOL">Vol. SFX</Option>
+		<Option key="OPTIONS_SOUND_MUSIC_VOL">Vol. Música</Option>
+		
+		<Option key="OPTIONS_GRAPHICS_TAB">Gráficos</Option>
+		<Option key="OPTIONS_GRAPHICS_UNAVAILABLE">¡En construcción!</Option>
+		
+		<Option key="OPTIONS_GENERAL_TAB">General</Option>
 	</Options>
 </Configuration>

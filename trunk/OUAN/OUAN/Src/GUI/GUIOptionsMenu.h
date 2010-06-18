@@ -64,6 +64,32 @@ namespace OUAN
 	const std::string CHECKBOX_NAME_MUSIC="OUANOptions/MusicCheck";
 	const std::string CHECKBOX_NAME_SFX="OUANOptions/SfxCheck";
 
+	const std::string OPTIONS_CEGUI_ID_CONTROLS_TAB="OUANOptions/ControlsTab";
+	const std::string 
+OPTIONS_CEGUI_ID_DEVICESELECT="OUANOptions/Controls/DeviceSelect";
+	const std::string OPTIONS_CEGUI_ID_CONTROLS_APPLY="OUANOptions/Controls/Apply";
+	const std::string OPTIONS_CEGUI_ID_CONTROLS_RESET="OUANOptions/Controls/Cancel";
+	const std::string OPTIONS_CEGUI_ID_CONTROLS_INFO="OUANOptions/Controls/Explanation";
+	const std::string OPTIONS_CEGUI_ID_SOUND_TAB="OUANOptions/SoundTab";
+	const std::string OPTIONS_CEGUI_ID_MASTERDISABLELABEL="OUANOptions/Sound/MasterDisableLabel";
+	const std::string OPTIONS_CEGUI_ID_SFXDISABLELABEL="OUANOptions/Sound/SfxDisableLabel";
+	const std::string OPTIONS_CEGUI_ID_MUSICDISABLELABEL="OUANOptions/Sound/MusicDisableLabel";
+
+	const std::string OPTIONS_CEGUI_ID_MASTERVOLUMELABEL="OUANOptions/Sound/MasterVolumeLabel";
+	const std::string OPTIONS_CEGUI_ID_MUSICVOLUMELABEL="OUANOptions/Sound/MusicVolumeLabel";
+	const std::string OPTIONS_CEGUI_ID_SFXVOLUMELABEL="OUANOptions/Sound/SfxVolumeLabel";
+	const std::string OPTIONS_CEGUI_ID_SOUND_INFO="OUANOptions/Sound/Explanation";
+		const std::string OPTIONS_CEGUI_ID_SOUND_APPLY="OUANOptions/Sound/Apply";
+		const std::string OPTIONS_CEGUI_ID_SOUND_CANCEL="OUANOptions/Sound/Cancel";
+		const std::string OPTIONS_CEGUI_ID_GRAPHICS_TAB="OUANOptions/GraphicsTab";
+	const std::string OPTIONS_CEGUI_ID_GRAPHICS_UNAVAILABLE="OUANOptions/Graphics/UnderConstructionLabel";
+	const std::string OPTIONS_CEGUI_ID_BACK="OUANOptions/Back";
+	const std::string OPTIONS_CEGUI_ID_TITLE="OUANOptions/OptionsLabel";
+
+
+
+
+
 	class GUIOptionsMenu: public GUIWindow
 	{
 	private:
@@ -157,6 +183,8 @@ namespace OUAN
 		bool keyPressed( const OIS::KeyEvent& e );
 		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 		bool buttonPressed( const OIS::JoyStickEvent &e, int button );
+
+		void setStrings(const std::string& language);
 	};
 }
 #endif

@@ -58,5 +58,27 @@ Pere Ferrera\n</Option>
 		<Option key="BUTTON_TEXT_RROTATE">Rotate-R: </Option>			
 		<Option key="BUTTON_TEXT_LROTATE">Rotate-L: </Option>					
 		<Option key="BUTTON_TEXT_AUTOTARGET">Auto-target: </Option>	
+		<!-- -->
+		<Option key="OPTIONS_SCREEN_BACK">Back to main menu</Option>
+		<Option key="OPTIONS_SCREEN_TITLE">Options</Option>
+		<Option key="OPTIONS_APPLY">Apply changes</Option>
+		<Option key="OPTIONS_RESET">Reset changes</Option>
+		<Option key="OPTIONS_CONTROLS_TAB">Controls</Option>	
+		<Option key="OPTIONS_CONTROLS_INFO">First, select the input device you want to config. Click on an action button and press the key/joystick button you want to use for that action. Then, press 'Apply changes' to save the new controls' configuration.</Option>
+		<Option key="OPTIONS_CONTROLS_COMBO_DEFAULT">Select device</Option>
+
+		<Option key="OPTIONS_SOUND_TAB">Sound</Option>		
+		<Option key="OPTIONS_SOUND_INFO">Drag the sliders to increase or decrease the volume of either the sound subsystem as a whole, or the SFX or music volume individually.\n
+		The checks on their right sides will inmediately switch them to 0.
+		<Option key="OPTIONS_SOUND_ENABLED">Enabled</Option>
+		<Option key="OPTIONS_SOUND_MASTER_VOL">Master volume</Option>
+		<Option key="OPTIONS_SOUND_SFX_VOL">SFX Volume</Option>
+		<Option key="OPTIONS_SOUND_MUSIC_VOL">Music Volume</Option>
+		
+		<Option key="OPTIONS_GRAPHICS_TAB">Graphics</Option>
+		<Option key="OPTIONS_GRAPHICS_UNAVAILABLE">Coming soon!</Option>
+		
+		<Option key="OPTIONS_GENERAL_TAB">General</Option>
+
 	</Options>
 </Configuration>

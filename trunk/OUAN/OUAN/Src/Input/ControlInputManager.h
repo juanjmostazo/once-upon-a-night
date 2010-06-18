@@ -6,7 +6,23 @@
 
 namespace OUAN
 {
+	const std::string STRINGKEY_FORWARD="BUTTON_TEXT_FORWARD";
+	const std::string STRINGKEY_BACKWARDS="BUTTON_TEXT_BACKWARDS";
+	const std::string STRINGKEY_LEFT="BUTTON_TEXT_LEFT";
+	const std::string STRINGKEY_RIGHT="BUTTON_TEXT_RIGHT";
 
+	const std::string STRINGKEY_JUMP="BUTTON_TEXT_JUMP";
+	const std::string STRINGKEY_USEWEAPON="BUTTON_TEXT_USEWEAPON";
+	const std::string STRINGKEY_ACTION="BUTTON_TEXT_ACTION";
+	const std::string STRINGKEY_RELOAD="BUTTON_TEXT_RELOAD";
+
+	const std::string STRINGKEY_LROTATE="BUTTON_TEXT_LROTATE";
+	const std::string STRINGKEY_RROTATE="BUTTON_TEXT_RROTATE";
+	const std::string STRINGKEY_WALK="BUTTON_TEXT_WALK";
+	const std::string STRINGKEY_AUTOTARGET="BUTTON_TEXT_AUTOTARGET";
+
+	const std::string STRINGKEY_PAUSE="BUTTON_TEXT_PAUSE";
+	const std::string STRINGKEY_INGAME_MENU="BUTTON_TEXT_MENU";
 
 	class ControlInputManager : public FullInputManager
 	{
@@ -121,10 +137,11 @@ namespace OUAN
 		/// @param keyID			key identifier
 		/// @param keyboardMapping	keycode for the given mapping
 		/// @param psxPadMapping	button id for the given mapping
+		/// @param string key		index to locate the key's appropriate translation string
 		/// @param mappings			dictionary containing the input mappings for the given key identifier
-		void addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings);
+		void addPair(const std::string& keyID,int keyboardMapping, int psxPadMapping, const std::string& stringKey, TControlInputMapping& mappings);
 
-		void replacePair(std::string keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings);
+		void replacePair(const std::string& keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings);
 
 		void ControlInputManager::saveDefaultInput();
 		void ControlInputManager::savePsxInput();

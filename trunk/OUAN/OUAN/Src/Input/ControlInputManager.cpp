@@ -332,30 +332,31 @@ void ControlInputManager::getJoystickStateAxes(double & leftX, double & leftY, d
 void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
 {
 	mappings.clear();
-	addPair(KEY_FORWARD,mDefaultInputData.keyForward,padUp,mappings);
-	addPair(KEY_BACKWARDS,mDefaultInputData.keyBackwards,padDown,mappings);
-	addPair(KEY_LEFT,mDefaultInputData.keyLeft,padLeft,mappings);
-	addPair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,mappings);
+	addPair(KEY_FORWARD,mDefaultInputData.keyForward,padUp,STRINGKEY_FORWARD,mappings);
+	addPair(KEY_BACKWARDS,mDefaultInputData.keyBackwards,padDown,STRINGKEY_BACKWARDS,mappings);
+	addPair(KEY_LEFT,mDefaultInputData.keyLeft,padLeft,STRINGKEY_LEFT,mappings);
+	addPair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,STRINGKEY_RIGHT,mappings);
 
-	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,mappings);
-	addPair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,mappings);
-	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,mappings);
-	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,mappings);
+	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,STRINGKEY_JUMP,mappings);
+	addPair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,STRINGKEY_ACTION,mappings);
+	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,STRINGKEY_USEWEAPON,mappings);
+	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,STRINGKEY_RELOAD,mappings);
 
-	addPair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,mappings);
-	addPair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,mappings);
-	addPair(KEY_WALK,mDefaultInputData.keyWalk,padR1,mappings);
-	addPair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,mappings);
+	addPair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,STRINGKEY_LROTATE,mappings);
+	addPair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,STRINGKEY_RROTATE,mappings);
+	addPair(KEY_WALK,mDefaultInputData.keyWalk,padR1,STRINGKEY_WALK,mappings);
+	addPair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,STRINGKEY_AUTOTARGET,mappings);
 
-	addPair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,mappings);
-	addPair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,mappings);
+	addPair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,STRINGKEY_PAUSE,mappings);
+	addPair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,STRINGKEY_INGAME_MENU,mappings);
 }
 
-void ControlInputManager::addPair(std::string keyID,int keyboardMapping, int psxPadMapping, TControlInputMapping& mappings)
+void ControlInputManager::addPair(const std::string& keyID,int keyboardMapping, int psxPadMapping, const std::string& stringKey, TControlInputMapping& mappings)
 {
-	std::pair<int,int> mapping;
-	mapping.first=keyboardMapping;
-	mapping.second=psxPadMapping;
+	InputMappingEntry mapping;
+	mapping.keyCode=keyboardMapping;
+	mapping.padId=psxPadMapping;
+	mapping.stringKey=stringKey;
 	mappings[keyID]=mapping;
 }
 
@@ -428,10 +429,10 @@ void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool s
 		savePsxInput();
 	}
 }
-void ControlInputManager::replacePair(std::string keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings)
+void ControlInputManager::replacePair(const std::string& keyID,int& keyboardMapping, int& psxPadMapping, TControlInputMapping& mappings)
 {
-	keyboardMapping=mappings[keyID].first;
-	psxPadMapping=mappings[keyID].second;
+	keyboardMapping=mappings[keyID].keyCode;
+	psxPadMapping=mappings[keyID].padId;
 }
 
 // ...and yet another hacky preprocessor macro for lazy coders: 
@@ -477,6 +478,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleVolumes,KEY_TOGGLE_VOLUMES,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleChangeWorldDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleShowSceneNodes,KEY_TOGGLE_SHOW_SCENE_NODES,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugTrajectory,KEY_DEBUG_TRAJECTORY,false);
 
 	c.saveToFile(DEFAULTINPUT_CFG);
 }
