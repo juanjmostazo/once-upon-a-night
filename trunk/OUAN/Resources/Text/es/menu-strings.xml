@@ -68,7 +68,7 @@ Pere Ferrera\n</Option>
 
 		<Option key="OPTIONS_SOUND_TAB">Sonido</Option>		
 		<Option key="OPTIONS_SOUND_INFO">Arrastra los marcadores para incrementar o decrementar el volumen de, o bien todos los sonidos, o bien de los efectos sonoros y la música por separado.\n
-		Las casillas a la derecha establecerán el volumen a 0 si se desactivan.
+		Las casillas a la derecha establecerán el volumen a 0 si se desactivan.</Option>
 		<Option key="OPTIONS_SOUND_ENABLED">Habilitado</Option>
 		<Option key="OPTIONS_SOUND_MASTER_VOL">Vol. maestro</Option>
 		<Option key="OPTIONS_SOUND_SFX_VOL">Vol. SFX</Option>
