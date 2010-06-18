@@ -2,10 +2,10 @@
 <Configuration>
 	<Options>
 		<!-- MAIN MENU -->
-		<Option key="MAIN_MENU_PLAY">Play</Option>
-		<Option key="MAIN_MENU_OPTIONS">Options</Option>
-		<Option key="MAIN_MENU_EXTRAS">Extras</Option>
-		<Option key="MAIN_MENU_QUIT">Quit</Option>
+		<Option key="MAINMENU_SCREEN_PLAY">Play</Option>
+		<Option key="MAINMENU_SCREEN_OPTIONS">Options</Option>
+		<Option key="MAINMENU_SCREEN_EXTRAS">Extras</Option>
+		<Option key="MAINMENU_SCREEN_QUIT">Quit</Option>
 		<!-- EXTRAS MENU -->
 		<Option key="EXTRAS_SCREEN_CREDITS">Design:\n
 Aniol Alcaraz\n
