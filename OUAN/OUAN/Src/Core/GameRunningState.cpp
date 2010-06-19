@@ -203,7 +203,6 @@ void GameRunningState::handleEvents()
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			mGUI->hideConsole();
 		}
-		
 		else if (mApp->isPressedRotateLeft())
 		{
 			mHUD->spinRoulette(true);
@@ -233,8 +232,11 @@ void GameRunningState::handleEvents()
 		{
 			mApp->getGameWorldManager()->useWeapon();
 			useWeaponKeyPressed=true;
+
 			if (mApp->getGameWorldManager()->getWorld()==DREAMS)
+			{
 				mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+			}
 		}
 	}
 	else
@@ -251,31 +253,29 @@ void GameRunningState::handleEvents()
 		useSpWeaponKeyPressed=true;
 	}
 
-			
 	///////////////////////////////////////////////////////////
 	// ONY (or first person camera): TYPE OF MOVEMENT
 	//TODO: separate jump from movement?
 	
-	GameObjectOnyPtr ony=mApp->getGameWorldManager()->getGameObjectOny();
+	GameObjectOnyPtr ony = mApp->getGameWorldManager()->getGameObjectOny();
 	if (ony.get())
 	{
-		int newState= ony->getLogicComponentOny()->getNewState();
+		int newState = ony->getLogicComponentOny()->getNewState();
 
-		newState =actionKeyPressed
+		newState = actionKeyPressed
 			?SET_BIT(newState,ONY_STATE_BIT_FIELD_ACTION)
 			:CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ACTION);
 
-		Vector2 nextMovementXZ=mApp->getMovement();
+		Vector2 outernMovementXZ = mApp->getMovement();
 
-		Vector3 nextMovement=Ogre::Vector3::ZERO;
+		Vector3 outernMovement=Ogre::Vector3::ZERO;
 		if (!mApp->getGameWorldManager()->isOnyDying())
 		{
-			nextMovement.x=nextMovementXZ.x;
-			//nextMovement.y=0;
-			nextMovement.z=nextMovementXZ.y;
+			outernMovement.x = outernMovementXZ.x;
+			outernMovement.y = 0;
+			outernMovement.z = outernMovementXZ.y;
 		}
-		
-		
+			
 		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
 		{
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
@@ -284,43 +284,55 @@ void GameRunningState::handleEvents()
 		//if (useSpWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK))
 		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK);
 
-		bool zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
-		newState=zeroMovement
-			?CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
-			:SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+		bool zeroMovement = 
+			fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
+			fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
+
+		newState = zeroMovement
+			? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
+			: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+
 		if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
 		{
 			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
-			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
+			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 		}
-		else newState=CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
+		else
+		{
+			newState = CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
+		}
 
 		if (mApp->isPressedJump() && !mApp->getGameWorldManager()->isOnyDying())
 		{
 			ony->getPhysicsComponentCharacterOny()->jump();
-			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
-			
+			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
 		}	
-		//else currentState =CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
+		//else
+		//{
+		//	currentState = CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
+		//}
+
 		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
 		{
-			mApp->getCameraManager()->processSimpleTranslation(nextMovement);
+			mApp->getCameraManager()->processSimpleTranslation(outernMovement);
 		}
 		else if(mApp->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
-			nextMovement=mApp->getCameraManager()->rotateMovementVector(nextMovement);
-			ony->getPhysicsComponentCharacterOny()->setNextMovement(nextMovement);
+			outernMovement=mApp->getCameraManager()->rotateMovementVector(outernMovement);
+			ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
 			
-			zeroMovement=fabs(nextMovement.x)<Utils::DOUBLE_COMPARISON_DELTA && fabs(nextMovement.z)<Utils::DOUBLE_COMPARISON_DELTA;
-			newState =zeroMovement
-				?CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
-				:SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+			zeroMovement = 
+				fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
+				fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
+
+			newState = zeroMovement
+				? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
+				: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
 		}
 
 		ony->getLogicComponentOny()->setNewState(newState);
-		
 	}
 
 	Vector2 cameraRotation;
@@ -390,7 +402,7 @@ void GameRunningState::checkDebuggingKeys()
 		{	
 			Logger::getInstance()->log("ToggleGodMode key pressed");
 
-			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->getGodMode());
+			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->isGodMode());
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeWorldDebug())

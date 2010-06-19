@@ -350,11 +350,6 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		{
 			entityToUpdate->update(elapsedSeconds);
 		}
-
-		//if (mPhysicsComponent.get() && mPhysicsComponent->isInUse())
-		//{
-		//	mPhysicsComponent->setNextMovement(NxOgre::Vec3::ZERO);
-		//}
 	}
 }
 

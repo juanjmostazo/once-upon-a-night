@@ -5,16 +5,17 @@
 
 namespace OUAN
 {
-	// Elements with physics which are moved by us: Ony, enemies, etc.
-	// They are mapped as capsules
 	class PhysicsComponentCharacterOny: public PhysicsComponentCharacter
 	{
 	public:
 		PhysicsComponentCharacterOny(const std::string& type="");
 		~PhysicsComponentCharacterOny();
 
-		void reset();
-		void update(double elapsedSeconds);
+		virtual void reset();
+		virtual void update(double elapsedSeconds);
+
+		virtual bool isWorthUpdating();
+		virtual bool canJump();
 
 	protected:
 		

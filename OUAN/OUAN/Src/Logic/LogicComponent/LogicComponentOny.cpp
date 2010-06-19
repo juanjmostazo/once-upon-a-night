@@ -54,7 +54,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->getGodMode())
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
@@ -73,7 +73,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TENTETIESO)==0 
 		&& pGameObject->getGameWorldManager()->getWorld()==NIGHTMARES 
-		&& !getParent()->getGameWorldManager()->getGodMode())
+		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTentetiesoPtr tentetieso= boost::dynamic_pointer_cast<GameObjectTentetieso>(pGameObject);
 		if(tentetieso.get() && !tentetieso->hasBeenHit() &&!tentetieso->hasDied() 

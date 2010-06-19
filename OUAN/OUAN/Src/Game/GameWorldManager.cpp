@@ -130,7 +130,7 @@ void GameWorldManager::setGodMode(bool activated)
 	mGodMode=activated;
 }
 
-bool GameWorldManager::getGodMode()
+bool GameWorldManager::isGodMode()
 {
 	return mGodMode;
 }

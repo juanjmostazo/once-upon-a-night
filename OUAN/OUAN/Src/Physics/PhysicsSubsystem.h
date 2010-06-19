@@ -63,6 +63,7 @@ namespace OUAN
 		double mMovementUnitsPerSecondInverseScaled;
 		double mMovementLimitUnitsPerSecond;
 		double mMovementLimitUnitsPerSecondInverseScaled;
+		double mFallingSpeedLimit;
 		double mTurnDegreesPerSecond;
 		double mInitialJumpSpeed;		
 		double mMinAllowedY;
@@ -80,7 +81,8 @@ namespace OUAN
 		double mMaxAccelerationFactor;
 		double mMinAccelerationFactor;
 		double mMaxSameDirectionAngle;		
-		double mWalkSpeed;
+		double mOuternMovementFactor;
+		double mWalkSpeedFactor;
 		double mSlopeLimit;
 		double mStepOffset;
 		double mSkinWidth;
@@ -122,7 +124,7 @@ namespace OUAN
 		NxOgre::ControllerManager* mNxOgreControllerManager;
 
 		/// Auxiliar function
-		bool setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
+		//bool setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
 
 		/// Auxiliar function
 		bool areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius);
