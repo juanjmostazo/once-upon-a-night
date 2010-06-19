@@ -166,6 +166,7 @@ Vector2 ControlInputManager::getMovement()
 
 	return nextMovement;
 }
+
 Vector2 ControlInputManager::getCameraRotation()
 {
 	Vector2 nextCameraRotation = Vector2::ZERO;

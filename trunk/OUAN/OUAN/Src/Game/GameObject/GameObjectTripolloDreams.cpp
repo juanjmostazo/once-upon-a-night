@@ -126,8 +126,6 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 		//if(getName().compare("tripollo#12")!=0)
 		//	return;
 
-
-
 		int currentState=mLogicComponentEnemy->getState();
 
 		if (mPhysicsComponentCharacter.get())
@@ -137,9 +135,15 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (mLogicComponentEnemy->isStateChanged())
 				{
 					if(mRenderComponentEntityDreams.get())
+					{
 						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+					}
+
 					if(mRenderComponentEntityNightmares.get())
+					{
 						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+					}
+
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 			}
@@ -149,21 +153,30 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				{
 					if(activateTrajectory(mGameWorldManager->getWorld()))
 					{
-						/*
-							If the state has just changed, then load the trajectory and set the displacement
-							vector as (marker1-marker0)
-						*/
-					if(mRenderComponentEntityDreams.get())
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
-					if(mRenderComponentEntityNightmares.get())
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
+						//If the state has just changed, then load the trajectory and set the displacement
+						//vector as (marker1-marker0)
+						
+						if(mRenderComponentEntityDreams.get())
+						{
+							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
+						}
+
+						if(mRenderComponentEntityNightmares.get())
+						{
+							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
+						}
 					}
 					else
 					{
 						if(mRenderComponentEntityDreams.get())
+						{
 							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+						}
+
 						if(mRenderComponentEntityNightmares.get())
+						{
 							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+						}
 					}
 				}
 			}
@@ -173,24 +186,36 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (mLogicComponentEnemy->isStateChanged())
 				{
 					if(mRenderComponentEntityDreams.get())
+					{
 						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
+					}
+
 					if(mRenderComponentEntityNightmares.get())
+					{
 						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
+					}
+
 					mTrajectoryComponent->activatePathFinding(
 						mGameWorldManager->getGameObjectOny()->getName(),
 						mGameWorldManager->getWorld());
 				}
-
 			}
 			else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_HIT))
 			{
 				if (mLogicComponentEnemy->isStateChanged())
 				{
 					mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
+
 					if(mRenderComponentEntityDreams.get())
+					{
 						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_HIT01);
+					}
+
 					if(mRenderComponentEntityNightmares.get())
+					{
 						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_HIT01);
+					}
+
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 			}
@@ -199,10 +224,17 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (mLogicComponentEnemy->isStateChanged())
 				{
 					mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
+
 					if(mRenderComponentEntityDreams.get())
+					{
 						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_DIE);
+					}
+
 					if(mRenderComponentEntityNightmares.get())
+					{
 						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_DIE);
+					}
+
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 				}
 			}
@@ -212,32 +244,38 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 				if (mLogicComponentEnemy->isStateChanged())
 				{
 					if(mRenderComponentEntityDreams.get())
+					{
 						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
+					}
+
 					if(mRenderComponentEntityNightmares.get())
+					{
 						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
-					mTrajectoryComponent->activateChase(
-						mGameWorldManager->getGameObjectOny()->getName());
+					}
+
+					mTrajectoryComponent->activateChase(mGameWorldManager->getGameObjectOny()->getName());
 				}
 			}
 			else
 			{
-				
+				//DO NOTHING
 			}
 
-
 			if(mRenderComponentEntityDreams.get())
+			{
 				mRenderComponentEntityDreams->update(elapsedSeconds);
+			}
+
 			if(mRenderComponentEntityNightmares.get())
+			{
 				mRenderComponentEntityNightmares->update(elapsedSeconds);
+			}
 
 			mTrajectoryComponent->update(elapsedSeconds);
 
 			if (mPhysicsComponentCharacter->isInUse())
 			{
-				//mRenderComponentPositional->setPosition(mTrajectory->getCurrentPosition());
-
-				//Logger::getInstance()->log("[Movement] "+getName()+" "+Ogre::StringConverter::toString(movement));
-				mPhysicsComponentCharacter->setNextMovement(mTrajectoryComponent->getNextMovement());
+				mPhysicsComponentCharacter->setOuternMovement(mTrajectoryComponent->getNextMovement());
 			}
 		}
 	}
@@ -261,14 +299,17 @@ AttackComponentPtr GameObjectTripolloDreams::getAttackComponent() const
 {
 	return mAttackComponent;
 }
+
 void GameObjectTripolloDreams::setAttackComponent(AttackComponentPtr attackComponent)
 {
 	mAttackComponent=attackComponent;
 }
+
 std::string GameObjectTripolloDreams::getDefaultAttack()
 {
 	return TRIPOLLO_ATTACK_PECK;
 }
+
 void GameObjectTripolloDreams::reset()
 {
 	GameObject::reset();
@@ -528,6 +569,7 @@ bool GameObjectTripolloDreams::hasBeenHit() const
 		return mLogicComponentEnemy->hasBeenHit();
 	return false;
 }
+
 bool GameObjectTripolloDreams::hasDied() const
 {
 	if (mLogicComponentEnemy.get())
@@ -539,6 +581,7 @@ AudioComponentPtr GameObjectTripolloDreams::getAudioComponent() const
 {
 	return mAudioComponent;
 }
+
 void GameObjectTripolloDreams::setAudioComponent(AudioComponentPtr audioComponent)
 {
 	mAudioComponent=audioComponent;
@@ -548,6 +591,7 @@ AudioComponentPtr GameObjectTripolloDreams::getAudioComponentInstance() const
 {
 	return mAudioComponent;
 }
+
 bool GameObjectTripolloDreams::hasAudioComponent() const
 {
 	return true;

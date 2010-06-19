@@ -155,7 +155,7 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mPhysicsComponentCharacterOny->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
-		//if (!mGameWorldManager->getGodMode())
+		//if (!mGameWorldManager->isGodMode())
 		//{
 			OnyFallsEventPtr evt(new OnyFallsEvent());
 			mGameWorldManager->addEvent(evt);
@@ -170,8 +170,8 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 
 	//QuadHalo god mode effect
-	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->getGodMode());
-	if (Application::getInstance()->getGameWorldManager()->getGodMode())
+	mRenderComponentQuadHalo->setVisible(Application::getInstance()->getGameWorldManager()->isGodMode());
+	if (Application::getInstance()->getGameWorldManager()->isGodMode())
 	{
 		mRenderComponentQuadHalo->update(elapsedSeconds);
 	}

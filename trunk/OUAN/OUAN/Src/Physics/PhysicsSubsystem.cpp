@@ -206,6 +206,9 @@ bool PhysicsSubsystem::loadConfig()
 		mMovementLimitUnitsPerSecond = atof(value.c_str());
 		mMovementLimitUnitsPerSecondInverseScaled = mMovementLimitUnitsPerSecond / mDisplacementScale;
 
+		config.getOption("FALLING_SPEED_LIMIT", value); 
+		mFallingSpeedLimit = atof(value.c_str());
+
 		config.getOption("TURN_DEGREES_PER_SECOND", value); 
 		mTurnDegreesPerSecond = atof(value.c_str());
 
@@ -257,8 +260,11 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MAX_SAME_DIRECTION_ANGLE", value); 
 		mMaxSameDirectionAngle = atof(value.c_str());
 
-		config.getOption("WALK_SPEED", value); 
-		mWalkSpeed = atof(value.c_str());
+		config.getOption("OUTERN_MOVEMENT_FACTOR", value); 
+		mOuternMovementFactor = atof(value.c_str());
+
+		config.getOption("WALK_SPEED_FACTOR", value); 
+		mWalkSpeedFactor = atof(value.c_str());
 
 		config.getOption("SLOPE_LIMIT", value); 
 		mSlopeLimit = atof(value.c_str());
@@ -286,30 +292,6 @@ bool PhysicsSubsystem::loadConfig()
 	else 
 	{
 		//Logger::getInstance()->log(PHYSICS_CFG + " COULD NOT BE LOADED!");
-
-		mGravity = NxOgre::Vec3(0,0,0);
-		mStaticFriction = 0;
-		mDynamicFriction = 0;
-		mRestitution = 0;
-		mDisplacementScale = 0;
-		mMinDistance = 0;
-		mMovementUnitsPerSecond = 0;
-		mTurnDegreesPerSecond = 0;
-		mInitialJumpSpeed = 0;
-		mMinAllowedY = 0;
-		mMinSlidingAngle = 0;
-		mMinSlidingAngleFall = 0;
-		mMinCollisionAngle = 0;
-		mSlidingFactor = 0;
-		mSlidingFactorFall = 0;
-		mSlopeLimit = 0;
-		mStepOffset = 0;
-		mSkinWidth = 0;
-		mGravityBodiesFactor = 0;
-		mCyclicMaxOffset = 10;
-		mCyclicSpeed = 1;
-		mStabilizeSeconds = 100;
-
 		success = false;
 	}
 
@@ -390,7 +372,7 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
 	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
-	setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
+	//setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
 
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
@@ -464,7 +446,7 @@ void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String c
 
 //////////////////////////////////////////////////////////////////
 // Auxiliar functions
-
+/*
 bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDiplacement, double normalAngle)
 {
 	bool found = false;
@@ -491,7 +473,7 @@ bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 
 	return isOny;
 }
-
+*/
 bool PhysicsSubsystem::areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius)
 {
 	double diffX = position1.x - position2.x;

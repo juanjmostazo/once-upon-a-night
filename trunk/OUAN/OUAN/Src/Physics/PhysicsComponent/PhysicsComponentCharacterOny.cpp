@@ -27,6 +27,18 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 	PhysicsComponentCharacter::update(elapsedSeconds);
 }
 
+bool PhysicsComponentCharacterOny::isWorthUpdating()
+{
+	return isInUse();
+}
+
+bool PhysicsComponentCharacterOny::canJump()
+{
+	return 
+		PhysicsComponentCharacter::canJump() ||
+		Application::getInstance()->getGameWorldManager()->isGodMode();
+}
+
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()
 {
 

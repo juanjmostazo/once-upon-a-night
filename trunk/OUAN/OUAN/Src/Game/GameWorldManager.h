@@ -207,7 +207,7 @@ namespace OUAN
 		void useObject();
 
 		void setGodMode(bool activated);
-		bool getGodMode();
+		bool isGodMode();
 
 		void setChangeWorldTimes();
 		double getChangeWorldElapsedTime() const;

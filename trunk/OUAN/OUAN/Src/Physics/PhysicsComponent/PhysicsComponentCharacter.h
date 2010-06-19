@@ -5,131 +5,106 @@
 
 namespace OUAN
 {
-	// Elements with physics which are moved by us: Ony, enemies, etc.
-	// They are mapped as capsules
 	class PhysicsComponentCharacter: public PhysicsComponent
 	{
 	public:
 		PhysicsComponentCharacter(const std::string& type="");
 		~PhysicsComponentCharacter();
 
-		void reset();
-		void update(double elapsedSeconds);
+		virtual void reset();
+		virtual void update(double elapsedSeconds);
 
 		virtual void create();
 		virtual void destroy();
 
-		void setNxOgreController(NxOgre::Controller* pNxOgreController);
-		NxOgre::Controller* getNxOgreController();
+		virtual void setOffsetRenderPosition(Vector3 offsetRenderPosition);
+		virtual Vector3 getOffsetRenderPosition() const;
 
-		void setNxOgreSize(NxOgre::Vec2 pNxOgreSize);
-		NxOgre::Vec2 getNxOgreSize();
+		virtual void setCyclicCharacter(bool pCyclicCharacter);
+		virtual bool isCyclicCharacter();
 
-		void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
-		NxOgre::ControllerDescription getNxOgreControllerDescription();
+		virtual void setNxOgreController(NxOgre::Controller* pNxOgreController);
+		virtual NxOgre::Controller* getNxOgreController();
 
-		void setNextMovement(NxOgre::Vec3 nextMovement);
-		NxOgre::Vec3 getNextMovement();
+		virtual void setNxOgreSize(NxOgre::Vec2 pNxOgreSize);
+		virtual NxOgre::Vec2 getNxOgreSize();
 
-		NxOgre::Vec3 getLastMovement();
+		virtual void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
+		virtual NxOgre::ControllerDescription getNxOgreControllerDescription();
 
-		void correctSceneNodePosition();
+		virtual void setOuternMovement(NxOgre::Vec3 outernMovement);
+		virtual NxOgre::Vec3 getOuternMovement();
 
-		void setSlidingValues(NxOgre::Vec3 pNormal, double pNormalAngle);
+		virtual void walk();
+		virtual void jump();
 
-		void jump();
+		virtual bool canJump();
 
-		void walk();
+		virtual bool isJumping() const;
+		virtual bool isFalling() const;
+		virtual bool isFallingLimit() const;
+		virtual bool isWalking() const;
+		virtual bool isMoving() const;
+		virtual bool isOnSurface() const;
 
-		//Query methods used by the logic component, between others, to check if the
-		//character is jumping/etc
-		bool isJumping() const;
-		bool isFalling() const;
-		bool isFallingLimit() const;
-		bool isSliding() const;
-		bool isMoving() const;
-		bool isOnSurface() const;
-		void setOnSurface(bool pOnSurface);
-
-		void setOffsetRenderPosition(Vector3 offsetRenderPosition);
-		Vector3 getOffsetRenderPosition() const;
-
-		void setCyclicCharacter(bool pCyclicCharacter);
-		bool isCyclicCharacter();
+		virtual void setMoving (bool pMoving);
+		virtual void setWalking (bool pWalking);
+		virtual void setOnSurface(bool pOnSurface);
 
 	protected:
-		void applyDash(double elapsedSeconds);
-		Vector3 getDashMovement(double elapsedSeconds);
-		void calculateAngleDifference();
-		void calculateAcceleration(double elapsedSeconds);
+		virtual void resetJumpingVars();
+		virtual void resetFallingVars();
+		virtual void resetCyclicVars();
+		virtual void resetMovementVars();
 
-		void applyGravity(double elapsedSeconds);
+		virtual void initJumpingVars();
+		virtual void initFallingVars();
 
-		double getYawFromMovement(NxOgre::Vec3 movement);
+		virtual void setNextMovement(NxOgre::Vec3 nextMovement);
+		virtual NxOgre::Vec3 getNextMovement();
 
-		void setLastMovement(NxOgre::Vec3 lastMovement);
-	
-		//Uses mNextMovement to set Character's display yaw
-		void setCharactersDisplayYaw();
+		virtual void setLastMovement(NxOgre::Vec3 lastMovement);
+		virtual NxOgre::Vec3 getLastMovement();
+
+		virtual void correctSceneNodePosition();
+
+		virtual void performCyclicMovement(double elapsedSeconds);
+		virtual void performClassicMovement(double elapsedSeconds);
+
+		virtual void scaleNextMovement(double elapsedSeconds);
+		virtual bool isWorthUpdating();
+
+		virtual void setNewYaw();
+		virtual void setJumpingSpeed(double pJumpingSpeed);
+		virtual void setFallingSpeed(double pFallingSpeed);
+
+		virtual void logStatus(Ogre::String label);
+
+		bool mWalking;
+		bool mMoving;
+		bool mJumping;
+		bool mFalling;
+
+		double mJumpingTime;
+		double mJumpingSpeed;
+		double mFallingTime;
+		double mFallingSpeed;
 
 		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
-
-		/// Entity next movement, will be updated and reset to zero at update()
-		NxOgre::Vec3 mNextMovement;
-		/// Entiti's last movement: it'll be used to follow a path.
-		NxOgre::Vec3 mLastMovement;
-
 		OGRE3DPointRenderable* mPointRenderable;
 
-		// Physics states
-		bool mJumping;
-		bool mFalling;
-		bool mFallingLimit;
-		bool mSliding;
-		bool mIsWalking;
+		NxOgre::Vec3 mOuternMovement;
+		NxOgre::Vec3 mNextMovement;
+		NxOgre::Vec3 mLastMovement;
 
-		// Physics times
-		double mFallTime;
-
-		/// Physics components
-		double mJumpSpeed;
-		double mFallSpeed;
-		NxOgre::Vec3 mSlideDisplacement;
-		double mNormalAngle;
-
-		/// Angle difference
-		double mLastYaw;
-		double mAngleDifference;
-
-		/// Dash 
-		double mDashAccelerationFactor;
-		double mDash;
-		Vector3 mDashDirection;
-		bool mIsNotApplyingDash;
-
-		/// Acceleration
-		double mAccelerationFactor;
-
-		// Other values
 		Vector3 mOffsetRenderPosition;
 
-		void initJump();
-		void initFall();
-		void resetSliding();
-
-		void setJumpSpeed(double pJumpSpeed);
-		void setFallSpeed(double pFallSpeed);
-
-		// Cyclic stuff
 		bool mCyclicCharacter;
 		double mCyclicDirection;
 		double mCyclicOffset;
-
-		void performCyclicMovement(double elapsedSeconds);
-		void performCharacterMovement(double elapsedSeconds);
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters

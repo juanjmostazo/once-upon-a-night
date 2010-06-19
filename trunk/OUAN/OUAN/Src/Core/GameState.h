@@ -15,6 +15,7 @@ namespace OUAN
 	protected:///Default constructor
 		GameState();
 		ApplicationPtr mApp;
+
 	public:
 		///Destructor
 		virtual ~GameState();
