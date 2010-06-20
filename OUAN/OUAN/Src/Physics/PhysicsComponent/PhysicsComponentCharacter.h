@@ -68,7 +68,7 @@ namespace OUAN
 		virtual void setLastMovement(NxOgre::Vec3 lastMovement);
 		virtual NxOgre::Vec3 getOuternMovement();
 
-		virtual void correctSceneNodePosition();
+		virtual void updateSceneNode();
 
 		virtual void performCyclicMovement(double elapsedSeconds);
 		virtual void performClassicMovement(double elapsedSeconds);
@@ -96,7 +96,6 @@ namespace OUAN
 		NxOgre::Controller* mNxOgreController;
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
-		OGRE3DPointRenderable* mPointRenderable;
 
 		NxOgre::Vec3 mOuternMovement;
 		NxOgre::Vec3 mNextMovement;

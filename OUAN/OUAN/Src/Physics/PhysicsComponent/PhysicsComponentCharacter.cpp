@@ -8,13 +8,12 @@ using namespace OUAN;
 PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
 {
-	mPointRenderable = NULL;
 	reset();
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
 {
-	mPointRenderable=NULL;
+
 }
 
 void PhysicsComponentCharacter::reset()
@@ -91,7 +90,10 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 }
 
 void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
-{
+{	
+	//This se must be called at the beginning of this function, 
+	//otherwise isWorthUpdating won't return a reliable result
+	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING");
 	setNextMovement(getOuternMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
 
 	if (!isWorthUpdating())
@@ -170,7 +172,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		logStatus("BK4, end of function");
 	}
 
-	correctSceneNodePosition();
+	updateSceneNode();
 }
 
 void PhysicsComponentCharacter::scaleNextMovement(double elapsedSeconds)
@@ -370,19 +372,13 @@ void PhysicsComponentCharacter::setNewYaw()
 void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
-
-	if (!mPointRenderable)
-	{
-		mPointRenderable= Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->
-			createPointRenderable(getSceneNode());
-	}
-
+	
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
 			getNxOgreSize(), 
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
-			mPointRenderable,			
+			//mPointRenderable,			
 			NxOgre::String(getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees(),
@@ -427,13 +423,14 @@ Ogre::Vector3 PhysicsComponentCharacter::getLastMovement()
 	return mLastMovement.as<Ogre::Vector3>();
 }
 
-void PhysicsComponentCharacter::correctSceneNodePosition()
+void PhysicsComponentCharacter::updateSceneNode()
 {
 	getSceneNode()->setPosition(
-		Vector3(getNxOgreController()->getPosition().x,
-				getNxOgreController()->getPosition().y,
-				getNxOgreController()->getPosition().z)
-		+ mOffsetRenderPosition);
+		getNxOgreController()->getPosition().as<Ogre::Vector3>() + 
+		mOffsetRenderPosition);
+
+	getSceneNode()->setOrientation(
+		getNxOgreController()->getOrientation().as<Ogre::Quaternion>());
 }
 
 void PhysicsComponentCharacter::setOffsetRenderPosition(Vector3 offsetRenderPosition)
@@ -520,6 +517,8 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label)
 		Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
 		Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
 
+		Logger::getInstance()->log("PPC: yaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		
 		Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
 	}
 }
