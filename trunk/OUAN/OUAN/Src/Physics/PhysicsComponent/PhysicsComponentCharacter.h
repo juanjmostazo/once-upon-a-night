@@ -32,13 +32,10 @@ namespace OUAN
 		virtual void setNxOgreControllerDescription(NxOgre::ControllerDescription pNxOgreControllerDescription);
 		virtual NxOgre::ControllerDescription getNxOgreControllerDescription();
 
-		virtual void setOuternMovement(NxOgre::Vec3 outernMovement);
-		virtual NxOgre::Vec3 getOuternMovement();
-
 		virtual void walk();
 		virtual void jump();
 
-		virtual bool canJump();
+		virtual void setOuternMovement(NxOgre::Vec3 outernMovement);
 
 		virtual bool isJumping() const;
 		virtual bool isFalling() const;
@@ -47,9 +44,9 @@ namespace OUAN
 		virtual bool isMoving() const;
 		virtual bool isOnSurface() const;
 
-		virtual void setMoving (bool pMoving);
-		virtual void setWalking (bool pWalking);
-		virtual void setOnSurface(bool pOnSurface);
+		virtual Ogre::Vector3 getLastMovement();
+		virtual Ogre::Vector3 getPosition();
+		virtual double getYaw();
 
 	protected:
 		virtual void resetJumpingVars();
@@ -60,11 +57,17 @@ namespace OUAN
 		virtual void initJumpingVars();
 		virtual void initFallingVars();
 
+		virtual bool canJump();
+
+		virtual void setMoving (bool pMoving);
+		virtual void setWalking (bool pWalking);
+		virtual void setOnSurface(bool pOnSurface);
+
 		virtual void setNextMovement(NxOgre::Vec3 nextMovement);
 		virtual NxOgre::Vec3 getNextMovement();
 
 		virtual void setLastMovement(NxOgre::Vec3 lastMovement);
-		virtual NxOgre::Vec3 getLastMovement();
+		virtual NxOgre::Vec3 getOuternMovement();
 
 		virtual void correctSceneNodePosition();
 
