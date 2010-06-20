@@ -89,6 +89,7 @@ NxOgre::Vec2 PhysicsComponentSimpleCapsule::getNxOgreSize()
 void PhysicsComponentSimpleCapsule::setNxOgreSize(NxOgre::Vec2 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
+	mHeight=pNxOgreSize.y;
 }
 
 //void PhysicsComponentSimpleCapsule::setQueryFlags(QueryFlags queryFlags)

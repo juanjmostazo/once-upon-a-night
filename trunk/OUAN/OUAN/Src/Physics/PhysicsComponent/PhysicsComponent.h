@@ -23,19 +23,19 @@ namespace OUAN
 		virtual Ogre::SceneNode* getSceneNode();
 		virtual void setSceneNode(Ogre::SceneNode* sceneNode);
 
-		virtual bool isInUse();
+		virtual bool isInUse() const;
 		virtual void setInUse(bool pInUse);
 
-		virtual bool isStatic();
+		virtual bool isStatic() const;
 		virtual void setStatic(bool pStatic);
 
-		virtual double getMass();
+		virtual double getMass() const;
 		virtual void setMass(double pMass);
 
+		virtual bool isOnSurface() const;
 		virtual void setOnSurface(bool pOnSurface);
 
 		//virtual void setQueryFlags(QueryFlags queryFlags);
-
 
 	protected:
 		// Tells if the component is in use or not
@@ -44,6 +44,7 @@ namespace OUAN
 		// Tells if the game entity is static or can be moved
 		bool mStatic;
 
+		// Tells if the game entity is on surface
 		bool mOnSurface;
 
 		// Mass

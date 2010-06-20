@@ -272,11 +272,6 @@ bool PhysicsComponentCharacter::isMoving() const
 	return mMoving;
 }
 
-bool PhysicsComponentCharacter::isOnSurface() const
-{
-	return mOnSurface;
-}
-
 void PhysicsComponentCharacter::setJumpingSpeed(double pJumpingSpeed)
 {
 	mJumpingSpeed = pJumpingSpeed;
@@ -291,7 +286,7 @@ void PhysicsComponentCharacter::setFallingSpeed(double pFallingSpeed)
 
 void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 {
-	mOnSurface=pOnSurface;
+	PhysicsComponent::setOnSurface(pOnSurface);
 
 	if (pOnSurface)
 	{
