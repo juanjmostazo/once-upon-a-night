@@ -14,11 +14,9 @@ namespace OUAN
 		virtual void reset();
 		virtual void update(double elapsedSeconds);
 
+	protected:
 		virtual bool isWorthUpdating();
 		virtual bool canJump();
-
-	protected:
-		
 	};
 
 	class TPhysicsComponentCharacterOnyParameters: public TPhysicsComponentCharacterParameters

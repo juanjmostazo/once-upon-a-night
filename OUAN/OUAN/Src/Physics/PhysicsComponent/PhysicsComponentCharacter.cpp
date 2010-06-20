@@ -427,9 +427,9 @@ void PhysicsComponentCharacter::setLastMovement(NxOgre::Vec3 lastMovement)
 	mLastMovement = lastMovement;
 }
 
-NxOgre::Vec3 PhysicsComponentCharacter::getLastMovement()
+Ogre::Vector3 PhysicsComponentCharacter::getLastMovement()
 {
-	return mLastMovement;
+	return mLastMovement.as<Ogre::Vector3>();
 }
 
 void PhysicsComponentCharacter::correctSceneNodePosition()
@@ -489,6 +489,16 @@ void PhysicsComponentCharacter::setNxOgreControllerDescription(NxOgre::Controlle
 NxOgre::ControllerDescription PhysicsComponentCharacter::getNxOgreControllerDescription()
 {
 	return mNxOgreControllerDescription;
+}
+
+Ogre::Vector3 PhysicsComponentCharacter::getPosition()
+{
+	return getNxOgreController()->getPosition().as<Ogre::Vector3>();
+}
+
+double PhysicsComponentCharacter::getYaw()
+{
+	return getNxOgreController()->getDisplayYaw();
 }
 
 void PhysicsComponentCharacter::logStatus(Ogre::String label)
