@@ -4,10 +4,10 @@
 	<Option key="GRAVITY_X">0</Option>
     <Option key="GRAVITY_Y">-1.8</Option>
     <Option key="GRAVITY_Z">0</Option>
-	<Option key="OUTERN_MOVEMENT_FACTOR">4</Option>
+	<Option key="OUTERN_MOVEMENT_FACTOR">5</Option>
 	<Option key="WALK_SPEED_FACTOR">0.5</Option>
 	<Option key="INITIAL_JUMP_SPEED">5</Option>
-	<Option key="FALLING_SPEED_LIMIT">40</Option>
+	<Option key="FALLING_SPEED_LIMIT">25</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="STATIC_FRICTION">0.5</Option>
     <Option key="DYNAMIC_FRICTION">0.5</Option>
@@ -20,13 +20,13 @@
     <Option key="CYCLIC_SPEED">0.1</Option>
 	<Option key="STABILIZE_SECONDS">10000</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
-	<Option key="MIN_DISTANCE">0.001</Option>
-    <Option key="DISPLACEMENT_SCALE">0.1</Option>
-    <Option key="MOVEMENT_UNITS_PER_SECOND">100</Option>
+	<Option key="MIN_DISTANCE">0.01</Option>
+    <Option key="MOVEMENT_UNITS_PER_SECOND">15</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
 	
 	<!--DEPRECATED VARS-->
 	<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">250</Option>
+	<Option key="DISPLACEMENT_SCALE">0.1</Option>
     <Option key="MIN_COLLISION_ANGLE">45</Option>
     <Option key="MIN_SLIDING_ANGLE">60</Option>
     <Option key="MIN_SLIDING_ANGLE_FALL">90</Option>

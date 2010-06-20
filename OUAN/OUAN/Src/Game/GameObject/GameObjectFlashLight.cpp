@@ -260,9 +260,9 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 		direction.normalise();
 
 		mRenderComponentLight->setDirection(direction);
-
 	}
 }
+
 void GameObjectFlashLight::setAttack(const std::string& newAttack)
 {
 	mAttackComponent->setSelectedAttack(newAttack);
