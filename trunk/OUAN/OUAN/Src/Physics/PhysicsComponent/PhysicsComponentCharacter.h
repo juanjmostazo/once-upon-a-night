@@ -80,7 +80,7 @@ namespace OUAN
 		virtual void setJumpingSpeed(double pJumpingSpeed);
 		virtual void setFallingSpeed(double pFallingSpeed);
 
-		virtual void logStatus(Ogre::String label);
+		virtual void logStatus(Ogre::String label, double elapsedSeconds);
 
 		bool mWalking;
 		bool mMoving;

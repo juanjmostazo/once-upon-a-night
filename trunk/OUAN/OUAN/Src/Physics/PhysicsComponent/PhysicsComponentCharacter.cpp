@@ -93,34 +93,34 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 {	
 	//This se must be called at the beginning of this function, 
 	//otherwise isWorthUpdating won't return a reliable result
-	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING");
+	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
 	setNextMovement(getOuternMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
 
 	if (!isWorthUpdating())
 	{
-		logStatus("isWorthUpdating() == FALSE");
+		logStatus("isWorthUpdating() == FALSE", elapsedSeconds);
 		resetMovementVars();
 	} 
 	else
 	{
-		logStatus("isWorthUpdating() == TRUE");
+		logStatus("isWorthUpdating() == TRUE", elapsedSeconds);
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
 		if (isWalking())
 		{
-			logStatus("Within isWalking(), beginning");
+			logStatus("Within isWalking(), beginning", elapsedSeconds);
 
 			NxOgre::Vec3 newMovement = getNextMovement();
 			newMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
 			newMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
 			setNextMovement(getNextMovement() + newMovement);
 
-			logStatus("Within isWalking(), end");
+			logStatus("Within isWalking(), end", elapsedSeconds);
 		}
 
 		if (isJumping())
 		{
-			logStatus("Within isJumping(), beginning");
+			logStatus("Within isJumping(), beginning", elapsedSeconds);
 
 			setJumpingSpeed(mJumpingSpeed);
 			mJumpingTime += elapsedSeconds;
@@ -129,12 +129,12 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 			newMovement.y += mJumpingSpeed;
 			setNextMovement(getNextMovement() + newMovement);
 
-			logStatus("Within isJumping(), end");
+			logStatus("Within isJumping(), end", elapsedSeconds);
 		}
 
 		if (!isOnSurface())
 		{
-			logStatus("Within !isOnSurface(), beginning");
+			logStatus("Within !isOnSurface(), beginning", elapsedSeconds);
 
 			setFallingSpeed(mFallingSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallingTime);
 			mFallingTime += elapsedSeconds;
@@ -143,15 +143,18 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 			newMovement.y += mFallingSpeed;
 			setNextMovement(getNextMovement() + newMovement);
 
-			logStatus("Within !isOnSurface(), end");
+			logStatus("Within !isOnSurface(), end", elapsedSeconds);
 		}
 
-		logStatus("BK1, before setNewYaw(), scaleNextMovement()");
+		logStatus("Before setNewYaw()", elapsedSeconds);
 
 		setNewYaw();
+
+		logStatus("Before scaleNextMovement()", elapsedSeconds);
+
 		scaleNextMovement(elapsedSeconds);
 
-		logStatus("BK2, before move()");
+		logStatus("Before move()", elapsedSeconds);
 
 		getNxOgreController()->move(
 			getNextMovement(),
@@ -159,18 +162,21 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		logStatus("BK3, before setOnSurface()");
+		logStatus("Before setOnSurface(), setWalking(), setMoving()", elapsedSeconds);
 
 		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 
 		setWalking(false);
 		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
-
-		setLastMovement(getNextMovement());
-		setNextMovement(NxOgre::Vec3::ZERO);
-
-		logStatus("BK4, end of function");
 	}
+
+	logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
+
+	setLastMovement(getNextMovement());
+	setNextMovement(NxOgre::Vec3::ZERO);
+	setOuternMovement(NxOgre::Vec3::ZERO);
+
+	logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
 
 	updateSceneNode();
 }
@@ -377,8 +383,7 @@ void PhysicsComponentCharacter::create()
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
 			getNxOgreSize(), 
-			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 
-			//mPointRenderable,			
+			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 		
 			NxOgre::String(getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees(),
@@ -493,7 +498,7 @@ double PhysicsComponentCharacter::getYaw()
 	return getNxOgreController()->getDisplayYaw();
 }
 
-void PhysicsComponentCharacter::logStatus(Ogre::String label)
+void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeconds)
 {
 	if (getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0) 
 	{
@@ -514,10 +519,13 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label)
 		Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
 
 		Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
+		Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		
 		Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
 		Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
+		Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
 
-		Logger::getInstance()->log("PPC: yaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		Logger::getInstance()->log("PPC: elapsedSeconds -> " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 		
 		Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
 	}
