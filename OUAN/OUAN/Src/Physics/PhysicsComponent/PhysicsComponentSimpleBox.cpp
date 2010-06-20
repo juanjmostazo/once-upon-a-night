@@ -79,6 +79,7 @@ NxOgre::Vec3 PhysicsComponentSimpleBox::getNxOgreSize()
 void PhysicsComponentSimpleBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
+	mHeight=pNxOgreSize.y;
 }
 
 //void PhysicsComponentSimpleBox::setQueryFlags(QueryFlags queryFlags)

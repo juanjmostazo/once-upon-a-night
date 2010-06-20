@@ -42,7 +42,6 @@ namespace OUAN
 		virtual bool isFallingLimit() const;
 		virtual bool isWalking() const;
 		virtual bool isMoving() const;
-		virtual bool isOnSurface() const;
 
 		virtual Ogre::Vector3 getLastMovement();
 		virtual Ogre::Vector3 getPosition();

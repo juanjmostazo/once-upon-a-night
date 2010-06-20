@@ -9,6 +9,7 @@ PhysicsComponent::PhysicsComponent(const std::string& type)
 	mInUse=false;
 	mStatic=false;
 	mMass=0;
+	mOnSurface=false;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -31,12 +32,17 @@ void PhysicsComponent::update(double elapsedSeconds)
 
 }
 
+bool PhysicsComponent::isOnSurface() const
+{
+	return mOnSurface;
+}
+
 void PhysicsComponent::setOnSurface(bool pOnSurface)
 {
 	mOnSurface=pOnSurface;
 }
 
-bool PhysicsComponent::isInUse()
+bool PhysicsComponent::isInUse() const
 {
 	return mInUse;
 }
@@ -46,7 +52,7 @@ void PhysicsComponent::setInUse(bool pInUse)
 	mInUse=pInUse;
 }
 
-bool PhysicsComponent::isStatic()
+bool PhysicsComponent::isStatic() const
 {
 	return mStatic;
 }
@@ -64,7 +70,7 @@ void PhysicsComponent::setSceneNode(Ogre::SceneNode* pSceneNode){
 	mSceneNode = pSceneNode;
 }
 
-double PhysicsComponent::getMass()
+double PhysicsComponent::getMass() const
 {
 	return mMass;
 }
@@ -78,7 +84,6 @@ void PhysicsComponent::setMass(double pMass)
 //{
 //	
 //}
-
 
 TPhysicsComponentParameters::TPhysicsComponentParameters() : TComponentParameters()
 {

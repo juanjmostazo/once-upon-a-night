@@ -2,6 +2,7 @@
 #define PhysicsComponentSimpleH_H
 
 #include "PhysicsComponent.h"
+
 namespace OUAN
 {
 	// Simple physics elements which interact with other elements
@@ -14,6 +15,8 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
+		virtual void update(double elapsedSeconds);
+
 		OGRE3DBody* getNxOgreBody();
 		void setNxOgreBody(OGRE3DBody* pNxOgreBody);
 
@@ -25,6 +28,8 @@ namespace OUAN
 	protected:
 		OGRE3DBody* mNxOgreBody;
 		OGRE3DKinematicBody* mNxOgreKinematicBody;
+
+		double mHeight;
 	};
 
 	class TPhysicsComponentSimpleParameters: public TPhysicsComponentParameters
