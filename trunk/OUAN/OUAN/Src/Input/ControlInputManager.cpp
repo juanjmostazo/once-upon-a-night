@@ -127,44 +127,67 @@ bool ControlInputManager::isPressedWeaponAction()
 
 //////////////////////////////////////////////////////////////
 
-Vector2 ControlInputManager::getMovement()
+Vector3 ControlInputManager::getMovement()
 {
-	Vector2 nextMovement = Vector2::ZERO;
+	Vector3 nextMovement = Vector3::ZERO;
 
 	double joystickLeftX=0;
-	double joystickLeftY=0;
+	double joystickLeftZ=0;
 	double joystickRightX=0;
-	double joystickRightY=0;
+	double joystickRightZ=0;
 
-	getJoystickStateAxes(joystickLeftX, joystickLeftY, joystickRightX, joystickRightY);
+	getJoystickStateAxes(joystickLeftX, joystickLeftZ, joystickRightX, joystickRightZ);
 
 	if (isPressedGoForward())
 	{
-		nextMovement+=Vector2::UNIT_Y;	
+		nextMovement += Vector3::UNIT_Z;	
 	}
 
 	if (isPressedGoBack())
 	{
-		nextMovement+=Vector2::NEGATIVE_UNIT_Y;	
+		nextMovement += Vector3::NEGATIVE_UNIT_Z;	
 	}
 
 	if (isPressedGoLeft())
 	{
-		nextMovement+=Vector2::UNIT_X;	
+		nextMovement += Vector3::UNIT_X;	
 	}
 
 	if (isPressedGoRight())
 	{
-		nextMovement+=Vector2::NEGATIVE_UNIT_X;	
+		nextMovement += Vector3::NEGATIVE_UNIT_X;	
 	}
 
-	if(joystickLeftY!=0 || joystickLeftX!=0)
-	{
-		nextMovement.x+=joystickLeftX;
-		nextMovement.y+=joystickLeftY;
-	}
+	nextMovement.x += joystickLeftX;
+	nextMovement.z += joystickLeftZ;
 
 	return nextMovement;
+}
+
+void ControlInputManager::getMovementSimple(int & movementX, int & movementZ)
+{
+	movementX = 0;
+	movementZ = 0;
+
+	if (isPressedGoForward())
+	{
+		movementZ = 1;
+	}
+
+	if (isPressedGoBack())
+	{
+		movementZ = -1;	
+	}
+
+	if (isPressedGoLeft())
+	{
+		movementX = 1;	
+	}
+
+	if (isPressedGoRight())
+	{
+		movementX = -1;	
+	}
 }
 
 Vector2 ControlInputManager::getCameraRotation()

@@ -110,10 +110,8 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		{
 			logStatus("Within isWalking(), beginning", elapsedSeconds);
 
-			NxOgre::Vec3 newMovement = getNextMovement();
-			newMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
-			newMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
-			setNextMovement(getNextMovement() + newMovement);
+			mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
+			mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
 
 			logStatus("Within isWalking(), end", elapsedSeconds);
 		}
@@ -124,10 +122,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 
 			setJumpingSpeed(mJumpingSpeed);
 			mJumpingTime += elapsedSeconds;
-
-			NxOgre::Vec3 newMovement = getNextMovement();
-			newMovement.y += mJumpingSpeed;
-			setNextMovement(getNextMovement() + newMovement);
+			mNextMovement.y += mJumpingSpeed;			
 
 			logStatus("Within isJumping(), end", elapsedSeconds);
 		}
@@ -136,12 +131,10 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		{
 			logStatus("Within !isOnSurface(), beginning", elapsedSeconds);
 
-			setFallingSpeed(mFallingSpeed + Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallingTime);
+			setFallingSpeed(mFallingSpeed + 
+				Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallingTime);
 			mFallingTime += elapsedSeconds;
-
-			NxOgre::Vec3 newMovement = getNextMovement();
-			newMovement.y += mFallingSpeed;
-			setNextMovement(getNextMovement() + newMovement);
+			mNextMovement.y += mFallingSpeed;
 
 			logStatus("Within !isOnSurface(), end", elapsedSeconds);
 		}
@@ -185,7 +178,6 @@ void PhysicsComponentCharacter::scaleNextMovement(double elapsedSeconds)
 {
 	setNextMovement(
 		getNextMovement() *
-		Application::getInstance()->getPhysicsSubsystem()->mDisplacementScale * 
 		Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * 
 		elapsedSeconds);
 }
@@ -500,6 +492,9 @@ double PhysicsComponentCharacter::getYaw()
 
 void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeconds)
 {
+	//TODO REMOVE THIS LINE WHEN THIS LOG IS REQUIRED
+	return;
+
 	if (getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0) 
 	{
 		Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");

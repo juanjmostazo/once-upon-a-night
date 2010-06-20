@@ -31,7 +31,7 @@ namespace OUAN
 		virtual ~ControlInputManager();
 
 		/// Load configuration
-		void init( Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
+		void init(Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
 		/// Clear resources
 		void finalise();
 
@@ -46,7 +46,8 @@ namespace OUAN
 		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
 		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
 
-		Vector2 getMovement();
+		Vector3 getMovement();
+		void getMovementSimple(int & movementX, int & movementZ);
 		Vector2 getCameraRotation();
 
 		bool isPressedWalk();			// Walk mode
@@ -86,7 +87,6 @@ namespace OUAN
 		/// @return true if there has been a 'toggle-showscenenodes' key press
 		bool isPressedToggleShowSceneNodes();
 
-
 		void getMouseStateRelValues(
 			double & x, double & y, double & z);			// Mouse x, y, z coordinate values
 
@@ -105,13 +105,11 @@ namespace OUAN
 		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
 		
 	protected:
-
 		/// In order to determine getMovement method result
 		bool isPressedGoForward();		// Go forward
 		bool isPressedGoBack();			// Go back
 		bool isPressedGoLeft();			// Go to left
 		bool isPressedGoRight();		// Go to right
-
 
 		/// Get OIS' mouse button ID equivalent for the specified mouseButtonId as read from
 		/// the default input configuration.

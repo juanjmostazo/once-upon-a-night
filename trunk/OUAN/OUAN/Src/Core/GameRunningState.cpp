@@ -266,16 +266,21 @@ void GameRunningState::handleEvents()
 			?SET_BIT(newState,ONY_STATE_BIT_FIELD_ACTION)
 			:CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ACTION);
 
-		Vector2 outernMovementXZ = mApp->getMovement();
+		/*
+		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
+				? mApp->getMovement()
+				: Ogre::Vector3::ZERO;
+		*/
 
-		Vector3 outernMovement=Ogre::Vector3::ZERO;
-		if (!mApp->getGameWorldManager()->isOnyDying())
-		{
-			outernMovement.x = outernMovementXZ.x;
-			outernMovement.y = 0;
-			outernMovement.z = outernMovementXZ.y;
-		}
-			
+		int movementX;
+		int movementZ;
+
+		mApp->getMovementSimple(movementX, movementZ);
+
+		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
+			    ? Ogre::Vector3(movementX, 0, movementZ)
+				: Ogre::Vector3::ZERO;
+
 		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
 		{
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
@@ -335,9 +340,7 @@ void GameRunningState::handleEvents()
 		ony->getLogicComponentOny()->setNewState(newState);
 	}
 
-	Vector2 cameraRotation;
-	cameraRotation=mApp->getCameraRotation();
-	mApp->getCameraManager()->processCameraRotation(cameraRotation);
+	mApp->getCameraManager()->processCameraRotation(mApp->getCameraRotation());
 }
 
 void GameRunningState::checkDebuggingKeys()
