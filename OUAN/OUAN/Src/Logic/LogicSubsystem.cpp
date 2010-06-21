@@ -150,10 +150,12 @@ void LogicSubsystem::loadScripts()
 	//if (dragon.get() && !(currentFilename=dragon->getLogicComponentEnemy()->getScriptFilename()).empty())
 	//	loadScript(SCRIPTS_PATH+"/"+currentFilename);
 }
+
 void LogicSubsystem::cleanUp()
 {
 	lua_close(mLuaEngine);
 }
+
 void LogicSubsystem::update (double elapsedSeconds)
 {
 	if (mApp)
@@ -164,11 +166,15 @@ void LogicSubsystem::update (double elapsedSeconds)
 		{
 			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
 			{
-				it->second->updateLogic(elapsedSeconds);
+				if (it->second->isWorthUpdatingLogicComponents())
+				{
+					it->second->updateLogic(elapsedSeconds);
+				}
 			}
 		}
 	}
 }
+
 void LogicSubsystem::loadScript(const std::string& filename)
 {
 	if (mLuaEngine)
@@ -186,6 +192,7 @@ void LogicSubsystem::loadScript(const std::string& filename)
 		}
 	}
 }
+
 void LogicSubsystem::executeString(const std::string& scriptString)
 {
 	if (mLuaEngine)
@@ -193,6 +200,7 @@ void LogicSubsystem::executeString(const std::string& scriptString)
 		luaL_dostring(mLuaEngine,scriptString.c_str());
 	}
 }
+
 int LogicSubsystem::invokeStateFunction(const std::string& functionName,int state, LogicComponent * pLogicComponent)
 {	
 	int result=-1;
@@ -261,6 +269,7 @@ void LogicSubsystem::invokeActionFunction(const std::string& functionName, Logic
 		}
 	}
 }
+
 int LogicSubsystem::getGlobalInt (const std::string& globalName)
 {
 	return luabind::object_cast<int>(luabind::globals(mLuaEngine)[globalName]);
