@@ -950,7 +950,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.cpp"
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonAuto.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonFree.cpp"
 						>
 					</File>
 					<File
@@ -1324,7 +1328,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.h"
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonAuto.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonFree.h"
 						>
 					</File>
 					<File

@@ -326,7 +326,6 @@ void GameRunningState::handleEvents()
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
 
-			outernMovement=mApp->getCameraManager()->rotateMovementVector(outernMovement);
 			ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
 			
 			zeroMovement = 
@@ -760,20 +759,6 @@ void GameRunningState::renderChangeWorldTextures()
 		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
 			mApp->getRenderSubsystem()->CHANGEWORLD,true);
 	}
-	else
-	{
-		switch(mWorld)
-		{
-		case DREAMS:
-			mApp->getGameWorldManager()->setDreamsRender();
-			break;
-		case NIGHTMARES:
-			mApp->getGameWorldManager()->setNightmaresRender();
-			break;
-		default:
-			break;
-		}
-	}
 }
 
 bool GameRunningState::render()
@@ -820,6 +805,18 @@ void GameRunningState::changeWorldFinished(int newWorld)
 			break;
 		default:
 			break;
+	}
+
+	switch(mWorld)
+	{
+	case DREAMS:
+		mApp->getGameWorldManager()->setDreamsRender();
+		break;
+	case NIGHTMARES:
+		mApp->getGameWorldManager()->setNightmaresRender();
+		break;
+	default:
+		break;
 	}
 }
 

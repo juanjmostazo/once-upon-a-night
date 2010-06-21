@@ -532,8 +532,8 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 			//{
 			//	mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_PROPORTIONAL,0.5);
 			//}
-		    //mesh->createManualLodLevel(500, "node.mesh");
-			//mesh->createManualLodLevel(500, "animallod3.mesh");
+		   // mesh->createManualLodLevel(1, "node.mesh");
+			//mesh->createManualLodLevel(500, "node.mesh");
 		}
 	}
 	catch(Ogre::Exception &/*e*/)

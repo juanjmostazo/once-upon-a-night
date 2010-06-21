@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+    <Option key="INITIAL_DIRECTION_X">0</Option>
+    <Option key="INITIAL_DIRECTION_Y">0</Option>
+    <Option key="INITIAL_DIRECTION_Z">-1</Option>
+    <Option key="MIN_ROT_X">-80</Option>
+    <Option key="MAX_ROT_X">80</Option>
+    <Option key="SPEED_X">0.1</Option>
+    <Option key="SPEED_Y">0.3</Option>
+    <Option key="ROT_X_ATTENUATION_POSITIVE">0</Option>
+    <Option key="ROT_X_ATTENUATION_NEGATIVE">0</Option>
+    <Option key="DISTANCE">80</Option>
+  </Options>
+</Configuration>

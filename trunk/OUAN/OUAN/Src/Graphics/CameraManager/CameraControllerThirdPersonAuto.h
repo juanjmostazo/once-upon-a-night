@@ -1,43 +1,42 @@
-#ifndef CameraControllerThirdPersonH_H
-#define CameraControllerThirdPersonH_H
+#ifndef CameraControllerThirdPersonAutoH_H
+#define CameraControllerThirdPersonAutoH_H
 #include "CameraController.h"
 namespace OUAN
 {
-	class CameraControllerThirdPerson : public CameraController
+	class CameraControllerThirdPersonAuto : public CameraController
 	{
 	public:
-		CameraControllerThirdPerson();
-		~CameraControllerThirdPerson();
+		CameraControllerThirdPersonAuto();
+		~CameraControllerThirdPersonAuto();
 
 		void init(Ogre::SceneManager * pSceneManager);
 		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
 		void loadInfo();
 		TCameraControllerType getControllerType();
 
-		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
+	
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		Ogre::Vector3 calculateTargetPosition(CameraInputPtr pCameraInput);
 		double calculateCameraHeight(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
-
-
 	};
 
 }
 
 #endif
 
-//#ifndef CameraControllerThirdPersonH_H
-//#define CameraControllerThirdPersonH_H
+//#ifndef CameraControllerThirdPersonAutoH_H
+//#define CameraControllerThirdPersonAutoH_H
 //#include "CameraController.h"
 //namespace OUAN
 //{
-//	class CameraControllerThirdPerson : public CameraController
+//	class CameraControllerThirdPersonAuto : public CameraController
 //	{
 //	public:
-//		CameraControllerThirdPerson();
-//		~CameraControllerThirdPerson();
+//		CameraControllerThirdPersonAuto();
+//		~CameraControllerThirdPersonAuto();
 //
 //		void init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager);
 //

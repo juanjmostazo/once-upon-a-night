@@ -1,6 +1,6 @@
 #include "OUAN_Precompiled.h"
 
-#include "CameraControllerThirdPerson.h"
+#include "CameraControllerThirdPersonAuto.h"
 #include "CameraInput.h"
 #include "CameraParameters.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
@@ -9,35 +9,35 @@
 using namespace OUAN;
 using namespace Ogre;
 
-CameraControllerThirdPerson::CameraControllerThirdPerson()
+CameraControllerThirdPersonAuto::CameraControllerThirdPersonAuto()
 {
 }
-CameraControllerThirdPerson::~CameraControllerThirdPerson()
+CameraControllerThirdPersonAuto::~CameraControllerThirdPersonAuto()
 {
 }
 
-void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager)
+void CameraControllerThirdPersonAuto::init(Ogre::SceneManager * pSceneManager)
 {
 	loadInfo();
 }
 
-TCameraControllerType CameraControllerThirdPerson::getControllerType()
+TCameraControllerType CameraControllerThirdPersonAuto::getControllerType()
 {
-	return OUAN::CAMERA_THIRD_PERSON;
+	return OUAN::CAMERA_THIRD_PERSON_AUTO;
 }
 
-void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
+void CameraControllerThirdPersonAuto::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
 {
 	pCamera->setPosition(calculateCameraPosition(pCamera,pCameraInput));
 	pCamera->lookAt(calculateTargetPosition(pCameraInput));
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPtr pCameraInput)
+Ogre::Vector3 CameraControllerThirdPersonAuto::calculateTargetPosition(CameraInputPtr pCameraInput)
 {
 	return pCameraInput->mTarget->getSceneNode()->getPosition()+pCameraInput->mTargetOffset;
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
 	Vector3 targetPosition;
 	Vector3 cameraPosition;
@@ -56,7 +56,6 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 		cameraPosition=Vector3(direction.x*pCameraInput->mCameraParameters->mMaxDistance+targetPosition.x,
 						   0.0f,
 						   direction.z*pCameraInput->mCameraParameters->mMaxDistance+targetPosition.z);
-
 	}
 
 	if(distance<pCameraInput->mCameraParameters->mMinDistance)
@@ -64,7 +63,6 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 		cameraPosition=Vector3(direction.x*pCameraInput->mCameraParameters->mMinDistance+targetPosition.x,
 						   0.0f,
 						   direction.z*pCameraInput->mCameraParameters->mMinDistance+targetPosition.z);
-
 	}
 
 	cameraPosition.y=calculateCameraHeight(pCamera,pCameraInput);
@@ -72,12 +70,12 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 	return cameraPosition;
 }
 
-void CameraControllerThirdPerson::loadInfo()
+void CameraControllerThirdPersonAuto::loadInfo()
 {
 	CameraController::loadInfo();
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+Ogre::Vector3 CameraControllerThirdPersonAuto::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds)
 {
 	//Logger::getInstance()->log("ROTATE MOVEMENT VECTOR");
 	//Logger::getInstance()->log("Original movement : "+Ogre::StringConverter::toString(movement));
@@ -93,13 +91,12 @@ Ogre::Vector3 CameraControllerThirdPerson::rotateMovementVector(Ogre::Vector3 mo
 	movement = Ogre::Quaternion(Ogre::Degree(pCamera->getOrientation().getYaw().valueDegrees()-180),Ogre::Vector3::UNIT_Y) * movement;
 
 	//Logger::getInstance()->log("Rotated movement2 : "+Ogre::StringConverter::toString(movement));
-
 	//Logger::getInstance()->log("radium : "+Ogre::StringConverter::toString(Ogre::Real(radium)));
 
 	return movement;
 }
 
-double CameraControllerThirdPerson::calculateCameraHeight(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+double CameraControllerThirdPersonAuto::calculateCameraHeight(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
 {
 	double h;
 	double distance;
@@ -129,7 +126,7 @@ double CameraControllerThirdPerson::calculateCameraHeight(Ogre::Camera *pCamera,
 	return h;
 }
 
-void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+void CameraControllerThirdPersonAuto::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
 {
 	Vector3 cameraPosition;
 	Vector3 targetPosition;
@@ -150,7 +147,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 
 //#include "OUAN_Precompiled.h"
 //
-//#include "CameraControllerThirdPerson.h"
+//#include "CameraControllerThirdPersonAuto.h"
 //#include "TransparentEntityManager.h"
 //#include "../RenderComponent/RenderComponentPositional.h"
 //#include "../RenderSubsystem.h"
@@ -163,9 +160,9 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //using namespace OUAN;
 //using namespace Ogre;
 //
-//CameraControllerThirdPerson::CameraControllerThirdPerson() : CameraController()
+//CameraControllerThirdPersonAuto::CameraControllerThirdPersonAuto() : CameraController()
 //{
-//	//Set CameraControllerThirdPerson Initial Parameters
+//	//Set CameraControllerThirdPersonAuto Initial Parameters
 //
 //	loadConfig();
 //
@@ -179,23 +176,23 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //
 //}
 //
-//CameraControllerThirdPerson::~CameraControllerThirdPerson()
+//CameraControllerThirdPersonAuto::~CameraControllerThirdPersonAuto()
 //{
 //
 //}
 //
-//void CameraControllerThirdPerson::setChangeWorldMaxDistance()
+//void CameraControllerThirdPersonAuto::setChangeWorldMaxDistance()
 //{
 //	maxDistance=maxDistanceChangeWorld;
 //	targetHeight=changeWorldHeight;
 //}
-//void CameraControllerThirdPerson::setOriginalMaxDistance()
+//void CameraControllerThirdPersonAuto::setOriginalMaxDistance()
 //{
 //	maxDistance=originalMaxDistance;
 //	targetHeight=orignalHeight;
 //}
 //
-//void CameraControllerThirdPerson::calculateCurrentHeight(double elapsedTime)
+//void CameraControllerThirdPersonAuto::calculateCurrentHeight(double elapsedTime)
 //{
 //	if(currentHeight<(targetHeight-heightMargin))
 //	{
@@ -212,7 +209,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //}
 //
 //
-//void CameraControllerThirdPerson::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager)
+//void CameraControllerThirdPersonAuto::init(RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting,GameWorldManagerPtr pGameWorldManager)
 //{
 //	mSceneManager = pRenderSubsystem->getSceneManager();
 //
@@ -228,7 +225,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	CameraController::init(pRenderSubsystem->getSceneManager());
 //}
 //
-//Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(double distance,bool y_correction,bool applyCollisionMargin)
+//Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraPosition(double distance,bool y_correction,bool applyCollisionMargin)
 //{
 //	Ogre::Vector3 newCameraPosition;
 //
@@ -274,7 +271,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	return newCameraPosition;
 //}
 //
-//Ogre::Vector3 CameraControllerThirdPerson::calculateCameraLookAt()
+//Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraLookAt()
 //{
 //	Ogre::Vector3 cameraLookAt;
 //
@@ -284,7 +281,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	return cameraLookAt;
 //}
 //
-//bool CameraControllerThirdPerson::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
+//bool CameraControllerThirdPersonAuto::calculateCameraCollisions(Ogre::Vector3 & cameraPosition, Ogre::Vector3 & cameraLookAt, Ogre::uint32 & collisionType)
 //{
 //	Ogre::Vector3 direction;
 //	Ogre::Vector3 newCameraPosition;
@@ -328,7 +325,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	return hasBeenCollision;
 //}
 //
-//void CameraControllerThirdPerson::rotateX(double rotation)
+//void CameraControllerThirdPersonAuto::rotateX(double rotation)
 //{
 //	rotX+=rotation;
 //	//check if rotation exceeds limits
@@ -342,12 +339,12 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	}
 //}
 //
-//void CameraControllerThirdPerson::rotateY(double rotation)
+//void CameraControllerThirdPersonAuto::rotateY(double rotation)
 //{
 //	rotY+=rotation;
 //}
 //
-//void CameraControllerThirdPerson::calculateCollisionRotXNegative(double elapsedTime)
+//void CameraControllerThirdPersonAuto::calculateCollisionRotXNegative(double elapsedTime)
 //{
 //	if(lastRotX!=0)
 //	{
@@ -366,7 +363,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	}
 //}
 //
-//void CameraControllerThirdPerson::calculateCollisionRotXPositive(double elapsedTime)
+//void CameraControllerThirdPersonAuto::calculateCollisionRotXPositive(double elapsedTime)
 //{
 //	if(lastRotX!=0)
 //	{
@@ -385,7 +382,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	}
 //}
 //
-//void CameraControllerThirdPerson::calculateMotionBlur(double elapsedTime)
+//void CameraControllerThirdPersonAuto::calculateMotionBlur(double elapsedTime)
 //{
 //	if((Ogre::Math::Abs(lastRotX)>=mMinCameraRotationMotionBlurActivation) || (Ogre::Math::Abs(lastRotY)>=mMinCameraRotationMotionBlurActivation))
 //	{
@@ -400,7 +397,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	}
 //}
 //
-//void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
+//void CameraControllerThirdPersonAuto::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
 //{
 //	Vector3 cameraCollisionPosition;
 //	Vector3 newCameraPosition;
@@ -481,12 +478,12 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	calculateMotionBlur(elapsedTime);
 //}
 //
-//void CameraControllerThirdPerson::clear()
+//void CameraControllerThirdPersonAuto::clear()
 //{
 //	mTransparentEntityManager->clear();
 //}
 //
-//double CameraControllerThirdPerson::calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
+//double CameraControllerThirdPersonAuto::calculateCameraReturningFromTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
 //{
 //	double newCameraDistance;
 //
@@ -504,7 +501,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	return newCameraDistance;
 //}
 //
-//double CameraControllerThirdPerson::calculateCameraMoveToTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
+//double CameraControllerThirdPersonAuto::calculateCameraMoveToTarget(double currentCameraDistance, Ogre::Vector3 cameraPosition,Ogre::Vector3 newCameraPosition,double elapsedTime)
 //{
 //
 //	double newCameraDistance;
@@ -523,7 +520,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //}
 //
 //
-//void CameraControllerThirdPerson::processCameraRotation(Ogre::Vector2 cameraRotation)
+//void CameraControllerThirdPersonAuto::processCameraRotation(Ogre::Vector2 cameraRotation)
 //{
 //
 //	//process Relative Motion
@@ -547,13 +544,13 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	//Logger::getInstance()->log("rotations "+Ogre::StringConverter::toString(Ogre::Real(rotX))+" "+Ogre::StringConverter::toString(Ogre::Real(rotY)));
 //
 //}
-//void CameraControllerThirdPerson::setTarget(RenderComponentPositionalPtr target)
+//void CameraControllerThirdPersonAuto::setTarget(RenderComponentPositionalPtr target)
 //{
 //	this->target=target;
 //	reset();
 //}
 //
-//void CameraControllerThirdPerson::reset()
+//void CameraControllerThirdPersonAuto::reset()
 //{
 //	rotX=0;
 //	rotY=0;
@@ -570,7 +567,7 @@ void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,Came
 //	//mCamera->lookAt(calculateCameraLookAt());
 //}
 //
-//TCameraControllerType CameraControllerThirdPerson::getControllerType()
+//TCameraControllerType CameraControllerThirdPersonAuto::getControllerType()
 //{
 //	return OUAN::CAMERA_THIRD_PERSON;
 //}

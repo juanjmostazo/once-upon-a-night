@@ -13,7 +13,7 @@ namespace OUAN
 		virtual void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
 		virtual void loadInfo();
 		virtual TCameraControllerType getControllerType();
-		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		virtual void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
 	protected:
 
