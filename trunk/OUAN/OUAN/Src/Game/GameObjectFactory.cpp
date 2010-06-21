@@ -1232,7 +1232,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
 	//Set Ony as camera target
-	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
+	cameraMgr->setCameraTarget(pGameObjectOny->getPhysicsComponentCharacterOny());
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
@@ -2352,10 +2352,10 @@ GameObjectTriggerCameraPtr GameObjectFactory::createGameObjectTriggerCamera(TGam
 	pGameObjectTriggerCamera = GameObjectTriggerCameraPtr(new GameObjectTriggerCamera(tGameObjectTriggerCameraParameters.name));
 	
 	//Create LogicComponent
-	pGameObjectTriggerCamera->setLogicComponent(
-		mComponentFactory->createLogicComponentTrigger(
+	pGameObjectTriggerCamera->setLogicComponentTriggerCamera(
+		mComponentFactory->createLogicComponentTriggerCamera(
 		pGameObjectTriggerCamera,
-		tGameObjectTriggerCameraParameters.tLogicComponentParameters));
+		tGameObjectTriggerCameraParameters.tLogicComponentTriggerCameraParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectTriggerCamera->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(

@@ -119,6 +119,7 @@ namespace OUAN
 		TRenderComponentFractalVolumeParameters processRenderComponentFractalVolume(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		//TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
+		CameraParametersPtr processCameraParameters(TiXmlElement *XMLNode);
 
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
 		TRenderComponentPlaneParameters processRenderComponentPlane(TiXmlElement *XMLNode);
@@ -163,6 +164,8 @@ namespace OUAN
 		TLogicComponentPropParameters processLogicComponentProp(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentTriggerParameters processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		TLogicComponentTriggerCameraParameters processLogicComponentTriggerCamera(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 
 		//

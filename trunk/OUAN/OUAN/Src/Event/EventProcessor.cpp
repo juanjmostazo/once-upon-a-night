@@ -2,6 +2,8 @@
 
 #include "EventProcessor.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
+#include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/CameraManager/CameraParameters.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
@@ -77,6 +79,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
 			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
+
+		registerEventHandler<EventProcessor,ChangeCameraParametersEvent,EVENT_TYPE_CHANGE_CAMERA_PARAMETERS>
+			(this_,&EventProcessor::processChangeCameraParameters,mWorldManager->getEventManager());
 	}
 }
 
@@ -124,6 +129,9 @@ void EventProcessor::unregisterHandlers()
 		
 		unregisterEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
 			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
+
+		unregisterEventHandler<EventProcessor,ChangeCameraParametersEvent,EVENT_TYPE_CHANGE_CAMERA_PARAMETERS>
+			(this_,&EventProcessor::processChangeCameraParameters,mWorldManager->getEventManager());
 	}
 }
 
@@ -260,6 +268,7 @@ void EventProcessor::processEnterTrigger(EnterTriggerEventPtr evt)
 	{
 		 evt->getTrigger()->processEnterTrigger( evt->getGameObject());
 		 evt->getGameObject()->processEnterTrigger( evt->getTrigger());
+	//	 Logger::getInstance()->log("EventProcessor: processEnterTrigger (" + evt->getGameObject()->getName() + "," + evt->getTrigger()->getName() + ")");
 	}
 	else
 	{
@@ -273,6 +282,7 @@ void EventProcessor::processExitTrigger(ExitTriggerEventPtr evt)
 	{
 		 evt->getTrigger()->processExitTrigger( evt->getGameObject());
 		 evt->getGameObject()->processExitTrigger( evt->getTrigger());
+		// Logger::getInstance()->log("EventProcessor: processExitTrigger (" + evt->getGameObject()->getName() + "," + evt->getTrigger()->getName() + ")");
 	}
 	else
 	{
@@ -337,4 +347,9 @@ void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK));
 		Logger::getInstance()->log("CLEARING ATTACK FLAG");
 	}
+}
+
+void EventProcessor::processChangeCameraParameters(ChangeCameraParametersEventPtr evt)
+{
+	mWorldManager->getParent()->getCameraManager()->setCameraParameters(evt->pCameraParameters,evt->transition);
 }

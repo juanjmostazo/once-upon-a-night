@@ -1,14 +1,16 @@
 #include "OUAN_Precompiled.h"
 
 #include "CameraController.h"
+#include "CameraInput.h"
+#include "CameraParameters.h"
 #include "../RenderComponent/RenderComponentPositional.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 
 using namespace OUAN;
 using namespace Ogre;
 
 CameraController::CameraController()
 {
-	mCamera=0;
 }
 CameraController::~CameraController()
 {
@@ -18,48 +20,41 @@ void CameraController::init(Ogre::SceneManager * pSceneManager)
 {
 }
 
-void CameraController::setCamera(Camera * pCamera)
-{
-	mCamera=pCamera;
-}
-
-Camera * CameraController::getCamera()
-{
-	return mCamera;
-}
-
-void CameraController::update(double elapsedTime)
-{
-
-}
-
-void CameraController::processCameraRotation(Ogre::Vector2 cameraRotation)
-{
-
-}
-
-void CameraController::processSimpleTranslation(Ogre::Vector3 translation)
-{
-
-}
-
-void CameraController::setTarget(RenderComponentPositionalPtr target)
-{
-
-}
-
-void CameraController::reset()
-{
-}
-
-Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement)
-{
-	return movement;
-}
-
-
 TCameraControllerType CameraController::getControllerType()
 {
 	return OUAN::CAMERA_NONE;
 }
 
+void CameraController::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
+{
+
+}
+
+void CameraController::loadInfo()
+{
+
+}
+
+Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+{
+	return movement;
+}
+
+double CameraController::calculateDistanceToTarget(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool twoDimensions)
+{
+	Ogre::Vector3 targetPosition=pCameraInput->mTarget->getSceneNode()->getPosition();
+	Ogre::Vector3 cameraPosition=pCamera->getPosition();
+
+	if(twoDimensions)
+	{
+		cameraPosition.y=0.0f;
+		targetPosition.y=0.0f;
+	}
+
+	return cameraPosition.distance(targetPosition);
+}
+
+void CameraController::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+{
+
+}

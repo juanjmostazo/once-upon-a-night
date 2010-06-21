@@ -2,14 +2,21 @@
 
 #include "CameraControllerFirstPerson.h"
 #include "../RenderComponent/RenderComponentPositional.h"
+#include "CameraInput.h"
 
 using namespace OUAN;
 using namespace Ogre;
 
-CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
+CameraControllerFirstPerson::CameraControllerFirstPerson()
 {
-	//Set CameraControllerFirstPerson Initial Parameters
 
+}
+CameraControllerFirstPerson::~CameraControllerFirstPerson()
+{
+}
+
+void CameraControllerFirstPerson::init(Ogre::SceneManager * pSceneManager)
+{
 	rotX=0;
 	rotY=0;
 
@@ -17,36 +24,32 @@ CameraControllerFirstPerson::CameraControllerFirstPerson() : CameraController()
 	rotationSpeed=0.2;
 }
 
-CameraControllerFirstPerson::~CameraControllerFirstPerson()
-{
-}
-
 TCameraControllerType CameraControllerFirstPerson::getControllerType()
 {
 	return OUAN::CAMERA_FIRST_PERSON;
 }
 
-void CameraControllerFirstPerson::update(double elapsedTime)
+void CameraControllerFirstPerson::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
 {
+	processCameraRotation(pCameraInput->mRotation);
+	processSimpleTranslation(pCameraInput->mTranslation);
+
 	//Set camera orientation
 	Quaternion yaw(Radian(Degree(rotY)),Vector3::UNIT_Y);
 	Quaternion pitch(Radian(Degree(rotX)),Vector3::UNIT_X);
-	mCamera->setOrientation(yaw * pitch);
+	pCamera->setOrientation(yaw * pitch);
 
 	//Set camera position
-	mCamera->setPosition(mCamera->getPosition()+newTranslation);
+	pCamera->setPosition(pCamera->getPosition()+newTranslation);
 }
 
-void CameraControllerFirstPerson::setCamera(Ogre::Camera * pCamera)
+void CameraControllerFirstPerson::loadInfo()
 {
-	mCamera=pCamera;
-	rotX=mCamera->getOrientation().getPitch().valueDegrees();
-	rotY=mCamera->getOrientation().getYaw().valueDegrees();
+	CameraController::loadInfo();
 }
 
 void CameraControllerFirstPerson::processCameraRotation(Ogre::Vector2 cameraRotation)
 {
-
 	//process Relative Motion
 	if(cameraRotation.x==0 && cameraRotation.y==0) 
 	{
@@ -57,7 +60,6 @@ void CameraControllerFirstPerson::processCameraRotation(Ogre::Vector2 cameraRota
 		rotY-=cameraRotation.x*rotationSpeed;
 		rotX+=cameraRotation.y*rotationSpeed;
 	}
-
 }
 
 void CameraControllerFirstPerson::processSimpleTranslation(Ogre::Vector3 translation)

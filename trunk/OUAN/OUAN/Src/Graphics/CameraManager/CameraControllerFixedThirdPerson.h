@@ -9,19 +9,12 @@ namespace OUAN
 		CameraControllerFixedThirdPerson();
 		~CameraControllerFixedThirdPerson();
 
-		void update(double elapsedTime);
-		void setTarget(RenderComponentPositionalPtr target);
-		void setCamera(Ogre::Camera * pCamera);
-
-		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
-
+		void init(Ogre::SceneManager * pSceneManager);
+		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
+		void loadInfo();
 		TCameraControllerType getControllerType();
 
-		void calculateRotY();
 	private:
-
-
-		RenderComponentPositionalPtr target;
 		double rotY;
 		double height;
 	};

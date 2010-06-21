@@ -447,10 +447,6 @@
 				Name="Game"
 				>
 				<File
-					RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Src\Game\GameObjectFactory.cpp"
 					>
 				</File>
@@ -782,6 +778,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTriggerCamera.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.cpp"
 						>
 					</File>
@@ -942,6 +942,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedThirdPerson.cpp"
 						>
 					</File>
@@ -954,11 +958,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraInput.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\CameraParameters.cpp"
+						RelativePath=".\Src\Graphics\CameraManager\CameraParameters.cpp"
 						>
 					</File>
 					<File
@@ -1324,11 +1332,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraInput.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraManager.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\RenderComponent\CameraParameters.h"
+						RelativePath=".\Src\Graphics\CameraManager\CameraParameters.h"
 						>
 					</File>
 					<File
@@ -1881,6 +1893,10 @@
 								Name="VCCustomBuildTool"
 							/>
 						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTriggerCamera.h"
+						>
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.h"

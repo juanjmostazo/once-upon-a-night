@@ -9,23 +9,12 @@ namespace OUAN
 		CameraControllerTrajectory();
 		~CameraControllerTrajectory();
 
+		void init(Ogre::SceneManager * pSceneManager);
+		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
+		void loadInfo();
 		TCameraControllerType getControllerType();
 
-		void update(double elapsedTime);
-
-		void setTrajectory(Trajectory * pTrajectory);
-		Trajectory * getTrajectory() const;
-
-		void resetTrajectory();
-
-		void setCamera(Ogre::Camera * pCamera);
-		void init(Ogre::SceneManager * pSceneManager);
-
-		void detachCamera();
-	private:
-		Ogre::SceneManager * mSceneManager;
-		Ogre::SceneNode * mSceneNode;
-		Trajectory * mTrajectory;
+	protected:
 	};
 }
 

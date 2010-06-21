@@ -9,26 +9,19 @@ namespace OUAN
 		CameraControllerFirstPerson();
 		~CameraControllerFirstPerson();
 
+		void init(Ogre::SceneManager * pSceneManager);
+		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
+		void loadInfo();
 		TCameraControllerType getControllerType();
 
-		void update(double elapsedTime);
+	protected:
 		void processCameraRotation(Ogre::Vector2 cameraRotation);
+		void processSimpleTranslation(Ogre::Vector3 translation);
 
-		void processSimpleTranslation(Ogre::Vector3 nextMovement);
-		void setCamera(Ogre::Camera * pCamera);
-
-	private:
-
-		//camera relative rotation to X axe
 		double rotX;
-		//camera relative rotation to Y axe
 		double rotY;
-
-		//camera position speed
 		double speed;
-		//camera rotation speed
 		double rotationSpeed;
-
 		Vector3 newTranslation;
 	};
 }

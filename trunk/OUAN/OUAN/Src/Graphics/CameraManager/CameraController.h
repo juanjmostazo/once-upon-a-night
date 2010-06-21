@@ -10,21 +10,15 @@ namespace OUAN
 		~CameraController();
 
 		virtual void init(Ogre::SceneManager * pSceneManager);
-
-		virtual void setCamera(Ogre::Camera * pCamera);
+		virtual void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
+		virtual void loadInfo();
 		virtual TCameraControllerType getControllerType();
-
-		Ogre::Camera * getCamera();
-
-		virtual void update(double elapsedTime);
-		virtual void processCameraRotation(Ogre::Vector2 cameraRotation);
-		virtual void processSimpleTranslation(Ogre::Vector3 nextMovement);
-		virtual void setTarget(RenderComponentPositionalPtr target);
-		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
-
-		virtual void reset();
+		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		virtual void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
 	protected:
-		Ogre::Camera *mCamera;
+
+		double calculateDistanceToTarget(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool twoDimensions);
+
 	};
 }
 
