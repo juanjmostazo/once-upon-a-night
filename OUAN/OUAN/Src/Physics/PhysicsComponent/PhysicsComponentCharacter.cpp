@@ -2,6 +2,7 @@
 
 #include "PhysicsComponentCharacter.h"
 #include "../../RayCasting/RayCasting.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 
 using namespace OUAN;
 
@@ -94,7 +95,8 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	//This se must be called at the beginning of this function, 
 	//otherwise isWorthUpdating won't return a reliable result
 	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
-	setNextMovement(getOuternMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
+	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement().as<Ogre::Vector3>(), elapsedSeconds));
+	setNextMovement(getNextMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
 
 	if (!isWorthUpdating())
 	{

@@ -35,7 +35,7 @@ void CameraController::loadInfo()
 
 }
 
-Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds)
 {
 	return movement;
 }

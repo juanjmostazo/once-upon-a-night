@@ -55,7 +55,7 @@ namespace OUAN
 		void setCameraParameters(CameraParametersPtr pCameraParameters,bool transition);
 		void setDefaultCameraParameters(bool transition);
 
-		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,double elapsedSeconds);
 
 	private:
 		/// GameWorldManager
@@ -74,7 +74,8 @@ namespace OUAN
 
 		CameraController * mActiveCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
-		CameraControllerThirdPerson * mCameraControllerThirdPerson;
+		CameraControllerThirdPersonAuto * mCameraControllerThirdPersonAuto;
+		CameraControllerThirdPersonFree * mCameraControllerThirdPersonFree;
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
 		CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
 		CameraControllerTrajectory * mCameraControllerTrajectory;

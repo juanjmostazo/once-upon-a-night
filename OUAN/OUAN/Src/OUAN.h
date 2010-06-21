@@ -796,6 +796,7 @@ namespace OUAN
 
 		///Camera Manager
 		const std::string CAMERA_CFG="../../Config/camera-cfg.xml";
+		const std::string CAMERA_CONTROLLER_THIRD_PERSON_FREE_CFG="../../Config/camera-thirdfree-cfg.xml";
 		class CameraManager;
 		typedef boost::shared_ptr<CameraManager> CameraManagerPtr;
 
@@ -807,7 +808,8 @@ namespace OUAN
 
 		class CameraController;
 		class CameraControllerFirstPerson;
-		class CameraControllerThirdPerson;
+		class CameraControllerThirdPersonAuto;
+		class CameraControllerThirdPersonFree;
 		class CameraControllerFixedFirstPerson;
 		class CameraControllerFixedThirdPerson;
 		class CameraControllerTrajectory;
@@ -826,7 +828,8 @@ namespace OUAN
 			CAMERA_FIXED_FIRST_PERSON,
 			CAMERA_FIXED_THIRD_PERSON,
 			CAMERA_FIRST_PERSON,
-			CAMERA_THIRD_PERSON,
+			CAMERA_THIRD_PERSON_AUTO,
+			CAMERA_THIRD_PERSON_FREE,
 			CAMERA_TRAJECTORY
 		}TCameraControllerType;
 
