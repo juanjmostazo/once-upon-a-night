@@ -149,7 +149,10 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 		{
 			for (i=0;i<container->size();i++)
 			{
-				container->at(i)->updatePhysicsComponents(elapsedSeconds);
+				if (container->at(i)->isWorthUpdatingPhysicsComponents())
+				{
+					container->at(i)->updatePhysicsComponents(elapsedSeconds);
+				}
 			}
 		}
 	}

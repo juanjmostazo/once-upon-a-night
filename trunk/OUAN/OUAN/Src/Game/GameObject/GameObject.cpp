@@ -454,16 +454,16 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 {
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	return mMaxUpdateRadio > 0 &&
-		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;
+	return mMaxUpdateRadio < 0 || !getPositionalComponent() || 
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
 }
 
 bool GameObject::isWorthUpdatingLogicComponents()
 {
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	return mMaxUpdateRadio > 0 &&
-		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;
+	return mMaxUpdateRadio < 0 || !getPositionalComponent() ||
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
 }
 
 //-------------------------------------------------------
