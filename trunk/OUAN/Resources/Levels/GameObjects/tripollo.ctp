@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
+ 
+  <PROPERTY id="CustomAttribute::maxUpdateRadio" type="6" value="40" fields="X;Y;Z;W"></PROPERTY>
+
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
@@ -12,7 +15,7 @@
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY> 
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY> ¡
 
   <!-- Available attacks -->
   <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>

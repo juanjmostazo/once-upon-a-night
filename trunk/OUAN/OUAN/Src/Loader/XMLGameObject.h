@@ -5,7 +5,6 @@
 
 namespace OUAN
 {
-
 	class XMLGameObject
 	{
 	public:
@@ -23,9 +22,7 @@ namespace OUAN
 		//Returns gameObject->XMLDreamsNode if object exist both in dreams and nightmares, 
 		//gameObject->XMLNightmaresNode if only exists on nightmares and  gameObject->XMLDreamsNode if only exists in dreams
 		TiXmlElement * getMainXMLNode();
-
 	};
-
 }
 
 #endif // XMLGAMEOBJECTH_H

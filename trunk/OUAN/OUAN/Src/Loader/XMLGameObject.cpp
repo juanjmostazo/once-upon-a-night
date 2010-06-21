@@ -13,6 +13,7 @@ XMLGameObject::XMLGameObject()
 
 XMLGameObject::~XMLGameObject()
 {
+
 }
 
 TiXmlElement * XMLGameObject::getMainXMLNode()

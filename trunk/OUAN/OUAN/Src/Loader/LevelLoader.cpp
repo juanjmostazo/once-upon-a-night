@@ -593,6 +593,7 @@ TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElemen
 void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectBee_ButterflyParameters tGameObjectBee_ButterflyParameters;
+	tGameObjectBee_ButterflyParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -642,6 +643,7 @@ void LevelLoader::processGameObjectBee_Butterfly(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectBillboardSetParameters  tGameObjectBillboardSetParameters;
+	tGameObjectBillboardSetParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -685,6 +687,7 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectBushParameters tGameObjectBushParameters;
+	tGameObjectBushParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -732,6 +735,7 @@ void LevelLoader::processGameObjectBush(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters;
+	tGameObjectCarnivorousPlantParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -780,6 +784,7 @@ void LevelLoader::processGameObjectCarnivorousPlant(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectClockPieceParameters tGameObjectClockPieceParameters;
+	tGameObjectClockPieceParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -823,6 +828,7 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectCryKingParameters tGameObjectCryKingParameters;
+	tGameObjectCryKingParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -868,6 +874,7 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectDiamondParameters tGameObjectDiamondParameters;
+	tGameObjectDiamondParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -936,6 +943,7 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters;
+	tGameObjectDiamondTreeParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -988,6 +996,7 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectDoorParameters tGameObjectDoorParameters;
+	tGameObjectDoorParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1032,6 +1041,7 @@ void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectDragonParameters tGameObjectDragonParameters;
+	tGameObjectDragonParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1077,6 +1087,7 @@ void LevelLoader::processGameObjectDragon(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectEyeParameters tGameObjectEyeParameters;
+	tGameObjectEyeParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1118,6 +1129,7 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectFlashLightParameters tGameObjectFlashLightParameters;
+	tGameObjectFlashLightParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1182,6 +1194,7 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectFog(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectFogParameters tGameObjectFogParameters;
+	tGameObjectFogParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1230,6 +1243,7 @@ void LevelLoader::processGameObjectFog(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectHeartParameters tGameObjectHeartParameters;
+	tGameObjectHeartParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1270,6 +1284,7 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
+	tGameObjectItem1UPParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1310,6 +1325,7 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
+	tGameObjectItemMaxHPParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1349,6 +1365,7 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectLightParameters  tGameObjectLightParameters;
+	tGameObjectLightParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1384,6 +1401,7 @@ void LevelLoader::processGameObjectLight(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectMagicClockParameters tGameObjectMagicClockParameters;
+	tGameObjectMagicClockParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1413,6 +1431,7 @@ void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters;
+	tGameObjectNightGoblinParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1457,6 +1476,7 @@ void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectOnyParameters tGameObjectOnyParameters;
+	tGameObjectOnyParameters.maxUpdateRadio = -1;
 
 	try
 	{
@@ -1469,7 +1489,7 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		tGameObjectOnyParameters.dreamsName = gameObject->dreamsName;
 		tGameObjectOnyParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectOnyParameters.name = gameObject->name;
-
+		
 		//Get logic component
 		tGameObjectOnyParameters.tLogicComponentOnyParameters=processLogicComponentOny(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
@@ -1503,12 +1523,12 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectOny(tGameObjectOnyParameters);
 	mGameWorldManager->addGameObjectOny(mGameObjectFactory->createGameObjectOny(tGameObjectOnyParameters,mGameWorldManager,
 		mGameWorldManager->getParent()->getCameraManager()));
-
 }
 
 void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters;
+	tGameObjectParticleSystemParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1544,6 +1564,7 @@ void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectPillowParameters tGameObjectPillowParameters;
+	tGameObjectPillowParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1586,6 +1607,7 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectPlane(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectPlaneParameters  tGameObjectPlaneParameters;
+	tGameObjectPlaneParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1620,8 +1642,10 @@ void LevelLoader::processGameObjectPlane(XMLGameObject* gameObject)
 
 void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectPlataformParameters tGameObjectPlataformParameters;
 	std::string meshfile;
+
+	OUAN::TGameObjectPlataformParameters tGameObjectPlataformParameters;
+	tGameObjectPlataformParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1679,6 +1703,8 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectPortalParameters tGameObjectPortalParameters;
+	tGameObjectPortalParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 	try
 	{
 		//Check parsing errors
@@ -1729,6 +1755,7 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectProvisionalEntityParameters tGameObjectProvisionalEntityParameters;
+	tGameObjectProvisionalEntityParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1778,6 +1805,7 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectScaredPlantParameters tGameObjectScaredPlantParameters;
+	tGameObjectScaredPlantParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1820,6 +1848,7 @@ void LevelLoader::processGameObjectScaredPlant(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSceneParameters tGameObjectSceneParameters;
+	tGameObjectSceneParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1847,6 +1876,7 @@ void LevelLoader::processGameObjectScene(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectScepterParameters tGameObjectScepterParameters;
+	tGameObjectScepterParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1886,6 +1916,7 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 {
 	TGameObjectSkyBodyParameters params;
+	params.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -1968,6 +1999,7 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSnakeCreeperParameters tGameObjectSnakeCreeperParameters;
+	tGameObjectSnakeCreeperParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2017,6 +2049,7 @@ void LevelLoader::processGameObjectSnakeCreeper(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectStoryBookParameters tGameObjectStoryBookParameters;
+	tGameObjectStoryBookParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2057,6 +2090,7 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTentetieso(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTentetiesoParameters tGameObjectTentetiesoParameters;
+	tGameObjectTentetiesoParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2123,6 +2157,8 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,complexConvex))
 		{
 			OUAN::TGameObjectTerrainConvexParameters  tGameObjectTerrainConvexParameters;
+			tGameObjectTerrainConvexParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 			try
 			{
 				//Get names
@@ -2169,6 +2205,8 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 		else if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,complexTriangle))
 		{
 			OUAN::TGameObjectTerrainTriangleParameters  tGameObjectTerrainTriangleParameters;
+			tGameObjectTerrainTriangleParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 			try
 			{
 				//Check parsing errors
@@ -2224,6 +2262,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTreeParameters tGameObjectTreeParameters;
+	tGameObjectTreeParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2264,6 +2303,7 @@ void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTreeComplex(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTreeComplexParameters tGameObjectTreeComplexParameters;
+	tGameObjectTreeComplexParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2306,6 +2346,7 @@ void LevelLoader::processGameObjectTreeComplex(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTower(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTowerParameters tGameObjectTowerParameters;
+	tGameObjectTowerParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2353,6 +2394,8 @@ void LevelLoader::processGameObjectTower(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTriggerBoxParameters tGameObjectTriggerBoxParameters;
+	tGameObjectTriggerBoxParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 	try
 	{
 		//Check parsing errors
@@ -2390,6 +2433,8 @@ void LevelLoader::processGameObjectTriggerBox(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters;
+	tGameObjectTriggerCapsuleParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 	try
 	{
 		//Check parsing errors
@@ -2428,6 +2473,8 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTriggerCameraParameters tGameObjectTriggerCameraParameters;
+	tGameObjectTriggerCameraParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 	try
 	{
 		//Check parsing errors
@@ -2465,6 +2512,7 @@ void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTripollitoParameters tGameObjectTripollitoParameters;
+	tGameObjectTripollitoParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2513,6 +2561,7 @@ void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters;
+	tGameObjectTripolloDreamsParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2564,6 +2613,8 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectViewportParameters tGameObjectViewportParameters;
+	tGameObjectViewportParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
 	try
 	{
 		//Check parsing errors
@@ -2587,8 +2638,10 @@ void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
 
 void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters;
 	std::string meshfile;
+
+	OUAN::TGameObjectWoodBoxParameters tGameObjectWoodBoxParameters;
+	tGameObjectWoodBoxParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2646,6 +2699,7 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 void LevelLoader::processGameObjectSound(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectSoundParameters  params;
+	params.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2727,6 +2781,7 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,volumeConvex))
 		{
 			OUAN::TGameObjectWaterParameters  tGameObjectWaterParameters;
+			tGameObjectWaterParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 			//Get names
 			tGameObjectWaterParameters.dreamsName = gameObject->dreamsName;
@@ -4382,12 +4437,14 @@ Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_na
 {
 	 return StringConverter::parseReal(getPropertyString(XMLNode,attrib_name,logErrors));
 }
+
 int LevelLoader::getGameObjectsNumber()
 {
 	if (!mXMLParser.mXMLGameObjectContainer.empty())
 		return mXMLParser.mXMLGameObjectContainer.size();
 	return 0;
 }
+
 void LevelLoader::initializeParser(const std::string& levelFilename)
 {
 	//clear parser content
@@ -4396,14 +4453,17 @@ void LevelLoader::initializeParser(const std::string& levelFilename)
 	//Parse Level's GameObjects
 	mXMLParser.parseLevel(levelFilename);
 }
+
 XMLGameObjectContainerIterator LevelLoader::getGameObjectIterator()
 {
 	return mXMLParser.mXMLGameObjectContainer.begin();
 }
+
 XMLGameObjectContainerIterator LevelLoader::getGameObjectIteratorEnd()
 {
 	return mXMLParser.mXMLGameObjectContainer.end();
 }
+
 void LevelLoader::clearXMLParser()
 {
 	mXMLParser.clearLevelInfo();
@@ -4857,3 +4917,22 @@ void LevelLoader::processGameObjectFractalClouds()
 		Logger::getInstance()->log("ERROR! [LevelLoader] Error processing FRACTAL CLOUD CFG FILE");
 	}
 }
+
+double LevelLoader::processCustomAttributeMaxUpdateRadio(XMLGameObject* gameObject)
+{
+	double maxUpdateRadio = DEFAULT_MAX_UPDATE_RADIO;
+
+	if (gameObject->XMLNodeCustomProperties)
+	{
+		try{
+			maxUpdateRadio = getPropertyReal(gameObject->XMLNodeCustomProperties, "CustomAttribute::maxUpdateRadio");
+		}
+		catch(std::string error)
+		{
+			
+		}
+	}
+
+	return maxUpdateRadio;
+}
+

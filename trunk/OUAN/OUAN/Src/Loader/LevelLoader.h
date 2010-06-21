@@ -171,6 +171,9 @@ namespace OUAN
 		//
 		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);
 
+		//
+		double processCustomAttributeMaxUpdateRadio(XMLGameObject* gameObject);
+
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 
 		OUAN::String getPropertyString(TiXmlElement *XMLNode, const OUAN::String &attrib_name, bool logErrors=true);

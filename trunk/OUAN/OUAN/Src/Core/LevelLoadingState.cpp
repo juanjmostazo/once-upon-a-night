@@ -177,6 +177,7 @@ void LevelLoadingState::processStage(const TLoadingStage& stage)
 	{
 		currentRightCorner+=stage.stagePercent*mTotalWidth;
 	}
+
 	mBar->detatchFromParent();
 	delete mBar;
 	mBar= new Ogre::Rectangle2D(true);
@@ -185,18 +186,17 @@ void LevelLoadingState::processStage(const TLoadingStage& stage)
 	mBar->setBoundingBox(Ogre::AxisAlignedBox::BOX_INFINITE);
 	mApp->getRenderSubsystem()->getSceneManager()->getSceneNode(LEVELLOAD_BAR_NODE)->attachObject(mBar);
 	mBar->setMaterial(LEVELLOAD_BAR_MATERIAL_NAME);
-	
-
 }
 void LevelLoadingState::unloadAll()
 {
 	mApp->getGameWorldManager()->unloadLevel();
-
 }
 void LevelLoadingState::initPhysics()
 {
 	if (!mLevelFilename.empty())
+	{
 		mApp->getPhysicsSubsystem()->initLevel(mLevelFilename);
+	}
 }
 void LevelLoadingState::resetTrajectories()
 {
@@ -204,7 +204,6 @@ void LevelLoadingState::resetTrajectories()
 }
 void LevelLoadingState::initParser()
 {
-
 	mApp->getLevelLoader()->initializeParser(mLevelFilename);
 }
 void LevelLoadingState::processGameObjects()

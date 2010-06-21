@@ -23,16 +23,18 @@
 
 #include "../Utils/Utils.h"
 
-
 using namespace OUAN;
+
 LogicSubsystem::LogicSubsystem()
 {
 
 }
+
 LogicSubsystem::~LogicSubsystem()
 {
 
 }
+
 void LogicSubsystem::init(ApplicationPtr app)
 {
 	mApp=app;
@@ -43,6 +45,7 @@ void LogicSubsystem::init(ApplicationPtr app)
 	registerModules();
 	//loadScripts();
 }
+
 void LogicSubsystem::registerModules()
 {
 	using namespace luabind;
@@ -86,8 +89,8 @@ void LogicSubsystem::registerModules()
 			.def("hasTakenHit", &LogicComponentProp::hasTakenHit)
 			.def("isReloadSet", &LogicComponentProp::isReload)
 	];
-
 }
+
 void LogicSubsystem::loadScripts()
 {
 	loadScript(SCRIPTS_PATH+"/"+SCRIPT_COMMON_FUNCTIONS);

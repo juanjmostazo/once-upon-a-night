@@ -1355,6 +1355,16 @@ GameObjectOnyPtr GameWorldManager::getGameObjectOny()
 	return nullPtr;
 }
 
+Ogre::Vector3 GameWorldManager::getGameObjectOnyPosition()
+{
+	if (!mGameObjectOnyContainer.empty())
+	{
+		return mGameObjectOnyContainer[0]->getRenderComponentPositional()->getPosition();
+	}
+
+	return Ogre::Vector3(0,0,0);
+}
+
 GameObjectViewportPtr GameWorldManager::getGameObjectViewport()
 {
 	if (!mGameObjectViewportContainer.empty())
