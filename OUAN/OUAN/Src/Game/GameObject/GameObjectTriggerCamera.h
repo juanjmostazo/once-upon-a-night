@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-#include "../../Logic/LogicComponent/LogicComponentTrigger.h"
+#include "../../Logic/LogicComponent/LogicComponentTriggerCamera.h"
 
 namespace OUAN
 {
@@ -24,8 +24,9 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentTriggerPtr mLogicComponent;
+		LogicComponentTriggerCameraPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
 	public:
 		//Constructor
 		GameObjectTriggerCamera(const std::string& name);
@@ -39,10 +40,10 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 		/// Set logic component
-		void setLogicComponent(LogicComponentTriggerPtr logicComponent);
+		void setLogicComponentTriggerCamera(LogicComponentTriggerCameraPtr logicComponent);
 
 		/// return logic component
-		LogicComponentTriggerPtr getLogicComponent();
+		LogicComponentTriggerCameraPtr getLogicComponentTriggerCamera();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -85,7 +86,6 @@ namespace OUAN
 		PhysicsComponentPtr getPhysicsComponent() const;
 
 
-
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processCollision(GameObjectPtr pGameObject);
@@ -119,7 +119,8 @@ namespace OUAN
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
-		TLogicComponentTriggerParameters tLogicComponentParameters;
+		TLogicComponentTriggerCameraParameters tLogicComponentTriggerCameraParameters;
+
 	};
 }
 #endif

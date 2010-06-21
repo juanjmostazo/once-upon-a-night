@@ -317,14 +317,15 @@ void GameRunningState::handleEvents()
 		//	currentState = CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
 		//}
 
-		if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIRST_PERSON)
+		if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIRST_PERSON)
 		{
 			mApp->getCameraManager()->processSimpleTranslation(outernMovement);
 		}
-		else if(mApp->getCameraManager()->getActiveCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
+		else if(mApp->getCameraManager()->getCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
+
 			outernMovement=mApp->getCameraManager()->rotateMovementVector(outernMovement);
 			ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
 			
@@ -605,7 +606,7 @@ void GameRunningState::changeCameraController()
 	Logger::getInstance()->log("ToggleChangeCameraController key pressed");
 
 	mApp->getCameraManager()->changeCameraController();
-	if(mApp->getCameraManager()->getActiveCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
+	if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
 		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
 	else
 		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);

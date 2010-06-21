@@ -416,7 +416,6 @@ void GameWorldManager::initGame()
 
 	dispatchEvents();
 
-	mApp->getCameraManager()->resetActiveCameraController();
 	mApp->getRenderSubsystem()->initChangeWorldRenderer();
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
@@ -506,8 +505,6 @@ void GameWorldManager::unloadLevel()
 	}
 	mApp->getRenderSubsystem()->clear();
 	mApp->getTrajectoryManager()->clear();
-	mApp->getCameraManager()->clear();
-
 
 	TGameObjectContainerIterator it;
 	TGameObjectContainer * container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
@@ -604,7 +601,7 @@ void GameWorldManager::resetAll()
 	setWorld(DREAMS);
 
 	mApp->getCameraManager()->setCameraTarget(
-		getGameObjectOny()->getRenderComponentPositional());
+		getGameObjectOny()->getPhysicsComponentCharacterOny());
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }

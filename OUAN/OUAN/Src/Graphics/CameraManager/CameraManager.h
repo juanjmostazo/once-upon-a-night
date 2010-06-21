@@ -10,54 +10,52 @@ namespace OUAN
 		CameraManager();
 		~CameraManager();
 
+		/// Init resources
 		void init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPtr pTrajectoryManager,PhysicsSubsystemPtr pPhysicsSubsystem,RayCastingPtr pRayCasting, GameWorldManagerPtr pGameWorldManager);
 
 		/// Free resources
 		void cleanUp();
 
-		//void createCamera(std::string name,TRenderComponentCameraParameters tRenderComponentCameraParameters);
+		/// Return read-only pointer to the camera
+		/// @return camera
+		Ogre::Camera * getCamera() const;
+		/// Return read-only pointer to the viewport
+		/// @return viewport
+		Ogre::Viewport* getViewport() const;
 
-		void clear();
-
-		Ogre::Camera * getCamera(std::string name);
-
+		//Set camera controller type
 		void setCameraType(TCameraControllerType cameraControllerType);
+		//Returns camera controller type
+		TCameraControllerType getCameraControllerType() const;
 
 		void update(double elapsedTime);
 
 		void processMouseInput(const OIS::MouseEvent &e);
-		void processCameraRotation(Ogre::Vector2 cameraRotation);
-		void processSimpleTranslation(Ogre::Vector3 nextMovement);
-
-		void resetActiveCameraController();
-
-		// Process a movement vector in order to fit with the current active camera.
-		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
-
-		/// Return read-only pointer to the viewport
-		/// @return viewport
-		Ogre::Viewport* getViewport() const;
+		void processCameraRotation(Ogre::Vector2 rotation);
+		void processSimpleTranslation(Ogre::Vector3 translation);
 
 		/// Activates next camera controller type
 		void changeCameraController();
 
 		//Sets camera target for applicable controllers
-		void setCameraTarget(RenderComponentPositionalPtr target);
+		void setCameraTarget(PhysicsComponentCharacterPtr pTarget);
 
 		//Sets camera trajectory for trajectory controller
 		void setCameraTrajectory(std::string name);
 
-		//Returns active camera controller type
-		TCameraControllerType getActiveCameraControllerType();
-
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
-
-		Ogre::Camera * getCamera() const;
 
 		//register/unregister
 		void registerEventHandlers(EventManagerPtr evtMgr);
 		void unregisterEventHandlers(EventManagerPtr evtMgr);
+
+		//event handlers
 		void processChangeWorld(ChangeWorldEventPtr evt);
+
+		void setCameraParameters(CameraParametersPtr pCameraParameters,bool transition);
+		void setDefaultCameraParameters(bool transition);
+
+		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement);
 
 	private:
 		/// GameWorldManager
@@ -74,7 +72,7 @@ namespace OUAN
 
 		Ogre::Camera * mCamera;
 
-		CameraController * activeCameraController;
+		CameraController * mActiveCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
 		CameraControllerThirdPerson * mCameraControllerThirdPerson;
 		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
@@ -92,6 +90,10 @@ namespace OUAN
 		double mChangeWorldElapsedTime;
 		bool mIsChangingWorld;
 		int mWorld;
+
+		CameraInputPtr mCameraInput;
+
+		PhysicsComponentCharacterPtr mTarget;
 
 		
 	};

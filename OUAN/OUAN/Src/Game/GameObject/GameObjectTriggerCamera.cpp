@@ -3,6 +3,7 @@
 #include "GameObjectTriggerCamera.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Logic/LogicComponent/LogicComponentTriggerCamera.h"
 
 using namespace OUAN;
 
@@ -152,13 +153,13 @@ bool GameObjectTriggerCamera::hasPositionalComponent() const
 }
 
 /// Set logic component
-void GameObjectTriggerCamera::setLogicComponent(LogicComponentTriggerPtr logicComponent)
+void GameObjectTriggerCamera::setLogicComponentTriggerCamera(LogicComponentTriggerCameraPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentTriggerPtr GameObjectTriggerCamera::getLogicComponent()
+LogicComponentTriggerCameraPtr GameObjectTriggerCamera::getLogicComponentTriggerCamera()
 {
 	return mLogicComponent;
 }

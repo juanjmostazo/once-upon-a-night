@@ -117,7 +117,7 @@ void MainMenuState::gotoPlay()
 	//GameStatePtr nextState(new GameRunningState());
 	//GameStatePtr nextState(new LevelLoadingState());
 	LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
-	levelLoadingState->setLevelFileName(LEVEL_CLOCK);
+	levelLoadingState->setLevelFileName(LEVEL_2);
 	mApp->getGameStateManager()->changeState(levelLoadingState,mApp);	
 }
 

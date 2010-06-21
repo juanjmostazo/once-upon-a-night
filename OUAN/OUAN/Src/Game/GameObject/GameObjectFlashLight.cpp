@@ -216,7 +216,7 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 
 		camera=mCameraManager->getCamera();
 
-		if(mCameraManager->getActiveCameraControllerType()==CAMERA_THIRD_PERSON)
+		if(mCameraManager->getCameraControllerType()==CAMERA_THIRD_PERSON)
 		{
 			//mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
 			//mRenderComponentPositional->setOrientation(camera->getOrientation());

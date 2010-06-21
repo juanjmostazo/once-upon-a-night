@@ -235,3 +235,8 @@ const std::string& AttackEndedEvent::getAttackName() const
 {
 	return mAttackName;
 }
+//---------
+ChangeCameraParametersEvent::ChangeCameraParametersEvent()
+:Event(EVT_PRIORITY_CHANGE_CAMERA_PARAMETERS, EVENT_TYPE_CHANGE_CAMERA_PARAMETERS)
+{
+}

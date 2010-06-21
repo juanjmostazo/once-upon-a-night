@@ -64,6 +64,7 @@
 #include "../Game/GameObject/GameObjectWater.h"
 
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/CameraManager/CameraParameters.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -2410,7 +2411,7 @@ void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
 		tGameObjectTriggerCameraParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectTriggerCameraParameters.tLogicComponentParameters=processLogicComponentTrigger(gameObject->XMLNodeDreams,
+		tGameObjectTriggerCameraParameters.tLogicComponentTriggerCameraParameters=processLogicComponentTriggerCamera(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
@@ -3301,6 +3302,24 @@ TRenderComponentPlaneParameters LevelLoader::processRenderComponentPlane(TiXmlEl
 	return tRenderComponentPlaneParameters;
 }
 
+CameraParametersPtr LevelLoader::processCameraParameters(TiXmlElement *XMLNode)
+{
+	CameraParametersPtr pCameraParameters;
+
+	pCameraParameters.reset(new CameraParameters());
+
+	pCameraParameters->mDirection=getPropertyVector3(XMLNode, "CameraParameters::Direction");
+	pCameraParameters->mMinDistance=getPropertyReal(XMLNode, "CameraParameters::MinDistance");
+	pCameraParameters->mMaxDistance=getPropertyReal(XMLNode, "CameraParameters::MaxDistance");
+	pCameraParameters->mMinH=getPropertyReal(XMLNode, "CameraParameters::MinH");
+	pCameraParameters->mMaxH=getPropertyReal(XMLNode, "CameraParameters::MaxH");
+	pCameraParameters->mFollowZoom=getPropertyBool(XMLNode, "CameraParameters::FollowZoom");
+	pCameraParameters->mFollowPan=getPropertyBool(XMLNode, "CameraParameters::FollowPan");
+	pCameraParameters->mPlayerAutoCenter=getPropertyBool(XMLNode, "CameraParameters::PlayerAutoCenter");
+
+	return pCameraParameters;
+}
+
 TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix)
 {
 	TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
@@ -3847,6 +3866,37 @@ TLogicComponentPropParameters LevelLoader::processLogicComponentProp(TiXmlElemen
 		}
 	}
 	return logicComponentPropParameters;
+}
+
+TLogicComponentTriggerCameraParameters LevelLoader::processLogicComponentTriggerCamera(TiXmlElement *XMLNodeDreams,
+			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentTriggerCameraParameters logicComponentTriggerCameraParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentTriggerCameraParameters.existsInDreams=true;
+		logicComponentTriggerCameraParameters.existsInNightmares=true;
+		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeDreams);
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		logicComponentTriggerCameraParameters.existsInDreams=true;
+		logicComponentTriggerCameraParameters.existsInNightmares=false;
+		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeDreams);
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentTriggerCameraParameters.existsInDreams=false;
+		logicComponentTriggerCameraParameters.existsInNightmares=true;
+		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeNightmares);
+	}
+
+
+
+	return logicComponentTriggerCameraParameters;
 }
 TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)

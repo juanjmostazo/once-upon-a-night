@@ -273,6 +273,10 @@ namespace OUAN
 		class TLogicComponentTriggerParameters;
 		typedef boost::shared_ptr<LogicComponentTrigger> LogicComponentTriggerPtr;
 
+		class LogicComponentTriggerCamera;
+		class TLogicComponentTriggerCameraParameters;
+		typedef boost::shared_ptr<LogicComponentTriggerCamera> LogicComponentTriggerCameraPtr;
+
 		class LogicComponent;
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
@@ -306,6 +310,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_LOGIC_PROP="LogicComponentProp";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
+		const std::string COMPONENT_TYPE_LOGIC_TRIGGER_CAMERA="LogicComponentTriggerCamera";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -793,6 +798,12 @@ namespace OUAN
 		const std::string CAMERA_CFG="../../Config/camera-cfg.xml";
 		class CameraManager;
 		typedef boost::shared_ptr<CameraManager> CameraManagerPtr;
+
+		class CameraParameters;
+		typedef boost::shared_ptr<CameraParameters> CameraParametersPtr;
+
+		class CameraInput;
+		typedef boost::shared_ptr<CameraInput> CameraInputPtr;
 
 		class CameraController;
 		class CameraControllerFirstPerson;

@@ -497,32 +497,34 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeco
 
 	if (getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0) 
 	{
-		Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");
-		
-		Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
-		Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
+		//Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");
+		//
+		//Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
+		//Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
 
-		Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
-		Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
-		Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
-		Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
-		Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
+		//Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
+		//Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
+		//Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
+		//Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
+		//Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
 
-		Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
-		Logger::getInstance()->log("PPC: mJumpingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingSpeed)));
-		Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
-		Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
+		//Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
+		//Logger::getInstance()->log("PPC: mJumpingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingSpeed)));
+		//Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
+		//Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
 
-		Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
-		Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
-		
-		Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
-		Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
-		Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
+		//Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
+		//Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		//
+		//Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
+		//Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
 
-		Logger::getInstance()->log("PPC: elapsedSeconds -> " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
-		
-		Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
+		//Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
+
+		//Logger::getInstance()->log("PPC: elapsedSeconds -> " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+		//
+		//Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
+
 	}
 }
 
