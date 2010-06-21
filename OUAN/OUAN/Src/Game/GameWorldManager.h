@@ -8,6 +8,8 @@ namespace OUAN
 	class GameObjectSound;
 	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
 
+	typedef std::map<std::string, std::string> TDiamondTreeLinkMap;
+
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
 	class GameWorldManager: public boost::enable_shared_from_this<GameWorldManager>
@@ -277,6 +279,14 @@ namespace OUAN
 
 		double CHANGE_WORLD_RADIUM;
 
+		// Add a diamond tree-diamond link.
+		// Since the order the game objects are processed in can't be resolved, 
+		// we need to keep track of the names, so the objects can be attached when 
+		// the whole level has been loaded.
+		void addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree);
+		// Append child diamonds to a diamond tree, and link the parent to its children)
+		void resolveDiamondTreeLinks();
+
 	private:		
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
@@ -378,6 +388,10 @@ namespace OUAN
 		GameWorldManagerPtr mThis;
 
 		static GameWorldManager* mInst;
+
+		//Keys contain the game object diamonds bound to a tree; 
+		//Values, the trees.
+		std::map<std::string, std::string> mDiamondTreeLinks;
 	};
 }
 #endif

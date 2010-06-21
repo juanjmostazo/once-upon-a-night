@@ -893,6 +893,34 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 		//Get PhysicsComponentVolumeBox
 		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
 
+		tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(
+			gameObject->XMLNodeCustomProperties);
+		
+		//Process simple box initial velocity per instance
+		try
+		{
+			Vector3 initialVelocity = getPropertyVector3(gameObject->getMainXMLNode(), 
+				"PhysicsComponentSimpleBox::initialVelocity");
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityX=initialVelocity.x;
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityY=initialVelocity.y;
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityZ=initialVelocity.z;
+		}
+		catch (const std::string&)
+		{
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityX=0;
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityY=0;
+			tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters.initVelocityZ=0;
+		}
+
+		try
+		{
+			tGameObjectDiamondParameters.tParentDiamondTree=getPropertyString(gameObject->getMainXMLNode(),"ParentDiamondTree",false);
+		}
+		catch (const std::string&)
+		{
+			tGameObjectDiamondParameters.tParentDiamondTree="";
+		}
+
 	}
 	catch( std::string error )
 	{

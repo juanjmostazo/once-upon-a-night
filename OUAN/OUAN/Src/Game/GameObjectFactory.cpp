@@ -544,6 +544,22 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters, 
 		pGameObjectDiamond->getRenderComponentPositional()));
 
+	//Create PhysicsComponent
+	pGameObjectDiamond->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
+		pGameObjectDiamond, 
+		tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectDiamond->getRenderComponentPositional()));
+
+	//pGameObjectDiamond->getPhysicsComponentSimpleBox()->destroy();
+
+	if (!tGameObjectDiamondParameters.tParentDiamondTree.empty())
+	{
+		pGameObjectDiamond->setParentDiamondTreeName(tGameObjectDiamondParameters.tParentDiamondTree);
+		gameWorldMgr->addDiamondTreeLink(pGameObjectDiamond->getName(),
+			tGameObjectDiamondParameters.tParentDiamondTree);
+	}	
+
 	//Add reference to this
 	pGameObjectDiamond->setGameWorldManager(gameWorldMgr);
 

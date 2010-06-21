@@ -24,6 +24,7 @@ namespace OUAN
 
 	protected:
 		NxOgre::Vec3 mNxOgreSize;
+		NxOgre::Box* mBox;
 
 	};
 

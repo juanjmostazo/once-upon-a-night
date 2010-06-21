@@ -18,11 +18,17 @@ namespace OUAN
 		NxOgre::Vec3 getNxOgreSize();
 		void setNxOgreSize(NxOgre::Vec3 pNxOgreSize);
 
+		NxOgre::Vec3 getInitialVelocity();
+		void setInitialVelocity(NxOgre::Vec3 pInitVelocity);
+
 		//void setQueryFlags(QueryFlags queryFlags);
 
 	protected:
 		NxOgre::Vec3 mNxOgreSize;
 		QueryFlags mQueryFlags;
+		NxOgre::Vec3 mInitialVelocity;
+
+		NxOgre::Box* mBox;
 
 	};
 
@@ -35,6 +41,10 @@ namespace OUAN
 		double lengthX;
 		double lengthY;
 		double lengthZ;
+
+		double initVelocityX;
+		double initVelocityY;
+		double initVelocityZ;
 	};
 }
 

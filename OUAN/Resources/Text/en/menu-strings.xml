@@ -36,7 +36,7 @@ Pere Ferrera\n</Option>
 		<!-- IN-GAME MENU -->		
 		<Option key="INGAME_MENU_SCREEN_BTG">Back to game</Option>
 		<Option key="INGAME_MENU_SCREEN_BTM">Back to main menu</Option>
-		<Option key="INGAME_MENU_SCREEN_OPTIONS">Back to main menu</Option>
+		<Option key="INGAME_MENU_SCREEN_OPTIONS">Options</Option>
 		<Option key="INGAME_MENU_SCREEN_EXIT">Exit</Option>		
 		<!-- OPTIONS MENU -->
 		<!-- TODO: ADD MORE!! -->

@@ -83,7 +83,7 @@ GameWorldManager::GameWorldManager()
 	mDefaultAmbientSoundIDDreams="birds_chirp";
 	mDefaultAmbientSoundIDNightmares="scary";
 
-
+	mDiamondTreeLinks.clear();
 
 }
 
@@ -384,6 +384,8 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectDiamondContainer, mGameObjectDiamondContainer);
 
 	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
+
+	mDiamondTreeLinks.clear();
 	mGameObjectPillow.reset();
 }
 void GameWorldManager::initGame()
@@ -1542,4 +1544,24 @@ void GameWorldManager::playSoundFromGameObject(const std::string& objectName, co
 void GameWorldManager::setLevelname(const std::string& levelFilename)
 {
 	level=levelFilename;
+}
+
+void GameWorldManager::addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree)
+{
+	mDiamondTreeLinks[diamond]=diamondTree;
+}
+// Append child diamonds to a diamond tree, and link the parent to its children)
+void GameWorldManager::resolveDiamondTreeLinks()
+{
+	TDiamondTreeLinkMap::const_iterator it;
+	GameObjectDiamondTreePtr diamondTree ;
+	GameObjectDiamondPtr diamond;
+	for (it=mDiamondTreeLinks.begin();it!=mDiamondTreeLinks.end();++it)
+	{
+		diamondTree = boost::dynamic_pointer_cast<GameObjectDiamondTree>(mGameObjects[it->second]);
+		diamond= boost::dynamic_pointer_cast<GameObjectDiamond>(mGameObjects[it->first]);
+		diamond->setParentDiamondTree(diamondTree);
+		diamond->disable();
+		diamondTree->addDiamond(diamond);
+	}
 }

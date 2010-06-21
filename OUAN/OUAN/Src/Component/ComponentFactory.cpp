@@ -521,6 +521,12 @@ PhysicsComponentSimpleBoxPtr ComponentFactory::createPhysicsComponentSimpleBox(G
 						tPhysicsComponentSimpleBoxParameters.lengthY,
 						tPhysicsComponentSimpleBoxParameters.lengthZ));
 
+	pPhysicsComponentSimpleBox->setInitialVelocity(
+		NxOgre::Vec3(
+			tPhysicsComponentSimpleBoxParameters.initVelocityX,
+			tPhysicsComponentSimpleBoxParameters.initVelocityY,
+			tPhysicsComponentSimpleBoxParameters.initVelocityZ));
+
 	pPhysicsComponentSimpleBox->create();
 
 	return pPhysicsComponentSimpleBox;
