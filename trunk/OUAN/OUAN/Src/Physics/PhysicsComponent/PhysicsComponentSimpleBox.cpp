@@ -5,6 +5,7 @@ using namespace OUAN;
 
 PhysicsComponentSimpleBox::PhysicsComponentSimpleBox(const std::string& type)
 :PhysicsComponentSimple(type)
+,mInitialVelocity(NxOgre::Vec3::ZERO)
 {
 
 }
@@ -20,12 +21,12 @@ void PhysicsComponentSimpleBox::create()
 
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 
-	NxOgre::Box* pBox = 
+	mBox = 
 		new NxOgre::Box(	getNxOgreSize().x,
 							getNxOgreSize().y,
 							getNxOgreSize().z);
 
-	pBox->setName(name);
+	mBox->setName(name);
 
 	if (getMass() > 0)
 	{
@@ -34,10 +35,11 @@ void PhysicsComponentSimpleBox::create()
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
 		pDesc.mMass = getMass();
 		pDesc.mName = name;
+		pDesc.mLinearVelocity=mInitialVelocity;
 
 		setNxOgreBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createBody(
-				pBox,
+				mBox,
 				getSceneNode()->getPosition(),
 				getSceneNode(),
 				pDesc));
@@ -49,13 +51,13 @@ void PhysicsComponentSimpleBox::create()
 	}
 	else
 	{
-		pBox->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+		mBox->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
 		setStatic(true);
 		setNxOgreBody(NULL);
 
 		setNxOgreKinematicBody(
 			Application::getInstance()->getPhysicsSubsystem()->getNxOgreRenderSystem()->createKinematicBody(
-				pBox,
+				mBox,
 				getSceneNode()->getPosition(),
 				getSceneNode()));
 
@@ -80,6 +82,15 @@ void PhysicsComponentSimpleBox::setNxOgreSize(NxOgre::Vec3 pNxOgreSize)
 {
 	mNxOgreSize=pNxOgreSize;
 	mHeight=pNxOgreSize.y;
+}
+
+NxOgre::Vec3 PhysicsComponentSimpleBox::getInitialVelocity()
+{
+	return mInitialVelocity;
+}
+void PhysicsComponentSimpleBox::setInitialVelocity(NxOgre::Vec3 pInitVelocity)
+{
+	mInitialVelocity=pInitVelocity;
 }
 
 //void PhysicsComponentSimpleBox::setQueryFlags(QueryFlags queryFlags)

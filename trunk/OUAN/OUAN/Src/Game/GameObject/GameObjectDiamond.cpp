@@ -242,6 +242,7 @@ void GameObjectDiamond::reset()
 {
 	GameObject::reset();
 	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mLogicComponentItem->setIsTaken(false);
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const
@@ -303,8 +304,7 @@ void GameObjectDiamond::update(double elapsedSeconds)
 	{
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
 		{
-			mRenderComponentEntity->setVisible(false);
-			mPhysicsComponentVolumeBox->destroy();
+			disable();
 			mLogicComponentItem->setStateChanged(false);
 		}
 	}	
@@ -317,6 +317,22 @@ void GameObjectDiamond::update(double elapsedSeconds)
 		else
 		{
 			mRenderComponentEntity->update(elapsedSeconds);
+		}
+		if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+		{
+			if (mPhysicsComponentSimpleBox->isOnSurface())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+				//mPhysicsComponentVolumeBox->create();
+				NxOgre::Vec3 position;
+				position.x=mRenderComponentPositional->getPosition().x;
+				position.y=mRenderComponentPositional->getPosition().y;
+				position.z=mRenderComponentPositional->getPosition().z;
+				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+					mPhysicsComponentVolumeBox->create();
+				mPhysicsComponentVolumeBox->setPosition(position);
+			}
+
 		}
 	}
 }
@@ -349,6 +365,46 @@ GameObjectDiamondTreePtr GameObjectDiamond::getParentDiamondTree() const
 void GameObjectDiamond::setParentDiamondTree(GameObjectDiamondTreePtr parent)
 {
 	mParentDiamondTree=parent;
+}
+
+/// Set physics component
+void GameObjectDiamond::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+{
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+}
+
+/// Get physics component
+PhysicsComponentSimpleBoxPtr GameObjectDiamond::getPhysicsComponentSimpleBox() const
+{
+	return mPhysicsComponentSimpleBox;
+}
+
+/// Tell if this game object is bound to a diamond tree.
+bool GameObjectDiamond::isBoundToTree() const
+{
+	return !mParentDiamondTreeName.empty();
+}
+
+void GameObjectDiamond::disable()
+{
+	GameObject::disable();
+	mRenderComponentEntity->setVisible(false);
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->destroy();
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+		mPhysicsComponentSimpleBox->destroy();
+}
+void GameObjectDiamond::enable()
+{
+	GameObject::enable();
+	mRenderComponentEntity->setVisible(true);
+	mPhysicsComponentVolumeBox->create();
+}
+void GameObjectDiamond::updatePhysicsComponents(double elapsedSeconds)
+{
+	GameObject::updatePhysicsComponents(elapsedSeconds);
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	mPhysicsComponentSimpleBox->update(elapsedSeconds);
 }
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {

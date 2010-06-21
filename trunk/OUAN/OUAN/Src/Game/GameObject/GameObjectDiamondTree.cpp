@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameObjectDiamondTree.h"
+#include "GameObjectDiamond.h"
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
 
@@ -328,11 +329,31 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
 				entityToUpdate->changeAnimation(DT_ANIM_IDLE);					
+				for (TGameObjectDiamondContainer::iterator it=mDiamonds.begin();it!=mDiamonds.end();++it)
+				{
+					GameObjectDiamondPtr diamond=*it;
+					if (!diamond->isEnabled())
+					{
+						diamond->reset();
+						diamond->disable();
+					}
+				}
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{	
 			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
+			for (TGameObjectDiamondContainer::iterator it=mDiamonds.begin();it!=mDiamonds.end();++it)
+			{
+				GameObjectDiamondPtr diamond=*it;
+				if (!diamond->isEnabled())
+				{
+					diamond->enable();
+					if (diamond->getPhysicsComponentSimpleBox().get() &&
+						!diamond->getPhysicsComponentSimpleBox()->isInUse())
+						diamond->getPhysicsComponentSimpleBox()->create();//
+				}
+			}
 			//play sound
 			//enable children diamonds!
 		}

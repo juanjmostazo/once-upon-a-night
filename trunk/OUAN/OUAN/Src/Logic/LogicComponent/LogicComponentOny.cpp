@@ -44,7 +44,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_DIAMOND)==0)
 	{
-		//TODO
+		Logger::getInstance()->log("DIAMOND COLLISION!!!");
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 	{

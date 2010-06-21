@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentItem.h"
 
 namespace OUAN
@@ -21,7 +22,14 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
+
+		// The volume box is the default physics component, that will enable
+		// the main character to pick the item up.
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+
+		// A simpleBox component will be used with diamonds that are spawned from trees.
+		//
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -73,6 +81,15 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 
+		/// Set physics component
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
+
+		/// Get physics component
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+
+		/// Tell if this game object is bound to a diamond tree.
+		bool isBoundToTree() const;
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
@@ -119,6 +136,11 @@ namespace OUAN
 		
 		GameObjectDiamondTreePtr getParentDiamondTree() const;
 		void setParentDiamondTree(GameObjectDiamondTreePtr parent) ;
+
+		void disable();
+		void enable();
+
+		void updatePhysicsComponents(double elapsedSeconds);
 	};
 
 	class TGameObjectDiamondParameters: public TGameObjectParameters
@@ -136,8 +158,12 @@ namespace OUAN
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;
+
+		std::string tParentDiamondTree;
 
 	};
 }

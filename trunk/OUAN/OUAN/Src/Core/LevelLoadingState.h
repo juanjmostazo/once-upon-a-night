@@ -95,6 +95,7 @@ namespace OUAN
 			void initMusic();
 			void initScripts();
 			void clearParser();
+			void resolveDiamondTreeLinks();
 			//...
 	};
 }

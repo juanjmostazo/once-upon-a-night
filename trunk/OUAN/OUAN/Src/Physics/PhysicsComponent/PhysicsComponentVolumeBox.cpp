@@ -20,16 +20,16 @@ void PhysicsComponentVolumeBox::create()
 
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 
-	NxOgre::Box * pBox = new NxOgre::Box(
+	mBox = new NxOgre::Box(
 				getNxOgreSize().x,
 				getNxOgreSize().y,
 				getNxOgreSize().z);
 
-	pBox->setName(name);
+	mBox->setName(name);
 	
 	setNxOgreVolume(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
-			pBox,								
+			mBox,								
 			NxOgre::Matrix44(	
 				NxOgre::Vec3(getSceneNode()->getPosition()), 
 				NxOgre::Quat(getSceneNode()->getOrientation())),
