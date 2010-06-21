@@ -886,6 +886,8 @@ namespace OUAN
 		//-------------------------------------
 
 		#define LOGGER_CFG "../../Config/logger-cfg.xml"
+
+		#define DEFAULT_MAX_UPDATE_RADIO 50
 }
 
 #endif

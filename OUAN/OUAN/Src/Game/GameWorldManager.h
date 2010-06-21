@@ -171,6 +171,7 @@ namespace OUAN
 
 		/// Return GameObjectOny
 		GameObjectOnyPtr getGameObjectOny();
+		Ogre::Vector3 getGameObjectOnyPosition();
 
 		/// Return GameObjectViewport
 		GameObjectViewportPtr getGameObjectViewport();

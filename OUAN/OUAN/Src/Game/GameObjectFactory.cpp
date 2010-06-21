@@ -111,6 +111,7 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 
 	//Create GameObject
 	pGameObjectBee_Butterfly = GameObjectBee_ButterflyPtr(new GameObjectBee_Butterfly(tGameObjectBee_ButterflyParameters.name));
+	pGameObjectBee_Butterfly->setMaxUpdateRadio(tGameObjectBee_ButterflyParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectBee_Butterfly->setLogicComponentEnemy(
@@ -167,9 +168,10 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectBillboardSetPtr pGameObjectBillboardSet;
-
+	
 	//Create GameObject
 	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(tGameObjectBillboardSetParameters.name));
+	pGameObjectBillboardSet->setMaxUpdateRadio(tGameObjectBillboardSetParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectBillboardSet->setLogicComponent(
@@ -225,6 +227,7 @@ GameObjectBushPtr GameObjectFactory::createGameObjectBush(TGameObjectBushParamet
 
 	//Create GameObject
 	pGameObjectBush = GameObjectBushPtr(new GameObjectBush(tGameObjectBushParameters.name));
+	pGameObjectBush->setMaxUpdateRadio(tGameObjectBushParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectBush->setLogicComponent(
@@ -284,6 +287,7 @@ GameObjectCarnivorousPlantPtr GameObjectFactory::createGameObjectCarnivorousPlan
 
 	//Create GameObject
 	pGameObjectCarnivorousPlant = GameObjectCarnivorousPlantPtr(new GameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters.name));
+	pGameObjectCarnivorousPlant->setMaxUpdateRadio(tGameObjectCarnivorousPlantParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectCarnivorousPlant->setLogicComponentEnemy(
@@ -335,6 +339,7 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 
 	//Create GameObject
 	pGameObjectClockPiece = GameObjectClockPiecePtr(new GameObjectClockPiece(tGameObjectClockPieceParameters.name));
+	pGameObjectClockPiece->setMaxUpdateRadio(tGameObjectClockPieceParameters.maxUpdateRadio);
 
 	//Create LogicComponentWorldExistance
 	pGameObjectClockPiece->setLogicComponentItem(
@@ -386,6 +391,7 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 	
 	//Create GameObject
 	pGameObjectCloud = GameObjectCloudPtr(new GameObjectCloud(tGameObjectCloudParameters.name));
+	pGameObjectCloud->setMaxUpdateRadio(tGameObjectCloudParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectCloud->setLogicComponent(
@@ -464,6 +470,7 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 
 	//Create GameObject
 	pGameObjectCryKing = GameObjectCryKingPtr(new GameObjectCryKing(tGameObjectCryKingParameters.name));
+	pGameObjectCryKing->setMaxUpdateRadio(tGameObjectCryKingParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectCryKing->setLogicComponent(
@@ -517,6 +524,7 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 
 	//Create GameObject
 	pGameObjectDiamond = GameObjectDiamondPtr(new GameObjectDiamond(tGameObjectDiamondParameters.name));
+	pGameObjectDiamond->setMaxUpdateRadio(tGameObjectDiamondParameters.maxUpdateRadio);
 
 	//Create LogicComponentWorldExistance
 	pGameObjectDiamond->setLogicComponentItem(
@@ -575,6 +583,7 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 
 	//Create GameObject
 	pGameObjectDiamondTree = GameObjectDiamondTreePtr(new GameObjectDiamondTree(tGameObjectDiamondTreeParameters.name));
+	pGameObjectDiamondTree->setMaxUpdateRadio(tGameObjectDiamondTreeParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectDiamondTree->setLogicComponent(
@@ -642,7 +651,8 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 
 	//Create GameObject
 	pGameObjectDoor = GameObjectDoorPtr(new GameObjectDoor(tGameObjectDoorParameters.name));
-	
+	pGameObjectDoor->setMaxUpdateRadio(tGameObjectDoorParameters.maxUpdateRadio);
+
 	//Create LogicComponent
 	pGameObjectDoor->setLogicComponent(
 		mComponentFactory->createLogicComponent(
@@ -695,6 +705,7 @@ GameObjectDragonPtr GameObjectFactory::createGameObjectDragon(TGameObjectDragonP
 
 	//Create GameObject
 	pGameObjectDragon = GameObjectDragonPtr(new GameObjectDragon(tGameObjectDragonParameters.name));
+	pGameObjectDragon->setMaxUpdateRadio(tGameObjectDragonParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectDragon->setLogicComponentEnemy(
@@ -742,7 +753,8 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 
 	//Create GameObject
 	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(tGameObjectEyeParameters.name));
-	
+	pGameObjectEye->setMaxUpdateRadio(tGameObjectEyeParameters.maxUpdateRadio);
+
 	//Create LogicComponent
 	pGameObjectEye->setLogicComponentEnemy(
 		mComponentFactory->createLogicComponentEnemy(
@@ -784,6 +796,7 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 
 	//Create GameObject
 	pGameObjectFog = GameObjectFogPtr(new GameObjectFog(tGameObjectFogParameters.name));
+	pGameObjectFog->setMaxUpdateRadio(tGameObjectFogParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectFog->setLogicComponent(
@@ -843,6 +856,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	//Create GameObject
 	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,gameWorldMgr,
 		cameraMgr,raycasting,renderSubsystem));
+	pGameObjectFlashLight->setMaxUpdateRadio(tGameObjectFlashLightParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectFlashLight->setLogicComponent(
@@ -931,7 +945,8 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 
 	//Create GameObject
 	pGameObjectHeart = GameObjectHeartPtr(new GameObjectHeart(tGameObjectHeartParameters.name));
-	
+	pGameObjectHeart->setMaxUpdateRadio(tGameObjectHeartParameters.maxUpdateRadio);
+
 	//Create LogicComponentWorldExistance
 	pGameObjectHeart->setLogicComponentItem(
 		mComponentFactory->createLogicComponentItem(
@@ -974,6 +989,7 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 
 	//Create GameObject
 	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(tGameObjectItem1UPParameters.name));
+	pGameObjectItem1UP->setMaxUpdateRadio(tGameObjectItem1UPParameters.maxUpdateRadio);
 
 	//Create LogicComponentWorldExistance
 	pGameObjectItem1UP->setLogicComponentItem(
@@ -1016,6 +1032,7 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 
 	//Create GameObject
 	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(tGameObjectItemMaxHPParameters.name));
+	pGameObjectItemMaxHP->setMaxUpdateRadio(tGameObjectItemMaxHPParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectItemMaxHP->setLogicComponentItem(
@@ -1064,6 +1081,7 @@ GameObjectLightPtr GameObjectFactory::createGameObjectLight(TGameObjectLightPara
 
 	//Create GameObject
 	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(tGameObjectLightParameters.name));
+	pGameObjectLight->setMaxUpdateRadio(tGameObjectLightParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectLight->setLogicComponent(
@@ -1098,6 +1116,7 @@ GameObjectMagicClockPtr GameObjectFactory::createGameObjectMagicClock(TGameObjec
 
 	//Create GameObject
 	pGameObjectMagicClock = GameObjectMagicClockPtr(new GameObjectMagicClock(tGameObjectMagicClockParameters.name));
+	pGameObjectMagicClock->setMaxUpdateRadio(tGameObjectMagicClockParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectMagicClock->setLogicComponent(
@@ -1120,6 +1139,7 @@ GameObjectNightGoblinPtr GameObjectFactory::createGameObjectNightGoblin(TGameObj
 
 	//Create GameObject
 	pGameObjectNightGoblin = GameObjectNightGoblinPtr(new GameObjectNightGoblin(tGameObjectNightGoblinParameters.name));
+	pGameObjectNightGoblin->setMaxUpdateRadio(tGameObjectNightGoblinParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectNightGoblin->setLogicComponentEnemy(
@@ -1166,6 +1186,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Create GameObject
 	pGameObjectOny = GameObjectOnyPtr(new GameObjectOny(tGameObjectOnyParameters.name));
+	pGameObjectOny->setMaxUpdateRadio(tGameObjectOnyParameters.maxUpdateRadio);
 
 	//Create LogicComponentOny
 	pGameObjectOny->setLogicComponentOny(
@@ -1265,6 +1286,7 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 
 	//Create GameObject
 	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
+	pGameObjectParticleSystem->setMaxUpdateRadio(tGameObjectParticleSystemParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectParticleSystem->setLogicComponent(
@@ -1305,6 +1327,7 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 
 	//Create GameObject
 	pGameObjectPillow = GameObjectPillowPtr(new GameObjectPillow(tGameObjectPillowParameters.name));	
+	pGameObjectPillow->setMaxUpdateRadio(tGameObjectPillowParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectPillow->setLogicComponent(
@@ -1381,6 +1404,7 @@ GameObjectPlanePtr GameObjectFactory::createGameObjectPlane(TGameObjectPlanePara
 
 	//Create GameObject
 	pGameObjectPlane = GameObjectPlanePtr(new GameObjectPlane(tGameObjectPlaneParameters.name));
+	pGameObjectPlane->setMaxUpdateRadio(tGameObjectPlaneParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectPlane->setLogicComponent(
@@ -1415,6 +1439,7 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 
 	//Create GameObject
 	pGameObjectPlataform = GameObjectPlataformPtr(new GameObjectPlataform(tGameObjectPlataformParameters.name));
+	pGameObjectPlataform->setMaxUpdateRadio(tGameObjectPlataformParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectPlataform->setLogicComponent(
@@ -1465,6 +1490,7 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 
 	//Create GameObject
 	pGameObjectPortal = GameObjectPortalPtr(new GameObjectPortal(tGameObjectPortalParameters.name));
+	pGameObjectPortal->setMaxUpdateRadio(tGameObjectPortalParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectPortal->setLogicComponentUsable(
@@ -1544,6 +1570,7 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 
 	//Create GameObject
 	pGameObjectProvisionalEntity = GameObjectProvisionalEntityPtr(new GameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters.name));
+	pGameObjectProvisionalEntity->setMaxUpdateRadio(tGameObjectProvisionalEntityParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectProvisionalEntity->setLogicComponent(
@@ -1596,6 +1623,7 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 
 	//Create GameObject
 	pGameObjectScaredPlant = GameObjectScaredPlantPtr(new GameObjectScaredPlant(tGameObjectScaredPlantParameters.name));
+	pGameObjectScaredPlant->setMaxUpdateRadio(tGameObjectScaredPlantParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectScaredPlant->setLogicComponent(
@@ -1638,6 +1666,7 @@ GameObjectScenePtr GameObjectFactory::createGameObjectScene(TGameObjectScenePara
 
 	//Create GameObject
 	pGameObjectScene = GameObjectScenePtr(new GameObjectScene(tGameObjectSceneParameters.name));
+	pGameObjectScene->setMaxUpdateRadio(tGameObjectSceneParameters.maxUpdateRadio);
 
 	//Create RenderComponentViewport
 	pGameObjectScene->setRenderComponentScene(mComponentFactory->createRenderComponentScene(
@@ -1659,6 +1688,7 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 
 	//Create GameObject
 	pGameObjectScepter = GameObjectScepterPtr(new GameObjectScepter(tGameObjectScepterParameters.name));
+	pGameObjectScepter->setMaxUpdateRadio(tGameObjectScepterParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectScepter->setLogicComponent(
@@ -1701,6 +1731,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 
 	//Create GameObject
 	gameObject = GameObjectSkyBodyPtr(new GameObjectSkyBody(params.name));
+	gameObject->setMaxUpdateRadio(params.maxUpdateRadio);
 
 	gameObject->setUseEntityDreams(params.useEntityDreams);
 	gameObject->setUseEntityNightmares(params.useEntityNightmares);
@@ -1866,6 +1897,7 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 
 	//Create GameObject
 	pGameObjectSnakeCreeper = GameObjectSnakeCreeperPtr(new GameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters.name));
+	pGameObjectSnakeCreeper->setMaxUpdateRadio(tGameObjectSnakeCreeperParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectSnakeCreeper->setLogicComponentEnemy(
@@ -1913,6 +1945,7 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 GameObjectSoundPtr GameObjectFactory::createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectSoundPtr sound = GameObjectSoundPtr(new GameObjectSound(params.name));
+	sound->setMaxUpdateRadio(params.maxUpdateRadio);
 
 	sound->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
 		sound,params.tRenderComponentPositionalParameters));
@@ -1943,6 +1976,7 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 
 	//Create GameObject
 	pGameObjectStoryBook = GameObjectStoryBookPtr(new GameObjectStoryBook(tGameObjectStoryBookParameters.name));
+	pGameObjectStoryBook->setMaxUpdateRadio(tGameObjectStoryBookParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectStoryBook->setLogicComponentItem(
@@ -1995,6 +2029,7 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 
 	//Create GameObject
 	pGameObjectTentetieso = GameObjectTentetiesoPtr(new GameObjectTentetieso(tGameObjectTentetiesoParameters.name));
+	pGameObjectTentetieso->setMaxUpdateRadio(tGameObjectTentetiesoParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTentetieso->setLogicComponentEnemy(
@@ -2041,6 +2076,7 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 
 	//Create GameObject
 	pGameObjectTerrainConvex = GameObjectTerrainConvexPtr(new GameObjectTerrainConvex(tGameObjectTerrainConvexParameters.name));
+	pGameObjectTerrainConvex->setMaxUpdateRadio(tGameObjectTerrainConvexParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTerrainConvex->setLogicComponent(
@@ -2102,6 +2138,7 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 
 	//Create GameObject
 	pGameObjectTerrainTriangle = GameObjectTerrainTrianglePtr(new GameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters.name));
+	pGameObjectTerrainTriangle->setMaxUpdateRadio(tGameObjectTerrainTriangleParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTerrainTriangle->setLogicComponent(
@@ -2147,6 +2184,7 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 
 	//Create GameObject
 	pGameObjectTree = GameObjectTreePtr(new GameObjectTree(tGameObjectTreeParameters.name));
+	pGameObjectTree->setMaxUpdateRadio(tGameObjectTreeParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTree->setLogicComponent(
@@ -2189,6 +2227,7 @@ GameObjectTreeComplexPtr GameObjectFactory::createGameObjectTreeComplex(TGameObj
 
 	//Create GameObject
 	pGameObjectTreeComplex = GameObjectTreeComplexPtr(new GameObjectTreeComplex(tGameObjectTreeComplexParameters.name));
+	pGameObjectTreeComplex->setMaxUpdateRadio(tGameObjectTreeComplexParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTreeComplex->setLogicComponent(
@@ -2231,6 +2270,7 @@ GameObjectTowerPtr GameObjectFactory::createGameObjectTower(TGameObjectTowerPara
 
 	//Create GameObject
 	pGameObjectTower = GameObjectTowerPtr(new GameObjectTower(tGameObjectTowerParameters.name));
+	pGameObjectTower->setMaxUpdateRadio(tGameObjectTowerParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTower->setLogicComponent(
@@ -2278,7 +2318,8 @@ GameObjectTriggerBoxPtr GameObjectFactory::createGameObjectTriggerBox(TGameObjec
 
 	//Create GameObject
 	pGameObjectTriggerBox = GameObjectTriggerBoxPtr(new GameObjectTriggerBox(tGameObjectTriggerBoxParameters.name));
-	
+	pGameObjectTriggerBox->setMaxUpdateRadio(tGameObjectTriggerBoxParameters.maxUpdateRadio);
+
 	//Create LogicComponent
 	pGameObjectTriggerBox->setLogicComponent(
 		mComponentFactory->createLogicComponentTrigger(
@@ -2322,6 +2363,7 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 
 	//Create GameObject
 	pGameObjectTriggerCapsule = GameObjectTriggerCapsulePtr(new GameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters.name));
+	pGameObjectTriggerCapsule->setMaxUpdateRadio(tGameObjectTriggerCapsuleParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTriggerCapsule->setLogicComponent(
@@ -2366,7 +2408,8 @@ GameObjectTriggerCameraPtr GameObjectFactory::createGameObjectTriggerCamera(TGam
 
 	//Create GameObject
 	pGameObjectTriggerCamera = GameObjectTriggerCameraPtr(new GameObjectTriggerCamera(tGameObjectTriggerCameraParameters.name));
-	
+	pGameObjectTriggerCamera->setMaxUpdateRadio(tGameObjectTriggerCameraParameters.maxUpdateRadio);
+
 	//Create LogicComponent
 	pGameObjectTriggerCamera->setLogicComponentTriggerCamera(
 		mComponentFactory->createLogicComponentTriggerCamera(
@@ -2410,6 +2453,7 @@ GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjec
 
 	//Create GameObject
 	pGameObjectTripollito = GameObjectTripollitoPtr(new GameObjectTripollito(tGameObjectTripollitoParameters.name));
+	pGameObjectTripollito->setMaxUpdateRadio(tGameObjectTripollitoParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectTripollito->setLogicComponentEnemy(
@@ -2455,7 +2499,8 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 
 	//Create GameObject
 	pGameObjectTripolloDreams = GameObjectTripolloDreamsPtr(new GameObjectTripolloDreams(tGameObjectTripolloDreamsParameters.name));
-	
+	pGameObjectTripolloDreams->setMaxUpdateRadio(tGameObjectTripolloDreamsParameters.maxUpdateRadio);
+
 	//Create LogicComponent
 	pGameObjectTripolloDreams->setLogicComponentEnemy(
 		mComponentFactory->createLogicComponentEnemy(pGameObjectTripolloDreams,
@@ -2542,6 +2587,7 @@ GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectVie
 
 	//Create GameObject
 	pGameObjectViewport = GameObjectViewportPtr(new GameObjectViewport(tGameObjectViewportParameters.name));
+	pGameObjectViewport->setMaxUpdateRadio(tGameObjectViewportParameters.maxUpdateRadio);
 
 	//Create RenderComponentViewport
 	pGameObjectViewport->setRenderComponentViewport(mComponentFactory->createRenderComponentViewport(
@@ -2566,6 +2612,7 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 
 	//Create GameObject
 	pGameObjectWoodBox = GameObjectWoodBoxPtr(new GameObjectWoodBox(tGameObjectWoodBoxParameters.name));
+	pGameObjectWoodBox->setMaxUpdateRadio(tGameObjectWoodBoxParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectWoodBox->setLogicComponentBreakable(
@@ -2638,6 +2685,7 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 
 	//Create GameObject
 	pGameObjectWater = GameObjectWaterPtr(new GameObjectWater(tGameObjectWaterParameters.name));
+	pGameObjectWater->setMaxUpdateRadio(tGameObjectWaterParameters.maxUpdateRadio);
 
 	//Create LogicComponent
 	pGameObjectWater->setLogicComponent(

@@ -447,7 +447,6 @@ void GameRunningState::update(long elapsedTime)
 		double elapsedSeconds=(double)elapsedTime * 0.000001f;
 		if (!mApp->getGameWorldManager()->isGameOver())
 		{
-
 			if(mIsChangingWorld)
 			{
 				mChangeWorldElapsedTime+=elapsedSeconds;
@@ -486,7 +485,6 @@ void GameRunningState::update(long elapsedTime)
 			mApp->getLogicSubsystem()->update(elapsedSeconds);
 
 			mApp->getGameWorldManager()->postUpdate();
-
 
 			if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 			{

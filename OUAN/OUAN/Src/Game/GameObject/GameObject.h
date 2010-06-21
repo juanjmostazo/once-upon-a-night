@@ -28,6 +28,7 @@ namespace OUAN
 	protected:
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;
+
 		///Game world manager
 		GameWorldManagerPtr mGameWorldManager;
 
@@ -42,6 +43,8 @@ namespace OUAN
 		bool mIsChangingWorld;
 		double mChangeWorldDelay;
 		int mWorld;
+		double mMaxUpdateRadio;
+
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -72,7 +75,6 @@ namespace OUAN
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
-
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -194,6 +196,11 @@ namespace OUAN
 		virtual bool hasAudioComponent() const;
 		virtual AudioComponentPtr getAudioComponentInstance() const;
 		virtual void playSound(const std::string& soundID);
+
+		virtual void setMaxUpdateRadio(double maxUpdateRadio);
+
+		virtual bool isWorthUpdatingPhysicsComponents();
+		virtual bool isWorthUpdatingLogicComponents();
 	};
 
 	class TGameObjectParameters
@@ -205,7 +212,7 @@ namespace OUAN
 		std::string name;
 		std::string dreamsName;
 		std::string nightmaresName;
-
+		double maxUpdateRadio;
 	};
 }
 #endif

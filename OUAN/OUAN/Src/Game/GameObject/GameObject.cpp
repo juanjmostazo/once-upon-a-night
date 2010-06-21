@@ -399,7 +399,6 @@ double GameObject::getChangeWorldTotalTime() const
 	return mChangeWorldTotalTime;
 }
 
-
 int GameObject::getWorld()
 {
 	return mWorld;
@@ -419,6 +418,7 @@ void GameObject::calculateChangeWorldDelay(double totalElapsedTime,double totalT
 {
 	mChangeWorldDelay=0.0f;
 }
+
 void GameObject::playSound(const std::string& soundID)
 {
 	if (hasAudioComponent() && getAudioComponentInstance().get())
@@ -426,14 +426,17 @@ void GameObject::playSound(const std::string& soundID)
 		getAudioComponentInstance()->playSound(soundID);
 	}
 }
+
 bool GameObject::hasAudioComponent() const
 {
 	return false;
 }
+
 AudioComponentPtr GameObject::getAudioComponentInstance() const
 {
 	return AudioComponentPtr();
 }
+
 void GameObject::updatePhysicsComponents(double elapsedSeconds)
 {
 	if (hasPhysicsComponent() && getPhysicsComponent().get() && getPhysicsComponent()->isInUse())
@@ -441,6 +444,28 @@ void GameObject::updatePhysicsComponents(double elapsedSeconds)
 		getPhysicsComponent()->update(elapsedSeconds);
 	}
 }
+
+void GameObject::setMaxUpdateRadio(double maxUpdateRadio)
+{
+	mMaxUpdateRadio = maxUpdateRadio;
+}
+
+bool GameObject::isWorthUpdatingPhysicsComponents()
+{
+	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
+
+	return mMaxUpdateRadio > 0 &&
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;
+}
+
+bool GameObject::isWorthUpdatingLogicComponents()
+{
+	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
+
+	return mMaxUpdateRadio > 0 &&
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;
+}
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()
@@ -448,6 +473,7 @@ TGameObjectParameters::TGameObjectParameters()
 	this->name="";
 	this->dreamsName="";
 	this->nightmaresName="";
+	this->maxUpdateRadio=-1;
 }
 
 TGameObjectParameters::~TGameObjectParameters()
