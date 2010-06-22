@@ -197,11 +197,12 @@ void GameRunningState::handleEvents()
 		else if(mApp->isPressedAutoPoint())
 		{
 			//TODO: Replace with the proper auto-target functionality
-			GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
-			mApp->getGameWorldManager()->addEvent(evt);
+			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
+			//mApp->getGameWorldManager()->addEvent(evt);
+			mApp->getCameraManager()->centerCamera();
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
-			mGUI->hideConsole();
+			//mGUI->hideConsole();
 		}
 		else if (mApp->isPressedRotateLeft())
 		{

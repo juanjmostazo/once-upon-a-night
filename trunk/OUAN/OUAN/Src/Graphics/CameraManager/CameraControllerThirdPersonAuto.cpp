@@ -19,6 +19,11 @@ CameraControllerThirdPersonAuto::~CameraControllerThirdPersonAuto()
 void CameraControllerThirdPersonAuto::init(Ogre::SceneManager * pSceneManager)
 {
 	loadInfo();
+
+	mLastSurfaceAngle=0;
+	mLastSurfacePosition=Vector3::ZERO;
+
+	mDummyCamera=pSceneManager->createCamera("mDummyCamera");
 }
 
 TCameraControllerType CameraControllerThirdPersonAuto::getControllerType()
@@ -28,13 +33,97 @@ TCameraControllerType CameraControllerThirdPersonAuto::getControllerType()
 
 void CameraControllerThirdPersonAuto::update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime)
 {
-	pCamera->setPosition(calculateCameraPosition(pCamera,pCameraInput));
-	pCamera->lookAt(calculateTargetPosition(pCameraInput));
+	applyChanges(pCamera,
+				 calculateCameraPosition(pCamera,pCameraInput),
+				 calculateTargetPosition(pCameraInput),
+				 elapsedTime 
+				 );
+	updateLastSurface(pCamera,pCameraInput);
+}
+
+void CameraControllerThirdPersonAuto::applyChanges(Ogre::Camera *pCamera,Ogre::Vector3 position,Ogre::Vector3 lookAt,double elapsedTime)
+{
+	double displacement;
+	Vector3 direction;
+
+
+	Vector3 new_position=position;
+	Vector3 new_lookAt=lookAt;
+
+	//POSITION
+	displacement=position.distance(pCamera->getPosition());
+	if(displacement>mMaxDisplacementPerSecond*elapsedTime)
+	{
+		direction=position-pCamera->getPosition();
+		direction.normalise();
+		
+		new_position=pCamera->getPosition()+direction*mMaxDisplacementPerSecond*elapsedTime;
+	}
+	pCamera->setPosition(new_position);
+
+	//ORIENTATION
+	mDummyCamera->setPosition(pCamera->getPosition());
+	mDummyCamera->lookAt(lookAt);
+
+	double new_roll,new_pitch,new_yaw;
+	double current_roll,current_pitch,current_yaw;
+	new_roll=mDummyCamera->getOrientation().getRoll().valueDegrees();
+	new_pitch=mDummyCamera->getOrientation().getPitch().valueDegrees();
+	new_yaw=mDummyCamera->getOrientation().getYaw().valueDegrees();
+
+	current_roll=pCamera->getOrientation().getRoll().valueDegrees();
+	current_pitch=pCamera->getOrientation().getPitch().valueDegrees();
+	current_yaw=pCamera->getOrientation().getYaw().valueDegrees();
+
+	//if(Ogre::Math::Abs(current_roll-new_roll)>mMaxRotationPerSecond*elapsedTime)
+	//{
+
+	//}
+	//else if(Ogre::Math::Abs(current_pitch-new_pitch)>mMaxRotationPerSecond*elapsedTime)
+	//{
+
+	//}
+	//else if(Ogre::Math::Abs(current_yaw-new_yaw)>mMaxRotationPerSecond*elapsedTime)
+	//{
+
+	//}
+
+	pCamera->setOrientation(mDummyCamera->getOrientation());
+	//pCamera->yaw(Ogre::Degree(new_yaw));
+	//pCamera->roll(Ogre::Degree(new_roll));
+	//pCamera->pitch(Ogre::Degree(new_pitch));
+
 }
 
 Ogre::Vector3 CameraControllerThirdPersonAuto::calculateTargetPosition(CameraInputPtr pCameraInput)
 {
-	return pCameraInput->mTarget->getSceneNode()->getPosition()+pCameraInput->mTargetOffset;
+	Ogre::Vector3 target;
+
+	Ogre::Vector3 real_target;
+
+	real_target=pCameraInput->mTarget->getSceneNode()->getPosition();
+
+	if(pCameraInput->mTarget->isOnSurface() || real_target.y<mLastSurfacePosition.y)
+	{
+		target = real_target;
+	}
+	else
+	{
+		target = Vector3(real_target.x, mLastSurfacePosition.y,real_target.z);
+	}
+
+	target+=pCameraInput->mTargetOffset;
+
+	return target;
+}
+
+void CameraControllerThirdPersonAuto::updateLastSurface(Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+{
+	if(pCameraInput->mTarget->isOnSurface())
+	{
+		mLastSurfaceAngle=pCamera->getOrientation().getYaw().valueDegrees();
+		mLastSurfacePosition=pCameraInput->mTarget->getSceneNode()->getPosition();
+	}
 }
 
 Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
@@ -57,8 +146,7 @@ Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraPosition(Ogre::Cam
 						   0.0f,
 						   direction.z*pCameraInput->mCameraParameters->mMaxDistance+targetPosition.z);
 	}
-
-	if(distance<pCameraInput->mCameraParameters->mMinDistance)
+	else if(distance<pCameraInput->mCameraParameters->mMinDistance)
 	{
 		cameraPosition=Vector3(direction.x*pCameraInput->mCameraParameters->mMinDistance+targetPosition.x,
 						   0.0f,
@@ -73,22 +161,73 @@ Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCameraPosition(Ogre::Cam
 void CameraControllerThirdPersonAuto::loadInfo()
 {
 	CameraController::loadInfo();
+
+	Configuration config;
+	std::string value;
+
+	if (config.loadFromFile(CAMERA_CONTROLLER_THIRD_PERSON_AUTO_CFG))
+	{
+		config.getOption("ROTATION_DEGREES_PER_SECOND", value); 
+		mRotationDegreesPerSecond = atof(value.c_str());
+
+		config.getOption("MAX_DISPLACEMENT_PER_SECOND", value); 
+		mMaxDisplacementPerSecond = atof(value.c_str());
+
+		config.getOption("MAX_ROTATION_PER_SECOND", value); 
+		mMaxRotationPerSecond = atof(value.c_str());
+	} 
+	else 
+	{
+		Logger::getInstance()->log(CAMERA_CONTROLLER_THIRD_PERSON_AUTO_CFG + " COULD NOT BE LOADED!");
+	}
+}
+
+Ogre::Vector3 CameraControllerThirdPersonAuto::calculateCircumferenceMovement(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds)
+{
+	//calculate circumference movement around camera
+
+	double radium;
+	double time_fraction;
+	
+	radium=calculateDistanceToTarget(pCamera,pCameraInput,true);
+	if(radium!=0)
+	{
+		double total_time=elapsedSeconds;
+		while(total_time>0)
+		{
+			total_time-=1;
+			if(total_time>0)
+			{
+				time_fraction=1;
+			}
+			else
+			{
+				time_fraction=1-Ogre::Math::Abs(total_time);
+			}
+			movement = Ogre::Quaternion(Ogre::Degree(((Ogre::Math::TWO_PI)*movement.x*mRotationDegreesPerSecond*time_fraction)/radium),Ogre::Vector3::UNIT_Y) * movement;
+		}
+	}
+	return movement;
+
 }
 
 Ogre::Vector3 CameraControllerThirdPersonAuto::rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds)
 {
 	//Logger::getInstance()->log("ROTATE MOVEMENT VECTOR");
 	//Logger::getInstance()->log("Original movement : "+Ogre::StringConverter::toString(movement));
+	//Logger::getInstance()->log("pCameraInput->mTarget->isOnSurface() : "+Ogre::StringConverter::toString(pCameraInput->mTarget->isOnSurface()));
 
-	double radium;
-	radium=calculateDistanceToTarget(pCamera,pCameraInput,true);
-	if(radium!=0)
+	if(pCameraInput->mTarget->isOnSurface())
 	{
-		movement = Ogre::Quaternion(Ogre::Degree(((Ogre::Math::TWO_PI)*movement.x)/radium),Ogre::Vector3::UNIT_Y) * movement;
-	}
+		movement = calculateCircumferenceMovement(movement,pCamera,pCameraInput,elapsedSeconds);
 	//Logger::getInstance()->log("Rotated movement1 : "+Ogre::StringConverter::toString(movement));
 
-	movement = Ogre::Quaternion(Ogre::Degree(pCamera->getOrientation().getYaw().valueDegrees()-180),Ogre::Vector3::UNIT_Y) * movement;
+		movement = Ogre::Quaternion(Ogre::Degree(pCamera->getOrientation().getYaw().valueDegrees()-180),Ogre::Vector3::UNIT_Y) * movement;
+	}
+	else
+	{
+		movement = Ogre::Quaternion(Ogre::Degree(mLastSurfaceAngle-180),Ogre::Vector3::UNIT_Y) * movement;
+	}
 
 	//Logger::getInstance()->log("Rotated movement2 : "+Ogre::StringConverter::toString(movement));
 	//Logger::getInstance()->log("radium : "+Ogre::StringConverter::toString(Ogre::Real(radium)));
@@ -128,6 +267,12 @@ double CameraControllerThirdPersonAuto::calculateCameraHeight(Ogre::Camera *pCam
 
 void CameraControllerThirdPersonAuto::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
 {
+	centerCamera(pCamera,pCameraInput);
+	updateLastSurface(pCamera,pCameraInput);
+}
+
+void CameraControllerThirdPersonAuto::centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+{
 	Vector3 cameraPosition;
 	Vector3 targetPosition;
 	Vector3 direction;
@@ -136,6 +281,7 @@ void CameraControllerThirdPersonAuto::setCameraParameters(Ogre::Camera *pCamera,
 
 	direction=Vector3(pCameraInput->mCameraParameters->mDirection.x,0,pCameraInput->mCameraParameters->mDirection.z);
 	direction.normalise();
+	direction = Ogre::Quaternion(Ogre::Degree(pCameraInput->mTarget->getSceneNode()->getOrientation().getYaw().valueDegrees()-180),Ogre::Vector3::UNIT_Y) * direction;
 
 	cameraPosition=Vector3(direction.x*pCameraInput->mCameraParameters->mMaxDistance+targetPosition.x,
 						   calculateCameraHeight(pCamera,pCameraInput),
@@ -143,7 +289,6 @@ void CameraControllerThirdPersonAuto::setCameraParameters(Ogre::Camera *pCamera,
 
 	pCamera->setPosition(cameraPosition);
 }
-
 
 //#include "OUAN_Precompiled.h"
 //

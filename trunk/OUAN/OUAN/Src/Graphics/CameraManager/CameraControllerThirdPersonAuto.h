@@ -16,11 +16,27 @@ namespace OUAN
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
-	
+		void centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
+
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		Ogre::Vector3 calculateTargetPosition(CameraInputPtr pCameraInput);
 		double calculateCameraHeight(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
+		Ogre::Vector3 calculateCircumferenceMovement(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
+		void updateLastSurface(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		void applyChanges(Ogre::Camera *pCamera,Ogre::Vector3 position,Ogre::Vector3 lookAt,double elapsedTime);
+
+		double mRotationDegreesPerSecond;
+		double mLastSurfaceAngle;
+		Vector3 mLastSurfacePosition;
+
+		double mMaxDisplacementPerSecond;
+		double mMaxRotationPerSecond;
+
+		double mDampingFactor;
+		double mMinDamping;
+
+		Ogre::Camera * mDummyCamera;
 	};
 
 }

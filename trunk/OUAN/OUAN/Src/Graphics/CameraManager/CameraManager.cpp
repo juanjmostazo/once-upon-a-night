@@ -269,6 +269,11 @@ void CameraManager::activateChangeWorld()
 
 }
 
+void CameraManager::centerCamera()
+{
+	mActiveCameraController->centerCamera(mCamera,mCameraInput);
+}
+
 void CameraManager::changeWorldFinished(int newWorld)
 {
 	switch(newWorld)
@@ -349,9 +354,9 @@ void CameraManager::processChangeWorld(ChangeWorldEventPtr evt)
 
 void CameraManager::setCameraParameters(CameraParametersPtr pCameraParameters,bool transition)
 {
-	mCameraInput->mDoTransition=transition;
+	/*mCameraInput->mDoTransition=transition;
 	mCameraInput->mCameraParameters=pCameraParameters;
-	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);
+	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);*/
 }
 
 void CameraManager::setDefaultCameraParameters(bool transition)
