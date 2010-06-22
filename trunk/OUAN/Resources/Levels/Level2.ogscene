@@ -32,7 +32,7 @@
   <CAMERASPEED value="13"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="175.608 976.247 -434.787" orientation="-0.289321 0.16949 0.817227 0.468728"></OPTION>
+    <OPTION id="1" position="511.48 221.536 -239.73" orientation="0.0744933 -0.00497789 -0.996834 -0.0273487"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -106,9 +106,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.289321 0.16949 0.817227 0.468728"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.0744984 -0.00497823 -0.996902 -0.0273506"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="175.608 976.247 -434.787"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="511.48 221.536 -239.73"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1180,12 +1180,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-178.76 218.998 221.838"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -1453,12 +1449,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.212178 0 0.977231 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-353.941 210.989 479.669"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -1615,7 +1607,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="changeworld.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="714 221 -41"></PROPERTY>
+    <PROPERTY id="position" type="9" value="714 222.467 -41"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_d"></PROPERTY>
@@ -1762,12 +1754,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.824126 0 0.566406 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-155.607 216.827 175.129"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -2079,12 +2067,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.279829 0 0.96005 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-337.75 227.176 425.681"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -3198,12 +3182,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.636078 0 0.771625 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-378.115 212.799 443.816"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -3446,12 +3426,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.95882 0 0.284015 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-144.959 214.439 143.633"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -3678,12 +3654,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.58425 0 -0.811574 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="345.518 134.426 146.042"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -3787,7 +3759,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="changeworld.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-368.429 220.822 330.597"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-368.429 224.485 330.597"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_d"></PROPERTY>
@@ -4048,12 +4020,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.997669 0.00186433 -0.0610201 -0.0304816"></PROPERTY>
     <PROPERTY id="position" type="9" value="531.907 127.259 -108.162"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -4268,12 +4236,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.0566927 0 0.998392 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-359.146 210.478 473.786"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -5209,12 +5173,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.480989 0 -0.876727 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="379.985 130.29 123.351"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -5245,12 +5205,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.292372 0 0.956305 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-376.479 223.537 296.644"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -5535,12 +5491,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.113203 0 -0.993572 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-160.714 217.153 232.1"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -5732,12 +5684,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="558.103 126.625 -162.831"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -5841,12 +5789,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.876727 0 -0.480989 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="337.085 131.269 67.8655"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -6341,12 +6285,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.798635 0 -0.601815 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="326.24 134.091 83.9206"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -7408,12 +7348,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.766044 0 -0.642788 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="267.074 152.205 315.837"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -7671,12 +7607,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.782608 0 0.622515 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-89.9952 202.96 225.387"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -7913,12 +7845,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.985556 0 0.16935 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-514.559 242.203 85.6972"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -8033,12 +7961,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.612217 0 -0.79069 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="776.408 216.949 104.811"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -8568,12 +8492,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.544639 0 0.838671 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="341.343 131.109 79.7773"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -8664,12 +8584,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-472.911 237.811 98.4256"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -10050,12 +9966,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.390731 0 0.920505 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-137.471 212.005 133.751"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -10268,12 +10180,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.945519 0 0.325568 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="666.675 103.089 -7.58374"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -10474,12 +10382,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.66262 0 0.748956 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-347.938 218.265 451.635"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -10930,12 +10834,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.47332 0 -0.880891 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-103.615 209.211 284.808"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -11858,12 +11758,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.694658 0 -0.71934 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-121.565 208.404 149.511"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -12366,12 +12262,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.0305386 0 0.999534 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-122.269 208.048 173.283"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -12613,12 +12505,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-491.49 237.277 124.952"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -12809,12 +12697,8 @@
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.734323 0 0.678801 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-341.936 226.706 364.615"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="0"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -13226,10 +13110,6 @@
     <PROPERTY id="position" type="9" value="763.665 217.637 110.928"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="scared_plant_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
