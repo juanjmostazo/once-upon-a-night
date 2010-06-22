@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="INITIAL_DIRECTION_X">0</Option>
-    <Option key="INITIAL_DIRECTION_Y">200</Option>
-    <Option key="INITIAL_DIRECTION_Z">1</Option>
     <Option key="TARGET_OFFSET_X">0</Option>
     <Option key="TARGET_OFFSET_Y">20</Option>
     <Option key="TARGET_OFFSET_Z">0</Option>
     <Option key="TRANSITION_SPEED">1</Option>
+
+    <Option key="INITIAL_DIRECTION_X">0</Option>
+    <Option key="INITIAL_DIRECTION_Y">200</Option>
+    <Option key="INITIAL_DIRECTION_Z">1</Option>
     <Option key="MAX_DISTANCE">100</Option>
     <Option key="MIN_DISTANCE">50</Option>
     <Option key="MAX_H">200</Option>

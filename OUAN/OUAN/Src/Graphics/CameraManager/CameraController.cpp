@@ -58,3 +58,8 @@ void CameraController::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr 
 {
 
 }
+
+void CameraController::centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+{
+
+}

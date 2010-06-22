@@ -15,6 +15,7 @@ namespace OUAN
 		virtual TCameraControllerType getControllerType();
 		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		virtual void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
+		virtual void centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
 	protected:
 
 		double calculateDistanceToTarget(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool twoDimensions);

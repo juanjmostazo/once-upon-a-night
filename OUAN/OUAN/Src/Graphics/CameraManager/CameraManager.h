@@ -57,6 +57,8 @@ namespace OUAN
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,double elapsedSeconds);
 
+		void centerCamera();
+
 	private:
 		/// GameWorldManager
 		GameWorldManagerPtr mGameWorldManager;
