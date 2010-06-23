@@ -53,14 +53,14 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	setNextMovement(NxOgre::Vec3(0, Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed * mCyclicDirection, 0));
+	setNextMovement(Ogre::Vector3(0, Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed * mCyclicDirection, 0));
 	scaleNextMovement(elapsedSeconds);
 
 	double cyclicLastPositionY = getNxOgreController()->getPosition().y;
 	double sceneNodeLastPositionY = getSceneNode()->getPosition().y;
 
 	getNxOgreController()->move(
-		getNextMovement(),
+		NxOgre::Vec3(getNextMovement()),
 		collisionFlags,
 		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 		collisionFlags);
@@ -87,7 +87,7 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 	}
 
 	setLastMovement(getNextMovement());
-	setNextMovement(NxOgre::Vec3::ZERO);
+	setNextMovement(Ogre::Vector3::ZERO);
 }
 
 void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
@@ -95,7 +95,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	//This se must be called at the beginning of this function, 
 	//otherwise isWorthUpdating won't return a reliable result
 	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
-	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement().as<Ogre::Vector3>(), elapsedSeconds));
+	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
 	setNextMovement(getNextMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
 
 	if (!isWorthUpdating())
@@ -152,7 +152,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		logStatus("Before move()", elapsedSeconds);
 
 		getNxOgreController()->move(
-			getNextMovement(),
+			NxOgre::Vec3(getNextMovement()),
 			collisionFlags,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
@@ -168,8 +168,8 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
 
 	setLastMovement(getNextMovement());
-	setNextMovement(NxOgre::Vec3::ZERO);
-	setOuternMovement(NxOgre::Vec3::ZERO);
+	setNextMovement(Ogre::Vector3::ZERO);
+	setOuternMovement(Ogre::Vector3::ZERO);
 
 	logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
 
@@ -186,7 +186,7 @@ void PhysicsComponentCharacter::scaleNextMovement(double elapsedSeconds)
 
 bool PhysicsComponentCharacter::isWorthUpdating()
 {
-	return isInUse() && getNextMovement() != NxOgre::Vec3::ZERO;
+	return isInUse() && getNextMovement() != Ogre::Vector3::ZERO;
 }
 
 void PhysicsComponentCharacter::walk()
@@ -231,8 +231,9 @@ void PhysicsComponentCharacter::resetCyclicVars()
 
 void PhysicsComponentCharacter::resetMovementVars()
 {
-	setNextMovement(NxOgre::Vec3::ZERO);
-	setLastMovement(NxOgre::Vec3::ZERO);
+	setOuternMovement(Ogre::Vector3::ZERO);
+	setNextMovement(Ogre::Vector3::ZERO);
+	setLastMovement(Ogre::Vector3::ZERO);
 }
 
 void PhysicsComponentCharacter::initJumpingVars()
@@ -392,34 +393,34 @@ void PhysicsComponentCharacter::destroy()
 	Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->destroyController(getNxOgreController());
 }
 
-void PhysicsComponentCharacter::setOuternMovement(NxOgre::Vec3 outernMovement)
+void PhysicsComponentCharacter::setOuternMovement(Ogre::Vector3 outernMovement)
 {
 	mOuternMovement = outernMovement;
 }
 
-NxOgre::Vec3 PhysicsComponentCharacter::getOuternMovement()
+Ogre::Vector3 PhysicsComponentCharacter::getOuternMovement()
 {
 	return mOuternMovement;
 }
 
-void PhysicsComponentCharacter::setNextMovement(NxOgre::Vec3 nextMovement)
+void PhysicsComponentCharacter::setNextMovement(Ogre::Vector3 nextMovement)
 {
 	mNextMovement = nextMovement;
 }
 
-NxOgre::Vec3 PhysicsComponentCharacter::getNextMovement()
+Ogre::Vector3 PhysicsComponentCharacter::getNextMovement()
 {
 	return mNextMovement;
 }
 
-void PhysicsComponentCharacter::setLastMovement(NxOgre::Vec3 lastMovement)
+void PhysicsComponentCharacter::setLastMovement(Ogre::Vector3 lastMovement)
 {
 	mLastMovement = lastMovement;
 }
 
 Ogre::Vector3 PhysicsComponentCharacter::getLastMovement()
 {
-	return mLastMovement.as<Ogre::Vector3>();
+	return mLastMovement;
 }
 
 void PhysicsComponentCharacter::updateSceneNode()
@@ -499,34 +500,33 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeco
 
 	if (getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0) 
 	{
-		//Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");
-		//
-		//Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
-		//Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
+		Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");
+		
+		Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
+		Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
 
-		//Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
-		//Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
-		//Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
-		//Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
-		//Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
+		Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
+		Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
+		Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
+		Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
+		Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
 
-		//Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
-		//Logger::getInstance()->log("PPC: mJumpingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingSpeed)));
-		//Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
-		//Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
+		Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
+		Logger::getInstance()->log("PPC: mJumpingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingSpeed)));
+		Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
+		Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
 
-		//Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
-		//Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
-		//
-		//Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
-		//Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
+		Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
+		Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		
+		Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
+		Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
 
-		//Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
+		Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
 
-		//Logger::getInstance()->log("PPC: elapsedSeconds -> " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
-		//
-		//Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
-
+		Logger::getInstance()->log("PPC: elapsedSeconds -> " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+		
+		Logger::getInstance()->log("PPC: ## LOG STATUS END ## " + label + " ##");
 	}
 }
 

@@ -35,15 +35,15 @@ namespace OUAN
 		virtual void walk();
 		virtual void jump();
 
-		virtual void setOuternMovement(NxOgre::Vec3 outernMovement);
-
 		virtual bool isJumping() const;
 		virtual bool isFalling() const;
 		virtual bool isFallingLimit() const;
 		virtual bool isWalking() const;
 		virtual bool isMoving() const;
 
+		virtual void setOuternMovement(Ogre::Vector3 outernMovement);
 		virtual Ogre::Vector3 getLastMovement();
+
 		virtual Ogre::Vector3 getPosition();
 		virtual double getYaw();
 
@@ -62,11 +62,11 @@ namespace OUAN
 		virtual void setWalking (bool pWalking);
 		virtual void setOnSurface(bool pOnSurface);
 
-		virtual void setNextMovement(NxOgre::Vec3 nextMovement);
-		virtual NxOgre::Vec3 getNextMovement();
+		virtual void setNextMovement(Ogre::Vector3 nextMovement);
+		virtual Ogre::Vector3 getNextMovement();
 
-		virtual void setLastMovement(NxOgre::Vec3 lastMovement);
-		virtual NxOgre::Vec3 getOuternMovement();
+		virtual void setLastMovement(Ogre::Vector3 lastMovement);
+		virtual Ogre::Vector3 getOuternMovement();
 
 		virtual void updateSceneNode();
 
@@ -97,9 +97,9 @@ namespace OUAN
 		NxOgre::Vec2 mNxOgreSize;
 		NxOgre::ControllerDescription mNxOgreControllerDescription;
 
-		NxOgre::Vec3 mOuternMovement;
-		NxOgre::Vec3 mNextMovement;
-		NxOgre::Vec3 mLastMovement;
+		Ogre::Vector3 mOuternMovement;
+		Ogre::Vector3 mNextMovement;
+		Ogre::Vector3 mLastMovement;
 
 		Vector3 mOffsetRenderPosition;
 
