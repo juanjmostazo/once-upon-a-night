@@ -6,6 +6,8 @@
 #include "WalkabilityMap.h"
 #include "../RenderComponent/RenderComponentPositional.h"
 #include "../RenderSubsystem.h"
+#include "../../Loader/Configuration.h"
+
 using namespace OUAN;
 
 TrajectoryManager::TrajectoryManager()
@@ -14,6 +16,8 @@ TrajectoryManager::TrajectoryManager()
 	mDebugObjects = 0;
 	trajectoryID = 0;
 	mVisible=false;
+	mDefaultSpeed = 0;
+	mMinNextNodeDistance = 0;
 }
 
 TrajectoryManager::~TrajectoryManager()
@@ -24,9 +28,36 @@ TrajectoryManager::~TrajectoryManager()
 void TrajectoryManager::init(RenderSubsystemPtr pRenderSubsystem)
 {
 	mSceneManager=pRenderSubsystem->getSceneManager();
+	
+	loadConfig();
 
 	clear();
+}
 
+bool TrajectoryManager::loadConfig()
+{
+	Configuration config;
+	std::string value;
+	bool success;
+
+	if (config.loadFromFile(TRAJECTORY_CFG))
+	{
+		config.getOption("DEFAULT_SPEED", value); 
+		mDefaultSpeed = atof(value.c_str());
+
+		config.getOption("MIN_NEXT_NODE_DISTANCE", value); 
+		mMinNextNodeDistance = atof(value.c_str());
+
+		success = true;
+	} 
+	else 
+	{
+		//Logger::getInstance()->log(PHYSICS_CFG + " COULD NOT BE LOADED!");
+		success = false;
+	}
+
+	//	config.~Configuration();
+	return success;
 }
 
 void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
@@ -35,13 +66,12 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 	Ogre::SceneNode * pSceneNode;
 	std::vector<TrajectoryNode *> mTrajectoryNodes;
 	TrajectoryNode * pTrajectoryNode;
+
 	Logger::getInstance()->log("[TrajectoryManager] Creating trajectory "+tTrajectoryParameters.name);
 	
 	trajectoryContainer[tTrajectoryParameters.name]= new Trajectory();
-
 	trajectoryContainer[tTrajectoryParameters.name]->setVisible(mVisible);
-
-	trajectoryContainer[tTrajectoryParameters.name]->init(tTrajectoryParameters.name,mSceneManager,mDebugObjects,TrajectoryManagerPtr(this));
+	trajectoryContainer[tTrajectoryParameters.name]->init(tTrajectoryParameters.name,mSceneManager,mDebugObjects,TrajectoryManagerPtr(this),mDefaultSpeed,mMinNextNodeDistance);
 
 	for(i=0;i<tTrajectoryParameters.tTrajectoryNodeParameters.size();i++)
 	{
@@ -67,8 +97,6 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 	}
 
 	trajectoryContainer[tTrajectoryParameters.name]->setTrajectoryNodes(mTrajectoryNodes,"blue");
-
-
 }
 
 void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters)
@@ -85,10 +113,8 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 
 	walkabilityMapContainer[tWalkabilityMapParameters.name]=pWalkabilityMap;
 
-
 	////walkabilityMapContainer[tWalkabilityMapParameters.name]->pathFinding(
 	////	mSceneManager->getSceneNode("tree1#4"),mSceneManager->getSceneNode("terrain#tower1"));
-
 }
 
 void TrajectoryManager::clear()
@@ -116,7 +142,7 @@ Trajectory * TrajectoryManager::getTrajectoryInstance(std::string parent)
 
 	pTrajectory = new Trajectory();
 
-	pTrajectory->init("trajectory#"+Ogre::StringConverter::toString(trajectoryID++),mSceneManager,mDebugObjects,TrajectoryManagerPtr(this));
+	pTrajectory->init("trajectory#"+Ogre::StringConverter::toString(trajectoryID++),mSceneManager,mDebugObjects,TrajectoryManagerPtr(this),mDefaultSpeed,mMinNextNodeDistance);
 
 	trajectoryContainer[pTrajectory->getName()]=pTrajectory;
 
@@ -142,7 +168,6 @@ bool TrajectoryManager::hasWalkabilityMap(std::string name)
 
 	return it!=walkabilityMapContainer.end();
 }
-
 
 void TrajectoryManager::setIdle(Trajectory & trajectory,std::string gameObjectName)
 {
@@ -331,5 +356,4 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 			mSceneManager->getRootSceneNode()->removeChild(mDebugObjects->getName());
 		}
 	}
-
 }

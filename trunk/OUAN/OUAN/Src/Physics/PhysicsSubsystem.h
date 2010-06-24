@@ -79,7 +79,6 @@ namespace OUAN
 		double mMaxAccelerationFactor;
 		double mMinAccelerationFactor;
 		double mMaxSameDirectionAngle;		
-		double mOuternMovementFactor;
 		double mWalkSpeedFactor;
 		double mSlopeLimit;
 		double mStepOffset;

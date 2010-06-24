@@ -22,6 +22,12 @@ namespace OUAN
 
 		bool mVisible;
 
+		/// Load params from config file
+		virtual bool loadConfig();
+
+		double mDefaultSpeed;
+		double mMinNextNodeDistance;
+
 	public:
 
 		TrajectoryManager();

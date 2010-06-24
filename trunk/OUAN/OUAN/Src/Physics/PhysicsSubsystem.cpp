@@ -257,9 +257,6 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MAX_SAME_DIRECTION_ANGLE", value); 
 		mMaxSameDirectionAngle = atof(value.c_str());
 
-		config.getOption("OUTERN_MOVEMENT_FACTOR", value); 
-		mOuternMovementFactor = atof(value.c_str());
-
 		config.getOption("WALK_SPEED_FACTOR", value); 
 		mWalkSpeedFactor = atof(value.c_str());
 

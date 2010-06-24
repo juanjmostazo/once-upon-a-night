@@ -5,6 +5,8 @@
 #include "TrajectoryNode.h"
 #include "../Line3D/Line3D.h"
 #include "../../Utils/Utils.h"
+#include "../../Application.h"
+#include "../../Physics/PhysicsSubsystem.h"
 
 using namespace OUAN;
 
@@ -17,22 +19,23 @@ Trajectory::~Trajectory()
 {
 
 }
-void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager)
+void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager, double defaultSpeed, double minNextNodeDistance)
 {
 	mName=name;
 	mSceneManager=pSceneManager;
 	mTrajectoryManager=pTrajectoryManager;
 	mDebugObjects=debugObjects->createChildSceneNode("trajectory#"+mName);
 	mNextMovement=Vector3::ZERO;
+	mNextMovementAbsolute=Vector3::ZERO;
 	mTrajectory2d=false;
 	mLoopTrajectory=true;
 	mState=IDLE;
 	mVisible=false;
-	mDefaultSpeed=15;
 	mRecalculateTime=0.2+Utils::Random::getInstance()->getRandomDouble();
 	mTrajectoryNodes.clear();
 	mCurrentNode=0;
-	mMinNextNodeDistance=5;
+	mDefaultSpeed=defaultSpeed;
+	mMinNextNodeDistance=minNextNodeDistance;
 }
 
 std::string Trajectory::getParent() const
@@ -151,6 +154,11 @@ Ogre::Vector3 Trajectory::calculateNextMovement(std::string source,std::string t
 	}
 
 	return nextMovement;
+}
+
+Ogre::Vector3 Trajectory::calculateNextMovementAbsolute(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
+{
+	return calculateNextMovement(source, target, Trajectory2d, speed, elapsedTime) / elapsedTime;
 }
 
 Ogre::Vector3 Trajectory::calculateNextPosition(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
@@ -272,6 +280,7 @@ void Trajectory::update(double elapsedTime)
 	currentSpeed=mTrajectoryNodes[mCurrentNode]->getSpeed();
 	
 	mNextMovement=calculateNextMovement(source,target,mTrajectory2d,currentSpeed,elapsedTime);
+	mNextMovementAbsolute=calculateNextMovementAbsolute(source,target,mTrajectory2d,currentSpeed,elapsedTime);
 	mCurrentPosition=calculateNextPosition(source,target,mTrajectory2d,currentSpeed,elapsedTime);
 	mCurrentOrientation=calculateNextOrientation(lastNode,source,target,mTrajectory2d,currentSpeed,elapsedTime);
 
@@ -339,6 +348,11 @@ OUAN::Vector3 Trajectory::getCurrentPosition()
 OUAN::Vector3 Trajectory::getNextMovement()
 {
 	return mNextMovement;
+}
+
+OUAN::Vector3 Trajectory::getNextMovementAbsolute()
+{
+	return mNextMovementAbsolute;
 }
 
 bool Trajectory::isEmpty()
@@ -558,7 +572,7 @@ void Trajectory::doPathfinding(std::string source,std::string target,std::string
 		clear();
 		pTrajectoryNode = new TrajectoryNode();
 		pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(target));
-		pTrajectoryNode->setSpeed(15);
+		pTrajectoryNode->setSpeed(mDefaultSpeed);
 
 		pushBackNode(pTrajectoryNode,"green");
 		reset();
@@ -594,7 +608,7 @@ void Trajectory::initPathfinding()
 		//create trajectory node and set the scene node and the rest of parameters
 		pTrajectoryNode = new TrajectoryNode();
 		pTrajectoryNode->setSceneNode(path[i]);
-		pTrajectoryNode->setSpeed(15);
+		pTrajectoryNode->setSpeed(mDefaultSpeed);
 
 		pushBackNode(pTrajectoryNode,"green");
 	}
@@ -637,7 +651,7 @@ void Trajectory::recalculatePathfinding()
 		//create trajectory node and set the scene node and the rest of parameters
 		pTrajectoryNode = new TrajectoryNode();
 		pTrajectoryNode->setSceneNode(path[i]);
-		pTrajectoryNode->setSpeed(15);
+		pTrajectoryNode->setSpeed(mDefaultSpeed);
 
 		pushBackNode(pTrajectoryNode,"green");
 	}

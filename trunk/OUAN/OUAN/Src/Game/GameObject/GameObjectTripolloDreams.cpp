@@ -275,7 +275,7 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 
 			if (mPhysicsComponentCharacter->isInUse())
 			{
-				mPhysicsComponentCharacter->setOuternMovement(mTrajectoryComponent->getNextMovement());
+				mPhysicsComponentCharacter->setOuternMovement(mTrajectoryComponent->getNextMovementAbsolute());
 			}
 		}
 	}

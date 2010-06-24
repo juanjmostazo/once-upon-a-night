@@ -21,9 +21,8 @@
 	<Option key="STABILIZE_SECONDS">10000</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="MIN_DISTANCE">0.01</Option>
-	<Option key="OUTERN_MOVEMENT_FACTOR">5</Option>
-    <Option key="MOVEMENT_UNITS_PER_SECOND">15</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
+	<Option key="MOVEMENT_UNITS_PER_SECOND">75</Option>
 	
 	<!--DEPRECATED VARS-->
 	<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">250</Option>

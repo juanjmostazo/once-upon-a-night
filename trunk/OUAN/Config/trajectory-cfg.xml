@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Options>
+	<Option key="DEFAULT_SPEED">0.5</Option>
+    <Option key="MIN_NEXT_NODE_DISTANCE">5</Option>
+  </Options>
+</Configuration>

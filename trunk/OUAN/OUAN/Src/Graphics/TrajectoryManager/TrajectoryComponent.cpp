@@ -75,6 +75,11 @@ Vector3 TrajectoryComponent::getNextMovement()
 	return mTrajectory->getNextMovement();
 }
 
+Vector3 TrajectoryComponent::getNextMovementAbsolute()
+{
+	return mTrajectory->getNextMovementAbsolute();
+}
+
 Vector3 TrajectoryComponent::getCurrentPosition()
 {
 	return mTrajectory->getCurrentPosition();
