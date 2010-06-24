@@ -24,9 +24,11 @@ void PhysicsComponentCharacter::reset()
 	resetMovementVars();
 	resetCyclicVars();
 
-	setOnSurface(false);
-	setMoving(false);
+	
 	setWalking(false);
+	setMoving(false);
+	setOnSurface(false);
+	setLastElapsedSeconds(0);
 }
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
@@ -47,6 +49,8 @@ void PhysicsComponentCharacter::update(double elapsedSeconds)
 	{
 		performClassicMovement(elapsedSeconds);
 	}
+
+	setLastElapsedSeconds(elapsedSeconds);
 }
 
 void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
@@ -115,6 +119,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		{
 			//logStatus("Within isWalking(), beginning", elapsedSeconds);
 			applyWalkXZ(elapsedSeconds);
+			setWalking(false);
 			//logStatus("Within isWalking(), end", elapsedSeconds);
 		}
 
@@ -137,6 +142,9 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 			//logStatus("After applying fall", elapsedSeconds);
 		}
 
+		//logStatus("Before setMoving()", elapsedSeconds);
+		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
+
 		//logStatus("Before move()", elapsedSeconds);
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		getNxOgreController()->move(
@@ -147,10 +155,6 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 
 		//logStatus("Before setOnSurface()", elapsedSeconds);
 		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
-
-		//logStatus("Before setWalking(), setMoving()", elapsedSeconds);
-		setWalking(false);
-		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
 	}
 
 	//logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
@@ -170,22 +174,69 @@ void PhysicsComponentCharacter::applyWalkXZ(double elapsedSeconds)
 
 void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
 {
+	double initialTime = mJumpingTime;
+	double finalTime = mJumpingTime + elapsedSeconds;
+
+	finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
+		? finalTime 
+		: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+
+	double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+		sin(initialTime * PI_HALF / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+
+	double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+		sin(finalTime * PI_HALF / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+
+	mNextMovement.y +=  finalValue - initialValue;
 	mJumpingTime += elapsedSeconds;
-	mNextMovement.y += 
-		elapsedSeconds * 
-		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
-		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;			
 }
 
 void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
 {
+	double initialTime = mFallingTime;
+	double finalTime = mFallingTime + elapsedSeconds;
+
+	if (initialTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+	{
+		double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+			cos(initialTime * PI_HALF / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+
+		double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+			cos(finalTime * PI_HALF / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+
+		mNextMovement.y +=  finalValue - initialValue;
+	}
+	else
+	{
+		mNextMovement.y -=  
+			2 * 
+			elapsedSeconds * 
+			Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+			Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+	}
+
 	mFallingTime += elapsedSeconds;
+}
+/*
+void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
+{
+	mJumpingTime += elapsedSeconds;
+	mNextMovement.y += 
+		elapsedSeconds * 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;		
+}
+
+void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
+{
 	mNextMovement.y -=  
 		elapsedSeconds * 
 		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
 		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;	
-}
 
+	mFallingTime += elapsedSeconds;
+}
+*/
 void PhysicsComponentCharacter::scaleNextMovementXZ(double elapsedSeconds)
 {
 	mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
@@ -297,6 +348,11 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 		resetJumpingVars();
 		resetFallingVars();
 	}
+}
+
+void PhysicsComponentCharacter::setLastElapsedSeconds(double pLastElapsedSeconds)
+{
+	mLastElapsedSeconds = pLastElapsedSeconds;
 }
 
 void PhysicsComponentCharacter::setMoving(bool pMoving)

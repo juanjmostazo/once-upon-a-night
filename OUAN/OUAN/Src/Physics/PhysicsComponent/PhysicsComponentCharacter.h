@@ -61,6 +61,7 @@ namespace OUAN
 		virtual void setMoving (bool pMoving);
 		virtual void setWalking (bool pWalking);
 		virtual void setOnSurface(bool pOnSurface);
+		virtual void setLastElapsedSeconds(double pLastElapsedSeconds);
 
 		virtual void setNextMovement(Ogre::Vector3 nextMovement);
 		virtual Ogre::Vector3 getNextMovement();
@@ -107,6 +108,8 @@ namespace OUAN
 		bool mCyclicCharacter;
 		double mCyclicDirection;
 		double mCyclicOffset;
+
+		double mLastElapsedSeconds;
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters
