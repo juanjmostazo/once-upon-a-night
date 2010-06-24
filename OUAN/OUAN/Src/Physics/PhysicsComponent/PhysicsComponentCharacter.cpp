@@ -95,7 +95,12 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 {	
 	//logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
 	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
-	setNextMovement(getNextMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
+
+	//logStatus("Before setNewYaw()", elapsedSeconds);
+	setNewYaw();
+
+	//logStatus("Before scaleNextMovementXZ()", elapsedSeconds);
+	scaleNextMovementXZ(elapsedSeconds);
 
 	if (!isWorthUpdating())
 	{
@@ -131,12 +136,6 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 			applyFallY(elapsedSeconds);
 			//logStatus("After applying fall", elapsedSeconds);
 		}
-
-		//logStatus("Before setNewYaw()", elapsedSeconds);
-		setNewYaw();
-
-		//logStatus("Before scaleNextMovementXZ()", elapsedSeconds);
-		scaleNextMovementXZ(elapsedSeconds);
 
 		//logStatus("Before move()", elapsedSeconds);
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
@@ -181,8 +180,7 @@ void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
 void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
 {
 	mFallingTime += elapsedSeconds;
-	mNextMovement.y += 
-		-1 * 
+	mNextMovement.y -=  
 		elapsedSeconds * 
 		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
 		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;	

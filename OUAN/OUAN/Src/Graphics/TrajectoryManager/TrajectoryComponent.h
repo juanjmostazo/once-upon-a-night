@@ -24,6 +24,7 @@ namespace OUAN
 		bool predefinedTrajectoryExists(std::string name);
 
 		Vector3 getNextMovement();
+		Vector3 getNextMovementAbsolute();
 		Vector3 getCurrentPosition();
 		Quaternion getCurrentOrientation();
 	};

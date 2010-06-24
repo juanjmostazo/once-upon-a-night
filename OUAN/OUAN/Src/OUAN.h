@@ -702,6 +702,8 @@ namespace OUAN
 		const std::string DEFAULT_WALKABILITY_MAP_DREAMS="dreams";
 		const std::string DEFAULT_WALKABILITY_MAP_NIGHTMARES="nightmares";
 
+		#define TRAJECTORY_CFG "../../Config/trajectory-cfg.xml"
+
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations
 		//-------------------------------------

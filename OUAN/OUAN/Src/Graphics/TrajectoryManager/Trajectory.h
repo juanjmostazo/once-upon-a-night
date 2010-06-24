@@ -15,6 +15,7 @@ namespace OUAN
 
 		Vector3 mCurrentPosition;
 		Vector3 mNextMovement;
+		Vector3 mNextMovementAbsolute;
 		Quaternion mCurrentOrientation;
 
 		unsigned int mCurrentNode;
@@ -45,6 +46,7 @@ namespace OUAN
 
 		Vector3 calculateNextPosition(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
 		Vector3 calculateNextMovement(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
+		Vector3 calculateNextMovementAbsolute(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
 		Quaternion calculateNextOrientation(std::string lastNode,std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
 
 		std::string mParent;
@@ -102,12 +104,13 @@ namespace OUAN
 		Quaternion getCurrentOrientation();
 		Vector3 getCurrentPosition();
 		Vector3 getNextMovement();
+		Vector3 getNextMovementAbsolute();
 
 		void reset();
 		void clear();
 
 		void update(double elapsedTime);
-		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager);
+		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager, double defaultSpeed, double minNextNodeDistance);
 		void setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNodes,std::string debugColor);
 
 		/////
