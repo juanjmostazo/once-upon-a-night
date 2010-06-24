@@ -209,14 +209,8 @@ bool PhysicsSubsystem::loadConfig()
 		mMovementLimitUnitsPerSecond = atof(value.c_str());
 		mMovementLimitUnitsPerSecondInverseScaled = mMovementLimitUnitsPerSecond / mDisplacementScale;
 
-		config.getOption("FALLING_SPEED_LIMIT", value); 
-		mFallingSpeedLimit = atof(value.c_str());
-
 		config.getOption("TURN_DEGREES_PER_SECOND", value); 
 		mTurnDegreesPerSecond = atof(value.c_str());
-
-		config.getOption("INITIAL_JUMP_SPEED", value); 
-		mInitialJumpSpeed = atof(value.c_str());
 
 		config.getOption("MIN_ALLOWED_Y", value); 
 		mMinAllowedY = atof(value.c_str());
@@ -289,6 +283,15 @@ bool PhysicsSubsystem::loadConfig()
 
 		config.getOption("STABILIZE_SECONDS", value); 
 		mStabilizeSeconds = atof(value.c_str());
+
+		config.getOption("IMPULSE_HEIGHT", value); 
+		mImpulseHeight = atof(value.c_str());
+
+		config.getOption("IMPULSE_TIME", value); 
+		mImpulseTime = atof(value.c_str());
+
+		config.getOption("FALLING_TIME_LIMIT", value); 
+		mFallingTimeLimit = atof(value.c_str());
 
 		success = true;
 	} 
@@ -477,25 +480,11 @@ bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* co
 	return isOny;
 }
 */
-bool PhysicsSubsystem::areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius)
-{
-	double diffX = position1.x - position2.x;
-	double diffY = position1.y - position2.y;
-	double diffZ = position1.z - position2.z;
-	
-	double diffX2 = diffX * diffX;
-	double diffY2 = diffY * diffY;
-	double diffZ2 = diffZ * diffZ;
-
-	return sqrt(diffX2 + diffY2 + diffZ2) < radius;
-}
 
 bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radius)
 {
-	return areClose(
-		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition(), 
-		position, 
-		radius);
+	return NxOgre::Vec3(mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition()).
+		distance(position) < radius;
 }
 
 bool PhysicsSubsystem::sendEnterTrigger(GameObjectPtr object1, GameObjectPtr object2)

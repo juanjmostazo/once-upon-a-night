@@ -53,8 +53,9 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 {
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 
-	setNextMovement(Ogre::Vector3(0, Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed * mCyclicDirection, 0));
-	scaleNextMovement(elapsedSeconds);
+	setNextMovement(Ogre::Vector3(0, Application::getInstance()->getPhysicsSubsystem()->mCyclicSpeed * mCyclicDirection * elapsedSeconds, 0));
+
+	scaleNextMovementXYZ(elapsedSeconds);
 
 	double cyclicLastPositionY = getNxOgreController()->getPosition().y;
 	double sceneNodeLastPositionY = getSceneNode()->getPosition().y;
@@ -92,96 +93,113 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 
 void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 {	
-	//This se must be called at the beginning of this function, 
-	//otherwise isWorthUpdating won't return a reliable result
-	logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
+	//logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
 	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
 	setNextMovement(getNextMovement() * Application::getInstance()->getPhysicsSubsystem()->mOuternMovementFactor);
 
 	if (!isWorthUpdating())
 	{
-		logStatus("isWorthUpdating() == FALSE", elapsedSeconds);
+		//logStatus("isWorthUpdating() == FALSE", elapsedSeconds);
 		resetMovementVars();
 	} 
 	else
 	{
-		logStatus("isWorthUpdating() == TRUE", elapsedSeconds);
-		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+		//logStatus("isWorthUpdating() == TRUE", elapsedSeconds);
 
 		if (isWalking())
 		{
-			logStatus("Within isWalking(), beginning", elapsedSeconds);
-
-			mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
-			mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
-
-			logStatus("Within isWalking(), end", elapsedSeconds);
+			//logStatus("Within isWalking(), beginning", elapsedSeconds);
+			applyWalkXZ(elapsedSeconds);
+			//logStatus("Within isWalking(), end", elapsedSeconds);
 		}
 
 		if (isJumping())
 		{
-			logStatus("Within isJumping(), beginning", elapsedSeconds);
+			//logStatus("Before applying jump", elapsedSeconds);
+			applyJumpY(elapsedSeconds);
 
-			setJumpingSpeed(mJumpingSpeed);
-			mJumpingTime += elapsedSeconds;
-			mNextMovement.y += mJumpingSpeed;			
-
-			logStatus("Within isJumping(), end", elapsedSeconds);
+			if (mJumpingTime >= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+			{
+				resetJumpingVars();
+				initFallingVars();
+			}
+			//logStatus("After applying jump", elapsedSeconds);
 		}
-
-		if (!isOnSurface())
+		else
 		{
-			logStatus("Within !isOnSurface(), beginning", elapsedSeconds);
-
-			setFallingSpeed(mFallingSpeed + 
-				Application::getInstance()->getPhysicsSubsystem()->mGravity.y * mFallingTime);
-			mFallingTime += elapsedSeconds;
-			mNextMovement.y += mFallingSpeed;
-
-			logStatus("Within !isOnSurface(), end", elapsedSeconds);
+			//logStatus("Before applying fall", elapsedSeconds);
+			applyFallY(elapsedSeconds);
+			//logStatus("After applying fall", elapsedSeconds);
 		}
 
-		logStatus("Before setNewYaw()", elapsedSeconds);
-
+		//logStatus("Before setNewYaw()", elapsedSeconds);
 		setNewYaw();
 
-		logStatus("Before scaleNextMovement()", elapsedSeconds);
+		//logStatus("Before scaleNextMovementXZ()", elapsedSeconds);
+		scaleNextMovementXZ(elapsedSeconds);
 
-		scaleNextMovement(elapsedSeconds);
-
-		logStatus("Before move()", elapsedSeconds);
-
+		//logStatus("Before move()", elapsedSeconds);
+		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		getNxOgreController()->move(
 			NxOgre::Vec3(getNextMovement()),
 			collisionFlags,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		logStatus("Before setOnSurface(), setWalking(), setMoving()", elapsedSeconds);
-
+		//logStatus("Before setOnSurface()", elapsedSeconds);
 		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 
+		//logStatus("Before setWalking(), setMoving()", elapsedSeconds);
 		setWalking(false);
 		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
 	}
 
 	logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
-
 	setLastMovement(getNextMovement());
 	setNextMovement(Ogre::Vector3::ZERO);
 	setOuternMovement(Ogre::Vector3::ZERO);
 
-	logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
-
+	//logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
 	updateSceneNode();
 }
 
-void PhysicsComponentCharacter::scaleNextMovement(double elapsedSeconds)
+void PhysicsComponentCharacter::applyWalkXZ(double elapsedSeconds)
 {
-	setNextMovement(
-		getNextMovement() *
-		Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * 
-		elapsedSeconds);
+	mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
+	mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
+}
+
+void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
+{
+	mJumpingTime += elapsedSeconds;
+	mNextMovement.y += 
+		elapsedSeconds * 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;			
+}
+
+void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
+{
+	mFallingTime += elapsedSeconds;
+	mNextMovement.y += 
+		-1 * 
+		elapsedSeconds * 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+		Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;	
+}
+
+void PhysicsComponentCharacter::scaleNextMovementXZ(double elapsedSeconds)
+{
+	mNextMovement.x *= Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+	mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds;
+
+	setNextMovement(getNextMovement());
+}
+
+void PhysicsComponentCharacter::scaleNextMovementXYZ(double elapsedSeconds)
+{
+	setNextMovement(getNextMovement() * 
+		Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond * elapsedSeconds);
 }
 
 bool PhysicsComponentCharacter::isWorthUpdating()
@@ -199,7 +217,7 @@ void PhysicsComponentCharacter::jump()
 	if(canJump())
 	{
 		initJumpingVars();
-		initFallingVars();
+		resetFallingVars();
 	}
 }
 
@@ -212,14 +230,12 @@ void PhysicsComponentCharacter::resetJumpingVars()
 {
 	mJumping = false;
 	mJumpingTime = 0;
-	mJumpingSpeed = 0;
 }
 
 void PhysicsComponentCharacter::resetFallingVars()
 {
 	mFalling = false;
 	mFallingTime = 0;
-	mFallingSpeed = 0;
 }
 
 void PhysicsComponentCharacter::resetCyclicVars()
@@ -240,7 +256,6 @@ void PhysicsComponentCharacter::initJumpingVars()
 {
 	resetJumpingVars();
 	mJumping = true;
-	mJumpingSpeed = Application::getInstance()->getPhysicsSubsystem()->mInitialJumpSpeed;
 }
 
 void PhysicsComponentCharacter::initFallingVars()
@@ -262,7 +277,7 @@ bool PhysicsComponentCharacter::isFalling() const
 bool PhysicsComponentCharacter::isFallingLimit() const
 {
 	return isFalling() && 
-		mFallingSpeed <= -Application::getInstance()->getPhysicsSubsystem()->mFallingSpeedLimit;
+		mFallingTime >= Application::getInstance()->getPhysicsSubsystem()->mFallingTimeLimit;
 }
 
 bool PhysicsComponentCharacter::isWalking() const
@@ -273,18 +288,6 @@ bool PhysicsComponentCharacter::isWalking() const
 bool PhysicsComponentCharacter::isMoving() const
 {
 	return mMoving;
-}
-
-void PhysicsComponentCharacter::setJumpingSpeed(double pJumpingSpeed)
-{
-	mJumpingSpeed = pJumpingSpeed;
-}
-
-void PhysicsComponentCharacter::setFallingSpeed(double pFallingSpeed)
-{
-	mFallingSpeed = (pFallingSpeed <= -Application::getInstance()->getPhysicsSubsystem()->mFallingSpeedLimit) 
-		? -Application::getInstance()->getPhysicsSubsystem()->mFallingSpeedLimit
-		: pFallingSpeed;
 }
 
 void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
@@ -496,7 +499,7 @@ double PhysicsComponentCharacter::getYaw()
 void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeconds)
 {
 	//TODO REMOVE THIS LINE WHEN THIS LOG IS REQUIRED
-	return;
+	//return;
 
 	if (getParent()->getType().compare(GAME_OBJECT_TYPE_ONY)==0) 
 	{
@@ -512,9 +515,7 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeco
 		Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
 
 		Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
-		Logger::getInstance()->log("PPC: mJumpingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingSpeed)));
 		Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
-		Logger::getInstance()->log("PPC: mFallingSpeed -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingSpeed)));
 
 		Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
 		Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));

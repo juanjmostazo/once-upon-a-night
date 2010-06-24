@@ -210,7 +210,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
-			processGameObjectTripolloDreams(gameObject);
+			//processGameObjectTripolloDreams(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{

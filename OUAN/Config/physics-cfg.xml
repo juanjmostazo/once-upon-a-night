@@ -2,12 +2,12 @@
 <Configuration>
   <Options>
 	<Option key="GRAVITY_X">0</Option>
-    <Option key="GRAVITY_Y">-1.8</Option>
+    <Option key="GRAVITY_Y">-10</Option>
     <Option key="GRAVITY_Z">0</Option>
-	<Option key="OUTERN_MOVEMENT_FACTOR">5</Option>
+	<Option key="IMPULSE_HEIGHT">25</Option>
+	<Option key="IMPULSE_TIME">0.5</Option>
+	<Option key="FALLING_TIME_LIMIT">1</Option>
 	<Option key="WALK_SPEED_FACTOR">0.5</Option>
-	<Option key="INITIAL_JUMP_SPEED">5</Option>
-	<Option key="FALLING_SPEED_LIMIT">25</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="STATIC_FRICTION">0.5</Option>
     <Option key="DYNAMIC_FRICTION">0.5</Option>
@@ -15,12 +15,13 @@
 	<Option key="SLOPE_LIMIT">60</Option>
     <Option key="STEP_OFFSET">5</Option>
     <Option key="SKIN_WIDTH">0.2</Option>
-    <Option key="GRAVITY_BODIES_FACTOR">500</Option>
+    <Option key="GRAVITY_BODIES_FACTOR">100</Option>
 	<Option key="CYCLIC_MAX_OFFSET">1</Option>
-    <Option key="CYCLIC_SPEED">0.1</Option>
+    <Option key="CYCLIC_SPEED">0.5</Option>
 	<Option key="STABILIZE_SECONDS">10000</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="MIN_DISTANCE">0.01</Option>
+	<Option key="OUTERN_MOVEMENT_FACTOR">5</Option>
     <Option key="MOVEMENT_UNITS_PER_SECOND">15</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
 	
