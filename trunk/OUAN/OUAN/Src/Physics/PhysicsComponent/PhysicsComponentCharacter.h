@@ -73,12 +73,15 @@ namespace OUAN
 		virtual void performCyclicMovement(double elapsedSeconds);
 		virtual void performClassicMovement(double elapsedSeconds);
 
-		virtual void scaleNextMovement(double elapsedSeconds);
+		virtual void applyWalkXZ(double elapsedSeconds);
+		virtual void applyJumpY(double elapsedSeconds);
+		virtual void applyFallY(double elapsedSeconds);
+
+		virtual void scaleNextMovementXZ(double elapsedSeconds);
+		virtual void scaleNextMovementXYZ(double elapsedSeconds);
 		virtual bool isWorthUpdating();
 
 		virtual void setNewYaw();
-		virtual void setJumpingSpeed(double pJumpingSpeed);
-		virtual void setFallingSpeed(double pFallingSpeed);
 
 		virtual void logStatus(Ogre::String label, double elapsedSeconds);
 
@@ -88,9 +91,7 @@ namespace OUAN
 		bool mFalling;
 
 		double mJumpingTime;
-		double mJumpingSpeed;
 		double mFallingTime;
-		double mFallingSpeed;
 
 		double mNxOgreMass;
 		NxOgre::Controller* mNxOgreController;

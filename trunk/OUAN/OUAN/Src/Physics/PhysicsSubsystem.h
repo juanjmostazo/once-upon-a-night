@@ -63,9 +63,7 @@ namespace OUAN
 		double mMovementUnitsPerSecondInverseScaled;
 		double mMovementLimitUnitsPerSecond;
 		double mMovementLimitUnitsPerSecondInverseScaled;
-		double mFallingSpeedLimit;
-		double mTurnDegreesPerSecond;
-		double mInitialJumpSpeed;		
+		double mTurnDegreesPerSecond;		
 		double mMinAllowedY;
 		double mMinCollisionAngle;
 		double mMinSlidingAngle;
@@ -90,6 +88,9 @@ namespace OUAN
 		double mCyclicMaxOffset;
 		double mCyclicSpeed;
 		double mStabilizeSeconds;
+		double mImpulseHeight;
+		double mImpulseTime;
+		double mFallingTimeLimit;
 
 		/// Load params from config file
 		virtual bool loadConfig();
@@ -125,9 +126,6 @@ namespace OUAN
 
 		/// Auxiliar function
 		//bool setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 normal, double normalAngle);
-
-		/// Auxiliar function
-		bool areClose(NxOgre::Vec3 position1, NxOgre::Vec3 position2, double radius);
 
 		/// Auxiliar function
 		bool isOnyCloseFromPosition(NxOgre::Vec3 position, double radius);
