@@ -154,7 +154,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
 	}
 
-	logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
+	//logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
 	setLastMovement(getNextMovement());
 	setNextMovement(Ogre::Vector3::ZERO);
 	setOuternMovement(Ogre::Vector3::ZERO);
