@@ -280,7 +280,10 @@ void CameraControllerThirdPerson::defaultUpdateCamera(Ogre::Camera * pCamera,Cam
 	Vector3 cameraPosition;
 	Vector3 cameraLookAt;
 
-	updateCurrentDistance(elapsedTime);
+	if(!mHasCollisioned)
+	{
+		updateCurrentDistance(elapsedTime);
+	}
 
 	cameraPosition=calculateCameraPosition(pCamera,pCameraInput);
 	cameraLookAt=calculateTargetPosition(pCameraInput);
@@ -398,9 +401,14 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(dou
 	Ogre::Vector3 targetPosition;
 	Ogre::Vector3 newCameraPosition;
 
+	if(distance<mMinDistance)
+	{
+		distance=mMinDistance;
+	}
+
 	targetPosition=calculateTargetPosition(pCameraInput);
 
-	newCameraPosition=distance*mInitialDirection;
+	newCameraPosition = distance*mInitialDirection;
 
 	newCameraPosition = Quaternion(Ogre::Degree(mRotX), Vector3::UNIT_X) * newCameraPosition;
 	newCameraPosition = Quaternion(Ogre::Degree(mRotY), Vector3::UNIT_Y) * newCameraPosition;
@@ -437,6 +445,7 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	direction = calculateDirection(targetPosition,cameraPosition);
 	perpendicularY = Quaternion(Ogre::Degree(90), Vector3::UNIT_Y) * direction;
 	perpendicularX = Quaternion(Ogre::Degree(90), Vector3::UNIT_X) * direction;
+
 	//Botton-Left Viewport
 	testPosition = cameraPosition-perpendicularY*mCollisionOffsetY-perpendicularX*mCollisionOffsetX;
 	direction = calculateDirection(targetPosition,testPosition);
@@ -581,6 +590,8 @@ void CameraControllerThirdPerson::loadInfo()
 		mRotationSpeedY = atof(value.c_str());
 		config.getOption("INITIAL_DISTANCE", value); 
 		mInitialDistance = atof(value.c_str());
+		config.getOption("MIN_DISTANCE", value); 
+		mMinDistance = atof(value.c_str());
 		config.getOption("COLLISION_OFFSET_Y", value); 
 		mCollisionOffsetY = atof(value.c_str());
 		config.getOption("COLLISION_OFFSET_X", value); 

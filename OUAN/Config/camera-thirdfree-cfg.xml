@@ -8,7 +8,8 @@
     <Option key="MAX_ROT_X">60</Option>
     <Option key="SPEED_X">0.02</Option>
     <Option key="SPEED_Y">0.05</Option>
-    <Option key="INITIAL_DISTANCE">80</Option>
+    <Option key="INITIAL_DISTANCE">90</Option>
+    <Option key="MIN_DISTANCE">40</Option>
     <Option key="COLLISION_OFFSET_X">20</Option>
     <Option key="COLLISION_OFFSET_Y">15</Option>
 
@@ -18,14 +19,14 @@
     <Option key="AUTO_ROTATION_DAMPEN_FACTOR">0.99</Option>
     <Option key="AUTO_ROTATION_DAMPEN_START">0.6</Option>
 
-    <Option key="TRANSITION_SPEED">300</Option>
-    <Option key="TRANSITION_DAMPEN_POW">0.05</Option>
+    <Option key="TRANSITION_SPEED">15</Option>
+    <Option key="TRANSITION_DAMPEN_POW">0.3</Option>
     <Option key="TRANSITION_DAMPEN_FACTOR">0.99</Option>
-    <Option key="TRANSITION_DAMPEN_START">0</Option>
+    <Option key="TRANSITION_DAMPEN_START">0.7</Option>
 
-    <Option key="RETURNING_SPEED">30</Option>
-    <Option key="RETURNING_DAMPEN_POW">0.05</Option>
+    <Option key="RETURNING_SPEED">10</Option>
+    <Option key="RETURNING_DAMPEN_POW">0.2</Option>
     <Option key="RETURNING_DAMPEN_FACTOR">0.99</Option>
-    <Option key="RETURNING_DAMPEN_START">0.5</Option>
+    <Option key="RETURNING_DAMPEN_START">0.6</Option>
   </Options>
 </Configuration>
