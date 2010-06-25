@@ -20,7 +20,6 @@ namespace OUAN
 		TCameraControllerType getControllerType();
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
-		void setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
 		void centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
 
 		void setCameraTrajectory(std::string trajectory,bool transition,Ogre::Camera * pCamera);
