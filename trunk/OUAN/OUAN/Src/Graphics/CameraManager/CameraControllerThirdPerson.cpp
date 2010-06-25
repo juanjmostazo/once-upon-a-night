@@ -434,7 +434,7 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 
 Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPtr pCameraInput)
 {
-	return pCameraInput->mTarget->getSceneNode()->getPosition()+pCameraInput->mTargetOffset;
+	return pCameraInput->mCameraParameters->mTarget->getPosition()+pCameraInput->mTargetOffset;
 }
 
 
@@ -645,7 +645,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 void CameraControllerThirdPerson::centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
 {
 	double targetYaw;
-	targetYaw=pCameraInput->mTarget->getSceneNode()->getOrientation().getYaw().valueDegrees();
+	targetYaw=pCameraInput->mCameraParameters->mTarget->getOrientation().getYaw().valueDegrees();
 	if(targetYaw>360)
 		targetYaw-=360;
 	if(targetYaw<0)

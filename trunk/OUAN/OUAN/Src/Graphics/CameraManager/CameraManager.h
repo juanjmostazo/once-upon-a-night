@@ -46,7 +46,7 @@ namespace OUAN
 		void changeAutoCamera();
 
 		//Sets camera target for applicable controllers
-		void setCameraTarget(PhysicsComponentCharacterPtr pTarget);
+		void setCameraTarget(RenderComponentPositionalPtr pTarget);
 
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 

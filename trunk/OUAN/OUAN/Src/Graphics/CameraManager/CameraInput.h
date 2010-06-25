@@ -18,7 +18,7 @@ namespace OUAN
 		Ogre::Vector2 mRotation;
 		Ogre::Vector3 mTranslation;
 
-		PhysicsComponentCharacterPtr mTarget;
+
 
 		bool mDoTransition;
 
