@@ -413,18 +413,21 @@ void Trajectory::setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNod
 		pTrajectoryNode=mTrajectoryNodes[i];
 
 		pushBackNode(pTrajectoryNode,debugColor);
-
 	}
 
 	reset();
+
 }
 
 void Trajectory::removeNodeDebugInfo(int node)
 {
-	mSceneManager->getSceneNode(getEntityDebugName(node))->detachAllObjects();
-	mSceneManager->destroySceneNode(getEntityDebugName(node));
+	if(mSceneManager->hasSceneNode(getEntityDebugName(node)))
+	{
+		mSceneManager->getSceneNode(getEntityDebugName(node))->detachAllObjects();
+		mSceneManager->destroySceneNode(getEntityDebugName(node));
 
-	mSceneManager->destroyEntity(getEntityDebugName(node));
+		mSceneManager->destroyEntity(getEntityDebugName(node));
+	}
 
 	if(mSceneManager->hasSceneNode(getLineDebugName(node)))
 	{

@@ -37,6 +37,9 @@ namespace OUAN
 		/// Activates next camera controller type
 		void changeCameraController();
 
+		/// Activates trajectory/fixed camera
+		void changeAutoCamera();
+
 		//Sets camera target for applicable controllers
 		void setCameraTarget(PhysicsComponentCharacterPtr pTarget);
 
@@ -76,11 +79,7 @@ namespace OUAN
 
 		CameraController * mActiveCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;
-		CameraControllerThirdPersonAuto * mCameraControllerThirdPersonAuto;
-		CameraControllerThirdPersonFree * mCameraControllerThirdPersonFree;
-		CameraControllerFixedThirdPerson * mCameraControllerFixedThirdPerson;
-		CameraControllerFixedFirstPerson * mCameraControllerFixedFirstPerson;
-		CameraControllerTrajectory * mCameraControllerTrajectory;
+		CameraControllerThirdPerson * mCameraControllerThirdPerson;
 
 		//Changeworld functions and variables
 		void changeToWorld(int newWorld, double perc);

@@ -177,11 +177,9 @@ namespace OUAN
 			QUERYFLAGS_STATIC = 1<<0,
 			QUERYFLAGS_DYNAMIC = 1<<1,
 			QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET = 1<<2,
-			QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE = 1<<3,
-			QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE = 1<<4,
-			QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID = 1<<5,
-			QUERYFLAGS_FLASHLIGHT_LIGHT = 1<<6,
-			QUERYFLAGS_CAMERA_COLLISION=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET | QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE | QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE | QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID
+			QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID = 1<<3,
+			QUERYFLAGS_FLASHLIGHT_LIGHT = 1<<4,
+			QUERYFLAGS_CAMERA_COLLISION=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET| QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID
 			//QUERYFLAGS... = 1<<3
 		};
 
@@ -812,11 +810,7 @@ namespace OUAN
 
 		class CameraController;
 		class CameraControllerFirstPerson;
-		class CameraControllerThirdPersonAuto;
-		class CameraControllerThirdPersonFree;
-		class CameraControllerFixedFirstPerson;
-		class CameraControllerFixedThirdPerson;
-		class CameraControllerTrajectory;
+		class CameraControllerThirdPerson;
 
 		class TransparentEntityManager;
 		typedef boost::shared_ptr<TransparentEntityManager> TransparentEntityManagerPtr;
@@ -829,13 +823,17 @@ namespace OUAN
 		typedef enum 
 		{
 			CAMERA_NONE,
-			CAMERA_FIXED_FIRST_PERSON,
-			CAMERA_FIXED_THIRD_PERSON,
 			CAMERA_FIRST_PERSON,
-			CAMERA_THIRD_PERSON_AUTO,
-			CAMERA_THIRD_PERSON_FREE,
-			CAMERA_TRAJECTORY
+			CAMERA_THIRD_PERSON
 		}TCameraControllerType;
+
+		enum CameraState
+		{
+			CS_FREE,
+			CS_AUTO_ROTATION,
+			CS_TRAJECTORY,
+			CS_MOVE_TO_POSITION
+		};
 
 		//-------------------------------------
 		//	Physics module-related constants, type definitions and forwarded declarations

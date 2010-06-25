@@ -20,6 +20,10 @@ void CameraController::init(Ogre::SceneManager * pSceneManager)
 {
 }
 
+void CameraController::clear()
+{
+}
+
 TCameraControllerType CameraController::getControllerType()
 {
 	return OUAN::CAMERA_NONE;

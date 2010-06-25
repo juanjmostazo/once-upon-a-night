@@ -3068,12 +3068,6 @@ QueryFlags LevelLoader::processCameraCollisionType(TiXmlElement *XMLNode)
 				case OGITOR_CAMERA_COLLISION_MOVE_TO_TARGET:
 					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET;
 					break;
-				case OGITOR_CAMERA_COLLISION_ROTX_POSITIVE:
-					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_POSITIVE;
-					break;
-				case OGITOR_CAMERA_COLLISION_ROTX_NEGATIVE:
-					cameraCollisionType=QUERYFLAGS_CAMERA_COLLISION_ROTX_NEGATIVE;
-					break;
 				case OGITOR_NONE:
 					cameraCollisionType=QUERYFLAGS_NONE;
 					break;
