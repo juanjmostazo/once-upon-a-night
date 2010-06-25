@@ -241,7 +241,7 @@ void GameObjectDiamond::calculateChangeWorldDelay(double totalElapsedTime,double
 void GameObjectDiamond::reset()
 {
 	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	//mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 	mLogicComponentItem->setIsTaken(false);
 }
 
@@ -393,6 +393,7 @@ void GameObjectDiamond::disable()
 		mPhysicsComponentVolumeBox->destroy();
 	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		mPhysicsComponentSimpleBox->destroy();
+	mLogicComponentItem->setIsTaken(false);
 }
 void GameObjectDiamond::enable()
 {

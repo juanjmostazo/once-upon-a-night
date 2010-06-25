@@ -19,7 +19,10 @@ namespace OUAN
 	const std::string TEX_ROULETTE_TRANSITION_RB="roulette_n_rb.png";
 	const std::string TEX_ROULETTE_TRANSITION_BG="roulette_n_bg.png";
 	
-	//TODO: Pillow roulette textures?
+	//Energy textures
+	const std::string TEX_POWERBAR_NAME="bar_";
+	const std::string TEX_POWERBAR_EXT=".gif";	
+
 
 	//Health icon textures
 	const std::string TEX_HEALTH_HUD_NAME_FULL="HUDHealth03.png";
@@ -30,6 +33,7 @@ namespace OUAN
 	const std::string OVERLAY_INGAME_HUD_LIVES_TEXT="OUAN/NumLives";
 	const std::string MATERIAL_ROULETTE="OUAN/Hud/Roulette";
 	const std::string MATERIAL_HEALTH="OUAN/Hud/Health";
+	const std::string MATERIAL_POWERBAR="OUAN/Hud/PowerBar";
 	
 	const std::string PANEL_ROULETTE="OUAN/RoulettePanel";
 

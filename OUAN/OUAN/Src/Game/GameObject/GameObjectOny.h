@@ -56,11 +56,11 @@ namespace OUAN
 	#define RESET_BIT_FIELD(var) var=0;
 
 	//Animation names
-	const std::string ONY_ANIM_IDLE01="idle1";
-	const std::string ONY_ANIM_IDLE02="idle2";
-	const std::string ONY_ANIM_WALK="walk2";
+	const std::string ONY_ANIM_IDLE01="idle01";
+	const std::string ONY_ANIM_IDLE02="idle02";
+	const std::string ONY_ANIM_WALK="walk";
 	const std::string ONY_ANIM_RUN="run";
-	const std::string ONY_ANIM_JUMP="jump";
+	const std::string ONY_ANIM_JUMP="jump_init";
 	const std::string ONY_ANIM_JUMP_START="jump_init1";
 	const std::string ONY_ANIM_JUMP_KEEP="jump_up";
 	const std::string ONY_ANIM_JUMP_END="jump_end";
@@ -75,8 +75,8 @@ namespace OUAN
 	const std::string ONY_ANIM_ALERT="alert";
 	const std::string ONY_ANIM_HIT01="hit1";
 	const std::string ONY_ANIM_HIT02="hit2";
-	const std::string ONY_ANIM_DIE01="die";
-	const std::string ONY_ANIM_DIE02="die2";
+	const std::string ONY_ANIM_DIE01="die02";
+	const std::string ONY_ANIM_DIE02="die01";
 	const std::string ONY_ANIM_TIRED="tired";
 	const std::string ONY_ANIM_HANDLE="handle";
 	const std::string ONY_ANIM_OPEN_DOOR="open_door";

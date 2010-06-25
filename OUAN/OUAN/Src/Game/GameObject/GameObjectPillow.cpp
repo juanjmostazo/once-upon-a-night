@@ -368,7 +368,7 @@ void GameObjectPillow::update(double elapsedSeconds)
 
 			Ogre::Matrix4 onyTransform;
 			ony->getRenderComponentPositional()->getSceneNode()->getWorldTransforms(&onyTransform);
-			Ogre::Vector3 relPos(0,15,mPhysicsComponentVolumeBox->getNxOgreSize().z/2);
+			Ogre::Vector3 relPos(0,7,mPhysicsComponentVolumeBox->getNxOgreSize().z/2);
 
 			mPhysicsComponentVolumeBox->setOrientation(ony->getRenderComponentPositional()->getOrientation());
 			mPhysicsComponentVolumeBox->setPosition(onyTransform*relPos);

@@ -69,13 +69,18 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		int currentState=mLogicComponent->getState();
 		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
 		{
-			//mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
-			displayText("I'M NOT AFRAID ANYMORE! ^_^",0.75);
+			Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
+			Logger::getInstance()->log("ScaredPlant: State idle");
+
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP);
+			//displayText("I'M NOT AFRAID ANYMORE! ^_^",0.75);
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
 		{
-			//mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
-			displayText("I'M AFRAID!! >_<");
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
+			//displayText("I'M AFRAID!! >_<");
+			Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
+			Logger::getInstance()->log("ScaredPlant: State alert");
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_CAUTION))
 		{
@@ -86,6 +91,9 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 				std::stringstream msg("");
 				msg<<"I'M STILL AFRAID! T_T ("<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
 				displayText(msg.str(),mLogicComponent->getDelay());
+
+				Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
+				Logger::getInstance()->log("ScaredPlant: State caution");
 			}
 			else
 			{
@@ -94,6 +102,8 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 					std::stringstream msg("");
 					msg<<"I'M STILL AFRAID! ("<<std::fixed<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
 					mDisplayMsg->setText(msg.str());
+					Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
+					Logger::getInstance()->log("ScaredPlant: State caution");
 				}
 			}
 		}
@@ -294,6 +304,21 @@ bool GameObjectScaredPlant::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectScaredPlant::getEntityComponent() const
 {
 	return  mRenderComponentEntityDreams;
+}
+void GameObjectScaredPlant::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(SCAREDPLANT_ANIM_ALERT)==0)
+	{
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_DOWN);
+	}
+	else if (animationName.compare(SCAREDPLANT_ANIM_DOWN)==0)
+	{
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IN);
+	}
+	else if (animationName.compare(SCAREDPLANT_ANIM_UP)==0)
+	{
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
+	}
 }
 //-------------------------------------------------------------------------------------------
 
