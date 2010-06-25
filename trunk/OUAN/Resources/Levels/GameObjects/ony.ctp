@@ -14,7 +14,7 @@
   <PROPERTY id="PhysicsComponentCharacterOny::radius" type="6" value="4" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterOny::height" type="6" value="14" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterOny::position_correction" type="6" value="0 -12 0" ></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacterOny::scale_correction" type="6" value="0.7 0.7 0.7" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacterOny::scale_correction" type="6" value="1.5 1.5 1.5" ></PROPERTY>
   
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" ></PROPERTY>
   <PROPERTY id="LogicComponent::defaultState" type="2" value="-1" ></PROPERTY>
@@ -26,15 +26,15 @@
   <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow#0"></PROPERTY>
   
   <!-- Animations -->
-  <PROPERTY id="animation0::name" type="7" value="idle1"></PROPERTY>
+  <PROPERTY id="animation0::name" type="7" value="idle01"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
-  <PROPERTY id="animation1::name" type="7" value="idle2" ></PROPERTY>
+  <PROPERTY id="animation1::name" type="7" value="idle02" ></PROPERTY>
   <PROPERTY id="animation1::loop" type="12" value="false" ></PROPERTY>
-  <PROPERTY id="animation2::name" type="7" value="walk2" ></PROPERTY>
+  <PROPERTY id="animation2::name" type="7" value="walk" ></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation3::name" type="7" value="run" ></PROPERTY>
   <PROPERTY id="animation3::loop" type="12" value="true" ></PROPERTY>
-  <PROPERTY id="animation4::name" type="7" value="jump" ></PROPERTY>
+  <PROPERTY id="animation4::name" type="7" value="jump_init" ></PROPERTY>
   <PROPERTY id="animation4::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation5::name" type="7" value="get_pillow" ></PROPERTY>
   <PROPERTY id="animation5::loop" type="12" value="false" ></PROPERTY>
@@ -44,7 +44,7 @@
   <PROPERTY id="animation7::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation8::name" type="7" value="leave_pillow" ></PROPERTY>
   <PROPERTY id="animation8::loop" type="12" value="false" ></PROPERTY>  
-  <PROPERTY id="animation9::name" type="7" value="special_pillow_attack" ></PROPERTY>
+  <PROPERTY id="animation9::name" type="7" value="stab_pillow_special" ></PROPERTY>
   <PROPERTY id="animation9::loop" type="12" value="false" ></PROPERTY>  
   <PROPERTY id="animation10::name" type="7" value="get_flash" ></PROPERTY>
   <PROPERTY id="animation10::loop" type="12" value="false" ></PROPERTY>    
@@ -54,11 +54,11 @@
   <PROPERTY id="animation12::loop" type="12" value="false" ></PROPERTY>  
   <PROPERTY id="animation13::name" type="7" value="hit1" ></PROPERTY>
   <PROPERTY id="animation13::loop" type="12" value="false" ></PROPERTY>    
-  <PROPERTY id="animation14::name" type="7" value="hit2" ></PROPERTY>
+  <PROPERTY id="animation14::name" type="7" value="hit2	" ></PROPERTY>
   <PROPERTY id="animation14::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation15::name" type="7" value="die" ></PROPERTY>
   <PROPERTY id="animation15::loop" type="12" value="false" ></PROPERTY>  
-  <PROPERTY id="animation16::name" type="7" value="die2" ></PROPERTY>
+  <PROPERTY id="animation16::name" type="7" value="die02" ></PROPERTY>
   <PROPERTY id="animation16::loop" type="12" value="false" ></PROPERTY>  
   <PROPERTY id="animation17::name" type="7" value="tired" ></PROPERTY>
   <PROPERTY id="animation17::loop" type="12" value="true" ></PROPERTY>

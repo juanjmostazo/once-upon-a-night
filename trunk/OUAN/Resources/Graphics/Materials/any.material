@@ -1,0 +1,95 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+import tint_texture from Tint.material
+
+//any
+material any_d : basic_texture
+{
+	set_texture_alias diffuse_texture any.dds
+}
+
+material any_n : basic_texture
+{
+	set_texture_alias diffuse_texture any.dds
+}
+
+material any_cw : default_changeworld
+{
+}
+
+material any_tint: tint_texture
+{
+	set_texture_alias diffuse_texture any.dds
+}
+//EYES
+material any_eyes_d : basic_texture
+{
+	set_texture_alias diffuse_texture any_eyes.dds
+}
+material any_eyes_n : basic_texture
+{
+	set_texture_alias diffuse_texture any_eyes.dds
+}
+
+material any_eyes_cw : default_changeworld
+{
+}
+material any_eyes_tint: tint_texture
+{
+	set_texture_alias diffuse_texture any_eyes.dds
+}
+//HAIR
+material any_hair_d : basic_texture
+{
+	set_texture_alias diffuse_texture any_hair.dds
+}
+material any_hair_n : basic_texture
+{
+	set_texture_alias diffuse_texture any_hair.dds
+}
+
+material any_hair_cw : default_changeworld
+{
+}
+material any_hair_tint: tint_texture
+{
+	set_texture_alias diffuse_texture any_hair.dds
+}
+
+//FLASHLIGHT
+material flashlight_d : basic_texture
+{
+	set_texture_alias diffuse_texture flashlight_blue.dds
+}
+
+material flashlight_n : basic_texture
+{
+	set_texture_alias diffuse_texture flashlight_blue.dds
+}
+
+material flashlight_cw : default_changeworld
+{
+}
+material flashlight_tint: tint_texture
+{
+	set_texture_alias diffuse_texture flashlight_blue.dds
+}
+
+//PILLOW
+material pillow_d : basic_texture
+{
+	set_texture_alias diffuse_texture pillow.dds
+}
+
+material pillow_n : basic_texture
+{
+	set_texture_alias diffuse_texture pillow.dds
+}
+
+material pillow_cw : default_changeworld
+{
+}
+material pillow_tint: tint_texture
+{
+	set_texture_alias diffuse_texture pillow.dds
+}

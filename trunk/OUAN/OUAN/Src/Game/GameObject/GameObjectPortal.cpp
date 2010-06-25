@@ -136,11 +136,11 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			setDreamsRender();
-			mRenderComponentEntityDreams->changeAnimation("turn_Clip");
+			mRenderComponentEntityDreams->changeAnimation(PORTAL_ANIMATION_IDLE);
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
-			mRenderComponentEntityNightmares->changeAnimation("turn_Clip");
+			mRenderComponentEntityNightmares->changeAnimation(PORTAL_ANIMATION_IDLE);
 			break;
 		default:
 			break;

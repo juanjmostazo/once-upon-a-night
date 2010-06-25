@@ -12,12 +12,12 @@
 	<PROPERTY id="LogicComponent::delay" type="6" value="5"></PROPERTY>
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->
-  <PROPERTY id="animation0d::name" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation0d::name" type="7" value="idle"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation1d::name" type="7" value="alert" ></PROPERTY>
   <PROPERTY id="animation1d::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation2d::name" type="7" value="down" ></PROPERTY>
-  <PROPERTY id="animation2d::loop" type="12" value="true" ></PROPERTY>
+  <PROPERTY id="animation2d::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation3d::name" type="7" value="in" ></PROPERTY>
   <PROPERTY id="animation3d::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation4d::name" type="7" value="manual" ></PROPERTY>
@@ -27,12 +27,12 @@
   <PROPERTY id="animation6d::name" type="7" value="up" ></PROPERTY>
   <PROPERTY id="animation6d::loop" type="12" value="false" ></PROPERTY>
   
-  <PROPERTY id="animation0n::name" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation0n::name" type="7" value="idle"></PROPERTY>
   <PROPERTY id="animation0n::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation1n::name" type="7" value="alert" ></PROPERTY>
   <PROPERTY id="animation1n::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation2n::name" type="7" value="down" ></PROPERTY>
-  <PROPERTY id="animation2n::loop" type="12" value="true" ></PROPERTY>
+  <PROPERTY id="animation2n::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation3n::name" type="7" value="in" ></PROPERTY>
   <PROPERTY id="animation3n::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation4n::name" type="7" value="manual" ></PROPERTY>

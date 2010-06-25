@@ -16,7 +16,12 @@ namespace OUAN
 
 	//TODO: Verify animation names when they're done
 	const std::string SCAREDPLANT_ANIM_IDLE="idle";
-	const std::string SCAREDPLANT_ANIM_SCARED="scared";
+	const std::string SCAREDPLANT_ANIM_ALERT="alert";
+	const std::string SCAREDPLANT_ANIM_DOWN="down";
+	const std::string SCAREDPLANT_ANIM_IN="in";
+	const std::string SCAREDPLANT_ANIM_MANUAL="manual";
+	const std::string SCAREDPLANT_ANIM_SHAPE="shape";
+	const std::string SCAREDPLANT_ANIM_UP="up";
 
 	/// Class to hold ScaredPlant information
 	class GameObjectScaredPlant : public GameObject, public boost::enable_shared_from_this<GameObjectScaredPlant>
@@ -115,6 +120,8 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
+
+		void processAnimationEnded(const std::string& animationName);
 		
 		//------------------------------------------------------------------
 	};

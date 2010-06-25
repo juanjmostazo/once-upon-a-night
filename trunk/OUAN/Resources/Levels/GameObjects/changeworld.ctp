@@ -30,9 +30,9 @@
 	<PROPERTY id="LogicComponent::approachDistance" type="6" value="40"></PROPERTY>
 	<PROPERTY id="LogicComponent::activateDistance" type="6" value="18"></PROPERTY>
 	
-	<PROPERTY id="animation0d::name" type="7" value="turn_Clip" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="animation0d::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0n::name" type="7" value="turn_Clip" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="animation0n::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	
 	<PROPERTY id="AudioComponent::soundID#0" type="7" value="portal_close"></PROPERTY>

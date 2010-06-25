@@ -139,12 +139,18 @@ void GameObjectOny::update(double elapsedSeconds)
 		mIdleTime+=elapsedSeconds;
 	}
 
-	double animationTime=elapsedSeconds;
+	//double animationTime=elapsedSeconds;
+	//TODO: Move the scale factor to a configurable parameter
+	double timeScaleFactor = 1;
 	if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_STAB_PILLOW)==0)
 	{
-		animationTime=animationTime/3;
+		timeScaleFactor=0.3;
 	}
-	mRenderComponentEntity->update(animationTime);
+	else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_WALK)==0)
+	{
+		timeScaleFactor=1.5;
+	}
+	mRenderComponentEntity->update(elapsedSeconds*timeScaleFactor);
 
 	if (mRenderComponentEntity->isTintBeingApplied())
 	{
@@ -481,7 +487,7 @@ void GameObjectOny::postUpdate()
 	}
 	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
-		mRenderComponentEntity->applyTint(Ogre::ColourValue(1,1,0,1));
+		mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
 	}
 	else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
