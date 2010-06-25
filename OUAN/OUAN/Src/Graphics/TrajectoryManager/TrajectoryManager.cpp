@@ -119,7 +119,20 @@ void TrajectoryManager::createWalkabilityMap(TWalkabilityMapParameters tWalkabil
 
 void TrajectoryManager::clear()
 {
+	TTrajectoryIterator tit;
+	TWalkabilityMapIterator twalk_it;
+
 	Logger::getInstance()->log("[TrajectoryManager] Clearing All Trajectories and Walkability maps");
+
+	for(twalk_it=walkabilityMapContainer.begin();twalk_it!=walkabilityMapContainer.end();twalk_it++)
+	{
+		twalk_it->second->destroyDebugNodes();
+	}
+
+	for(tit=trajectoryContainer.begin();tit!=trajectoryContainer.end();tit++)
+	{
+		tit->second->destroyDebugNodes();
+	}
 
 	trajectoryContainer.clear();
 	walkabilityMapContainer.clear();
@@ -354,6 +367,26 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 		if(mDebugObjects->isInSceneGraph())
 		{
 			mSceneManager->getRootSceneNode()->removeChild(mDebugObjects->getName());
+		}
+	}
+}
+
+
+void TrajectoryManager::updateDebugNodes()
+{
+	TTrajectoryIterator tit;
+	TWalkabilityMapIterator twalk_it;
+
+	if(mVisible)
+	{
+		for(twalk_it=walkabilityMapContainer.begin();twalk_it!=walkabilityMapContainer.end();twalk_it++)
+		{
+			twalk_it->second->updateDebugNodes();
+		}
+
+		for(tit=trajectoryContainer.begin();tit!=trajectoryContainer.end();tit++)
+		{
+			tit->second->updateDebugNodes();
 		}
 	}
 }

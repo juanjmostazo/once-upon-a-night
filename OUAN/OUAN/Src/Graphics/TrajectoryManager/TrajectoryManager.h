@@ -36,6 +36,8 @@ namespace OUAN
 		void init(RenderSubsystemPtr pRenderSubsystem);
 		void clear();
 
+		void updateDebugNodes();
+
 		void createTrajectory(TTrajectoryParameters tTrajectoryParameters);
 		void createWalkabilityMap(TWalkabilityMapParameters tWalkabilityMapParameters);
 

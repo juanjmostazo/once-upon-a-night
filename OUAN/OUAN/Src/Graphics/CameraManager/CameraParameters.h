@@ -12,13 +12,7 @@ namespace OUAN
 		~CameraParameters();
 
 		Vector3 mDirection;
-		double mMaxDistance;
-		double mMinDistance;
-		double mMaxH;
-		double mMinH;
-		bool mFollowZoom;
-		bool mFollowPan;
-		bool mPlayerAutoCenter;
+		double mDistance;
 	};
 
 

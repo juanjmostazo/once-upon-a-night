@@ -36,6 +36,7 @@ namespace OUAN
 
 		void setCameraTrajectory(std::string trajectory,bool transition);
 		void setCameraFree(bool transition);
+		void setCameraTracking(CameraParametersPtr cameraParameters,bool transition);
 
 
 		/// Activates next camera controller type
@@ -82,6 +83,7 @@ namespace OUAN
 		void createMainCamera();
 
 		Ogre::Camera * mCamera;
+		CameraParametersPtr mDefaultCameraParameters;
 
 		CameraController * mActiveCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;

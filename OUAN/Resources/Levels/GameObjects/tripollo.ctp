@@ -17,6 +17,11 @@
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY> ¡
 
+  <!-- Trajectory Component -->
+  <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.03" fields="X;Y;Z;W"></PROPERTY> ¡
+
+
   <!-- Available attacks -->
   <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::selectedAttack" type="7" value="peck" fields="X;Y;Z;W"></PROPERTY>
@@ -37,7 +42,8 @@
   <PROPERTY id="AttackComponent::attack1#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack1#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack1#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-  
+ 
+
   <!-- Animations -->
   <PROPERTY id="animation0d::name" type="7" value="alert" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>

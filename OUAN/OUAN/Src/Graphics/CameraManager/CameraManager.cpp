@@ -63,6 +63,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	mCameraInput.reset(new CameraInput());
 	mCameraInput->init();
+	mDefaultCameraParameters=mCameraInput->mCameraParameters;
 
 	mCurrentTrajectory=-1;
 
@@ -79,8 +80,17 @@ void CameraManager::setCameraTrajectory(std::string trajectory,bool transition)
 void CameraManager::setCameraFree(bool transition)
 {
 	setCameraType(CAMERA_THIRD_PERSON);
+	mCameraInput->mCameraParameters=mDefaultCameraParameters;
 	mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,transition);
+
 }
+
+void CameraManager::setCameraTracking(CameraParametersPtr cameraParameters,bool transition)
+{
+	mCameraInput->mCameraParameters=cameraParameters;
+	mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,transition);
+}
+
 
 //void CameraManager::setCameraTrajectory(std::string name)
 //{
@@ -232,11 +242,15 @@ void CameraManager::changeAutoCamera()
 	{
 		case CAMERA_THIRD_PERSON:
 			mCurrentTrajectory++;
-			if(mCurrentTrajectory>=mCameraTrajectoryNames.size())
+			if(mCurrentTrajectory>=mCameraTrajectoryNames.size()+1)
 			{
 				Logger::getInstance()->log("[Camera Manager] Set Camera Free");
 				mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,true);
 				mCurrentTrajectory=-1;
+			}
+			else if(mCurrentTrajectory==mCameraTrajectoryNames.size())
+			{
+				mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,true);
 			}
 			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())
 			{

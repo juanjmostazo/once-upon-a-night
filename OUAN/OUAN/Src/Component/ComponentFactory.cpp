@@ -756,13 +756,13 @@ AttackComponentPtr ComponentFactory::createAttackComponent(GameObjectPtr gameObj
 	return attackComponent;
 }
 
-TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions)
+TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr gameObject,TTrajectoryComponentParameters ttrajectoryComponentParameters)
 {
 	TrajectoryComponentPtr pTrajectoryComponent = TrajectoryComponentPtr(new TrajectoryComponent); 
 	Trajectory * pTrajectory;
 
 	pTrajectory=mApp->getTrajectoryManager()->getTrajectoryInstance(gameObject->getName());
-	if(TwoDimensions)
+	if(ttrajectoryComponentParameters.twoDimensions)
 	{
 		pTrajectory->setAs2DTrajectory();
 	}
@@ -770,9 +770,11 @@ TrajectoryComponentPtr ComponentFactory::createTrajectoryComponent(GameObjectPtr
 	{
 		pTrajectory->setAs3DTrajectory();
 	}
+	pTrajectory->setDefaultSpeed(ttrajectoryComponentParameters.defaultSpeed);
 
 	pTrajectoryComponent->setTrajectory(pTrajectory);
 	pTrajectoryComponent->setParent(gameObject);
+
 
 	return pTrajectoryComponent;
 }

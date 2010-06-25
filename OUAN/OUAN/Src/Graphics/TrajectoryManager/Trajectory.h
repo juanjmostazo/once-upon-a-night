@@ -3,6 +3,7 @@
 
 #include "../../OUAN.h"
 #include "TrajectoryNode.h"
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
 
 namespace OUAN
 {
@@ -95,6 +96,7 @@ namespace OUAN
 
 		std::map<std::string,Line3D *> myLines;
 		std::map<std::string,Ogre::Entity *> myNodes;
+		std::vector<ObjectTextDisplay*> mDisplays;
 
 	public:
 
@@ -109,9 +111,14 @@ namespace OUAN
 		void reset();
 		void clear();
 
+		void updateDebugNodes();
+		void destroyDebugNodes();
+
 		void update(double elapsedTime);
 		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager, double defaultSpeed, double minNextNodeDistance);
 		void setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNodes,std::string debugColor);
+
+		void setDefaultSpeed(double defaultSpeed);
 
 		/////
 		void setAs2DTrajectory();

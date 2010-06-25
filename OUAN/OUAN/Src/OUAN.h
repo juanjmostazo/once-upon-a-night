@@ -695,6 +695,7 @@ namespace OUAN
 
 		class TrajectoryComponent;
 		typedef boost::shared_ptr<TrajectoryComponent> TrajectoryComponentPtr;
+		class TTrajectoryComponentParameters;
 
 		const std::string COMPONENT_TYPE_TRAJECTORY="TrajectoryComponent";
 		const std::string DEFAULT_WALKABILITY_MAP_DREAMS="dreams";
@@ -831,9 +832,11 @@ namespace OUAN
 		enum CameraState
 		{
 			CS_FREE,
+			CS_TRACKING,
 			CS_AUTO_ROTATION,
 			CS_TRAJECTORY,
-			CS_MOVE_TO_POSITION
+			CS_MOVE_TO_POSITION,
+			CS_MOVE_TO_TARGET
 		};
 
 		//-------------------------------------

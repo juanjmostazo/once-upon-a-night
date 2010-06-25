@@ -70,6 +70,11 @@ bool TrajectoryComponent::predefinedTrajectoryExists(std::string name)
 	return mTrajectory->predefinedTrajectoryExists(name);
 }
 
+void TrajectoryComponent::setDefaultSpeed(double defaultSpeed)
+{
+	mTrajectory->setDefaultSpeed(defaultSpeed);
+}
+
 Vector3 TrajectoryComponent::getNextMovement()
 {
 	return mTrajectory->getNextMovement();
@@ -88,4 +93,12 @@ Vector3 TrajectoryComponent::getCurrentPosition()
 Quaternion TrajectoryComponent::getCurrentOrientation()
 {
 	return mTrajectory->getCurrentOrientation();
+}
+
+TTrajectoryComponentParameters::TTrajectoryComponentParameters()
+{
+}
+
+TTrajectoryComponentParameters::~TTrajectoryComponentParameters()
+{
 }

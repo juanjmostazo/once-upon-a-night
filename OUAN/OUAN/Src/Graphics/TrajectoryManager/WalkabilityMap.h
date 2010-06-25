@@ -2,6 +2,7 @@
 #define WalkabilityMapH_H
 
 #include "../../OUAN.h"
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
 //#include <iostream> // std::cout
 //#include <utility> // std::pair
 //#include <boost/graph/topological_sort.hpp>
@@ -26,6 +27,8 @@ namespace OUAN
 
 		void setVisible(bool visible);
 
+		void updateDebugNodes();
+		void destroyDebugNodes();
 	private:
 
 		struct VertexProperties
@@ -119,6 +122,7 @@ namespace OUAN
 
 		std::vector<Line3D *> myLines;
 		std::vector<Ogre::Entity *> myNodes;
+		std::vector<ObjectTextDisplay*> mDisplays;
 	};
 
 	class TWalkabilityMapParameters

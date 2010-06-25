@@ -537,6 +537,8 @@ bool GameWorldManager::loadConfig()
 		config.getOption("CHANGE_WORLD_RADIUM", value); 
 		CHANGE_WORLD_RADIUM= atof(value.c_str());
 
+		config.getOption("DEFAULT_TRAJECTORY_SPEED", value); 
+		DEFAULT_TRAJECTORY_SPEED= atof(value.c_str());
 		success = true;
 	} 
 	else 

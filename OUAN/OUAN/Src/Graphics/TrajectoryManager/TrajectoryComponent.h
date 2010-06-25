@@ -21,6 +21,8 @@ namespace OUAN
 		void activatePredefinedTrajectory(std::string trajectory,int currentWorld);
 		void activateChase(std::string target);
 
+		void setDefaultSpeed(double defaultSpeed);
+
 		bool predefinedTrajectoryExists(std::string name);
 
 		Vector3 getNextMovement();
@@ -29,6 +31,14 @@ namespace OUAN
 		Quaternion getCurrentOrientation();
 	};
 
+	class TTrajectoryComponentParameters: public TComponentParameters
+	{
+	public:
+		TTrajectoryComponentParameters();
+		~TTrajectoryComponentParameters();
+		bool twoDimensions;
+		Real defaultSpeed;
+	};
 
 }
 

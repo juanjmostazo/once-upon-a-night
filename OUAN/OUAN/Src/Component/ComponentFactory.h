@@ -107,7 +107,7 @@ namespace OUAN
 		AttackComponentPtr createAttackComponent(GameObjectPtr gameObject, TAttackComponentParameters attackComponentParameters);
 
 		//trajectory component
-		TrajectoryComponentPtr createTrajectoryComponent(GameObjectPtr gameObject,bool TwoDimensions);
+		TrajectoryComponentPtr createTrajectoryComponent(GameObjectPtr gameObject,TTrajectoryComponentParameters ttrajectoryComponentParameters);
 		
 		AudioComponentPtr createAudioComponent(GameObjectPtr gameObject, const TAudioComponentMap& audioComponentSounds, AudioSubsystemPtr audioSubsystem);
 	};

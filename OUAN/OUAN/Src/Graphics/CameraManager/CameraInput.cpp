@@ -50,17 +50,8 @@ void CameraInput::loadConfig()
 
 		mCameraParameters->mDirection = Vector3(initial_directionX, initial_directionY, initial_directionZ);
 
-		config.getOption("MAX_DISTANCE", value); 
-		mCameraParameters->mMaxDistance = atof(value.c_str());
-
-		config.getOption("MIN_DISTANCE", value); 
-		mCameraParameters->mMinDistance = atof(value.c_str());
-
-		config.getOption("MAX_H", value); 
-		mCameraParameters->mMaxH = atof(value.c_str());
-
-		config.getOption("MIN_H", value); 
-		mCameraParameters->mMinH = atof(value.c_str());
+		config.getOption("DISTANCE", value); 
+		mCameraParameters->mDistance = atof(value.c_str());
 
 	} 
 	else 

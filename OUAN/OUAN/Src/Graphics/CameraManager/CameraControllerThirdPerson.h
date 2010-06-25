@@ -25,6 +25,7 @@ namespace OUAN
 
 		void setCameraTrajectory(std::string trajectory,bool transition,Ogre::Camera * pCamera);
 		void setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
+		void setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 
 		CameraState getCameraState();
 
@@ -72,11 +73,14 @@ namespace OUAN
 
 		void setCameraAutoRotation(Ogre::Vector3 direction,double rotX,double rotY);
 		void setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState);
+		void setCameraMoveToTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState);
 
 		void updateCameraAutoRotation(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraTrajectory(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraMoveToPosition(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		void updateCameraMoveToTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraFree(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		void updateCameraTracking(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 
 		//autorotation atibutes
 		double mTargetRotX;
@@ -107,6 +111,10 @@ namespace OUAN
 		double mTransitionDampenStart;
 		double mTransitionDampenPow;
 		CameraState mTargetState;
+
+		//move to target
+		CameraInputPtr mTransitionTargetInput;
+		Ogre::Camera * mTransitionDummyCamera;
 
 		//camera returning
 		double mReturningSpeed;
