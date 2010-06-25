@@ -55,8 +55,6 @@ namespace OUAN
 		void processWalkabilityMap(XMLWalkabilityMap *walkabilityMap);
 		TWalkabilityMapNodeParameters processWalkabilityMapNode(TiXmlElement *XMLNode);
 
-		double DEFAULT_TRAJECTORY_SPEED;
-
 		//Game Object Processors
 		void processGameObjectBee_Butterfly(XMLGameObject* gameObject);
 		void processGameObjectBillboardSet(XMLGameObject* gameObject);
@@ -167,6 +165,9 @@ namespace OUAN
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentTriggerCameraParameters processLogicComponentTriggerCamera(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+
+		//Trajectory Component
+		TTrajectoryComponentParameters processTrajectoryComponent(TiXmlElement *XMLCustomPropertiesNode);
 
 		//
 		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);

@@ -2,7 +2,9 @@
 
 #include "WalkabilityMap.h"
 #include "../Line3D/Line3D.h"
-
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
+#include "../../Application.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 using namespace OUAN;
 using namespace boost;
 
@@ -54,6 +56,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 
 		myLines.clear();
 		myNodes.clear();
+		mDisplays.clear();
 
 		//init node numbers
 		mNodeNumbers.clear();
@@ -69,6 +72,7 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 		Ogre::SceneNode * pSceneNode;
 		Ogre::Entity * pEntity;
 		Ogre::SceneNode * pEntityDebugNode;
+		ObjectTextDisplay* pDisplay;
 		//create graph nodes
 		for(i=0;i<tWalkabilityMapParameters.walkabilityNodes.size();i++)
 		{
@@ -97,8 +101,12 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			pEntity->setVisible(mVisible);
 			pEntity->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 			pEntityDebugNode->attachObject(pEntity);
-
 			myNodes.push_back(pEntity);
+			pDisplay = new ObjectTextDisplay(pEntity,Application::getInstance()->getCameraManager()->getCamera());
+			pDisplay->setText(tWalkabilityMapParameters.walkabilityNodes[i].nodeName);
+			pDisplay->enable(mVisible);
+
+			mDisplays.push_back(pDisplay);
 		}
 
 		//add graph edges
@@ -151,7 +159,6 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			myLine->drawLines();
 			mDebugObjects->attachObject(myLine);
 			mDebugObjects->setVisible(mVisible);
-
 			myLines.push_back(myLine);
 		}
 
@@ -172,6 +179,26 @@ void WalkabilityMap::init(TWalkabilityMapParameters tWalkabilityMapParameters,Og
 			Logger::getInstance()->log("Edge "+mGraph[v1].mSceneNode->getName()+"-"+mGraph[v2].mSceneNode->getName()+
 				" distance:"+Ogre::StringConverter::toString(Ogre::Real(weightmap[*eit])));
 		}
+}
+
+void WalkabilityMap::destroyDebugNodes()
+{
+	unsigned int i;
+	for(i=0;i<mDisplays.size();i++)
+	{
+		mDisplays[i]->enable(false);
+		delete mDisplays[i];
+	}
+	mDisplays.clear();
+}
+
+void WalkabilityMap::updateDebugNodes()
+{
+	unsigned int i;
+	for(i=0;i<mDisplays.size();i++)
+	{
+		mDisplays[i]->update();
+	}
 }
 
 int WalkabilityMap::getNearestNode(Ogre::Vector3 position)
@@ -361,6 +388,10 @@ void WalkabilityMap::setVisible(bool visible)
 		myNodes[i]->setVisible(mVisible);
 	}
 
+	for(i=0;i<mDisplays.size();i++)
+	{
+		mDisplays[i]->enable(mVisible);
+	}
 }
 
 TWalkabilityMapParameters::TWalkabilityMapParameters()

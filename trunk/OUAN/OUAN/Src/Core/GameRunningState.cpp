@@ -181,8 +181,11 @@ void GameRunningState::handleEvents()
 		if (mApp->isPressedQuickExit())
 		{
 			//Logger::getInstance()->log("isPressedQuickExit IN");
-			mApp->mExitRequested=true;
-			mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
+			//mApp->mExitRequested=true;
+			//mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
+			GameOverEventPtr evt;
+			evt.reset(new GameOverEvent(false));
+			mApp->getGameWorldManager()->addEvent(evt);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedPause())
@@ -484,6 +487,8 @@ void GameRunningState::update(long elapsedTime)
 			mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
 			mApp->getLogicSubsystem()->update(elapsedSeconds);
+
+			mApp->getTrajectoryManager()->updateDebugNodes();
 
 			mApp->getGameWorldManager()->postUpdate();
 

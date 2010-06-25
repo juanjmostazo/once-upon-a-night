@@ -13,6 +13,9 @@ namespace OUAN
 		void setText(const Ogre::String& text);
 		void update();
 
+		void destroyOverlay();
+		void createOverlay();
+
 	protected:
 		const Ogre::MovableObject* m_p;
 		const Ogre::Camera* m_c;
@@ -24,6 +27,8 @@ namespace OUAN
 		Ogre::String m_ShapeName;
 		Ogre::String m_ShapeTextName;
 		Ogre::String m_ContainerName;
+
+
 	};
 }
 #endif

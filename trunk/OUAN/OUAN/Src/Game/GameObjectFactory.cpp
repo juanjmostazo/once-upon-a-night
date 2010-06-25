@@ -2557,7 +2557,7 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 	//Create TrajectoryComponent
 	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
 		pGameObjectTripolloDreams,
-		true));
+		tGameObjectTripolloDreamsParameters.tTrajectoryComponentParameters));
 
 	pGameObjectTripolloDreams->setAttackComponent(
 		mComponentFactory->createAttackComponent(

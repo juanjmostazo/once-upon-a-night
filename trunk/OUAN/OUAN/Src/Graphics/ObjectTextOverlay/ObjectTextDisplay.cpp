@@ -7,42 +7,55 @@ ObjectTextDisplay::ObjectTextDisplay(const Ogre::MovableObject* p, const Ogre::C
 {
 		m_p = p;
 		m_c = c;
-		m_enabled = false;
+		m_enabled = true;
 		m_text = "";
-		Ogre::String m_ShapeName="shapeName"+m_p->getName();
-		Ogre::String m_ShapeTextName="shapeNameText"+m_p->getName();
-		Ogre::String m_ContainerName="container"+m_p->getName();
-
-		// create an overlay that we can use for later
-		m_pOverlay = Ogre::OverlayManager::getSingleton().create(m_ShapeName);
-		m_pContainer = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingleton().createOverlayElement(
-			"Panel", m_ContainerName));
-
-		m_pOverlay->add2D(m_pContainer);
-
-		m_pText = Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", m_ShapeTextName);
-		m_pText->setDimensions(1.0, 1.0);
-		m_pText->setMetricsMode(Ogre::GMM_PIXELS);
-		m_pText->setPosition(0, 0);
-
-		m_pText->setParameter("font_name", "BlueHighway");
-		m_pText->setParameter("char_height", "16");
-		m_pText->setParameter("horz_align", "center");
-		m_pText->setColour(Ogre::ColourValue(1.0, 1.0, 1.0));
-
-		m_pContainer->addChild(m_pText);
-		m_pOverlay->show();
+		createOverlay();
 }
-ObjectTextDisplay::~ObjectTextDisplay() 
-{
 
+ObjectTextDisplay::~ObjectTextDisplay() 
+{	
+	destroyOverlay();
+}
+
+void ObjectTextDisplay::createOverlay()
+{
+	Ogre::String m_ShapeName="shapeName"+m_p->getName();
+	Ogre::String m_ShapeTextName="shapeNameText"+m_p->getName();
+	Ogre::String m_ContainerName="container"+m_p->getName();
+
+	// create an overlay that we can use for later
+	m_pOverlay = Ogre::OverlayManager::getSingleton().create(m_ShapeName);
+	m_pContainer = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingleton().createOverlayElement(
+		"Panel", m_ContainerName));
+
+	m_pOverlay->add2D(m_pContainer);
+
+	m_pText = Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", m_ShapeTextName);
+	m_pText->setDimensions(1.0, 1.0);
+	m_pText->setMetricsMode(Ogre::GMM_PIXELS);
+	m_pText->setPosition(0, 0);
+
+	m_pText->setParameter("font_name", "BlueHighway");
+	m_pText->setParameter("char_height", "16");
+	m_pText->setParameter("horz_align", "center");
+	m_pText->setColour(Ogre::ColourValue(1.0, 1.0, 1.0));
+
+	m_pContainer->addChild(m_pText);
+	m_pOverlay->show();
+}
+
+void ObjectTextDisplay::destroyOverlay()
+{
 		// overlay cleanup -- Ogre would clean this up at app exit but if your app 
 		// tends to create and delete these objects often it's a good idea to do it here.
 
 		m_pOverlay->hide();
 		Ogre::OverlayManager *overlayManager = Ogre::OverlayManager::getSingletonPtr();
+
 		m_pContainer->removeChild(m_pText->getName());
+
 		m_pOverlay->remove2D(m_pContainer);
+
 		overlayManager->destroyOverlayElement(m_pText);
 		overlayManager->destroyOverlayElement(m_pContainer);
 		overlayManager->destroy(m_pOverlay);
@@ -50,11 +63,15 @@ ObjectTextDisplay::~ObjectTextDisplay()
 
 void ObjectTextDisplay::enable(bool enable) 
 {
+	if (enable)
+	{
+		m_pOverlay->show();
+	}
+	else
+	{
+		m_pOverlay->hide();
+	}
 	m_enabled = enable;
-		if (enable)
-			m_pOverlay->show();
-		else
-			m_pOverlay->hide();
 }
 void ObjectTextDisplay::update()  {
 	if (!m_enabled)

@@ -39,10 +39,14 @@ void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager,Render
 
 	mTransparentEntityManager.reset(new TransparentEntityManager());
 	mTransparentEntityManager->init();
+
+	mTransitionDummyCamera=mSceneManager->createCamera("mTransitionDummyCamera");
+
 }
 
 void CameraControllerThirdPerson::clear()
 {
+	mSceneManager->destroyCamera(mTransitionDummyCamera);
 	mTransparentEntityManager->clear();
 }
 
@@ -120,9 +124,6 @@ void CameraControllerThirdPerson::updateCameraAutoRotation(double elapsedTime,Og
 	double dampenX=calculateDampenFactor(1-calculateRotationDistance(mRotX,mTargetRotX)/calculateRotationDistance(mInitRotX,mTargetRotX),
 		mAutoRotationDampenFactor,mAutoRotationDampenPow,mAutoRotationDampenStart);
 	double nextRotX=elapsedTime*mAutoRotationDirectionX*mAutoRotationSpeedX*dampenX;
-	//if(Ogre::Math::Abs(mRotX-mTargetRotX)<=Ogre::Math::Abs(nextRotX) ||
-	//   Ogre::Math::Abs(mRotX-(mTargetRotX+360))<=Ogre::Math::Abs(nextRotX) ||
-	//   Ogre::Math::Abs(mRotX-(mTargetRotX-360))<=Ogre::Math::Abs(nextRotX) )
 	if(calculateRotationDistance(mRotX,mTargetRotX)<=Ogre::Math::Abs(nextRotX))
 	{
 		mRotX=mTargetRotX;
@@ -136,9 +137,6 @@ void CameraControllerThirdPerson::updateCameraAutoRotation(double elapsedTime,Og
 		mAutoRotationDampenFactor,mAutoRotationDampenPow,mAutoRotationDampenStart);
 	double nextRotY=elapsedTime*mAutoRotationDirectionY*mAutoRotationSpeedY*dampenY;
 	if(calculateRotationDistance(mRotY,mTargetRotY)<=Ogre::Math::Abs(nextRotY))
-	//if(Ogre::Math::Abs(mRotY-mTargetRotY)<=Ogre::Math::Abs(nextRotY) ||
-	//   Ogre::Math::Abs(mRotY-(mTargetRotY+360))<=Ogre::Math::Abs(nextRotY) ||
-	//   Ogre::Math::Abs(mRotY-(mTargetRotY-360))<=Ogre::Math::Abs(nextRotY) )
 	{
 		mRotY=mTargetRotY;
 	}
@@ -257,10 +255,40 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	pCamera->setPosition(position);
 }
 
+void CameraControllerThirdPerson::setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
+{
+	mRotX=0;
+	mRotY=0;
+
+	if(!transition)
+	{
+		mCameraState=CS_TRACKING;
+	}
+	else
+	{
+		setCameraMoveToTarget(
+			pCamera->getPosition(),
+			pCamera->getOrientation(),
+			pCameraInput,
+			0,
+			CS_TRACKING
+			);
+	}
+}
+
+void CameraControllerThirdPerson::updateCameraTracking(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+{
+	defaultUpdateCamera(pCamera,pCameraInput,elapsedTime);
+}
+
 double CameraControllerThirdPerson::calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition)
 {
 	double distance;
 	distance=initialPosition.distance(targetPosition);
+	if(distance==0)
+	{
+		return 1;
+	}
 
 	return distance*mTransitionSpeedFactor;
 }
@@ -276,6 +304,35 @@ void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position
 	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
 	mCameraState=CS_MOVE_TO_POSITION;
 }
+
+void CameraControllerThirdPerson::setCameraMoveToTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState)
+{
+	mTransitionInitialRotation=rotation1;
+	mTransitionInitialPosition=position1;
+	mTransitionTargetInput=pTargetInput;
+	mTransitionTargetSpeed=targetSpeed;
+	mTargetState=targetState;
+	mCameraState=CS_MOVE_TO_TARGET;
+}
+
+void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+{
+	defaultUpdateCamera(mTransitionDummyCamera,mTransitionTargetInput,elapsedTime);
+	mTransitionTargetRotation=mTransitionDummyCamera->getOrientation();
+	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
+	
+	Logger::getInstance()->log("[Camera Manager] UPDATE CAMERA MOVE TO TARGET");
+
+	Logger::getInstance()->log("[Camera Manager] mTransitionSpeed "+Ogre::StringConverter::toString(Ogre::Real(mTransitionSpeed)));
+	Logger::getInstance()->log("[Camera Manager] mTransitionTargetRotation "+Ogre::StringConverter::toString(mTransitionTargetRotation));
+	Logger::getInstance()->log("[Camera Manager] mTransitionTargetPosition "+Ogre::StringConverter::toString(mTransitionTargetPosition));
+	Logger::getInstance()->log("[Camera Manager] mTransitionInitialPosition "+Ogre::StringConverter::toString(mTransitionInitialPosition));
+
+	updateCameraMoveToPosition(elapsedTime,pCamera,pCameraInput);
+}
+
+
 
 void CameraControllerThirdPerson::updateCameraFree(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
@@ -297,6 +354,10 @@ void CameraControllerThirdPerson::updateCurrentDistance(double elapsedTime)
 		{
 			mCurrentDistance=mCurrentDistance+dampen*mReturningSpeed*elapsedTime;
 		}
+	}
+	if(mCurrentDistance<mMinDistance)
+	{
+		mCurrentDistance=mMinDistance;
 	}
 }
 
@@ -332,18 +393,13 @@ void CameraControllerThirdPerson::setCameraFree(Ogre::Camera * pCamera,CameraInp
 	}
 	else
 	{
-		Ogre::Camera * dummyCamera;
-		dummyCamera= mSceneManager->createCamera("dummyCamera");
-		defaultUpdateCamera(dummyCamera,pCameraInput,0);
-		setCameraMoveToPosition(
+		setCameraMoveToTarget(
 			pCamera->getPosition(),
 			pCamera->getOrientation(),
-			dummyCamera->getPosition(),
-			dummyCamera->getOrientation(),
+			pCameraInput,
 			0,
 			CS_FREE
 			);
-		mSceneManager->destroyCamera(dummyCamera);
 	}
 }
 
@@ -354,6 +410,9 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 	case CS_FREE:
 		updateCameraFree(elapsedTime,pCamera,pCameraInput);
 		break;
+	case CS_TRACKING:
+		updateCameraTracking(elapsedTime,pCamera,pCameraInput);
+		break;
 	case CS_AUTO_ROTATION:
 		updateCameraAutoRotation(elapsedTime,pCamera,pCameraInput);
 		break;
@@ -362,6 +421,9 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 		break;
 	case CS_MOVE_TO_POSITION:
 		updateCameraMoveToPosition(elapsedTime,pCamera,pCameraInput);
+		break;
+	case CS_MOVE_TO_TARGET:
+		updateCameraMoveToTarget(elapsedTime,pCamera,pCameraInput);
 		break;
 	default:
 		break;

@@ -7,6 +7,9 @@
 #include "../../Utils/Utils.h"
 #include "../../Application.h"
 #include "../../Physics/PhysicsSubsystem.h"
+#include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
+#include "../../Application.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 
 using namespace OUAN;
 
@@ -36,6 +39,15 @@ void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::
 	mCurrentNode=0;
 	mDefaultSpeed=defaultSpeed;
 	mMinNextNodeDistance=minNextNodeDistance;
+}
+
+void Trajectory::updateDebugNodes()
+{
+	unsigned int i;
+	for(i=0;i<mDisplays.size();i++)
+	{
+		mDisplays[i]->update();
+	}
 }
 
 std::string Trajectory::getParent() const
@@ -208,6 +220,11 @@ bool Trajectory::isLastNode()
 	return (getNextNode()==0);
 }
 
+void Trajectory::setDefaultSpeed(double defaultSpeed)
+{
+	mDefaultSpeed=defaultSpeed;
+}
+
 void Trajectory::advanceToNextNode(double elapsedTime)
 {
 	setCurrentNode(getNextNode());
@@ -300,6 +317,8 @@ void Trajectory::update(double elapsedTime)
 
 	updateTrajectoryNodes(elapsedTime);
 
+	updateDebugNodes();
+
 	//Logger::getInstance()->log("Updating position "+Ogre::StringConverter::toString(currentPosition));
 	//Logger::getInstance()->log("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
 	//Logger::getInstance()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
@@ -369,6 +388,7 @@ void Trajectory::clear()
 {
 	myLines.clear();
 	myNodes.clear();
+	mDisplays.clear();
 
 	while(mTrajectoryNodes.size()>0)
 	{
@@ -419,6 +439,15 @@ void Trajectory::setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNod
 
 }
 
+void Trajectory::destroyDebugNodes()
+{
+	unsigned int i;
+	for(i=0;i<mDisplays.size();i++)
+	{
+		delete mDisplays[i];
+	}
+}
+
 void Trajectory::removeNodeDebugInfo(int node)
 {
 	if(mSceneManager->hasSceneNode(getEntityDebugName(node)))
@@ -460,6 +489,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	Ogre::SceneNode * pEntityDebugNode;
 	Ogre::SceneNode * pLineDebugNode;
 	Ogre::Entity * pEntity;
+	//ObjectTextDisplay* pDisplay;
 
 	pTrajectoryNode=mTrajectoryNodes[node];
 
@@ -474,6 +504,11 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	pEntity->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 	pEntityDebugNode->setScale(Vector3(0.8,0.8,0.8));
 	pEntityDebugNode->attachObject(pEntity);
+
+	//pDisplay = new ObjectTextDisplay(pEntity,Application::getInstance()->getCameraManager()->getCamera());
+	//pDisplay->setText(pTrajectoryNode->getSceneNode()->getName());
+	//pDisplay->enable(mVisible);
+	//mDisplays.push_back(pDisplay);
 
 	myNodes[entityDebugName]=pEntity;
 
@@ -737,6 +772,8 @@ std::string Trajectory::getNearestNode(Ogre::Vector3 position)
 
 void Trajectory::setVisible(bool visible)
 {
+	unsigned int i;
+
 	mVisible=visible;
 
 	std::map<std::string,Line3D *>::iterator it1;
@@ -751,6 +788,11 @@ void Trajectory::setVisible(bool visible)
 	for(it2=myNodes.begin();it2!=myNodes.end();it2++)
 	{
 		it2->second->setVisible(mVisible);
+	}
+
+	for(i=0;i<mDisplays.size();i++)
+	{
+		mDisplays[i]->enable(mVisible);
 	}
 }
 

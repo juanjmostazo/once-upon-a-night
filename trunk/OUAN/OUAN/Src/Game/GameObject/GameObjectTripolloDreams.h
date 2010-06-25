@@ -8,6 +8,7 @@
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 namespace OUAN
 {
@@ -191,6 +192,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
+
+		//Trajectory paramters
+		TTrajectoryComponentParameters tTrajectoryComponentParameters;
 
 		TAudioComponentMap tAudioComponentParameters;
 	};

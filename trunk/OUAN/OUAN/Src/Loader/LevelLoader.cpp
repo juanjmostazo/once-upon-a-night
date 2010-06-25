@@ -100,7 +100,6 @@ using namespace OUAN;
 
 LevelLoader::LevelLoader()
 {
-	DEFAULT_TRAJECTORY_SPEED = 20;
 	mGameObjectFactory = GameObjectFactoryPtr(new GameObjectFactory());
 }
 
@@ -491,7 +490,7 @@ TTrajectoryNodeParameters LevelLoader::processTrajectoryNode(TiXmlElement *XMLNo
 	}
 	catch( std::string error )
 	{
-		tTrajectoryNodeParameters.speed=DEFAULT_TRAJECTORY_SPEED;
+		tTrajectoryNodeParameters.speed=mGameWorldManager->DEFAULT_TRAJECTORY_SPEED;
 	}
 
 	return tTrajectoryNodeParameters;
@@ -2600,6 +2599,8 @@ void LevelLoader::processGameObjectTripolloDreams(XMLGameObject* gameObject)
 
 		tGameObjectTripolloDreamsParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
+		//Get Trajectory Component
+		tGameObjectTripolloDreamsParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -3388,13 +3389,13 @@ CameraParametersPtr LevelLoader::processCameraParameters(TiXmlElement *XMLNode)
 	pCameraParameters.reset(new CameraParameters());
 
 	pCameraParameters->mDirection=getPropertyVector3(XMLNode, "CameraParameters::Direction");
-	pCameraParameters->mMinDistance=getPropertyReal(XMLNode, "CameraParameters::MinDistance");
-	pCameraParameters->mMaxDistance=getPropertyReal(XMLNode, "CameraParameters::MaxDistance");
-	pCameraParameters->mMinH=getPropertyReal(XMLNode, "CameraParameters::MinH");
-	pCameraParameters->mMaxH=getPropertyReal(XMLNode, "CameraParameters::MaxH");
-	pCameraParameters->mFollowZoom=getPropertyBool(XMLNode, "CameraParameters::FollowZoom");
-	pCameraParameters->mFollowPan=getPropertyBool(XMLNode, "CameraParameters::FollowPan");
-	pCameraParameters->mPlayerAutoCenter=getPropertyBool(XMLNode, "CameraParameters::PlayerAutoCenter");
+	pCameraParameters->mDistance=getPropertyReal(XMLNode, "CameraParameters::Distance");
+	//pCameraParameters->mMaxDistance=getPropertyReal(XMLNode, "CameraParameters::MaxDistance");
+	//pCameraParameters->mMinH=getPropertyReal(XMLNode, "CameraParameters::MinH");
+	//pCameraParameters->mMaxH=getPropertyReal(XMLNode, "CameraParameters::MaxH");
+	//pCameraParameters->mFollowZoom=getPropertyBool(XMLNode, "CameraParameters::FollowZoom");
+	//pCameraParameters->mFollowPan=getPropertyBool(XMLNode, "CameraParameters::FollowPan");
+	//pCameraParameters->mPlayerAutoCenter=getPropertyBool(XMLNode, "CameraParameters::PlayerAutoCenter");
 
 	return pCameraParameters;
 }
@@ -3629,6 +3630,17 @@ TLogicComponentItemParameters LevelLoader::processLogicComponentItem(TiXmlElemen
 		}
 	}
 	return logicComponentItemParameters;
+}
+
+TTrajectoryComponentParameters LevelLoader::processTrajectoryComponent(TiXmlElement *XMLCustomPropertiesNode)
+{
+	TTrajectoryComponentParameters tTrajectoryComponentParameters;
+
+	//Get Component properties
+	tTrajectoryComponentParameters.twoDimensions = getPropertyBool(XMLCustomPropertiesNode, "TrajectoryComponent::twodimensions");
+	tTrajectoryComponentParameters.defaultSpeed = getPropertyReal(XMLCustomPropertiesNode, "TrajectoryComponent::defaultspeed");
+
+	return tTrajectoryComponentParameters;
 }
 
 TLogicComponentBreakableParameters LevelLoader::processLogicComponentBreakable(TiXmlElement *XMLNodeDreams,
