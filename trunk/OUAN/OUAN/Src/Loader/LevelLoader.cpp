@@ -458,6 +458,8 @@ void LevelLoader::processTrajectories()
 			processTrajectory(&it->second);
 
 		}
+
+		Application::getInstance()->getCameraManager()->setCameraTrajectoryNames(mXMLParser.mCameraTrajectoryNames);
 	}
 	catch( std::string error )
 	{

@@ -701,6 +701,7 @@ namespace OUAN
 		const std::string DEFAULT_WALKABILITY_MAP_NIGHTMARES="nightmares";
 
 		#define TRAJECTORY_CFG "../../Config/trajectory-cfg.xml"
+		#define OGITOR_CAMERA_TRAJECTORY_NODE "CameraTrajectory"
 
 		//-------------------------------------
 		//	Loader module-related constants, type definitions and forwarded declarations

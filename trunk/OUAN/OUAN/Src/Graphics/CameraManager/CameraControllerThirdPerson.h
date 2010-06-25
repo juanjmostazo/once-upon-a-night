@@ -71,7 +71,7 @@ namespace OUAN
 		CameraState mCameraState;
 
 		void setCameraAutoRotation(Ogre::Vector3 direction,double rotX,double rotY);
-		void setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,CameraState targetState);
+		void setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState);
 
 		void updateCameraAutoRotation(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraTrajectory(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
@@ -100,7 +100,9 @@ namespace OUAN
 		Quaternion mTransitionTargetRotation;
 		Vector3 mTransitionInitialPosition;
 		Vector3 mTransitionTargetPosition;
+		double mTransitionSpeedFactor;
 		double mTransitionSpeed;
+		double mTransitionTargetSpeed;
 		double mTransitionDampenFactor;
 		double mTransitionDampenStart;
 		double mTransitionDampenPow;
@@ -117,6 +119,8 @@ namespace OUAN
 		double calculateDampenFactor(double perc,double dampenFactor, double dampenPow, double dampenStart);
 		void startTrajectory(std::string trajectory,Ogre::Camera * pCamera);
 		void updateCurrentDistance(double elapsedTime);
+		double calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition);
+		double calculateRotationDistance(double angle1, double angle2);
 
 		RayCasting * mRayCasting;
 		TrajectoryManagerPtr mTrajectoryManager;

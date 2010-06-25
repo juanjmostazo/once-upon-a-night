@@ -66,6 +66,7 @@ namespace OUAN
 
 			//Map containing all the parsed trajectories
 			XMLTrajectoryContainer mXMLTrajectoryContainer;
+			std::vector<std::string> mCameraTrajectoryNames;
 
 			//Map containing all the parsed walkability maps
 			XMLWalkabilityMapContainer mXMLWalkabilityMapContainer;
