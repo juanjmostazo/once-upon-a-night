@@ -27,6 +27,8 @@ void XMLParser::clearLevelInfo()
 	mXMLTrajectoryContainer.clear();
 	mXMLWalkabilityMapContainer.clear();
 
+	mCameraTrajectoryNames.clear();
+
 	for(it = mXMLGameObjectContainer.begin(); it != mXMLGameObjectContainer.end(); it++)
 	{
 		it->second.XMLNodeDreams=NULL;
@@ -331,6 +333,8 @@ void XMLParser::parseTrajectory(TiXmlElement *XMLTrajectoryStartNode)
 
 			i++;
 		}
+
+
 	}
 	catch( std::string error )
 	{
@@ -346,6 +350,7 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 
 	String name = getAttrib(XMLNode, "name");
 	String type = getAttrib(XMLNode, "typename");
+	String parentNode= getAttrib(XMLNode,"parentnode");
 	String gameObjectType;
 
 	if(type.compare("Marker Object")==0)
@@ -356,6 +361,11 @@ void XMLParser::parseElement(TiXmlElement *XMLNode)
 		{
 			//Trajectory start node
 			parseTrajectory(XMLNode);
+			//check if it's a camera trajectory
+			if(parentNode.compare(OGITOR_CAMERA_TRAJECTORY_NODE)==0)
+			{
+				mCameraTrajectoryNames.push_back(trajectoryName);
+			}
 		}
 
 		//Parse Trajectory

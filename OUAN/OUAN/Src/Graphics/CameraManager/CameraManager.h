@@ -34,6 +34,10 @@ namespace OUAN
 		void processCameraRotation(Ogre::Vector2 rotation);
 		void processSimpleTranslation(Ogre::Vector3 translation);
 
+		void setCameraTrajectory(std::string trajectory,bool transition);
+		void setCameraFree(bool transition);
+
+
 		/// Activates next camera controller type
 		void changeCameraController();
 
@@ -42,9 +46,6 @@ namespace OUAN
 
 		//Sets camera target for applicable controllers
 		void setCameraTarget(PhysicsComponentCharacterPtr pTarget);
-
-		//Sets camera trajectory for trajectory controller
-		void setCameraTrajectory(std::string name);
 
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 
@@ -62,7 +63,12 @@ namespace OUAN
 
 		void centerCamera();
 
+		void setCameraTrajectoryNames(std::vector<std::string> trajectoryNames);
+
 	private:
+
+		//void setCameraTrajectory(std::string name);
+
 		/// GameWorldManager
 		GameWorldManagerPtr mGameWorldManager;
 		/// GameWorldManager
@@ -97,6 +103,8 @@ namespace OUAN
 
 		PhysicsComponentCharacterPtr mTarget;
 
+		std::vector<std::string> mCameraTrajectoryNames;
+		unsigned int mCurrentTrajectory;
 		
 	};
 }

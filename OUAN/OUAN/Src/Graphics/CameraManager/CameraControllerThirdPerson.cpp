@@ -107,14 +107,23 @@ double CameraControllerThirdPerson::calculateDampenFactor(double perc,double dam
 	return dampen;
 }
 
+double CameraControllerThirdPerson::calculateRotationDistance(double angle1, double angle2)
+{
+    double difference = angle2 - angle1;
+    while (difference < -180) difference += 360;
+    while (difference > 180) difference -= 360;
+    return Ogre::Math::Abs(difference);
+}
+
 void CameraControllerThirdPerson::updateCameraAutoRotation(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
-	double dampenX=calculateDampenFactor(1-Ogre::Math::Abs(mRotX-mTargetRotX)/Ogre::Math::Abs(mInitRotX-mTargetRotX),
+	double dampenX=calculateDampenFactor(1-calculateRotationDistance(mRotX,mTargetRotX)/calculateRotationDistance(mInitRotX,mTargetRotX),
 		mAutoRotationDampenFactor,mAutoRotationDampenPow,mAutoRotationDampenStart);
 	double nextRotX=elapsedTime*mAutoRotationDirectionX*mAutoRotationSpeedX*dampenX;
-	if(Ogre::Math::Abs(mRotX-mTargetRotX)<=Ogre::Math::Abs(nextRotX) ||
-	   Ogre::Math::Abs(mRotX-(mTargetRotX+360))<=Ogre::Math::Abs(nextRotX) ||
-	   Ogre::Math::Abs(mRotX-(mTargetRotX-360))<=Ogre::Math::Abs(nextRotX) )
+	//if(Ogre::Math::Abs(mRotX-mTargetRotX)<=Ogre::Math::Abs(nextRotX) ||
+	//   Ogre::Math::Abs(mRotX-(mTargetRotX+360))<=Ogre::Math::Abs(nextRotX) ||
+	//   Ogre::Math::Abs(mRotX-(mTargetRotX-360))<=Ogre::Math::Abs(nextRotX) )
+	if(calculateRotationDistance(mRotX,mTargetRotX)<=Ogre::Math::Abs(nextRotX))
 	{
 		mRotX=mTargetRotX;
 	}
@@ -123,12 +132,13 @@ void CameraControllerThirdPerson::updateCameraAutoRotation(double elapsedTime,Og
 		rotateX(nextRotX);
 	}
 
-	double dampenY=calculateDampenFactor(1-Ogre::Math::Abs(mRotY-mTargetRotY)/Ogre::Math::Abs(mInitRotY-mTargetRotY),
+	double dampenY=calculateDampenFactor(1-calculateRotationDistance(mRotY,mTargetRotY)/calculateRotationDistance(mInitRotY,mTargetRotY),
 		mAutoRotationDampenFactor,mAutoRotationDampenPow,mAutoRotationDampenStart);
 	double nextRotY=elapsedTime*mAutoRotationDirectionY*mAutoRotationSpeedY*dampenY;
-	if(Ogre::Math::Abs(mRotY-mTargetRotY)<=Ogre::Math::Abs(nextRotY) ||
-	   Ogre::Math::Abs(mRotY-(mTargetRotY+360))<=Ogre::Math::Abs(nextRotY) ||
-	   Ogre::Math::Abs(mRotY-(mTargetRotY-360))<=Ogre::Math::Abs(nextRotY) )
+	if(calculateRotationDistance(mRotY,mTargetRotY)<=Ogre::Math::Abs(nextRotY))
+	//if(Ogre::Math::Abs(mRotY-mTargetRotY)<=Ogre::Math::Abs(nextRotY) ||
+	//   Ogre::Math::Abs(mRotY-(mTargetRotY+360))<=Ogre::Math::Abs(nextRotY) ||
+	//   Ogre::Math::Abs(mRotY-(mTargetRotY-360))<=Ogre::Math::Abs(nextRotY) )
 	{
 		mRotY=mTargetRotY;
 	}
@@ -193,6 +203,7 @@ void CameraControllerThirdPerson::setCameraTrajectory(std::string trajectory,boo
 			pCamera->getOrientation(),
 			mTrajectory->getCurrentNode()->getSceneNode()->getPosition(),
 			mTrajectory->getCurrentNode()->getSceneNode()->getOrientation(),
+			mTrajectory->getCurrentNode()->getSpeed(),
 			CS_TRAJECTORY
 			);
 	}
@@ -219,6 +230,7 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	Vector3 direction;
 	double dampen;
 	double perc;
+	double movement;
 
 	perc=1-pCamera->getPosition().distance(mTransitionTargetPosition)/mTransitionInitialPosition.distance(mTransitionTargetPosition);
 
@@ -226,7 +238,10 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	direction.normalise();
 	dampen=calculateDampenFactor(perc,mTransitionDampenFactor,mTransitionDampenPow,mTransitionDampenStart);
 
-	if(mTransitionTargetPosition.distance(pCamera->getPosition())<mTransitionSpeed*dampen)
+
+	movement=mTransitionTargetSpeed+(mTransitionSpeed-mTransitionTargetSpeed)*dampen;
+
+	if(mTransitionTargetPosition.distance(pCamera->getPosition())<movement)
 	{
 		position=mTransitionTargetPosition;
 		orientation=mTransitionTargetRotation;
@@ -234,7 +249,7 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	}
 	else
 	{
-		position=pCamera->getPosition()+direction*mTransitionSpeed*dampen;
+		position=pCamera->getPosition()+direction*movement;
 		orientation=Quaternion::Slerp(perc,mTransitionInitialRotation,mTransitionTargetRotation,true);
 	}
 
@@ -242,13 +257,23 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	pCamera->setPosition(position);
 }
 
-void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,CameraState targetState)
+double CameraControllerThirdPerson::calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition)
+{
+	double distance;
+	distance=initialPosition.distance(targetPosition);
+
+	return distance*mTransitionSpeedFactor;
+}
+
+void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState)
 {
 	mTransitionInitialRotation=rotation1;
 	mTransitionTargetRotation=rotation2;
 	mTransitionInitialPosition=position1;
 	mTransitionTargetPosition=position2;
+	mTransitionTargetSpeed=targetSpeed;
 	mTargetState=targetState;
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
 	mCameraState=CS_MOVE_TO_POSITION;
 }
 
@@ -298,6 +323,9 @@ void CameraControllerThirdPerson::defaultUpdateCamera(Ogre::Camera * pCamera,Cam
 
 void CameraControllerThirdPerson::setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {
+	if(mCameraState==CS_FREE)
+		return;
+
 	if(!transition)
 	{
 		mCameraState=CS_FREE;
@@ -312,6 +340,7 @@ void CameraControllerThirdPerson::setCameraFree(Ogre::Camera * pCamera,CameraInp
 			pCamera->getOrientation(),
 			dummyCamera->getPosition(),
 			dummyCamera->getOrientation(),
+			0,
 			CS_FREE
 			);
 		mSceneManager->destroyCamera(dummyCamera);
@@ -607,8 +636,8 @@ void CameraControllerThirdPerson::loadInfo()
 		config.getOption("AUTO_ROTATION_DAMPEN_POW", value); 
 		mAutoRotationDampenPow = atof(value.c_str());
 
-		config.getOption("TRANSITION_SPEED", value); 
-		mTransitionSpeed = atof(value.c_str());
+		config.getOption("TRANSITION_SPEED_FACTOR", value); 
+		mTransitionSpeedFactor = atof(value.c_str());
 		config.getOption("TRANSITION_DAMPEN_FACTOR", value); 
 		mTransitionDampenFactor = atof(value.c_str());
 		config.getOption("TRANSITION_DAMPEN_START", value); 

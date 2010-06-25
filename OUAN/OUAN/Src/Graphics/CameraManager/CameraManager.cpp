@@ -64,31 +64,45 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCameraInput.reset(new CameraInput());
 	mCameraInput->init();
 
+	mCurrentTrajectory=-1;
+
 	setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
 }
 
-void CameraManager::setCameraTrajectory(std::string name)
+void CameraManager::setCameraTrajectory(std::string trajectory,bool transition)
 {
-	Logger::getInstance()->log("[Camera Manager] Setting trajectory "+name+" to Camera Controller Trajectory");
-
-	try
-	{
-		if(mTrajectoryManager->hasTrajectory(name))
-		{
-			mCameraInput->mTrajectory=mTrajectoryManager->getTrajectoryInstance("CameraTrajectory");
-			mTrajectoryManager->setPredefinedTrajectory(*mCameraInput->mTrajectory,"a","blue");
-		}
-		else
-		{
-			throw "Trajectory "+name+" does not exist";
-		}
-	}
-	catch( std::string error )
-	{
-		Logger::getInstance()->log("[CameraManager] "+error);
-	}
+	setCameraType(CAMERA_THIRD_PERSON);
+	mCameraControllerThirdPerson->setCameraTrajectory(trajectory,transition,mCamera);
 }
+
+void CameraManager::setCameraFree(bool transition)
+{
+	setCameraType(CAMERA_THIRD_PERSON);
+	mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,transition);
+}
+
+//void CameraManager::setCameraTrajectory(std::string name)
+//{
+//	Logger::getInstance()->log("[Camera Manager] Setting trajectory "+name+" to Camera");
+//
+//	try
+//	{
+//		if(mTrajectoryManager->hasTrajectory(name))
+//		{
+//			mCameraInput->mTrajectory=mTrajectoryManager->getTrajectoryInstance("CameraTrajectory");
+//			mTrajectoryManager->setPredefinedTrajectory(*mCameraInput->mTrajectory,name,"blue");
+//		}
+//		else
+//		{
+//			throw "Trajectory "+name+" does not exist";
+//		}
+//	}
+//	catch( std::string error )
+//	{
+//		Logger::getInstance()->log("[CameraManager] "+error);
+//	}
+//}
 
 void CameraManager::createMainCamera()
 {
@@ -133,12 +147,12 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 	{
 		case CAMERA_FIRST_PERSON:
 			mActiveCameraController=mCameraControllerFirstPerson;
-			Logger::getInstance()->log("[Camera Manager] Camera controller First Person activated");
+			//Logger::getInstance()->log("[Camera Manager] Camera controller First Person activated");
 			break;
 		case CAMERA_THIRD_PERSON:
 			mActiveCameraController=mCameraControllerThirdPerson;
 			mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,false);
-			Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
+			//Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
 			break;
 		default:
 			Logger::getInstance()->log("[Camera Manager] Camera type does not exist!");
@@ -217,18 +231,26 @@ void CameraManager::changeAutoCamera()
 	switch(mActiveCameraController->getControllerType())
 	{
 		case CAMERA_THIRD_PERSON:
-			if(mCameraControllerThirdPerson->getCameraState()==CS_TRAJECTORY)
+			mCurrentTrajectory++;
+			if(mCurrentTrajectory>=mCameraTrajectoryNames.size())
 			{
+				Logger::getInstance()->log("[Camera Manager] Set Camera Free");
 				mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,true);
+				mCurrentTrajectory=-1;
 			}
-			else if(mCameraControllerThirdPerson->getCameraState()==CS_FREE)
+			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())
 			{
-				mCameraControllerThirdPerson->setCameraTrajectory("b",true,mCamera);
+				mCameraControllerThirdPerson->setCameraTrajectory(mCameraTrajectoryNames[mCurrentTrajectory],true,mCamera);
 			}
 			break;
 		case CAMERA_FIRST_PERSON:
 			break;
 	}
+}
+
+void CameraManager::setCameraTrajectoryNames(std::vector<std::string> trajectoryNames)
+{
+	mCameraTrajectoryNames=trajectoryNames;
 }
 
 
