@@ -13,6 +13,7 @@ namespace OUAN
 
 		Vector3 mDirection;
 		double mDistance;
+		RenderComponentPositionalPtr mTarget;
 	};
 
 

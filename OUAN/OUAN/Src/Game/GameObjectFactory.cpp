@@ -1269,7 +1269,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
 	//Set Ony as camera target
-	cameraMgr->setCameraTarget(pGameObjectOny->getPhysicsComponentCharacterOny());
+	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);

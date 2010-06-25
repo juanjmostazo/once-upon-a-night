@@ -16,6 +16,8 @@
 #include "../TrajectoryManager/TrajectoryManager.h"
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
+#include "../../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../../Game/GameObject/GameObjectOny.h"
 
 using namespace OUAN;
 using namespace Ogre;
@@ -230,9 +232,9 @@ void CameraManager::changeCameraController()
 
 }
 
-void CameraManager::setCameraTarget(PhysicsComponentCharacterPtr pTarget)
+void CameraManager::setCameraTarget(RenderComponentPositionalPtr pTarget)
 {
-	mCameraInput->mTarget=pTarget;
+	mCameraInput->mCameraParameters->mTarget=pTarget;
 	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);
 }
 
@@ -245,11 +247,13 @@ void CameraManager::changeAutoCamera()
 			if(mCurrentTrajectory>=mCameraTrajectoryNames.size()+1)
 			{
 				Logger::getInstance()->log("[Camera Manager] Set Camera Free");
+				setCameraTarget(mGameWorldManager->getGameObjectOny()->getPositionalComponent());
 				mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,true);
 				mCurrentTrajectory=-1;
 			}
 			else if(mCurrentTrajectory==mCameraTrajectoryNames.size())
 			{
+				mCameraInput->mCameraParameters->mTarget=mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getPositionalComponent();
 				mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,true);
 			}
 			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())

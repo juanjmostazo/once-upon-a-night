@@ -605,7 +605,7 @@ void GameWorldManager::resetAll()
 	setWorld(DREAMS);
 
 	mApp->getCameraManager()->setCameraTarget(
-		getGameObjectOny()->getPhysicsComponentCharacterOny());
+		getGameObjectOny()->getRenderComponentPositional());
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
