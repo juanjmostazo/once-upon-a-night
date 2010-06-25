@@ -62,6 +62,7 @@ namespace OUAN
 		double mRotY;
 
 		double mInitialDistance;
+		double mMinDistance;
 		double mCurrentDistance;
 
 		double mCollisionOffsetX;

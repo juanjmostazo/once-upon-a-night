@@ -223,7 +223,7 @@ void CameraManager::changeAutoCamera()
 			}
 			else if(mCameraControllerThirdPerson->getCameraState()==CS_FREE)
 			{
-				mCameraControllerThirdPerson->setCameraTrajectory("a",true,mCamera);
+				mCameraControllerThirdPerson->setCameraTrajectory("b",true,mCamera);
 			}
 			break;
 		case CAMERA_FIRST_PERSON:
