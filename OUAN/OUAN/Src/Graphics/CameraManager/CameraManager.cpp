@@ -7,12 +7,10 @@
 #include "CameraParameters.h"
 #include "CameraInput.h"
 #include "CameraController.h"
-#include "CameraControllerFixedFirstPerson.h"
+
 #include "CameraControllerFirstPerson.h"
-#include "CameraControllerFixedThirdPerson.h"
-#include "CameraControllerThirdPersonAuto.h"
-#include "CameraControllerThirdPersonFree.h"
-#include "CameraControllerTrajectory.h"
+#include "CameraControllerThirdPerson.h"
+
 #include "../RenderSubsystem.h"
 #include "../RenderComponent/RenderComponentViewport.h"
 #include "../TrajectoryManager/TrajectoryManager.h"
@@ -50,16 +48,9 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	mCameraControllerFirstPerson= new CameraControllerFirstPerson();
 	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
-	mCameraControllerThirdPersonAuto= new CameraControllerThirdPersonAuto();
-	mCameraControllerThirdPersonAuto->init( pRenderSubsystem->getSceneManager());
-	mCameraControllerThirdPersonFree= new CameraControllerThirdPersonFree();
-	mCameraControllerThirdPersonFree->init( pRenderSubsystem->getSceneManager());
-	mCameraControllerFixedThirdPerson= new CameraControllerFixedThirdPerson();
-	mCameraControllerFixedThirdPerson->init( pRenderSubsystem->getSceneManager());
-	mCameraControllerFixedFirstPerson= new CameraControllerFixedFirstPerson();
-	mCameraControllerFixedFirstPerson->init( pRenderSubsystem->getSceneManager());
-	mCameraControllerTrajectory= new CameraControllerTrajectory();
-	mCameraControllerTrajectory->init( pRenderSubsystem->getSceneManager());
+
+	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
+	mCameraControllerThirdPerson->init( pRenderSubsystem->getSceneManager(),pRenderSubsystem,pPhysicsSubsystem,pTrajectoryManager);
 
 	//Set Default camera to viewport
 	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(mCamera);
@@ -73,7 +64,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCameraInput.reset(new CameraInput());
 	mCameraInput->init();
 
-	setCameraType(OUAN::CAMERA_THIRD_PERSON_AUTO);
+	setCameraType(OUAN::CAMERA_THIRD_PERSON);
 
 }
 
@@ -140,29 +131,14 @@ void CameraManager::setCameraType(TCameraControllerType tCameraControllerType)
 {
 	switch(tCameraControllerType)
 	{
-		case CAMERA_FIXED_FIRST_PERSON:
-			mActiveCameraController=mCameraControllerFixedFirstPerson;
-			Logger::getInstance()->log("[Camera Manager] Camera controller Fixed First person activated");
-			break;
-		case CAMERA_FIXED_THIRD_PERSON:
-			mActiveCameraController=mCameraControllerFixedThirdPerson;
-			Logger::getInstance()->log("[Camera Manager] Camera controller Fixed Third Person activated");
-			break;
 		case CAMERA_FIRST_PERSON:
 			mActiveCameraController=mCameraControllerFirstPerson;
 			Logger::getInstance()->log("[Camera Manager] Camera controller First Person activated");
 			break;
-		case CAMERA_THIRD_PERSON_AUTO:
-			mActiveCameraController=mCameraControllerThirdPersonAuto;
+		case CAMERA_THIRD_PERSON:
+			mActiveCameraController=mCameraControllerThirdPerson;
+			mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,false);
 			Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
-			break;
-		case CAMERA_THIRD_PERSON_FREE:
-			mActiveCameraController=mCameraControllerThirdPersonFree;
-			Logger::getInstance()->log("[Camera Manager] Camera controller Third Person activated");
-			break;
-		case CAMERA_TRAJECTORY:
-			mActiveCameraController=mCameraControllerTrajectory;
-			Logger::getInstance()->log("[Camera Manager] Camera controller Trajectory Activated");
 			break;
 		default:
 			Logger::getInstance()->log("[Camera Manager] Camera type does not exist!");
@@ -220,24 +196,12 @@ void CameraManager::changeCameraController()
 {
 	switch(mActiveCameraController->getControllerType())
 	{
-		case CAMERA_THIRD_PERSON_AUTO:
-			setCameraType(CAMERA_THIRD_PERSON_FREE);
-			break;
-		case CAMERA_THIRD_PERSON_FREE:
+		case CAMERA_THIRD_PERSON:
 			setCameraType(CAMERA_FIRST_PERSON);
 			break;
-		//case CAMERA_FIXED_THIRD_PERSON:
-		//	setCameraType(CAMERA_FIXED_FIRST_PERSON);
-		//	break;
-		//case CAMERA_FIXED_FIRST_PERSON:
-		//	setCameraType(CAMERA_FIRST_PERSON);
-		//	break;
 		case CAMERA_FIRST_PERSON:
-			setCameraType(CAMERA_THIRD_PERSON_AUTO);
+			setCameraType(CAMERA_THIRD_PERSON);
 			break;
-		//case CAMERA_TRAJECTORY:
-		//	setCameraType(CAMERA_THIRD_PERSON);
-		//	break;
 	}
 
 }
@@ -247,6 +211,26 @@ void CameraManager::setCameraTarget(PhysicsComponentCharacterPtr pTarget)
 	mCameraInput->mTarget=pTarget;
 	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);
 }
+
+void CameraManager::changeAutoCamera()
+{
+	switch(mActiveCameraController->getControllerType())
+	{
+		case CAMERA_THIRD_PERSON:
+			if(mCameraControllerThirdPerson->getCameraState()==CS_TRAJECTORY)
+			{
+				mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,true);
+			}
+			else if(mCameraControllerThirdPerson->getCameraState()==CS_FREE)
+			{
+				mCameraControllerThirdPerson->setCameraTrajectory("a",true,mCamera);
+			}
+			break;
+		case CAMERA_FIRST_PERSON:
+			break;
+	}
+}
+
 
 void CameraManager::activateChangeWorldFast()
 {

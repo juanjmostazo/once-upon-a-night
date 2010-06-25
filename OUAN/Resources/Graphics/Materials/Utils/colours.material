@@ -1,3 +1,17 @@
+material Scene_Material
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 1 1 1 1 50
+		}
+
+	}
+}
+
 material white
 {
 	technique
@@ -10,7 +24,6 @@ material white
 		}
 
 	}
-
 }
 
 material black

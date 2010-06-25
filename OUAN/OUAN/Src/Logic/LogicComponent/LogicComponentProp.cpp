@@ -27,8 +27,8 @@ LogicComponentProp::~LogicComponentProp()
 void LogicComponentProp::processCollision(GameObjectPtr pGameObject)
 {
 
-	Logger::getInstance()->log(getParent()->getName() + " LOGICCOMPONENTPROP COLLISION: " +
-		pGameObject->getName() + ", " + mParent->getName());
+	//Logger::getInstance()->log(getParent()->getName() + " LOGICCOMPONENTPROP COLLISION: " +
+	//	pGameObject->getName() + ", " + mParent->getName());
 
  	bool isParentDiamondTree = mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 	bool isWeaponCollision=pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 

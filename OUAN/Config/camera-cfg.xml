@@ -13,5 +13,8 @@
     <Option key="MIN_DISTANCE">50</Option>
     <Option key="MAX_H">200</Option>
     <Option key="MIN_H">240</Option>
+
+    <Option key="ALPHA_BLENDING_SPEED">0.7</Option>
+    <Option key="MIN_ALPHA_BLENDING">0.3</Option>
   </Options>
 </Configuration>

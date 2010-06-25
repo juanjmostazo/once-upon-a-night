@@ -30,6 +30,7 @@ void TransparentEntity::clear()
 
 void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,double alphaBlendingSpeed)
 {
+
 	Ogre::Technique * technique;
 	Ogre::Pass * pass;
 	Ogre::SubEntity* subEnt;
@@ -83,18 +84,6 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 						//pass->getTextureUnitState(0)->setColourOperationEx(Ogre::LBX);
 					}
 				}
-
-				//if(j==1)
-				//{
-				//	pass->setSceneBlending(Ogre::SBT_MODULATE);	
-				//	pass->setDepthWriteEnabled(false);
-				//	if(pass->getTextureUnitStateIterator().hasMoreElements())
-				//	{
-				//		mTransparentMaterialTextures.push_back(pass->getTextureUnitState(0));
-				//		pass->getTextureUnitState(0)->setColourOperationEx(Ogre::LBX_MODULATE,Ogre::LBS_CURRENT,Ogre::LBS_TEXTURE,ColourValue::White,ColourValue::White,0.5f);
-				//	}
-				//}
-
 			}
 		}
 
@@ -102,6 +91,8 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 		mSolidMaterial.push_back(material->getName());
 		mTransparentMaterial.push_back(clone->getName());
 	}
+	//Logger::getInstance()->log("[TransparentEntity] INIT transparent entity "+mEntity->getName());
+
 }
 
 	void TransparentEntity::setSolidMaterials()
@@ -154,13 +145,19 @@ void TransparentEntity::setTransparentMaterialsAlpha(double alpha)
 
 void TransparentEntity::update(double elapsedTime)
 {
+	//Logger::getInstance()->log("[TransparentEntity] updating transparent entity "+mEntity->getName()+" elapsed time "+Ogre::StringConverter::toString(Ogre::Real(elapsedTime))+" current alpha "+Ogre::StringConverter::toString(Ogre::Real(mCurrentAlpha)));
+	//Logger::getInstance()->log("[TransparentEntity] updating transparent entity "+mEntity->getName()+" mAlphaBlendingSpeed "+Ogre::StringConverter::toString(Ogre::Real(mAlphaBlendingSpeed)));
+
 	switch(mState)
 	{
 	case TES_SOLID:
+		//Logger::getInstance()->log("[TransparentEntity] solid");
 		break;
 	case TES_TRANSPARENT:
+		//Logger::getInstance()->log("[TransparentEntity] transparent");
 		break;
 	case TES_MAKING_SOLID:
+		//Logger::getInstance()->log("[TransparentEntity] making solid");
 		mCurrentAlpha+=elapsedTime*mAlphaBlendingSpeed;
 		if(mCurrentAlpha>=1)
 		{
@@ -174,6 +171,7 @@ void TransparentEntity::update(double elapsedTime)
 		}
 		break;
 	case TES_MAKING_TRANSPARENT:
+		//Logger::getInstance()->log("[TransparentEntity] making transparent");
 		mCurrentAlpha-=elapsedTime*mAlphaBlendingSpeed;
 		if(mCurrentAlpha<=mMinAlphaBlending)
 		{

@@ -322,7 +322,7 @@ void GameRunningState::handleEvents()
 		{
 			mApp->getCameraManager()->processSimpleTranslation(outernMovement);
 		}
-		else if(mApp->getCameraManager()->getCameraControllerType()!=CAMERA_FIXED_FIRST_PERSON)
+		else if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_THIRD_PERSON)
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
@@ -367,8 +367,8 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleChangeCamera())
 		{
 			Logger::getInstance()->log("ToggleChangeCamera key pressed");
-			//mApp->getCameraManager()->changeCamera();
-			//NOT IN USE ANYMORE
+			mApp->getCameraManager()->changeAutoCamera();
+
 			mApp->mKeyBuffer = DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleChangeCameraController())
@@ -604,10 +604,6 @@ void GameRunningState::changeCameraController()
 	Logger::getInstance()->log("ToggleChangeCameraController key pressed");
 
 	mApp->getCameraManager()->changeCameraController();
-	if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIXED_FIRST_PERSON)
-		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(false);
-	else
-		mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentEntity()->setVisible(true);
 }
 
 void GameRunningState::toggleVolumes()

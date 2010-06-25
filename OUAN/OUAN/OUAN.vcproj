@@ -942,23 +942,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedThirdPerson.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonAuto.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonFree.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerTrajectory.cpp"
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.cpp"
 						>
 					</File>
 					<File
@@ -1320,23 +1304,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedFirstPerson.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerFixedThirdPerson.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonAuto.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPersonFree.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\CameraManager\CameraControllerTrajectory.h"
+						RelativePath=".\Src\Graphics\CameraManager\CameraControllerThirdPerson.h"
 						>
 					</File>
 					<File
