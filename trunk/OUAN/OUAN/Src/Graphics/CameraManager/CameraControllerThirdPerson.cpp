@@ -474,19 +474,6 @@ Ogre::Vector3 CameraControllerThirdPerson::rotateMovementVector(Ogre::Vector3 mo
 	return movement;
 }
 
-void CameraControllerThirdPerson::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
-{
-	Vector3 cameraPosition;
-	Vector3 cameraLookAt;
-	cameraPosition=calculateCameraPosition(pCamera,pCameraInput);
-	cameraLookAt=calculateTargetPosition(pCameraInput);
-
-	pCamera->setPosition(cameraPosition);
-
-	//set camera to look at target
-	pCamera->lookAt(cameraLookAt);
-}
-
 Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(double distance,CameraInputPtr pCameraInput)
 {
 	Ogre::Vector3 targetPosition;
