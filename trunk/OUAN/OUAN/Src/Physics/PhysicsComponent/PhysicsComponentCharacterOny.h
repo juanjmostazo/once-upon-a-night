@@ -17,6 +17,7 @@ namespace OUAN
 	protected:
 		virtual bool isWorthUpdating();
 		virtual bool canJump();
+		virtual void applyOuternMovement(double elapsedSeconds);
 	};
 
 	class TPhysicsComponentCharacterOnyParameters: public TPhysicsComponentCharacterParameters
