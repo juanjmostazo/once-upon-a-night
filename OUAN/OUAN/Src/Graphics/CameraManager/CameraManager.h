@@ -49,7 +49,7 @@ namespace OUAN
 		//Auto-rotates camera to selected rotation
 		void setCameraAutoRotation(double rotX,double rotY,bool transition);
 		//Auto-rotates camera to target's back
-		void centerCameraRotation(bool transition);
+		void centerToTargetBack(bool transition);
 
 		/// Activates next camera controller type
 		void changeCameraController();

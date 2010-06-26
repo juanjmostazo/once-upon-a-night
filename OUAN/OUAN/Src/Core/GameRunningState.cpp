@@ -203,7 +203,7 @@ void GameRunningState::handleEvents()
 			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 			//mApp->getGameWorldManager()->addEvent(evt);
 
-			mApp->getCameraManager()->centerCameraRotation(true);
+			mApp->getCameraManager()->centerToTargetBack(true);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			//mGUI->hideConsole();

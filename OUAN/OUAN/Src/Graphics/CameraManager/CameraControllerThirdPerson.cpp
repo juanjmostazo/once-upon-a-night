@@ -643,7 +643,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 	return newCameraPosition;
 }
 
-void CameraControllerThirdPerson::centerCameraRotation(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
+void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
 {
 	double targetYaw;
 	targetYaw=pCameraInput->mCameraParameters->getTarget()->getOrientation().getYaw().valueDegrees();
