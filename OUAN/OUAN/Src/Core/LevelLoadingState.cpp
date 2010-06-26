@@ -7,7 +7,7 @@
 #include "../Graphics/RenderSubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
-#include "../Game/GameObject/GameObjectOny.h"
+
 #include "../Logic/LogicSubsystem.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 
@@ -293,13 +293,6 @@ void LevelLoadingState::clearParser()
 
 void LevelLoadingState::setCameraTarget()
 {
-	GameObjectOnyPtr pGameObjectOny;
-	//Set Ony as Camera Target
-	CameraParametersPtr cameraParameters;
-	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setDefaultParameters();
-	pGameObjectOny=Application::getInstance()->getGameWorldManager()->getGameObjectOny();
-	cameraParameters->setTarget(pGameObjectOny->getName());
-	Application::getInstance()->getCameraManager()->setCameraFree(cameraParameters,false);
+	Application::getInstance()->getCameraManager()->setDefaultThirdPersonCamera(false);
 	Application::getInstance()->getCameraManager()->centerToTargetBack(false);
 }

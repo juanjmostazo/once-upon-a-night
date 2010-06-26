@@ -607,12 +607,7 @@ void GameWorldManager::resetAll()
 
 	setWorld(DREAMS);
 
-	CameraParametersPtr cameraParameters;
-	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setDefaultParameters();
-	cameraParameters->setTarget(getGameObjectOny()->getName());
-
-	mApp->getCameraManager()->setCameraFree(cameraParameters,false);
+	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 	mApp->getCameraManager()->centerToTargetBack(false);
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");

@@ -355,30 +355,44 @@ void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 	CameraManagerPtr pCameraManager;
 	pCameraManager=Application::getInstance()->getCameraManager();
 
-	switch(evt->pCameraTrigger->mCameraTriggerType)
+	if(evt->enter)
 	{
-		case CTT_FREE:
+		//Logger::getInstance()->log("ENTER TRIGGER CAMERA");
+		switch(evt->pCameraTrigger->mCameraTriggerType)
+		{
+			case CTT_FREE:
 
-			break;
-		case CTT_TRACKING:
+				break;
+			case CTT_TRACKING:
 
-			break;
-		case CTT_AUTO_ROTATION:
+				break;
+			case CTT_AUTO_ROTATION:
 
-			break;
-		case CTT_AUTO_CENTER:
+				break;
+			case CTT_AUTO_CENTER:
 
-			break;
-		case CTT_TRAJECTORY:
-			pCameraManager->setCameraTrajectory(
-				evt->pCameraTrigger->mCameraParameters,
-				evt->pCameraTrigger->mTrajectory,
-				evt->pCameraTrigger->mTrajectoryLookAtTarget,
-				evt->pCameraTrigger->mTransition);
-			break;
-		default:
-			Logger::getInstance()->log("CameraTrigger has unrecognised CameraTriggerType!");
-			break;
+				break;
+			case CTT_TRAJECTORY:
+				pCameraManager->setCameraTrajectory(
+					evt->pCameraTrigger->mCameraParameters,
+					evt->pCameraTrigger->mTrajectory,
+					evt->pCameraTrigger->mTrajectoryLookAtTarget,
+					evt->pCameraTrigger->mTransition);
+				break;
+			default:
+				Logger::getInstance()->log("CameraTrigger has unrecognised CameraTriggerType!");
+				break;
+		}
+
+		pCameraManager->setLastTrigger(evt->name);
+	}
+	else
+	{
+		//Logger::getInstance()->log("EXIT TRIGGER CAMERA");
+		if(evt->name.compare(pCameraManager->getLastTrigger())==0)
+		{
+			pCameraManager->setDefaultThirdPersonCamera(evt->pCameraTrigger->mTransition);
+		}
 	}
 
 }
