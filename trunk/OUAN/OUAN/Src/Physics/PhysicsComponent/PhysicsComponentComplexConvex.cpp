@@ -23,7 +23,6 @@ void PhysicsComponentComplexConvex::create()
 
 	pConvex->setName(name);
 
-	
 	if (getMass() > 0)
 	{
 		setNxOgreKinematicBody(NULL);
@@ -40,8 +39,6 @@ void PhysicsComponentComplexConvex::create()
 				pDesc));
 
 		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
-
-
 	}
 	else
 	{
@@ -75,6 +72,11 @@ void PhysicsComponentComplexConvex::destroy()
 	}
 }
 
+void PhysicsComponentComplexConvex::update(double elapsedSeconds)
+{
+	PhysicsComponentComplex::update(elapsedSeconds);
+}
+
 NxOgre::Convex* PhysicsComponentComplexConvex::getNxOgreConvex()
 {
 	return mNxOgreConvex;
@@ -105,9 +107,20 @@ void PhysicsComponentComplexConvex::setNxOgreKinematicBody(OGRE3DKinematicBody* 
 	mNxOgreKinematicBody=pNxOgreKinematicBody;
 }
 
+void PhysicsComponentComplexConvex::setBalancingParams(double balanceRadioX, double balanceRadioY, double balanceRadioZ, double balanceRadioTime)
+{
+	mBalanceRadioX = balanceRadioX;
+	mBalanceRadioY = balanceRadioY;
+	mBalanceRadioZ = balanceRadioZ;
+	mBalanceRadioTime = balanceRadioTime;
+}
+
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()
 {
-
+	balanceRadioX = 0;
+	balanceRadioY = 0;
+	balanceRadioZ = 0;
+	balanceRadioTime = 0;
 }
 
 TPhysicsComponentComplexConvexParameters::~TPhysicsComponentComplexConvexParameters()
