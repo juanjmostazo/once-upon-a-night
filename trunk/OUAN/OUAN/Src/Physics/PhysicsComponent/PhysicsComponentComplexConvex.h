@@ -38,6 +38,18 @@ namespace OUAN
 		double mBalanceRadioY;
 		double mBalanceRadioZ;
 		double mBalanceRadioTime;
+
+		bool mBalanceLastWasTop;
+		bool mBalanceLastWasCenter;
+		bool mBalanceLastWasBottom;
+		double mBalanceDirection;
+		double mBalanceAccumulatedTime;
+
+		virtual bool canUpdateBalancing(double elapsedSeconds);
+		virtual void updateBalancing(double elapsedSeconds);
+		
+		virtual Ogre::Vector3 getPosition();
+		virtual void setPosition(Ogre::Vector3 position);
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters
