@@ -237,7 +237,7 @@ void CameraManager::changeAutoCamera()
 				cameraParameters->setDefaultParameters();
 				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getName());
 
-				setCameraTrajectory(cameraParameters,mCameraTrajectoryNames[mCurrentTrajectory],true,true);
+				setCameraTrajectory(cameraParameters,mCameraTrajectoryNames[mCurrentTrajectory],false,true);
 			}
 			break;
 		case CAMERA_FIRST_PERSON:
