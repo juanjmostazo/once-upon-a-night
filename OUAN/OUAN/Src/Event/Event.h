@@ -205,6 +205,8 @@ namespace OUAN
 	public:
 		CameraTriggerEvent();
 		CameraTriggerPtr pCameraTrigger;
+		std::string name;
+		bool enter;
 	};
 
 }

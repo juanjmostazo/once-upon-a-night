@@ -66,7 +66,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	registerEventHandlers(mGameWorldManager->getEventManager());
 
-
+	mLastTrigger="";
 
 	mCurrentTrajectory=-1;
 

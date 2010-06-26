@@ -1670,7 +1670,8 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 		tGameObjectPlataformParameters.name = gameObject->name;
 
 		//Get PhysicsComponentComplexConvex
-		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
+		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+			gameObject->XMLNodeCustomProperties,
 			complexConvex);
 
 		tGameObjectPlataformParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
@@ -1784,12 +1785,6 @@ void LevelLoader::processGameObjectProvisionalEntity(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectProvisionalEntityParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//TODO: EXTRACT PHYSICS PARAMETERS FROM FILE
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.mass=0;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthX=10;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthY=10;
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters.lengthZ=10;
 	}
 	catch( std::string error )
 	{
@@ -2168,18 +2163,19 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				tGameObjectTerrainConvexParameters.name = gameObject->name;
 
 				//Get PhysicsComponentComplexConvex
-				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
+				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+					gameObject->XMLNodeCustomProperties,
 					complexConvex, "Convex");
 
-				//TODO FIX IT, LAST LINE CANNOT GET NEXT PARAMS PROPERLY
+				////TODO FIX IT, LAST LINE CANNOT GET NEXT PARAMS PROPERLY
 
-				if (gameObject->name.compare("terrain#platform7_5") == 0)
-				{
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY = 5;
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0.5;
-				}
+				//if (gameObject->name.compare("terrain#platform7_5") == 0)
+				//{
+				//	tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
+				//	tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY = 5;
+				//	tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
+				//	tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0.5;
+				//}
 
 				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime)));	
 
@@ -2341,7 +2337,8 @@ void LevelLoader::processGameObjectTreeComplex(XMLGameObject* gameObject)
 		//Get PhysicsComponentComplexConvex
 		std::string nxsfile = "CONVEX_"+tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.substr(0,
 			tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.size()-5)+".nxs";
-		tGameObjectTreeComplexParameters.tPhysicsComponentComplexConvexParameters=processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,nxsfile);
+		tGameObjectTreeComplexParameters.tPhysicsComponentComplexConvexParameters=processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+			gameObject->XMLNodeCustomProperties,nxsfile);
 
 	}
 	catch( std::string error )
@@ -3491,23 +3488,23 @@ TPhysicsComponentCharacterOnyParameters LevelLoader::processPhysicsComponentChar
 	return tPhysicsComponentCharacterOnyParameters;
 }
 
-TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix)
+TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentComplexConvex(TiXmlElement *OgitorNode,TiXmlElement *CTPNode,std::string nxsFile,std::string suffix)
 {
 	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 	
 	//Get Component properties
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
+		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(CTPNode, "PhysicsComponentComplex"+suffix+"::mass");
 	}
 	catch( std::string error )
 	{
 		tPhysicsComponentComplexConvexParameters.mass = 0;
 	}
-	
+
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.balanceRadioX = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioX");
+		tPhysicsComponentComplexConvexParameters.balanceRadioX = getPropertyReal(OgitorNode, "PhysicsComponentComplex"+suffix+"::balanceRadioX");
 	} 
 	catch ( std::string error )
 	{
@@ -3516,7 +3513,7 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.balanceRadioY = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioY");
+		tPhysicsComponentComplexConvexParameters.balanceRadioY = getPropertyReal(OgitorNode, "PhysicsComponentComplex"+suffix+"::balanceRadioY");
 	} 
 	catch ( std::string error )
 	{
@@ -3525,7 +3522,7 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.balanceRadioZ = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioZ");
+		tPhysicsComponentComplexConvexParameters.balanceRadioZ = getPropertyReal(OgitorNode, "PhysicsComponentComplex"+suffix+"::balanceRadioZ");
 	} 
 	catch ( std::string error )
 	{
@@ -3534,7 +3531,7 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.balanceRadioTime = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioTime");
+		tPhysicsComponentComplexConvexParameters.balanceRadioTime = getPropertyReal(OgitorNode, "PhysicsComponentComplex"+suffix+"::balanceRadioTime");
 	} 
 	catch ( std::string error )
 	{
