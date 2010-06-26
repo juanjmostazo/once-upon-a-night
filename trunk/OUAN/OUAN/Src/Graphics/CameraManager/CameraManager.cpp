@@ -302,6 +302,10 @@ void CameraManager::setDefaultThirdPersonCamera(bool transition)
 	cameraParameters->setDefaultParameters();
 	pGameObjectOny=mGameWorldManager->getGameObjectOny();
 	cameraParameters->setTarget(pGameObjectOny->getName());
+	if(mCameraControllerThirdPerson->getCameraState()!=CS_FREE)
+	{
+		mCameraControllerThirdPerson->setRotationYToTargetBack(pGameObjectOny->getName());
+	}
 	setCameraFree(cameraParameters,transition);
 }
 
