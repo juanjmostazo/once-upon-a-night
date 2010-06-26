@@ -102,12 +102,15 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
 		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
 		
-		if (physicsTerrain->getLastPositionDifference().y >= 0
-			&& physicsOny->getPosition().y > physicsTerrain->getPosition().y)
+		if (physicsOny->getPosition().y > physicsTerrain->getPosition().y)
 		{
 			Ogre::Vector3 posOny = physicsOny->getPosition();
 			posOny += physicsTerrain->getLastPositionDifference();
 			physicsOny->setPosition(posOny);
+		}
+		else
+		{
+			//TODO... ¿DIE?
 		}
 	}	
 }
