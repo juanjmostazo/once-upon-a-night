@@ -106,7 +106,7 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.638237 -0.769102 0.0215908 0.0260176"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.638235 -0.769099 0.0215907 0.0260175"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
     <PROPERTY id="camera::position" type="9" value="-0.596331 3547.03 -1608.8"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
@@ -14834,7 +14834,7 @@
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.704015 0 0 0.710185"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.703988 -0.00619746 0.00614361 0.710158"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 3500 -1600"></PROPERTY>
     <PROPERTY id="scale" type="9" value="20 20 20"></PROPERTY>
     <CUSTOMPROPERTIES>
