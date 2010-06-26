@@ -452,6 +452,13 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	pPhysicsComponentComplexConvex->setParent(gameObject);	
 	pPhysicsComponentComplexConvex->setSceneNode(tRenderComponentPositional->getSceneNode());
 	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
+
+	pPhysicsComponentComplexConvex->setBalancingParams(
+		tPhysicsComponentComplexConvexParameters.balanceRadioX,
+		tPhysicsComponentComplexConvexParameters.balanceRadioY,
+		tPhysicsComponentComplexConvexParameters.balanceRadioZ,
+		tPhysicsComponentComplexConvexParameters.balanceRadioTime);
+
 	//pPhysicsComponentComplexConvex->setQueryFlags(flags);	
 
 	NxOgre::Mesh* convexMesh = NxOgre::MeshManager::getSingleton()->load(

@@ -14,6 +14,8 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
+		virtual void update(double elapsedSeconds);
+
 		NxOgre::Convex* getNxOgreConvex();
 		void setNxOgreConvex(NxOgre::Convex* pNxOgreConvex);
 
@@ -23,12 +25,19 @@ namespace OUAN
 		OGRE3DKinematicBody* getNxOgreKinematicBody();
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
+		void setBalancingParams(double balanceRadioX, double balanceRadioY, double balanceRadioZ, double balanceRadioTime);
+
 	//	void setQueryFlags(QueryFlags queryFlags);
 
 	protected:
 		NxOgre::Convex* mNxOgreConvex;
 		OGRE3DBody* mNxOgreBody;
 		OGRE3DKinematicBody* mNxOgreKinematicBody;
+
+		double mBalanceRadioX;
+		double mBalanceRadioY;
+		double mBalanceRadioZ;
+		double mBalanceRadioTime;
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters
@@ -36,6 +45,11 @@ namespace OUAN
 	public:
 		TPhysicsComponentComplexConvexParameters();
 		~TPhysicsComponentComplexConvexParameters();
+
+		double balanceRadioX;
+		double balanceRadioY;
+		double balanceRadioZ;
+		double balanceRadioTime;
 	};
 }
 

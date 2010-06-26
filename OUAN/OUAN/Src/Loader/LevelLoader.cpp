@@ -209,7 +209,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
-			processGameObjectTripolloDreams(gameObject);
+			//processGameObjectTripolloDreams(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{
@@ -409,7 +409,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
-			processGameObjectWoodBox(gameObject);
+			//processGameObjectWoodBox(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
 		{
@@ -455,7 +455,6 @@ void LevelLoader::processTrajectories()
 			Logger::getInstance()->log("[LevelLoader] Loading Trajectory "+it->first);
 
 			processTrajectory(&it->second);
-
 		}
 
 		Application::getInstance()->getCameraManager()->setCameraTrajectoryNames(mXMLParser.mCameraTrajectoryNames);
@@ -2169,7 +2168,17 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 				//Get PhysicsComponentComplexConvex
 				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
-					complexConvex);
+					complexConvex, "Convex");
+
+				if (gameObject->name.compare("terrain#platform7_5") == 0)
+				{
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY = 15;
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0;
+				}
+
+				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime)));	
 
 				tGameObjectTerrainConvexParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 					gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
@@ -2187,7 +2196,6 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 					tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
 						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 				}
-
 			}
 			catch( std::string error )
 			{
@@ -3459,7 +3467,50 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 	
 	//Get Component properties
-	tPhysicsComponentComplexConvexParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
+	}
+	catch( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.mass = 0;
+	}
+	
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioX = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioX");
+	} 
+	catch ( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
+	}
+
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioY = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioY");
+	} 
+	catch ( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioY = 0;
+	}
+
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioZ = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioZ");
+	} 
+	catch ( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
+	}
+
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioTime = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::balanceRadioTime");
+	} 
+	catch ( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0;
+	}
 
 	//Set nxs file
 	tPhysicsComponentComplexConvexParameters.nxsFile="nxs:"+nxsFile;
@@ -3472,7 +3523,14 @@ TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentC
 	TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
 	
 	//Get Component properties
-	tPhysicsComponentComplexTriangleParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");
+	try 
+	{
+		tPhysicsComponentComplexTriangleParameters.mass = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");	
+	}
+	catch( std::string error )
+	{
+		tPhysicsComponentComplexTriangleParameters.mass = 0;
+	}
 
 	//Set nxs file
 	tPhysicsComponentComplexTriangleParameters.nxsFile="nxs:"+nxsFile;
@@ -4385,7 +4443,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 			{
 				propertyName = getAttrib(pElement, "id");
 
-				//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property!");
+				//Logger::getInstance()->log("[LevelLoader] parsing "+propertyName+" property! -> Comparing it to " + attrib_name);
 
 				if(propertyName.compare(attrib_name)==0)
 				{
@@ -4393,6 +4451,7 @@ String LevelLoader::getPropertyString(TiXmlElement *XMLNode, const String &attri
 					result = getAttrib(pElement, "value");
 					found=true;
 				}
+
 				pElement = pElement->NextSiblingElement("PROPERTY");
 			}
 		}
@@ -4451,7 +4510,10 @@ Real LevelLoader::getPropertyReal(TiXmlElement *XMLNode, const String &attrib_na
 int LevelLoader::getGameObjectsNumber()
 {
 	if (!mXMLParser.mXMLGameObjectContainer.empty())
+	{
 		return mXMLParser.mXMLGameObjectContainer.size();
+	}
+
 	return 0;
 }
 
