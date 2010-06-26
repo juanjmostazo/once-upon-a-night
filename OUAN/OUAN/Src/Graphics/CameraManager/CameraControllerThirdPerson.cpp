@@ -424,6 +424,19 @@ void CameraControllerThirdPerson::updateCurrentDistance(CameraInputPtr pCameraIn
 			mCurrentDistance=mCurrentDistance+dampen*mReturningSpeed*elapsedTime;
 		}
 	}
+	else if(mCurrentDistance>mInitialDistance)
+	{
+		dampen=mReturningSpeed*calculateDampenFactor(1-mCurrentDistance/mInitialDistance,mReturningDampenFactor,mReturningDampenPow,mReturningDampenStart);
+		if(mCurrentDistance+dampen*-mReturningSpeed*elapsedTime<mInitialDistance)
+		{
+			mCurrentDistance=mInitialDistance;
+		}
+		else
+		{
+			mCurrentDistance=mCurrentDistance+dampen*-mReturningSpeed*elapsedTime;
+		}
+	}
+
 	if(mCurrentDistance<mMinDistance)
 	{
 		mCurrentDistance=mMinDistance;

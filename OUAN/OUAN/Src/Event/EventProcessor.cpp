@@ -361,16 +361,24 @@ void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 		switch(evt->pCameraTrigger->mCameraTriggerType)
 		{
 			case CTT_FREE:
-
+				pCameraManager->setCameraFree(
+					evt->pCameraTrigger->mCameraParameters,
+					evt->pCameraTrigger->mTransition);
 				break;
 			case CTT_TRACKING:
-
+				pCameraManager->setCameraTracking(
+					evt->pCameraTrigger->mCameraParameters,
+					evt->pCameraTrigger->mTransition);
 				break;
 			case CTT_AUTO_ROTATION:
-
+				pCameraManager->setCameraAutoRotation(
+					evt->pCameraTrigger->mRotX,
+					evt->pCameraTrigger->mRotY,
+					evt->pCameraTrigger->mTransition);
 				break;
 			case CTT_AUTO_CENTER:
-
+				pCameraManager->centerToTargetBack(
+					evt->pCameraTrigger->mTransition);
 				break;
 			case CTT_TRAJECTORY:
 				pCameraManager->setCameraTrajectory(
