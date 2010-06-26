@@ -63,13 +63,15 @@ namespace OUAN
 	class CollisionEvent: public Event
 	{
 	public:
-		CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2);
+		CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2, Ogre::Vector3 pNormal);
 		GameObjectPtr getGameObject1();
 		GameObjectPtr getGameObject2();
+		Ogre::Vector3 getNormal();
 
 	private:
 		GameObjectPtr mGameObject1;
 		GameObjectPtr mGameObject2;
+		Ogre::Vector3 mNormal;
 	};
 
 	//------------------------------------

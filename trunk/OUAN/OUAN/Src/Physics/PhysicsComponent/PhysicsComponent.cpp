@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
-#include "PhysicsComponent.h"
+#include "PhysicsComponent.h" 
+
 using namespace OUAN;
 
 PhysicsComponent::PhysicsComponent(const std::string& type)
@@ -29,7 +30,7 @@ void PhysicsComponent::destroy()
 
 void PhysicsComponent::update(double elapsedSeconds)
 {
-
+	
 }
 
 bool PhysicsComponent::isOnSurface() const

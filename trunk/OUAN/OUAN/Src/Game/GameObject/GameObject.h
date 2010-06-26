@@ -78,7 +78,7 @@ namespace OUAN
 
 		/// Process collision event
 		/// @param gameObject which has collision with
-		virtual void processCollision(GameObjectPtr pGameObject);
+		virtual void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 
 		/// Process collision event
 		/// @param gameObject which has collision with

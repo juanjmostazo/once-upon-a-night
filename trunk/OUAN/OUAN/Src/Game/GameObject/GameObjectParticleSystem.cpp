@@ -137,11 +137,11 @@ LogicComponentPtr GameObjectParticleSystem::getLogicComponent()
 }
 
 
-void GameObjectParticleSystem::processCollision(GameObjectPtr pGameObject)
+void GameObjectParticleSystem::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

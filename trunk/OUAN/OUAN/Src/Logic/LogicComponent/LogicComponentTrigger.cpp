@@ -18,7 +18,7 @@ LogicComponentTrigger::~LogicComponentTrigger()
 
 }
 
-void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject)
+void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 }
 void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)

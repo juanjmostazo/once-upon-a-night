@@ -235,11 +235,11 @@ PhysicsComponentPtr GameObjectTentetieso::getPhysicsComponent() const
 }
 
 
-void GameObjectTentetieso::processCollision(GameObjectPtr pGameObject)
+void GameObjectTentetieso::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

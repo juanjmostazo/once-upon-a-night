@@ -28,11 +28,11 @@ LogicComponentPtr GameObjectMagicClock::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectMagicClock::processCollision(GameObjectPtr pGameObject)
+void GameObjectMagicClock::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

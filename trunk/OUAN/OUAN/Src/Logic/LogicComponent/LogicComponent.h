@@ -37,7 +37,7 @@ namespace OUAN
 		
 		void initStateHistory();
 
-		virtual void processCollision(GameObjectPtr pGameObject);
+		virtual void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 		virtual void processEnterTrigger(GameObjectPtr pGameObject);
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 

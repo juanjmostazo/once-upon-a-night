@@ -180,11 +180,11 @@ PhysicsComponentPtr GameObjectCameraTrigger::getPhysicsComponent() const
 }
 
 
-void GameObjectCameraTrigger::processCollision(GameObjectPtr pGameObject)
+void GameObjectCameraTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

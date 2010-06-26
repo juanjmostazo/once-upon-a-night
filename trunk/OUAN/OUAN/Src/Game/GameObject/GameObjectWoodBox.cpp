@@ -371,11 +371,11 @@ LogicComponentBreakablePtr GameObjectWoodBox::getLogicComponentBreakable()
 	return mLogicComponentBreakable;
 }
 
-void GameObjectWoodBox::processCollision(GameObjectPtr pGameObject)
+void GameObjectWoodBox::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentBreakable.get())
 	{
-		mLogicComponentBreakable->processCollision(pGameObject);
+		mLogicComponentBreakable->processCollision(pGameObject, pNormal);
 	}
 }
 

@@ -254,8 +254,8 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 		//	Logger::getInstance()->log(msg.str());
 		//Logger::getInstance()->log("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
 		
-		 evt->getGameObject1()->processCollision( evt->getGameObject2());
-		 evt->getGameObject2()->processCollision( evt->getGameObject1());
+		 evt->getGameObject1()->processCollision(evt->getGameObject2(), evt->getNormal());
+		 evt->getGameObject2()->processCollision(evt->getGameObject1(), evt->getNormal());
 	}
 	else
 	{

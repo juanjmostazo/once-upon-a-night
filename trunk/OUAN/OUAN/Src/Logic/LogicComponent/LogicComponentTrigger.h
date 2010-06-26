@@ -11,7 +11,7 @@ namespace OUAN
 		LogicComponentTrigger(const std::string& type="");
 		~LogicComponentTrigger();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 		void processEnterTrigger(GameObjectPtr pGameObject);
 		void processExitTrigger(GameObjectPtr pGameObject);
 

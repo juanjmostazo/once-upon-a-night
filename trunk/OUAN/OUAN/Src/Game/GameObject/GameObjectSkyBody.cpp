@@ -268,11 +268,11 @@ LogicComponentPtr GameObjectSkyBody::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectSkyBody::processCollision(GameObjectPtr pGameObject)
+void GameObjectSkyBody::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

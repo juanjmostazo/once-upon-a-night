@@ -198,11 +198,11 @@ LogicComponentPtr GameObjectDoor::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectDoor::processCollision(GameObjectPtr pGameObject)
+void GameObjectDoor::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

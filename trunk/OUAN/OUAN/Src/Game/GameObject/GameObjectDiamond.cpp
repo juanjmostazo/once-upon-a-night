@@ -265,11 +265,11 @@ PhysicsComponentPtr GameObjectDiamond::getPhysicsComponent() const
 }
 
 
-void GameObjectDiamond::processCollision(GameObjectPtr pGameObject)
+void GameObjectDiamond::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
-		mLogicComponentItem->processCollision(pGameObject);
+		mLogicComponentItem->processCollision(pGameObject, pNormal);
 	}
 }
 

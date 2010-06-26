@@ -383,11 +383,11 @@ LogicComponentPtr GameObjectFlashLight::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectFlashLight::processCollision(GameObjectPtr pGameObject)
+void GameObjectFlashLight::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

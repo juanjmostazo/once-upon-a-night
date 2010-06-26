@@ -252,11 +252,11 @@ PhysicsComponentPtr GameObjectItemMaxHP::getPhysicsComponent() const
 	return getPhysicsComponentVolumeBox();
 }
 
-void GameObjectItemMaxHP::processCollision(GameObjectPtr pGameObject)
+void GameObjectItemMaxHP::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
-		mLogicComponentItem->processCollision(pGameObject);
+		mLogicComponentItem->processCollision(pGameObject, pNormal);
 	}
 }
 

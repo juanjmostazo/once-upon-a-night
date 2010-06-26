@@ -14,7 +14,7 @@ namespace OUAN
 		LogicComponentItem(const std::string& type="");
 		~LogicComponentItem();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 
 		bool getIsTaken() const;
 		void setIsTaken(bool isTaken);

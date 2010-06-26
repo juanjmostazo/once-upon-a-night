@@ -507,11 +507,11 @@ PhysicsComponentPtr GameObjectTripolloDreams::getPhysicsComponent() const
 }
 
 
-void GameObjectTripolloDreams::processCollision(GameObjectPtr pGameObject)
+void GameObjectTripolloDreams::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

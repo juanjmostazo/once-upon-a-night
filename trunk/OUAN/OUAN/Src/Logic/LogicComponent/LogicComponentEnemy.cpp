@@ -22,7 +22,7 @@ LogicComponentEnemy::~LogicComponentEnemy()
 {
 }
 
-void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject)
+void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 	{

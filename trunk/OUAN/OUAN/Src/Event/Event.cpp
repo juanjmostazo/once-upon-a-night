@@ -52,11 +52,12 @@ int ChangeWorldEvent::getNewWorld() const
 
 //----------------------
 
-CollisionEvent::CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2)
+CollisionEvent::CollisionEvent(GameObjectPtr pGameObject1, GameObjectPtr pGameObject2, Ogre::Vector3 pNormal)
 :Event(EVT_PRIORITY_COLLISION,EVENT_TYPE_COLLISION)
 {
 	mGameObject1=pGameObject1;
 	mGameObject2=pGameObject2;
+	mNormal=pNormal;
 };
 
 GameObjectPtr CollisionEvent::getGameObject1()
@@ -67,6 +68,11 @@ GameObjectPtr CollisionEvent::getGameObject1()
 GameObjectPtr CollisionEvent::getGameObject2()
 {
 	return mGameObject2;
+}
+
+Ogre::Vector3 CollisionEvent::getNormal()
+{
+	return mNormal;
 }
 
 //----------------------

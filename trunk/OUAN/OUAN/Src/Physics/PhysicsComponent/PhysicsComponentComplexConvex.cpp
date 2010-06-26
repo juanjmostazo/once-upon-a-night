@@ -27,6 +27,8 @@ void PhysicsComponentComplexConvex::create()
 	mBalanceDirection = 1; // ACCEPTS ONLY {1,-1}
 	mBalanceAccumulatedTime = 0;
 
+	mLastPositionDifference = Ogre::Vector3(0,0,0);
+
 	pConvex->setName(name);
 
 	if (getMass() > 0)
@@ -117,10 +119,12 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 	//	" \n :: elapsedTime " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 
 	Ogre::Vector3 position = getPosition();
-	position.x += mBalanceDirection * mBalanceRadioX * fixedElapsedTime / mBalanceRadioTime;
-	position.y += mBalanceDirection * mBalanceRadioY * fixedElapsedTime / mBalanceRadioTime;
-	position.z += mBalanceDirection * mBalanceRadioZ * fixedElapsedTime / mBalanceRadioTime;
-	setPosition(position);
+	Ogre::Vector3 newPosition = position;
+	newPosition.x += mBalanceDirection * mBalanceRadioX * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.y += mBalanceDirection * mBalanceRadioY * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.z += mBalanceDirection * mBalanceRadioZ * fixedElapsedTime / mBalanceRadioTime;
+	setPosition(newPosition);
+	mLastPositionDifference = newPosition - position;
 
 	///////////////////////
 
@@ -200,6 +204,11 @@ void PhysicsComponentComplexConvex::setBalancingParams(double balanceRadioX, dou
 	mBalanceRadioY = balanceRadioY;
 	mBalanceRadioZ = balanceRadioZ;
 	mBalanceRadioTime = balanceRadioTime;
+}
+
+Ogre::Vector3 PhysicsComponentComplexConvex::getLastPositionDifference()
+{
+	return mLastPositionDifference;
 }
 
 Ogre::Vector3 PhysicsComponentComplexConvex::getPosition()

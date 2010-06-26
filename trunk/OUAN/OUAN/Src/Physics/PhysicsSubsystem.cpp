@@ -374,31 +374,25 @@ void PhysicsSubsystem::onContact(const NxOgre::ContactPair& contactPair)
 
 NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::ControllerShapeHit& hit)
 {
-	double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
+	//double normalAngle = acos(hit.mWorldNormal.y) * TO_DEGREES;
 	//setGameObjectSlidingFromController(hit.mController, hit.mWorldNormal, normalAngle);
 
 	GameObjectPtr pGameObjectController = getGameObject(hit.mControllerName);
 	GameObjectPtr pGameObjectShape = getGameObject(hit.mShapeName);
 
-	//bool dTree=pGameObjectController->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
-	//bool dWeapon=pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0;
-
-	//if (dTree && dWeapon)
+	//if( pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) 
+	//	&& pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0)
+		//&& normalAngle<=mMinSlidingAngleFall)
 	//{
-	//	Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
+	//	if(pGameObjectController->hasPhysicsComponent())
+	//	{
+	//		pGameObjectController->getPhysicsComponent()->setOnSurface(true);
+	//	}
 	//}
+	
+	//Logger::getInstance()->log("## Collision between " + pGameObjectController->getName() + " and " + pGameObjectShape->getName());
 
-	if( (pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) &&
-		(pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0) &&
-		(normalAngle<=mMinSlidingAngleFall))
-	{
-		if(pGameObjectController->hasPhysicsComponent())
-		{
-			pGameObjectController->getPhysicsComponent()->setOnSurface(true);
-		}
-	}
-
-	sendCollision(pGameObjectController,pGameObjectShape);
+	sendCollision(pGameObjectController,pGameObjectShape,hit.mWorldNormal.as<Ogre::Vector3>());
 	
 	return NxOgre::Enums::ControllerAction_None;
 }
@@ -415,7 +409,7 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::Con
 	return NxOgre::Enums::ControllerAction_None;
 }
 
-void PhysicsSubsystem::onVolumeEvent(  NxOgre::Shape * volume,  NxOgre::String collisionName, unsigned int collisionEventType  )
+void PhysicsSubsystem::onVolumeEvent(NxOgre::Shape * volume,  NxOgre::String collisionName, unsigned int collisionEventType)
 {
 	//Logger::getInstance()->log("ON VOLUME EVENT volume "+std::string(hit.mVolumeShapeName.c_str()));//+" "+std::string(collisionShape->getName().c_str()));
 	//Logger::getInstance()->log("ON VOLUME EVENT character "+std::string(hit.mCollisionShapeName.c_str()));
@@ -512,14 +506,15 @@ bool PhysicsSubsystem::sendExitTrigger(GameObjectPtr object1, GameObjectPtr obje
 	return isAllowed;
 }
 
-bool PhysicsSubsystem::sendCollision(GameObjectPtr object1, GameObjectPtr object2)
+bool PhysicsSubsystem::sendCollision(GameObjectPtr object1, GameObjectPtr object2, Ogre::Vector3 normal)
 {
 	bool isAllowed = true;
 
 	CollisionEventPtr evt = CollisionEventPtr(
 		new CollisionEvent(
 		object1, 
-		object2));
+		object2,
+		normal));
 
 	mApp->getGameWorldManager()->addEvent(evt);
 

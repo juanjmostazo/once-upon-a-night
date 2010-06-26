@@ -178,11 +178,11 @@ PhysicsComponentPtr GameObjectEye::getPhysicsComponent() const
 //-------------------------------------------------------------------------------------------
 
 
-void GameObjectEye::processCollision(GameObjectPtr pGameObject)
+void GameObjectEye::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

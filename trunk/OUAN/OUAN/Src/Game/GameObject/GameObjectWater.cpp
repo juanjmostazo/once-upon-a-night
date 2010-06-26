@@ -264,11 +264,11 @@ LogicComponentPtr GameObjectWater::getLogicComponent()
 }
 
 
-void GameObjectWater::processCollision(GameObjectPtr pGameObject)
+void GameObjectWater::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

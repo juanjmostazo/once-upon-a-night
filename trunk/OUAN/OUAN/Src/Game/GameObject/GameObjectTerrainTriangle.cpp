@@ -181,11 +181,11 @@ LogicComponentPtr GameObjectTerrainTriangle::getLogicComponent()
 }
 
 
-void GameObjectTerrainTriangle::processCollision(GameObjectPtr pGameObject)
+void GameObjectTerrainTriangle::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

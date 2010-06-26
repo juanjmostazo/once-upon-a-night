@@ -175,11 +175,11 @@ LogicComponentTriggerPtr GameObjectTriggerCapsule::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectTriggerCapsule::processCollision(GameObjectPtr pGameObject)
+void GameObjectTriggerCapsule::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

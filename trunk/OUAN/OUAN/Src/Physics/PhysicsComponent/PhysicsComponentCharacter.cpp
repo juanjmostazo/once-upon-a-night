@@ -23,7 +23,6 @@ void PhysicsComponentCharacter::reset()
 	initFallingVars();
 	resetMovementVars();
 	resetCyclicVars();
-
 	
 	setWalking(false);
 	setMoving(false);
@@ -543,6 +542,12 @@ void PhysicsComponentCharacter::setNxOgreControllerDescription(NxOgre::Controlle
 NxOgre::ControllerDescription PhysicsComponentCharacter::getNxOgreControllerDescription()
 {
 	return mNxOgreControllerDescription;
+}
+
+void PhysicsComponentCharacter::setPosition(Ogre::Vector3 position)
+{
+	getNxOgreController()->setPosition(NxOgre::Vec3(position));
+	updateSceneNode();
 }
 
 Ogre::Vector3 PhysicsComponentCharacter::getPosition()

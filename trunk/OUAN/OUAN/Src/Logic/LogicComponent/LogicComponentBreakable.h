@@ -14,7 +14,7 @@ namespace OUAN
 		LogicComponentBreakable(const std::string& type="");
 		~LogicComponentBreakable();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 
 		bool getIsBroken() const;
 		void setIsBroken(bool isBroken);
