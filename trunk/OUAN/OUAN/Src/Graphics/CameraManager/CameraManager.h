@@ -74,6 +74,9 @@ namespace OUAN
 
 		void setCameraTrajectoryNames(std::vector<std::string> trajectoryNames);
 
+		void setLastTrigger(std::string lastTrigger);
+		std::string getLastTrigger() const;
+
 	private:
 
 		//void setCameraTrajectory(std::string name);
@@ -114,6 +117,8 @@ namespace OUAN
 
 		std::vector<std::string> mCameraTrajectoryNames;
 		unsigned int mCurrentTrajectory;
+
+		std::string mLastTrigger;
 		
 	};
 }
