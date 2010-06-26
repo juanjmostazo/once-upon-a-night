@@ -43,10 +43,10 @@ namespace OUAN
 		double mBalanceRadioZ;
 		double mBalanceRadioTime;
 
-		bool mBalanceLastWasTop;
-		bool mBalanceLastWasCenter;
-		bool mBalanceLastWasBottom;
-		double mBalanceDirection;
+		Ogre::Vector3 mBalanceLastWasPositive;  // VALUES{1,0}
+		Ogre::Vector3 mBalanceLastWasCenter;    // VALUES{1,0}
+		Ogre::Vector3 mBalanceLastWasNegative;  // VALUES{1,0}
+		Ogre::Vector3 mBalanceDirection;        // VALUES{1,-1}
 		double mBalanceAccumulatedTime;
 
 		Ogre::Vector3 mLastPositionDifference;

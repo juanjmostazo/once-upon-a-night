@@ -21,10 +21,15 @@ void PhysicsComponentComplexConvex::create()
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	NxOgre::Convex * pConvex = getNxOgreConvex();
 
-	mBalanceLastWasTop = false;
-	mBalanceLastWasCenter = true;
-	mBalanceLastWasBottom = false;
-	mBalanceDirection = 1; // ACCEPTS ONLY {1,-1}
+	mBalanceLastWasPositive = Ogre::Vector3(0,0,0);
+	mBalanceLastWasCenter = Ogre::Vector3(1,1,1);
+	mBalanceLastWasNegative = Ogre::Vector3(0,0,0);
+
+	mBalanceDirection = Ogre::Vector3(
+		mBalanceRadioX == 0 ? 0 : mBalanceRadioX > 0 ? 1 : -1,
+		mBalanceRadioY == 0 ? 0 : mBalanceRadioY > 0 ? 1 : -1,
+		mBalanceRadioZ == 0 ? 0 : mBalanceRadioZ > 0 ? 1 : -1); 
+
 	mBalanceAccumulatedTime = 0;
 
 	mLastPositionDifference = Ogre::Vector3(0,0,0);
@@ -109,20 +114,11 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 
 	///////////////////////
 
-	//Logger::getInstance()->log("$$$ BEFORE " + getParent()->getName() + 
-	//	" \n :: mBalanceLastWasBottom: " + Ogre::StringConverter::toString(mBalanceLastWasBottom) + 
-	//	" \n :: mBalanceLastWasCenter: " + Ogre::StringConverter::toString(mBalanceLastWasCenter) + 
-	//	" \n :: mBalanceLastWasTop: " + Ogre::StringConverter::toString(mBalanceLastWasTop) + 
-	//	" \n :: mBalanceDirection: " + Ogre::StringConverter::toString(Ogre::Real(mBalanceDirection)) + 
-	//	" \n :: mBalanceAccumulatedTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceAccumulatedTime)) + 
-	//	" \n :: mBalanceRadioTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceRadioTime)) + 
-	//	" \n :: elapsedTime " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
-
 	Ogre::Vector3 position = getPosition();
 	Ogre::Vector3 newPosition = position;
-	newPosition.x += mBalanceDirection * mBalanceRadioX * fixedElapsedTime / mBalanceRadioTime;
-	newPosition.y += mBalanceDirection * mBalanceRadioY * fixedElapsedTime / mBalanceRadioTime;
-	newPosition.z += mBalanceDirection * mBalanceRadioZ * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.x += mBalanceDirection.x * fabs(mBalanceRadioX) * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.y += mBalanceDirection.y * fabs(mBalanceRadioY) * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.z += mBalanceDirection.z * fabs(mBalanceRadioZ) * fixedElapsedTime / mBalanceRadioTime;
 	setPosition(newPosition);
 	mLastPositionDifference = newPosition - position;
 
@@ -132,29 +128,82 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 	{
 		mBalanceAccumulatedTime = 0;
 
-		if (mBalanceLastWasCenter)
+		//X
+		if (mBalanceLastWasCenter.x == 1)
 		{
-			if (mBalanceDirection > 0)
+			if (mBalanceDirection.x > 0)
 			{	
-				mBalanceLastWasTop = true;
+				mBalanceLastWasPositive.x = 1;
 			}
 			else
 			{
-				mBalanceLastWasBottom = true;
+				mBalanceLastWasNegative.x = 1;
 			}
 
-			mBalanceDirection = -mBalanceDirection;
-			mBalanceLastWasCenter = false;
+			mBalanceDirection.x = -mBalanceDirection.x;
+			mBalanceLastWasCenter.x = 0;
 		}
-		else if (mBalanceLastWasBottom)
+		else if (mBalanceLastWasNegative.x == 1)
 		{
-			mBalanceLastWasBottom = false;
-			mBalanceLastWasCenter = true;
+			mBalanceLastWasNegative.x = 0;
+			mBalanceLastWasCenter.x = 1;
 		}
-		else if (mBalanceLastWasTop)
+		else if (mBalanceLastWasPositive.x == 1)
 		{
-			mBalanceLastWasTop = false;
-			mBalanceLastWasCenter = true;
+			mBalanceLastWasPositive.x = 0;
+			mBalanceLastWasCenter.x = 1;
+		}
+
+		//Y
+		if (mBalanceLastWasCenter.y == 1)
+		{
+			if (mBalanceDirection.y > 0)
+			{	
+				mBalanceLastWasPositive.y = 1;
+			}
+			else
+			{
+				mBalanceLastWasNegative.y = 1;
+			}
+
+			mBalanceDirection.y = -mBalanceDirection.y;
+			mBalanceLastWasCenter.y = 0;
+		}
+		else if (mBalanceLastWasNegative.y == 1)
+		{
+			mBalanceLastWasNegative.y = 0;
+			mBalanceLastWasCenter.y = 1;
+		}
+		else if (mBalanceLastWasPositive.y == 1)
+		{
+			mBalanceLastWasPositive.y = 0;
+			mBalanceLastWasCenter.y = 1;
+		}
+
+		//Z
+		if (mBalanceLastWasCenter.z == 1)
+		{
+			if (mBalanceDirection.z > 0)
+			{	
+				mBalanceLastWasPositive.z = 1;
+			}
+			else
+			{
+				mBalanceLastWasNegative.z = 1;
+			}
+
+			mBalanceDirection.z = -mBalanceDirection.z;
+			mBalanceLastWasCenter.z = 0;
+		}
+		else if (mBalanceLastWasNegative.z == 1)
+		{
+			mBalanceLastWasNegative.z = 0;
+			mBalanceLastWasCenter.z = 1;
+		}
+		else if (mBalanceLastWasPositive.z == 1)
+		{
+			mBalanceLastWasPositive.z = 0;
+			mBalanceLastWasCenter.z = 1;
 		}
 	}
 
