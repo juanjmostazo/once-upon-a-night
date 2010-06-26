@@ -65,6 +65,7 @@
 #include "../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
+
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
@@ -79,6 +80,7 @@
 
 #include "../Component/ComponentFactory.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/CameraManager/CameraParameters.h"
 #include "../RayCasting/RayCasting.h"
 
 using namespace OUAN;
@@ -1268,8 +1270,12 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			tGameObjectOnyParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
-	//Set Ony as camera target
-	cameraMgr->setCameraTarget(pGameObjectOny->getRenderComponentPositional());
+	//Set Ony as Camera Target
+	CameraParametersPtr cameraParameters;
+	cameraParameters.reset(new CameraParameters());
+	cameraParameters->setDefaultParameters();
+	cameraParameters->setTarget(pGameObjectOny->getPositionalComponent());
+	Application::getInstance()->getCameraManager()->setCameraFree(cameraParameters,false);
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);

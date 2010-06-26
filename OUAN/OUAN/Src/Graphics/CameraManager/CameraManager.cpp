@@ -41,6 +41,9 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 {
 	Logger::getInstance()->log("[Camera Manager] INITIALISING CAMERA MANAGER");
 
+	mCameraInput.reset(new CameraInput());
+	mCameraInput->mCameraParameters->setDefaultParameters();
+
 	mSceneManager= pRenderSubsystem->getSceneManager();
 	mTrajectoryManager=pTrajectoryManager;
 
@@ -52,7 +55,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
 
 	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
-	mCameraControllerThirdPerson->init( pRenderSubsystem->getSceneManager(),pRenderSubsystem,pPhysicsSubsystem,pTrajectoryManager);
+	mCameraControllerThirdPerson->init(mCameraInput, pRenderSubsystem->getSceneManager(),pRenderSubsystem,pPhysicsSubsystem,pTrajectoryManager);
 
 	//Set Default camera to viewport
 	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(mCamera);
@@ -63,9 +66,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	registerEventHandlers(mGameWorldManager->getEventManager());
 
-	mCameraInput.reset(new CameraInput());
-	mCameraInput->init();
-	mDefaultCameraParameters=mCameraInput->mCameraParameters;
+
 
 	mCurrentTrajectory=-1;
 
@@ -79,42 +80,20 @@ void CameraManager::setCameraTrajectory(std::string trajectory,bool transition)
 	mCameraControllerThirdPerson->setCameraTrajectory(trajectory,transition,mCamera);
 }
 
-void CameraManager::setCameraFree(bool transition)
+void CameraManager::setCameraFree(CameraParametersPtr cameraParameters,bool transition)
 {
 	setCameraType(CAMERA_THIRD_PERSON);
-	mCameraInput->mCameraParameters=mDefaultCameraParameters;
+	mCameraInput->mCameraParameters=cameraParameters;
 	mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,transition);
 
 }
 
 void CameraManager::setCameraTracking(CameraParametersPtr cameraParameters,bool transition)
 {
+	setCameraType(CAMERA_THIRD_PERSON);
 	mCameraInput->mCameraParameters=cameraParameters;
 	mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,transition);
 }
-
-
-//void CameraManager::setCameraTrajectory(std::string name)
-//{
-//	Logger::getInstance()->log("[Camera Manager] Setting trajectory "+name+" to Camera");
-//
-//	try
-//	{
-//		if(mTrajectoryManager->hasTrajectory(name))
-//		{
-//			mCameraInput->mTrajectory=mTrajectoryManager->getTrajectoryInstance("CameraTrajectory");
-//			mTrajectoryManager->setPredefinedTrajectory(*mCameraInput->mTrajectory,name,"blue");
-//		}
-//		else
-//		{
-//			throw "Trajectory "+name+" does not exist";
-//		}
-//	}
-//	catch( std::string error )
-//	{
-//		Logger::getInstance()->log("[CameraManager] "+error);
-//	}
-//}
 
 void CameraManager::createMainCamera()
 {
@@ -232,12 +211,6 @@ void CameraManager::changeCameraController()
 
 }
 
-void CameraManager::setCameraTarget(RenderComponentPositionalPtr pTarget)
-{
-	mCameraInput->mCameraParameters->mTarget=pTarget;
-	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);
-}
-
 void CameraManager::changeAutoCamera()
 {
 	switch(mActiveCameraController->getControllerType())
@@ -247,14 +220,20 @@ void CameraManager::changeAutoCamera()
 			if(mCurrentTrajectory>=mCameraTrajectoryNames.size()+1)
 			{
 				Logger::getInstance()->log("[Camera Manager] Set Camera Free");
-				setCameraTarget(mGameWorldManager->getGameObjectOny()->getPositionalComponent());
-				mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,true);
+				CameraParametersPtr cameraParameters;
+				cameraParameters.reset(new CameraParameters());
+				cameraParameters->setDefaultParameters();
+				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getPositionalComponent());
+				setCameraFree(cameraParameters,true);
 				mCurrentTrajectory=-1;
 			}
 			else if(mCurrentTrajectory==mCameraTrajectoryNames.size())
 			{
-				mCameraInput->mCameraParameters->mTarget=mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getPositionalComponent();
-				mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,true);
+				CameraParametersPtr cameraParameters;
+				cameraParameters.reset(new CameraParameters());
+				cameraParameters->setDefaultParameters();
+				cameraParameters->setTarget(mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getPositionalComponent());
+				setCameraTracking(cameraParameters,true);
 			}
 			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())
 			{
@@ -264,6 +243,16 @@ void CameraManager::changeAutoCamera()
 		case CAMERA_FIRST_PERSON:
 			break;
 	}
+}
+
+void CameraManager::setCameraAutoRotation(double rotX,double rotY,bool transition)
+{
+	mCameraControllerThirdPerson->setCameraAutoRotation(rotX,rotY,transition);
+}
+
+void CameraManager::centerCameraRotation(bool transition)
+{
+	mCameraControllerThirdPerson->centerCameraRotation(mCamera,mCameraInput,transition);
 }
 
 void CameraManager::setCameraTrajectoryNames(std::vector<std::string> trajectoryNames)
@@ -291,11 +280,6 @@ void CameraManager::activateChangeWorld()
 		mIsChangingWorld=true;
 	}
 
-}
-
-void CameraManager::centerCamera()
-{
-	mActiveCameraController->centerCamera(mCamera,mCameraInput);
 }
 
 void CameraManager::changeWorldFinished(int newWorld)
@@ -374,18 +358,6 @@ void CameraManager::processChangeWorld(ChangeWorldEventPtr evt)
 	{
 		activateChangeWorld();
 	}
-}
-
-void CameraManager::setCameraParameters(CameraParametersPtr pCameraParameters,bool transition)
-{
-	/*mCameraInput->mDoTransition=transition;
-	mCameraInput->mCameraParameters=pCameraParameters;
-	mActiveCameraController->setCameraParameters(mCamera,mCameraInput);*/
-}
-
-void CameraManager::setDefaultCameraParameters(bool transition)
-{
-	mCameraInput->mDoTransition=transition;
 }
 
 Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement,double elapsedSeconds)
