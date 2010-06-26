@@ -293,6 +293,18 @@ void CameraManager::activateChangeWorldFast()
 	mIsChangingWorld=false;
 }
 
+void CameraManager::setDefaultThirdPersonCamera(bool transition)
+{
+	GameObjectOnyPtr pGameObjectOny;
+	//Set Ony as Camera Target
+	CameraParametersPtr cameraParameters;
+	cameraParameters.reset(new CameraParameters());
+	cameraParameters->setDefaultParameters();
+	pGameObjectOny=mGameWorldManager->getGameObjectOny();
+	cameraParameters->setTarget(pGameObjectOny->getName());
+	setCameraFree(cameraParameters,transition);
+}
+
 void CameraManager::activateChangeWorld()
 {
 	if(mIsChangingWorld)

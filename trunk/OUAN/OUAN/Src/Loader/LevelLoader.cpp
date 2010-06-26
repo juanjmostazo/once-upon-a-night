@@ -2161,13 +2161,6 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				tGameObjectTerrainConvexParameters.nightmaresName = gameObject->nightmaresName;
 				tGameObjectTerrainConvexParameters.name = gameObject->name;
 
-				//Get PhysicsComponentComplexConvex
-				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
-					gameObject->XMLNodeCustomProperties,
-					complexConvex, "Convex");
-
-				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime)));	
-
 				tGameObjectTerrainConvexParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 					gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
@@ -2184,6 +2177,14 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 					tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
 						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 				}
+
+				//Get PhysicsComponentComplexConvex
+				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+					gameObject->XMLNodeCustomProperties,
+					complexConvex, "Convex");
+
+				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime)));	
+
 			}
 			catch( std::string error )
 			{

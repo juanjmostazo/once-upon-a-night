@@ -48,6 +48,8 @@ namespace OUAN
 		void setCameraFree(CameraParametersPtr cameraParameters,bool transition);
 		//Sets tracking camera, like free but without processing input
 		void setCameraTracking(CameraParametersPtr cameraParameters,bool transition);
+		//Sets default camera
+		void setDefaultThirdPersonCamera(bool transition);
 
 		//Note: those last two doesnt work for trajectory camera
 		//Auto-rotates camera to selected rotation
