@@ -2,12 +2,12 @@
 <CUSTOMPROPERTIES>
 
   <PROPERTY id="RenderComponentQuadHalo::quadMaterial" type="7" value="quad_halo" ></PROPERTY>
-  <PROPERTY id="RenderComponentQuadHalo::haloRadio" type="6" value="20" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::haloRadio" type="6" value="9" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::totalQuads" type="6" value="256" ></PROPERTY>
-  <PROPERTY id="RenderComponentQuadHalo::quadSize" type="6" value="0.25" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::quadSize" type="6" value="0.2" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::speedScale" type="6" value="0.1" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetX" type="6" value="0" ></PROPERTY>
-  <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="15.3" ></PROPERTY>
+  <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="7" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetZ" type="6" value="0" ></PROPERTY>
   
   <PROPERTY id="PhysicsComponentCharacterOny::mass" type="6" value="66" ></PROPERTY>
