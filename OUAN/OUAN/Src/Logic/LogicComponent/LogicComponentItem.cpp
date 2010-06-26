@@ -18,7 +18,7 @@ LogicComponentItem::~LogicComponentItem()
 
 }
 
-void LogicComponentItem::processCollision(GameObjectPtr pGameObject)
+void LogicComponentItem::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0 && !mIsTaken)
 	{

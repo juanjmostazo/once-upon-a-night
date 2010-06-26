@@ -569,7 +569,6 @@ void GameWorldManager::init(ApplicationPtr app)
 	mEventManager.reset(new EventManager());
 	mEventProcessor.reset(new EventProcessor());
 	mEventProcessor->init(mThis);
-	//
 
 	loadConfig();
 
@@ -1321,16 +1320,24 @@ void GameWorldManager::onyDied()
 	Logger::getInstance()->log("GameWorldManager::onyDied exec");
 	resetAll();
 }
+
 bool GameWorldManager::isOnyDying() const
 {	
 	if (!mGameObjectOnyContainer.empty() && mGameObjectOnyContainer[0].get())
+	{
 		return mGameObjectOnyContainer[0]->isDying();
+	}
+
 	return false;
 }
+
 bool GameWorldManager::isOnyHit() const
 {	
 	if (!mGameObjectOnyContainer.empty() && mGameObjectOnyContainer[0].get())
+	{
 		return mGameObjectOnyContainer[0]->isHit();
+	}
+
 	return false;
 }
 void GameWorldManager::addEvent(OUAN::EventPtr event)
@@ -1478,6 +1485,7 @@ void GameWorldManager::stopUsingWeapon()
 		getGameObjectOny()->switchOff();
 	}
 }
+
 void GameWorldManager::useObject()
 {
 	if(!mGameObjectUsableContainer.empty())
@@ -1493,9 +1501,9 @@ void GameWorldManager::useObject()
 				break;
 			}
 		}
-
 	}
 }
+
 void GameWorldManager::postUpdate()
 {
 	TGameObjectContainerIterator it;

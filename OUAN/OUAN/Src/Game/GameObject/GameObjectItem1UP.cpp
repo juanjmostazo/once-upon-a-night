@@ -256,11 +256,11 @@ PhysicsComponentPtr GameObjectItem1UP::getPhysicsComponent() const
 	return getPhysicsComponentVolumeBox();
 }
 
-void GameObjectItem1UP::processCollision(GameObjectPtr pGameObject)
+void GameObjectItem1UP::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (isEnabled() && mLogicComponentItem.get()&& !mLogicComponentItem->getIsTaken())
 	{
-		mLogicComponentItem->processCollision(pGameObject);
+		mLogicComponentItem->processCollision(pGameObject, pNormal);
 	}
 }
 

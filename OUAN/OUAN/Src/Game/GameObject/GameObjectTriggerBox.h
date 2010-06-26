@@ -84,11 +84,9 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
-
-
 		/// Process collision event
 		/// @param gameObject which has collision with
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 
 		/// Process collision event
 		/// @param gameObject which has collision with

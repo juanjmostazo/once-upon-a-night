@@ -204,11 +204,11 @@ LogicComponentPtr GameObjectBillboardSet::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectBillboardSet::processCollision(GameObjectPtr pGameObject)
+void GameObjectBillboardSet::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

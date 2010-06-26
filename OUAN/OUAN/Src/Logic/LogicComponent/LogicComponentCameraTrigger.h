@@ -14,7 +14,7 @@ namespace OUAN
 		CameraTriggerPtr getCameraTrigger() const;
 		void setCameraTrigger(CameraTriggerPtr pCameraTrigger);
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 		void processEnterTrigger(GameObjectPtr pGameObject);
 		void processExitTrigger(GameObjectPtr pGameObject);
 

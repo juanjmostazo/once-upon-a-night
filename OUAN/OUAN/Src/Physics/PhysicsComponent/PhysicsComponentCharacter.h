@@ -44,7 +44,9 @@ namespace OUAN
 		virtual void setOuternMovement(Ogre::Vector3 outernMovement);
 		virtual Ogre::Vector3 getLastMovement();
 
+		virtual void setPosition(Ogre::Vector3 position);
 		virtual Ogre::Vector3 getPosition();
+
 		virtual double getYaw();
 
 	protected:

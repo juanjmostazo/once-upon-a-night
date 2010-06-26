@@ -177,11 +177,11 @@ PhysicsComponentPtr GameObjectDragon::getPhysicsComponent() const
 }
 
 
-void GameObjectDragon::processCollision(GameObjectPtr pGameObject)
+void GameObjectDragon::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

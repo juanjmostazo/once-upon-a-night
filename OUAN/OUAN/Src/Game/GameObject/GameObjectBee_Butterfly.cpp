@@ -111,11 +111,11 @@ RenderComponentPositionalPtr GameObjectBee_Butterfly::getPositionalComponent() c
 }
 
 
-void GameObjectBee_Butterfly::processCollision(GameObjectPtr pGameObject)
+void GameObjectBee_Butterfly::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

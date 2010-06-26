@@ -163,11 +163,11 @@ PhysicsComponentPtr GameObjectPillow::getPhysicsComponent() const
 	return getPhysicsComponentVolumeBox();
 }
 
-void GameObjectPillow::processCollision(GameObjectPtr pGameObject)
+void GameObjectPillow::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

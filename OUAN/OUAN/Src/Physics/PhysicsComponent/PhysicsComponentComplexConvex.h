@@ -26,6 +26,10 @@ namespace OUAN
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
 		void setBalancingParams(double balanceRadioX, double balanceRadioY, double balanceRadioZ, double balanceRadioTime);
+		virtual Ogre::Vector3 getLastPositionDifference();
+
+		virtual Ogre::Vector3 getPosition();
+		virtual void setPosition(Ogre::Vector3 position);
 
 	//	void setQueryFlags(QueryFlags queryFlags);
 
@@ -45,11 +49,10 @@ namespace OUAN
 		double mBalanceDirection;
 		double mBalanceAccumulatedTime;
 
+		Ogre::Vector3 mLastPositionDifference;
+
 		virtual bool canUpdateBalancing(double elapsedSeconds);
 		virtual void updateBalancing(double elapsedSeconds);
-		
-		virtual Ogre::Vector3 getPosition();
-		virtual void setPosition(Ogre::Vector3 position);
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters

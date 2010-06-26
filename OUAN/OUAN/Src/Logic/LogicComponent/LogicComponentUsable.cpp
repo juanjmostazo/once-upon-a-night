@@ -14,7 +14,7 @@ LogicComponentUsable::~LogicComponentUsable()
 
 }
 
-void LogicComponentUsable::processCollision(GameObjectPtr pGameObject)
+void LogicComponentUsable::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 }
 	//void processActivate(ActivateEventPtr evt);

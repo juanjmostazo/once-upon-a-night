@@ -11,7 +11,7 @@ namespace OUAN
 		LogicComponentOny(const std::string& type="");
 		~LogicComponentOny();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 		void processAnimationEnded(const std::string& animationName);
 
 		int getHealthPoints() const;

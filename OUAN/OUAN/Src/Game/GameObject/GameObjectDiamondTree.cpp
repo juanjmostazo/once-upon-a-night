@@ -247,11 +247,11 @@ LogicComponentPropPtr GameObjectDiamondTree::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectDiamondTree::processCollision(GameObjectPtr pGameObject)
+void GameObjectDiamondTree::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

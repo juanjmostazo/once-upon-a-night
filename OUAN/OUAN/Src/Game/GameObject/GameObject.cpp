@@ -192,7 +192,7 @@ void GameObject::setGameWorldManager(GameWorldManagerPtr gameWorldManager)
 	mGameWorldManager=gameWorldManager;
 }
 
-void GameObject::processCollision(GameObjectPtr pGameObject)
+void GameObject::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
 }

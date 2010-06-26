@@ -336,11 +336,11 @@ void GameObjectOny::switchOff()
 	mWeaponComponent->switchOff();
 }
 
-void GameObjectOny::processCollision(GameObjectPtr pGameObject)
+void GameObjectOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentOny.get())
 	{
-		mLogicComponentOny->processCollision(pGameObject);
+		mLogicComponentOny->processCollision(pGameObject, pNormal);
 	}
 }
 

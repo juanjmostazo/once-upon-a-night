@@ -133,7 +133,7 @@ namespace OUAN
 		GameObjectPtr getGameObject(NxOgre::String name);
 
 		/// Sends collisions to the EventManager function
-		bool sendCollision(GameObjectPtr object1, GameObjectPtr object2);
+		bool sendCollision(GameObjectPtr object1, GameObjectPtr object2, Ogre::Vector3 normal=Ogre::Vector3(0,0,0));
 		bool sendEnterTrigger(GameObjectPtr object1, GameObjectPtr object2);
 		bool sendExitTrigger(GameObjectPtr object1, GameObjectPtr object2);
 	};

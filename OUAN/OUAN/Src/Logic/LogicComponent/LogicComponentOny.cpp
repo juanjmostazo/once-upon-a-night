@@ -8,7 +8,9 @@
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../../Game/GameObject/GameObjectTentetieso.h"
+#include "../../Game/GameObject/GameObjectTerrainConvex.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -23,7 +25,7 @@ LogicComponentOny::~LogicComponentOny()
 {
 }
 
-void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
+void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (!pGameObject->isEnabled() || !getParent()->isEnabled()) 
 	{
@@ -90,6 +92,24 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject)
 			}			
 		}
 	}
+	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
+	{
+		Logger::getInstance()->log("### Collision between " + getParent()->getName() + " and " + pGameObject->getName() + "("+pGameObject->getType()+")" + "," + Ogre::StringConverter::toString(pNormal));
+
+		GameObjectTerrainConvexPtr terrain = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(pGameObject);
+		PhysicsComponentComplexConvexPtr physicsTerrain = terrain->getPhysicsComponentComplexConvex();
+
+		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
+		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
+		
+		if (physicsTerrain->getLastPositionDifference().y >= 0
+			&& physicsOny->getPosition().y > physicsTerrain->getPosition().y)
+		{
+			Ogre::Vector3 posOny = physicsOny->getPosition();
+			posOny += physicsTerrain->getLastPositionDifference();
+			physicsOny->setPosition(posOny);
+		}
+	}	
 }
 
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)

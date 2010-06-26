@@ -9,7 +9,7 @@ namespace OUAN
 		LogicComponentProp(const std::string& type="");
 		~LogicComponentProp();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 		//void processActivate(ActivateEventPtr evt);
 		//void processAnimationEnded(AnimationEndedEventPtr evt);
 		//...

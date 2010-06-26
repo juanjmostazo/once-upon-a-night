@@ -220,11 +220,11 @@ LogicComponentUsablePtr GameObjectPortal::getLogicComponentUsable()
 	return mLogicComponentUsable;
 }
 
-void GameObjectPortal::processCollision(GameObjectPtr pGameObject)
+void GameObjectPortal::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentUsable.get())
 	{
-		mLogicComponentUsable->processCollision(pGameObject);
+		mLogicComponentUsable->processCollision(pGameObject, pNormal);
 	}
 }
 

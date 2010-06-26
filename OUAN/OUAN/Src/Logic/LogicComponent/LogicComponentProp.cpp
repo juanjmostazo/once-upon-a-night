@@ -24,7 +24,7 @@ LogicComponentProp::~LogicComponentProp()
 
 }
 
-void LogicComponentProp::processCollision(GameObjectPtr pGameObject)
+void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
 	//Logger::getInstance()->log(getParent()->getName() + " LOGICCOMPONENTPROP COLLISION: " +

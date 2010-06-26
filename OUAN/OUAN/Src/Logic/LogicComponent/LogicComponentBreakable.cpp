@@ -19,7 +19,7 @@ LogicComponentBreakable::~LogicComponentBreakable()
 
 }
 
-void LogicComponentBreakable::processCollision(GameObjectPtr pGameObject)
+void LogicComponentBreakable::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if( pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && !mIsBroken)
 	{	

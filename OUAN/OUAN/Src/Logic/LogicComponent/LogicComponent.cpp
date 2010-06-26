@@ -21,7 +21,7 @@ LogicComponent::~LogicComponent()
 
 }
 
-void LogicComponent::processCollision(GameObjectPtr pGameObject)
+void LogicComponent::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
 }

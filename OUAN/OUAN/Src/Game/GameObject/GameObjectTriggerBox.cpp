@@ -179,11 +179,11 @@ PhysicsComponentPtr GameObjectTriggerBox::getPhysicsComponent() const
 }
 
 
-void GameObjectTriggerBox::processCollision(GameObjectPtr pGameObject)
+void GameObjectTriggerBox::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 

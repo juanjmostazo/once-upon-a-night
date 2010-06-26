@@ -238,11 +238,11 @@ bool GameObjectStoryBook::hasPositionalComponent() const
 	return true;
 }
 
-void GameObjectStoryBook::processCollision(GameObjectPtr pGameObject)
+void GameObjectStoryBook::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (isEnabled() && mLogicComponentItem.get() && !mLogicComponentItem->getIsTaken())
 	{
-		mLogicComponentItem->processCollision(pGameObject);
+		mLogicComponentItem->processCollision(pGameObject, pNormal);
 	}
 }
 

@@ -13,7 +13,7 @@ namespace OUAN
 		LogicComponentEnemy(const std::string& type="");
 		~LogicComponentEnemy();
 
-		void processCollision(GameObjectPtr pGameObject);
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
 
 		int getNumLives() const;
 

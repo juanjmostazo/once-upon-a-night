@@ -166,11 +166,11 @@ PhysicsComponentPtr GameObjectSnakeCreeper::getPhysicsComponent() const
 	return getPhysicsComponentCharacter();
 }
 
-void GameObjectSnakeCreeper::processCollision(GameObjectPtr pGameObject)
+void GameObjectSnakeCreeper::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

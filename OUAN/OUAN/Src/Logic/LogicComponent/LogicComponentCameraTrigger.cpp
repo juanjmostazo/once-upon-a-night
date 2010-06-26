@@ -20,7 +20,7 @@ LogicComponentCameraTrigger::~LogicComponentCameraTrigger()
 
 }
 
-void LogicComponentCameraTrigger::processCollision(GameObjectPtr pGameObject)
+void LogicComponentCameraTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
 }

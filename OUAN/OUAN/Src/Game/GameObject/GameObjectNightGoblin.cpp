@@ -168,11 +168,11 @@ PhysicsComponentPtr GameObjectNightGoblin::getPhysicsComponent() const
 	return getPhysicsComponentCharacter();
 }
 
-void GameObjectNightGoblin::processCollision(GameObjectPtr pGameObject)
+void GameObjectNightGoblin::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
-		mLogicComponentEnemy->processCollision(pGameObject);
+		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
 }
 

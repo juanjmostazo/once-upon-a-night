@@ -293,11 +293,11 @@ LogicComponentPtr GameObjectTerrainConvex::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectTerrainConvex::processCollision(GameObjectPtr pGameObject)
+void GameObjectTerrainConvex::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
-		mLogicComponent->processCollision(pGameObject);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 
