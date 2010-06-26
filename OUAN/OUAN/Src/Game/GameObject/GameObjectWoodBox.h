@@ -12,8 +12,9 @@
 namespace OUAN
 {
 	//Animation states
-	const std::string WOODBOX_ANIM_IDLE01="idle";
-	const std::string WOODBOX_ANIM_BREAK01="break_01";
+	//const std::string WOODBOX_ANIM_IDLE01="idle";
+	//const std::string WOODBOX_ANIM_BREAK01="break_01";
+	const std::string WOODBOX_ANIM_BROKEN="broken";
 
 	/// Class to hold WoodBox information
 	class GameObjectWoodBox : public GameObject, public boost::enable_shared_from_this<GameObjectWoodBox>
@@ -22,13 +23,14 @@ namespace OUAN
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		
+		RenderComponentEntityPtr mRenderComponentEntityAdditional;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
-		//TODO: think what happens when world changes with the rendercomponent
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -43,11 +45,13 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntityAdditional() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
 		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntityAdditional(RenderComponentEntityPtr pRenderComponentEntityAdditional);
 		
 		/// Set logic component
 		void setLogicComponentBreakable(LogicComponentBreakablePtr logicComponentBreakable);
@@ -136,6 +140,7 @@ namespace OUAN
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentAdditionalParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

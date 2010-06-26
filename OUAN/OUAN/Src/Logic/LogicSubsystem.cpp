@@ -60,7 +60,8 @@ void LogicSubsystem::registerModules()
 		def("playSoundFromGameObject",&GameRunningState::playSoundFromGameObject),
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())
-			.def("getName",&LogicComponent::getParentName),
+			.def("getName",&LogicComponent::getParentName)
+			.def("say",&LogicComponent::printMessage),
 		class_<LogicComponentEnemy, LogicComponent > ("LogicComponentEnemy")
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentEnemy::getNumLives)
@@ -273,4 +274,18 @@ void LogicSubsystem::invokeActionFunction(const std::string& functionName, Logic
 int LogicSubsystem::getGlobalInt (const std::string& globalName)
 {
 	return luabind::object_cast<int>(luabind::globals(mLuaEngine)[globalName]);
+}
+
+void LogicSubsystem::invokeCutsceneFunction(const std::string& functionName)
+{
+
+}
+void LogicSubsystem::updateCutsceneFunction(const std::string& functionName)
+{
+	
+
+}
+void LogicSubsystem::initCutsceneScript(const std::string& scriptFilename)
+{
+	loadScript(SCRIPTS_PATH+"/"+scriptFilename);
 }

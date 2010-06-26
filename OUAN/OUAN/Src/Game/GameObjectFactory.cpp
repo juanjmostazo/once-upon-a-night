@@ -641,6 +641,8 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
 
+
+
 	//Add Object to GameWorldManager
 	//addGameObjectDiamondTree(pGameObjectDiamondTree);
 	return pGameObjectDiamondTree;
@@ -2641,6 +2643,11 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+		std::string addName=tGameObjectWoodBoxParameters.name+"additional";
+		pGameObjectWoodBox->setRenderComponentEntityAdditional(
+			mComponentFactory->createRenderComponentEntity(addName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters
+			));
 	}
 	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
 	{

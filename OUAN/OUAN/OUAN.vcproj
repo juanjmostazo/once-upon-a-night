@@ -42,7 +42,7 @@
 				AdditionalOptions="/Zm178"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(NXOGRE_DIR)\sdk&quot;;&quot;$(PU_DIR)\Plugins\ParticleUniverse\include&quot;"
-				PreprocessorDefinitions="OUAN_DEBUG"
+				PreprocessorDefinitions="OUAN_DEBUG;DEBUG_BOXES"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -362,6 +362,10 @@
 			<Filter
 				Name="Core"
 				>
+				<File
+					RelativePath=".\Src\Core\CutsceneState.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Core\ExtrasState.cpp"
 					>
@@ -1172,6 +1176,10 @@
 			<Filter
 				Name="Core"
 				>
+				<File
+					RelativePath=".\Src\Core\CutsceneState.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Src\Core\ExtrasState.h"
 					>

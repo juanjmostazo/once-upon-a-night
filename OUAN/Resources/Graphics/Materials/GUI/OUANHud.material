@@ -32,3 +32,21 @@ material OUAN/Hud/Roulette
 		}
 	}
 }
+
+material OUAN/Hud/PowerBar
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture bar_00.gif
+			}
+		}
+	}
+}

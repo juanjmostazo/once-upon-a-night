@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material platform7_d : basic_texture
+{
+	set_texture_alias diffuse_texture platform7_d.dds
+}
+
+material platform7_n : basic_texture
+{
+	set_texture_alias diffuse_texture platform7_n.dds
+}
+
+material platform7_cw : default_changeworld
+{
+}

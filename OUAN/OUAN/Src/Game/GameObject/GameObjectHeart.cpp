@@ -241,7 +241,7 @@ LogicComponentItemPtr GameObjectHeart::getLogicComponentItem()
 void GameObjectHeart::reset()
 {
 	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mLogicComponentItem->setIsTaken(false);
 }
 
 bool GameObjectHeart::hasPositionalComponent() const

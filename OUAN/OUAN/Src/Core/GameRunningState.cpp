@@ -31,12 +31,61 @@
 
 using namespace OUAN;
 
+#ifdef DEBUG_BOXES
+void recDebugBoxes(Ogre::Node* node)
+{
+	if (node)
+	{
+		Ogre::SceneNode* snode= dynamic_cast<Ogre::SceneNode*>(node);
+		if (snode)
+		{
+			Ogre::SceneNode::ObjectIterator objIt=snode->getAttachedObjectIterator();
+			Ogre::MovableObject*m;
+			std::string objName;
+			Ogre::AxisAlignedBox box;
+			while(objIt.hasMoreElements())
+			{
+					m=objIt.getNext();
+					if (m)
+					{
+						box=m->getBoundingBox();
+						objName=m->getName();
+						std::stringstream msg;
+						msg.str("");
+						msg<<std::endl<<"------------"<<std::endl;
+						msg<<"Object name: "<<objName<<std::endl;
+						msg<<"Z: "<<box.getMinimum().z<<" - "<<box.getMaximum().z<<std::endl;
+						msg<<"Y: "<<box.getMinimum().y<<" - "<<box.getMaximum().y<<std::endl;
+						msg<<"X: "<<box.getMinimum().x<<" - "<<box.getMaximum().x<<std::endl;
+						if (box.getMinimum().z>box.getMaximum().z ||
+							box.getMinimum().y>box.getMaximum().y ||
+							box.getMinimum().x>box.getMaximum().x)
+							msg<<"UH, OH!!";
+						msg <<"------------";
+						Logger::getInstance()->log(msg.str());
+					}
+			}
+			Ogre::SceneNode::ChildNodeIterator nodeIt=node->getChildIterator();
+			Ogre::Node* sn;
+			while (nodeIt.hasMoreElements())
+			{
+				sn=nodeIt.getNext();
+				if (sn)
+					recDebugBoxes(sn);
+			}
+		}
+	}
+}
+#endif
+
 GameRunningState* GameRunningState::mInst=NULL;
 
 /// Default constructor
 GameRunningState::GameRunningState()
 :GameState()
 ,mIsChangingWorld(false)
+,toGameOverTime(TO_GAME_OVER_DEFAULT)
+,toGameOverElapsed(0.0)
 {
 	mInst=this;
 	mChangeWorldElapsedTime=0;
@@ -156,7 +205,7 @@ void GameRunningState::pause()
 }
 /// resume state
 void GameRunningState::resume()
-{
+{	
 	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();
@@ -452,6 +501,7 @@ void GameRunningState::update(long elapsedTime)
 		double elapsedSeconds=(double)elapsedTime * 0.000001f;
 		if (!mApp->getGameWorldManager()->isGameOver())
 		{
+			toGameOverElapsed+=elapsedSeconds;
 			if(mIsChangingWorld)
 			{
 				mChangeWorldElapsedTime+=elapsedSeconds;
@@ -779,7 +829,9 @@ bool GameRunningState::render()
 		mHUD->show();
 
 		renderChangeWorldTextures();
-
+#ifdef DEBUG_BOXES
+		recDebugBoxes(renderSubsystem->getSceneManager()->getRootSceneNode());
+#endif
 		return renderSubsystem->render();
 	}
 	return true;
@@ -952,5 +1004,6 @@ bool GameRunningState::mayProceedToGameOver()
 	}
 	int channel=mMusicChannels[-1].channelId;
 	return mApp->getGameWorldManager()->isGameOver() && 
-		!mApp->getAudioSubsystem()->isMusicPlaying(channel);
+		(!mApp->getAudioSubsystem()->isMusicPlaying(channel)
+		|| toGameOverElapsed>=toGameOverTime);
 }

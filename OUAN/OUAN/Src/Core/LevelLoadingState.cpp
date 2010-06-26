@@ -82,7 +82,7 @@ void LevelLoadingState::init(ApplicationPtr app)
 	topCorner=-0.4;
 	rightCorner=0.8;
 	bottomCorner=-0.6;
-	currentRightCorner=-0.8;
+	currentRightCorner=-0.79;
 
 	currentStage=0;
 
@@ -94,7 +94,7 @@ void LevelLoadingState::init(ApplicationPtr app)
 	desc.topCorner=topCorner;
 	desc.rightCorner=currentRightCorner;
 	desc.renderQueue=Ogre::RENDER_QUEUE_MAX;
-	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox(-100000.0*Vector3::UNIT_SCALE, 100000.0*Vector3::UNIT_SCALE);
 	desc.materialGroup=LEVELLOAD_GROUP;
 	desc.materialName=LEVELLOAD_BAR_MATERIAL_NAME;
 	desc.textureName = LEVELLOAD_BAR_IMG;

@@ -27,6 +27,8 @@ namespace OUAN
 		void setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraAutoRotation(double rotX,double rotY,bool transition);
 
+		bool isTrajectoryFinished(const std::string& trajectoryName);
+
 		CameraState getCameraState();
 
 		void clear();
