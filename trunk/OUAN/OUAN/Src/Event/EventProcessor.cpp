@@ -351,5 +351,5 @@ void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 
 void EventProcessor::processChangeCameraParameters(ChangeCameraParametersEventPtr evt)
 {
-	mWorldManager->getParent()->getCameraManager()->setCameraParameters(evt->pCameraParameters,evt->transition);
+	//mWorldManager->getParent()->getCameraManager()->setCameraParameters(evt->pCameraParameters,evt->transition);
 }

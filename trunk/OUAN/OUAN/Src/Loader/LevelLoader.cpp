@@ -3388,8 +3388,8 @@ CameraParametersPtr LevelLoader::processCameraParameters(TiXmlElement *XMLNode)
 
 	pCameraParameters.reset(new CameraParameters());
 
-	pCameraParameters->mDirection=getPropertyVector3(XMLNode, "CameraParameters::Direction");
-	pCameraParameters->mDistance=getPropertyReal(XMLNode, "CameraParameters::Distance");
+	//pCameraParameters->setDirection=getPropertyVector3(XMLNode, "CameraParameters::Direction");
+	//pCameraParameters->setDistance=getPropertyReal(XMLNode, "CameraParameters::Distance");
 	//pCameraParameters->mMaxDistance=getPropertyReal(XMLNode, "CameraParameters::MaxDistance");
 	//pCameraParameters->mMinH=getPropertyReal(XMLNode, "CameraParameters::MinH");
 	//pCameraParameters->mMaxH=getPropertyReal(XMLNode, "CameraParameters::MaxH");
@@ -3408,14 +3408,16 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	tPhysicsComponentCharacterParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::mass");
 	tPhysicsComponentCharacterParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::radius");
 	tPhysicsComponentCharacterParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacter"+suffix+"::height");
-	try{
+	try
+	{
 		tPhysicsComponentCharacterParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacter"+suffix+"::position_correction");
 	}
 	catch(std::string error)
 	{
 		tPhysicsComponentCharacterParameters.position_correction=Vector3::ZERO;
 	}
-	try{
+	try
+	{
 		tPhysicsComponentCharacterParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacter"+suffix+"::scale_correction");
 	}
 	catch(std::string error)

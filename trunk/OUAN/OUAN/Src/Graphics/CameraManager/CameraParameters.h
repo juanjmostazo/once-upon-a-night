@@ -6,14 +6,36 @@ namespace OUAN
 	class CameraParameters
 	{
 	private:
+		Vector3 mDirection;
+		double mDistance;
+		RenderComponentPositionalPtr mTarget;
+		Vector3 mTargetOffset;
 
 	public:
 		CameraParameters();
 		~CameraParameters();
 
-		Vector3 mDirection;
-		double mDistance;
-		RenderComponentPositionalPtr mTarget;
+		//sets default camera parameters, do this and then set the parameters you are interested
+		void setDefaultParameters();
+
+		//Camera direction from target to camera
+		//auto-normalises direction
+		void setDirection(Ogre::Vector3 direction);
+		Ogre::Vector3 getDirection() const;
+
+		//distance between target and camera
+		void setDistance(double distance);
+	    double getDistance() const;
+
+		//camera look At
+		void setTarget(RenderComponentPositionalPtr target);
+		RenderComponentPositionalPtr CameraParameters::getTarget() const;
+
+		//Offset for the camera target, which adds to the target position
+		void setTargetOffset(Ogre::Vector3 direction);
+		Ogre::Vector3 getTargetOffset() const;
+
+
 	};
 
 

@@ -202,7 +202,8 @@ void GameRunningState::handleEvents()
 			//TODO: Replace with the proper auto-target functionality
 			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 			//mApp->getGameWorldManager()->addEvent(evt);
-			mApp->getCameraManager()->centerCamera();
+
+			mApp->getCameraManager()->centerCameraRotation(true);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			//mGUI->hideConsole();

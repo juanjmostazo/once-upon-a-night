@@ -34,19 +34,28 @@ namespace OUAN
 		void processCameraRotation(Ogre::Vector2 rotation);
 		void processSimpleTranslation(Ogre::Vector3 translation);
 
+		//CAMERA MODIFIERS
+		//Transition activates or desactivates transitions between cameras
+		//CameraParameters is a class that specifies camera parameters, check it out
+
+		//Sets specified trajectory
 		void setCameraTrajectory(std::string trajectory,bool transition);
-		void setCameraFree(bool transition);
+		//Sets free camera, which processes input
+		void setCameraFree(CameraParametersPtr cameraParameters,bool transition);
+		//Sets tracking camera, like free but without processing input
 		void setCameraTracking(CameraParametersPtr cameraParameters,bool transition);
 
+		//Note: those last two doesnt work for trajectory camera
+		//Auto-rotates camera to selected rotation
+		void setCameraAutoRotation(double rotX,double rotY,bool transition);
+		//Auto-rotates camera to target's back
+		void centerCameraRotation(bool transition);
 
 		/// Activates next camera controller type
 		void changeCameraController();
 
 		/// Activates trajectory/fixed camera
 		void changeAutoCamera();
-
-		//Sets camera target for applicable controllers
-		void setCameraTarget(RenderComponentPositionalPtr pTarget);
 
 		Ogre::Viewport* setViewportParameters(Ogre::String name,TRenderComponentViewportParameters tRenderComponentViewportParameters);
 
@@ -57,12 +66,7 @@ namespace OUAN
 		//event handlers
 		void processChangeWorld(ChangeWorldEventPtr evt);
 
-		void setCameraParameters(CameraParametersPtr pCameraParameters,bool transition);
-		void setDefaultCameraParameters(bool transition);
-
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,double elapsedSeconds);
-
-		void centerCamera();
 
 		void setCameraTrajectoryNames(std::vector<std::string> trajectoryNames);
 
@@ -83,7 +87,6 @@ namespace OUAN
 		void createMainCamera();
 
 		Ogre::Camera * mCamera;
-		CameraParametersPtr mDefaultCameraParameters;
 
 		CameraController * mActiveCameraController;
 		CameraControllerFirstPerson * mCameraControllerFirstPerson;

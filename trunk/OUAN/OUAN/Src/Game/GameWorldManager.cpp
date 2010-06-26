@@ -55,6 +55,7 @@
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/CameraManager/CameraParameters.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/TrajectoryManager/Trajectory.h"
@@ -604,8 +605,12 @@ void GameWorldManager::resetAll()
 
 	setWorld(DREAMS);
 
-	mApp->getCameraManager()->setCameraTarget(
-		getGameObjectOny()->getRenderComponentPositional());
+	CameraParametersPtr cameraParameters;
+	cameraParameters.reset(new CameraParameters());
+	cameraParameters->setDefaultParameters();
+	cameraParameters->getTarget()=getGameObjectOny()->getPositionalComponent();
+
+	mApp->getCameraManager()->setCameraFree(cameraParameters,false);
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }

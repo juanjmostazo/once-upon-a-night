@@ -12,19 +12,12 @@ namespace OUAN
 		CameraInput();
 		~CameraInput();
 
-		Trajectory * mTrajectory;
 		CameraParametersPtr mCameraParameters;
 
 		Ogre::Vector2 mRotation;
 		Ogre::Vector3 mTranslation;
 
 
-
-		bool mDoTransition;
-
-		Vector3 mTargetOffset;
-
-		void init();
 
 	};
 

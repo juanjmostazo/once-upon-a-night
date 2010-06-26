@@ -46,7 +46,7 @@ Ogre::Vector3 CameraController::rotateMovementVector(Ogre::Vector3 movement,Ogre
 
 double CameraController::calculateDistanceToTarget(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool twoDimensions)
 {
-	Ogre::Vector3 targetPosition=pCameraInput->mCameraParameters->mTarget->getSceneNode()->getPosition();
+	Ogre::Vector3 targetPosition=pCameraInput->mCameraParameters->getTarget()->getSceneNode()->getPosition();
 	Ogre::Vector3 cameraPosition=pCamera->getPosition();
 
 	if(twoDimensions)
@@ -56,14 +56,4 @@ double CameraController::calculateDistanceToTarget(Ogre::Camera * pCamera,Camera
 	}
 
 	return cameraPosition.distance(targetPosition);
-}
-
-void CameraController::setCameraParameters(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
-{
-
-}
-
-void CameraController::centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
-{
-
 }

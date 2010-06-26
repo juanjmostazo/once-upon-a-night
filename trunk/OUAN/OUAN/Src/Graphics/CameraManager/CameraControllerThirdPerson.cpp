@@ -22,14 +22,14 @@ CameraControllerThirdPerson::~CameraControllerThirdPerson()
 {
 }
 
-void CameraControllerThirdPerson::init(Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager)
+void CameraControllerThirdPerson::init(CameraInputPtr pCameraInput,Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager)
 {
 	loadInfo();
 	mCameraState=CS_FREE;
 	mRotX=0;
 	mRotY=0;
 
-	mCurrentDistance=mInitialDistance;
+	mCurrentDistance=pCameraInput->mCameraParameters->getDistance();
 	mRayCasting=new RayCasting();
 	mRayCasting->init(pRenderSubsystem,pPhysicsSubsystem);
 
@@ -60,41 +60,56 @@ CameraState CameraControllerThirdPerson::getCameraState()
 	return mCameraState;
 }
 
-void CameraControllerThirdPerson::setCameraAutoRotation(Ogre::Vector3 direction,double rotX,double rotY)
+void CameraControllerThirdPerson::setCameraAutoRotation(double rotX,double rotY,bool transition)
 {
-	mCameraState=CS_AUTO_ROTATION;
+	if(mCameraState==CS_TRAJECTORY)
+		return;
 
-	mTargetRotX=rotX;
-	if(mTargetRotX<mMinRotX)
-		mTargetRotX=mMinRotX;
-	if(mTargetRotX>mMaxRotX)
-		mTargetRotX=mMaxRotX;
-	mTargetRotY=rotY;
-
-	mInitRotX=mRotX;
-	mInitRotY=mRotY;
-
-	if(mTargetRotX<mInitRotX)
+	if(!transition)
 	{
-		mAutoRotationDirectionX=-1;
+		mRotX=rotX;
+		mRotY=rotY;
 	}
 	else
 	{
-		mAutoRotationDirectionX=1;
-	}
-	if(Ogre::Math::Abs(mInitRotX-mTargetRotX)>=180)
-		mAutoRotationDirectionX=-mAutoRotationDirectionX;
+		if(mCameraState!=CS_AUTO_ROTATION)
+		{
+			mTargetState=mCameraState;
+			mCameraState=CS_AUTO_ROTATION;
+		}
 
-	if(mTargetRotY<mInitRotY)
-	{
-		mAutoRotationDirectionY=-1;
+		mTargetRotX=rotX;
+		if(mTargetRotX<mMinRotX)
+			mTargetRotX=mMinRotX;
+		if(mTargetRotX>mMaxRotX)
+			mTargetRotX=mMaxRotX;
+		mTargetRotY=rotY;
+
+		mInitRotX=mRotX;
+		mInitRotY=mRotY;
+
+		if(mTargetRotX<mInitRotX)
+		{
+			mAutoRotationDirectionX=-1;
+		}
+		else
+		{
+			mAutoRotationDirectionX=1;
+		}
+		if(Ogre::Math::Abs(mInitRotX-mTargetRotX)>=180)
+			mAutoRotationDirectionX=-mAutoRotationDirectionX;
+
+		if(mTargetRotY<mInitRotY)
+		{
+			mAutoRotationDirectionY=-1;
+		}
+		else
+		{
+			mAutoRotationDirectionY=1;
+		}
+		if(Ogre::Math::Abs(mInitRotY-mTargetRotY)>=180)
+			mAutoRotationDirectionY=-mAutoRotationDirectionY;
 	}
-	else
-	{
-		mAutoRotationDirectionY=1;
-	}
-	if(Ogre::Math::Abs(mInitRotY-mTargetRotY)>=180)
-		mAutoRotationDirectionY=-mAutoRotationDirectionY;
 }
 
 double CameraControllerThirdPerson::calculateDampenFactor(double perc,double dampenFactor,double dampenPow,double dampenStart)
@@ -147,7 +162,7 @@ void CameraControllerThirdPerson::updateCameraAutoRotation(double elapsedTime,Og
 
 	if(mRotX==mTargetRotX && mRotY==mTargetRotY)
 	{	
-		mCameraState=CS_FREE;
+		mCameraState=mTargetState;
 	}	
 	defaultUpdateCamera(pCamera,pCameraInput,elapsedTime);
 }
@@ -340,9 +355,11 @@ void CameraControllerThirdPerson::updateCameraFree(double elapsedTime,Ogre::Came
 	defaultUpdateCamera(pCamera,pCameraInput,elapsedTime);
 }
 
-void CameraControllerThirdPerson::updateCurrentDistance(double elapsedTime)
+void CameraControllerThirdPerson::updateCurrentDistance(CameraInputPtr pCameraInput,double elapsedTime)
 {
 	double dampen;
+	double mInitialDistance;
+	mInitialDistance=pCameraInput->mCameraParameters->getDistance();
 	if(mCurrentDistance<mInitialDistance)
 	{
 		dampen=mReturningSpeed*calculateDampenFactor(mCurrentDistance/mInitialDistance,mReturningDampenFactor,mReturningDampenPow,mReturningDampenStart);
@@ -368,7 +385,7 @@ void CameraControllerThirdPerson::defaultUpdateCamera(Ogre::Camera * pCamera,Cam
 
 	if(!mHasCollisioned)
 	{
-		updateCurrentDistance(elapsedTime);
+		updateCurrentDistance(pCameraInput,elapsedTime);
 	}
 
 	cameraPosition=calculateCameraPosition(pCamera,pCameraInput);
@@ -384,9 +401,6 @@ void CameraControllerThirdPerson::defaultUpdateCamera(Ogre::Camera * pCamera,Cam
 
 void CameraControllerThirdPerson::setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {
-	if(mCameraState==CS_FREE)
-		return;
-
 	if(!transition)
 	{
 		mCameraState=CS_FREE;
@@ -434,7 +448,7 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 
 Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPtr pCameraInput)
 {
-	return pCameraInput->mCameraParameters->mTarget->getPosition()+pCameraInput->mTargetOffset;
+	return pCameraInput->mCameraParameters->getTarget()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
 }
 
 
@@ -486,7 +500,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(dou
 
 	targetPosition=calculateTargetPosition(pCameraInput);
 
-	newCameraPosition = distance*mInitialDirection;
+	newCameraPosition = distance*pCameraInput->mCameraParameters->getDirection();
 
 	newCameraPosition = Quaternion(Ogre::Degree(mRotX), Vector3::UNIT_X) * newCameraPosition;
 	newCameraPosition = Quaternion(Ogre::Degree(mRotY), Vector3::UNIT_Y) * newCameraPosition;
@@ -629,15 +643,15 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 	return newCameraPosition;
 }
 
-void CameraControllerThirdPerson::centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput)
+void CameraControllerThirdPerson::centerCameraRotation(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
 {
 	double targetYaw;
-	targetYaw=pCameraInput->mCameraParameters->mTarget->getOrientation().getYaw().valueDegrees();
+	targetYaw=pCameraInput->mCameraParameters->getTarget()->getOrientation().getYaw().valueDegrees();
 	if(targetYaw>360)
 		targetYaw-=360;
 	if(targetYaw<0)
 		targetYaw+=360;
-	setCameraAutoRotation(mInitialDirection,0,targetYaw);
+	setCameraAutoRotation(0,targetYaw,transition);
 }
 
 void CameraControllerThirdPerson::loadInfo()
@@ -649,15 +663,6 @@ void CameraControllerThirdPerson::loadInfo()
 
 	if (config.loadFromFile(CAMERA_CONTROLLER_THIRD_PERSON_FREE_CFG))
 	{
-		double initial_directionX, initial_directionY, initial_directionZ;
-		config.getOption("INITIAL_DIRECTION_X", value); 
-		initial_directionX = atof(value.c_str());
-		config.getOption("INITIAL_DIRECTION_Y", value); 
-		initial_directionY = atof(value.c_str());
-		config.getOption("INITIAL_DIRECTION_Z", value); 
-		initial_directionZ = atof(value.c_str());
-		mInitialDirection = Vector3(initial_directionX, initial_directionY, initial_directionZ);
-		mInitialDirection.normalise();
 		config.getOption("MIN_ROT_X", value); 
 		mMinRotX = atof(value.c_str());
 		config.getOption("MAX_ROT_X", value); 
@@ -666,8 +671,6 @@ void CameraControllerThirdPerson::loadInfo()
 		mRotationSpeedX = atof(value.c_str());
 		config.getOption("SPEED_Y", value); 
 		mRotationSpeedY = atof(value.c_str());
-		config.getOption("INITIAL_DISTANCE", value); 
-		mInitialDistance = atof(value.c_str());
 		config.getOption("MIN_DISTANCE", value); 
 		mMinDistance = atof(value.c_str());
 		config.getOption("COLLISION_OFFSET_Y", value); 

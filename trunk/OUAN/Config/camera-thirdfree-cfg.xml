@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="INITIAL_DIRECTION_X">0</Option>
-    <Option key="INITIAL_DIRECTION_Y">0.5</Option>
-    <Option key="INITIAL_DIRECTION_Z">-1</Option>
     <Option key="MIN_ROT_X">-60</Option>
     <Option key="MAX_ROT_X">60</Option>
     <Option key="SPEED_X">0.02</Option>
     <Option key="SPEED_Y">0.05</Option>
     <Option key="INITIAL_DISTANCE">90</Option>
+
     <Option key="MIN_DISTANCE">40</Option>
     <Option key="COLLISION_OFFSET_X">16</Option>
     <Option key="COLLISION_OFFSET_Y">12</Option>

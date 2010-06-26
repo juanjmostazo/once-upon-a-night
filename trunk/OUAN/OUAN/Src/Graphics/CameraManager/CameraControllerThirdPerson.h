@@ -14,17 +14,18 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
-		void init(Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager);
+		void init(CameraInputPtr pCameraInput,Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager);
 		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
 		void loadInfo();
 		TCameraControllerType getControllerType();
 
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
-		void centerCamera(Ogre::Camera *pCamera,CameraInputPtr pCameraInput);
+		void centerCameraRotation(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition);
 
 		void setCameraTrajectory(std::string trajectory,bool transition,Ogre::Camera * pCamera);
 		void setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
+		void setCameraAutoRotation(double rotX,double rotY,bool transition);
 
 		CameraState getCameraState();
 
@@ -45,9 +46,6 @@ namespace OUAN
 		void rotateX(double rotation);
 		void rotateY(double rotation);
 
-		//initial direction
-		Vector3 mInitialDirection;
-
 		//minimum and maximum rotation to target's X axe
 		double mMinRotX;
 		double mMaxRotX;
@@ -61,7 +59,6 @@ namespace OUAN
 		//camera relative rotation to target's Y axe
 		double mRotY;
 
-		double mInitialDistance;
 		double mMinDistance;
 		double mCurrentDistance;
 
@@ -70,7 +67,6 @@ namespace OUAN
 
 		CameraState mCameraState;
 
-		void setCameraAutoRotation(Ogre::Vector3 direction,double rotX,double rotY);
 		void setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState);
 		void setCameraMoveToTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState);
 
@@ -125,7 +121,7 @@ namespace OUAN
 		void defaultUpdateCamera(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedTime);
 		double calculateDampenFactor(double perc,double dampenFactor, double dampenPow, double dampenStart);
 		void startTrajectory(std::string trajectory,Ogre::Camera * pCamera);
-		void updateCurrentDistance(double elapsedTime);
+		void updateCurrentDistance(CameraInputPtr pCameraInput,double elapsedTime);
 		double calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition);
 		double calculateRotationDistance(double angle1, double angle2);
 
