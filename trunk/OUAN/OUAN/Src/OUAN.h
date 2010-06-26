@@ -271,9 +271,9 @@ namespace OUAN
 		class TLogicComponentTriggerParameters;
 		typedef boost::shared_ptr<LogicComponentTrigger> LogicComponentTriggerPtr;
 
-		class LogicComponentTriggerCamera;
-		class TLogicComponentTriggerCameraParameters;
-		typedef boost::shared_ptr<LogicComponentTriggerCamera> LogicComponentTriggerCameraPtr;
+		class LogicComponentCameraTrigger;
+		class TLogicComponentCameraTriggerParameters;
+		typedef boost::shared_ptr<LogicComponentCameraTrigger> LogicComponentCameraTriggerPtr;
 
 		class LogicComponent;
 		class TLogicComponentParameters;
@@ -308,7 +308,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_LOGIC_PROP="LogicComponentProp";
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
-		const std::string COMPONENT_TYPE_LOGIC_TRIGGER_CAMERA="LogicComponentTriggerCamera";
+		const std::string COMPONENT_TYPE_LOGIC_TRIGGER_CAMERA="LogicComponentCameraTrigger";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -544,9 +544,9 @@ namespace OUAN
 		class TGameObjectTreeComplexParameters;
 		typedef boost::shared_ptr<GameObjectTreeComplex> GameObjectTreeComplexPtr;
 
-		class GameObjectTriggerCamera;
-		class TGameObjectTriggerCameraParameters;
-		typedef boost::shared_ptr<GameObjectTriggerCamera> GameObjectTriggerCameraPtr;
+		class GameObjectCameraTrigger;
+		class TGameObjectCameraTriggerParameters;
+		typedef boost::shared_ptr<GameObjectCameraTrigger> GameObjectCameraTriggerPtr;
 
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
@@ -588,7 +588,7 @@ namespace OUAN
 		typedef std::vector<GameObjectFogPtr> TGameObjectFogContainer;
 		typedef std::vector<GameObjectTowerPtr> TGameObjectTowerContainer;
 		typedef std::vector<GameObjectTreeComplexPtr> TGameObjectTreeComplexContainer;
-		typedef std::vector<GameObjectTriggerCameraPtr> TGameObjectTriggerCameraContainer;
+		typedef std::vector<GameObjectCameraTriggerPtr> TGameObjectCameraTriggerContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -807,6 +807,9 @@ namespace OUAN
 		class CameraParameters;
 		typedef boost::shared_ptr<CameraParameters> CameraParametersPtr;
 
+		class CameraTrigger;
+		typedef boost::shared_ptr<CameraTrigger> CameraTriggerPtr;
+
 		class CameraInput;
 		typedef boost::shared_ptr<CameraInput> CameraInputPtr;
 
@@ -836,7 +839,17 @@ namespace OUAN
 			CS_AUTO_ROTATION,
 			CS_TRAJECTORY,
 			CS_MOVE_TO_POSITION,
-			CS_MOVE_TO_TARGET
+			CS_MOVE_TO_TARGET,
+			CS_MOVE_TO_POSITION_LOOKING_AT_TARGET
+		};
+
+		enum CameraTriggerType
+		{
+			CTT_FREE,
+			CTT_TRACKING,
+			CTT_AUTO_ROTATION,
+			CTT_AUTO_CENTER,
+			CTT_TRAJECTORY
 		};
 
 		//-------------------------------------

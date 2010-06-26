@@ -52,7 +52,7 @@
 #include "GameObject/GameObjectTreeComplex.h"
 #include "GameObject/GameObjectTower.h"
 #include "GameObject/GameObjectFog.h"
-#include "GameObject/GameObjectTriggerCamera.h"
+#include "GameObject/GameObjectCameraTrigger.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
@@ -1270,19 +1270,12 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			tGameObjectOnyParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
-	//Set Ony as Camera Target
-	CameraParametersPtr cameraParameters;
-	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setDefaultParameters();
-	cameraParameters->setTarget(pGameObjectOny->getPositionalComponent());
-	Application::getInstance()->getCameraManager()->setCameraFree(cameraParameters,false);
-	Application::getInstance()->getCameraManager()->centerToTargetBack(false);
-
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
 
 	//Add Object to GameWorldManager
 	//addGameObjectOny(pGameObjectOny);
+
 	return pGameObjectOny;
 }
 
@@ -2408,49 +2401,49 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 	return pGameObjectTriggerCapsule;
 }
 
-GameObjectTriggerCameraPtr GameObjectFactory::createGameObjectTriggerCamera(TGameObjectTriggerCameraParameters tGameObjectTriggerCameraParameters, 
+GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGameObjectCameraTriggerParameters tGameObjectCameraTriggerParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectTriggerCameraPtr pGameObjectTriggerCamera;
+	GameObjectCameraTriggerPtr pGameObjectCameraTrigger;
 
 	//Create GameObject
-	pGameObjectTriggerCamera = GameObjectTriggerCameraPtr(new GameObjectTriggerCamera(tGameObjectTriggerCameraParameters.name));
-	pGameObjectTriggerCamera->setMaxUpdateRadio(tGameObjectTriggerCameraParameters.maxUpdateRadio);
+	pGameObjectCameraTrigger = GameObjectCameraTriggerPtr(new GameObjectCameraTrigger(tGameObjectCameraTriggerParameters.name));
+	pGameObjectCameraTrigger->setMaxUpdateRadio(tGameObjectCameraTriggerParameters.maxUpdateRadio);
 
 	//Create LogicComponent
-	pGameObjectTriggerCamera->setLogicComponentTriggerCamera(
-		mComponentFactory->createLogicComponentTriggerCamera(
-		pGameObjectTriggerCamera,
-		tGameObjectTriggerCameraParameters.tLogicComponentTriggerCameraParameters));
+	pGameObjectCameraTrigger->setLogicComponentCameraTrigger(
+		mComponentFactory->createLogicComponentCameraTrigger(
+		pGameObjectCameraTrigger,
+		tGameObjectCameraTriggerParameters.tLogicComponentCameraTriggerParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectTriggerCamera->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectTriggerCamera,tGameObjectTriggerCameraParameters.tRenderComponentPositionalParameters));
+	pGameObjectCameraTrigger->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectCameraTrigger,tGameObjectCameraTriggerParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectTriggerCamera->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectTriggerCamera->getRenderComponentPositional()));
+	pGameObjectCameraTrigger->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectCameraTrigger->getRenderComponentPositional()));
 
 	//Create RenderComponentEntity
-	pGameObjectTriggerCamera->setRenderComponentEntity(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTriggerCameraParameters.name,
-		pGameObjectTriggerCamera,tGameObjectTriggerCameraParameters.tRenderComponentEntityParameters));
+	pGameObjectCameraTrigger->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectCameraTriggerParameters.name,
+		pGameObjectCameraTrigger,tGameObjectCameraTriggerParameters.tRenderComponentEntityParameters));
 
 	//Make RenderComponentEntity not visible
-	pGameObjectTriggerCamera->getRenderComponentEntity()->setVisible(false);
+	pGameObjectCameraTrigger->getRenderComponentEntity()->setVisible(false);
 
 	//Create PhysicsComponent
-	pGameObjectTriggerCamera->setPhysicsComponentVolumeBox(mComponentFactory->createPhysicsComponentVolumeBox(
-		pGameObjectTriggerCamera,
-		tGameObjectTriggerCameraParameters.tPhysicsComponentVolumeBoxParameters,
-		pGameObjectTriggerCamera->getRenderComponentPositional()));
+	pGameObjectCameraTrigger->setPhysicsComponentVolumeBox(mComponentFactory->createPhysicsComponentVolumeBox(
+		pGameObjectCameraTrigger,
+		tGameObjectCameraTriggerParameters.tPhysicsComponentVolumeBoxParameters,
+		pGameObjectCameraTrigger->getRenderComponentPositional()));
 
 	// Add a reference to this
-	pGameObjectTriggerCamera->setGameWorldManager(gameWorldMgr);
+	pGameObjectCameraTrigger->setGameWorldManager(gameWorldMgr);
 
 	//Add Object to GameWorldManager
-	//addGameObjectTriggerCamera(pGameObjectTriggerCamera);
-	return pGameObjectTriggerCamera;
+	//addGameObjectCameraTrigger(pGameObjectCameraTrigger);
+	return pGameObjectCameraTrigger;
 }
 
 GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters, 

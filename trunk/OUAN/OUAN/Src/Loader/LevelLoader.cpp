@@ -55,7 +55,7 @@
 #include "../Game/GameObject/GameObjectTreeComplex.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
-#include "../Game/GameObject/GameObjectTriggerCamera.h"
+#include "../Game/GameObject/GameObjectCameraTrigger.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectTower.h"
@@ -65,6 +65,7 @@
 
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
+#include "../Graphics/CameraManager/CameraTrigger.h"
 #include "../Graphics/RenderComponent/RenderComponent.h"
 #include "../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -429,7 +430,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_CAMERA)==0)
 		{
-			processGameObjectTriggerCamera(gameObject);
+			processGameObjectCameraTrigger(gameObject);
 		}
 		else
 		{
@@ -2481,10 +2482,10 @@ void LevelLoader::processGameObjectTriggerCapsule(XMLGameObject* gameObject)
 		mGameWorldManager));
 }
 
-void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectCameraTrigger(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectTriggerCameraParameters tGameObjectTriggerCameraParameters;
-	tGameObjectTriggerCameraParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+	OUAN::TGameObjectCameraTriggerParameters tGameObjectCameraTriggerParameters;
+	tGameObjectCameraTriggerParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
 
 	try
 	{
@@ -2492,23 +2493,23 @@ void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectTriggerCameraParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectTriggerCameraParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectTriggerCameraParameters.name = gameObject->name;
+		tGameObjectCameraTriggerParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectCameraTriggerParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectCameraTriggerParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectTriggerCameraParameters.tLogicComponentTriggerCameraParameters=processLogicComponentTriggerCamera(gameObject->XMLNodeDreams,
+		tGameObjectCameraTriggerParameters.tLogicComponentCameraTriggerParameters=processLogicComponentCameraTrigger(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectTriggerCameraParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+		tGameObjectCameraTriggerParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
-		tGameObjectTriggerCameraParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectCameraTriggerParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectTriggerCameraParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+		tGameObjectCameraTriggerParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -2516,8 +2517,8 @@ void LevelLoader::processGameObjectTriggerCamera(XMLGameObject* gameObject)
 		return;
 	}
 	//Create GameObject
-	//mGameWorldManager->createGameObjectTriggerCamera(tGameObjectTriggerCameraParameters);
-	mGameWorldManager->addGameObjectTriggerCamera(mGameObjectFactory->createGameObjectTriggerCamera(tGameObjectTriggerCameraParameters,mGameWorldManager));
+	//mGameWorldManager->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters);
+	mGameWorldManager->addGameObjectCameraTrigger(mGameObjectFactory->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
@@ -3392,22 +3393,48 @@ TRenderComponentPlaneParameters LevelLoader::processRenderComponentPlane(TiXmlEl
 	return tRenderComponentPlaneParameters;
 }
 
-CameraParametersPtr LevelLoader::processCameraParameters(TiXmlElement *XMLNode)
+CameraTriggerPtr LevelLoader::processCameraTrigger(TiXmlElement *XMLNode)
 {
-	CameraParametersPtr pCameraParameters;
+	CameraTriggerPtr pCameraTrigger;
 
-	pCameraParameters.reset(new CameraParameters());
+	pCameraTrigger.reset(new CameraTrigger());
 
-	//pCameraParameters->setDirection=getPropertyVector3(XMLNode, "CameraParameters::Direction");
-	//pCameraParameters->setDistance=getPropertyReal(XMLNode, "CameraParameters::Distance");
-	//pCameraParameters->mMaxDistance=getPropertyReal(XMLNode, "CameraParameters::MaxDistance");
-	//pCameraParameters->mMinH=getPropertyReal(XMLNode, "CameraParameters::MinH");
-	//pCameraParameters->mMaxH=getPropertyReal(XMLNode, "CameraParameters::MaxH");
-	//pCameraParameters->mFollowZoom=getPropertyBool(XMLNode, "CameraParameters::FollowZoom");
-	//pCameraParameters->mFollowPan=getPropertyBool(XMLNode, "CameraParameters::FollowPan");
-	//pCameraParameters->mPlayerAutoCenter=getPropertyBool(XMLNode, "CameraParameters::PlayerAutoCenter");
+	//CameraTriggerType Conversion
+	int cameraTriggerType = getPropertyInt(XMLNode, "CameraTrigger::type");
+	switch(cameraTriggerType)
+	{
+		case OGITOR_CTT_FREE:
+			pCameraTrigger->mCameraTriggerType=CTT_FREE;
+			break;
+		case OGITOR_CTT_TRACKING:
+			pCameraTrigger->mCameraTriggerType=CTT_TRACKING;
+			break;
+		case OGITOR_CTT_AUTO_ROTATION:
+			pCameraTrigger->mCameraTriggerType=CTT_AUTO_ROTATION;
+			break;
+		case OGITOR_CTT_AUTO_CENTER:
+			pCameraTrigger->mCameraTriggerType=CTT_AUTO_CENTER;
+			break;
+		case OGITOR_CTT_TRAJECTORY:
+			pCameraTrigger->mCameraTriggerType=CTT_TRAJECTORY;
+			break;
+		default:
+			Logger::getInstance()->log("CameraTrigger has unrecognised CameraTriggerType!");
+			break;
+	}
+	
+	pCameraTrigger->mTransition=getPropertyBool(XMLNode, "CameraTrigger::transition");
+	pCameraTrigger->mCameraParameters.reset(new CameraParameters());
+	pCameraTrigger->mCameraParameters->setDirection(getPropertyVector3(XMLNode, "CameraTrigger::direction"));
+	pCameraTrigger->mCameraParameters->setDistance(getPropertyReal(XMLNode, "CameraTrigger::distance"));
+	pCameraTrigger->mCameraParameters->setTarget(getPropertyString(XMLNode, "CameraTrigger::target"));
+	pCameraTrigger->mCameraParameters->setTargetOffset(getPropertyVector3(XMLNode, "CameraTrigger::targetoffset"));
+	pCameraTrigger->mTrajectory=getPropertyString(XMLNode, "CameraTrigger::trajectory");
+	pCameraTrigger->mTrajectoryLookAtTarget=getPropertyBool(XMLNode, "CameraTrigger::trajectory-look_at_target");
+	pCameraTrigger->mRotX=getPropertyReal(XMLNode, "CameraTrigger::rotx");
+	pCameraTrigger->mRotY=getPropertyReal(XMLNode, "CameraTrigger::roty");
 
-	return pCameraParameters;
+	return pCameraTrigger;
 }
 
 TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix)
@@ -4021,35 +4048,38 @@ TLogicComponentPropParameters LevelLoader::processLogicComponentProp(TiXmlElemen
 	return logicComponentPropParameters;
 }
 
-TLogicComponentTriggerCameraParameters LevelLoader::processLogicComponentTriggerCamera(TiXmlElement *XMLNodeDreams,
+TLogicComponentCameraTriggerParameters LevelLoader::processLogicComponentCameraTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {
-	TLogicComponentTriggerCameraParameters logicComponentTriggerCameraParameters;
+	TLogicComponentCameraTriggerParameters logicComponentCameraTriggerParameters;
 	//Object exists both in dreams and nightmares
 	if(XMLNodeDreams && XMLNodeNightmares)
 	{
-		logicComponentTriggerCameraParameters.existsInDreams=true;
-		logicComponentTriggerCameraParameters.existsInNightmares=true;
-		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeDreams);
+		logicComponentCameraTriggerParameters.existsInDreams=true;
+		logicComponentCameraTriggerParameters.existsInNightmares=true;
+		logicComponentCameraTriggerParameters.pCameraTrigger=processCameraTrigger(XMLNodeDreams);
+		logicComponentCameraTriggerParameters.triggerOnlyOnce=getPropertyBool(XMLNodeDreams,"LogicComponentTriggerCamera::TriggerOnce");
 	}
 	//Object exists only in dreams
 	else if(XMLNodeDreams && !XMLNodeNightmares)
 	{
-		logicComponentTriggerCameraParameters.existsInDreams=true;
-		logicComponentTriggerCameraParameters.existsInNightmares=false;
-		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeDreams);
+		logicComponentCameraTriggerParameters.existsInDreams=true;
+		logicComponentCameraTriggerParameters.existsInNightmares=false;
+		logicComponentCameraTriggerParameters.pCameraTrigger=processCameraTrigger(XMLNodeDreams);
+		logicComponentCameraTriggerParameters.triggerOnlyOnce=getPropertyBool(XMLNodeDreams,"LogicComponentTriggerCamera::TriggerOnce");
 	}
 	//Object exists only in nightmares
 	else if(!XMLNodeDreams && XMLNodeNightmares)
 	{
-		logicComponentTriggerCameraParameters.existsInDreams=false;
-		logicComponentTriggerCameraParameters.existsInNightmares=true;
-		logicComponentTriggerCameraParameters.pCameraParameters=processCameraParameters(XMLNodeNightmares);
+		logicComponentCameraTriggerParameters.existsInDreams=false;
+		logicComponentCameraTriggerParameters.existsInNightmares=true;
+		logicComponentCameraTriggerParameters.pCameraTrigger=processCameraTrigger(XMLNodeNightmares);
+		logicComponentCameraTriggerParameters.triggerOnlyOnce=getPropertyBool(XMLNodeNightmares,"LogicComponentTriggerCamera::TriggerOnce");
 	}
 
+	
 
-
-	return logicComponentTriggerCameraParameters;
+	return logicComponentCameraTriggerParameters;
 }
 TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)

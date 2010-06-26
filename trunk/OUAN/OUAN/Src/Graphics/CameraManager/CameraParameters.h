@@ -8,7 +8,7 @@ namespace OUAN
 	private:
 		Vector3 mDirection;
 		double mDistance;
-		RenderComponentPositionalPtr mTarget;
+		std::string mTarget;
 		Vector3 mTargetOffset;
 
 	public:
@@ -28,8 +28,8 @@ namespace OUAN
 	    double getDistance() const;
 
 		//camera look At
-		void setTarget(RenderComponentPositionalPtr target);
-		RenderComponentPositionalPtr CameraParameters::getTarget() const;
+		void setTarget(std::string target);
+		std::string  CameraParameters::getTarget() const;
 
 		//Offset for the camera target, which adds to the target position
 		void setTargetOffset(Ogre::Vector3 direction);

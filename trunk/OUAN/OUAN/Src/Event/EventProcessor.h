@@ -68,7 +68,7 @@ namespace OUAN
 		void processAttackEnded(AttackEndedEventPtr evt);
 
 		/// Process the 'change camera parameters' event
-		void processChangeCameraParameters(ChangeCameraParametersEventPtr evt);
+		void processCameraTrigger(CameraTriggerEventPtr evt);
 
 	private:
 		/// Register all event handling methods

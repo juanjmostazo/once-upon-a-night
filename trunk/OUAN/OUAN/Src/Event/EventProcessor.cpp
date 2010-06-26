@@ -4,6 +4,7 @@
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
+#include "../Graphics/CameraManager/CameraTrigger.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
@@ -80,8 +81,8 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
 			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
 
-		registerEventHandler<EventProcessor,ChangeCameraParametersEvent,EVENT_TYPE_CHANGE_CAMERA_PARAMETERS>
-			(this_,&EventProcessor::processChangeCameraParameters,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,CameraTriggerEvent,EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS>
+			(this_,&EventProcessor::processCameraTrigger,mWorldManager->getEventManager());
 	}
 }
 
@@ -130,8 +131,8 @@ void EventProcessor::unregisterHandlers()
 		unregisterEventHandler<EventProcessor,AttackEndedEvent,EVENT_TYPE_ATTACK_ENDED>
 			(this_,&EventProcessor::processAttackEnded,mWorldManager->getEventManager());
 
-		unregisterEventHandler<EventProcessor,ChangeCameraParametersEvent,EVENT_TYPE_CHANGE_CAMERA_PARAMETERS>
-			(this_,&EventProcessor::processChangeCameraParameters,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,CameraTriggerEvent,EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS>
+			(this_,&EventProcessor::processCameraTrigger,mWorldManager->getEventManager());
 	}
 }
 
@@ -349,7 +350,35 @@ void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 	}
 }
 
-void EventProcessor::processChangeCameraParameters(ChangeCameraParametersEventPtr evt)
+void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 {
-	//mWorldManager->getParent()->getCameraManager()->setCameraParameters(evt->pCameraParameters,evt->transition);
+	CameraManagerPtr pCameraManager;
+	pCameraManager=Application::getInstance()->getCameraManager();
+
+	switch(evt->pCameraTrigger->mCameraTriggerType)
+	{
+		case CTT_FREE:
+
+			break;
+		case CTT_TRACKING:
+
+			break;
+		case CTT_AUTO_ROTATION:
+
+			break;
+		case CTT_AUTO_CENTER:
+
+			break;
+		case CTT_TRAJECTORY:
+			pCameraManager->setCameraTrajectory(
+				evt->pCameraTrigger->mCameraParameters,
+				evt->pCameraTrigger->mTrajectory,
+				evt->pCameraTrigger->mTrajectoryLookAtTarget,
+				evt->pCameraTrigger->mTransition);
+			break;
+		default:
+			Logger::getInstance()->log("CameraTrigger has unrecognised CameraTriggerType!");
+			break;
+	}
+
 }

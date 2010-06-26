@@ -99,7 +99,7 @@ namespace OUAN
 		void processGameObjectWoodBox(XMLGameObject* gameObject);
 		void processGameObjectWater(XMLGameObject* gameObject);
 		void processGameObjectTreeComplex(XMLGameObject* gameObject);
-		void processGameObjectTriggerCamera(XMLGameObject* gameObject);
+		void processGameObjectCameraTrigger(XMLGameObject* gameObject);
 		void processGameObjectTower(XMLGameObject* gameObject);
 		void processGameObjectFog(XMLGameObject* gameObject);
 
@@ -117,7 +117,7 @@ namespace OUAN
 		TRenderComponentFractalVolumeParameters processRenderComponentFractalVolume(TiXmlElement *XMLNode);
 		TRenderComponentBillboardSetParameters processRenderComponentBillboardSet(TiXmlElement *XMLNode);
 		//TRenderComponentCameraParameters processRenderComponentCamera(TiXmlElement *XMLNode);
-		CameraParametersPtr processCameraParameters(TiXmlElement *XMLNode);
+		CameraTriggerPtr processCameraTrigger(TiXmlElement *XMLNode);
 
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
 		TRenderComponentPlaneParameters processRenderComponentPlane(TiXmlElement *XMLNode);
@@ -163,7 +163,7 @@ namespace OUAN
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentTriggerParameters processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
-		TLogicComponentTriggerCameraParameters processLogicComponentTriggerCamera(TiXmlElement *XMLNodeDreams,
+		TLogicComponentCameraTriggerParameters processLogicComponentCameraTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 
 		//Trajectory Component
@@ -234,6 +234,15 @@ namespace OUAN
 		{
 			OGITOR_CAMERA_COLLISION_MOVE_TO_TARGET,
 			OGITOR_NONE
+		};
+
+		enum OgitorCameraTriggerTypes
+		{
+			OGITOR_CTT_FREE,
+			OGITOR_CTT_TRACKING,
+			OGITOR_CTT_AUTO_ROTATION,
+			OGITOR_CTT_AUTO_CENTER,
+			OGITOR_CTT_TRAJECTORY
 		};
 
 	};

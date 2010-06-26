@@ -14,7 +14,7 @@ namespace OUAN
 		CameraControllerThirdPerson();
 		~CameraControllerThirdPerson();
 
-		void init(CameraInputPtr pCameraInput,Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager);
+		void init(CameraInputPtr pCameraInput,Ogre::SceneManager * pSceneManager,RenderSubsystemPtr pRenderSubsystem,PhysicsSubsystemPtr pPhysicsSubsystem,TrajectoryManagerPtr pTrajectoryManager,GameWorldManagerPtr pGameWorldManager);
 		void update(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,double elapsedTime);
 		void loadInfo();
 		TCameraControllerType getControllerType();
@@ -22,7 +22,7 @@ namespace OUAN
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		void centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition);
 
-		void setCameraTrajectory(std::string trajectory,bool transition,Ogre::Camera * pCamera);
+		void setCameraTrajectory(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,std::string trajectory,bool lookAtTarget,bool transition);
 		void setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraAutoRotation(double rotX,double rotY,bool transition);
@@ -30,6 +30,7 @@ namespace OUAN
 		CameraState getCameraState();
 
 		void clear();
+		void cleanUp();
 
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
@@ -69,11 +70,13 @@ namespace OUAN
 
 		void setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState);
 		void setCameraMoveToTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState);
+		void setCameraMoveToPositionLookingAtTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState);
 
 		void updateCameraAutoRotation(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraTrajectory(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraMoveToPosition(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraMoveToTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		void updateCameraMoveToPositionLookingAtTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraFree(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraTracking(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 
@@ -93,6 +96,7 @@ namespace OUAN
 		//trajectory atributes
 		Trajectory * mTrajectory;
 		Ogre::SceneNode * mDummyNode;
+		bool mTrajectoryLookAtTarget;
 
 		//move to position attributes
 		Quaternion mTransitionInitialRotation;
@@ -129,6 +133,7 @@ namespace OUAN
 		TrajectoryManagerPtr mTrajectoryManager;
 		Ogre::SceneManager * mSceneManager;
 		TransparentEntityManagerPtr mTransparentEntityManager;
+		GameWorldManagerPtr mGameWorldManager;
 	};
 }
 

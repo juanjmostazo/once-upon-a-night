@@ -7,6 +7,7 @@
 #include "../Graphics/RenderSubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectOny.h"
 #include "../Logic/LogicSubsystem.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
 
@@ -17,6 +18,9 @@
 
 #include "../Audio/AudioDefs.h"
 #include "../Audio/AudioSubsystem.h"
+
+#include "../Graphics/CameraManager/CameraManager.h"
+#include "../Graphics/CameraManager/CameraParameters.h"
 
 #include "../Utils/Utils.h"
 
@@ -39,7 +43,8 @@ TLoadingStage gStages[]=
 	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.005},
 	{&LevelLoadingState::initMusic, "INIT_MUSIC",0.0025},
 	{&LevelLoadingState::initScripts, "INIT_SCRIPTS",0.0025},
-	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0025}
+	{&LevelLoadingState::setCameraTarget, "SET_CAMERA_TARGET",0.0010},
+	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0015}
 };
 const int gNumStages=15;
 
@@ -284,4 +289,17 @@ void LevelLoadingState::setLevelFileName(const std::string& levelFilename)
 void LevelLoadingState::clearParser()
 {
 	mApp->getLevelLoader()->clearXMLParser();
+}
+
+void LevelLoadingState::setCameraTarget()
+{
+	GameObjectOnyPtr pGameObjectOny;
+	//Set Ony as Camera Target
+	CameraParametersPtr cameraParameters;
+	cameraParameters.reset(new CameraParameters());
+	cameraParameters->setDefaultParameters();
+	pGameObjectOny=Application::getInstance()->getGameWorldManager()->getGameObjectOny();
+	cameraParameters->setTarget(pGameObjectOny->getName());
+	Application::getInstance()->getCameraManager()->setCameraFree(cameraParameters,false);
+	Application::getInstance()->getCameraManager()->centerToTargetBack(false);
 }

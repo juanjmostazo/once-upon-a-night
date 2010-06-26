@@ -758,6 +758,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentCameraTrigger.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEnemy.cpp"
 						>
 					</File>
@@ -775,10 +779,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTrigger.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTriggerCamera.cpp"
 						>
 					</File>
 					<File
@@ -955,6 +955,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\CameraManager\CameraParameters.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraTrigger.cpp"
 						>
 					</File>
 					<File
@@ -1320,6 +1324,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\CameraManager\CameraTrigger.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\CameraManager\TransparentEntity.h"
 						>
 					</File>
@@ -1503,6 +1511,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectCameraTrigger.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.h"
 						>
 					</File>
@@ -1652,10 +1664,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTriggerCamera.h"
 						>
 					</File>
 					<File
@@ -1844,6 +1852,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentCameraTrigger.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentEnemy.h"
 						>
 					</File>
@@ -1869,10 +1881,6 @@
 								Name="VCCustomBuildTool"
 							/>
 						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\Src\Logic\LogicComponent\LogicComponentTriggerCamera.h"
-						>
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponentUsable.h"

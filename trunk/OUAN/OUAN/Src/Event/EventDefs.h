@@ -57,8 +57,8 @@ namespace OUAN
 	class AttackEndedEvent;
 	typedef boost::shared_ptr<AttackEndedEvent> AttackEndedEventPtr;
 
-	class ChangeCameraParametersEvent;
-	typedef boost::shared_ptr<ChangeCameraParametersEvent> ChangeCameraParametersEventPtr;
+	class CameraTriggerEvent;
+	typedef boost::shared_ptr<CameraTriggerEvent> CameraTriggerEventPtr;
 
 	// Event types
 	typedef enum{
@@ -78,7 +78,7 @@ namespace OUAN
 		EVENT_TYPE_EXIT_TRIGGER,
 		EVENT_TYPE_ONY_TAKES_HIT,
 		EVENT_TYPE_WEAPON_MODE_CHANGED,
-		EVENT_TYPE_CHANGE_CAMERA_PARAMETERS,
+		EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS,
 		EVENT_TYPE_ATTACK_ENDED
 	} TEventType;
 
@@ -98,7 +98,7 @@ namespace OUAN
 	const int EVT_PRIORITY_ACTIVATED_ITEM=4;
 	const int EVT_PRIORITY_ONY_TAKES_HIT=4;
 	const int EVT_PRIORITY_COLLISION=5;
-	const int EVT_PRIORITY_CHANGE_CAMERA_PARAMETERS=5;
+	const int EVT_PRIORITY_CAMERA_TRIGGER=5;
 
 	//...
 }
