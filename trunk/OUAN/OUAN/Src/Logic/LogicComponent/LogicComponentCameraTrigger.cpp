@@ -33,6 +33,8 @@ void LogicComponentCameraTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 		evt.reset( new CameraTriggerEvent());
 
 		evt->pCameraTrigger=mCameraTrigger;
+		evt->name=getParent()->getName();
+		evt->enter=true;
 
 		getParent()->getGameWorldManager()->addEvent(evt);
 	}
@@ -40,7 +42,17 @@ void LogicComponentCameraTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 
 void LogicComponentCameraTrigger::processExitTrigger(GameObjectPtr pGameObject)
 {
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		CameraTriggerEventPtr evt;
+		evt.reset( new CameraTriggerEvent());
 
+		evt->pCameraTrigger=mCameraTrigger;
+		evt->name=getParent()->getName();
+		evt->enter=false;
+
+		getParent()->getGameWorldManager()->addEvent(evt);
+	}
 }
 
 CameraTriggerPtr LogicComponentCameraTrigger::getCameraTrigger() const
