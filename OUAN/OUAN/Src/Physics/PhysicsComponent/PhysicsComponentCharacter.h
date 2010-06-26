@@ -63,6 +63,8 @@ namespace OUAN
 		virtual void setOnSurface(bool pOnSurface);
 		virtual void setLastElapsedSeconds(double pLastElapsedSeconds);
 
+		virtual void applyOuternMovement(double elapsedSeconds);
+
 		virtual void setNextMovement(Ogre::Vector3 nextMovement);
 		virtual Ogre::Vector3 getNextMovement();
 

@@ -2,6 +2,7 @@
 
 #include "PhysicsComponentCharacterOny.h"
 #include "../../RayCasting/RayCasting.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 
 using namespace OUAN;
 
@@ -36,6 +37,11 @@ bool PhysicsComponentCharacterOny::canJump()
 	return 
 		PhysicsComponentCharacter::canJump() ||
 		Application::getInstance()->getGameWorldManager()->isGodMode();
+}
+
+void PhysicsComponentCharacterOny::applyOuternMovement(double elapsedSeconds)
+{
+	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
 }
 
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()

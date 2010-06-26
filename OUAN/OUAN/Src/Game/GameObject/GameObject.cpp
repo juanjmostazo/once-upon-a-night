@@ -458,18 +458,18 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 	bool condition2 = !getPositionalComponent();
 	bool condition3 = getPositionalComponent() && getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
 
-	if(mName.compare("terrain#platform7_5") == 0)
-	{
-		Logger::getInstance()->log("#####");
-		Logger::getInstance()->log("condition1: " + Ogre::StringConverter::toString(condition1));
-		Logger::getInstance()->log("condition2: " + Ogre::StringConverter::toString(condition2));
-		Logger::getInstance()->log("condition3: " + Ogre::StringConverter::toString(condition3));
-		Logger::getInstance()->log("getPosition: " + Ogre::StringConverter::toString(getPositionalComponent()->getPosition()));
-		Logger::getInstance()->log("positionOny: " + Ogre::StringConverter::toString(positionOny));
-		Logger::getInstance()->log("DISTANCE: " + Ogre::StringConverter::toString(Ogre::Real(getPositionalComponent()->getPosition().distance(positionOny))));
-		Logger::getInstance()->log("MAX_UPDATE_RADIO: " + Ogre::StringConverter::toString(Ogre::Real(mMaxUpdateRadio)));
-		Logger::getInstance()->log("#####");
-	}
+	//if(mName.compare("terrain#platform7_5") == 0)
+	//{
+	//	Logger::getInstance()->log("#####");
+	//	Logger::getInstance()->log("condition1: " + Ogre::StringConverter::toString(condition1));
+	//	Logger::getInstance()->log("condition2: " + Ogre::StringConverter::toString(condition2));
+	//	Logger::getInstance()->log("condition3: " + Ogre::StringConverter::toString(condition3));
+	//	Logger::getInstance()->log("getPosition: " + Ogre::StringConverter::toString(getPositionalComponent()->getPosition()));
+	//	Logger::getInstance()->log("positionOny: " + Ogre::StringConverter::toString(positionOny));
+	//	Logger::getInstance()->log("DISTANCE: " + Ogre::StringConverter::toString(Ogre::Real(getPositionalComponent()->getPosition().distance(positionOny))));
+	//	Logger::getInstance()->log("MAX_UPDATE_RADIO: " + Ogre::StringConverter::toString(Ogre::Real(mMaxUpdateRadio)));
+	//	Logger::getInstance()->log("#####");
+	//}
 
 	return condition1 || condition2 || condition3;
 }

@@ -98,7 +98,7 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 {	
 	//logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
-	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
+	applyOuternMovement(elapsedSeconds);
 
 	//logStatus("Before setNewYaw()", elapsedSeconds);
 	setNewYaw();
@@ -458,6 +458,11 @@ void PhysicsComponentCharacter::setOuternMovement(Ogre::Vector3 outernMovement)
 Ogre::Vector3 PhysicsComponentCharacter::getOuternMovement()
 {
 	return mOuternMovement;
+}
+
+void PhysicsComponentCharacter::applyOuternMovement(double elapsedSeconds)
+{
+	setNextMovement(getOuternMovement());
 }
 
 void PhysicsComponentCharacter::setNextMovement(Ogre::Vector3 nextMovement)
