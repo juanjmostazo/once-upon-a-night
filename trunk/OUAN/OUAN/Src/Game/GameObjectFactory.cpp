@@ -1602,11 +1602,11 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 	}
 
 	//Create PhysicsComponent
-	pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
-		mComponentFactory->createPhysicsComponentSimpleBox(
-		pGameObjectProvisionalEntity, 
-		tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters, 
-		pGameObjectProvisionalEntity->getRenderComponentPositional()));
+	//pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
+	//	mComponentFactory->createPhysicsComponentSimpleBox(
+	//	pGameObjectProvisionalEntity, 
+	//	tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters, 
+	//	pGameObjectProvisionalEntity->getRenderComponentPositional()));
 
 	// Add a reference to this
 	pGameObjectProvisionalEntity->setGameWorldManager(gameWorldMgr);
