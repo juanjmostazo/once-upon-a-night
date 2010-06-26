@@ -161,11 +161,11 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (mPhysicsComponentCharacterOny->getNxOgreController()->getPosition().y < 
 		Application::getInstance()->getPhysicsSubsystem()->mMinAllowedY)
 	{
-		//if (!mGameWorldManager->isGodMode())
-		//{
+		if (!mGameWorldManager->isGodMode())
+		{
 			OnyFallsEventPtr evt(new OnyFallsEvent());
 			mGameWorldManager->addEvent(evt);
-		//}
+		}
 		//else
 		//{
 		//	mPhysicsComponentCharacterOny->jump();
