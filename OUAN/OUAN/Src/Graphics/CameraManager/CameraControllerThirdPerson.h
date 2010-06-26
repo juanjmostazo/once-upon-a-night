@@ -34,6 +34,8 @@ namespace OUAN
 
 		bool cameraTrajectoryEnded();
 
+		void setRotationYToTargetBack(std::string cameraTarget);
+
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		Ogre::Vector3 calculateTargetPosition(CameraInputPtr pCameraInput);
