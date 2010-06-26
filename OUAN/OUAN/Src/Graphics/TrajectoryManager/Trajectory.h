@@ -114,6 +114,8 @@ namespace OUAN
 		void updateDebugNodes();
 		void destroyDebugNodes();
 
+		bool trajectoryEnded();
+
 		void update(double elapsedTime);
 		void init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::SceneNode * debugObjects,TrajectoryManagerPtr pTrajectoryManager, double defaultSpeed, double minNextNodeDistance);
 		void setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNodes,std::string debugColor);

@@ -273,6 +273,10 @@ void CameraManager::setCameraTrajectoryNames(std::vector<std::string> trajectory
 	mCameraTrajectoryNames=trajectoryNames;
 }
 
+bool CameraManager::cameraTrajectoryEnded()
+{
+	return mCameraControllerThirdPerson->cameraTrajectoryEnded();
+}
 
 void CameraManager::activateChangeWorldFast()
 {

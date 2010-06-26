@@ -215,6 +215,11 @@ Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::
 	return nextOrientation;
 }
 
+bool Trajectory::trajectoryEnded()
+{
+	return isLastNode() && getLoopTrajectory(); 
+}
+
 bool Trajectory::isLastNode()
 {
 	return (getNextNode()==0);

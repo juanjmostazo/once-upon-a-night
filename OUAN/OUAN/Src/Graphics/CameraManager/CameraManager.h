@@ -42,6 +42,8 @@ namespace OUAN
 
 		//Sets specified trajectory, lookAtTarget=true to ignore original trajectory orientation and look at target instead
 		void setCameraTrajectory(CameraParametersPtr cameraParameters,std::string trajectory,bool lookAtTarget,bool transition);
+		//true if trajectory ended
+		bool cameraTrajectoryEnded();
 		//Sets free camera, which processes input
 		void setCameraFree(CameraParametersPtr cameraParameters,bool transition);
 		//Sets tracking camera, like free but without processing input

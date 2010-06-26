@@ -708,6 +708,11 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPosition(Ogre::Camera 
 	return newCameraPosition;
 }
 
+bool CameraControllerThirdPerson::cameraTrajectoryEnded()
+{
+	return mTrajectory->trajectoryEnded();
+}
+
 void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
 {
 	double targetYaw;

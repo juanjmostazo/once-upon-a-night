@@ -32,6 +32,8 @@ namespace OUAN
 		void clear();
 		void cleanUp();
 
+		bool cameraTrajectoryEnded();
+
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		Ogre::Vector3 calculateTargetPosition(CameraInputPtr pCameraInput);
