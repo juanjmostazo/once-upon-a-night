@@ -22,7 +22,7 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+		//PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -65,10 +65,10 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
+		//void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+		//PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -115,7 +115,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		//TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

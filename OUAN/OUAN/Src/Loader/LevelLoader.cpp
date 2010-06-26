@@ -576,7 +576,6 @@ TWalkabilityMapNodeParameters LevelLoader::processWalkabilityMapNode(TiXmlElemen
 		//Process Neightbor
 		currentNeighborName=getPropertyString(XMLNode,"walkability::node#"+StringConverter::toString(i),false);
 
-
 		//Logger::getInstance()->log("[LevelLoader] currentNeighborName" +currentNeighborName);
 
 		//there is no more neighbors
@@ -3460,14 +3459,16 @@ TPhysicsComponentCharacterOnyParameters LevelLoader::processPhysicsComponentChar
 	tPhysicsComponentCharacterOnyParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::mass");
 	tPhysicsComponentCharacterOnyParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::radius");
 	tPhysicsComponentCharacterOnyParameters.height= getPropertyReal(XMLNode, "PhysicsComponentCharacterOny"+suffix+"::height");
-	try{
+	try
+	{
 		tPhysicsComponentCharacterOnyParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacterOny"+suffix+"::position_correction");
 	}
 	catch(std::string error)
 	{
 		tPhysicsComponentCharacterOnyParameters.position_correction=Vector3::ZERO;
 	}
-	try{
+	try
+	{
 		tPhysicsComponentCharacterOnyParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentCharacterOny"+suffix+"::scale_correction");
 	}
 	catch(std::string error)

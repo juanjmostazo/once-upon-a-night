@@ -56,15 +56,15 @@ RenderComponentInitialPtr GameObjectProvisionalEntity::getRenderComponentInitial
 	return mRenderComponentInitial;
 }
 
-void GameObjectProvisionalEntity::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
-{
-	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
-}
+//void GameObjectProvisionalEntity::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+//{
+//	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+//}
 
-PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSimpleBox() const
-{
-	return mPhysicsComponentSimpleBox;
-}
+//PhysicsComponentSimpleBoxPtr GameObjectProvisionalEntity::getPhysicsComponentSimpleBox() const
+//{
+//	return mPhysicsComponentSimpleBox;
+//}
 
 void GameObjectProvisionalEntity::changeWorldFinished(int newWorld)
 {
@@ -77,26 +77,26 @@ void GameObjectProvisionalEntity::changeWorldFinished(int newWorld)
 			{
 				mRenderComponentEntityDreams->setVisible(true);
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->destroy();
+				//}
 			}		
 			break;
 		case NIGHTMARES:
@@ -104,26 +104,26 @@ void GameObjectProvisionalEntity::changeWorldFinished(int newWorld)
 			{
 				mRenderComponentEntityDreams->setVisible(false);
 				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->destroy();
+				//}
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				//if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				//{
+				//	mPhysicsComponentSimpleBox->create();
+				//}
 			}		
 			break;
 		default:
@@ -218,10 +218,12 @@ void GameObjectProvisionalEntity::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
+
 bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
 {
 	return true;
 }
+
 RenderComponentEntityPtr GameObjectProvisionalEntity::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
