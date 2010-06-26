@@ -3484,18 +3484,16 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 	TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 	
 	//Get Component properties
-	//try 
-	//{
-	//	tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(CTPNode, "PhysicsComponentComplex"+suffix+"::mass");
-	//}
-	//catch( std::string error )
-	//{
-	//	tPhysicsComponentComplexConvexParameters.mass = 0;
-	//}
+	try 
+	{
+		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(CTPNode, "PhysicsComponentComplex"+suffix+"::mass");
+	}
+	catch( std::string error )
+	{
+		tPhysicsComponentComplexConvexParameters.mass = 0;
+	}
 
-	//TODO TRY CATCH PROPERLY
-
-	/*try 
+	try 
 	{
 		tPhysicsComponentComplexConvexParameters.balanceRadioX = getPropertyReal(OgitorNode, "PhysicsComponentComplex"+suffix+"::balanceRadioX");
 	} 
@@ -3529,14 +3527,7 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 	catch ( std::string error )
 	{
 		tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0;
-	}*/
-
-	tPhysicsComponentComplexConvexParameters.mass = 0;
-	tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
-	tPhysicsComponentComplexConvexParameters.balanceRadioY = 5;
-	tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
-	tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0.5;
-
+	}
 
 	//Set nxs file
 	tPhysicsComponentComplexConvexParameters.nxsFile="nxs:"+nxsFile;
