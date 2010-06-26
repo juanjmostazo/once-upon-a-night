@@ -43,7 +43,6 @@ namespace OUAN
 		int getNextNode();
 		int getNextNode(int node);
 		void setCurrentNode(int node);
-		bool isLastNode();
 
 		Vector3 calculateNextPosition(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
 		Vector3 calculateNextMovement(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime);
@@ -102,6 +101,10 @@ namespace OUAN
 
 		Trajectory();
 		~Trajectory();
+
+		//FUNCTION MADE PUBLIC SO IT CAN BE POLLED BY THE 3RD CAM CONTROLLER
+		//(USED IN CUTSCENES)
+		bool isLastNode();
 
 		Quaternion getCurrentOrientation();
 		Vector3 getCurrentPosition();

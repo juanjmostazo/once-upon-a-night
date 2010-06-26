@@ -19,10 +19,15 @@ namespace OUAN
 		bool getIsBroken() const;
 		void setIsBroken(bool isBroken);
 
+		double getDisableTime() const;
+		void setDisableTime(double disableTime);
+
 		void update(double elapsedTime);
 
 	private:
 		bool mIsBroken;
+		double mDisableTime;
+		double mElapsedTimeSinceBreakup;
 	};
 
 	class TLogicComponentBreakableParameters: public TLogicComponentParameters
@@ -30,6 +35,8 @@ namespace OUAN
 	public:
 		TLogicComponentBreakableParameters();
 		~TLogicComponentBreakableParameters();
+
+		double mDisableTime;
 	};
 }
 

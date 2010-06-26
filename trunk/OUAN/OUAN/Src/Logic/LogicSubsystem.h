@@ -16,6 +16,8 @@ namespace OUAN
 		ApplicationPtr mApp;
 		/// Pointer to LUA's virtual machine
 		lua_State* mLuaEngine;
+		
+		std::map<std::string,lua_State*> mCoroutines;
 	public:
 		LogicSubsystem();
 		~LogicSubsystem();
@@ -54,6 +56,10 @@ namespace OUAN
 		/// Invoke a LUA function from c++ code to perform an action
 		/// @param functionName name of the function to invoke
 		void invokeActionFunction(const std::string& functionName, LogicComponent* logicComponent);
+
+		void initCutsceneScript(const std::string& scriptFilename);
+		void invokeCutsceneFunction(const std::string& functionName);
+		void updateCutsceneFunction(const std::string& functionName);
 
 		/// Retrieve the value of a global variable in LUA
 		int getGlobalInt (const std::string& globalName);

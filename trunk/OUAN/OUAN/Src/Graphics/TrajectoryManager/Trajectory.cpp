@@ -326,7 +326,7 @@ void Trajectory::update(double elapsedTime)
 
 	//Logger::getInstance()->log("Updating position "+Ogre::StringConverter::toString(currentPosition));
 	//Logger::getInstance()->log("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
-	//Logger::getInstance()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
+	//Logger::getInstanc	e()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
 }
 
 void Trajectory::updateTrajectoryNodes(double elapsedTime)

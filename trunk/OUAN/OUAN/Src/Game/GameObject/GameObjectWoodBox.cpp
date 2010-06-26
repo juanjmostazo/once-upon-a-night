@@ -327,16 +327,9 @@ void GameObjectWoodBox::reset()
 		mPhysicsComponentVolumeBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentVolumeBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
 	}
+	if (mRenderComponentEntityAdditional.get())
+		mRenderComponentEntityAdditional->setVisible(false);
 
-	if (mLogicComponentBreakable->existsInDreams())
-	{
-		mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_IDLE01);
-	}
-
-	if (mLogicComponentBreakable->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_IDLE01);
-	}
 }
 
 bool GameObjectWoodBox::hasPositionalComponent() const
@@ -403,11 +396,10 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 	{
 		mPhysicsComponentVolumeBox->setPosition(mPhysicsComponentSimpleBox->getNxOgrePosition());
 	}
-
 	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
-
+	
 	if (entityToUpdate.get())
 	{
 		entityToUpdate->update(elapsedSeconds);
@@ -430,16 +422,22 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			{
 				mPhysicsComponentSimpleBox->destroy();
 			}
+			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
+			{
+				mRenderComponentEntityAdditional->setVisible(true);
+				mRenderComponentEntityAdditional->changeAnimation("broken");
+			}
+
 
 			if (mLogicComponentBreakable->existsInDreams())
 			{
-				mRenderComponentEntityDreams->changeAnimation(WOODBOX_ANIM_BREAK01);
+				mRenderComponentEntityDreams->setVisible(false);			
 				mRenderComponentEntityNightmares->setVisible(false);
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->changeAnimation(WOODBOX_ANIM_BREAK01);
+				mRenderComponentEntityNightmares->setVisible(false);
 				mRenderComponentEntityDreams->setVisible(false);
 			}		
 		}
@@ -462,6 +460,14 @@ void GameObjectWoodBox::updatePhysicsComponents(double elapsedSeconds)
 {
 	GameObject::updatePhysicsComponents(elapsedSeconds);
 	mPhysicsComponentVolumeBox->update(elapsedSeconds);
+}
+RenderComponentEntityPtr GameObjectWoodBox::getRenderComponentEntityAdditional() const
+{
+	return mRenderComponentEntityAdditional;
+}
+void GameObjectWoodBox::setRenderComponentEntityAdditional(RenderComponentEntityPtr pRenderComponentEntityAdditional)
+{
+	mRenderComponentEntityAdditional=pRenderComponentEntityAdditional;
 }
 //-------------------------------------------------------------------------------------------
 

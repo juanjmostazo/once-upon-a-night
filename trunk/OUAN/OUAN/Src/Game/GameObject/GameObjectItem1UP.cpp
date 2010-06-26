@@ -232,7 +232,7 @@ void GameObjectItem1UP::reset()
 	GameObject::reset();
 	if (mLogicComponentItem->getIsTaken())
 	{
-		mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+		mLogicComponentItem->setIsTaken(false);
 	}
 }
 

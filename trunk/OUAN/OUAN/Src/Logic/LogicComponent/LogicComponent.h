@@ -41,6 +41,8 @@ namespace OUAN
 		virtual void processEnterTrigger(GameObjectPtr pGameObject);
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
+		void printMessage(const std::string& msg);
+
 	protected:
 		int mState;
 		int mLastFrameState;

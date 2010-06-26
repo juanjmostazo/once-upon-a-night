@@ -5,12 +5,13 @@
 	<PROPERTY id="PhysicsComponentVolumeBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentVolumeBox::length" type="9" value="18 18 18" fields="X;Y;Z;W"></PROPERTY>
 	
-	<PROPERTY id="animation0d::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1d::name" type="7" value="break_01" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1d::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0n::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1n::name" type="7" value="break_01" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1n::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="meshfile" type="7" value="woodbox_broken.mesh"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+	<PROPERTY id="animation0::name" type="7" value="broken" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="animation0::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
   </CUSTOMPROPERTIES>

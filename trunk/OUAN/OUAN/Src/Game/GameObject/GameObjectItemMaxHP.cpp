@@ -230,7 +230,7 @@ void GameObjectItemMaxHP::calculateChangeWorldDelay(double totalElapsedTime,doub
 void GameObjectItemMaxHP::reset()
 {
 	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mLogicComponentItem->setIsTaken(false);
 }
 
 bool GameObjectItemMaxHP::hasPositionalComponent() const

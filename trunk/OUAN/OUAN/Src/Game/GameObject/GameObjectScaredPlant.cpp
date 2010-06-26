@@ -69,18 +69,12 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		int currentState=mLogicComponent->getState();
 		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
 		{
-			Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
-			Logger::getInstance()->log("ScaredPlant: State idle");
-
 			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP);
-			//displayText("I'M NOT AFRAID ANYMORE! ^_^",0.75);
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
 		{
 			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
 			//displayText("I'M AFRAID!! >_<");
-			Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
-			Logger::getInstance()->log("ScaredPlant: State alert");
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_CAUTION))
 		{
@@ -88,28 +82,14 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 			{
 				//Notice that the animation will not change from the alert state
 				mLogicComponent->setTimeSpent(0);
-				std::stringstream msg("");
-				msg<<"I'M STILL AFRAID! T_T ("<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
-				displayText(msg.str(),mLogicComponent->getDelay());
-
-				Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
-				Logger::getInstance()->log("ScaredPlant: State caution");
-			}
-			else
-			{
-				if (mDisplayMsg)
-				{
-					std::stringstream msg("");
-					msg<<"I'M STILL AFRAID! ("<<std::fixed<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
-					mDisplayMsg->setText(msg.str());
-					Logger::getInstance()->log(mRenderComponentEntityDreams->getCurrentAnimationName());
-					Logger::getInstance()->log("ScaredPlant: State caution");
-				}
 			}
 		}
 		if(mRenderComponentEntityDreams.get())
 		{
-			mRenderComponentEntityDreams->update(elapsedSeconds);
+			double timeScaleFactor=1.0;
+			if (mRenderComponentEntityDreams->getCurrentAnimationName().compare(SCAREDPLANT_ANIM_ALERT)==0)
+				timeScaleFactor=3.5;
+			mRenderComponentEntityDreams->update(elapsedSeconds*timeScaleFactor);
 		}
 
 	}

@@ -2686,6 +2686,9 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
 
+		tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters=processRenderComponentEntity(
+			gameObject->XMLNodeCustomProperties,
+			-1,gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{

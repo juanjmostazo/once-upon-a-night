@@ -9,6 +9,8 @@ namespace OUAN
 	const std::string OVERLAY_DEBUG_PANEL = "Core/DebugOverlay";
 	const std::string SAVED_RTT_FILENAME="../../Resources/Graphics/Textures/savedRTT.png";
 
+	const double TO_GAME_OVER_DEFAULT=20.0;
+
 	class HUDInGame;
 	typedef boost::shared_ptr<HUDInGame> HUDInGamePtr;
 
@@ -71,6 +73,8 @@ namespace OUAN
 		static GameRunningState* mInst;
 
 		bool mayProceedToGameOver();
+		double toGameOverTime;
+		double toGameOverElapsed;
 
 		void renderChangeWorldTextures();
 

@@ -270,6 +270,10 @@ void CameraControllerThirdPerson::updateCameraTrajectory(double elapsedTime,Ogre
 		pCamera->lookAt(targetPosition);
 	}
 }
+bool CameraControllerThirdPerson::isTrajectoryFinished(const std::string& trajectoryName)
+{
+	return mTrajectory && mTrajectory->isLastNode();
+}
 
 void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
@@ -504,7 +508,7 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPt
 
 	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
 
-	if(targetGameObject->hasPositionalComponent())
+	if(targetGameObject.get() && targetGameObject->hasPositionalComponent())
 	{
 		targetPosition=targetGameObject->getPositionalComponent()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
 	}
