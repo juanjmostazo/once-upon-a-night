@@ -21,6 +21,12 @@ void PhysicsComponentComplexConvex::create()
 	NxOgre::String name=NxOgre::String(this->getParent()->getName().c_str());
 	NxOgre::Convex * pConvex = getNxOgreConvex();
 
+	mBalanceLastWasTop = false;
+	mBalanceLastWasCenter = true;
+	mBalanceLastWasBottom = false;
+	mBalanceDirection = 1; // ACCEPTS ONLY {1,-1}
+	mBalanceAccumulatedTime = 0;
+
 	pConvex->setName(name);
 
 	if (getMass() > 0)
@@ -75,6 +81,87 @@ void PhysicsComponentComplexConvex::destroy()
 void PhysicsComponentComplexConvex::update(double elapsedSeconds)
 {
 	PhysicsComponentComplex::update(elapsedSeconds);
+
+	if (canUpdateBalancing(elapsedSeconds))
+	{
+		updateBalancing(elapsedSeconds);
+	}
+}
+
+bool PhysicsComponentComplexConvex::canUpdateBalancing(double elapsedSeconds)
+{
+	return isInUse() 
+		&& !getParent()->isFirstUpdate() 
+		&& mBalanceRadioTime > 0 
+		&& elapsedSeconds <= mBalanceRadioTime;
+}
+
+void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
+{
+	double balanceOldAccumulatedTime = mBalanceAccumulatedTime;
+
+	mBalanceAccumulatedTime += elapsedSeconds;
+	mBalanceAccumulatedTime >= mBalanceRadioTime ? mBalanceRadioTime : mBalanceAccumulatedTime;
+
+	double fixedElapsedTime = balanceOldAccumulatedTime - mBalanceAccumulatedTime;
+
+	///////////////////////
+
+	//Logger::getInstance()->log("$$$ BEFORE " + getParent()->getName() + 
+	//	" \n :: mBalanceLastWasBottom: " + Ogre::StringConverter::toString(mBalanceLastWasBottom) + 
+	//	" \n :: mBalanceLastWasCenter: " + Ogre::StringConverter::toString(mBalanceLastWasCenter) + 
+	//	" \n :: mBalanceLastWasTop: " + Ogre::StringConverter::toString(mBalanceLastWasTop) + 
+	//	" \n :: mBalanceDirection: " + Ogre::StringConverter::toString(Ogre::Real(mBalanceDirection)) + 
+	//	" \n :: mBalanceAccumulatedTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceAccumulatedTime)) + 
+	//	" \n :: mBalanceRadioTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceRadioTime)) + 
+	//	" \n :: elapsedTime " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+
+	Ogre::Vector3 position = getPosition();
+	position.x += mBalanceDirection * mBalanceRadioX * fixedElapsedTime / mBalanceRadioTime;
+	position.y += mBalanceDirection * mBalanceRadioY * fixedElapsedTime / mBalanceRadioTime;
+	position.z += mBalanceDirection * mBalanceRadioZ * fixedElapsedTime / mBalanceRadioTime;
+	setPosition(position);
+
+	///////////////////////
+
+	if (mBalanceAccumulatedTime >= mBalanceRadioTime)
+	{
+		mBalanceAccumulatedTime = 0;
+
+		if (mBalanceLastWasCenter)
+		{
+			if (mBalanceDirection > 0)
+			{	
+				mBalanceLastWasTop = true;
+			}
+			else
+			{
+				mBalanceLastWasBottom = true;
+			}
+
+			mBalanceDirection = -mBalanceDirection;
+			mBalanceLastWasCenter = false;
+		}
+		else if (mBalanceLastWasBottom)
+		{
+			mBalanceLastWasBottom = false;
+			mBalanceLastWasCenter = true;
+		}
+		else if (mBalanceLastWasTop)
+		{
+			mBalanceLastWasTop = false;
+			mBalanceLastWasCenter = true;
+		}
+	}
+
+	//Logger::getInstance()->log("@@@ AFTER " + getParent()->getName() + 
+	//	" \n :: mBalanceLastWasBottom: " + Ogre::StringConverter::toString(mBalanceLastWasBottom) + 
+	//	" \n :: mBalanceLastWasCenter: " + Ogre::StringConverter::toString(mBalanceLastWasCenter) + 
+	//	" \n :: mBalanceLastWasTop: " + Ogre::StringConverter::toString(mBalanceLastWasTop) + 
+	//	" \n :: mBalanceDirection: " + Ogre::StringConverter::toString(Ogre::Real(mBalanceDirection)) + 
+	//	" \n :: mBalanceAccumulatedTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceAccumulatedTime)) + 
+	//	" \n :: mBalanceRadioTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceRadioTime)) + 
+	//	" \n :: elapsedTime " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 }
 
 NxOgre::Convex* PhysicsComponentComplexConvex::getNxOgreConvex()
@@ -113,6 +200,30 @@ void PhysicsComponentComplexConvex::setBalancingParams(double balanceRadioX, dou
 	mBalanceRadioY = balanceRadioY;
 	mBalanceRadioZ = balanceRadioZ;
 	mBalanceRadioTime = balanceRadioTime;
+}
+
+Ogre::Vector3 PhysicsComponentComplexConvex::getPosition()
+{
+	if (getMass() > 0)
+	{
+		return getNxOgreBody()->getGlobalPosition().as<Ogre::Vector3>();
+	}
+	else
+	{
+		return getNxOgreKinematicBody()->getGlobalPosition().as<Ogre::Vector3>();
+	}
+}
+
+void PhysicsComponentComplexConvex::setPosition(Ogre::Vector3 position)
+{
+	if (getMass() > 0)
+	{
+		getNxOgreBody()->setGlobalPosition(NxOgre::Vec3(position));
+	}
+	else
+	{
+		getNxOgreKinematicBody()->setGlobalPosition(NxOgre::Vec3(position));
+	}
 }
 
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()

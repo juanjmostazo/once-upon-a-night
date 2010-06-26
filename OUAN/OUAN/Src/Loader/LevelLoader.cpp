@@ -2170,12 +2170,14 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 				tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->XMLNodeCustomProperties,
 					complexConvex, "Convex");
 
+				//TODO FIX IT, LAST LINE CANNOT GET NEXT PARAMS PROPERLY
+
 				if (gameObject->name.compare("terrain#platform7_5") == 0)
 				{
 					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX = 0;
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY = 15;
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY = 5;
 					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ = 0;
-					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0;
+					tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime = 0.5;
 				}
 
 				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainConvexParameters.tPhysicsComponentComplexConvexParameters.balanceRadioTime)));	
