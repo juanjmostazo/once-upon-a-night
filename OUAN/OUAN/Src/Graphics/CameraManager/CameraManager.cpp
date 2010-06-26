@@ -225,23 +225,10 @@ void CameraManager::changeAutoCamera()
 	{
 		case CAMERA_THIRD_PERSON:
 			mCurrentTrajectory++;
-			if(mCurrentTrajectory>=mCameraTrajectoryNames.size()+1)
+			if(mCurrentTrajectory>=mCameraTrajectoryNames.size())
 			{
-				Logger::getInstance()->log("[Camera Manager] Set Camera Free");
-				CameraParametersPtr cameraParameters;
-				cameraParameters.reset(new CameraParameters());
-				cameraParameters->setDefaultParameters();
-				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getName());
-				setCameraFree(cameraParameters,true);
+				setDefaultThirdPersonCamera(true);
 				mCurrentTrajectory=-1;
-			}
-			else if(mCurrentTrajectory==mCameraTrajectoryNames.size())
-			{
-				CameraParametersPtr cameraParameters;
-				cameraParameters.reset(new CameraParameters());
-				cameraParameters->setDefaultParameters();
-				cameraParameters->setTarget(mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getName());
-				setCameraTracking(cameraParameters,true);
 			}
 			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())
 			{
