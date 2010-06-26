@@ -32,7 +32,7 @@
   <CAMERASPEED value="80"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="-0.596331 3547.03 -1608.8" orientation="0.638235 -0.769099 0.0215907 0.0260175"></OPTION>
+    <OPTION id="1" position="-0.0122873 3547.82 -848.087" orientation="0.72085 -0.693084 -0.00235892 -0.00226821"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -106,9 +106,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.638235 -0.769099 0.0215907 0.0260175"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.720851 -0.693085 -0.00235893 -0.00226821"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-0.596331 3547.03 -1608.8"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-0.0122873 3547.82 -848.087"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -14834,8 +14834,8 @@
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.703988 -0.00619746 0.00614361 0.710158"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 3500 -1600"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.703988 0.00619745 -0.00614361 0.710158"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 3500 -850"></PROPERTY>
     <PROPERTY id="scale" type="9" value="20 20 20"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="camera-map" fields="X;Y;Z;W"></PROPERTY>
