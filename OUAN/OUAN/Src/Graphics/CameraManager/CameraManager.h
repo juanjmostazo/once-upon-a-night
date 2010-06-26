@@ -15,6 +15,8 @@ namespace OUAN
 
 		/// Free resources
 		void cleanUp();
+		//reset
+		void clear();
 
 		/// Return read-only pointer to the camera
 		/// @return camera
@@ -38,8 +40,8 @@ namespace OUAN
 		//Transition activates or desactivates transitions between cameras
 		//CameraParameters is a class that specifies camera parameters, check it out
 
-		//Sets specified trajectory
-		void setCameraTrajectory(std::string trajectory,bool transition);
+		//Sets specified trajectory, lookAtTarget=true to ignore original trajectory orientation and look at target instead
+		void setCameraTrajectory(CameraParametersPtr cameraParameters,std::string trajectory,bool lookAtTarget,bool transition);
 		//Sets free camera, which processes input
 		void setCameraFree(CameraParametersPtr cameraParameters,bool transition);
 		//Sets tracking camera, like free but without processing input

@@ -1,65 +1,65 @@
 #include "OUAN_Precompiled.h"
 
-#include "GameObjectTriggerCamera.h"
+#include "GameObjectCameraTrigger.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
-#include "../../Logic/LogicComponent/LogicComponentTriggerCamera.h"
+#include "../../Logic/LogicComponent/LogicComponentCameraTrigger.h"
 
 using namespace OUAN;
 
-GameObjectTriggerCamera::GameObjectTriggerCamera(const std::string& name)
+GameObjectCameraTrigger::GameObjectCameraTrigger(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_TRIGGER_CAMERA)
 {
 
 }
 
-GameObjectTriggerCamera::~GameObjectTriggerCamera()
+GameObjectCameraTrigger::~GameObjectCameraTrigger()
 {
 
 }
 
-void GameObjectTriggerCamera::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectCameraTrigger::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTriggerCamera::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectCameraTrigger::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectTriggerCamera::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectCameraTrigger::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectTriggerCamera::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectCameraTrigger::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectTriggerCamera::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCameraTrigger::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 
-RenderComponentEntityPtr GameObjectTriggerCamera::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectCameraTrigger::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectTriggerCamera::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
+void GameObjectCameraTrigger::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
 }
 
-PhysicsComponentVolumeBoxPtr GameObjectTriggerCamera::getPhysicsComponentVolumeBox() const
+PhysicsComponentVolumeBoxPtr GameObjectCameraTrigger::getPhysicsComponentVolumeBox() const
 {
 	return mPhysicsComponentVolumeBox;
 }
 
-void GameObjectTriggerCamera::changeVisibility()
+void GameObjectCameraTrigger::changeVisibility()
 {
 	if (mPhysicsComponentVolumeBox->isInUse())
 	{
@@ -67,7 +67,7 @@ void GameObjectTriggerCamera::changeVisibility()
 	}
 }
 
-void GameObjectTriggerCamera::changeWorldFinished(int newWorld)
+void GameObjectCameraTrigger::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -112,7 +112,7 @@ void GameObjectTriggerCamera::changeWorldFinished(int newWorld)
 	}
 }
 
-void GameObjectTriggerCamera::changeWorldStarted(int newWorld)
+void GameObjectCameraTrigger::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -127,7 +127,7 @@ void GameObjectTriggerCamera::changeWorldStarted(int newWorld)
 	}
 }
 
-void GameObjectTriggerCamera::changeToWorld(int newWorld, double perc)
+void GameObjectCameraTrigger::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
@@ -142,45 +142,45 @@ void GameObjectTriggerCamera::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectTriggerCamera::reset()
+void GameObjectCameraTrigger::reset()
 {
 	GameObject::reset();
 }
 
-bool GameObjectTriggerCamera::hasPositionalComponent() const
+bool GameObjectCameraTrigger::hasPositionalComponent() const
 {
 	return true;
 }
 
 /// Set logic component
-void GameObjectTriggerCamera::setLogicComponentTriggerCamera(LogicComponentTriggerCameraPtr logicComponent)
+void GameObjectCameraTrigger::setLogicComponentCameraTrigger(LogicComponentCameraTriggerPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentTriggerCameraPtr GameObjectTriggerCamera::getLogicComponentTriggerCamera()
+LogicComponentCameraTriggerPtr GameObjectCameraTrigger::getLogicComponentCameraTrigger()
 {
 	return mLogicComponent;
 }
 
 
-RenderComponentPositionalPtr GameObjectTriggerCamera::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectCameraTrigger::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
-bool GameObjectTriggerCamera::hasPhysicsComponent() const
+bool GameObjectCameraTrigger::hasPhysicsComponent() const
 {
 	return true;
 }
-PhysicsComponentPtr GameObjectTriggerCamera::getPhysicsComponent() const
+PhysicsComponentPtr GameObjectCameraTrigger::getPhysicsComponent() const
 {
 	return getPhysicsComponentVolumeBox();
 }
 
 
-void GameObjectTriggerCamera::processCollision(GameObjectPtr pGameObject)
+void GameObjectCameraTrigger::processCollision(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -188,7 +188,7 @@ void GameObjectTriggerCamera::processCollision(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTriggerCamera::processEnterTrigger(GameObjectPtr pGameObject)
+void GameObjectCameraTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -196,7 +196,7 @@ void GameObjectTriggerCamera::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTriggerCamera::processExitTrigger(GameObjectPtr pGameObject)
+void GameObjectCameraTrigger::processExitTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -204,7 +204,7 @@ void GameObjectTriggerCamera::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTriggerCamera::updateLogic(double elapsedSeconds)
+void GameObjectCameraTrigger::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponent.get())
 	{
@@ -213,12 +213,12 @@ void GameObjectTriggerCamera::updateLogic(double elapsedSeconds)
 }
 //-------------------------------------------------------------------------------------------
 
-TGameObjectTriggerCameraParameters::TGameObjectTriggerCameraParameters() : TGameObjectParameters()
+TGameObjectCameraTriggerParameters::TGameObjectCameraTriggerParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectTriggerCameraParameters::~TGameObjectTriggerCameraParameters()
+TGameObjectCameraTriggerParameters::~TGameObjectCameraTriggerParameters()
 {
 
 }

@@ -16,9 +16,6 @@ namespace OUAN
 		virtual Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		virtual void clear();
 	protected:
-
-		double calculateDistanceToTarget(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool twoDimensions);
-
 	};
 }
 

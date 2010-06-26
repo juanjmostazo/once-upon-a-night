@@ -55,7 +55,7 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCameraControllerFirstPerson->init( pRenderSubsystem->getSceneManager());
 
 	mCameraControllerThirdPerson= new CameraControllerThirdPerson();
-	mCameraControllerThirdPerson->init(mCameraInput, pRenderSubsystem->getSceneManager(),pRenderSubsystem,pPhysicsSubsystem,pTrajectoryManager);
+	mCameraControllerThirdPerson->init(mCameraInput, pRenderSubsystem->getSceneManager(),pRenderSubsystem,pPhysicsSubsystem,pTrajectoryManager,pGameWorldManager);
 
 	//Set Default camera to viewport
 	mViewport= pRenderSubsystem->getRoot()->getAutoCreatedWindow()->addViewport(mCamera);
@@ -74,10 +74,17 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 }
 
-void CameraManager::setCameraTrajectory(std::string trajectory,bool transition)
+void CameraManager::clear()
+{	
+	mCameraControllerFirstPerson->clear();
+	mCameraControllerThirdPerson->clear();
+}
+
+void CameraManager::setCameraTrajectory(CameraParametersPtr cameraParameters,std::string trajectory,bool lookAtTarget,bool transition)
 {
 	setCameraType(CAMERA_THIRD_PERSON);
-	mCameraControllerThirdPerson->setCameraTrajectory(trajectory,transition,mCamera);
+	mCameraInput->mCameraParameters=cameraParameters;
+	mCameraControllerThirdPerson->setCameraTrajectory(mCamera,mCameraInput,trajectory,lookAtTarget,transition);
 }
 
 void CameraManager::setCameraFree(CameraParametersPtr cameraParameters,bool transition)
@@ -122,6 +129,7 @@ Viewport* CameraManager::getViewport() const
 
 void CameraManager::cleanUp()
 {
+
 	unregisterEventHandlers(mGameWorldManager->getEventManager());
 	//TODO DELETE MORE THINGS
 	delete mCameraControllerFirstPerson;
@@ -223,7 +231,7 @@ void CameraManager::changeAutoCamera()
 				CameraParametersPtr cameraParameters;
 				cameraParameters.reset(new CameraParameters());
 				cameraParameters->setDefaultParameters();
-				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getPositionalComponent());
+				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getName());
 				setCameraFree(cameraParameters,true);
 				mCurrentTrajectory=-1;
 			}
@@ -232,12 +240,17 @@ void CameraManager::changeAutoCamera()
 				CameraParametersPtr cameraParameters;
 				cameraParameters.reset(new CameraParameters());
 				cameraParameters->setDefaultParameters();
-				cameraParameters->setTarget(mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getPositionalComponent());
+				cameraParameters->setTarget(mGameWorldManager->getGameObjectTripolloDreamsContainer()->at(3)->getName());
 				setCameraTracking(cameraParameters,true);
 			}
 			else if(mCurrentTrajectory<mCameraTrajectoryNames.size())
 			{
-				mCameraControllerThirdPerson->setCameraTrajectory(mCameraTrajectoryNames[mCurrentTrajectory],true,mCamera);
+				CameraParametersPtr cameraParameters;
+				cameraParameters.reset(new CameraParameters());
+				cameraParameters->setDefaultParameters();
+				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getName());
+
+				setCameraTrajectory(cameraParameters,mCameraTrajectoryNames[mCurrentTrajectory],true,true);
 			}
 			break;
 		case CAMERA_FIRST_PERSON:

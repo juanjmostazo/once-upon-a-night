@@ -94,6 +94,7 @@ namespace OUAN
 			void initMaterials();
 			void initMusic();
 			void initScripts();
+			void setCameraTarget();
 			void clearParser();
 			void resolveDiamondTreeLinks();
 			//...

@@ -41,7 +41,7 @@
 #include "../Logic/LogicComponent/LogicComponentUsable.h"
 #include "../Logic/LogicComponent/LogicComponentProp.h"
 #include "../Logic/LogicComponent/LogicComponentTrigger.h"
-#include "../Logic/LogicComponent/LogicComponentTriggerCamera.h"
+#include "../Logic/LogicComponent/LogicComponentCameraTrigger.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
 #include "../Audio/AudioComponent/AudioComponent.h"
@@ -733,14 +733,14 @@ LogicComponentTriggerPtr ComponentFactory::createLogicComponentTrigger(GameObjec
 	return logicComponent;
 }
 
-LogicComponentTriggerCameraPtr ComponentFactory::createLogicComponentTriggerCamera(GameObjectPtr gameObject, TLogicComponentTriggerCameraParameters logicComponentParameters)
+LogicComponentCameraTriggerPtr ComponentFactory::createLogicComponentCameraTrigger(GameObjectPtr gameObject, TLogicComponentCameraTriggerParameters logicComponentParameters)
 {
-	LogicComponentTriggerCameraPtr logicComponent = LogicComponentTriggerCameraPtr(new LogicComponentTriggerCamera());
+	LogicComponentCameraTriggerPtr logicComponent = LogicComponentCameraTriggerPtr(new LogicComponentCameraTrigger());
 	
 	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
 	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
 
-	logicComponent->setCameraParameters(logicComponentParameters.pCameraParameters);
+	logicComponent->setCameraTrigger(logicComponentParameters.pCameraTrigger);
 
 	logicComponent->setParent(gameObject);
 	return logicComponent;

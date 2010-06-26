@@ -16,7 +16,10 @@ CameraParameters::~CameraParameters()
 void CameraParameters::setDirection(Ogre::Vector3 direction)
 {
 	mDirection = direction;
-	mDirection.normalise();
+	if(mDirection!=Vector3::ZERO)
+	{
+		mDirection.normalise();
+	}
 }
 
 Ogre::Vector3 CameraParameters::getDirection() const
@@ -34,12 +37,12 @@ Ogre::Vector3 CameraParameters::getTargetOffset() const
 	return mTargetOffset;
 }
 
-void CameraParameters::setTarget(RenderComponentPositionalPtr target)
+void CameraParameters::setTarget(std::string target)
 {
 	mTarget = target;
 }
 
-RenderComponentPositionalPtr CameraParameters::getTarget() const
+std::string CameraParameters::getTarget() const
 {
 	return mTarget;
 }

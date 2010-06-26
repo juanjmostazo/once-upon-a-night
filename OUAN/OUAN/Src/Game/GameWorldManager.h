@@ -266,7 +266,7 @@ namespace OUAN
 		void addGameObjectTreeComplex(GameObjectTreeComplexPtr pGameObjectTreeComplex);
 		void addGameObjectFog(GameObjectFogPtr pGameObjectFog);
 		void addGameObjectTower(GameObjectTowerPtr pGameObjectTower);
-		void addGameObjectTriggerCamera(GameObjectTriggerCameraPtr pGameObjectTriggerCamera);
+		void addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger);
 
 
 		void activateChangeWorld();

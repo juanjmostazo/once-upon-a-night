@@ -200,12 +200,11 @@ namespace OUAN
 		GameObjectPtr mAttackingObject;
 	};
 
-	class ChangeCameraParametersEvent: public Event
+	class CameraTriggerEvent: public Event
 	{
 	public:
-		ChangeCameraParametersEvent();
-		CameraParametersPtr pCameraParameters;
-		bool transition;
+		CameraTriggerEvent();
+		CameraTriggerPtr pCameraTrigger;
 	};
 
 }

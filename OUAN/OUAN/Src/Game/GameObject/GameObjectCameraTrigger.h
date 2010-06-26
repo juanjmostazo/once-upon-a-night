@@ -1,17 +1,17 @@
-#ifndef GameObjectTriggerCameraH_H
-#define GameObjectTriggerCameraH_H
+#ifndef GameObjectCameraTriggerH_H
+#define GameObjectCameraTriggerH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-#include "../../Logic/LogicComponent/LogicComponentTriggerCamera.h"
+#include "../../Logic/LogicComponent/LogicComponentCameraTrigger.h"
 
 namespace OUAN
 {
 	/// Class to hold volume box information
-	class GameObjectTriggerCamera : public GameObject, public boost::enable_shared_from_this<GameObjectTriggerCamera>
+	class GameObjectCameraTrigger : public GameObject, public boost::enable_shared_from_this<GameObjectCameraTrigger>
 	{
 	private:
 		/// Visual information - ONLY SHOWN IN DEBUG MODE
@@ -24,14 +24,14 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentTriggerCameraPtr mLogicComponent;
+		LogicComponentCameraTriggerPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 
 	public:
 		//Constructor
-		GameObjectTriggerCamera(const std::string& name);
+		GameObjectCameraTrigger(const std::string& name);
 		//Destructor
-		~GameObjectTriggerCamera();
+		~GameObjectCameraTrigger();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -40,10 +40,10 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 		/// Set logic component
-		void setLogicComponentTriggerCamera(LogicComponentTriggerCameraPtr logicComponent);
+		void setLogicComponentCameraTrigger(LogicComponentCameraTriggerPtr logicComponent);
 
 		/// return logic component
-		LogicComponentTriggerCameraPtr getLogicComponentTriggerCamera();
+		LogicComponentCameraTriggerPtr getLogicComponentCameraTrigger();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -103,11 +103,11 @@ namespace OUAN
 
 	};
 
-	class TGameObjectTriggerCameraParameters: public TGameObjectParameters
+	class TGameObjectCameraTriggerParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectTriggerCameraParameters();
-		~TGameObjectTriggerCameraParameters();
+		TGameObjectCameraTriggerParameters();
+		~TGameObjectCameraTriggerParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
@@ -119,7 +119,7 @@ namespace OUAN
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
-		TLogicComponentTriggerCameraParameters tLogicComponentTriggerCameraParameters;
+		TLogicComponentCameraTriggerParameters tLogicComponentCameraTriggerParameters;
 
 	};
 }

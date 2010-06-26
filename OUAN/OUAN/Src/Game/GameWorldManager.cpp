@@ -51,7 +51,7 @@
 #include "GameObject/GameObjectTreeComplex.h"
 #include "GameObject/GameObjectTower.h"
 #include "GameObject/GameObjectFog.h"
-#include "GameObject/GameObjectTriggerCamera.h"
+#include "GameObject/GameObjectCameraTrigger.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -517,6 +517,8 @@ void GameWorldManager::unloadLevel()
 		it->second.get()->~GameObject();
 	}
 
+	mApp->getCameraManager()->clear();
+
 	clearContainers();
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL UNLOAD FINISHED]");
 }
@@ -608,7 +610,7 @@ void GameWorldManager::resetAll()
 	CameraParametersPtr cameraParameters;
 	cameraParameters.reset(new CameraParameters());
 	cameraParameters->setDefaultParameters();
-	cameraParameters->setTarget(getGameObjectOny()->getPositionalComponent());
+	cameraParameters->setTarget(getGameObjectOny()->getName());
 
 	mApp->getCameraManager()->setCameraFree(cameraParameters,false);
 	mApp->getCameraManager()->centerToTargetBack(false);
@@ -1082,9 +1084,9 @@ void GameWorldManager::addGameObjectTower(GameObjectTowerPtr pGameObjectTower)
 	mGameObjects[pGameObjectTower->getName()]=pGameObjectTower;
 }
 
-void GameWorldManager::addGameObjectTriggerCamera(GameObjectTriggerCameraPtr pGameObjectTriggerCamera)
+void GameWorldManager::addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger)
 {
-	mGameObjects[pGameObjectTriggerCamera->getName()]=pGameObjectTriggerCamera;
+	mGameObjects[pGameObjectCameraTrigger->getName()]=pGameObjectCameraTrigger;
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
