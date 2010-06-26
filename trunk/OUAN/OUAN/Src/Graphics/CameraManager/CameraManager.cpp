@@ -250,9 +250,9 @@ void CameraManager::setCameraAutoRotation(double rotX,double rotY,bool transitio
 	mCameraControllerThirdPerson->setCameraAutoRotation(rotX,rotY,transition);
 }
 
-void CameraManager::centerCameraRotation(bool transition)
+void CameraManager::centerToTargetBack(bool transition)
 {
-	mCameraControllerThirdPerson->centerCameraRotation(mCamera,mCameraInput,transition);
+	mCameraControllerThirdPerson->centerToTargetBack(mCamera,mCameraInput,transition);
 }
 
 void CameraManager::setCameraTrajectoryNames(std::vector<std::string> trajectoryNames)

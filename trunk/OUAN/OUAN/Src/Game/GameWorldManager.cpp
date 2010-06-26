@@ -608,9 +608,10 @@ void GameWorldManager::resetAll()
 	CameraParametersPtr cameraParameters;
 	cameraParameters.reset(new CameraParameters());
 	cameraParameters->setDefaultParameters();
-	cameraParameters->getTarget()=getGameObjectOny()->getPositionalComponent();
+	cameraParameters->setTarget(getGameObjectOny()->getPositionalComponent());
 
 	mApp->getCameraManager()->setCameraFree(cameraParameters,false);
+	mApp->getCameraManager()->centerToTargetBack(false);
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }

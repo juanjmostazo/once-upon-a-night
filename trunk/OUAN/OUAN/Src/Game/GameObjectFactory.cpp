@@ -1276,6 +1276,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	cameraParameters->setDefaultParameters();
 	cameraParameters->setTarget(pGameObjectOny->getPositionalComponent());
 	Application::getInstance()->getCameraManager()->setCameraFree(cameraParameters,false);
+	Application::getInstance()->getCameraManager()->centerToTargetBack(false);
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
