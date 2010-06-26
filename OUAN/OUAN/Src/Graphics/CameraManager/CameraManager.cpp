@@ -278,6 +278,15 @@ bool CameraManager::cameraTrajectoryEnded()
 	return mCameraControllerThirdPerson->cameraTrajectoryEnded();
 }
 
+void CameraManager::setLastTrigger(std::string lastTrigger)
+{
+	mLastTrigger=lastTrigger;
+}
+std::string CameraManager::getLastTrigger() const
+{
+	return mLastTrigger;
+}
+
 void CameraManager::activateChangeWorldFast()
 {
 	changeWorldFinished(mChangeWorldTotalTime);

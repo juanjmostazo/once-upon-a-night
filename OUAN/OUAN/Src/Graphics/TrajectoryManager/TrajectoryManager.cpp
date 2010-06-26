@@ -359,10 +359,10 @@ void TrajectoryManager::toggleDebugMode(int currentWorld)
 	}
 	else
 	{
-		/*if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
+		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS])
 			walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_DREAMS]->setVisible(false);
 		if (walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES])
-		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);*/
+		walkabilityMapContainer[DEFAULT_WALKABILITY_MAP_NIGHTMARES]->setVisible(false);
 
 		if(mDebugObjects->isInSceneGraph())
 		{
