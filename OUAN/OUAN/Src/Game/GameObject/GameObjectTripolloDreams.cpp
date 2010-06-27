@@ -281,8 +281,10 @@ void GameObjectTripolloDreams::update(double elapsedSeconds)
 	}
 	else
 	{		
-		mRenderComponentEntityDreams->setVisible(false);
-		mRenderComponentEntityNightmares->setVisible(false);
+		if (mRenderComponentEntityDreams.get())
+			mRenderComponentEntityDreams->setVisible(false);
+		if (mRenderComponentEntityNightmares.get())
+			mRenderComponentEntityNightmares->setVisible(false);
 		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 		{
 			mPhysicsComponentCharacter->destroy();
