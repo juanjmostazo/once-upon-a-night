@@ -1,9 +1,20 @@
 import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material tripollo_d : basic_texture
-{
-	set_texture_alias diffuse_texture tripollo_d.tga
+material tripollo_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
+			}
+		}
+	}
 }
 
 material tripollo_n : basic_texture

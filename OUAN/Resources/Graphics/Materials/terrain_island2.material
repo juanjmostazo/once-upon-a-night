@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import no_changeworld from ChangeWorld.material
+
+material terrain_island2_d : basic_texture
+{
+	set_texture_alias diffuse_texture terrain_island2_d.dds
+}
+
+material terrain_island2_n : basic_texture
+{
+	set_texture_alias diffuse_texture terrain_island2_n.dds
+}
+
+material terrain_island2_cw : no_changeworld
+{
+}
