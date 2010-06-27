@@ -52,18 +52,24 @@ void recDebugBoxes(Ogre::Node* node)
 						box=m->getBoundingBox();
 						objName=m->getName();
 						std::stringstream msg;
+
 						msg.str("");
 						msg<<std::endl<<"------------"<<std::endl;
 						msg<<"Object name: "<<objName<<std::endl;
 						msg<<"Z: "<<box.getMinimum().z<<" - "<<box.getMaximum().z<<std::endl;
 						msg<<"Y: "<<box.getMinimum().y<<" - "<<box.getMaximum().y<<std::endl;
 						msg<<"X: "<<box.getMinimum().x<<" - "<<box.getMaximum().x<<std::endl;
+
 						if (box.getMinimum().z>box.getMaximum().z ||
 							box.getMinimum().y>box.getMaximum().y ||
 							box.getMinimum().x>box.getMaximum().x)
+						{
 							msg<<"UH, OH!!";
+						}
+
 						msg <<"------------";
-						Logger::getInstance()->log(msg.str());
+
+						//Logger::getInstance()->log(msg.str());
 					}
 			}
 			Ogre::SceneNode::ChildNodeIterator nodeIt=node->getChildIterator();
@@ -72,7 +78,9 @@ void recDebugBoxes(Ogre::Node* node)
 			{
 				sn=nodeIt.getNext();
 				if (sn)
+				{
 					recDebugBoxes(sn);
+				}
 			}
 		}
 	}
