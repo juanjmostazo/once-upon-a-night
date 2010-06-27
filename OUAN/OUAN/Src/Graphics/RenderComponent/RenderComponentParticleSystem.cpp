@@ -56,6 +56,9 @@ void RenderComponentParticleSystem::start()
 
 void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 {
+	//TODO REMOVE THIS LINE WHEN POOL BUG IS FIXED
+	stop();
+
 	advancePoolPointer();
 
 	if (mParticleSystems.size() > 0)

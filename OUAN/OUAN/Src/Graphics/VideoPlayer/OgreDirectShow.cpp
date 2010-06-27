@@ -314,11 +314,11 @@ namespace OgreUtils
 
 	void DirectShowMovieTexture::stopMovie()
 	{
-		// stop!
 		if (dsdata->pControl)
+		{
 			dsdata->pControl->Stop();
+		}
 	}
-
 
 	Ogre::TexturePtr DirectShowMovieTexture::getMovieTexture()
 	{
