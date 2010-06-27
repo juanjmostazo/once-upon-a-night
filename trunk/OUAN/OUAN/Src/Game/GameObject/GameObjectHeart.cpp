@@ -311,7 +311,7 @@ void GameObjectHeart::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation("animation_prop");
+			mRenderComponentEntity->changeAnimation("idle01");
 		}
 		else
 		{
