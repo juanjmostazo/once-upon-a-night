@@ -17,7 +17,7 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 	protected:
-
+		void processActionPlatformBig();
 	};
 
 	class TLogicComponentActionTriggerParameters: public TLogicComponentParameters
