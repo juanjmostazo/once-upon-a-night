@@ -17,7 +17,7 @@
     <Option key="AUTO_ROTATION_DAMPEN_FACTOR">0.99</Option>
     <Option key="AUTO_ROTATION_DAMPEN_START">0.6</Option>
 
-    <Option key="TRANSITION_SPEED_FACTOR">0.014</Option>
+    <Option key="TRANSITION_SPEED_FACTOR">0.3</Option>
     <Option key="TRANSITION_DAMPEN_POW">1</Option>
     <Option key="TRANSITION_DAMPEN_FACTOR">0.7</Option>
     <Option key="TRANSITION_DAMPEN_START">0.5</Option>

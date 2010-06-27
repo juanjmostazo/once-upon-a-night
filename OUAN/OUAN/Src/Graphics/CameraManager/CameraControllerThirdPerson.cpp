@@ -291,7 +291,7 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	dampen=calculateDampenFactor(perc,mTransitionDampenFactor,mTransitionDampenPow,mTransitionDampenStart);
 
 
-	movement=mTransitionTargetSpeed+(mTransitionSpeed-mTransitionTargetSpeed)*dampen;
+	movement=elapsedTime*(mTransitionTargetSpeed+(mTransitionSpeed-mTransitionTargetSpeed)*dampen);
 
 	if(mTransitionTargetPosition.distance(pCamera->getPosition())<movement)
 	{

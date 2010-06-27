@@ -29,7 +29,7 @@ void GamePausedState::init(ApplicationPtr app)
 	mApp->mKeyBuffer=-1;
 	CameraParametersPtr cameraParameters;
 	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setDefaultParameters();
+	cameraParameters->setCameraParameters(mApp->getCameraManager()->getDefaultCameraParameters());
 	mApp->getCameraManager()->setCameraTrajectory(cameraParameters,"camera-map",false,true);
 }
 
