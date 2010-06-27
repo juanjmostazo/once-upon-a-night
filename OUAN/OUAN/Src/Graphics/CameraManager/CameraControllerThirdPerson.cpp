@@ -389,7 +389,7 @@ void CameraControllerThirdPerson::updateCameraMoveToPositionLookingAtTarget(doub
 	mTransitionDummyCamera->setPosition(mTransitionTargetPosition);
 	mTransitionDummyCamera->lookAt(calculateTargetPosition(mTransitionTargetInput));
 	mTransitionTargetRotation=mTransitionDummyCamera->getOrientation();
-	updateCameraMoveToPosition(elapsedTime,pCamera,pCameraInput);
+	updateCameraMoveToPosition(elapsedTime,pCamera,mTransitionTargetInput);
 }
 
 void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
@@ -398,10 +398,27 @@ void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Og
 	mTransitionTargetRotation=mTransitionDummyCamera->getOrientation();
 	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
 	
-	updateCameraMoveToPosition(elapsedTime,pCamera,pCameraInput);
+	updateCameraMoveToPosition(elapsedTime,pCamera,mTransitionTargetInput);
 }
 
-
+void CameraControllerThirdPerson::setCameraFixedFirstPerson(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
+{	
+	if(!transition)
+	{
+		mCameraState=CS_FIXED_FIRST_PERSON;
+	}
+	else
+	{
+		pCameraInput->mCameraParameters->setDistance(0);
+		setCameraMoveToTarget(
+			pCamera->getPosition(),
+			pCamera->getOrientation(),
+			pCameraInput,
+			0,
+			CS_FIXED_FIRST_PERSON
+			);
+	}
+}
 
 void CameraControllerThirdPerson::updateCameraFree(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
@@ -509,12 +526,26 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 	case CS_MOVE_TO_POSITION_LOOKING_AT_TARGET:
 		updateCameraMoveToPositionLookingAtTarget(elapsedTime,pCamera,pCameraInput);
 		break;
+	case CS_FIXED_FIRST_PERSON:
+		updateCameraFixedFirstPerson(elapsedTime,pCamera,pCameraInput);
+		break;
 	default:
 		break;
 	}
 
 	mTransparentEntityManager->update(elapsedTime);
 }
+
+void CameraControllerThirdPerson::updateCameraFixedFirstPerson(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
+{
+	processCameraRotation(pCameraInput);
+
+	//Set camera orientation
+	Quaternion yaw(Radian(Degree(mRotX)),Vector3::UNIT_Y);
+	Quaternion pitch(Radian(Degree(mRotX)),Vector3::UNIT_X);
+	pCamera->setOrientation(yaw * pitch);
+}
+
 
 Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPtr pCameraInput)
 {

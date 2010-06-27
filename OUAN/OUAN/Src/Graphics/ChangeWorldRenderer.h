@@ -29,6 +29,8 @@ namespace OUAN
 		void setToNightmares();
 		void setChangeWorldFactor(float factor);
 
+		void createDebugMiniScreens();
+
 	protected:
 		Ogre::SceneManager * mSceneManager;
 		Ogre::RenderWindow* mWindow;

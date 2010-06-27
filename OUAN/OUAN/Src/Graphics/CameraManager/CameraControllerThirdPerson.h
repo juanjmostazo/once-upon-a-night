@@ -22,6 +22,7 @@ namespace OUAN
 		Ogre::Vector3 rotateMovementVector(Ogre::Vector3 movement,Ogre::Camera * pCamera,CameraInputPtr pCameraInput,double elapsedSeconds);
 		void centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition);
 
+		void setCameraFixedFirstPerson(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraTrajectory(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,std::string trajectory,bool lookAtTarget,bool transition);
 		void setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
 		void setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition);
@@ -87,6 +88,7 @@ namespace OUAN
 		void updateCameraMoveToPositionLookingAtTarget(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraFree(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		void updateCameraTracking(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
+		void updateCameraFixedFirstPerson(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 
 		//autorotation atibutes
 		double mTargetRotX;

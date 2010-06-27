@@ -40,11 +40,11 @@ TLoadingStage gStages[]=
 	{&LevelLoadingState::processTrajectories, "PROCESS_TRAJECTORIES",0.04},
 	{&LevelLoadingState::processWalkabilityMap, "PROCESS_WALKABILITY_MAP",0.035},
 	{&LevelLoadingState::resolveDiamondTreeLinks, "RESOLVE_DIAMONDTREE_LINKS",0.005},
-	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.005},
+	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.0025},
 	{&LevelLoadingState::initMusic, "INIT_MUSIC",0.0025},
 	{&LevelLoadingState::initScripts, "INIT_SCRIPTS",0.0025},
 	{&LevelLoadingState::setCameraTarget, "SET_CAMERA_TARGET",0.0010},
-	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0015}
+	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0015},
 };
 const int gNumStages=15;
 
@@ -264,6 +264,7 @@ void LevelLoadingState::processWalkabilityMap()
 	//Process Level's Walkability Maps
 	mApp->getLevelLoader()->processWalkabilityMaps();//clear information, as we do not need it anymore
 }
+
 void LevelLoadingState::resolveDiamondTreeLinks()
 {
 	mApp->getGameWorldManager()->resolveDiamondTreeLinks();
@@ -273,6 +274,7 @@ void LevelLoadingState::initMaterials()
 	/// Set ambient specular and diffuse material components off;
 	mApp->getRenderSubsystem()->initMaterials();
 }
+	
 void LevelLoadingState::initMusic()
 {
 	//TODO!

@@ -149,6 +149,10 @@ void GameRunningState::init(ApplicationPtr app)
 	}
 
 	mIsChangingWorld=false;
+
+	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
+
+	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
 }
 
 /// Clean up main menu's resources
@@ -251,7 +255,7 @@ void GameRunningState::handleEvents()
 			//TODO: Replace with the proper auto-target functionality
 			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 			//mApp->getGameWorldManager()->addEvent(evt);
-
+			//mApp->getCameraManager()->setCameraFixedFirstPerson(true);
 			mApp->getCameraManager()->centerToTargetBack(true);
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 			//mApp->getGameWorldManager()->toggleTreeVisibility();

@@ -50,6 +50,8 @@ namespace OUAN
 		void setCameraTracking(CameraParametersPtr cameraParameters,bool transition);
 		//Sets default camera
 		void setDefaultThirdPersonCamera(bool transition);
+		//Sets camera fixed first person
+		void setCameraFixedFirstPerson(bool transition);
 
 		//Note: those last two doesnt work for trajectory camera
 		//Auto-rotates camera to selected rotation

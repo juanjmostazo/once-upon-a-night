@@ -1,6 +1,8 @@
 #include "OUAN_Precompiled.h"
 
 #include "ChangeWorldRenderer.h"
+#include "../Application.h"
+#include "../Game/GameWorldManager.h"
 using namespace OUAN;
 using namespace Ogre;
 ChangeWorldRenderer::ChangeWorldRenderer()
@@ -100,6 +102,12 @@ void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWi
 	mRenderTextureNightmaresWithMiniScreen->getViewport(0)->setBackgroundColour(ColourValue::Black);
 	mRenderTextureNightmaresWithMiniScreen->setAutoUpdated(false);
 
+	createDebugMiniScreens();
+
+}
+
+void ChangeWorldRenderer::createDebugMiniScreens()
+{
 	//CREATE MINISCREENS
 	Ogre::Technique * technique;
 	//DREAMS
@@ -146,7 +154,6 @@ void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWi
 	mMiniScreenChangeWorld->setMaterial("mMiniScreenMatChangeWorld");
  
 	setDebugScreensActive(false);
-	setToDreams();
 }
 
 void ChangeWorldRenderer::setToDreams()
