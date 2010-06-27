@@ -30,7 +30,6 @@ namespace OUAN
  		void    createLensFlare();
  		void    update();
  		void    setVisible(bool visible);
-		void    setLightPosition(Ogre::Vector3 pos);
 		void    setHaloColour(Ogre::ColourValue color);
  		void    setBurstColour(Ogre::ColourValue color);
 
@@ -43,7 +42,6 @@ namespace OUAN
  		Ogre::SceneNode*    mNode;
 		Ogre::BillboardSet* mHaloSet;
    		Ogre::BillboardSet* mBurstSet;
- 		Ogre::Vector3       mLightPosition;
  		bool                mHidden;
 
 		Line3D * mDebugLine;
