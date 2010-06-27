@@ -417,7 +417,6 @@ void Trajectory::setCurrentNode(int node)
 
 		mCurrentPosition=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition();
 		mCurrentOrientation=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation();
-
 	}
 }
 
@@ -441,7 +440,6 @@ void Trajectory::setTrajectoryNodes(std::vector<TrajectoryNode *> mTrajectoryNod
 	}
 
 	reset();
-
 }
 
 void Trajectory::destroyDebugNodes()
@@ -468,7 +466,6 @@ void Trajectory::removeNodeDebugInfo(int node)
 		mSceneManager->getSceneNode(getLineDebugName(node))->detachAllObjects();
 		mSceneManager->destroySceneNode(getLineDebugName(node));
 	}
-
 }
 
 std::string Trajectory::getEntityDebugName(int node)
@@ -542,6 +539,7 @@ TrajectoryNode* Trajectory::getTrajectoryNode(int index)
 	}
 	return NULL;
 }
+
 int Trajectory::getNumberOfNodes() const
 {
 	return (mTrajectoryNodes.empty())?0:mTrajectoryNodes.size();
@@ -587,7 +585,6 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 	initPathfinding();
 
 	//Logger::getInstance()->log("Pathfinding to predefined trajectory "+trajectory);
-
 }
 
 void Trajectory::activatePredefinedTrajectory(std::string trajectory)
@@ -601,8 +598,6 @@ void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 	mSceneManager->getSceneNode(mParent)->setPosition(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition());
 	mSceneManager->getSceneNode(mParent)->setOrientation(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation());
 }
-
-
 
 void Trajectory::doPathfinding(std::string source,std::string target,std::string walkabilityMap)
 {

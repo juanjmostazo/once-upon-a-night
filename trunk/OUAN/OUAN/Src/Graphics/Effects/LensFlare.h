@@ -18,6 +18,8 @@
  */
  /* ------------------------------------------------------------------------- */
 
+#include "../Line3D/Line3D.h"
+
 namespace OUAN
 {
 	 class LensFlare
@@ -33,7 +35,7 @@ namespace OUAN
  		void    setBurstColour(Ogre::ColourValue color);
 
 		void changeCamera(Ogre::Camera* cam);
-	 
+	    
 	 protected:
  		Ogre::SceneManager* mSceneMgr;
  		Ogre::Camera*       mCamera;
@@ -42,7 +44,12 @@ namespace OUAN
 		Ogre::BillboardSet* mHaloSet;
    		Ogre::BillboardSet* mBurstSet;
  		Ogre::Vector3       mLightPosition;
- 		bool          mHidden;
+ 		bool                mHidden;
+
+		Line3D * mDebugLine;
+		Ogre::SceneNode* mDebugLineNode;
+
+		void updateDebugLines();
 	 };
 }
  #endif

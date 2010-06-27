@@ -6,6 +6,13 @@
  // Author     : David de Lorenzo
  /* ------------------------------------------------------------------------- */
 #include "LensFlare.h"
+#include "../../Utils/Logger.h"
+#include "../../Application.h"
+#include "../../Game/GameWorldManager.h"
+#include "../../Game/GameObject/GameObjectOny.h"
+#include "../../Graphics/RenderSubSystem.h"
+#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+
  using namespace OUAN;
  /* ------------------------------------------------------------------------- */
  /// Constructor
@@ -18,13 +25,24 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
 ,mCamera(camera)
 ,mHidden(true)
 ,mNode(sceneNode)
-,mLightPosition(sceneNode->getPosition())
  {
  	mSceneMgr      = SceneMgr;
  	mCamera        = camera;
  	mHidden        = true;
  	createLensFlare();
- 	//setLightPosition(LightPosition);
+ 	setLightPosition(sceneNode->getPosition());
+	sceneNode->setVisible(true);
+
+	mDebugLine = new Line3D();
+	mDebugLine->addPoint(Ogre::Vector3::ZERO);
+	mDebugLine->addPoint(Ogre::Vector3::ZERO);
+	mDebugLine->setMaterial("red");
+
+	mDebugLineNode =
+		Application::getInstance()->getRenderSubsystem()->
+		getSceneManager()->getRootSceneNode()->createChildSceneNode("mDebugLineNode");
+
+	mDebugLineNode->attachObject(mDebugLine);
  }
  
  /* ------------------------------------------------------------------------- */
@@ -37,7 +55,6 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	mSceneMgr->destroyBillboardSet(mHaloSet);
  	mSceneMgr->destroyBillboardSet(mBurstSet);
  } 
-
 
  /* ------------------------------------------------------------------------- */
  /// this function creates and shows all the LensFlare graphical elements.
@@ -75,7 +92,6 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	Ogre::Billboard* LF_Halo3 = mHaloSet->createBillboard(0,0,0);
  	LF_Halo3->setDimensions(LF_scale*0.25,LF_scale*0.25);
  
- 
  	// -------------------------------
  	// Creation of the "Burst" billboards
  	// -------------------------------
@@ -85,9 +101,7 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	LF_Burst2->setDimensions(LF_scale*0.5,LF_scale*0.5);
  	Ogre::Billboard* LF_Burst3 = mBurstSet->createBillboard(0,0,0);
  	LF_Burst3->setDimensions(LF_scale*0.25,LF_scale*0.25);
- 
  } 
-
 
  /* -------------------------------------------------------------------------- */
  /// This function updates the lensflare effect. 
@@ -99,26 +113,32 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
    // If the Light is out of the Camera field Of View, the lensflare is hidden.
    if (!mCamera->isVisible(mLightPosition)) 
    {
-      mHaloSet->setVisible(false);
-      mBurstSet->setVisible(false);
+      this->setVisible(false);
       return;
    }
-   else
-   {
-      mHaloSet->setVisible(true);
-      mBurstSet->setVisible(true);
-   }
 
-   Ogre::Real LightDistance  = (mCamera->getPosition()-mLightPosition).length();
-   Ogre::Vector3 CameraVect  = mCamera->getDirection(); // normalized vector (length 1)
+   // Distance between camera position and ligt
+   Ogre::Real LightDistance  = (mCamera->getPosition() - mLightPosition).length();
 
-   CameraVect = mCamera->getPosition()+(LightDistance * CameraVect);
+   // normalized vector (length 1)
+   Ogre::Vector3 CameraVect  = mCamera->getDirection();
 
+   // Apply transformations
+   CameraVect = mCamera->getPosition() + (LightDistance * CameraVect);
 
    // The LensFlare effect takes place along this vector.
    Ogre::Vector3 LFvect = (CameraVect - mLightPosition);
-   LFvect += Ogre::	Vector3(-64,-64,0);  // sprite dimension (to be adjusted, but not necessary)
+    
+   // sprite dimension (to be adjusted, but not necessary)
+   LFvect += Ogre::Vector3(-64,-64,0);  
 
+    //Logger::getInstance()->log("#### LENSFLARE IS VISIBLE");
+    //Logger::getInstance()->log("## LIGHTPOSITION: " + Ogre::StringConverter::toString(mLightPosition));
+    //Logger::getInstance()->log("## CAMERAPOS: " + Ogre::StringConverter::toString(mCamera->getPosition()));
+    //Logger::getInstance()->log("## CAMERAVECT: " + Ogre::StringConverter::toString(CameraVect));
+	//Logger::getInstance()->log("## LIGHTDISTANCE: " + Ogre::StringConverter::toString(LightDistance));
+	//Logger::getInstance()->log("## LFVect: " + Ogre::StringConverter::toString(LFvect));
+   
    // The different sprites are placed along this line.
    mHaloSet->getBillboard(0)->setPosition( LFvect*0.500);
    mHaloSet->getBillboard(1)->setPosition( LFvect*0.125);
@@ -132,17 +152,18 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
    this->setVisible(true);   
 }
 
-
  /* ------------------------------------------------------------------------- */
  /// This function shows (or hide) the lensflare effect.
  /* ------------------------------------------------------------------------- */
  void LensFlare::setVisible(bool visible)
- {
+ {	
  	mHaloSet->setVisible(visible);
  	mBurstSet->setVisible(visible);
- 	mHidden = !visible;
- }
 
+ 	mHidden = !visible;
+
+	updateDebugLines();
+ }
 
  /* ------------------------------------------------------------------------- */
  /// This function updates the light source position. 
@@ -153,7 +174,6 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	mLightPosition = pos;
  	mNode->setPosition(mLightPosition); 
  }
-
 
  /* ------------------------------------------------------------------------- */
  /// This function changes the colour of the burst. 
@@ -175,8 +195,26 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	mHaloSet->getBillboard(2)->setColour(color);
  }
 
-
 void LensFlare::changeCamera(Ogre::Camera* cam)
 {
 	mCamera=cam;
+}
+
+void LensFlare::updateDebugLines()
+{
+	mDebugLine->updatePoint(0, mLightPosition);
+	mDebugLine->updatePoint(1, 
+		Application::getInstance()->getGameWorldManager()->
+		getGameObjectOny()->getRenderComponentPositional()->getPosition());
+
+	mDebugLine->drawLines();
+
+	mDebugLineNode->setVisible(!mHidden);
+
+	//Logger::getInstance()->log("## DEBUGLINES");
+	//Logger::getInstance()->log("## POINTA: " + Ogre::StringConverter::toString(mDebugLine->getPoint(0)));
+	//Logger::getInstance()->log("## POINTB: " + Ogre::StringConverter::toString(mDebugLine->getPoint(1)));
+	//Logger::getInstance()->log("## Visible: " + Ogre::StringConverter::toString(!mHidden));
+	//Logger::getInstance()->log("## NodePosition: " + Ogre::StringConverter::toString(mDebugLineNode->getPosition()));
+	//Logger::getInstance()->log("## ParentNodePosition: " + Ogre::StringConverter::toString(mDebugLineNode->getParentSceneNode()->getPosition()));
 }
