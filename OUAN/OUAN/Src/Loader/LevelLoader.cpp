@@ -56,6 +56,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectCameraTrigger.h"
+#include "../Game/GameObject/GameObjectActionTrigger.h"
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectTower.h"
@@ -431,6 +432,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_CAMERA)==0)
 		{
 			processGameObjectCameraTrigger(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_ACTION)==0)
+		{
+			processGameObjectActionTrigger(gameObject);
 		}
 		else
 		{
@@ -2508,6 +2513,45 @@ void LevelLoader::processGameObjectCameraTrigger(XMLGameObject* gameObject)
 	mGameWorldManager->addGameObjectCameraTrigger(mGameObjectFactory->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters,mGameWorldManager));
 }
 
+void LevelLoader::processGameObjectActionTrigger(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters;
+	tGameObjectActionTriggerParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectActionTriggerParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectActionTriggerParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectActionTriggerParameters.name = gameObject->name;
+
+		//Get Logic component
+		tGameObjectActionTriggerParameters.tLogicComponentActionTriggerParameters=processLogicComponentActionTrigger(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		tGameObjectActionTriggerParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		tGameObjectActionTriggerParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectActionTriggerParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+	//Create GameObject
+	//mGameWorldManager->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters);
+	mGameWorldManager->addGameObjectActionTrigger(mGameObjectFactory->createGameObjectActionTrigger(tGameObjectActionTriggerParameters,mGameWorldManager));
+}
+
 void LevelLoader::processGameObjectTripollito(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTripollitoParameters tGameObjectTripollitoParameters;
@@ -4069,10 +4113,35 @@ TLogicComponentCameraTriggerParameters LevelLoader::processLogicComponentCameraT
 		logicComponentCameraTriggerParameters.triggerOnlyOnce=getPropertyBool(XMLNodeNightmares,"LogicComponentTriggerCamera::TriggerOnce");
 	}
 
-	
-
 	return logicComponentCameraTriggerParameters;
 }
+
+TLogicComponentActionTriggerParameters LevelLoader::processLogicComponentActionTrigger(TiXmlElement *XMLNodeDreams,
+																					   TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
+{
+	TLogicComponentActionTriggerParameters logicComponentActionTriggerParameters;
+	//Object exists both in dreams and nightmares
+	if(XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentActionTriggerParameters.existsInDreams=true;
+		logicComponentActionTriggerParameters.existsInNightmares=true;
+	}
+	//Object exists only in dreams
+	else if(XMLNodeDreams && !XMLNodeNightmares)
+	{
+		logicComponentActionTriggerParameters.existsInDreams=true;
+		logicComponentActionTriggerParameters.existsInNightmares=false;
+	}
+	//Object exists only in nightmares
+	else if(!XMLNodeDreams && XMLNodeNightmares)
+	{
+		logicComponentActionTriggerParameters.existsInDreams=false;
+		logicComponentActionTriggerParameters.existsInNightmares=true;
+	}
+
+	return logicComponentActionTriggerParameters;
+}
+
 TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {

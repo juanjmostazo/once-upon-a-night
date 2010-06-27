@@ -52,6 +52,7 @@
 #include "GameObject/GameObjectTower.h"
 #include "GameObject/GameObjectFog.h"
 #include "GameObject/GameObjectCameraTrigger.h"
+#include "GameObject/GameObjectActionTrigger.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -1079,6 +1080,11 @@ void GameWorldManager::addGameObjectTower(GameObjectTowerPtr pGameObjectTower)
 void GameWorldManager::addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger)
 {
 	mGameObjects[pGameObjectCameraTrigger->getName()]=pGameObjectCameraTrigger;
+}
+
+void GameWorldManager::addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger)
+{
+	mGameObjects[pGameObjectActionTrigger->getName()]=pGameObjectActionTrigger;
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)

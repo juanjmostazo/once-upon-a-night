@@ -270,7 +270,7 @@ namespace OUAN
 		void addGameObjectFog(GameObjectFogPtr pGameObjectFog);
 		void addGameObjectTower(GameObjectTowerPtr pGameObjectTower);
 		void addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger);
-
+		void addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger);
 
 		void activateChangeWorld();
 		void activateChangeWorldFast();
