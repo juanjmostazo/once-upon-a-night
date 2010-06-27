@@ -154,6 +154,8 @@ void GameRunningState::init(ApplicationPtr app)
 
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_ONY_DEATH);
+		eh=EventHandlerPtr(new EventHandler<GameRunningState,GameOverEvent>(this_,&GameRunningState::processGameOver));
+		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_GAMEOVER);
 	}
 
 	mIsChangingWorld=false;
@@ -185,6 +187,7 @@ void GameRunningState::cleanUp()
 
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
 		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_ONY_DEATH);
+		eh=EventHandlerPtr(new EventHandler<GameRunningState,GameOverEvent>(this_,&GameRunningState::processGameOver));
 	}
 	
 	//Destroy HUD
@@ -199,7 +202,7 @@ void GameRunningState::cleanUp()
 		mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
 	}
 	//Unload all sounds: the ones in-game and the interface ones, as well as the music
-	mApp->getAudioSubsystem()->unloadAll();
+	//mApp->getAudioSubsystem()->unloadAll();
 }
 
 /// pause state
@@ -522,7 +525,6 @@ void GameRunningState::update(long elapsedTime)
 		double elapsedSeconds=(double)elapsedTime * 0.000001f;
 		if (!mApp->getGameWorldManager()->isGameOver())
 		{
-			toGameOverElapsed+=elapsedSeconds;
 			if(mIsChangingWorld)
 			{
 				mChangeWorldElapsedTime+=elapsedSeconds;
@@ -548,7 +550,8 @@ void GameRunningState::update(long elapsedTime)
 
 			//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
 		}
-
+		else
+			toGameOverElapsed+=elapsedSeconds;
 		mApp->getCameraManager()->update(elapsedSeconds);
 
 		if (!mApp->getGameWorldManager()->isGameOver())
@@ -738,7 +741,14 @@ void GameRunningState::playSoundFromGameObject(const std::string& objectName, co
 {
 	mInst->getApp()->getGameWorldManager()->playSoundFromGameObject(objectName,soundID);
 }
-
+void GameRunningState::processGameOver(GameOverEventPtr evt)
+{
+	if (evt->isWin())
+	{
+		playMusic("SUCCESS");
+		playSoundFromGameObject(mApp->getGameWorldManager()->getGameObjectOny()->getName(),"any_triumph");
+	}
+}
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
 	mWorld=evt->getNewWorld();

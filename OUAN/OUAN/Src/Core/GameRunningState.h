@@ -101,6 +101,8 @@ namespace OUAN
 
 		static void playMusic(const std::string& musicID);
 		static void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
+		
+		void processGameOver(GameOverEventPtr evt);
 	
 		/// Default constructor
 		GameRunningState();
