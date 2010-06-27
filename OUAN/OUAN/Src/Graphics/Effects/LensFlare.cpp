@@ -33,16 +33,10 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	setLightPosition(sceneNode->getPosition());
 	sceneNode->setVisible(true);
 
-	mDebugLine = new Line3D();
-	mDebugLine->addPoint(Ogre::Vector3::ZERO);
-	mDebugLine->addPoint(Ogre::Vector3::ZERO);
-	mDebugLine->setMaterial("red");
-
 	mDebugLineNode =
 		Application::getInstance()->getRenderSubsystem()->
 		getSceneManager()->getRootSceneNode()->createChildSceneNode("mDebugLineNode");
 
-	mDebugLineNode->attachObject(mDebugLine);
  }
  
  /* ------------------------------------------------------------------------- */
@@ -202,14 +196,24 @@ void LensFlare::changeCamera(Ogre::Camera* cam)
 
 void LensFlare::updateDebugLines()
 {
-	mDebugLine->updatePoint(0, mLightPosition);
-	mDebugLine->updatePoint(1, 
-		Application::getInstance()->getGameWorldManager()->
+
+	mDebugLineNode->detachAllObjects();
+
+	mDebugLine = new Line3D();
+	mDebugLine->addPoint(mLightPosition);
+	mDebugLine->addPoint(Application::getInstance()->getGameWorldManager()->
 		getGameObjectOny()->getRenderComponentPositional()->getPosition());
+	mDebugLine->setMaterial("red");
+
+	mDebugLineNode->attachObject(mDebugLine);
+
+	//mDebugLine->updatePoint(0, mLightPosition);
+	//mDebugLine->updatePoint(1, 
+	//	);
 
 	mDebugLine->drawLines();
 
-	mDebugLineNode->setVisible(!mHidden);
+	//mDebugLineNode->setVisible(!mHidden);
 
 	//Logger::getInstance()->log("## DEBUGLINES");
 	//Logger::getInstance()->log("## POINTA: " + Ogre::StringConverter::toString(mDebugLine->getPoint(0)));
