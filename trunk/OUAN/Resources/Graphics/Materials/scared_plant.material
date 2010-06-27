@@ -1,7 +1,8 @@
 import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
 import no_changeworld from ChangeWorld.material
 
-material scared_plant_d : basic_texture
+material scared_plant_d : alpha_test_texture
 {
 	set_texture_alias diffuse_texture scared_plant_d.dds
 }

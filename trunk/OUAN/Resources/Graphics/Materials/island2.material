@@ -19,12 +19,12 @@ material almena2_cw : default_changeworld
 //BRIGDE
 material bridge_d : basic_texture
 {
-	set_texture_alias diffuse_texture bridge_d.tga
+	set_texture_alias diffuse_texture bridge_d.dds
 }
 
 material bridge_n : basic_texture
 {
-	set_texture_alias diffuse_texture bridge_n.tga
+	set_texture_alias diffuse_texture bridge_n.dds
 }
 
 material bridge_cw : default_changeworld
@@ -34,12 +34,12 @@ material bridge_cw : default_changeworld
 //LITTLE BRIDGE
 material bridge_little_d : basic_texture
 {
-	set_texture_alias diffuse_texture bridge_little_d.tga
+	set_texture_alias diffuse_texture bridge_little_d.dds
 }
 
 material bridge_little_n : basic_texture
 {
-	set_texture_alias diffuse_texture bridge_little_n.tga
+	set_texture_alias diffuse_texture bridge_little_n.dds
 }
 
 material bridge_little_cw : default_changeworld
@@ -64,12 +64,12 @@ material entry_cw : default_changeworld
 //TOWER1
 material island2_tower1_d : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower1_d.tga
+	set_texture_alias diffuse_texture island2_tower1_d.dds
 }
 
 material island2_tower1_n : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower1_n.tga
+	set_texture_alias diffuse_texture island2_tower1_n.dds
 }
 
 material island2_tower1_cw : default_changeworld
@@ -79,12 +79,12 @@ material island2_tower1_cw : default_changeworld
 //TOWER2
 material island2_tower2_d : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower2_d.tga
+	set_texture_alias diffuse_texture island2_tower2_d.dds
 }
 
 material island2_tower2_n : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower2_n.tga
+	set_texture_alias diffuse_texture island2_tower2_n.dds
 }
 
 material island2_tower2_cw : default_changeworld
