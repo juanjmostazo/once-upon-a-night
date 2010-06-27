@@ -634,6 +634,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTriggerAction.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTriggerBox.cpp"
 						>
 					</File>
@@ -759,6 +763,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentActionTrigger.cpp"
 						>
 					</File>
 					<File
@@ -1511,6 +1519,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectActionTrigger.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBee_Butterfly.h"
 						>
 					</File>
@@ -1861,6 +1873,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Logic\LogicComponent\LogicComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Logic\LogicComponent\LogicComponentActionTrigger.h"
 						>
 					</File>
 					<File

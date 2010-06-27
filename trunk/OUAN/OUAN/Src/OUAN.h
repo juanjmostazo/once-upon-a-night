@@ -275,6 +275,10 @@ namespace OUAN
 		class TLogicComponentCameraTriggerParameters;
 		typedef boost::shared_ptr<LogicComponentCameraTrigger> LogicComponentCameraTriggerPtr;
 
+		class LogicComponentActionTrigger;
+		class TLogicComponentActionTriggerParameters;
+		typedef boost::shared_ptr<LogicComponentActionTrigger> LogicComponentActionTriggerPtr;
+
 		class LogicComponent;
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
@@ -309,6 +313,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_WEAPON="WeaponComponent";
 		const std::string COMPONENT_TYPE_ATTACK="AttackComponent";
 		const std::string COMPONENT_TYPE_LOGIC_TRIGGER_CAMERA="LogicComponentCameraTrigger";
+		const std::string COMPONENT_TYPE_LOGIC_TRIGGER_ACTION="LogicComponentCameraAction";
 
 		///////////////////////////////////////////////////////////////////
 
@@ -548,6 +553,10 @@ namespace OUAN
 		class TGameObjectCameraTriggerParameters;
 		typedef boost::shared_ptr<GameObjectCameraTrigger> GameObjectCameraTriggerPtr;
 
+		class GameObjectActionTrigger;
+		class TGameObjectActionTriggerParameters;
+		typedef boost::shared_ptr<GameObjectActionTrigger> GameObjectActionTriggerPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -589,6 +598,7 @@ namespace OUAN
 		typedef std::vector<GameObjectTowerPtr> TGameObjectTowerContainer;
 		typedef std::vector<GameObjectTreeComplexPtr> TGameObjectTreeComplexContainer;
 		typedef std::vector<GameObjectCameraTriggerPtr> TGameObjectCameraTriggerContainer;
+		typedef std::vector<GameObjectActionTriggerPtr> TGameObjectActionTriggerContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -659,6 +669,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TOWER="tower";
 		const std::string GAME_OBJECT_TYPE_FOG="fog";
 		const std::string GAME_OBJECT_TYPE_TRIGGER_CAMERA="trigger-camera";
+		const std::string GAME_OBJECT_TYPE_TRIGGER_ACTION="trigger-action";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 

@@ -116,6 +116,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);		
 		GameObjectCameraTriggerPtr createGameObjectCameraTrigger(TGameObjectCameraTriggerParameters tGameObjectCameraTriggerParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectActionTriggerPtr createGameObjectActionTrigger(TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 	};
 }
 #endif

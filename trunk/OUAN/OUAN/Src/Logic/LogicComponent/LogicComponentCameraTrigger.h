@@ -2,6 +2,7 @@
 #define LogicComponentCameraTriggerH_H
 
 #include "LogicComponent.h"
+
 namespace OUAN
 {
 
@@ -32,7 +33,6 @@ namespace OUAN
 		///Camera Parameters
 		CameraTriggerPtr pCameraTrigger;
 		bool triggerOnlyOnce;
-
 	};
 }
 
