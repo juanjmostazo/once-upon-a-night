@@ -14,7 +14,8 @@ function helloWorld(timer)
 	setCameraTrajectory("a")
 	while not isCameraTrajectoryFinished() do		
 		coroutine.yield(COROUTINE_ONGOING)		
-	end		
+	end
+	log ("Switching to tracking camera!!")
 	setAnyTrackingCamera()
 	timer:reset()
 	local elapsedTime=timer:getTime()

@@ -50,7 +50,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 	{
-		//TODO
+		GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
+		mParent->getGameWorldManager()->addEvent(evt);
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_STORYBOOK)==0)
 	{

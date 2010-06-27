@@ -10,6 +10,7 @@
 #include "../Application.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObjectViewport.h"
+#include "../Audio/AudioSubsystem.h"
 #include "../Graphics/RenderSubsystem.h"
 
 
@@ -52,6 +53,7 @@ void GameOverState::init(ApplicationPtr app)
 void GameOverState::cleanUp()
 {
 	mApp->mKeyBuffer=-1;
+	mApp->getAudioSubsystem()->unloadAll();
 }
 
 /// pause state
