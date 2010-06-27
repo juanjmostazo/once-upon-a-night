@@ -1,0 +1,21 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material frame1 : basic_texture
+{
+	set_texture_alias diffuse_texture frame1.dds
+}
+
+material frame2 : basic_texture
+{
+	set_texture_alias diffuse_texture frame_2.dds
+}
+
+material frame3 : basic_texture
+{
+	set_texture_alias diffuse_texture frame3.dds
+}
+material frame4 : basic_texture
+{
+	set_texture_alias diffuse_texture frame4.dds
+}
