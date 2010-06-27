@@ -37,7 +37,7 @@ void GamePausedState::init(ApplicationPtr app)
 void GamePausedState::cleanUp()
 {
 	mApp->mKeyBuffer=500000; //0.5s
-	mApp->getCameraManager()->setDefaultThirdPersonCamera(true);
+	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 }
 
 /// pause state
