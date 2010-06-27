@@ -326,8 +326,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 				{
 					getGameWorldManager()->changeWorld();				
 					mLogicComponentUsable->setIsActivated(false);
-					//TODO REMOVE THIS LINE, POOL BUG MUST BE SOLVED
-					mRenderComponentParticleSystemChangeWorld->stop();
 					mRenderComponentParticleSystemChangeWorld->start();
 					glowToUpdate->setVisible(true);
 				}
