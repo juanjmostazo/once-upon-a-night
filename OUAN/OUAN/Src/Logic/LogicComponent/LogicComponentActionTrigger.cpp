@@ -21,41 +21,20 @@ LogicComponentActionTrigger::~LogicComponentActionTrigger()
 
 void LogicComponentActionTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		Logger::getInstance()->log("@@ Collision between " + getParent()->getName() + " and Ony");
+	}
 }
 
 void LogicComponentActionTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 {
-	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-	{
-		/*
-		ActionTriggerEventPtr evt;
-		evt.reset( new ActionTriggerEvent());
-
-		evt->pActionTrigger=mActionTrigger;
-		evt->name=getParent()->getName();
-		evt->enter=true;
-
-		getParent()->getGameWorldManager()->addEvent(evt);
-		*/
-	}
+	
 }
 
 void LogicComponentActionTrigger::processExitTrigger(GameObjectPtr pGameObject)
 {
-	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-	{
-		/*
-		ActionTriggerEventPtr evt;
-		evt.reset( new ActionTriggerEvent());
-
-		evt->pActionTrigger=mActionTrigger;
-		evt->name=getParent()->getName();
-		evt->enter=false;
-
-		getParent()->getGameWorldManager()->addEvent(evt);
-		*/
-	}
+	
 }
 
 TLogicComponentActionTriggerParameters::TLogicComponentActionTriggerParameters() : TLogicComponentParameters()
