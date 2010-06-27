@@ -419,8 +419,6 @@ void GameWorldManager::initGame()
 
 	dispatchEvents();
 
-	mApp->getRenderSubsystem()->initChangeWorldRenderer();
-
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
 //void GameWorldManager::loadLevel(const std::string& levelFileName)

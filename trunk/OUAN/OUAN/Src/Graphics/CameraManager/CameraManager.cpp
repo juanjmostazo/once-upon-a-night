@@ -411,6 +411,19 @@ void CameraManager::setAnyTrackingCamera()
 	cameraParameters->setTarget(mInst->mGameWorldManager->getGameObjectOny()->getName());
 	mInst->setCameraTracking(cameraParameters,true);
 }
+
+void CameraManager::setCameraFixedFirstPerson(bool transition)
+{	
+	if(mCameraControllerThirdPerson->getCameraState()==CS_FIXED_FIRST_PERSON)
+	{
+		mInst->setDefaultThirdPersonCamera(transition);
+	}
+	else
+	{
+		mCameraControllerThirdPerson->setCameraFixedFirstPerson(mCamera,mCameraInput,transition);
+	}
+}
+
 bool CameraManager::isCameraTrajectoryEnded()
 {
 	return mInst->cameraTrajectoryEnded();
