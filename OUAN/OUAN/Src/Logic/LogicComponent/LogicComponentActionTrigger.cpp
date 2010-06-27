@@ -46,7 +46,7 @@ void LogicComponentActionTrigger::processExitTrigger(GameObjectPtr pGameObject)
 
 void LogicComponentActionTrigger::processActionPlatformBig()
 {
-	Logger::getInstance()->log("@@ PROCESS ACTION PLATFORM BIG WITH ONY");
+	//Logger::getInstance()->log("@@ PROCESS ACTION PLATFORM BIG WITH ONY");
 
 	///////////////////
 
@@ -93,20 +93,14 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 	{
 		GameObjectTripolloDreamsPtr tripollo = (*itTripollo);
 
-		//TODO FIX THIS HACK
-		if (!tripollo.get())
-		{
-			continue;
-		}
-
 		double distanceToPortal = tripollo->getRenderComponentPositional()->getPosition().distance(
 			portalPlatformBig->getRenderComponentPositional()->getPosition());
 
-		Logger::getInstance()->log("@@ " + tripollo->getName() + " -> " + Ogre::StringConverter::toString(Ogre::Real(distanceToPortal)));
+		//Logger::getInstance()->log("@@ " + tripollo->getName() + " -> " + Ogre::StringConverter::toString(Ogre::Real(distanceToPortal)));
 
 		if (distanceToPortal <= maxDistanceToPortal)
 		{
-			Logger::getInstance()->log("@@ " + tripollo->getName() + " -> IN! -> " + Ogre::StringConverter::toString(tripollo->isEnabled()));	
+			//Logger::getInstance()->log("@@ " + tripollo->getName() + " -> IN! -> " + Ogre::StringConverter::toString(tripollo->isEnabled()));	
 
 			if (tripollo->isEnabled())
 			{
@@ -120,12 +114,12 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 
 	if (allTripollosAreDisabled)
 	{
-		Logger::getInstance()->log("@@ ALL TRIPOLLOS ARE DISABLED");
+		//Logger::getInstance()->log("@@ ALL TRIPOLLOS ARE DISABLED");
 		portalPlatformBig->getEntityComponent()->setVisible(true);		
 	}
 	else
 	{
-		Logger::getInstance()->log("@@ AT LEAST ONE TRIPOLLO IS ENABLED");
+		//Logger::getInstance()->log("@@ AT LEAST ONE TRIPOLLO IS ENABLED");
 		portalPlatformBig->getEntityComponent()->setVisible(false);
 	}
 }
