@@ -7,6 +7,7 @@
 #include "../../Application.h"
 #include "../../Graphics/RenderSubsystem.h"
 #include "GameObjectViewport.h"
+#include "GameObjectPillow.h"
 
 using namespace OUAN;
 
@@ -449,10 +450,15 @@ void GameObjectOny::postUpdate()
 	}
 	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
 	{
+				GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mWeaponComponent->getActiveWeapon());
 		switch(mWorld)
 		{
 			case DREAMS:
 				mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
+				if (pillow.get())
+				{
+					pillow->startAttackParticles();
+				}
 				break;
 			case NIGHTMARES:
 				//get Camera Direction and change animation accordingly:

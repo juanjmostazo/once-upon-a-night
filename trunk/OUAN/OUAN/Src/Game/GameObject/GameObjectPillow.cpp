@@ -218,19 +218,6 @@ void GameObjectPillow::beginAttack()
 	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
 	std::stringstream textMsg("");
 
-	GameObjectOnyPtr ony = Application::getInstance()->getGameWorldManager()->getGameObjectOny();
-
-	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
-		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
-	{
-		Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
-		Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
-		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
-		Ogre::Quaternion orient = Utils::getNodeWorldOrientation(ent,bone);
-
-		mRenderComponentParticleSystemAttack->start(pos);
-	}
-
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
 	{
 		//NEW COMBO: CHANGE ATTACK
@@ -429,7 +416,18 @@ void GameObjectPillow::disable()
 	}
 		
 }
-
+void GameObjectPillow::startAttackParticles()
+{
+	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(mParentWeaponComponent->getParent());
+	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
+		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+	{
+		Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+		Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
+		mRenderComponentParticleSystemAttack->start(pos);
+	}
+}
 //---------
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {

@@ -158,6 +158,8 @@ namespace OUAN
 
 		void disable();
 		void enable();
+
+		void startAttackParticles();
 	};
 
 	class TGameObjectPillowParameters: public TGameObjectParameters

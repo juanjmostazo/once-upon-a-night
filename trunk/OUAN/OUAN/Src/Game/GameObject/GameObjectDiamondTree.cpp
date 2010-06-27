@@ -116,10 +116,6 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 				mPhysicsComponentCharacter->create();
 			}
 			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-			{
-				mPhysicsComponentCharacter->destroy();
-			}
 
 			break;
 		default:
@@ -325,6 +321,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		{
 			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
 			{
+				mLogicComponent->setStateChanged(false);
 				displayText("Now loaded");
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
