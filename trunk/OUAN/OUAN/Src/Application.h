@@ -124,6 +124,9 @@ namespace OUAN
 			/// toggling on/off certain actions
 			int mKeyBuffer;
 
+			int mAudioFrameCnt;
+			int mAudioFrameSkip;
+
 			/// Used to properly reset the game after selecting the "exit to menu" option
 			/// at the in-game menu
 			bool mBackToMenu;

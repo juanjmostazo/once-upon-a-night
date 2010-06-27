@@ -73,6 +73,7 @@ namespace OUAN
 		 bool stopSound(int channelIndex,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP);
 		 bool stopMusic(int channelIndex);
 		 bool setPause(int channelIndex, bool pause, const std::string& channelGroup=SM_CHANNEL_SFX_GROUP);
+		 void stopAllSounds();
 
 		 void set3DAttributes(const Ogre::Vector3& position,const Ogre::Vector3& velocity,const Ogre::Vector3& forward,const Ogre::Vector3& up);
 		 bool update(double elapsedTime);

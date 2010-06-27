@@ -340,6 +340,11 @@ bool ControlInputManager::isPressedToggleShowSceneNodes()
 	return isPressed(-1,mDefaultInputData.keyToggleShowSceneNodes);
 }
 
+bool ControlInputManager::isPressedRunCutscene()
+{
+	return isPressed(-1,mDefaultInputData.keyRunCutscene);
+}
+
 
 //////////////////////////////////////////////////////////////
 
@@ -503,6 +508,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleChangeWorldDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleShowSceneNodes,KEY_TOGGLE_SHOW_SCENE_NODES,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugTrajectory,KEY_DEBUG_TRAJECTORY,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyRunCutscene,KEY_RUN_CUTSCENE,false);
 
 	c.saveToFile(DEFAULTINPUT_CFG);
 }

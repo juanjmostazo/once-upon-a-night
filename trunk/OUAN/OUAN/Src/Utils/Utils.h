@@ -31,7 +31,23 @@ namespace OUAN
 			double getRandomDouble(double low=0.0, double high=1.0);
 		};
 
+		//--------------------------------
+		// LUA Exports
+
 		void scriptLog (const std::string& logMsg);
+
+		class LUATimer
+		{
+		private:
+			double mSeconds;
+		public:
+			LUATimer();
+			void reset();
+			void addTime(double secs);
+			double getTime();
+		};
+
+		//--------------------------------
 		int parseInt(std::string& strValue);
 
 		Ogre::Vector3 getNodeWorldPosition(Ogre::Entity* entity, Ogre::Node* node);

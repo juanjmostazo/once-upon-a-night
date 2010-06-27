@@ -13,6 +13,7 @@
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectPortal.h"
+#include "../Graphics/CameraManager/CameraManager.h"
 #include "../Core/GameRunningState.h"
 #include "LogicComponent/LogicComponent.h"
 #include "LogicComponent/LogicComponentOny.h"
@@ -43,6 +44,8 @@ void LogicSubsystem::init(ApplicationPtr app)
 	luabind::open(mLuaEngine);
 
 	registerModules();
+	mCutsceneFinished=false;
+	mTimer=boost::shared_ptr<Utils::LUATimer>(new Utils::LUATimer());
 	//loadScripts();
 }
 
@@ -58,6 +61,14 @@ void LogicSubsystem::registerModules()
 		def("victory",&GameWorldManager::victory),
 		def("playMusic",&GameRunningState::playMusic),
 		def("playSoundFromGameObject",&GameRunningState::playSoundFromGameObject),
+		def("setCameraTrajectory",&CameraManager::setTrajectoryCamera),
+		def("isCameraTrajectoryFinished",&CameraManager::isCameraTrajectoryEnded),
+		def("setAnyTrackingCamera",&CameraManager::setAnyTrackingCamera),
+		def("getAny",&GameWorldManager::getOny),
+		class_<Utils::LUATimer>("Timer")
+			.def(constructor<>())
+			.def("reset",&Utils::LUATimer::reset)
+			.def("getTime",&Utils::LUATimer::getTime),
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())
 			.def("getName",&LogicComponent::getParentName)
@@ -278,14 +289,49 @@ int LogicSubsystem::getGlobalInt (const std::string& globalName)
 
 void LogicSubsystem::invokeCutsceneFunction(const std::string& functionName)
 {
-
+	mCoroutine=lua_newthread(mLuaEngine);
+	int retVal=0;
+	try{
+		retVal=luabind::resume_function<int>(mCoroutine, functionName.c_str(),mTimer.get());
+	}
+	catch(const luabind::error& err)
+	{
+		std::string errString = "LUA Coroutine function call failed: ";
+		errString.append(err.what()).append(" - ");
+		errString.append(lua_tostring(err.state(),-1));
+		Logger::getInstance()->log(errString);
+	}
+	if (retVal==1)
+		mCutsceneFinished=true;
 }
-void LogicSubsystem::updateCutsceneFunction(const std::string& functionName)
+void LogicSubsystem::updateCutsceneFunction(const std::string& functionName, double elapsedSeconds)
 {
-	
-
+	if (mCoroutine)
+	{
+		mTimer->addTime(elapsedSeconds);
+		int retVal=luabind::resume<int>(mCoroutine,mTimer.get());
+		if (retVal==1)
+			mCutsceneFinished=true;
+	}
+}
+void LogicSubsystem::terminateCutsceneFunction(const std::string& functionName)
+{
+	lua_pop(mLuaEngine,1);
+	mCoroutine=NULL;
+}
+bool LogicSubsystem::isCutsceneFinished(const std::string& functionName)
+{
+	return mCutsceneFinished;
 }
 void LogicSubsystem::initCutsceneScript(const std::string& scriptFilename)
 {
 	loadScript(SCRIPTS_PATH+"/"+scriptFilename);
+}
+void LogicSubsystem::skipCutscene(const std::string& functionName)
+{
+
+}
+void LogicSubsystem::resetCutsceneFinished()
+{
+	mCutsceneFinished=false;
 }

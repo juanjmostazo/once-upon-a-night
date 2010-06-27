@@ -22,9 +22,11 @@
 using namespace OUAN;
 using namespace Ogre;
 
+CameraManager* CameraManager::mInst=NULL;
+
 CameraManager::CameraManager()
 {
-
+	mInst=this;
 }
 
 CameraManager::~CameraManager()
@@ -392,4 +394,24 @@ void CameraManager::processChangeWorld(ChangeWorldEventPtr evt)
 Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement,double elapsedSeconds)
 {
 	return mActiveCameraController->rotateMovementVector(movement,mCamera,mCameraInput,elapsedSeconds);
+}
+
+void CameraManager::setTrajectoryCamera(const std::string& camName)
+{
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	params->setDefaultParameters();
+	mInst->setCameraTrajectory(params,camName,false,false);
+	mInst->mCameraControllerThirdPerson->getTrajectory()->setLoopTrajectory(false);
+}
+void CameraManager::setAnyTrackingCamera()
+{
+	CameraParametersPtr cameraParameters;
+	cameraParameters.reset(new CameraParameters());
+	cameraParameters->setDefaultParameters();
+	cameraParameters->setTarget(mInst->mGameWorldManager->getGameObjectOny()->getName());
+	mInst->setCameraTracking(cameraParameters,true);
+}
+bool CameraManager::isCameraTrajectoryEnded()
+{
+	return mInst->cameraTrajectoryEnded();
 }

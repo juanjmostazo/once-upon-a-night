@@ -63,6 +63,7 @@ namespace OUAN
 		virtual void update(double elapsedSeconds);
 		virtual double getPitch();
 		virtual double getVolume();
+		virtual void stopSounds();
 
 		FMOD_CHANNELINDEX getChannelIndex(int channelIndex);
 		FMOD::Channel* getChannel(int index);

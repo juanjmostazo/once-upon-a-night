@@ -1588,3 +1588,7 @@ void GameWorldManager::resolveDiamondTreeLinks()
 		diamondTree->addDiamond(diamond);
 	}
 }
+LogicComponentOny* GameWorldManager::getOny()
+{
+	return mInst->getGameObjectOny()->getLogicComponentOny().get();
+}

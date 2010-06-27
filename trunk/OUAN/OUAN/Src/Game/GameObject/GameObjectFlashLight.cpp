@@ -304,7 +304,7 @@ void GameObjectFlashLight::switchOn()
 	{
 		mFlashlightDecal->show();
 	}
-	mLightConeBBS->setVisible(true);
+	mLightConeBBS->setVisible(false);
 }
 void GameObjectFlashLight::switchOff()
 {

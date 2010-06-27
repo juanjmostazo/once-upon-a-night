@@ -79,6 +79,11 @@ namespace OUAN
 		void setLastTrigger(std::string lastTrigger);
 		std::string getLastTrigger() const;
 
+		//LUA exports
+		static void setTrajectoryCamera(const std::string& camName);
+		static bool isCameraTrajectoryEnded();
+		static void setAnyTrackingCamera();
+
 	private:
 
 		//void setCameraTrajectory(std::string name);
@@ -121,6 +126,8 @@ namespace OUAN
 		unsigned int mCurrentTrajectory;
 
 		std::string mLastTrigger;
+
+		static CameraManager* mInst;
 		
 	};
 }

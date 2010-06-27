@@ -839,3 +839,8 @@ void CameraControllerThirdPerson::loadInfo()
 		Logger::getInstance()->log(CAMERA_CONTROLLER_THIRD_PERSON_FREE_CFG + " COULD NOT BE LOADED!");
 	}
 }
+
+Trajectory* CameraControllerThirdPerson::getTrajectory()
+{
+	return mTrajectory;
+}

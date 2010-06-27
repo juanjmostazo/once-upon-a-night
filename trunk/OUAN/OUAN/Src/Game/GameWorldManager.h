@@ -201,8 +201,11 @@ namespace OUAN
 
 		double getClosestChangeWorldDistance(Vector3 objectPosition);
 
+		static LogicComponentOny* getOny();
 
 		static void victory();
+
+		// END lua scripts
 
 		void useWeapon();
 		void stopUsingWeapon();

@@ -2,7 +2,7 @@
 <CUSTOMPROPERTIES>
 	<PROPERTY id="CustomAttribute::maxUpdateRadio" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>		
 	<PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="18"></PROPERTY>
+	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="19"></PROPERTY>
 	<PROPERTY id="PhysicsComponentCharacter::height" type="6" value="80"></PROPERTY>
 	<!--
 	<PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
