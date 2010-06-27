@@ -54,6 +54,8 @@ void GUIMainMenu::setStrings(const std::string& language)
 
 		std::string windowNames[] = {MAINMENU_CEGUIWIN_ID_PLAY,MAINMENU_CEGUIWIN_ID_OPTIONS,
 			MAINMENU_CEGUIWIN_ID_EXTRAS,MAINMENU_CEGUIWIN_ID_EXIT};
+		std::string defaultValues[]={"MAINMENU_SCREEN_PLAY","MAINMENU_SCREEN_OPTIONS",
+			"MAINMENU_SCREEN_EXTRAS","MAINMENU_SCREEN_QUIT"};
 		int windowNamesLen=4;
 		std::string stringKey="";
 		std::string stringVal="";
@@ -63,8 +65,13 @@ void GUIMainMenu::setStrings(const std::string& language)
 			win=CEGUI::WindowManager::getSingletonPtr()->getWindow(windowNames[i]);
 			if (win)
 			{
+				stringVal="";
 				stringKey=win->getText().c_str();
 				texts->getOption(stringKey,stringVal);
+				if (stringVal.empty())
+				{
+					texts->getOption(defaultValues[i],stringVal);
+				}
 				win->setText(stringVal);
 			}
 		}

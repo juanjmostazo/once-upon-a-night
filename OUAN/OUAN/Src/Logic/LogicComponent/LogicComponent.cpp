@@ -149,7 +149,7 @@ int LogicComponent::getLastFrameState() const
 void LogicComponent::printMessage(const std::string& msg)
 {
 	//TODO: Replace with dialogue overlays
-	getParent()->displayText(msg);
+	getParent()->displayText(getParent()->getTranslation(msg));
 }
 
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()

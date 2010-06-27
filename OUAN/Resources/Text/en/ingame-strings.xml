@@ -12,5 +12,8 @@
 		<Option key="SIGNPOST_MSG_ADVERTISING">Advertise here for a couple of diamonds a month!</Option>
 		<Option key="SIGNPOST_MSG_GETTINGCLOSE">You're going the right way...or was it the opposite?</Option>
 		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Sponsor a coder from the real world\n...Oh, and yes, you're going fine through here</Option>
+		<Option key="CUTSCENE_HELLOWORLD_INTRO">Hello, world!</Option>
+		<Option key="CUTSCENE_HELLOWORLD_SECOND">I am Any,</Option>
+		<Option key="CUTSCENE_HELLOWORLD_LAST">and I need to escape from this crazy world</Option>
 	</Options>
 </Configuration>

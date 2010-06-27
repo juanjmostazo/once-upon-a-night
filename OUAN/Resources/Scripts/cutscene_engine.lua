@@ -9,6 +9,8 @@ end
 TRACK_TIME=10
 COROUTINE_FINISHED=1
 COROUTINE_ONGOING=0
+SENTENCE1_TIME = 3
+SENTENCE2_TIME = 3
 
 function helloWorld(timer)
 	setCameraTrajectory("a")
@@ -27,8 +29,27 @@ function helloWorld(timer)
 	end
 	local any=getAny()
 	if any then
-		any:say("The cake is a lie!")
+		any:say("CUTSCENE_HELLOWORLD_INTRO")
 	end
+	timer:reset()
+	elapsedTime=timer:getTime()
+	while elapsedTime<SENTENCE1_TIME do
+		elapsedTime=timer:getTime()
+		coroutine.yield(COROUTINE_ONGOING)
+	end
+	if any then
+		any:say("CUTSCENE_HELLOWORLD_SECOND")
+	end
+	timer:reset()
+	elapsedTime=timer:getTime()
+	while elapsedTime<SENTENCE2_TIME do
+		elapsedTime=timer:getTime()
+		coroutine.yield(COROUTINE_ONGOING)
+	end
+	if any then
+		any:say("CUTSCENE_HELLOWORLD_LAST")
+	end
+
 	--stage 3: PC MOVEMENT:
 	-- any:walkToXYZ(), any:runToXYZ() -> make Any move to a given position
 	-- any:walkToObject("poster#0",25), any:runToObject() -> make Any move to a short distance of a given gameObject

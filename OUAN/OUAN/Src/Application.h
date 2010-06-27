@@ -140,6 +140,7 @@ namespace OUAN
 
 			std::vector<std::string>& getSupportedLanguages();
 			void changeCurrentLanguage(const std::string& newLanguage);
+			void cycleLanguage();
 			const std::string& getCurrentLanguage() const;
 
 		protected:

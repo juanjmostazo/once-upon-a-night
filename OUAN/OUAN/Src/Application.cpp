@@ -78,9 +78,11 @@ bool Application::init(int argc,char** argv)
 	mConfiguration->getOption(CONFIG_KEYS_SUPPORTED_LANGUAGES,languages);
 	mSupportedLanguages=Ogre::StringUtil::split(Ogre::String(languages),";");
 
-	mConfiguration->getOption(CONFIG_KEYS_INITIAL_LANGUAGE, mLanguage);
-	if (mLanguage.empty())
-		mLanguage=DEFAULT_LANGUAGE;
+	std::string lang;
+	mConfiguration->getOption(CONFIG_KEYS_INITIAL_LANGUAGE, lang);
+	if (lang.empty())
+		lang=DEFAULT_LANGUAGE;
+	changeCurrentLanguage(lang);
 
 	if (argc>1)
 	{
@@ -145,19 +147,6 @@ bool Application::init()
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);
 	
-	mMenusTextStrings.reset(new Configuration());
-	std::stringstream menusStringsPath("");
-	std::string lang= mLanguage;
-	std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
-	menusStringsPath<<MENUSSTRINGS_PATH<<lang<<"/"<<MENUSSTRINGS;
-	mMenusTextStrings->loadFromFile(menusStringsPath.str());
-
-	mIngameTextStrings.reset(new Configuration());
-	std::stringstream ingameStringsPath("");
-	std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
-	ingameStringsPath<<INGAME_STRINGS_PATH<<lang<<"/"<<INGAME_STRINGS;
-	mIngameTextStrings->loadFromFile(ingameStringsPath.str());
-
 	mLogicSubsystem.reset(new LogicSubsystem());
 	mLogicSubsystem->init(this_);
 
@@ -404,7 +393,37 @@ void Application::changeCurrentLanguage(const std::string& newLanguage)
 	if (find(mSupportedLanguages.begin(),mSupportedLanguages.end(),newLanguage)!=mSupportedLanguages.end())
 	{
 		mLanguage=newLanguage;
-		//TODO: mStateManager->getCurrentState()->languageChanged(newLanguage);
+
+		mMenusTextStrings.reset(new Configuration());
+		std::stringstream menusStringsPath("");
+		std::string lang= mLanguage;
+		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
+		menusStringsPath<<MENUSSTRINGS_PATH<<lang<<"/"<<MENUSSTRINGS;
+		mMenusTextStrings->loadFromFile(menusStringsPath.str());
+
+		mIngameTextStrings.reset(new Configuration());
+		std::stringstream ingameStringsPath("");
+		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
+		ingameStringsPath<<INGAME_STRINGS_PATH<<lang<<"/"<<INGAME_STRINGS;
+		mIngameTextStrings->loadFromFile(ingameStringsPath.str());
+	}
+}
+void Application::cycleLanguage()
+{
+	if (!mSupportedLanguages.empty())
+	{
+		std::vector<std::string>::iterator it=std::find(mSupportedLanguages.begin(),
+			mSupportedLanguages.end(),mLanguage);
+		std::string newLang="";
+		if (it!=mSupportedLanguages.end())
+		{
+			if (it+1==mSupportedLanguages.end())
+			{
+				newLang=mSupportedLanguages.at(0);
+			}
+			else newLang=*(it+1);
+		}
+		changeCurrentLanguage(newLang);
 	}
 }
 const std::string& Application::getCurrentLanguage() const
