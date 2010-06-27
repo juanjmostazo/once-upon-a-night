@@ -152,6 +152,12 @@ bool Application::init()
 	menusStringsPath<<MENUSSTRINGS_PATH<<lang<<"/"<<MENUSSTRINGS;
 	mMenusTextStrings->loadFromFile(menusStringsPath.str());
 
+	mIngameTextStrings.reset(new Configuration());
+	std::stringstream ingameStringsPath("");
+	std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
+	ingameStringsPath<<INGAME_STRINGS_PATH<<lang<<"/"<<INGAME_STRINGS;
+	mIngameTextStrings->loadFromFile(ingameStringsPath.str());
+
 	mLogicSubsystem.reset(new LogicSubsystem());
 	mLogicSubsystem->init(this_);
 
@@ -404,4 +410,8 @@ void Application::changeCurrentLanguage(const std::string& newLanguage)
 const std::string& Application::getCurrentLanguage() const
 {
 	return mLanguage;
+}
+ConfigurationPtr Application::getIngameTextStrings() const
+{
+	return mIngameTextStrings;
 }

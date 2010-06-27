@@ -1,63 +1,63 @@
 #include "OUAN_Precompiled.h"
 
-#include "GameObjectSign.h"
+#include "GameObjectSignpost.h"
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
 
 using namespace OUAN;
 
-GameObjectSign::GameObjectSign(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_SIGN)
+GameObjectSignpost::GameObjectSignpost(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_SIGNPOST)
 {
 
 }
 
-GameObjectSign::~GameObjectSign()
+GameObjectSignpost::~GameObjectSignpost()
 {
 
 }
 
-void GameObjectSign::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectSignpost::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectSign::getRenderComponentEntity() const
+RenderComponentEntityPtr GameObjectSignpost::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectSign::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectSignpost::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectSign::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectSignpost::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectSign::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectSignpost::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectSign::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectSignpost::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectSign::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void GameObjectSignpost::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=physicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectSign::getPhysicsComponentCharacter() const
+PhysicsComponentCharacterPtr GameObjectSignpost::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
 
-void GameObjectSign::changeWorldFinished(int newWorld)
+void GameObjectSignpost::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -86,7 +86,7 @@ void GameObjectSign::changeWorldFinished(int newWorld)
 	}
 }
 
-void GameObjectSign::changeWorldStarted(int newWorld)
+void GameObjectSignpost::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -105,7 +105,7 @@ void GameObjectSign::changeWorldStarted(int newWorld)
 	}
 }
 
-void GameObjectSign::changeToWorld(int newWorld, double perc)
+void GameObjectSignpost::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
@@ -120,12 +120,12 @@ void GameObjectSign::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectSign::calculateChangeWorldTotalTime(double changeWorldTotalTime)
+void GameObjectSignpost::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 {
 	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
 }
 
-void GameObjectSign::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
+void GameObjectSignpost::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
 {
 	double fraction=0.25f;
 
@@ -156,7 +156,7 @@ void GameObjectSign::calculateChangeWorldDelay(double totalElapsedTime,double to
 	}	
 }
 
-void GameObjectSign::reset()
+void GameObjectSignpost::reset()
 {
 	GameObject::reset();
 
@@ -166,39 +166,39 @@ void GameObjectSign::reset()
 		(mWorld==NIGHTMARES && mLogicComponent->existsInNightmares()));
 }
 
-bool GameObjectSign::hasPositionalComponent() const
+bool GameObjectSignpost::hasPositionalComponent() const
 {
 	return true;
 }
 
-RenderComponentPositionalPtr GameObjectSign::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectSignpost::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
-bool GameObjectSign::hasPhysicsComponent() const
+bool GameObjectSignpost::hasPhysicsComponent() const
 {
 	return true;
 }
 
-PhysicsComponentPtr GameObjectSign::getPhysicsComponent() const
+PhysicsComponentPtr GameObjectSignpost::getPhysicsComponent() const
 {
 	return mPhysicsComponentCharacter;
 }
 
 /// Set logic component
-void GameObjectSign::setLogicComponent(LogicComponentPropPtr logicComponent)
+void GameObjectSignpost::setLogicComponent(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPropPtr GameObjectSign::getLogicComponent()
+LogicComponentPropPtr GameObjectSignpost::getLogicComponent()
 {
 	return mLogicComponent;
 }
 
-void GameObjectSign::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
+void GameObjectSignpost::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
@@ -206,7 +206,7 @@ void GameObjectSign::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 p
 	}
 }
 
-void GameObjectSign::processEnterTrigger(GameObjectPtr pGameObject)
+void GameObjectSignpost::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -214,7 +214,7 @@ void GameObjectSign::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectSign::processExitTrigger(GameObjectPtr pGameObject)
+void GameObjectSignpost::processExitTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -222,30 +222,30 @@ void GameObjectSign::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectSign::updateLogic(double elapsedSeconds)
+void GameObjectSignpost::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-bool GameObjectSign::hasRenderComponentEntity() const
+bool GameObjectSignpost::hasRenderComponentEntity() const
 {
 	return true;
 }
-RenderComponentEntityPtr GameObjectSign::getEntityComponent() const
+RenderComponentEntityPtr GameObjectSignpost::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
 
-void GameObjectSign::processAnimationEnded(const std::string& animationName)
+void GameObjectSignpost::processAnimationEnded(const std::string& animationName)
 {
 	if (animationName.compare(SIGN_ANIM_HIT)==0)
 	{
 		mLogicComponent->setHasTakenHit(false);
 	}
 }
-void GameObjectSign::update(double elapsedSeconds)
+void GameObjectSignpost::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
@@ -261,12 +261,13 @@ void GameObjectSign::update(double elapsedSeconds)
 			{
 				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
-				mRenderComponentEntity->changeAnimation(SIGN_STATE_IDLE);					
+				mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);					
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(SIGN_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{	
-			mRenderComponentEntity->changeAnimation(SIGN_STATE_HIT);			
+			mRenderComponentEntity->changeAnimation(SIGN_ANIM_HIT);	
+			displayText(getTranslation(getSignpostMessage()));
 		}
 		if (mRenderComponentEntity.get())
 		{
@@ -274,7 +275,7 @@ void GameObjectSign::update(double elapsedSeconds)
 		}
 	}
 }
-void GameObjectSign::setDreamsRender()
+void GameObjectSignpost::setDreamsRender()
 {
 	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
@@ -288,7 +289,7 @@ void GameObjectSign::setDreamsRender()
 	}
 }
 
-void GameObjectSign::setNightmaresRender()
+void GameObjectSignpost::setNightmaresRender()
 {
 	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
@@ -302,21 +303,30 @@ void GameObjectSign::setNightmaresRender()
 	}
 }
 
-void GameObjectSign::setChangeWorldRender()
+void GameObjectSignpost::setChangeWorldRender()
 {
 	if (!isEnabled()) return;
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntity->setChangeWorldMaterials();
 }
 
+const std::string& GameObjectSignpost::getSignpostMessage() const
+{
+	return mSignpostMessage;
+}
+void GameObjectSignpost::setSignpostMessage(const std::string& signpostMessage)
+{
+	mSignpostMessage=signpostMessage;
+}
+
 //-------------------------------------------------------------------------------------------
 
-TGameObjectSignParameters::TGameObjectSignParameters() : TGameObjectParameters()
+TGameObjectSignPostParameters::TGameObjectSignPostParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectSignParameters::~TGameObjectSignParameters()
+TGameObjectSignPostParameters::~TGameObjectSignPostParameters()
 {
 
 }

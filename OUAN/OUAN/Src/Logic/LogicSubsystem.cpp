@@ -12,6 +12,7 @@
 #include "../Game/GameObject/GameObjectTripollito.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
+#include "../Game/GameObject/GameObjectSignpost.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Core/GameRunningState.h"
@@ -155,6 +156,15 @@ void LogicSubsystem::loadScripts()
 		if (dtree.get() && !dtree->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+dtree->getLogicComponent()->getScriptFilename());
+		}
+	}
+	TGameObjectSignPostContainer* signList = worldMgr->getGameObjectSignPostContainer();
+	if (!signList->empty())
+	{
+		GameObjectSignPostPtr sign= boost::dynamic_pointer_cast<GameObjectSignpost>(signList->at(0));
+		if (sign.get() && !sign->getLogicComponent()->getScriptFilename().empty())
+		{
+			loadScript(SCRIPTS_PATH+"/"+sign->getLogicComponent()->getScriptFilename());
 		}
 	}
 	//TODO: CHANGE THIS!!!

@@ -590,7 +590,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectSign.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectSignpost.cpp"
 						>
 					</File>
 					<File
@@ -1647,7 +1647,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectSign.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectSignpost.h"
 						>
 					</File>
 					<File

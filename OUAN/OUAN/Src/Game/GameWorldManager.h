@@ -51,6 +51,7 @@ namespace OUAN
 		TGameObjectTriggerBoxContainer * getGameObjectTriggerBoxContainer();
 		TGameObjectTriggerCapsuleContainer * getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer * getGameObjectViewportContainer();
+		TGameObjectSignPostContainer* getGameObjectSignPostContainer();
 
 		TGameObjectPortalContainer * getGameObjectPortalContainer();
 
@@ -251,6 +252,7 @@ namespace OUAN
 		void addGameObjectScaredPlant(GameObjectScaredPlantPtr pGameObjectScaredPlant);
 		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectScepter(GameObjectScepterPtr pGameObjectScepter);
+		void addGameObjectSignPost(GameObjectSignPostPtr pGameObjectSignPost);
 		void addGameObjectSkyBody(GameObjectSkyBodyPtr pGameObjectSkyBody);
 		void addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper);
 		void addGameObjectSound(GameObjectSoundPtr pGameObjectSound);
@@ -334,6 +336,7 @@ namespace OUAN
 		TGameObjectScaredPlantContainer mGameObjectScaredPlantContainer;
 		TGameObjectDiamondTreeContainer mGameObjectDiamondTreeContainer;
 		TGameObjectDiamondContainer mGameObjectDiamondContainer;
+		TGameObjectSignPostContainer mGameObjectSignPostContainer;
 
 		TGameObjectPortalContainer mGameObjectPortalContainer;
 
@@ -359,6 +362,7 @@ namespace OUAN
 
 		TGameObjectSoundContainer mGameObjectSoundContainer;
 		TGameObjectContainer mAmbientSoundContainer;
+
 
 		std::string mDefaultAmbientSoundIDDreams; //Sound id
 		std::string mDefaultAmbientSound;//Game object name

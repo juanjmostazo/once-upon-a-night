@@ -1,5 +1,5 @@
-#ifndef GameObjectScaredPlantH_H
-#define GameObjectScaredPlantH_H
+#ifndef GAMEOBJECTSIGNH_H
+#define GAMEOBJECTSIGNH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -14,10 +14,10 @@ namespace OUAN
 	const std::string SIGN_STATE_HIT="SIGN_STATE_HIT";
 	
 	const std::string SIGN_ANIM_IDLE="idle";
-	const std::string SIGN_ANIM_HIT="alert";
+	const std::string SIGN_ANIM_HIT="hit";
 
 	/// Class to hold ScaredPlant information
-	class GameObjectSign: public GameObject, public boost::enable_shared_from_this<GameObjectSign>
+	class GameObjectSignpost: public GameObject, public boost::enable_shared_from_this<GameObjectSignpost>
 	{
 	private:
 		/// Visual information
@@ -32,11 +32,13 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
+		std::string mSignpostMessage;
 	public:
 		//Constructor
-		GameObjectSign(const std::string& name);
+		GameObjectSignpost(const std::string& name);
 		//Destructor
-		~GameObjectSign();
+		~GameObjectSignpost();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -99,6 +101,9 @@ namespace OUAN
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
 
+		const std::string& getSignpostMessage() const;
+		void setSignpostMessage(const std::string& signpostMessage);
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -120,11 +125,11 @@ namespace OUAN
 		//------------------------------------------------------------------
 	};
 
-	class TGameObjectSignParameters: public TGameObjectParameters
+	class TGameObjectSignPostParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectSignParameters();
-		~TGameObjectSignParameters();
+		TGameObjectSignPostParameters();
+		~TGameObjectSignPostParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
@@ -137,6 +142,8 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;
+
+		std::string signpostMessage;
 	};
 }
 #endif

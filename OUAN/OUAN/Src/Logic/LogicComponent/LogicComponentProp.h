@@ -31,6 +31,7 @@ namespace OUAN
 		bool isReload() const;
 		void setReload(bool reload);
 
+
 	private:
 		double mApproachDistance;
 		double mDelay;

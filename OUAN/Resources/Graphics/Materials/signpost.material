@@ -1,0 +1,45 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material signpost_d : basic_texture
+{
+	set_texture_alias diffuse_texture signpost.dds
+}
+
+material signpost_n : basic_texture
+{
+	set_texture_alias diffuse_texture signpost.dds
+}
+
+material signpost_cw : default_changeworld
+{
+}
+
+material signpost2_d : basic_texture
+{
+	set_texture_alias diffuse_texture signpost2.dds
+}
+
+material signpost2_n : basic_texture
+{
+	set_texture_alias diffuse_texture signpost2.dds
+}
+
+material signpost2_cw : default_changeworld
+{
+}
+
+
+material signpost3_d : basic_texture
+{
+	set_texture_alias diffuse_texture signpost3.dds
+}
+
+material signpost3_n : basic_texture
+{
+	set_texture_alias diffuse_texture signpost3.dds
+}
+
+material signpost3_cw : default_changeworld
+{
+}

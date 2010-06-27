@@ -43,7 +43,16 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 			mHasTakenHit=true;			
 			mHitRecoveryTime=1;
 		}		
-	}	
+	}
+	bool isParentSignpost = mParent->getType().compare(GAME_OBJECT_TYPE_SIGNPOST)==0;
+	if (isParentSignpost && isWeaponCollision)
+	{
+		if(mHitRecoveryTime<0)
+		{
+			mHasTakenHit=true;
+			mHitRecoveryTime=1;
+		}
+	}
 
 
 	//if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
@@ -114,6 +123,7 @@ void LogicComponentProp::setReload(bool reload)
 {
 	mReload=reload;
 }
+
 TLogicComponentPropParameters::TLogicComponentPropParameters()
 {
 }
