@@ -366,6 +366,9 @@ void CameraControllerThirdPerson::setCameraMoveToTarget(Ogre::Vector3 position1,
 	mTransitionTargetInput=pTargetInput;
 	mTransitionTargetSpeed=targetSpeed;
 	mTargetState=targetState;
+	defaultUpdateCamera(mTransitionDummyCamera,mTransitionTargetInput,0);
+	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
 	mCameraState=CS_MOVE_TO_TARGET;
 }
 
@@ -394,7 +397,6 @@ void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Og
 	defaultUpdateCamera(mTransitionDummyCamera,mTransitionTargetInput,elapsedTime);
 	mTransitionTargetRotation=mTransitionDummyCamera->getOrientation();
 	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
-	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
 	
 	updateCameraMoveToPosition(elapsedTime,pCamera,pCameraInput);
 }
