@@ -10,4 +10,14 @@ material frame_c2 : basic_texture
 {
 	set_texture_alias diffuse_texture frame_c_2.dds
 }
+material frame_c1n : basic_texture
+{
+	set_texture_alias diffuse_texture frame_c_1n.dds
+}
+
+material frame_c2n : basic_texture
+{
+	set_texture_alias diffuse_texture frame_c_2n.dds
+}
+
 

@@ -19,3 +19,21 @@ material frame4 : basic_texture
 {
 	set_texture_alias diffuse_texture frame4.dds
 }
+material frame1n : basic_texture
+{
+	set_texture_alias diffuse_texture frame1n.dds
+}
+
+material frame2n : basic_texture
+{
+	set_texture_alias diffuse_texture frame2n.dds
+}
+
+material frame3n : basic_texture
+{
+	set_texture_alias diffuse_texture frame3n.dds
+}
+material frame4n : basic_texture
+{
+	set_texture_alias diffuse_texture frame4n.dds
+}
