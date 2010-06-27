@@ -625,6 +625,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_CLOCKPIECE="clockpiece";
 		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
 		const std::string GAME_OBJECT_TYPE_SOUND="sound";
+		const std::string GAME_OBJECT_TYPE_SIGN="sign";
 
 		const std::string GAME_OBJECT_TYPE_TRIPOLLITO="tripollito";
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";

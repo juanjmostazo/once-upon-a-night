@@ -590,6 +590,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSign.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectSkyBody.cpp"
 						>
 					</File>
@@ -1628,6 +1632,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectScepter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSign.h"
 						>
 					</File>
 					<File
