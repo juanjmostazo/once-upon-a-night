@@ -10,6 +10,8 @@
 
 namespace OUAN
 {
+
+	const std::string MAXHP_ANIM_IDLE="idle01";
 	/// Class to hold MaxHP information
 	class GameObjectItemMaxHP : public GameObject, public boost::enable_shared_from_this<GameObjectItemMaxHP>
 	{

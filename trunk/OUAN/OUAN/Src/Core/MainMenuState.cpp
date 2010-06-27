@@ -100,7 +100,12 @@ void MainMenuState::resume()
 /// @param app	the parent application
 void MainMenuState::handleEvents()
 {
-
+	if (mApp->isPressedJump() && mApp->mKeyBuffer<0)
+	{
+		mApp->cycleLanguage();
+		mGUI->setStrings(mApp->getCurrentLanguage());
+		mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+	}
 }
 
 /// Update game according to the current state
@@ -108,6 +113,8 @@ void MainMenuState::handleEvents()
 void MainMenuState::update(long elapsedTime)
 {
 	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
+	if (mApp->mKeyBuffer>=0)
+	mApp->mKeyBuffer-=elapsedTime;
 }
 
 void MainMenuState::gotoPlay()
