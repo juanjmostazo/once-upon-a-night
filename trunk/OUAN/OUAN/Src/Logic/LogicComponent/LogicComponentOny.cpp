@@ -94,8 +94,6 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
 	{
-		Logger::getInstance()->log("### Collision between " + getParent()->getName() + " and " + pGameObject->getName() + "("+pGameObject->getType()+")" + "," + Ogre::StringConverter::toString(pNormal));
-
 		GameObjectTerrainConvexPtr terrain = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(pGameObject);
 		PhysicsComponentComplexConvexPtr physicsTerrain = terrain->getPhysicsComponentComplexConvex();
 
