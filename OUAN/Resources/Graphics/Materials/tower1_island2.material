@@ -1,0 +1,16 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material tower1_island2 : basic_texture
+{
+	set_texture_alias diffuse_texture tower1_d.dds
+}
+
+material tower1_island2n : basic_texture
+{
+	set_texture_alias diffuse_texture tower1_n.dds
+}
+material torre1almeda_d : basic_texture
+{
+	set_texture_alias diffuse_texture torre1almeda.dds
+}
