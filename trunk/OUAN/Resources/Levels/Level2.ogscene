@@ -33,6 +33,7 @@
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
+    <OPTION id="1" position="693.288 260.506 44.3731" orientation="0.990365 -0.127303 0.0540965 0.0067551"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -432,6 +433,17 @@
   </OBJECT>
 
   <OBJECT object_id="714499328" name="Nightgoblin" typename="Node Object" parentnode="Isla1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="662984064" name="Signposts" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -952,25 +964,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="465773504" name="poster#2" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.918791 0 0.394744 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="572.776 131.272 90.2912"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="449079872" name="bush_d#37" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1477,6 +1470,26 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Disable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="382366432" name="signpost_d#6" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.829038 0 -0.559193 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-240.004 41.0456 -416.523"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_GETTINGCLOSE" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2168,6 +2181,26 @@
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="222327344" name="signpost_d#8" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.933581 0 -0.358368 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="729.161 224.724 -15.2941"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_DONOTTOUCH" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2947,25 +2980,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="285561696" name="poster#5" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.97437 0 0.224951 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-628.272 40.1944 -639.165"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="137272256" name="tree10_n#4" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3441,6 +3455,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="569200704" name="signpost_d#3" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.716302 0 -0.697791 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="571.724 131.46 88.7649"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_LOOKINGAT" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="296639904" name="tree9_n#69" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3625,25 +3659,6 @@
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="463423584" name="poster#3" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.965396 -0.0205428 -0.252423 -0.0622224"></PROPERTY>
-    <PROPERTY id="position" type="9" value="276.246 76.4802 -394.83"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -4042,6 +4057,26 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="184270752" name="signpost_d#5" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.0479782 0 -0.998848 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="422.309 688.456 -1821.64"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_GALLERY" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5472,25 +5507,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="745536704" name="poster#6" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.707107 0 -0.707107 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-242.254 39.2233 -421.717"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="466750080" name="tree10_n#3" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -5870,7 +5886,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tentetieso.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-680.848 36.4123 -615.954"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-680.848 41.4647 -615.954"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tentetieso_d"></PROPERTY>
@@ -5898,6 +5914,26 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="867732736" name="signpost_d#2" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.337917 0 -0.941176 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="505.201 134.163 164.913"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_TICKTOCK" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6603,6 +6639,26 @@
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="194067200" name="signpost_d#4" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.511293 0 -0.859406 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="277.689 76.1532 -394.974"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost2_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost2_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_ADVERTISING" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8150,25 +8206,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="282235168" name="poster#7" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.967046 0 0.254602 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="80.7324 161.461 144.825"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="976531264" name="tree10_n#2" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8575,6 +8612,26 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="604724288" name="signpost_d#1" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.0523368 0 0.99863 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-737.974 45.5935 -446.615"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_HURRY_UP" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11536,6 +11593,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="188940096" name="signpost_d#0" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.887011 0 -0.461748 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-634.329 41.6448 -638.297"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost2_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost2_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_TRIPOLLO_INFO" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="751640384" name="tree5_d#19" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -13757,25 +13834,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="53468428" name="poster#1" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="509.046 133.713 166.565"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="169469280" name="terrain_n#platform6_1" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14344,6 +14402,26 @@
       <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="534226528" name="signpost_d#7" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="86.4791 160.661 128.222"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_DEVELOPERPUN" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -15919,25 +15997,6 @@
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="857020800" name="poster#4" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="poster.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="418.49 687.496 -1814.86"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

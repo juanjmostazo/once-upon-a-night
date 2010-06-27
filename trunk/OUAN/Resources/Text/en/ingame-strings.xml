@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Configuration>
+	<Options>						
+		<Option key="SIGNPOST_MSG_HURRY_UP">Hurry up, Any! If you want to wake up...</Option>
+		<Option key="SIGNPOST_MSG_TRIPOLLO_INFO">Tripollo: Indigenous animal that inhabits \nthe kingdoms of dreams and nightmares.</Option>
+		<Option key="SIGNPOST_MSG_TICKTOCK">Tick...tock, tick...tock, tick... tock,\nfind my gears and fix me, the clock.</Option>		
+		<Option key="SIGNPOST_MSG_LOOKINGAT">Hey, what are you staring at?</Option>
+		<Option key="SIGNPOST_MSG_WAITINGFOR">What are you waiting for? It's this way!</Option>		
+		<Option key="SIGNPOST_MSG_DONOTTOUCH">Do not touch.</Option>
+		<Option key="SIGNPOST_MSG_ALLTHISLAND">Some day, my child, all this land will belong to you.</Option>
+		<Option key="SIGNPOST_MSG_GALLERY">Nice gallery, isn't it?</Option>
+		<Option key="SIGNPOST_MSG_ADVERTISING">Advertise here for a couple of diamonds a month!</Option>
+		<Option key="SIGNPOST_MSG_GETTINGCLOSE">You're going the right way...or was it the opposite?</Option>
+		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Sponsor a coder from the real world\n...Oh, and yes, you're going fine through here</Option>
+	</Options>
+</Configuration>

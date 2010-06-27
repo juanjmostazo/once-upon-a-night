@@ -201,6 +201,8 @@ namespace OUAN
 
 		virtual bool isWorthUpdatingPhysicsComponents();
 		virtual bool isWorthUpdatingLogicComponents();
+
+		virtual std::string getTranslation(const std::string& str);
 	};
 
 	class TGameObjectParameters

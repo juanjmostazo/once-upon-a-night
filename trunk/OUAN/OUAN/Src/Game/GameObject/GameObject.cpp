@@ -482,6 +482,18 @@ bool GameObject::isWorthUpdatingLogicComponents()
 		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
 }
 
+std::string GameObject::getTranslation(const std::string& baseString)
+{
+	ConfigurationPtr ingameStrings=mGameWorldManager->getParent()->getIngameTextStrings();
+	if (ingameStrings.get())
+	{
+		std::string translatedString="";
+		ingameStrings->getOption(baseString,translatedString);
+		return translatedString;
+	}
+	return baseString;
+}
+
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

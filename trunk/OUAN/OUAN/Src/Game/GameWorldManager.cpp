@@ -33,6 +33,7 @@
 #include "GameObject/GameObjectScaredPlant.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSignpost.h"
 #include "GameObject/GameObjectSkyBody.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
 #include "GameObject/GameObjectSound.h"
@@ -341,6 +342,11 @@ TGameObjectDiamondTreeContainer * GameWorldManager::getGameObjectDiamondTreeCont
 	return &mGameObjectDiamondTreeContainer;
 }
 
+TGameObjectSignPostContainer* GameWorldManager::getGameObjectSignPostContainer()
+{
+	return &mGameObjectSignPostContainer;
+}
+
 void GameWorldManager::clearContainers()
 {
 	EMPTY_MAP(TGameObjectContainer,mGameObjects);
@@ -386,6 +392,7 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectDiamondContainer, mGameObjectDiamondContainer);
 
 	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
+	EMPTY_VECTOR(TGameObjectSignPostContainer, mGameObjectSignPostContainer);
 
 	mDiamondTreeLinks.clear();
 	mGameObjectPillow.reset();
@@ -887,7 +894,17 @@ void GameWorldManager::addGameObjectScepter(GameObjectScepterPtr gameObjectScept
 {
 	mGameObjects[gameObjectScepter->getName()]=gameObjectScepter;
 }
+void GameWorldManager::addGameObjectSignPost(GameObjectSignPostPtr gameObjectSignPost)
+{
+	mGameObjects[gameObjectSignPost->getName()]=gameObjectSignPost;
+	mGameObjectSignPostContainer.push_back(gameObjectSignPost);
+	mGameObjectPositionalContainer.push_back(gameObjectSignPost);
+	mGameObjectNonMovableContainer.push_back(gameObjectSignPost);
+	mGameObjectNonMovableEntityContainer.push_back(gameObjectSignPost);
 
+	mGameObjectPhysicsContainer.push_back(gameObjectSignPost);
+	mGameObjectPhysicsCharacterContainer.push_back(gameObjectSignPost);
+}
 void GameWorldManager::addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr gameObjectSnakeCreeper)
 {
 	mGameObjects[gameObjectSnakeCreeper->getName()]=gameObjectSnakeCreeper;

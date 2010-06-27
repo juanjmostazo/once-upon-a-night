@@ -44,6 +44,7 @@
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectScene.h"
 #include "../Game/GameObject/GameObjectScepter.h"
+#include "../Game/GameObject/GameObjectSignpost.h"
 #include "../Game/GameObject/GameObjectSkyBody.h"
 #include "../Game/GameObject/GameObjectSnakeCreeper.h"
 #include "../Game/GameObject/GameObjectSound.h"
@@ -436,6 +437,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_ACTION)==0)
 		{
 			processGameObjectActionTrigger(gameObject);
+		}
+		else if (gameObjectType.compare(GAME_OBJECT_TYPE_SIGNPOST)==0)
+		{
+			processGameObjectSignPost(gameObject);
 		}
 		else
 		{
@@ -1912,6 +1917,49 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectScepter(tGameObjectScepterParameters);
 	mGameWorldManager->addGameObjectScepter(mGameObjectFactory->createGameObjectScepter(tGameObjectScepterParameters,mGameWorldManager));
+}
+void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
+{
+	TGameObjectSignPostParameters params;
+	params.maxUpdateRadio=processCustomAttributeMaxUpdateRadio(gameObject);
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(gameObject->XMLNodeNightmares) throw NIGHTMARES_SHOULD_NOT_EXIST;
+
+		//Get names
+		params.dreamsName = gameObject->dreamsName;
+		params.nightmaresName = gameObject->nightmaresName;
+		params.name = gameObject->name;
+
+		params.signpostMessage=getPropertyString(gameObject->getMainXMLNode(),"SignpostCustomProperty::message",false);
+
+		//Get Logic component
+		params.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		params.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			DREAMS, gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+
+		//Get PhysicsComponentCharacter
+		params.tPhysicsComponentCharacterParameters= processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectScaredPlant(tGameObjectScaredPlantParameters);
+	mGameWorldManager->addGameObjectSignPost(mGameObjectFactory->createGameObjectSignPost(params,mGameWorldManager));
 }
 void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 {

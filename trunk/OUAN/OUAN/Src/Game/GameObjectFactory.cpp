@@ -34,6 +34,7 @@
 #include "GameObject/GameObjectScaredPlant.h"
 #include "GameObject/GameObjectScene.h"
 #include "GameObject/GameObjectScepter.h"
+#include "GameObject/GameObjectSignpost.h"
 #include "GameObject/GameObjectSkyBody.h"
 #include "GameObject/GameObjectSound.h"
 #include "GameObject/GameObjectSnakeCreeper.h"
@@ -2791,4 +2792,51 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 	//Add Object to GameWorldManager
 	//addGameObjectWater(pGameObjectWater);
 	return pGameObjectWater;
+}
+GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSignPostParameters tGameObjectSignPostParameters, 
+									   GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectSignPostPtr gameObject;
+
+	//Create GameObject
+	gameObject= GameObjectSignPostPtr(new GameObjectSignpost(tGameObjectSignPostParameters.name));
+	gameObject->setMaxUpdateRadio(tGameObjectSignPostParameters.maxUpdateRadio);
+
+	//Create LogicComponent
+	gameObject->setLogicComponent(
+		mComponentFactory->createLogicComponentProp(
+		gameObject,
+		tGameObjectSignPostParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	gameObject->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		gameObject,tGameObjectSignPostParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	gameObject->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		gameObject->getRenderComponentPositional()));
+
+	//Create RenderComponentEntity
+	gameObject->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectSignPostParameters.name,
+		gameObject,tGameObjectSignPostParameters.tRenderComponentEntityParameters));
+
+	//Create PhysicsComponent
+	gameObject->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+		gameObject,
+		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters,
+		gameObject->getRenderComponentPositional()));
+	gameObject->getPhysicsComponentCharacter()->setCyclicCharacter(true);
+	gameObject->getRenderComponentPositional()->setScale(
+		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters.scale_correction);
+	gameObject->getPhysicsComponentCharacter()->setOffsetRenderPosition(
+		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters.position_correction);
+
+	gameObject->setSignpostMessage(tGameObjectSignPostParameters.signpostMessage);
+
+	//Add reference to this
+	gameObject->setGameWorldManager(gameWorldMgr);
+
+	return gameObject;
+
 }

@@ -115,7 +115,9 @@ namespace OUAN
 		GameObjectFogPtr createGameObjectFog(TGameObjectFogParameters tGameObjectFogParameters, 
 			GameWorldManagerPtr gameWorldMgr);		
 		GameObjectCameraTriggerPtr createGameObjectCameraTrigger(TGameObjectCameraTriggerParameters tGameObjectCameraTriggerParameters, 
-			GameWorldManagerPtr gameWorldMgr);	
+			GameWorldManagerPtr gameWorldMgr);
+		GameObjectSignPostPtr createGameObjectSignPost(TGameObjectSignPostParameters tGameObjectSignPostParameters, 
+			GameWorldManagerPtr gameWorldMgr);
 		GameObjectActionTriggerPtr createGameObjectActionTrigger(TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
 	};
