@@ -284,7 +284,8 @@ void GameObjectClockPiece::update(double elapsedSeconds)
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
 		{
 			mRenderComponentEntity->setVisible(false);
-			mPhysicsComponentVolumeBox->destroy();		
+			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+				mPhysicsComponentVolumeBox->destroy();		
 		}
 	}	
 }

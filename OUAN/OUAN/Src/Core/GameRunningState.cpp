@@ -8,6 +8,7 @@
 #include "GameOverState.h"
 #include "GamePausedState.h"
 #include "InGameMenuState.h"
+#include "CutsceneState.h"
 
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -134,8 +135,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getWorld()].id,
 		mMusicChannels[mApp->getGameWorldManager()->getWorld()].channelId,
 		true);
-	mAudioFrameCnt=0;
-	mAudioFrameSkip=mApp->getAudioSubsystem()->getFrameSkip();
+	mApp->mAudioFrameCnt=0;
 	
 	if (mApp->getGameWorldManager()->getEventManager().get())
 	{
@@ -477,6 +477,15 @@ void GameRunningState::checkDebuggingKeys()
 			mApp->getRenderSubsystem()->toggleDisplaySceneNodes();
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
+		else if (mApp->isPressedRunCutscene())
+		{
+			Logger::getInstance()->log("RunCutscene pressed");
+			CutsceneStatePtr cutscenestate = CutsceneStatePtr(new CutsceneState());
+			cutscenestate->setCutsceneFile("cutscene_engine.lua");
+			cutscenestate->setCutsceneFunction("helloWorld");
+			mApp->getGameStateManager()->pushState(cutscenestate,mApp);
+			
+		}
 	}
 }
 
@@ -566,12 +575,12 @@ void GameRunningState::update(long elapsedTime)
 		}
 		mGUI->update(elapsedSeconds);
 
-		if (mAudioFrameSkip==0 || mAudioFrameCnt==0)
+		if (mApp->mAudioFrameSkip==0 || mApp->mAudioFrameCnt==0)
 		{
 			mApp->getAudioSubsystem()->update(elapsedSeconds);
 		}
-		if ((mAudioFrameCnt++)>mAudioFrameSkip)
-			mAudioFrameCnt=0;
+		if ((mApp->mAudioFrameCnt++)>mApp->mAudioFrameSkip)
+			mApp->mAudioFrameCnt=0;
 
 		//Logger::getInstance()->log("Other stuff");
 		mApp->mKeyBuffer-=elapsedTime;

@@ -178,6 +178,17 @@ void ChannelGroup::update(double dt)
 		}
 	}
 }
+void ChannelGroup::stopSounds()
+{
+	for(int i=0; i<mNumChannels; i++)
+	{
+		if(mChannels[i]->isPlaying())
+		{
+			getChannel(i)->stop();		
+			mChannels[i]->setFree(true);
+		}
+	}
+}
 bool ChannelGroup::setVolume(double val)
 {
 	return mChannelGroup && mChannelGroup->setVolume(val)==FMOD_OK;

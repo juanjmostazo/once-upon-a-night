@@ -596,6 +596,15 @@ bool AudioSubsystem::stopMusic(int channelIndex)
 		throw e;
 	}	
 }
+void AudioSubsystem::stopAllSounds()
+{
+	for(TChannelGroupMap::iterator i=mChannelGroupMap.begin();
+		i!=mChannelGroupMap.end(); i++)
+	{
+		(i->second)->stopSounds();
+	}
+
+}
 bool AudioSubsystem::setPause(int channelIndex, bool pause, const std::string& channelGroup)
 {
 	ChannelPtr ch=mChannelGroupMap[channelGroup]->getChannelObject(channelIndex);

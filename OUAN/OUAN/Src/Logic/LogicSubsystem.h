@@ -4,6 +4,11 @@
 
 namespace OUAN
 {
+
+	namespace Utils
+	{
+		class LUATimer;
+	};
 	const std::string SCRIPTS_PATH ="../../Resources/Scripts";
 	const std::string SCRIPT_COMMON_FUNCTIONS="common.lua";
 	/// This class will manage the
@@ -17,7 +22,9 @@ namespace OUAN
 		/// Pointer to LUA's virtual machine
 		lua_State* mLuaEngine;
 		
-		std::map<std::string,lua_State*> mCoroutines;
+		lua_State* mCoroutine;
+		bool mCutsceneFinished;
+		boost::shared_ptr<Utils::LUATimer> mTimer;
 	public:
 		LogicSubsystem();
 		~LogicSubsystem();
@@ -59,7 +66,11 @@ namespace OUAN
 
 		void initCutsceneScript(const std::string& scriptFilename);
 		void invokeCutsceneFunction(const std::string& functionName);
-		void updateCutsceneFunction(const std::string& functionName);
+		void updateCutsceneFunction(const std::string& functionName,double elapsedSeconds);
+		void terminateCutsceneFunction(const std::string& functionName);
+		bool isCutsceneFinished(const std::string& functionName);
+		void resetCutsceneFinished();
+		void skipCutscene(const std::string& functionName);
 
 		/// Retrieve the value of a global variable in LUA
 		int getGlobalInt (const std::string& globalName);

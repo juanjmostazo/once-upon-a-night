@@ -87,6 +87,10 @@ namespace OUAN
 		/// @return true if there has been a 'toggle-showscenenodes' key press
 		bool isPressedToggleShowSceneNodes();
 
+		/// Launch testing cutscene
+		/// @return true if there's been a 'run-cutscene' key press
+		bool isPressedRunCutscene();
+
 		void getMouseStateRelValues(
 			double & x, double & y, double & z);			// Mouse x, y, z coordinate values
 

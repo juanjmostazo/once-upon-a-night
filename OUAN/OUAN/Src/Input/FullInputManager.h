@@ -44,6 +44,7 @@ namespace OUAN
 	const std::string KEY_TOGGLE_GOD_MODE = "ToggleGodMode";
 	const std::string KEY_TOGGLE_CHANGEWORLD_DEBUG = "ToggleChangeWorldDebug";
 	const std::string KEY_TOGGLE_SHOW_SCENE_NODES = "ToggleShowSceneNodes";
+	const std::string KEY_RUN_CUTSCENE = "RunCutscene";
 
 	//General Joystick Config 
 	const std::string DEFAULT_PAD_ID="DEFAULT_PAD_ID";
@@ -124,6 +125,7 @@ namespace OUAN
 		int keyToggleConsole, keyToggleVolumes;
 		int keyToggleGodMode, keyToggleChangeWorldDebug;
 		int keyToggleShowSceneNodes;
+		int keyRunCutscene;
 	} TDefaultInputData;
 
 

@@ -42,7 +42,22 @@ int Random::getRandomInteger(int low, int high)
 	boost::variate_generator<boost::mt19937&, boost::uniform_int<> > next(mRandEngine,distribution);
 	return next();
 }
-
+LUATimer::LUATimer()
+:mSeconds(0)
+{
+}
+void LUATimer::reset()
+{
+	mSeconds=0;
+}
+void LUATimer::addTime(double secs)
+{
+	mSeconds+=secs;
+}
+double LUATimer::getTime()
+{
+	return mSeconds;
+}
 double Random::getRandomDouble(double low, double high)
 {
 	if (fabs(low-0.0)<=DOUBLE_COMPARISON_DELTA && fabs(high-1.0)<=DOUBLE_COMPARISON_DELTA)

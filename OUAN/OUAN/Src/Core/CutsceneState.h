@@ -5,6 +5,9 @@
 #include "GameState.h"
 namespace OUAN
 {
+	class CutsceneState;
+	typedef boost::shared_ptr<CutsceneState> CutsceneStatePtr;
+
 	class CutsceneState: public GameState, public boost::enable_shared_from_this<CutsceneState>
 	{
 	private:

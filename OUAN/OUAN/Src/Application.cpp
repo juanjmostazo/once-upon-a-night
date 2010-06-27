@@ -116,6 +116,8 @@ bool Application::init()
 	audioDesc.set(audioCfg);
 	mAudioSubsystem.reset(new AudioSubsystem());
 	mAudioSubsystem->init(audioDesc,this_);
+	mAudioFrameCnt=0;
+	mAudioFrameSkip=getAudioSubsystem()->getFrameSkip();
 	//mSoundFileManager=SoundFileManagerPtr(new SoundFileManager());
 
 	//Initialization is now effective.

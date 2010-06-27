@@ -144,7 +144,7 @@ void GameObjectOny::update(double elapsedSeconds)
 	double timeScaleFactor = 1;
 	if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_STAB_PILLOW)==0)
 	{
-		timeScaleFactor=0.3;
+		timeScaleFactor=0.8;
 	}
 	else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_WALK)==0)
 	{
