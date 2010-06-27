@@ -15,9 +15,6 @@ namespace OUAN
 		CameraParameters();
 		~CameraParameters();
 
-		//sets default camera parameters, do this and then set the parameters you are interested
-		void setDefaultParameters();
-
 		//Camera direction from target to camera
 		//auto-normalises direction
 		void setDirection(Ogre::Vector3 direction);
@@ -35,7 +32,7 @@ namespace OUAN
 		void setTargetOffset(Ogre::Vector3 direction);
 		Ogre::Vector3 getTargetOffset() const;
 
-
+		void setCameraParameters(CameraParametersPtr pCameraParameters);
 	};
 
 

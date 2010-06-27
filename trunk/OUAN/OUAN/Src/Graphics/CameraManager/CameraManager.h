@@ -53,6 +53,9 @@ namespace OUAN
 		//Sets camera fixed first person
 		void setCameraFixedFirstPerson(bool transition);
 
+		//returns default camera parameters
+		CameraParametersPtr getDefaultCameraParameters() const;
+
 		//Note: those last two doesnt work for trajectory camera
 		//Auto-rotates camera to selected rotation
 		void setCameraAutoRotation(double rotX,double rotY,bool transition);
@@ -130,7 +133,9 @@ namespace OUAN
 		std::string mLastTrigger;
 
 		static CameraManager* mInst;
-		
+
+		CameraParametersPtr mDefaultCameraParameters;
+		void loadDefaultCameraParameters();
 	};
 }
 
