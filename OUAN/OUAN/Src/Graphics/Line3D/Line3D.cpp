@@ -44,7 +44,9 @@ void Line3D::updatePoint(unsigned short index, const Ogre::Vector3 &value)
 void Line3D::drawLine(Ogre::Vector3 &start, Ogre::Vector3 &end)
 {
    if(mPoints.size())
+   {
       mPoints.clear();
+   }
 
    mPoints.push_back(start);
    mPoints.push_back(end);
