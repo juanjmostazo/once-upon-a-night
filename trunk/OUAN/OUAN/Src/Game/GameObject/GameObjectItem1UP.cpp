@@ -15,6 +15,14 @@ GameObjectItem1UP::~GameObjectItem1UP()
 {
 
 }
+void GameObjectItem1UP::disable()
+{
+	GameObject::disable();
+	mRenderComponentEntity->setVisible(false);
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->destroy();
+	mLogicComponentItem->setIsTaken(false);
+}
 
 /// Set logic component
 void GameObjectItem1UP::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
@@ -226,7 +234,12 @@ void GameObjectItem1UP::calculateChangeWorldDelay(double totalElapsedTime,double
 	}	
 }
 
-
+void GameObjectItem1UP::enable()
+{
+	GameObject::enable();
+	mRenderComponentEntity->setVisible(true);
+	mPhysicsComponentVolumeBox->create();
+}
 void GameObjectItem1UP::reset()
 {
 	GameObject::reset();

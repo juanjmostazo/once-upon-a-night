@@ -96,7 +96,7 @@ namespace OUAN
 			void initScripts();
 			void setCameraTarget();
 			void clearParser();
-			void resolveDiamondTreeLinks();
+			void resolveLinks();
 			//...
 	};
 }

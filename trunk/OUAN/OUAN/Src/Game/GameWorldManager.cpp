@@ -22,6 +22,7 @@
 #include "GameObject/GameObjectItemMaxHP.h"
 #include "GameObject/GameObjectLight.h"
 #include "GameObject/GameObjectMagicClock.h"
+#include "GameObject/GameObjectNest.h"
 #include "GameObject/GameObjectNightGoblin.h"
 #include "GameObject/GameObjectOny.h"
 #include "GameObject/GameObjectParticleSystem.h"
@@ -68,6 +69,11 @@
 #include "../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
+
+bool nestChildrenSortPredicate(GameObjectPtr obj1, GameObjectPtr obj2)
+{
+	return obj1->getSpawnProbability()<obj2->getSpawnProbability();
+}
 
 GameWorldManager* GameWorldManager::mInst=NULL;
 
@@ -346,7 +352,10 @@ TGameObjectSignPostContainer* GameWorldManager::getGameObjectSignPostContainer()
 {
 	return &mGameObjectSignPostContainer;
 }
-
+TGameObjectNestContainer* GameWorldManager::getGameObjectNestContainer()
+{
+	return &mGameObjectNestContainer;
+}
 void GameWorldManager::clearContainers()
 {
 	EMPTY_MAP(TGameObjectContainer,mGameObjects);
@@ -393,8 +402,10 @@ void GameWorldManager::clearContainers()
 
 	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
 	EMPTY_VECTOR(TGameObjectSignPostContainer, mGameObjectSignPostContainer);
+	EMPTY_VECTOR(TGameObjectNestContainer, mGameObjectNestContainer);
 
 	mDiamondTreeLinks.clear();
+	mNestLinks.clear();
 	mGameObjectPillow.reset();
 }
 void GameWorldManager::initGame()
@@ -787,6 +798,17 @@ void GameWorldManager::addGameObjectLight(GameObjectLightPtr pGameObjectLight)
 void GameWorldManager::addGameObjectMagicClock(GameObjectMagicClockPtr gameObjectMagicClock)
 {
 	mGameObjects[gameObjectMagicClock->getName()]=gameObjectMagicClock;
+}
+void GameWorldManager::addGameObjectNest(GameObjectNestPtr gameObjectNest)
+{
+	mGameObjects[gameObjectNest->getName()]=gameObjectNest;
+	mGameObjectNestContainer.push_back(gameObjectNest);
+	mGameObjectPositionalContainer.push_back(gameObjectNest);
+	mGameObjectNonMovableContainer.push_back(gameObjectNest);
+	mGameObjectNonMovableEntityContainer.push_back(gameObjectNest);
+
+	mGameObjectPhysicsContainer.push_back(gameObjectNest);
+	mGameObjectPhysicsCharacterContainer.push_back(gameObjectNest);
 }
 
 void GameWorldManager::addGameObjectNightGoblin(GameObjectNightGoblinPtr gameObjectNightGoblin)
@@ -1605,7 +1627,29 @@ void GameWorldManager::resolveDiamondTreeLinks()
 		diamond= boost::dynamic_pointer_cast<GameObjectDiamond>(mGameObjects[it->first]);
 		diamond->setParentDiamondTree(diamondTree);
 		diamond->disable();
-		diamondTree->addDiamond(diamond);
+		diamondTree->addDiamond(diamond);				
+	}
+}
+void GameWorldManager::addNestLink(const std::string& object, const std::string& nest)
+{
+	mNestLinks[object]=nest;
+}
+// Append child diamonds to a diamond tree, and link the parent to its children)
+void GameWorldManager::resolveNestLinks()
+{
+	TNestLinkMap::const_iterator it;
+	GameObjectNestPtr nest;
+	GameObjectPtr obj;
+	for (it=mNestLinks.begin();it!=mNestLinks.end();++it)
+	{
+		nest= boost::dynamic_pointer_cast<GameObjectNest>(mGameObjects[it->second]);
+		obj= boost::dynamic_pointer_cast<GameObject>(mGameObjects[it->first]);
+		obj->setParentNest(nest->getName());
+		obj->setParentNestInstance(nest);
+		obj->disable();
+		nest->addChild(obj);
+		std::vector<GameObjectPtr> nestChildren=*(nest->getChildren());
+		std::sort(nestChildren.begin(),nestChildren.end(), nestChildrenSortPredicate);
 	}
 }
 LogicComponentOny* GameWorldManager::getOny()

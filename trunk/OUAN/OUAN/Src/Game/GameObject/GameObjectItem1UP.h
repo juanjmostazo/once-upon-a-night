@@ -79,9 +79,12 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		
+		virtual void disable();
 
 		/// Reset object
 		virtual void reset();
+		virtual void enable();
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;

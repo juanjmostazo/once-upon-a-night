@@ -78,6 +78,9 @@ namespace OUAN
 		void createTexturedRectangle (const TTexturedRectangleDesc& description, Ogre::Rectangle2D*& rectangle,
 			RenderSubsystemPtr renderSS);
 		void destroyTexturedRectangle (Ogre::Rectangle2D*&, const std::string& materialName, RenderSubsystemPtr renderSs);
+
+		Ogre::UTFString convertToUTF(const Ogre::String& str);
 	}
+
 }
 #endif

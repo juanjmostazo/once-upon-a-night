@@ -73,6 +73,7 @@ namespace OUAN
 		void processGameObjectItemMaxHP(XMLGameObject* gameObject);
 		void processGameObjectLight(XMLGameObject* gameObject);
 		void processGameObjectMagicClock(XMLGameObject* gameObject);
+		void processGameObjectNest(XMLGameObject* gameObject);
 		void processGameObjectNightGoblin(XMLGameObject* gameObject);
 		void processGameObjectOny(XMLGameObject *gameObject);
 		void processGameObjectParticleSystem(XMLGameObject* gameObject);
@@ -178,6 +179,8 @@ namespace OUAN
 
 		//
 		double processCustomAttributeMaxUpdateRadio(XMLGameObject* gameObject);
+		double processCustomAttributeSpawnProbability(XMLGameObject* gameObject);
+		std::string processCustomAttributeParentNest(XMLGameObject* gameObject);
 
 		OUAN::String getAttrib(TiXmlElement *XMLNode, const OUAN::String &parameter, const OUAN::String &defaultValue = "");
 

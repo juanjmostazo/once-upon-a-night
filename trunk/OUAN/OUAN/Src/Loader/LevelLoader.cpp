@@ -33,6 +33,7 @@
 #include "../Game/GameObject/GameObjectItemMaxHP.h"
 #include "../Game/GameObject/GameObjectLight.h"
 #include "../Game/GameObject/GameObjectMagicClock.h"
+#include "../Game/GameObject/GameObjectNest.h"
 #include "../Game/GameObject/GameObjectNightGoblin.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectParticleSystem.h"
@@ -442,6 +443,11 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectSignPost(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_NEST)==0)
+		{
+			processGameObjectNest(gameObject);
+		}
+
 		else
 		{
 			//processGameObjectProvisionalEntity(gameObject);
@@ -1254,6 +1260,8 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectHeartParameters tGameObjectHeartParameters;
 	tGameObjectHeartParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+	tGameObjectHeartParameters.parentNest=processCustomAttributeParentNest(gameObject);
+	tGameObjectHeartParameters.spawnProbability=processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{
@@ -1295,6 +1303,8 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectItem1UPParameters tGameObjectItem1UPParameters;
 	tGameObjectItem1UPParameters.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);
+	tGameObjectItem1UPParameters.parentNest=processCustomAttributeParentNest(gameObject);
+	tGameObjectItem1UPParameters.spawnProbability=processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{
@@ -1437,7 +1447,47 @@ void LevelLoader::processGameObjectMagicClock(XMLGameObject* gameObject)
 	//mGameWorldManager->createGameObjectMagicClock(tGameObjectMagicClockParameters);
 	mGameWorldManager->addGameObjectMagicClock(mGameObjectFactory->createGameObjectMagicClock(tGameObjectMagicClockParameters,mGameWorldManager));
 }
+void LevelLoader::processGameObjectNest(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectNestParameters params;
+	params.maxUpdateRadio = processCustomAttributeMaxUpdateRadio(gameObject);	
 
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(gameObject->XMLNodeNightmares) throw NIGHTMARES_SHOULD_NOT_EXIST;
+
+		//Get names
+		params.dreamsName = gameObject->dreamsName;
+		params.nightmaresName = gameObject->nightmaresName;
+		params.name = gameObject->name;
+
+		//Get Logic component
+		params.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentEntity
+		params.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentCharacter
+		params.tPhysicsComponentCharacterParameters= processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	mGameWorldManager->addGameObjectNest(mGameObjectFactory->createGameObjectNest(params,mGameWorldManager));
+}
 void LevelLoader::processGameObjectNightGoblin(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters;
@@ -1942,7 +1992,7 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 
 		//Get RenderComponentEntity
 		params.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
@@ -5147,5 +5197,36 @@ double LevelLoader::processCustomAttributeMaxUpdateRadio(XMLGameObject* gameObje
 	}
 
 	return maxUpdateRadio;
+}
+double LevelLoader::processCustomAttributeSpawnProbability(XMLGameObject* gameObject)
+{
+	double spawnProbability=0.0;
+	if (gameObject->getMainXMLNode())
+	{
+		try
+		{
+			spawnProbability= getPropertyReal(gameObject->getMainXMLNode(), "SpawnProbability");
+		}
+		catch (std::string error)
+		{
+			
+		}
+	}
+	return spawnProbability;
+}
+std::string LevelLoader::processCustomAttributeParentNest(XMLGameObject* gameObject)
+{
+	std::string parentNest="";
+	if (gameObject->getMainXMLNode())
+	{
+		try
+		{
+			parentNest=getPropertyString(gameObject->getMainXMLNode(),"ParentNest");
+		}
+		catch (std::string error)
+		{
+		}
+	}
+	return parentNest;
 }
 

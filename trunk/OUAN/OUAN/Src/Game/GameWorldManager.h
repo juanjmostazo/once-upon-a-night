@@ -9,6 +9,7 @@ namespace OUAN
 	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
 
 	typedef std::map<std::string, std::string> TDiamondTreeLinkMap;
+	typedef std::map<std::string, std::string> TNestLinkMap;
 
 	/// Manages the game scene:
 	/// the landscape, all of its objects (creatures, props,...)
@@ -52,6 +53,7 @@ namespace OUAN
 		TGameObjectTriggerCapsuleContainer * getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer * getGameObjectViewportContainer();
 		TGameObjectSignPostContainer* getGameObjectSignPostContainer();
+		TGameObjectNestContainer* getGameObjectNestContainer();
 
 		TGameObjectPortalContainer * getGameObjectPortalContainer();
 
@@ -273,6 +275,7 @@ namespace OUAN
 		void addGameObjectTower(GameObjectTowerPtr pGameObjectTower);
 		void addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger);
 		void addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger);
+		void addGameObjectNest(GameObjectNestPtr pGameObjectNest);
 
 		void activateChangeWorld();
 		void activateChangeWorldFast();
@@ -293,6 +296,9 @@ namespace OUAN
 		void addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree);
 		// Append child diamonds to a diamond tree, and link the parent to its children)
 		void resolveDiamondTreeLinks();
+
+		void addNestLink(const std::string& object, const std::string& nest);
+		void resolveNestLinks();
 
 	private:		
 		/// Generate a unique id string with the following format:
@@ -337,6 +343,7 @@ namespace OUAN
 		TGameObjectDiamondTreeContainer mGameObjectDiamondTreeContainer;
 		TGameObjectDiamondContainer mGameObjectDiamondContainer;
 		TGameObjectSignPostContainer mGameObjectSignPostContainer;
+		TGameObjectNestContainer mGameObjectNestContainer;
 
 		TGameObjectPortalContainer mGameObjectPortalContainer;
 
@@ -401,6 +408,7 @@ namespace OUAN
 		//Keys contain the game object diamonds bound to a tree; 
 		//Values, the trees.
 		std::map<std::string, std::string> mDiamondTreeLinks;
+		std::map<std::string, std::string> mNestLinks;
 	};
 }
 #endif

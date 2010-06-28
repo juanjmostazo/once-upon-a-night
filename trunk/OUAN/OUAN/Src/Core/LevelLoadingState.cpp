@@ -39,7 +39,7 @@ TLoadingStage gStages[]=
 	{&LevelLoadingState::processBillboardClouds, "PROCESS_BILLBOARD_CLOUDS",0.02},
 	{&LevelLoadingState::processTrajectories, "PROCESS_TRAJECTORIES",0.04},
 	{&LevelLoadingState::processWalkabilityMap, "PROCESS_WALKABILITY_MAP",0.035},
-	{&LevelLoadingState::resolveDiamondTreeLinks, "RESOLVE_DIAMONDTREE_LINKS",0.005},
+	{&LevelLoadingState::resolveLinks, "RESOLVE_LINKS",0.005},
 	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.0025},
 	{&LevelLoadingState::initMusic, "INIT_MUSIC",0.0025},
 	{&LevelLoadingState::initScripts, "INIT_SCRIPTS",0.0025},
@@ -265,9 +265,10 @@ void LevelLoadingState::processWalkabilityMap()
 	mApp->getLevelLoader()->processWalkabilityMaps();//clear information, as we do not need it anymore
 }
 
-void LevelLoadingState::resolveDiamondTreeLinks()
+void LevelLoadingState::resolveLinks()
 {
 	mApp->getGameWorldManager()->resolveDiamondTreeLinks();
+	mApp->getGameWorldManager()->resolveNestLinks();
 }
 void LevelLoadingState::initMaterials()
 {

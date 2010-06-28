@@ -25,6 +25,10 @@ namespace OUAN
 		/// GameObject number of updates
 		long mNumUpdates;
 
+		std::string mParentNest;
+		GameObjectNestPtr mParentNestInstance;
+		double mSpawnProbability;
+
 	protected:
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;
@@ -203,6 +207,13 @@ namespace OUAN
 		virtual bool isWorthUpdatingLogicComponents();
 
 		virtual std::string getTranslation(const std::string& str);
+
+		void setParentNest(const std::string& parentNest);
+		std::string getParentNest() const;
+		void setParentNestInstance(GameObjectNestPtr instance);
+		GameObjectNestPtr getParentNestInstance() const;
+		void setSpawnProbability(double spawnProbability);
+		double getSpawnProbability();
 	};
 
 	class TGameObjectParameters
@@ -215,6 +226,9 @@ namespace OUAN
 		std::string dreamsName;
 		std::string nightmaresName;
 		double maxUpdateRadio;
+
+		std::string parentNest;
+		double spawnProbability;
 	};
 }
 #endif

@@ -561,6 +561,10 @@ namespace OUAN
 		class TGameObjectSignPostParameters;
 		typedef boost::shared_ptr<GameObjectSignpost> GameObjectSignPostPtr;
 
+		class GameObjectNest;
+		class TGameObjectNestParameters;
+		typedef boost::shared_ptr<GameObjectNest> GameObjectNestPtr;
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -604,6 +608,7 @@ namespace OUAN
 		typedef std::vector<GameObjectCameraTriggerPtr> TGameObjectCameraTriggerContainer;
 		typedef std::vector<GameObjectActionTriggerPtr> TGameObjectActionTriggerContainer;
 		typedef std::vector<GameObjectSignPostPtr> TGameObjectSignPostContainer;
+		typedef std::vector<GameObjectNestPtr> TGameObjectNestContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -641,6 +646,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_PROVISIONALENTITY="provisional-entity";
 		const std::string GAME_OBJECT_TYPE_SOUND="sound";
 		const std::string GAME_OBJECT_TYPE_SIGNPOST="signpost";
+		const std::string GAME_OBJECT_TYPE_NEST="nest";
 
 		const std::string GAME_OBJECT_TYPE_TRIPOLLITO="tripollito";
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";

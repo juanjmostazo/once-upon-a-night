@@ -264,3 +264,16 @@ const std::string OUAN::Utils::replaceAll(const std::string& source, const std::
 	}
 	return result;
 }
+Ogre::UTFString OUAN::Utils::convertToUTF(const Ogre::String& str)
+{
+	Ogre::UTFString UTFString;
+	int i;
+	Ogre::UTFString::code_point cp;
+	for (i=0; i<(int)str.size(); ++i)
+	{
+		cp = str[i];
+		cp &= 0xFF;
+		UTFString.append(1, cp);
+	}
+	return UTFString;
+}
