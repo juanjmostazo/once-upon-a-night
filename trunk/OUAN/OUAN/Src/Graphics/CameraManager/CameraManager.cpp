@@ -107,9 +107,9 @@ void CameraManager::setCameraTracking(CameraParametersPtr cameraParameters,bool 
 	mCameraControllerThirdPerson->setCameraTracking(mCamera,mCameraInput,transition);
 }
 
-CameraParametersPtr CameraManager::getDefaultCameraParameters() const
+void CameraManager::setToDefaultCameraParameters(CameraParametersPtr & cameraParameters) const
 {
-	return mDefaultCameraParameters;
+	cameraParameters->setCameraParameters(mDefaultCameraParameters);
 }
 
 void CameraManager::loadDefaultCameraParameters()
@@ -454,17 +454,18 @@ Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement,double 
 void CameraManager::setTrajectoryCamera(const std::string& camName)
 {
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
-	params->setCameraParameters(mInst->getDefaultCameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	params->setCameraParameters(params);
 	mInst->setCameraTrajectory(params,camName,false,false);
 	mInst->mCameraControllerThirdPerson->getTrajectory()->setLoopTrajectory(false);
 }
 void CameraManager::setAnyTrackingCamera()
 {
-	CameraParametersPtr cameraParameters;
-	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setCameraParameters(mInst->getDefaultCameraParameters());
-	cameraParameters->setTarget(mInst->mGameWorldManager->getGameObjectOny()->getName());
-	mInst->setCameraTracking(cameraParameters,true);
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	params->setCameraParameters(params);
+	params->setTarget(mInst->mGameWorldManager->getGameObjectOny()->getName());
+	mInst->setCameraTracking(params,true);
 }
 
 void CameraManager::setCameraFixedFirstPerson(bool transition)
