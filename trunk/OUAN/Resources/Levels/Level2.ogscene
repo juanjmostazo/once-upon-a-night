@@ -33,11 +33,11 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-143.723 1044.04 -1673.05" orientation="-0.891519 0.452918 0.006956 0.0032088"></OPTION>
+    <OPTION id="2" position="-574.209 510.194 -1003.49" orientation="-0.964111 0.0715938 0.254985 0.0186336"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -107,9 +107,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.89153 0.452924 0.00695608 0.00320884"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.964128 0.071595 0.254989 0.0186339"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-143.723 1044.04 -1673.05"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-574.209 510.194 -1003.49"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1497,7 +1497,7 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -2912,6 +2912,27 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="806238016" name="platform2_d#301" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="platform2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.814115 0 0.580703 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="577.878 915.682 -1825.21"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="platform3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="platform3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="platform3_d"></PROPERTY>
+    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="453749216" name="tripollo_d#3" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -3447,8 +3468,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.766357 0.61091 -0.0604809 0.189285"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-769.82 374.869 29.6147"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.814604 0.433228 -0.230154 0.309457"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-777.213 353.587 31.3494"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -3533,7 +3554,7 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -3879,8 +3900,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform6.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.768842 0 0.639439 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-401.884 447.2 -1359.64"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.836286 0 0.548293 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-405.938 447.2 -1337.77"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="platform6_n"></PROPERTY>
@@ -4270,7 +4291,7 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -4468,9 +4489,9 @@
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="-30" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="-60" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -4836,8 +4857,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.632327 -0.554536 -0.415924 -0.34592"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-899.698 468.686 -999.647"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.46367 -0.688778 -0.437075 -0.345775"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-925.027 467.704 -988.808"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_n"></PROPERTY>
@@ -6161,23 +6182,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="416486080" name="terrain_n#platform5_13" typename="Entity Object" parentnode="Mountains">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="platform5.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.346117 0 -0.938191 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-959.17 488.045 -958.485"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="platform5_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="965147840" name="tree1_d#47" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6598,7 +6602,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform6.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.843391 0 0.5373 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-455.836 434.312 -1272.57"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-459.672 434.312 -1264.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="platform6_n"></PROPERTY>
@@ -6621,27 +6625,6 @@
     <PROPERTY id="subentity0::material" type="7" value="heart_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="806238016" name="platform2#0" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="platform2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.814115 0 0.580703 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="577.878 915.682 -1825.21"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="platform3_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="platform3_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="platform3_d"></PROPERTY>
-    <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -7095,23 +7078,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="724936640" name="platform5#2" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="platform5.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.748956 0 -0.66262 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-752.913 488.436 134.113"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="298532064" name="terrain_d#lake1_seabet" typename="Entity Object" parentnode="WaterIsla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -7308,9 +7274,9 @@
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="-30" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="-60" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -9761,23 +9727,6 @@
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tower1_almena_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="984832256" name="platform5#1" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="platform5.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.649448 0 -0.760406 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-766.785 423.203 115.684"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12571,23 +12520,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="336313952" name="platform5#0" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="platform5.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.777146 0 -0.62932 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-723.852 357.852 31.0729"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="125186920" name="volume-box_d#win6" typename="Entity Object" parentnode="Volumes">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14207,7 +14139,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform6.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.953717 0 0.300706 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1009.3 513.351 -927.571"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-998.948 513.351 -934.82"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="platform6_n"></PROPERTY>
@@ -15825,8 +15757,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform5.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.798635 0 0.601815 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-749.466 446.028 64.658"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.920505 0 0.390731 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-728.297 442.466 70.8169"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="platform5_d"></PROPERTY>
