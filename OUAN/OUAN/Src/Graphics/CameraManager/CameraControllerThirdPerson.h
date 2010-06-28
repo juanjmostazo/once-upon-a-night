@@ -37,8 +37,6 @@ namespace OUAN
 
 		bool cameraTrajectoryEnded();
 
-		void setRotationYToTargetBack(std::string cameraTarget);
-
 		Trajectory* getTrajectory();
 
 	protected:

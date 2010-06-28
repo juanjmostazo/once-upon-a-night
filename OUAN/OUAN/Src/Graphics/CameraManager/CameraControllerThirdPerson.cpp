@@ -763,31 +763,6 @@ bool CameraControllerThirdPerson::cameraTrajectoryEnded()
 	return mTrajectory->trajectoryEnded();
 }
 
-void CameraControllerThirdPerson::setRotationYToTargetBack(std::string cameraTarget)
-{
-	double targetYaw;
-	Vector3 targetPosition;
-	GameObjectPtr targetGameObject;
-
-	targetGameObject=mGameWorldManager->getObject(cameraTarget);
-
-	if(targetGameObject->hasPositionalComponent())
-	{
-		targetYaw=targetGameObject->getPositionalComponent()->getOrientation().getYaw().valueDegrees();
-	}
-	else
-	{
-		targetYaw=0;
-	}
-
-	if(targetYaw>360)
-		targetYaw-=360;
-	if(targetYaw<0)
-		targetYaw+=360;
-
-	mRotY=targetYaw;
-}
-
 void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
 {
 	double targetYaw;
@@ -799,6 +774,7 @@ void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,Camer
 	if(targetGameObject->hasPositionalComponent())
 	{
 		targetYaw=targetGameObject->getPositionalComponent()->getOrientation().getYaw().valueDegrees();
+		Logger::getInstance()->log("Center to target back "+Ogre::StringConverter::toString(Ogre::Real(targetYaw)));
 	}
 	else
 	{
