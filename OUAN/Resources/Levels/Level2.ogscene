@@ -33,7 +33,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="241.766 1080.49 -1651.75" orientation="-0.860595 0.407978 -0.275329 -0.130862"></OPTION>
+    <OPTION id="2" position="-143.723 1044.04 -1673.05" orientation="-0.891519 0.452918 0.006956 0.0032088"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -107,9 +107,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.860599 0.40798 -0.275331 -0.130862"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.89153 0.452924 0.00695608 0.00320884"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="241.766 1080.49 -1651.75"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-143.723 1044.04 -1673.05"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -15509,7 +15509,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872687 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="97.626 679.529 -1936.91"></PROPERTY>
+    <PROPERTY id="position" type="9" value="36.7636 679.529 -1935.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="405.439 214.901 184.012"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
