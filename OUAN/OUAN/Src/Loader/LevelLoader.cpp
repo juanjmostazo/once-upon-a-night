@@ -3171,7 +3171,7 @@ QueryFlags LevelLoader::processCameraCollisionType(TiXmlElement *XMLNode)
 					cameraCollisionType=QUERYFLAGS_NONE;
 					break;
 		}
-		if(!getPropertyBool(XMLNode,"Camera Collisions::Disable Translucid"))
+		if(getPropertyBool(XMLNode,"Camera Collisions::Enable Translucid"))
 		{
 			cameraCollisionType=QueryFlags(
 				Ogre::uint32(cameraCollisionType) | 
