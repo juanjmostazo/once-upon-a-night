@@ -135,7 +135,11 @@ namespace OUAN
 
 		static CameraManager* mInst;
 
-		CameraParametersPtr mDefaultCameraParameters;
+		Vector3 mDefaultCameraParametersDirection;
+		Vector3 mDefaultCameraParametersTargetOffset;
+		std::string mDefaultCameraParametersTarget;
+		double mDefaultCameraParametersDistance;
+
 		void loadDefaultCameraParameters();
 	};
 }

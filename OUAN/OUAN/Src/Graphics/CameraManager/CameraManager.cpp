@@ -75,8 +75,10 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 
 	loadDefaultCameraParameters();
 
-	mCameraInput->mCameraParameters=mDefaultCameraParameters;
-
+	mCameraInput->mCameraParameters->setDirection(mDefaultCameraParametersDirection);
+	mCameraInput->mCameraParameters->setTarget(mDefaultCameraParametersTarget);
+	mCameraInput->mCameraParameters->setTargetOffset(mDefaultCameraParametersTargetOffset);
+	mCameraInput->mCameraParameters->setDistance(mDefaultCameraParametersDistance);
 }
 
 void CameraManager::clear()
@@ -109,15 +111,16 @@ void CameraManager::setCameraTracking(CameraParametersPtr cameraParameters,bool 
 
 void CameraManager::setToDefaultCameraParameters(CameraParametersPtr & cameraParameters) const
 {
-	cameraParameters->setCameraParameters(mDefaultCameraParameters);
+	cameraParameters->setDirection(mDefaultCameraParametersDirection);
+	cameraParameters->setTarget(mDefaultCameraParametersTarget);
+	cameraParameters->setTargetOffset(mDefaultCameraParametersTargetOffset);
+	cameraParameters->setDistance(mDefaultCameraParametersDistance);
 }
 
 void CameraManager::loadDefaultCameraParameters()
 {
 	Configuration config;
 	std::string value;
-
-	mDefaultCameraParameters.reset(new CameraParameters());
 
 	if (config.loadFromFile(CAMERA_CFG))
 	{
@@ -131,7 +134,7 @@ void CameraManager::loadDefaultCameraParameters()
 		config.getOption("TARGET_OFFSET_Z", value); 
 		target_offsetZ = atof(value.c_str());
 
-		mDefaultCameraParameters->setTargetOffset(Vector3(target_offsetX, target_offsetY, target_offsetZ));
+		mDefaultCameraParametersTargetOffset=Vector3(target_offsetX, target_offsetY, target_offsetZ);
 
 		config.getOption("INITIAL_DIRECTION_X", value); 
 		initial_directionX = atof(value.c_str());
@@ -144,14 +147,14 @@ void CameraManager::loadDefaultCameraParameters()
 		direction = Vector3(initial_directionX, initial_directionY, initial_directionZ);
 		direction.normalise();
 
-		mDefaultCameraParameters->setDirection(direction);
+		mDefaultCameraParametersDirection=direction;
 
 		config.getOption("DISTANCE", value); 
 		double distance = atof(value.c_str());
-		mDefaultCameraParameters->setDistance(distance);
+		mDefaultCameraParametersDistance=distance;
 
 		config.getOption("TARGET", value); 
-		mDefaultCameraParameters->setTarget(value);
+		mDefaultCameraParametersTarget=value;
 	} 
 	else 
 	{
@@ -291,8 +294,7 @@ void CameraManager::changeAutoCamera()
 			{
 				CameraParametersPtr cameraParameters;
 				cameraParameters.reset(new CameraParameters());
-				cameraParameters->setCameraParameters(mDefaultCameraParameters);
-				cameraParameters->setTarget(mGameWorldManager->getGameObjectOny()->getName());
+				setToDefaultCameraParameters(cameraParameters);
 
 				setCameraTrajectory(cameraParameters,mCameraTrajectoryNames[mCurrentTrajectory],false,true);
 			}
@@ -343,11 +345,13 @@ void CameraManager::setDefaultThirdPersonCamera(bool transition)
 	//Set Ony as Camera Target
 	CameraParametersPtr cameraParameters;
 	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setCameraParameters(mDefaultCameraParameters);
+	setToDefaultCameraParameters(cameraParameters);
 	pGameObjectOny=mGameWorldManager->getGameObjectOny();
 	cameraParameters->setTarget(pGameObjectOny->getName());
-	mCameraInput->mCameraParameters->setCameraParameters(cameraParameters);
-
+	mCameraInput->mCameraParameters->setTarget(cameraParameters->getTarget());
+	mCameraInput->mCameraParameters->setTargetOffset(cameraParameters->getTargetOffset());
+	mCameraInput->mCameraParameters->setDirection(cameraParameters->getDirection());
+	mCameraInput->mCameraParameters->setDistance(cameraParameters->getDistance());
 	mCameraControllerThirdPerson->centerToTargetBack(mCamera,mCameraInput,transition);
 
 	setCameraFree(cameraParameters,transition);
@@ -455,7 +459,6 @@ void CameraManager::setTrajectoryCamera(const std::string& camName)
 {
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
 	mInst->setToDefaultCameraParameters(params);
-	params->setCameraParameters(params);
 	mInst->setCameraTrajectory(params,camName,false,false);
 	mInst->mCameraControllerThirdPerson->getTrajectory()->setLoopTrajectory(false);
 }
@@ -463,7 +466,6 @@ void CameraManager::setAnyTrackingCamera()
 {
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
 	mInst->setToDefaultCameraParameters(params);
-	params->setCameraParameters(params);
 	params->setTarget(mInst->mGameWorldManager->getGameObjectOny()->getName());
 	mInst->setCameraTracking(params,true);
 }

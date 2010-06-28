@@ -31,8 +31,6 @@ namespace OUAN
 		//Offset for the camera target, which adds to the target position
 		void setTargetOffset(Ogre::Vector3 direction);
 		Ogre::Vector3 getTargetOffset() const;
-
-		void setCameraParameters(CameraParametersPtr pCameraParameters);
 	};
 
 
