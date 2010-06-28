@@ -101,7 +101,11 @@ PhysicsComponentSimpleBoxPtr GameObjectPortal::getPhysicsComponentSimpleBox() co
 
 void GameObjectPortal::setDreamsRender()
 {
-	if (!isEnabled()) return;
+	if (!isEnabled()) 
+	{
+		return;
+	}
+
 	mRenderComponentEntityDreams->setVisible(true);
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
@@ -112,7 +116,11 @@ void GameObjectPortal::setDreamsRender()
 
 void GameObjectPortal::setNightmaresRender()
 {
-	if (!isEnabled()) return;
+	if (!isEnabled()) 
+	{
+		return;
+	}
+
 	mRenderComponentEntityDreams->setVisible(false);
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
@@ -123,14 +131,21 @@ void GameObjectPortal::setNightmaresRender()
 
 void GameObjectPortal::setChangeWorldRender()
 {
-	if (!isEnabled()) return;
+	if (!isEnabled())
+	{
+		return;
+	}
+
 	mRenderComponentEntityDreams->setChangeWorldMaterials();
 	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }
 
 void GameObjectPortal::changeWorldFinished(int newWorld)
 {
-	if (!isEnabled()) return;
+	if (!isEnabled()) 
+	{
+		return;
+	}
 
 	switch(newWorld)
 	{
@@ -149,7 +164,10 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 
 void GameObjectPortal::changeWorldStarted(int newWorld)
 {
-	if (!isEnabled()) return;
+	if (!isEnabled())
+	{
+		return;
+	}
 
 	switch(newWorld)
 	{
@@ -164,7 +182,10 @@ void GameObjectPortal::changeWorldStarted(int newWorld)
 
 void GameObjectPortal::changeToWorld(int newWorld, double perc)
 {
-	if (!isEnabled()) return;
+	if (!isEnabled()) 
+	{
+		return;
+	}
 
 	switch(newWorld)
 	{
@@ -182,6 +203,7 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 void GameObjectPortal::reset()
 {
 	GameObject::reset();
+
 	if (mAudioComponent->isPlaying("portal_close"))
 	{
 		mAudioComponent->stopSound("portal_close");
@@ -263,12 +285,17 @@ void GameObjectPortal::activate()
 bool GameObjectPortal::canBeActivated() const
 {
 	int activationState = mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE);
-	return mLogicComponentUsable.get() && mLogicComponentUsable->getState()==activationState && mLogicComponentUsable->canBeActivated();
+
+	return 
+		mLogicComponentUsable.get() 
+		&& mLogicComponentUsable->getState()==activationState 
+		&& mLogicComponentUsable->canBeActivated();
 }
 
 void GameObjectPortal::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
 	if (isEnabled())
 	{
 		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
