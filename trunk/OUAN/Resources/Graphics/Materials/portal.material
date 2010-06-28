@@ -1,5 +1,6 @@
 import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
+import alpha_blending_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
 material portal_d : alpha_test_texture
@@ -13,5 +14,33 @@ material portal_n : alpha_test_texture
 }
 
 material portal_cw : default_changeworld
+{
+}
+
+material portal_floor_d : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture portal_floor_d.dds
+}
+
+material portal_floor_n : alpha_blending_texture
+{
+	set_texture_alias diffuse_texture portal_floor_n.dds
+}
+
+material portal_floor_cw : default_changeworld
+{
+}
+
+material portal_rays_d : alpha_test_texture
+{
+	set_texture_alias diffuse_texture portal_rays_d.dds
+}
+
+material portal_rays_n : alpha_test_texture
+{
+	set_texture_alias diffuse_texture portal_rays_n.dds
+}
+
+material portal_rays_cw : default_changeworld
 {
 }
