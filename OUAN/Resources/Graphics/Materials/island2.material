@@ -49,12 +49,12 @@ material bridge_little_cw : default_changeworld
 //ENTRY
 material entry_d : basic_texture
 {
-	set_texture_alias diffuse_texture entry_d.tga
+	set_texture_alias diffuse_texture entry_d.dds
 }
 
 material entry_n : basic_texture
 {
-	set_texture_alias diffuse_texture entry_n.tga
+	set_texture_alias diffuse_texture entry_n.dds
 }
 
 material entry_cw : default_changeworld
