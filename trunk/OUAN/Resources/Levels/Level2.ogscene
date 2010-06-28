@@ -33,7 +33,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-332.641 635.821 -1421.8" orientation="-0.377038 0.0215883 0.924467 0.0523193"></OPTION>
+    <OPTION id="2" position="925.603 294.609 -153.981" orientation="-0.594806 0.00170208 -0.803863 -0.00269145"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -107,9 +107,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.377053 0.0215892 0.924503 0.0523213"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.59481 0.0017021 -0.803868 -0.00269146"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-332.641 635.821 -1421.8"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="925.603 294.609 -153.981"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -13647,9 +13647,9 @@
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="PhysicsComponentComplexConvex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioX" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioY" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="-10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioZ" type="6" value="-15" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="PhysicsComponentComplexConvex::balanceRadioTime" type="6" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
