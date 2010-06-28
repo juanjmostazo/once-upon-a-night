@@ -1992,7 +1992,7 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 
 		//Get RenderComponentEntity
 		params.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
+			DREAMS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
