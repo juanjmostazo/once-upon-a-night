@@ -31,12 +31,12 @@ material portal_floor_cw : default_changeworld
 {
 }
 
-material portal_rays_d : alpha_test_texture
+material portal_rays_d : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture portal_rays_d.dds
 }
 
-material portal_rays_n : alpha_test_texture
+material portal_rays_n : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture portal_rays_n.dds
 }
