@@ -27,10 +27,10 @@ void GamePausedState::init(ApplicationPtr app)
 {
 	mApp=app;	
 	mApp->mKeyBuffer=-1;
-	CameraParametersPtr cameraParameters;
-	cameraParameters.reset(new CameraParameters());
-	cameraParameters->setCameraParameters(mApp->getCameraManager()->getDefaultCameraParameters());
-	mApp->getCameraManager()->setCameraTrajectory(cameraParameters,"camera-map",false,true);
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mApp->getCameraManager()->setToDefaultCameraParameters(params);
+	params->setCameraParameters(params);
+	mApp->getCameraManager()->setCameraTrajectory(params,"camera-map",false,true);
 }
 
 /// Clean up main menu's resources

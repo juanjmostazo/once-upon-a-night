@@ -54,7 +54,8 @@ namespace OUAN
 		void setCameraFixedFirstPerson(bool transition);
 
 		//returns default camera parameters
-		CameraParametersPtr getDefaultCameraParameters() const;
+		void setToDefaultCameraParameters(CameraParametersPtr & cameraParameters) const;
+
 
 		//Note: those last two doesnt work for trajectory camera
 		//Auto-rotates camera to selected rotation
