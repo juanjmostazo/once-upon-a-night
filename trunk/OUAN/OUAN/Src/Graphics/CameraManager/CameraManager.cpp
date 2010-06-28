@@ -352,7 +352,7 @@ void CameraManager::setDefaultThirdPersonCamera(bool transition)
 	mCameraInput->mCameraParameters->setTargetOffset(cameraParameters->getTargetOffset());
 	mCameraInput->mCameraParameters->setDirection(cameraParameters->getDirection());
 	mCameraInput->mCameraParameters->setDistance(cameraParameters->getDistance());
-	mCameraControllerThirdPerson->centerToTargetBack(mCamera,mCameraInput,transition);
+	centerToTargetBack(false);
 
 	setCameraFree(cameraParameters,transition);
 }
