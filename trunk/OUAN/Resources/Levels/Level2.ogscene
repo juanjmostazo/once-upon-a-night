@@ -33,7 +33,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="542.065 1328.72 -2009.12" orientation="-0.583059 0.159349 -0.768339 -0.21049"></OPTION>
+    <OPTION id="2" position="220.55 941.492 -1744.02" orientation="-0.901057 0.261366 -0.332311 -0.0967139"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -107,9 +107,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.583085 0.159356 -0.768373 -0.2105"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.90108 0.261373 -0.332319 -0.0967163"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="542.065 1328.72 -2009.12"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="220.55 941.492 -1744.02"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1850,9 +1850,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-389.708 660.892 -1911.82"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-333.191 660.892 -1920.05"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 181.601 297.472"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="410.185 181.601 297.472"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -15509,9 +15509,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872687 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="114.692 679.529 -1937.21"></PROPERTY>
+    <PROPERTY id="position" type="9" value="103.911 679.529 -1937.02"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="318.962 214.901 184.012"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="316 214.901 184.012"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
