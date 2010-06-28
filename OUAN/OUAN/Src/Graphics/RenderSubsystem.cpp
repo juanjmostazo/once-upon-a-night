@@ -65,10 +65,10 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 	return true;
 }
 
-void RenderSubsystem::initChangeWorldRenderer()
+void RenderSubsystem::initChangeWorldRenderer(int initialWorld)
 {
 	mChangeWorldRenderer.reset(new ChangeWorldRenderer());
-	mChangeWorldRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getCamera());
+	mChangeWorldRenderer->init(mSceneManager,mWindow,mApp->getCameraManager()->getCamera(),initialWorld);
 }
 
 ChangeWorldRendererPtr RenderSubsystem::getChangeWorldRenderer()

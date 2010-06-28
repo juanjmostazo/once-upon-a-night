@@ -142,7 +142,7 @@ bool Application::init()
 	mCameraManager.reset(new CameraManager());
 	mCameraManager->init(mRenderSubsystem,mTrajectoryManager,mPhysicsSubsystem,mRayCasting,mGameWorldManager);
 
-	mRenderSubsystem->initChangeWorldRenderer();
+	mRenderSubsystem->initChangeWorldRenderer(mGameWorldManager->getWorld());
 	
 	mGUISubsystem.reset(new GUISubsystem());
 	mGUISubsystem->init(this_);

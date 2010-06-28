@@ -16,7 +16,7 @@ namespace OUAN
 		void setDebugScreensActive(bool active);
 		bool getDebugScreensActive() const;
 
-		void init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera);
+		void init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera, int initialWorld);
 
 		void renderToTextureDreams();
 		void renderToTextureNightmares();

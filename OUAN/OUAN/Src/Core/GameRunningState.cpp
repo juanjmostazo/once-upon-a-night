@@ -160,9 +160,9 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mIsChangingWorld=false;
 
-	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
-
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
+
+	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
 }
 
 /// Clean up main menu's resources
