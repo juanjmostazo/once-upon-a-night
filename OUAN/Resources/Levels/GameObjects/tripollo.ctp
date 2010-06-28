@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
  
-  <PROPERTY id="CustomAttribute::maxUpdateRadio" type="6" value="250" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="CustomAttribute::maxUpdateRadio" type="6" value="600" fields="X;Y;Z;W"></PROPERTY>
 
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
