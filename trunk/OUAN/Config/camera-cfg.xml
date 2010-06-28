@@ -13,6 +13,6 @@
     <Option key="TARGET">"ony#0"</Option>
 
     <Option key="ALPHA_BLENDING_SPEED">0.7</Option>
-    <Option key="MIN_ALPHA_BLENDING">0.3</Option>
+    <Option key="MIN_ALPHA_BLENDING">0.45</Option>
   </Options>
 </Configuration>
