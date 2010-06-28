@@ -206,7 +206,7 @@ namespace OUAN
 
 		ChangeWorldRendererPtr getChangeWorldRenderer();
 
-		void initChangeWorldRenderer();
+		void initChangeWorldRenderer(int initialWorld);
 
 	protected:
 		/// the application

@@ -45,7 +45,7 @@ bool ChangeWorldRenderer::getDebugScreensActive() const
 	return mDebugScreensActive;
 }
 
-void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera)
+void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWindow* pWindow,Ogre::Camera * pCamera, int initialWorld)
 {
 	mSceneManager=pSceneManager;
 	mWindow=pWindow;
@@ -102,6 +102,7 @@ void ChangeWorldRenderer::init(Ogre::SceneManager * pSceneManager,Ogre::RenderWi
 	mRenderTextureNightmaresWithMiniScreen->getViewport(0)->setBackgroundColour(ColourValue::Black);
 	mRenderTextureNightmaresWithMiniScreen->setAutoUpdated(false);
 
+	mChangingWorldTo=initialWorld;
 	createDebugMiniScreens();
 
 }
