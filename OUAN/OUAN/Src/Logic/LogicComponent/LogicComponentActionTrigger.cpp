@@ -14,6 +14,9 @@ using namespace OUAN;
 LogicComponentActionTrigger::LogicComponentActionTrigger(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_TRIGGER_ACTION)
 {
+	triggerPlatformBigName = "trigger-action#platform_big";
+	portalPlatformBigName = "changeworld#platform_big";
+	portalPlatformBigMaxDistance = 300;
 }
 
 LogicComponentActionTrigger::~LogicComponentActionTrigger()
@@ -23,8 +26,6 @@ LogicComponentActionTrigger::~LogicComponentActionTrigger()
 
 void LogicComponentActionTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	std::string triggerPlatformBigName = "trigger-action#platform_big";
-
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		if (getParent()->getName().compare(triggerPlatformBigName)==0)
@@ -52,10 +53,6 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 
 	GameObjectPortalPtr portalPlatformBig;
 	bool portalPlatformBigFound = false;
-
-	std::string portalPlatformBigName = "changeworld#platform_big";
-	double maxDistanceToPortal = 300;
-
 	bool allTripollosAreDisabled = true;
 
 	///////////////////
@@ -98,7 +95,7 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 
 		//Logger::getInstance()->log("@@ " + tripollo->getName() + " -> " + Ogre::StringConverter::toString(Ogre::Real(distanceToPortal)));
 
-		if (distanceToPortal <= maxDistanceToPortal)
+		if (distanceToPortal <= portalPlatformBigMaxDistance)
 		{
 			//Logger::getInstance()->log("@@ " + tripollo->getName() + " -> IN! -> " + Ogre::StringConverter::toString(tripollo->isEnabled()));	
 
@@ -112,16 +109,16 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 
 	///////////////////
 
-	if (allTripollosAreDisabled)
-	{
-		//Logger::getInstance()->log("@@ ALL TRIPOLLOS ARE DISABLED");
-		portalPlatformBig->getEntityComponent()->setVisible(true);		
-	}
-	else
-	{
-		//Logger::getInstance()->log("@@ AT LEAST ONE TRIPOLLO IS ENABLED");
-		portalPlatformBig->getEntityComponent()->setVisible(false);
-	}
+	RenderComponentEntityPtr entityTripollo = (Application::getInstance()->getGameWorldManager()->getWorld()==DREAMS)
+		? portalPlatformBig->getRenderComponentEntityDreams()
+		: portalPlatformBig->getRenderComponentEntityNightmares();
+
+	RenderComponentGlowPtr glowTripollo = (Application::getInstance()->getGameWorldManager()->getWorld()==DREAMS)
+		? portalPlatformBig->getRenderComponentGlowDreams()
+		: portalPlatformBig->getRenderComponentGlowNightmares();
+
+	entityTripollo->setVisible(allTripollosAreDisabled);
+	glowTripollo->setVisible(allTripollosAreDisabled);
 }
 
 TLogicComponentActionTriggerParameters::TLogicComponentActionTriggerParameters() : TLogicComponentParameters()

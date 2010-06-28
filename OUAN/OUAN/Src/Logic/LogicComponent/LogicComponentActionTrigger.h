@@ -17,6 +17,11 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 	protected:
+
+		std::string triggerPlatformBigName;
+		std::string portalPlatformBigName;
+		double portalPlatformBigMaxDistance;
+
 		void processActionPlatformBig();
 	};
 
