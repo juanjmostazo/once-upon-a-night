@@ -735,7 +735,10 @@ void CameraControllerThirdPerson::processTransparentCollisions(Ogre::Vector3 cam
 	collision=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
 		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID);
 
-	mTransparentEntityManager->addCurrentCollisionTransparentEntities(collisionEntities);
+	if(collision)
+	{
+		mTransparentEntityManager->addCurrentCollisionTransparentEntities(collisionEntities);
+	}
 
 } 
 
