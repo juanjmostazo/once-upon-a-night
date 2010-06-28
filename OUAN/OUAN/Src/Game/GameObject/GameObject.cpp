@@ -493,7 +493,30 @@ std::string GameObject::getTranslation(const std::string& baseString)
 	}
 	return baseString;
 }
-
+void GameObject::setParentNest(const std::string& parentNest)
+{
+	mParentNest=parentNest;
+}
+std::string GameObject::getParentNest() const
+{
+	return mParentNest;
+}
+void GameObject::setParentNestInstance(GameObjectNestPtr instance)
+{
+	mParentNestInstance=instance;
+}
+GameObjectNestPtr GameObject::getParentNestInstance() const
+{
+	return mParentNestInstance;
+}
+void GameObject::setSpawnProbability(double spawnProbability)
+{
+	mSpawnProbability=spawnProbability;
+}
+double GameObject::getSpawnProbability()
+{
+	return mSpawnProbability;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

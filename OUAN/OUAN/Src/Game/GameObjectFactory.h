@@ -56,6 +56,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectMagicClockPtr createGameObjectMagicClock(TGameObjectMagicClockParameters tGameObjectMagicClockParameters, 
 			GameWorldManagerPtr gameWorldMgr);
+		GameObjectNestPtr createGameObjectNest(TGameObjectNestParameters tGameObjectNestParameters, 
+			GameWorldManagerPtr gameWorldMgr);
 		GameObjectNightGoblinPtr createGameObjectNightGoblin(TGameObjectNightGoblinParameters tGameObjectNightGoblinParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectOnyPtr createGameObjectOny(TGameObjectOnyParameters tGameObjectOnyParameters, 

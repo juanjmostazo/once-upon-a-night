@@ -546,6 +546,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNest.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectNightGoblin.cpp"
 						>
 					</File>
@@ -1600,6 +1604,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectMagicClock.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNest.h"
 						>
 					</File>
 					<File

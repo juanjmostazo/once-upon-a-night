@@ -1,50 +1,61 @@
-#ifndef GameObjectHeartH_H
-#define GameObjectHeartH_H
+#ifndef GAMEOBJECTNESTH_H
+#define GAMEOBJECTNESTH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
-#include "../../Logic/LogicComponent/LogicComponentItem.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
-	/// Class to hold GameObjectHeart information
-	class GameObjectHeart : public GameObject, public boost::enable_shared_from_this<GameObjectHeart>
+	const std::string NEST_STATE_IDLE="NEST_STATE_IDLE";
+	const std::string NEST_STATE_SHAKING="NEST_STATE_SHAKING";
+	const std::string NEST_STATE_HATCHING="NEST_STATE_HATCHING";
+
+	const std::string NEST_ANIM_IDLE="manual";
+	const std::string NEST_ANIM_SHAKE="shake";
+	const std::string NEST_ANIM_HATCH="jump";
+
+	/// Class to hold ScaredPlant information
+	class GameObjectNest: public GameObject, public boost::enable_shared_from_this<GameObjectNest>
 	{
 	private:
-		
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentItemPtr mLogicComponentItem;
+		LogicComponentPropPtr mLogicComponent;
+		//TODO: think what happens when world changes with the rendercomponent
+
+		std::string mSignpostMessage;
+
+		std::vector<GameObjectPtr> mChildren;
 	public:
 		//Constructor
-		GameObjectHeart(const std::string& name);
+		GameObjectNest(const std::string& name);
 		//Destructor
-		~GameObjectHeart();
-
-		/// Set logic component
-		void setLogicComponentItem(LogicComponentItemPtr logicComponentItem);
-
-		/// return logic component
-		LogicComponentItemPtr getLogicComponentItem();
-
+		~GameObjectNest();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		/// Set logic component
+		void setLogicComponent(LogicComponentPropPtr logicComponent);
+
+		/// return logic component
+		LogicComponentPropPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -62,12 +73,19 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 
 		/// Get physics component
-		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
 
-		/// React to a world change to the one given as a parameter
+		/// Update object
+		virtual void update(double elapsedSeconds);
+		void disable();
+
+		/// Reset object
+		virtual void reset();
+
+		/// React to a world change to the given one
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
@@ -79,11 +97,6 @@ namespace OUAN
 		void setNightmaresRender();
 		void setChangeWorldRender();
 
-		/// Reset object
-		virtual void reset();
-		virtual void disable();
-		virtual void enable();
-
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
@@ -92,6 +105,7 @@ namespace OUAN
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
+
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -107,16 +121,23 @@ namespace OUAN
 
 		// update logic component
 		void updateLogic(double elapsedSeconds);
-		/// Update object
-		void update(double elapsedSeconds);
+
+		void processAnimationEnded(const std::string& animationName);
+
+		std::vector<GameObjectPtr>* getChildren();
+		void setChildren(const std::vector<GameObjectPtr>& children);
+		void addChild(GameObjectPtr child);
+		void spawnChild();
+
+		//------------------------------------------------------------------
 	};
 
-	class TGameObjectHeartParameters: public TGameObjectParameters
+	class TGameObjectNestParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectHeartParameters();
-		~TGameObjectHeartParameters();
-		
+		TGameObjectNestParameters();
+		~TGameObjectNestParameters();
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
@@ -124,10 +145,11 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 
 		///Logic parameters
-		TLogicComponentItemParameters tLogicComponentItemParameters;
+		TLogicComponentPropParameters tLogicComponentParameters;
+
 	};
 }
 #endif

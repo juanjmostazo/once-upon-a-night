@@ -15,6 +15,20 @@ GameObjectHeart::~GameObjectHeart()
 {
 
 }
+void GameObjectHeart::reset()
+{
+	GameObject::reset();
+	//mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mLogicComponentItem->setIsTaken(false);
+}
+void GameObjectHeart::disable()
+{
+	GameObject::disable();
+	mRenderComponentEntity->setVisible(false);
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->destroy();	
+	mLogicComponentItem->setIsTaken(false);
+}
 
 RenderComponentEntityPtr GameObjectHeart::getRenderComponentEntity() const
 {
@@ -83,7 +97,12 @@ void GameObjectHeart::setNightmaresRender()
 		mRenderComponentEntity->setNightmaresMaterials();
 	}
 }
-
+void GameObjectHeart::enable()
+{
+	mRenderComponentEntity->setVisible(true);
+	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->create();
+}
 void GameObjectHeart::setChangeWorldRender()
 {
 	if (!isEnabled()) return;
@@ -238,11 +257,6 @@ LogicComponentItemPtr GameObjectHeart::getLogicComponentItem()
 	return mLogicComponentItem;
 }
 
-void GameObjectHeart::reset()
-{
-	GameObject::reset();
-	mLogicComponentItem->setIsTaken(false);
-}
 
 bool GameObjectHeart::hasPositionalComponent() const
 {

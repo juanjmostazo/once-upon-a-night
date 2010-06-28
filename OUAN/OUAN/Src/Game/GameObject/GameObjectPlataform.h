@@ -10,6 +10,12 @@
 
 namespace OUAN
 {
+	const std::string PLATFORM1_ANIM_FRONT="front_Clip";
+	const std::string PLATFORM1_ANIM_BACK="back_Clip";
+	const std::string PLATFORM2_ANIM_FRONT="front";
+	const std::string PLATFORM2_ANIM_BACK="back";
+	const std::string PLATFORM3_ANIM_FRONT="front";
+	const std::string PLATFORM3_ANIM_BACK="back";
 	/// Class to hold terrain information
 	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>
 	{

@@ -13,6 +13,7 @@
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectSignpost.h"
+#include "../Game/GameObject/GameObjectNest.h"
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Core/GameRunningState.h"
@@ -165,6 +166,15 @@ void LogicSubsystem::loadScripts()
 		if (sign.get() && !sign->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+sign->getLogicComponent()->getScriptFilename());
+		}
+	}
+	TGameObjectNestContainer* nestList = worldMgr->getGameObjectNestContainer();
+	if (!nestList ->empty())
+	{
+		GameObjectNestPtr nest= boost::dynamic_pointer_cast<GameObjectNest>(nestList ->at(0));
+		if (nest.get() && !nest->getLogicComponent()->getScriptFilename().empty())
+		{
+			loadScript(SCRIPTS_PATH+"/"+nest->getLogicComponent()->getScriptFilename());
 		}
 	}
 	//TODO: CHANGE THIS!!!

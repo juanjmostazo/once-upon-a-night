@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "ObjectTextDisplay.h"
+#include "../../Utils/Utils.h"
 using namespace OUAN;
 
 ObjectTextDisplay::ObjectTextDisplay(const Ogre::MovableObject* p, const Ogre::Camera* c) 
@@ -121,6 +122,7 @@ void ObjectTextDisplay::update()  {
 	m_pContainer->setDimensions(max_x - min_x, 0.1); // 0.1, just "because"
 }
 void ObjectTextDisplay::setText(const Ogre::String& text) {
+
 	m_text = text;
-	m_pText->setCaption(m_text);
+	m_pText->setCaption((Ogre::UTFString)m_text);
 }
