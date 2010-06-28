@@ -110,7 +110,8 @@ void GameObjectPortal::setDreamsRender()
 	mRenderComponentEntityDreams->setDreamsMaterials();
 	mRenderComponentEntityNightmares->setVisible(false);
 	
-	mRenderComponentGlowDreams->setVisible(mRenderComponentGlowNightmares->isVisible());
+	//mRenderComponentGlowDreams->setVisible(mRenderComponentGlowNightmares->isVisible());
+	mRenderComponentGlowDreams->setVisible(false);
 	mRenderComponentGlowNightmares->setVisible(false);
 }
 
@@ -125,7 +126,8 @@ void GameObjectPortal::setNightmaresRender()
 	mRenderComponentEntityNightmares->setVisible(true);
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
 
-	mRenderComponentGlowNightmares->setVisible(mRenderComponentGlowDreams->isVisible());
+	//mRenderComponentGlowNightmares->setVisible(mRenderComponentGlowDreams->isVisible());
+	mRenderComponentGlowNightmares->setVisible(false);
 	mRenderComponentGlowDreams->setVisible(false);
 }
 
@@ -302,9 +304,9 @@ void GameObjectPortal::update(double elapsedSeconds)
 			?mRenderComponentEntityDreams
 			:mRenderComponentEntityNightmares;
 
-		RenderComponentGlowPtr glowToUpdate = (mWorld==DREAMS)
-			?mRenderComponentGlowDreams
-			:mRenderComponentGlowNightmares;
+		//RenderComponentGlowPtr glowToUpdate = (mWorld==DREAMS)
+		//	?mRenderComponentGlowDreams
+		//	:mRenderComponentGlowNightmares;
 
 		if (isFirstUpdate())
 		{
@@ -325,7 +327,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					{
 						mAudioComponent->stopSound("portal_close");
 					}
-					glowToUpdate->setVisible(false);
+					//glowToUpdate->setVisible(false);
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
@@ -335,7 +337,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					mLogicComponentUsable->setCanBeActivated(false);
 					mAudioComponent->playSound("portal_close");
 					displayText("ONY IS CLOSE");
-					glowToUpdate->setVisible(true);
+					//glowToUpdate->setVisible(true);
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE))
@@ -344,7 +346,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 				{
 					displayText("PRESS ACTION TO CHANGE WORLD");
 					mLogicComponentUsable->setCanBeActivated(true);
-					glowToUpdate->setVisible(true);
+					//glowToUpdate->setVisible(true);
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
@@ -354,7 +356,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					getGameWorldManager()->changeWorld();				
 					mLogicComponentUsable->setIsActivated(false);
 					mRenderComponentParticleSystemChangeWorld->start();
-					glowToUpdate->setVisible(true);
+					//glowToUpdate->setVisible(true);
 				}
 			}
 			entityToUpdate->update(elapsedSeconds);

@@ -113,12 +113,13 @@ void LogicComponentActionTrigger::processActionPlatformBig()
 		? portalPlatformBig->getRenderComponentEntityDreams()
 		: portalPlatformBig->getRenderComponentEntityNightmares();
 
-	RenderComponentGlowPtr glowTripollo = (Application::getInstance()->getGameWorldManager()->getWorld()==DREAMS)
-		? portalPlatformBig->getRenderComponentGlowDreams()
-		: portalPlatformBig->getRenderComponentGlowNightmares();
-
 	entityTripollo->setVisible(allTripollosAreDisabled);
-	glowTripollo->setVisible(allTripollosAreDisabled);
+
+	//RenderComponentGlowPtr glowTripollo = (Application::getInstance()->getGameWorldManager()->getWorld()==DREAMS)
+	//	? portalPlatformBig->getRenderComponentGlowDreams()
+	//	: portalPlatformBig->getRenderComponentGlowNightmares();
+
+	//glowTripollo->setVisible(allTripollosAreDisabled);
 }
 
 TLogicComponentActionTriggerParameters::TLogicComponentActionTriggerParameters() : TLogicComponentParameters()
