@@ -399,34 +399,7 @@ void GameWorldManager::clearContainers()
 }
 void GameWorldManager::initGame()
 {
-	if (getGameObjectOny().get())
-	{
-		getGameObjectOny()->setInitialWeaponComponent(mWorld);
-	}
-
-	mGameOver=false;
-	mGameBeaten=false;
-
-	mApp->getPhysicsSubsystem()->stabilize();
-
-	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
-	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
-
-	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
-	if (sound.get())
-	{
-		sound->getAudioComponentNightmares()->playSound(mDefaultAmbientSoundIDNightmares);
-		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
-		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
-		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
-	}
-
-	//Set world to dreams
-	setChangeWorldTimes();
-	setWorld(DREAMS);
-
-	dispatchEvents();
-
+	resetAll();
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
 //void GameWorldManager::loadLevel(const std::string& levelFileName)
@@ -600,6 +573,8 @@ void GameWorldManager::resetAll()
 {
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL STARTED]");
 
+	mEventManager->clearEvents();
+
 	TGameObjectContainerIterator it;
 
 	for(it = mGameObjects.begin(); it != mGameObjects.end(); it++)
@@ -608,12 +583,36 @@ void GameWorldManager::resetAll()
 		it->second->reset();
 	}
 
-	mEventManager->clearEvents();
+	if (getGameObjectOny().get())
+	{
+		getGameObjectOny()->setInitialWeaponComponent(mWorld);
+	}
 
+	mGameOver=false;
+	mGameBeaten=false;
+
+	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
+	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
+
+	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+	if (sound.get())
+	{
+		sound->getAudioComponentNightmares()->playSound(mDefaultAmbientSoundIDNightmares);
+		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
+		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
+		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
+	}
+
+	//Set world to dreams
+	setChangeWorldTimes();
 	setWorld(DREAMS);
+
+	mApp->getPhysicsSubsystem()->stabilize();
 
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 	mApp->getCameraManager()->centerToTargetBack(false);
+
+	dispatchEvents();
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
