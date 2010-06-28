@@ -23,9 +23,9 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
-		std::string mDreamsMaterial;
-		std::string mNightmaresMaterial;
-		std::string mChangeWorldMaterial;
+		std::vector<std::string> mDreamsMaterial;
+		std::vector<std::string> mNightmaresMaterial;
+		std::vector<std::string> mChangeWorldMaterial;
 
 		Ogre::ColourValue mTintColour;
 		std::map<int,std::string> mOldMaterials;
@@ -51,7 +51,7 @@ namespace OUAN
 		void attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject);
 		void detachGameObject(GameObjectPtr gameObject);
 
-		void setMaterial(std::string material);
+		void setMaterial(std::vector<std::string> & material);
 		void setDreamsMaterials();
 		void setNightmaresMaterials();
 		void setChangeWorldMaterials();

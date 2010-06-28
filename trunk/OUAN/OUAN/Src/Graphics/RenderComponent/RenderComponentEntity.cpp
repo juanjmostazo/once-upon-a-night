@@ -39,11 +39,27 @@ void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 {
 	mEntity=entity;
 
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	mDreamsMaterial.clear();
+	mNightmaresMaterial.clear();
+	mChangeWorldMaterial.clear();
+
 	if(mEntity)
 	{
-		mDreamsMaterial=WorldNameConverter::getDreamsName(mEntity->getSubEntity(0)->getMaterialName().c_str());
-		mNightmaresMaterial=WorldNameConverter::getNightmaresName(mEntity->getSubEntity(0)->getMaterialName().c_str());
-		mChangeWorldMaterial=WorldNameConverter::getChangeWorldName(mEntity->getSubEntity(0)->getMaterialName().c_str());
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Get the material of this sub entity and build the clone material name
+			subEnt = mEntity->getSubEntity(i);
+
+			if(subEnt)
+			{
+				mDreamsMaterial.push_back(WorldNameConverter::getDreamsName(subEnt->getMaterialName().c_str()));
+				mNightmaresMaterial.push_back(WorldNameConverter::getNightmaresName(subEnt->getMaterialName().c_str()));
+				mChangeWorldMaterial.push_back(WorldNameConverter::getChangeWorldName(subEnt->getMaterialName().c_str()));
+			}
+		}
 	}
 }
 
@@ -170,7 +186,7 @@ void RenderComponentEntity::detachGameObject(GameObjectPtr gameObject)
 	}
 }
 
-void RenderComponentEntity::setMaterial(std::string material)
+void RenderComponentEntity::setMaterial(std::vector<std::string> & material)
 {
 	Ogre::SubEntity* subEnt;
 	Ogre::MaterialPtr original_material;
@@ -180,17 +196,16 @@ void RenderComponentEntity::setMaterial(std::string material)
 	{
 		// Get the material of this sub entity and build the clone material name
 		subEnt = mEntity->getSubEntity(i);
-		original_material = subEnt->getMaterial();
 
 		// Get/Create the clone material
 
-		if (Ogre::MaterialManager::getSingleton().resourceExists(material))
+		if (Ogre::MaterialManager::getSingleton().resourceExists(material[i]))
 		{
-			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material));
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material[i]));
 		}
 		else
 		{
-			Logger::getInstance()->log("[RenderComponentEntity] material "+material+" does not exist.");
+			Logger::getInstance()->log("[RenderComponentEntity] material "+material[i]+" does not exist.");
 		}
 	}
 }
