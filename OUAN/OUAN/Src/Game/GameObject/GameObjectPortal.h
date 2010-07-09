@@ -65,6 +65,8 @@ namespace OUAN
 		/// return logic component
 		LogicComponentUsablePtr getLogicComponentUsable();
 
+		void setVisible(bool visible);
+
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);

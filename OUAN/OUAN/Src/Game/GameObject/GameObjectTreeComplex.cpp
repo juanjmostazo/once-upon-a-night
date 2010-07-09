@@ -320,7 +320,26 @@ void GameObjectTreeComplex::calculateChangeWorldDelay(double totalElapsedTime,do
 		break;
 	}	
 }
-
+void GameObjectTreeComplex::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 RenderComponentEntityPtr GameObjectTreeComplex::getEntityComponent() const
 {
 	return mRenderComponentEntity;

@@ -394,6 +394,10 @@ void GameObjectSkyBody::update(double elapsedSeconds)
 		mLensFlare->update();
 	}
 }
+void GameObjectSkyBody::setVisible(bool visible)
+{
+
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectSkyBodyParameters::TGameObjectSkyBodyParameters() : TGameObjectParameters()

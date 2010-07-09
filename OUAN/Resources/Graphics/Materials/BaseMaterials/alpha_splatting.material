@@ -1,0 +1,90 @@
+material AlphaSplatTerrain
+{
+    technique
+    {
+        pass
+        {
+            vertex_program_ref AlphaSplatTerrain/VP
+            {
+                param_named_auto worldViewProj      worldviewproj_matrix
+            }
+ 
+            fragment_program_ref AlphaSplatTerrain/FP
+            {
+                param_named scale float2 30 30
+                param_named detail_scale float2 90 90
+                param_named alpha0Mask float4 1 1 1 1
+                param_named alpha1Mask float4 1 1 1 1
+            }
+            texture_unit
+            {
+		    filtering anisotropic
+                texture_alias AlphaMap1
+            }
+            texture_unit
+            {
+		    filtering anisotropic
+                texture_alias AlphaMap2
+            }
+            texture_unit
+            {
+                filtering anisotropic
+                texture_alias Splat1
+            }
+            texture_unit
+            {
+                filtering anisotropic
+                texture_alias Splat2
+            }
+            texture_unit
+            {    
+                filtering anisotropic
+                texture_alias Splat3
+            }
+            texture_unit
+            {   
+                filtering anisotropic 
+                texture_alias Splat4
+            }
+            texture_unit
+            {    
+                filtering anisotropic
+                texture_alias Splat5
+            }
+            texture_unit
+            {   
+                filtering anisotropic 
+                texture_alias Splat6
+            }
+            texture_unit
+            {    
+                filtering anisotropic
+                texture_alias Splat7
+            }
+            texture_unit
+            {    
+                filtering anisotropic
+                texture_alias Splat8
+            }
+            texture_unit
+            {
+                filtering anisotropic
+                texture_alias Detail
+            }
+        }
+    }
+ 
+    // Fallback technique
+    technique
+    {
+        pass
+        {
+            shading gouraud
+ 
+            texture_unit
+            {
+                texture_alias Fallback
+            }
+        }
+    }
+}

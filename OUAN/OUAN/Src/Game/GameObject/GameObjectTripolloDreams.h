@@ -77,6 +77,8 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 
+		void setVisible(bool visible);
+
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);

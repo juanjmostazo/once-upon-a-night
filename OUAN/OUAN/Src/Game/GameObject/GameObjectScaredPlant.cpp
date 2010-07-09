@@ -300,6 +300,22 @@ void GameObjectScaredPlant::processAnimationEnded(const std::string& animationNa
 		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
 	}
 }
+void GameObjectScaredPlant::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectScaredPlantParameters::TGameObjectScaredPlantParameters() : TGameObjectParameters()

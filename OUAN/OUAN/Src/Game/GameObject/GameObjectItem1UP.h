@@ -47,6 +47,8 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
+		void setVisible(bool visible);
+
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);

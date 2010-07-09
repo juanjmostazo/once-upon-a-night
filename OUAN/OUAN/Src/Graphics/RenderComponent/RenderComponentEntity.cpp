@@ -83,6 +83,12 @@ void RenderComponentEntity::setVisible(bool visible)
 		}
 	}
 }
+
+bool RenderComponentEntity::isVisible()
+{
+	return mEntity->isAttached();
+}
+
 void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
 {
 	mAnimations.clear();

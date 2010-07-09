@@ -43,6 +43,8 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 
+		void setVisible(bool visible);
+
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);

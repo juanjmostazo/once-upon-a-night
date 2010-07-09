@@ -25,7 +25,7 @@ namespace OUAN
 		OGRE3DKinematicBody* getNxOgreKinematicBody();
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
-		void setBalancingParams(double balanceRadioX, double balanceRadioY, double balanceRadioZ, double balanceRadioTime);
+		void setBalancingParams(double balanceRadiumX, double balanceRadiumY, double balanceRadiumZ, double balanceRadiumTime);
 		virtual Ogre::Vector3 getLastPositionDifference();
 
 		virtual Ogre::Vector3 getPosition();
@@ -38,10 +38,10 @@ namespace OUAN
 		OGRE3DBody* mNxOgreBody;
 		OGRE3DKinematicBody* mNxOgreKinematicBody;
 
-		double mBalanceRadioX;
-		double mBalanceRadioY;
-		double mBalanceRadioZ;
-		double mBalanceRadioTime;
+		double mBalanceRadiumX;
+		double mBalanceRadiumY;
+		double mBalanceRadiumZ;
+		double mBalanceRadiumTime;
 
 		Ogre::Vector3 mBalanceLastWasPositive;  // VALUES{1,0}
 		Ogre::Vector3 mBalanceLastWasCenter;    // VALUES{1,0}
@@ -61,10 +61,10 @@ namespace OUAN
 		TPhysicsComponentComplexConvexParameters();
 		~TPhysicsComponentComplexConvexParameters();
 
-		double balanceRadioX;
-		double balanceRadioY;
-		double balanceRadioZ;
-		double balanceRadioTime;
+		double balanceRadiumX;
+		double balanceRadiumY;
+		double balanceRadiumZ;
+		double balanceRadiumTime;
 	};
 }
 

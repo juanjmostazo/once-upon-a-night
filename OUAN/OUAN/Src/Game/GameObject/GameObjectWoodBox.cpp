@@ -469,6 +469,28 @@ void GameObjectWoodBox::setRenderComponentEntityAdditional(RenderComponentEntity
 {
 	mRenderComponentEntityAdditional=pRenderComponentEntityAdditional;
 }
+
+void GameObjectWoodBox::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentBreakable->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentBreakable->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectWoodBoxParameters::TGameObjectWoodBoxParameters() : TGameObjectParameters()

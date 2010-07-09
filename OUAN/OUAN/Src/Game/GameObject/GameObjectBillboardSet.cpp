@@ -236,6 +236,27 @@ void GameObjectBillboardSet::updateLogic(double elapsedSeconds)
 	}
 }
 
+void GameObjectBillboardSet::setVisible(bool visible)
+{
+	//switch(mWorld)
+	//{
+	//case DREAMS:
+	//	if(mLogicComponent->existsInDreams())
+	//	{
+	//		mRenderComponentBillboardSetDreams->setVisible(visible);
+	//	}
+	//	break;
+	//case NIGHTMARES:
+	//	if(mLogicComponent->existsInNightmares())
+	//	{
+	//		mRenderComponentBillboardSetNightmares->setVisible(visible);
+	//	}
+	//	break;
+	//default:
+	//	break;
+	//}
+}
+
 TGameObjectBillboardSetParameters::TGameObjectBillboardSetParameters() : TGameObjectParameters()
 {
 

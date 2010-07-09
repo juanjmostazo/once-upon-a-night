@@ -1,9 +1,10 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import diffuse_template from Shadows.material
+import AlphaSplatTerrain from alpha_splatting.material
 
 //TERRAIN1 01
-material terrain1_01_d: diffuse_template
+material terrain1_01_d : diffuse_template
 {	
     set_texture_alias ambient_tex terrain1_01_d.dds
     set_texture_alias diffuse_tex terrain1_01_d.dds
@@ -20,10 +21,20 @@ material terrain1_01_cw : default_changeworld
 }
 
 //TERRAIN1 02
-material terrain1_02_d: diffuse_template
+material terrain1_02_d: AlphaSplatTerrain
 {	
-    set_texture_alias ambient_tex terrain1_02_d.dds
-    set_texture_alias diffuse_tex terrain1_02_d.dds
+    set_texture_alias AlphaMap1     alpha_splat_0.dds
+    set_texture_alias AlphaMap2     alpha_splat_1.dds
+    set_texture_alias Splat1        Grass2.jpg
+    set_texture_alias Splat2        Grass1.jpg
+    set_texture_alias Splat3        terra1.jpg
+    set_texture_alias Splat4        grass3.jpg
+    set_texture_alias Splat5        sand1.jpg
+    set_texture_alias Splat6        Dirt2.jpg
+    set_texture_alias Splat7        rock3.jpg 
+    set_texture_alias Splat8        rock2.jpg
+    set_texture_alias Detail        detail.jpg
+    set_texture_alias Fallback      Grass2.jpg
 }
 
 material terrain1_02_n : diffuse_template

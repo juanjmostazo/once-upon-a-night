@@ -317,7 +317,26 @@ PhysicsComponentPtr GameObjectStoryBook::getPhysicsComponent() const
 {
 	return getPhysicsComponentVolumeBox();
 }
-
+void GameObjectStoryBook::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {

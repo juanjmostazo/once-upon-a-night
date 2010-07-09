@@ -116,9 +116,10 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 
 	//Create GameObject
 	pGameObjectBee_Butterfly = GameObjectBee_ButterflyPtr(new GameObjectBee_Butterfly(tGameObjectBee_ButterflyParameters.name));
-	pGameObjectBee_Butterfly->setMaxUpdateRadio(tGameObjectBee_ButterflyParameters.maxUpdateRadio);
+	pGameObjectBee_Butterfly->setMaxUpdateRadium(tGameObjectBee_ButterflyParameters.mMaxUpdateRadium);
 	pGameObjectBee_Butterfly->setParentNest(tGameObjectBee_ButterflyParameters.parentNest);
 	pGameObjectBee_Butterfly->setSpawnProbability(tGameObjectBee_ButterflyParameters.spawnProbability);
+	pGameObjectBee_Butterfly->setMaxRenderRadium(tGameObjectBee_ButterflyParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectBee_Butterfly->setLogicComponentEnemy(
@@ -178,9 +179,10 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	
 	//Create GameObject
 	pGameObjectBillboardSet = GameObjectBillboardSetPtr(new GameObjectBillboardSet(tGameObjectBillboardSetParameters.name));
-	pGameObjectBillboardSet->setMaxUpdateRadio(tGameObjectBillboardSetParameters.maxUpdateRadio);
+	pGameObjectBillboardSet->setMaxUpdateRadium(tGameObjectBillboardSetParameters.mMaxUpdateRadium);
 	pGameObjectBillboardSet->setParentNest(tGameObjectBillboardSetParameters.parentNest);
 	pGameObjectBillboardSet->setSpawnProbability(tGameObjectBillboardSetParameters.spawnProbability);
+	pGameObjectBillboardSet->setMaxRenderRadium(tGameObjectBillboardSetParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectBillboardSet->setLogicComponent(
@@ -236,9 +238,10 @@ GameObjectBushPtr GameObjectFactory::createGameObjectBush(TGameObjectBushParamet
 
 	//Create GameObject
 	pGameObjectBush = GameObjectBushPtr(new GameObjectBush(tGameObjectBushParameters.name));
-	pGameObjectBush->setMaxUpdateRadio(tGameObjectBushParameters.maxUpdateRadio);
+	pGameObjectBush->setMaxUpdateRadium(tGameObjectBushParameters.mMaxUpdateRadium);
 	pGameObjectBush->setParentNest(tGameObjectBushParameters.parentNest);
 	pGameObjectBush->setSpawnProbability(tGameObjectBushParameters.spawnProbability);
+	pGameObjectBush->setMaxRenderRadium(tGameObjectBushParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectBush->setLogicComponent(
@@ -298,10 +301,11 @@ GameObjectCarnivorousPlantPtr GameObjectFactory::createGameObjectCarnivorousPlan
 
 	//Create GameObject
 	pGameObjectCarnivorousPlant = GameObjectCarnivorousPlantPtr(new GameObjectCarnivorousPlant(tGameObjectCarnivorousPlantParameters.name));
-	pGameObjectCarnivorousPlant->setMaxUpdateRadio(tGameObjectCarnivorousPlantParameters.maxUpdateRadio);
+	pGameObjectCarnivorousPlant->setMaxUpdateRadium(tGameObjectCarnivorousPlantParameters.mMaxUpdateRadium);
 	pGameObjectCarnivorousPlant->setParentNest(
 		tGameObjectCarnivorousPlantParameters.parentNest);
 	pGameObjectCarnivorousPlant->setSpawnProbability(tGameObjectCarnivorousPlantParameters.spawnProbability);
+	pGameObjectCarnivorousPlant->setMaxRenderRadium(tGameObjectCarnivorousPlantParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectCarnivorousPlant->setLogicComponentEnemy(
@@ -353,9 +357,10 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 
 	//Create GameObject
 	pGameObjectClockPiece = GameObjectClockPiecePtr(new GameObjectClockPiece(tGameObjectClockPieceParameters.name));
-	pGameObjectClockPiece->setMaxUpdateRadio(tGameObjectClockPieceParameters.maxUpdateRadio);
+	pGameObjectClockPiece->setMaxUpdateRadium(tGameObjectClockPieceParameters.mMaxUpdateRadium);
 	pGameObjectClockPiece->setSpawnProbability(tGameObjectClockPieceParameters.spawnProbability);
 	pGameObjectClockPiece->setParentNest(tGameObjectClockPieceParameters.parentNest);
+	pGameObjectClockPiece->setMaxRenderRadium(tGameObjectClockPieceParameters.mMaxRenderRadium);
 
 	//Create LogicComponentWorldExistance
 	pGameObjectClockPiece->setLogicComponentItem(
@@ -407,9 +412,10 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 	
 	//Create GameObject
 	pGameObjectCloud = GameObjectCloudPtr(new GameObjectCloud(tGameObjectCloudParameters.name));
-	pGameObjectCloud->setMaxUpdateRadio(tGameObjectCloudParameters.maxUpdateRadio);
+	pGameObjectCloud->setMaxUpdateRadium(tGameObjectCloudParameters.mMaxUpdateRadium);
 	pGameObjectCloud->setParentNest(tGameObjectCloudParameters.parentNest);
 	pGameObjectCloud->setSpawnProbability(tGameObjectCloudParameters.spawnProbability);
+	pGameObjectCloud->setMaxRenderRadium(tGameObjectCloudParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectCloud->setLogicComponent(
@@ -488,9 +494,10 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 
 	//Create GameObject
 	pGameObjectCryKing = GameObjectCryKingPtr(new GameObjectCryKing(tGameObjectCryKingParameters.name));
-	pGameObjectCryKing->setMaxUpdateRadio(tGameObjectCryKingParameters.maxUpdateRadio);
+	pGameObjectCryKing->setMaxUpdateRadium(tGameObjectCryKingParameters.mMaxUpdateRadium);
 	pGameObjectCryKing->setParentNest(tGameObjectCryKingParameters.parentNest);
 	pGameObjectCryKing->setSpawnProbability(tGameObjectCryKingParameters.spawnProbability);
+	pGameObjectCryKing->setMaxRenderRadium(tGameObjectCryKingParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectCryKing->setLogicComponent(
@@ -544,9 +551,10 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 
 	//Create GameObject
 	pGameObjectDiamond = GameObjectDiamondPtr(new GameObjectDiamond(tGameObjectDiamondParameters.name));
-	pGameObjectDiamond->setMaxUpdateRadio(tGameObjectDiamondParameters.maxUpdateRadio);
+	pGameObjectDiamond->setMaxUpdateRadium(tGameObjectDiamondParameters.mMaxUpdateRadium);
 	pGameObjectDiamond->setParentNest(tGameObjectDiamondParameters.parentNest);
 	pGameObjectDiamond->setSpawnProbability(tGameObjectDiamondParameters.spawnProbability);
+	pGameObjectDiamond->setMaxRenderRadium(tGameObjectDiamondParameters.mMaxRenderRadium);
 
 	//Create LogicComponentWorldExistance
 	pGameObjectDiamond->setLogicComponentItem(
@@ -605,9 +613,10 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 
 	//Create GameObject
 	pGameObjectDiamondTree = GameObjectDiamondTreePtr(new GameObjectDiamondTree(tGameObjectDiamondTreeParameters.name));
-	pGameObjectDiamondTree->setMaxUpdateRadio(tGameObjectDiamondTreeParameters.maxUpdateRadio);
+	pGameObjectDiamondTree->setMaxUpdateRadium(tGameObjectDiamondTreeParameters.mMaxUpdateRadium);
 	pGameObjectDiamondTree->setParentNest(tGameObjectDiamondTreeParameters.parentNest);
 	pGameObjectDiamondTree->setSpawnProbability(tGameObjectDiamondTreeParameters.spawnProbability);
+	pGameObjectDiamondTree->setMaxRenderRadium(tGameObjectDiamondTreeParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectDiamondTree->setLogicComponent(
@@ -677,9 +686,10 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 
 	//Create GameObject
 	pGameObjectDoor = GameObjectDoorPtr(new GameObjectDoor(tGameObjectDoorParameters.name));
-	pGameObjectDoor->setMaxUpdateRadio(tGameObjectDoorParameters.maxUpdateRadio);
+	pGameObjectDoor->setMaxUpdateRadium(tGameObjectDoorParameters.mMaxUpdateRadium);
 	pGameObjectDoor->setParentNest(tGameObjectDoorParameters.parentNest);
 	pGameObjectDoor->setSpawnProbability(tGameObjectDoorParameters.spawnProbability);
+	pGameObjectDoor->setMaxRenderRadium(tGameObjectDoorParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectDoor->setLogicComponent(
@@ -733,9 +743,10 @@ GameObjectDragonPtr GameObjectFactory::createGameObjectDragon(TGameObjectDragonP
 
 	//Create GameObject
 	pGameObjectDragon = GameObjectDragonPtr(new GameObjectDragon(tGameObjectDragonParameters.name));
-	pGameObjectDragon->setMaxUpdateRadio(tGameObjectDragonParameters.maxUpdateRadio);
+	pGameObjectDragon->setMaxUpdateRadium(tGameObjectDragonParameters.mMaxUpdateRadium);
 	pGameObjectDragon->setParentNest(tGameObjectDragonParameters.parentNest);
 	pGameObjectDragon->setSpawnProbability(tGameObjectDragonParameters.spawnProbability);
+	pGameObjectDragon->setMaxRenderRadium(tGameObjectDragonParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectDragon->setLogicComponentEnemy(
@@ -783,9 +794,10 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 
 	//Create GameObject
 	pGameObjectEye = GameObjectEyePtr(new GameObjectEye(tGameObjectEyeParameters.name));
-	pGameObjectEye->setMaxUpdateRadio(tGameObjectEyeParameters.maxUpdateRadio);
+	pGameObjectEye->setMaxUpdateRadium(tGameObjectEyeParameters.mMaxUpdateRadium);
 	pGameObjectEye->setParentNest(tGameObjectEyeParameters.parentNest);
 	pGameObjectEye->setSpawnProbability(tGameObjectEyeParameters.spawnProbability);
+	pGameObjectEye->setMaxRenderRadium(tGameObjectEyeParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectEye->setLogicComponentEnemy(
@@ -828,9 +840,10 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 
 	//Create GameObject
 	pGameObjectFog = GameObjectFogPtr(new GameObjectFog(tGameObjectFogParameters.name));
-	pGameObjectFog->setMaxUpdateRadio(tGameObjectFogParameters.maxUpdateRadio);
+	pGameObjectFog->setMaxUpdateRadium(tGameObjectFogParameters.mMaxUpdateRadium);
 	pGameObjectFog->setParentNest(tGameObjectFogParameters.parentNest);
 	pGameObjectFog->setSpawnProbability(tGameObjectFogParameters.spawnProbability);
+	pGameObjectFog->setMaxRenderRadium(tGameObjectFogParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectFog->setLogicComponent(
@@ -890,9 +903,10 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	//Create GameObject
 	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,gameWorldMgr,
 		cameraMgr,raycasting,renderSubsystem));
-	pGameObjectFlashLight->setMaxUpdateRadio(tGameObjectFlashLightParameters.maxUpdateRadio);
+	pGameObjectFlashLight->setMaxUpdateRadium(tGameObjectFlashLightParameters.mMaxUpdateRadium);
 	pGameObjectFlashLight->setParentNest(tGameObjectFlashLightParameters.parentNest);
 	pGameObjectFlashLight->setSpawnProbability(tGameObjectFlashLightParameters.spawnProbability);
+	pGameObjectFlashLight->setMaxRenderRadium(tGameObjectFlashLightParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectFlashLight->setLogicComponent(
@@ -981,12 +995,11 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 
 	//Create GameObject
 	pGameObjectHeart = GameObjectHeartPtr(new GameObjectHeart(tGameObjectHeartParameters.name));
-	pGameObjectHeart->setMaxUpdateRadio(tGameObjectHeartParameters.maxUpdateRadio);
+	pGameObjectHeart->setMaxUpdateRadium(tGameObjectHeartParameters.mMaxUpdateRadium);
 	pGameObjectHeart->setParentNest(tGameObjectHeartParameters.parentNest);
 	pGameObjectHeart->setSpawnProbability(tGameObjectHeartParameters.spawnProbability);
-	
-	pGameObjectHeart->setParentNest(tGameObjectHeartParameters.parentNest);
-	pGameObjectHeart->setSpawnProbability(tGameObjectHeartParameters.spawnProbability);
+	pGameObjectHeart->setMaxRenderRadium(tGameObjectHeartParameters.mMaxRenderRadium);
+
 	if (!tGameObjectHeartParameters.parentNest.empty())
 	{
 		gameWorldMgr->addNestLink(pGameObjectHeart->getName(),tGameObjectHeartParameters.parentNest);
@@ -1034,10 +1047,13 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 
 	//Create GameObject
 	pGameObjectItem1UP = GameObjectItem1UPPtr(new GameObjectItem1UP(tGameObjectItem1UPParameters.name));
-	pGameObjectItem1UP->setMaxUpdateRadio(tGameObjectItem1UPParameters.maxUpdateRadio);
+	pGameObjectItem1UP->setMaxUpdateRadium(tGameObjectItem1UPParameters.mMaxUpdateRadium);
 	pGameObjectItem1UP->setParentNest(tGameObjectItem1UPParameters
 		.parentNest);
 	pGameObjectItem1UP->setSpawnProbability(tGameObjectItem1UPParameters.spawnProbability);
+	pGameObjectItem1UP->setMaxRenderRadium(tGameObjectItem1UPParameters.mMaxRenderRadium);
+
+
 	if (!tGameObjectItem1UPParameters.parentNest.empty())
 	{
 		gameWorldMgr->addNestLink(pGameObjectItem1UP->getName(),tGameObjectItem1UPParameters.parentNest);
@@ -1084,9 +1100,10 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 
 	//Create GameObject
 	pGameObjectItemMaxHP = GameObjectItemMaxHPPtr(new GameObjectItemMaxHP(tGameObjectItemMaxHPParameters.name));
-	pGameObjectItemMaxHP->setMaxUpdateRadio(tGameObjectItemMaxHPParameters.maxUpdateRadio);
+	pGameObjectItemMaxHP->setMaxUpdateRadium(tGameObjectItemMaxHPParameters.mMaxUpdateRadium);
 	pGameObjectItemMaxHP->setParentNest(tGameObjectItemMaxHPParameters.parentNest);
 	pGameObjectItemMaxHP->setSpawnProbability(tGameObjectItemMaxHPParameters.spawnProbability);
+	pGameObjectItemMaxHP->setMaxRenderRadium(tGameObjectItemMaxHPParameters.mMaxRenderRadium);
 
 	if (!tGameObjectItemMaxHPParameters.parentNest.empty())
 	{
@@ -1140,9 +1157,10 @@ GameObjectLightPtr GameObjectFactory::createGameObjectLight(TGameObjectLightPara
 
 	//Create GameObject
 	pGameObjectLight = GameObjectLightPtr(new GameObjectLight(tGameObjectLightParameters.name));
-	pGameObjectLight->setMaxUpdateRadio(tGameObjectLightParameters.maxUpdateRadio);
+	pGameObjectLight->setMaxUpdateRadium(tGameObjectLightParameters.mMaxUpdateRadium);
 	pGameObjectLight->setParentNest(tGameObjectLightParameters.parentNest);
 	pGameObjectLight->setSpawnProbability(tGameObjectLightParameters.spawnProbability);
+	pGameObjectLight->setMaxRenderRadium(tGameObjectLightParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectLight->setLogicComponent(
@@ -1177,9 +1195,10 @@ GameObjectMagicClockPtr GameObjectFactory::createGameObjectMagicClock(TGameObjec
 
 	//Create GameObject
 	pGameObjectMagicClock = GameObjectMagicClockPtr(new GameObjectMagicClock(tGameObjectMagicClockParameters.name));
-	pGameObjectMagicClock->setMaxUpdateRadio(tGameObjectMagicClockParameters.maxUpdateRadio);
+	pGameObjectMagicClock->setMaxUpdateRadium(tGameObjectMagicClockParameters.mMaxUpdateRadium);
 	pGameObjectMagicClock->setParentNest(tGameObjectMagicClockParameters.parentNest);
 	pGameObjectMagicClock->setSpawnProbability(tGameObjectMagicClockParameters.spawnProbability);
+	pGameObjectMagicClock->setMaxRenderRadium(tGameObjectMagicClockParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectMagicClock->setLogicComponent(
@@ -1201,9 +1220,10 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 
 	//Create GameObject
 	pGameObjectNest= GameObjectNestPtr(new GameObjectNest(params.name));
-	pGameObjectNest->setMaxUpdateRadio(params.maxUpdateRadio);
+	pGameObjectNest->setMaxUpdateRadium(params.mMaxUpdateRadium);
 	pGameObjectNest->setParentNest(params.parentNest);
 	pGameObjectNest->setSpawnProbability(params.spawnProbability);
+	pGameObjectNest->setMaxRenderRadium(params.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectNest->setLogicComponent(
@@ -1244,9 +1264,10 @@ GameObjectNightGoblinPtr GameObjectFactory::createGameObjectNightGoblin(TGameObj
 
 	//Create GameObject
 	pGameObjectNightGoblin = GameObjectNightGoblinPtr(new GameObjectNightGoblin(tGameObjectNightGoblinParameters.name));
-	pGameObjectNightGoblin->setMaxUpdateRadio(tGameObjectNightGoblinParameters.maxUpdateRadio);
+	pGameObjectNightGoblin->setMaxUpdateRadium(tGameObjectNightGoblinParameters.mMaxUpdateRadium);
 	pGameObjectNightGoblin->setParentNest(tGameObjectNightGoblinParameters.parentNest);
 	pGameObjectNightGoblin->setSpawnProbability(tGameObjectNightGoblinParameters.spawnProbability);
+	pGameObjectNightGoblin->setMaxRenderRadium(tGameObjectNightGoblinParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectNightGoblin->setLogicComponentEnemy(
@@ -1293,9 +1314,10 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Create GameObject
 	pGameObjectOny = GameObjectOnyPtr(new GameObjectOny(tGameObjectOnyParameters.name));
-	pGameObjectOny->setMaxUpdateRadio(tGameObjectOnyParameters.maxUpdateRadio);
+	pGameObjectOny->setMaxUpdateRadium(tGameObjectOnyParameters.mMaxUpdateRadium);
 	pGameObjectOny->setParentNest(tGameObjectOnyParameters.parentNest);
 	pGameObjectOny->setSpawnProbability(tGameObjectOnyParameters.spawnProbability);
+	pGameObjectOny->setMaxRenderRadium(tGameObjectOnyParameters.mMaxRenderRadium);
 
 	//Create LogicComponentOny
 	pGameObjectOny->setLogicComponentOny(
@@ -1393,9 +1415,10 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 
 	//Create GameObject
 	pGameObjectParticleSystem = GameObjectParticleSystemPtr(new GameObjectParticleSystem(tGameObjectParticleSystemParameters.name));
-	pGameObjectParticleSystem->setMaxUpdateRadio(tGameObjectParticleSystemParameters.maxUpdateRadio);
+	pGameObjectParticleSystem->setMaxUpdateRadium(tGameObjectParticleSystemParameters.mMaxUpdateRadium);
 	pGameObjectParticleSystem->setParentNest(tGameObjectParticleSystemParameters.parentNest);
 	pGameObjectParticleSystem->setSpawnProbability(tGameObjectParticleSystemParameters.spawnProbability);
+	pGameObjectParticleSystem->setMaxRenderRadium(tGameObjectParticleSystemParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectParticleSystem->setLogicComponent(
@@ -1436,9 +1459,10 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 
 	//Create GameObject
 	pGameObjectPillow = GameObjectPillowPtr(new GameObjectPillow(tGameObjectPillowParameters.name));	
-	pGameObjectPillow->setMaxUpdateRadio(tGameObjectPillowParameters.maxUpdateRadio);
+	pGameObjectPillow->setMaxUpdateRadium(tGameObjectPillowParameters.mMaxUpdateRadium);
 	pGameObjectPillow->setParentNest(tGameObjectPillowParameters.parentNest);
 	pGameObjectPillow->setSpawnProbability(tGameObjectPillowParameters.spawnProbability);
+	pGameObjectPillow->setMaxRenderRadium(tGameObjectPillowParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectPillow->setLogicComponent(
@@ -1515,9 +1539,10 @@ GameObjectPlanePtr GameObjectFactory::createGameObjectPlane(TGameObjectPlanePara
 
 	//Create GameObject
 	pGameObjectPlane = GameObjectPlanePtr(new GameObjectPlane(tGameObjectPlaneParameters.name));
-	pGameObjectPlane->setMaxUpdateRadio(tGameObjectPlaneParameters.maxUpdateRadio);
+	pGameObjectPlane->setMaxUpdateRadium(tGameObjectPlaneParameters.mMaxUpdateRadium);
 	pGameObjectPlane->setParentNest(tGameObjectPlaneParameters.parentNest);
 	pGameObjectPlane->setSpawnProbability(tGameObjectPlaneParameters.spawnProbability);
+	pGameObjectPlane->setMaxRenderRadium(tGameObjectPlaneParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectPlane->setLogicComponent(
@@ -1552,9 +1577,10 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 
 	//Create GameObject
 	pGameObjectPlataform = GameObjectPlataformPtr(new GameObjectPlataform(tGameObjectPlataformParameters.name));
-	pGameObjectPlataform->setMaxUpdateRadio(tGameObjectPlataformParameters.maxUpdateRadio);
+	pGameObjectPlataform->setMaxUpdateRadium(tGameObjectPlataformParameters.mMaxUpdateRadium);
 	pGameObjectPlataform->setParentNest(tGameObjectPlataformParameters.parentNest);
 	pGameObjectPlataform->setSpawnProbability(tGameObjectPlataformParameters.spawnProbability);
+	pGameObjectPlataform->setMaxRenderRadium(tGameObjectPlataformParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectPlataform->setLogicComponent(
@@ -1605,9 +1631,10 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 
 	//Create GameObject
 	pGameObjectPortal = GameObjectPortalPtr(new GameObjectPortal(tGameObjectPortalParameters.name));
-	pGameObjectPortal->setMaxUpdateRadio(tGameObjectPortalParameters.maxUpdateRadio);
+	pGameObjectPortal->setMaxUpdateRadium(tGameObjectPortalParameters.mMaxUpdateRadium);
 	pGameObjectPortal->setParentNest(tGameObjectPortalParameters.parentNest);
 	pGameObjectPortal->setSpawnProbability(tGameObjectPortalParameters.spawnProbability);
+	pGameObjectPortal->setMaxRenderRadium(tGameObjectPortalParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectPortal->setLogicComponentUsable(
@@ -1687,9 +1714,10 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 
 	//Create GameObject
 	pGameObjectProvisionalEntity = GameObjectProvisionalEntityPtr(new GameObjectProvisionalEntity(tGameObjectProvisionalEntityParameters.name));
-	pGameObjectProvisionalEntity->setMaxUpdateRadio(tGameObjectProvisionalEntityParameters.maxUpdateRadio);
+	pGameObjectProvisionalEntity->setMaxUpdateRadium(tGameObjectProvisionalEntityParameters.mMaxUpdateRadium);
 	pGameObjectProvisionalEntity->setParentNest(tGameObjectProvisionalEntityParameters.parentNest);
 	pGameObjectProvisionalEntity->setSpawnProbability(tGameObjectProvisionalEntityParameters.spawnProbability);
+	pGameObjectProvisionalEntity->setMaxRenderRadium(tGameObjectProvisionalEntityParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectProvisionalEntity->setLogicComponent(
@@ -1742,9 +1770,10 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 
 	//Create GameObject
 	pGameObjectScaredPlant = GameObjectScaredPlantPtr(new GameObjectScaredPlant(tGameObjectScaredPlantParameters.name));
-	pGameObjectScaredPlant->setMaxUpdateRadio(tGameObjectScaredPlantParameters.maxUpdateRadio);
+	pGameObjectScaredPlant->setMaxUpdateRadium(tGameObjectScaredPlantParameters.mMaxUpdateRadium);
 	pGameObjectScaredPlant->setParentNest(tGameObjectScaredPlantParameters.parentNest);
 	pGameObjectScaredPlant->setSpawnProbability(tGameObjectScaredPlantParameters.spawnProbability);
+	pGameObjectScaredPlant->setMaxRenderRadium(tGameObjectScaredPlantParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectScaredPlant->setLogicComponent(
@@ -1787,9 +1816,10 @@ GameObjectScenePtr GameObjectFactory::createGameObjectScene(TGameObjectScenePara
 
 	//Create GameObject
 	pGameObjectScene = GameObjectScenePtr(new GameObjectScene(tGameObjectSceneParameters.name));
-	pGameObjectScene->setMaxUpdateRadio(tGameObjectSceneParameters.maxUpdateRadio);
+	pGameObjectScene->setMaxUpdateRadium(tGameObjectSceneParameters.mMaxUpdateRadium);
 	pGameObjectScene->setParentNest(tGameObjectSceneParameters.parentNest);
 	pGameObjectScene->setSpawnProbability(tGameObjectSceneParameters.spawnProbability);
+	pGameObjectScene->setMaxRenderRadium(tGameObjectSceneParameters.mMaxRenderRadium);
 
 	//Create RenderComponentViewport
 	pGameObjectScene->setRenderComponentScene(mComponentFactory->createRenderComponentScene(
@@ -1811,9 +1841,10 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 
 	//Create GameObject
 	pGameObjectScepter = GameObjectScepterPtr(new GameObjectScepter(tGameObjectScepterParameters.name));
-	pGameObjectScepter->setMaxUpdateRadio(tGameObjectScepterParameters.maxUpdateRadio);
+	pGameObjectScepter->setMaxUpdateRadium(tGameObjectScepterParameters.mMaxUpdateRadium);
 	pGameObjectScepter->setParentNest(tGameObjectScepterParameters.parentNest);
 	pGameObjectScepter->setSpawnProbability(tGameObjectScepterParameters.spawnProbability);
+	pGameObjectScepter->setMaxRenderRadium(tGameObjectScepterParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectScepter->setLogicComponent(
@@ -1856,9 +1887,10 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 
 	//Create GameObject
 	gameObject = GameObjectSkyBodyPtr(new GameObjectSkyBody(params.name));
-	gameObject->setMaxUpdateRadio(params.maxUpdateRadio);
+	gameObject->setMaxUpdateRadium(params.mMaxUpdateRadium);
 	gameObject->setParentNest(params.parentNest);
 	gameObject->setSpawnProbability(params.spawnProbability);
+	gameObject->setMaxRenderRadium(params.mMaxRenderRadium);
 
 	gameObject->setUseEntityDreams(params.useEntityDreams);
 	gameObject->setUseEntityNightmares(params.useEntityNightmares);
@@ -2024,9 +2056,10 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 
 	//Create GameObject
 	pGameObjectSnakeCreeper = GameObjectSnakeCreeperPtr(new GameObjectSnakeCreeper(tGameObjectSnakeCreeperParameters.name));
-	pGameObjectSnakeCreeper->setMaxUpdateRadio(tGameObjectSnakeCreeperParameters.maxUpdateRadio);
+	pGameObjectSnakeCreeper->setMaxUpdateRadium(tGameObjectSnakeCreeperParameters.mMaxUpdateRadium);
 	pGameObjectSnakeCreeper->setParentNest(tGameObjectSnakeCreeperParameters.parentNest);
 	pGameObjectSnakeCreeper->setSpawnProbability(tGameObjectSnakeCreeperParameters.spawnProbability);
+	pGameObjectSnakeCreeper->setMaxRenderRadium(tGameObjectSnakeCreeperParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectSnakeCreeper->setLogicComponentEnemy(
@@ -2074,9 +2107,10 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 GameObjectSoundPtr GameObjectFactory::createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectSoundPtr sound = GameObjectSoundPtr(new GameObjectSound(params.name));
-	sound->setMaxUpdateRadio(params.maxUpdateRadio);
+	sound->setMaxUpdateRadium(params.mMaxUpdateRadium);
 	sound->setParentNest(params.parentNest);
 	sound->setSpawnProbability(params.spawnProbability);
+	sound->setMaxRenderRadium(params.mMaxRenderRadium);
 
 	sound->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
 		sound,params.tRenderComponentPositionalParameters));
@@ -2107,9 +2141,10 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 
 	//Create GameObject
 	pGameObjectStoryBook = GameObjectStoryBookPtr(new GameObjectStoryBook(tGameObjectStoryBookParameters.name));
-	pGameObjectStoryBook->setMaxUpdateRadio(tGameObjectStoryBookParameters.maxUpdateRadio);
+	pGameObjectStoryBook->setMaxUpdateRadium(tGameObjectStoryBookParameters.mMaxUpdateRadium);
 	pGameObjectStoryBook->setParentNest(tGameObjectStoryBookParameters.parentNest);
 	pGameObjectStoryBook->setSpawnProbability(tGameObjectStoryBookParameters.spawnProbability);
+	pGameObjectStoryBook->setMaxRenderRadium(tGameObjectStoryBookParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectStoryBook->setLogicComponentItem(
@@ -2162,9 +2197,10 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 
 	//Create GameObject
 	pGameObjectTentetieso = GameObjectTentetiesoPtr(new GameObjectTentetieso(tGameObjectTentetiesoParameters.name));
-	pGameObjectTentetieso->setMaxUpdateRadio(tGameObjectTentetiesoParameters.maxUpdateRadio);
+	pGameObjectTentetieso->setMaxUpdateRadium(tGameObjectTentetiesoParameters.mMaxUpdateRadium);
 	pGameObjectTentetieso->setParentNest(tGameObjectTentetiesoParameters.parentNest);
 	pGameObjectTentetieso->setSpawnProbability(tGameObjectTentetiesoParameters.spawnProbability);
+	pGameObjectTentetieso->setMaxRenderRadium(tGameObjectTentetiesoParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTentetieso->setLogicComponentEnemy(
@@ -2211,9 +2247,10 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 
 	//Create GameObject
 	pGameObjectTerrainConvex = GameObjectTerrainConvexPtr(new GameObjectTerrainConvex(tGameObjectTerrainConvexParameters.name));
-	pGameObjectTerrainConvex->setMaxUpdateRadio(tGameObjectTerrainConvexParameters.maxUpdateRadio);
+	pGameObjectTerrainConvex->setMaxUpdateRadium(tGameObjectTerrainConvexParameters.mMaxUpdateRadium);
 	pGameObjectTerrainConvex->setParentNest(tGameObjectTerrainConvexParameters.parentNest);
 	pGameObjectTerrainConvex->setSpawnProbability(tGameObjectTerrainConvexParameters.spawnProbability);
+	pGameObjectTerrainConvex->setMaxRenderRadium(tGameObjectTerrainConvexParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTerrainConvex->setLogicComponent(
@@ -2275,9 +2312,10 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 
 	//Create GameObject
 	pGameObjectTerrainTriangle = GameObjectTerrainTrianglePtr(new GameObjectTerrainTriangle(tGameObjectTerrainTriangleParameters.name));
-	pGameObjectTerrainTriangle->setMaxUpdateRadio(tGameObjectTerrainTriangleParameters.maxUpdateRadio);
+	pGameObjectTerrainTriangle->setMaxUpdateRadium(tGameObjectTerrainTriangleParameters.mMaxUpdateRadium);
 	pGameObjectTerrainTriangle->setParentNest(tGameObjectTerrainTriangleParameters.parentNest);
 	pGameObjectTerrainTriangle->setSpawnProbability(tGameObjectTerrainTriangleParameters.spawnProbability);
+	pGameObjectTerrainTriangle->setMaxRenderRadium(tGameObjectTerrainTriangleParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTerrainTriangle->setLogicComponent(
@@ -2323,9 +2361,10 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 
 	//Create GameObject
 	pGameObjectTree = GameObjectTreePtr(new GameObjectTree(tGameObjectTreeParameters.name));
-	pGameObjectTree->setMaxUpdateRadio(tGameObjectTreeParameters.maxUpdateRadio);
+	pGameObjectTree->setMaxUpdateRadium(tGameObjectTreeParameters.mMaxUpdateRadium);
 	pGameObjectTree->setParentNest(tGameObjectTreeParameters.parentNest);
 	pGameObjectTree->setSpawnProbability(tGameObjectTreeParameters.spawnProbability);
+	pGameObjectTree->setMaxRenderRadium(tGameObjectTreeParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTree->setLogicComponent(
@@ -2368,9 +2407,10 @@ GameObjectTreeComplexPtr GameObjectFactory::createGameObjectTreeComplex(TGameObj
 
 	//Create GameObject
 	pGameObjectTreeComplex = GameObjectTreeComplexPtr(new GameObjectTreeComplex(tGameObjectTreeComplexParameters.name));
-	pGameObjectTreeComplex->setMaxUpdateRadio(tGameObjectTreeComplexParameters.maxUpdateRadio);
+	pGameObjectTreeComplex->setMaxUpdateRadium(tGameObjectTreeComplexParameters.mMaxUpdateRadium);
 	pGameObjectTreeComplex->setParentNest(tGameObjectTreeComplexParameters.parentNest);
 	pGameObjectTreeComplex->setSpawnProbability(tGameObjectTreeComplexParameters.spawnProbability);
+	pGameObjectTreeComplex->setMaxRenderRadium(tGameObjectTreeComplexParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTreeComplex->setLogicComponent(
@@ -2413,9 +2453,10 @@ GameObjectTowerPtr GameObjectFactory::createGameObjectTower(TGameObjectTowerPara
 
 	//Create GameObject
 	pGameObjectTower = GameObjectTowerPtr(new GameObjectTower(tGameObjectTowerParameters.name));
-	pGameObjectTower->setMaxUpdateRadio(tGameObjectTowerParameters.maxUpdateRadio);
+	pGameObjectTower->setMaxUpdateRadium(tGameObjectTowerParameters.mMaxUpdateRadium);
 	pGameObjectTower->setParentNest(tGameObjectTowerParameters.parentNest);
 	pGameObjectTower->setSpawnProbability(tGameObjectTowerParameters.spawnProbability);
+	pGameObjectTower->setMaxRenderRadium(tGameObjectTowerParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTower->setLogicComponent(
@@ -2463,9 +2504,10 @@ GameObjectTriggerBoxPtr GameObjectFactory::createGameObjectTriggerBox(TGameObjec
 
 	//Create GameObject
 	pGameObjectTriggerBox = GameObjectTriggerBoxPtr(new GameObjectTriggerBox(tGameObjectTriggerBoxParameters.name));
-	pGameObjectTriggerBox->setMaxUpdateRadio(tGameObjectTriggerBoxParameters.maxUpdateRadio);
+	pGameObjectTriggerBox->setMaxUpdateRadium(tGameObjectTriggerBoxParameters.mMaxUpdateRadium);
 	pGameObjectTriggerBox->setParentNest(tGameObjectTriggerBoxParameters.parentNest);
 	pGameObjectTriggerBox->setSpawnProbability(tGameObjectTriggerBoxParameters.spawnProbability);
+	pGameObjectTriggerBox->setMaxRenderRadium(tGameObjectTriggerBoxParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTriggerBox->setLogicComponent(
@@ -2510,9 +2552,10 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 
 	//Create GameObject
 	pGameObjectTriggerCapsule = GameObjectTriggerCapsulePtr(new GameObjectTriggerCapsule(tGameObjectTriggerCapsuleParameters.name));
-	pGameObjectTriggerCapsule->setMaxUpdateRadio(tGameObjectTriggerCapsuleParameters.maxUpdateRadio);
+	pGameObjectTriggerCapsule->setMaxUpdateRadium(tGameObjectTriggerCapsuleParameters.mMaxUpdateRadium);
 	pGameObjectTriggerCapsule->setParentNest(tGameObjectTriggerCapsuleParameters.parentNest);
 	pGameObjectTriggerCapsule->setSpawnProbability(tGameObjectTriggerCapsuleParameters.spawnProbability);
+	pGameObjectTriggerCapsule->setMaxRenderRadium(tGameObjectTriggerCapsuleParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTriggerCapsule->setLogicComponent(
@@ -2557,9 +2600,10 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 
 	//Create GameObject
 	pGameObjectCameraTrigger = GameObjectCameraTriggerPtr(new GameObjectCameraTrigger(tGameObjectCameraTriggerParameters.name));
-	pGameObjectCameraTrigger->setMaxUpdateRadio(tGameObjectCameraTriggerParameters.maxUpdateRadio);
+	pGameObjectCameraTrigger->setMaxUpdateRadium(tGameObjectCameraTriggerParameters.mMaxUpdateRadium);
 	pGameObjectCameraTrigger->setParentNest(tGameObjectCameraTriggerParameters.parentNest);
 	pGameObjectCameraTrigger->setSpawnProbability(tGameObjectCameraTriggerParameters.spawnProbability);
+	pGameObjectCameraTrigger->setMaxRenderRadium(tGameObjectCameraTriggerParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectCameraTrigger->setLogicComponentCameraTrigger(
@@ -2604,9 +2648,10 @@ GameObjectActionTriggerPtr GameObjectFactory::createGameObjectActionTrigger(TGam
 
 	//Create GameObject
 	pGameObjectActionTrigger = GameObjectActionTriggerPtr(new GameObjectActionTrigger(tGameObjectActionTriggerParameters.name));
-	pGameObjectActionTrigger->setMaxUpdateRadio(tGameObjectActionTriggerParameters.maxUpdateRadio);
+	pGameObjectActionTrigger->setMaxUpdateRadium(tGameObjectActionTriggerParameters.mMaxUpdateRadium);
 	pGameObjectActionTrigger->setParentNest(tGameObjectActionTriggerParameters.parentNest);
 	pGameObjectActionTrigger->setSpawnProbability(tGameObjectActionTriggerParameters.spawnProbability);
+	pGameObjectActionTrigger->setMaxRenderRadium(tGameObjectActionTriggerParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectActionTrigger->setLogicComponentActionTrigger(
@@ -2651,9 +2696,10 @@ GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjec
 
 	//Create GameObject
 	pGameObjectTripollito = GameObjectTripollitoPtr(new GameObjectTripollito(tGameObjectTripollitoParameters.name));
-	pGameObjectTripollito->setMaxUpdateRadio(tGameObjectTripollitoParameters.maxUpdateRadio);
+	pGameObjectTripollito->setMaxUpdateRadium(tGameObjectTripollitoParameters.mMaxUpdateRadium);
 	pGameObjectTripollito->setParentNest(tGameObjectTripollitoParameters.parentNest);
 	pGameObjectTripollito->setSpawnProbability(tGameObjectTripollitoParameters.spawnProbability);
+	pGameObjectTripollito->setMaxRenderRadium(tGameObjectTripollitoParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTripollito->setLogicComponentEnemy(
@@ -2699,9 +2745,10 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 
 	//Create GameObject
 	pGameObjectTripolloDreams = GameObjectTripolloDreamsPtr(new GameObjectTripolloDreams(tGameObjectTripolloDreamsParameters.name));
-	pGameObjectTripolloDreams->setMaxUpdateRadio(tGameObjectTripolloDreamsParameters.maxUpdateRadio);
+	pGameObjectTripolloDreams->setMaxUpdateRadium(tGameObjectTripolloDreamsParameters.mMaxUpdateRadium);
 	pGameObjectTripolloDreams->setParentNest(tGameObjectTripolloDreamsParameters.parentNest);
 	pGameObjectTripolloDreams->setSpawnProbability(tGameObjectTripolloDreamsParameters.spawnProbability);
+	pGameObjectTripolloDreams->setMaxRenderRadium(tGameObjectTripolloDreamsParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectTripolloDreams->setLogicComponentEnemy(
@@ -2789,9 +2836,10 @@ GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectVie
 
 	//Create GameObject
 	pGameObjectViewport = GameObjectViewportPtr(new GameObjectViewport(tGameObjectViewportParameters.name));
-	pGameObjectViewport->setMaxUpdateRadio(tGameObjectViewportParameters.maxUpdateRadio);
+	pGameObjectViewport->setMaxUpdateRadium(tGameObjectViewportParameters.mMaxUpdateRadium);
 	pGameObjectViewport->setParentNest(tGameObjectViewportParameters.parentNest);
 	pGameObjectViewport->setSpawnProbability(tGameObjectViewportParameters.spawnProbability);
+	pGameObjectViewport->setMaxRenderRadium(tGameObjectViewportParameters.mMaxRenderRadium);
 
 	//Create RenderComponentViewport
 	pGameObjectViewport->setRenderComponentViewport(mComponentFactory->createRenderComponentViewport(
@@ -2816,9 +2864,10 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 
 	//Create GameObject
 	pGameObjectWoodBox = GameObjectWoodBoxPtr(new GameObjectWoodBox(tGameObjectWoodBoxParameters.name));
-	pGameObjectWoodBox->setMaxUpdateRadio(tGameObjectWoodBoxParameters.maxUpdateRadio);
+	pGameObjectWoodBox->setMaxUpdateRadium(tGameObjectWoodBoxParameters.mMaxUpdateRadium);
 	pGameObjectWoodBox->setParentNest(tGameObjectWoodBoxParameters.parentNest);
 	pGameObjectWoodBox->setSpawnProbability(tGameObjectWoodBoxParameters.spawnProbability);
+	pGameObjectWoodBox->setMaxRenderRadium(tGameObjectWoodBoxParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectWoodBox->setLogicComponentBreakable(
@@ -2896,9 +2945,10 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 
 	//Create GameObject
 	pGameObjectWater = GameObjectWaterPtr(new GameObjectWater(tGameObjectWaterParameters.name));
-	pGameObjectWater->setMaxUpdateRadio(tGameObjectWaterParameters.maxUpdateRadio);
+	pGameObjectWater->setMaxUpdateRadium(tGameObjectWaterParameters.mMaxUpdateRadium);
 	pGameObjectWater->setParentNest(tGameObjectWaterParameters.parentNest);
 	pGameObjectWater->setSpawnProbability(tGameObjectWaterParameters.spawnProbability);
+	pGameObjectWater->setMaxRenderRadium(tGameObjectWaterParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	pGameObjectWater->setLogicComponent(
@@ -2959,9 +3009,10 @@ GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 
 	//Create GameObject
 	gameObject= GameObjectSignPostPtr(new GameObjectSignpost(tGameObjectSignPostParameters.name));
-	gameObject->setMaxUpdateRadio(tGameObjectSignPostParameters.maxUpdateRadio);
+	gameObject->setMaxUpdateRadium(tGameObjectSignPostParameters.mMaxUpdateRadium);
 	gameObject->setParentNest(tGameObjectSignPostParameters.parentNest);
 	gameObject->setSpawnProbability(tGameObjectSignPostParameters.spawnProbability);
+	gameObject->setMaxRenderRadium(tGameObjectSignPostParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	gameObject->setLogicComponent(

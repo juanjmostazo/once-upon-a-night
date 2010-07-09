@@ -39,6 +39,7 @@ namespace OUAN
 		void setEntity(Ogre::Entity *);
 
 		void setVisible(bool visible);
+		bool isVisible();
 
 		void update(double elapsedTime);
 

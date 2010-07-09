@@ -71,3 +71,10 @@ TRenderComponentSkyDomeParameters::TRenderComponentSkyDomeParameters() : TRender
 TRenderComponentSkyDomeParameters::~TRenderComponentSkyDomeParameters()
 {
 }
+
+TRenderComponentFogParameters::TRenderComponentFogParameters() : TRenderComponentParameters()
+{
+}
+TRenderComponentFogParameters::~TRenderComponentFogParameters()
+{
+}

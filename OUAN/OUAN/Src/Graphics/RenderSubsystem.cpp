@@ -354,7 +354,7 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	try
 	{
 		initShadows();
-		mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		mSceneManager->setShadowTechnique(Ogre::SHADOWDETAILTYPE_STENCIL);
 
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
@@ -375,7 +375,14 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.tiling,
 				tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.distance);
 		}
-	}
+
+		mSceneManager->setFog(
+			tRenderComponentSceneParameters.tRenderComponentFogParameters.fogMode,
+			tRenderComponentSceneParameters.tRenderComponentFogParameters.colour,
+			tRenderComponentSceneParameters.tRenderComponentFogParameters.density,
+			tRenderComponentSceneParameters.tRenderComponentFogParameters.start,
+			tRenderComponentSceneParameters.tRenderComponentFogParameters.end);
+	}	
 	catch(Ogre::Exception &/*e*/)
 	{
 		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" SceneManager!");

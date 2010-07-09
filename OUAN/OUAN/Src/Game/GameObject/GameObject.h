@@ -47,8 +47,8 @@ namespace OUAN
 		bool mIsChangingWorld;
 		double mChangeWorldDelay;
 		int mWorld;
-		double mMaxUpdateRadio;
-
+		double mMaxUpdateRadium;
+		double mMaxRenderRadium;
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
@@ -144,6 +144,8 @@ namespace OUAN
 		virtual bool hasRenderComponentEntity() const;
 		virtual RenderComponentEntityPtr getEntityComponent() const;
 
+		virtual void setVisible(bool visible);
+
 		//QUERY METHODS (Used by LUA scripts)
 
 	/*	/// Return number of lives (in practice, all enemies will have only 1 life, so it won't be used)
@@ -201,10 +203,12 @@ namespace OUAN
 		virtual AudioComponentPtr getAudioComponentInstance() const;
 		virtual void playSound(const std::string& soundID);
 
-		virtual void setMaxUpdateRadio(double maxUpdateRadio);
+		virtual void setMaxUpdateRadium(double maxUpdateRadium);
+		virtual void setMaxRenderRadium(double maxRenderRadium);
 
 		virtual bool isWorthUpdatingPhysicsComponents();
 		virtual bool isWorthUpdatingLogicComponents();
+		virtual bool isWorthRendering();
 
 		virtual std::string getTranslation(const std::string& str);
 
@@ -225,7 +229,8 @@ namespace OUAN
 		std::string name;
 		std::string dreamsName;
 		std::string nightmaresName;
-		double maxUpdateRadio;
+		double mMaxUpdateRadium;
+		double mMaxRenderRadium;
 
 		std::string parentNest;
 		double spawnProbability;

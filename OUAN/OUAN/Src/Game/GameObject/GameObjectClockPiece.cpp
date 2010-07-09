@@ -297,6 +297,27 @@ RenderComponentEntityPtr GameObjectClockPiece::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
+void GameObjectClockPiece::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
 {
 

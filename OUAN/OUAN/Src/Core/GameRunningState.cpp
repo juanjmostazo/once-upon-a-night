@@ -846,6 +846,27 @@ bool GameRunningState::render()
 {
 	if (!firstRender)
 	{
+		TGameObjectContainer * container = mApp->getGameWorldManager()->getAllGameObjects();
+		
+		if (!container->empty())
+		{
+			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
+			{
+				//Logger::getInstance()->log("UPDATE "+it->second->getName());
+				if (it->second->isEnabled())
+				{
+					if(it->second->isWorthRendering())
+					{
+						it->second->setVisible(true);
+					}
+					else
+					{
+						it->second->setVisible(false);
+					}
+				}
+			}
+		}
+
 		RenderSubsystemPtr renderSubsystem=mApp->getRenderSubsystem();
 
 		if (mApp->getDebugMode()!=DEBUGMODE_NONE)

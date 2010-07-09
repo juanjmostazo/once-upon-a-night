@@ -26,9 +26,9 @@ void PhysicsComponentComplexConvex::create()
 	mBalanceLastWasNegative = Ogre::Vector3(0,0,0);
 
 	mBalanceDirection = Ogre::Vector3(
-		mBalanceRadioX == 0 ? 0 : mBalanceRadioX > 0 ? 1 : -1,
-		mBalanceRadioY == 0 ? 0 : mBalanceRadioY > 0 ? 1 : -1,
-		mBalanceRadioZ == 0 ? 0 : mBalanceRadioZ > 0 ? 1 : -1); 
+		mBalanceRadiumX == 0 ? 0 : mBalanceRadiumX > 0 ? 1 : -1,
+		mBalanceRadiumY == 0 ? 0 : mBalanceRadiumY > 0 ? 1 : -1,
+		mBalanceRadiumZ == 0 ? 0 : mBalanceRadiumZ > 0 ? 1 : -1); 
 
 	mBalanceAccumulatedTime = 0;
 
@@ -99,8 +99,8 @@ bool PhysicsComponentComplexConvex::canUpdateBalancing(double elapsedSeconds)
 {
 	return isInUse() 
 		&& !getParent()->isFirstUpdate() 
-		&& mBalanceRadioTime > 0 
-		&& elapsedSeconds <= mBalanceRadioTime;
+		&& mBalanceRadiumTime > 0 
+		&& elapsedSeconds <= mBalanceRadiumTime;
 }
 
 void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
@@ -108,7 +108,7 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 	double balanceOldAccumulatedTime = mBalanceAccumulatedTime;
 
 	mBalanceAccumulatedTime += elapsedSeconds;
-	mBalanceAccumulatedTime >= mBalanceRadioTime ? mBalanceRadioTime : mBalanceAccumulatedTime;
+	mBalanceAccumulatedTime >= mBalanceRadiumTime ? mBalanceRadiumTime : mBalanceAccumulatedTime;
 
 	double fixedElapsedTime = balanceOldAccumulatedTime - mBalanceAccumulatedTime;
 
@@ -116,15 +116,15 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 
 	Ogre::Vector3 position = getPosition();
 	Ogre::Vector3 newPosition = position;
-	newPosition.x += mBalanceDirection.x * fabs(mBalanceRadioX) * fixedElapsedTime / mBalanceRadioTime;
-	newPosition.y += mBalanceDirection.y * fabs(mBalanceRadioY) * fixedElapsedTime / mBalanceRadioTime;
-	newPosition.z += mBalanceDirection.z * fabs(mBalanceRadioZ) * fixedElapsedTime / mBalanceRadioTime;
+	newPosition.x += mBalanceDirection.x * fabs(mBalanceRadiumX) * fixedElapsedTime / mBalanceRadiumTime;
+	newPosition.y += mBalanceDirection.y * fabs(mBalanceRadiumY) * fixedElapsedTime / mBalanceRadiumTime;
+	newPosition.z += mBalanceDirection.z * fabs(mBalanceRadiumZ) * fixedElapsedTime / mBalanceRadiumTime;
 	setPosition(newPosition);
 	mLastPositionDifference = newPosition - position;
 
 	///////////////////////
 
-	if (mBalanceAccumulatedTime >= mBalanceRadioTime)
+	if (mBalanceAccumulatedTime >= mBalanceRadiumTime)
 	{
 		mBalanceAccumulatedTime = 0;
 
@@ -213,7 +213,7 @@ void PhysicsComponentComplexConvex::updateBalancing(double elapsedSeconds)
 	//	" \n :: mBalanceLastWasTop: " + Ogre::StringConverter::toString(mBalanceLastWasTop) + 
 	//	" \n :: mBalanceDirection: " + Ogre::StringConverter::toString(Ogre::Real(mBalanceDirection)) + 
 	//	" \n :: mBalanceAccumulatedTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceAccumulatedTime)) + 
-	//	" \n :: mBalanceRadioTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceRadioTime)) + 
+	//	" \n :: mBalanceRadiumTime " + Ogre::StringConverter::toString(Ogre::Real(mBalanceRadiumTime)) + 
 	//	" \n :: elapsedTime " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 }
 
@@ -247,12 +247,12 @@ void PhysicsComponentComplexConvex::setNxOgreKinematicBody(OGRE3DKinematicBody* 
 	mNxOgreKinematicBody=pNxOgreKinematicBody;
 }
 
-void PhysicsComponentComplexConvex::setBalancingParams(double balanceRadioX, double balanceRadioY, double balanceRadioZ, double balanceRadioTime)
+void PhysicsComponentComplexConvex::setBalancingParams(double balanceRadiumX, double balanceRadiumY, double balanceRadiumZ, double balanceRadiumTime)
 {
-	mBalanceRadioX = balanceRadioX;
-	mBalanceRadioY = balanceRadioY;
-	mBalanceRadioZ = balanceRadioZ;
-	mBalanceRadioTime = balanceRadioTime;
+	mBalanceRadiumX = balanceRadiumX;
+	mBalanceRadiumY = balanceRadiumY;
+	mBalanceRadiumZ = balanceRadiumZ;
+	mBalanceRadiumTime = balanceRadiumTime;
 }
 
 Ogre::Vector3 PhysicsComponentComplexConvex::getLastPositionDifference()
@@ -286,10 +286,10 @@ void PhysicsComponentComplexConvex::setPosition(Ogre::Vector3 position)
 
 TPhysicsComponentComplexConvexParameters::TPhysicsComponentComplexConvexParameters() : TPhysicsComponentComplexParameters()
 {
-	balanceRadioX = 0;
-	balanceRadioY = 0;
-	balanceRadioZ = 0;
-	balanceRadioTime = 0;
+	balanceRadiumX = 0;
+	balanceRadiumY = 0;
+	balanceRadiumZ = 0;
+	balanceRadiumTime = 0;
 }
 
 TPhysicsComponentComplexConvexParameters::~TPhysicsComponentComplexConvexParameters()

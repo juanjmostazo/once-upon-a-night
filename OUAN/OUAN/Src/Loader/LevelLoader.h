@@ -109,6 +109,7 @@ namespace OUAN
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);
 		TRenderComponentSkyDomeParameters processRenderComponentSkyDome(TiXmlElement *XMLCustomPropertiesNode);
+		TRenderComponentFogParameters processRenderComponentFog(TiXmlElement *XMLNode);
 		TRenderComponentPositionalParameters processRenderComponentPositional(TiXmlElement *XMLNode);
 		TRenderComponentPositionalParameters processRenderComponentPositionalNoScale(TiXmlElement *XMLNode);
 		TRenderComponentEntityParameters processRenderComponentEntity(TiXmlElement *XMLNode, int world, TiXmlElement* XMLCustomPropertiesNode=NULL);
@@ -178,7 +179,8 @@ namespace OUAN
 		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);
 
 		//
-		double processCustomAttributeMaxUpdateRadio(XMLGameObject* gameObject);
+		double processCustomAttributeMaxUpdateRadium(XMLGameObject* gameObject);
+		double processCustomAttributeMaxRenderRadium(XMLGameObject* gameObject);
 		double processCustomAttributeSpawnProbability(XMLGameObject* gameObject);
 		std::string processCustomAttributeParentNest(XMLGameObject* gameObject);
 
@@ -250,6 +252,14 @@ namespace OUAN
 			OGITOR_CTT_AUTO_ROTATION,
 			OGITOR_CTT_AUTO_CENTER,
 			OGITOR_CTT_TRAJECTORY
+		};
+
+		enum OgitorFogModes
+		{
+			OGITOR_FM_NONE,
+			OGITOR_FM_LINEAR,
+			OGITOR_FM_EXP,
+			OGITOR_FM_EXP2
 		};
 
 	};

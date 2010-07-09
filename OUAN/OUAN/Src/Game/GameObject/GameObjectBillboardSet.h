@@ -70,6 +70,8 @@ namespace OUAN
 		void setNightmaresRender();
 		void setChangeWorldRender();
 
+		void setVisible(bool visible);
+
 		/// Reset object
 		virtual void reset();
 

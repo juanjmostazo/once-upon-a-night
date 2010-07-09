@@ -245,6 +245,27 @@ RenderComponentEntityPtr GameObjectBush::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
+
+void GameObjectBush::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectBushParameters::TGameObjectBushParameters() : TGameObjectParameters()

@@ -230,7 +230,26 @@ void GameObjectTerrainTriangle::update(double elapsedSeconds)
 	//mRenderComponentEntityDreams->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
-
+void GameObjectTerrainTriangle::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
 }

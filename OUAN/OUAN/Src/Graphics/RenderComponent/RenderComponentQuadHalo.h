@@ -38,7 +38,7 @@ namespace OUAN
 		~TRenderComponentQuadHaloParameters();
 
 		std::string quadMaterial;
-		double haloRadio;
+		double haloRadium;
 		double totalQuads;
 		double quadSize;
 		double speedScale;

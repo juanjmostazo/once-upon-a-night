@@ -376,6 +376,27 @@ void GameObjectDiamondTree::updatePhysicsComponents(double elapsedSeconds)
 	GameObject::updatePhysicsComponents(elapsedSeconds);
 	//mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
+
+void GameObjectDiamondTree::setVisible(bool visible)
+{	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectDiamondTreeParameters::TGameObjectDiamondTreeParameters() : TGameObjectParameters()

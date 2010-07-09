@@ -77,6 +77,8 @@ namespace OUAN
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
+		void setVisible(bool visible);
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;

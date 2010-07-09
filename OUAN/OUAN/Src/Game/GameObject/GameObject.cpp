@@ -445,18 +445,24 @@ void GameObject::updatePhysicsComponents(double elapsedSeconds)
 	}
 }
 
-void GameObject::setMaxUpdateRadio(double maxUpdateRadio)
+void GameObject::setMaxRenderRadium(double maxRenderRadium)
 {
-	mMaxUpdateRadio = maxUpdateRadio;
+	mMaxRenderRadium = maxRenderRadium;
+}
+
+
+void GameObject::setMaxUpdateRadium(double maxUpdateRadium)
+{
+	mMaxUpdateRadium = maxUpdateRadium;
 }
 
 bool GameObject::isWorthUpdatingPhysicsComponents()
 {
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	bool condition1 = mMaxUpdateRadio < 0;
+	bool condition1 = mMaxUpdateRadium < 0;
 	bool condition2 = !getPositionalComponent();
-	bool condition3 = getPositionalComponent() && getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
+	bool condition3 = getPositionalComponent() && getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadium;	
 
 	//if(mName.compare("terrain#platform7_5") == 0)
 	//{
@@ -467,19 +473,26 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 	//	Logger::getInstance()->log("getPosition: " + Ogre::StringConverter::toString(getPositionalComponent()->getPosition()));
 	//	Logger::getInstance()->log("positionOny: " + Ogre::StringConverter::toString(positionOny));
 	//	Logger::getInstance()->log("DISTANCE: " + Ogre::StringConverter::toString(Ogre::Real(getPositionalComponent()->getPosition().distance(positionOny))));
-	//	Logger::getInstance()->log("MAX_UPDATE_RADIO: " + Ogre::StringConverter::toString(Ogre::Real(mMaxUpdateRadio)));
+	//	Logger::getInstance()->log("MAX_UPDATE_RADIO: " + Ogre::StringConverter::toString(Ogre::Real(mMaxUpdateRadium)));
 	//	Logger::getInstance()->log("#####");
 	//}
 
 	return condition1 || condition2 || condition3;
 }
 
+bool GameObject::isWorthRendering()
+{
+	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
+	return mMaxRenderRadium < 0 || !getPositionalComponent() ||
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxRenderRadium;	
+}
+
+
 bool GameObject::isWorthUpdatingLogicComponents()
 {
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
-
-	return mMaxUpdateRadio < 0 || !getPositionalComponent() ||
-		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadio;	
+	return mMaxUpdateRadium < 0 || !getPositionalComponent() ||
+		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadium;	
 }
 
 std::string GameObject::getTranslation(const std::string& baseString)
@@ -517,6 +530,10 @@ double GameObject::getSpawnProbability()
 {
 	return mSpawnProbability;
 }
+void GameObject::setVisible(bool visible)
+{
+
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()
@@ -524,7 +541,7 @@ TGameObjectParameters::TGameObjectParameters()
 	this->name="";
 	this->dreamsName="";
 	this->nightmaresName="";
-	this->maxUpdateRadio=-1;
+	this->mMaxUpdateRadium=-1;
 }
 
 TGameObjectParameters::~TGameObjectParameters()
