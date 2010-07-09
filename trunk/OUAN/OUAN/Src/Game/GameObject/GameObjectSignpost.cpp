@@ -318,7 +318,26 @@ void GameObjectSignpost::setSignpostMessage(const std::string& signpostMessage)
 {
 	mSignpostMessage=signpostMessage;
 }
-
+void GameObjectSignpost::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectSignPostParameters::TGameObjectSignPostParameters() : TGameObjectParameters()

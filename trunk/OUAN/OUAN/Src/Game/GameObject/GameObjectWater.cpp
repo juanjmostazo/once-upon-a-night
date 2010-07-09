@@ -343,6 +343,28 @@ void GameObjectWater::postUpdate()
 //	}
 //	else:mRenderComponentWaterNightmares;
 //}
+
+void GameObjectWater::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentWaterDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentWaterNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 TGameObjectWaterParameters::TGameObjectWaterParameters() : TGameObjectParameters()
 {
 

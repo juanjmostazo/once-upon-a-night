@@ -19,6 +19,19 @@ namespace OUAN
 		String materialNightmares;
 	};
 
+	class TRenderComponentFogParameters: public TRenderComponentParameters
+	{
+	public:
+		TRenderComponentFogParameters();
+		~TRenderComponentFogParameters();
+
+		Ogre::FogMode fogMode;
+		ColourValue colour;
+		Real start;
+		Real end;
+		Real density;
+	};
+
 	class TRenderComponentSceneParameters: public TRenderComponentParameters
 	{
 	public:
@@ -27,6 +40,7 @@ namespace OUAN
 
 		ColourValue ambient;
 		TRenderComponentSkyDomeParameters tRenderComponentSkyDomeParameters;
+		TRenderComponentFogParameters tRenderComponentFogParameters;
 	};
 
 	class RenderComponentScene: public RenderComponent

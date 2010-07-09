@@ -373,6 +373,26 @@ void GameObjectNest::spawnChild()
 		}
 	}
 }
+void GameObjectNest::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectNestParameters::TGameObjectNestParameters() : TGameObjectParameters()

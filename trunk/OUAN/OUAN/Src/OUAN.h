@@ -133,6 +133,7 @@ namespace OUAN
 		typedef boost::shared_ptr<RenderComponentPlane> RenderComponentPlanePtr;
 
 		class RenderComponentScene;
+		class TRenderComponentFogParameters;
 		class TRenderComponentSkyDomeParameters;
 		class TRenderComponentSceneParameters;
 		typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
@@ -931,7 +932,7 @@ namespace OUAN
 
 		#define LOGGER_CFG "../../Config/logger-cfg.xml"
 
-		#define DEFAULT_MAX_UPDATE_RADIO 50
+
 }
 
 #endif

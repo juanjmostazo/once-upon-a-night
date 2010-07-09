@@ -325,7 +325,26 @@ RenderComponentEntityPtr GameObjectTree::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
-
+void GameObjectTree::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {
 

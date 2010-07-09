@@ -258,7 +258,7 @@ RenderComponentQuadHaloPtr ComponentFactory::createRenderComponentQuadHalo(GameO
 
 	//init Render Component
 	ThingRenderable* quadHalo = new ThingRenderable(
-		tRenderComponentQuadHaloParameters.haloRadio, 
+		tRenderComponentQuadHaloParameters.haloRadium, 
 		tRenderComponentQuadHaloParameters.totalQuads, 
 		tRenderComponentQuadHaloParameters.quadSize);
 
@@ -455,10 +455,10 @@ PhysicsComponentComplexConvexPtr ComponentFactory::createPhysicsComponentComplex
 	pPhysicsComponentComplexConvex->setMass(tPhysicsComponentComplexConvexParameters.mass);
 
 	pPhysicsComponentComplexConvex->setBalancingParams(
-		tPhysicsComponentComplexConvexParameters.balanceRadioX,
-		tPhysicsComponentComplexConvexParameters.balanceRadioY,
-		tPhysicsComponentComplexConvexParameters.balanceRadioZ,
-		tPhysicsComponentComplexConvexParameters.balanceRadioTime);
+		tPhysicsComponentComplexConvexParameters.balanceRadiumX,
+		tPhysicsComponentComplexConvexParameters.balanceRadiumY,
+		tPhysicsComponentComplexConvexParameters.balanceRadiumZ,
+		tPhysicsComponentComplexConvexParameters.balanceRadiumTime);
 
 	//pPhysicsComponentComplexConvex->setQueryFlags(flags);	
 

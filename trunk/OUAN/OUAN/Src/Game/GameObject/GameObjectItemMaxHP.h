@@ -36,6 +36,8 @@ namespace OUAN
 		/// Set logic component
 		void setLogicComponentItem(LogicComponentItemPtr logicComponentItem);
 
+		void setVisible(bool visible);
+
 		/// return logic component
 		LogicComponentItemPtr getLogicComponentItem();
 

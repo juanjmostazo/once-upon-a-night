@@ -396,7 +396,10 @@ void GameObjectPortal::setAudioComponent(AudioComponentPtr audioComponent)
 {
 	mAudioComponent=audioComponent;
 }
+void GameObjectPortal::setVisible(bool visible)
+{
 
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()

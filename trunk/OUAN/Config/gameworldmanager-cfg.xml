@@ -3,6 +3,9 @@
   <Options>
 	<Option key="DEFAULT_TRAJECTORY_SPEED">20</Option>
 	<Option key="CHANGE_WORLD_TIME">6</Option>
+	<Option key="DEFAULT_MAX_UPDATE_RADIO">50</Option>
+	<Option key="DEFAULT_MAX_RENDER_RADIO">80000</Option>
+
 
     	<!--Change World Trees Options-->
 	<Option key="CHANGE_WORLD_TREES_RANDOM">false</Option>

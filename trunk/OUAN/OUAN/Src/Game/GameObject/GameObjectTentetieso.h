@@ -32,6 +32,8 @@ namespace OUAN
 		/// @param id unique id of the game object
 		GameObjectTentetieso(const std::string& name);
 
+		void setVisible(bool visible);
+
 		//Destructor
 		~GameObjectTentetieso();
 		/// Set logic component

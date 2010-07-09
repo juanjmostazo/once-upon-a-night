@@ -313,6 +313,26 @@ bool GameObjectItemMaxHP::hasRenderComponentEntity() const
 {
 	return true;
 }
+void GameObjectItemMaxHP::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentItem->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentItem->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 RenderComponentEntityPtr GameObjectItemMaxHP::getEntityComponent() const
 {
 	return mRenderComponentEntity;

@@ -168,7 +168,26 @@ void GameObjectParticleSystem::updateLogic(double elapsedSeconds)
 		mLogicComponent->update(elapsedSeconds);
 	}
 }
-
+void GameObjectParticleSystem::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentParticleSystem->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentParticleSystem->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {
 

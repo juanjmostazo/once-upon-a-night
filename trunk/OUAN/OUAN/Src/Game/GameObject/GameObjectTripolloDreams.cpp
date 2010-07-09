@@ -598,6 +598,26 @@ bool GameObjectTripolloDreams::hasAudioComponent() const
 {
 	return true;
 }
+void GameObjectTripolloDreams::setVisible(bool visible)
+{
+	switch(mWorld)
+	{
+	case DREAMS:
+		if(mLogicComponentEnemy->existsInDreams())
+		{
+			mRenderComponentEntityDreams->setVisible(visible);
+		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponentEnemy->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->setVisible(visible);
+		}
+		break;
+	default:
+		break;
+	}
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloDreamsParameters::TGameObjectTripolloDreamsParameters() : TGameObjectParameters()
 {
