@@ -80,10 +80,10 @@ void AlphaSplatFS
     float4 l6 = tex2D(layer6Sampler, uv*scale);
     float4 l7 = tex2D(layer7Sampler, uv*scale);
     
-    //float sum = alpha0Mask.r + alpha1Mask.r + alpha0Mask.g + alpha1Mask.g +alpha0Mask.b + alpha1Mask.b +alpha0Mask.a + alpha1Mask.a;
+    float sum = alpha0.r + alpha1.r + alpha0.g + alpha1.g +alpha0.b + alpha1.b +alpha0.a + alpha1.a;
  
-    oColor = alpha0.r * l0 + alpha0.g * l1 + alpha0.b * l2 + alpha0.a * l3
-        + alpha1.r * l4 + alpha1.g * l5 + alpha1.b * l6 + alpha1.a * l7;
+    oColor = (alpha0.r * l0 + alpha0.g * l1 + alpha0.b * l2 + alpha0.a * l3
+        + alpha1.r * l4 + alpha1.g * l5 + alpha1.b * l6 + alpha1.a * l7)/sum;
  
     // add detail map
     //oColor *= tex2D(detailSampler, uv*detail_scale);
