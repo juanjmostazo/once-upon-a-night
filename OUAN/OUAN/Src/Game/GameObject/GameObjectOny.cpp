@@ -188,17 +188,11 @@ void GameObjectOny::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentCharacterOny.get() && mPhysicsComponentCharacterOny->isInUse())
-	{
-		mPhysicsComponentCharacterOny->reset();
-		mPhysicsComponentCharacterOny->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacterOny->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueRadians());
-	}
-	else
-	{
-		mPhysicsComponentCharacterOny->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacterOny->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
-	}
+	mPhysicsComponentCharacterOny->reset();
+	mPhysicsComponentCharacterOny->getNxOgreController()->setPosition(mGameWorldManager->getCheckPointPosition());
+	mPhysicsComponentCharacterOny->getNxOgreController()->setDisplayYaw(mGameWorldManager->getCheckPointOrientation().getYaw().valueRadians());
+	mRenderComponentPositional->setPosition(mGameWorldManager->getCheckPointPosition());
+	mRenderComponentPositional->setOrientation(mGameWorldManager->getCheckPointOrientation());
 
 	mLogicComponentOny->initStateHistory();
 	mLogicComponentOny->setState(ONY_STATE_IDLE);
