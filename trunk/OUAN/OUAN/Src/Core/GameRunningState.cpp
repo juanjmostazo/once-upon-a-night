@@ -548,7 +548,6 @@ void GameRunningState::update(long elapsedTime)
 
 			//Logger::getInstance()->log("* Updating Camera Params");
 
-			//NOTE (Aniol) I CHANGED THE ORDER SO CAMERA UPDATES BEFORE GAMEWORLDMANAGER TO GET FLASHLIGHT VOLUME POSITION RIGHT
 		}
 		else
 			toGameOverElapsed+=elapsedSeconds;

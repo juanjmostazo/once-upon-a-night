@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-    <Option key="MIN_ROT_X">-60</Option>
-    <Option key="MAX_ROT_X">60</Option>
+    <Option key="MIN_ROT_X">-70</Option>
+    <Option key="MAX_ROT_X">20</Option>
     <Option key="SPEED_X">0.02</Option>
     <Option key="SPEED_Y">0.05</Option>
-    <Option key="INITIAL_DISTANCE">90</Option>
+    <Option key="INITIAL_DISTANCE">66</Option>
 
     <Option key="MIN_DISTANCE">40</Option>
     <Option key="COLLISION_OFFSET_X">16</Option>

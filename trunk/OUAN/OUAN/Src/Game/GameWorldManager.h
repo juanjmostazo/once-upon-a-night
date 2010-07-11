@@ -208,7 +208,16 @@ namespace OUAN
 
 		static void victory();
 
+		static void setCheckPointLUA(std::string checkpoint,int checkpointNumber);
+		static int getCheckPointNumberLUA();
 		// END lua scripts
+
+		void setCheckPointPosition(Vector3 checkpoint);
+		Vector3 getCheckPointPosition() const;
+		void setCheckPointOrientation(Quaternion checkpoint);
+		Quaternion getCheckPointOrientation() const;
+		void setCheckPointNumber(int checkpointNumber);
+		int getCheckPointNumber() const;
 
 		void useWeapon();
 		void stopUsingWeapon();
@@ -400,6 +409,10 @@ namespace OUAN
 		bool mRandomChangeWorld;
 		bool mIsChangingWorld;
 		int mWorld;
+
+		Vector3 mCheckPointPosition;
+		Quaternion mCheckPointOrientation;
+		int mCheckPointNumber;
 
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;

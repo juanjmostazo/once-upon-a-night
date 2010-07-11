@@ -84,6 +84,8 @@ namespace OUAN
 		const std::string LEVEL_1="Level1";
 		const std::string LEVEL_2="Level2";
 
+		const std::string LEVEL_START_CHECKPOINT="LevelStart";
+
 		//Render Components
 		class RenderComponent;
 		class TRenderComponentParameters;

@@ -410,6 +410,7 @@ void GameWorldManager::clearContainers()
 }
 void GameWorldManager::initGame()
 {
+	GameWorldManager::setCheckPointLUA(LEVEL_START_CHECKPOINT,0);
 	resetAll();
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
@@ -1588,6 +1589,68 @@ void GameWorldManager::victory()
 	GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 	mInst->addEvent(evt);
 }
+
+void GameWorldManager::setCheckPointLUA(std::string checkpoint,int checkpointNumber)
+{
+	Trajectory * pTrajectory;
+	try
+	{
+		if(mInst->getParent()->getTrajectoryManager()->hasTrajectory(checkpoint))
+		{
+			pTrajectory=mInst->getParent()->getTrajectoryManager()->getTrajectoryInstance("checkpoint");
+			mInst->getParent()->getTrajectoryManager()->setPredefinedTrajectory(*pTrajectory,checkpoint,"blue");
+		}
+		else
+		{
+			throw "CheckPoint "+checkpoint+" does not exist";
+		}
+		mInst->setCheckPointPosition(pTrajectory->getCurrentNode()->getSceneNode()->getPosition());
+		mInst->setCheckPointOrientation(pTrajectory->getCurrentNode()->getSceneNode()->getOrientation());
+
+		mInst->setCheckPointNumber(checkpointNumber);
+	}
+	catch( std::string error )
+	{
+		Logger::getInstance()->log("[CameraManager] "+error);
+	}
+}
+
+int GameWorldManager::getCheckPointNumberLUA()
+{
+	return mInst->getCheckPointNumber();
+}
+
+void GameWorldManager::setCheckPointNumber(int checkpointNumber)
+{
+	mCheckPointNumber=checkpointNumber;
+}
+
+int GameWorldManager::getCheckPointNumber() const
+{
+	return mCheckPointNumber;
+}
+
+void GameWorldManager::setCheckPointPosition(Vector3 checkpoint)
+{
+	Logger::getInstance()->log("[setCheckPointPosition] "+Ogre::StringConverter::toString(checkpoint));
+	mCheckPointPosition=checkpoint;
+}
+
+Vector3 GameWorldManager::getCheckPointPosition() const
+{
+	return mCheckPointPosition;
+}
+
+void GameWorldManager::setCheckPointOrientation(Quaternion checkpoint)
+{
+	mCheckPointOrientation=checkpoint;
+}
+
+Quaternion GameWorldManager::getCheckPointOrientation() const
+{
+	return mCheckPointOrientation;
+}
+
 
 void GameWorldManager::setChangeWorldTimes()
 {
