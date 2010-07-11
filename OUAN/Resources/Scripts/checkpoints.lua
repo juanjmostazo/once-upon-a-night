@@ -1,7 +1,7 @@
 -- CHECKPOINT 1
 function enterCheckPoint1(pOny)
 	log ("enterCheckPoint1")
-	setCheckPoint("StaticCamera#tower1_3",1);
+	setCheckPoint("CheckPoint1",1);
 return
 end
 
@@ -13,7 +13,7 @@ end
 -- CHECKPOINT 2
 function enterCheckPoint2(pOny)
 	log ("enterCheckPoint2")
-	setCheckPoint("StaticCamera#towerback1",2);
+	setCheckPoint("CheckPoint2",2);
 return
 end
 
