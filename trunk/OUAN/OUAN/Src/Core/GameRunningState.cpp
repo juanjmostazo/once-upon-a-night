@@ -551,13 +551,14 @@ void GameRunningState::update(long elapsedTime)
 		}
 		else
 			toGameOverElapsed+=elapsedSeconds;
-		mApp->getCameraManager()->update(elapsedSeconds);
 
 		if (!mApp->getGameWorldManager()->isGameOver())
 		{
 			mApp->getGameWorldManager()->update(elapsedSeconds);	
 
 			mApp->getPhysicsSubsystem()->update(elapsedSeconds);
+
+			mApp->getCameraManager()->update(elapsedSeconds);
 
 			mApp->getLogicSubsystem()->update(elapsedSeconds);
 
@@ -657,24 +658,29 @@ void GameRunningState::toggleDebugPhysics()
 	}
 }
 
+void GameRunningState::changeLevel(std::string level)
+{
+	LevelLoadingState * levelLoadingState = new LevelLoadingState();
+
+	levelLoadingState->setLevelFileName(level);
+
+	mInst->getApp()->getGameWorldManager()->unloadLevel();
+	GameStatePtr nextState(levelLoadingState);
+	mInst->getApp()->getGameStateManager()->changeState(nextState,mInst->getApp());
+}
+
 void GameRunningState::toggleChangeLevel()
 {
 	Logger::getInstance()->log("ToggleChangeLevel key pressed");
 
-	LevelLoadingState * levelLoadingState = new LevelLoadingState();
-
 	if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_CLOCK)==0)
 	{
-		levelLoadingState->setLevelFileName(LEVEL_2);
+		changeLevel(LEVEL_2);
 	}
 	else if(mApp->getGameWorldManager()->getCurrentLevel().compare(LEVEL_2)==0)
 	{
-		levelLoadingState->setLevelFileName(LEVEL_CLOCK);
+		changeLevel(LEVEL_CLOCK);
 	}
-
-	mApp->getGameWorldManager()->unloadLevel();
-	GameStatePtr nextState(levelLoadingState);
-	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
 
 void GameRunningState::changeCameraController()

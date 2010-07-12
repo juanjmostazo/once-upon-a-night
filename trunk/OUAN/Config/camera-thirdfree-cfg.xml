@@ -2,7 +2,9 @@
 <Configuration>
   <Options>
     <Option key="MIN_ROT_X">-70</Option>
+    <Option key="CENTER_ROT_X">-40</Option>
     <Option key="MAX_ROT_X">20</Option>
+    <Option key="CENTER_ROT_Y">0</Option>
     <Option key="SPEED_X">0.02</Option>
     <Option key="SPEED_Y">0.05</Option>
     <Option key="INITIAL_DISTANCE">66</Option>

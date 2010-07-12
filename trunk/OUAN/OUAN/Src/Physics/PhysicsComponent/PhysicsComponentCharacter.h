@@ -35,6 +35,9 @@ namespace OUAN
 		virtual void walk();
 		virtual void jump();
 
+		virtual void setLastSurfacePosition(Ogre::Vector3 lastSurfacePosition);
+		virtual Vector3 getLastSurfacePosition() const;
+
 		virtual bool isJumping() const;
 		virtual bool isFalling() const;
 		virtual bool isFallingLimit() const;
@@ -106,6 +109,7 @@ namespace OUAN
 		Ogre::Vector3 mOuternMovement;
 		Ogre::Vector3 mNextMovement;
 		Ogre::Vector3 mLastMovement;
+		Ogre::Vector3 mLastSurfacePosition;
 
 		Vector3 mOffsetRenderPosition;
 

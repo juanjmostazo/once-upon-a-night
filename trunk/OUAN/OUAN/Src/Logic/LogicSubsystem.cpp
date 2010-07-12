@@ -61,6 +61,7 @@ void LogicSubsystem::registerModules()
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getWorld",&GameWorldManager::getMyInstanceWorld),
 		def("victory",&GameWorldManager::victory),
+		def("changeLevel",&GameRunningState::changeLevel),
 		def("setCheckPoint",&GameWorldManager::setCheckPointLUA),
 		def("getCheckPointNumber",&GameWorldManager::getCheckPointNumberLUA),
 		def("playMusic",&GameRunningState::playMusic),

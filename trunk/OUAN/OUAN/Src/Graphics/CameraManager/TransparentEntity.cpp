@@ -48,6 +48,8 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 	mMinAlphaBlending=minAlphaBlending;
 	mAlphaBlendingSpeed=alphaBlendingSpeed;
 
+//	originalRenderQueue=mEntity->getRenderQueueGroup();
+
 	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
 	{
 		// Get the material of this sub entity and build the clone material name
@@ -77,6 +79,7 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 				{
 					pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);			
 					pass->setDepthWriteEnabled(false);
+					//pass->setDepthCheckEnabled(false);
 
 					if(pass->getTextureUnitStateIterator().hasMoreElements())
 					{
@@ -95,18 +98,18 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 
 }
 
-	void TransparentEntity::setSolidMaterials()
-	{
-		unsigned int i;
-		Ogre::SubEntity* subEnt;
+void TransparentEntity::setSolidMaterials()
+{
+	unsigned int i;
+	Ogre::SubEntity* subEnt;
 
-		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
-		{
-			// Apply the material to the sub entity.
-			subEnt = mEntity->getSubEntity(i);
-			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mSolidMaterial[i]));
-		}
-	}
+	for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+	{
+		// Apply the material to the sub entity.
+		subEnt = mEntity->getSubEntity(i);
+		subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(mSolidMaterial[i]));
+	}	
+}
 
 void TransparentEntity::setTransparentMaterials()
 {

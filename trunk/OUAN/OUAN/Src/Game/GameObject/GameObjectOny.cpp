@@ -190,9 +190,14 @@ void GameObjectOny::reset()
 
 	mPhysicsComponentCharacterOny->reset();
 	mPhysicsComponentCharacterOny->getNxOgreController()->setPosition(mGameWorldManager->getCheckPointPosition());
-	mPhysicsComponentCharacterOny->getNxOgreController()->setDisplayYaw(mGameWorldManager->getCheckPointOrientation().getYaw().valueRadians());
+	//add 180 since it's the back
+	mPhysicsComponentCharacterOny->getNxOgreController()->setDisplayYaw(mGameWorldManager->getCheckPointOrientation().getYaw().valueDegrees()+180);
 	mRenderComponentPositional->setPosition(mGameWorldManager->getCheckPointPosition());
-	mRenderComponentPositional->setOrientation(mGameWorldManager->getCheckPointOrientation());
+	mRenderComponentPositional->setOrientation(Ogre::Quaternion::IDENTITY);
+	mRenderComponentPositional->getSceneNode()->yaw(
+		Ogre::Radian(
+		mPhysicsComponentCharacterOny->getNxOgreController()->getOrientation().as<Ogre::Quaternion>().getYaw().valueRadians())
+		);
 
 	mLogicComponentOny->initStateHistory();
 	mLogicComponentOny->setState(ONY_STATE_IDLE);
