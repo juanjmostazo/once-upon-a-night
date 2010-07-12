@@ -164,10 +164,6 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	setLastMovement(getNxOgreController()->getPosition().as<Ogre::Vector3>()-lastPosition);
 	setNextMovement(Ogre::Vector3::ZERO);
 	setOuternMovement(Ogre::Vector3::ZERO);
-	if(mOnSurface)
-	{
-		setLastSurfacePosition(getNxOgreController()->getPosition().as<Ogre::Vector3>());
-	}
 
 	updateSceneNode();
 	//logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
@@ -189,6 +185,88 @@ void PhysicsComponentCharacter::applyWalkXZ(double elapsedSeconds)
 	mNextMovement.z *= Application::getInstance()->getPhysicsSubsystem()->mWalkSpeedFactor;
 }
 
+void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
+{
+	double initialTime = mJumpingTime;
+	double finalTime = mJumpingTime + elapsedSeconds;
+
+	finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
+		? finalTime 
+		: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+
+	////////////
+
+	initialTime -= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+	finalTime -= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+
+	////////////
+
+	double basicValueInitial = (initialTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+	basicValueInitial *= basicValueInitial;
+
+	double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+		((-1 * basicValueInitial) + 1);
+
+	////////////
+
+	double basicValueFinal = (finalTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+	basicValueFinal *= basicValueFinal;
+
+	double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+		((-1 * basicValueFinal) + 1);
+
+	////////////
+
+	mNextMovement.y +=  finalValue - initialValue;
+	mJumpingTime += elapsedSeconds;
+}
+
+void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
+{
+	double initialTime = mFallingTime;
+	double finalTime = mFallingTime + elapsedSeconds;
+
+	if (initialTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+	{
+		finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
+		? finalTime 
+		: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+
+		////////////
+
+		// DO NOTHING HERE
+
+		////////////
+
+		double basicValueInitial = (initialTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+		basicValueInitial *= basicValueInitial;
+
+		double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+			((-1 * basicValueInitial) + 1);
+
+		////////////
+
+		double basicValueFinal = (finalTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+		basicValueFinal *= basicValueFinal;
+
+		double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+			((-1 * basicValueFinal) + 1);
+
+		////////////
+
+		mNextMovement.y +=  finalValue - initialValue;
+	}
+	else
+	{
+		mNextMovement.y +=  
+			-3 * 
+			elapsedSeconds * 
+			Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+			Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+	}
+	mFallingTime += elapsedSeconds;
+}
+/*
 void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
 {
 	double initialTime = mJumpingTime;
@@ -234,6 +312,7 @@ void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
 
 	mFallingTime += elapsedSeconds;
 }
+*/
 /*
 void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
 {
@@ -364,6 +443,8 @@ void PhysicsComponentCharacter::setOnSurface(bool pOnSurface)
 	{
 		resetJumpingVars();
 		resetFallingVars();
+
+		setLastSurfacePosition(getNxOgreController()->getPosition().as<Ogre::Vector3>());
 	}
 }
 
@@ -587,24 +668,24 @@ void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeco
 	{
 		Logger::getInstance()->log("PPC: ## LOG STATUS INIT ## " + label + " ##");
 		
-		//Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
-		//Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
+		Logger::getInstance()->log("PPC: mInUse -> " + Ogre::StringConverter::toString(mInUse));
+		Logger::getInstance()->log("PPC: mOnSurface -> " + Ogre::StringConverter::toString(mOnSurface));
 
-		//Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
-		//Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
-		//Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
-		//Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
-		//Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
+		Logger::getInstance()->log("PPC: isWalking() -> " + Ogre::StringConverter::toString(isWalking()));
+		Logger::getInstance()->log("PPC: isMoving() -> " + Ogre::StringConverter::toString(isMoving()));
+		Logger::getInstance()->log("PPC: isJumping() -> " + Ogre::StringConverter::toString(isJumping()));
+		Logger::getInstance()->log("PPC: isFalling() -> " + Ogre::StringConverter::toString(isFalling()));
+		Logger::getInstance()->log("PPC: isFallingLimit() -> " + Ogre::StringConverter::toString(isFallingLimit()));
 
-		//Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
-		//Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
+		Logger::getInstance()->log("PPC: mJumpingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mJumpingTime)));
+		Logger::getInstance()->log("PPC: mFallingTime -> " + Ogre::StringConverter::toString(Ogre::Real(mFallingTime)));
 
 		Logger::getInstance()->log("PPC: mSceneNodePosition -> " + Ogre::StringConverter::toString(getSceneNode()->getPosition()));
 		Logger::getInstance()->log("PPC: mNxOgreControllerPosition -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().x)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().y)) + " " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getPosition().z)));
-		//Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
-		//
-		//Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
-		//Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
+		Logger::getInstance()->log("PPC: mNxOgreControllerYaw -> " + Ogre::StringConverter::toString(Ogre::Real(getNxOgreController()->getDisplayYaw())));
+		
+		Logger::getInstance()->log("PPC: mOuternMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mOuternMovement.z)));
+		Logger::getInstance()->log("PPC: mNextMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mNextMovement.z)));
 
 		Logger::getInstance()->log("PPC: mLastMovement -> " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.x)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.y)) + " " + Ogre::StringConverter::toString(Ogre::Real(mLastMovement.z)));
 
