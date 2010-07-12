@@ -196,18 +196,18 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
             (query_result[qr_idx].movable->getMovableType().compare("Entity") == 0))
         {
 
-			// stop checking if we have found a raycast hit that is closer
-			// than all remaining entities
-			if ((closest_distance >= 0.0f) &&
-				(closest_distance < query_result[qr_idx].distance))
-			{
-				 for (; qr_idx < query_result.size(); qr_idx++)
-				 {
-					Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
-					allCollisions.push_back(pentity);
-				 }
-				 break;
-			}
+			//// stop checking if we have found a raycast hit that is closer
+			//// than all remaining entities
+			//if ((closest_distance >= 0.0f) &&
+			//	(closest_distance < query_result[qr_idx].distance))
+			//{
+			//	 for (; qr_idx < query_result.size(); qr_idx++)
+			//	 {
+			//		Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
+			//		allCollisions.push_back(pentity);
+			//	 }
+			//	 break;
+			//}
 
 			//stop checking if the raycast hit is further from maximum distance
 			if(maxDistance >= 0.0f && query_result[qr_idx].distance>maxDistance)
@@ -218,7 +218,6 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
 			//Logger::getInstance()->log("[RayCasting] Collision with "+query_result[qr_idx].movable->getName());
 			// get the entity to check
 			Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable); 
-			allCollisions.push_back(pentity);
 
 			// mesh data to retrieve         
 			size_t vertex_count;
@@ -249,6 +248,8 @@ bool RayCasting::raycastRenderAllGeometry(const Vector3 point,
 						new_closest_found = true;
 						pEntity=pentity;
 					}
+					//add entity to all collisions
+					allCollisions.push_back(pentity);
 				}
 			}
 

@@ -630,10 +630,9 @@ void GameWorldManager::resetAll()
 
 	mApp->getPhysicsSubsystem()->stabilize();
 
-	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
-	mApp->getCameraManager()->centerToTargetBack(false);
-
 	dispatchEvents();
+
+	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }

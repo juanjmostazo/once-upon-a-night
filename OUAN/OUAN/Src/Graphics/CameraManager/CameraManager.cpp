@@ -99,7 +99,6 @@ void CameraManager::setCameraFree(CameraParametersPtr cameraParameters,bool tran
 	setCameraType(CAMERA_THIRD_PERSON);
 	mCameraInput->mCameraParameters=cameraParameters;
 	mCameraControllerThirdPerson->setCameraFree(mCamera,mCameraInput,transition);
-
 }
 
 void CameraManager::setCameraTracking(CameraParametersPtr cameraParameters,bool transition)
@@ -352,9 +351,10 @@ void CameraManager::setDefaultThirdPersonCamera(bool transition)
 	mCameraInput->mCameraParameters->setTargetOffset(cameraParameters->getTargetOffset());
 	mCameraInput->mCameraParameters->setDirection(cameraParameters->getDirection());
 	mCameraInput->mCameraParameters->setDistance(cameraParameters->getDistance());
-	centerToTargetBack(false);
 
+	centerToTargetBack(false);
 	setCameraFree(cameraParameters,transition);
+
 }
 
 void CameraManager::activateChangeWorld()

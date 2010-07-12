@@ -29,6 +29,8 @@ namespace OUAN
 		std::vector<std::string> mTransparentMaterial;
 		std::vector<Ogre::TextureUnitState *> mTransparentMaterialTextures;
 
+		//Ogre::uint8 originalRenderQueue;
+
 		double mMinAlphaBlending;
 		double mAlphaBlendingSpeed;
 		double mCurrentAlpha;
@@ -42,7 +44,6 @@ namespace OUAN
 		};
 
 		TransparentEntityState mState;
-
 
 		void setSolidMaterials();
 		void setTransparentMaterials();

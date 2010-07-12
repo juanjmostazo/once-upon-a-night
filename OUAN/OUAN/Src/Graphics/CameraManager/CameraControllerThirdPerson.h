@@ -58,6 +58,10 @@ namespace OUAN
 		double mMinRotX;
 		double mMaxRotX;
 
+		//center position for X and Y axes
+		double mCenterRotX;
+		double mCenterRotY;
+
 		//camera position speed
 		double mRotationSpeedX;
 		double mRotationSpeedY;

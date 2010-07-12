@@ -12,6 +12,7 @@
 #include "../TrajectoryManager/TrajectoryManager.h"
 #include "../TrajectoryManager/Trajectory.h"
 #include "TransparentEntityManager.h"
+#include "../../Game/GameObject/GameObjectOny.h"
 using namespace OUAN;
 using namespace Ogre;
 
@@ -26,8 +27,8 @@ void CameraControllerThirdPerson::init(CameraInputPtr pCameraInput,Ogre::SceneMa
 {
 	loadInfo();
 	mCameraState=CS_FREE;
-	mRotX=0;
-	mRotY=0;
+	mRotX=mCenterRotX;
+	mRotY=mCenterRotY;
 
 	mGameWorldManager=pGameWorldManager;
 
@@ -311,8 +312,8 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 
 void CameraControllerThirdPerson::setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {
-	mRotX=0;
-	mRotY=0;
+	mRotX=mCenterRotX;
+	mRotY=mCenterRotY;
 
 	if(!transition)
 	{
@@ -554,14 +555,37 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPt
 
 	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
 
-	if(targetGameObject.get() && targetGameObject->hasPositionalComponent())
-	{
-		targetPosition=targetGameObject->getPositionalComponent()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
-	}
-	else
-	{
-		targetPosition= Vector3::ZERO;
-	}
+
+	//if (targetGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	//{
+	//	//In case target is Ony we will not move the camera while jumping
+	//	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(targetGameObject);
+
+	//	if(!ony->getPhysicsComponentCharacterOny()->isOnSurface() &&
+	//		ony->getPositionalComponent()->getPosition().y>ony->getPhysicsComponentCharacterOny()->getLastSurfacePosition().y
+	//		)
+	//	{
+	//		targetPosition=ony->getPositionalComponent()->getPosition();
+	//		targetPosition.y=ony->getPhysicsComponentCharacterOny()->getLastSurfacePosition().y;
+	//	}
+	//	else
+	//	{
+	//		targetPosition=ony->getPositionalComponent()->getPosition();
+	//	}
+	//	targetPosition=targetPosition+pCameraInput->mCameraParameters->getTargetOffset();
+
+	//}
+	//else
+	//{
+		if(targetGameObject.get() && targetGameObject->hasPositionalComponent())
+		{
+			targetPosition=targetGameObject->getPositionalComponent()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
+		}
+		else
+		{
+			targetPosition= Vector3::ZERO;
+		}
+	//}
 
 	return targetPosition;
 }
@@ -643,7 +667,6 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	Vector3 perpendicularY,perpendicularX;
 	Vector3 collisionPosition;
 	Ogre::Entity * pEntity;
-	std::vector<Ogre::Entity*> collisionEntities;
 	bool collisionBottomLeft,collisionBottomRight,collisionTopLeft,collisionTopRight;
 
 	targetPosition = calculateTargetPosition(pCameraInput);
@@ -657,8 +680,8 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	testPosition = cameraPosition-perpendicularY*mCollisionOffsetY-perpendicularX*mCollisionOffsetX;
 	direction = calculateDirection(targetPosition,testPosition);
 	distance = targetPosition.distance(testPosition);
-	collisionBottomLeft=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
-		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
+	collisionBottomLeft=mRayCasting->raycastRenderClosestGeometry(targetPosition,direction,
+		collisionPosition,pEntity,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
 	
 	collisionPosition=collisionPosition+perpendicularY*mCollisionOffsetY+perpendicularX*mCollisionOffsetX;
 	if(collisionBottomLeft && targetPosition.distance(collisionPosition)<targetPosition.distance(cameraPosition))
@@ -670,8 +693,8 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	testPosition = cameraPosition+perpendicularY*mCollisionOffsetY-perpendicularX*mCollisionOffsetX;
 	direction = calculateDirection(targetPosition,testPosition);
 	distance = targetPosition.distance(testPosition);
-	collisionTopLeft=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
-		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
+	collisionTopLeft=mRayCasting->raycastRenderClosestGeometry(targetPosition,direction,
+		collisionPosition,pEntity,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
 	
 	collisionPosition=collisionPosition-perpendicularY*mCollisionOffsetY+perpendicularX*mCollisionOffsetX;
 	if(collisionTopLeft && targetPosition.distance(collisionPosition)<targetPosition.distance(cameraPosition))
@@ -684,8 +707,8 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	direction = calculateDirection(targetPosition,testPosition);
 	distance = targetPosition.distance(testPosition);
 
-	collisionTopRight=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
-		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
+	collisionTopRight=mRayCasting->raycastRenderClosestGeometry(targetPosition,direction,
+		collisionPosition,pEntity,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
 
 	collisionPosition=collisionPosition-perpendicularY*mCollisionOffsetY-perpendicularX*mCollisionOffsetX;
 	if(collisionTopRight && targetPosition.distance(collisionPosition)<targetPosition.distance(cameraPosition))
@@ -698,8 +721,8 @@ Ogre::Vector3 CameraControllerThirdPerson::processMoveCameraCollisions(Ogre::Vec
 	direction = calculateDirection(targetPosition,testPosition);
 	distance = targetPosition.distance(testPosition);
 
-	collisionBottomRight=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
-		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
+	collisionBottomRight=mRayCasting->raycastRenderClosestGeometry(targetPosition,direction,
+		collisionPosition,pEntity,distance,QUERYFLAGS_CAMERA_COLLISION_MOVE_TO_TARGET);
 
 	collisionPosition=collisionPosition+perpendicularY*mCollisionOffsetY-perpendicularX*mCollisionOffsetX;
 	if(collisionBottomRight && targetPosition.distance(collisionPosition)<targetPosition.distance(cameraPosition))
@@ -732,14 +755,12 @@ void CameraControllerThirdPerson::processTransparentCollisions(Ogre::Vector3 cam
 	direction = calculateDirection(targetPosition,cameraPosition);
 	distance = targetPosition.distance(cameraPosition);
 
+	collisionEntities.clear();
+
 	collision=mRayCasting->raycastRenderAllGeometry(targetPosition,direction,
 		collisionPosition,pEntity,collisionEntities,distance,QUERYFLAGS_CAMERA_COLLISION_TRANSLUCID);
 
-	if(collision)
-	{
-		mTransparentEntityManager->addCurrentCollisionTransparentEntities(collisionEntities);
-	}
-
+	mTransparentEntityManager->addCurrentCollisionTransparentEntities(collisionEntities);
 } 
 
 Ogre::Vector3 CameraControllerThirdPerson::resolveCollisions(Ogre::Vector3 cameraPosition,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
@@ -788,7 +809,7 @@ void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,Camer
 		targetYaw-=360;
 	if(targetYaw<0)
 		targetYaw+=360;
-	setCameraAutoRotation(0,targetYaw,transition);
+	setCameraAutoRotation(mCenterRotX,targetYaw,transition);
 }
 
 void CameraControllerThirdPerson::loadInfo()
@@ -802,8 +823,12 @@ void CameraControllerThirdPerson::loadInfo()
 	{
 		config.getOption("MIN_ROT_X", value); 
 		mMinRotX = atof(value.c_str());
+		config.getOption("CENTER_ROT_X", value); 
+		mCenterRotX = atof(value.c_str());
 		config.getOption("MAX_ROT_X", value); 
 		mMaxRotX = atof(value.c_str());
+		config.getOption("CENTER_ROT_Y", value); 
+		mCenterRotY = atof(value.c_str());
 		config.getOption("SPEED_X", value); 
 		mRotationSpeedX = atof(value.c_str());
 		config.getOption("SPEED_Y", value); 
