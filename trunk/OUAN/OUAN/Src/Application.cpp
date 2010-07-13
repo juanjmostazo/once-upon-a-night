@@ -80,8 +80,12 @@ bool Application::init(int argc,char** argv)
 
 	std::string lang;
 	mConfiguration->getOption(CONFIG_KEYS_INITIAL_LANGUAGE, lang);
+
 	if (lang.empty())
+	{
 		lang=DEFAULT_LANGUAGE;
+	}
+
 	changeCurrentLanguage(lang);
 
 	if (argc>1)
@@ -104,7 +108,6 @@ bool Application::init()
 	Utils::Random::getInstance()->init((unsigned)time(NULL));
 
 	mStateManager.reset(new GameStateManager());
-
 
 	mRenderSubsystem.reset(new RenderSubsystem(mWindowName));
 	
@@ -200,7 +203,7 @@ void Application::go()
 //------------------------
 // Input event handling
 //------------------------
-bool Application::keyPressed( const OIS::KeyEvent& e )
+bool Application::keyPressed(const OIS::KeyEvent& e)
 {
 	mGUISubsystem->injectKeyInput(OUAN::GUI_KEYDOWN,e);
 	return mStateManager->getCurrentState()->keyPressed(e);
@@ -250,21 +253,27 @@ void Application::setupInputSystem()
 	//Set mouse pointer non-visible
 	ControlInputManager::init( mRenderSubsystem->getWindow(), mLanguage,false);
 }
+
 void Application::loadInitialState()
 {
 	//GameStatePtr initialState(new GameRunningState());
 	GameStatePtr initialState;
+
 	if (mSkipIntro)
 	{
 		initialState.reset(new LevelLoadingState());
 		LevelLoadingStatePtr ll = boost::dynamic_pointer_cast<LevelLoadingState>(initialState);
+
 		if (ll.get())
 		{
 			ll->setLevelFileName(LEVEL_2);
 		}
 	}
 	else
+	{
 		initialState.reset(new IntroState());
+	}
+
 	ApplicationPtr this_ = shared_from_this();
 	mStateManager->changeState(initialState,this_);
 }
@@ -346,13 +355,17 @@ RayCastingPtr Application::getRayCasting() const
 void Application::getAudioConfig(TAudioSubsystemConfigData& audioCfg)
 {
 	if (mAudioSubsystem.get())
+	{
 		audioCfg=mAudioSubsystem->getConfigData();
+	}
 }
 
 void Application::setAudioConfig(const TAudioSubsystemConfigData& audioCfg)
 {
 	if (mAudioSubsystem.get())
+	{
 		mAudioSubsystem->setConfigData(audioCfg);
+	}
 }
 
 void Application::saveAudioConfig(const TAudioSubsystemConfigData& audioCfg)
@@ -388,6 +401,7 @@ std::vector<std::string>& Application::getSupportedLanguages()
 {
 	return mSupportedLanguages;
 }
+
 void Application::changeCurrentLanguage(const std::string& newLanguage)
 {
 	if (find(mSupportedLanguages.begin(),mSupportedLanguages.end(),newLanguage)!=mSupportedLanguages.end())
@@ -408,28 +422,38 @@ void Application::changeCurrentLanguage(const std::string& newLanguage)
 		mIngameTextStrings->loadFromFile(ingameStringsPath.str());
 	}
 }
+
 void Application::cycleLanguage()
 {
 	if (!mSupportedLanguages.empty())
 	{
-		std::vector<std::string>::iterator it=std::find(mSupportedLanguages.begin(),
+		std::vector<std::string>::iterator it=std::find(
+			mSupportedLanguages.begin(),
 			mSupportedLanguages.end(),mLanguage);
+
 		std::string newLang="";
+
 		if (it!=mSupportedLanguages.end())
 		{
 			if (it+1==mSupportedLanguages.end())
 			{
 				newLang=mSupportedLanguages.at(0);
 			}
-			else newLang=*(it+1);
+			else 
+			{
+				newLang=*(it+1);
+			}
 		}
+
 		changeCurrentLanguage(newLang);
 	}
 }
+
 const std::string& Application::getCurrentLanguage() const
 {
 	return mLanguage;
 }
+
 ConfigurationPtr Application::getIngameTextStrings() const
 {
 	return mIngameTextStrings;
