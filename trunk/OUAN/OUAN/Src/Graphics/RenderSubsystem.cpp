@@ -971,25 +971,7 @@ Ogre::BillboardSet * RenderSubsystem::createBillboardSet(Ogre::String nodeName,O
 		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" BillboardSet!");
 	}
 	return billBoardSet;
-}
-		
-RenderComponentDecalPtr RenderSubsystem::createDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters)
-{
-	RenderComponentDecalPtr pRenderComponentDecal = RenderComponentDecalPtr(new RenderComponentDecal());
-
-	Frustum * pDecalFrustum;
-	SceneNode * pProjectorNode;
-
-	pDecalFrustum = new Frustum();
-    pProjectorNode = mSceneManager->getRootSceneNode()->createChildSceneNode("DecalProjectorNode");
-    pProjectorNode->attachObject(pDecalFrustum);
-    pProjectorNode->setPosition(0,5,0);
-
-
-	//NOT WORKING YET
-
-	return pRenderComponentDecal;
-}
+}	
 
 Ogre::String RenderSubsystem::getDebugMessage()
 {

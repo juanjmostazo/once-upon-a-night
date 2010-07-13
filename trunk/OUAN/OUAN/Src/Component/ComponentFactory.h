@@ -56,8 +56,9 @@ namespace OUAN
 			RenderComponentPositionalPtr pRenderComponentPositional);
 		RenderComponentViewportPtr createRenderComponentViewport(GameObjectPtr gameObject,
 			TRenderComponentViewportParameters tRenderComponentViewportParameters); 
-		RenderComponentDecalPtr createRenderComponentDecal(GameObjectPtr gameObject,
-			TRenderComponentDecalParameters tRenderComponentDecalParameters);
+		RenderComponentDecalPtr createRenderComponentDecal(GameObjectPtr
+			gameObject, TRenderComponentDecalParameters decalParams,
+			Ogre::SceneManager* sceneManager);
 		RenderComponentWaterPtr createRenderComponentWater(std::string name,GameObjectPtr gameObject,
 			TRenderComponentWaterParameters tRenderComponentWaterParameters);
 		RenderComponentPlanePtr createRenderComponentPlane(std::string name,GameObjectPtr gameObject,

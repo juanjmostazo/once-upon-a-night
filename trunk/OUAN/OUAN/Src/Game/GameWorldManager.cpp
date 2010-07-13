@@ -1279,8 +1279,8 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 			sound->getAudioComponentDreams()->setPauseSound(mDefaultAmbientSoundIDDreams,true);
 			sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 		}
-		if (flashlight.get())
-			flashlight->createProjector(&mGameObjects);
+		//if (flashlight.get())
+		//	flashlight->createProjector(&mGameObjects);
 		break;
 	default:
 		break;
@@ -1726,4 +1726,10 @@ void GameWorldManager::resolveNestLinks()
 LogicComponentOny* GameWorldManager::getOny()
 {
 	return mInst->getGameObjectOny()->getLogicComponentOny().get();
+}
+
+void GameWorldManager::loadFlashlightDecalMaterials()
+{
+	if (getGameObjectFlashLight().get())
+		getGameObjectFlashLight()->loadDecalMaterials(mGameObjects);
 }

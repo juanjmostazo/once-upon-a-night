@@ -167,13 +167,17 @@ RenderComponentParticleSystemPtr ComponentFactory::createRenderComponentParticle
 	return pRenderComponentParticleSystem;
 }
 
-RenderComponentDecalPtr ComponentFactory::createRenderComponentDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters)
+RenderComponentDecalPtr ComponentFactory::createRenderComponentDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters decalParams, Ogre::SceneManager* sceneManager)
 {
 	//Create void Render Component
-	RenderComponentDecalPtr pRenderComponentDecal = RenderComponentDecalPtr(new RenderComponentDecal()); 
+	RenderComponentDecalPtr pRenderComponentDecal = RenderComponentDecalPtr(new RenderComponentDecal(sceneManager)); 
 
-	//init Render Component
-	pRenderComponentDecal=mApp->getRenderSubsystem()->createDecal(gameObject,tRenderComponentDecalParameters);
+	pRenderComponentDecal->initProjector(
+		decalParams.projectorName, decalParams.textureName,
+		decalParams.projectorOffset, decalParams.projectorNode);
+	pRenderComponentDecal->initFilterProjector(decalParams.filterTextureName);
+	pRenderComponentDecal->setVisible(false);
+	pRenderComponentDecal->changeColour(decalParams.tintColour);
 
 	pRenderComponentDecal->setParent(gameObject);
 

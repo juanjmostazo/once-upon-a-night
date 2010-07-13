@@ -976,6 +976,20 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 		tGameObjectFlashLightParameters.tConeParams));
 	pGameObjectFlashLight->getConeEntity()->setVisible(false);
 
+	TRenderComponentDecalParameters decalParams;
+	decalParams.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
+	decalParams.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
+	decalParams.projectorNode=pGameObjectFlashLight->getRenderComponentPositional()->getSceneNode();
+	decalParams.projectorOffset=Ogre::Vector3::ZERO;
+	decalParams.textureName=FLASHLIGHT_DECAL_TEX_NAME;
+	decalParams.tintColour=pGameObjectFlashLight->getColour();
+
+	pGameObjectFlashLight->setDecalComponent(
+		mComponentFactory->createRenderComponentDecal(
+		pGameObjectFlashLight,
+		decalParams,renderSubsystem->getSceneManager()
+		));
+
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(gameWorldMgr);
 	pGameObjectFlashLight->hide();

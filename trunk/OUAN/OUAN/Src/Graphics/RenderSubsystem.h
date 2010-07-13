@@ -128,8 +128,6 @@ namespace OUAN
 		std::vector<ParticleUniverse::ParticleSystem*> createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional);
 		Ogre::BillboardSet* createBillboardSet(Ogre::String nodeName,Ogre::String name,TRenderComponentBillboardSetParameters TRenderComponentBillboardSetParameters);
 		Ogre::SceneManager* setSceneParameters(Ogre::String name,TRenderComponentSceneParameters TRenderComponentSceneParameters);
-		RenderComponentDecalPtr createDecal(GameObjectPtr gameObject,TRenderComponentDecalParameters tRenderComponentDecalParameters);
-
 		/// Getters and setters
 		Ogre::String getDebugMessage();
 		void setDebugMessage(Ogre::String debugMessage);

@@ -311,6 +311,9 @@ namespace OUAN
 		void addNestLink(const std::string& object, const std::string& nest);
 		void resolveNestLinks();
 
+		void loadFlashlightDecalMaterials();
+
+
 	private:		
 		/// Generate a unique id string with the following format:
 		/// "baseString"_"00value"
