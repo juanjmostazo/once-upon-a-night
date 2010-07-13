@@ -66,11 +66,11 @@ void InGameMenuState::resume()
 /// @param app	the parent application
 void InGameMenuState::handleEvents()
 {
-	if (mApp->mKeyBuffer<0)
+	if (mApp->getKeyBuffer() < 0)
 	{
 		if (mApp->isPressedMenu())
 		{
-			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
+			mApp->setDefaultKeyBuffer();
 			mApp->getGameStateManager()->popState();
 		}
 	}
@@ -80,7 +80,7 @@ void InGameMenuState::handleEvents()
 /// @param app	the parent app
 void InGameMenuState::update(long elapsedTime)
 {
-	mApp->mKeyBuffer-=elapsedTime;
+	mApp->reduceKeyBuffer(elapsedTime);
 }
 
 void InGameMenuState::backToGame()

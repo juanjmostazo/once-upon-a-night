@@ -123,10 +123,6 @@ namespace OUAN
 			/// Determine if there has been a request to shut down the app
 			bool mExitRequested;
 
-			/// Used to prevent key repeats from quickly 
-			/// toggling on/off certain actions
-			int mKeyBuffer;
-
 			int mAudioFrameCnt;
 			int mAudioFrameSkip;
 
@@ -143,7 +139,18 @@ namespace OUAN
 			void cycleLanguage();
 			const std::string& getCurrentLanguage() const;
 
+			void setKeyBuffer(int keyBuffer);
+			int getKeyBuffer() const;
+
+			void setDefaultKeyBuffer();
+			void setNegativeKeyBuffer();
+			void reduceKeyBuffer(double time);
+
 		protected:
+			/// Used to prevent key repeats from quickly 
+			/// toggling on/off certain actions
+			int mKeyBuffer;
+
 			/// Singleton instance
 			static Application* instance;
 

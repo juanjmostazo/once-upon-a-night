@@ -458,3 +458,28 @@ ConfigurationPtr Application::getIngameTextStrings() const
 {
 	return mIngameTextStrings;
 }
+
+void Application::setKeyBuffer(int keyBuffer)
+{
+	mKeyBuffer=keyBuffer;
+}
+
+int Application::getKeyBuffer() const
+{
+	return mKeyBuffer;
+}
+
+void Application::setDefaultKeyBuffer()
+{
+	setKeyBuffer(DEFAULT_KEY_BUFFER);
+}
+
+void Application::setNegativeKeyBuffer()
+{
+	setKeyBuffer(-1);
+}
+
+void Application::reduceKeyBuffer(double time)
+{
+	setKeyBuffer(getKeyBuffer() - time);
+}
