@@ -76,9 +76,6 @@ TInputCfgMouseButtonMapper ControlInputManager::convertMouseButtonId(OIS::MouseB
 	}
 }
 
-
-
-
 //////////////////////////////////////////////////////////////
 
 bool ControlInputManager::isPressed(int padButton, int defaultInputKey)

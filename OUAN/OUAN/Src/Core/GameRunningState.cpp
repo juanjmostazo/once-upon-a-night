@@ -458,10 +458,16 @@ void GameRunningState::checkDebuggingKeys()
 		else if (mApp->isPressedToggleConsole())
 		{
 			Logger::getInstance()->log("ToggleConsole key pressed");
+
 			if (mGUI->isVisible())
+			{
 				mGUI->hideConsole();
+			}
 			else
+			{
 				mGUI->showConsole();
+			}
+
 			mApp->mKeyBuffer=DEFAULT_KEY_BUFFER;
 		}
 		else if (mApp->isPressedToggleVolumes())
@@ -499,7 +505,6 @@ void GameRunningState::checkDebuggingKeys()
 			cutscenestate->setCutsceneFile("cutscene_engine.lua");
 			cutscenestate->setCutsceneFunction("helloWorld");
 			mApp->getGameStateManager()->pushState(cutscenestate,mApp);
-			
 		}
 	}
 }
@@ -507,6 +512,7 @@ void GameRunningState::checkDebuggingKeys()
 void GameRunningState::update(long elapsedTime)
 {
 	firstRender=false;
+
 	if (mayProceedToGameOver())
 	{
 		mApp->getRenderSubsystem()->captureScene(SAVED_RTT_FILENAME);
@@ -549,8 +555,10 @@ void GameRunningState::update(long elapsedTime)
 			//Logger::getInstance()->log("* Updating Camera Params");
 
 		}
-		else
+		else 
+		{
 			toGameOverElapsed+=elapsedSeconds;
+		}
 
 		if (!mApp->getGameWorldManager()->isGameOver())
 		{
@@ -570,6 +578,7 @@ void GameRunningState::update(long elapsedTime)
 			{
 				LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
 				mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+
 				if (mHUD->isSelectedModeChanged())
 				{
 					TWeaponMode newWeaponMode = convertRouletteValue(mHUD->getCurrentState());
