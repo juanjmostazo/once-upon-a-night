@@ -14,6 +14,8 @@ namespace OUAN
 
 	class LevelLoader
 	{
+	private:
+		void initFlashlightConeEntity(TRenderComponentEntityParameters& params);
 	public:
 		LevelLoader();
 		virtual ~LevelLoader();

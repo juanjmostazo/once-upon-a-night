@@ -31,8 +31,37 @@ material default_changeworld_alpha_test
 		}
 	}
 }
+material default_changeworld_alpha_test_scrolling: default_changeworld_alpha_test
+{
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture default_changeworld.jpg
+				colour_op replace
+				scroll_anim 0 -0.2
+			}
+		}
+	}
+}
+
 
 material default_changeworld_alpha_blending : default_changeworld_alpha_test
+
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+		}
+	}
+}
+
+material default_changeworld_alpha_blending_scrolling : default_changeworld_alpha_test_scrolling
 
 {
 	technique

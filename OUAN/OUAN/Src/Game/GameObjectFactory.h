@@ -44,8 +44,9 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectEyePtr createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectFlashLightPtr createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters, 
-			GameWorldManagerPtr gameWorldMgr, CameraManagerPtr cameraMgr, RayCastingPtr raycasting,RenderSubsystemPtr renderSubsystem);
+		GameObjectFlashLightPtr createGameObjectFlashLight
+			(TGameObjectFlashLightParameters tGameObjectFlashLightParameters, 
+			GameWorldManagerPtr gameWorldMgr, RenderSubsystemPtr renderSubsystem);
 		GameObjectHeartPtr createGameObjectHeart(TGameObjectHeartParameters tGameObjectHeartParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectItem1UPPtr createGameObjectItem1UP(TGameObjectItem1UPParameters tGameObjectItem1UPParameters, 

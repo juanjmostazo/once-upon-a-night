@@ -27,22 +27,28 @@ namespace OUAN
 	const std::string ATTACK_NAME_BLUE="blue";
 	const std::string ATTACK_NAME_WHITE="white";
 
+	const std::string CONE_MATERIAL_NAME="flashlightcone_n";
+	const std::string CONE_MESH_NAME="flashlightcone.mesh";
+
 	class ProjectiveDecal;
 	typedef boost::shared_ptr<ProjectiveDecal> ProjectiveDecalPtr;
+
+	const double DEFAULT_ROLL_OMEGA = PI/2;
 
 	/// Class to hold GameObjectFlashLight information
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
 	{
 	private:
 		/// Logic component: it'll represent the 'brains' of the game object
-		/// containing information on its current state, its life and health(if applicable),
-		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;		
+		LogicComponentPtr mLogicComponent;	
+		AttackComponentPtr mAttackComponent;
+		WeaponComponentPtr mParentWeaponComponent;
+
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		RenderComponentLightPtr mRenderComponentLight;
-
-		RenderComponentBillboardSetPtr mLightConeBBS;
+		RenderComponentEntityPtr mConeEntity;
+		ProjectiveDecalPtr mFlashlightDecal;
 
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
@@ -52,74 +58,59 @@ namespace OUAN
 		/// Physics information
 		PhysicsComponentVolumeConvexPtr mPhysicsComponentVolumeConvex;
 
-		CameraManagerPtr mCameraManager;
-		GameWorldManagerPtr mGameWorldManager;
-		RayCastingPtr mRayCasting;
-		EventManagerPtr mEventManager;
-
-		double distance;
-
-		AttackComponentPtr mAttackComponent;
-
-		WeaponComponentPtr mParentWeaponComponent;
-
-		ProjectiveDecalPtr mFlashlightDecal;
-
 		RenderSubsystemPtr mRenderSubsystem;
+
+		Ogre::Real rollAngle;
 
 	public:
 		//Constructor
-		GameObjectFlashLight(const std::string& name, GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, RayCastingPtr pRayCasting
-			,RenderSubsystemPtr renderSubsystem);
+		GameObjectFlashLight(const std::string& name,RenderSubsystemPtr renderSubsystem);
 		//Destructor
 		~GameObjectFlashLight();
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
-
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
-		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
 
 		/// return logic component
 		LogicComponentPtr getLogicComponent();
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
 
 		/// Return render component Light 
 		/// @return render component Light
 		RenderComponentLightPtr getRenderComponentLight() const;
-
 		/// Set render component
 		/// @param pRenderComponentLight
 		void setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight);
 
-		void setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional);
 		RenderComponentPositionalPtr getLightPositionalComponent() const;
-
-		/// Set positional component
-		/// @param pRenderComponentPositional the component containing the positional information
-		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
-
-		/// Set initial component
-		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
+		void setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional);
+		
 
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
 
+		/// Set positional component
+		/// @param pRenderComponentPositional the component containing the positional information
+		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
+
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
-
-		/// Set physics component
-		void setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex);
+		/// Set initial component
+		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
 		/// Get physics component
 		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex() const;
+		/// Set physics component
+		void setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex);
 
-		RenderComponentBillboardSetPtr getLightConeBBS() const;
-		void setLightConeBBS(RenderComponentBillboardSetPtr lightConeBBS);
+		RenderComponentEntityPtr getConeEntity() const;
+		void setConeEntity(RenderComponentEntityPtr coneEntity);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -214,7 +205,9 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
 
-		TRenderComponentBillboardSetParameters lightConeBBSParams;
+		TRenderComponentEntityParameters tConeParams;
+
+		//TRenderComponentBillboardSetParameters lightConeBBSParams;
 
 	};
 }

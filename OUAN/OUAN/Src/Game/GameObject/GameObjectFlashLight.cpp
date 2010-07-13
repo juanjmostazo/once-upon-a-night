@@ -13,16 +13,11 @@
 
 using namespace OUAN;
 
-GameObjectFlashLight::GameObjectFlashLight(const std::string& name,  GameWorldManagerPtr pGameWorldManager, CameraManagerPtr pCameraManager, 
-	RayCastingPtr pRayCasting, RenderSubsystemPtr renderSubsystem)
+GameObjectFlashLight::GameObjectFlashLight(const std::string& name, RenderSubsystemPtr renderSubsystem)
 :GameObject(name,GAME_OBJECT_TYPE_FLASHLIGHT)
 {
-	mGameWorldManager=pGameWorldManager;
-	mCameraManager=pCameraManager;
-	mRayCasting=pRayCasting;
 	mRenderSubsystem=renderSubsystem;
-
-	distance=10000.0f;
+	rollAngle=0.0;
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -110,33 +105,6 @@ void GameObjectFlashLight::changeWorldFinished(int newWorld)
 		//changing the world. Otherwise, the materials it got might be messed up.
 		break;
 	}
-
-	//The flashlight's operation mode concerning a world change is managed
-	//by Ony (i.e, on a change to dreams Ony changes his active weapon to the pillow,
-	// and to the flashlight on a change to nightmares)
-	//Theoretically, the weapon shouldn't care about the world it is in 
-	
-	//switch(newWorld)
-	//{
-	//case DREAMS:
-	//	//PROVISIONAL
-	//	mRenderComponentLight->getLight()->setVisible(false);
-	//	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
-	//	{
-	//		mPhysicsComponentVolumeConvex->destroy();
-	//	}
-	//	break;
-	//case NIGHTMARES:
-	//	//PROVISIONAL
-	//	mRenderComponentLight->getLight()->setVisible(true);
-	//	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
-	//	{
-	//		mPhysicsComponentVolumeConvex->create();
-	//	}
-	//	break;
-	//default:
-	//	break;
-	//}
 }
 
 void GameObjectFlashLight::changeWorldStarted(int newWorld)
@@ -208,58 +176,42 @@ PhysicsComponentPtr GameObjectFlashLight::getPhysicsComponent() const
 void GameObjectFlashLight::update(double elapsedSeconds)
 {
 	if (isEnabled()) //there is no point to updating the flashlight when it's not active
-	{
-		Ogre::Camera * camera;
-		Vector3 direction;
-
+	{		
 		GameObject::update(elapsedSeconds);
-
-		camera=mCameraManager->getCamera();
-
-		if(mCameraManager->getCameraControllerType()==CAMERA_THIRD_PERSON)
+		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
+		Ogre::Vector3 pos;
+		if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
+			&& ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
 		{
-			//mRenderComponentPositional->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-			//mRenderComponentPositional->setOrientation(camera->getOrientation());
-			GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
-			Ogre::Vector3 pos;
-			Ogre::Quaternion quat;
-			if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
-				&& ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
-			{
-				Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
-				Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
-				pos=Utils::getNodeWorldPosition(ent,bone);
-			}
-			else
-			{
-				pos=ony->getRenderComponentPositional()->getPosition();
-			}
-
-			mRenderComponentPositional->setPosition(pos);			
-			mRenderComponentPositional->setOrientation(camera->getOrientation()*Ogre::Quaternion(Ogre::Degree(-90),Ogre::Vector3::UNIT_Y));
-
-			if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
-			{
-				//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
-				mPhysicsComponentVolumeConvex->destroy();
-				mPhysicsComponentVolumeConvex->create();
-
-				//mPhysicsComponentVolumeConvex->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
-				mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
-
-				camera=mCameraManager->getCamera();
-				mPhysicsComponentVolumeConvex->setOrientation(camera->getOrientation());
-				//mPhysicsComponentVolumeConvex->setOrientation(mRenderComponentPositional->getOrientation());
-			}
+			Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+			Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+			pos=Utils::getNodeWorldPosition(ent,bone);			
 		}
+		else
+		{
+			pos=ony->getRenderComponentPositional()->getPosition();			
+		}
+		mRenderComponentPositional->setPosition(pos);			
+		mRenderComponentPositional->setOrientation(ony->getRenderComponentPositional()->getOrientation()*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y)*Ogre::Quaternion(Ogre::Radian(rollAngle),Ogre::Vector3::UNIT_Z));
+		rollAngle+=elapsedSeconds*DEFAULT_ROLL_OMEGA;
+		//constrain the angle into the range [0..2PI)
+		if (rollAngle>=2*PI)
+			//The while addition is a safety check for situations
+			//where the angle increases above 4*PI, which
+			//might happen as a result of a dramatic drop in 
+			//the framerate
+			while(rollAngle>=2*PI)
+				rollAngle-=2*PI;
 
-		//ACHTUNG: The light's not in sync with the flashlight model, but with ony instead!!!
-		mLightPositionalComponent->setPosition(mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition());
 
-		direction=mGameWorldManager->getGameObjectOny()->getRenderComponentPositional()->getPosition()-camera->getPosition();
-		direction.normalise();
-
-		mRenderComponentLight->setDirection(direction);
+		if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
+		{
+			//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
+			//mPhysicsComponentVolumeConvex->destroy();
+			//mPhysicsComponentVolumeConvex->create();
+			mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
+			mPhysicsComponentVolumeConvex->setOrientation(ony->getRenderComponentPositional()->getOrientation()*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y));
+		}
 	}
 }
 
@@ -283,7 +235,7 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 				mFlashlightDecal->show();
 			}
 		}
-		if (mLightConeBBS)
+		if (mConeEntity)
 		{
 			applyTintColour(attackData->rgb);
 		}
@@ -294,7 +246,6 @@ void GameObjectFlashLight::switchOn()
 {
 	std::stringstream colourStream("");
 	colourStream<<GameObjectFlashLight::getColourName(getColour());
-	displayText(colourStream.str());
 	//mRenderComponentLight->getLight()->setVisible(true);
 	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 	{
@@ -304,12 +255,12 @@ void GameObjectFlashLight::switchOn()
 	{
 		mFlashlightDecal->show();
 	}
-	mLightConeBBS->setVisible(false);
+	mConeEntity->setVisible(true);
 }
 void GameObjectFlashLight::switchOff()
 {
 	mRenderComponentLight->getLight()->setVisible(false);
-	mLightConeBBS->setVisible(false);
+	mConeEntity->setVisible(false);
 	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->destroy();
@@ -330,13 +281,13 @@ void GameObjectFlashLight::switchOff()
 void GameObjectFlashLight::show()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(true);
-	//mLightConeBBS->setVisible(true);
+	//mConeEntity->setVisible(true);
 	Logger::getInstance()->log("LIGHT CONE NOW VISIBLE -theoretically -_-");
 }
 void GameObjectFlashLight::hide()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(false);
-	mLightConeBBS->setVisible(false);
+	mConeEntity->setVisible(false);
 }
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
 {
@@ -475,7 +426,7 @@ void GameObjectFlashLight::applyTintColour(int colour)
 {
 	Ogre::ColourValue tint;
 	tint.setAsRGBA(colour);
-	Ogre::MaterialPtr mat=Ogre::MaterialManager::getSingleton().getByName("flashlighthalo");
+	Ogre::MaterialPtr mat=Ogre::MaterialManager::getSingleton().getByName(CONE_MATERIAL_NAME);
 	Ogre::TextureUnitState* tex= mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 	if (tex)
 	{
@@ -498,19 +449,19 @@ void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 
 	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
 
-	if (mLightConeBBS)
+	if (mConeEntity)
 	{
-		//applyTintColour(getColour());
+		applyTintColour(getColour());
 	}
 }
 
-RenderComponentBillboardSetPtr GameObjectFlashLight::getLightConeBBS() const
+RenderComponentEntityPtr GameObjectFlashLight::getConeEntity() const
 {
-	return mLightConeBBS;
+	return mConeEntity;
 }
-void GameObjectFlashLight::setLightConeBBS(RenderComponentBillboardSetPtr lightConeBBS)
+void GameObjectFlashLight::setConeEntity(RenderComponentEntityPtr coneEntity)
 {
-	mLightConeBBS=lightConeBBS;
+	mConeEntity=coneEntity;
 }
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()

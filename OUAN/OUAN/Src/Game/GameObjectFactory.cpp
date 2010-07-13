@@ -896,13 +896,12 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 }
 
 GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjectFlashLightParameters tGameObjectFlashLightParameters, 
-	GameWorldManagerPtr gameWorldMgr,CameraManagerPtr cameraMgr, RayCastingPtr raycasting, RenderSubsystemPtr renderSubsystem)
+	GameWorldManagerPtr gameWorldMgr, RenderSubsystemPtr renderSubsystem)
 {
 	GameObjectFlashLightPtr pGameObjectFlashLight;
 
 	//Create GameObject
-	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,gameWorldMgr,
-		cameraMgr,raycasting,renderSubsystem));
+	pGameObjectFlashLight = GameObjectFlashLightPtr(new GameObjectFlashLight(tGameObjectFlashLightParameters.name,renderSubsystem));
 	pGameObjectFlashLight->setMaxUpdateRadium(tGameObjectFlashLightParameters.mMaxUpdateRadium);
 	pGameObjectFlashLight->setParentNest(tGameObjectFlashLightParameters.parentNest);
 	pGameObjectFlashLight->setSpawnProbability(tGameObjectFlashLightParameters.spawnProbability);
@@ -970,13 +969,12 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 		mComponentFactory->createRenderComponentLight(tGameObjectFlashLightParameters.name+"#Light",
 		pGameObjectFlashLight,tRenderComponentLightParameters));
 
-	pGameObjectFlashLight->setLightConeBBS(
-		mComponentFactory->createRenderComponentBillboardSet(
-		tGameObjectFlashLightParameters.name+"#light",
+	pGameObjectFlashLight->setConeEntity(
+		mComponentFactory->createRenderComponentEntity(
+		tGameObjectFlashLightParameters.name+"#lightCone",
 		pGameObjectFlashLight,
-		tGameObjectFlashLightParameters.lightConeBBSParams
-		));
-	pGameObjectFlashLight->getLightConeBBS()->setVisible(false);
+		tGameObjectFlashLightParameters.tConeParams));
+	pGameObjectFlashLight->getConeEntity()->setVisible(false);
 
 	//Add reference to this
 	pGameObjectFlashLight->setGameWorldManager(gameWorldMgr);
