@@ -1057,10 +1057,6 @@
 						RelativePath=".\Src\Graphics\Effects\LightShafts.cpp"
 						>
 					</File>
-					<File
-						RelativePath=".\Src\Graphics\Effects\ProjectiveDecal.cpp"
-						>
-					</File>
 				</Filter>
 				<Filter
 					Name="ParticleManager"
@@ -1432,10 +1428,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\Effects\LightShafts.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Graphics\Effects\ProjectiveDecal.h"
 						>
 					</File>
 				</Filter>

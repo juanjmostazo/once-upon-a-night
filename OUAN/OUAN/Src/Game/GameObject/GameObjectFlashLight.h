@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
+#include "../../Graphics/RenderComponent/RenderComponentDecal.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
@@ -48,7 +49,8 @@ namespace OUAN
 		RenderComponentEntityPtr mRenderComponentEntity;
 		RenderComponentLightPtr mRenderComponentLight;
 		RenderComponentEntityPtr mConeEntity;
-		ProjectiveDecalPtr mFlashlightDecal;
+		RenderComponentDecalPtr mFlashlightDecalComponent;
+		//ProjectiveDecalPtr mFlashlightDecal;
 
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
@@ -63,10 +65,40 @@ namespace OUAN
 		Ogre::Real rollAngle;
 
 	public:
+	//----------CONSTRUCTOR/DESTRUCTOR
+
 		//Constructor
 		GameObjectFlashLight(const std::string& name,RenderSubsystemPtr renderSubsystem);
 		//Destructor
 		~GameObjectFlashLight();
+
+	//----------LOGIC COMPONENTS GETTERS/SETTERS
+
+		/// return logic component
+		LogicComponentPtr getLogicComponent();
+		/// Set logic component
+		void setLogicComponent(LogicComponentPtr logicComponent);
+		
+		///Return parent weapon component (which will contain an instance
+		/// to this flashlight)
+		///@return parent object's weapon component
+		WeaponComponentPtr getParentWeaponComponent() const;
+		///Set the parent object's weapon component
+		///@param parentWeaponComponent
+		void setParentWeaponComponent(WeaponComponentPtr parentWeaponComponent);
+		/// Tell if the game object is linked to 
+		/// a parent game object through its weapon component
+		/// @return true if this game object is linked to a parent
+		/// object through its weapon component: false otherwise
+		bool hasParentWeaponComponent() const;
+
+		/// Return attack component
+		AttackComponentPtr getAttackComponent() const;
+		/// Set attack component
+		void setAttackComponent(AttackComponentPtr attackComponent);
+
+	//----------VISUAL COMPONENTS GETTERS/SETTERS
+
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -74,17 +106,23 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
-		/// return logic component
-		LogicComponentPtr getLogicComponent();
-		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
-
+		bool hasRenderComponentEntity() const;
+		RenderComponentEntityPtr getEntityComponent() const;
+		
 		/// Return render component Light 
 		/// @return render component Light
 		RenderComponentLightPtr getRenderComponentLight() const;
 		/// Set render component
 		/// @param pRenderComponentLight
 		void setRenderComponentLight(RenderComponentLightPtr pRenderComponentLight);
+
+		RenderComponentEntityPtr getConeEntity() const;
+		void setConeEntity(RenderComponentEntityPtr coneEntity);
+
+		RenderComponentDecalPtr getDecalComponent() const;
+		void setDecalComponent(RenderComponentDecalPtr decalComponent);
+
+	//----------POSITION COMPONENTS GETTERS/SETTERS
 
 		RenderComponentPositionalPtr getLightPositionalComponent() const;
 		void setLightPositionalComponent(RenderComponentPositionalPtr pRenderComponentPositional);
@@ -93,7 +131,6 @@ namespace OUAN
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
-
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
@@ -104,13 +141,20 @@ namespace OUAN
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
+		bool hasPositionalComponent() const;
+		RenderComponentPositionalPtr getPositionalComponent() const;
+
+	//----------PHYSICS COMPONENTS GETTERS/SETTERS
+
 		/// Get physics component
 		PhysicsComponentVolumeConvexPtr getPhysicsComponentVolumeConvex() const;
 		/// Set physics component
 		void setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex);
 
-		RenderComponentEntityPtr getConeEntity() const;
-		void setConeEntity(RenderComponentEntityPtr coneEntity);
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
+
+	//----------WORLD CHANGE METHODS
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -118,25 +162,18 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
-
-		bool hasPositionalComponent() const;
-		RenderComponentPositionalPtr getPositionalComponent() const;
-
-		bool hasPhysicsComponent() const;
-		PhysicsComponentPtr getPhysicsComponent() const;
-
-		bool hasRenderComponentEntity() const;
-		RenderComponentEntityPtr getEntityComponent() const;
-
-		WeaponComponentPtr getParentWeaponComponent() const;
-		void setParentWeaponComponent(WeaponComponentPtr parentWeaponComponent);
-		bool hasParentWeaponComponent() const;
-
-		bool canInitiateAttack();
-
+	//----------- GENERAL GAME OBJECT MANAGEMENT
+		/// Reset object
+		virtual void reset();
+		void enable();
+		void disable();
 
 		/// Update object
 		void update(double elapsedSeconds);
+
+	//----------- ATTACK-RELATED METHODS
+
+		bool canInitiateAttack();
 
 		/// Switch off the light
 		void switchOff();
@@ -147,18 +184,28 @@ namespace OUAN
 		/// Hide the flashlight (i.e, the model)
 		void hide();
 
-		/// Reset object
-		virtual void reset();
-		void enable();
-		void disable();
-
-		AttackComponentPtr getAttackComponent() const;
-		void setAttackComponent(AttackComponentPtr attackComponent);
 		std::string translateWeaponMode(TWeaponMode weaponMode);
 		std::string getDefaultAttack();
+
 		void beginAttack();
 		void setAttack(const std::string& newAttack);
 
+		// Return current colour
+		int getColour();
+
+		static std::string getColourName(int colour);
+		int getAttackDamage() const;
+
+		//Decal materials!
+		void createProjector(TGameObjectContainer* objs);
+		void applyTintColour(int colour);
+
+
+		void loadDecalMaterials(TGameObjectContainer& mGameObjects);
+		void unloadDecalMaterials();
+
+	//----------LOGIC-RELATED PROCESSING METHODS
+		
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
@@ -174,15 +221,6 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
-		// Return current colour
-		int getColour();
-
-		static std::string getColourName(int colour);
-		int getAttackDamage() const;
-
-		void createProjector(TGameObjectContainer* objs);
-
-		void applyTintColour(int colour);
 	};
 
 	class TGameObjectFlashLightParameters: public TGameObjectParameters
@@ -206,6 +244,7 @@ namespace OUAN
 		TLogicComponentParameters tLogicComponentParameters;
 
 		TRenderComponentEntityParameters tConeParams;
+		TRenderComponentDecalParameters tDecalParams;
 
 		//TRenderComponentBillboardSetParameters lightConeBBSParams;
 

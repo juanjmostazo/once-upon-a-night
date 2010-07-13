@@ -6,7 +6,6 @@
 #include "../../Graphics/CameraManager/CameraManager.h"
 #include "../../Graphics/RenderSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
-#include "../../Graphics/Effects/ProjectiveDecal.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
 #include "../../RayCasting/RayCasting.h"
 #include "../../Utils/Utils.h"
@@ -94,15 +93,13 @@ void GameObjectFlashLight::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		if (mFlashlightDecal.get())
-		{
-			mFlashlightDecal->destroyProjector();
-			mFlashlightDecal.reset();
-		}
+		//if (mFlashlightDecalComponent.get())
+		//{
+		//	mFlashlightDecalComponent->destroyProjector();
+		//}
+		mFlashlightDecalComponent->hide();
 		break;
 	case NIGHTMARES:
-		//The decal projector will be created after all the gameObjects have finished
-		//changing the world. Otherwise, the materials it got might be messed up.
 		break;
 	}
 }
@@ -192,7 +189,10 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 			pos=ony->getRenderComponentPositional()->getPosition();			
 		}
 		mRenderComponentPositional->setPosition(pos);			
-		mRenderComponentPositional->setOrientation(ony->getRenderComponentPositional()->getOrientation()*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y)*Ogre::Quaternion(Ogre::Radian(rollAngle),Ogre::Vector3::UNIT_Z));
+		mRenderComponentPositional->setOrientation(ony->getRenderComponentPositional()->getOrientation()*
+			Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y)*
+		Ogre::Quaternion(Ogre::Radian(rollAngle),Ogre::Vector3::UNIT_Z));
+
 		rollAngle+=elapsedSeconds*DEFAULT_ROLL_OMEGA;
 		//constrain the angle into the range [0..2PI)
 		if (rollAngle>=2*PI)
@@ -226,13 +226,13 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 		mRenderComponentLight->setDiffuseColor(newColour);
 		mRenderComponentLight->setSpecularColor(newColour);
 		//TODO: radius, etc, should also be modified here
-		if (mFlashlightDecal.get())
+		if (mFlashlightDecalComponent.get())
 		{
-			mFlashlightDecal->changeColour(attackData->rgb);
-			if (mFlashlightDecal->isVisible())
+			mFlashlightDecalComponent->changeColour(attackData->rgb);
+			if (mFlashlightDecalComponent->isVisible())
 			{	
-				mFlashlightDecal->hide();
-				mFlashlightDecal->show();
+				mFlashlightDecalComponent->hide();
+				mFlashlightDecalComponent->show();
 			}
 		}
 		if (mConeEntity)
@@ -251,9 +251,9 @@ void GameObjectFlashLight::switchOn()
 	{
 		mPhysicsComponentVolumeConvex->create();
 	}
-	if (mFlashlightDecal.get())
+	if (mFlashlightDecalComponent.get())
 	{
-		mFlashlightDecal->show();
+		mFlashlightDecalComponent->show();
 	}
 	mConeEntity->setVisible(true);
 }
@@ -267,9 +267,9 @@ void GameObjectFlashLight::switchOff()
 	}
 	if (mParentWeaponComponent.get())
 		mParentWeaponComponent->setActiveWeaponInUse(false);
-	if (mFlashlightDecal.get())
+	if (mFlashlightDecalComponent.get())
 	{
-		mFlashlightDecal->hide();
+		mFlashlightDecalComponent->hide();
 	}
 	if (mAttackComponent->getSelectedAttack().get())
 	{
@@ -435,26 +435,33 @@ void GameObjectFlashLight::applyTintColour(int colour)
 }
 void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 {
-	if (!mFlashlightDecal.get())
-	{
-		mFlashlightDecal = ProjectiveDecalPtr(new ProjectiveDecal());
-	}
-	TDecalParams decalSettings;
-	decalSettings.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
-	decalSettings.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
-	decalSettings.projectorNode=getRenderComponentPositional()->getSceneNode();
-	decalSettings.projectorOffset=Ogre::Vector3::ZERO;
-	decalSettings.textureName=FLASHLIGHT_DECAL_TEX_NAME;
-	decalSettings.tintColour=getColour();
+	//if (!mFlashlightDecalComponent)
+	//{
+	//	mFlashlightDecalComponent= ProjectiveDecalPtr(new ProjectiveDecal());
+	//}
+	//TDecalParams decalSettings;
+	//decalSettings.filterTextureName=FLASHLIGHT_DECAL_FILTER_TEX_NAME;
+	//decalSettings.projectorName=FLASHLIGHT_DECAL_PROJECTOR_NAME;
+	//decalSettings.projectorNode=getRenderComponentPositional()->getSceneNode();
+	//decalSettings.projectorOffset=Ogre::Vector3::ZERO;
+	//decalSettings.textureName=FLASHLIGHT_DECAL_TEX_NAME;
+	//decalSettings.tintColour=getColour();
 
-	mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
+	//mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
 
 	if (mConeEntity)
 	{
 		applyTintColour(getColour());
 	}
 }
-
+RenderComponentDecalPtr GameObjectFlashLight::getDecalComponent() const
+{
+	return mFlashlightDecalComponent;
+}
+void GameObjectFlashLight::setDecalComponent(RenderComponentDecalPtr decalComponent)
+{
+	mFlashlightDecalComponent=decalComponent;
+}
 RenderComponentEntityPtr GameObjectFlashLight::getConeEntity() const
 {
 	return mConeEntity;
@@ -463,6 +470,16 @@ void GameObjectFlashLight::setConeEntity(RenderComponentEntityPtr coneEntity)
 {
 	mConeEntity=coneEntity;
 }
+
+void GameObjectFlashLight::loadDecalMaterials(TGameObjectContainer& mGameObjects)
+{
+	mFlashlightDecalComponent->loadMaterials(mGameObjects);
+}
+void GameObjectFlashLight::unloadDecalMaterials()
+{
+	mFlashlightDecalComponent->unloadMaterials();
+}
+
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {

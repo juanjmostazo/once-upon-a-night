@@ -97,6 +97,7 @@ namespace OUAN
 			void setCameraTarget();
 			void clearParser();
 			void resolveLinks();
+			void loadFlashlightDecalMaterials();
 			//...
 	};
 }

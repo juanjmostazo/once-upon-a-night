@@ -40,13 +40,14 @@ TLoadingStage gStages[]=
 	{&LevelLoadingState::processTrajectories, "PROCESS_TRAJECTORIES",0.04},
 	{&LevelLoadingState::processWalkabilityMap, "PROCESS_WALKABILITY_MAP",0.035},
 	{&LevelLoadingState::resolveLinks, "RESOLVE_LINKS",0.005},
-	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.0025},
+	{&LevelLoadingState::initMaterials, "INIT_MATERIALS",0.0010},
+	{&LevelLoadingState::loadFlashlightDecalMaterials, "LOAD_MATERIALS",0.0015},
 	{&LevelLoadingState::initMusic, "INIT_MUSIC",0.0025},
 	{&LevelLoadingState::initScripts, "INIT_SCRIPTS",0.0025},
 	{&LevelLoadingState::setCameraTarget, "SET_CAMERA_TARGET",0.0010},
 	{&LevelLoadingState::clearParser, "CLEAR_PARSER",0.0015},
 };
-const int gNumStages=15;
+const int gNumStages=17;
 
 /// Default constructor
 LevelLoadingState::LevelLoadingState()
@@ -298,4 +299,10 @@ void LevelLoadingState::setCameraTarget()
 {
 	Application::getInstance()->getCameraManager()->setDefaultThirdPersonCamera(false);
 	Application::getInstance()->getCameraManager()->centerToTargetBack(false);
+}
+
+void LevelLoadingState::loadFlashlightDecalMaterials()
+{
+	GameWorldManagerPtr mgr=mApp->getGameWorldManager();
+	mgr->loadFlashlightDecalMaterials();
 }
