@@ -68,6 +68,12 @@ CameraState CameraControllerThirdPerson::getCameraState()
 	return mCameraState;
 }
 
+CameraState CameraControllerThirdPerson::getTargetCameraState()
+{
+	return mTargetState;
+}
+
+
 void CameraControllerThirdPerson::setCameraAutoRotation(double rotX,double rotY,bool transition)
 {
 	if(mCameraState==CS_TRAJECTORY)
@@ -211,6 +217,9 @@ void CameraControllerThirdPerson::startTrajectory(std::string trajectory,Ogre::C
 
 void CameraControllerThirdPerson::setCameraTrajectory(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,std::string trajectory,bool lookAtTarget,bool transition)
 {
+	setTargetVisible(true,pCameraInput);
+	removeAllTransparentEntities();
+
 	mTrajectoryLookAtTarget=lookAtTarget;
 
 	if(!transition)
@@ -276,6 +285,16 @@ bool CameraControllerThirdPerson::isTrajectoryFinished(const std::string& trajec
 	return mTrajectory && mTrajectory->isLastNode();
 }
 
+void CameraControllerThirdPerson::setTargetVisible(bool visible,CameraInputPtr pCameraInput)
+{
+	GameObjectPtr targetGameObject;
+	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
+	if(targetGameObject.get() && targetGameObject->hasRenderComponentEntity())
+	{
+		targetGameObject->getEntityComponent()->setVisible(visible);
+	}
+}
+
 void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
 	Quaternion orientation;
@@ -291,7 +310,6 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 	direction.normalise();
 	dampen=calculateDampenFactor(perc,mTransitionDampenFactor,mTransitionDampenPow,mTransitionDampenStart);
 
-
 	movement=elapsedTime*(mTransitionTargetSpeed+(mTransitionSpeed-mTransitionTargetSpeed)*dampen);
 
 	if(mTransitionTargetPosition.distance(pCamera->getPosition())<movement)
@@ -299,6 +317,14 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 		position=mTransitionTargetPosition;
 		orientation=mTransitionTargetRotation;
 		mCameraState=mTargetState;
+		if(mCameraState==CS_FIXED_FIRST_PERSON)
+		{
+			setTargetVisible(false,pCameraInput);
+		}
+		else
+		{
+			setTargetVisible(true,pCameraInput);
+		}
 	}
 	else
 	{
@@ -312,6 +338,9 @@ void CameraControllerThirdPerson::updateCameraMoveToPosition(double elapsedTime,
 
 void CameraControllerThirdPerson::setCameraTracking(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {
+	removeAllTransparentEntities();
+	setTargetVisible(true,pCameraInput);
+
 	mRotX=mCenterRotX;
 	mRotY=mCenterRotY;
 
@@ -329,6 +358,13 @@ void CameraControllerThirdPerson::setCameraTracking(Ogre::Camera * pCamera,Camer
 			CS_TRACKING
 			);
 	}
+}
+
+void CameraControllerThirdPerson::removeAllTransparentEntities()
+{
+	std::vector<Ogre::Entity*> collisionEntities;
+	collisionEntities.clear();
+	mTransparentEntityManager->addCurrentCollisionTransparentEntities(collisionEntities);
 }
 
 void CameraControllerThirdPerson::updateCameraTracking(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
@@ -350,6 +386,8 @@ double CameraControllerThirdPerson::calculateTransitionSpeed(Ogre::Vector3 initi
 
 void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState)
 {
+	removeAllTransparentEntities();
+
 	mTransitionInitialRotation=rotation1;
 	mTransitionTargetRotation=rotation2;
 	mTransitionInitialPosition=position1;
@@ -362,6 +400,8 @@ void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position
 
 void CameraControllerThirdPerson::setCameraMoveToTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState)
 {
+	removeAllTransparentEntities();
+
 	mTransitionInitialRotation=rotation1;
 	mTransitionInitialPosition=position1;
 	mTransitionTargetInput=pTargetInput;
@@ -375,6 +415,8 @@ void CameraControllerThirdPerson::setCameraMoveToTarget(Ogre::Vector3 position1,
 
 void CameraControllerThirdPerson::setCameraMoveToPositionLookingAtTarget(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,CameraInputPtr pTargetInput,double targetSpeed,CameraState targetState)
 {
+	removeAllTransparentEntities();
+
 	mTransitionInitialRotation=rotation1;
 	mTransitionInitialPosition=position1;
 	mTransitionTargetPosition=position2;
@@ -404,17 +446,30 @@ void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Og
 
 void CameraControllerThirdPerson::setCameraFixedFirstPerson(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {	
+	GameObjectPtr targetGameObject;
+
+	removeAllTransparentEntities();
+
+	Vector3 targetPosition=calculateTargetPosition(pCameraInput);
+	double targetYawInverted=calculateTargetYaw(pCameraInput)+180;
+	Quaternion targetOrientation(Radian(Degree(targetYawInverted)),Vector3::UNIT_Y);
+
+	mRotY=targetYawInverted;
+	mRotX=0;
+
 	if(!transition)
 	{
 		mCameraState=CS_FIXED_FIRST_PERSON;
+		setTargetVisible(false,pCameraInput);
 	}
 	else
 	{
-		pCameraInput->mCameraParameters->setDistance(0);
-		setCameraMoveToTarget(
+		setTargetVisible(true,pCameraInput);
+		setCameraMoveToPosition(
 			pCamera->getPosition(),
 			pCamera->getOrientation(),
-			pCameraInput,
+			targetPosition,
+			targetOrientation,
 			0,
 			CS_FIXED_FIRST_PERSON
 			);
@@ -486,6 +541,10 @@ void CameraControllerThirdPerson::defaultUpdateCamera(Ogre::Camera * pCamera,Cam
 
 void CameraControllerThirdPerson::setCameraFree(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
 {
+	removeAllTransparentEntities();
+
+	setTargetVisible(true,pCameraInput);
+
 	if(!transition)
 	{
 		mCameraState=CS_FREE;
@@ -537,14 +596,29 @@ void CameraControllerThirdPerson::update(Ogre::Camera *pCamera,CameraInputPtr pC
 	mTransparentEntityManager->update(elapsedTime);
 }
 
+void CameraControllerThirdPerson::setTargetDisplayYawToRotY(CameraInputPtr pCameraInput)
+{
+	GameObjectPtr targetGameObject;
+
+	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
+
+	if(targetGameObject->hasPhysicsComponent())
+	{
+		targetGameObject->getPhysicsComponent()->setDisplayYaw(mRotY+180);
+	}
+}
+
 void CameraControllerThirdPerson::updateCameraFixedFirstPerson(double elapsedTime,Ogre::Camera * pCamera,CameraInputPtr pCameraInput)
 {
 	processCameraRotation(pCameraInput);
 
 	//Set camera orientation
-	Quaternion yaw(Radian(Degree(mRotX)),Vector3::UNIT_Y);
-	Quaternion pitch(Radian(Degree(mRotX)),Vector3::UNIT_X);
+	Quaternion yaw(Radian(Degree(mRotY)),Vector3::UNIT_Y);
+	Quaternion pitch(Radian(Degree(-mRotX)),Vector3::UNIT_X);
 	pCamera->setOrientation(yaw * pitch);
+
+	//Set camera position
+	pCamera->setPosition(calculateTargetPosition(pCameraInput));
 }
 
 
@@ -589,7 +663,6 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPt
 
 	return targetPosition;
 }
-
 
 void CameraControllerThirdPerson::processCameraRotation(CameraInputPtr pCameraInput)
 {
@@ -787,7 +860,7 @@ bool CameraControllerThirdPerson::cameraTrajectoryEnded()
 	return mTrajectory->trajectoryEnded();
 }
 
-void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
+double CameraControllerThirdPerson::calculateTargetYaw(CameraInputPtr pCameraInput)
 {
 	double targetYaw;
 	Vector3 targetPosition;
@@ -798,7 +871,6 @@ void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,Camer
 	if(targetGameObject->hasPositionalComponent())
 	{
 		targetYaw=targetGameObject->getPositionalComponent()->getOrientation().getYaw().valueDegrees();
-		Logger::getInstance()->log("Center to target back "+Ogre::StringConverter::toString(Ogre::Real(targetYaw)));
 	}
 	else
 	{
@@ -809,6 +881,13 @@ void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,Camer
 		targetYaw-=360;
 	if(targetYaw<0)
 		targetYaw+=360;
+
+	return targetYaw;
+}
+
+void CameraControllerThirdPerson::centerToTargetBack(Ogre::Camera *pCamera,CameraInputPtr pCameraInput,bool transition)
+{
+	double targetYaw=calculateTargetYaw(pCameraInput);
 	setCameraAutoRotation(mCenterRotX,targetYaw,transition);
 }
 

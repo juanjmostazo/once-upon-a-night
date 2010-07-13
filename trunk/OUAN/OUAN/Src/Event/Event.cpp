@@ -246,3 +246,8 @@ CameraTriggerEvent::CameraTriggerEvent()
 :Event(EVT_PRIORITY_CAMERA_TRIGGER, EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS)
 {
 }
+//---------
+ChangeLevelEvent::ChangeLevelEvent()
+:Event(EVT_PRIORITY_CHANGE_LEVEL, EVENT_TYPE_CHANGE_LEVEL)
+{
+}

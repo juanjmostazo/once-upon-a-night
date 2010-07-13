@@ -29,10 +29,10 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="13.5"></CAMERASPEED>
+  <CAMERASPEED value="13"></CAMERASPEED>
   <CAMERAPOSITIONS count="1">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
-    <OPTION id="1" position="267.196 506.342 417.221" orientation="-0.890294 0.359624 0.260141 0.101849"></OPTION>
+    <OPTION id="1" position="445.948 614.705 311.792" orientation="-0.688074 0.690731 0.159004 0.155442"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -67,11 +67,17 @@
       <LAYER id="29" name="Layer 29" visible="true"></LAYER>
       <LAYER id="30" name="Layer 30" visible="true"></LAYER>
     </LAYERS>
+  <LAYERCOUNT value="1"></LAYERCOUNT>
+  <SELECTIONRECTCOLOUR value="0.5 0 1 1"></SELECTIONRECTCOLOUR>
   <SELECTIONCOLOUR value="1 1 1 1"></SELECTIONCOLOUR>
   <HIGHLIGHTCOLOUR value="0.909804 0.184314 0.184314 1"></HIGHLIGHTCOLOUR>
+  <SELECTHIGHLIGHTCOLOUR value="0.19 0.91 0.19 1"></SELECTHIGHLIGHTCOLOUR>
   <GRIDCOLOUR value="0.694118 0.694118 0.694118 1"></GRIDCOLOUR>
   <GRIDSPACING value="1"></GRIDSPACING>
   <SNAPANGLE value="0"></SNAPANGLE>
+  <WALKAROUNDHEIGHT value="2"></WALKAROUNDHEIGHT>
+  <VOLUMESELECTIONDEPTH value="20"></VOLUMESELECTIONDEPTH>
+  <OBJECTCOUNT value="0"></OBJECTCOUNT>
   </PROJECT>
   <OBJECT object_id="955900736" name="SceneManager" typename="OctreeSceneManager">
     <PROPERTY id="ambient" type="11" value="0.5 0.5 0.5 1"></PROPERTY>
@@ -99,6 +105,7 @@
     <PROPERTY id="skybox::material" type="7" value="Examples/SceneSkyBox1"></PROPERTY>
     <PROPERTY id="skydome::active" type="12" value="true"></PROPERTY>
     <PROPERTY id="skydome::material" type="7" value="level2_sky_n"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -106,9 +113,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.890355 0.359648 0.260158 0.101856"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.688084 0.690741 0.159007 0.155444"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="267.196 506.342 417.221"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="445.948 614.705 311.792"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -119,6 +126,7 @@
     <PROPERTY id="placement" type="10" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="shadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="skies" type="12" value="true"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -136,6 +144,7 @@
     <PROPERTY id="position" type="9" value="455.646 348.329 283.198"></PROPERTY>
     <PROPERTY id="power" type="6" value="1"></PROPERTY>
     <PROPERTY id="specular" type="11" value="0 0 0 1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -153,6 +162,7 @@
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -170,6 +180,7 @@
     <PROPERTY id="subentity0::material" type="7" value="terrain_clock"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -187,6 +198,7 @@
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -204,6 +216,7 @@
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -239,6 +252,7 @@
     <PROPERTY id="subentity9::material" type="7" value="any_hair_d"></PROPERTY>
     <PROPERTY id="subentity9::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="10"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -250,21 +264,22 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="490.885 142.762 348.918"></PROPERTY>
+    <PROPERTY id="position" type="9" value="452.212 142.762 95.5284"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="5000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="78.3392 58.3116 85.9715"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="78.3392 58.3116 43.2211"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="levels.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="levels.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterChangeLevel2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionChangeLevel2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="levels.lua"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value=""></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="levels.lua"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterChangeLevel2"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionChangeLevel2"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value=""></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value=""></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -281,6 +296,7 @@
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -316,6 +332,7 @@
     <PROPERTY id="subentity9::material" type="7" value="any_hair_d"></PROPERTY>
     <PROPERTY id="subentity9::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="10"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -333,6 +350,7 @@
     <PROPERTY id="subentity0::material" type="7" value="terrain_clock"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -345,11 +363,12 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="455.729 211.174 281.272"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <PROPERTY id="updatescript" type="7" value=""></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::name" type="7" value="LevelStart"></PROPERTY>
+      <PROPERTY id="trajectory::node#0" type="7" value="LevelStart"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

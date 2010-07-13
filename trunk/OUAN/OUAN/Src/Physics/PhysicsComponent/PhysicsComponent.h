@@ -35,6 +35,8 @@ namespace OUAN
 		virtual bool isOnSurface() const;
 		virtual void setOnSurface(bool pOnSurface);
 
+		virtual void setDisplayYaw(double displayYaw);
+
 		//virtual void setQueryFlags(QueryFlags queryFlags);
 
 	protected:

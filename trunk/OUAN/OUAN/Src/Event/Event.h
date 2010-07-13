@@ -211,5 +211,12 @@ namespace OUAN
 		bool enter;
 	};
 
+	class ChangeLevelEvent: public Event
+	{
+	public:
+		ChangeLevelEvent();
+		std::string level;
+	};
+
 }
 #endif
