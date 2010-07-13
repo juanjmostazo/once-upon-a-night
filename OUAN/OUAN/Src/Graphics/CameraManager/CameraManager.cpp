@@ -305,12 +305,12 @@ void CameraManager::changeAutoCamera()
 
 void CameraManager::setCameraAutoRotation(double rotX,double rotY,bool transition)
 {
-	mCameraControllerThirdPerson->setCameraAutoRotation(rotX,rotY,transition);
+		mCameraControllerThirdPerson->setCameraAutoRotation(rotX,rotY,transition);
 }
 
 void CameraManager::centerToTargetBack(bool transition)
 {
-	mCameraControllerThirdPerson->centerToTargetBack(mCamera,mCameraInput,transition);
+		mCameraControllerThirdPerson->centerToTargetBack(mCamera,mCameraInput,transition);
 }
 
 void CameraManager::setCameraTrajectoryNames(std::vector<std::string> trajectoryNames)
@@ -377,10 +377,8 @@ void CameraManager::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-
 		break;
 	case NIGHTMARES:
-
 		break;
 	default:
 		break;
@@ -462,6 +460,18 @@ void CameraManager::setTrajectoryCamera(const std::string& camName)
 	mInst->setCameraTrajectory(params,camName,false,false);
 	mInst->mCameraControllerThirdPerson->getTrajectory()->setLoopTrajectory(false);
 }
+
+bool CameraManager::targetMovementAllowed()
+{
+	bool movementAllowed;
+
+	movementAllowed=getCameraControllerType()==CAMERA_THIRD_PERSON && 
+		mCameraControllerThirdPerson->getCameraState()!=CS_FIXED_FIRST_PERSON && 
+		mCameraControllerThirdPerson->getTargetCameraState()!=CS_FIXED_FIRST_PERSON;
+
+	return movementAllowed;
+}
+
 void CameraManager::setAnyTrackingCamera()
 {
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
@@ -474,11 +484,12 @@ void CameraManager::setCameraFixedFirstPerson(bool transition)
 {	
 	if(mCameraControllerThirdPerson->getCameraState()==CS_FIXED_FIRST_PERSON)
 	{
+		mInst->mCameraControllerThirdPerson->setTargetDisplayYawToRotY(mCameraInput);
 		mInst->setDefaultThirdPersonCamera(transition);
 	}
-	else
+	else if(mCameraControllerThirdPerson->getCameraState()!=CS_MOVE_TO_POSITION)
 	{
-		mCameraControllerThirdPerson->setCameraFixedFirstPerson(mCamera,mCameraInput,transition);
+		mInst->mCameraControllerThirdPerson->setCameraFixedFirstPerson(mCamera,mCameraInput,transition);
 	}
 }
 

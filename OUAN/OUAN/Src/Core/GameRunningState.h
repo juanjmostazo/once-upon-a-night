@@ -76,6 +76,9 @@ namespace OUAN
 		void renderChangeWorldTextures();
 
 		bool firstRender;
+
+		bool mProceedToNextLevel;
+		std::string mNextLevel;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
@@ -105,6 +108,9 @@ namespace OUAN
 		static void changeLevel(std::string level);
 
 		void processGameOver(GameOverEventPtr evt);
+
+		void setProceedToNextLevel(bool proceedToNextLevel);
+		void setNextLevel(std::string nextLevel);
 	
 		/// Default constructor
 		GameRunningState();

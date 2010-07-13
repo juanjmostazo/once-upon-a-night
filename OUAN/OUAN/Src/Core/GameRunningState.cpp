@@ -99,6 +99,7 @@ GameRunningState::GameRunningState()
 	mInst=this;
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
+	mProceedToNextLevel=false;
 }
 
 /// Destructor
@@ -267,8 +268,7 @@ void GameRunningState::handleEvents()
 			//TODO: Replace with the proper auto-target functionality
 			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
 			//mApp->getGameWorldManager()->addEvent(evt);
-			//mApp->getCameraManager()->setCameraFixedFirstPerson(true);
-			mApp->getCameraManager()->centerToTargetBack(true);
+			mApp->getCameraManager()->setCameraFixedFirstPerson(true);
 			mApp->setDefaultKeyBuffer();
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			//mGUI->hideConsole();
@@ -286,8 +286,13 @@ void GameRunningState::handleEvents()
 		else if (mApp->isPressedDoAction())
 		{
 			actionKeyPressed=true;
+			//TODO, REMOVE DEPRECATED FUNCTIONALITY useObject()
 			mApp->getGameWorldManager()->useObject();
+
+			mApp->getCameraManager()->centerToTargetBack(true);
+
 			mApp->setDefaultKeyBuffer();
+
 		}
 		else if (mApp->isPressedMenu())
 		{
@@ -391,7 +396,7 @@ void GameRunningState::handleEvents()
 		{
 			mApp->getCameraManager()->processSimpleTranslation(outernMovement);
 		}
-		else if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_THIRD_PERSON)
+		else if(mApp->getCameraManager()->targetMovementAllowed())
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
@@ -512,7 +517,15 @@ void GameRunningState::update(long elapsedTime)
 {
 	firstRender=false;
 
-	if (mayProceedToGameOver())
+	if(mProceedToNextLevel)
+	{
+		LevelLoadingState * levelLoadingState = new LevelLoadingState();
+		levelLoadingState->setLevelFileName(mNextLevel);
+		mApp->getGameWorldManager()->unloadLevel();
+		GameStatePtr nextState(levelLoadingState);
+		mApp->getGameWorldManager()->getParent()->getGameStateManager()->changeState(nextState,mApp);
+	}
+	else if (mayProceedToGameOver())
 	{
 		mApp->getRenderSubsystem()->captureScene(SAVED_RTT_FILENAME);
 		GameStatePtr nextState(new GameOverState());
@@ -667,13 +680,25 @@ void GameRunningState::toggleDebugPhysics()
 
 void GameRunningState::changeLevel(std::string level)
 {
-	LevelLoadingState * levelLoadingState = new LevelLoadingState();
+	ChangeLevelEventPtr pChangeLevelEvent;
 
-	levelLoadingState->setLevelFileName(level);
+	pChangeLevelEvent.reset(new ChangeLevelEvent());
+	pChangeLevelEvent->level=level;
 
-	mInst->getApp()->getGameWorldManager()->unloadLevel();
-	GameStatePtr nextState(levelLoadingState);
-	mInst->getApp()->getGameStateManager()->changeState(nextState,mInst->getApp());
+	mInst->getApp()->getGameWorldManager()->addEvent(pChangeLevelEvent);
+
+	mInst->setProceedToNextLevel(true);
+	mInst->setNextLevel(level);
+}
+
+void GameRunningState::setProceedToNextLevel(bool proceedToNextLevel)
+{
+	mProceedToNextLevel=proceedToNextLevel;
+}
+
+void GameRunningState::setNextLevel(std::string nextLevel)
+{
+	mNextLevel=nextLevel;
 }
 
 void GameRunningState::toggleChangeLevel()

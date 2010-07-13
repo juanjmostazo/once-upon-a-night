@@ -52,6 +52,8 @@ namespace OUAN
 
 		virtual double getYaw();
 
+		virtual void setDisplayYaw(double displayYaw);
+
 	protected:
 		virtual void resetJumpingVars();
 		virtual void resetFallingVars();

@@ -70,6 +70,9 @@ namespace OUAN
 		/// Process the 'change camera parameters' event
 		void processCameraTrigger(CameraTriggerEventPtr evt);
 
+		/// Process the 'change level' event
+		void processChangeLevel(ChangeLevelEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

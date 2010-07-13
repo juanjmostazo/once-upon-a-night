@@ -16,6 +16,8 @@
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectOny.h"
+#include "../Core/LevelLoadingState.h"
+#include "../Core/GameStateManager.h"
 #include "../Utils/Utils.h"
 
 using namespace OUAN;
@@ -83,6 +85,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,CameraTriggerEvent,EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS>
 			(this_,&EventProcessor::processCameraTrigger,mWorldManager->getEventManager());
+
+		registerEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
+			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
 	}
 }
 
@@ -133,6 +138,9 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,CameraTriggerEvent,EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS>
 			(this_,&EventProcessor::processCameraTrigger,mWorldManager->getEventManager());
+
+		unregisterEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
+			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
 	}
 }
 
@@ -402,5 +410,10 @@ void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 			pCameraManager->setDefaultThirdPersonCamera(evt->pCameraTrigger->mTransition);
 		}
 	}
+
+}
+
+void EventProcessor::processChangeLevel(ChangeLevelEventPtr evt)
+{
 
 }

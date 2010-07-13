@@ -36,6 +36,9 @@ namespace OUAN
 		void processCameraRotation(Ogre::Vector2 rotation);
 		void processSimpleTranslation(Ogre::Vector3 translation);
 
+		//returns true if the camera allows the target to move it's position
+		bool targetMovementAllowed();
+
 		//CAMERA MODIFIERS
 		//Transition activates or desactivates transitions between cameras
 		//CameraParameters is a class that specifies camera parameters, check it out
@@ -89,6 +92,7 @@ namespace OUAN
 		static void setTrajectoryCamera(const std::string& camName);
 		static bool isCameraTrajectoryEnded();
 		static void setAnyTrackingCamera();
+
 
 	private:
 

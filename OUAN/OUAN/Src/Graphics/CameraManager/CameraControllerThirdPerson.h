@@ -31,6 +31,7 @@ namespace OUAN
 		bool isTrajectoryFinished(const std::string& trajectoryName);
 
 		CameraState getCameraState();
+		CameraState getTargetCameraState();
 
 		void clear();
 		void cleanUp();
@@ -38,6 +39,8 @@ namespace OUAN
 		bool cameraTrajectoryEnded();
 
 		Trajectory* getTrajectory();
+
+		void setTargetDisplayYawToRotY(CameraInputPtr pCameraInput);
 
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
@@ -140,6 +143,10 @@ namespace OUAN
 		void updateCurrentDistance(CameraInputPtr pCameraInput,double elapsedTime);
 		double calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition);
 		double calculateRotationDistance(double angle1, double angle2);
+		double calculateTargetYaw(CameraInputPtr pCameraInput);
+		void removeAllTransparentEntities();
+		void setTargetVisible(bool visible,CameraInputPtr pCameraInput);
+
 
 		RayCasting * mRayCasting;
 		TrajectoryManagerPtr mTrajectoryManager;

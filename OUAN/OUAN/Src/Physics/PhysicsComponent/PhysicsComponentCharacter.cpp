@@ -522,7 +522,7 @@ void PhysicsComponentCharacter::setNewYaw()
 		characterYaw+=360;
 	}
 
-	getNxOgreController()->setDisplayYaw(characterYaw);
+	setDisplayYaw(characterYaw);
 }
 
 void PhysicsComponentCharacter::create()
@@ -657,6 +657,12 @@ Ogre::Vector3 PhysicsComponentCharacter::getPosition()
 double PhysicsComponentCharacter::getYaw()
 {
 	return getNxOgreController()->getDisplayYaw();
+}
+
+void PhysicsComponentCharacter::setDisplayYaw(double displayYaw)
+{	
+	getNxOgreController()->setDisplayYaw(displayYaw);
+	updateSceneNode();
 }
 
 void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeconds)

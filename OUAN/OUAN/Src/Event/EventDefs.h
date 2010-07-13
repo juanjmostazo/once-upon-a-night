@@ -60,6 +60,9 @@ namespace OUAN
 	class CameraTriggerEvent;
 	typedef boost::shared_ptr<CameraTriggerEvent> CameraTriggerEventPtr;
 
+	class ChangeLevelEvent;
+	typedef boost::shared_ptr<ChangeLevelEvent> ChangeLevelEventPtr;
+
 	// Event types
 	typedef enum{
 		EVENT_TYPE_GAMEOVER,	
@@ -79,7 +82,8 @@ namespace OUAN
 		EVENT_TYPE_ONY_TAKES_HIT,
 		EVENT_TYPE_WEAPON_MODE_CHANGED,
 		EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS,
-		EVENT_TYPE_ATTACK_ENDED
+		EVENT_TYPE_ATTACK_ENDED,
+		EVENT_TYPE_CHANGE_LEVEL,
 	} TEventType;
 
 
@@ -99,6 +103,7 @@ namespace OUAN
 	const int EVT_PRIORITY_ONY_TAKES_HIT=4;
 	const int EVT_PRIORITY_COLLISION=5;
 	const int EVT_PRIORITY_CAMERA_TRIGGER=5;
+	const int EVT_PRIORITY_CHANGE_LEVEL=5;
 
 	//...
 }
