@@ -63,3 +63,18 @@ material alpha_blending_texture
 		}
 	}
 }
+
+material alpha_blending_scrolling_texture: alpha_blending_texture
+{
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				scroll_anim 0 -0.2
+				texture default.png
+			}
+		}
+	}
+}

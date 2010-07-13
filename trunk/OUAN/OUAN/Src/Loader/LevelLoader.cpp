@@ -1155,9 +1155,11 @@ void LevelLoader::processGameObjectEye(XMLGameObject* gameObject)
 
 void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectFlashLightParameters tGameObjectFlashLightParameters;
-	tGameObjectFlashLightParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
-	tGameObjectFlashLightParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+	OUAN::TGameObjectFlashLightParameters flashlightParams;
+	flashlightParams.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(
+		gameObject);
+	flashlightParams.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(
+		gameObject);
 
 	try
 	{
@@ -1165,46 +1167,25 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectFlashLightParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectFlashLightParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectFlashLightParameters.name = gameObject->name;
+		flashlightParams.dreamsName = gameObject->dreamsName;
+		flashlightParams.nightmaresName = gameObject->nightmaresName;
+		flashlightParams.name = gameObject->name;
 
 		//Get logic component
-		tGameObjectFlashLightParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		flashlightParams.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntity
-		tGameObjectFlashLightParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+		flashlightParams.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
 			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
-		tGameObjectFlashLightParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+		flashlightParams.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeConvex
-		tGameObjectFlashLightParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties);
+		flashlightParams.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties);
 
-		tGameObjectFlashLightParameters.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
-
-		tGameObjectFlashLightParameters.lightConeBBSParams.billboardorigin=Ogre::BBO_CENTER;
-		tGameObjectFlashLightParameters.lightConeBBSParams.billboardrotation=Ogre::BBR_VERTEX;
-		tGameObjectFlashLightParameters.lightConeBBSParams.billboardtype=Ogre::BBT_ORIENTED_COMMON;
-		tGameObjectFlashLightParameters.lightConeBBSParams.defaultheight=10;
-		tGameObjectFlashLightParameters.lightConeBBSParams.defaultwidth=10;
-		tGameObjectFlashLightParameters.lightConeBBSParams.material="flashlighthalo";
-		tGameObjectFlashLightParameters.lightConeBBSParams.pointrendering=false;
-		tGameObjectFlashLightParameters.lightConeBBSParams.queueID=Ogre::RENDER_QUEUE_MAIN;
-		tGameObjectFlashLightParameters.lightConeBBSParams.renderdistance=0.0;
-		tGameObjectFlashLightParameters.lightConeBBSParams.sorting=true;
-		tGameObjectFlashLightParameters.lightConeBBSParams.tRenderComponentBillboardParameters.clear();
-		TRenderComponentBillboardParameters billboard;
-		billboard.colour=Ogre::ColourValue();
-		billboard.dimensions=Ogre::Vector2(20,20);
-		billboard.position=Ogre::Vector3::ZERO;
-		billboard.rotation=0;
-		billboard.texcoordindex=0;
-		billboard.texrect=Ogre::Vector4(0,0,1,1);
-		tGameObjectFlashLightParameters.lightConeBBSParams.tRenderComponentBillboardParameters.push_back(billboard);
-
+		flashlightParams.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -1212,13 +1193,26 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 		return;
 	}
 
+	initFlashlightConeEntity(flashlightParams.tConeParams);
+
 	//Create GameObject
-	//mGameWorldManager->createGameObjectFlashLight(tGameObjectFlashLightParameters);
-	mGameWorldManager->addGameObjectFlashLight(mGameObjectFactory->createGameObjectFlashLight(tGameObjectFlashLightParameters,mGameWorldManager, 
-		mGameWorldManager->getParent()->getCameraManager(),mGameWorldManager->getParent()->getRayCasting(),
+	mGameWorldManager->addGameObjectFlashLight(mGameObjectFactory->createGameObjectFlashLight(flashlightParams,mGameWorldManager, 
 		mGameWorldManager->getParent()->getRenderSubsystem()));
 }
-
+void LevelLoader::initFlashlightConeEntity(TRenderComponentEntityParameters& coneParams)
+{
+	coneParams.castshadows=false;
+	coneParams.meshfile=CONE_MESH_NAME;
+	coneParams.queueID=Ogre::RENDER_QUEUE_MAIN;
+	coneParams.tRenderComponentEntityAnimParams.clear();
+	coneParams.tRenderComponentSubEntityParameters.clear();
+	TRenderComponentSubEntityParameters subEnt;
+	subEnt.material=CONE_MATERIAL_NAME;
+	subEnt.visible=true;
+	coneParams.tRenderComponentSubEntityParameters.push_back(subEnt);		
+	//Process Query flags
+	coneParams.cameraCollisionType=QUERYFLAGS_NONE;
+}
 void LevelLoader::processGameObjectFog(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectFogParameters tGameObjectFogParameters;

@@ -33,7 +33,7 @@ void ProjectiveDecal::createProjector(TDecalParams decalParams, Ogre::SceneManag
 	mProjectorNode = decalParams.projectorNode->createChildSceneNode(mProjectorName+DECAL_PROJECTOR_NODE_SUFFIX);
 	mProjectorNode->attachObject(mFrustum);
 	mProjectorNode->setPosition(decalParams.projectorOffset);//Fine-tune this, maybe pass a Vector parameter			
-	mProjectorNode->setOrientation(mProjectorNode->getOrientation()*Ogre::Quaternion(Ogre::Degree(90),Ogre::Vector3::UNIT_Y));
+	//mProjectorNode->setOrientation(mProjectorNode->getOrientation()*Ogre::Quaternion(Ogre::Degree(90),Ogre::Vector3::UNIT_Y));
 	mTextureName=decalParams.textureName;
 	mTintColour.setAsRGBA(decalParams.tintColour);
 
