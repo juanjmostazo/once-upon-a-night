@@ -55,7 +55,7 @@ void CutsceneState::resume()
 /// @param app	the parent application
 void CutsceneState::handleEvents()
 {
-	if (mApp->mKeyBuffer<0)
+	if (mApp->getKeyBuffer() < 0)
 	{
 		if (mApp->isPressedMenu() || mApp->isPressedJump() )
 		{

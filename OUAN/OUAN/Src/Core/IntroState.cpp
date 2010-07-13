@@ -97,11 +97,13 @@ bool IntroState::keyPressed( const OIS::KeyEvent& e )
 {
 	char charKey=static_cast<char>(e.text);
 	bool alphaKey= (charKey>='0' && charKey<='9') ||(charKey>='a' && charKey<='z') || (charKey>='A' && charKey<='Z');
-	if (mApp->mKeyBuffer<=0 &&(e.key==OIS::KC_ESCAPE || alphaKey))
+	
+	if (mApp->getKeyBuffer() <= 0 &&(e.key==OIS::KC_ESCAPE || alphaKey))
 	{
 		GameStatePtr nextState(new MainMenuState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);	
 	}
+
 	return true;
 }
 bool IntroState::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
@@ -144,6 +146,7 @@ void IntroState::update(long elapsedTime)
 			mApp->getGameStateManager()->changeState(nextState,mApp);		
 		}
 	}
-	mApp->mKeyBuffer -= elapsedTime;
+
+	mApp->reduceKeyBuffer(elapsedTime);
 }
 

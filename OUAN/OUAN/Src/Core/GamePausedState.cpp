@@ -26,7 +26,8 @@ GamePausedState::~GamePausedState()
 void GamePausedState::init(ApplicationPtr app)
 {
 	mApp=app;	
-	mApp->mKeyBuffer=-1;
+	mApp->setNegativeKeyBuffer();
+
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
 	mApp->getCameraManager()->setToDefaultCameraParameters(params);
 	mApp->getCameraManager()->setCameraTrajectory(params,"camera-map",false,true);
@@ -35,7 +36,7 @@ void GamePausedState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void GamePausedState::cleanUp()
 {
-	mApp->mKeyBuffer=500000; //0.5s
+	mApp->setDefaultKeyBuffer();
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 }
 
@@ -54,7 +55,7 @@ void GamePausedState::resume()
 /// @param app	the parent application
 void GamePausedState::handleEvents()
 {
-	if (mApp.get() && mApp->isPressedPause() && mApp->mKeyBuffer<0)
+	if (mApp.get() && mApp->isPressedPause() && mApp->getKeyBuffer() < 0)
 	{
 		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
 		mApp->getGameStateManager()->popState();
@@ -65,10 +66,14 @@ void GamePausedState::handleEvents()
 /// @param app	the parent app
 void GamePausedState::update(long elapsedTime)
 {
-	if (mApp.get() && mApp->mKeyBuffer>=0)
-		mApp->mKeyBuffer-=elapsedTime;
+	if (mApp.get() && mApp->getKeyBuffer() >= 0)
+	{
+		mApp->reduceKeyBuffer(elapsedTime);
+	}
+
 	mApp->getCameraManager()->update(elapsedTime*0.000001);
 }
+
 bool GamePausedState::render()
 {
 	if (mApp.get() && mApp->getRenderSubsystem().get())
