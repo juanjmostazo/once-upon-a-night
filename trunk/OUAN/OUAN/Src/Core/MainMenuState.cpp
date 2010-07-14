@@ -100,11 +100,17 @@ void MainMenuState::resume()
 /// @param app	the parent application
 void MainMenuState::handleEvents()
 {
-	if (mApp->isPressedJump() && mApp->getKeyBuffer() < 0)
+	int pad;
+	int key;
+
+	if (mApp->isPressedJump(&pad,&key))
 	{
-		mApp->cycleLanguage();
-		mGUI->setStrings(mApp->getCurrentLanguage());
-		mApp->setDefaultKeyBuffer();
+		if (mApp->getKeyBuffer() < 0)
+		{
+			mApp->cycleLanguage();
+			mGUI->setStrings(mApp->getCurrentLanguage());
+			mApp->setDefaultKeyBuffer();
+		}
 	}
 }
 

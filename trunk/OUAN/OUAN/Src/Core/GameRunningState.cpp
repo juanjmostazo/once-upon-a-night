@@ -236,15 +236,18 @@ void GameRunningState::resume()
 }
 void GameRunningState::handleEvents()
 {
+	int pad;
+	int key;
+
 	bool actionKeyPressed=false;
 	bool useWeaponKeyPressed=false;
 	bool useSpWeaponKeyPressed=false;
 
-	if (mApp->getKeyBuffer() < 0)
-	{
-		checkDebuggingKeys();
+	checkDebuggingKeys();
 
-		if (mApp->isPressedQuickExit())
+	if (mApp->isPressedQuickExit(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			//Logger::getInstance()->log("isPressedQuickExit IN");
 			//mApp->mExitRequested=true;
@@ -254,7 +257,10 @@ void GameRunningState::handleEvents()
 			mApp->getGameWorldManager()->addEvent(evt);
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedPause())
+	}
+	else if (mApp->isPressedPause(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			GameStatePtr nextState(new GamePausedState());
 			// Notice how pushState is called instead of changeState.
@@ -262,8 +268,11 @@ void GameRunningState::handleEvents()
 			// after the pause the application flow will come back to "GameRunning"
 			mApp->getGameStateManager()->pushState(nextState,mApp);
 			mApp->setDefaultKeyBuffer();
-		}
-		else if(mApp->isPressedAutoPoint())
+			}
+	}
+	else if(mApp->isPressedAutoPoint(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			//TODO: Replace with the proper auto-target functionality
 			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
@@ -273,37 +282,50 @@ void GameRunningState::handleEvents()
 			//mApp->getGameWorldManager()->toggleTreeVisibility();
 			//mGUI->hideConsole();
 		}
-		else if (mApp->isPressedRotateLeft())
+	}
+	else if (mApp->isPressedRotateLeft(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			mHUD->spinRoulette(true);
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedRotateRight())
+	}
+	else if (mApp->isPressedRotateRight(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			mHUD->spinRoulette(false);
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedDoAction())
+	}
+	else if (mApp->isPressedDoAction(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			actionKeyPressed=true;
+
 			//TODO, REMOVE DEPRECATED FUNCTIONALITY useObject()
 			mApp->getGameWorldManager()->useObject();
-
 			mApp->getCameraManager()->centerToTargetBack(true);
-
 			mApp->setDefaultKeyBuffer();
-
 		}
-		else if (mApp->isPressedMenu())
+	}
+	else if (mApp->isPressedMenu(&pad,&key))
+	{
+		if (mApp->getKeyBuffer() < 0)
 		{
 			GameStatePtr nextState(new InGameMenuState());
 			mApp->getGameStateManager()->pushState(nextState,mApp);
 			mApp->setDefaultKeyBuffer();
 		}
 	}
-	if (mApp->isPressedUseWeapon() && !mApp->getGameWorldManager()->isOnyDying() && !mApp->getGameWorldManager()->isOnyHit())
+	
+	if (mApp->isPressedUseWeapon(&pad,&key) && 
+		!mApp->getGameWorldManager()->isOnyDying() && 
+		!mApp->getGameWorldManager()->isOnyHit())
 	{
-		if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || mApp->getKeyBuffer()<DEFAULT_KEY_BUFFER/2)
+		if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || mApp->getKeyBuffer() < DEFAULT_KEY_BUFFER/2)
 		{
 			mApp->getGameWorldManager()->useWeapon();
 			useWeaponKeyPressed=true;
@@ -323,7 +345,9 @@ void GameRunningState::handleEvents()
 			mApp->getGameWorldManager()->stopUsingWeapon();
 		}
 	}
-	if (mApp->isPressedWeaponAction() && !mApp->getGameWorldManager()->isOnyDying())
+
+	if (mApp->isPressedWeaponAction(&pad,&key) && 
+		!mApp->getGameWorldManager()->isOnyDying())
 	{
 		useSpWeaponKeyPressed=true;
 	}
@@ -372,7 +396,8 @@ void GameRunningState::handleEvents()
 			? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
 			: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
 
-		if (mApp->isPressedWalk() && !mApp->getGameWorldManager()->isOnyDying())
+		if (mApp->isPressedWalk(&pad,&key) && 
+			!mApp->getGameWorldManager()->isOnyDying())
 		{
 			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
 			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
@@ -382,7 +407,8 @@ void GameRunningState::handleEvents()
 			newState = CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 		}
 
-		if (mApp->isPressedJump() && !mApp->getGameWorldManager()->isOnyDying())
+		if (mApp->isPressedJump(&pad,&key) && 
+			!mApp->getGameWorldManager()->isOnyDying())
 		{
 			ony->getPhysicsComponentCharacterOny()->jump();
 			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
@@ -420,47 +446,71 @@ void GameRunningState::handleEvents()
 
 void GameRunningState::checkDebuggingKeys()
 {
-	if (mApp->getKeyBuffer()<0)
+	int pad;
+	int key;
+
+	if (mApp->isPressedToggleDebugPerformance(&pad,&key))
 	{
-		if (mApp->isPressedToggleDebugPerformance())
+		if (mApp->getKeyBuffer()<0)
 		{
 			toggleDebugPerformance();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleDebugPhysics())
-		{		
+	}
+	else if (mApp->isPressedToggleDebugPhysics(&pad,&key))
+	{		
+		if (mApp->getKeyBuffer()<0)
+		{
 			toggleDebugPhysics();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleDebugTrajectory())
+	}
+	else if (mApp->isPressedToggleDebugTrajectory(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleDebugTrajectory key pressed");
 			mApp->getTrajectoryManager()->toggleDebugMode(mApp->getGameWorldManager()->getWorld());
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleChangeCamera())
+	}
+	else if (mApp->isPressedToggleChangeCamera(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleChangeCamera key pressed");
 			mApp->getCameraManager()->changeAutoCamera();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleChangeCameraController())
+	}
+	else if (mApp->isPressedToggleChangeCameraController(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			changeCameraController();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleChangeWorld())
+	}
+	else if (mApp->isPressedToggleChangeWorld(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleChangeWorld key pressed");
 			mApp->getGameWorldManager()->changeWorld();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleChangeLevel())
+	}
+	else if (mApp->isPressedToggleChangeLevel(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			toggleChangeLevel();		
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleConsole())
+	}
+	else if (mApp->isPressedToggleConsole(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleConsole key pressed");
 
@@ -475,34 +525,47 @@ void GameRunningState::checkDebuggingKeys()
 
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleVolumes())
+	}
+	else if (mApp->isPressedToggleVolumes(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleVolumes key pressed");
 			toggleVolumes();		
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleGodMode())
-		{	
+	}
+	else if (mApp->isPressedToggleGodMode(&pad,&key))
+	{	
+		if (mApp->getKeyBuffer()<0)
+		{
 			Logger::getInstance()->log("ToggleGodMode key pressed");
-
 			mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->isGodMode());
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleChangeWorldDebug())
+	}
+	else if (mApp->isPressedToggleChangeWorldDebug(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("ToggleChangeWorldDebug key pressed");
 			mApp->getRenderSubsystem()->getChangeWorldRenderer()->setDebugScreensActive(
-				!mApp->getRenderSubsystem()->getChangeWorldRenderer()->getDebugScreensActive()
-				);
+				!mApp->getRenderSubsystem()->getChangeWorldRenderer()->getDebugScreensActive());
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedToggleShowSceneNodes())
-		{	
+	}
+	else if (mApp->isPressedToggleShowSceneNodes(&pad,&key))
+	{	
+		if (mApp->getKeyBuffer()<0)
+		{
 			Logger::getInstance()->log("ToggleShowSceneNodes key pressed");
 			mApp->getRenderSubsystem()->toggleDisplaySceneNodes();
 			mApp->setDefaultKeyBuffer();
 		}
-		else if (mApp->isPressedRunCutscene())
+	}
+	else if (mApp->isPressedRunCutscene(&pad,&key))
+	{
+		if (mApp->getKeyBuffer()<0)
 		{
 			Logger::getInstance()->log("RunCutscene pressed");
 			CutsceneStatePtr cutscenestate = CutsceneStatePtr(new CutsceneState());

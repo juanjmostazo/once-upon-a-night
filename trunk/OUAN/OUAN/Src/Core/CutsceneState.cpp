@@ -55,15 +55,17 @@ void CutsceneState::resume()
 /// @param app	the parent application
 void CutsceneState::handleEvents()
 {
-	if (mApp->getKeyBuffer() < 0)
+	int pad1,pad2;
+	int key1,key2;
+
+	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2))
 	{
-		if (mApp->isPressedMenu() || mApp->isPressedJump() )
+		if (mApp->getKeyBuffer() < 0 || mApp->getKeyBuffer() < 0)
 		{
 			skipCutscene();
 			mApp->getGameStateManager()->popState();
 		}
 	}
-
 }
 /// Update game according to the current state
 /// @param app	the parent app

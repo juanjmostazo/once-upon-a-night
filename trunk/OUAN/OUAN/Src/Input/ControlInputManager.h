@@ -38,58 +38,57 @@ namespace OUAN
 		// Since at the moment there will be no need for a polymorphic redefinition 
 		// of these methods, I've taken out the "virtual" specifier to reduce unnecessary overhead
 
-		bool isPressedMenu();			// Go to main menu
-		bool isPressedPause();			// Go to pause menu
+		bool isPressedMenu(int *pad, int *key);			// Go to main menu
+		bool isPressedPause(int *pad, int *key);		// Go to pause menu
 
-		bool isPressedJump();			// Jump
-		bool isPressedDoAction();		// Perform an action
-		bool isPressedUseWeapon();		// Use the pillow (dream) or shoot (nightmare)
-		bool isPressedWeaponAction();	// Change holder hand (dream) or recharge (nightmare)
+		bool isPressedJump(int *pad, int *key);			// Jump
+		bool isPressedDoAction(int *pad, int *key);		// Perform an action
+		bool isPressedUseWeapon(int *pad, int *key);	// Use the pillow (dream) or shoot (nightmare)
+		bool isPressedWeaponAction(int *pad, int *key);	// Change holder hand (dream) or recharge (nightmare)
+
+		bool isPressedWalk(int *pad, int *key);			// Walk mode
+		bool isPressedAutoPoint(int *pad, int *key);	// Automatic pointer
+		bool isPressedRotateLeft(int *pad, int *key);	// Rotate color to left
+		bool isPressedRotateRight(int *pad, int *key);	// Rotate color to right
+
+		/// Convenience method to provide a quick exit key (essentially for debugging purposes)
+		bool isPressedQuickExit(int *pad, int *key);
+		/// Convenience method to enable performance debug mode
+		bool isPressedToggleDebugPerformance(int *pad, int *key);
+		/// Convenience method to enable physics debug mode
+		bool isPressedToggleDebugPhysics(int *pad, int *key);
+		/// Convenience method to enable trajectory debug mode
+		bool isPressedToggleDebugTrajectory(int *pad, int *key);
+		/// Convenience method to change between cameras
+		bool isPressedToggleChangeCamera(int *pad, int *key);
+		/// Convenience method to change current camera controller
+		bool isPressedToggleChangeCameraController(int *pad, int *key);
+		/// Convenience method to change current world
+		bool isPressedToggleChangeWorld(int *pad, int *key);
+		/// Convenience method to change current level
+		bool isPressedToggleChangeLevel(int *pad, int *key);
+		/// Detect if the 'toggle-console' key has been pressed
+		/// @return true if there has been a 'toggle-console' key press
+		bool isPressedToggleConsole(int *pad, int *key);
+		/// Detect if the 'toggle-volumes' key has been pressed
+		/// @return true if there has been a 'toggle-volumes' key press
+		bool isPressedToggleVolumes(int *pad, int *key);
+		/// Detect if the 'toggle-godmode' key has been pressed
+		/// @return true if there has been a 'toggle-godmode' key press
+		bool isPressedToggleGodMode(int *pad, int *key);
+		/// Detect if the 'toggle-changeworlddebug' key has been pressed
+		/// @return true if there has been a 'toggle-changeworlddebug' key press
+		bool isPressedToggleChangeWorldDebug(int *pad, int *key);
+		/// Detect if the 'toggle-showscenenodes' key has been pressed
+		/// @return true if there has been a 'toggle-showscenenodes' key press
+		bool isPressedToggleShowSceneNodes(int *pad, int *key);
+		/// Launch testing cutscene
+		/// @return true if there's been a 'run-cutscene' key press
+		bool isPressedRunCutscene(int *pad, int *key);
 
 		Vector3 getMovement();
 		void getMovementSimple(int & movementX, int & movementZ);
 		Vector2 getCameraRotation();
-
-		bool isPressedWalk();			// Walk mode
-		bool isPressedAutoPoint();		// Automatic pointer
-		bool isPressedRotateLeft();		// Rotate color to left
-		bool isPressedRotateRight();	// Rotate color to right
-
-		/// Convenience method to provide a quick exit key (essentially for debugging purposes)
-		bool isPressedQuickExit();
-		/// Convenience method to enable performance debug mode
-		bool isPressedToggleDebugPerformance();
-		/// Convenience method to enable physics debug mode
-		bool isPressedToggleDebugPhysics();
-		/// Convenience method to enable trajectory debug mode
-		bool isPressedToggleDebugTrajectory();
-		/// Convenience method to change between cameras
-		bool isPressedToggleChangeCamera();
-		/// Convenience method to change current camera controller
-		bool isPressedToggleChangeCameraController();
-		/// Convenience method to change current world
-		bool isPressedToggleChangeWorld();
-		/// Convenience method to change current level
-		bool isPressedToggleChangeLevel();
-		/// Detect if the 'toggle-console' key has been pressed
-		/// @return true if there has been a 'toggle-console' key press
-		bool isPressedToggleConsole();
-		/// Detect if the 'toggle-volumes' key has been pressed
-		/// @return true if there has been a 'toggle-volumes' key press
-		bool isPressedToggleVolumes();
-		/// Detect if the 'toggle-godmode' key has been pressed
-		/// @return true if there has been a 'toggle-godmode' key press
-		bool isPressedToggleGodMode();
-		/// Detect if the 'toggle-changeworlddebug' key has been pressed
-		/// @return true if there has been a 'toggle-changeworlddebug' key press
-		bool isPressedToggleChangeWorldDebug();
-		/// Detect if the 'toggle-showscenenodes' key has been pressed
-		/// @return true if there has been a 'toggle-showscenenodes' key press
-		bool isPressedToggleShowSceneNodes();
-
-		/// Launch testing cutscene
-		/// @return true if there's been a 'run-cutscene' key press
-		bool isPressedRunCutscene();
 
 		void getMouseStateRelValues(
 			double & x, double & y, double & z);			// Mouse x, y, z coordinate values
@@ -110,10 +109,10 @@ namespace OUAN
 		
 	protected:
 		/// In order to determine getMovement method result
-		bool isPressedGoForward();		// Go forward
-		bool isPressedGoBack();			// Go back
-		bool isPressedGoLeft();			// Go to left
-		bool isPressedGoRight();		// Go to right
+		bool isPressedGoForward(int *pad, int *key);		// Go forward
+		bool isPressedGoBack(int *pad, int *key);			// Go back
+		bool isPressedGoLeft(int *pad, int *key);			// Go to left
+		bool isPressedGoRight(int *pad, int *key);		// Go to right
 
 		/// Get OIS' mouse button ID equivalent for the specified mouseButtonId as read from
 		/// the default input configuration.

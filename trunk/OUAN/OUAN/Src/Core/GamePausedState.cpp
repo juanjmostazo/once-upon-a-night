@@ -55,10 +55,16 @@ void GamePausedState::resume()
 /// @param app	the parent application
 void GamePausedState::handleEvents()
 {
-	if (mApp.get() && mApp->isPressedPause() && mApp->getKeyBuffer() < 0)
+	int pad;
+	int key;
+
+	if (mApp.get() && mApp->isPressedPause(&pad,&key))
 	{
-		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
-		mApp->getGameStateManager()->popState();
+		if (mApp->getKeyBuffer() < 0)
+		{
+			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
+			mApp->getGameStateManager()->popState();
+		}
 	}
 }
 
