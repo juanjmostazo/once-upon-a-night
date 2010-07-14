@@ -37,7 +37,6 @@ using namespace OUAN;
 
 Application::Application(const std::string& windowName) : mWindowName(windowName)
 ,mDebugMode(DEBUGMODE_NONE)
-,mKeyBuffer(-1)
 ,mUniqueId(1000)
 ,mSkipIntro(false)
 ,mBackToMenu(false)
@@ -459,27 +458,53 @@ ConfigurationPtr Application::getIngameTextStrings() const
 	return mIngameTextStrings;
 }
 
-void Application::setKeyBuffer(int keyBuffer)
+void Application::setKeyBuffer(int key, int keyBuffer)
 {
-	mKeyBuffer=keyBuffer;
+	mKeyBuffer[key]=keyBuffer;
 }
 
-int Application::getKeyBuffer() const
+void Application::setKeyBufferAll(int keyBuffer)
 {
-	return mKeyBuffer;
+	for (int i=0; i<KEY_BUFFER_SIZE; i++)
+	{
+		mKeyBuffer[i]=keyBuffer;
+	}
 }
 
-void Application::setDefaultKeyBuffer()
+int Application::getKeyBuffer(int key)
 {
-	setKeyBuffer(DEFAULT_KEY_BUFFER);
+	return mKeyBuffer[key];
 }
 
-void Application::setNegativeKeyBuffer()
+void Application::setDefaultKeyBuffer(int key)
 {
-	setKeyBuffer(-1);
+	setKeyBuffer(key, DEFAULT_KEY_BUFFER);
 }
 
-void Application::reduceKeyBuffer(double time)
+void Application::setDefaultKeyBufferAll()
 {
-	setKeyBuffer(getKeyBuffer() - time);
+	setKeyBufferAll(DEFAULT_KEY_BUFFER);
+}
+
+void Application::setNegativeKeyBuffer(int key)
+{
+	setKeyBuffer(key, -1);
+}
+
+void Application::setNegativeKeyBufferAll()
+{
+	setKeyBufferAll(-1);
+}
+
+void Application::reduceKeyBuffer(int key, double time)
+{
+	setKeyBuffer(key, getKeyBuffer(key) - time);
+}
+
+void Application::reduceKeyBufferAll(double time)
+{
+	for (int i=0; i<KEY_BUFFER_SIZE;i++)
+	{
+		setKeyBuffer(i, getKeyBuffer(i) - time);
+	}
 }

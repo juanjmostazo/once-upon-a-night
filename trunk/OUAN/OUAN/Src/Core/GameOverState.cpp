@@ -32,8 +32,7 @@ GameOverState::~GameOverState()
 /// init main menu's resources
 void GameOverState::init(ApplicationPtr app)
 {
-	mApp=app;	
-	mApp->setNegativeKeyBuffer();
+	GameState::init(app);
 
 	mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
 
@@ -52,7 +51,8 @@ void GameOverState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void GameOverState::cleanUp()
 {
-	mApp->setNegativeKeyBuffer();
+	GameState::cleanUp();
+
 	mApp->getAudioSubsystem()->unloadAll();
 }
 
@@ -78,24 +78,35 @@ void GameOverState::handleEvents()
 	{
 		if (mApp->isPressedJump(&pad1,&key1) || mApp->isPressedPause(&pad2,&key2))
 		{
-			if (mApp->getKeyBuffer() < 0 || mApp->getKeyBuffer() < 0)
+			if (mApp->getKeyBuffer(key1) < 0 || mApp->getKeyBuffer(key2) < 0)
 			{
 				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-				mApp->setDefaultKeyBuffer();
 
 				LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
 				levelLoadingState->setLevelFileName(LEVEL_2);
 				mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
+
+				if (mApp->getKeyBuffer(key1) < 0)
+				{
+					mApp->setDefaultKeyBuffer(key1);
+				}
+
+				if (mApp->getKeyBuffer(key2) < 0)
+				{
+					mApp->setDefaultKeyBuffer(key2);
+				}
 			}
 		}
 		else if (mApp->isPressedWeaponAction(&pad1,&key1))
 		{
-			if (mApp->getKeyBuffer())
+			if (mApp->getKeyBuffer(key1) < 0)
 			{
 				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-				mApp->setDefaultKeyBuffer();
+				
 				GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
 				mApp->getGameStateManager()->changeState(mainMenuState,mApp);
+
+				mApp->setDefaultKeyBuffer(key1);
 			}
 		}
 	}
@@ -105,10 +116,7 @@ void GameOverState::handleEvents()
 /// @param app	the parent app
 void GameOverState::update(long elapsedTime)
 {
-	if (mApp.get() && mApp->getKeyBuffer() >= 0)
-	{
-		mApp->reduceKeyBuffer(elapsedTime);
-	}
+	GameState::update(elapsedTime);
 }
 
 bool GameOverState::render()

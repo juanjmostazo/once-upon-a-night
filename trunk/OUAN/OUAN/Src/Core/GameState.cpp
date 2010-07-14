@@ -16,6 +16,22 @@ void GameState::changeState(GameStatePtr nextState)
 	mApp->getGameStateManager()->changeState(nextState,mApp);
 }
 
+void GameState::init(ApplicationPtr app)
+{
+	mApp=app;
+	mApp->setDefaultKeyBufferAll();
+}
+
+void GameState::cleanUp()
+{
+	mApp->setNegativeKeyBufferAll();
+}
+
+void GameState::update(long elapsedTime)
+{
+	mApp->reduceKeyBufferAll(elapsedTime);
+}
+
 bool GameState::render()
 {
 	return mApp->getRenderSubsystem()->render();
@@ -25,30 +41,37 @@ bool GameState::keyPressed( const OIS::KeyEvent& e )
 {
 	return true;
 }
+
 bool GameState::keyReleased(const OIS::KeyEvent& e)
 {
 	return true;
 }
+
 bool GameState::mouseMoved(const OIS::MouseEvent &e)
 {
 	return true;
 }
+
 bool GameState::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	return true;
 }
+
 bool GameState::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
 	return true;
 }
+
 bool GameState::buttonPressed( const OIS::JoyStickEvent &e, int button )
 {
 	return true;
 }
+
 bool GameState::buttonReleased( const OIS::JoyStickEvent &e, int button )
 {
 	return true;
 }
+
 ApplicationPtr GameState::getApp() const
 {
 	return mApp;

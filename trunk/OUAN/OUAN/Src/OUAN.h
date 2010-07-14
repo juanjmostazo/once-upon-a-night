@@ -933,8 +933,12 @@ namespace OUAN
 		//-------------------------------------
 
 		#define LOGGER_CFG "../../Config/logger-cfg.xml"
+	
+		//-------------------------------------
+		//  Other stuff
+		//-------------------------------------
 
-
+		#define KEY_BUFFER_SIZE 256
 }
 
 #endif

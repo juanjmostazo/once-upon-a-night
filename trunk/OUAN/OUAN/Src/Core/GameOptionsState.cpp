@@ -31,7 +31,8 @@ GameOptionsState::~GameOptionsState()
 void GameOptionsState::init(ApplicationPtr app)
 {
 	using namespace CEGUI;
-	mApp=app;		
+	GameState::init(app);
+
 	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
 	mGUI->initGUI(shared_from_this());
 
@@ -57,6 +58,8 @@ void GameOptionsState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void GameOptionsState::cleanUp()
 {
+	GameState::cleanUp();
+
 	//mApp->getGUISubsystem()->unbindAllEvents();
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
@@ -89,6 +92,7 @@ void GameOptionsState::handleEvents()
 /// @param app	the parent app
 void GameOptionsState::update(long elapsedTime)
 {
+	GameState::update(elapsedTime);
 }
 
 void GameOptionsState::backToMenu()

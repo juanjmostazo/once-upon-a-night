@@ -29,7 +29,8 @@ IntroState::~IntroState()
 /// init main menu's resources
 void IntroState::init(ApplicationPtr app)
 {
-	mApp=app;
+	GameState::init(app);
+
 	//m_sceneManager->setAmbientLight(ColourValue(0.7,0.8,0.9));
 	mMovieTexture=new OgreUtils::DirectShowMovieTexture(640, 480);
 	try
@@ -75,6 +76,8 @@ void IntroState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void IntroState::cleanUp()
 {
+	GameState::cleanUp();
+
 	Utils::destroyTexturedRectangle(mScreen,MOVIE_MATERIAL_NAME,mApp->getRenderSubsystem());
 	if (mMovieTexture)
 	{
@@ -93,12 +96,12 @@ void IntroState::resume()
 {
 
 }
-bool IntroState::keyPressed( const OIS::KeyEvent& e )
+bool IntroState::keyPressed(const OIS::KeyEvent& e)
 {
 	char charKey=static_cast<char>(e.text);
 	bool alphaKey= (charKey>='0' && charKey<='9') ||(charKey>='a' && charKey<='z') || (charKey>='A' && charKey<='Z');
 	
-	if (mApp->getKeyBuffer() <= 0 &&(e.key==OIS::KC_ESCAPE || alphaKey))
+	if (e.key==OIS::KC_ESCAPE || alphaKey)
 	{
 		GameStatePtr nextState(new MainMenuState());
 		mApp->getGameStateManager()->changeState(nextState,mApp);	
@@ -127,6 +130,8 @@ void IntroState::handleEvents()
 /// @param app	the parent app
 void IntroState::update(long elapsedTime)
 {
+	GameState::update(elapsedTime);
+
 	if (mMovieTexture)
 	{
 		bool finished=false;
@@ -146,7 +151,5 @@ void IntroState::update(long elapsedTime)
 			mApp->getGameStateManager()->changeState(nextState,mApp);		
 		}
 	}
-
-	mApp->reduceKeyBuffer(elapsedTime);
 }
 
