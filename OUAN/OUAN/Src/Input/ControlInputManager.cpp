@@ -16,7 +16,7 @@ ControlInputManager::~ControlInputManager()
 
 //////////////////////////////////////////////////////////////
 
-void ControlInputManager::init( Ogre::RenderWindow* window, const std::string& language,bool showDefaultMousePointer)
+void ControlInputManager::init(Ogre::RenderWindow* window, const std::string& language,bool showDefaultMousePointer)
 {
 	FullInputManager::init(window, language, showDefaultMousePointer);
 }
@@ -80,52 +80,221 @@ TInputCfgMouseButtonMapper ControlInputManager::convertMouseButtonId(OIS::MouseB
 
 bool ControlInputManager::isPressed(int padButton, int defaultInputKey)
 {
-	bool isKeyboardKey= defaultInputKey>0;
-	bool isMouseButton = defaultInputKey<0;
-	bool isValidJoystickButton = getJoystick(defaultPadId) && padButton>=0; //Ensure there is a joystick and the button is valid
+	bool isKeyboardKey= defaultInputKey > 0;
+	bool isMouseButton = defaultInputKey < 0;
+	bool isValidJoystickButton = getJoystick(defaultPadId) && padButton >= 0; //Ensure there is a joystick and the button is valid
+	
 	return 
 		(isValidJoystickButton && getJoystick(defaultPadId)->getJoyStickState().buttonDown(padButton))
-		||(isKeyboardKey && getKeyboard()->isKeyDown(static_cast<OIS::KeyCode>(defaultInputKey)))
-		|| (isMouseButton && getMouse()->getMouseState().buttonDown(
-		convertMouseButtonId(static_cast<TInputCfgMouseButtonMapper>(defaultInputKey))));
+		|| (isKeyboardKey && getKeyboard()->isKeyDown(static_cast<OIS::KeyCode>(defaultInputKey)))
+		|| (isMouseButton && getMouse()->getMouseState().buttonDown(convertMouseButtonId(static_cast<TInputCfgMouseButtonMapper>(defaultInputKey))));
 }
 
-bool ControlInputManager::isPressedMenu()
+bool ControlInputManager::isPressedMenu(int *pad, int* key)
 {
+	*pad = padSelect;
+	*key = mDefaultInputData.keyMenu;
 	return isPressed(padSelect,mDefaultInputData.keyMenu);
 }
 
-bool ControlInputManager::isPressedPause()
+bool ControlInputManager::isPressedPause(int *pad, int* key)
 {
+	*pad = padStart;
+	*key = mDefaultInputData.keyPause;
 	return isPressed(padStart,mDefaultInputData.keyPause);
 }
 
 //////////////////////////////////////////////////////////////
 
-bool ControlInputManager::isPressedJump()
+bool ControlInputManager::isPressedJump(int *pad, int* key)
 {
+	*pad = padX;
+	*key = mDefaultInputData.keyJump;
 	return isPressed(padX,mDefaultInputData.keyJump);
 }
 
-bool ControlInputManager::isPressedDoAction()
+bool ControlInputManager::isPressedDoAction(int *pad, int* key)
 {
+	*pad = padCircle;
+	*key = mDefaultInputData.keyAction;
 	return isPressed(padCircle,mDefaultInputData.keyAction);
 }
 
-bool ControlInputManager::isPressedUseWeapon()
+bool ControlInputManager::isPressedUseWeapon(int *pad, int* key)
 {
+	*pad = padSquare;
+	*key = mDefaultInputData.keyUseWeapon;
 	return isPressed(padSquare,mDefaultInputData.keyUseWeapon);
 }
 
-bool ControlInputManager::isPressedWeaponAction()
+bool ControlInputManager::isPressedWeaponAction(int *pad, int* key)
 {
+	*pad = padTriangle;
+	*key = mDefaultInputData.keyReloadWeapon;
 	return isPressed(padTriangle,mDefaultInputData.keyReloadWeapon);
+}
+
+bool ControlInputManager::isPressedGoForward(int *pad, int* key)
+{
+	*pad = padUp;
+	*key = mDefaultInputData.keyForward;
+	return isPressed(padUp,mDefaultInputData.keyForward);
+}
+
+bool ControlInputManager::isPressedGoBack(int *pad, int* key)
+{
+	*pad = padDown;
+	*key = mDefaultInputData.keyBackwards;
+	return isPressed(padDown,mDefaultInputData.keyBackwards);
+}
+
+bool ControlInputManager::isPressedGoLeft(int *pad, int* key)
+{
+	*pad = padLeft;
+	*key = mDefaultInputData.keyLeft;
+	return isPressed(padLeft, mDefaultInputData.keyLeft);
+}
+
+bool ControlInputManager::isPressedGoRight(int *pad, int* key)
+{
+	*pad = padRight;
+	*key = mDefaultInputData.keyRight;
+	return isPressed(padRight,mDefaultInputData.keyRight);
+}
+
+bool ControlInputManager::isPressedWalk(int *pad, int* key)
+{ 
+	*pad = padR1;
+	*key = mDefaultInputData.keyWalk;
+	return isPressed(padR1,mDefaultInputData.keyWalk);
+}
+
+bool ControlInputManager::isPressedAutoPoint(int *pad, int* key)
+{
+	*pad = padL1;
+	*key = mDefaultInputData.keyAutoTarget;
+	return isPressed(padL1,mDefaultInputData.keyAutoTarget);
+}
+
+bool ControlInputManager::isPressedRotateLeft(int *pad, int* key)
+{
+	*pad = padL2;
+	*key = mDefaultInputData.keyRotateLeft;
+	return isPressed(padL2,mDefaultInputData.keyRotateLeft);
+}
+
+bool ControlInputManager::isPressedRotateRight(int *pad, int* key)
+{
+	*pad = padR2;
+	*key = mDefaultInputData.keyRotateRight;
+	return isPressed(padR2,mDefaultInputData.keyRotateRight);
+}
+
+bool ControlInputManager::isPressedQuickExit(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyQuickExit;
+	return isPressed(-1,mDefaultInputData.keyQuickExit);
+}
+
+bool ControlInputManager::isPressedToggleDebugPerformance(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugPerformance;
+	return isPressed(-1,mDefaultInputData.keyDebugPerformance);
+}
+
+bool ControlInputManager::isPressedToggleDebugPhysics(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugPhysics;
+	return isPressed(-1,mDefaultInputData.keyDebugPhysics);
+}
+
+bool ControlInputManager::isPressedToggleDebugTrajectory(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugTrajectory;
+	return isPressed(-1,mDefaultInputData.keyDebugTrajectory);
+}
+
+bool ControlInputManager::isPressedToggleChangeCamera(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeCamera;
+	return isPressed(-1,mDefaultInputData.keyChangeCamera);
+}
+
+bool ControlInputManager::isPressedToggleChangeCameraController(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeCameraController;
+	return isPressed(-1,mDefaultInputData.keyChangeCameraController);
+}
+
+bool ControlInputManager::isPressedToggleChangeWorld(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeWorld;
+	return isPressed(-1,mDefaultInputData.keyChangeWorld);
+}
+
+bool ControlInputManager::isPressedToggleChangeLevel(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeLevel;
+	return isPressed(-1,mDefaultInputData.keyChangeLevel);
+}
+
+bool ControlInputManager::isPressedToggleConsole(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleConsole;
+	return isPressed(-1,mDefaultInputData.keyToggleConsole);
+}
+
+bool ControlInputManager::isPressedToggleVolumes(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleVolumes;
+	return isPressed(-1,mDefaultInputData.keyToggleVolumes);
+}
+
+bool ControlInputManager::isPressedToggleGodMode(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleGodMode;
+	return isPressed(-1,mDefaultInputData.keyToggleGodMode);
+}
+
+bool ControlInputManager::isPressedToggleChangeWorldDebug(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleChangeWorldDebug;
+	return isPressed(-1,mDefaultInputData.keyToggleChangeWorldDebug);
+}
+
+bool ControlInputManager::isPressedToggleShowSceneNodes(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleShowSceneNodes;
+	return isPressed(-1,mDefaultInputData.keyToggleShowSceneNodes);
+}
+
+bool ControlInputManager::isPressedRunCutscene(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyRunCutscene;
+	return isPressed(-1,mDefaultInputData.keyRunCutscene);
 }
 
 //////////////////////////////////////////////////////////////
 
 Vector3 ControlInputManager::getMovement()
 {
+	int pad;
+	int key;
+
 	Vector3 nextMovement = Vector3::ZERO;
 
 	double joystickLeftX=0;
@@ -135,22 +304,22 @@ Vector3 ControlInputManager::getMovement()
 
 	getJoystickStateAxes(joystickLeftX, joystickLeftZ, joystickRightX, joystickRightZ);
 
-	if (isPressedGoForward())
+	if (isPressedGoForward(&pad,&key))
 	{
 		nextMovement += Vector3::UNIT_Z;	
 	}
 
-	if (isPressedGoBack())
+	if (isPressedGoBack(&pad,&key))
 	{
 		nextMovement += Vector3::NEGATIVE_UNIT_Z;	
 	}
 
-	if (isPressedGoLeft())
+	if (isPressedGoLeft(&pad,&key))
 	{
 		nextMovement += Vector3::UNIT_X;	
 	}
 
-	if (isPressedGoRight())
+	if (isPressedGoRight(&pad,&key))
 	{
 		nextMovement += Vector3::NEGATIVE_UNIT_X;	
 	}
@@ -163,25 +332,28 @@ Vector3 ControlInputManager::getMovement()
 
 void ControlInputManager::getMovementSimple(int & movementX, int & movementZ)
 {
+	int pad;
+	int key;
+
 	movementX = 0;
 	movementZ = 0;
 
-	if (isPressedGoForward())
+	if (isPressedGoForward(&pad,&key))
 	{
 		movementZ = 1;
 	}
 
-	if (isPressedGoBack())
+	if (isPressedGoBack(&pad,&key))
 	{
 		movementZ = -1;	
 	}
 
-	if (isPressedGoLeft())
+	if (isPressedGoLeft(&pad,&key))
 	{
 		movementX = 1;	
 	}
 
-	if (isPressedGoRight())
+	if (isPressedGoRight(&pad,&key))
 	{
 		movementX = -1;	
 	}
@@ -224,124 +396,6 @@ Vector2 ControlInputManager::getCameraRotation()
 
 	return nextCameraRotation;
 }
-
-//////////////////////////////////////////////////////////////
-
-bool ControlInputManager::isPressedGoForward()
-{
-	return isPressed(padUp,mDefaultInputData.keyForward);
-}
-
-bool ControlInputManager::isPressedGoBack()
-{
-	return isPressed(padDown,mDefaultInputData.keyBackwards);
-}
-
-bool ControlInputManager::isPressedGoLeft()
-{
-	return isPressed(padLeft, mDefaultInputData.keyLeft);
-}
-
-bool ControlInputManager::isPressedGoRight()
-{
-	return isPressed(padRight,mDefaultInputData.keyRight);
-}
-
-//////////////////////////////////////////////////////////////
-
-bool ControlInputManager::isPressedWalk()
-{ 
-	return isPressed(padR1,mDefaultInputData.keyWalk);
-}
-
-bool ControlInputManager::isPressedAutoPoint()
-{
-	return isPressed(padL1,mDefaultInputData.keyAutoTarget);
-}
-
-bool ControlInputManager::isPressedRotateLeft()
-{
-	return isPressed(padL2,mDefaultInputData.keyRotateLeft);
-}
-
-bool ControlInputManager::isPressedRotateRight()
-{
-	return isPressed(padR2,mDefaultInputData.keyRotateRight);
-}
-
-//////////////////////////////////////////////////////////////
-
-bool ControlInputManager::isPressedQuickExit()
-{
-	return isPressed(-1,mDefaultInputData.keyQuickExit);
-}
-
-bool ControlInputManager::isPressedToggleDebugPerformance()
-{
-	return isPressed(-1,mDefaultInputData.keyDebugPerformance);
-}
-
-bool ControlInputManager::isPressedToggleDebugPhysics()
-{
-	return isPressed(-1,mDefaultInputData.keyDebugPhysics);
-}
-
-bool ControlInputManager::isPressedToggleDebugTrajectory()
-{
-	return isPressed(-1,mDefaultInputData.keyDebugTrajectory);
-}
-
-
-bool ControlInputManager::isPressedToggleChangeCamera()
-{
-	return isPressed(-1,mDefaultInputData.keyChangeCamera);
-}
-
-bool ControlInputManager::isPressedToggleChangeCameraController()
-{
-	return isPressed(-1,mDefaultInputData.keyChangeCameraController);
-}
-
-bool ControlInputManager::isPressedToggleChangeWorld()
-{
-	return isPressed(-1,mDefaultInputData.keyChangeWorld);
-}
-
-bool ControlInputManager::isPressedToggleChangeLevel()
-{
-	return isPressed(-1,mDefaultInputData.keyChangeLevel);
-}
-
-bool ControlInputManager::isPressedToggleConsole()
-{
-	return isPressed(-1,mDefaultInputData.keyToggleConsole);
-}
-
-bool ControlInputManager::isPressedToggleVolumes()
-{
-	return isPressed(-1,mDefaultInputData.keyToggleVolumes);
-}
-
-bool ControlInputManager::isPressedToggleGodMode()
-{
-	return isPressed(-1,mDefaultInputData.keyToggleGodMode);
-}
-
-bool ControlInputManager::isPressedToggleChangeWorldDebug()
-{
-	return isPressed(-1,mDefaultInputData.keyToggleChangeWorldDebug);
-}
-
-bool ControlInputManager::isPressedToggleShowSceneNodes()
-{
-	return isPressed(-1,mDefaultInputData.keyToggleShowSceneNodes);
-}
-
-bool ControlInputManager::isPressedRunCutscene()
-{
-	return isPressed(-1,mDefaultInputData.keyRunCutscene);
-}
-
 
 //////////////////////////////////////////////////////////////
 

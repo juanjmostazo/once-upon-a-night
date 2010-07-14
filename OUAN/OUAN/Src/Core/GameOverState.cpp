@@ -71,23 +71,32 @@ void GameOverState::resume()
 /// @param app	the parent application
 void GameOverState::handleEvents()
 {
-	if (mApp.get() && mApp->getKeyBuffer() < 0)
+	int pad1,pad2;
+	int key1,key2;
+
+	if (mApp.get())
 	{
-		if (mApp->isPressedJump() || mApp->isPressedPause())
+		if (mApp->isPressedJump(&pad1,&key1) || mApp->isPressedPause(&pad2,&key2))
 		{
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-			mApp->setDefaultKeyBuffer();
-			//GameStatePtr continueGameState = GameStatePtr(new GameRunningState());
-			LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
-			levelLoadingState->setLevelFileName(LEVEL_2);
-			mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
+			if (mApp->getKeyBuffer() < 0 || mApp->getKeyBuffer() < 0)
+			{
+				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+				mApp->setDefaultKeyBuffer();
+
+				LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
+				levelLoadingState->setLevelFileName(LEVEL_2);
+				mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
+			}
 		}
-		else if (mApp->isPressedWeaponAction())
+		else if (mApp->isPressedWeaponAction(&pad1,&key1))
 		{
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-			mApp->setDefaultKeyBuffer();
-			GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
-			mApp->getGameStateManager()->changeState(mainMenuState,mApp);
+			if (mApp->getKeyBuffer())
+			{
+				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+				mApp->setDefaultKeyBuffer();
+				GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
+				mApp->getGameStateManager()->changeState(mainMenuState,mApp);
+			}
 		}
 	}
 }
@@ -101,6 +110,7 @@ void GameOverState::update(long elapsedTime)
 		mApp->reduceKeyBuffer(elapsedTime);
 	}
 }
+
 bool GameOverState::render()
 {
 	if (mApp.get() && mApp->getRenderSubsystem().get())
@@ -108,5 +118,6 @@ bool GameOverState::render()
 		mApp->getRenderSubsystem()->showOverlay(OVERLAY_GAMEOVER_SCREEN);
 		return mApp->getRenderSubsystem()->render();
 	} 
+
 	return false;
 }

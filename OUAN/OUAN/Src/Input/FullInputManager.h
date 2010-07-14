@@ -162,9 +162,9 @@ namespace OUAN
 		virtual int getNumOfJoysticks( void );
 		virtual void getJoystickStateAxes( int index, double & leftX, double & leftY, double & rightX, double & rightY);
 		
-
-		virtual void init( Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
+		virtual void init(Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
 		virtual void finalise();
+
 	protected:
 
 		double getJoystickNormalisedAxe(int axeState, int maxAxis, int border);
@@ -181,7 +181,6 @@ namespace OUAN
 		/// @param configFilePath configuration path
 		/// @return true if configuration file was read correctly; false otherwise
 		bool loadDefaultInputConfig(const std::string& configFilePath);
-
 
 		/// Read as an hexadecimal integer the value of the 'key' parameter 
 		/// on the specified configuration object
@@ -212,8 +211,6 @@ namespace OUAN
 
 		/// Structure holding the values of the keycodes/mouse button ids for all possible in-game input actions 
 		TDefaultInputData mDefaultInputData;
-
-
 	};
 }
 #endif
