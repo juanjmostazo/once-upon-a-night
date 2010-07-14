@@ -24,12 +24,13 @@ ProfileSelectState::~ProfileSelectState()
 /// init main menu's resources
 void ProfileSelectState::init(ApplicationPtr app)
 {
-	mApp=app;	
+	GameState::init(app);
 }
 
 /// Clean up main menu's resources
 void ProfileSelectState::cleanUp()
 {
+	GameState::cleanUp();
 	mApp->getGUISubsystem()->destroyGUI();
 }
 
@@ -55,5 +56,5 @@ void ProfileSelectState::handleEvents()
 /// @param app	the parent app
 void ProfileSelectState::update(long elapsedTime)
 {
-
+	GameState::update(elapsedTime);
 }

@@ -64,7 +64,8 @@ LevelLoadingState::~LevelLoadingState()
 /// init main menu's resources
 void LevelLoadingState::init(ApplicationPtr app)
 {
-	mApp=app;
+	GameState::init(app);
+
 	mApp->getGameWorldManager()->unloadLevel();
 	//mApp->getGameWorldManager()->setWorld(DREAMS);
 	Utils::TTexturedRectangleDesc desc;
@@ -110,6 +111,8 @@ void LevelLoadingState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void LevelLoadingState::cleanUp()
 {		
+	GameState::cleanUp();
+
 	Utils::destroyTexturedRectangle(mScreen,LEVELLOAD_MATERIAL_NAME,mApp->getRenderSubsystem());
 	Utils::destroyTexturedRectangle(mBar,LEVELLOAD_BAR_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
@@ -136,6 +139,7 @@ void LevelLoadingState::handleEvents()
 /// @param app	the parent app
 void LevelLoadingState::update(long elapsedTime)
 {
+	GameState::update(elapsedTime);
 	/*double secs=elapsedTime*0.000001;
 	mApp->getAudioSubsystem()->update(secs);
 	mTimeToGo-=secs;*/
@@ -193,10 +197,12 @@ void LevelLoadingState::processStage(const TLoadingStage& stage)
 	mApp->getRenderSubsystem()->getSceneManager()->getSceneNode(LEVELLOAD_BAR_NODE)->attachObject(mBar);
 	mBar->setMaterial(LEVELLOAD_BAR_MATERIAL_NAME);
 }
+
 void LevelLoadingState::unloadAll()
 {
 	mApp->getGameWorldManager()->unloadLevel();
 }
+
 void LevelLoadingState::initPhysics()
 {
 	if (!mLevelFilename.empty())
@@ -204,19 +210,23 @@ void LevelLoadingState::initPhysics()
 		mApp->getPhysicsSubsystem()->initLevel(mLevelFilename);
 	}
 }
+
 void LevelLoadingState::resetTrajectories()
 {
 	mApp->getTrajectoryManager()->clear();
 }
+
 void LevelLoadingState::initParser()
 {
 	mApp->getLevelLoader()->initializeParser(mLevelFilename);
 }
+
 void LevelLoadingState::processGameObjects()
 {	
 	mGameObjectIterator = mApp->getLevelLoader()->getGameObjectIterator();
 	mIteratorInUse=true;
 }
+
 void LevelLoadingState::processGameObject()
 {	
 	if (mIteratorInUse && mGameObjectIterator!=mApp->getLevelLoader()->getGameObjectIteratorEnd())
@@ -231,6 +241,7 @@ void LevelLoadingState::processGameObject()
 		}
 	}
 }
+
 void LevelLoadingState::processFractalClouds()
 {
 	//Process Level's GameObjectClouds
@@ -240,6 +251,7 @@ void LevelLoadingState::processFractalClouds()
 	}
 	
 }
+
 void LevelLoadingState::processBillboardClouds()
 {
 	//Process Level's GameObjectClouds
@@ -248,6 +260,7 @@ void LevelLoadingState::processBillboardClouds()
 		mApp->getLevelLoader()->processGameObjectBillboardClouds();
 	}
 }
+
 void LevelLoadingState::processTrajectories()
 {
 	//Process Level's Trajectories

@@ -30,7 +30,8 @@ ExtrasState::~ExtrasState()
 /// init main menu's resources
 void ExtrasState::init(ApplicationPtr app)
 {
-	mApp=app;
+	GameState::init(app);
+
 	Utils::TTexturedRectangleDesc desc;
 	desc.leftCorner=desc.bottomCorner=-1.0;
 	desc.rightCorner=desc.topCorner=1.0;
@@ -50,6 +51,8 @@ void ExtrasState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void ExtrasState::cleanUp()
 {
+	GameState::cleanUp();
+
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	Utils::destroyTexturedRectangle(mScreen, EXTRAS_MATERIAL_NAME,mApp->getRenderSubsystem());	
@@ -77,8 +80,9 @@ void ExtrasState::handleEvents()
 /// @param app	the parent app
 void ExtrasState::update(long elapsedTime)
 {
-
+	GameState::update(elapsedTime);
 }
+
 void ExtrasState::backToMenu()
 {
 	/*GameStatePtr nextState(new MainMenuState());

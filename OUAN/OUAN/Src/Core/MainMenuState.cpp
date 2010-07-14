@@ -32,7 +32,8 @@ MainMenuState::~MainMenuState()
 /// init main menu's resources
 void MainMenuState::init(ApplicationPtr app)
 {
-	mApp=app;	
+	GameState::init(app);
+
 	mApp->mBackToMenu=false;
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
 	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
@@ -62,14 +63,22 @@ void MainMenuState::init(ApplicationPtr app)
 /// Clean up main menu's resources
 void MainMenuState::cleanUp()
 {
+	GameState::cleanUp();
+
 	while(mApp->getAudioSubsystem()->isSfxPlaying(mClickChannel));
+
 	//Unsubscribe from events
 	mGUI->destroy();
+
 	if (mMusicChannel!=-1)
+	{
 		mApp->getAudioSubsystem()->stopMusic(mMusicChannel);
+	}
+
 	mApp->getAudioSubsystem()->unload("MUSIC");
 	mApp->getAudioSubsystem()->unload("CLICK");
 	mApp->getGUISubsystem()->destroyGUI();
+
 	//mApp->getGUISubsystem()->unbindAllEvents();
 	Utils::destroyTexturedRectangle(mScreen,MAINMENU_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
@@ -105,11 +114,11 @@ void MainMenuState::handleEvents()
 
 	if (mApp->isPressedJump(&pad,&key))
 	{
-		if (mApp->getKeyBuffer() < 0)
+		if (mApp->getKeyBuffer(key) < 0)
 		{
 			mApp->cycleLanguage();
 			mGUI->setStrings(mApp->getCurrentLanguage());
-			mApp->setDefaultKeyBuffer();
+			mApp->setDefaultKeyBuffer(key);
 		}
 	}
 }
@@ -118,12 +127,9 @@ void MainMenuState::handleEvents()
 /// @param app	the parent app
 void MainMenuState::update(long elapsedTime)
 {
-	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
+	GameState::update(elapsedTime);
 
-	if (mApp->getKeyBuffer() >= 0)
-	{
-		mApp->reduceKeyBuffer(elapsedTime);
-	}
+	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
 }
 
 void MainMenuState::gotoPlay()

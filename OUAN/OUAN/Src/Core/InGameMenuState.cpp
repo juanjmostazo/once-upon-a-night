@@ -31,17 +31,24 @@ InGameMenuState::~InGameMenuState()
 /// init main menu's resources
 void InGameMenuState::init(ApplicationPtr app)
 {
-	mApp=app;	
+	GameState::init(app);
+
 	mGUI=boost::dynamic_pointer_cast<GUIInGame>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));
 	mGUI->initGUI(shared_from_this());
+
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
+	{
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
+	}
+
 	mApp->getGUISubsystem()->showCursor();
 }
 
 /// Clean up main menu's resources
 void InGameMenuState::cleanUp()
 {
+	GameState::cleanUp();
+
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	mApp->getGUISubsystem()->hideCursor();
@@ -71,10 +78,10 @@ void InGameMenuState::handleEvents()
 
 	if (mApp->isPressedMenu(&pad,&key))
 	{
-		if (mApp->getKeyBuffer() < 0)
+		if (mApp->getKeyBuffer(key) < 0)
 		{
-			mApp->setDefaultKeyBuffer();
 			mApp->getGameStateManager()->popState();
+			mApp->setDefaultKeyBuffer(key);
 		}
 	}
 }
@@ -83,7 +90,7 @@ void InGameMenuState::handleEvents()
 /// @param app	the parent app
 void InGameMenuState::update(long elapsedTime)
 {
-	mApp->reduceKeyBuffer(elapsedTime);
+	GameState::update(elapsedTime);
 }
 
 void InGameMenuState::backToGame()
@@ -91,6 +98,7 @@ void InGameMenuState::backToGame()
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	mApp->getGameStateManager()->popState();
 }
+
 void InGameMenuState::goToOptions()
 {
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);

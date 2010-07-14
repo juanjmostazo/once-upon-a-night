@@ -28,7 +28,8 @@ CutsceneState::~CutsceneState()
 
 void CutsceneState::init(ApplicationPtr app)
 {
-	mApp=app;	
+	GameState::init(app);
+
 	mApp->mAudioFrameCnt=0;
 	mApp->getRenderSubsystem()->resumeRendering();
 	//mApp->getAudioSubsystem()->stopAllSounds();
@@ -37,6 +38,8 @@ void CutsceneState::init(ApplicationPtr app)
 /// Clean up extras screen's resources
 void CutsceneState::cleanUp()
 {
+	GameState::cleanUp();
+
 	mApp->getLogicSubsystem()->resetCutsceneFinished();
 }
 
@@ -60,10 +63,20 @@ void CutsceneState::handleEvents()
 
 	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2))
 	{
-		if (mApp->getKeyBuffer() < 0 || mApp->getKeyBuffer() < 0)
+		if (mApp->getKeyBuffer(key1) < 0 || mApp->getKeyBuffer(key2) < 0)
 		{
 			skipCutscene();
 			mApp->getGameStateManager()->popState();
+
+			if (mApp->getKeyBuffer(key1) < 0)
+			{
+				mApp->setDefaultKeyBuffer(key1);
+			}
+
+			if (mApp->getKeyBuffer(key2) < 0)
+			{
+				mApp->setDefaultKeyBuffer(key2);
+			}
 		}
 	}
 }
@@ -71,6 +84,8 @@ void CutsceneState::handleEvents()
 /// @param app	the parent app
 void CutsceneState::update(long elapsedTime)
 {
+	GameState::update(elapsedTime);
+
 	double elapsedSeconds=(double)elapsedTime * 0.000001f;
 	if (!mCutsceneFile.empty() && !mCutsceneFunction.empty())
 	{
@@ -119,7 +134,6 @@ void CutsceneState::update(long elapsedTime)
 				mApp->mAudioFrameCnt=0;
 
 		}
-
 	}
 }
 

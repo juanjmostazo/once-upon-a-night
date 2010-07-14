@@ -8,7 +8,7 @@ using namespace OUAN;
 void GameStateManager::changeState(GameStatePtr state, ApplicationPtr app) 
 {
 	// cleanup the current state
-	if ( !mStates.empty() ) {
+	if (!mStates.empty()) {
 		mStates.back()->cleanUp();
 		mStates.pop_back();
 	}
