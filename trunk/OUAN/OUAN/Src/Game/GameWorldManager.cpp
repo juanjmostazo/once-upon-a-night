@@ -535,6 +535,10 @@ bool GameWorldManager::loadConfig()
 		DEFAULT_TRAJECTORY_SPEED= atof(value.c_str());
 		success = true;
 
+		config.getOption("DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT", value); 
+		DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT= atof(value.c_str());
+		Logger::getInstance()->log("DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT " + Ogre::StringConverter::toString(Ogre::Real(DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT)));
+
 		config.getOption("DEFAULT_MAX_UPDATE_RADIO", value); 
 		DEFAULT_MAX_UPDATE_RADIO= atof(value.c_str());
 		Logger::getInstance()->log("DEFAULT_MAX_UPDATE_RADIO " + Ogre::StringConverter::toString(Ogre::Real(DEFAULT_MAX_UPDATE_RADIO)));
@@ -542,7 +546,6 @@ bool GameWorldManager::loadConfig()
 		config.getOption("DEFAULT_MAX_RENDER_RADIO", value); 
 		DEFAULT_MAX_RENDER_RADIO= atof(value.c_str());
 		Logger::getInstance()->log("DEFAULT_MAX_RENDER_RADIO " + Ogre::StringConverter::toString(Ogre::Real(DEFAULT_MAX_RENDER_RADIO)));
-
 	} 
 	else 
 	{

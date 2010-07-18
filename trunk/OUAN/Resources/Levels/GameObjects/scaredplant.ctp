@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
-	<PROPERTY id="CustomAttribute::maxUpdateRadio" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="4 8 4" fields="X;Y;Z;W"></PROPERTY>

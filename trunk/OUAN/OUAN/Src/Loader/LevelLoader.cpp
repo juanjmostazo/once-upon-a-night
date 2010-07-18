@@ -5266,7 +5266,7 @@ double LevelLoader::processCustomAttributeMaxRenderRadium(XMLGameObject* gameObj
 	{
 		try
 		{
-			mMaxRenderRadium = getPropertyReal(gameObject->XMLNodeCustomProperties, "CustomAttribute::mMaxRenderRadium");
+			mMaxRenderRadium = getPropertyReal(gameObject->XMLNodeCustomProperties, "CustomAttribute::maxRenderRadium");
 		}
 		catch(std::string error)
 		{
@@ -5284,7 +5284,7 @@ double LevelLoader::processCustomAttributeMaxUpdateRadium(XMLGameObject* gameObj
 	{
 		try
 		{
-			mMaxUpdateRadium = getPropertyReal(gameObject->XMLNodeCustomProperties, "CustomAttribute::mMaxUpdateRadium");
+			mMaxUpdateRadium = getPropertyReal(gameObject->XMLNodeCustomProperties, "CustomAttribute::maxUpdateRadium");
 		}
 		catch(std::string error)
 		{

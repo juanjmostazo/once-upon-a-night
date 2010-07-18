@@ -49,6 +49,9 @@ namespace OUAN
 		int mWorld;
 		double mMaxUpdateRadium;
 		double mMaxRenderRadium;
+
+		virtual bool isWorthUpdatingProbability(double point, double lowerPoint, double higherPoint);
+
 	public:
 		//Constructor
 		GameObject(const std::string& name,const std::string& type);
