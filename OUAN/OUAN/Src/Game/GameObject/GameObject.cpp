@@ -11,6 +11,7 @@
 #include "../../Audio/AudioComponent/AudioComponent.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../GameWorldManager.h"
+#include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -318,6 +319,7 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 		delete mDisplayMsg;
 		mDisplayMsg=NULL;
 	}	
+
 	if (hasRenderComponentEntity())
 	{
 		RenderComponentEntityPtr entityComp = getEntityComponent();
@@ -326,6 +328,7 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 		mDisplayMsg->enable(true);
 		mDisplayMsg->setText(msg);
 	}
+
 	mDisplayLifetime=displayLifetime;
 }
 
@@ -456,20 +459,45 @@ void GameObject::setMaxUpdateRadium(double maxUpdateRadium)
 	mMaxUpdateRadium = maxUpdateRadium;
 }
 
+bool GameObject::isWorthUpdatingProbability(double point, double lowerPoint, double higherPoint)
+{
+	if (point <= lowerPoint)
+	{
+		return true;
+	
+	} 
+	else if (point >= higherPoint)
+	{
+		return false;
+	}
+	else
+	{
+		// Normalising point into [0, 1]
+		point -= lowerPoint;
+		point /= (higherPoint - lowerPoint); 
+
+		// Inverting probability 
+		point = 1 - point; 
+
+		double randomPoint = Utils::Random::getInstance()->getRandomDouble(0, 1);
+
+		return randomPoint < point;
+	}
+}
+
 bool GameObject::isWorthUpdatingPhysicsComponents()
 {
+	// Initial conditions
+	if (mMaxUpdateRadium < 0 || !getPositionalComponent())
+	{
+		return true;
+	}
+
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	bool condition1 = mMaxUpdateRadium < 0;
-	bool condition2 = !getPositionalComponent();
-	bool condition3 = getPositionalComponent() && getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadium;	
-
-	//if(mName.compare("terrain#platform7_5") == 0)
+	//if(mName.find("tripollo") != std::string::npos)
 	//{
-	//	Logger::getInstance()->log("#####");
-	//	Logger::getInstance()->log("condition1: " + Ogre::StringConverter::toString(condition1));
-	//	Logger::getInstance()->log("condition2: " + Ogre::StringConverter::toString(condition2));
-	//	Logger::getInstance()->log("condition3: " + Ogre::StringConverter::toString(condition3));
+	//	Logger::getInstance()->log("##### " + mName + " #####");
 	//	Logger::getInstance()->log("getPosition: " + Ogre::StringConverter::toString(getPositionalComponent()->getPosition()));
 	//	Logger::getInstance()->log("positionOny: " + Ogre::StringConverter::toString(positionOny));
 	//	Logger::getInstance()->log("DISTANCE: " + Ogre::StringConverter::toString(Ogre::Real(getPositionalComponent()->getPosition().distance(positionOny))));
@@ -477,22 +505,38 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 	//	Logger::getInstance()->log("#####");
 	//}
 
-	return condition1 || condition2 || condition3;
+	return isWorthUpdatingProbability(
+		getPositionalComponent()->getPosition().distance(positionOny),
+		mMaxUpdateRadium,
+		mGameWorldManager->DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT);
+}
+
+bool GameObject::isWorthUpdatingLogicComponents()
+{
+	// Initial conditions
+	if (mMaxUpdateRadium < 0 || !getPositionalComponent())
+	{
+		return true;
+	}
+
+	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
+
+	return isWorthUpdatingProbability(
+		getPositionalComponent()->getPosition().distance(positionOny),
+		mMaxUpdateRadium,
+		mGameWorldManager->DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT);
 }
 
 bool GameObject::isWorthRendering()
 {
-	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
-	return mMaxRenderRadium < 0 || !getPositionalComponent() ||
-		getPositionalComponent()->getPosition().distance(positionOny) < mMaxRenderRadium;	
-}
+	// Initial conditions
+	if (mMaxRenderRadium < 0 || !getPositionalComponent())
+	{
+		return true;
+	}
 
-
-bool GameObject::isWorthUpdatingLogicComponents()
-{
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
-	return mMaxUpdateRadium < 0 || !getPositionalComponent() ||
-		getPositionalComponent()->getPosition().distance(positionOny) < mMaxUpdateRadium;	
+	return getPositionalComponent()->getPosition().distance(positionOny) < mMaxRenderRadium;	
 }
 
 std::string GameObject::getTranslation(const std::string& baseString)
@@ -506,14 +550,17 @@ std::string GameObject::getTranslation(const std::string& baseString)
 	}
 	return baseString;
 }
+
 void GameObject::setParentNest(const std::string& parentNest)
 {
 	mParentNest=parentNest;
 }
+
 std::string GameObject::getParentNest() const
 {
 	return mParentNest;
 }
+
 void GameObject::setParentNestInstance(GameObjectNestPtr instance)
 {
 	mParentNestInstance=instance;
@@ -522,14 +569,17 @@ GameObjectNestPtr GameObject::getParentNestInstance() const
 {
 	return mParentNestInstance;
 }
+
 void GameObject::setSpawnProbability(double spawnProbability)
 {
 	mSpawnProbability=spawnProbability;
 }
+
 double GameObject::getSpawnProbability()
 {
 	return mSpawnProbability;
 }
+
 void GameObject::setVisible(bool visible)
 {
 
