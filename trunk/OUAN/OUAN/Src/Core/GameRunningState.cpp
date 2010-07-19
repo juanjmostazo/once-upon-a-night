@@ -324,15 +324,18 @@ void GameRunningState::handleEvents()
 		!mApp->getGameWorldManager()->isOnyDying() && 
 		!mApp->getGameWorldManager()->isOnyHit())
 	{
-		if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || 
-			mApp->getKeyBuffer(key) < DEFAULT_KEY_BUFFER/2)
+		if(mApp->getCameraManager()->targetMovementAllowed())
 		{
-			mApp->getGameWorldManager()->useWeapon();
-			useWeaponKeyPressed=true;
-
-			if (mApp->getGameWorldManager()->getWorld()==DREAMS)
+			if (mApp->getGameWorldManager()->getWorld()==NIGHTMARES || 
+				mApp->getKeyBuffer(key) < DEFAULT_KEY_BUFFER/2)
 			{
-				mApp->setDefaultKeyBuffer(key);
+				mApp->getGameWorldManager()->useWeapon();
+				useWeaponKeyPressed=true;
+
+				if (mApp->getGameWorldManager()->getWorld()==DREAMS)
+				{
+					mApp->setDefaultKeyBuffer(key);
+				}
 			}
 		}
 	}
@@ -349,7 +352,10 @@ void GameRunningState::handleEvents()
 	if (mApp->isPressedWeaponAction(&pad,&key) && 
 		!mApp->getGameWorldManager()->isOnyDying())
 	{
-		useSpWeaponKeyPressed=true;
+		if(mApp->getCameraManager()->targetMovementAllowed())
+		{
+			useSpWeaponKeyPressed=true;
+		}
 	}
 
 	///////////////////////////////////////////////////////////
@@ -410,7 +416,11 @@ void GameRunningState::handleEvents()
 		if (mApp->isPressedJump(&pad,&key) && 
 			!mApp->getGameWorldManager()->isOnyDying())
 		{
-			ony->getPhysicsComponentCharacterOny()->jump();
+			if(mApp->getCameraManager()->targetMovementAllowed())
+			{
+				ony->getPhysicsComponentCharacterOny()->jump();
+			}
+
 			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
 		}	
 		//else

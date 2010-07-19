@@ -584,6 +584,12 @@ void GameObject::setVisible(bool visible)
 {
 
 }
+
+
+double GameObject::getMovingSpeed()
+{
+	return 0;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

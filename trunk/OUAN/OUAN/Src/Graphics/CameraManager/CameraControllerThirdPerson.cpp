@@ -372,16 +372,26 @@ void CameraControllerThirdPerson::updateCameraTracking(double elapsedTime,Ogre::
 	defaultUpdateCamera(pCamera,pCameraInput,elapsedTime);
 }
 
-double CameraControllerThirdPerson::calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition)
+double CameraControllerThirdPerson::calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition,double minTransitionSpeed)
 {
 	double distance;
+
 	distance=initialPosition.distance(targetPosition);
+
 	if(distance==0)
 	{
-		return 1;
+		return minTransitionSpeed;
 	}
 
-	return distance*mTransitionSpeedFactor;
+	if(distance*mTransitionSpeedFactor<minTransitionSpeed)
+	{
+		return minTransitionSpeed;
+	}
+	else
+	{
+		return distance*mTransitionSpeedFactor;
+	}
+
 }
 
 void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position1,Ogre::Quaternion rotation1,Ogre::Vector3 position2,Ogre::Quaternion rotation2,double targetSpeed,CameraState targetState)
@@ -394,7 +404,7 @@ void CameraControllerThirdPerson::setCameraMoveToPosition(Ogre::Vector3 position
 	mTransitionTargetPosition=position2;
 	mTransitionTargetSpeed=targetSpeed;
 	mTargetState=targetState;
-	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition,0);
 	mCameraState=CS_MOVE_TO_POSITION;
 }
 
@@ -409,7 +419,7 @@ void CameraControllerThirdPerson::setCameraMoveToTarget(Ogre::Vector3 position1,
 	mTargetState=targetState;
 	defaultUpdateCamera(mTransitionDummyCamera,mTransitionTargetInput,0);
 	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
-	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition,calculateMinimumSpeed(pTargetInput));
 	mCameraState=CS_MOVE_TO_TARGET;
 }
 
@@ -420,7 +430,7 @@ void CameraControllerThirdPerson::setCameraMoveToPositionLookingAtTarget(Ogre::V
 	mTransitionInitialRotation=rotation1;
 	mTransitionInitialPosition=position1;
 	mTransitionTargetPosition=position2;
-	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition);
+	mTransitionSpeed=calculateTransitionSpeed(mTransitionInitialPosition,mTransitionTargetPosition,calculateMinimumSpeed(pTargetInput));
 	mTransitionTargetInput=pTargetInput;
 	mTransitionTargetSpeed=targetSpeed;
 	mTargetState=targetState;
@@ -442,6 +452,16 @@ void CameraControllerThirdPerson::updateCameraMoveToTarget(double elapsedTime,Og
 	mTransitionTargetPosition=mTransitionDummyCamera->getPosition();
 	
 	updateCameraMoveToPosition(elapsedTime,pCamera,mTransitionTargetInput);
+}
+
+double CameraControllerThirdPerson::calculateMinimumSpeed(CameraInputPtr pCameraInput)
+{	
+	Vector3 targetPosition;
+	GameObjectPtr targetGameObject;
+
+	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
+
+	return mTransitionMinumumSpeedFactor*targetGameObject->getMovingSpeed();
 }
 
 void CameraControllerThirdPerson::setCameraFixedFirstPerson(Ogre::Camera * pCamera,CameraInputPtr pCameraInput,bool transition)
@@ -937,6 +957,8 @@ void CameraControllerThirdPerson::loadInfo()
 		mTransitionDampenStart = atof(value.c_str());
 		config.getOption("TRANSITION_DAMPEN_POW", value); 
 		mTransitionDampenPow = atof(value.c_str());
+		config.getOption("TRANSITION_MINUMUM_SPEED_FACTOR", value); 
+		mTransitionMinumumSpeedFactor = atof(value.c_str());
 
 		config.getOption("RETURNING_SPEED", value); 
 		mReturningSpeed = atof(value.c_str());

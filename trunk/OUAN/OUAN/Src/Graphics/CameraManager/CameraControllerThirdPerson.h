@@ -124,6 +124,7 @@ namespace OUAN
 		double mTransitionDampenFactor;
 		double mTransitionDampenStart;
 		double mTransitionDampenPow;
+		double mTransitionMinumumSpeedFactor;
 		CameraState mTargetState;
 
 		//move to target
@@ -141,12 +142,12 @@ namespace OUAN
 		double calculateDampenFactor(double perc,double dampenFactor, double dampenPow, double dampenStart);
 		void startTrajectory(std::string trajectory,Ogre::Camera * pCamera);
 		void updateCurrentDistance(CameraInputPtr pCameraInput,double elapsedTime);
-		double calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition);
+		double calculateTransitionSpeed(Ogre::Vector3 initialPosition,Ogre::Vector3 targetPosition,double minimumSpeed);
 		double calculateRotationDistance(double angle1, double angle2);
 		double calculateTargetYaw(CameraInputPtr pCameraInput);
 		void removeAllTransparentEntities();
 		void setTargetVisible(bool visible,CameraInputPtr pCameraInput);
-
+		double calculateMinimumSpeed(CameraInputPtr pCameraInput);
 
 		RayCasting * mRayCasting;
 		TrajectoryManagerPtr mTrajectoryManager;

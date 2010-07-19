@@ -516,6 +516,11 @@ bool GameObjectOny::hasAudioComponent() const
 	return true;
 }
 
+double GameObjectOny::getMovingSpeed()
+{
+	return Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond;
+}
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

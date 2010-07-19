@@ -23,6 +23,7 @@
     <Option key="TRANSITION_DAMPEN_POW">1</Option>
     <Option key="TRANSITION_DAMPEN_FACTOR">0.3</Option>
     <Option key="TRANSITION_DAMPEN_START">0.5</Option>
+    <Option key="TRANSITION_MINUMUM_SPEED_FACTOR">3</Option>
 
     <Option key="RETURNING_SPEED">10</Option>
     <Option key="RETURNING_DAMPEN_POW">0.5</Option>
