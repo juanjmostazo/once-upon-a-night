@@ -221,6 +221,8 @@ namespace OUAN
 		GameObjectNestPtr getParentNestInstance() const;
 		void setSpawnProbability(double spawnProbability);
 		double getSpawnProbability();
+
+		virtual double getMovingSpeed();
 	};
 
 	class TGameObjectParameters
