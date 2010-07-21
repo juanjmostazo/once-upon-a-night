@@ -32,60 +32,6 @@
 
 using namespace OUAN;
 
-#ifdef DEBUG_BOXES
-void recDebugBoxes(Ogre::Node* node)
-{
-	if (node)
-	{
-		Ogre::SceneNode* snode= dynamic_cast<Ogre::SceneNode*>(node);
-		if (snode)
-		{
-			Ogre::SceneNode::ObjectIterator objIt=snode->getAttachedObjectIterator();
-			Ogre::MovableObject*m;
-			std::string objName;
-			Ogre::AxisAlignedBox box;
-			while(objIt.hasMoreElements())
-			{
-					m=objIt.getNext();
-					if (m)
-					{
-						box=m->getBoundingBox();
-						objName=m->getName();
-						std::stringstream msg;
-
-						msg.str("");
-						msg<<std::endl<<"------------"<<std::endl;
-						msg<<"Object name: "<<objName<<std::endl;
-						msg<<"Z: "<<box.getMinimum().z<<" - "<<box.getMaximum().z<<std::endl;
-						msg<<"Y: "<<box.getMinimum().y<<" - "<<box.getMaximum().y<<std::endl;
-						msg<<"X: "<<box.getMinimum().x<<" - "<<box.getMaximum().x<<std::endl;
-
-						if (box.getMinimum().z>box.getMaximum().z ||
-							box.getMinimum().y>box.getMaximum().y ||
-							box.getMinimum().x>box.getMaximum().x)
-						{
-							msg<<"UH, OH!!";
-						}
-
-						msg <<"------------";
-
-						//Logger::getInstance()->log(msg.str());
-					}
-			}
-			Ogre::SceneNode::ChildNodeIterator nodeIt=node->getChildIterator();
-			Ogre::Node* sn;
-			while (nodeIt.hasMoreElements())
-			{
-				sn=nodeIt.getNext();
-				if (sn)
-				{
-					recDebugBoxes(sn);
-				}
-			}
-		}
-	}
-}
-#endif
 
 GameRunningState* GameRunningState::mInst=NULL;
 
@@ -114,17 +60,12 @@ void GameRunningState::init(ApplicationPtr app)
 	GameState::init(app);
 	firstRender=true;
 
-	//mApp->getGameWorldManager()->setWorld(DREAMS);
-	//mApp->getGameWorldManager()->loadLevel(LEVEL_2);
-
-	//mApp->getRenderSubsystem()->getCameraManager()->setCameraType(CAMERA_TRAJECTORY);
-	//mApp->getLogicSubsystem()->loadScripts();
-
 	mApp->getGameWorldManager()->initGame();
 
 	//...and initialise the active weapon according to the current world
 	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
 	
+	//create GUI
 	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();
@@ -137,6 +78,7 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
 
+	//Load music
 	mMusicChannels.clear();
 	loadMusic();
 	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getWorld()].id,
@@ -144,6 +86,7 @@ void GameRunningState::init(ApplicationPtr app)
 		true);
 	mApp->mAudioFrameCnt=0;
 	
+	//Register events
 	if (mApp->getGameWorldManager()->getEventManager().get())
 	{
 		EventHandlerPtr eh;
@@ -157,6 +100,7 @@ void GameRunningState::init(ApplicationPtr app)
 		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_GAMEOVER);
 	}
 
+	//Set up initial world change
 	mIsChangingWorld=false;
 
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
@@ -272,14 +216,9 @@ void GameRunningState::handleEvents()
 	else if(mApp->isPressedAutoPoint(&pad,&key))
 	{
 		if (mApp->getKeyBuffer(key) < 0)
-		{
-			//TODO: Replace with the proper auto-target functionality
-			//GameOverEventPtr evt= GameOverEventPtr(new GameOverEvent(true));
-			//mApp->getGameWorldManager()->addEvent(evt);
+		{			
 			mApp->getCameraManager()->setCameraFixedFirstPerson(true);
 			mApp->setDefaultKeyBuffer(key);
-			//mApp->getGameWorldManager()->toggleTreeVisibility();
-			//mGUI->hideConsole();
 		}
 	}
 	else if (mApp->isPressedRotateLeft(&pad,&key))
@@ -994,9 +933,6 @@ bool GameRunningState::render()
 		mHUD->show();
 
 		renderChangeWorldTextures();
-#ifdef DEBUG_BOXES
-		recDebugBoxes(renderSubsystem->getSceneManager()->getRootSceneNode());
-#endif
 		return renderSubsystem->render();
 	}
 	return true;
