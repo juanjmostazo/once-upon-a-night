@@ -38,6 +38,8 @@ namespace OUAN
 		std::string mSignpostMessage;
 
 		std::vector<GameObjectPtr> mChildren;
+
+		bool mEggHatched;
 	public:
 		//Constructor
 		GameObjectNest(const std::string& name);

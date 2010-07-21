@@ -3,8 +3,8 @@
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   
     <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="12"></PROPERTY>	
+    <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="1.5" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="8"></PROPERTY>	
 	<PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 40 0" ></PROPERTY>
 	<PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1.5 1.5 1.5" ></PROPERTY>
 	<!-- Logic component properties  -->

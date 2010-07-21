@@ -9,6 +9,7 @@ using namespace OUAN;
 
 GameObjectNest::GameObjectNest(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_NEST)
+,mEggHatched(false)
 {
 
 }
@@ -162,6 +163,7 @@ void GameObjectNest::reset()
 	GameObject::reset();
 
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(NEST_STATE_IDLE));
+	mEggHatched=false;
 	mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE);
 	mRenderComponentEntity->setVisible((mWorld==DREAMS && mLogicComponent->existsInDreams()) ||
 		(mWorld==NIGHTMARES && mLogicComponent->existsInNightmares()));
@@ -244,7 +246,8 @@ void GameObjectNest::processAnimationEnded(const std::string& animationName)
 	if (animationName.compare(NEST_ANIM_HATCH)==0)
 	{
 		spawnChild();
-		disable();
+		mEggHatched=true;
+		//disable();
 	}
 }
 void GameObjectNest::disable()
@@ -300,7 +303,7 @@ void GameObjectNest::update(double elapsedSeconds)
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
 			}
-			if (mRenderComponentEntity.get())
+			if (mRenderComponentEntity.get() && !mEggHatched)
 			{
 				mRenderComponentEntity->update(elapsedSeconds);
 			}
@@ -364,6 +367,7 @@ void GameObjectNest::spawnChild()
 	{
 		if (accumulated>(*it)->getSpawnProbability())
 		{
+			(*it)->reset();
 			(*it)->enable();
 			break;
 		}
