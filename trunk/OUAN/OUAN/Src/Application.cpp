@@ -460,7 +460,10 @@ ConfigurationPtr Application::getIngameTextStrings() const
 
 void Application::setKeyBuffer(int key, int keyBuffer)
 {
-	mKeyBuffer[key]=keyBuffer;
+	if (key>=0 && key<KEY_BUFFER_SIZE)
+		mKeyBuffer[key]=keyBuffer;
+	else if (key<0 && abs(key)<=MOUSEBUTTONS_BUFFER_SIZE)
+		mKeyBuffer[KEY_BUFFER_SIZE+key]=keyBuffer;
 }
 
 void Application::setKeyBufferAll(int keyBuffer)
@@ -473,7 +476,14 @@ void Application::setKeyBufferAll(int keyBuffer)
 
 int Application::getKeyBuffer(int key)
 {
-	return mKeyBuffer[key];
+	int index=-1;
+	if (key>=0 && key<KEY_BUFFER_SIZE)
+		index=key;
+	else if (key<0 && abs(key)<=MOUSEBUTTONS_BUFFER_SIZE)
+		index=KEY_BUFFER_SIZE+key;
+	if (index<0)
+		throw std::exception("INVALID KEY CODE!!");
+	return mKeyBuffer[index];
 }
 
 void Application::setDefaultKeyBuffer(int key)

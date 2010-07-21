@@ -932,13 +932,21 @@ namespace OUAN
 		//  Logger stuff
 		//-------------------------------------
 
-		#define LOGGER_CFG "../../Config/logger-cfg.xml"
+		const std::string LOGGER_CFG = "../../Config/logger-cfg.xml";
 	
 		//-------------------------------------
 		//  Other stuff
 		//-------------------------------------
-
-		#define KEY_BUFFER_SIZE 256
+		
+		// NOTE:
+		// The mouse button keys are using negative values so they don't 
+		// interfere with existing key codes
+		// As a result, the array must be larger to hold buffers for them.
+		// Also, they'll be indexed at the end of the array like this:
+		// if (key<0) then array[KEY_BUFFER_SIZE + key]
+		
+		const int MOUSEBUTTONS_BUFFER_SIZE=8;
+		const int KEY_BUFFER_SIZE =256 + MOUSEBUTTONS_BUFFER_SIZE;
 }
 
 #endif
