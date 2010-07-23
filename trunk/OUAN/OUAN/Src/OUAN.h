@@ -400,9 +400,9 @@ namespace OUAN
 		class TGameObjectTripolloDreamsParameters;
 		typedef boost::shared_ptr<GameObjectTripolloDreams> GameObjectTripolloDreamsPtr;
 
-		class GameObjectTripollito;
-		class TGameObjectTripollitoParameters;
-		typedef boost::shared_ptr<GameObjectTripollito> GameObjectTripollitoPtr;
+		class GameObjectTripolloNightmares;
+		class TGameObjectTripolloNightmaresParameters;
+		typedef boost::shared_ptr<GameObjectTripolloNightmares> GameObjectTripolloNightmaresPtr;
 
 		class GameObjectPortal;
 		class TGameObjectPortalParameters;
@@ -436,9 +436,9 @@ namespace OUAN
 		class TGameObjectCryKingParameters;
 		typedef boost::shared_ptr<GameObjectCryKing> GameObjectCryKingPtr;
 
-		class GameObjectDragon;
-		class TGameObjectDragonParameters;
-		typedef boost::shared_ptr<GameObjectDragon> GameObjectDragonPtr;
+		class GameObjectBoss;
+		class TGameObjectBossParameters;
+		typedef boost::shared_ptr<GameObjectBoss> GameObjectBossPtr;
 
 		class GameObjectMagicClock;
 		class TGameObjectMagicClockParameters;
@@ -520,9 +520,9 @@ namespace OUAN
 		class TGameObjectWoodBoxParameters;
 		typedef boost::shared_ptr<GameObjectWoodBox> GameObjectWoodBoxPtr;
 
-		class GameObjectBush;
-		class TGameObjectBushParameters;
-		typedef boost::shared_ptr<GameObjectBush> GameObjectBushPtr;
+		class GameObjectTraspasable;
+		class TGameObjectTraspasableParameters;
+		typedef boost::shared_ptr<GameObjectTraspasable> GameObjectTraspasablePtr;
 
 		class GameObjectCloud;
 		class TGameObjectCloudParameters;
@@ -577,7 +577,7 @@ namespace OUAN
 		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
 		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
 		typedef std::vector<GameObjectTripolloDreamsPtr> TGameObjectTripolloDreamsContainer;
-		typedef std::vector<GameObjectTripollitoPtr> TGameObjectTripollitoContainer;
+		typedef std::vector<GameObjectTripolloNightmaresPtr> TGameObjectTripolloNightmaresContainer;
 		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
 		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
 		typedef std::vector<GameObjectItem1UPPtr> TGameObjectItem1UPContainer;
@@ -586,7 +586,7 @@ namespace OUAN
 		typedef std::vector<GameObjectTriggerCapsulePtr> TGameObjectTriggerCapsuleContainer;
 		typedef std::vector<GameObjectNightGoblinPtr> TGameObjectNightGoblinContainer;
 		typedef std::vector<GameObjectCryKingPtr> TGameObjectCryKingContainer;
-		typedef std::vector<GameObjectDragonPtr> TGameObjectDragonContainer;
+		typedef std::vector<GameObjectBossPtr> TGameObjectBossContainer;
 		typedef std::vector<GameObjectMagicClockPtr> TGameObjectMagicClockContainer;
 		typedef std::vector<GameObjectPillowPtr> TGameObjectPillowContainer;
 		typedef std::vector<GameObjectFlashLightPtr> TGameObjectFlashLightContainer;
@@ -624,7 +624,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
 		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
-		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
+		const std::string GAME_OBJECT_TYPE_TRIPOLLO_DREAMS="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
 		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item1up";
@@ -634,7 +634,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
 		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="nightgoblin";
 		const std::string GAME_OBJECT_TYPE_CRYKING="cryking";
-		const std::string GAME_OBJECT_TYPE_DRAGON="dragon";
+		const std::string GAME_OBJECT_TYPE_BOSS="boss";
 		const std::string GAME_OBJECT_TYPE_MAGICCLOCK="magicclock";
 		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
@@ -651,7 +651,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SIGNPOST="signpost";
 		const std::string GAME_OBJECT_TYPE_NEST="nest";
 
-		const std::string GAME_OBJECT_TYPE_TRIPOLLITO="tripollito";
+		const std::string GAME_OBJECT_TYPE_TRIPOLLO_NIGHTMARES="tripollo_nightmares";
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";
 		const std::string GAME_OBJECT_TYPE_CARNIVOROUSPLANT="carnivorousplant";
 		const std::string GAME_OBJECT_TYPE_SCEPTER="scepter";
@@ -671,10 +671,10 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_TREE12="tree12";
 		const std::string GAME_OBJECT_TYPE_DOOR="door";
 		const std::string GAME_OBJECT_TYPE_PLATAFORM="plataform";
-		const std::string GAME_OBJECT_TYPE_BUSH="bush";
-		const std::string GAME_OBJECT_TYPE_BUSH1="bush1";
-		const std::string GAME_OBJECT_TYPE_BUSH2="bush2";
-		const std::string GAME_OBJECT_TYPE_BUSH3="bush3";
+		const std::string GAME_OBJECT_TYPE_TRASPASABLE="bush";
+		const std::string GAME_OBJECT_TYPE_TRASPASABLE1="bush1";
+		const std::string GAME_OBJECT_TYPE_TRASPASABLE2="bush2";
+		const std::string GAME_OBJECT_TYPE_TRASPASABLE3="bush3";
 		const std::string GAME_OBJECT_TYPE_CLOUD="cloud";
 		const std::string GAME_OBJECT_TYPE_WOODBOX="woodbox";
 		const std::string GAME_OBJECT_TYPE_WATER="water";

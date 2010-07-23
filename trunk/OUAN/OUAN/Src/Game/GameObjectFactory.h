@@ -24,7 +24,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectBillboardSetPtr createGameObjectBillboardSet(TGameObjectBillboardSetParameters tGameObjectBillboardSetParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectBushPtr createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters, 
+		GameObjectTraspasablePtr createGameObjectTraspasable(TGameObjectTraspasableParameters tGameObjectTraspasableParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectCarnivorousPlantPtr createGameObjectCarnivorousPlant(TGameObjectCarnivorousPlantParameters tGameObjectCarnivorousPlantParameters, 
 			GameWorldManagerPtr gameWorldMgr);
@@ -40,7 +40,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectDoorPtr createGameObjectDoor(TGameObjectDoorParameters tGameObjectDoorParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectDragonPtr createGameObjectDragon(TGameObjectDragonParameters tGameObjectDragonParameters, 
+		GameObjectBossPtr createGameObjectBoss(TGameObjectBossParameters tGameObjectBossParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectEyePtr createGameObjectEye(TGameObjectEyeParameters tGameObjectEyeParameters, 
 			GameWorldManagerPtr gameWorldMgr);
@@ -100,7 +100,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectTriggerCapsulePtr createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectTripollitoPtr createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters, 
+		GameObjectTripolloNightmaresPtr createGameObjectTripolloNightmares(TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectTripolloDreamsPtr createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters, 
 			GameWorldManagerPtr gameWorldMgr);

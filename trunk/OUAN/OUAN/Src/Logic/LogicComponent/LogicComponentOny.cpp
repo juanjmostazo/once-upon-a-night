@@ -57,7 +57,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 && !getParent()->getGameWorldManager()->isGodMode())
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)==0 && !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 

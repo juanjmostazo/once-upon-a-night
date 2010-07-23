@@ -15,7 +15,7 @@ namespace OUAN
 
 	class LensFlare;
 	typedef boost::shared_ptr<LensFlare> LensFlarePtr;
-	/// Class to hold Bush information
+	/// Class to hold Traspasable information
 	class GameObjectSkyBody: public GameObject, public boost::enable_shared_from_this<GameObjectSkyBody>
 	{
 	private:

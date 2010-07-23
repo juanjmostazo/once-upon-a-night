@@ -1,90 +1,90 @@
 #include "OUAN_Precompiled.h"
 
-#include "GameObjectTripollito.h"
+#include "GameObjectTripolloNightmares.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
 
-GameObjectTripollito::GameObjectTripollito(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_TRIPOLLITO)
+GameObjectTripolloNightmares::GameObjectTripolloNightmares(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO_NIGHTMARES)
 {
 
 }
 
-GameObjectTripollito::~GameObjectTripollito()
+GameObjectTripolloNightmares::~GameObjectTripolloNightmares()
 {
 
 }
 /// Set logic component
-void GameObjectTripollito::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+void GameObjectTripolloNightmares::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
 {
 	mLogicComponentEnemy=logicComponentEnemy;
 }
 
 /// return logic component
-LogicComponentEnemyPtr GameObjectTripollito::getLogicComponentEnemy()
+LogicComponentEnemyPtr GameObjectTripolloNightmares::getLogicComponentEnemy()
 {
 	return mLogicComponentEnemy;
 }
-void GameObjectTripollito::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTripolloNightmares::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectTripollito::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectTripolloNightmares::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectTripollito::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTripolloNightmares::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectTripollito::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectTripolloNightmares::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectTripollito::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTripolloNightmares::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectTripollito::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTripolloNightmares::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectTripollito::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectTripolloNightmares::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
 }
 
-RenderComponentEntityPtr GameObjectTripollito::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectTripolloNightmares::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectTripollito::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectTripolloNightmares::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectTripollito::getPhysicsComponentCharacter() const
+PhysicsComponentCharacterPtr GameObjectTripolloNightmares::getPhysicsComponentCharacter() const
 {
 	return mPhysicsComponentCharacter;
 }
 
-void GameObjectTripollito::update(double elapsedSeconds)
+void GameObjectTripolloNightmares::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 }
 
-void GameObjectTripollito::reset()
+void GameObjectTripolloNightmares::reset()
 {
 	GameObject::reset();
 
@@ -101,7 +101,7 @@ void GameObjectTripollito::reset()
 	}
 }
 
-void GameObjectTripollito::changeWorldFinished(int newWorld)
+void GameObjectTripolloNightmares::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -119,7 +119,7 @@ void GameObjectTripollito::changeWorldFinished(int newWorld)
 	}
 }
 
-void GameObjectTripollito::changeWorldStarted(int newWorld)
+void GameObjectTripolloNightmares::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -134,7 +134,7 @@ void GameObjectTripollito::changeWorldStarted(int newWorld)
 	}
 }
 
-void GameObjectTripollito::changeToWorld(int newWorld, double perc)
+void GameObjectTripolloNightmares::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
@@ -149,27 +149,27 @@ void GameObjectTripollito::changeToWorld(int newWorld, double perc)
 	}
 }
 
-bool GameObjectTripollito::hasPositionalComponent() const
+bool GameObjectTripolloNightmares::hasPositionalComponent() const
 {
 	return true;
 }
 
-RenderComponentPositionalPtr GameObjectTripollito::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectTripolloNightmares::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
-bool GameObjectTripollito::hasPhysicsComponent() const
+bool GameObjectTripolloNightmares::hasPhysicsComponent() const
 {
 	return true;
 }
-PhysicsComponentPtr GameObjectTripollito::getPhysicsComponent() const
+PhysicsComponentPtr GameObjectTripolloNightmares::getPhysicsComponent() const
 {
 	return getPhysicsComponentCharacter();
 }
 
 
-void GameObjectTripollito::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
+void GameObjectTripolloNightmares::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -177,7 +177,7 @@ void GameObjectTripollito::processCollision(GameObjectPtr pGameObject, Ogre::Vec
 	}
 }
 
-void GameObjectTripollito::processEnterTrigger(GameObjectPtr pGameObject)
+void GameObjectTripolloNightmares::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -185,7 +185,7 @@ void GameObjectTripollito::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTripollito::processExitTrigger(GameObjectPtr pGameObject)
+void GameObjectTripolloNightmares::processExitTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -193,28 +193,28 @@ void GameObjectTripollito::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTripollito::updateLogic(double elapsedSeconds)
+void GameObjectTripolloNightmares::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponentEnemy.get())
 	{
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-bool GameObjectTripollito::hasRenderComponentEntity() const
+bool GameObjectTripolloNightmares::hasRenderComponentEntity() const
 {
 	return true;
 }
-RenderComponentEntityPtr GameObjectTripollito::getEntityComponent() const
+RenderComponentEntityPtr GameObjectTripolloNightmares::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
-TGameObjectTripollitoParameters::TGameObjectTripollitoParameters() : TGameObjectParameters()
+TGameObjectTripolloNightmaresParameters::TGameObjectTripolloNightmaresParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectTripollitoParameters::~TGameObjectTripollitoParameters()
+TGameObjectTripolloNightmaresParameters::~TGameObjectTripolloNightmaresParameters()
 {
 
 }
