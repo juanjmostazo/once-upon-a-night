@@ -528,7 +528,12 @@ void PhysicsComponentCharacter::setNewYaw()
 void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
-	
+
+	NxOgre::ControllerDescription pNxOgreControllerDescription;
+	pNxOgreControllerDescription.mCallback=Application::getInstance()->getPhysicsSubsystem().get();
+	pNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(getSceneNode()->getPosition()));
+	setNxOgreControllerDescription(pNxOgreControllerDescription);
+
 	setNxOgreController(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
@@ -545,6 +550,7 @@ void PhysicsComponentCharacter::create()
 void PhysicsComponentCharacter::destroy()
 {
 	PhysicsComponent::destroy();
+
 	Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->destroyController(getNxOgreController());
 }
 
