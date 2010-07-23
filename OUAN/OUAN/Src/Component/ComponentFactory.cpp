@@ -42,7 +42,6 @@
 #include "../Logic/LogicComponent/LogicComponentProp.h"
 #include "../Logic/LogicComponent/LogicComponentTrigger.h"
 #include "../Logic/LogicComponent/LogicComponentCameraTrigger.h"
-#include "../Logic/LogicComponent/LogicComponentActionTrigger.h"
 #include "../Logic/LogicComponent/WeaponComponent.h"
 #include "../Logic/LogicComponent/AttackComponent.h"
 #include "../Audio/AudioComponent/AudioComponent.h"
@@ -746,17 +745,6 @@ LogicComponentCameraTriggerPtr ComponentFactory::createLogicComponentCameraTrigg
 	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
 
 	logicComponent->setCameraTrigger(logicComponentParameters.pCameraTrigger);
-
-	logicComponent->setParent(gameObject);
-	return logicComponent;
-}
-
-LogicComponentActionTriggerPtr ComponentFactory::createLogicComponentActionTrigger(GameObjectPtr gameObject, TLogicComponentActionTriggerParameters logicComponentParameters)
-{
-	LogicComponentActionTriggerPtr logicComponent = LogicComponentActionTriggerPtr(new LogicComponentActionTrigger());
-
-	logicComponent->setExistsInDreams(logicComponentParameters.existsInDreams);
-	logicComponent->setExistsInNightmares(logicComponentParameters.existsInNightmares);
 
 	logicComponent->setParent(gameObject);
 	return logicComponent;

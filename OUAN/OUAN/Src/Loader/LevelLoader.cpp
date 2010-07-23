@@ -58,7 +58,6 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectCameraTrigger.h"
-#include "../Game/GameObject/GameObjectActionTrigger.h"
 #include "../Game/GameObject/GameObjectTripolloNightmares.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectTower.h"
@@ -438,10 +437,6 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_CAMERA)==0)
 		{
 			processGameObjectCameraTrigger(gameObject);
-		}
-		else if (gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_ACTION)==0)
-		{
-			processGameObjectActionTrigger(gameObject);
 		}
 		else if (gameObjectType.compare(GAME_OBJECT_TYPE_SIGNPOST)==0)
 		{
@@ -2670,46 +2665,6 @@ void LevelLoader::processGameObjectCameraTrigger(XMLGameObject* gameObject)
 	mGameWorldManager->addGameObjectCameraTrigger(mGameObjectFactory->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters,mGameWorldManager));
 }
 
-void LevelLoader::processGameObjectActionTrigger(XMLGameObject* gameObject)
-{
-	OUAN::TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters;
-	tGameObjectActionTriggerParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
-	tGameObjectActionTriggerParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
-
-	try
-	{
-		//Check parsing errors
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-
-		//Get names
-		tGameObjectActionTriggerParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectActionTriggerParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectActionTriggerParameters.name = gameObject->name;
-
-		//Get Logic component
-		tGameObjectActionTriggerParameters.tLogicComponentActionTriggerParameters=processLogicComponentActionTrigger(gameObject->XMLNodeDreams,
-			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntity
-		tGameObjectActionTriggerParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
-			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentPositional
-		tGameObjectActionTriggerParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
-
-		//Get PhysicsComponentVolumeBox
-		tGameObjectActionTriggerParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
-	}
-	catch( std::string error )
-	{
-		throw error;
-		return;
-	}
-	//Create GameObject
-	//mGameWorldManager->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters);
-	mGameWorldManager->addGameObjectActionTrigger(mGameObjectFactory->createGameObjectActionTrigger(tGameObjectActionTriggerParameters,mGameWorldManager));
-}
-
 void LevelLoader::processGameObjectTripolloNightmares(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters;
@@ -4502,32 +4457,6 @@ TLogicComponentCameraTriggerParameters LevelLoader::processLogicComponentCameraT
 	return logicComponentCameraTriggerParameters;
 }
 
-TLogicComponentActionTriggerParameters LevelLoader::processLogicComponentActionTrigger(TiXmlElement *XMLNodeDreams,
-																					   TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
-{
-	TLogicComponentActionTriggerParameters logicComponentActionTriggerParameters;
-	//Object exists both in dreams and nightmares
-	if(XMLNodeDreams && XMLNodeNightmares)
-	{
-		logicComponentActionTriggerParameters.existsInDreams=true;
-		logicComponentActionTriggerParameters.existsInNightmares=true;
-	}
-	//Object exists only in dreams
-	else if(XMLNodeDreams && !XMLNodeNightmares)
-	{
-		logicComponentActionTriggerParameters.existsInDreams=true;
-		logicComponentActionTriggerParameters.existsInNightmares=false;
-	}
-	//Object exists only in nightmares
-	else if(!XMLNodeDreams && XMLNodeNightmares)
-	{
-		logicComponentActionTriggerParameters.existsInDreams=false;
-		logicComponentActionTriggerParameters.existsInNightmares=true;
-	}
-
-	return logicComponentActionTriggerParameters;
-}
-
 TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 																		 TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties)
 {
@@ -4580,10 +4509,10 @@ TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXml
 			std::string script="";
 			if (XMLNodeDreams)
 				script=getPropertyString(XMLNodeDreams,
-					"LogicComponent::triggerScriptFile");
+					"LogicComponent::triggerScript");
 			if (script.empty() && XMLNodeNightmares)
 				script=getPropertyString(XMLNodeNightmares,
-				"LogicComponent::triggerScriptFile");
+				"LogicComponent::triggerScript");
 			logicComponentTriggerParameters.mTriggerScript=script;
 		}
 		catch (std::string error)
@@ -4619,7 +4548,7 @@ TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXml
 		catch (std::string error) 
 		{
 			logicComponentTriggerParameters.mDreamsExitActionFunction="";
-		} 
+		} 		
 		try
 		{
 			logicComponentTriggerParameters.mDreamsExitConditionFunction=(XMLNodeDreams)
@@ -4670,7 +4599,27 @@ TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXml
 		catch (std::string error) 
 		{
 			logicComponentTriggerParameters.mNightmaresExitConditionFunction="";
-		} 	
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mDreamsExecuteEachFrame=		(XMLNodeDreams)
+				?getPropertyBool(XMLNodeDreams,"LogicComponent::executeEachFrame")
+				:false;
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mDreamsExecuteEachFrame=false;
+		} 
+		try
+		{
+			logicComponentTriggerParameters.mNightmaresExecuteEachFrame=		(XMLNodeNightmares)
+				?getPropertyBool(XMLNodeNightmares,"LogicComponent::executeEachFrame")
+				:false;
+		}
+		catch (std::string error) 
+		{
+			logicComponentTriggerParameters.mNightmaresExecuteEachFrame=false;
+		} 
 	}
 	return logicComponentTriggerParameters;
 }

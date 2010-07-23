@@ -590,6 +590,10 @@ double GameObject::getMovingSpeed()
 {
 	return 0;
 }
+void GameObject::setCurrentWorldVisibility(bool visibility)
+{
+
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

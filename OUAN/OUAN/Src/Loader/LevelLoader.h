@@ -104,7 +104,6 @@ namespace OUAN
 		void processGameObjectWater(XMLGameObject* gameObject);
 		void processGameObjectTreeComplex(XMLGameObject* gameObject);
 		void processGameObjectCameraTrigger(XMLGameObject* gameObject);
-		void processGameObjectActionTrigger(XMLGameObject* gameObject);
 		void processGameObjectTower(XMLGameObject* gameObject);
 		void processGameObjectFog(XMLGameObject* gameObject);
 		void processGameObjectTotem(XMLGameObject* gameObject);
@@ -174,8 +173,6 @@ namespace OUAN
 		TLogicComponentTriggerParameters processLogicComponentTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentCameraTriggerParameters processLogicComponentCameraTrigger(TiXmlElement *XMLNodeDreams,
-			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
-		TLogicComponentActionTriggerParameters processLogicComponentActionTrigger(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 
 		//Trajectory Component

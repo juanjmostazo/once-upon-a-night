@@ -55,7 +55,6 @@
 #include "GameObject/GameObjectTower.h"
 #include "GameObject/GameObjectFog.h"
 #include "GameObject/GameObjectCameraTrigger.h"
-#include "GameObject/GameObjectActionTrigger.h"
 #include "GameObject/GameObjectSwitch.h"
 #include "GameObject/GameObjectBomb.h"
 #include "GameObject/GameObjectTotem.h"
@@ -2655,54 +2654,6 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 	//Add Object to GameWorldManager
 	//addGameObjectCameraTrigger(pGameObjectCameraTrigger);
 	return pGameObjectCameraTrigger;
-}
-
-GameObjectActionTriggerPtr GameObjectFactory::createGameObjectActionTrigger(TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters, 
-																			GameWorldManagerPtr gameWorldMgr)
-{
-	GameObjectActionTriggerPtr pGameObjectActionTrigger;
-
-	//Create GameObject
-	pGameObjectActionTrigger = GameObjectActionTriggerPtr(new GameObjectActionTrigger(tGameObjectActionTriggerParameters.name));
-	pGameObjectActionTrigger->setMaxUpdateRadium(tGameObjectActionTriggerParameters.mMaxUpdateRadium);
-	pGameObjectActionTrigger->setParentNest(tGameObjectActionTriggerParameters.parentNest);
-	pGameObjectActionTrigger->setSpawnProbability(tGameObjectActionTriggerParameters.spawnProbability);
-	pGameObjectActionTrigger->setMaxRenderRadium(tGameObjectActionTriggerParameters.mMaxRenderRadium);
-
-	//Create LogicComponent
-	pGameObjectActionTrigger->setLogicComponentActionTrigger(
-		mComponentFactory->createLogicComponentActionTrigger(
-		pGameObjectActionTrigger,
-		tGameObjectActionTriggerParameters.tLogicComponentActionTriggerParameters));
-
-	//Create RenderComponentPositional
-	pGameObjectActionTrigger->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectActionTrigger,tGameObjectActionTriggerParameters.tRenderComponentPositionalParameters));
-
-	//Create RenderComponentInitial
-	pGameObjectActionTrigger->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectActionTrigger->getRenderComponentPositional()));
-
-	//Create RenderComponentEntity
-	pGameObjectActionTrigger->setRenderComponentEntity(
-		mComponentFactory->createRenderComponentEntity(tGameObjectActionTriggerParameters.name,
-		pGameObjectActionTrigger,tGameObjectActionTriggerParameters.tRenderComponentEntityParameters));
-
-	//Make RenderComponentEntity not visible
-	pGameObjectActionTrigger->getRenderComponentEntity()->setVisible(false);
-
-	//Create PhysicsComponent
-	pGameObjectActionTrigger->setPhysicsComponentVolumeBox(mComponentFactory->createPhysicsComponentVolumeBox(
-		pGameObjectActionTrigger,
-		tGameObjectActionTriggerParameters.tPhysicsComponentVolumeBoxParameters,
-		pGameObjectActionTrigger->getRenderComponentPositional()));
-
-	// Add a reference to this
-	pGameObjectActionTrigger->setGameWorldManager(gameWorldMgr);
-
-	//Add Object to GameWorldManager
-	//addGameObjectActionTrigger(pGameObjectActionTrigger);
-	return pGameObjectActionTrigger;
 }
 
 GameObjectTripolloNightmaresPtr GameObjectFactory::createGameObjectTripolloNightmares(TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters, 

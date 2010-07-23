@@ -278,10 +278,6 @@ namespace OUAN
 		class TLogicComponentCameraTriggerParameters;
 		typedef boost::shared_ptr<LogicComponentCameraTrigger> LogicComponentCameraTriggerPtr;
 
-		class LogicComponentActionTrigger;
-		class TLogicComponentActionTriggerParameters;
-		typedef boost::shared_ptr<LogicComponentActionTrigger> LogicComponentActionTriggerPtr;
-
 		class LogicComponent;
 		class TLogicComponentParameters;
 		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
@@ -556,10 +552,6 @@ namespace OUAN
 		class TGameObjectCameraTriggerParameters;
 		typedef boost::shared_ptr<GameObjectCameraTrigger> GameObjectCameraTriggerPtr;
 
-		class GameObjectActionTrigger;
-		class TGameObjectActionTriggerParameters;
-		typedef boost::shared_ptr<GameObjectActionTrigger> GameObjectActionTriggerPtr;
-
 		class GameObjectSignpost;
 		class TGameObjectSignPostParameters;
 		typedef boost::shared_ptr<GameObjectSignpost> GameObjectSignPostPtr;
@@ -627,7 +619,6 @@ namespace OUAN
 		typedef std::vector<GameObjectTowerPtr> TGameObjectTowerContainer;
 		typedef std::vector<GameObjectTreeComplexPtr> TGameObjectTreeComplexContainer;
 		typedef std::vector<GameObjectCameraTriggerPtr> TGameObjectCameraTriggerContainer;
-		typedef std::vector<GameObjectActionTriggerPtr> TGameObjectActionTriggerContainer;
 		typedef std::vector<GameObjectSignPostPtr> TGameObjectSignPostContainer;
 		typedef std::vector<GameObjectNestPtr> TGameObjectNestContainer;
 		typedef std::vector<GameObjectTotemPtr> TGameObjectTotemContainer;
@@ -704,8 +695,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SKYBODY="skybody";
 		const std::string GAME_OBJECT_TYPE_TOWER="tower";
 		const std::string GAME_OBJECT_TYPE_FOG="fog";
-		const std::string GAME_OBJECT_TYPE_TRIGGER_CAMERA="trigger-camera";
-		const std::string GAME_OBJECT_TYPE_TRIGGER_ACTION="trigger-action";
+		const std::string GAME_OBJECT_TYPE_TRIGGER_CAMERA="trigger-camera";		
 
 		const std::string GAME_OBJECT_TYPE_TOTEM="totem";
 		const std::string GAME_OBJECT_TYPE_LEVEL_ENTRANCE="level-entrance";

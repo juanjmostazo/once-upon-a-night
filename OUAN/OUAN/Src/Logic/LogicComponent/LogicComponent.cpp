@@ -151,6 +151,14 @@ void LogicComponent::printMessage(const std::string& msg)
 	//TODO: Replace with dialogue overlays
 	getParent()->displayText(getParent()->getTranslation(msg));
 }
+bool LogicComponent::isEnabled() const
+{
+	return mParent->isEnabled();
+}
+void LogicComponent::setCurrentWorldVisibility(bool visibility)
+{
+	mParent->setCurrentWorldVisibility(visibility);
+}
 
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {

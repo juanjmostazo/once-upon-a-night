@@ -42,6 +42,8 @@ namespace OUAN
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
 		void printMessage(const std::string& msg);
+		bool isEnabled() const;
+		void setCurrentWorldVisibility(bool visibility);
 
 	protected:
 		int mState;

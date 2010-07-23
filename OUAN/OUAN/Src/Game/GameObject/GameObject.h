@@ -223,6 +223,7 @@ namespace OUAN
 		double getSpawnProbability();
 
 		virtual double getMovingSpeed();
+		virtual void setCurrentWorldVisibility(bool visibility);
 	};
 
 	class TGameObjectParameters
