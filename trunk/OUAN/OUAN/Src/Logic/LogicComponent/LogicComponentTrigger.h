@@ -40,7 +40,14 @@ namespace OUAN
 		void setNightmaresEnterActionFunction(const std::string& nightmaresEnterActionFunction);
 
 		std::string getNightmaresExitActionFunction();
-		void setNightmaresExitActionFunction(const std::string& nightmaresExitActionFunction);		
+		void setNightmaresExitActionFunction(const std::string& nightmaresExitActionFunction);	
+
+		bool isDreamsExecuteEachFrame() const;
+		void setDreamsExecuteEachFrame(bool executeEachFrame);
+		bool isNightmaresExecuteEachFrame() const;
+		void setNightmaresExecuteEachFrame(bool executeEachFrame);
+
+		bool mLoadedScript;
 	private:
 		//TODO: Extend this to multiple possible actions depending on the object that enters if necessary
 		// Since at the moment the only one that'll be of relevance will be Ony, we can do fine with just one
@@ -71,6 +78,9 @@ namespace OUAN
 		//Name of the script filename where the trigger actions will be defined
 		std::string mTriggerScript;
 
+		bool mDreamsExecuteEachFrame;
+		bool mNightmaresExecuteEachFrame;
+
 	};
 
 	class TLogicComponentTriggerParameters: public TLogicComponentParameters
@@ -93,6 +103,8 @@ namespace OUAN
 		std::string mNightmaresExitActionFunction;	
 
 		std::string mTriggerScript;
+		bool mDreamsExecuteEachFrame;
+		bool mNightmaresExecuteEachFrame;
 	};
 }
 

@@ -70,6 +70,13 @@ void LogicSubsystem::registerModules()
 		def("isCameraTrajectoryFinished",&CameraManager::isCameraTrajectoryEnded),
 		def("setAnyTrackingCamera",&CameraManager::setAnyTrackingCamera),
 		def("getAny",&GameWorldManager::getOny),
+		def("getObject",&GameWorldManager::getGameObject),
+		class_<GameObject>("GameObject")
+			.def("setCurrentWorldVisible", &GameObject::setCurrentWorldVisibility)
+			.def("enabled",&GameObject::isEnabled),
+		class_<GameObjectPortal, GameObject>("GameObjectPortal")
+			.def("setCurrentWorldVisible", &GameObjectPortal::setCurrentWorldVisibility),
+		class_<GameObjectTripolloDreams, GameObject>("GameObjectTripolloDreams"),
 		class_<Utils::LUATimer>("Timer")
 			.def(constructor<>())
 			.def("reset",&Utils::LUATimer::reset)

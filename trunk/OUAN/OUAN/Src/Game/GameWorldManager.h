@@ -211,6 +211,8 @@ namespace OUAN
 
 		static void setCheckPointLUA(std::string checkpoint,int checkpointNumber);
 		static int getCheckPointNumberLUA();
+
+		static GameObject* getGameObject(const std::string& objectName);
 		// END lua scripts
 
 		void setCheckPointPosition(Vector3 checkpoint);
@@ -284,7 +286,7 @@ namespace OUAN
 		void addGameObjectFog(GameObjectFogPtr pGameObjectFog);
 		void addGameObjectTower(GameObjectTowerPtr pGameObjectTower);
 		void addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger);
-		void addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger);
+
 		void addGameObjectNest(GameObjectNestPtr pGameObjectNest);
 		void addGameObjectSwitch(GameObjectSwitchPtr pGameObjectSwitch);
 		void addGameObjectTotem(GameObjectTotemPtr pGameObjectTotem);

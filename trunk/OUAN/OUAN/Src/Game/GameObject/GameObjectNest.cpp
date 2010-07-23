@@ -375,6 +375,8 @@ void GameObjectNest::spawnChild()
 		{
 			accumulated+=(*(it+1))->getSpawnProbability();
 		}
+		else
+			displayText("BETTER LUCK NEXT TIME!");
 	}
 }
 void GameObjectNest::setVisible(bool visible)

@@ -156,6 +156,7 @@ namespace OUAN
 		bool canBeActivated() const;
 
 		void update(double elapsedSeconds);
+		void setCurrentWorldVisibility(bool visibility);
 	};
 
 	class TGameObjectPortalParameters: public TGameObjectParameters

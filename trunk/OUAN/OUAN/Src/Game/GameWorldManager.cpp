@@ -54,7 +54,6 @@
 #include "GameObject/GameObjectTower.h"
 #include "GameObject/GameObjectFog.h"
 #include "GameObject/GameObjectCameraTrigger.h"
-#include "GameObject/GameObjectActionTrigger.h"
 #include "GameObject/GameObjectSwitch.h"
 #include "GameObject/GameObjectBomb.h"
 #include "GameObject/GameObjectTotem.h"
@@ -1136,11 +1135,6 @@ void GameWorldManager::addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGa
 	mGameObjects[pGameObjectCameraTrigger->getName()]=pGameObjectCameraTrigger;
 }
 
-void GameWorldManager::addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger)
-{
-	mGameObjects[pGameObjectActionTrigger->getName()]=pGameObjectActionTrigger;
-}
-
 void GameWorldManager::addGameObjectSwitch(GameObjectSwitchPtr pGameObjectSwitch)
 {
 
@@ -1759,4 +1753,8 @@ void GameWorldManager::loadFlashlightDecalMaterials()
 {
 	if (getGameObjectFlashLight().get())
 		getGameObjectFlashLight()->loadDecalMaterials(mGameObjects);
+}
+GameObject* GameWorldManager::getGameObject(const std::string& objectName)
+{
+	return mInst->getObject(objectName).get();
 }

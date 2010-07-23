@@ -10,6 +10,7 @@ using namespace OUAN;
 
 LogicComponentTrigger::LogicComponentTrigger(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_TRIGGER)
+,mLoadedScript(false)
 {
 }
 
@@ -20,6 +21,34 @@ LogicComponentTrigger::~LogicComponentTrigger()
 
 void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+	int world=getParent()->getGameWorldManager()->getWorld();
+	bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
+	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	{
+		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);	
+		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
+		if (!mLoadedScript)
+		{
+			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
+			mLoadedScript=true;
+		}
+		if (world == DREAMS && mDreamsExecuteEachFrame)
+		{
+			bool conditionFulfilled = mDreamsEnterConditionFunction.empty() || logicSS->invokeConditionFunction(mDreamsEnterConditionFunction,ony->getLogicComponentOny().get());
+			if (!mDreamsEnterActionFunction.empty() && conditionFulfilled)	
+			{
+				logicSS->invokeActionFunction(mDreamsEnterActionFunction,ony->getLogicComponentOny().get());
+			}
+		}
+		else if (world==NIGHTMARES && mNightmaresExecuteEachFrame)
+		{
+			bool conditionFulfilled = mNightmaresEnterConditionFunction.empty() || logicSS->invokeConditionFunction(mNightmaresEnterConditionFunction,ony->getLogicComponentOny().get());
+			if (!mNightmaresEnterActionFunction.empty() && conditionFulfilled)	
+			{
+				logicSS->invokeActionFunction(mNightmaresEnterActionFunction,ony->getLogicComponentOny().get());
+			}
+		}
+	}
 }
 void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 {
@@ -27,7 +56,11 @@ void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
 	{
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
-		logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
+		if (!mLoadedScript)
+		{
+			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
+			mLoadedScript=true;
+		}
 		int world=getParent()->getGameWorldManager()->getWorld();
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);	
 		
@@ -57,8 +90,11 @@ void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 	if (hasExitActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
 	{
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
-		logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);
-
+		if (!mLoadedScript)
+		{
+			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
+			mLoadedScript=true;
+		}
 		int world=getParent()->getGameWorldManager()->getWorld();
 		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);	
 		if (DREAMS)
@@ -163,6 +199,22 @@ std::string LogicComponentTrigger::getTriggerScript()
 void LogicComponentTrigger::setTriggerScript(const std::string& triggerScript)
 {
 	mTriggerScript=triggerScript;
+}
+bool LogicComponentTrigger::isDreamsExecuteEachFrame() const
+{
+	return mDreamsExecuteEachFrame;
+}
+void LogicComponentTrigger::setDreamsExecuteEachFrame(bool executeEachFrame)
+{
+	mDreamsExecuteEachFrame=executeEachFrame;
+}
+bool LogicComponentTrigger::isNightmaresExecuteEachFrame() const
+{
+	return mNightmaresExecuteEachFrame;
+}
+void LogicComponentTrigger::setNightmaresExecuteEachFrame(bool executeEachFrame)
+{
+	mNightmaresExecuteEachFrame=executeEachFrame;
 }
 //---
 TLogicComponentTriggerParameters::TLogicComponentTriggerParameters() : TLogicComponentParameters()

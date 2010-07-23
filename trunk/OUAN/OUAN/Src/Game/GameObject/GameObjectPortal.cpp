@@ -400,6 +400,14 @@ void GameObjectPortal::setVisible(bool visible)
 {
 
 }
+void GameObjectPortal::setCurrentWorldVisibility(bool visibility)
+{	
+	RenderComponentEntityPtr currentWorldEntity = (mGameWorldManager->getWorld()==DREAMS)
+		? mRenderComponentEntityDreams
+		: mRenderComponentEntityNightmares;
+
+	currentWorldEntity->setVisible(visibility);
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectPortalParameters::TGameObjectPortalParameters() : TGameObjectParameters()
