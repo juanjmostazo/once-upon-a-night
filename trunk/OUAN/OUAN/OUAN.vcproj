@@ -478,6 +478,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBomb.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBoss.cpp"
 						>
 					</File>
@@ -531,6 +535,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectItemMaxHP.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectLevelEntrance.cpp"
 						>
 					</File>
 					<File
@@ -610,6 +618,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSwitch.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTentetieso.cpp"
 						>
 					</File>
@@ -619,6 +631,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTotem.cpp"
 						>
 					</File>
 					<File
@@ -1527,6 +1543,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBomb.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBoss.h"
 						>
 					</File>
@@ -1584,6 +1604,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectItemMaxHP.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectLevelEntrance.h"
 						>
 					</File>
 					<File
@@ -1663,6 +1687,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectSwitch.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTentetieso.h"
 						>
 					</File>
@@ -1672,6 +1700,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTerrainTriangle.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTotem.h"
 						>
 					</File>
 					<File

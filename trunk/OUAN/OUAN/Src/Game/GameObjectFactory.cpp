@@ -56,6 +56,10 @@
 #include "GameObject/GameObjectFog.h"
 #include "GameObject/GameObjectCameraTrigger.h"
 #include "GameObject/GameObjectActionTrigger.h"
+#include "GameObject/GameObjectSwitch.h"
+#include "GameObject/GameObjectBomb.h"
+#include "GameObject/GameObjectTotem.h"
+#include "GameObject/GameObjectLevelEntrance.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
@@ -3063,4 +3067,208 @@ GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 
 	return gameObject;
 
+}
+
+GameObjectLevelEntrancePtr GameObjectFactory::createGameObjectLevelEntrance(TGameObjectLevelEntranceParameters tGameObjectLevelEntranceParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectLevelEntrancePtr pGameObjectLevelEntrance;
+
+	//Create GameObject
+	pGameObjectLevelEntrance = GameObjectLevelEntrancePtr(new GameObjectLevelEntrance(tGameObjectLevelEntranceParameters.name));
+	pGameObjectLevelEntrance->setMaxUpdateRadium(tGameObjectLevelEntranceParameters.mMaxUpdateRadium);
+	pGameObjectLevelEntrance->setParentNest(tGameObjectLevelEntranceParameters.parentNest);
+	pGameObjectLevelEntrance->setSpawnProbability(tGameObjectLevelEntranceParameters.spawnProbability);
+	pGameObjectLevelEntrance->setMaxRenderRadium(tGameObjectLevelEntranceParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectLevelEntrance->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectLevelEntrance,
+		tGameObjectLevelEntranceParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectLevelEntrance->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectLevelEntrance->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectLevelEntrance->getRenderComponentPositional()));
+
+	//Create RenderComponentEntityDreams
+	pGameObjectLevelEntrance->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectLevelEntranceParameters.dreamsName,
+		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityDreamsParameters));
+
+	//Create RenderComponentEntityNightmares
+	pGameObjectLevelEntrance->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectLevelEntranceParameters.nightmaresName,
+		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityNightmaresParameters));
+
+	//Create PhysicsComponent
+	pGameObjectLevelEntrance->setPhysicsComponentComplexTriangle(
+		mComponentFactory->createPhysicsComponentComplexTriangle(
+		pGameObjectLevelEntrance, 
+		tGameObjectLevelEntranceParameters.tPhysicsComponentComplexTriangleParameters, 
+		pGameObjectLevelEntrance->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectLevelEntrance->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectLevelEntrance(pGameObjectLevelEntrance);
+	return pGameObjectLevelEntrance;
+}
+
+GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchParameters tGameObjectSwitchParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectSwitchPtr pGameObjectSwitch;
+
+	//Create GameObject
+	pGameObjectSwitch = GameObjectSwitchPtr(new GameObjectSwitch(tGameObjectSwitchParameters.name));
+	pGameObjectSwitch->setMaxUpdateRadium(tGameObjectSwitchParameters.mMaxUpdateRadium);
+	pGameObjectSwitch->setParentNest(tGameObjectSwitchParameters.parentNest);
+	pGameObjectSwitch->setSpawnProbability(tGameObjectSwitchParameters.spawnProbability);
+	pGameObjectSwitch->setMaxRenderRadium(tGameObjectSwitchParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectSwitch->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectSwitch,
+		tGameObjectSwitchParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectSwitch->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectSwitch->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectSwitch->getRenderComponentPositional()));
+
+	//Create RenderComponentEntityDreams
+	pGameObjectSwitch->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.dreamsName,
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityDreamsParameters));
+
+	//Create RenderComponentEntityNightmares
+	pGameObjectSwitch->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.nightmaresName,
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityNightmaresParameters));
+
+	//Create PhysicsComponentSimpleBox
+	pGameObjectSwitch->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
+		pGameObjectSwitch, 
+		tGameObjectSwitchParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectSwitch->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectSwitch->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectSwitch(pGameObjectSwitch);
+	return pGameObjectSwitch;
+}
+
+GameObjectTotemPtr GameObjectFactory::createGameObjectTotem(TGameObjectTotemParameters tGameObjectTotemParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectTotemPtr pGameObjectTotem;
+
+	//Create GameObject
+	pGameObjectTotem = GameObjectTotemPtr(new GameObjectTotem(tGameObjectTotemParameters.name));
+	pGameObjectTotem->setMaxUpdateRadium(tGameObjectTotemParameters.mMaxUpdateRadium);
+	pGameObjectTotem->setParentNest(tGameObjectTotemParameters.parentNest);
+	pGameObjectTotem->setSpawnProbability(tGameObjectTotemParameters.spawnProbability);
+	pGameObjectTotem->setMaxRenderRadium(tGameObjectTotemParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectTotem->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectTotem,
+		tGameObjectTotemParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectTotem->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectTotem->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectTotem->getRenderComponentPositional()));
+
+	//Create RenderComponentEntityDreams
+	pGameObjectTotem->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.dreamsName,
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters));
+
+	//Create RenderComponentEntityNightmares
+	pGameObjectTotem->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.nightmaresName,
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityNightmaresParameters));
+
+	//Create PhysicsComponent
+	pGameObjectTotem->setPhysicsComponentComplexTriangle(
+		mComponentFactory->createPhysicsComponentComplexTriangle(
+		pGameObjectTotem, 
+		tGameObjectTotemParameters.tPhysicsComponentComplexTriangleParameters, 
+		pGameObjectTotem->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectTotem->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectTotem(pGameObjectTotem);
+	return pGameObjectTotem;
+}
+
+GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParameters tGameObjectBombParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectBombPtr pGameObjectBomb;
+
+	//Create GameObject
+	pGameObjectBomb = GameObjectBombPtr(new GameObjectBomb(tGameObjectBombParameters.name));
+	pGameObjectBomb->setMaxUpdateRadium(tGameObjectBombParameters.mMaxUpdateRadium);
+	pGameObjectBomb->setParentNest(tGameObjectBombParameters.parentNest);
+	pGameObjectBomb->setSpawnProbability(tGameObjectBombParameters.spawnProbability);
+	pGameObjectBomb->setMaxRenderRadium(tGameObjectBombParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectBomb->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectBomb,
+		tGameObjectBombParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectBomb->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectBomb->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectBomb->getRenderComponentPositional()));
+
+	//Create RenderComponentEntityDreams
+	pGameObjectBomb->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.dreamsName,
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityDreamsParameters));
+
+	//Create RenderComponentEntityNightmares
+	pGameObjectBomb->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.nightmaresName,
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters));
+
+	//Create PhysicsComponentSimpleBox
+	pGameObjectBomb->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
+		pGameObjectBomb, 
+		tGameObjectBombParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectBomb->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectBomb->setGameWorldManager(gameWorldMgr);
+
+	//Add Object to GameWorldManager
+	//addGameObjectBomb(pGameObjectBomb);
+	return pGameObjectBomb;
 }

@@ -568,6 +568,24 @@ namespace OUAN
 		class TGameObjectNestParameters;
 		typedef boost::shared_ptr<GameObjectNest> GameObjectNestPtr;
 
+		class GameObjectSwitch;
+		class TGameObjectSwitchParameters;
+		typedef boost::shared_ptr<GameObjectSwitch> GameObjectSwitchPtr;
+
+		class GameObjectLevelEntrance;
+		class TGameObjectLevelEntranceParameters;
+		typedef boost::shared_ptr<GameObjectLevelEntrance> GameObjectLevelEntrancePtr;
+
+		class GameObjectBomb;
+		class TGameObjectBombParameters;
+		typedef boost::shared_ptr<GameObjectBomb> GameObjectBombPtr;
+
+		class GameObjectTotem;
+		class TGameObjectTotemParameters;
+		typedef boost::shared_ptr<GameObjectTotem> GameObjectTotemPtr;
+
+
+
 		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
 		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
 		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
@@ -612,6 +630,10 @@ namespace OUAN
 		typedef std::vector<GameObjectActionTriggerPtr> TGameObjectActionTriggerContainer;
 		typedef std::vector<GameObjectSignPostPtr> TGameObjectSignPostContainer;
 		typedef std::vector<GameObjectNestPtr> TGameObjectNestContainer;
+		typedef std::vector<GameObjectTotemPtr> TGameObjectTotemContainer;
+		typedef std::vector<GameObjectSwitchPtr> TGameObjectSwitchContainer;
+		typedef std::vector<GameObjectLevelEntrancePtr> TGameObjectLevelEntranceContainer;
+		typedef std::vector<GameObjectBombPtr> TGameObjectBombContainer;
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -684,6 +706,12 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_FOG="fog";
 		const std::string GAME_OBJECT_TYPE_TRIGGER_CAMERA="trigger-camera";
 		const std::string GAME_OBJECT_TYPE_TRIGGER_ACTION="trigger-action";
+
+		const std::string GAME_OBJECT_TYPE_TOTEM="totem";
+		const std::string GAME_OBJECT_TYPE_LEVEL_ENTRANCE="level-entrance";
+		const std::string GAME_OBJECT_TYPE_SWITCH="switch";
+		const std::string GAME_OBJECT_TYPE_BOMB="bomb";
+
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
 

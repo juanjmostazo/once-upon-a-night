@@ -55,6 +55,10 @@
 #include "GameObject/GameObjectFog.h"
 #include "GameObject/GameObjectCameraTrigger.h"
 #include "GameObject/GameObjectActionTrigger.h"
+#include "GameObject/GameObjectSwitch.h"
+#include "GameObject/GameObjectBomb.h"
+#include "GameObject/GameObjectTotem.h"
+#include "GameObject/GameObjectLevelEntrance.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -1135,6 +1139,26 @@ void GameWorldManager::addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGa
 void GameWorldManager::addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger)
 {
 	mGameObjects[pGameObjectActionTrigger->getName()]=pGameObjectActionTrigger;
+}
+
+void GameWorldManager::addGameObjectSwitch(GameObjectSwitchPtr pGameObjectSwitch)
+{
+
+}
+
+void GameWorldManager::addGameObjectTotem(GameObjectTotemPtr pGameObjectTotem)
+{
+
+}
+
+void GameWorldManager::addGameObjectBomb(GameObjectBombPtr pGameObjectBomb)
+{
+
+}
+
+void GameWorldManager::addGameObjectLevelEntrance(GameObjectLevelEntrancePtr pGameObjectLevelEntrance)
+{
+
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
