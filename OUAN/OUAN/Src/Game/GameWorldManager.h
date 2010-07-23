@@ -55,6 +55,7 @@ namespace OUAN
 		TGameObjectSignPostContainer* getGameObjectSignPostContainer();
 		TGameObjectNestContainer* getGameObjectNestContainer();
 
+
 		TGameObjectPortalContainer * getGameObjectPortalContainer();
 
 		TGameObjectPhysicsContainer * getGameObjectPhysicsContainer();
@@ -285,7 +286,10 @@ namespace OUAN
 		void addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGameObjectCameraTrigger);
 		void addGameObjectActionTrigger(GameObjectActionTriggerPtr pGameObjectActionTrigger);
 		void addGameObjectNest(GameObjectNestPtr pGameObjectNest);
-
+		void addGameObjectSwitch(GameObjectSwitchPtr pGameObjectSwitch);
+		void addGameObjectTotem(GameObjectTotemPtr pGameObjectTotem);
+		void addGameObjectBomb(GameObjectBombPtr pGameObjectBomb);
+		void addGameObjectLevelEntrance(GameObjectLevelEntrancePtr pGameObjectLevelEntrance);
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 

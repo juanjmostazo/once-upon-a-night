@@ -123,6 +123,15 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectActionTriggerPtr createGameObjectActionTrigger(TGameObjectActionTriggerParameters tGameObjectActionTriggerParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
+
+		GameObjectBombPtr createGameObjectBomb(TGameObjectBombParameters tGameObjecBombParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectTotemPtr createGameObjectTotem(TGameObjectTotemParameters tGameObjectTotemParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectSwitchPtr createGameObjectSwitch(TGameObjectSwitchParameters tGameObjectSwitchParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectLevelEntrancePtr createGameObjectLevelEntrance(TGameObjectLevelEntranceParameters tGameObjectLevelEntranceParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 	};
 }
 #endif

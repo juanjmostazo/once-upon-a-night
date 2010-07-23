@@ -106,6 +106,10 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIGGER_ACTION);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SIGNPOST);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NEST);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SWITCH);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BOMB);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_LEVEL_ENTRANCE);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TOTEM);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{
