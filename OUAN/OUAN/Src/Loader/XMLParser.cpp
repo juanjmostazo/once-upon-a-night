@@ -51,7 +51,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BILLBOARDSET);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PARTICLESYSTEM);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ONY);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLO);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PORTAL);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_EYE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ITEM_1UP);
@@ -60,7 +60,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIGGERCAPSULE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NIGHTGOBLIN);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CRYKING);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DRAGON);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BOSS);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_MAGICCLOCK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PILLOW);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_FLASHLIGHT);
@@ -72,7 +72,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCAREDPLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCKPIECE);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLITO);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLO_NIGHTMARES);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKECREEPER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SOUND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CARNIVOROUSPLANT);
@@ -91,10 +91,10 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TREE9);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DOOR);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PLATAFORM);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH3);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH2);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH1);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BUSH);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRASPASABLE3);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRASPASABLE2);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRASPASABLE1);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRASPASABLE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOUD);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WOODBOX);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_WATER);

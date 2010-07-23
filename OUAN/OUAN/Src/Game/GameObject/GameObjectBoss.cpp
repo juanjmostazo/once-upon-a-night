@@ -1,91 +1,91 @@
 #include "OUAN_Precompiled.h"
 
-#include "GameObjectDragon.h"
+#include "GameObjectBoss.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
 
-GameObjectDragon::GameObjectDragon(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_DRAGON)
+GameObjectBoss::GameObjectBoss(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_BOSS)
 {
 
 }
 
-GameObjectDragon::~GameObjectDragon()
+GameObjectBoss::~GameObjectBoss()
 {
 
 }
 /// Set logic component
-void GameObjectDragon::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
+void GameObjectBoss::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
 {
 	mLogicComponentEnemy=logicComponentEnemy;
 }
 
 /// return logic component
-LogicComponentEnemyPtr GameObjectDragon::getLogicComponentEnemy()
+LogicComponentEnemyPtr GameObjectBoss::getLogicComponentEnemy()
 {
 	return mLogicComponentEnemy;
 }
 
-void GameObjectDragon::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectBoss::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectDragon::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectBoss::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectDragon::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectBoss::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectDragon::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectBoss::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectDragon::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectBoss::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectDragon::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectBoss::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectDragon::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
 }
 
-RenderComponentEntityPtr GameObjectDragon::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectDragon::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectBoss::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentCharacterPtr GameObjectDragon::getPhysicsComponentCharacter() const
+PhysicsComponentCharacterPtr GameObjectBoss::getPhysicsComponentCharacter() const
 { 
 	return mPhysicsComponentCharacter;
 }
 
-void GameObjectDragon::update(double elapsedSeconds)
+void GameObjectBoss::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
 	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 }
 
-void GameObjectDragon::reset()
+void GameObjectBoss::reset()
 {
 	GameObject::reset();
 
@@ -102,7 +102,7 @@ void GameObjectDragon::reset()
 	}
 }
 
-void GameObjectDragon::changeWorldFinished(int newWorld)
+void GameObjectBoss::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -120,7 +120,7 @@ void GameObjectDragon::changeWorldFinished(int newWorld)
 	}
 }
 
-void GameObjectDragon::changeWorldStarted(int newWorld)
+void GameObjectBoss::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -135,7 +135,7 @@ void GameObjectDragon::changeWorldStarted(int newWorld)
 	}
 }
 
-void GameObjectDragon::changeToWorld(int newWorld, double perc)
+void GameObjectBoss::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
@@ -150,34 +150,34 @@ void GameObjectDragon::changeToWorld(int newWorld, double perc)
 	}
 }
 
-int GameObjectDragon::getTimeStunned() const
+int GameObjectBoss::getTimeStunned() const
 {
-	//TODO: Define somewhere a stunned counter for the dragon and update
+	//TODO: Define somewhere a stunned counter for the boss and update
 	// it accordingly; then, use that value here
 	return 0;
 }
 
-bool GameObjectDragon::hasPositionalComponent() const
+bool GameObjectBoss::hasPositionalComponent() const
 {
 	return true;
 }
 
-RenderComponentPositionalPtr GameObjectDragon::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectBoss::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
-bool GameObjectDragon::hasPhysicsComponent() const
+bool GameObjectBoss::hasPhysicsComponent() const
 {
 	return true;
 }
-PhysicsComponentPtr GameObjectDragon::getPhysicsComponent() const
+PhysicsComponentPtr GameObjectBoss::getPhysicsComponent() const
 {
 	return getPhysicsComponentCharacter();
 }
 
 
-void GameObjectDragon::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
+void GameObjectBoss::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -185,7 +185,7 @@ void GameObjectDragon::processCollision(GameObjectPtr pGameObject, Ogre::Vector3
 	}
 }
 
-void GameObjectDragon::processEnterTrigger(GameObjectPtr pGameObject)
+void GameObjectBoss::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -193,7 +193,7 @@ void GameObjectDragon::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectDragon::processExitTrigger(GameObjectPtr pGameObject)
+void GameObjectBoss::processExitTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponentEnemy.get())
 	{
@@ -201,28 +201,28 @@ void GameObjectDragon::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectDragon::updateLogic(double elapsedSeconds)
+void GameObjectBoss::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponentEnemy.get())
 	{
 		mLogicComponentEnemy->update(elapsedSeconds);
 	}
 }
-bool GameObjectDragon::hasRenderComponentEntity() const
+bool GameObjectBoss::hasRenderComponentEntity() const
 {
 	return true;
 }
-RenderComponentEntityPtr GameObjectDragon::getEntityComponent() const
+RenderComponentEntityPtr GameObjectBoss::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 //-------------------------------------------------------------------------------------------
-TGameObjectDragonParameters::TGameObjectDragonParameters() : TGameObjectParameters()
+TGameObjectBossParameters::TGameObjectBossParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectDragonParameters::~TGameObjectDragonParameters()
+TGameObjectBossParameters::~TGameObjectBossParameters()
 {
 
 }

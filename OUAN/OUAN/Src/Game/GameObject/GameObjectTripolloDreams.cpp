@@ -12,7 +12,7 @@
 using namespace OUAN;
 
 GameObjectTripolloDreams::GameObjectTripolloDreams(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
+:GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)
 {
 
 }

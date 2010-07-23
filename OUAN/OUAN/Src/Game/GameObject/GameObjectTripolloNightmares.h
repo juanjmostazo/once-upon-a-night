@@ -1,5 +1,5 @@
-#ifndef GameObjectTripollitoH_H
-#define GameObjectTripollitoH_H
+#ifndef GameObjectTripolloNightmaresH_H
+#define GameObjectTripolloNightmaresH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
@@ -11,7 +11,7 @@
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
-	class GameObjectTripollito : public GameObject, public boost::enable_shared_from_this<GameObjectTripollito>
+	class GameObjectTripolloNightmares : public GameObject, public boost::enable_shared_from_this<GameObjectTripolloNightmares>
 	{
 	private:
 		/// Visual component
@@ -30,10 +30,10 @@ namespace OUAN
 		/// Constructor
 		/// @param name name of the game object, specific to this class
 		/// @param id unique id of the game object
-		GameObjectTripollito(const std::string& name);
+		GameObjectTripolloNightmares(const std::string& name);
 
 		//Destructor
-		~GameObjectTripollito();
+		~GameObjectTripolloNightmares();
 		/// Set logic component
 		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
 
@@ -111,14 +111,14 @@ namespace OUAN
 	};
 	
 	/// Information data structure to carry around data between the
-	/// level loader and the "GameObjectTripollito"
-	class TGameObjectTripollitoParameters: public TGameObjectParameters
+	/// level loader and the "GameObjectTripolloNightmares"
+	class TGameObjectTripolloNightmaresParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectTripollitoParameters();
+		TGameObjectTripolloNightmaresParameters();
 		/// Default destructor
-		~TGameObjectTripollitoParameters();
+		~TGameObjectTripolloNightmaresParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;

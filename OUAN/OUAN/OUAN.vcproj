@@ -478,7 +478,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectBush.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectBoss.cpp"
 						>
 					</File>
 					<File
@@ -507,10 +507,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectDoor.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectDragon.cpp"
 						>
 					</File>
 					<File
@@ -630,6 +626,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTraspasable.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTree.cpp"
 						>
 					</File>
@@ -654,11 +654,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripollito.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripolloNightmares.cpp"
 						>
 					</File>
 					<File
@@ -1527,7 +1527,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectBush.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectBoss.h"
 						>
 					</File>
 					<File
@@ -1560,10 +1560,6 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectDoor.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectDragon.h"
 						>
 					</File>
 					<File
@@ -1683,6 +1679,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectTraspasable.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectTree.h"
 						>
 					</File>
@@ -1699,11 +1699,11 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripollito.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.h"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripolloNightmares.h"
 						>
 					</File>
 					<File

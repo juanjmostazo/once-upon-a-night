@@ -1,62 +1,62 @@
 #include "OUAN_Precompiled.h"
 
-#include "GameObjectBush.h"
+#include "GameObjectTraspasable.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
 
-GameObjectBush::GameObjectBush(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_BUSH)
+GameObjectTraspasable::GameObjectTraspasable(const std::string& name)
+:GameObject(name,GAME_OBJECT_TYPE_TRASPASABLE)
 {
 
 }
 
-GameObjectBush::~GameObjectBush()
+GameObjectTraspasable::~GameObjectTraspasable()
 {
 
 }
 
-void GameObjectBush::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTraspasable::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectBush::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTraspasable::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectBush::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectTraspasable::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
 }
 
-RenderComponentEntityPtr GameObjectBush::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectTraspasable::getRenderComponentEntityNightmares() const
 {
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectBush::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
+void GameObjectTraspasable::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
 
-void GameObjectBush::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
+void GameObjectTraspasable::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
-RenderComponentPositionalPtr GameObjectBush::getRenderComponentPositional() const
+RenderComponentPositionalPtr GameObjectTraspasable::getRenderComponentPositional() const
 {
 	return mRenderComponentPositional;
 }
 
-RenderComponentInitialPtr GameObjectBush::getRenderComponentInitial() const
+RenderComponentInitialPtr GameObjectTraspasable::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
 }
 
-void GameObjectBush::changeWorldFinished(int newWorld)
+void GameObjectTraspasable::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -72,7 +72,7 @@ void GameObjectBush::changeWorldFinished(int newWorld)
 	}
 }
 
-void GameObjectBush::changeWorldStarted(int newWorld)
+void GameObjectTraspasable::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
@@ -87,7 +87,7 @@ void GameObjectBush::changeWorldStarted(int newWorld)
 	}
 }
 
-void GameObjectBush::changeToWorld(int newWorld, double perc)
+void GameObjectTraspasable::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
@@ -102,7 +102,7 @@ void GameObjectBush::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectBush::setDreamsRender()
+void GameObjectTraspasable::setDreamsRender()
 {
 	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
@@ -117,7 +117,7 @@ void GameObjectBush::setDreamsRender()
 	}	
 }
 
-void GameObjectBush::setNightmaresRender()
+void GameObjectTraspasable::setNightmaresRender()
 {
 	if (!isEnabled()) return;
 	if(mLogicComponent->existsInDreams())
@@ -132,7 +132,7 @@ void GameObjectBush::setNightmaresRender()
 	}	
 }
 
-void GameObjectBush::setChangeWorldRender()
+void GameObjectTraspasable::setChangeWorldRender()
 {
 	if (!isEnabled()) return;
 	switch(mWorld)
@@ -177,34 +177,34 @@ void GameObjectBush::setChangeWorldRender()
 	}
 }
 
-void GameObjectBush::reset()
+void GameObjectTraspasable::reset()
 {
 	GameObject::reset();
 }
 
-bool GameObjectBush::hasPositionalComponent() const
+bool GameObjectTraspasable::hasPositionalComponent() const
 {
 	return true;
 }
 
-RenderComponentPositionalPtr GameObjectBush::getPositionalComponent() const
+RenderComponentPositionalPtr GameObjectTraspasable::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
 }
 
 /// Set logic component
-void GameObjectBush::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectTraspasable::setLogicComponent(LogicComponentPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectBush::getLogicComponent()
+LogicComponentPtr GameObjectTraspasable::getLogicComponent()
 {
 	return mLogicComponent;
 }
 
-void GameObjectBush::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
+void GameObjectTraspasable::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
 	{
@@ -212,7 +212,7 @@ void GameObjectBush::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 p
 	}
 }
 
-void GameObjectBush::processEnterTrigger(GameObjectPtr pGameObject)
+void GameObjectTraspasable::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -220,7 +220,7 @@ void GameObjectBush::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectBush::processExitTrigger(GameObjectPtr pGameObject)
+void GameObjectTraspasable::processExitTrigger(GameObjectPtr pGameObject)
 {
 	if (mLogicComponent.get())
 	{
@@ -228,7 +228,7 @@ void GameObjectBush::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectBush::updateLogic(double elapsedSeconds)
+void GameObjectTraspasable::updateLogic(double elapsedSeconds)
 {
 	if (mLogicComponent.get())
 	{
@@ -236,17 +236,17 @@ void GameObjectBush::updateLogic(double elapsedSeconds)
 	}
 }
 
-bool GameObjectBush::hasRenderComponentEntity() const
+bool GameObjectTraspasable::hasRenderComponentEntity() const
 {
 	return true;
 }
 
-RenderComponentEntityPtr GameObjectBush::getEntityComponent() const
+RenderComponentEntityPtr GameObjectTraspasable::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
 
-void GameObjectBush::setVisible(bool visible)
+void GameObjectTraspasable::setVisible(bool visible)
 {
 	switch(mWorld)
 	{
@@ -268,12 +268,12 @@ void GameObjectBush::setVisible(bool visible)
 }
 //-------------------------------------------------------------------------------------------
 
-TGameObjectBushParameters::TGameObjectBushParameters() : TGameObjectParameters()
+TGameObjectTraspasableParameters::TGameObjectTraspasableParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectBushParameters::~TGameObjectBushParameters()
+TGameObjectTraspasableParameters::~TGameObjectTraspasableParameters()
 {
 
 }

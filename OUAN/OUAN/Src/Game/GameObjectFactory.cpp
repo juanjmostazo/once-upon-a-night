@@ -7,7 +7,7 @@
 #include "GameObject/GameObject.h"
 #include "GameObject/GameObjectBee_Butterfly.h"
 #include "GameObject/GameObjectBillboardSet.h"
-#include "GameObject/GameObjectBush.h"
+#include "GameObject/GameObjectTraspasable.h"
 #include "GameObject/GameObjectCarnivorousPlant.h"
 #include "GameObject/GameObjectClockPiece.h"
 #include "GameObject/GameObjectCloud.h"
@@ -15,7 +15,7 @@
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
 #include "GameObject/GameObjectDoor.h"
-#include "GameObject/GameObjectDragon.h"
+#include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
 #include "GameObject/GameObjectFlashLight.h"
 #include "GameObject/GameObjectHeart.h"
@@ -46,7 +46,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectTripollito.h"
+#include "GameObject/GameObjectTripolloNightmares.h"
 #include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
@@ -231,66 +231,66 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	return pGameObjectBillboardSet;
 }
 
-GameObjectBushPtr GameObjectFactory::createGameObjectBush(TGameObjectBushParameters tGameObjectBushParameters, 
+GameObjectTraspasablePtr GameObjectFactory::createGameObjectTraspasable(TGameObjectTraspasableParameters tGameObjectTraspasableParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectBushPtr pGameObjectBush;
+	GameObjectTraspasablePtr pGameObjectTraspasable;
 
 	//Create GameObject
-	pGameObjectBush = GameObjectBushPtr(new GameObjectBush(tGameObjectBushParameters.name));
-	pGameObjectBush->setMaxUpdateRadium(tGameObjectBushParameters.mMaxUpdateRadium);
-	pGameObjectBush->setParentNest(tGameObjectBushParameters.parentNest);
-	pGameObjectBush->setSpawnProbability(tGameObjectBushParameters.spawnProbability);
-	pGameObjectBush->setMaxRenderRadium(tGameObjectBushParameters.mMaxRenderRadium);
+	pGameObjectTraspasable = GameObjectTraspasablePtr(new GameObjectTraspasable(tGameObjectTraspasableParameters.name));
+	pGameObjectTraspasable->setMaxUpdateRadium(tGameObjectTraspasableParameters.mMaxUpdateRadium);
+	pGameObjectTraspasable->setParentNest(tGameObjectTraspasableParameters.parentNest);
+	pGameObjectTraspasable->setSpawnProbability(tGameObjectTraspasableParameters.spawnProbability);
+	pGameObjectTraspasable->setMaxRenderRadium(tGameObjectTraspasableParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectBush->setLogicComponent(
+	pGameObjectTraspasable->setLogicComponent(
 		mComponentFactory->createLogicComponent(
-		pGameObjectBush,
-		tGameObjectBushParameters.tLogicComponentParameters));
+		pGameObjectTraspasable,
+		tGameObjectTraspasableParameters.tLogicComponentParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectBush->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectBush,tGameObjectBushParameters.tRenderComponentPositionalParameters));
+	pGameObjectTraspasable->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectBush->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectBush->getRenderComponentPositional()));
+	pGameObjectTraspasable->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectTraspasable->getRenderComponentPositional()));
 
-	if(pGameObjectBush->getLogicComponent()->existsInDreams() && pGameObjectBush->getLogicComponent()->existsInNightmares())
+	if(pGameObjectTraspasable->getLogicComponent()->existsInDreams() && pGameObjectTraspasable->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Dreams
-		pGameObjectBush->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.dreamsName,
-			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTraspasable->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.dreamsName,
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters));
 
 		//Create RenderComponentEntity Nightmares
-		pGameObjectBush->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.nightmaresName,
-			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTraspasable->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.nightmaresName,
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters));
 
 	}
-	else if(pGameObjectBush->getLogicComponent()->existsInDreams())
+	else if(pGameObjectTraspasable->getLogicComponent()->existsInDreams())
 	{
 		//Create RenderComponentEntity Dreams
-		pGameObjectBush->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.dreamsName,
-			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTraspasable->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.dreamsName,
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters));
 	}
-	else if(pGameObjectBush->getLogicComponent()->existsInNightmares())
+	else if(pGameObjectTraspasable->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
-		pGameObjectBush->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBushParameters.nightmaresName,
-			pGameObjectBush,tGameObjectBushParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTraspasable->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.nightmaresName,
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters));
 	}
 
 	//Add reference to this
-	pGameObjectBush->setGameWorldManager(gameWorldMgr);
+	pGameObjectTraspasable->setGameWorldManager(gameWorldMgr);
 
 	//Add Object to GameWorldManager
-	//addGameObjectBush(pGameObjectBush);
-	return pGameObjectBush;
+	//addGameObjectTraspasable(pGameObjectTraspasable);
+	return pGameObjectTraspasable;
 }
 
 
@@ -736,54 +736,54 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 	return pGameObjectDoor;
 }
 
-GameObjectDragonPtr GameObjectFactory::createGameObjectDragon(TGameObjectDragonParameters tGameObjectDragonParameters, 
+GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParameters tGameObjectBossParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectDragonPtr pGameObjectDragon;
+	GameObjectBossPtr pGameObjectBoss;
 
 	//Create GameObject
-	pGameObjectDragon = GameObjectDragonPtr(new GameObjectDragon(tGameObjectDragonParameters.name));
-	pGameObjectDragon->setMaxUpdateRadium(tGameObjectDragonParameters.mMaxUpdateRadium);
-	pGameObjectDragon->setParentNest(tGameObjectDragonParameters.parentNest);
-	pGameObjectDragon->setSpawnProbability(tGameObjectDragonParameters.spawnProbability);
-	pGameObjectDragon->setMaxRenderRadium(tGameObjectDragonParameters.mMaxRenderRadium);
+	pGameObjectBoss = GameObjectBossPtr(new GameObjectBoss(tGameObjectBossParameters.name));
+	pGameObjectBoss->setMaxUpdateRadium(tGameObjectBossParameters.mMaxUpdateRadium);
+	pGameObjectBoss->setParentNest(tGameObjectBossParameters.parentNest);
+	pGameObjectBoss->setSpawnProbability(tGameObjectBossParameters.spawnProbability);
+	pGameObjectBoss->setMaxRenderRadium(tGameObjectBossParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectDragon->setLogicComponentEnemy(
+	pGameObjectBoss->setLogicComponentEnemy(
 		mComponentFactory->createLogicComponentEnemy(
-		pGameObjectDragon,
-		tGameObjectDragonParameters.tLogicComponentEnemyParameters));
+		pGameObjectBoss,
+		tGameObjectBossParameters.tLogicComponentEnemyParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectDragon->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectDragon,tGameObjectDragonParameters.tRenderComponentPositionalParameters));
+	pGameObjectBoss->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectDragon->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectDragon->getRenderComponentPositional()));
+	pGameObjectBoss->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectBoss->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
-	pGameObjectDragon->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectDragonParameters.dreamsName,
-		pGameObjectDragon,tGameObjectDragonParameters.tRenderComponentEntityDreamsParameters));
+	pGameObjectBoss->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.dreamsName,
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityDreamsParameters));
 
 	//Create RenderComponentEntityNightmares
-	pGameObjectDragon->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectDragonParameters.nightmaresName,
-		pGameObjectDragon,tGameObjectDragonParameters.tRenderComponentEntityNightmaresParameters));
+	pGameObjectBoss->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.nightmaresName,
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters));
 
 	//Create PhysicsComponent
-	pGameObjectDragon->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectDragon,
-		tGameObjectDragonParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectDragon->getRenderComponentPositional()));
+	pGameObjectBoss->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+		pGameObjectBoss,
+		tGameObjectBossParameters.tPhysicsComponentCharacterParameters,
+		pGameObjectBoss->getRenderComponentPositional()));
 
 	//Add reference to this
-	pGameObjectDragon->setGameWorldManager(gameWorldMgr);
+	pGameObjectBoss->setGameWorldManager(gameWorldMgr);
 
 	//Add Object to GameWorldManager
-	//addGameObjectDragon(pGameObjectDragon);
-	return pGameObjectDragon;
+	//addGameObjectBoss(pGameObjectBoss);
+	return pGameObjectBoss;
 }
 
 
@@ -2701,53 +2701,53 @@ GameObjectActionTriggerPtr GameObjectFactory::createGameObjectActionTrigger(TGam
 	return pGameObjectActionTrigger;
 }
 
-GameObjectTripollitoPtr GameObjectFactory::createGameObjectTripollito(TGameObjectTripollitoParameters tGameObjectTripollitoParameters, 
+GameObjectTripolloNightmaresPtr GameObjectFactory::createGameObjectTripolloNightmares(TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectTripollitoPtr pGameObjectTripollito;
+	GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares;
 
 	//Create GameObject
-	pGameObjectTripollito = GameObjectTripollitoPtr(new GameObjectTripollito(tGameObjectTripollitoParameters.name));
-	pGameObjectTripollito->setMaxUpdateRadium(tGameObjectTripollitoParameters.mMaxUpdateRadium);
-	pGameObjectTripollito->setParentNest(tGameObjectTripollitoParameters.parentNest);
-	pGameObjectTripollito->setSpawnProbability(tGameObjectTripollitoParameters.spawnProbability);
-	pGameObjectTripollito->setMaxRenderRadium(tGameObjectTripollitoParameters.mMaxRenderRadium);
+	pGameObjectTripolloNightmares = GameObjectTripolloNightmaresPtr(new GameObjectTripolloNightmares(tGameObjectTripolloNightmaresParameters.name));
+	pGameObjectTripolloNightmares->setMaxUpdateRadium(tGameObjectTripolloNightmaresParameters.mMaxUpdateRadium);
+	pGameObjectTripolloNightmares->setParentNest(tGameObjectTripolloNightmaresParameters.parentNest);
+	pGameObjectTripolloNightmares->setSpawnProbability(tGameObjectTripolloNightmaresParameters.spawnProbability);
+	pGameObjectTripolloNightmares->setMaxRenderRadium(tGameObjectTripolloNightmaresParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectTripollito->setLogicComponentEnemy(
-		mComponentFactory->createLogicComponentEnemy(pGameObjectTripollito,
-		tGameObjectTripollitoParameters.tLogicComponentEnemyParameters));
+	pGameObjectTripolloNightmares->setLogicComponentEnemy(
+		mComponentFactory->createLogicComponentEnemy(pGameObjectTripolloNightmares,
+		tGameObjectTripolloNightmaresParameters.tLogicComponentEnemyParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectTripollito->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectTripollito,tGameObjectTripollitoParameters.tRenderComponentPositionalParameters));
+	pGameObjectTripolloNightmares->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
-	pGameObjectTripollito->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectTripollito->getRenderComponentPositional()));
+	pGameObjectTripolloNightmares->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectTripolloNightmares->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
-	pGameObjectTripollito->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTripollitoParameters.dreamsName,
-		pGameObjectTripollito,tGameObjectTripollitoParameters.tRenderComponentEntityDreamsParameters));
+	pGameObjectTripolloNightmares->setRenderComponentEntityDreams(
+		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.dreamsName,
+		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityDreamsParameters));
 
 	//Create RenderComponentEntityNightmares
-	pGameObjectTripollito->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTripollitoParameters.nightmaresName,
-		pGameObjectTripollito,tGameObjectTripollitoParameters.tRenderComponentEntityNightmaresParameters));
+	pGameObjectTripolloNightmares->setRenderComponentEntityNightmares(
+		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.nightmaresName,
+		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityNightmaresParameters));
 
 	//Create PhysicsComponent
-	pGameObjectTripollito->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectTripollito,
-		tGameObjectTripollitoParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectTripollito->getRenderComponentPositional()));
+	pGameObjectTripolloNightmares->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+		pGameObjectTripolloNightmares,
+		tGameObjectTripolloNightmaresParameters.tPhysicsComponentCharacterParameters,
+		pGameObjectTripolloNightmares->getRenderComponentPositional()));
 
 	//Add reference to this
-	pGameObjectTripollito->setGameWorldManager(gameWorldMgr);
+	pGameObjectTripolloNightmares->setGameWorldManager(gameWorldMgr);
 
 	//Add Object to GameWorldManager
-	//addGameObjectTripollito(pGameObjectTripollito);
-	return pGameObjectTripollito;
+	//addGameObjectTripolloNightmares(pGameObjectTripolloNightmares);
+	return pGameObjectTripolloNightmares;
 }
 
 GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters, 

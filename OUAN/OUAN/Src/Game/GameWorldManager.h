@@ -42,7 +42,7 @@ namespace OUAN
 		TGameObjectPositionalContainer * getGameObjectPositionalContainer();
 		TGameObjectSceneContainer * getGameObjectSceneContainer();
 		TGameObjectTripolloDreamsContainer * getGameObjectTripolloDreamsContainer();
-		TGameObjectTripollitoContainer * getGameObjectTripollitoContainer();
+		TGameObjectTripolloNightmaresContainer * getGameObjectTripolloNightmaresContainer();
 		TGameObjectTentetiesoContainer * getGameObjectTentetiesoContainer();
 		TGameObjectEyeContainer * getGameObjectEyeContainer();
 		TGameObjectBee_ButterflyContainer * getGameObjectBeeButterflyContainer();
@@ -236,7 +236,7 @@ namespace OUAN
 		void addGameObject(GameObjectPtr gameObject);
 		void addGameObjectBee_Butterfly(GameObjectBee_ButterflyPtr gameObjectBee_Butterfly);
 		void addGameObjectBillboardSet(GameObjectBillboardSetPtr pGameObjectBillboardSet);
-		void addGameObjectBush(GameObjectBushPtr gameObjectBush);
+		void addGameObjectTraspasable(GameObjectTraspasablePtr gameObjectTraspasable);
 		void addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr pGameObjectCarnivorousPlant);
 		void addGameObjectClockPiece(GameObjectClockPiecePtr pGameObjectClockPiece);
 		void addGameObjectCloud(GameObjectCloudPtr gameObjectCloud);
@@ -244,7 +244,7 @@ namespace OUAN
 		void addGameObjectDiamond(GameObjectDiamondPtr pGameObjectDiamond);
 		void addGameObjectDiamondTree(GameObjectDiamondTreePtr pGameObjectDiamondTree);
 		void addGameObjectDoor(GameObjectDoorPtr pGameObjectDoor);
-		void addGameObjectDragon(GameObjectDragonPtr pGameObjectDragon);
+		void addGameObjectBoss(GameObjectBossPtr pGameObjectBoss);
 		void addGameObjectEye(GameObjectEyePtr pGameObjectEye);
 		void addGameObjectFlashLight(GameObjectFlashLightPtr pGameObjectFlashLight);
 		void addGameObjectHeart(GameObjectHeartPtr pGameObjectHeart);
@@ -274,7 +274,7 @@ namespace OUAN
 		void addGameObjectTree(GameObjectTreePtr pGameObjectTree);
 		void addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox);
 		void addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule);
-		void addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito);
+		void addGameObjectTripolloNightmares(GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares);
 		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
@@ -346,7 +346,7 @@ namespace OUAN
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
 		TGameObjectTripolloDreamsContainer mGameObjectTripolloDreamsContainer;
-		TGameObjectTripollitoContainer mGameObjectTripollitoContainer;
+		TGameObjectTripolloNightmaresContainer mGameObjectTripolloNightmaresContainer;
 		TGameObjectTentetiesoContainer mGameObjectTentetiesoContainer;
 		TGameObjectEyeContainer mGameObjectEyeContainer;
 		TGameObjectTriggerBoxContainer mGameObjectTriggerBoxContainer;

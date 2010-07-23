@@ -9,7 +9,7 @@
 #include "../Game/GameObject/GameObjectDiamondTree.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectTentetieso.h"
-#include "../Game/GameObject/GameObjectTripollito.h"
+#include "../Game/GameObject/GameObjectTripolloNightmares.h"
 #include "../Game/GameObject/GameObjectTripolloDreams.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectSignpost.h"
@@ -114,8 +114,8 @@ void LogicSubsystem::loadScripts()
 
 	GameWorldManagerPtr worldMgr=mApp->getGameWorldManager();
 	std::string currentFilename;
-	TGameObjectTripolloDreamsContainer * tripolloList= worldMgr->getGameObjectTripolloDreamsContainer();
-	if (!tripolloList->empty() && !(currentFilename=tripolloList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectTripolloDreamsContainer * tripolloDreamsList= worldMgr->getGameObjectTripolloDreamsContainer();
+	if (!tripolloDreamsList->empty() && !(currentFilename=tripolloDreamsList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
 	TGameObjectEyeContainer  * eyeList=worldMgr->getGameObjectEyeContainer();
 	if(!eyeList->empty() && !(currentFilename=eyeList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
@@ -123,8 +123,8 @@ void LogicSubsystem::loadScripts()
 	TGameObjectTentetiesoContainer  * tentetiesoList=worldMgr->getGameObjectTentetiesoContainer();
 	if(!tentetiesoList->empty() && !(currentFilename=tentetiesoList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectTripollitoContainer  * tripollitoList=worldMgr->getGameObjectTripollitoContainer();
-	if(!tripollitoList->empty() && !(currentFilename=tripollitoList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
+	TGameObjectTripolloNightmaresContainer  * tripolloNightmaresList=worldMgr->getGameObjectTripolloNightmaresContainer();
+	if(!tripolloNightmaresList->empty() && !(currentFilename=tripolloNightmaresList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
 		loadScript(SCRIPTS_PATH+"/"+currentFilename);
 	TGameObjectBee_ButterflyContainer  * bbList=worldMgr->getGameObjectBeeButterflyContainer();
 	if(!bbList->empty() && !(currentFilename=bbList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
@@ -181,8 +181,8 @@ void LogicSubsystem::loadScripts()
 		}
 	}
 	//TODO: CHANGE THIS!!!
-	//GameObjectDragonPtr dragon = boost::dynamic_pointer_cast<GameObjectDragon> (worldMgr->getObject("dragon#0"));
-	//if (dragon.get() && !(currentFilename=dragon->getLogicComponentEnemy()->getScriptFilename()).empty())
+	//GameObjectBossPtr boss = boost::dynamic_pointer_cast<GameObjectBoss> (worldMgr->getObject("boss#0"));
+	//if (boss.get() && !(currentFilename=boss->getLogicComponentEnemy()->getScriptFilename()).empty())
 	//	loadScript(SCRIPTS_PATH+"/"+currentFilename);
 }
 

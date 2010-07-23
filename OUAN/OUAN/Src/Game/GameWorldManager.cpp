@@ -6,7 +6,7 @@
 #include "GameObject/GameObject.h"
 #include "GameObject/GameObjectBee_Butterfly.h"
 #include "GameObject/GameObjectBillboardSet.h"
-#include "GameObject/GameObjectBush.h"
+#include "GameObject/GameObjectTraspasable.h"
 #include "GameObject/GameObjectCarnivorousPlant.h"
 #include "GameObject/GameObjectClockPiece.h"
 #include "GameObject/GameObjectCloud.h"
@@ -14,7 +14,7 @@
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
 #include "GameObject/GameObjectDoor.h"
-#include "GameObject/GameObjectDragon.h"
+#include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
 #include "GameObject/GameObjectFlashLight.h"
 #include "GameObject/GameObjectHeart.h"
@@ -45,7 +45,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectTripollito.h"
+#include "GameObject/GameObjectTripolloNightmares.h"
 #include "GameObject/GameObjectTripolloDreams.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
@@ -198,9 +198,9 @@ TGameObjectTripolloDreamsContainer * GameWorldManager::getGameObjectTripolloDrea
 	return &mGameObjectTripolloDreamsContainer;
 }
 
-TGameObjectTripollitoContainer * GameWorldManager::getGameObjectTripollitoContainer()
+TGameObjectTripolloNightmaresContainer * GameWorldManager::getGameObjectTripolloNightmaresContainer()
 {
-	return &mGameObjectTripollitoContainer;
+	return &mGameObjectTripolloNightmaresContainer;
 }
 
 TGameObjectTentetiesoContainer * GameWorldManager::getGameObjectTentetiesoContainer()
@@ -668,9 +668,9 @@ void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGame
 	mGameObjectBillboardSetContainer.push_back(pGameObjectBillboardSet);
 }
 
-void GameWorldManager::addGameObjectBush(GameObjectBushPtr gameObjectBush)
+void GameWorldManager::addGameObjectTraspasable(GameObjectTraspasablePtr gameObjectTraspasable)
 {
-	mGameObjects[gameObjectBush->getName()]=gameObjectBush;
+	mGameObjects[gameObjectTraspasable->getName()]=gameObjectTraspasable;
 }
 
 void GameWorldManager::addGameObjectCarnivorousPlant(GameObjectCarnivorousPlantPtr gameObjectCarnivorousPlant)
@@ -731,10 +731,10 @@ void GameWorldManager::addGameObjectDoor(GameObjectDoorPtr gameObjectDoor)
 	mGameObjects[gameObjectDoor->getName()]=gameObjectDoor;
 }
 
-void GameWorldManager::addGameObjectDragon(GameObjectDragonPtr gameObjectDragon)
+void GameWorldManager::addGameObjectBoss(GameObjectBossPtr gameObjectBoss)
 {
-	mGameObjects[gameObjectDragon->getName()]=gameObjectDragon;
-	mGameObjectLogicContainer.push_back(gameObjectDragon);
+	mGameObjects[gameObjectBoss->getName()]=gameObjectBoss;
+	mGameObjectLogicContainer.push_back(gameObjectBoss);
 }
 
 void GameWorldManager::addGameObjectEye(GameObjectEyePtr pGameObjectEye)
@@ -1049,19 +1049,19 @@ void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr p
 	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
-void GameWorldManager::addGameObjectTripollito(GameObjectTripollitoPtr pGameObjectTripollito)
+void GameWorldManager::addGameObjectTripolloNightmares(GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares)
 {
-	mGameObjects[pGameObjectTripollito->getName()]=pGameObjectTripollito;
+	mGameObjects[pGameObjectTripolloNightmares->getName()]=pGameObjectTripolloNightmares;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTripollito);
-	mGameObjectMovableContainer.push_back(pGameObjectTripollito);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollito);
+	mGameObjectPositionalContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectMovableContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTripolloNightmares);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripollito);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollito);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripolloNightmares);
 
-	mGameObjectTripollitoContainer.push_back(pGameObjectTripollito);
-	mGameObjectLogicContainer.push_back(pGameObjectTripollito);
+	mGameObjectTripolloNightmaresContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectLogicContainer.push_back(pGameObjectTripolloNightmares);
 }
 
 void GameWorldManager::addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams)

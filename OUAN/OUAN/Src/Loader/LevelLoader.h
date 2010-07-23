@@ -60,14 +60,14 @@ namespace OUAN
 		//Game Object Processors
 		void processGameObjectBee_Butterfly(XMLGameObject* gameObject);
 		void processGameObjectBillboardSet(XMLGameObject* gameObject);
-		void processGameObjectBush(XMLGameObject* gameObject);
+		void processGameObjectTraspasable(XMLGameObject* gameObject);
 		void processGameObjectCarnivorousPlant(XMLGameObject* gameObject);
 		void processGameObjectClockPiece(XMLGameObject* gameObject);
 		void processGameObjectCryKing(XMLGameObject* gameObject);
 		void processGameObjectDiamond(XMLGameObject* gameObject);
 		void processGameObjectDiamondTree(XMLGameObject* gameObject);
 		void processGameObjectDoor(XMLGameObject* gameObject);
-		void processGameObjectDragon(XMLGameObject* gameObject);
+		void processGameObjectBoss(XMLGameObject* gameObject);
 		void processGameObjectEye(XMLGameObject* gameObject);
 		void processGameObjectFlashLight(XMLGameObject* gameObject);
 		void processGameObjectHeart(XMLGameObject* gameObject);
@@ -97,7 +97,7 @@ namespace OUAN
 		void processGameObjectTree(XMLGameObject* gameObject);
 		void processGameObjectTriggerBox(XMLGameObject* gameObject);
 		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
-		void processGameObjectTripollito(XMLGameObject* gameObject);
+		void processGameObjectTripolloNightmares(XMLGameObject* gameObject);
 		void processGameObjectTripolloDreams(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
 		void processGameObjectWoodBox(XMLGameObject* gameObject);

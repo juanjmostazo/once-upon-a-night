@@ -1,5 +1,5 @@
-#ifndef GameObjectDragonH_H
-#define GameObjectDragonH_H
+#ifndef GameObjectBossH_H
+#define GameObjectBossH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
@@ -11,7 +11,7 @@
 namespace OUAN
 {
 	/// Class modelling a particular enemy type
-	class GameObjectDragon : public GameObject, public boost::enable_shared_from_this<GameObjectDragon>
+	class GameObjectBoss : public GameObject, public boost::enable_shared_from_this<GameObjectBoss>
 	{
 	private:
 		/// Visual component
@@ -30,10 +30,10 @@ namespace OUAN
 		/// Constructor
 		/// @param name name of the game object, specific to this class
 		/// @param id unique id of the game object
-		GameObjectDragon(const std::string& name);
+		GameObjectBoss(const std::string& name);
 
 		//Destructor
-		~GameObjectDragon();
+		~GameObjectBoss();
 		/// Set logic component
 		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
 
@@ -113,14 +113,14 @@ namespace OUAN
 	};
 	
 	/// Information data structure to carry around data between the
-	/// level loader and the "GameObjectDragon"
-	class TGameObjectDragonParameters: public TGameObjectParameters
+	/// level loader and the "GameObjectBoss"
+	class TGameObjectBossParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectDragonParameters();
+		TGameObjectBossParameters();
 		/// Default destructor
-		~TGameObjectDragonParameters();
+		~TGameObjectBossParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;

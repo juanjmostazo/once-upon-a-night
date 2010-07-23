@@ -1,5 +1,5 @@
-#ifndef GameObjectBushH_H
-#define GameObjectBushH_H
+#ifndef GameObjectTraspasableH_H
+#define GameObjectTraspasableH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -10,8 +10,8 @@
 
 namespace OUAN
 {
-	/// Class to hold Bush information
-	class GameObjectBush : public GameObject, public boost::enable_shared_from_this<GameObjectBush>
+	/// Class to hold Traspasable information
+	class GameObjectTraspasable : public GameObject, public boost::enable_shared_from_this<GameObjectTraspasable>
 	{
 	private:
 		/// Visual component
@@ -29,9 +29,9 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 	public:
 		//Constructor
-		GameObjectBush(const std::string& name);
+		GameObjectTraspasable(const std::string& name);
 		//Destructor
-		~GameObjectBush();
+		~GameObjectTraspasable();
 		/// Set logic component
 		void setLogicComponent(LogicComponentPtr logicComponent);
 
@@ -102,11 +102,11 @@ namespace OUAN
 		RenderComponentEntityPtr getEntityComponent() const;
 	};
 
-	class TGameObjectBushParameters: public TGameObjectParameters
+	class TGameObjectTraspasableParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectBushParameters();
-		~TGameObjectBushParameters();
+		TGameObjectTraspasableParameters();
+		~TGameObjectTraspasableParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
