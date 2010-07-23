@@ -106,6 +106,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
 
 	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
+
 }
 
 /// Clean up main menu's resources
@@ -892,6 +893,8 @@ void GameRunningState::renderChangeWorldTextures()
 		mApp->getGameWorldManager()->getGameObjectViewport()->setEffect(
 			mApp->getRenderSubsystem()->CHANGEWORLD,true);
 	}
+
+	currentChangeWorldFrame++;
 }
 
 bool GameRunningState::render()
@@ -990,6 +993,8 @@ void GameRunningState::changeWorldStarted(int newWorld)
 		default:
 			break;
 	}
+
+	currentChangeWorldFrame=0;
 }
 
 void GameRunningState::changeToWorld(int newWorld, double perc)

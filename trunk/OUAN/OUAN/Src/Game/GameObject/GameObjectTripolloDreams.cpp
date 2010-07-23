@@ -425,10 +425,18 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
 				activateTrajectory(newWorld);
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->create();
+				}
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
 				activateTrajectory(newWorld);
+				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->destroy();
+				}
 			}		
 			break;
 		case NIGHTMARES:
@@ -438,10 +446,18 @@ void GameObjectTripolloDreams::changeWorldFinished(int newWorld)
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
 				activateTrajectory(newWorld);
+				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->destroy();
+				}
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
 				activateTrajectory(newWorld);
+				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+				{
+					mPhysicsComponentCharacter->create();
+				}
 			}	
 			break;
 		default:break;

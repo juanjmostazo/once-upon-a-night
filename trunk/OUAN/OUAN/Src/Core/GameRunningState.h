@@ -79,6 +79,8 @@ namespace OUAN
 
 		bool mProceedToNextLevel;
 		std::string mNextLevel;
+
+		int currentChangeWorldFrame;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);
