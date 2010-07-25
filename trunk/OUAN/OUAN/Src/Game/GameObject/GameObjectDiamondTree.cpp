@@ -78,14 +78,14 @@ RenderComponentInitialPtr GameObjectDiamondTree::getRenderComponentInitial() con
 //	return mPhysicsComponentVolumeBox;
 //}
 
-void GameObjectDiamondTree::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=physicsComponentCharacter;
+	mPhysicsComponentSimpleBox=physicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectDiamondTree::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectDiamondTree::changeWorldFinished(int newWorld)
@@ -99,9 +99,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			mRenderComponentEntityDreams->setVisible(true);
 			mRenderComponentEntityNightmares->setVisible(false);
 
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				mPhysicsComponentCharacter->create();
+				mPhysicsComponentSimpleBox->create();
 			}
 			mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
 			
@@ -111,9 +111,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			mRenderComponentEntityNightmares->setVisible(true);
 			mRenderComponentEntityDreams->setVisible(false);
 
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				mPhysicsComponentCharacter->create();
+				mPhysicsComponentSimpleBox->create();
 			}
 			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
 
@@ -228,7 +228,7 @@ bool GameObjectDiamondTree::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectDiamondTree::getPhysicsComponent() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 /// Set logic component

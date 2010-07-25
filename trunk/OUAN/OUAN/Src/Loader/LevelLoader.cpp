@@ -1014,7 +1014,7 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 		tGameObjectDiamondTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentSimpleBox
-		tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);		
+		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);		
 		//tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(
 		//	gameObject->XMLNodeCustomProperties);
 		//tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBox(
@@ -2040,7 +2040,7 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
 		//Get PhysicsComponentCharacter
-		params.tPhysicsComponentCharacterParameters= processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		params.tPhysicsComponentSimpleBoxParameters= processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )

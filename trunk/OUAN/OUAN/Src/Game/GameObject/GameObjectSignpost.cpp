@@ -47,14 +47,14 @@ RenderComponentInitialPtr GameObjectSignpost::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectSignpost::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void GameObjectSignpost::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=physicsComponentCharacter;
+	mPhysicsComponentSimpleBox=physicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectSignpost::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectSignpost::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectSignpost::changeWorldFinished(int newWorld)
@@ -66,18 +66,18 @@ void GameObjectSignpost::changeWorldFinished(int newWorld)
 	case DREAMS:
 		setDreamsRender();
 		if (mLogicComponent->existsInDreams())
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				mPhysicsComponentCharacter->create();
+				mPhysicsComponentSimpleBox->create();
 			}
 
 		break;
 	case NIGHTMARES:		
 		setNightmaresRender();
 		if (mLogicComponent->existsInNightmares())
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				mPhysicsComponentCharacter->destroy();
+				mPhysicsComponentSimpleBox->destroy();
 			}
 
 		break;
@@ -183,7 +183,7 @@ bool GameObjectSignpost::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectSignpost::getPhysicsComponent() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 /// Set logic component
