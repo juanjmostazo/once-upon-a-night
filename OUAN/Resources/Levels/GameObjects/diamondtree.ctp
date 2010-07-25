@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>		
-	<PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="19"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::height" type="6" value="80"></PROPERTY>
+        <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="12 80 9" fields="X;Y;Z;W"></PROPERTY>
 	<!--
 	<PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="15 80 15" fields="X;Y;Z;W"></PROPERTY>

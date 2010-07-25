@@ -40,7 +40,7 @@ namespace OUAN
 		/// Physics information
 		//PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		//PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
-		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -93,8 +93,8 @@ namespace OUAN
 		//PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 		//void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox);
 
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
-		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter);
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox);
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -157,9 +157,8 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		//TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 		//TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;

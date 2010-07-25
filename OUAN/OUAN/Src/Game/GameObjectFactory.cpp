@@ -664,13 +664,12 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	//	pGameObjectDiamondTree->getRenderComponentPositional()));
 						
 	//Create PhysicsComponent
-	pGameObjectDiamondTree->setPhysicsComponentCharacter(
-		mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectDiamondTree, 
-		tGameObjectDiamondTreeParameters.tPhysicsComponentCharacterParameters, 
+		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDiamondTree->getRenderComponentPositional()));
 
-	pGameObjectDiamondTree->getPhysicsComponentCharacter()->setCyclicCharacter(true);
 
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
@@ -2993,15 +2992,11 @@ GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 		gameObject,tGameObjectSignPostParameters.tRenderComponentEntityParameters));
 
 	//Create PhysicsComponent
-	gameObject->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+	gameObject->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		gameObject,
-		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters,
+		tGameObjectSignPostParameters.tPhysicsComponentSimpleBoxParameters,
 		gameObject->getRenderComponentPositional()));
-	gameObject->getPhysicsComponentCharacter()->setCyclicCharacter(true);
-	gameObject->getRenderComponentPositional()->setScale(
-		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters.scale_correction);
-	gameObject->getPhysicsComponentCharacter()->setOffsetRenderPosition(
-		tGameObjectSignPostParameters.tPhysicsComponentCharacterParameters.position_correction);
+
 
 	gameObject->setSignpostMessage(tGameObjectSignPostParameters.signpostMessage);
 

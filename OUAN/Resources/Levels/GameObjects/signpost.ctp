@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>		
-	<PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="9"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::height" type="6" value="30"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 0 0" ></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="2 2 2" ></PROPERTY>
+        <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="5 10 5" fields="X;Y;Z;W"></PROPERTY>
+
 	<!-- Logic component properties  -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="signpost.lua"></PROPERTY>
 	<PROPERTY id="LogicComponent::scriptFunction" type="7" value="signpostLogic"></PROPERTY>

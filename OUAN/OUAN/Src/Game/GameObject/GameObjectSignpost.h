@@ -5,7 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
@@ -26,7 +26,7 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -71,10 +71,10 @@ namespace OUAN
 		void setVisible(bool visible);
 
 		/// Set physics component
-		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -140,7 +140,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;
