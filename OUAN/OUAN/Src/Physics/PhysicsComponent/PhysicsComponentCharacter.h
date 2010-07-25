@@ -87,6 +87,8 @@ namespace OUAN
 		virtual void applyJumpY(double elapsedSeconds);
 		virtual void applyFallY(double elapsedSeconds);
 
+		virtual void applyMove();
+
 		virtual void scaleNextMovementXZ(double elapsedSeconds);
 		virtual void scaleNextMovementXYZ(double elapsedSeconds);
 		virtual bool isWorthUpdating();

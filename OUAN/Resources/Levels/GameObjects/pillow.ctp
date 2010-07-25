@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
-    <PROPERTY id="PhysicsComponentSimpleCapsule::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentSimpleCapsule::radius" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentSimpleCapsule::height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-	
+  <PROPERTY id="PhysicsComponentPillow::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentPillow::radius" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentPillow::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentPillow::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
+
 	<!-- Available Attacks -->
 	<PROPERTY id="AttackComponent::attack0#attackName" type="7" value="baseAttack"></PROPERTY>
 	<PROPERTY id="AttackComponent::attack0#type" type="2" value="2"></PROPERTY>

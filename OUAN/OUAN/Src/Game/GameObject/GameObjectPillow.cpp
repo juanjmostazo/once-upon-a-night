@@ -14,6 +14,7 @@ GameObjectPillow::GameObjectPillow(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_PILLOW)
 {
 	mLastAttackTime=-1;
+	mLastBonePosition=Vector3::ZERO;
 }
 
 GameObjectPillow::~GameObjectPillow()
@@ -72,24 +73,14 @@ RenderComponentParticleSystemPtr GameObjectPillow::getRenderComponentParticleSys
 	return mRenderComponentParticleSystemAttack;
 }
 
-void GameObjectPillow::setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule)
+void GameObjectPillow::setPhysicsComponentPillow(PhysicsComponentPillowPtr pPhysicsComponentPillow)
 {
-	mPhysicsComponentSimpleCapsule=pPhysicsComponentSimpleCapsule;
+	mPhysicsComponentPillow=pPhysicsComponentPillow;
 }
 
-PhysicsComponentSimpleCapsulePtr GameObjectPillow::getPhysicsComponentSimpleCapsule() const
+PhysicsComponentPillowPtr GameObjectPillow::getPhysicsComponentPillow() const
 {
-	return mPhysicsComponentSimpleCapsule;
-}
-
-PhysicsComponentVolumeBoxPtr GameObjectPillow::getPhysicsComponentVolumeBox() const
-{
-	return mPhysicsComponentVolumeBox;
-}
-
-void GameObjectPillow::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponent)
-{
-	mPhysicsComponentVolumeBox=physicsComponent;
+	return mPhysicsComponentPillow;
 }
 
 void GameObjectPillow::changeWorldFinished(int newWorld)
@@ -158,13 +149,15 @@ bool GameObjectPillow::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectPillow::getPhysicsComponent() const
 {
-	//TODO: Exchange method
-	//return getPhysicsComponentSimpleCapsule();
-	return getPhysicsComponentVolumeBox();
+	return getPhysicsComponentPillow();
 }
 
 void GameObjectPillow::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+	if(pGameObject->getName().compare("ony#0")!=0)
+	{
+		Logger::getInstance()->log("PILLOW COLLISION " + pGameObject->getName());
+	}
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processCollision(pGameObject, pNormal);
@@ -236,14 +229,14 @@ void GameObjectPillow::beginAttack()
 		//mRenderComponentEntity->getEntity()->setVisible(true);
 	}
 
-	if (mPhysicsComponentVolumeBox.get())
+	if (mPhysicsComponentPillow.get())
 	{
-		if (mPhysicsComponentVolumeBox->isInUse())
+		if (mPhysicsComponentPillow->isInUse())
 		{
-			mPhysicsComponentVolumeBox->destroy();
+			mPhysicsComponentPillow->destroy();
 		}
 
-		mPhysicsComponentVolumeBox->create();
+		mPhysicsComponentPillow->create();
 	}
 
 	mLastAttackTime=attackData->cooldownDelay;
@@ -251,20 +244,22 @@ void GameObjectPillow::beginAttack()
 
 void GameObjectPillow::endAttack()
 {
-	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse() && 
+	
+	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse() && 
 		mParentWeaponComponent.get() && mParentWeaponComponent->isActiveWeaponInUse())
 	{
 		PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
-		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
-		mGameWorldManager->addEvent(evt);
+			AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
+			mGameWorldManager->addEvent(evt);
 
-		mPhysicsComponentVolumeBox->destroy();		
+		mPhysicsComponentPillow->destroy();		
 		//mRenderComponentEntity->getEntity()->setVisible(false);
-		mParentWeaponComponent->setActiveWeaponInUse(false);
-		setAttack(getDefaultAttack());
 
-		
+		setAttack(getDefaultAttack());
+		mParentWeaponComponent->setActiveWeaponInUse(false);
 	}
+
+
 }
 
 void GameObjectPillow::setAttack(const std::string& newAttack)
@@ -274,7 +269,7 @@ void GameObjectPillow::setAttack(const std::string& newAttack)
 	if (attackData.get())
 	{		
 		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
-		mPhysicsComponentVolumeBox->setNxOgreSize(NxOgre::Vec3(attackData->attackRange,attackData->attackRange/4,attackData->attackRange));
+		//mPhysicsComponentVolumeBox->setNxOgreSize(NxOgre::Vec3(attackData->attackRange,attackData->attackRange/4,attackData->attackRange));
 		//TODO: radius, etc, should also be modified here
 	}
 }
@@ -343,23 +338,36 @@ void GameObjectPillow::update(double elapsedSeconds)
 		mRenderComponentPositional->setPosition(pos);
 		mRenderComponentPositional->setOrientation(orient);
 
-		//if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
-		//{
-		//	mPhysicsComponentSimpleCapsule->setPosition(mRenderComponentPositional->getPosition());
-		//	mPhysicsComponentSimpleCapsule->setOrientation(mRenderComponentPositional->getOrientation());
-		//}
-		if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-		{
-			//mPhysicsComponentVolumeBox->destroy();
-			//mPhysicsComponentVolumeBox->create();
+	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse())
+	{
+		mPhysicsComponentPillow->setPosition(pos);
+		Vector3 nextMovement;
+		nextMovement=mLastBonePosition-pos;
+		nextMovement.normalise();
+		mPhysicsComponentPillow->setOuternMovement(nextMovement);
+		//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
+		//mPhysicsComponentPillow->setOrientation(orient);
+	}
 
-			Ogre::Matrix4 onyTransform;
-			ony->getRenderComponentPositional()->getSceneNode()->getWorldTransforms(&onyTransform);
-			Ogre::Vector3 relPos(0,7,mPhysicsComponentVolumeBox->getNxOgreSize().z/2);
+	mLastBonePosition=pos;
 
-			mPhysicsComponentVolumeBox->setOrientation(ony->getRenderComponentPositional()->getOrientation());
-			mPhysicsComponentVolumeBox->setPosition(onyTransform*relPos);
-		}
+	//	//if (mPhysicsComponentSimpleCapsule.get() && mPhysicsComponentSimpleCapsule->isInUse())
+	//	//{
+	//	//	mPhysicsComponentSimpleCapsule->setPosition(mRenderComponentPositional->getPosition());
+	//	//	mPhysicsComponentSimpleCapsule->setOrientation(mRenderComponentPositional->getOrientation());
+	//	//}
+	//	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	//	{
+	//		//mPhysicsComponentVolumeBox->destroy();
+	//		//mPhysicsComponentVolumeBox->create();
+
+	//		Ogre::Matrix4 onyTransform;
+	//		ony->getRenderComponentPositional()->getSceneNode()->getWorldTransforms(&onyTransform);
+	//		Ogre::Vector3 relPos(0,7,mPhysicsComponentVolumeBox->getNxOgreSize().z/2);
+
+	//		mPhysicsComponentVolumeBox->setOrientation(ony->getRenderComponentPositional()->getOrientation());
+	//		mPhysicsComponentVolumeBox->setPosition(onyTransform*relPos);
+	//	}
 	}
 }
 
@@ -398,6 +406,16 @@ bool GameObjectPillow::hasParentWeaponComponent() const
 	return true;
 }
 
+bool GameObjectPillow::isWorthUpdatingPhysicsComponents()
+{
+	return true;
+}
+
+bool GameObjectPillow::isWorthUpdatingLogicComponents()
+{
+	return true;
+}	
+
 void GameObjectPillow::enable()
 {
 	GameObject::enable();
@@ -410,9 +428,9 @@ void GameObjectPillow::disable()
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
 
-	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse())
 	{
-		mPhysicsComponentVolumeBox->destroy();
+		mPhysicsComponentPillow->destroy();
 	}
 		
 }
@@ -428,6 +446,7 @@ void GameObjectPillow::startAttackParticles()
 		mRenderComponentParticleSystemAttack->start(pos);
 	}
 }
+
 //---------
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {

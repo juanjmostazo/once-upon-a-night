@@ -33,6 +33,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentPillow.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
@@ -597,6 +598,30 @@ PhysicsComponentVolumeConvexPtr ComponentFactory::createPhysicsComponentVolumeCo
 	pPhysicsComponentVolumeConvex->create();
 
 	return pPhysicsComponentVolumeConvex;
+}
+
+PhysicsComponentPillowPtr ComponentFactory::createPhysicsComponentPillow(GameObjectPtr gameObject,TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
+{
+	PhysicsComponentPillowPtr pPhysicsComponentPillow = 
+		PhysicsComponentPillowPtr(new PhysicsComponentPillow(COMPONENT_TYPE_PHYSICS_CHARACTER)); 
+
+	pPhysicsComponentPillow->setParent(gameObject);	
+	pPhysicsComponentPillow->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentPillow->setMass(tPhysicsComponentPillowParameters.mass);
+	//pPhysicsComponentPillow->setQueryFlags(flags);
+	pPhysicsComponentPillow->setNxOgreSize(
+		NxOgre::Vec2(	tPhysicsComponentPillowParameters.radius, 
+						tPhysicsComponentPillowParameters.height));
+
+	NxOgre::ControllerDescription mNxOgreControllerDescription;
+	mNxOgreControllerDescription.mCallback=mApp->getPhysicsSubsystem().get();
+	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
+	pPhysicsComponentPillow->setNxOgreControllerDescription(mNxOgreControllerDescription);
+	pPhysicsComponentPillow->setMovementFactor(tPhysicsComponentPillowParameters.movementFactor);
+
+	//pPhysicsComponentPillow->create();
+
+	return pPhysicsComponentPillow;
 }
 
 LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters tLogicComponentParameters)

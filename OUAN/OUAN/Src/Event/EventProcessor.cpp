@@ -354,7 +354,7 @@ void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 	{
 		int newState =mWorldManager->getGameObjectOny()->getLogicComponentOny()->getNewState();
 		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK));
-		Logger::getInstance()->log("CLEARING ATTACK FLAG");
+		//Logger::getInstance()->log("CLEARING ATTACK FLAG");
 	}
 }
 

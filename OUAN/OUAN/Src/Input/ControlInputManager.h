@@ -13,13 +13,13 @@ namespace OUAN
 
 	const std::string STRINGKEY_JUMP="BUTTON_TEXT_JUMP";
 	const std::string STRINGKEY_USEWEAPON="BUTTON_TEXT_USEWEAPON";
-	const std::string STRINGKEY_ACTION="BUTTON_TEXT_ACTION";
+	const std::string STRINGKEY_CENTER_CAMERA="BUTTON_TEXT_ACTION";
 	const std::string STRINGKEY_RELOAD="BUTTON_TEXT_RELOAD";
 
 	const std::string STRINGKEY_LROTATE="BUTTON_TEXT_LROTATE";
 	const std::string STRINGKEY_RROTATE="BUTTON_TEXT_RROTATE";
 	const std::string STRINGKEY_WALK="BUTTON_TEXT_WALK";
-	const std::string STRINGKEY_AUTOTARGET="BUTTON_TEXT_AUTOTARGET";
+	const std::string STRINGKEY_FIRST_PERSON_CAMERA="BUTTON_TEXT_AUTOTARGET";
 
 	const std::string STRINGKEY_PAUSE="BUTTON_TEXT_PAUSE";
 	const std::string STRINGKEY_INGAME_MENU="BUTTON_TEXT_MENU";
@@ -42,12 +42,12 @@ namespace OUAN
 		bool isPressedPause(int *pad, int *key);		// Go to pause menu
 
 		bool isPressedJump(int *pad, int *key);			// Jump
-		bool isPressedDoAction(int *pad, int *key);		// Perform an action
+		bool isPressedCenterCamera(int *pad, int *key);		// Perform an action
 		bool isPressedUseWeapon(int *pad, int *key);	// Use the pillow (dream) or shoot (nightmare)
 		bool isPressedWeaponAction(int *pad, int *key);	// Change holder hand (dream) or recharge (nightmare)
 
 		bool isPressedWalk(int *pad, int *key);			// Walk mode
-		bool isPressedAutoPoint(int *pad, int *key);	// Automatic pointer
+		bool isPressedCameraFixedFirstPerson(int *pad, int *key);	// Automatic pointer
 		bool isPressedRotateLeft(int *pad, int *key);	// Rotate color to left
 		bool isPressedRotateRight(int *pad, int *key);	// Rotate color to right
 

@@ -231,6 +231,10 @@ namespace OUAN
 		class TPhysicsComponentVolumeConvexParameters;
 		typedef boost::shared_ptr<PhysicsComponentVolumeConvex> PhysicsComponentVolumeConvexPtr;
 
+		class PhysicsComponentPillow;
+		class TPhysicsComponentPillowParameters;
+		typedef boost::shared_ptr<PhysicsComponentPillow> PhysicsComponentPillowPtr;
+
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER_ONY="PhysicsComponentCharacterOny";
@@ -244,6 +248,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CONVEX="PhysicsComponentVolumeConvex";
+		const std::string COMPONENT_TYPE_PHYSICS_PILLOW="PhysicsComponentPillow";
 
 		//Logic Components
 		class LogicComponentOny;

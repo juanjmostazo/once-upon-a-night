@@ -1682,7 +1682,7 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 		tGameObjectPillowParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentSimpleCapsule
-		tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters = processPhysicsComponentSimpleCapsule(gameObject->XMLNodeCustomProperties);
+		tGameObjectPillowParameters.tPhysicsComponentPillowParameters = processPhysicsComponentPillow(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -3838,6 +3838,35 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	}
 
 	return tPhysicsComponentCharacterParameters;
+}
+
+TPhysicsComponentPillowParameters LevelLoader::processPhysicsComponentPillow(TiXmlElement *XMLNode,std::string suffix)
+{
+	TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters;
+
+	//Get Component properties
+	tPhysicsComponentPillowParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::mass");
+	tPhysicsComponentPillowParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::radius");
+	tPhysicsComponentPillowParameters.height= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::height");
+	tPhysicsComponentPillowParameters.movementFactor= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::movementfactor");
+	try
+	{
+		tPhysicsComponentPillowParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentPillow"+suffix+"::position_correction");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentPillowParameters.position_correction=Vector3::ZERO;
+	}
+	try
+	{
+		tPhysicsComponentPillowParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentPillow"+suffix+"::scale_correction");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentPillowParameters.scale_correction=Vector3(1,1,1);
+	}
+
+	return tPhysicsComponentPillowParameters;
 }
 
 TPhysicsComponentCharacterOnyParameters LevelLoader::processPhysicsComponentCharacterOny(TiXmlElement *XMLNode,std::string suffix)
