@@ -5,8 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleCapsule.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentPillow.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
@@ -30,11 +29,7 @@ namespace OUAN
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack;
 		/// Physics information
-		PhysicsComponentSimpleCapsulePtr mPhysicsComponentSimpleCapsule;
-	
-		/// FAKE VOLUME BOX to emulate the pillow's collisions until we've got the
-		/// proper attack animations
-		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+		PhysicsComponentPillowPtr mPhysicsComponentPillow;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -44,6 +39,7 @@ namespace OUAN
 		AttackComponentPtr mAttackComponent;
 
 		double mLastAttackTime;
+		Vector3 mLastBonePosition;
 
 		WeaponComponentPtr mParentWeaponComponent;
 
@@ -87,16 +83,9 @@ namespace OUAN
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttack() const;
 
-		/// FAKE PHYSICS COMPONENT: It just sticks a volume box in front of Ony when he's attacking
-		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
-		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponent);
+		PhysicsComponentPillowPtr getPhysicsComponentPillow() const;
+		void setPhysicsComponentPillow(PhysicsComponentPillowPtr pPhysicsComponentPillow);
 
-
-		/// This is the real component;
-		/// Set physics component
-		void setPhysicsComponentSimpleCapsule(PhysicsComponentSimpleCapsulePtr pPhysicsComponentSimpleCapsule);
-		/// Get physics component
-		PhysicsComponentSimpleCapsulePtr getPhysicsComponentSimpleCapsule() const;
 
 		AttackComponentPtr getAttackComponent() const;
 		void setAttackComponent(AttackComponentPtr attackComponent);
@@ -107,6 +96,8 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		bool isWorthUpdatingPhysicsComponents();
+		bool isWorthUpdatingLogicComponents();
 
 		/// Reset object
 		virtual void reset();
@@ -175,9 +166,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters;
-
-		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+		TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

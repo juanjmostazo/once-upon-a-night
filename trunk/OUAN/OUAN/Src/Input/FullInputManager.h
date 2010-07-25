@@ -23,13 +23,13 @@ namespace OUAN
 	const std::string KEY_LEFT = "Left";
 	const std::string KEY_RIGHT = "Right";
 	const std::string KEY_JUMP = "Jump";
-	const std::string KEY_ACTION = "Action";
+	const std::string KEY_CENTER_CAMERA = "CenterCamera";
 	const std::string KEY_RELOADWEAPON = "Reload";
 	const std::string KEY_USEWEAPON = "UseWeapon";
 	const std::string KEY_WALK = "Walk";
 	const std::string KEY_ROTATELEFT = "LRotate";
 	const std::string KEY_ROTATERIGHT = "RRotate";
-	const std::string KEY_AUTOTARGET = "AutoTarget";
+	const std::string KEY_FIRST_PERSON_CAMERA = "FirstPersonCamera";
 
 	const std::string KEY_QUICKEXIT = "QuickExit";
 	const std::string KEY_DEBUG_PERFORMANCE = "DebugPerformance";

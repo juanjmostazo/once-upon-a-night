@@ -722,6 +722,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentPillow.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimple.cpp"
 						>
 					</File>
@@ -1822,6 +1826,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentComplexTriangle.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentPillow.h"
 						>
 					</File>
 					<File

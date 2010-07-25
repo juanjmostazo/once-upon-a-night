@@ -76,7 +76,7 @@ double Random::getRandomDouble(double low, double high)
 
 void OUAN::Utils::scriptLog (const std::string& logMsg)
 {
-	Logger::getInstance()->log("LUA: "+logMsg);
+	//Logger::getInstance()->log("LUA: "+logMsg);
 }
 
 int OUAN::Utils::parseInt(std::string& strValue)

@@ -113,7 +113,7 @@ bool ControlInputManager::isPressedJump(int *pad, int* key)
 	return isPressed(padX,mDefaultInputData.keyJump);
 }
 
-bool ControlInputManager::isPressedDoAction(int *pad, int* key)
+bool ControlInputManager::isPressedCenterCamera(int *pad, int* key)
 {
 	*pad = padCircle;
 	*key = mDefaultInputData.keyAction;
@@ -169,7 +169,7 @@ bool ControlInputManager::isPressedWalk(int *pad, int* key)
 	return isPressed(padR1,mDefaultInputData.keyWalk);
 }
 
-bool ControlInputManager::isPressedAutoPoint(int *pad, int* key)
+bool ControlInputManager::isPressedCameraFixedFirstPerson(int *pad, int* key)
 {
 	*pad = padL1;
 	*key = mDefaultInputData.keyAutoTarget;
@@ -418,14 +418,14 @@ void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
 	addPair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,STRINGKEY_RIGHT,mappings);
 
 	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,STRINGKEY_JUMP,mappings);
-	addPair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,STRINGKEY_ACTION,mappings);
+	addPair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,STRINGKEY_CENTER_CAMERA,mappings);
 	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,STRINGKEY_USEWEAPON,mappings);
 	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,STRINGKEY_RELOAD,mappings);
 
 	addPair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,STRINGKEY_LROTATE,mappings);
 	addPair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,STRINGKEY_RROTATE,mappings);
 	addPair(KEY_WALK,mDefaultInputData.keyWalk,padR1,STRINGKEY_WALK,mappings);
-	addPair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,STRINGKEY_AUTOTARGET,mappings);
+	addPair(KEY_FIRST_PERSON_CAMERA,mDefaultInputData.keyAutoTarget,padL1,STRINGKEY_FIRST_PERSON_CAMERA,mappings);
 
 	addPair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,STRINGKEY_PAUSE,mappings);
 	addPair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,STRINGKEY_INGAME_MENU,mappings);
@@ -491,14 +491,14 @@ void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool s
 		replacePair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,newMapping);
 
 		replacePair(KEY_JUMP,mDefaultInputData.keyJump,padX,newMapping);
-		replacePair(KEY_ACTION,mDefaultInputData.keyAction,padCircle,newMapping);
+		replacePair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,newMapping);
 		replacePair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,newMapping);
 		replacePair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,newMapping);
 
 		replacePair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,newMapping);
 		replacePair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,newMapping);
 		replacePair(KEY_WALK,mDefaultInputData.keyWalk,padR1,newMapping);
-		replacePair(KEY_AUTOTARGET,mDefaultInputData.keyAutoTarget,padL1,newMapping);
+		replacePair(KEY_FIRST_PERSON_CAMERA,mDefaultInputData.keyAutoTarget,padL1,newMapping);
 
 		replacePair(KEY_PAUSE,mDefaultInputData.keyPause,padStart,newMapping);
 		replacePair(KEY_MENU,mDefaultInputData.keyMenu,padSelect,newMapping);
@@ -532,8 +532,8 @@ void ControlInputManager::saveDefaultInput()
 {
 	Configuration c;
 	std::stringstream convertString;
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_ACTION,false);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_AUTOTARGET,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_CENTER_CAMERA,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_FIRST_PERSON_CAMERA,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyBackwards,KEY_BACKWARDS,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyForward,KEY_FORWARD,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyJump,KEY_JUMP,false);

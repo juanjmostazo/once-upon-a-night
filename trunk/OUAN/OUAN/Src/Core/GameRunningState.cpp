@@ -214,7 +214,7 @@ void GameRunningState::handleEvents()
 			mApp->setDefaultKeyBuffer(key);
 		}
 	}
-	else if(mApp->isPressedAutoPoint(&pad,&key))
+	else if(mApp->isPressedCameraFixedFirstPerson(&pad,&key))
 	{
 		if (mApp->getKeyBuffer(key) < 0)
 		{			
@@ -238,14 +238,10 @@ void GameRunningState::handleEvents()
 			mApp->setDefaultKeyBuffer(key);
 		}
 	}
-	else if (mApp->isPressedDoAction(&pad,&key))
+	else if (mApp->isPressedCenterCamera(&pad,&key))
 	{
 		if (mApp->getKeyBuffer(key) < 0)
 		{
-			actionKeyPressed=true;
-
-			//TODO, REMOVE DEPRECATED FUNCTIONALITY useObject()
-			mApp->getGameWorldManager()->useObject();
 			mApp->getCameraManager()->centerToTargetBack(true);
 			mApp->setDefaultKeyBuffer(key);
 		}
@@ -307,10 +303,6 @@ void GameRunningState::handleEvents()
 	{
 		int newState = ony->getLogicComponentOny()->getNewState();
 
-		newState = actionKeyPressed
-			?SET_BIT(newState,ONY_STATE_BIT_FIELD_ACTION)
-			:CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ACTION);
-
 		/*
 		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
 				? mApp->getMovement()
@@ -329,7 +321,7 @@ void GameRunningState::handleEvents()
 		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
 		{
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
-			Logger::getInstance()->log("SETTING ATTACK FLAG");
+			//Logger::getInstance()->log("SETTING ATTACK FLAG");
 		}
 		//if (useSpWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK))
 		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK);

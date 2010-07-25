@@ -149,15 +149,8 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
 
 		//logStatus("Before move()", elapsedSeconds);
-		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
-		getNxOgreController()->move(
-			NxOgre::Vec3(getNextMovement()),
-			collisionFlags,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
-			collisionFlags);
+		applyMove();
 
-		//logStatus("Before setOnSurface()", elapsedSeconds);
-		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 	}
 
 	//logStatus("Before setLastMovement(), setNextMovement(), setOuternMovement()", elapsedSeconds);
@@ -167,6 +160,19 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 
 	updateSceneNode();
 	//logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
+}
+
+void PhysicsComponentCharacter::applyMove()
+{
+		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+		getNxOgreController()->move(
+			NxOgre::Vec3(getNextMovement()),
+			collisionFlags,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+
+		//logStatus("Before setOnSurface()", elapsedSeconds);
+		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 }
 
 void PhysicsComponentCharacter::setLastSurfacePosition(Ogre::Vector3 lastSurfacePosition)

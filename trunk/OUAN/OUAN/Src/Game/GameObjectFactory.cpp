@@ -1521,19 +1521,11 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//	pGameObjectPillow, 
 	//	tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
 	//	pGameObjectPillow->getRenderComponentPositional()));
-	PhysicsComponentSimpleCapsulePtr nullPtr=PhysicsComponentSimpleCapsulePtr();
-	pGameObjectPillow->setPhysicsComponentSimpleCapsule(nullPtr);
 
-	//Create FAKE PhysicsComponent
-	TPhysicsComponentVolumeBoxParameters fakeVBParams;
-	fakeVBParams.mass=0.0;
-	fakeVBParams.lengthX=1.0;
-	fakeVBParams.lengthY=1.0;
-	fakeVBParams.lengthZ=1.0;
-	pGameObjectPillow->setPhysicsComponentVolumeBox(
-		mComponentFactory->createPhysicsComponentVolumeBox(
+	pGameObjectPillow->setPhysicsComponentPillow(
+		mComponentFactory->createPhysicsComponentPillow(
 		pGameObjectPillow,
-		fakeVBParams,
+		tGameObjectPillowParameters.tPhysicsComponentPillowParameters,
 		pGameObjectPillow->getRenderComponentPositional()));
 
 	//Add reference to this

@@ -2,8 +2,8 @@
 <Configuration>
     <!--Config options-->
     <Options>
-        <Option key="Action">-0x02</Option>
-        <Option key="AutoTarget">0x10</Option>
+        <Option key="CenterCamera">-0x02</Option>
+        <Option key="FirstPersonCamera">0x10</Option>
         <Option key="Backwards">0x1f</Option>
         <Option key="ChangeCamera">0x42</Option>
         <Option key="ChangeCameraController">0x43</Option>
