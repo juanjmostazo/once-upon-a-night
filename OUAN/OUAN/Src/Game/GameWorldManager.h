@@ -52,7 +52,7 @@ namespace OUAN
 		TGameObjectTriggerBoxContainer * getGameObjectTriggerBoxContainer();
 		TGameObjectTriggerCapsuleContainer * getGameObjectTriggerCapsuleContainer();
 		TGameObjectViewportContainer * getGameObjectViewportContainer();
-		TGameObjectSignPostContainer* getGameObjectSignPostContainer();
+		TGameObjectSignpostContainer* getGameObjectSignpostContainer();
 		TGameObjectNestContainer* getGameObjectNestContainer();
 
 
@@ -266,7 +266,7 @@ namespace OUAN
 		void addGameObjectScaredPlant(GameObjectScaredPlantPtr pGameObjectScaredPlant);
 		void addGameObjectScene(GameObjectScenePtr pGameObjectScene);
 		void addGameObjectScepter(GameObjectScepterPtr pGameObjectScepter);
-		void addGameObjectSignPost(GameObjectSignPostPtr pGameObjectSignPost);
+		void addGameObjectSignPost(GameObjectSignpostPtr pGameObjectSignPost);
 		void addGameObjectSkyBody(GameObjectSkyBodyPtr pGameObjectSkyBody);
 		void addGameObjectSnakeCreeper(GameObjectSnakeCreeperPtr pGameObjectSnakeCreeper);
 		void addGameObjectSound(GameObjectSoundPtr pGameObjectSound);
@@ -363,7 +363,7 @@ namespace OUAN
 		TGameObjectScaredPlantContainer mGameObjectScaredPlantContainer;
 		TGameObjectDiamondTreeContainer mGameObjectDiamondTreeContainer;
 		TGameObjectDiamondContainer mGameObjectDiamondContainer;
-		TGameObjectSignPostContainer mGameObjectSignPostContainer;
+		TGameObjectSignpostContainer mGameObjectSignPostContainer;
 		TGameObjectNestContainer mGameObjectNestContainer;
 
 		TGameObjectPortalContainer mGameObjectPortalContainer;

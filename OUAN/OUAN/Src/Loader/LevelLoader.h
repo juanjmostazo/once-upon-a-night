@@ -130,6 +130,8 @@ namespace OUAN
 
 		TRenderComponentViewportParameters processRenderComponentViewport(TiXmlElement *XMLNode);
 		TRenderComponentPlaneParameters processRenderComponentPlane(TiXmlElement *XMLNode);
+		TRenderComponentMessageBoxParameters processRenderComponentMessageBox(TiXmlElement *XMLClassNode, TiXmlElement* XMLSpecificNode);
+		//-- Auxiliary processors
 		void processRenderComponentSubEntities(std::vector<TRenderComponentSubEntityParameters>  &tRenderComponentSubEntityParameters,
 			TiXmlElement *XMLNode);
 		void processRenderComponentBillboards(std::vector<TRenderComponentBillboardParameters>  &tRenderComponentBillboardParameters,
@@ -138,6 +140,7 @@ namespace OUAN
 			TiXmlElement* XMLNode, int world);
 		QueryFlags processCameraCollisionType(TiXmlElement *XMLNode);
 		Ogre::uint8 processRenderQueueId(TiXmlElement *XMLNode);
+
 
 		//PhysicComponent Processors
 		TPhysicsComponentCharacterParameters processPhysicsComponentCharacter(TiXmlElement *XMLNode,std::string suffix="");

@@ -267,12 +267,15 @@ void GameObjectSignpost::update(double elapsedSeconds)
 		else if (currentState==logicSS->getGlobalInt(SIGN_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{	
 			mRenderComponentEntity->changeAnimation(SIGN_ANIM_HIT);	
-			displayText(getTranslation(getSignpostMessage()));
+			//displayText(getTranslation(getSignpostMessage()));
+			mMessageBox->setMessageBoxText();
+			mMessageBox->show();
 		}
 		if (mRenderComponentEntity.get())
 		{
 			mRenderComponentEntity->update(elapsedSeconds);
 		}
+		mMessageBox->update(elapsedSeconds);
 	}
 }
 void GameObjectSignpost::setDreamsRender()
@@ -310,14 +313,14 @@ void GameObjectSignpost::setChangeWorldRender()
 	mRenderComponentEntity->setChangeWorldMaterials();
 }
 
-const std::string& GameObjectSignpost::getSignpostMessage() const
-{
-	return mSignpostMessage;
-}
-void GameObjectSignpost::setSignpostMessage(const std::string& signpostMessage)
-{
-	mSignpostMessage=signpostMessage;
-}
+//const std::string& GameObjectSignpost::getSignpostMessage() const
+//{
+//	return mSignpostMessage;
+//}
+//void GameObjectSignpost::setSignpostMessage(const std::string& signpostMessage)
+//{
+//	mSignpostMessage=signpostMessage;
+//}
 void GameObjectSignpost::setVisible(bool visible)
 {
 	switch(mWorld)
@@ -338,14 +341,22 @@ void GameObjectSignpost::setVisible(bool visible)
 		break;
 	}
 }
+RenderComponentMessageBoxPtr GameObjectSignpost::getRenderComponentMessageBox() const
+{
+	return mMessageBox;
+}
+void GameObjectSignpost::setRenderComponentMessageBox(RenderComponentMessageBoxPtr messageBox)
+{
+	mMessageBox=messageBox;
+}
 //-------------------------------------------------------------------------------------------
 
-TGameObjectSignPostParameters::TGameObjectSignPostParameters() : TGameObjectParameters()
+TGameObjectSignpostParameters::TGameObjectSignpostParameters() : TGameObjectParameters()
 {
 
 }
 
-TGameObjectSignPostParameters::~TGameObjectSignPostParameters()
+TGameObjectSignpostParameters::~TGameObjectSignpostParameters()
 {
 
 }

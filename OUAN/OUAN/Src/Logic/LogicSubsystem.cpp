@@ -169,10 +169,10 @@ void LogicSubsystem::loadScripts()
 			loadScript(SCRIPTS_PATH+"/"+dtree->getLogicComponent()->getScriptFilename());
 		}
 	}
-	TGameObjectSignPostContainer* signList = worldMgr->getGameObjectSignPostContainer();
+	TGameObjectSignpostContainer* signList = worldMgr->getGameObjectSignpostContainer();
 	if (!signList->empty())
 	{
-		GameObjectSignPostPtr sign= boost::dynamic_pointer_cast<GameObjectSignpost>(signList->at(0));
+		GameObjectSignpostPtr sign= boost::dynamic_pointer_cast<GameObjectSignpost>(signList->at(0));
 		if (sign.get() && !sign->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+sign->getLogicComponent()->getScriptFilename());

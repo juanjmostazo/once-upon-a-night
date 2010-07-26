@@ -57,4 +57,62 @@ OUAN/HUDOverlay
 			material OUAN/Hud/Roulette
 		}		    
 	}
+	container Panel(OUAN/TextBubble)
+	{
+		left 0
+		top 0.8
+		width 1
+		height 0.2
+		material OUAN/Hud/TextBubble
+		visible false
+		element TextArea(OUAN/TextBubble/Message)
+		{
+			metrics_mode pixels
+			
+			horz_align right
+			vert_align center
+			width 90
+			height 30
+			font_name BlueHighway
+			char_height 16
+			caption .
+			colour_top 1 1 1
+			colour_bottom 1 1 1
+		}
+		// TODO: Add subpanel to hold the portrait of a gameobject
+	}
+	
+	container Panel(OUAN/SignpostMessage)
+	{
+		left 0
+		top 0.8
+		width 1
+		height 0.2
+		visible false
+
+		container Panel(OUAN/SignpostMessage/Box)
+		{
+			metrics_mode relative
+			left 0 
+			top 0
+			width 1
+			height 0.2
+			material OUAN/Hud/Signpost
+			
+			element TextArea(OUAN/SignpostMessage/Message)
+			{
+				metrics_mode pixels
+				left 90
+				top 50
+				width 90
+				height 30
+				font_name BlueHighway
+				char_height 36
+				caption . 
+				colour_top 1 1 1
+				colour_bottom 1 1 1
+			}
+		}			
+	}
+	
 }

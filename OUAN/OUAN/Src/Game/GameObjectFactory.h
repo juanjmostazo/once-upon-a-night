@@ -119,7 +119,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);		
 		GameObjectCameraTriggerPtr createGameObjectCameraTrigger(TGameObjectCameraTriggerParameters tGameObjectCameraTriggerParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectSignPostPtr createGameObjectSignPost(TGameObjectSignPostParameters tGameObjectSignPostParameters, 
+		GameObjectSignpostPtr createGameObjectSignPost(TGameObjectSignpostParameters TGameObjectSignpostParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 
 		GameObjectBombPtr createGameObjectBomb(TGameObjectBombParameters tGameObjecBombParameters, 

@@ -17,6 +17,7 @@
 #include "../Graphics/RenderComponent/RenderComponentFractalVolume.h"
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentDecal.h"
+#include "../Graphics/RenderComponent/RenderComponentMessageBox.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
 #include "../Graphics/Volume/BufferManager.h"
@@ -182,6 +183,28 @@ RenderComponentDecalPtr ComponentFactory::createRenderComponentDecal(GameObjectP
 	pRenderComponentDecal->setParent(gameObject);
 
 	return pRenderComponentDecal;
+}
+
+RenderComponentMessageBoxPtr ComponentFactory::createRenderComponentMessageBox(GameObjectPtr gameObject,TRenderComponentMessageBoxParameters msgBoxParams)
+{
+	//Create void Render Component
+	RenderComponentMessageBoxPtr msgBox= RenderComponentMessageBoxPtr(new RenderComponentMessageBox()); 
+
+	msgBox->setBasePanelName(msgBoxParams.basePanelName);
+	msgBox->setBasePanel(msgBoxParams.basePanelName);
+	if (!msgBoxParams.charPanelName.empty())
+	{
+		msgBox->setCharPanelName(msgBoxParams.charPanelName);
+		msgBox->setCharPanelMaterialName(msgBoxParams.charPanelMaterialName);
+		msgBox->setCharPanel(msgBoxParams.charPanelName,
+			msgBoxParams.charPanelMaterialName);
+	}
+	msgBox->setDuration(msgBoxParams.duration);
+	
+	msgBox->setParent(gameObject);
+	msgBox->setMessage(msgBoxParams.mMessage);
+
+	return msgBox;
 }
 
 RenderComponentPlanePtr ComponentFactory::createRenderComponentPlane(std::string name,GameObjectPtr gameObject,TRenderComponentPlaneParameters tRenderComponentPlaneParameters)

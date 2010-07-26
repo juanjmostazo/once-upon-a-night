@@ -351,7 +351,7 @@ TGameObjectDiamondTreeContainer * GameWorldManager::getGameObjectDiamondTreeCont
 	return &mGameObjectDiamondTreeContainer;
 }
 
-TGameObjectSignPostContainer* GameWorldManager::getGameObjectSignPostContainer()
+TGameObjectSignpostContainer* GameWorldManager::getGameObjectSignpostContainer()
 {
 	return &mGameObjectSignPostContainer;
 }
@@ -404,7 +404,7 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectDiamondContainer, mGameObjectDiamondContainer);
 
 	EMPTY_VECTOR(TGameObjectFlashLightContainer,mGameObjectFlashLightContainer);
-	EMPTY_VECTOR(TGameObjectSignPostContainer, mGameObjectSignPostContainer);
+	EMPTY_VECTOR(TGameObjectSignpostContainer, mGameObjectSignPostContainer);
 	EMPTY_VECTOR(TGameObjectNestContainer, mGameObjectNestContainer);
 
 	mDiamondTreeLinks.clear();
@@ -930,7 +930,7 @@ void GameWorldManager::addGameObjectScepter(GameObjectScepterPtr gameObjectScept
 {
 	mGameObjects[gameObjectScepter->getName()]=gameObjectScepter;
 }
-void GameWorldManager::addGameObjectSignPost(GameObjectSignPostPtr gameObjectSignPost)
+void GameWorldManager::addGameObjectSignPost(GameObjectSignpostPtr gameObjectSignPost)
 {
 	mGameObjects[gameObjectSignPost->getName()]=gameObjectSignPost;
 	mGameObjectSignPostContainer.push_back(gameObjectSignPost);

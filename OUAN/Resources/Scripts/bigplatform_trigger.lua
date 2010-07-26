@@ -51,11 +51,3 @@ function bigPlatformEnterFunction(pOny)
 	end
 return
 end
-
---[[
-	C++ EXPORTS to Add to the luabind module definitions (and implement if necessary	 , or course)!!
-	GameWorldManager::getObject() <- static
-	GameObject::enabled()
-	GameObject::setCurrentWorldVisible()
-	
---]]

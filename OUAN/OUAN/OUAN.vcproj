@@ -934,6 +934,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentMessageBox.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentParticleSystem.cpp"
 						>
 					</File>
@@ -1297,6 +1301,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentLight.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Graphics\RenderComponent\RenderComponentMessageBox.h"
 						>
 					</File>
 					<File

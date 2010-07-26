@@ -5,6 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/RenderComponentMessageBox.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
@@ -33,7 +34,8 @@ namespace OUAN
 		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 
-		std::string mSignpostMessage;
+		//std::string mSignpostMessage;
+		RenderComponentMessageBoxPtr mMessageBox;
 	public:
 		//Constructor
 		GameObjectSignpost(const std::string& name);
@@ -43,6 +45,10 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+
+		RenderComponentMessageBoxPtr getRenderComponentMessageBox() const;
+		void setRenderComponentMessageBox(RenderComponentMessageBoxPtr messageBox);
+
 		/// Set logic component
 		void setLogicComponent(LogicComponentPropPtr logicComponent);
 
@@ -103,8 +109,8 @@ namespace OUAN
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
 
-		const std::string& getSignpostMessage() const;
-		void setSignpostMessage(const std::string& signpostMessage);
+	/*	const std::string& getSignpostMessage() const;
+		void setSignpostMessage(const std::string& signpostMessage);*/
 
 
 		/// Process collision event
@@ -127,11 +133,11 @@ namespace OUAN
 		//------------------------------------------------------------------
 	};
 
-	class TGameObjectSignPostParameters: public TGameObjectParameters
+	class TGameObjectSignpostParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectSignPostParameters();
-		~TGameObjectSignPostParameters();
+		TGameObjectSignpostParameters();
+		~TGameObjectSignpostParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityParameters;
@@ -145,7 +151,8 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;
 
-		std::string signpostMessage;
+		//std::string signpostMessage;
+		TRenderComponentMessageBoxParameters tMsgBoxParams;
 	};
 }
 #endif

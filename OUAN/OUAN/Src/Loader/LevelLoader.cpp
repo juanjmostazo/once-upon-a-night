@@ -83,6 +83,7 @@
 #include "../Graphics/RenderComponent/RenderComponentViewport.h"
 #include "../Graphics/RenderComponent/RenderComponentWater.h"
 #include "../Graphics/RenderComponent/RenderComponentPlane.h"
+#include "../Graphics/RenderComponent/RenderComponentMessageBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponent.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
@@ -2009,7 +2010,7 @@ void LevelLoader::processGameObjectScepter(XMLGameObject* gameObject)
 }
 void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 {
-	TGameObjectSignPostParameters params;
+	TGameObjectSignpostParameters params;
 	params.mMaxUpdateRadium=processCustomAttributeMaxUpdateRadium(gameObject);
 	params.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
 
@@ -2026,7 +2027,7 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 		params.nightmaresName = gameObject->nightmaresName;
 		params.name = gameObject->name;
 
-		params.signpostMessage=getPropertyString(gameObject->getMainXMLNode(),"SignpostCustomProperty::message",false);
+		//params.signpostMessage=getPropertyString(gameObject->getMainXMLNode(),"SignpostCustomProperty::message",false);
 
 		//Get Logic component
 		params.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
@@ -2039,8 +2040,12 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
 
-		//Get PhysicsComponentCharacter
+		//Get PhysicsComponentSimpleBox
 		params.tPhysicsComponentSimpleBoxParameters= processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+
+		params.tMsgBoxParams = processRenderComponentMessageBox(
+			gameObject->XMLNodeCustomProperties,
+			gameObject->getMainXMLNode());
 
 	}
 	catch( std::string error )
@@ -2051,7 +2056,10 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 
 	//Create GameObject
 	//mGameWorldManager->createGameObjectScaredPlant(tGameObjectScaredPlantParameters);
-	mGameWorldManager->addGameObjectSignPost(mGameObjectFactory->createGameObjectSignPost(params,mGameWorldManager));
+	GameObjectSignpostPtr signpost=mGameObjectFactory->createGameObjectSignPost(params,mGameWorldManager);
+	signpost->getRenderComponentMessageBox()->setMessageBoxText();
+	mGameWorldManager->addGameObjectSignPost(signpost);
+	signpost.reset();
 }
 void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 {
@@ -3766,6 +3774,17 @@ TRenderComponentPlaneParameters LevelLoader::processRenderComponentPlane(TiXmlEl
 	tRenderComponentPlaneParameters.cameraCollisionType=processCameraCollisionType(XMLNode);
 
 	return tRenderComponentPlaneParameters;
+}
+TRenderComponentMessageBoxParameters LevelLoader::processRenderComponentMessageBox(TiXmlElement *XMLClassNode,TiXmlElement* XMLSpecificNode)
+{
+	TRenderComponentMessageBoxParameters params;
+	params.basePanelName= getPropertyString(XMLClassNode,"RenderComponentMessageBox::basePanelName");
+	params.charPanelName= getPropertyString(XMLClassNode,"RenderComponentMessageBox::charPanelName");
+	params.charPanelMaterialName= getPropertyString(XMLSpecificNode,"RenderComponentMessageBox::charPanelMaterialName");
+	params.duration= getPropertyReal(XMLSpecificNode,"RenderComponentMessageBox::duration");
+	params.mMessage= getPropertyString(XMLSpecificNode,"RenderComponentMessageBox::message");
+	params.mVisible= getPropertyBool(XMLSpecificNode,"RenderComponentMessageBox::visible");
+	return params;
 }
 
 CameraTriggerPtr LevelLoader::processCameraTrigger(TiXmlElement *XMLNode)

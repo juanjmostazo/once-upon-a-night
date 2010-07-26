@@ -9,8 +9,52 @@
 
 #include "Utils/Logger.h"
 
+//EXAMPLE OF USE
+// GameObjectOny => CLASS_DECLARATIONS(GameObjectOny);
+// Result:
+//	class GameObjectOny;
+//	class TGameObjectOnyParameters;
+//  typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
+#define CLASS_DECLARATIONS(x) class x;\
+	class T##x##Parameters;\
+	typedef boost::shared_ptr<x> x##Ptr
+
+//EXAMPLE OF USE
+// RenderSubsystem => CLASS_DECLARATIONS_NO_PARAMS(RenderSubsystem);
+// Result:
+//	class RenderSubsystem;
+//  typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
+#define CLASS_DECLARATIONS_NO_PARAMS(y) class y;\
+	typedef boost::shared_ptr<y> y##Ptr
+
+//EXAMPLE OF USE
+// GAMEOBJECT_CONTAINER_DECL(Animated);
+// Result:
+//	typedef std::vector<GameObjectPtr> TGameObjectAnimatedContainer;
+#define GAMEOBJECT_CONTAINER_DECL(x) \
+	typedef std::vector<GameObjectPtr> TGameObject##x##Container
+
+//EXAMPLE OF USE
+// CONCRETE_GAMEOBJECT_CONTAINER_DECL(Ony);
+// Result:
+//	typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+#define CONCRETE_GAMEOBJECT_CONTAINER_DECL(x) \
+	typedef std::vector<GameObject##x##Ptr> TGameObject##x##Container
+
+//EXAMPLE OF USE
+// GAMEOBJECT_CLASS_DECL(Ony);
+// Result:
+// class GameObjectOny;
+// class TGameObjectOnyParameters;
+// typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
+// typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+#define GAMEOBJECT_CLASS_DECL(x)\
+	CLASS_DECLARATIONS(GameObject##x);\
+	CONCRETE_GAMEOBJECT_CONTAINER_DECL(x)
+
 namespace OUAN
 {
+
 	//-------------------------------------
 	//	Basic Types
 	//-------------------------------------
@@ -26,9 +70,7 @@ namespace OUAN
 	//-------------------------------------
 	//	Input module-related constants, type definitions and forwarded declarations
 	//-------------------------------------
-
-		class FullInputManager;
-		typedef boost::shared_ptr<FullInputManager> FullInputManagerPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(FullInputManager);
 
 	//-------------------------------------
 	//	Core module-related constants, type definitions and forwarded declarations
@@ -48,22 +90,15 @@ namespace OUAN
 		const std::string DEFAULT_WIN_NAME="OUAN";
 
 		//forward declarations
-		class GameStateManager;
-		class GameState;
-		class GameRunningState;
-		class MainMenuState;
-		class Application;
-
-		typedef boost::shared_ptr<GameStateManager> GameStateManagerPtr;
-		typedef boost::shared_ptr<GameState> GameStatePtr;
-		typedef boost::shared_ptr<Application> ApplicationPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(GameStateManager);
+		CLASS_DECLARATIONS_NO_PARAMS(GameState);
+		CLASS_DECLARATIONS_NO_PARAMS(Application);
 
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------
-
-		class GameWorldManager;
-		class Component;
+		CLASS_DECLARATIONS_NO_PARAMS(GameWorldManager);
+		CLASS_DECLARATIONS_NO_PARAMS(Component);
 
 		const std::string GAMEWORLDMANAGER_CFG="../../Config/gameworldmanager-cfg.xml";
 
@@ -87,73 +122,30 @@ namespace OUAN
 		const std::string LEVEL_START_CHECKPOINT="LevelStart";
 
 		//Render Components
-		class RenderComponent;
-		class TRenderComponentParameters;
-		typedef boost::shared_ptr<RenderComponent> RenderComponentPtr;
-
-		class RenderComponentBillboardSet;
-		class TRenderComponentBillboardSetParameters;
+		CLASS_DECLARATIONS(RenderComponent);
+		CLASS_DECLARATIONS(RenderComponentBillboardSet);
 		class TRenderComponentBillboardParameters;
-		typedef boost::shared_ptr<RenderComponentBillboardSet> RenderComponentBillboardSetPtr;
 
-		class RenderComponentEntity;
-		class TRenderComponentEntityParameters;
+		CLASS_DECLARATIONS(RenderComponentEntity);
 		class TRenderComponentSubEntityParameters;
 		class TRenderComponentEntityAnimParams;
-		typedef boost::shared_ptr<RenderComponentEntity> RenderComponentEntityPtr;
 
-		class RenderComponentLight;
-		class TRenderComponentLightParameters;
-		typedef boost::shared_ptr<RenderComponentLight> RenderComponentLightPtr;
-
-		class RenderComponentViewport;
-		class TRenderComponentViewportParameters;
-		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
-
-		class RenderComponentParticleSystem;
-		class TRenderComponentParticleSystemParameters;
-		typedef boost::shared_ptr<RenderComponentParticleSystem> RenderComponentParticleSystemPtr;
-
-		class RenderComponentQuadHalo;
-		class TRenderComponentQuadHaloParameters;
-		typedef boost::shared_ptr<RenderComponentQuadHalo> RenderComponentQuadHaloPtr;
-
-		class RenderComponentGlow;
-		class TRenderComponentGlowParameters;
-		typedef boost::shared_ptr<RenderComponentGlow> RenderComponentGlowPtr;
-
-		class RenderComponentFractalVolume;
-		class TRenderComponentFractalVolumeParameters;
-		typedef boost::shared_ptr<RenderComponentFractalVolume> RenderComponentFractalVolumePtr;
-
-		class RenderComponentWater;
-		class TRenderComponentWaterParameters;
-		typedef boost::shared_ptr<RenderComponentWater> RenderComponentWaterPtr;
-
-		class RenderComponentPlane;
-		class TRenderComponentPlaneParameters;
-		typedef boost::shared_ptr<RenderComponentPlane> RenderComponentPlanePtr;
-
-		class RenderComponentScene;
+		CLASS_DECLARATIONS(RenderComponentLight);
+		CLASS_DECLARATIONS(RenderComponentParticleSystem);
+		CLASS_DECLARATIONS(RenderComponentQuadHalo);
+		CLASS_DECLARATIONS(RenderComponentGlow);
+		CLASS_DECLARATIONS(RenderComponentFractalVolume);
+		CLASS_DECLARATIONS(RenderComponentWater);
+		CLASS_DECLARATIONS(RenderComponentPlane);
+		CLASS_DECLARATIONS (RenderComponentScene);
 		class TRenderComponentFogParameters;
 		class TRenderComponentSkyDomeParameters;
-		class TRenderComponentSceneParameters;
-		typedef boost::shared_ptr<RenderComponentScene> RenderComponentScenePtr;
 
-		class RenderComponentPositional;
-		class TRenderComponentPositionalParameters;
-		typedef boost::shared_ptr<RenderComponentPositional> RenderComponentPositionalPtr;
-
-		class RenderComponentInitial;
-		typedef boost::shared_ptr<RenderComponentInitial> RenderComponentInitialPtr;
-
-		class RenderComponentViewport;
-		class TRenderComponentViewportParameters;
-		typedef boost::shared_ptr<RenderComponentViewport> RenderComponentViewportPtr;
-
-		class RenderComponentDecal;
-		class TRenderComponentDecalParameters;
-		typedef boost::shared_ptr<RenderComponentDecal> RenderComponentDecalPtr;
+		CLASS_DECLARATIONS (RenderComponentPositional);
+		CLASS_DECLARATIONS (RenderComponentInitial);
+		CLASS_DECLARATIONS(RenderComponentViewport);
+		CLASS_DECLARATIONS(RenderComponentDecal);
+		CLASS_DECLARATIONS(RenderComponentMessageBox);
 
 		const std::string COMPONENT_TYPE_RENDER="RenderComponent";
 		const std::string COMPONENT_TYPE_RENDER_BILLBOARD_SET="RenderComponentBillboardSet";
@@ -169,10 +161,10 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_RENDER_SCENE="RenderComponentScene";
 		const std::string COMPONENT_TYPE_RENDER_VIEWPORT="RenderComponentViewport";
 		const std::string COMPONENT_TYPE_RENDER_DECAL="RenderComponentDecal";
+		const std::string COMPONENT_TYPE_RENDER_MESSAGEBOX="RenderComponentMessageBox";
 
 		//RayCasting
-		class RayCasting;
-		typedef boost::shared_ptr<RayCasting> RayCastingPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(RayCasting);
 
 		enum QueryFlags
 		{
@@ -187,54 +179,21 @@ namespace OUAN
 		};
 
 		//Physics components
-		class PhysicsComponent;
-		class TPhysicsComponentParameters;
-		typedef boost::shared_ptr<PhysicsComponent> PhysicsComponentPtr;
+		CLASS_DECLARATIONS(PhysicsComponent);
+		CLASS_DECLARATIONS(PhysicsComponentCharacter);
+		CLASS_DECLARATIONS(PhysicsComponentCharacterOny);
+		
+		CLASS_DECLARATIONS(PhysicsComponentComplex);
+		CLASS_DECLARATIONS(PhysicsComponentComplexConvex);
+		CLASS_DECLARATIONS(PhysicsComponentComplexTriangle);
 
-		class PhysicsComponentCharacter;
-		class TPhysicsComponentCharacterParameters;
-		typedef boost::shared_ptr<PhysicsComponentCharacter> PhysicsComponentCharacterPtr;
-
-		class PhysicsComponentCharacterOny;
-		class TPhysicsComponentCharacterOnyParameters;
-		typedef boost::shared_ptr<PhysicsComponentCharacterOny> PhysicsComponentCharacterOnyPtr;
-
-		class PhysicsComponentComplex;
-		class TPhysicsComponentComplexParameters;
-		typedef boost::shared_ptr<PhysicsComponentComplex> PhysicsComponentComplexPtr;
-
-		class PhysicsComponentComplexConvex;
-		class TPhysicsComponentComplexConvexParameters;
-		typedef boost::shared_ptr<PhysicsComponentComplexConvex> PhysicsComponentComplexConvexPtr;
-
-		class PhysicsComponentComplexTriangle;
-		class TPhysicsComponentComplexTriangleParameters;
-		typedef boost::shared_ptr<PhysicsComponentComplexTriangle> PhysicsComponentComplexTrianglePtr;
-
-		class PhysicsComponentSimpleCapsule;
-		class TPhysicsComponentSimpleCapsuleParameters;
-		typedef boost::shared_ptr<PhysicsComponentSimpleCapsule> PhysicsComponentSimpleCapsulePtr;
-
-		class PhysicsComponentSimpleBox;
-		class TPhysicsComponentSimpleBoxParameters;
-		typedef boost::shared_ptr<PhysicsComponentSimpleBox> PhysicsComponentSimpleBoxPtr;
-
-		class PhysicsComponentVolumeCapsule;
-		class TPhysicsComponentVolumeCapsuleParameters;
-		typedef boost::shared_ptr<PhysicsComponentVolumeCapsule> PhysicsComponentVolumeCapsulePtr;
-
-		class PhysicsComponentVolumeBox;
-		class TPhysicsComponentVolumeBoxParameters;
-		typedef boost::shared_ptr<PhysicsComponentVolumeBox> PhysicsComponentVolumeBoxPtr;
-
-		class PhysicsComponentVolumeConvex;
-		class TPhysicsComponentVolumeConvexParameters;
-		typedef boost::shared_ptr<PhysicsComponentVolumeConvex> PhysicsComponentVolumeConvexPtr;
-
-		class PhysicsComponentPillow;
-		class TPhysicsComponentPillowParameters;
-		typedef boost::shared_ptr<PhysicsComponentPillow> PhysicsComponentPillowPtr;
-
+		CLASS_DECLARATIONS(PhysicsComponentSimpleCapsule);
+		CLASS_DECLARATIONS(PhysicsComponentSimpleBox);
+		CLASS_DECLARATIONS(PhysicsComponentVolumeCapsule);
+		CLASS_DECLARATIONS(PhysicsComponentVolumeBox);
+		CLASS_DECLARATIONS(PhysicsComponentVolumeConvex);
+		CLASS_DECLARATIONS(PhysicsComponentPillow);
+		
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER="PhysicsComponentCharacter";
 		const std::string COMPONENT_TYPE_PHYSICS_CHARACTER_ONY="PhysicsComponentCharacterOny";
@@ -251,45 +210,18 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS_PILLOW="PhysicsComponentPillow";
 
 		//Logic Components
-		class LogicComponentOny;
-		class TLogicComponentOnyParameters;
-		typedef boost::shared_ptr<LogicComponentOny> LogicComponentOnyPtr;
-
-		class LogicComponentEnemy;
-		class TLogicComponentEnemyParameters;
-		typedef boost::shared_ptr<LogicComponentEnemy> LogicComponentEnemyPtr;
-
-		class LogicComponentItem;
-		class TLogicComponentItemParameters;
-		typedef boost::shared_ptr<LogicComponentItem> LogicComponentItemPtr;
-
-		class LogicComponentBreakable;
-		class TLogicComponentBreakableParameters;
-		typedef boost::shared_ptr<LogicComponentBreakable> LogicComponentBreakablePtr;
-
-		class LogicComponentUsable;
-		class TLogicComponentUsableParameters;
-		typedef boost::shared_ptr<LogicComponentUsable> LogicComponentUsablePtr;
-
-		class LogicComponentProp;
-		class TLogicComponentPropParameters;
-		typedef boost::shared_ptr<LogicComponentProp> LogicComponentPropPtr;
-
-		class LogicComponentTrigger;
-		class TLogicComponentTriggerParameters;
-		typedef boost::shared_ptr<LogicComponentTrigger> LogicComponentTriggerPtr;
-
-		class LogicComponentCameraTrigger;
-		class TLogicComponentCameraTriggerParameters;
-		typedef boost::shared_ptr<LogicComponentCameraTrigger> LogicComponentCameraTriggerPtr;
-
-		class LogicComponent;
-		class TLogicComponentParameters;
-		typedef boost::shared_ptr<LogicComponent> LogicComponentPtr;
-
-		class WeaponComponent;
-		class TWeaponComponentParameters;
-		typedef boost::shared_ptr<WeaponComponent> WeaponComponentPtr;
+		CLASS_DECLARATIONS(LogicComponent);
+		CLASS_DECLARATIONS(LogicComponentOny);
+		CLASS_DECLARATIONS(LogicComponentEnemy);
+		CLASS_DECLARATIONS(LogicComponentItem);
+		CLASS_DECLARATIONS(LogicComponentBreakable);
+		CLASS_DECLARATIONS(LogicComponentUsable);
+		CLASS_DECLARATIONS(LogicComponentProp);
+		CLASS_DECLARATIONS(LogicComponentTrigger);
+		CLASS_DECLARATIONS(LogicComponentCameraTrigger);
+		
+		CLASS_DECLARATIONS(WeaponComponent);
+		CLASS_DECLARATIONS(AttackComponent);
 
 		const int DEFAULT_MAX_WEAPON_POWER=10;
 		typedef enum
@@ -302,9 +234,7 @@ namespace OUAN
 			WEAPON_MODE_SPECIAL
 		} TWeaponMode;
 
-		class AttackComponent;
-		class TAttackComponentParameters;
-		typedef boost::shared_ptr<AttackComponent> AttackComponentPtr;
+		
 
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
 		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
@@ -322,37 +252,32 @@ namespace OUAN
 		///////////////////////////////////////////////////////////////////
 
 		//Game Object Specializations
-		class GameObject;
-		class TGameObjectParameters;
-		typedef boost::shared_ptr<GameObject> GameObjectPtr;
+		CLASS_DECLARATIONS(GameObject);
+
 
 		typedef std::map<std::string,GameObjectPtr> TGameObjectContainer;
 		typedef TGameObjectContainer::iterator TGameObjectContainerIterator;
 
-		typedef std::vector<GameObjectPtr> TGameObjectPositionalContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectMovableContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectNonMovableContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectMovableEntityContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectNonMovableEntityContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectEntityContainer;
-		
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsCharacterContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexConvexContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsComplexTriangleContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleBoxContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsSimpleCapsuleContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeBoxContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectPhysicsVolumeCapsuleContainer;
-
-		typedef std::vector<GameObjectPtr> TGameObjectLogicContainer;
-		typedef std::vector<GameObjectPtr> TGameObjectUsableContainer;
-
-		typedef std::vector<GameObjectPtr> TGameObjectSoundContainer;
-
+		GAMEOBJECT_CONTAINER_DECL(Positional);
+		GAMEOBJECT_CONTAINER_DECL(Movable);
+		GAMEOBJECT_CONTAINER_DECL(NonMovable);
+		GAMEOBJECT_CONTAINER_DECL(MovableEntity);
+		GAMEOBJECT_CONTAINER_DECL(NonMovableEntity);
+		GAMEOBJECT_CONTAINER_DECL(Entity);
+		GAMEOBJECT_CONTAINER_DECL(Physics);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsCharacter);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsComplex);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsComplexConvex);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsComplexTriangle);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsSimple);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsSimpleBox);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsSimpleCapsule);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsVolume);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsVolumeBox);
+		GAMEOBJECT_CONTAINER_DECL(PhysicsVolumeCapsule);
+		GAMEOBJECT_CONTAINER_DECL(Logic);
+		GAMEOBJECT_CONTAINER_DECL(Usable);
+		GAMEOBJECT_CONTAINER_DECL(Sound);
 
 
 		////////////////////////////////////////////////////////////////////
@@ -361,275 +286,61 @@ namespace OUAN
 		const int MIN_RANDOM_MOVEMENT_DELAY=500;
 		const int MAX_RANDOM_MOVEMENT_DELAY=800;
 
-		class GameObjectScene;
-		class TGameObjectSceneParameters;
-		typedef boost::shared_ptr<GameObjectScene> GameObjectScenePtr;
-
-		class GameObjectViewport;
-		class TGameObjectViewportParameters;
-		typedef boost::shared_ptr<GameObjectViewport> GameObjectViewportPtr;
-
-		class GameObjectProvisionalEntity;
-		class TGameObjectProvisionalEntityParameters;
-		typedef boost::shared_ptr<GameObjectProvisionalEntity> GameObjectProvisionalEntityPtr;
-
-		class GameObjectTerrainTriangle;
-		class TGameObjectTerrainTriangleParameters;
-		typedef boost::shared_ptr<GameObjectTerrainTriangle> GameObjectTerrainTrianglePtr;
-
-		class GameObjectTerrainConvex;
-		class TGameObjectTerrainConvexParameters;
-		typedef boost::shared_ptr<GameObjectTerrainConvex> GameObjectTerrainConvexPtr;
-
-		class GameObjectLight;
-		class TGameObjectLightParameters;
-		typedef boost::shared_ptr<GameObjectLight> GameObjectLightPtr;
-
-		class GameObjectBillboardSet;
-		class TGameObjectBillboardSetParameters;
-		typedef boost::shared_ptr<GameObjectBillboardSet> GameObjectBillboardSetPtr;
-
-		class GameObjectParticleSystem;
-		class TGameObjectParticleSystemParameters;
-		typedef boost::shared_ptr<GameObjectParticleSystem> GameObjectParticleSystemPtr;
-
-		class GameObjectOny;
-		class TGameObjectOnyParameters;
-		typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
-
-		class GameObjectTripolloDreams;
-		class TGameObjectTripolloDreamsParameters;
-		typedef boost::shared_ptr<GameObjectTripolloDreams> GameObjectTripolloDreamsPtr;
-
-		class GameObjectTripolloNightmares;
-		class TGameObjectTripolloNightmaresParameters;
-		typedef boost::shared_ptr<GameObjectTripolloNightmares> GameObjectTripolloNightmaresPtr;
-
-		class GameObjectPortal;
-		class TGameObjectPortalParameters;
-		typedef boost::shared_ptr<GameObjectPortal> GameObjectPortalPtr;
-
-		class GameObjectEye;
-		class TGameObjectEyeParameters;
-		typedef boost::shared_ptr<GameObjectEye> GameObjectEyePtr;
-
-		class GameObjectItem1UP;
-		class TGameObjectItem1UPParameters;
-		typedef boost::shared_ptr<GameObjectItem1UP> GameObjectItem1UPPtr;
-
-		class GameObjectItemMaxHP;
-		class TGameObjectItemMaxHPParameters;
-		typedef boost::shared_ptr<GameObjectItemMaxHP> GameObjectItemMaxHPPtr;
-
-		class GameObjectTriggerBox;
-		class TGameObjectTriggerBoxParameters;
-		typedef boost::shared_ptr<GameObjectTriggerBox> GameObjectTriggerBoxPtr;
-
-		class GameObjectTriggerCapsule;
-		class TGameObjectTriggerCapsuleParameters;
-		typedef boost::shared_ptr<GameObjectTriggerCapsule> GameObjectTriggerCapsulePtr;
-
-		class GameObjectNightGoblin;
-		class TGameObjectNightGoblinParameters;
-		typedef boost::shared_ptr<GameObjectNightGoblin> GameObjectNightGoblinPtr;
-
-		class GameObjectCryKing;
-		class TGameObjectCryKingParameters;
-		typedef boost::shared_ptr<GameObjectCryKing> GameObjectCryKingPtr;
-
-		class GameObjectBoss;
-		class TGameObjectBossParameters;
-		typedef boost::shared_ptr<GameObjectBoss> GameObjectBossPtr;
-
-		class GameObjectMagicClock;
-		class TGameObjectMagicClockParameters;
-		typedef boost::shared_ptr<GameObjectMagicClock> GameObjectMagicClockPtr;
-
-		class GameObjectPillow;
-		class TGameObjectPillowParameters;
-		typedef boost::shared_ptr<GameObjectPillow> GameObjectPillowPtr;
-
-		class GameObjectFlashLight;
-		class TGameObjectFlashLightParameters;
-		typedef boost::shared_ptr<GameObjectFlashLight> GameObjectFlashLightPtr;
-
-		class GameObjectTentetieso;
-		class TGameObjectTentetiesoParameters;
-		typedef boost::shared_ptr<GameObjectTentetieso> GameObjectTentetiesoPtr;
-
-		class GameObjectBee_Butterfly;
-		class TGameObjectBee_ButterflyParameters;
-		typedef boost::shared_ptr<GameObjectBee_Butterfly> GameObjectBee_ButterflyPtr;
-
-		class GameObjectSnakeCreeper;
-		class TGameObjectSnakeCreeperParameters;
-		typedef boost::shared_ptr<GameObjectSnakeCreeper> GameObjectSnakeCreeperPtr;
-
-		class GameObjectCarnivorousPlant;
-		class TGameObjectCarnivorousPlantParameters;
-		typedef boost::shared_ptr<GameObjectCarnivorousPlant> GameObjectCarnivorousPlantPtr;
-
-		class GameObjectDiamondTree;
-		class TGameObjectDiamondTreeParameters;
-		typedef boost::shared_ptr<GameObjectDiamondTree> GameObjectDiamondTreePtr;
-
-		class GameObjectStoryBook;
-		class TGameObjectStoryBookParameters;
-		typedef boost::shared_ptr<GameObjectStoryBook> GameObjectStoryBookPtr;
-
-		class GameObjectHeart;
-		class TGameObjectHeartParameters;
-		typedef boost::shared_ptr<GameObjectHeart> GameObjectHeartPtr;
-
-		class GameObjectDiamond;
-		class TGameObjectDiamondParameters;
-		typedef boost::shared_ptr<GameObjectDiamond> GameObjectDiamondPtr;
-
-		class GameObjectScaredPlant;
-		class TGameObjectScaredPlantParameters;
-		typedef boost::shared_ptr<GameObjectScaredPlant> GameObjectScaredPlantPtr;
-
-		class GameObjectTreeDreams;
-		class TGameObjectTreeDreamsParameters;
-		typedef boost::shared_ptr<GameObjectTreeDreams> GameObjectTreeDreamsPtr;
-
-		class GameObjectTreeNightmares;
-		class TGameObjectTreeNightmaresParameters;
-		typedef boost::shared_ptr<GameObjectTreeNightmares> GameObjectTreeNightmaresPtr;
-
-		class GameObjectClockPiece;
-		class TGameObjectClockPieceParameters;
-		typedef boost::shared_ptr<GameObjectClockPiece> GameObjectClockPiecePtr;
-
-		class GameObjectScepter;
-		class TGameObjectScepterParameters;
-		typedef boost::shared_ptr<GameObjectScepter> GameObjectScepterPtr;
-
-		class GameObjectDoor;
-		class TGameObjectDoorParameters;
-		typedef boost::shared_ptr<GameObjectDoor> GameObjectDoorPtr;
-
-		class GameObjectPlane;
-		class TGameObjectPlaneParameters;
-		typedef boost::shared_ptr<GameObjectPlane> GameObjectPlanePtr;
-
-		class GameObjectPlataform;
-		class TGameObjectPlataformParameters;
-		typedef boost::shared_ptr<GameObjectPlataform> GameObjectPlataformPtr;
-
-		class GameObjectWoodBox;
-		class TGameObjectWoodBoxParameters;
-		typedef boost::shared_ptr<GameObjectWoodBox> GameObjectWoodBoxPtr;
-
-		class GameObjectTraspasable;
-		class TGameObjectTraspasableParameters;
-		typedef boost::shared_ptr<GameObjectTraspasable> GameObjectTraspasablePtr;
-
-		class GameObjectCloud;
-		class TGameObjectCloudParameters;
-		typedef boost::shared_ptr<GameObjectCloud> GameObjectCloudPtr;
-
-		class GameObjectTree;
-		class TGameObjectTreeParameters;
-		typedef boost::shared_ptr<GameObjectTree> GameObjectTreePtr;
-
-		class GameObjectWater;
-		class TGameObjectWaterParameters;
-		typedef boost::shared_ptr<GameObjectWater> GameObjectWaterPtr;
-
-		class GameObjectSkyBody;
-		class TGameObjectSkyBodyParameters;
-		typedef boost::shared_ptr<GameObjectSkyBody> GameObjectSkyBodyPtr;
-
-		class GameObjectFog;
-		class TGameObjectFogParameters;
-		typedef boost::shared_ptr<GameObjectFog> GameObjectFogPtr;
-
-		class GameObjectTower;
-		class TGameObjectTowerParameters;
-		typedef boost::shared_ptr<GameObjectTower> GameObjectTowerPtr;
-
-		class GameObjectTreeComplex;
-		class TGameObjectTreeComplexParameters;
-		typedef boost::shared_ptr<GameObjectTreeComplex> GameObjectTreeComplexPtr;
-
-		class GameObjectCameraTrigger;
-		class TGameObjectCameraTriggerParameters;
-		typedef boost::shared_ptr<GameObjectCameraTrigger> GameObjectCameraTriggerPtr;
-
-		class GameObjectSignpost;
-		class TGameObjectSignPostParameters;
-		typedef boost::shared_ptr<GameObjectSignpost> GameObjectSignPostPtr;
-
-		class GameObjectNest;
-		class TGameObjectNestParameters;
-		typedef boost::shared_ptr<GameObjectNest> GameObjectNestPtr;
-
-		class GameObjectSwitch;
-		class TGameObjectSwitchParameters;
-		typedef boost::shared_ptr<GameObjectSwitch> GameObjectSwitchPtr;
-
-		class GameObjectLevelEntrance;
-		class TGameObjectLevelEntranceParameters;
-		typedef boost::shared_ptr<GameObjectLevelEntrance> GameObjectLevelEntrancePtr;
-
-		class GameObjectBomb;
-		class TGameObjectBombParameters;
-		typedef boost::shared_ptr<GameObjectBomb> GameObjectBombPtr;
-
-		class GameObjectTotem;
-		class TGameObjectTotemParameters;
-		typedef boost::shared_ptr<GameObjectTotem> GameObjectTotemPtr;
-
-
-
-		typedef std::vector<GameObjectScenePtr> TGameObjectSceneContainer;
-		typedef std::vector<GameObjectViewportPtr> TGameObjectViewportContainer;
-		typedef std::vector<GameObjectTerrainConvexPtr> TGameObjectTerrainConvexContainer;
-		typedef std::vector<GameObjectTerrainTrianglePtr> TGameObjectTerrainTriangleContainer;
-		typedef std::vector<GameObjectLightPtr> TGameObjectLightContainer;
-		typedef std::vector<GameObjectBillboardSetPtr> TGameObjectBillboardSetContainer;
-		typedef std::vector<GameObjectParticleSystemPtr> TGameObjectParticleSystemContainer;
-		typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
-		typedef std::vector<GameObjectTripolloDreamsPtr> TGameObjectTripolloDreamsContainer;
-		typedef std::vector<GameObjectTripolloNightmaresPtr> TGameObjectTripolloNightmaresContainer;
-		typedef std::vector<GameObjectPortalPtr> TGameObjectPortalContainer;
-		typedef std::vector<GameObjectEyePtr> TGameObjectEyeContainer;
-		typedef std::vector<GameObjectItem1UPPtr> TGameObjectItem1UPContainer;
-		typedef std::vector<GameObjectItemMaxHPPtr> TGameObjectItemMaxHPContainer;
-		typedef std::vector<GameObjectTriggerBoxPtr> TGameObjectTriggerBoxContainer;
-		typedef std::vector<GameObjectTriggerCapsulePtr> TGameObjectTriggerCapsuleContainer;
-		typedef std::vector<GameObjectNightGoblinPtr> TGameObjectNightGoblinContainer;
-		typedef std::vector<GameObjectCryKingPtr> TGameObjectCryKingContainer;
-		typedef std::vector<GameObjectBossPtr> TGameObjectBossContainer;
-		typedef std::vector<GameObjectMagicClockPtr> TGameObjectMagicClockContainer;
-		typedef std::vector<GameObjectPillowPtr> TGameObjectPillowContainer;
-		typedef std::vector<GameObjectFlashLightPtr> TGameObjectFlashLightContainer;
-		typedef std::vector<GameObjectTentetiesoPtr> TGameObjectTentetiesoContainer;
-		typedef std::vector<GameObjectBee_ButterflyPtr> TGameObjectBee_ButterflyContainer;
-		typedef std::vector<GameObjectDiamondTreePtr> TGameObjectDiamondTreeContainer;
-		typedef std::vector<GameObjectStoryBookPtr> TGameObjectStoryBookContainer;
-		typedef std::vector<GameObjectHeartPtr> TGameObjectHeartContainer;
-		typedef std::vector<GameObjectDiamondPtr> TGameObjectDiamondContainer;
-		typedef std::vector<GameObjectScaredPlantPtr> TGameObjectScaredPlantContainer;
-		typedef std::vector<GameObjectTreeDreamsPtr> TGameObjectTreeDreamsContainer;
-		typedef std::vector<GameObjectTreeNightmaresPtr> TGameObjectTreeNightmaresContainer;
-		typedef std::vector<GameObjectClockPiecePtr> TGameObjectClockPieceContainer;
-		typedef std::vector<GameObjectCarnivorousPlantPtr> TGameObjectCarnivorousPlantContainer;
-		typedef std::vector<GameObjectSnakeCreeperPtr> TGameObjectSnakeCreeperContainer;
-		typedef std::vector<GameObjectWoodBoxPtr> TGameObjectWoodBoxContainer;
-		typedef std::vector<GameObjectWaterPtr> TGameObjectWaterContainer;
-		typedef std::vector<GameObjectPlanePtr> TGameObjectPlaneContainer;
-		typedef std::vector<GameObjectFogPtr> TGameObjectFogContainer;
-		typedef std::vector<GameObjectTowerPtr> TGameObjectTowerContainer;
-		typedef std::vector<GameObjectTreeComplexPtr> TGameObjectTreeComplexContainer;
-		typedef std::vector<GameObjectCameraTriggerPtr> TGameObjectCameraTriggerContainer;
-		typedef std::vector<GameObjectSignPostPtr> TGameObjectSignPostContainer;
-		typedef std::vector<GameObjectNestPtr> TGameObjectNestContainer;
-		typedef std::vector<GameObjectTotemPtr> TGameObjectTotemContainer;
-		typedef std::vector<GameObjectSwitchPtr> TGameObjectSwitchContainer;
-		typedef std::vector<GameObjectLevelEntrancePtr> TGameObjectLevelEntranceContainer;
-		typedef std::vector<GameObjectBombPtr> TGameObjectBombContainer;
+		GAMEOBJECT_CLASS_DECL(Scene);
+		GAMEOBJECT_CLASS_DECL(Viewport);
+		GAMEOBJECT_CLASS_DECL(TerrainConvex);
+		GAMEOBJECT_CLASS_DECL(TerrainTriangle);
+		GAMEOBJECT_CLASS_DECL(Light);
+		GAMEOBJECT_CLASS_DECL(BillboardSet);
+		GAMEOBJECT_CLASS_DECL(ParticleSystem);
+		GAMEOBJECT_CLASS_DECL(Ony);
+		GAMEOBJECT_CLASS_DECL(TripolloDreams);
+		GAMEOBJECT_CLASS_DECL(TripolloNightmares);
+		GAMEOBJECT_CLASS_DECL(Portal);
+		GAMEOBJECT_CLASS_DECL(Eye);
+		GAMEOBJECT_CLASS_DECL(Item1UP);
+		GAMEOBJECT_CLASS_DECL(ItemMaxHP);
+		GAMEOBJECT_CLASS_DECL(TriggerBox);
+		GAMEOBJECT_CLASS_DECL(TriggerCapsule);
+		GAMEOBJECT_CLASS_DECL(CryKing);
+		GAMEOBJECT_CLASS_DECL(Boss);
+		GAMEOBJECT_CLASS_DECL(MagicClock);
+		GAMEOBJECT_CLASS_DECL(Pillow);
+		GAMEOBJECT_CLASS_DECL(FlashLight);	
+		GAMEOBJECT_CLASS_DECL(Tentetieso);
+		GAMEOBJECT_CLASS_DECL(Bee_Butterfly);
+		GAMEOBJECT_CLASS_DECL(DiamondTree);
+		GAMEOBJECT_CLASS_DECL(StoryBook);
+		GAMEOBJECT_CLASS_DECL(Heart);
+		GAMEOBJECT_CLASS_DECL(Diamond);
+		GAMEOBJECT_CLASS_DECL(ScaredPlant);
+		GAMEOBJECT_CLASS_DECL(TreeDreams);
+		GAMEOBJECT_CLASS_DECL(TreeNightmares);
+		GAMEOBJECT_CLASS_DECL(ClockPiece);
+		GAMEOBJECT_CLASS_DECL(CarnivorousPlant);
+		GAMEOBJECT_CLASS_DECL(SnakeCreeper);
+		GAMEOBJECT_CLASS_DECL(WoodBox);
+		GAMEOBJECT_CLASS_DECL(Water);
+		GAMEOBJECT_CLASS_DECL(Plane);
+		GAMEOBJECT_CLASS_DECL(Fog);
+		GAMEOBJECT_CLASS_DECL(Tower);
+		GAMEOBJECT_CLASS_DECL(TreeComplex);
+		GAMEOBJECT_CLASS_DECL(CameraTrigger);
+		GAMEOBJECT_CLASS_DECL(Signpost);
+		GAMEOBJECT_CLASS_DECL(Nest);
+		GAMEOBJECT_CLASS_DECL(Totem);
+		GAMEOBJECT_CLASS_DECL(Switch);
+		GAMEOBJECT_CLASS_DECL(LevelEntrance);
+		GAMEOBJECT_CLASS_DECL(Bomb);
+		GAMEOBJECT_CLASS_DECL(Traspasable);
+		GAMEOBJECT_CLASS_DECL(Cloud);
+		GAMEOBJECT_CLASS_DECL(Door);
+		GAMEOBJECT_CLASS_DECL(NightGoblin);
+		GAMEOBJECT_CLASS_DECL(Plataform);
+		GAMEOBJECT_CLASS_DECL(ProvisionalEntity);
+		GAMEOBJECT_CLASS_DECL(Scepter);
+		GAMEOBJECT_CLASS_DECL(Tree);
+		GAMEOBJECT_CLASS_DECL(SkyBody);
 
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
@@ -709,18 +420,7 @@ namespace OUAN
 
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
-
-
-		///////////////////////////////////////////////////////////////////
-
-		typedef boost::shared_ptr<GameWorldManager> GameWorldManagerPtr;
-		typedef boost::shared_ptr<Component> ComponentPtr;
 		
-		typedef std::map<std::string,ComponentPtr> TComponentContainer;
-		typedef TComponentContainer::iterator TComponentContainerIterator;
-
-		const int GAMEOBJECT_ID_ZERO_PADDING=6;
-
 		///////////////////////////////////////////////////////////////////
 
 		//-------------------------------------
@@ -739,12 +439,8 @@ namespace OUAN
 
 		class Line3D;
 
-		class TrajectoryManager;
-		typedef boost::shared_ptr<TrajectoryManager> TrajectoryManagerPtr;
-
-		class TrajectoryComponent;
-		typedef boost::shared_ptr<TrajectoryComponent> TrajectoryComponentPtr;
-		class TTrajectoryComponentParameters;
+		CLASS_DECLARATIONS_NO_PARAMS(TrajectoryManager);
+		CLASS_DECLARATIONS(TrajectoryComponent);
 
 		const std::string COMPONENT_TYPE_TRAJECTORY="TrajectoryComponent";
 		const std::string DEFAULT_WALKABILITY_MAP_DREAMS="dreams";
@@ -773,8 +469,8 @@ namespace OUAN
 		typedef std::map<std::string,XMLWalkabilityMap>::iterator XMLWalkabilityMapContainerIterator;
 
 		class XMLParser;
-		class Configuration;
-		class LevelLoader;
+		
+		CLASS_DECLARATIONS_NO_PARAMS(LevelLoader);
 
 		const std::string DEFAULT_OGRE_RESOURCE_MANAGER_GROUP="General";
 
@@ -787,14 +483,12 @@ namespace OUAN
 		const std::string DREAMS_SHOULD_NOT_EXIST="This object can't have dreams node";  
 		const std::string NIGHTMARES_SHOULD_NOT_EXIST="This object can't have nightmares node";  
 
-		typedef boost::shared_ptr<Configuration> ConfigurationPtr;
-		typedef boost::shared_ptr<LevelLoader> LevelLoaderPtr;
-
 		const std::string GAME_OBJECT_PARAMETERS_PATH="../../Resources/Levels/GameObjects/";
 		const std::string LEVELS_PATH="../../Resources/Levels/";
 		const std::string FRACTAL_CLOUDS_CFG="../../Config/clouds_fractal-cfg.xml";
 		const std::string BILLBOARD_CLOUDS_CFG="../../Config/clouds_billboard-cfg.xml";
 
+		CLASS_DECLARATIONS_NO_PARAMS(Configuration);
 		///	Type definition for the data structure that'll hold the options:
 		/// an STL map of pairs of strings, representing the key and value, respectively
 		typedef std::map<std::string, std::string> TConfigMap;
@@ -839,37 +533,27 @@ namespace OUAN
 			AXIS_NEG_Z
 		}TCoordinateAxis;
 
-		class RenderSubsystem;
-		typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
-
-		class ChangeWorldRenderer;
-		typedef boost::shared_ptr<ChangeWorldRenderer> ChangeWorldRendererPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(RenderSubsystem);
+		CLASS_DECLARATIONS_NO_PARAMS(ChangeWorldRenderer);
+		
 
 		///Camera Manager
 		const std::string CAMERA_CFG="../../Config/camera-cfg.xml";
 		const std::string CAMERA_CONTROLLER_THIRD_PERSON_FREE_CFG="../../Config/camera-thirdfree-cfg.xml";
 		const std::string CAMERA_CONTROLLER_THIRD_PERSON_AUTO_CFG="../../Config/camera-thirdauto-cfg.xml";
 
-		class CameraManager;
-		typedef boost::shared_ptr<CameraManager> CameraManagerPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(CameraManager);
 
-		class CameraParameters;
-		typedef boost::shared_ptr<CameraParameters> CameraParametersPtr;
-
-		class CameraTrigger;
-		typedef boost::shared_ptr<CameraTrigger> CameraTriggerPtr;
-
-		class CameraInput;
-		typedef boost::shared_ptr<CameraInput> CameraInputPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(CameraParameters);
+		CLASS_DECLARATIONS_NO_PARAMS(CameraTrigger);
+		CLASS_DECLARATIONS_NO_PARAMS(CameraInput);
 
 		class CameraController;
 		class CameraControllerFirstPerson;
 		class CameraControllerThirdPerson;
 
-		class TransparentEntityManager;
-		typedef boost::shared_ptr<TransparentEntityManager> TransparentEntityManagerPtr;
-		class TransparentEntity;
-		typedef boost::shared_ptr<TransparentEntity> TransparentEntityPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(TransparentEntityManager);
+		CLASS_DECLARATIONS_NO_PARAMS(TransparentEntity);
 
 		/// Ogre root object
 		typedef boost::shared_ptr<Ogre::Root> RootPtr;
@@ -906,8 +590,7 @@ namespace OUAN
 		//	Physics module-related constants, type definitions and forwarded declarations
 		//-------------------------------------
 
-		class PhysicsSubsystem;
-		typedef boost::shared_ptr<PhysicsSubsystem> PhysicsSubsystemPtr;
+		CLASS_DECLARATIONS_NO_PARAMS(PhysicsSubsystem);
 
 		enum GameGroup
 		{
