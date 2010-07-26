@@ -50,3 +50,38 @@ material OUAN/Hud/PowerBar
 		}
 	}
 }
+
+material OUAN/Hud/TextBubble
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture HUD_bubble.png
+			}
+		}
+	}
+}
+material OUAN/Hud/Signpost
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture HUD_signpost.png
+			}
+		}
+	}
+}

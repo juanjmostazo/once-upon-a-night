@@ -2960,27 +2960,27 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 	//addGameObjectWater(pGameObjectWater);
 	return pGameObjectWater;
 }
-GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSignPostParameters tGameObjectSignPostParameters, 
+GameObjectSignpostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSignpostParameters TGameObjectSignpostParameters, 
 									   GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectSignPostPtr gameObject;
+	GameObjectSignpostPtr gameObject;
 
 	//Create GameObject
-	gameObject= GameObjectSignPostPtr(new GameObjectSignpost(tGameObjectSignPostParameters.name));
-	gameObject->setMaxUpdateRadium(tGameObjectSignPostParameters.mMaxUpdateRadium);
-	gameObject->setParentNest(tGameObjectSignPostParameters.parentNest);
-	gameObject->setSpawnProbability(tGameObjectSignPostParameters.spawnProbability);
-	gameObject->setMaxRenderRadium(tGameObjectSignPostParameters.mMaxRenderRadium);
+	gameObject= GameObjectSignpostPtr(new GameObjectSignpost(TGameObjectSignpostParameters.name));
+	gameObject->setMaxUpdateRadium(TGameObjectSignpostParameters.mMaxUpdateRadium);
+	gameObject->setParentNest(TGameObjectSignpostParameters.parentNest);
+	gameObject->setSpawnProbability(TGameObjectSignpostParameters.spawnProbability);
+	gameObject->setMaxRenderRadium(TGameObjectSignpostParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
 	gameObject->setLogicComponent(
 		mComponentFactory->createLogicComponentProp(
 		gameObject,
-		tGameObjectSignPostParameters.tLogicComponentParameters));
+		TGameObjectSignpostParameters.tLogicComponentParameters));
 
 	//Create RenderComponentPositional
 	gameObject->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		gameObject,tGameObjectSignPostParameters.tRenderComponentPositionalParameters));
+		gameObject,TGameObjectSignpostParameters.tRenderComponentPositionalParameters));
 
 	//Create RenderComponentInitial
 	gameObject->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
@@ -2988,17 +2988,22 @@ GameObjectSignPostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 
 	//Create RenderComponentEntity
 	gameObject->setRenderComponentEntity(
-		mComponentFactory->createRenderComponentEntity(tGameObjectSignPostParameters.name,
-		gameObject,tGameObjectSignPostParameters.tRenderComponentEntityParameters));
+		mComponentFactory->createRenderComponentEntity(TGameObjectSignpostParameters.name,
+		gameObject,TGameObjectSignpostParameters.tRenderComponentEntityParameters));
 
 	//Create PhysicsComponent
 	gameObject->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		gameObject,
-		tGameObjectSignPostParameters.tPhysicsComponentSimpleBoxParameters,
+		TGameObjectSignpostParameters.tPhysicsComponentSimpleBoxParameters,
 		gameObject->getRenderComponentPositional()));
 
 
-	gameObject->setSignpostMessage(tGameObjectSignPostParameters.signpostMessage);
+	//gameObject->setSignpostMessage(TGameObjectSignpostParameters.signpostMessage);
+	gameObject->setRenderComponentMessageBox(
+		mComponentFactory->createRenderComponentMessageBox(
+		gameObject,
+		TGameObjectSignpostParameters.tMsgBoxParams
+		));
 
 	//Add reference to this
 	gameObject->setGameWorldManager(gameWorldMgr);

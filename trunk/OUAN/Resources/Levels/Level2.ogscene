@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-709.241 619.409 -421.243" orientation="-0.963739 0.266572 0.011768 0.00288534"></OPTION>
+    <OPTION id="2" position="86.0749 170.124 143.999" orientation="-0.963739 0.266572 0.011768 0.00288534"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.963787 0.266586 0.0117686 0.00288548"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.963739 0.266572 0.011768 0.00288534"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-709.241 619.409 -421.243"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="86.0749 170.124 143.999"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1567,7 +1567,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_GETTINGCLOSE" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_GETTINGCLOSE" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3721,7 +3724,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_LOOKINGAT" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_LOOKINGAT" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -4414,7 +4420,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_GALLERY" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_GALLERY" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6345,7 +6354,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_TICKTOCK" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_TICKTOCK" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7052,7 +7064,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_ADVERTISING" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_ADVERTISING" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -9084,7 +9099,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_HURRY_UP" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_HURRY_UP" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12055,7 +12073,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_TRIPOLLO_INFO" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_TRIPOLLO_INFO" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14752,7 +14773,10 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="SignpostCustomProperty::message" type="7" value="SIGNPOST_MSG_DEVELOPERPUN" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_DEVELOPERPUN" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

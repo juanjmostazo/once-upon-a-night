@@ -188,7 +188,7 @@ namespace OUAN
 		TRenderComponentGlowParameters tRenderComponentGlowNightmaresParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentParameters tLogicComponentParameters;	
 	};
 }
 #endif
