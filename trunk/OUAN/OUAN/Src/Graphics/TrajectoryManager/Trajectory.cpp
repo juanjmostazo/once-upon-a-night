@@ -593,7 +593,7 @@ void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 
 	mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
-	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
+	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green",mDefaultSpeed);
 
 	mSceneManager->getSceneNode(mParent)->setPosition(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition());
 	mSceneManager->getSceneNode(mParent)->setOrientation(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation());

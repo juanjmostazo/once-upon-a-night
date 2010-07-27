@@ -50,7 +50,10 @@ namespace OUAN
 		double mMaxUpdateRadium;
 		double mMaxRenderRadium;
 
-		virtual bool isWorthUpdatingProbability(double point, double lowerPoint, double higherPoint);
+		virtual bool isWorthUpdatingThisFrame(double distance, double distancePerFrame, double maxDistance);
+
+		double mElapsedTimeSinceLastLogicUpdate;
+		double mElapsedTimeSinceLastPhysicsUpdate;
 
 	public:
 		//Constructor
@@ -212,6 +215,11 @@ namespace OUAN
 		virtual bool isWorthUpdatingPhysicsComponents();
 		virtual bool isWorthUpdatingLogicComponents();
 		virtual bool isWorthRendering();
+
+		virtual void setElapsedTimeSinceLastPhysicsUpdate(double elapsedTime);
+		virtual double getElapsedTimeSinceLastPhysicsUpdate();
+		virtual void setElapsedTimeSinceLastLogicUpdate(double elapsedTime);
+		virtual double getElapsedTimeSinceLastLogicUpdate();
 
 		virtual std::string getTranslation(const std::string& str);
 

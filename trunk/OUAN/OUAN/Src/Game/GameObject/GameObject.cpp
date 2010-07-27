@@ -47,6 +47,9 @@ void GameObject::reset()
 	mChangeWorldDelay=0;
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
+
+	mElapsedTimeSinceLastLogicUpdate=0;
+	mElapsedTimeSinceLastPhysicsUpdate=0;
 }
 
 bool GameObject::isFirstUpdate()
@@ -459,29 +462,37 @@ void GameObject::setMaxUpdateRadium(double maxUpdateRadium)
 	mMaxUpdateRadium = maxUpdateRadium;
 }
 
-bool GameObject::isWorthUpdatingProbability(double point, double lowerPoint, double higherPoint)
+bool GameObject::isWorthUpdatingThisFrame(double distance, double distancePerFrame, double maxDistance)
 {
-	if (point <= lowerPoint)
-	{
-		return true;
-	
-	} 
-	else if (point >= higherPoint)
+	//if (point <= lowerPoint)
+	//{
+	//	return true;
+	//
+	//} 
+	//{
+	//	// Normalising point into [0, 1]
+	//	point -= lowerPoint;
+	//	point /= (higherPoint - lowerPoint); 
+
+	//	// Inverting probability 
+	//	point = 1 - point; 
+
+	//	double randomPoint = Utils::Random::getInstance()->getRandomDouble(0, 1);
+
+	//	return randomPoint < point;
+	//}
+	if (distance >= maxDistance)
 	{
 		return false;
 	}
+	else if(mNumUpdates%(int(distance/distancePerFrame)+1)==0)
+	{
+		//return true once every distance/distancePerFrame+1 frames
+		return true;
+	}
 	else
 	{
-		// Normalising point into [0, 1]
-		point -= lowerPoint;
-		point /= (higherPoint - lowerPoint); 
-
-		// Inverting probability 
-		point = 1 - point; 
-
-		double randomPoint = Utils::Random::getInstance()->getRandomDouble(0, 1);
-
-		return randomPoint < point;
+		return false;
 	}
 }
 
@@ -505,7 +516,7 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 	//	Logger::getInstance()->log("#####");
 	//}
 
-	return isWorthUpdatingProbability(
+	return isWorthUpdatingThisFrame(
 		getPositionalComponent()->getPosition().distance(positionOny),
 		mMaxUpdateRadium,
 		mGameWorldManager->DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT);
@@ -521,7 +532,7 @@ bool GameObject::isWorthUpdatingLogicComponents()
 
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	return isWorthUpdatingProbability(
+	return isWorthUpdatingThisFrame(
 		getPositionalComponent()->getPosition().distance(positionOny),
 		mMaxUpdateRadium,
 		mGameWorldManager->DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT);
@@ -585,6 +596,25 @@ void GameObject::setVisible(bool visible)
 
 }
 
+void GameObject::setElapsedTimeSinceLastPhysicsUpdate(double elapsedTime)
+{
+	mElapsedTimeSinceLastPhysicsUpdate+=elapsedTime;
+}
+
+double GameObject::getElapsedTimeSinceLastPhysicsUpdate()
+{
+	return mElapsedTimeSinceLastPhysicsUpdate;
+}
+
+void GameObject::setElapsedTimeSinceLastLogicUpdate(double elapsedTime)
+{
+	mElapsedTimeSinceLastLogicUpdate+=elapsedTime;
+}
+
+double GameObject::getElapsedTimeSinceLastLogicUpdate()
+{
+	return mElapsedTimeSinceLastLogicUpdate;
+}
 
 double GameObject::getMovingSpeed()
 {

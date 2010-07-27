@@ -32,22 +32,22 @@ function tripolloLogic(pTripollo,state)
 		newState=TRIPOLLO_STATE_HIT
 	elseif newState==TRIPOLLO_STATE_HIT then
 		newState=TRIPOLLO_STATE_IDLE				
-	elseif state==TRIPOLLO_STATE_IDLE and playerDistance<=myLOS then
+	elseif state==TRIPOLLO_STATE_IDLE and playerDistance<=myLOS*10 then
 		newState=TRIPOLLO_STATE_PATROL
 	elseif state==TRIPOLLO_STATE_PATROL then
-		if playerDistance>myLOS then
+		if playerDistance>myLOS*10 then
 			newState=TRIPOLLO_STATE_IDLE
-		elseif playerDistance<(myLOS/2.5) then
+		elseif playerDistance<(myLOS) then
 			newState=TRIPOLLO_STATE_FIND
 		end
 	elseif state==TRIPOLLO_STATE_FIND then
-		if playerDistance>=(myLOS/2.5) then
+		if playerDistance>=(myLOS) then
 			newState=TRIPOLLO_STATE_PATROL
-		elseif playerDistance<(myLOS/7) then
+		elseif playerDistance<(myLOS/3) then
 			newState=TRIPOLLO_STATE_CHASE			
 		end
 	elseif state==TRIPOLLO_STATE_CHASE then
-		if playerDistance>=(myLOS/7) then
+		if playerDistance>=(myLOS/3) then
 			newState=TRIPOLLO_STATE_FIND
 		end		
 	end
