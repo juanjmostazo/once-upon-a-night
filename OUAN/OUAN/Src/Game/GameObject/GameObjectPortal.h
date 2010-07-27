@@ -8,18 +8,17 @@
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentGlow.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponentUsable.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
 	const std::string PORTAL_ANIMATION_IDLE="idle";
 	const std::string PORTAL_ANIMATION_ONY_APPROACHING="";
-	const std::string PORTAL_ANIMATION_ONY_MAY_ACTIVATE="";
 	const std::string PORTAL_ANIMATION_CHANGING_WORLD="";
 
 	const std::string PORTAL_STATE_IDLE="PORTAL_STATE_IDLE";
 	const std::string PORTAL_STATE_ONY_APPROACHING="PORTAL_STATE_ONY_APPROACHING";
-	const std::string PORTAL_STATE_ONY_MAY_ACTIVATE="PORTAL_STATE_ONY_MAY_ACTIVATE";
+	const std::string PORTAL_STATE_HIT="PORTAL_STATE_HIT";
 	const std::string PORTAL_STATE_CHANGING_WORLD="PORTAL_STATE_CHANGING_WORLD";
 
 	class AudioComponent;
@@ -46,7 +45,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentUsablePtr mLogicComponentUsable;		
+		LogicComponentPropPtr mLogicComponent;		
 
 		AudioComponentPtr mAudioComponent;
 
@@ -60,10 +59,10 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 		/// Set logic component
-		void setLogicComponentUsable(LogicComponentUsablePtr logicComponentUsable);
+		void setLogicComponentProp(LogicComponentPropPtr logicComponentProp);
 
 		/// return logic component
-		LogicComponentUsablePtr getLogicComponentUsable();
+		LogicComponentPropPtr getLogicComponentProp();
 
 		void setVisible(bool visible);
 
@@ -152,8 +151,6 @@ namespace OUAN
 		// update logic component
 		void updateLogic(double elapsedSeconds);
 
-		void activate();
-		bool canBeActivated() const;
 
 		void update(double elapsedSeconds);
 		void setCurrentWorldVisibility(bool visibility);
@@ -180,7 +177,7 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentUsableParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentParameters;
 
 		///Audio params
 		TAudioComponentMap tAudioComponentParameters;

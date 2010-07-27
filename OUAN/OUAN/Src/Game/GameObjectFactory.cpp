@@ -1702,8 +1702,8 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	pGameObjectPortal->setMaxRenderRadium(tGameObjectPortalParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectPortal->setLogicComponentUsable(
-		mComponentFactory->createLogicComponentUsable(
+	pGameObjectPortal->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectPortal,
 		tGameObjectPortalParameters.tLogicComponentParameters));
 

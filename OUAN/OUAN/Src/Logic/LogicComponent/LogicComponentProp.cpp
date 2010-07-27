@@ -53,7 +53,15 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 			mHitRecoveryTime=1;
 		}
 	}
-
+	bool isParentPortal = mParent->getType().compare(GAME_OBJECT_TYPE_PORTAL)==0;
+	if (isParentPortal && isWeaponCollision)
+	{
+		if(mHitRecoveryTime<0)
+		{
+			mHasTakenHit=true;
+			mHitRecoveryTime=0;
+		}
+	}
 
 	//if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	//{
@@ -81,6 +89,8 @@ void LogicComponentProp::update(double elapsedTime)
 		mTimeSpent+=elapsedTime;
 	if(mHitRecoveryTime>=0)
 		mHitRecoveryTime-=elapsedTime;
+	
+	mHasTakenHit=false;
 }
 
 double LogicComponentProp::getApproachDistance() const

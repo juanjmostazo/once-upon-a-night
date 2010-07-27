@@ -1,49 +1,34 @@
 PORTAL_STATE_IDLE=0
 PORTAL_STATE_ONY_APPROACHING=1
-PORTAL_STATE_ONY_MAY_ACTIVATE=2
+PORTAL_STATE_HIT=2
 PORTAL_STATE_CHANGING_WORLD=3
 
 PORTAL_STATE_NAMES = {}
 PORTAL_STATE_NAMES[PORTAL_STATE_IDLE]="IDLE"
 PORTAL_STATE_NAMES[PORTAL_STATE_ONY_APPROACHING]="ONY_APPROACHING"
-PORTAL_STATE_NAMES[PORTAL_STATE_ONY_MAY_ACTIVATE]="ONY_MAY_ACTIVATE"
+PORTAL_STATE_NAMES[PORTAL_STATE_HIT]="HIT"
 PORTAL_STATE_NAMES[PORTAL_STATE_CHANGING_WORLD]="CHANGING_WORLD"
 
 function portalLogic(pPortal,state)
 	local myName=pPortal:getName()
 	local approachDistance=pPortal:getApproachDistance()
-	local activateDistance=pPortal:getActivateDistance()
+	local hit=pPortal:hasTakenHit()
 	local playerDistance=getPlayerDistance(myName)
-	local isActivated = pPortal:isActivated()
-	
+	local cworld=isChangingWorld()
 	local newState=state
 	
 	if state==PORTAL_STATE_IDLE then
-		if playerDistance<=activateDistance then
-			newState=PORTAL_STATE_ONY_MAY_ACTIVATE
-		elseif playerDistance<=approachDistance then
+		if playerDistance<=approachDistance then
 			newState=PORTAL_STATE_ONY_APPROACHING
 		end
-	elseif state==PORTAL_STATE_ONY_APPROACHING then
-		if playerDistance<=activateDistance then
-			newState=PORTAL_STATE_ONY_MAY_ACTIVATE
-		elseif playerDistance>approachDistance then		
-			newState=PORTAL_STATE_IDLE
-		end
-	elseif state==PORTAL_STATE_ONY_MAY_ACTIVATE then
-		if isActivated then			
-			newState=PORTAL_STATE_CHANGING_WORLD
-		elseif playerDistance>activateDistance then
-			if playerDistance<=approachDistance then
-				newState=PORTAL_STATE_ONY_APPROACHING
-			else
-				newState=PORTAL_STATE_IDLE
-			end
-		end
-	elseif state==PORTAL_STATE_CHANGING_WORLD and not isActivated then
-		if playerDistance<=activateDistance then
-			newState=PORTAL_STATE_ONY_MAY_ACTIVATE
-		elseif playerDistance<=approachDistance then
+	elseif state==PORTAL_STATE_ONY_APPROACHING and hit then
+		newState=PORTAL_STATE_HIT
+	elseif state==PORTAL_STATE_HIT and not hit then
+		newState=PORTAL_STATE_CHANGING_WORLD
+	elseif state==PORTAL_STATE_CHANGING_WORLD and hit then
+		newState=PORTAL_STATE_HIT
+	elseif state==PORTAL_STATE_CHANGING_WORLD and not cworld then
+		if playerDistance<=approachDistance then
 			newState=PORTAL_STATE_ONY_APPROACHING
 		else
 			newState=PORTAL_STATE_IDLE
