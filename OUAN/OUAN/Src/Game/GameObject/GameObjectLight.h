@@ -22,6 +22,7 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
+
 	public:
 		//Constructor
 		GameObjectLight(const std::string& name);

@@ -113,8 +113,14 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams;
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams; // Dreams
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares; // Nightmares
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise; // Both
+
 		/// Quad Halo
 		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
 		/// Physics information
@@ -164,15 +170,21 @@ namespace OUAN
 
 		/// Set Particle Systems
 		void setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams);
+		void setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares);
+		void setRenderComponentParticleSystemLandWave(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave);
+		void setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass);
+		void setRenderComponentParticleSystemRunSand(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand);
+		void setRenderComponentParticleSystemRunWater(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater);
+		void setRenderComponentParticleSystemRunSurprise(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise);
 
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandDreams() const;
-
-		/// Set Particle Systems
-		void setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares);
-
-		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandNightmares() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWave() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunGrass() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunSand() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunWater() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunSurprise() const;
 
 		/// Set Quad Halo
 		void setRenderComponentQuadHalo(RenderComponentQuadHaloPtr mRenderComponentQuadHalo);

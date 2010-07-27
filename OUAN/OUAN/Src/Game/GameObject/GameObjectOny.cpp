@@ -59,19 +59,69 @@ void GameObjectOny::setRenderComponentParticleSystemLandDreams(RenderComponentPa
 	mRenderComponentParticleSystemLandDreams = pRenderComponentParticleSystemLandDreams;
 }
 
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandDreams() const
-{
-	return mRenderComponentParticleSystemLandDreams;
-}
-
 void GameObjectOny::setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandNightmares)
 {
 	mRenderComponentParticleSystemLandNightmares = pRenderComponentParticleSystemLandNightmares;
 }
 
+void GameObjectOny::setRenderComponentParticleSystemLandWave(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWave)
+{
+	mRenderComponentParticleSystemLandWave = pRenderComponentParticleSystemLandWave;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunGrass)
+{
+	mRenderComponentParticleSystemRunGrass = pRenderComponentParticleSystemRunGrass;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemRunSand(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunSand)
+{
+	mRenderComponentParticleSystemRunSand = pRenderComponentParticleSystemRunSand;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemRunWater(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunWater)
+{
+	mRenderComponentParticleSystemRunWater = pRenderComponentParticleSystemRunWater;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemRunSurprise(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunSurprise)
+{
+	mRenderComponentParticleSystemRunSurprise = pRenderComponentParticleSystemRunSurprise;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandDreams() const
+{
+	return mRenderComponentParticleSystemLandDreams;
+}
+
 RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandNightmares() const
 {
 	return mRenderComponentParticleSystemLandNightmares;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandWave() const
+{
+	return mRenderComponentParticleSystemLandWave;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunGrass() const
+{
+	return mRenderComponentParticleSystemRunGrass;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunSand() const
+{
+	return mRenderComponentParticleSystemRunSand;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunWater() const
+{
+	return mRenderComponentParticleSystemRunWater;
+}
+
+RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunSurprise() const
+{
+	return mRenderComponentParticleSystemRunSurprise;
 }
 
 void GameObjectOny::setRenderComponentQuadHalo(RenderComponentQuadHaloPtr pRenderComponentQuadHalo)

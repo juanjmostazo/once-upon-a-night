@@ -76,6 +76,16 @@ RenderComponentInitialPtr GameObjectFlashLight::getRenderComponentInitial() cons
 	return mRenderComponentInitial;
 }
 
+void GameObjectFlashLight::setRenderComponentParticleSystemAttack(RenderComponentParticleSystemPtr pRenderComponentParticleSystemAttack)
+{
+	mRenderComponentParticleSystemAttack = pRenderComponentParticleSystemAttack;
+}
+
+RenderComponentParticleSystemPtr GameObjectFlashLight::getRenderComponentParticleSystemAttack() const
+{
+	return mRenderComponentParticleSystemAttack;
+}
+
 void GameObjectFlashLight::setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex)
 {
 	mPhysicsComponentVolumeConvex=pPhysicsComponentVolumeConvex;
