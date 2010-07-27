@@ -4,8 +4,16 @@
     <Option key="DEFAULT_PARTICLE_SYSTEM_POOL_SIZE">1</Option>
   
     <Option key="PORTAL_CHANGE_WORLD">PU/changeworld01</Option>
+	
 	<Option key="ONY_LAND_DREAMS">PU/any_jump_d</Option>
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
+	<Option key="ONY_LAND_WAVE">PU/feather</Option>
+	<Option key="ONY_RUN_GRASS">PU/feather</Option>
+	<Option key="ONY_RUN_SAND">PU/feather</Option>
+	<Option key="ONY_RUN_WATER">PU/feather</Option>
+	<Option key="ONY_RUN_SURPRISE">PU/feather</Option>
+	
 	<Option key="PILLOW_ATTACK">PU/feather</Option>
+	<Option key="FLASH_LIGHT_ATTACK">PU/feather</Option>
   </Options>
 </Configuration>

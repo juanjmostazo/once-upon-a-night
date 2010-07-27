@@ -16,6 +16,7 @@ namespace OUAN
 	const std::string ATTACK_NAME_COMBO_1HIT="combo1Hit";
 	const std::string ATTACK_NAME_COMBO_2HIT="combo2Hit";
 	const std::string ATTACK_NAME_SPECIAL="spAttack";
+
 	/// Class to hold GameObjectPillow information
 	class GameObjectPillow : public GameObject, public boost::enable_shared_from_this<GameObjectPillow>
 	{
