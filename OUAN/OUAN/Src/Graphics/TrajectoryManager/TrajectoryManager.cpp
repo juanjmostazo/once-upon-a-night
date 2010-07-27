@@ -196,7 +196,7 @@ void TrajectoryManager::setIdle(Trajectory & trajectory,std::string gameObjectNa
 		trajectory.setTrajectoryNodes(mTrajectoryNodes,"green");
 }
 
-void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor)
+void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor,double defaultSpeed)
 {
 	unsigned int i;
 
@@ -210,7 +210,14 @@ void TrajectoryManager::setPredefinedTrajectory(Trajectory & trajectory,std::str
 			//create trajectory node and set the scene node and the rest of parameters
 			pTrajectoryNode = new TrajectoryNode();
 			pTrajectoryNode->setSceneNode(trajectoryContainer[trajectoryName]->getTrajectoryNodes()[i]->getSceneNode());
-			pTrajectoryNode->setSpeed(trajectoryContainer[trajectoryName]->getTrajectoryNodes()[i]->getSpeed());
+			if(defaultSpeed<0)
+			{
+				pTrajectoryNode->setSpeed(trajectoryContainer[trajectoryName]->getTrajectoryNodes()[i]->getSpeed());
+			}
+			else
+			{
+				pTrajectoryNode->setSpeed(defaultSpeed);
+			}
 
 			mTrajectoryNodes.push_back(pTrajectoryNode);
 		}

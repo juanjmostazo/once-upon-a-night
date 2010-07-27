@@ -16,7 +16,10 @@ TrajectoryComponent::~TrajectoryComponent()
 
 void TrajectoryComponent::update(double elapsedSeconds)
 {
-	mTrajectory->update(elapsedSeconds);
+	//if (getParent()->isWorthUpdatingPhysicsComponents())
+	//{
+		mTrajectory->update(elapsedSeconds+getParent()->getElapsedTimeSinceLastPhysicsUpdate());
+	//}
 }
 
 void TrajectoryComponent::setTrajectory(Trajectory * pTrajectory)

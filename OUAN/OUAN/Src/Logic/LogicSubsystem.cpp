@@ -208,9 +208,15 @@ void LogicSubsystem::update (double elapsedSeconds)
 		{
 			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
 			{
+				//it->second->updateLogic(elapsedSeconds);
 				if (it->second->isWorthUpdatingLogicComponents())
 				{
-					it->second->updateLogic(elapsedSeconds);
+					it->second->updateLogic(it->second->getElapsedTimeSinceLastLogicUpdate()+elapsedSeconds);
+					it->second->setElapsedTimeSinceLastLogicUpdate(0);
+				}
+				else
+				{
+					it->second->setElapsedTimeSinceLastLogicUpdate(it->second->getElapsedTimeSinceLastLogicUpdate()+elapsedSeconds);
 				}
 			}
 		}

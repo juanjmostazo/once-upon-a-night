@@ -49,7 +49,7 @@ namespace OUAN
 		Trajectory * getTrajectoryInstance(std::string parent);
 
 		std::vector<Ogre::SceneNode *> calculatePathFinding(std::string walkabilityMapName,std::string source, std::string target);
-		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor);
+		void setPredefinedTrajectory(Trajectory & trajectory,std::string trajectoryName,std::string debugColor,double defaultSpeed=-1);
 		void stopTrajectory(Trajectory & trajectory);
 		void setIdle(Trajectory & trajectory,std::string gameObjectName);
 
