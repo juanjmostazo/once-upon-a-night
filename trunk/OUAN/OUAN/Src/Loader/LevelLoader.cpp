@@ -1815,7 +1815,7 @@ void LevelLoader::processGameObjectPortal(XMLGameObject* gameObject)
 		tGameObjectPortalParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectPortalParameters.tLogicComponentParameters=processLogicComponentUsable(gameObject->XMLNodeDreams,
+		tGameObjectPortalParameters.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams

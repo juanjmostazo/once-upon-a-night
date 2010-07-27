@@ -233,65 +233,47 @@ PhysicsComponentPtr GameObjectPortal::getPhysicsComponent() const
 }
 
 /// Set logic component
-void GameObjectPortal::setLogicComponentUsable(LogicComponentUsablePtr logicComponentUsable)
+void GameObjectPortal::setLogicComponentProp(LogicComponentPropPtr logicComponentProp)
 {
-	mLogicComponentUsable=logicComponentUsable;
+	mLogicComponent=logicComponentProp;
 }
 
 /// return logic component
-LogicComponentUsablePtr GameObjectPortal::getLogicComponentUsable()
+LogicComponentPropPtr GameObjectPortal::getLogicComponentProp()
 {
-	return mLogicComponentUsable;
+	return mLogicComponent;
 }
 
 void GameObjectPortal::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	if (mLogicComponentUsable.get())
+	if (mLogicComponent.get())
 	{
-		mLogicComponentUsable->processCollision(pGameObject, pNormal);
+		mLogicComponent->processCollision(pGameObject, pNormal);
 	}
 }
 
 void GameObjectPortal::processEnterTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentUsable.get())
+	if (mLogicComponent.get())
 	{
-		mLogicComponentUsable->processEnterTrigger(pGameObject);
+		mLogicComponent->processEnterTrigger(pGameObject);
 	}
 }
 
 void GameObjectPortal::processExitTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentUsable.get())
+	if (mLogicComponent.get())
 	{
-		mLogicComponentUsable->processExitTrigger(pGameObject);
+		mLogicComponent->processExitTrigger(pGameObject);
 	}
 }
 
 void GameObjectPortal::updateLogic(double elapsedSeconds)
 {
-	if (mLogicComponentUsable.get())
+	if (mLogicComponent.get())
 	{
-		mLogicComponentUsable->update(elapsedSeconds);
+		mLogicComponent->update(elapsedSeconds);
 	}
-}
-
-void GameObjectPortal::activate()
-{
-	if (mLogicComponentUsable.get())
-	{
-		mLogicComponentUsable->setCanBeActivated(false);
-		mLogicComponentUsable->setIsActivated(true);
-	}
-}
-bool GameObjectPortal::canBeActivated() const
-{
-	int activationState = mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE);
-
-	return 
-		mLogicComponentUsable.get() 
-		&& mLogicComponentUsable->getState()==activationState 
-		&& mLogicComponentUsable->canBeActivated();
 }
 
 void GameObjectPortal::update(double elapsedSeconds)
@@ -315,14 +297,13 @@ void GameObjectPortal::update(double elapsedSeconds)
 
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	
 
-		int currentState=mLogicComponentUsable->getState();
+		int currentState=mLogicComponent->getState();
 		if (mPhysicsComponentSimpleBox.get() && entityToUpdate.get())
 		{
 			if (currentState==logicSS->getGlobalInt(PORTAL_STATE_IDLE))
 			{
-				if (mLogicComponentUsable->isStateChanged())
+				if (mLogicComponent->isStateChanged())
 				{
-					mLogicComponentUsable->setCanBeActivated(false);
 					if (mAudioComponent->isPlaying("portal_close"))
 					{
 						mAudioComponent->stopSound("portal_close");
@@ -332,31 +313,26 @@ void GameObjectPortal::update(double elapsedSeconds)
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
 			{				
-				if (mLogicComponentUsable->isStateChanged())
+				if (mLogicComponent->isStateChanged())
 				{
-					mLogicComponentUsable->setCanBeActivated(false);
 					mAudioComponent->playSound("portal_close");
 					displayText("ONY IS CLOSE");
 					//glowToUpdate->setVisible(true);
 				}
 			}
-			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_MAY_ACTIVATE))
-			{
-				if (mLogicComponentUsable->isStateChanged())
+			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_HIT))
+			{				
+				if (mLogicComponent->isStateChanged())
 				{
-					displayText("PRESS ACTION TO CHANGE WORLD");
-					mLogicComponentUsable->setCanBeActivated(true);
-					//glowToUpdate->setVisible(true);
+					getGameWorldManager()->changeWorld();				
+					mRenderComponentParticleSystemChangeWorld->start();
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
 			{
-				if (mLogicComponentUsable->isStateChanged())
+				if (mLogicComponent->isStateChanged())
 				{
-					getGameWorldManager()->changeWorld();				
-					mLogicComponentUsable->setIsActivated(false);
-					mRenderComponentParticleSystemChangeWorld->start();
-					//glowToUpdate->setVisible(true);
+
 				}
 			}
 			entityToUpdate->update(elapsedSeconds);

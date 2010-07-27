@@ -154,10 +154,10 @@ PhysicsComponentPtr GameObjectPillow::getPhysicsComponent() const
 
 void GameObjectPillow::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	if(pGameObject->getName().compare("ony#0")!=0)
-	{
-		Logger::getInstance()->log("PILLOW COLLISION " + pGameObject->getName());
-	}
+	//if(pGameObject->getName().compare("ony#0")!=0)
+	//{
+	//	Logger::getInstance()->log("PILLOW COLLISION " + pGameObject->getName());
+	//}
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processCollision(pGameObject, pNormal);

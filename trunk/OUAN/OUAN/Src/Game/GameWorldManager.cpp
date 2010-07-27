@@ -1703,6 +1703,16 @@ void GameWorldManager::setLevelname(const std::string& levelFilename)
 	level=levelFilename;
 }
 
+bool GameWorldManager::isChangingWorldLUA()
+{
+	return mInst->isChangingWorld();
+}
+
+bool GameWorldManager::isChangingWorld()
+{
+	return mIsChangingWorld;
+}
+
 void GameWorldManager::addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree)
 {
 	mDiamondTreeLinks[diamond]=diamondTree;

@@ -215,6 +215,9 @@ namespace OUAN
 		static GameObject* getGameObject(const std::string& objectName);
 		// END lua scripts
 
+		static bool isChangingWorldLUA();
+		bool isChangingWorld();
+
 		void setCheckPointPosition(Vector3 checkpoint);
 		Vector3 getCheckPointPosition() const;
 		void setCheckPointOrientation(Quaternion checkpoint);

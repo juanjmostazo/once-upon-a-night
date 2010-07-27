@@ -64,6 +64,7 @@ void LogicSubsystem::registerModules()
 		def("changeLevel",&GameRunningState::changeLevel),
 		def("setCheckPoint",&GameWorldManager::setCheckPointLUA),
 		def("getCheckPointNumber",&GameWorldManager::getCheckPointNumberLUA),
+		def("isChangingWorld",&GameWorldManager::isChangingWorldLUA),
 		def("playMusic",&GameRunningState::playMusic),
 		def("playSoundFromGameObject",&GameRunningState::playSoundFromGameObject),
 		def("setCameraTrajectory",&CameraManager::setTrajectoryCamera),
@@ -146,9 +147,9 @@ void LogicSubsystem::loadScripts()
 	if (!ptList->empty())
 	{
 		GameObjectPortalPtr portal= boost::dynamic_pointer_cast<GameObjectPortal>(ptList->at(0));
-		if (portal && portal.get() && !portal->getLogicComponentUsable()->getScriptFilename().empty())
+		if (portal && portal.get() && !portal->getLogicComponentProp()->getScriptFilename().empty())
 		{
-			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentUsable()->getScriptFilename());
+			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentProp()->getScriptFilename());
 		}
 	}
 	TGameObjectScaredPlantContainer * spList=worldMgr->getGameObjectScaredPlantContainer();
