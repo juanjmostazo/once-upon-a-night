@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentLight.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../RayCasting/RayCasting.h"
 #include "../../Utils/Utils.h"
 
@@ -95,6 +96,17 @@ PhysicsComponentVolumeConvexPtr GameObjectFlashLight::getPhysicsComponentVolumeC
 {
 	return mPhysicsComponentVolumeConvex;
 }
+
+void GameObjectFlashLight::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
+{
+	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
+}
+
+PhysicsComponentWeaponPtr GameObjectFlashLight::getPhysicsComponentWeapon() const
+{
+	return mPhysicsComponentWeapon;
+}
+
 
 void GameObjectFlashLight::changeWorldFinished(int newWorld)
 {
@@ -219,9 +231,22 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 			//OUCH! BUT FOR THE MOMENT WE LEAVE IT LIKE THIS as there's an error getting the orientation if not done that way
 			//mPhysicsComponentVolumeConvex->destroy();
 			//mPhysicsComponentVolumeConvex->create();
-			mPhysicsComponentVolumeConvex->setPosition(mRenderComponentPositional->getPosition());
+			mPhysicsComponentVolumeConvex->setPosition(pos);
 			mPhysicsComponentVolumeConvex->setOrientation(ony->getRenderComponentPositional()->getOrientation()*Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y));
 		}
+
+		if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
+		{
+			mPhysicsComponentWeapon->setPosition(pos);
+			Vector3 nextMovement;
+			nextMovement=mLastBonePosition-pos;
+			nextMovement.normalise();
+			mPhysicsComponentWeapon->setOuternMovement(nextMovement);
+			//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
+			//mPhysicsComponentWeapon->setOrientation(orient);
+		}
+
+		mLastBonePosition=pos;
 	}
 }
 
@@ -262,6 +287,10 @@ void GameObjectFlashLight::switchOn()
 	{
 		mPhysicsComponentVolumeConvex->create();
 	}
+	if (mPhysicsComponentWeapon.get() && !mPhysicsComponentWeapon->isInUse())
+	{
+		mPhysicsComponentWeapon->create();
+	}
 	if (mFlashlightDecalComponent.get())
 	{
 		mFlashlightDecalComponent->show();
@@ -275,6 +304,10 @@ void GameObjectFlashLight::switchOff()
 	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->destroy();
+	}
+	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
+	{
+		mPhysicsComponentWeapon->destroy();
 	}
 	if (mParentWeaponComponent.get())
 		mParentWeaponComponent->setActiveWeaponInUse(false);
@@ -346,8 +379,13 @@ LogicComponentPtr GameObjectFlashLight::getLogicComponent()
 	return mLogicComponent;
 }
 
+
 void GameObjectFlashLight::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+	if(pGameObject->getName().compare("ony#0")!=0)
+	{
+		Logger::getInstance()->log("FLASHLIGHT COLLISION " + pGameObject->getName());
+	}
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processCollision(pGameObject, pNormal);

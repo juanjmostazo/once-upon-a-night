@@ -5,7 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentPillow.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
@@ -30,7 +30,7 @@ namespace OUAN
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack;
 		/// Physics information
-		PhysicsComponentPillowPtr mPhysicsComponentPillow;
+		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
@@ -84,8 +84,8 @@ namespace OUAN
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttack() const;
 
-		PhysicsComponentPillowPtr getPhysicsComponentPillow() const;
-		void setPhysicsComponentPillow(PhysicsComponentPillowPtr pPhysicsComponentPillow);
+		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
+		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
 
 
 		AttackComponentPtr getAttackComponent() const;
@@ -167,7 +167,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters;
+		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

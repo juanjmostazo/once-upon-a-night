@@ -1,15 +1,15 @@
-#ifndef PhysicsComponentPillowH_H
-#define PhysicsComponentPillowH_H
+#ifndef PhysicsComponentWeaponH_H
+#define PhysicsComponentWeaponH_H
 
 #include "PhysicsComponentCharacter.h"
 
 namespace OUAN
 {
-	class PhysicsComponentPillow: public PhysicsComponentCharacter
+	class PhysicsComponentWeapon: public PhysicsComponentCharacter
 	{
 	public:
-		PhysicsComponentPillow(const std::string& type="");
-		~PhysicsComponentPillow();
+		PhysicsComponentWeapon(const std::string& type="");
+		~PhysicsComponentWeapon();
 
 		virtual void reset();
 		virtual void update(double elapsedSeconds);
@@ -20,15 +20,15 @@ namespace OUAN
 		virtual void applyFallY(double elapsedSeconds);
 		virtual void applyOuternMovement(double elapsedSeconds);
 		void applyMove();
-
+		virtual void updateSceneNode();
 		double mMovementFactor;
 	};
 
-	class TPhysicsComponentPillowParameters: public TPhysicsComponentCharacterParameters
+	class TPhysicsComponentWeaponParameters: public TPhysicsComponentCharacterParameters
 	{
 	public:
-		TPhysicsComponentPillowParameters();
-		~TPhysicsComponentPillowParameters();
+		TPhysicsComponentWeaponParameters();
+		~TPhysicsComponentWeaponParameters();
 		double movementFactor;
 	};
 }

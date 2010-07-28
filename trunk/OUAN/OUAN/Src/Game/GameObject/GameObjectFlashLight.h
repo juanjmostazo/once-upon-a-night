@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Graphics/RenderComponent/RenderComponentBillboardSet.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
@@ -60,10 +61,12 @@ namespace OUAN
 
 		/// Physics information
 		PhysicsComponentVolumeConvexPtr mPhysicsComponentVolumeConvex;
+		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
 
 		RenderSubsystemPtr mRenderSubsystem;
 
 		Ogre::Real rollAngle;
+		Vector3 mLastBonePosition;
 
 	public:
 	//----------CONSTRUCTOR/DESTRUCTOR
@@ -161,6 +164,9 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
+		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
+		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
+
 	//----------WORLD CHANGE METHODS
 
 		/// React to a world change to the one given as a parameter
@@ -244,6 +250,7 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
+		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 		TAttackComponentParameters attackComponentParameters;
 

@@ -8,6 +8,7 @@
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectPillow.h"
+#include "../Game/GameObject/GameObjectFlashLight.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Event/Event.h"
 
@@ -159,9 +160,15 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	}
 
 	//update pillow
-	if(mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentPillow()->isInUse())
+	if(mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->isInUse())
 	{
-		mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentPillow()->update(elapsedSeconds);
+		mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->update(elapsedSeconds);
+	}
+
+	//update flashlight
+	if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(elapsedSeconds);
 	}
 
 	mNxOgreTimeController->advance(elapsedSeconds);

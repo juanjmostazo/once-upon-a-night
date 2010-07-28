@@ -722,10 +722,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentPillow.cpp"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimple.cpp"
 						>
 					</File>
@@ -751,6 +747,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeConvex.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentWeapon.cpp"
 						>
 					</File>
 				</Filter>
@@ -1837,10 +1837,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentPillow.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentSimple.h"
 						>
 					</File>
@@ -1866,6 +1862,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentVolumeConvex.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Physics\PhysicsComponent\PhysicsComponentWeapon.h"
 						>
 					</File>
 				</Filter>

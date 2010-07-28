@@ -34,7 +34,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
-#include "../Physics/PhysicsComponent/PhysicsComponentPillow.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
@@ -623,28 +623,28 @@ PhysicsComponentVolumeConvexPtr ComponentFactory::createPhysicsComponentVolumeCo
 	return pPhysicsComponentVolumeConvex;
 }
 
-PhysicsComponentPillowPtr ComponentFactory::createPhysicsComponentPillow(GameObjectPtr gameObject,TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
+PhysicsComponentWeaponPtr ComponentFactory::createPhysicsComponentWeapon(GameObjectPtr gameObject,TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
 {
-	PhysicsComponentPillowPtr pPhysicsComponentPillow = 
-		PhysicsComponentPillowPtr(new PhysicsComponentPillow(COMPONENT_TYPE_PHYSICS_CHARACTER)); 
+	PhysicsComponentWeaponPtr pPhysicsComponentWeapon = 
+		PhysicsComponentWeaponPtr(new PhysicsComponentWeapon(COMPONENT_TYPE_PHYSICS_CHARACTER)); 
 
-	pPhysicsComponentPillow->setParent(gameObject);	
-	pPhysicsComponentPillow->setSceneNode(tRenderComponentPositional->getSceneNode());
-	pPhysicsComponentPillow->setMass(tPhysicsComponentPillowParameters.mass);
-	//pPhysicsComponentPillow->setQueryFlags(flags);
-	pPhysicsComponentPillow->setNxOgreSize(
-		NxOgre::Vec2(	tPhysicsComponentPillowParameters.radius, 
-						tPhysicsComponentPillowParameters.height));
+	pPhysicsComponentWeapon->setParent(gameObject);	
+	pPhysicsComponentWeapon->setSceneNode(tRenderComponentPositional->getSceneNode());
+	pPhysicsComponentWeapon->setMass(tPhysicsComponentWeaponParameters.mass);
+	//pPhysicsComponentWeapon->setQueryFlags(flags);
+	pPhysicsComponentWeapon->setNxOgreSize(
+		NxOgre::Vec2(	tPhysicsComponentWeaponParameters.radius, 
+						tPhysicsComponentWeaponParameters.height));
 
 	NxOgre::ControllerDescription mNxOgreControllerDescription;
 	mNxOgreControllerDescription.mCallback=mApp->getPhysicsSubsystem().get();
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
-	pPhysicsComponentPillow->setNxOgreControllerDescription(mNxOgreControllerDescription);
-	pPhysicsComponentPillow->setMovementFactor(tPhysicsComponentPillowParameters.movementFactor);
+	pPhysicsComponentWeapon->setNxOgreControllerDescription(mNxOgreControllerDescription);
+	pPhysicsComponentWeapon->setMovementFactor(tPhysicsComponentWeaponParameters.movementFactor);
 
-	//pPhysicsComponentPillow->create();
+	//pPhysicsComponentWeapon->create();
 
-	return pPhysicsComponentPillow;
+	return pPhysicsComponentWeapon;
 }
 
 LogicComponentPtr ComponentFactory::createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters tLogicComponentParameters)

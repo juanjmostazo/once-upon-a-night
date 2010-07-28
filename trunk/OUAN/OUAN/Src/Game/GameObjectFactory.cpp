@@ -951,6 +951,12 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 		tGameObjectFlashLightParameters.tPhysicsComponentVolumeConvexParameters, 
 		pGameObjectFlashLight->getRenderComponentPositional()));
 
+	pGameObjectFlashLight->setPhysicsComponentWeapon(
+		mComponentFactory->createPhysicsComponentWeapon(
+		pGameObjectFlashLight,
+		tGameObjectFlashLightParameters.tPhysicsComponentWeaponParameters,
+		pGameObjectFlashLight->getRenderComponentPositional()));
+
 	//Create Flashlight's light
 
 	//Create RenderComponentPositional for Light
@@ -1580,10 +1586,10 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//	tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
 	//	pGameObjectPillow->getRenderComponentPositional()));
 
-	pGameObjectPillow->setPhysicsComponentPillow(
-		mComponentFactory->createPhysicsComponentPillow(
+	pGameObjectPillow->setPhysicsComponentWeapon(
+		mComponentFactory->createPhysicsComponentWeapon(
 		pGameObjectPillow,
-		tGameObjectPillowParameters.tPhysicsComponentPillowParameters,
+		tGameObjectPillowParameters.tPhysicsComponentWeaponParameters,
 		pGameObjectPillow->getRenderComponentPositional()));
 
 	//Add reference to this

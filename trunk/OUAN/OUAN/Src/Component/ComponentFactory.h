@@ -95,8 +95,8 @@ namespace OUAN
 		PhysicsComponentVolumeConvexPtr createPhysicsComponentVolumeConvex(GameObjectPtr gameObject,
 			TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
-		PhysicsComponentPillowPtr createPhysicsComponentPillow(GameObjectPtr gameObject,
-			TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters,
+		PhysicsComponentWeaponPtr createPhysicsComponentWeapon(GameObjectPtr gameObject,
+			TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
 
 		//Logic components
