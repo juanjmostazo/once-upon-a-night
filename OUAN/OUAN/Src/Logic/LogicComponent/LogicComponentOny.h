@@ -5,6 +5,14 @@
 namespace OUAN
 {
 
+	struct TCollectableItemEntry
+	{
+		std::string gameObjectType;
+		int newLifeAmount;
+		int collectedItems;
+	};
+	typedef std::map<std::string, TCollectableItemEntry> TCollectedItems;
+
 	class LogicComponentOny: public LogicComponent
 	{
 	public:
@@ -53,6 +61,10 @@ namespace OUAN
 
 		double getHitRecoveryTime() const;
 
+		void increaseCollectableItemAmount(const std::string& type,
+			int value=1);
+		void setCollectableItems(const TCollectedItems& collectableItems);
+
 	private:
 		/// Number of lives of the component
 		int mNumLives;
@@ -61,6 +73,9 @@ namespace OUAN
 	
 		int mInitialHealthPoints;
 		int mInitialNumLives;
+
+		/// Collection keeping track of all possible collectable items
+		TCollectedItems mCollectedItems;
 
 		/// 'Immunity' time so a single collision is not processed during several ticks
 		double mHitRecoveryTime;
@@ -80,6 +95,7 @@ namespace OUAN
 
 		int numLives;
 		int healthPoints;
+		TCollectedItems collectedItems;
 	};
 }
 

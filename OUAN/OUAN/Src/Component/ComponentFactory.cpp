@@ -706,6 +706,8 @@ LogicComponentOnyPtr ComponentFactory::createLogicComponentOny(GameObjectPtr gam
 	pLogicComponentOny->setState(LogicComponentOnyParameters.defaultState);
 	pLogicComponentOny->setParent(gameObject);
 
+	pLogicComponentOny->setCollectableItems(LogicComponentOnyParameters.collectedItems);
+
 	return pLogicComponentOny;
 }
 

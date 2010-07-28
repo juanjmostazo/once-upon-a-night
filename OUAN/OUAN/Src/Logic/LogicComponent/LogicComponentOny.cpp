@@ -46,7 +46,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_DIAMOND)==0)
 	{
-		Logger::getInstance()->log("DIAMOND COLLISION!!!");
+		increaseCollectableItemAmount(GAME_OBJECT_TYPE_DIAMOND);
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_CLOCKPIECE)==0)
 	{
@@ -308,6 +308,45 @@ int LogicComponentOny::getNewState()const
 double LogicComponentOny::getHitRecoveryTime() const
 {
 	return mHitRecoveryTime;
+}
+void LogicComponentOny::increaseCollectableItemAmount(
+	const std::string& type,int amount)
+{
+	if (mCollectedItems.find(type)!=mCollectedItems.end())
+	{
+		//alias to type less
+		int* oldItemsAmount = &mCollectedItems[type].collectedItems;
+		int* to1UP = &mCollectedItems[type].newLifeAmount;
+		//
+		int newItemsAmount = *oldItemsAmount+ amount;
+		int nLives = (newItemsAmount/(*to1UP)) - (*oldItemsAmount/(*to1UP));
+		std::stringstream msg;
+		// Don't reset the old amount for now. 
+		// It can be useful for scoring purposes,
+		// and we're not restricted as in the NES era to use 
+		// two-digit numbers.
+		*oldItemsAmount=newItemsAmount;
+		msg<<"DIAMOND PICKED UP - CURRENT AMOUNT: "<<newItemsAmount;
+		Logger::getInstance()->log(msg.str());
+		if (nLives>0)
+		{
+			// Generate event LIFEINCREASED so that the game world manager
+			// or the state can play some feedback sound, update the HUD, ...
+			
+			// For Any, we can play the sound right away
+			// mParent->getAudioComponent()->playSound("ANY_VICTORY");
+			increaseLives(nLives);
+			msg.str("");
+			msg<<"ONY LOGIC - LIVES INCREASED: "<<mNumLives;
+			Logger::getInstance()->log(msg.str());
+			// update the map
+		}	
+	}
+}
+void LogicComponentOny::setCollectableItems(const TCollectedItems& collectableItems)
+{
+	mCollectedItems.clear();
+	mCollectedItems.insert(collectableItems.begin(),collectableItems.end());
 }
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()

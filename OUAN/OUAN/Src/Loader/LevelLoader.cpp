@@ -3377,27 +3377,27 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 {
 	if (XMLNode)
 	{
-		TRenderComponentEntityAnimParams currentAnimParams;
+			TRenderComponentEntityAnimParams currentAnimParams;
 
-		int i=0;
-		std::string worldSuffix=(world==DREAMS)
-			?"d"
-			:(world==NIGHTMARES)
-				?"n"
-				:"";
-		while(true)
-		{
-			currentAnimParams.name=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::name",
-				false);
-			currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
-				false);
-			if (currentAnimParams.name.compare("")==0) break;
+			int i=0;
+			std::string worldSuffix=(world==DREAMS)
+				?"d"
+				:(world==NIGHTMARES)
+					?"n"
+					:"";
+			while(true)
+			{
+				currentAnimParams.name=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::name",
+					false);
+				currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
+					false);
+				if (currentAnimParams.name.compare("")==0) break;
 
-			Logger::getInstance()->log("Parsing animation "+currentAnimParams.name);
+				Logger::getInstance()->log("Parsing animation "+currentAnimParams.name);
 
-			renderComponentEntityAnimParams.push_back(currentAnimParams);
-			++i;
-		}
+				renderComponentEntityAnimParams.push_back(currentAnimParams);
+				++i;
+			}
 	}
 }
 
@@ -4272,9 +4272,27 @@ TLogicComponentOnyParameters LevelLoader::processLogicComponentOny(TiXmlElement 
 		catch (std::string error)
 		{
 			logicComponentOnyParameters.numLives=-1;	
-		}	
+		}
+		processCollectableItemTypes(XMLNodeCustomProperties,
+			logicComponentOnyParameters);
 	}
 	return logicComponentOnyParameters;
+}
+void LevelLoader::processCollectableItemTypes(TiXmlElement* XMLNode, TLogicComponentOnyParameters& onyParams )
+{
+	onyParams.collectedItems.clear();
+	int i=0;
+	TCollectableItemEntry currentEntry;	
+	while(true)
+	{
+		currentEntry.gameObjectType=getPropertyString(XMLNode,"CollectableItem"+StringConverter::toString(i)+"::type",false);
+		currentEntry.newLifeAmount=getPropertyInt(XMLNode,"CollectableItem"+StringConverter::toString(i)+"::newLifeAmount",false);
+		currentEntry.collectedItems=0;
+		if (currentEntry.gameObjectType.compare("")==0) break;
+		
+		onyParams.collectedItems[currentEntry.gameObjectType]=currentEntry;
+		++i;
+	}
 }
 
 TLogicComponentEnemyParameters LevelLoader::processLogicComponentEnemy(TiXmlElement *XMLNodeDreams,
