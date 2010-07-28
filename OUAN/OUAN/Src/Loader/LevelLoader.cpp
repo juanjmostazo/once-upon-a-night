@@ -1199,6 +1199,8 @@ void LevelLoader::processGameObjectFlashLight(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentVolumeConvex
 		flashlightParams.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties);
+		//Get PhysicsComponentWeapon
+		flashlightParams.tPhysicsComponentWeaponParameters = processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
 		flashlightParams.attackComponentParameters=processAttackComponent(gameObject->XMLNodeCustomProperties);
 	}
@@ -1682,8 +1684,8 @@ void LevelLoader::processGameObjectPillow(XMLGameObject* gameObject)
 		//Get RenderComponentPositional
 		tGameObjectPillowParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentSimpleCapsule
-		tGameObjectPillowParameters.tPhysicsComponentPillowParameters = processPhysicsComponentPillow(gameObject->XMLNodeCustomProperties);
+		//Get PhysicsComponentWeapon
+		tGameObjectPillowParameters.tPhysicsComponentWeaponParameters = processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -3859,33 +3861,33 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	return tPhysicsComponentCharacterParameters;
 }
 
-TPhysicsComponentPillowParameters LevelLoader::processPhysicsComponentPillow(TiXmlElement *XMLNode,std::string suffix)
+TPhysicsComponentWeaponParameters LevelLoader::processPhysicsComponentWeapon(TiXmlElement *XMLNode,std::string suffix)
 {
-	TPhysicsComponentPillowParameters tPhysicsComponentPillowParameters;
+	TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 	//Get Component properties
-	tPhysicsComponentPillowParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::mass");
-	tPhysicsComponentPillowParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::radius");
-	tPhysicsComponentPillowParameters.height= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::height");
-	tPhysicsComponentPillowParameters.movementFactor= getPropertyReal(XMLNode, "PhysicsComponentPillow"+suffix+"::movementfactor");
+	tPhysicsComponentWeaponParameters.mass= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::mass");
+	tPhysicsComponentWeaponParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::radius");
+	tPhysicsComponentWeaponParameters.height= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::height");
+	tPhysicsComponentWeaponParameters.movementFactor= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::movementfactor");
 	try
 	{
-		tPhysicsComponentPillowParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentPillow"+suffix+"::position_correction");
+		tPhysicsComponentWeaponParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentWeapon"+suffix+"::position_correction");
 	}
 	catch(std::string error)
 	{
-		tPhysicsComponentPillowParameters.position_correction=Vector3::ZERO;
+		tPhysicsComponentWeaponParameters.position_correction=Vector3::ZERO;
 	}
 	try
 	{
-		tPhysicsComponentPillowParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentPillow"+suffix+"::scale_correction");
+		tPhysicsComponentWeaponParameters.scale_correction=getPropertyVector3(XMLNode,"PhysicsComponentWeapon"+suffix+"::scale_correction");
 	}
 	catch(std::string error)
 	{
-		tPhysicsComponentPillowParameters.scale_correction=Vector3(1,1,1);
+		tPhysicsComponentWeaponParameters.scale_correction=Vector3(1,1,1);
 	}
 
-	return tPhysicsComponentPillowParameters;
+	return tPhysicsComponentWeaponParameters;
 }
 
 TPhysicsComponentCharacterOnyParameters LevelLoader::processPhysicsComponentCharacterOny(TiXmlElement *XMLNode,std::string suffix)

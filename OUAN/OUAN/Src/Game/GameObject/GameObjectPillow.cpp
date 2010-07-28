@@ -73,14 +73,14 @@ RenderComponentParticleSystemPtr GameObjectPillow::getRenderComponentParticleSys
 	return mRenderComponentParticleSystemAttack;
 }
 
-void GameObjectPillow::setPhysicsComponentPillow(PhysicsComponentPillowPtr pPhysicsComponentPillow)
+void GameObjectPillow::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
 {
-	mPhysicsComponentPillow=pPhysicsComponentPillow;
+	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
 }
 
-PhysicsComponentPillowPtr GameObjectPillow::getPhysicsComponentPillow() const
+PhysicsComponentWeaponPtr GameObjectPillow::getPhysicsComponentWeapon() const
 {
-	return mPhysicsComponentPillow;
+	return mPhysicsComponentWeapon;
 }
 
 void GameObjectPillow::changeWorldFinished(int newWorld)
@@ -149,7 +149,7 @@ bool GameObjectPillow::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectPillow::getPhysicsComponent() const
 {
-	return getPhysicsComponentPillow();
+	return getPhysicsComponentWeapon();
 }
 
 void GameObjectPillow::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
@@ -230,14 +230,14 @@ void GameObjectPillow::beginAttack()
 		//mRenderComponentEntity->getEntity()->setVisible(true);
 	}
 
-	if (mPhysicsComponentPillow.get())
+	if (mPhysicsComponentWeapon.get())
 	{
-		if (mPhysicsComponentPillow->isInUse())
+		if (mPhysicsComponentWeapon->isInUse())
 		{
-			mPhysicsComponentPillow->destroy();
+			mPhysicsComponentWeapon->destroy();
 		}
 
-		mPhysicsComponentPillow->create();
+		mPhysicsComponentWeapon->create();
 	}
 
 	mLastAttackTime=attackData->cooldownDelay;
@@ -246,7 +246,7 @@ void GameObjectPillow::beginAttack()
 void GameObjectPillow::endAttack()
 {
 	
-	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse() && 
+	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse() && 
 		mParentWeaponComponent.get() && mParentWeaponComponent->isActiveWeaponInUse())
 	{
 		PillowAttackDataPtr attackData = BOOST_PTR_CAST(PillowAttackData,
@@ -254,7 +254,7 @@ void GameObjectPillow::endAttack()
 		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
 			mGameWorldManager->addEvent(evt);
 
-		mPhysicsComponentPillow->destroy();		
+		mPhysicsComponentWeapon->destroy();		
 		//mRenderComponentEntity->getEntity()->setVisible(false);
 
 		setAttack(getDefaultAttack());
@@ -341,15 +341,15 @@ void GameObjectPillow::update(double elapsedSeconds)
 		mRenderComponentPositional->setPosition(pos);
 		mRenderComponentPositional->setOrientation(orient);
 
-	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse())
+	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
 	{
-		mPhysicsComponentPillow->setPosition(pos);
+		mPhysicsComponentWeapon->setPosition(pos);
 		Vector3 nextMovement;
 		nextMovement=mLastBonePosition-pos;
 		nextMovement.normalise();
-		mPhysicsComponentPillow->setOuternMovement(nextMovement);
+		mPhysicsComponentWeapon->setOuternMovement(nextMovement);
 		//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
-		//mPhysicsComponentPillow->setOrientation(orient);
+		//mPhysicsComponentWeapon->setOrientation(orient);
 	}
 
 	mLastBonePosition=pos;
@@ -431,9 +431,9 @@ void GameObjectPillow::disable()
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
 
-	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse())
+	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
 	{
-		mPhysicsComponentPillow->destroy();
+		mPhysicsComponentWeapon->destroy();
 	}
 		
 }
