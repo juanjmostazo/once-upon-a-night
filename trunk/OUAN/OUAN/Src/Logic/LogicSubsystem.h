@@ -25,6 +25,9 @@ namespace OUAN
 		lua_State* mCoroutine;
 		bool mCutsceneFinished;
 		boost::shared_ptr<Utils::LUATimer> mTimer;
+
+		std::set<std::string> mScriptFiles;
+
 	public:
 		LogicSubsystem();
 		~LogicSubsystem();
@@ -34,6 +37,9 @@ namespace OUAN
 		/// Register game classes and functions with LUA
 		/// through luabind
 		void registerModules();
+		/// Add new script file to be loaded in batches
+		void addScriptFile(const std::string& scriptFile);
+		void addScriptFiles(std::set<std::string> scriptFiles);
 		/// Load LUA scripts for all the game objects whose logic component
 		/// requires so
 		void loadScripts();

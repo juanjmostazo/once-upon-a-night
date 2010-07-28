@@ -156,8 +156,8 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
 
 		void postUpdate();
 		void processAnimationEnded(const std::string& animationName);
@@ -166,6 +166,9 @@ namespace OUAN
 
 		bool hasAudioComponent()const;
 		AudioComponentPtr getAudioComponentInstance() const; //INHERITED!!
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 
 	};
 	

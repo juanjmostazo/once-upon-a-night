@@ -25,7 +25,7 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentCameraTriggerPtr mLogicComponent;
-		//TODO: think what happens when world changes with the rendercomponent
+
 
 	public:
 		//Constructor
@@ -96,8 +96,11 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectCameraTriggerParameters: public TGameObjectParameters

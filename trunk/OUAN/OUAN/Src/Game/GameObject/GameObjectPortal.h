@@ -148,12 +148,15 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
 
 
 		void update(double elapsedSeconds);
 		void setCurrentWorldVisibility(bool visibility);
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectPortalParameters: public TGameObjectParameters

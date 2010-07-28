@@ -48,6 +48,9 @@ void LogicSubsystem::init(ApplicationPtr app)
 	registerModules();
 	mCutsceneFinished=false;
 	mTimer=boost::shared_ptr<Utils::LUATimer>(new Utils::LUATimer());
+	
+	mScriptFiles.clear();
+	addScriptFile(SCRIPT_COMMON_FUNCTIONS);
 	//loadScripts();
 }
 
@@ -115,89 +118,25 @@ void LogicSubsystem::registerModules()
 			.def("isReloadSet", &LogicComponentProp::isReload)
 	];
 }
-
+void LogicSubsystem::addScriptFile(const std::string& scriptFile)
+{
+	mScriptFiles.insert(scriptFile);
+}
+void LogicSubsystem::addScriptFiles(std::set<std::string> scriptFiles)
+{
+	//This isn't the most efficient way to insert a vector, but
+	// we need to check
+	mScriptFiles.insert(scriptFiles.begin(),scriptFiles.end());
+}
 void LogicSubsystem::loadScripts()
 {
-	loadScript(SCRIPTS_PATH+"/"+SCRIPT_COMMON_FUNCTIONS);
-
-	GameWorldManagerPtr worldMgr=mApp->getGameWorldManager();
-	std::string currentFilename;
-	TGameObjectTripolloDreamsContainer * tripolloDreamsList= worldMgr->getGameObjectTripolloDreamsContainer();
-	if (!tripolloDreamsList->empty() && !(currentFilename=tripolloDreamsList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectEyeContainer  * eyeList=worldMgr->getGameObjectEyeContainer();
-	if(!eyeList->empty() && !(currentFilename=eyeList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectTentetiesoContainer  * tentetiesoList=worldMgr->getGameObjectTentetiesoContainer();
-	if(!tentetiesoList->empty() && !(currentFilename=tentetiesoList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectTripolloNightmaresContainer  * tripolloNightmaresList=worldMgr->getGameObjectTripolloNightmaresContainer();
-	if(!tripolloNightmaresList->empty() && !(currentFilename=tripolloNightmaresList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectBee_ButterflyContainer  * bbList=worldMgr->getGameObjectBeeButterflyContainer();
-	if(!bbList->empty() && !(currentFilename=bbList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectCarnivorousPlantContainer  * cpList=worldMgr->getGameObjectCarnivorousPlantContainer();
-	if(!cpList->empty() && !(currentFilename=cpList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectSnakeCreeperContainer  * scList=worldMgr->getGameObjectSnakeCreeperContainer();
-	if(!scList->empty() && !(currentFilename=scList->at(0)->getLogicComponentEnemy()->getScriptFilename()).empty())
-		loadScript(SCRIPTS_PATH+"/"+currentFilename);
-	TGameObjectPortalContainer  * ptList=worldMgr->getGameObjectPortalContainer();
-	if (!ptList->empty())
+	//loadScript(SCRIPTS_PATH+"/"+SCRIPT_COMMON_FUNCTIONS);
+	if (!mScriptFiles.empty())
 	{
-		GameObjectPortalPtr portal= BOOST_PTR_CAST(GameObjectPortal,
-			ptList->at(0));
-		if (portal && portal.get() && !portal->getLogicComponentProp()->getScriptFilename().empty())
-		{
-			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentProp()->getScriptFilename());
-		}
+		for (std::set<std::string>::const_iterator it=mScriptFiles.begin();
+			it!=mScriptFiles.end();++it)
+			loadScript(SCRIPTS_PATH+"/"+*it);
 	}
-	TGameObjectScaredPlantContainer * spList=worldMgr->getGameObjectScaredPlantContainer();
-	if (!spList->empty())
-	{
-		GameObjectScaredPlantPtr scplant= 
-			BOOST_PTR_CAST(GameObjectScaredPlant,spList->at(0));
-		if (scplant && scplant.get() && !scplant->getLogicComponent()->getScriptFilename().empty())
-		{
-			loadScript(SCRIPTS_PATH+"/"+scplant->getLogicComponent()->getScriptFilename());
-		}
-	}
-	TGameObjectDiamondTreeContainer* dtList = worldMgr->getGameObjectDiamondTreeContainer();
-	if (!dtList->empty())
-	{
-		GameObjectDiamondTreePtr dtree = 
-			BOOST_PTR_CAST(GameObjectDiamondTree,
-			dtList->at(0));
-		if (dtree.get() && !dtree->getLogicComponent()->getScriptFilename().empty())
-		{
-			loadScript(SCRIPTS_PATH+"/"+dtree->getLogicComponent()->getScriptFilename());
-		}	
-	}
-	TGameObjectSignpostContainer* signList = worldMgr->getGameObjectSignpostContainer();
-	if (!signList->empty())
-	{
-		GameObjectSignpostPtr sign= BOOST_PTR_CAST(GameObjectSignpost,
-			signList->at(0));
-		if (sign.get() && !sign->getLogicComponent()->getScriptFilename().empty())
-		{
-			loadScript(SCRIPTS_PATH+"/"+sign->getLogicComponent()->getScriptFilename());
-		}
-	}
-	TGameObjectNestContainer* nestList = worldMgr->getGameObjectNestContainer();
-	if (!nestList ->empty())
-	{
-		GameObjectNestPtr nest= BOOST_PTR_CAST(GameObjectNest,
-			nestList ->at(0));
-		if (nest.get() && !nest->getLogicComponent()->getScriptFilename().empty())
-		{
-			loadScript(SCRIPTS_PATH+"/"+nest->getLogicComponent()->getScriptFilename());
-		}
-	}
-	//TODO: CHANGE THIS!!!
-	//GameObjectBossPtr boss = boost::dynamic_pointer_cast<GameObjectBoss> (worldMgr->getObject("boss#0"));
-	//if (boss.get() && !(currentFilename=boss->getLogicComponentEnemy()->getScriptFilename()).empty())
-	//	loadScript(SCRIPTS_PATH+"/"+currentFilename);
 }
 
 void LogicSubsystem::cleanUp()

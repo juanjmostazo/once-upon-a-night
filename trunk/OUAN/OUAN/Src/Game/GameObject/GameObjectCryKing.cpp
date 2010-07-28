@@ -191,14 +191,6 @@ void GameObjectCryKing::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectCryKing::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 bool GameObjectCryKing::hasRenderComponentEntity() const
 {
 	return true;
@@ -206,6 +198,14 @@ bool GameObjectCryKing::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectCryKing::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectCryKing::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectCryKingParameters::TGameObjectCryKingParameters() : TGameObjectParameters()

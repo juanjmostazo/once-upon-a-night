@@ -267,13 +267,6 @@ void GameObjectDiamondTree::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectDiamondTree::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectDiamondTree::hasRenderComponentEntity() const
 {
 	return true;
@@ -396,6 +389,14 @@ void GameObjectDiamondTree::setVisible(bool visible)
 		break;
 	}
 
+}
+bool GameObjectDiamondTree::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectDiamondTree::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

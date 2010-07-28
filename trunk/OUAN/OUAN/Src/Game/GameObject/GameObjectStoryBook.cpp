@@ -262,14 +262,6 @@ void GameObjectStoryBook::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectStoryBook::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
-
 void GameObjectStoryBook::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -337,7 +329,14 @@ void GameObjectStoryBook::setVisible(bool visible)
 		break;
 	}
 }
-
+bool GameObjectStoryBook::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectStoryBook::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
+}
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {
 

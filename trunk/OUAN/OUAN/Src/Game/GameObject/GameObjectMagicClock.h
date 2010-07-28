@@ -38,12 +38,15 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
 
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 
 
 	};

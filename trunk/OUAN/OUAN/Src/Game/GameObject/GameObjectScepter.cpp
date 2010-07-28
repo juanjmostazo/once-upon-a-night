@@ -194,13 +194,6 @@ void GameObjectScepter::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectScepter::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectScepter::hasRenderComponentEntity() const
 {
 	return true;
@@ -208,6 +201,14 @@ bool GameObjectScepter::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectScepter::getEntityComponent() const
 {
 	return mRenderComponentEntity;
+}
+bool GameObjectScepter::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectScepter::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 TGameObjectScepterParameters::TGameObjectScepterParameters() : TGameObjectParameters()
 {

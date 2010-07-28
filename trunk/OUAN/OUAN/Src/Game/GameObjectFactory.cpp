@@ -84,6 +84,8 @@
 #include "../Audio/AudioComponent/AudioComponent.h"
 #include "../Audio/AudioSubsystem.h"
 
+#include "../Logic/LogicSubsystem.h"
+
 #include "../Component/ComponentFactory.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
@@ -169,6 +171,12 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 
 	//Add reference to this
 	pGameObjectBee_Butterfly->setGameWorldManager(gameWorldMgr);
+	std::string scriptFile="";	
+	pGameObjectBee_Butterfly->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	//Add Object to GameWorldManager
 	//addGameObjectBee_Butterfly(pGameObjectBee_Butterfly);
@@ -228,6 +236,13 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 	}
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(gameWorldMgr);
+
+	std::string scriptFile="";
+	pGameObjectBillboardSet->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	//Add Object to GameWorldManager
 	//addGameObjectBillboardSet(pGameObjectBillboardSet);
@@ -291,6 +306,13 @@ GameObjectTraspasablePtr GameObjectFactory::createGameObjectTraspasable(TGameObj
 	//Add reference to this
 	pGameObjectTraspasable->setGameWorldManager(gameWorldMgr);
 
+	std::string scriptFile="";
+	pGameObjectTraspasable->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+
 	//Add Object to GameWorldManager
 	//addGameObjectTraspasable(pGameObjectTraspasable);
 	return pGameObjectTraspasable;
@@ -350,6 +372,13 @@ GameObjectCarnivorousPlantPtr GameObjectFactory::createGameObjectCarnivorousPlan
 	//Add reference to this
 	pGameObjectCarnivorousPlant->setGameWorldManager(gameWorldMgr);
 
+	std::string scriptFile="";
+	pGameObjectCarnivorousPlant->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+
 	return pGameObjectCarnivorousPlant;
 }
 
@@ -402,8 +431,12 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 	//Add reference to this
 	pGameObjectClockPiece->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectClockPiece(pGameObjectClockPiece);
+	std::string scriptFile="";
+	pGameObjectClockPiece->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectClockPiece;
 }
@@ -483,6 +516,12 @@ GameObjectCloudPtr GameObjectFactory::createGameObjectCloud(TGameObjectCloudPara
 
 	//Add reference to this
 	pGameObjectCloud->setGameWorldManager(gameWorldMgr);
+	std::string scriptFile="";
+	pGameObjectCloud->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	//Add Object to GameWorldManager
 	//addGameObjectCloud(pGameObjectCloud);
@@ -541,8 +580,12 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 	//Add reference to this
 	pGameObjectCryKing->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectCryKing(pGameObjectCryKing);
+	std::string scriptFile="";
+	pGameObjectCryKing->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectCryKing;
 }
@@ -604,8 +647,12 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	//Add reference to this
 	pGameObjectDiamond->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectDiamond(pGameObjectDiamond);
+	std::string scriptFile="";
+	pGameObjectDiamond->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectDiamond;
 }
 
@@ -649,19 +696,6 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 			mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.nightmaresName,
 			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters));
 	}
-
-	//Create PhysicsComponent
-	//pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
-	//	mComponentFactory->createPhysicsComponentSimpleBox(
-	//	pGameObjectDiamondTree, 
-	//	tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
-	//	pGameObjectDiamondTree->getRenderComponentPositional()));
-
-	//pGameObjectDiamondTree->setPhysicsComponentVolumeBox(
-	//	mComponentFactory->createPhysicsComponentVolumeBox(
-	//	pGameObjectDiamondTree, 
-	//	tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters, 
-	//	pGameObjectDiamondTree->getRenderComponentPositional()));
 						
 	//Create PhysicsComponent
 	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
@@ -674,10 +708,13 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
 
+	std::string scriptFile="";
+	pGameObjectDiamondTree->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
-
-	//Add Object to GameWorldManager
-	//addGameObjectDiamondTree(pGameObjectDiamondTree);
 	return pGameObjectDiamondTree;
 }
 
@@ -732,8 +769,12 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 	//Add reference to this
 	pGameObjectDoor->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectDoor(pGameObjectDoor);
+	std::string scriptFile="";
+	pGameObjectDoor->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectDoor;
 }
@@ -783,8 +824,12 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 	//Add reference to this
 	pGameObjectBoss->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectBoss(pGameObjectBoss);
+	std::string scriptFile="";
+	pGameObjectBoss->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectBoss;
 }
 
@@ -829,8 +874,12 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 	// Add a reference to this
 	pGameObjectEye->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectEye(pGameObjectEye);
+	std::string scriptFile="";
+	pGameObjectEye->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectEye;
 }
@@ -892,8 +941,12 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 	//Add reference to this
 	pGameObjectFog->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectFog(pGameObjectFog);
+	std::string scriptFile="";
+	pGameObjectFog->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectFog;
 }
 
@@ -1012,8 +1065,12 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	pGameObjectFlashLight->hide();
 	pGameObjectFlashLight->switchOff();
 
-	//Add Object to GameWorldManager
-	//addGameObjectFlashLight(pGameObjectFlashLight);
+	std::string scriptFile="";
+	pGameObjectFlashLight->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectFlashLight;
 }
 
@@ -1063,8 +1120,12 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 	// Add a reference to this
 	pGameObjectHeart->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectHeart(pGameObjectHeart);
+	std::string scriptFile="";
+	pGameObjectHeart->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectHeart;
 }
@@ -1117,8 +1178,12 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 	// Add a reference to this
 	pGameObjectItem1UP->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectItem1UP(pGameObjectItem1UP);
+	std::string scriptFile="";
+	pGameObjectItem1UP->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectItem1UP;
 }
 
@@ -1174,8 +1239,12 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 	// Add a reference to this
 	pGameObjectItemMaxHP->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectItemMaxHP(pGameObjectItemMaxHP);
+	std::string scriptFile="";
+	pGameObjectItemMaxHP->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectItemMaxHP;
 }
 
@@ -1212,8 +1281,12 @@ GameObjectLightPtr GameObjectFactory::createGameObjectLight(TGameObjectLightPara
 	// Add a reference to this
 	pGameObjectLight->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectLight(pGameObjectLight);
+	std::string scriptFile="";
+	pGameObjectLight->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectLight;
 }
 
@@ -1238,8 +1311,12 @@ GameObjectMagicClockPtr GameObjectFactory::createGameObjectMagicClock(TGameObjec
 	//Add reference to this
 	pGameObjectMagicClock->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectMagicClock(pGameObjectMagicClock);
+	std::string scriptFile="";
+	pGameObjectMagicClock->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectMagicClock;
 }
 GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParameters 
@@ -1280,9 +1357,13 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 
 	//Add reference to this
 	pGameObjectNest->setGameWorldManager(gameWorldMgr);
-
-	//Add Object to GameWorldManager
-	//addGameObjectNightGoblin(pGameObjectNightGoblin);
+	
+	std::string scriptFile="";
+	pGameObjectNest->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectNest;
 }
 
@@ -1480,9 +1561,13 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
-
-	//Add Object to GameWorldManager
-	//addGameObjectOny(pGameObjectOny);
+	
+	std::string scriptFile="";
+	pGameObjectOny->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return pGameObjectOny;
 }
@@ -1578,14 +1663,6 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 		pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentEntityParameters));
 	pGameObjectPillow->getRenderComponentEntity()->setVisible(false);
 
-	//Create PhysicsComponent
-	//UNCOMMENT WHEN THE FAKE COMPONENT ISN'T NEEDED ANYMORE
-	//pGameObjectPillow->setPhysicsComponentSimpleCapsule(
-	//	mComponentFactory->createPhysicsComponentSimpleCapsule(
-	//	pGameObjectPillow, 
-	//	tGameObjectPillowParameters.tPhysicsComponentSimpleCapsuleParameters, 
-	//	pGameObjectPillow->getRenderComponentPositional()));
-
 	pGameObjectPillow->setPhysicsComponentWeapon(
 		mComponentFactory->createPhysicsComponentWeapon(
 		pGameObjectPillow,
@@ -1595,11 +1672,12 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//Add reference to this
 	pGameObjectPillow->setGameWorldManager(gameWorldMgr);
 
-	//pGameObjectPillow->hide();
-	//pGameObjectPillow->switchOff();
-
-	//Add Object to GameWorldManager
-	//addGameObjectPillow(pGameObjectPillow);	
+	std::string scriptFile="";
+	pGameObjectPillow->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}	
 	return pGameObjectPillow;
 }
 
@@ -1636,8 +1714,12 @@ GameObjectPlanePtr GameObjectFactory::createGameObjectPlane(TGameObjectPlanePara
 	// Add a reference to this
 	pGameObjectPlane->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectPlane(pGameObjectPlane);
+	std::string scriptFile="";
+	pGameObjectPlane->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectPlane;
 }
 
@@ -1690,8 +1772,12 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 	//Add reference to this
 	pGameObjectPlataform->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectPlataform(pGameObjectPlataform);
+	std::string scriptFile="";
+	pGameObjectPlataform->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectPlataform;
 }
 
@@ -1772,8 +1858,12 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	// Add a reference to this
 	pGameObjectPortal->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectPortal(pGameObjectPortal);
+	std::string scriptFile="";
+	pGameObjectPortal->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectPortal;
 }
 
@@ -1819,18 +1909,15 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
 	}
 
-	//Create PhysicsComponent
-	//pGameObjectProvisionalEntity->setPhysicsComponentSimpleBox(
-	//	mComponentFactory->createPhysicsComponentSimpleBox(
-	//	pGameObjectProvisionalEntity, 
-	//	tGameObjectProvisionalEntityParameters.tPhysicsComponentSimpleBoxParameters, 
-	//	pGameObjectProvisionalEntity->getRenderComponentPositional()));
-
 	// Add a reference to this
 	pGameObjectProvisionalEntity->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectProvisionalEntity(pGameObjectProvisionalEntity);
+	std::string scriptFile="";
+	pGameObjectProvisionalEntity->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectProvisionalEntity;
 }
 
@@ -1874,8 +1961,12 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 	//Add reference to this
 	pGameObjectScaredPlant->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectScaredPlant(pGameObjectScaredPlant);
+	std::string scriptFile="";
+	pGameObjectScaredPlant->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectScaredPlant;
 }
 
@@ -1899,8 +1990,12 @@ GameObjectScenePtr GameObjectFactory::createGameObjectScene(TGameObjectScenePara
 	// Add a reference to this
 	pGameObjectScene->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectScene(pGameObjectScene);
+	std::string scriptFile="";
+	pGameObjectScene->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectScene;
 
 }
@@ -1946,8 +2041,12 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 	//Add reference to this
 	pGameObjectScepter->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectScepter(pGameObjectScepter);
+	std::string scriptFile="";
+	pGameObjectScepter->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectScepter;
 }
 
@@ -2115,6 +2214,13 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 
 	//Add reference to this
 	gameObject->setGameWorldManager(gameWorldMgr);
+	
+	std::string scriptFile="";
+	gameObject->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	//Add Object to GameWorldManager
 	return gameObject;
@@ -2171,8 +2277,12 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 	//Add reference to this
 	pGameObjectSnakeCreeper->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectSnakeCreeper(pGameObjectSnakeCreeper);
+	std::string scriptFile="";
+	pGameObjectSnakeCreeper->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectSnakeCreeper;
 }
 GameObjectSoundPtr GameObjectFactory::createGameObjectSound(TGameObjectSoundParameters params, GameWorldManagerPtr gameWorldMgr)
@@ -2201,6 +2311,12 @@ GameObjectSoundPtr GameObjectFactory::createGameObjectSound(TGameObjectSoundPara
 	sound->setCurrentNightmaresSoundId(params.currentNightmaresSoundID);
 
 	sound->setGameWorldManager(gameWorldMgr);
+	std::string scriptFile="";
+	sound->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return sound;
 }
@@ -2256,8 +2372,12 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 	//Add reference to this
 	pGameObjectStoryBook->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectStoryBook(pGameObjectStoryBook);
+	std::string scriptFile="";
+	pGameObjectStoryBook->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectStoryBook;
 }
 
@@ -2306,8 +2426,12 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 	//Add reference to this
 	pGameObjectTentetieso->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTentetieso(pGameObjectTentetieso);
+	std::string scriptFile="";
+	pGameObjectTentetieso->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTentetieso;
 }
 
@@ -2371,8 +2495,12 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 
 	// Add a reference to this
 	pGameObjectTerrainConvex->setGameWorldManager(gameWorldMgr);
-	//Add Object to GameWorldManager
-	//addGameObjectTerrainConvex(pGameObjectTerrainConvex);
+	std::string scriptFile="";
+	pGameObjectTerrainConvex->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTerrainConvex;
 }
 
@@ -2420,8 +2548,12 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 
 	// Add a reference to this
 	pGameObjectTerrainTriangle->setGameWorldManager(gameWorldMgr);
-	//Add Object to GameWorldManager
-	//addGameObjectTerrainTriangle(pGameObjectTerrainTriangle);
+	std::string scriptFile="";
+	pGameObjectTerrainTriangle->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTerrainTriangle;
 }
 
@@ -2466,8 +2598,12 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 	//Add reference to this
 	pGameObjectTree->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTree(pGameObjectTree);
+	std::string scriptFile="";
+	pGameObjectTree->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTree;
 }
 
@@ -2512,8 +2648,12 @@ GameObjectTreeComplexPtr GameObjectFactory::createGameObjectTreeComplex(TGameObj
 	//Add reference to this
 	pGameObjectTreeComplex->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTreeComplex(pGameObjectTreeComplex);
+	std::string scriptFile="";
+	pGameObjectTreeComplex->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTreeComplex;
 }
 
@@ -2563,8 +2703,12 @@ GameObjectTowerPtr GameObjectFactory::createGameObjectTower(TGameObjectTowerPara
 	//Add reference to this
 	pGameObjectTower->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTower(pGameObjectTower);
+	std::string scriptFile="";
+	pGameObjectTower->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTower;
 }
 
@@ -2611,8 +2755,12 @@ GameObjectTriggerBoxPtr GameObjectFactory::createGameObjectTriggerBox(TGameObjec
 	// Add a reference to this
 	pGameObjectTriggerBox->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTriggerBox(pGameObjectTriggerBox);
+	std::string scriptFile="";
+	pGameObjectTriggerBox->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTriggerBox;
 }
 
@@ -2659,8 +2807,12 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 	// Add a reference to this
 	pGameObjectTriggerCapsule->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTriggerCapsule(pGameObjectTriggerCapsule);
+	std::string scriptFile="";
+	pGameObjectTriggerCapsule->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTriggerCapsule;
 }
 
@@ -2707,8 +2859,12 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 	// Add a reference to this
 	pGameObjectCameraTrigger->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectCameraTrigger(pGameObjectCameraTrigger);
+	std::string scriptFile="";
+	pGameObjectCameraTrigger->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectCameraTrigger;
 }
 
@@ -2756,8 +2912,12 @@ GameObjectTripolloNightmaresPtr GameObjectFactory::createGameObjectTripolloNight
 	//Add reference to this
 	pGameObjectTripolloNightmares->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTripolloNightmares(pGameObjectTripolloNightmares);
+	std::string scriptFile="";
+	pGameObjectTripolloNightmares->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTripolloNightmares;
 }
 
@@ -2846,9 +3006,12 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 	// Add a reference to this
 	pGameObjectTripolloDreams->setGameWorldManager(gameWorldMgr);
 
-
-	//Add Object to GameWorldManager
-	//addGameObjectTripolloDreams(pGameObjectTripolloDreams);
+	std::string scriptFile="";
+	pGameObjectTripolloDreams->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTripolloDreams;
 }
 
@@ -2872,11 +3035,12 @@ GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectVie
 	pGameObjectViewport->setGameWorldManager(gameWorldMgr);
 
 	//Initialize compositor effects
-
-	//pGameObjectViewport->setEffect("Posterize",true);
-
-	//Add Object to GameWorldManager
-	//addGameObjectViewport(pGameObjectViewport);
+	std::string scriptFile="";
+	pGameObjectViewport->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectViewport;
 }
 
@@ -2956,8 +3120,12 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 	//Add reference to this
 	pGameObjectWoodBox->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectWoodBox(pGameObjectWoodBox);
+	std::string scriptFile="";
+	pGameObjectWoodBox->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectWoodBox;
 }
 
@@ -3021,8 +3189,12 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 
 	// Add a reference to this
 	pGameObjectWater->setGameWorldManager(gameWorldMgr);
-	//Add Object to GameWorldManager
-	//addGameObjectWater(pGameObjectWater);
+	std::string scriptFile="";
+	pGameObjectWater->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectWater;
 }
 GameObjectSignpostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSignpostParameters TGameObjectSignpostParameters, 
@@ -3072,6 +3244,12 @@ GameObjectSignpostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 
 	//Add reference to this
 	gameObject->setGameWorldManager(gameWorldMgr);
+	std::string scriptFile="";
+	gameObject->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 
 	return gameObject;
 
@@ -3123,8 +3301,12 @@ GameObjectLevelEntrancePtr GameObjectFactory::createGameObjectLevelEntrance(TGam
 	//Add reference to this
 	pGameObjectLevelEntrance->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectLevelEntrance(pGameObjectLevelEntrance);
+	std::string scriptFile="";
+	pGameObjectLevelEntrance->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectLevelEntrance;
 }
 
@@ -3174,8 +3356,12 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 	//Add reference to this
 	pGameObjectSwitch->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectSwitch(pGameObjectSwitch);
+	std::string scriptFile="";
+	pGameObjectSwitch->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectSwitch;
 }
 
@@ -3225,8 +3411,12 @@ GameObjectTotemPtr GameObjectFactory::createGameObjectTotem(TGameObjectTotemPara
 	//Add reference to this
 	pGameObjectTotem->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectTotem(pGameObjectTotem);
+	std::string scriptFile="";
+	pGameObjectTotem->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectTotem;
 }
 
@@ -3276,7 +3466,11 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 	//Add reference to this
 	pGameObjectBomb->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectBomb(pGameObjectBomb);
+	std::string scriptFile="";
+	pGameObjectBomb->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
 	return pGameObjectBomb;
 }

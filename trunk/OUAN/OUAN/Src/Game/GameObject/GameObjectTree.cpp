@@ -267,13 +267,6 @@ void GameObjectTree::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTree::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 void GameObjectTree::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -344,6 +337,14 @@ void GameObjectTree::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectTree::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTree::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 TGameObjectTreeParameters::TGameObjectTreeParameters() : TGameObjectParameters()
 {

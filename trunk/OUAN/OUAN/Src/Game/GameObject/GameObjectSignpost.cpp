@@ -222,13 +222,6 @@ void GameObjectSignpost::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectSignpost::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectSignpost::hasRenderComponentEntity() const
 {
 	return true;
@@ -348,6 +341,14 @@ RenderComponentMessageBoxPtr GameObjectSignpost::getRenderComponentMessageBox() 
 void GameObjectSignpost::setRenderComponentMessageBox(RenderComponentMessageBoxPtr messageBox)
 {
 	mMessageBox=messageBox;
+}
+bool GameObjectSignpost::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectSignpost::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

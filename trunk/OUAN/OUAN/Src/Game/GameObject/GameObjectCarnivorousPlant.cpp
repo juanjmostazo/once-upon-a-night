@@ -191,14 +191,6 @@ void GameObjectCarnivorousPlant::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponentEnemy->processExitTrigger(pGameObject);
 	}
 }
-
-void GameObjectCarnivorousPlant::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectCarnivorousPlant::hasRenderComponentEntity() const
 {
 	return true;
@@ -206,6 +198,14 @@ bool GameObjectCarnivorousPlant::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectCarnivorousPlant::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectCarnivorousPlant::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectCarnivorousPlant::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectCarnivorousPlantParameters::TGameObjectCarnivorousPlantParameters() : TGameObjectParameters()

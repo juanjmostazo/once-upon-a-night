@@ -142,14 +142,14 @@ void GameObjectPlane::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectPlane::updateLogic(double elapsedSeconds)
+bool GameObjectPlane::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
 }
-
+LogicComponentPtr GameObjectPlane::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 TGameObjectPlaneParameters::TGameObjectPlaneParameters() : TGameObjectParameters()
 {
 

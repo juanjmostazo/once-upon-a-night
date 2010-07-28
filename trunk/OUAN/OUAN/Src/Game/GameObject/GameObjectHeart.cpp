@@ -301,13 +301,6 @@ void GameObjectHeart::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectHeart::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
 void GameObjectHeart::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -360,6 +353,14 @@ void GameObjectHeart::setVisible(bool visible)
 RenderComponentEntityPtr GameObjectHeart::getEntityComponent() const
 {
 	return mRenderComponentEntity;
+}
+bool GameObjectHeart::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectHeart::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
 }
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {

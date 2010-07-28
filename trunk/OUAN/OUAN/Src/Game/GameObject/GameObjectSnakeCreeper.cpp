@@ -190,13 +190,6 @@ void GameObjectSnakeCreeper::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectSnakeCreeper::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectSnakeCreeper::hasRenderComponentEntity() const
 {
 	return true;
@@ -204,6 +197,14 @@ bool GameObjectSnakeCreeper::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectSnakeCreeper::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectSnakeCreeper::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectSnakeCreeper::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectSnakeCreeperParameters::TGameObjectSnakeCreeperParameters() : TGameObjectParameters()

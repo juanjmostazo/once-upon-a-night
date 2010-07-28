@@ -276,14 +276,6 @@ void GameObjectItemMaxHP::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectItemMaxHP::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
-
 void GameObjectItemMaxHP::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -336,6 +328,14 @@ void GameObjectItemMaxHP::setVisible(bool visible)
 RenderComponentEntityPtr GameObjectItemMaxHP::getEntityComponent() const
 {
 	return mRenderComponentEntity;
+}
+bool GameObjectItemMaxHP::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectItemMaxHP::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
 }
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {

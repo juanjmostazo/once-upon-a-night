@@ -408,13 +408,6 @@ void GameObjectFlashLight::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectFlashLight::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 int GameObjectFlashLight::getColour()
 {
 	FlashlightAttackDataPtr attackData=BOOST_PTR_CAST(FlashlightAttackData,mAttackComponent->getSelectedAttack());
@@ -529,7 +522,14 @@ void GameObjectFlashLight::unloadDecalMaterials()
 {
 	mFlashlightDecalComponent->unloadMaterials();
 }
-
+bool GameObjectFlashLight::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectFlashLight::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 //---
 TGameObjectFlashLightParameters::TGameObjectFlashLightParameters() : TGameObjectParameters()
 {

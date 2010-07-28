@@ -268,14 +268,6 @@ void GameObjectPortal::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectPortal::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 void GameObjectPortal::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -383,6 +375,14 @@ void GameObjectPortal::setCurrentWorldVisibility(bool visibility)
 		: mRenderComponentEntityNightmares;
 
 	currentWorldEntity->setVisible(visibility);
+}
+bool GameObjectPortal::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectPortal::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

@@ -80,8 +80,10 @@ namespace OUAN
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
-		// update logic component
 		void updateLogic(double elapsedSeconds);
+		
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectCloudParameters: public TGameObjectParameters

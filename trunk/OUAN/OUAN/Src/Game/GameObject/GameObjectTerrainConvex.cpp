@@ -316,14 +316,6 @@ void GameObjectTerrainConvex::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponent->processExitTrigger(pGameObject);
 	}
 }
-
-void GameObjectTerrainConvex::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectTerrainConvex::hasRenderComponentEntity() const
 {
 	return true;
@@ -351,6 +343,14 @@ void GameObjectTerrainConvex::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectTerrainConvex::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTerrainConvex::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTerrainConvexParameters::TGameObjectTerrainConvexParameters() : TGameObjectParameters()

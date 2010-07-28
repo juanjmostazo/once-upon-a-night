@@ -222,6 +222,14 @@ RenderComponentEntityPtr GameObjectFog::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
+bool GameObjectFog::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectFog::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectFogParameters::TGameObjectFogParameters() : TGameObjectParameters()

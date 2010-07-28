@@ -288,14 +288,6 @@ void GameObjectWater::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectWater::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 void GameObjectWater::update(double elapsedTime)
 {
 	GameObject::update(elapsedTime);
@@ -364,7 +356,14 @@ void GameObjectWater::setVisible(bool visible)
 		break;
 	}
 }
-
+bool GameObjectWater::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectWater::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 TGameObjectWaterParameters::TGameObjectWaterParameters() : TGameObjectParameters()
 {
 

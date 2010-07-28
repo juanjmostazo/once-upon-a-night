@@ -205,13 +205,6 @@ void GameObjectTerrainTriangle::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTerrainTriangle::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
 {
 	return true;
@@ -249,6 +242,14 @@ void GameObjectTerrainTriangle::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectTerrainTriangle::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTerrainTriangle::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {

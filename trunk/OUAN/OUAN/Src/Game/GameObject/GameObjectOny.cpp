@@ -410,14 +410,6 @@ void GameObjectOny::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectOny::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentOny.get())
-	{
-		mLogicComponentOny->update(elapsedSeconds);
-	}
-}
-
 void GameObjectOny::processAnimationEnded(const std::string& animationName)
 {
 	if(mLogicComponentOny.get())
@@ -596,7 +588,14 @@ int GameObjectOny::getLogicCurrentState() const
 {
 	return mLogicComponentOny->getState();
 }
-
+bool GameObjectOny::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectOny::getLogicComponentInstance() const
+{
+	return mLogicComponentOny;
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

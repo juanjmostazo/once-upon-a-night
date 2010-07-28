@@ -292,14 +292,6 @@ void GameObjectSkyBody::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectSkyBody::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 bool GameObjectSkyBody::hasRenderComponentEntity() const
 {
 	return true;
@@ -397,6 +389,14 @@ void GameObjectSkyBody::update(double elapsedSeconds)
 void GameObjectSkyBody::setVisible(bool visible)
 {
 
+}
+bool GameObjectSkyBody::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectSkyBody::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 
