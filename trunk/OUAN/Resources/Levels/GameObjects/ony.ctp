@@ -22,6 +22,9 @@
   <PROPERTY id="LogicComponent::numLives" type="2" value="3" ></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="-1" ></PROPERTY>
   
+  <PROPERTY id="CollectableItem0::type" type="7" value="diamond"></PROPERTY>
+  <PROPERTY id="CollectableItem0::newLifeAmount" type="2" value="50"></PROPERTY>
+  
   <PROPERTY id="WeaponComponent::weapon0" type="7" value="flashlight#1"></PROPERTY>
   <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow#0"></PROPERTY>
   

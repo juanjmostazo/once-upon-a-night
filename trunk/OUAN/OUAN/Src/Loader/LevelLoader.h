@@ -164,6 +164,7 @@ namespace OUAN
 		TWeaponComponentParameters processWeaponComponent(TiXmlElement* XMLNode);
 		TLogicComponentOnyParameters processLogicComponentOny(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
+		void processCollectableItemTypes(TiXmlElement* XMLNode, TLogicComponentOnyParameters& onyParams );
 		TLogicComponentItemParameters processLogicComponentItem(TiXmlElement *XMLNodeDreams,
 			TiXmlElement *XMLNodeNightmares, TiXmlElement* XMLNodeCustomProperties);
 		TLogicComponentBreakableParameters processLogicComponentBreakable(TiXmlElement *XMLNodeDreams,
