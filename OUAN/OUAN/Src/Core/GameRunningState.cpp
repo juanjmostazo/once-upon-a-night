@@ -66,7 +66,7 @@ void GameRunningState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
 	
 	//create GUI
-	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
+	mGUI = BOOST_PTR_CAST(GUIConsole,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();
 
@@ -166,7 +166,7 @@ void GameRunningState::pause()
 /// resume state
 void GameRunningState::resume()
 {	
-	mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
+	mGUI = BOOST_PTR_CAST(GUIConsole,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();
 

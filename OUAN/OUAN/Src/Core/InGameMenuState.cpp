@@ -33,7 +33,7 @@ void InGameMenuState::init(ApplicationPtr app)
 {
 	GameState::init(app);
 
-	mGUI=boost::dynamic_pointer_cast<GUIInGame>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));
+	mGUI=BOOST_PTR_CAST(GUIInGame,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));
 	mGUI->initGUI(shared_from_this());
 
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
@@ -63,7 +63,7 @@ void InGameMenuState::pause()
 /// resume state
 void InGameMenuState::resume()
 {
-	mGUI=boost::dynamic_pointer_cast<GUIInGame>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));
+	mGUI=BOOST_PTR_CAST(GUIInGame,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));
 	mGUI->initGUI(shared_from_this());
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);

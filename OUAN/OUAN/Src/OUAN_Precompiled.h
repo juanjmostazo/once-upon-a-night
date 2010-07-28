@@ -89,17 +89,63 @@ extern "C" {
 /// clearing the containers will mess with the pointers' references count
 #define EMPTY_VECTOR(T,v) \
 	for (T::iterator it=v.begin();it!=v.end();++it) \
-{ \
-	(*it).reset(); \
-}\
+	{ \
+		(*it).reset(); \
+	}\
 	v.clear();
 #define EMPTY_MAP(T,v) \
 	for (T::iterator it=v.begin();it!=v.end();++it) \
-{ \
-	(it->second).reset(); \
-}\
+	{ \
+		(it->second).reset(); \
+	}\
 	v.clear();
 
 #define SAFEDELETE(ptr) if(ptr){ delete ptr;ptr=NULL;}
+
+#define BOOST_PTR_CAST(type, var) boost::dynamic_pointer_cast<type>(var)
+
+//EXAMPLE OF USE
+// GameObjectOny => CLASS_DECLARATIONS(GameObjectOny);
+// Result:
+//	class GameObjectOny;
+//	class TGameObjectOnyParameters;
+//  typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
+#define CLASS_DECLARATIONS(x) class x;\
+	class T##x##Parameters;\
+	typedef boost::shared_ptr<x> x##Ptr
+
+//EXAMPLE OF USE
+// RenderSubsystem => CLASS_DECLARATIONS_NO_PARAMS(RenderSubsystem);
+// Result:
+//	class RenderSubsystem;
+//  typedef boost::shared_ptr<RenderSubsystem> RenderSubsystemPtr;
+#define CLASS_DECLARATIONS_NO_PARAMS(y) class y;\
+	typedef boost::shared_ptr<y> y##Ptr
+
+//EXAMPLE OF USE
+// GAMEOBJECT_CONTAINER_DECL(Animated);
+// Result:
+//	typedef std::vector<GameObjectPtr> TGameObjectAnimatedContainer;
+#define GAMEOBJECT_CONTAINER_DECL(x) \
+	typedef std::vector<GameObjectPtr> TGameObject##x##Container
+
+//EXAMPLE OF USE
+// CONCRETE_GAMEOBJECT_CONTAINER_DECL(Ony);
+// Result:
+//	typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+#define CONCRETE_GAMEOBJECT_CONTAINER_DECL(x) \
+	typedef std::vector<GameObject##x##Ptr> TGameObject##x##Container
+
+//EXAMPLE OF USE
+// GAMEOBJECT_CLASS_DECL(Ony);
+// Result:
+// class GameObjectOny;
+// class TGameObjectOnyParameters;
+// typedef boost::shared_ptr<GameObjectOny> GameObjectOnyPtr;
+// typedef std::vector<GameObjectOnyPtr> TGameObjectOnyContainer;
+#define GAMEOBJECT_CLASS_DECL(x)\
+	CLASS_DECLARATIONS(GameObject##x);\
+	CONCRETE_GAMEOBJECT_CONTAINER_DECL(x)
+
 
 #define _CRT_SECURE_NO_WARNINGS

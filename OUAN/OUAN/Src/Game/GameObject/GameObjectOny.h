@@ -49,6 +49,8 @@ namespace OUAN
 	const unsigned int ONY_STATE_BIT_FIELD_DIE=12; //Ony is dying
 	const unsigned int ONY_STATE_BIT_FIELD_INVULNERABLE=13;
 
+	const unsigned int ONY_STATE_BIT_FIELD_FALL=14; //Ony is falling
+
 	#define SET_BIT(var,pos) var|(1<<pos)
 	#define CLEAR_BIT(var,pos) var& ~(1<<pos)
 	#define CHECK_BIT(var,pos) (var & (1<<pos))
@@ -279,6 +281,12 @@ namespace OUAN
 		bool hasAudioComponent() const;
 
 		double getMovingSpeed();
+
+		int getLogicNewState() const;
+		void setLogicNewState(int newState);
+		//only provide the getter!
+		int getLogicCurrentState() const;
+		
 	};
 
 	/// Carries data between the level loader and the object factories

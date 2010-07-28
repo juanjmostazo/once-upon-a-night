@@ -36,7 +36,7 @@ void MainMenuState::init(ApplicationPtr app)
 
 	mApp->mBackToMenu=false;
 	//mApp->getGUISubsystem()->loadScheme("OUANLookSkin.scheme","OUANLook");
-	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
+	mGUI= BOOST_PTR_CAST(GUIMainMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 
 	Utils::TTexturedRectangleDesc desc;
 	desc.leftCorner=desc.bottomCorner=-1.0;
@@ -95,7 +95,7 @@ void MainMenuState::pause()
 void MainMenuState::resume()
 {
 	//mApp->getGUISubsystem()->showGUI();
-	mGUI= boost::dynamic_pointer_cast<GUIMainMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
+	mGUI= BOOST_PTR_CAST(GUIMainMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 	mGUI->initGUI(shared_from_this());
 	if (!mApp->getAudioSubsystem()->isLoaded("MUSIC"))
 		mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);

@@ -4732,7 +4732,7 @@ TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XML
 				false);
 			
 			if (static_cast<TAttackType>(type)==ATTACK_TYPE_FLASHLIGHT && 
-				(boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)))
+				(BOOST_PTR_CAST(FlashlightAttackData,currentAttack)))
 			{				
 				int rgb;
 				try{
@@ -4747,31 +4747,31 @@ TAttackComponentParameters LevelLoader::processAttackComponent(TiXmlElement* XML
 					Logger::getInstance()->log(msg);
 					rgb=0x000000ff;
 				}
-				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->rgb=rgb;
-				boost::dynamic_pointer_cast<FlashlightAttackData>(currentAttack)->coneRadius=getPropertyReal(XMLNode,
+				BOOST_PTR_CAST(FlashlightAttackData,currentAttack)->rgb=rgb;
+				BOOST_PTR_CAST(FlashlightAttackData,currentAttack)->coneRadius=getPropertyReal(XMLNode,
 					"AttackComponent::attack"+StringConverter::toString(i)+"#coneRadius",
 					false);
 			}
 			else if (static_cast<TAttackType>(type)==ATTACK_TYPE_PILLOW && 
-				(boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)))
+				(BOOST_PTR_CAST(PillowAttackData,currentAttack)))
 			{				
 				try{
-					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->comboDelay=
+					BOOST_PTR_CAST(PillowAttackData,currentAttack)->comboDelay=
 						getPropertyReal(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#comboDelay",
 						false);
 				}
 				catch(std::string error)
 				{
-					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->comboDelay=-1.0f;
+					BOOST_PTR_CAST(PillowAttackData,currentAttack)->comboDelay=-1.0f;
 				}				
 				try{
-					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->nextComboAttack=
+					BOOST_PTR_CAST(PillowAttackData,currentAttack)->nextComboAttack=
 						getPropertyString(XMLNode,"AttackComponent::attack"+StringConverter::toString(i)+"#nextComboAttack",
 						false);
 				}
 				catch(std::string error)
 				{
-					boost::dynamic_pointer_cast<PillowAttackData>(currentAttack)->nextComboAttack="";
+					BOOST_PTR_CAST(PillowAttackData,currentAttack)->nextComboAttack="";
 				}				
 			}
 			if (name.compare("")==0) break;

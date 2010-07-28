@@ -255,7 +255,7 @@ void RenderComponentDecal::loadSubEnts(Ogre::Entity* ent)
 void RenderComponentDecal::loadGOTerrainTriangleMaterials(GameObjectPtr obj)
 {
 	GameObjectTerrainTrianglePtr triangle = 
-		boost::dynamic_pointer_cast<GameObjectTerrainTriangle>(obj);
+		BOOST_PTR_CAST(GameObjectTerrainTriangle,obj);
 	if (triangle.get())
 	{
 		loadSubEnts(triangle->getRenderComponentEntityDreams()

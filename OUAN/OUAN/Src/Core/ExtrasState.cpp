@@ -44,7 +44,7 @@ void ExtrasState::init(ApplicationPtr app)
 
 	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
-	mGUI=boost::dynamic_pointer_cast<GUIExtrasMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_EXTRAS));
+	mGUI=BOOST_PTR_CAST(GUIExtrasMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_EXTRAS));
 	mGUI->initGUI(shared_from_this());
 }
 

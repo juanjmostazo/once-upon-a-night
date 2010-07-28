@@ -228,7 +228,8 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 void GameObjectFlashLight::setAttack(const std::string& newAttack)
 {
 	mAttackComponent->setSelectedAttack(newAttack);
-	FlashlightAttackDataPtr attackData= boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+	FlashlightAttackDataPtr attackData= BOOST_PTR_CAST(FlashlightAttackData,
+		mAttackComponent->getSelectedAttack());
 	if (attackData.get())
 	{
 		ColourValue newColour;
@@ -283,7 +284,8 @@ void GameObjectFlashLight::switchOff()
 	}
 	if (mAttackComponent->getSelectedAttack().get())
 	{
-		FlashlightAttackDataPtr attackData = boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+		FlashlightAttackDataPtr attackData = 
+			BOOST_PTR_CAST(FlashlightAttackData,mAttackComponent->getSelectedAttack());
 		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName,shared_from_this()));
 		mGameWorldManager->addEvent(evt);
 	}
@@ -377,7 +379,7 @@ void GameObjectFlashLight::updateLogic(double elapsedSeconds)
 }
 int GameObjectFlashLight::getColour()
 {
-	FlashlightAttackDataPtr attackData=boost::dynamic_pointer_cast<FlashlightAttackData>(mAttackComponent->getSelectedAttack());
+	FlashlightAttackDataPtr attackData=BOOST_PTR_CAST(FlashlightAttackData,mAttackComponent->getSelectedAttack());
 	if (attackData && attackData.get())
 	{
 		return attackData->rgb;

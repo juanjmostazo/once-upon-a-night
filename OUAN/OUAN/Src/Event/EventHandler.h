@@ -66,7 +66,7 @@ namespace OUAN
 		/// @param evt	event to process
 		void invoke(const EventPtr evt)
 		{
-			(mInstance.get()->*mCallback)(boost::dynamic_pointer_cast<TEvent>(evt));
+			(mInstance.get()->*mCallback)(BOOST_PTR_CAST(TEvent,evt));
 		}
 	public:
 		//DO NOT TAKE THESE ALIASES AWAY FROM HERE, AS THEY HAVE CLASS SCOPE

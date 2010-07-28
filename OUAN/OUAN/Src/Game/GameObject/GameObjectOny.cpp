@@ -499,7 +499,8 @@ void GameObjectOny::postUpdate()
 	}
 	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
 	{
-				GameObjectPillowPtr pillow = boost::dynamic_pointer_cast<GameObjectPillow>(mWeaponComponent->getActiveWeapon());
+		GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
+			mWeaponComponent->getActiveWeapon());
 		switch(mWorld)
 		{
 			case DREAMS:
@@ -545,8 +546,20 @@ void GameObjectOny::postUpdate()
 		mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
 	}
 	else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
-	{
+	{		
 		mRenderComponentEntity->removeTint();
+	}
+	if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_FALL)
+		&& CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_FALL))
+	{
+		if (mGameWorldManager->getWorld() == DREAMS)
+		{
+			mRenderComponentParticleSystemLandDreams->start();
+		}
+		else if (mGameWorldManager->getWorld() == NIGHTMARES)
+		{
+			mRenderComponentParticleSystemLandNightmares->start();
+		}
 	}
 
 	//Apply radial blur effect when reached fall speed limit
@@ -569,6 +582,19 @@ bool GameObjectOny::hasAudioComponent() const
 double GameObjectOny::getMovingSpeed()
 {
 	return Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond;
+}
+
+int GameObjectOny::getLogicNewState() const
+{
+	return mLogicComponentOny->getNewState();
+}
+void GameObjectOny::setLogicNewState(int newState)
+{
+	mLogicComponentOny->setNewState(newState);
+}
+int GameObjectOny::getLogicCurrentState() const
+{
+	return mLogicComponentOny->getState();
 }
 
 //-------

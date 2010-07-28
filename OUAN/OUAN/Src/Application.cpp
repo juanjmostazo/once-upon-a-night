@@ -261,7 +261,8 @@ void Application::loadInitialState()
 	if (mSkipIntro)
 	{
 		initialState.reset(new LevelLoadingState());
-		LevelLoadingStatePtr ll = boost::dynamic_pointer_cast<LevelLoadingState>(initialState);
+		LevelLoadingStatePtr ll = BOOST_PTR_CAST(LevelLoadingState,
+			initialState);
 
 		if (ll.get())
 		{
