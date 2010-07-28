@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/ObjectTextOverlay/ObjectTextDisplay.h"
 #include "../../Graphics/CameraManager/CameraManager.h"
+#include "../../Logic/LogicComponent/LogicComponent.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponent.h"
@@ -218,7 +219,10 @@ void GameObject::processAnimationEnded(const std::string& animationName)
 
 void GameObject::updateLogic(double elapsedSeconds)
 {
-
+	if (hasLogicComponent() && getLogicComponentInstance().get())
+	{
+		getLogicComponentInstance()->update(elapsedSeconds);
+	}
 }
 
 bool GameObject::hasPositionalComponent() const
@@ -623,6 +627,22 @@ double GameObject::getMovingSpeed()
 void GameObject::setCurrentWorldVisibility(bool visibility)
 {
 
+}
+bool GameObject::hasLogicComponent() const
+{
+	return false;
+}
+LogicComponentPtr GameObject::getLogicComponentInstance() const
+{
+	return LogicComponentPtr();
+}
+void GameObject::getLogicScriptFile(std::string& scriptFile) const
+{
+	scriptFile="";
+	if (hasLogicComponent() && getLogicComponentInstance().get())
+	{
+		scriptFile = getLogicComponentInstance()->getScriptFilename();
+	}
 }
 //-------------------------------------------------------
 

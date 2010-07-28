@@ -228,14 +228,6 @@ void GameObjectTraspasable::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTraspasable::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 bool GameObjectTraspasable::hasRenderComponentEntity() const
 {
 	return true;
@@ -265,6 +257,14 @@ void GameObjectTraspasable::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectTraspasable::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTraspasable::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

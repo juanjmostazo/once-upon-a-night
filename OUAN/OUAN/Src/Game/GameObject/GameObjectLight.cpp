@@ -142,14 +142,14 @@ void GameObjectLight::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectLight::updateLogic(double elapsedSeconds)
+bool GameObjectLight::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
 }
-
+LogicComponentPtr GameObjectLight::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 TGameObjectLightParameters::TGameObjectLightParameters() : TGameObjectParameters()
 {
 

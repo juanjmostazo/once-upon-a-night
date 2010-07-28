@@ -130,8 +130,8 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
 
 		TGameObjectDiamondContainer* getDiamonds();
 		void setDiamonds(const TGameObjectDiamondContainer& diamonds);
@@ -140,6 +140,9 @@ namespace OUAN
 		void processAnimationEnded(const std::string& animationName);
 
 		void update(double elapsedSeconds);
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 
 	};
 

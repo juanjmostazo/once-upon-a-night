@@ -227,15 +227,14 @@ void GameObjectBillboardSet::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponent->processExitTrigger(pGameObject);
 	}
 }
-
-void GameObjectBillboardSet::updateLogic(double elapsedSeconds)
+bool GameObjectBillboardSet::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
 }
-
+LogicComponentPtr GameObjectBillboardSet::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 void GameObjectBillboardSet::setVisible(bool visible)
 {
 	//switch(mWorld)

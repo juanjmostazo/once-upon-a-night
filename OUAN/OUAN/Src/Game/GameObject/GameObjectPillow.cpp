@@ -180,14 +180,6 @@ void GameObjectPillow::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectPillow::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 double GameObjectPillow::getLastAttackTime()
 {
 	return mLastAttackTime;
@@ -450,7 +442,14 @@ void GameObjectPillow::startAttackParticles()
 		mRenderComponentParticleSystemAttack->start(pos);
 	}
 }
-
+bool GameObjectPillow::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectPillow::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 //---------
 TGameObjectPillowParameters::TGameObjectPillowParameters() : TGameObjectParameters()
 {

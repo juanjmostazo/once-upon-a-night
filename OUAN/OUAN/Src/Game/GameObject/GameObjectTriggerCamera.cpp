@@ -204,12 +204,13 @@ void GameObjectCameraTrigger::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectCameraTrigger::updateLogic(double elapsedSeconds)
+bool GameObjectCameraTrigger::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
+}
+LogicComponentPtr GameObjectCameraTrigger::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

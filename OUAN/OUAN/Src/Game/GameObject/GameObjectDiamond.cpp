@@ -289,13 +289,6 @@ void GameObjectDiamond::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectDiamond::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
 void GameObjectDiamond::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -427,6 +420,14 @@ void GameObjectDiamond::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectDiamond::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectDiamond::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
 }
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {

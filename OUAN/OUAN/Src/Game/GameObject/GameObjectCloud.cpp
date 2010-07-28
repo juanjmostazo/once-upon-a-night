@@ -179,10 +179,7 @@ LogicComponentPtr GameObjectCloud::getLogicComponent()
 
 void GameObjectCloud::updateLogic(double elapsedSeconds)
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	GameObject::updateLogic(elapsedSeconds);
 
 	if (getGameWorldManager()->getWorld() == DREAMS)
 	{
@@ -199,7 +196,14 @@ void GameObjectCloud::updateLogic(double elapsedSeconds)
 		}
 	}
 }
-
+bool GameObjectCloud::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectCloud::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectCloudParameters::TGameObjectCloudParameters() : TGameObjectParameters()

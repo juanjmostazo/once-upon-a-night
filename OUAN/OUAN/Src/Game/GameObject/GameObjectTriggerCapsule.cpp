@@ -199,12 +199,13 @@ void GameObjectTriggerCapsule::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTriggerCapsule::updateLogic(double elapsedSeconds)
+bool GameObjectTriggerCapsule::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
+}
+LogicComponentPtr GameObjectTriggerCapsule::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTriggerCapsuleParameters::TGameObjectTriggerCapsuleParameters() : TGameObjectParameters()

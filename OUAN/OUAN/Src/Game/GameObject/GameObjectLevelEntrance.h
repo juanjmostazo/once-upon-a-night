@@ -89,8 +89,11 @@ namespace OUAN
 		void setNightmaresRender();
 		void setChangeWorldRender();
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectLevelEntranceParameters: public TGameObjectParameters

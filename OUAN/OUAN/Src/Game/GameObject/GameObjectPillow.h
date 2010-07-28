@@ -129,8 +129,8 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 
-		// update logic component
-		void updateLogic(double elapsedSeconds);
+		
+		
 
 		double getLastAttackTime();
 		void setLastAttackTime(double lastAttackTime);
@@ -152,6 +152,9 @@ namespace OUAN
 		void enable();
 
 		void startAttackParticles();
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectPillowParameters: public TGameObjectParameters

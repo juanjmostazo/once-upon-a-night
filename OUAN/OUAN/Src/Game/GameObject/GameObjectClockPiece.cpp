@@ -268,14 +268,6 @@ void GameObjectClockPiece::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectClockPiece::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
-
 void GameObjectClockPiece::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -317,6 +309,14 @@ void GameObjectClockPiece::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectClockPiece::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectClockPiece::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
 }
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
 {

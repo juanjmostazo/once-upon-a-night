@@ -200,14 +200,6 @@ void GameObjectBoss::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponentEnemy->processExitTrigger(pGameObject);
 	}
 }
-
-void GameObjectBoss::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectBoss::hasRenderComponentEntity() const
 {
 	return true;
@@ -215,6 +207,14 @@ bool GameObjectBoss::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectBoss::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectBoss::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectBoss::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectBossParameters::TGameObjectBossParameters() : TGameObjectParameters()

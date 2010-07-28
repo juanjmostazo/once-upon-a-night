@@ -225,13 +225,6 @@ void GameObjectNest::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectNest::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectNest::hasRenderComponentEntity() const
 {
 	return true;
@@ -398,6 +391,14 @@ void GameObjectNest::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectNest::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectNest::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

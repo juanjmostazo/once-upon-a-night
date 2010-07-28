@@ -161,13 +161,6 @@ void GameObjectSwitch::setChangeWorldRender()
 	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }
 
-void GameObjectSwitch::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectSwitch::hasRenderComponentEntity() const
 {
 	return true;
@@ -175,6 +168,14 @@ bool GameObjectSwitch::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectSwitch::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectSwitch::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectSwitch::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

@@ -52,13 +52,6 @@ void GameObjectMagicClock::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectMagicClock::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 
 void GameObjectMagicClock::changeWorldFinished(int newWorld)
 {
@@ -104,7 +97,14 @@ void GameObjectMagicClock::changeToWorld(int newWorld, double perc)
 		break;
 	}
 }
-
+bool GameObjectMagicClock::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectMagicClock::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 TGameObjectMagicClockParameters::TGameObjectMagicClockParameters() : TGameObjectParameters()
 {
 

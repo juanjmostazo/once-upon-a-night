@@ -193,13 +193,6 @@ void GameObjectTripolloNightmares::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTripolloNightmares::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectTripolloNightmares::hasRenderComponentEntity() const
 {
 	return true;
@@ -207,6 +200,14 @@ bool GameObjectTripolloNightmares::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectTripolloNightmares::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectTripolloNightmares::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTripolloNightmares::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloNightmaresParameters::TGameObjectTripolloNightmaresParameters() : TGameObjectParameters()

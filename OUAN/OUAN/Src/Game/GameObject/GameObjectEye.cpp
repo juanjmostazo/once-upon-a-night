@@ -202,13 +202,6 @@ void GameObjectEye::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectEye::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectEye::hasRenderComponentEntity() const
 {
 	return true;
@@ -216,6 +209,14 @@ bool GameObjectEye::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectEye::getEntityComponent() const
 {
 	return mRenderComponentEntityNightmares;
+}
+bool GameObjectEye::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectEye::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 TGameObjectEyeParameters::TGameObjectEyeParameters() : TGameObjectParameters()
 {

@@ -442,8 +442,7 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			}		
 		}
 	}	
-
-	mLogicComponentBreakable->update(elapsedSeconds);
+	GameObject::updateLogic(elapsedSeconds);
 }
 
 bool GameObjectWoodBox::hasRenderComponentEntity() const
@@ -490,7 +489,14 @@ void GameObjectWoodBox::setVisible(bool visible)
 		break;
 	}
 }
-
+bool GameObjectWoodBox::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectWoodBox::getLogicComponentInstance() const
+{
+	return mLogicComponentBreakable;
+}
 //-------------------------------------------------------------------------------------------
 
 TGameObjectWoodBoxParameters::TGameObjectWoodBoxParameters() : TGameObjectParameters()

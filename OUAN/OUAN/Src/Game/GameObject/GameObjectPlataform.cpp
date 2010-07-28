@@ -221,14 +221,6 @@ void GameObjectPlataform::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectPlataform::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 bool GameObjectPlataform::hasRenderComponentEntity() const
 {
 	return true;
@@ -257,6 +249,14 @@ void GameObjectPlataform::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectPlataform::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectPlataform::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectPlataformParameters::TGameObjectPlataformParameters() : TGameObjectParameters()

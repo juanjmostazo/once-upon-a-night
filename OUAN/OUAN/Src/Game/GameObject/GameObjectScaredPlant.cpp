@@ -270,13 +270,6 @@ void GameObjectScaredPlant::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectScaredPlant::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 bool GameObjectScaredPlant::hasRenderComponentEntity() const
 {
 	return true;
@@ -315,6 +308,14 @@ void GameObjectScaredPlant::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectScaredPlant::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectScaredPlant::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

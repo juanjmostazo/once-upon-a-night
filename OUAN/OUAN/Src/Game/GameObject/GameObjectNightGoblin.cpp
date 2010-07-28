@@ -192,13 +192,6 @@ void GameObjectNightGoblin::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectNightGoblin::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectNightGoblin::hasRenderComponentEntity() const
 {
 	return true;
@@ -206,6 +199,14 @@ bool GameObjectNightGoblin::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectNightGoblin::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectNightGoblin::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectNightGoblin::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectNightGoblinParameters::TGameObjectNightGoblinParameters() : TGameObjectParameters()

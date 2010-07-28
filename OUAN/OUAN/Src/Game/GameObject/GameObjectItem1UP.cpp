@@ -293,14 +293,6 @@ void GameObjectItem1UP::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectItem1UP::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentItem.get())
-	{
-		mLogicComponentItem->update(elapsedSeconds);
-	}
-}
-
 void GameObjectItem1UP::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -355,7 +347,14 @@ RenderComponentEntityPtr GameObjectItem1UP::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
-
+bool GameObjectItem1UP::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectItem1UP::getLogicComponentInstance() const
+{
+	return mLogicComponentItem;
+}
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
 

@@ -211,14 +211,6 @@ void GameObjectProvisionalEntity::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectProvisionalEntity::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
-
 bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
 {
 	return true;
@@ -227,6 +219,14 @@ bool GameObjectProvisionalEntity::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectProvisionalEntity::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectProvisionalEntity::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectProvisionalEntity::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

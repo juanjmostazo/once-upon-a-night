@@ -203,12 +203,13 @@ void GameObjectTriggerBox::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTriggerBox::updateLogic(double elapsedSeconds)
+bool GameObjectTriggerBox::hasLogicComponent() const
 {
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
+	return true;
+}
+LogicComponentPtr GameObjectTriggerBox::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 //-------------------------------------------------------------------------------------------
 

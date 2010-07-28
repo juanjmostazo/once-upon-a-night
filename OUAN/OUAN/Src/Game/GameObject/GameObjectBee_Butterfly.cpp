@@ -147,14 +147,6 @@ void GameObjectBee_Butterfly::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectBee_Butterfly::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
-
 void GameObjectBee_Butterfly::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -207,6 +199,14 @@ bool GameObjectBee_Butterfly::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectBee_Butterfly::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+}
+bool GameObjectBee_Butterfly::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectBee_Butterfly::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectBee_ButterflyParameters::TGameObjectBee_ButterflyParameters() : TGameObjectParameters()

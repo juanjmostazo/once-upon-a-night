@@ -232,6 +232,13 @@ namespace OUAN
 
 		virtual double getMovingSpeed();
 		virtual void setCurrentWorldVisibility(bool visibility);
+
+		virtual bool hasLogicComponent() const;
+		virtual LogicComponentPtr getLogicComponentInstance() const;
+
+		// Facade method to avoid adding unnecessary dependencies
+		// with the logic components
+		void getLogicScriptFile(std::string& scriptFile) const;
 	};
 
 	class TGameObjectParameters

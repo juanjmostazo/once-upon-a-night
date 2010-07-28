@@ -129,8 +129,11 @@ namespace OUAN
 		// update 
 		void update(double elapsedSeconds);
 
-		// update logic component
 		void updateLogic(double elapsedSeconds);
+		
+
+		bool hasLogicComponent() const;
+		LogicComponentPtr getLogicComponentInstance() const;
 	};
 
 	class TGameObjectWoodBoxParameters: public TGameObjectParameters

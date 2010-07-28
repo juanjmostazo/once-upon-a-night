@@ -259,13 +259,6 @@ void GameObjectTentetieso::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTentetieso::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponentEnemy.get())
-	{
-		mLogicComponentEnemy->update(elapsedSeconds);
-	}
-}
 bool GameObjectTentetieso::hasRenderComponentEntity() const
 {
 	return true;
@@ -302,6 +295,14 @@ void GameObjectTentetieso::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectTentetieso::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTentetieso::getLogicComponentInstance() const
+{
+	return mLogicComponentEnemy;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTentetiesoParameters::TGameObjectTentetiesoParameters() : TGameObjectParameters()

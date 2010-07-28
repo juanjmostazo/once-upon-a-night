@@ -161,13 +161,6 @@ void GameObjectParticleSystem::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectParticleSystem::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 void GameObjectParticleSystem::setVisible(bool visible)
 {
 	switch(mWorld)
@@ -187,6 +180,14 @@ void GameObjectParticleSystem::setVisible(bool visible)
 	default:
 		break;
 	}
+}
+bool GameObjectParticleSystem::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectParticleSystem::getLogicComponentInstance() const
+{
+	return mLogicComponent;
 }
 TGameObjectParticleSystemParameters::TGameObjectParticleSystemParameters() : TGameObjectParameters()
 {

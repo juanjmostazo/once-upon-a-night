@@ -267,13 +267,6 @@ void GameObjectTreeComplex::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-void GameObjectTreeComplex::updateLogic(double elapsedSeconds)
-{
-	if (mLogicComponent.get())
-	{
-		mLogicComponent->update(elapsedSeconds);
-	}
-}
 void GameObjectTreeComplex::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -344,7 +337,14 @@ RenderComponentEntityPtr GameObjectTreeComplex::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
-
+bool GameObjectTreeComplex::hasLogicComponent() const
+{
+	return true;
+}
+LogicComponentPtr GameObjectTreeComplex::getLogicComponentInstance() const
+{
+	return mLogicComponent;
+}
 TGameObjectTreeComplexParameters::TGameObjectTreeComplexParameters() : TGameObjectParameters()
 {
 
