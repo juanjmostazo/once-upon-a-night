@@ -200,7 +200,7 @@ void GameObjectPillow::setLastAttackTime(double lastAttackTime)
 
 bool GameObjectPillow::canInitiateAttack()
 {
-	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
+	PillowAttackDataPtr attackData = BOOST_PTR_CAST(PillowAttackData,mAttackComponent->getSelectedAttack());
 	bool coolDownPassed=mLastAttackTime<0;
 	bool isCombo=attackData->comboDelay>0.0 && mLastAttackTime>=0 && mLastAttackTime<(attackData->cooldownDelay-attackData->comboDelay);
 	return (!mParentWeaponComponent->isActiveWeaponInUse() && coolDownPassed) || (mParentWeaponComponent->isActiveWeaponInUse() && isCombo);
@@ -208,7 +208,8 @@ bool GameObjectPillow::canInitiateAttack()
 
 void GameObjectPillow::beginAttack()
 {
-	PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
+	PillowAttackDataPtr attackData = BOOST_PTR_CAST(PillowAttackData,
+		mAttackComponent->getSelectedAttack());
 	std::stringstream textMsg("");
 
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
@@ -216,7 +217,7 @@ void GameObjectPillow::beginAttack()
 		//NEW COMBO: CHANGE ATTACK
 		//Logger::getInstance()->log("COMBO!!");
 		setAttack(attackData->nextComboAttack);
-		attackData=boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
+		attackData=BOOST_PTR_CAST(PillowAttackData,mAttackComponent->getSelectedAttack());
 		textMsg<<"It's a COMBO! ";
 	}
 
@@ -248,8 +249,9 @@ void GameObjectPillow::endAttack()
 	if (mPhysicsComponentPillow.get() && mPhysicsComponentPillow->isInUse() && 
 		mParentWeaponComponent.get() && mParentWeaponComponent->isActiveWeaponInUse())
 	{
-		PillowAttackDataPtr attackData = boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
-			AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
+		PillowAttackDataPtr attackData = BOOST_PTR_CAST(PillowAttackData,
+			mAttackComponent->getSelectedAttack());
+		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
 			mGameWorldManager->addEvent(evt);
 
 		mPhysicsComponentPillow->destroy();		
@@ -265,7 +267,8 @@ void GameObjectPillow::endAttack()
 void GameObjectPillow::setAttack(const std::string& newAttack)
 {
 	mAttackComponent->setSelectedAttack(newAttack);
-	PillowAttackDataPtr attackData= boost::dynamic_pointer_cast<PillowAttackData>(mAttackComponent->getSelectedAttack());
+	PillowAttackDataPtr attackData= BOOST_PTR_CAST(PillowAttackData,
+		mAttackComponent->getSelectedAttack());
 	if (attackData.get())
 	{		
 		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
@@ -436,7 +439,8 @@ void GameObjectPillow::disable()
 }
 void GameObjectPillow::startAttackParticles()
 {
-	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(mParentWeaponComponent->getParent());
+	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
+		mParentWeaponComponent->getParent());
 	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
 		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
 	{

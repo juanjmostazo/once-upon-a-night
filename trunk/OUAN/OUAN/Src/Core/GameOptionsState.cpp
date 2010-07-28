@@ -33,7 +33,7 @@ void GameOptionsState::init(ApplicationPtr app)
 	using namespace CEGUI;
 	GameState::init(app);
 
-	mGUI= boost::dynamic_pointer_cast<GUIOptionsMenu>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
+	mGUI= BOOST_PTR_CAST(GUIOptionsMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_OPTIONS));
 	mGUI->initGUI(shared_from_this());
 
 	Utils::TTexturedRectangleDesc desc;

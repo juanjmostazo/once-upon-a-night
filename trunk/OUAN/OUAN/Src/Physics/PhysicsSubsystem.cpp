@@ -448,37 +448,6 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Shape * volume,  NxOgre::String col
 	}	 
 }
 
-//////////////////////////////////////////////////////////////////
-// Auxiliar functions
-/*
-bool PhysicsSubsystem::setGameObjectSlidingFromController(NxOgre::Controller* controller, NxOgre::Vec3 slideDiplacement, double normalAngle)
-{
-	bool found = false;
-	bool isOny = false;
-
-	TGameObjectPhysicsCharacterContainer * container = 
-		mApp->getGameWorldManager()->getGameObjectPhysicsCharacterContainer();
-
-	for (unsigned int i=0; !found && i<container->size(); i++)
-	{
-		if ((*container)[i]->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
-		{
-			GameObjectOnyPtr tmpObject = boost::dynamic_pointer_cast<GameObjectOny>((*container)[i]);
-			if (tmpObject->getPhysicsComponentCharacterOny()->getNxOgreController() == controller)
-			{
-				tmpObject->getPhysicsComponentCharacterOny()->setSlidingValues(slideDiplacement, normalAngle);
-				found = true;
-				isOny = true;
-			}
-		}
-		//TODO else if block
-		//Same with the rest of game objects which hold a PhysicsComponentCharacter
-	}	
-
-	return isOny;
-}
-*/
-
 bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radius)
 {
 	return NxOgre::Vec3(mApp->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition()).

@@ -358,7 +358,7 @@ GameObjectDiamondTreePtr GameObjectDiamond::getParentDiamondTree() const
 {
 	if (!mParentDiamondTree.get() && !mParentDiamondTreeName.empty())
 	{
-		return boost::dynamic_pointer_cast<GameObjectDiamondTree>(mGameWorldManager->getObject(mParentDiamondTreeName));
+		return BOOST_PTR_CAST(GameObjectDiamondTree,mGameWorldManager->getObject(mParentDiamondTreeName));
 	}
 	return GameObjectDiamondTreePtr();
 }

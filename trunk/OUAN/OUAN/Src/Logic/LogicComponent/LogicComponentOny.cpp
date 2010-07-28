@@ -59,7 +59,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)==0 && !getParent()->getGameWorldManager()->isGodMode())
 	{
-		GameObjectTripolloDreamsPtr tripollo= boost::dynamic_pointer_cast<GameObjectTripolloDreams>(pGameObject);
+		GameObjectTripolloDreamsPtr tripollo= 
+			BOOST_PTR_CAST(GameObjectTripolloDreams,pGameObject);
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
 			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
@@ -78,7 +79,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		&& pGameObject->getGameWorldManager()->getWorld()==NIGHTMARES 
 		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
-		GameObjectTentetiesoPtr tentetieso= boost::dynamic_pointer_cast<GameObjectTentetieso>(pGameObject);
+		GameObjectTentetiesoPtr tentetieso= 
+			BOOST_PTR_CAST(GameObjectTentetieso,pGameObject);
 		if(tentetieso.get() && !tentetieso->hasBeenHit() &&!tentetieso->hasDied() 
 			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
@@ -95,10 +97,11 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
 	{
-		GameObjectTerrainConvexPtr terrain = boost::dynamic_pointer_cast<GameObjectTerrainConvex>(pGameObject);
+		GameObjectTerrainConvexPtr terrain = 
+			BOOST_PTR_CAST(GameObjectTerrainConvex,pGameObject);
 		PhysicsComponentComplexConvexPtr physicsTerrain = terrain->getPhysicsComponentComplexConvex();
 
-		GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
 		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
 		
 		if (physicsOny->getPosition().y > physicsTerrain->getPosition().y)
@@ -245,7 +248,7 @@ void LogicComponentOny::setInitialNumLives(int numLives)
 
 void LogicComponentOny::update(double elapsedTime)
 {
-	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(getParent());
+	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
 	int oldState=mState;
 	int finalState=mNewState;
 

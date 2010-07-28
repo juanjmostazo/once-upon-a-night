@@ -63,20 +63,6 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		}
 	}
 
-	//if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-	//{
-	//	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(pGameObject);
-	//	if (ony.get() && CHECK_BIT(ony->getLogicComponentOny()->getState(),ONY_STATE_BIT_FIELD_ATTACK)
-	//		&& mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0)
-	//	{
-	//		if (mHitRecoveryTime<0)
-	//		{
-	//			getParent()->displayText("THUD!");
-	//			mHasTakenHit=true;			
-	//			mHitRecoveryTime=1;
-	//		}			
-	//	}
-	//}
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);

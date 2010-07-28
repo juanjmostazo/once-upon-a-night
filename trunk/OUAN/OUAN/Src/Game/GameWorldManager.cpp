@@ -417,76 +417,13 @@ void GameWorldManager::initGame()
 	resetAll();
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
-//void GameWorldManager::loadLevel(const std::string& levelFileName)
-//{
-//
-//	//IMPORTANT!!
-//	//THIS METHOD FUNCTIONALITY IS NOW SPLIT IN TWO PARTS (THE INVOCATION ORDER IS KEPT, ANYWAY)
-//	//THE LEVEL LOADING-RELATED METHODS NOW ARE CALLED IN THE LEVEL LOADING STATE,
-//	//WHEREAS THE POST-LOAD INITIALIZATIONS ARE CALLED IN GAMEWORLDMANAGER::INITGAME()
-//
-//	//Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD STARTED]");
-//
-//	//Unload current level
-//	//unloadLevel();
-//
-//	//TODO: this should depend on which level is loaded and be determined by levelLoader
-//
-//	// Set the initial world before the level loading, and then
-//	// just as game objects are created, they're initialized with the correct
-//	// world information.
-//	//Init physicssubsystem
-//	//mApp->getPhysicsSubsystem()->initLevel(levelFileName);
-//	//mApp->getTrajectoryManager()->clear();
-//
-//	//Parse Level File and Create GameObjects
-//	//mApp->getLevelLoader()->loadLevel(levelFileName);
-//
-//	/// Set ambient specular and diffuse material components off;
-//	//mApp->getRenderSubsystem()->initMaterials();
-//
-//	//if (getGameObjectOny().get())
-//	//{
-//	//	getGameObjectOny()->setInitialWeaponComponent(mWorld);
-//	//}
-//
-//	//mGameOver=false;
-//	//mGameBeaten=false;
-//
-//	//mApp->getPhysicsSubsystem()->stabilize();
-//
-//	////Set Active Camera
-//	//mApp->getCameraManager()->setActiveCamera(OUAN::RUNNING_CAMERA_NAME);
-//	//mApp->getCameraManager()->setCameraType(OUAN::CAMERA_THIRD_PERSON);	
-//
-//	//getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
-//	//getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
-//
-//	//GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
-//	//if (sound.get())
-//	//{
-//	//	sound->getAudioComponentNightmares()->playSound(mDefaultAmbientSoundIDNightmares);
-//	//	sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
-//	//	sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
-//	//	sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
-//	//}
-//
-//	////Set world to dreams
-//	//setChangeWorldTimes();
-//	//setWorld(DREAMS);
-//
-//	//mApp->getRenderSubsystem()->initChangeWorldRenderer();
-//
-//
-//	//level=levelFileName;
-//	//Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
-//}
 
 void GameWorldManager::unloadLevel()
 {
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL UNLOAD STARTED]");
 	
-	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+	GameObjectSoundPtr sound = BOOST_PTR_CAST(GameObjectSound,	
+		mAmbientSoundContainer[mDefaultAmbientSound]);
 	if (sound.get())
 	{
 		sound->getAudioComponentNightmares()->stopSound(mDefaultAmbientSoundIDNightmares);
@@ -621,7 +558,8 @@ void GameWorldManager::resetAll()
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 
-	GameObjectSoundPtr sound = boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+	GameObjectSoundPtr sound = BOOST_PTR_CAST(GameObjectSound,
+		mAmbientSoundContainer[mDefaultAmbientSound]);
 	if (sound.get())
 	{
 		sound->getAudioComponentNightmares()->playSound(mDefaultAmbientSoundIDNightmares);
@@ -1286,7 +1224,8 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 	{
 		//TODO: Fade ambient sounds.
 	case DREAMS:
-		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+		sound=BOOST_PTR_CAST(GameObjectSound,
+			mAmbientSoundContainer[mDefaultAmbientSound]);
 		if (sound.get())
 		{
 			sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,true);
@@ -1294,7 +1233,8 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 		}
 		break;
 	case NIGHTMARES:
-		sound=boost::dynamic_pointer_cast<GameObjectSound>(mAmbientSoundContainer[mDefaultAmbientSound]);
+		sound=BOOST_PTR_CAST(GameObjectSound,
+			mAmbientSoundContainer[mDefaultAmbientSound]);
 		if (sound.get())
 		{
 			sound->getAudioComponentDreams()->setPauseSound(mDefaultAmbientSoundIDDreams,true);
@@ -1593,7 +1533,7 @@ void GameWorldManager::toggleTreeVisibility()
 	
 	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
 	{
-		treeD=boost::dynamic_pointer_cast<GameObjectTree>(it->second);		
+		treeD=BOOST_PTR_CAST(GameObjectTree,it->second);		
 		if (treeD && treeD.get())
 		{		
 			if (mWorld==DREAMS && treeD->getLogicComponent()->existsInDreams())
@@ -1725,8 +1665,10 @@ void GameWorldManager::resolveDiamondTreeLinks()
 	GameObjectDiamondPtr diamond;
 	for (it=mDiamondTreeLinks.begin();it!=mDiamondTreeLinks.end();++it)
 	{
-		diamondTree = boost::dynamic_pointer_cast<GameObjectDiamondTree>(mGameObjects[it->second]);
-		diamond= boost::dynamic_pointer_cast<GameObjectDiamond>(mGameObjects[it->first]);
+		diamondTree = BOOST_PTR_CAST(GameObjectDiamondTree,
+			mGameObjects[it->second]);
+		diamond= BOOST_PTR_CAST(GameObjectDiamond,
+			mGameObjects[it->first]);
 		diamond->setParentDiamondTree(diamondTree);
 		diamond->disable();
 		diamondTree->addDiamond(diamond);				
@@ -1744,8 +1686,8 @@ void GameWorldManager::resolveNestLinks()
 	GameObjectPtr obj;
 	for (it=mNestLinks.begin();it!=mNestLinks.end();++it)
 	{
-		nest= boost::dynamic_pointer_cast<GameObjectNest>(mGameObjects[it->second]);
-		obj= boost::dynamic_pointer_cast<GameObject>(mGameObjects[it->first]);
+		nest= BOOST_PTR_CAST(GameObjectNest,mGameObjects[it->second]);
+		obj= BOOST_PTR_CAST(GameObject,mGameObjects[it->first]);
 		obj->setParentNest(nest->getName());
 		obj->setParentNestInstance(nest);
 		obj->disable();

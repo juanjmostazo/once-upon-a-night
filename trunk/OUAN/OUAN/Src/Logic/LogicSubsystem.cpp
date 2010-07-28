@@ -146,7 +146,8 @@ void LogicSubsystem::loadScripts()
 	TGameObjectPortalContainer  * ptList=worldMgr->getGameObjectPortalContainer();
 	if (!ptList->empty())
 	{
-		GameObjectPortalPtr portal= boost::dynamic_pointer_cast<GameObjectPortal>(ptList->at(0));
+		GameObjectPortalPtr portal= BOOST_PTR_CAST(GameObjectPortal,
+			ptList->at(0));
 		if (portal && portal.get() && !portal->getLogicComponentProp()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+portal->getLogicComponentProp()->getScriptFilename());
@@ -155,7 +156,8 @@ void LogicSubsystem::loadScripts()
 	TGameObjectScaredPlantContainer * spList=worldMgr->getGameObjectScaredPlantContainer();
 	if (!spList->empty())
 	{
-		GameObjectScaredPlantPtr scplant= boost::dynamic_pointer_cast<GameObjectScaredPlant>(spList->at(0));
+		GameObjectScaredPlantPtr scplant= 
+			BOOST_PTR_CAST(GameObjectScaredPlant,spList->at(0));
 		if (scplant && scplant.get() && !scplant->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+scplant->getLogicComponent()->getScriptFilename());
@@ -164,16 +166,19 @@ void LogicSubsystem::loadScripts()
 	TGameObjectDiamondTreeContainer* dtList = worldMgr->getGameObjectDiamondTreeContainer();
 	if (!dtList->empty())
 	{
-		GameObjectDiamondTreePtr dtree = boost::dynamic_pointer_cast<GameObjectDiamondTree>(dtList->at(0));
+		GameObjectDiamondTreePtr dtree = 
+			BOOST_PTR_CAST(GameObjectDiamondTree,
+			dtList->at(0));
 		if (dtree.get() && !dtree->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+dtree->getLogicComponent()->getScriptFilename());
-		}
+		}	
 	}
 	TGameObjectSignpostContainer* signList = worldMgr->getGameObjectSignpostContainer();
 	if (!signList->empty())
 	{
-		GameObjectSignpostPtr sign= boost::dynamic_pointer_cast<GameObjectSignpost>(signList->at(0));
+		GameObjectSignpostPtr sign= BOOST_PTR_CAST(GameObjectSignpost,
+			signList->at(0));
 		if (sign.get() && !sign->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+sign->getLogicComponent()->getScriptFilename());
@@ -182,7 +187,8 @@ void LogicSubsystem::loadScripts()
 	TGameObjectNestContainer* nestList = worldMgr->getGameObjectNestContainer();
 	if (!nestList ->empty())
 	{
-		GameObjectNestPtr nest= boost::dynamic_pointer_cast<GameObjectNest>(nestList ->at(0));
+		GameObjectNestPtr nest= BOOST_PTR_CAST(GameObjectNest,
+			nestList ->at(0));
 		if (nest.get() && !nest->getLogicComponent()->getScriptFilename().empty())
 		{
 			loadScript(SCRIPTS_PATH+"/"+nest->getLogicComponent()->getScriptFilename());

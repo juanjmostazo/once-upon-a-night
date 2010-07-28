@@ -26,7 +26,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 {
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 	{
-		GameObjectFlashLightPtr flashlight=boost::dynamic_pointer_cast<GameObjectFlashLight>(pGameObject);
+		GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,pGameObject);
 		int flashlightColour=flashlight->getColour();		
 		if ( mHitRecoveryTime<0 && !mHasBeenHit && !mHasDied)
 		{
@@ -51,7 +51,8 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 	}
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && !mHasBeenHit && !mHasDied)
 	{
-		GameObjectPillowPtr pillow=boost::dynamic_pointer_cast<GameObjectPillow>(pGameObject);
+		GameObjectPillowPtr pillow=BOOST_PTR_CAST(GameObjectPillow,
+			pGameObject);
 		if (mHitRecoveryTime<0)
 		{
 			getParent()->displayText("ZASCA!");

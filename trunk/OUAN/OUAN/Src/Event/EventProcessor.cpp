@@ -168,7 +168,7 @@ void EventProcessor::processOnyDies(OnyDiesEventPtr evt)
 	{
 		if (!evt->onyFellDown())
 		{
-			mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_DIE));
+			mWorldManager->getGameObjectOny()->setLogicNewState(SET_BIT(0,ONY_STATE_BIT_FIELD_DIE));
 		}
 		else mWorldManager->onyDied();
 	}
@@ -345,15 +345,15 @@ void EventProcessor::processOnyTakesHit(OnyTakesHitEventPtr evt)
 	{
 		int newState=SET_BIT(0,ONY_STATE_BIT_FIELD_HIT);
 		newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_INVULNERABLE);
-		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(newState);
+		mWorldManager->getGameObjectOny()->setLogicNewState(newState);
 	}	
 }
 void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 {
 	if (mWorldManager->getGameObjectOny().get())
 	{
-		int newState =mWorldManager->getGameObjectOny()->getLogicComponentOny()->getNewState();
-		mWorldManager->getGameObjectOny()->getLogicComponentOny()->setNewState(CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK));
+		int newState =mWorldManager->getGameObjectOny()->getLogicNewState();
+		mWorldManager->getGameObjectOny()->setLogicNewState(CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK));
 		//Logger::getInstance()->log("CLEARING ATTACK FLAG");
 	}
 }
