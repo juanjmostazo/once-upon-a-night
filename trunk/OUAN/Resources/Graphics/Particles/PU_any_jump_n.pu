@@ -1,11 +1,11 @@
 system PU/any_jump_n
 {
-    scale_velocity                              0.5
+    scale_velocity                              0.2
     scale                                       0.1 0.1 0.1
     technique Technique43
     {
         visual_particle_quota                   10
-        emitted_emitter_quota                   20
+        emitted_emitter_quota                   10
         material                                PU/any_jump_n
         spatial_hashtable_size                  2
         renderer                                Billboard
@@ -15,14 +15,14 @@ system PU/any_jump_n
         }
         emitter                                 Circle Emitter3
         {
-            emission_rate                       8
+            emission_rate                       4
             time_to_live                        dyn_random
             {
-                min                             0.5
-                max                             1
+                min                             0.4
+                max                             0.6
             }
             mass                                2
-            duration                            1
+            duration                            2
         }
         affector                                Randomiser Affector119
         {
