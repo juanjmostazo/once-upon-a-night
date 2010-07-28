@@ -224,12 +224,7 @@ void GameObjectPillow::beginAttack()
 
 	if (mPhysicsComponentWeapon.get())
 	{
-		if (mPhysicsComponentWeapon->isInUse())
-		{
-			mPhysicsComponentWeapon->destroy();
-		}
-
-		mPhysicsComponentWeapon->create();
+		mPhysicsComponentWeapon->startAttack();
 	}
 
 	mLastAttackTime=attackData->cooldownDelay;
@@ -246,7 +241,7 @@ void GameObjectPillow::endAttack()
 		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName, shared_from_this()));
 			mGameWorldManager->addEvent(evt);
 
-		mPhysicsComponentWeapon->destroy();		
+		mPhysicsComponentWeapon->endAttack();		
 		//mRenderComponentEntity->getEntity()->setVisible(false);
 
 		setAttack(getDefaultAttack());
@@ -425,7 +420,7 @@ void GameObjectPillow::disable()
 
 	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
 	{
-		mPhysicsComponentWeapon->destroy();
+		mPhysicsComponentWeapon->endAttack();
 	}
 		
 }

@@ -4,9 +4,10 @@
     <PROPERTY id="PhysicsComponentVolumeConvex::nxsFile" type="12" value="CONVEX_flashlight.nxs" fields="X;Y;Z;W"></PROPERTY>
 
     <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- Available Attacks -->
 	<PROPERTY id="AttackComponent::attack0#attackName" type="7" value="red" fields="X;Y;Z;W"></PROPERTY>

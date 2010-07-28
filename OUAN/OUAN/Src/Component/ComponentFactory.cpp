@@ -633,6 +633,9 @@ PhysicsComponentWeaponPtr ComponentFactory::createPhysicsComponentWeapon(GameObj
 	pPhysicsComponentWeapon->setMass(tPhysicsComponentWeaponParameters.mass);
 	//pPhysicsComponentWeapon->setQueryFlags(flags);
 	pPhysicsComponentWeapon->setNxOgreSize(
+		NxOgre::Vec2(0,0));
+
+	pPhysicsComponentWeapon->setNxOgreMaxSize(
 		NxOgre::Vec2(	tPhysicsComponentWeaponParameters.radius, 
 						tPhysicsComponentWeaponParameters.height));
 
@@ -641,6 +644,7 @@ PhysicsComponentWeaponPtr ComponentFactory::createPhysicsComponentWeapon(GameObj
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentWeapon->setNxOgreControllerDescription(mNxOgreControllerDescription);
 	pPhysicsComponentWeapon->setMovementFactor(tPhysicsComponentWeaponParameters.movementFactor);
+	pPhysicsComponentWeapon->setInflateSpeed(tPhysicsComponentWeaponParameters.inflateSpeed);
 
 	//pPhysicsComponentWeapon->create();
 

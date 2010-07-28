@@ -3870,6 +3870,7 @@ TPhysicsComponentWeaponParameters LevelLoader::processPhysicsComponentWeapon(TiX
 	tPhysicsComponentWeaponParameters.radius= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::radius");
 	tPhysicsComponentWeaponParameters.height= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::height");
 	tPhysicsComponentWeaponParameters.movementFactor= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::movementfactor");
+	tPhysicsComponentWeaponParameters.inflateSpeed= getPropertyReal(XMLNode, "PhysicsComponentWeapon"+suffix+"::inflatespeed");
 	try
 	{
 		tPhysicsComponentWeaponParameters.position_correction=getPropertyVector3(XMLNode,"PhysicsComponentWeapon"+suffix+"::position_correction");
