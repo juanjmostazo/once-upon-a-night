@@ -289,7 +289,7 @@ void GameObjectFlashLight::switchOn()
 	}
 	if (mPhysicsComponentWeapon.get() && !mPhysicsComponentWeapon->isInUse())
 	{
-		mPhysicsComponentWeapon->create();
+		mPhysicsComponentWeapon->startAttack();
 	}
 	if (mFlashlightDecalComponent.get())
 	{
@@ -307,7 +307,7 @@ void GameObjectFlashLight::switchOff()
 	}
 	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
 	{
-		mPhysicsComponentWeapon->destroy();
+		mPhysicsComponentWeapon->endAttack();
 	}
 	if (mParentWeaponComponent.get())
 		mParentWeaponComponent->setActiveWeaponInUse(false);
