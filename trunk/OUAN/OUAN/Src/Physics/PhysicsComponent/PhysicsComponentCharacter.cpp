@@ -104,7 +104,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	applyOuternMovement(elapsedSeconds);
 
 	//logStatus("Before setNewYaw()", elapsedSeconds);
-	setNewYaw();
+	setNewYaw(elapsedSeconds);
 
 	//logStatus("Before scaleNextMovementXZ()", elapsedSeconds);
 	scaleNextMovementXZ(elapsedSeconds);
@@ -469,7 +469,7 @@ void PhysicsComponentCharacter::setWalking(bool pWalking)
 	mWalking = pWalking;
 }
 
-void PhysicsComponentCharacter::setNewYaw()
+double PhysicsComponentCharacter::calculateMovementDisplayYaw()
 {
 	double characterYaw = getNxOgreController()->getDisplayYaw();
 
@@ -527,8 +527,57 @@ void PhysicsComponentCharacter::setNewYaw()
 	{
 		characterYaw+=360;
 	}
+	return characterYaw;
+}
 
-	setDisplayYaw(characterYaw);
+void PhysicsComponentCharacter::setNewYaw(double elapsedSeconds)
+{
+	double characterYaw = calculateMovementDisplayYaw();
+
+	double turnUnitsSecond=Application::getInstance()->getPhysicsSubsystem()->mTurnUnitsPerSecond;
+
+	double angleDifference=calculateAngleDifference(getNxOgreController()->getDisplayYaw(),characterYaw);
+	if(Ogre::Math::Abs(angleDifference)>turnUnitsSecond*elapsedSeconds)
+	{
+		if(angleDifference<0)
+		{
+			setDisplayYaw(getNxOgreController()->getDisplayYaw()-turnUnitsSecond*elapsedSeconds);
+		}
+		else if(angleDifference>0)
+		{
+			setDisplayYaw(getNxOgreController()->getDisplayYaw()+turnUnitsSecond*elapsedSeconds);
+		}
+	}
+	else
+	{
+		setDisplayYaw(characterYaw);
+	}
+
+	setRotationMovementFactor(angleDifference);
+
+}
+
+void PhysicsComponentCharacter::setRotationMovementFactor(double angleDifference)
+{
+	angleDifference=Ogre::Math::Abs(angleDifference);
+	if(angleDifference>90)
+	{
+		setNextMovement(Vector3(0,getNextMovement().y,0));
+	}
+	else
+	{
+		double factor;
+		factor=(1-(angleDifference/90)*(angleDifference/90));
+		setNextMovement(Vector3(getNextMovement().x*factor,getNextMovement().y,getNextMovement().z*factor));
+	}
+}
+
+double PhysicsComponentCharacter::calculateAngleDifference(double angle1, double angle2)
+{
+    double difference = angle2 - angle1;
+    while (difference < -180) difference += 360;
+    while (difference > 180) difference -= 360;
+    return difference;
 }
 
 void PhysicsComponentCharacter::create()

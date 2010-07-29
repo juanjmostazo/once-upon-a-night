@@ -23,7 +23,8 @@
 	<Option key="MIN_DISTANCE">0.0001</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
 	<Option key="MOVEMENT_UNITS_PER_SECOND">75</Option>
-	
+	<Option key="TURN_UNITS_PER_SECOND">400</Option>
+
 	<!--DEPRECATED VARS-->
 	<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">250</Option>
 	<Option key="DISPLACEMENT_SCALE">0.1</Option>

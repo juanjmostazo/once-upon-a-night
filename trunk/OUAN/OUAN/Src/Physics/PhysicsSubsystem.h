@@ -90,6 +90,7 @@ namespace OUAN
 		double mImpulseHeight;
 		double mImpulseTime;
 		double mFallingTimeLimit;
+		double mTurnUnitsPerSecond;
 
 		/// Load params from config file
 		virtual bool loadConfig();
