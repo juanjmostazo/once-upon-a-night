@@ -304,6 +304,9 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("FALLING_TIME_LIMIT", value); 
 		mFallingTimeLimit = atof(value.c_str());
 
+		config.getOption("TURN_UNITS_PER_SECOND", value); 
+		mTurnUnitsPerSecond = atof(value.c_str());
+
 		success = true;
 	} 
 	else 

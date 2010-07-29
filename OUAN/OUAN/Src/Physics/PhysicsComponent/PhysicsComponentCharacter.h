@@ -93,9 +93,13 @@ namespace OUAN
 		virtual void scaleNextMovementXYZ(double elapsedSeconds);
 		virtual bool isWorthUpdating();
 
-		virtual void setNewYaw();
+		virtual void setNewYaw(double elapsedSeconds);
+		virtual double calculateMovementDisplayYaw();
+		virtual void setRotationMovementFactor(double angleDifference);
 
 		virtual void logStatus(Ogre::String label, double elapsedSeconds);
+
+		double calculateAngleDifference(double angle1, double angle2);
 
 		bool mWalking;
 		bool mMoving;
