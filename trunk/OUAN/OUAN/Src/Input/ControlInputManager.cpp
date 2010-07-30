@@ -166,28 +166,28 @@ bool ControlInputManager::isPressedWalk(int *pad, int* key)
 { 
 	*pad = padR2;
 	*key = mDefaultInputData.keyWalk;
-	return isPressed(padR1,mDefaultInputData.keyWalk);
+	return isPressed(padR2,mDefaultInputData.keyWalk);
 }
 
 bool ControlInputManager::isPressedCameraFixedFirstPerson(int *pad, int* key)
 {
 	*pad = padL2;
 	*key = mDefaultInputData.keyAutoTarget;
-	return isPressed(padL1,mDefaultInputData.keyAutoTarget);
+	return isPressed(padL2,mDefaultInputData.keyAutoTarget);
 }
 
 bool ControlInputManager::isPressedRotateLeft(int *pad, int* key)
 {
 	*pad = padL1;
 	*key = mDefaultInputData.keyRotateLeft;
-	return isPressed(padL2,mDefaultInputData.keyRotateLeft);
+	return isPressed(padL1,mDefaultInputData.keyRotateLeft);
 }
 
 bool ControlInputManager::isPressedRotateRight(int *pad, int* key)
 {
 	*pad = padR1;
 	*key = mDefaultInputData.keyRotateRight;
-	return isPressed(padR2,mDefaultInputData.keyRotateRight);
+	return isPressed(padR1,mDefaultInputData.keyRotateRight);
 }
 
 bool ControlInputManager::isPressedQuickExit(int *pad, int* key)
