@@ -303,20 +303,16 @@ void GameRunningState::handleEvents()
 	{
 		int newState = ony->getLogicComponentOny()->getNewState();
 
-		/*
+		
 		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
 				? mApp->getMovement()
 				: Ogre::Vector3::ZERO;
-		*/
+		
 
-		int movementX;
-		int movementZ;
-
-		mApp->getMovementSimple(movementX, movementZ);
-
-		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
-			    ? Ogre::Vector3(movementX, 0, movementZ)
-				: Ogre::Vector3::ZERO;
+		if(mApp->getGameWorldManager()->isOnyDying())
+		{
+			outernMovement=Vector3::ZERO;
+		}
 
 		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
 		{

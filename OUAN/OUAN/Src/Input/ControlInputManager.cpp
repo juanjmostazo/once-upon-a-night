@@ -327,6 +327,9 @@ Vector3 ControlInputManager::getMovement()
 	nextMovement.x += joystickLeftX;
 	nextMovement.z += joystickLeftZ;
 
+	Ogre::Math::Clamp<double>(nextMovement.x,-1.0f,1.0f);
+	Ogre::Math::Clamp<double>(nextMovement.z,-1.0f,1.0f);
+
 	return nextMovement;
 }
 

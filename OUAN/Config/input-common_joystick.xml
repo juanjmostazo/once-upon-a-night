@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <Configuration>
 	<Options>			
-		<Option key="PAD_CAMERA_JOYSTICK_SCALE_FACTOR">35</Option>
+		<Option key="PAD_CAMERA_JOYSTICK_SCALE_FACTOR">55</Option>
 		<Option key="PAD_JOYSTICK_BORDER">0.25</Option>
 	</Options>
 </Configuration>
