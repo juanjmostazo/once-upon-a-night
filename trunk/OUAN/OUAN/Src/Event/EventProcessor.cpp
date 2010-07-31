@@ -88,6 +88,9 @@ void EventProcessor::registerHandlers()
 
 		registerEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
+
+		registerEventHandler<EventProcessor,MsgBoxVisibilityChangedEvent,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED>
+			(this_,&EventProcessor::processMsgBoxVisibilityChanged,mWorldManager->getEventManager());
 	}
 }
 
@@ -141,6 +144,10 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
+
+		unregisterEventHandler<EventProcessor,MsgBoxVisibilityChangedEvent,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED>
+			(this_,&EventProcessor::processMsgBoxVisibilityChanged,mWorldManager->getEventManager());
+
 	}
 }
 
@@ -416,4 +423,13 @@ void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 void EventProcessor::processChangeLevel(ChangeLevelEventPtr evt)
 {
 
+}
+
+void EventProcessor::processMsgBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr evt)
+{
+	if (mWorldManager->isFirstMsgBox() && evt->mVisible)
+	{
+		//TODO: LAUNCH PARTICLES
+		mWorldManager->setFirstMsgBox(false);
+	}
 }

@@ -305,7 +305,7 @@ void GameObjectDiamond::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation("idle_Clip");
+			mRenderComponentEntity->changeAnimation(DIAMOND_ANIM_IDLE);
 		}
 		else
 		{

@@ -517,6 +517,8 @@ void GameWorldManager::init(ApplicationPtr app)
 
 	//landscape.reset() | landscape->initBlank() | ...
 	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
+
+	mFirstMsgBox=true;
 }
 
 void GameWorldManager::cleanUp()
@@ -1709,4 +1711,12 @@ void GameWorldManager::loadFlashlightDecalMaterials()
 GameObject* GameWorldManager::getGameObject(const std::string& objectName)
 {
 	return mInst->getObject(objectName).get();
+}
+bool GameWorldManager::isFirstMsgBox() const
+{
+	return mFirstMsgBox;
+}
+void GameWorldManager::setFirstMsgBox(bool firstMsgBox)
+{
+	mFirstMsgBox=firstMsgBox;
 }

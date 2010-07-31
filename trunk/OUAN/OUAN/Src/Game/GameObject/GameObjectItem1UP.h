@@ -10,6 +10,9 @@
 
 namespace OUAN
 {
+
+	const std::string ITEM1UP_ANIM_IDLE="idle_Clip";
+
 	/// Class to hold GameObjectItem1UP information
 	class GameObjectItem1UP : public GameObject, public boost::enable_shared_from_this<GameObjectItem1UP>
 	{

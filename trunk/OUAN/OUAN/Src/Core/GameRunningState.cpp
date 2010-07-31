@@ -73,7 +73,7 @@ void GameRunningState::init(ApplicationPtr app)
 	//create HUD
 	mHUD.reset(new HUDInGame());
 	LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
-	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld());
+	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld(), onyLogic->getDiamonds());
 	mApp->getGameWorldManager()->getGameObjectOny()->setAttack(convertRouletteValue(mHUD->getCurrentState()));
 
 	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
@@ -493,7 +493,7 @@ void GameRunningState::update(long elapsedTime)
 			if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 			{
 				LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
-				mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives());
+				mHUD->update(elapsedSeconds,onyLogic->getHealthPoints(),onyLogic->getNumLives(),onyLogic->getDiamonds());
 
 				if (mHUD->isSelectedModeChanged())
 				{

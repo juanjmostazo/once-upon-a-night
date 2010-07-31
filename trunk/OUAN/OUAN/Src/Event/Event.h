@@ -218,5 +218,12 @@ namespace OUAN
 		std::string level;
 	};
 
+	class MsgBoxVisibilityChangedEvent: public Event
+	{
+	public:
+		MsgBoxVisibilityChangedEvent(bool visible);
+		bool mVisible;
+	};
+
 }
 #endif

@@ -251,3 +251,9 @@ ChangeLevelEvent::ChangeLevelEvent()
 :Event(EVT_PRIORITY_CHANGE_LEVEL, EVENT_TYPE_CHANGE_LEVEL)
 {
 }
+//---
+MsgBoxVisibilityChangedEvent::MsgBoxVisibilityChangedEvent(bool visible)
+:Event(EVT_PRIORITY_MSGBOX_VISIBILITY_CHANGED,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED)
+,mVisible(visible)
+{
+}

@@ -33,6 +33,24 @@ material OUAN/Hud/Roulette
 	}
 }
 
+material OUAN/Hud/Diamond
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture HUD_diamond.png
+			}
+		}
+	}
+}
+
 material OUAN/Hud/PowerBar
 {
 	technique

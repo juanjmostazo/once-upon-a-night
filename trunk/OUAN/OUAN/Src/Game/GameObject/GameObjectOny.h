@@ -139,6 +139,13 @@ namespace OUAN
 		std::string mNightmaresWeapon;
 		double mIdleTime;
 
+		double mRunParticlesElapsed;
+		double mRunParticlesNextInterval;
+		
+		//Random interval Bounds
+		double mRunParticlesMin;
+		double mRunParticlesMax;
+
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class
@@ -289,6 +296,17 @@ namespace OUAN
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		double getRunParticlesElapsed() const;
+		void setRunParticlesElapsed(double runParticlesElapsed);
+		double getRunParticlesNextInterval() const;
+		void setRunParticlesNextInterval(double runParticlesNextInterval);
+
+		//Random interval Bounds
+		double getRunParticlesMin() const;
+		void setRunParticlesMin(double runParticlesMin);
+		double getRunParticlesMax() const;
+		void setRunParticlesMax(double runParticlesMax);
 		
 	};
 
@@ -321,6 +339,9 @@ namespace OUAN
 
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
+
+		double mRunParticlesMin;
+		double mRunParticlesMax;
 	};
 }
 #endif
