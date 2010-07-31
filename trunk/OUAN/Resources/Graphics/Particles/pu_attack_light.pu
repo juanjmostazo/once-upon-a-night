@@ -1,6 +1,6 @@
 system PU/attack_light
 {
-    scale                                       0.05 0.05 0.05
+    scale                                       0.075 0.075 0.075
     technique Lightning_1
     {
         keep_local                              true
@@ -44,7 +44,7 @@ system PU/attack_light
     technique Lightning_2
     {
         keep_local                              true
-        visual_particle_quota                   5
+        visual_particle_quota                   10
         material                                PU/attack_light_2
         renderer                                Billboard
         {
@@ -84,7 +84,7 @@ system PU/attack_light
     technique Lightning_3
     {
         keep_local                              true
-        visual_particle_quota                   5
+        visual_particle_quota                   10
         material                                PU/attack_light_3
         renderer                                Billboard
         {
@@ -124,7 +124,7 @@ system PU/attack_light
     technique Lightning_4
     {
         keep_local                              true
-        visual_particle_quota                   5
+        visual_particle_quota                   10
         material                                PU/attack_light_4
         renderer                                Billboard
         {
