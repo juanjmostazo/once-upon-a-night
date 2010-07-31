@@ -457,10 +457,12 @@ void GameObjectOny::postUpdate()
 				if (mGameWorldManager->getWorld() == DREAMS)
 				{
 					mRenderComponentParticleSystemLandDreams->start();
+					mRenderComponentParticleSystemLandWave->start();
 				}
 				else if (mGameWorldManager->getWorld() == NIGHTMARES)
 				{
 					mRenderComponentParticleSystemLandNightmares->start();
+					mRenderComponentParticleSystemLandWave->start();
 				}
 			}
 		}
@@ -547,10 +549,12 @@ void GameObjectOny::postUpdate()
 		if (mGameWorldManager->getWorld() == DREAMS)
 		{
 			mRenderComponentParticleSystemLandDreams->start();
+			mRenderComponentParticleSystemLandWave->start();
 		}
 		else if (mGameWorldManager->getWorld() == NIGHTMARES)
 		{
 			mRenderComponentParticleSystemLandNightmares->start();
+			mRenderComponentParticleSystemLandWave->start();
 		}
 	}
 

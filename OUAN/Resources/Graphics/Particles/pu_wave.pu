@@ -1,0 +1,50 @@
+system PU/wave
+{
+    scale                                       0.5 0.5 0.5
+    technique Technique19
+    {
+        visual_particle_quota                   100
+        material                                PU/wave
+        renderer                                Billboard
+        {
+            billboard_type                      perpendicular_common
+            common_direction                    0 1 0
+            common_up_vector                    0 0 1
+        }
+        emitter                                 SphereSurface Emitter23
+        {
+            emission_rate                       dyn_random
+            {
+                min                             12
+                max                             20
+            }
+            angle                               10
+            time_to_live                        dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            velocity                            dyn_random
+            {
+                min                             40
+                max                             60
+            }
+            duration                            0.4
+            position                            0 1 0
+            sphere_surface_em_radius            2
+        }
+        affector                                Colour Affector29
+        {
+            colour_aff_time_colour              0    1 0.498039 0 1
+            colour_aff_time_colour              1    1 1 0 1
+        }
+        affector                                LinearForce Affector31
+        {
+            force_aff_application               average
+        }
+        affector                                Scale Affector84
+        {
+            xyz_scale                           100
+        }
+    }
+}
