@@ -78,11 +78,7 @@ void InGameMenuState::handleEvents()
 
 	if (mApp->isPressedMenu(&pad,&key))
 	{
-		if (mApp->getKeyBuffer(key) < 0)
-		{
-			mApp->getGameStateManager()->popState();
-			mApp->setDefaultKeyBuffer(key);
-		}
+		mApp->getGameStateManager()->popState();
 	}
 }
 

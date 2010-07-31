@@ -24,7 +24,7 @@ namespace OUAN
 	const std::string KEY_RIGHT = "Right";
 	const std::string KEY_JUMP = "Jump";
 	const std::string KEY_CENTER_CAMERA = "CenterCamera";
-	const std::string KEY_RELOADWEAPON = "Reload";
+	const std::string KEY_RELOADWEAPON = "AutoTarget";
 	const std::string KEY_USEWEAPON = "UseWeapon";
 	const std::string KEY_WALK = "Walk";
 	const std::string KEY_ROTATELEFT = "LRotate";
@@ -117,8 +117,8 @@ namespace OUAN
 	{
 		int keyMenu,keyPause;
 		int keyForward,keyBackwards,keyLeft,keyRight;
-		int keyJump,keyAction,keyReloadWeapon,keyUseWeapon;
-		int keyWalk,keyRotateLeft,keyRotateRight,keyAutoTarget;
+		int keyJump,keyAction,keyAutoTarget,keyUseWeapon;
+		int keyWalk,keyRotateLeft,keyRotateRight;
 		int keyQuickExit, keyDebugPerformance, keyDebugPhysics, keyDebugTrajectory;
 		int keyChangeCamera, keyChangeCameraController;
 		int keyChangeWorld, keyChangeLevel;
@@ -138,7 +138,7 @@ namespace OUAN
 		FullInputManager();
 		virtual ~FullInputManager();
 
-		void capture();
+		virtual void capture();
 
 		virtual bool mouseMoved( const OIS::MouseEvent& e );
 		virtual bool mousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID button );
@@ -208,6 +208,8 @@ namespace OUAN
 		double padCameraJoystickScaleFactor, padJoystickBorder;
 
 		ConfigurationPtr mInputTextStrings;
+
+		std::map<int,bool> mLastFrameDown;
 
 		/// Structure holding the values of the keycodes/mouse button ids for all possible in-game input actions 
 		TDefaultInputData mDefaultInputData;

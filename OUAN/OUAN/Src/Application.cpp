@@ -196,6 +196,8 @@ void Application::go()
 		bool renderFrameSuccess = mStateManager->getCurrentState()->render();
 		continueRunning &= renderFrameSuccess;
 		continueRunning &= ! mExitRequested;
+
+		updateDownKeys();
 	}
 }
 
@@ -457,65 +459,4 @@ const std::string& Application::getCurrentLanguage() const
 ConfigurationPtr Application::getIngameTextStrings() const
 {
 	return mIngameTextStrings;
-}
-
-void Application::setKeyBuffer(int key, int keyBuffer)
-{
-	if (key>=0 && key<KEY_BUFFER_SIZE)
-		mKeyBuffer[key]=keyBuffer;
-	else if (key<0 && abs(key)<=MOUSEBUTTONS_BUFFER_SIZE)
-		mKeyBuffer[KEY_BUFFER_SIZE+key]=keyBuffer;
-}
-
-void Application::setKeyBufferAll(int keyBuffer)
-{
-	for (int i=0; i<KEY_BUFFER_SIZE; i++)
-	{
-		mKeyBuffer[i]=keyBuffer;
-	}
-}
-
-int Application::getKeyBuffer(int key)
-{
-	int index=-1;
-	if (key>=0 && key<KEY_BUFFER_SIZE)
-		index=key;
-	else if (key<0 && abs(key)<=MOUSEBUTTONS_BUFFER_SIZE)
-		index=KEY_BUFFER_SIZE+key;
-	if (index<0)
-		throw std::exception("INVALID KEY CODE!!");
-	return mKeyBuffer[index];
-}
-
-void Application::setDefaultKeyBuffer(int key)
-{
-	setKeyBuffer(key, DEFAULT_KEY_BUFFER);
-}
-
-void Application::setDefaultKeyBufferAll()
-{
-	setKeyBufferAll(DEFAULT_KEY_BUFFER);
-}
-
-void Application::setNegativeKeyBuffer(int key)
-{
-	setKeyBuffer(key, -1);
-}
-
-void Application::setNegativeKeyBufferAll()
-{
-	setKeyBufferAll(-1);
-}
-
-void Application::reduceKeyBuffer(int key, double time)
-{
-	setKeyBuffer(key, getKeyBuffer(key) - time);
-}
-
-void Application::reduceKeyBufferAll(double time)
-{
-	for (int i=0; i<KEY_BUFFER_SIZE;i++)
-	{
-		setKeyBuffer(i, getKeyBuffer(i) - time);
-	}
 }

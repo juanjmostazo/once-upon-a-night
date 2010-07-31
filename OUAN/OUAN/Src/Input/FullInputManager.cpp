@@ -180,7 +180,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		readOption(config,KEY_PAUSE,mDefaultInputData.keyPause);
 
 		readOption(config,KEY_USEWEAPON,mDefaultInputData.keyUseWeapon);
-		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon);
+		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget);
 		readOption(config,KEY_CENTER_CAMERA,mDefaultInputData.keyAction);
 		readOption(config,KEY_JUMP,mDefaultInputData.keyJump);
 		readOption(config,KEY_WALK,mDefaultInputData.keyWalk);
@@ -217,7 +217,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyReloadWeapon=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyForward=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyJump=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyLeft=OIS::KC_UNASSIGNED;
@@ -297,6 +297,7 @@ void FullInputManager::capture()
             (*it_joystick)->capture();
         }
     }
+
 }
 
 bool FullInputManager::mouseMoved( const OIS::MouseEvent& e ) 

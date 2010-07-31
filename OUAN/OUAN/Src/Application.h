@@ -139,22 +139,7 @@ namespace OUAN
 			void cycleLanguage();
 			const std::string& getCurrentLanguage() const;
 
-			void setKeyBuffer(int key, int keyBuffer);
-			void setKeyBufferAll(int keyBuffer);
-			int getKeyBuffer(int key);
-
-			void setDefaultKeyBuffer(int key);
-			void setNegativeKeyBuffer(int key);
-			void reduceKeyBuffer(int key, double time);
-
-			void setDefaultKeyBufferAll();
-			void setNegativeKeyBufferAll();
-			void reduceKeyBufferAll(double time);
-
 		protected:
-			/// Used to prevent key repeats from quickly 
-			/// toggling on/off certain actions
-			int mKeyBuffer[KEY_BUFFER_SIZE];
 
 			/// Singleton instance
 			static Application* instance;

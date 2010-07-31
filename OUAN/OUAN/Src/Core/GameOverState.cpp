@@ -78,36 +78,19 @@ void GameOverState::handleEvents()
 	{
 		if (mApp->isPressedJump(&pad1,&key1) || mApp->isPressedPause(&pad2,&key2))
 		{
-			if (mApp->getKeyBuffer(key1) < 0 || mApp->getKeyBuffer(key2) < 0)
-			{
-				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 
-				LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
-				levelLoadingState->setLevelFileName(LEVEL_2);
-				mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
+			LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
+			levelLoadingState->setLevelFileName(LEVEL_2);
+			mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
 
-				if (mApp->getKeyBuffer(key1) < 0)
-				{
-					mApp->setDefaultKeyBuffer(key1);
-				}
-
-				if (mApp->getKeyBuffer(key2) < 0)
-				{
-					mApp->setDefaultKeyBuffer(key2);
-				}
-			}
 		}
-		else if (mApp->isPressedWeaponAction(&pad1,&key1))
+		else if (mApp->isPressedUseWeapon(&pad1,&key1))
 		{
-			if (mApp->getKeyBuffer(key1) < 0)
-			{
-				mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
-				
-				GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
-				mApp->getGameStateManager()->changeState(mainMenuState,mApp);
-
-				mApp->setDefaultKeyBuffer(key1);
-			}
+			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
+			
+			GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
+			mApp->getGameStateManager()->changeState(mainMenuState,mApp);
 		}
 	}
 }
