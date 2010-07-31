@@ -19,17 +19,14 @@ void GameState::changeState(GameStatePtr nextState)
 void GameState::init(ApplicationPtr app)
 {
 	mApp=app;
-	mApp->setDefaultKeyBufferAll();
 }
 
 void GameState::cleanUp()
 {
-	mApp->setNegativeKeyBufferAll();
 }
 
 void GameState::update(long elapsedTime)
 {
-	mApp->reduceKeyBufferAll(elapsedTime);
 }
 
 bool GameState::render()

@@ -114,12 +114,8 @@ void MainMenuState::handleEvents()
 
 	if (mApp->isPressedJump(&pad,&key))
 	{
-		if (mApp->getKeyBuffer(key) < 0)
-		{
-			mApp->cycleLanguage();
-			mGUI->setStrings(mApp->getCurrentLanguage());
-			mApp->setDefaultKeyBuffer(key);
-		}
+		mApp->cycleLanguage();
+		mGUI->setStrings(mApp->getCurrentLanguage());
 	}
 }
 

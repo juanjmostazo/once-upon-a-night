@@ -35,6 +35,8 @@ namespace OUAN
 		/// Clear resources
 		void finalise();
 
+		void capture();
+
 		// Since at the moment there will be no need for a polymorphic redefinition 
 		// of these methods, I've taken out the "virtual" specifier to reduce unnecessary overhead
 
@@ -44,7 +46,7 @@ namespace OUAN
 		bool isPressedJump(int *pad, int *key);			// Jump
 		bool isPressedCenterCamera(int *pad, int *key);		// Perform an action
 		bool isPressedUseWeapon(int *pad, int *key);	// Use the pillow (dream) or shoot (nightmare)
-		bool isPressedWeaponAction(int *pad, int *key);	// Change holder hand (dream) or recharge (nightmare)
+		bool isPressedAutoTarget(int *pad, int *key);	// Change holder hand (dream) or recharge (nightmare)
 
 		bool isPressedWalk(int *pad, int *key);			// Walk mode
 		bool isPressedCameraFixedFirstPerson(int *pad, int *key);	// Automatic pointer
@@ -86,6 +88,55 @@ namespace OUAN
 		/// @return true if there's been a 'run-cutscene' key press
 		bool isPressedRunCutscene(int *pad, int *key);
 
+
+		bool isDownMenu(int *pad, int *key);			// Go to main menu
+		bool isDownPause(int *pad, int *key);		// Go to pause menu
+
+		bool isDownJump(int *pad, int *key);			// Jump
+		bool isDownCenterCamera(int *pad, int *key);		// Perform an action
+		bool isDownUseWeapon(int *pad, int *key);	// Use the pillow (dream) or shoot (nightmare)
+		bool isDownAutoTarget(int *pad, int *key);	// Change holder hand (dream) or recharge (nightmare)
+
+		bool isDownWalk(int *pad, int *key);			// Walk mode
+		bool isDownCameraFixedFirstPerson(int *pad, int *key);	// Automatic pointer
+		bool isDownRotateLeft(int *pad, int *key);	// Rotate color to left
+		bool isDownRotateRight(int *pad, int *key);	// Rotate color to right
+
+		/// Convenience method to provide a quick exit key (essentially for debugging purposes)
+		bool isDownQuickExit(int *pad, int *key);
+		/// Convenience method to enable performance debug mode
+		bool isDownToggleDebugPerformance(int *pad, int *key);
+		/// Convenience method to enable physics debug mode
+		bool isDownToggleDebugPhysics(int *pad, int *key);
+		/// Convenience method to enable trajectory debug mode
+		bool isDownToggleDebugTrajectory(int *pad, int *key);
+		/// Convenience method to change between cameras
+		bool isDownToggleChangeCamera(int *pad, int *key);
+		/// Convenience method to change current camera controller
+		bool isDownToggleChangeCameraController(int *pad, int *key);
+		/// Convenience method to change current world
+		bool isDownToggleChangeWorld(int *pad, int *key);
+		/// Convenience method to change current level
+		bool isDownToggleChangeLevel(int *pad, int *key);
+		/// Detect if the 'toggle-console' key has been Down
+		/// @return true if there has been a 'toggle-console' key press
+		bool isDownToggleConsole(int *pad, int *key);
+		/// Detect if the 'toggle-volumes' key has been Down
+		/// @return true if there has been a 'toggle-volumes' key press
+		bool isDownToggleVolumes(int *pad, int *key);
+		/// Detect if the 'toggle-godmode' key has been Down
+		/// @return true if there has been a 'toggle-godmode' key press
+		bool isDownToggleGodMode(int *pad, int *key);
+		/// Detect if the 'toggle-changeworlddebug' key has been Down
+		/// @return true if there has been a 'toggle-changeworlddebug' key press
+		bool isDownToggleChangeWorldDebug(int *pad, int *key);
+		/// Detect if the 'toggle-showscenenodes' key has been Down
+		/// @return true if there has been a 'toggle-showscenenodes' key press
+		bool isDownToggleShowSceneNodes(int *pad, int *key);
+		/// Launch testing cutscene
+		/// @return true if there's been a 'run-cutscene' key press
+		bool isDownRunCutscene(int *pad, int *key);
+
 		Vector3 getMovement();
 		void getMovementSimple(int & movementX, int & movementZ);
 		Vector2 getCameraRotation();
@@ -106,6 +157,8 @@ namespace OUAN
 		TInputCfgMouseButtonMapper convertMouseButtonId(OIS::MouseButtonID mouseButtonId);
 		
 		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
+
+		void updateDownKeys();
 		
 	protected:
 		/// In order to determine getMovement method result
@@ -113,6 +166,11 @@ namespace OUAN
 		bool isPressedGoBack(int *pad, int *key);			// Go back
 		bool isPressedGoLeft(int *pad, int *key);			// Go to left
 		bool isPressedGoRight(int *pad, int *key);		// Go to right
+
+		bool isDownGoForward(int *pad, int *key);		// Go forward
+		bool isDownGoBack(int *pad, int *key);			// Go back
+		bool isDownGoLeft(int *pad, int *key);			// Go to left
+		bool isDownGoRight(int *pad, int *key);		// Go to right
 
 		/// Get OIS' mouse button ID equivalent for the specified mouseButtonId as read from
 		/// the default input configuration.
@@ -132,6 +190,7 @@ namespace OUAN
 		///							OIS::KeyCode value or an OIS::MouseButtonID.
 		/// @return true if the given joystick button/ default input key was pressed; false otherwise
 		bool isPressed(int padButton, int defaultInputKey);
+		bool isDown(int padButton, int defaultInputKey);
 
 		/// Add to the 'mappings' dictionary a new entry for keyID, where its value will be
 		/// a pair consisting of the values given under keyboardMapping and psxPadMapping

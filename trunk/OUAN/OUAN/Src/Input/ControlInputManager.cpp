@@ -19,12 +19,77 @@ ControlInputManager::~ControlInputManager()
 void ControlInputManager::init(Ogre::RenderWindow* window, const std::string& language,bool showDefaultMousePointer)
 {
 	FullInputManager::init(window, language, showDefaultMousePointer);
+
+	mLastFrameDown[mDefaultInputData.keyMenu]=false;
+	mLastFrameDown[mDefaultInputData.keyPause]=false;
+	mLastFrameDown[mDefaultInputData.keyForward]=false;
+	mLastFrameDown[mDefaultInputData.keyBackwards]=false;
+	mLastFrameDown[mDefaultInputData.keyLeft]=false;
+	mLastFrameDown[mDefaultInputData.keyRight]=false;
+	mLastFrameDown[mDefaultInputData.keyJump]=false;
+	mLastFrameDown[mDefaultInputData.keyAction]=false;
+	mLastFrameDown[mDefaultInputData.keyAutoTarget]=false;
+	mLastFrameDown[mDefaultInputData.keyUseWeapon]=false;
+	mLastFrameDown[mDefaultInputData.keyRotateLeft]=false;
+	mLastFrameDown[mDefaultInputData.keyRotateRight]=false;
+	mLastFrameDown[mDefaultInputData.keyAutoTarget]=false;
+	mLastFrameDown[mDefaultInputData.keyQuickExit]=false;
+	mLastFrameDown[mDefaultInputData.keyDebugPerformance]=false;
+	mLastFrameDown[mDefaultInputData.keyDebugPhysics]=false;
+	mLastFrameDown[mDefaultInputData.keyDebugTrajectory]=false;
+	mLastFrameDown[mDefaultInputData.keyChangeCamera]=false;
+	mLastFrameDown[mDefaultInputData.keyChangeCameraController]=false;
+	mLastFrameDown[mDefaultInputData.keyChangeWorld]=false;
+	mLastFrameDown[mDefaultInputData.keyChangeLevel]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleConsole]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleVolumes]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleGodMode]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleChangeWorldDebug]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleShowSceneNodes]=false;
+	mLastFrameDown[mDefaultInputData.keyRunCutscene]=false;
+
 }
 
 void ControlInputManager::finalise()
 {
 	mInputTextStrings.reset();
 	FullInputManager::finalise();
+}
+
+void ControlInputManager::capture()
+{
+	FullInputManager::capture();
+}
+
+void ControlInputManager::updateDownKeys()
+{
+	int pad,key;
+
+	mLastFrameDown[mDefaultInputData.keyMenu]=isDownMenu(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyPause]=isDownPause(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyForward]=isDownGoForward(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyBackwards]=isDownGoBack(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyLeft]=isDownGoLeft(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyRight]=isDownGoRight(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyJump]=isDownJump(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyAutoTarget]=isDownAutoTarget(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyUseWeapon]=isDownUseWeapon(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyRotateLeft]=isDownRotateLeft(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyRotateRight]=isDownRotateRight(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyQuickExit]=isDownQuickExit(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyDebugPerformance]=isDownToggleDebugPerformance(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyDebugPhysics]=isDownToggleDebugPhysics(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyDebugTrajectory]=isDownToggleDebugPerformance(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyChangeCamera]=isDownToggleChangeCamera(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyChangeCameraController]=isDownToggleChangeCameraController(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyChangeWorld]=isDownToggleChangeWorld(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyChangeLevel]=isDownToggleChangeLevel(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleConsole]=isDownToggleConsole(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleVolumes]=isDownToggleVolumes(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleGodMode]=isDownToggleGodMode(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleChangeWorldDebug]=isDownToggleChangeWorldDebug(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleShowSceneNodes]=isDownToggleShowSceneNodes(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyRunCutscene]=isDownRunCutscene(&pad,&key);
 }
 
 OIS::MouseButtonID ControlInputManager::convertMouseButtonId(TInputCfgMouseButtonMapper inputCfgMouseButtonId)
@@ -80,24 +145,34 @@ TInputCfgMouseButtonMapper ControlInputManager::convertMouseButtonId(OIS::MouseB
 
 bool ControlInputManager::isPressed(int padButton, int defaultInputKey)
 {
+	bool isKeyDown = isDown(padButton,defaultInputKey);
+
+	bool isPressed=(mLastFrameDown[defaultInputKey]==false && isKeyDown);
+
+	return isPressed;
+}
+
+bool ControlInputManager::isDown(int padButton, int defaultInputKey)
+{
 	bool isKeyboardKey= defaultInputKey > 0;
 	bool isMouseButton = defaultInputKey < 0;
 	bool isValidJoystickButton = getJoystick(defaultPadId) && padButton >= 0; //Ensure there is a joystick and the button is valid
 	
-	return 
-		(isValidJoystickButton && getJoystick(defaultPadId)->getJoyStickState().buttonDown(padButton))
+	bool isKeyDown = (isValidJoystickButton && getJoystick(defaultPadId)->getJoyStickState().buttonDown(padButton))
 		|| (isKeyboardKey && getKeyboard()->isKeyDown(static_cast<OIS::KeyCode>(defaultInputKey)))
 		|| (isMouseButton && getMouse()->getMouseState().buttonDown(convertMouseButtonId(static_cast<TInputCfgMouseButtonMapper>(defaultInputKey))));
+
+	return isKeyDown;
 }
 
-bool ControlInputManager::isPressedMenu(int *pad, int* key)
+bool ControlInputManager::isDownMenu(int *pad, int* key)
 {
 	*pad = padSelect;
 	*key = mDefaultInputData.keyMenu;
 	return isPressed(padSelect,mDefaultInputData.keyMenu);
 }
 
-bool ControlInputManager::isPressedPause(int *pad, int* key)
+bool ControlInputManager::isDownPause(int *pad, int* key)
 {
 	*pad = padStart;
 	*key = mDefaultInputData.keyPause;
@@ -125,13 +200,6 @@ bool ControlInputManager::isPressedUseWeapon(int *pad, int* key)
 	*pad = padSquare;
 	*key = mDefaultInputData.keyUseWeapon;
 	return isPressed(padSquare,mDefaultInputData.keyUseWeapon);
-}
-
-bool ControlInputManager::isPressedWeaponAction(int *pad, int* key)
-{
-	*pad = padTriangle;
-	*key = mDefaultInputData.keyReloadWeapon;
-	return isPressed(padTriangle,mDefaultInputData.keyReloadWeapon);
 }
 
 bool ControlInputManager::isPressedGoForward(int *pad, int* key)
@@ -290,6 +358,206 @@ bool ControlInputManager::isPressedRunCutscene(int *pad, int* key)
 
 //////////////////////////////////////////////////////////////
 
+bool ControlInputManager::isPressedMenu(int *pad, int* key)
+{
+	*pad = padSelect;
+	*key = mDefaultInputData.keyMenu;
+	return isPressed(padSelect,mDefaultInputData.keyMenu);
+}
+
+bool ControlInputManager::isPressedPause(int *pad, int* key)
+{
+	*pad = padStart;
+	*key = mDefaultInputData.keyPause;
+	return isPressed(padStart,mDefaultInputData.keyPause);
+}
+
+//////////////////////////////////////////////////////////////
+
+bool ControlInputManager::isDownJump(int *pad, int* key)
+{
+	*pad = padX;
+	*key = mDefaultInputData.keyJump;
+	return isDown(padX,mDefaultInputData.keyJump);
+}
+
+bool ControlInputManager::isDownCenterCamera(int *pad, int* key)
+{
+	*pad = padCircle;
+	*key = mDefaultInputData.keyAction;
+	return isDown(padCircle,mDefaultInputData.keyAction);
+}
+
+bool ControlInputManager::isDownUseWeapon(int *pad, int* key)
+{
+	*pad = padSquare;
+	*key = mDefaultInputData.keyUseWeapon;
+	return isDown(padSquare,mDefaultInputData.keyUseWeapon);
+}
+
+bool ControlInputManager::isDownGoForward(int *pad, int* key)
+{
+	*pad = padUp;
+	*key = mDefaultInputData.keyForward;
+	return isDown(padUp,mDefaultInputData.keyForward);
+}
+
+bool ControlInputManager::isDownAutoTarget(int *pad, int* key)
+{
+	*pad = padUp;
+	*key = mDefaultInputData.keyAutoTarget;
+	return isDown(padUp,mDefaultInputData.keyAutoTarget);
+}
+
+bool ControlInputManager::isDownGoBack(int *pad, int* key)
+{
+	*pad = padDown;
+	*key = mDefaultInputData.keyBackwards;
+	return isDown(padDown,mDefaultInputData.keyBackwards);
+}
+
+bool ControlInputManager::isDownGoLeft(int *pad, int* key)
+{
+	*pad = padLeft;
+	*key = mDefaultInputData.keyLeft;
+	return isDown(padLeft, mDefaultInputData.keyLeft);
+}
+
+bool ControlInputManager::isDownGoRight(int *pad, int* key)
+{
+	*pad = padRight;
+	*key = mDefaultInputData.keyRight;
+	return isDown(padRight,mDefaultInputData.keyRight);
+}
+
+bool ControlInputManager::isDownWalk(int *pad, int* key)
+{ 
+	*pad = padR1;
+	*key = mDefaultInputData.keyWalk;
+	return isDown(padR1,mDefaultInputData.keyWalk);
+}
+
+bool ControlInputManager::isDownCameraFixedFirstPerson(int *pad, int* key)
+{
+	*pad = padL1;
+	*key = mDefaultInputData.keyAutoTarget;
+	return isDown(padL1,mDefaultInputData.keyAutoTarget);
+}
+
+bool ControlInputManager::isDownRotateLeft(int *pad, int* key)
+{
+	*pad = padL2;
+	*key = mDefaultInputData.keyRotateLeft;
+	return isDown(padL2,mDefaultInputData.keyRotateLeft);
+}
+
+bool ControlInputManager::isDownRotateRight(int *pad, int* key)
+{
+	*pad = padR2;
+	*key = mDefaultInputData.keyRotateRight;
+	return isDown(padR2,mDefaultInputData.keyRotateRight);
+}
+
+bool ControlInputManager::isDownQuickExit(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyQuickExit;
+	return isDown(-1,mDefaultInputData.keyQuickExit);
+}
+
+bool ControlInputManager::isDownToggleDebugPerformance(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugPerformance;
+	return isDown(-1,mDefaultInputData.keyDebugPerformance);
+}
+
+bool ControlInputManager::isDownToggleDebugPhysics(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugPhysics;
+	return isDown(-1,mDefaultInputData.keyDebugPhysics);
+}
+
+bool ControlInputManager::isDownToggleDebugTrajectory(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyDebugTrajectory;
+	return isDown(-1,mDefaultInputData.keyDebugTrajectory);
+}
+
+bool ControlInputManager::isDownToggleChangeCamera(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeCamera;
+	return isDown(-1,mDefaultInputData.keyChangeCamera);
+}
+
+bool ControlInputManager::isDownToggleChangeCameraController(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeCameraController;
+	return isDown(-1,mDefaultInputData.keyChangeCameraController);
+}
+
+bool ControlInputManager::isDownToggleChangeWorld(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeWorld;
+	return isDown(-1,mDefaultInputData.keyChangeWorld);
+}
+
+bool ControlInputManager::isDownToggleChangeLevel(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyChangeLevel;
+	return isDown(-1,mDefaultInputData.keyChangeLevel);
+}
+
+bool ControlInputManager::isDownToggleConsole(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleConsole;
+	return isDown(-1,mDefaultInputData.keyToggleConsole);
+}
+
+bool ControlInputManager::isDownToggleVolumes(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleVolumes;
+	return isDown(-1,mDefaultInputData.keyToggleVolumes);
+}
+
+bool ControlInputManager::isDownToggleGodMode(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleGodMode;
+	return isDown(-1,mDefaultInputData.keyToggleGodMode);
+}
+
+bool ControlInputManager::isDownToggleChangeWorldDebug(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleChangeWorldDebug;
+	return isDown(-1,mDefaultInputData.keyToggleChangeWorldDebug);
+}
+
+bool ControlInputManager::isDownToggleShowSceneNodes(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyToggleShowSceneNodes;
+	return isDown(-1,mDefaultInputData.keyToggleShowSceneNodes);
+}
+
+bool ControlInputManager::isDownRunCutscene(int *pad, int* key)
+{
+	*pad = -1;
+	*key = mDefaultInputData.keyRunCutscene;
+	return isDown(-1,mDefaultInputData.keyRunCutscene);
+}
+
+//////////////////////////////////////////////////////////////
+
 Vector3 ControlInputManager::getMovement()
 {
 	int pad;
@@ -304,22 +572,22 @@ Vector3 ControlInputManager::getMovement()
 
 	getJoystickStateAxes(joystickLeftX, joystickLeftZ, joystickRightX, joystickRightZ);
 
-	if (isPressedGoForward(&pad,&key))
+	if (isDownGoForward(&pad,&key))
 	{
 		nextMovement += Vector3::UNIT_Z;	
 	}
 
-	if (isPressedGoBack(&pad,&key))
+	if (isDownGoBack(&pad,&key))
 	{
 		nextMovement += Vector3::NEGATIVE_UNIT_Z;	
 	}
 
-	if (isPressedGoLeft(&pad,&key))
+	if (isDownGoLeft(&pad,&key))
 	{
 		nextMovement += Vector3::UNIT_X;	
 	}
 
-	if (isPressedGoRight(&pad,&key))
+	if (isDownGoRight(&pad,&key))
 	{
 		nextMovement += Vector3::NEGATIVE_UNIT_X;	
 	}
@@ -341,22 +609,22 @@ void ControlInputManager::getMovementSimple(int & movementX, int & movementZ)
 	movementX = 0;
 	movementZ = 0;
 
-	if (isPressedGoForward(&pad,&key))
+	if (isDownGoForward(&pad,&key))
 	{
 		movementZ = 1;
 	}
 
-	if (isPressedGoBack(&pad,&key))
+	if (isDownGoBack(&pad,&key))
 	{
 		movementZ = -1;	
 	}
 
-	if (isPressedGoLeft(&pad,&key))
+	if (isDownGoLeft(&pad,&key))
 	{
 		movementX = 1;	
 	}
 
-	if (isPressedGoRight(&pad,&key))
+	if (isDownGoRight(&pad,&key))
 	{
 		movementX = -1;	
 	}
@@ -423,7 +691,7 @@ void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
 	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,STRINGKEY_JUMP,mappings);
 	addPair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,STRINGKEY_CENTER_CAMERA,mappings);
 	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,STRINGKEY_USEWEAPON,mappings);
-	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,STRINGKEY_RELOAD,mappings);
+	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget,padTriangle,STRINGKEY_RELOAD,mappings);
 
 	addPair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,STRINGKEY_LROTATE,mappings);
 	addPair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,STRINGKEY_RROTATE,mappings);
@@ -496,7 +764,7 @@ void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool s
 		replacePair(KEY_JUMP,mDefaultInputData.keyJump,padX,newMapping);
 		replacePair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,newMapping);
 		replacePair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,newMapping);
-		replacePair(KEY_RELOADWEAPON,mDefaultInputData.keyReloadWeapon,padTriangle,newMapping);
+		replacePair(KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget,padTriangle,newMapping);
 
 		replacePair(KEY_ROTATELEFT,mDefaultInputData.keyRotateLeft,padL2,newMapping);
 		replacePair(KEY_ROTATERIGHT,mDefaultInputData.keyRotateRight,padR2,newMapping);
@@ -543,7 +811,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyLeft,KEY_LEFT,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyMenu,KEY_MENU,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyPause,KEY_PAUSE,false);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyReloadWeapon,KEY_RELOADWEAPON,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_RELOADWEAPON,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyRight,KEY_RIGHT,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateLeft,KEY_ROTATELEFT,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyRotateRight,KEY_ROTATERIGHT,false);

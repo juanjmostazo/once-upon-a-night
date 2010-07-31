@@ -63,21 +63,8 @@ void CutsceneState::handleEvents()
 
 	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2))
 	{
-		if (mApp->getKeyBuffer(key1) < 0 || mApp->getKeyBuffer(key2) < 0)
-		{
-			skipCutscene();
-			mApp->getGameStateManager()->popState();
-
-			if (mApp->getKeyBuffer(key1) < 0)
-			{
-				mApp->setDefaultKeyBuffer(key1);
-			}
-
-			if (mApp->getKeyBuffer(key2) < 0)
-			{
-				mApp->setDefaultKeyBuffer(key2);
-			}
-		}
+		skipCutscene();
+		mApp->getGameStateManager()->popState();
 	}
 }
 /// Update game according to the current state
