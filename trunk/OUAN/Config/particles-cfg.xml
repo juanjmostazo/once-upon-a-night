@@ -9,7 +9,7 @@
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
 	<Option key="ONY_LAND_WAVE">PU/wave</Option>
 	<Option key="ONY_RUN_GRASS">PU/feather</Option>
-	<Option key="ONY_RUN_SAND">PU/feather</Option>
+	<Option key="ONY_RUN_SAND">PU/run_sand</Option>
 	<Option key="ONY_RUN_WATER">PU/feather</Option>
 	<Option key="ONY_RUN_SURPRISE">PU/feather</Option>
 	
