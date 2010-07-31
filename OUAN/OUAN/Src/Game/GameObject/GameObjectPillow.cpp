@@ -426,6 +426,7 @@ void GameObjectPillow::disable()
 }
 void GameObjectPillow::startAttackParticles()
 {
+	/*
 	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
 		mParentWeaponComponent->getParent());
 
@@ -437,6 +438,8 @@ void GameObjectPillow::startAttackParticles()
 		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
 		mRenderComponentParticleSystemAttack->start(pos);
 	}
+	*/
+	mRenderComponentParticleSystemAttack->start();
 }
 bool GameObjectPillow::hasLogicComponent() const
 {

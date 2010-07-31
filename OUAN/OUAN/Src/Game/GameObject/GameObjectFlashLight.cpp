@@ -279,6 +279,7 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 }
 void GameObjectFlashLight::startAttackParticles()
 {
+	/*
 	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
 		mParentWeaponComponent->getParent());
 
@@ -290,6 +291,8 @@ void GameObjectFlashLight::startAttackParticles()
 		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
 		mRenderComponentParticleSystemAttack->start(pos);
 	}
+	*/
+	mRenderComponentParticleSystemAttack->start();
 }
 void GameObjectFlashLight::switchOn()
 {
