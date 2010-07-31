@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/feather
+material PU/attack_pillow
 {
     technique
     {
@@ -20,7 +20,7 @@ material PU/feather
 
             texture_unit
             {
-                texture pu_feather.png
+                texture pu_attack_pillow.png
             }
         }
     }

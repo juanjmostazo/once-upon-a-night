@@ -232,7 +232,7 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 		
-		
+		void startAttackParticles();
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;

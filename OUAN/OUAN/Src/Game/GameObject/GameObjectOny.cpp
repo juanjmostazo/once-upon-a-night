@@ -8,6 +8,7 @@
 #include "../../Graphics/RenderSubsystem.h"
 #include "GameObjectViewport.h"
 #include "GameObjectPillow.h"
+#include "GameObjectFlashLight.h"
 
 using namespace OUAN;
 
@@ -498,24 +499,31 @@ void GameObjectOny::postUpdate()
 	}
 	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
 	{
-		GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
-			mWeaponComponent->getActiveWeapon());
-		switch(mWorld)
+		if (mWorld == DREAMS)
 		{
-			case DREAMS:
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
-				if (pillow.get())
-				{
-					pillow->startAttackParticles();
-				}
-				break;
-			case NIGHTMARES:
-				//get Camera Direction and change animation accordingly:
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
-				break;
-			default:break;
-		}
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
 
+			GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
+				mWeaponComponent->getActiveWeapon());
+
+			if (pillow.get())
+			{
+				pillow->startAttackParticles();
+			}
+		} 
+		else if (mWorld == NIGHTMARES) 
+		{
+			//get Camera Direction and change animation accordingly:
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+
+			GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
+				mWeaponComponent->getActiveWeapon());
+
+			if (flashLight.get())
+			{
+				flashLight->startAttackParticles();
+			}
+		}
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
 		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))

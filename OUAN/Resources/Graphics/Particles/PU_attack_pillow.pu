@@ -1,9 +1,10 @@
-system PU/feather
+system PU/attack_pillow
 {
+    keep_local                                  true
     scale                                       0.05 0.05 0.05
     technique Technique4
     {
-        material                                PU/feather
+        material                                PU/attack_pillow
         renderer                                Billboard
         {
         }

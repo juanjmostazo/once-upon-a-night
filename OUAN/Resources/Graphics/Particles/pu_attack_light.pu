@@ -1,0 +1,164 @@
+system PU/attack_light
+{
+    scale                                       0.05 0.05 0.05
+    technique Lightning_1
+    {
+        keep_local                              true
+        visual_particle_quota                   20
+        material                                PU/attack_light_1
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_origin                    top_center
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       20
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.05
+                max                             0.15
+            }
+            velocity                            0.001
+            duration                            dyn_random
+            {
+                min                             0.5
+                max                             2
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             256
+                max                             512
+            }
+            colour                              1 0.5 0 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.5  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+    technique Lightning_2
+    {
+        keep_local                              true
+        visual_particle_quota                   5
+        material                                PU/attack_light_2
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_origin                    top_center
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       20
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.05
+                max                             0.15
+            }
+            velocity                            0.001
+            duration                            dyn_random
+            {
+                min                             0.5
+                max                             2
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             256
+                max                             512
+            }
+            colour                              1 0.5 0 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.5  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+    technique Lightning_3
+    {
+        keep_local                              true
+        visual_particle_quota                   5
+        material                                PU/attack_light_3
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_origin                    top_center
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       20
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.05
+                max                             0.15
+            }
+            velocity                            0.001
+            duration                            dyn_random
+            {
+                min                             0.5
+                max                             2
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             256
+                max                             512
+            }
+            colour                              1 0.5 0 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.5  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+    technique Lightning_4
+    {
+        keep_local                              true
+        visual_particle_quota                   5
+        material                                PU/attack_light_4
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_origin                    top_center
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       20
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.05
+                max                             0.15
+            }
+            velocity                            0.001
+            duration                            dyn_random
+            {
+                min                             0.5
+                max                             2
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             256
+                max                             512
+            }
+            colour                              1 0.5 0 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.5  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+}

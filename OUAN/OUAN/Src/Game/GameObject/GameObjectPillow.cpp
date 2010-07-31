@@ -428,6 +428,7 @@ void GameObjectPillow::startAttackParticles()
 {
 	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
 		mParentWeaponComponent->getParent());
+
 	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
 		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
 	{

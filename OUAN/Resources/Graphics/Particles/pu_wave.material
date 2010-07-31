@@ -20,7 +20,7 @@ material PU/wave
 
             texture_unit
             {
-                texture wave.png
+                texture pu_wave.png
             }
         }
     }
