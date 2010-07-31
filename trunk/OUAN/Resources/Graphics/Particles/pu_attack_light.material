@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/run_sand
+material PU/attack_light_1
 {
     technique
     {
@@ -20,7 +20,61 @@ material PU/run_sand
 
             texture_unit
             {
-                texture pu_run_sand.png
+                texture pu_attack_light_1.png
+            }
+        }
+    }
+}
+
+material PU/attack_light_2
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_attack_light_2.png
+            }
+        }
+    }
+}
+
+material PU/attack_light_3
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_attack_light_3.png
+            }
+        }
+    }
+}
+
+material PU/attack_light_4
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_attack_light_4.png
             }
         }
     }

@@ -276,7 +276,20 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 			applyTintColour(attackData->rgb);
 		}
 	}
+}
+void GameObjectFlashLight::startAttackParticles()
+{
+	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
+		mParentWeaponComponent->getParent());
 
+	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
+		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
+	{
+		Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
+		Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
+		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
+		mRenderComponentParticleSystemAttack->start(pos);
+	}
 }
 void GameObjectFlashLight::switchOn()
 {
