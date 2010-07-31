@@ -1,0 +1,32 @@
+system PU/run_sand
+{
+    scale                                       0.07 0.07 0.07
+    technique Technique3
+    {
+        visual_particle_quota                   10
+        material                                PU/run_sand
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter4
+        {
+            time_to_live                        dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            velocity                            dyn_random
+            {
+                min                             15
+                max                             25
+            }
+            duration                            0.7
+            circle_em_radius                    50
+        }
+        affector                                Colour Affector8
+        {
+            colour_aff_time_colour              0    1 0.501961 0.25098 1
+            colour_aff_time_colour              3    1 1 1 1
+        }
+    }
+}

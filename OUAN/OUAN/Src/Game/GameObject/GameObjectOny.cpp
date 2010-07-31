@@ -445,6 +445,11 @@ void GameObjectOny::postUpdate()
 	int currentState=mLogicComponentOny->getState();
 	int lastState=mLogicComponentOny->getOldState();
 
+	//TO REALLOCATE BETTER
+	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_IDLE)){
+		mRenderComponentParticleSystemRunSand->start();
+	}
+
 	if (currentState==ONY_STATE_IDLE || currentState==(1<<ONY_STATE_BIT_FIELD_INVULNERABLE))
 	{
 		if (mLogicComponentOny->isStateChanged())
