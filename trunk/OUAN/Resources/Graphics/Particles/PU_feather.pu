@@ -1,48 +1,40 @@
 system PU/feather
 {
-	scale_velocity                              0.2
     scale                                       0.05 0.05 0.05
-    technique Technique3
+    technique Technique4
     {
-        visual_particle_quota                   5
-        emitted_emitter_quota                   1
         material                                PU/feather
-        spatial_hashing_update_interval         -2
         renderer                                Billboard
         {
         }
-        emitter                                 Circle Emitter14
+        emitter                                 Point Emitter5
         {
+            emission_rate                       dyn_random
+            {
+                min                             5
+                max                             10
+            }
+            angle                               45
             time_to_live                        dyn_random
             {
-                min                             0.2
-                max                             0.4
-            }
-            mass                                dyn_random
-            {
                 min                             1
-                max                             2
+                max                             1.5
             }
-        }
-        observer                                OnTime Observer5
-        {
-            observe_interval                    1
-            observe_until_event                 true
-            handler                             DoStopSystem Handler8
+            velocity                            dyn_random
             {
+                min                             10
+                max                             30
             }
-            on_time                             less_than 2
+            duration                            dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            keep_local                          true
         }
-    }
-    technique Technique10
-    {
-        material                                PU/feather
-        renderer                                Billboard
+        affector                                LinearForce Affector39
         {
-        }
-        emitter                                 Circle Emitter15
-        {
-            direction                           0 -1 -1
+            force_aff_vector                    0 -40 0
         }
     }
 }
