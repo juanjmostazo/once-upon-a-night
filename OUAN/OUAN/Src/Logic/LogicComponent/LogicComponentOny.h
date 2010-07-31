@@ -65,6 +65,9 @@ namespace OUAN
 			int value=1);
 		void setCollectableItems(const TCollectedItems& collectableItems);
 
+		int getItemAmount(const std::string& type);
+		int getDiamonds();
+
 	private:
 		/// Number of lives of the component
 		int mNumLives;

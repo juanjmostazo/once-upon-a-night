@@ -6,7 +6,7 @@
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="3 3 3" fields="X;Y;Z;W"></PROPERTY>
 	
-	<PROPERTY id="animation0::name" type="7" value="idle_Clip" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="animation0::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	
 	<PROPERTY id="LogicComponentItem::parent" type="7" value=""></PROPERTY>

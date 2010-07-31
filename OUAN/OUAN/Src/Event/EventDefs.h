@@ -63,6 +63,8 @@ namespace OUAN
 	class ChangeLevelEvent;
 	typedef boost::shared_ptr<ChangeLevelEvent> ChangeLevelEventPtr;
 
+	CLASS_DECLARATIONS_NO_PARAMS(MsgBoxVisibilityChangedEvent);
+
 	// Event types
 	typedef enum{
 		EVENT_TYPE_GAMEOVER,	
@@ -84,6 +86,7 @@ namespace OUAN
 		EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS,
 		EVENT_TYPE_ATTACK_ENDED,
 		EVENT_TYPE_CHANGE_LEVEL,
+		EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED
 	} TEventType;
 
 
@@ -104,6 +107,7 @@ namespace OUAN
 	const int EVT_PRIORITY_COLLISION=5;
 	const int EVT_PRIORITY_CAMERA_TRIGGER=5;
 	const int EVT_PRIORITY_CHANGE_LEVEL=5;
+	const int EVT_PRIORITY_MSGBOX_VISIBILITY_CHANGED=6;
 
 	//...
 }

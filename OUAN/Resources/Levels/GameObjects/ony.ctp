@@ -28,6 +28,9 @@
   <PROPERTY id="WeaponComponent::weapon0" type="7" value="flashlight#1"></PROPERTY>
   <PROPERTY id="WeaponComponent::weapon1" type="7" value="pillow#0"></PROPERTY>
   
+  <PROPERTY id="RunParticles::min" type="6" value="2.0"></PROPERTY>
+  <PROPERTY id="RunParticles::max" type="6" value="5.0"></PROPERTY>
+  
   <!-- Animations -->
   <PROPERTY id="animation0::name" type="7" value="idle01"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>

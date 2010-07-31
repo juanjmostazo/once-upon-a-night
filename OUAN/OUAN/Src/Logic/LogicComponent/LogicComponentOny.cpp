@@ -351,6 +351,18 @@ void LogicComponentOny::setCollectableItems(const TCollectedItems& collectableIt
 	mCollectedItems.clear();
 	mCollectedItems.insert(collectableItems.begin(),collectableItems.end());
 }
+int LogicComponentOny::getItemAmount(const std::string& type)
+{
+	if (mCollectedItems.find(type)!=mCollectedItems.end())
+	{
+		return mCollectedItems[type].collectedItems;
+	}
+	else throw std::exception("Collectable item type not found");
+}
+int LogicComponentOny::getDiamonds()
+{
+	return getItemAmount(GAME_OBJECT_TYPE_DIAMOND);
+}
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {

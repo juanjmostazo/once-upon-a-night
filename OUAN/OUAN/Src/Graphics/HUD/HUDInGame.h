@@ -31,14 +31,19 @@ namespace OUAN
 	const std::string TEX_HEALTH_HUD_NAME_EMPTY="HUDHealth00.png";
 
 	const std::string OVERLAY_INGAME_HUD_LIVES_TEXT="OUAN/NumLives";
+	const std::string OVERLAY_INGAME_HUD_DIAMONDS_TEXT="OUAN/NumDiamonds";
 	const std::string MATERIAL_ROULETTE="OUAN/Hud/Roulette";
 	const std::string MATERIAL_HEALTH="OUAN/Hud/Health";
 	const std::string MATERIAL_POWERBAR="OUAN/Hud/PowerBar";
 	
 	const std::string PANEL_ROULETTE="OUAN/RoulettePanel";
+	const std::string PANEL_DIAMONDS="OUAN/DiamondCounter";
 
 	const int TRANSITION_NFRAMES=2;
 	const float TRANSITION_DURATION=0.5f;
+
+	const float LIVES_DURATION=2.0f;
+	const float DIAMOND_DURATION=2.0f;
 
 	typedef enum 
 	{
@@ -78,6 +83,10 @@ namespace OUAN
 		Ogre::MaterialPtr mHealthMaterial;
 
 		Ogre::OverlayElement* mLives;
+		float livesDuration;
+		Ogre::OverlayElement* mDiamonds;
+
+		float diamondPanelDuration;
 
 		void initRouletteData();
 		void initHealthHud(int healthPoints, int numLives);
@@ -85,6 +94,7 @@ namespace OUAN
 		bool isRouletteAnimationFinished();
 		void updateRouletteHUD();
 		void updateHealthHUD(int healthPoints, int numLives);
+		void updateDiamondHUD(int numDiamonds);
 
 		bool mSelectedModeChanged;
 
@@ -103,9 +113,9 @@ namespace OUAN
 	public:
 		HUDInGame();
 		~HUDInGame();
-		void init(int healthPoints, int numLives, int newWorld);
+		void init(int healthPoints, int numLives, int newWorld, int numDiamonds);
 		void destroy();
-		void update(double elapsedSeconds,int healthPoints, int numLives);
+		void update(double elapsedSeconds,int healthPoints, int numLives, int numDiamonds);
 
 		void spinRoulette(bool forward);
 
@@ -117,6 +127,7 @@ namespace OUAN
 		void registerEventHandlers(EventManagerPtr evtMgr);
 		void unregisterEventHandlers(EventManagerPtr evtMgr);
 		void processChangeWorld(ChangeWorldEventPtr evt);
+		void processMessageBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr evt);
 		
 	};
 }

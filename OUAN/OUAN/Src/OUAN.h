@@ -591,6 +591,12 @@ namespace OUAN
 		const int MOV_FORWARD_OR_BACK = MOV_GO_FORWARD | MOV_GO_BACK;
 		const int MOV_LEFT_OR_RIGHT = MOV_GO_LEFT | MOV_GO_RIGHT;
 
+		enum TWalkingSurface
+		{
+			WALKING_SURFACE_GRASS,
+			WALKING_SURFACE_WATER
+		};
+
 		//-------------------------------------
 		//  Logger stuff
 		//-------------------------------------

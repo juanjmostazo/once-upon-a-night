@@ -323,6 +323,8 @@ namespace OUAN
 
 		void loadFlashlightDecalMaterials();
 
+		bool isFirstMsgBox() const;
+		void setFirstMsgBox(bool firstMsgBox);
 
 	private:		
 		/// Generate a unique id string with the following format:
@@ -437,6 +439,8 @@ namespace OUAN
 		//Values, the trees.
 		std::map<std::string, std::string> mDiamondTreeLinks;
 		std::map<std::string, std::string> mNestLinks;
+
+		bool mFirstMsgBox;
 	};
 }
 #endif

@@ -73,6 +73,8 @@ namespace OUAN
 		/// Process the 'change level' event
 		void processChangeLevel(ChangeLevelEventPtr evt);
 
+		void processMsgBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr evt);
+
 	private:
 		/// Register all event handling methods
 		void registerHandlers();

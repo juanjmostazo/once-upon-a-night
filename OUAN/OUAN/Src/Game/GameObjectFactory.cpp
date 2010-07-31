@@ -1429,6 +1429,11 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	pGameObjectOny->setSpawnProbability(tGameObjectOnyParameters.spawnProbability);
 	pGameObjectOny->setMaxRenderRadium(tGameObjectOnyParameters.mMaxRenderRadium);
 
+	pGameObjectOny->setRunParticlesMin(tGameObjectOnyParameters.mRunParticlesMin);
+	pGameObjectOny->setRunParticlesMax(tGameObjectOnyParameters.mRunParticlesMax);
+	pGameObjectOny->setRunParticlesElapsed(-1.0);
+	pGameObjectOny->setRunParticlesNextInterval(-1.0);
+
 	//Create LogicComponentOny
 	pGameObjectOny->setLogicComponentOny(
 		mComponentFactory->createLogicComponentOny(

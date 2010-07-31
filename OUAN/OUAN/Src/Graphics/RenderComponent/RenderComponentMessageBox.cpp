@@ -2,6 +2,7 @@
 
 #include "RenderComponentMessageBox.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameWorldManager.h"
 
 using namespace OUAN;
 
@@ -113,14 +114,21 @@ void RenderComponentMessageBox::setVisible(bool visible)
 {
 	mVisible=visible;
 	mElapsedTime=(visible)?0:-1;
+	//Quick and dirty hack. The most correct way to do this would be using
+	//a "MessageBoxVisible" event that was captured by the HUD.
 	if (mBasePanel)
 	{
 		if(visible) 
 		{
 			mBasePanel->show();
 		}
-		else mBasePanel->hide();
+		else 
+		{
+			mBasePanel->hide();
+		}
 	}
+	MsgBoxVisibilityChangedEventPtr evt = MsgBoxVisibilityChangedEventPtr(new MsgBoxVisibilityChangedEvent(mVisible));
+	mParent->getGameWorldManager()->addEvent(evt);
 }
 bool RenderComponentMessageBox::isVisible() const
 {

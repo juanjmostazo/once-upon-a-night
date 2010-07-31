@@ -16,13 +16,17 @@ HUDInGame::~HUDInGame()
 	destroy();
 }
 
-void HUDInGame::init(int healthPoints, int numLives, int world)
+void HUDInGame::init(int healthPoints, int numLives, int world, 
+					 int numDiamonds)
 {
 	HUDBase::init(OVERLAY_INGAME_HUD);
 	mHealthMaterial= Ogre::MaterialManager::getSingletonPtr()->getByName(MATERIAL_HEALTH);
 	mRouletteMaterial=Ogre::MaterialManager::getSingletonPtr()->getByName(MATERIAL_ROULETTE);		
 
 	mLives=Ogre::OverlayManager::getSingleton().getOverlayElement(OVERLAY_INGAME_HUD_LIVES_TEXT);
+
+	mDiamonds=Ogre::OverlayManager::getSingleton().getOverlayElement(
+		OVERLAY_INGAME_HUD_DIAMONDS_TEXT);
 
 	mChangeWorldElapsedTime=0;
 	mIsChangingWorld=false;
@@ -31,6 +35,7 @@ void HUDInGame::init(int healthPoints, int numLives, int world)
 	mCurrentRouletteState=ROULETTE_STATE_0;
 	updateRouletteHUD();
 	initHealthHud(healthPoints,numLives);
+	updateDiamondHUD(numDiamonds);
 
 	if (world==DREAMS)
 	{		
@@ -180,11 +185,22 @@ void HUDInGame::updateHealthHUD(int healthPoints, int numLives)
 		mHealthMaterial->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureName(mHealthHudTextures[healthPoints]);	
 	}
 }
+void HUDInGame::updateDiamondHUD(int numDiamonds)
+{
+	if (mDiamonds)
+	{
+		std::ostringstream diamondsText;
+		diamondsText.str("");
+		diamondsText<<'x'<<numDiamonds;
+		mDiamonds->setCaption(diamondsText.str());
+	}		
+}
 
-void HUDInGame::update(double elapsedSeconds, int healthPoints, int numLives)
+void HUDInGame::update(double elapsedSeconds, int healthPoints, int numLives, int numDiamonds)
 {
 	updateRoulette();
 	updateHealthHUD(healthPoints,numLives);
+	updateDiamondHUD(numDiamonds);
 
 	if(mIsChangingWorld)
 	{
@@ -224,6 +240,9 @@ void HUDInGame::registerEventHandlers(EventManagerPtr evtMgr)
 		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<HUDInGame,ChangeWorldEvent>(this_,&HUDInGame::processChangeWorld));
 		evtMgr->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
+		eh.reset(new EventHandler<HUDInGame,MsgBoxVisibilityChangedEvent>(this_,&HUDInGame::processMessageBoxVisibilityChanged));
+		evtMgr->registerHandler(eh,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED);
+
 	}
 }
 
@@ -234,6 +253,9 @@ void HUDInGame::unregisterEventHandlers(EventManagerPtr evtMgr)
 	{
 		EventHandlerPtr eh = EventHandlerPtr(new EventHandler<HUDInGame,ChangeWorldEvent>(this_,&HUDInGame::processChangeWorld));
 		evtMgr->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+
+		eh.reset(new EventHandler<HUDInGame,MsgBoxVisibilityChangedEvent>(this_,&HUDInGame::processMessageBoxVisibilityChanged));
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED);
 	}
 }
 
@@ -254,7 +276,7 @@ void HUDInGame::processChangeWorld(ChangeWorldEventPtr evt)
 
 void HUDInGame::activateChangeWorldFast()
 {
-	changeWorldFinished(mChangeWorldTotalTime);
+	changeWorldFinished(mWorld);
 	mIsChangingWorld=false;
 }
 
@@ -319,4 +341,13 @@ void HUDInGame::changeToWorld(int newWorld, double perc)
 	default:
 		break;
 	}
+}
+void HUDInGame::processMessageBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr evt)
+{
+	Ogre::OverlayElement* diamondPanel = Ogre::OverlayManager::getSingleton().getOverlayElement(PANEL_DIAMONDS);
+	if (evt->mVisible)
+		diamondPanel->hide();
+	else diamondPanel->show();
+		
+
 }

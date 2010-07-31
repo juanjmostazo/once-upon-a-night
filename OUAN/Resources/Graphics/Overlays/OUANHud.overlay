@@ -32,7 +32,7 @@ OUAN/HUDOverlay
 			vert_align center
 			width 90
 			height 30
-			font_name FunnyPages
+			font_name OUAN
 			char_height 64
 			caption x3
 			colour_top 0.6 0 0.6
@@ -56,6 +56,41 @@ OUAN/HUDOverlay
 			height 128
 			material OUAN/Hud/Roulette
 		}		    
+	}
+	container Panel(OUAN/DiamondCounter)
+	{
+		metrics_mode relative
+		horz_align left
+		vert_align top
+		left 0 
+		top 0.8
+		width 160
+		height 128
+		transparent true
+
+		container Panel(OUAN/Diamond)
+		{
+			metrics_mode pixels
+			left 0
+			top 0
+			width 128
+			height 128
+			material OUAN/Hud/Diamond
+		}
+		    
+		element TextArea(OUAN/NumDiamonds)
+		{
+			metrics_mode pixels
+			left 128
+			top 32
+			width 90
+			height 30
+			font_name OUAN
+			char_height 64
+			caption x0
+			colour_top 0.7 0.7 0.95
+			colour_bottom 0.7 0.7 0.95
+		}	
 	}
 	container Panel(OUAN/TextBubble)
 	{

@@ -9,6 +9,7 @@
 #include "GameObjectViewport.h"
 #include "GameObjectPillow.h"
 #include "GameObjectFlashLight.h"
+#include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -232,6 +233,17 @@ void GameObjectOny::update(double elapsedSeconds)
 	if (Application::getInstance()->getGameWorldManager()->isGodMode())
 	{
 		mRenderComponentQuadHalo->update(elapsedSeconds);
+	}
+
+	if (mRunParticlesElapsed>=0.0)
+	{
+		mRunParticlesElapsed+=elapsedSeconds;
+		if (mRunParticlesElapsed>mRunParticlesNextInterval)
+		{
+			mRenderComponentParticleSystemRunSand->start();
+			mRunParticlesElapsed=0.0;
+			mRunParticlesNextInterval=Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
+		}
 	}
 }
 
@@ -570,6 +582,21 @@ void GameObjectOny::postUpdate()
 			mRenderComponentParticleSystemLandWave->start();
 		}
 	}
+	bool wasRunning = CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
+	bool hasStoppedRunning = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) || CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+	if (wasRunning && hasStoppedRunning)
+	{
+		mRunParticlesElapsed=-1.0;
+		mRunParticlesNextInterval=-1.0;
+	}
+
+	bool hasBegunRunning = !wasRunning && !hasStoppedRunning;		
+	if (hasBegunRunning)
+	{
+		mRunParticlesElapsed=0.0;
+		mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
+		mRenderComponentParticleSystemRunSand->start();
+	}
 
 	//Apply radial blur effect when reached fall speed limit
 	mGameWorldManager->getGameObjectViewport()->
@@ -612,6 +639,40 @@ bool GameObjectOny::hasLogicComponent() const
 LogicComponentPtr GameObjectOny::getLogicComponentInstance() const
 {
 	return mLogicComponentOny;
+}
+double GameObjectOny::getRunParticlesElapsed() const
+{
+	return mRunParticlesElapsed;
+}
+void GameObjectOny::setRunParticlesElapsed(double runParticlesElapsed)
+{
+	mRunParticlesElapsed=runParticlesElapsed;
+}
+double GameObjectOny::getRunParticlesNextInterval() const
+{
+	return mRunParticlesNextInterval;
+}
+void GameObjectOny::setRunParticlesNextInterval(double runParticlesNextInterval)
+{
+	mRunParticlesNextInterval=runParticlesNextInterval;
+}
+
+//Random interval Bounds
+double GameObjectOny::getRunParticlesMin() const
+{
+	return mRunParticlesMin;
+}
+void GameObjectOny::setRunParticlesMin(double runParticlesMin)
+{
+	mRunParticlesMin=runParticlesMin;
+}
+double GameObjectOny::getRunParticlesMax() const
+{
+	return mRunParticlesMax;
+}
+void GameObjectOny::setRunParticlesMax(double runParticlesMax)
+{
+	mRunParticlesMax=runParticlesMax;
 }
 //-------
 

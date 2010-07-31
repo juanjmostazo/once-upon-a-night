@@ -311,7 +311,7 @@ void GameObjectItem1UP::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation("idle_Clip");
+			mRenderComponentEntity->changeAnimation(ITEM1UP_ANIM_IDLE);
 		}
 		else
 		{

@@ -1583,6 +1583,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 		tGameObjectOnyParameters.mMaxUpdateRadium = -1;
 		tGameObjectOnyParameters.mMaxRenderRadium = -1;
 
+		tGameObjectOnyParameters.mRunParticlesMin=getPropertyReal(gameObject->XMLNodeCustomProperties,"RunParticles::min");
+		tGameObjectOnyParameters.mRunParticlesMax=getPropertyReal(gameObject->XMLNodeCustomProperties,"RunParticles::max");
+
 		//Get logic component
 		tGameObjectOnyParameters.tLogicComponentOnyParameters=processLogicComponentOny(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
