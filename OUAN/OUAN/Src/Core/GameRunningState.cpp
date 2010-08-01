@@ -229,7 +229,29 @@ void GameRunningState::handleEvents()
 	
 	if (mApp->isPressedUseWeapon(&pad,&key) && 
 		!mApp->getGameWorldManager()->isOnyDying() && 
-		!mApp->getGameWorldManager()->isOnyHit())
+		!mApp->getGameWorldManager()->isOnyHit() && 
+		mApp->getGameWorldManager()->getWorld()==DREAMS)
+	{
+		if(mApp->getCameraManager()->targetMovementAllowed())
+		{
+			mApp->getGameWorldManager()->useWeapon();
+			useWeaponKeyPressed=true;
+		}
+	}
+	else
+	{
+		//this method will basically apply to the flashlight, as it'll stop working
+		//when the button is not being pressed
+		if (!mApp->getGameWorldManager()->isOnyDying())		
+		{
+			mApp->getGameWorldManager()->stopUsingWeapon();
+		}
+	}
+
+	if (mApp->isDownUseWeapon(&pad,&key) && 
+		!mApp->getGameWorldManager()->isOnyDying() && 
+		!mApp->getGameWorldManager()->isOnyHit() && 
+		mApp->getGameWorldManager()->getWorld()==NIGHTMARES)
 	{
 		if(mApp->getCameraManager()->targetMovementAllowed())
 		{
