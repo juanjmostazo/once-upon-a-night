@@ -224,32 +224,14 @@ void GameRunningState::handleEvents()
 		GameStatePtr nextState(new InGameMenuState());
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 	}
-	
-	if (mApp->isPressedUseWeapon(&pad,&key) && 
-		!mApp->getGameWorldManager()->isOnyDying() && 
-		!mApp->getGameWorldManager()->isOnyHit() && 
-		mApp->getGameWorldManager()->getWorld()==DREAMS)
-	{
-		if(mApp->getCameraManager()->targetMovementAllowed())
-		{
-			mApp->getGameWorldManager()->useWeapon();
-			useWeaponKeyPressed=true;
-		}
-	}
-	else
-	{
-		//this method will basically apply to the flashlight, as it'll stop working
-		//when the button is not being pressed
-		if (!mApp->getGameWorldManager()->isOnyDying())		
-		{
-			mApp->getGameWorldManager()->stopUsingWeapon();
-		}
-	}
+	// REMOVED COPY-PASTED, SPAGHETTI CODE TWEAK
+	int world=mApp->getGameWorldManager()->getWorld();
+	bool flashlightAttack = world==NIGHTMARES && mApp->isDownUseWeapon(&pad,&key);
+	bool pillowAttack = world==DREAMS && mApp->isPressedUseWeapon(&pad,&key);
+	bool onyCanAttack=!mApp->getGameWorldManager()->isOnyDying() && 
+		!mApp->getGameWorldManager()->isOnyHit();
 
-	if (mApp->isDownUseWeapon(&pad,&key) && 
-		!mApp->getGameWorldManager()->isOnyDying() && 
-		!mApp->getGameWorldManager()->isOnyHit() && 
-		mApp->getGameWorldManager()->getWorld()==NIGHTMARES)
+	if ( onyCanAttack && (flashlightAttack ||pillowAttack))
 	{
 		if(mApp->getCameraManager()->targetMovementAllowed())
 		{
@@ -292,9 +274,6 @@ void GameRunningState::handleEvents()
 			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
 			//Logger::getInstance()->log("SETTING ATTACK FLAG");
 		}
-		//if (useSpWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK))
-		//	newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_SP_ATTACK);
-
 		bool zeroMovement = 
 			fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
 			fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
@@ -323,11 +302,7 @@ void GameRunningState::handleEvents()
 			}
 
 			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
-		}	
-		//else
-		//{
-		//	currentState = CLEAR_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP);
-		//}
+		}			
 
 		if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIRST_PERSON)
 		{

@@ -159,6 +159,7 @@ void RenderComponentEntity::update(double elapsedTime)
 		if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 		{
 			mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
+			bool diamondTreeAnim = getParent()->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 			if (mCurrentAnimation->hasEnded())
 			{
 				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));

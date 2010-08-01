@@ -35,11 +35,12 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		|| pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0;
 	LogicSubsystemPtr logicSS = mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
 
-	if(isParentDiamondTree && isWeaponCollision && getState()==logicSS->getGlobalInt(DT_STATE_IDLE))
+	if(isParentDiamondTree && isWeaponCollision && (getState()==logicSS->getGlobalInt(DT_STATE_IDLE) || getState()==logicSS->getGlobalInt(DT_STATE_MAY_HIT)))
 	{		
 		if (mHitRecoveryTime<0)
 		{
 			getParent()->displayText("THUD!");
+			//TODO: LAUNCH PARTICLES!!
 			mHasTakenHit=true;			
 			mHitRecoveryTime=1;
 		}		
@@ -71,7 +72,7 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 void LogicComponentProp::update(double elapsedTime)
 {
 	LogicComponent::update(elapsedTime);
-	if (mTimeSpent<mDelay)
+	if (mTimeSpent>=0.0 && mTimeSpent<mDelay)
 		mTimeSpent+=elapsedTime;
 	if(mHitRecoveryTime>=0)
 		mHitRecoveryTime-=elapsedTime;

@@ -58,26 +58,6 @@ RenderComponentInitialPtr GameObjectDiamondTree::getRenderComponentInitial() con
 	return mRenderComponentInitial;
 }
 
-//void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
-//{
-//	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
-//}
-
-//PhysicsComponentSimpleBoxPtr GameObjectDiamondTree::getPhysicsComponentSimpleBox() const
-//{
-//	return mPhysicsComponentSimpleBox;
-//}
-
-//void GameObjectDiamondTree::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr physicsComponentVolumeBox)
-//{
-//	mPhysicsComponentVolumeBox=physicsComponentVolumeBox;
-//}
-
-//PhysicsComponentVolumeBoxPtr GameObjectDiamondTree::getPhysicsComponentVolumeBox() const
-//{
-//	return mPhysicsComponentVolumeBox;
-//}
-
 void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox)
 {
 	mPhysicsComponentSimpleBox=physicsComponentSimpleBox;
@@ -198,6 +178,7 @@ void GameObjectDiamondTree::reset()
 	GameObject::reset();
 
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(DT_STATE_IDLE));
+	mLogicComponent->setTimeSpent(-1.0);
 
 	if (mLogicComponent->existsInNightmares())
 	{
@@ -275,19 +256,6 @@ RenderComponentEntityPtr GameObjectDiamondTree::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
 }
-
-TGameObjectDiamondContainer* GameObjectDiamondTree::getDiamonds()
-{
-	return &mDiamonds;
-}
-void GameObjectDiamondTree::setDiamonds(const TGameObjectDiamondContainer& diamonds)
-{
-	mDiamonds=diamonds;
-}
-void GameObjectDiamondTree::addDiamond(GameObjectDiamondPtr diamond)
-{
-	mDiamonds.push_back(diamond);
-}
 void GameObjectDiamondTree::processAnimationEnded(const std::string& animationName)
 {
 	if (animationName.compare(DT_ANIM_HIT)==0)
@@ -315,51 +283,36 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
 			{
 				mLogicComponent->setStateChanged(false);
-				displayText("Now loaded");
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
-				entityToUpdate->changeAnimation(DT_ANIM_IDLE);					
-				for (TGameObjectDiamondContainer::iterator it=mDiamonds.begin();it!=mDiamonds.end();++it)
-				{
-					GameObjectDiamondPtr diamond=*it;
-					if (!diamond->isEnabled())
-					{
-						diamond->reset();
-						diamond->disable();
-					}
-				}
+				entityToUpdate->changeAnimation(DT_ANIM_IDLE);								mLogicComponent->setTimeSpent(-1.0);
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{	
 			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
-			for (TGameObjectDiamondContainer::iterator it=mDiamonds.begin();it!=mDiamonds.end();++it)
+			if (mLogicComponent->getTimeSpent()<0)
 			{
-				GameObjectDiamondPtr diamond=*it;
-				if (!diamond->isEnabled())
-				{
-					diamond->enable();
-					if (diamond->getPhysicsComponentSimpleBox().get() &&
-						!diamond->getPhysicsComponentSimpleBox()->isInUse())
-						diamond->getPhysicsComponentSimpleBox()->create();//
-				}
+				mLogicComponent->setTimeSpent(0.0);
 			}
-			//play sound
-			//enable children diamonds!
+			mGameWorldManager->increaseOnyDiamonds(1);
+			//play sound and particles
 		}
-		else if (currentState==logicSS->getGlobalInt(DT_STATE_RELOAD) && entityToUpdate.get() && mLogicComponent->isStateChanged())
-		{
-			Logger::getInstance()->log("STATE CHANGED TO RELOAD!");
-			//play some particles to show the reloading state
-			std::stringstream msg;
-			msg<<"Reload started: "<<std::setprecision(2)<<mLogicComponent->getTimeSpent()<<")";
-			displayText(msg.str());
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
+		{					
 			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
-			mLogicComponent->setTimeSpent(0);
 		}
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
+			entityToUpdate.get() && mLogicComponent->isStateChanged())
+		{
+			//TODO: Replace with depletion animation when it is done
+			//TODO: Add particles
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+		}
+		//Last, update the entity
 		if (entityToUpdate.get())
 		{
-			entityToUpdate->update(elapsedSeconds);
+			entityToUpdate->update(elapsedSeconds*0.1);
 		}
 	}
 }

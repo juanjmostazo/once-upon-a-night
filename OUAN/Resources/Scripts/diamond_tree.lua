@@ -1,11 +1,15 @@
 DT_STATE_IDLE=0
 DT_STATE_HIT=1
-DT_STATE_RELOAD=2
+DT_STATE_MAY_HIT=2
+DT_STATE_DEPLETED=3
 
 DT_STATE_NAMES= {}
 DT_STATE_NAMES[DT_STATE_IDLE]="IDLE"
+DT_STATE_NAMES[DT_STATE_MAY_HIT]="MAY_HIT"
 DT_STATE_NAMES[DT_STATE_HIT]="HIT"
-DT_STATE_NAMES[DT_STATE_RELOAD]="RELOAD"
+DT_STATE_NAMES[DT_STATE_DEPLETED]="DEPLETED"
+
+nHits = {}
 
 
 function diamondTreeLogic(pDiamondTree,state)
@@ -13,19 +17,22 @@ function diamondTreeLogic(pDiamondTree,state)
 	local myName=pDiamondTree:getName()
 	local delay=pDiamondTree:getDelay()	
 	local timeSpent=pDiamondTree:getTimeSpent()
-	local hit=pDiamondTree:hasTakenHit()	
-	local reload = pDiamondTree:isReloadSet()
+	local hit=pDiamondTree:hasTakenHit()		
 	local newState=state
 	
 	if state==DT_STATE_IDLE and hit then
 		newState=DT_STATE_HIT
-		log ("now in hit state")
-	elseif state==DT_STATE_HIT and reload then
-		log ("now in reload state")
-		newState= DT_STATE_RELOAD
-	elseif state==DT_STATE_RELOAD and timeSpent>=delay then
-		log ("back to idle state")
-		newState=DT_STATE_IDLE		
+	elseif state==DT_STATE_HIT and not hit then
+		if timeSpent<delay then
+			log("READY TO HIT!")
+			newState=DT_STATE_MAY_HIT
+		else
+			log ("DEPLETED:")
+			--log (""..nHits[myName].."")
+			newState=DT_STATE_DEPLETED
+		end
+	elseif state==DT_STATE_MAY_HIT and hit then
+		newState=DT_STATE_HIT
 	end	
 	return newState
 end

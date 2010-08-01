@@ -6,8 +6,6 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-//#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-//#include "../../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
@@ -16,15 +14,14 @@ namespace OUAN
 	//State names
 	const std::string DT_STATE_IDLE="DT_STATE_IDLE";
 	const std::string DT_STATE_HIT="DT_STATE_HIT";
-	const std::string DT_STATE_RELOAD="DT_STATE_RELOAD";
+	const std::string DT_STATE_MAY_HIT="DT_STATE_MAY_HIT";
+	const std::string DT_STATE_DEPLETED="DT_STATE_DEPLETED";
 
 	//Animation names
 	const std::string DT_ANIM_IDLE="static_pose";
 	const std::string DT_ANIM_HIT="hit";
 
 	//Sounds
-	//const std::string TRIPOLLO_SOUND_HIT="tripollo_is_hit";
-	//const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
 
 	/// Class to hold DiamondTree information
 	class GameObjectDiamondTree : public GameObject, public boost::enable_shared_from_this<GameObjectDiamondTree>
@@ -38,17 +35,21 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		//PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
-		//PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPropPtr mLogicComponent;
-		//TODO: think what happens when world changes with the rendercomponent
+		LogicComponentPropPtr mLogicComponent;		
 
-		TGameObjectDiamondContainer mDiamonds;
+		/// Length of the time period since Any hits the tree for the
+		/// first time that she'll be able to hit again and get some more
+		/// diamonds
+		double mTotalHitTime;
+		/// Timer to control the amount of total elapsed seconds since
+		/// the first hit
+		double mElapsedTotalHitTime;
+		
 	public:
 		//Constructor
 		GameObjectDiamondTree(const std::string& name);
@@ -129,14 +130,7 @@ namespace OUAN
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
-
-		
-		
-
-		TGameObjectDiamondContainer* getDiamonds();
-		void setDiamonds(const TGameObjectDiamondContainer& diamonds);
-		void addDiamond(GameObjectDiamondPtr diamond);
-
+						
 		void processAnimationEnded(const std::string& animationName);
 
 		void update(double elapsedSeconds);
@@ -161,7 +155,6 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
-		//TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;

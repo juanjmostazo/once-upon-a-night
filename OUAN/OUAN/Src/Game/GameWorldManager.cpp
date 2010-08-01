@@ -94,9 +94,6 @@ GameWorldManager::GameWorldManager()
 	mDefaultAmbientSound="sound#1";
 	mDefaultAmbientSoundIDDreams="birds_chirp";
 	mDefaultAmbientSoundIDNightmares="scary";
-
-	mDiamondTreeLinks.clear();
-
 }
 
 GameWorldManager::~GameWorldManager()
@@ -407,7 +404,6 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectSignpostContainer, mGameObjectSignPostContainer);
 	EMPTY_VECTOR(TGameObjectNestContainer, mGameObjectNestContainer);
 
-	mDiamondTreeLinks.clear();
 	mNestLinks.clear();
 	mGameObjectPillow.reset();
 }
@@ -1664,27 +1660,6 @@ bool GameWorldManager::isChangingWorld()
 	return mIsChangingWorld;
 }
 
-void GameWorldManager::addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree)
-{
-	mDiamondTreeLinks[diamond]=diamondTree;
-}
-// Append child diamonds to a diamond tree, and link the parent to its children)
-void GameWorldManager::resolveDiamondTreeLinks()
-{
-	TDiamondTreeLinkMap::const_iterator it;
-	GameObjectDiamondTreePtr diamondTree ;
-	GameObjectDiamondPtr diamond;
-	for (it=mDiamondTreeLinks.begin();it!=mDiamondTreeLinks.end();++it)
-	{
-		diamondTree = BOOST_PTR_CAST(GameObjectDiamondTree,
-			mGameObjects[it->second]);
-		diamond= BOOST_PTR_CAST(GameObjectDiamond,
-			mGameObjects[it->first]);
-		diamond->setParentDiamondTree(diamondTree);
-		diamond->disable();
-		diamondTree->addDiamond(diamond);				
-	}
-}
 void GameWorldManager::addNestLink(const std::string& object, const std::string& nest)
 {
 	mNestLinks[object]=nest;
@@ -1728,4 +1703,10 @@ bool GameWorldManager::isFirstMsgBox() const
 void GameWorldManager::setFirstMsgBox(bool firstMsgBox)
 {
 	mFirstMsgBox=firstMsgBox;
+}
+void GameWorldManager::increaseOnyDiamonds(int amount)
+{	
+	GameObjectOnyPtr ony;
+	if ((ony= getGameObjectOny()).get())
+		ony->addDiamonds(amount);
 }
