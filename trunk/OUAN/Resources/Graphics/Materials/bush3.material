@@ -13,5 +13,6 @@ material bush3_n : alpha_test_texture
 
 material bush3_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture bush3_d.dds
+	set_texture_alias dreams bush3_d.dds
+	set_texture_alias nightmares bush3_n.dds
 }

@@ -369,6 +369,20 @@ void GameObjectTripolloDreams::setNightmaresRender()
 	}	
 }
 
+void GameObjectTripolloDreams::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponentEnemy->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponentEnemy->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectTripolloDreams::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

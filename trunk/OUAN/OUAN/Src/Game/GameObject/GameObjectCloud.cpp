@@ -98,6 +98,11 @@ void GameObjectCloud::setNightmaresRender()
 	}
 }
 
+void GameObjectCloud::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+}
+
 void GameObjectCloud::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

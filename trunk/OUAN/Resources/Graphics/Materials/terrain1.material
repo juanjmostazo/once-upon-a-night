@@ -18,23 +18,27 @@ material terrain1_01_n : diffuse_template
 
 material terrain1_01_cw : default_changeworld
 {
+    set_texture_alias dreams terrain1_01_d.dds
+    set_texture_alias nightmares terrain1_01_n.dds
 }
 
 //TERRAIN1 02
-material terrain1_02_d: AlphaSplatTerrain
+material terrain1_02_d: diffuse_template
 {	
-    set_texture_alias AlphaMap1     alpha_splat_0.dds
-    set_texture_alias AlphaMap2     alpha_splat_1.dds
-    set_texture_alias Splat1        grass_tileable.dds
-    set_texture_alias Splat2        suelo_tileable.dds
-    set_texture_alias Splat3        grass_tileable.dds
-    set_texture_alias Splat4        suelo_tileable.dds
-    set_texture_alias Splat5        sand1.jpg
-    set_texture_alias Splat6        Dirt2.jpg
-    set_texture_alias Splat7        rock3.jpg 
-    set_texture_alias Splat8        rock2.jpg
-    set_texture_alias Detail        detail.jpg
-    set_texture_alias Fallback      Grass2.jpg
+    //set_texture_alias AlphaMap1     alpha_splat_0.dds
+    //set_texture_alias AlphaMap2     alpha_splat_1.dds
+    //set_texture_alias Splat1        grass_tileable.dds
+    //set_texture_alias Splat2        suelo_tileable.dds
+    //set_texture_alias Splat3        grass_tileable.dds
+    //set_texture_alias Splat4        suelo_tileable.dds
+    //set_texture_alias Splat5        sand1.jpg
+    //set_texture_alias Splat6        Dirt2.jpg
+    //set_texture_alias Splat7        rock3.jpg 
+    //set_texture_alias Splat8        rock2.jpg
+    //set_texture_alias Detail        detail.jpg
+    //set_texture_alias Fallback      Grass2.jpg
+    set_texture_alias ambient_tex terrain1_02_d.dds
+    set_texture_alias diffuse_tex terrain1_02_d.dds
 }
 
 material terrain1_02_n : diffuse_template
@@ -45,6 +49,8 @@ material terrain1_02_n : diffuse_template
 
 material terrain1_02_cw : default_changeworld
 {
+    set_texture_alias dreams terrain1_02_d.dds
+    set_texture_alias nightmares terrain1_02_n.dds
 }
 
 //TERRAIN1 01
@@ -62,4 +68,6 @@ material terrain1_03_n : diffuse_template
 
 material terrain1_03_cw : default_changeworld
 {
+    set_texture_alias dreams terrain1_03_d.dds
+    set_texture_alias nightmares terrain1_03_n.dds
 }

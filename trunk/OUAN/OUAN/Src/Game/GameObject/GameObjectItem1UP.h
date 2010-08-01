@@ -84,6 +84,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 		
 		virtual void disable();
 

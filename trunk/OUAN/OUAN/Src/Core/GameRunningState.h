@@ -73,7 +73,7 @@ namespace OUAN
 		double toGameOverTime;
 		double toGameOverElapsed;
 
-		void renderChangeWorldTextures();
+		void renderChangeWorld();
 
 		bool firstRender;
 

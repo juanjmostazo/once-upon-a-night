@@ -190,6 +190,11 @@ void GameObjectSkyBody::setNightmaresRender()
 	}	
 }
 
+void GameObjectSkyBody::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+}
+
 void GameObjectSkyBody::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

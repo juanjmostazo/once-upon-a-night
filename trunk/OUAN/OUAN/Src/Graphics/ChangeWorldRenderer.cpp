@@ -30,14 +30,14 @@ void ChangeWorldRenderer::setDebugScreensActive(bool active)
 		mMiniScreenChangeWorld->setVisible(false);
 	}
 
-	if(mChangingWorldTo==NIGHTMARES)
-	{
-		setToNightmares();
-	}
-	else if(mChangingWorldTo==DREAMS)
-	{
-		setToDreams();
-	}
+	//if(mChangingWorldTo==NIGHTMARES)
+	//{
+	//	setToNightmares();
+	//}
+	//else if(mChangingWorldTo==DREAMS)
+	//{
+	//	setToDreams();
+	//}
 }
 
 bool ChangeWorldRenderer::getDebugScreensActive() const

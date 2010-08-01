@@ -10,7 +10,3 @@ material itemmaxhp_n : basic_texture
 {
 	set_texture_alias diffuse_texture itemmaxhp.dds
 }
-
-material itemmaxhp_cw : default_changeworld
-{
-}

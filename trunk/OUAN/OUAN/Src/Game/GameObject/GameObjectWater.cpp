@@ -98,6 +98,20 @@ void GameObjectWater::setNightmaresRender()
 	}	
 }
 
+void GameObjectWater::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentWaterDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentWaterNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectWater::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

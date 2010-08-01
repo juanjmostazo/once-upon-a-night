@@ -37,6 +37,11 @@ void GameObjectScene::setNightmaresRender()
 	mRenderComponentScene->setNightmaresMaterials();
 }
 
+void GameObjectScene::setChangeWorldFactor(double factor)
+{
+	mRenderComponentScene->setChangeWorldFactor(factor);
+}
+
 void GameObjectScene::setChangeWorldRender()
 {
 	mRenderComponentScene->setChangeWorldMaterials();

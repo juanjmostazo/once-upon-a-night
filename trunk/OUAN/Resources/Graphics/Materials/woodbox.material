@@ -13,4 +13,6 @@ material woodbox_n : basic_texture
 
 material woodbox_cw : default_changeworld
 {
+	set_texture_alias dreams woodbox_d.dds
+	set_texture_alias nightmares woodbox_n.dds
 }

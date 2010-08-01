@@ -10,7 +10,3 @@ material tree3_d : alpha_test_texture
 material tree3_n : basic_texture
 {
 }
-
-material tree3_cw : no_changeworld
-{
-}

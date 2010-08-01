@@ -104,6 +104,12 @@ void GameObjectItem1UP::setNightmaresRender()
 	}
 }
 
+void GameObjectItem1UP::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectItem1UP::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

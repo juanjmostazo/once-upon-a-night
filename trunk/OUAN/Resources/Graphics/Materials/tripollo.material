@@ -2,7 +2,7 @@ import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material tripollo_d : alpha_test_texture
+material tripollo_red_d : alpha_test_texture
 {	
 	technique
 	{
@@ -16,7 +16,9 @@ material tripollo_d : alpha_test_texture
 		}
 	}
 }
-material tripollo_n : alpha_test_texture
+
+
+material tripollo_green_d : alpha_test_texture
 {	
 	technique
 	{
@@ -25,7 +27,23 @@ material tripollo_n : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_n.dds
+				texture tripollo_d.dds
+			}
+		}
+	}
+}
+
+
+material tripollo_blue_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
 			}
 		}
 	}
@@ -74,18 +92,21 @@ material tripollo_blue_n : alpha_test_texture
 		}
 	}
 }
-material tripollo_cw : default_changeworld
-{
-}
 
 material tripollo_red_cw : default_changeworld
 {
+	set_texture_alias dreams tripollo_d.dds
+	set_texture_alias nightmares tripollo_red_n.dds
 }
 
 material tripollo_green_cw : default_changeworld
 {
+	set_texture_alias dreams tripollo_d.dds
+	set_texture_alias nightmares tripollo_green_n.dds
 }
 
 material tripollo_blue_cw : default_changeworld
 {
+	set_texture_alias dreams tripollo_d.dds
+	set_texture_alias nightmares tripollo_blue_n.dds
 }

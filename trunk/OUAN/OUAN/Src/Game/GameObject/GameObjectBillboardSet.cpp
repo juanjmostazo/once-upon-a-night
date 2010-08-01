@@ -102,6 +102,20 @@ void GameObjectBillboardSet::setNightmaresRender()
 	}	
 }
 
+void GameObjectBillboardSet::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentBillboardSetDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentBillboardSetNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectBillboardSet::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

@@ -2,7 +2,7 @@
 <Configuration>
   <Options>
 
-	<Option key="CHANGEWORLD">changeworld_compositor</Option>
+	<Option key="CHANGEWORLD">Bloom</Option>
 
 	<Option key="BLOOM">Bloom</Option>
 	<Option key="BLOOM_ACTIVATED_ALWAYS_DREAMS">false</Option>

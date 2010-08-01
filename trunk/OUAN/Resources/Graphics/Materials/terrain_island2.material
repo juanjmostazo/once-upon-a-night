@@ -13,4 +13,6 @@ material terrain_island2_n : basic_texture
 
 material terrain_island2_cw : no_changeworld
 {
+	set_texture_alias dreams terrain_island2_d.dds
+	set_texture_alias nightmares terrain_island2_n.dds
 }

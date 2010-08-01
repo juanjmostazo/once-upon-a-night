@@ -10,8 +10,3 @@ material diamondtree_n : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture diamondtree_n.dds
 }
-
-material diamondtree_cw : default_changeworld
-{
-}
-

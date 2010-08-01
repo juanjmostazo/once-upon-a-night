@@ -98,6 +98,12 @@ void GameObjectClockPiece::setNightmaresRender()
 	}
 }
 
+void GameObjectClockPiece::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectClockPiece::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

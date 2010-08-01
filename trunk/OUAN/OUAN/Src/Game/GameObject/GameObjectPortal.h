@@ -117,6 +117,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		AudioComponentPtr getAudioComponentInstance() const;
 		bool hasAudioComponent() const;

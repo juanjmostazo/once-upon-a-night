@@ -114,6 +114,12 @@ void GameObjectScaredPlant::setNightmaresRender()
 	mRenderComponentEntityDreams->setVisible(false);
 }
 
+void GameObjectScaredPlant::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+}
+
 void GameObjectScaredPlant::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

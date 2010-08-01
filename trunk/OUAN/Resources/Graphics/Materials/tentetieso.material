@@ -28,6 +28,8 @@ material tentetieso_blue_n : basic_texture
 
 material tentetieso_cw : default_changeworld
 {
+	set_texture_alias dreams tentetieso_d.dds
+	set_texture_alias nightmares tentetieso_n.dds
 }
 
 

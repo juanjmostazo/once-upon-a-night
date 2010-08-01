@@ -301,6 +301,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		void playSoundFromGameObject(const std::string& objectName, const std::string& soundID);
 

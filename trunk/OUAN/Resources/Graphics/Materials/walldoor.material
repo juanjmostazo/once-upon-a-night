@@ -13,4 +13,6 @@ material walldoor_n : basic_texture
 
 material walldoor_cw : default_changeworld
 {
+	set_texture_alias dreams walldoor_d.dds
+	set_texture_alias nightmares walldoor_n.dds
 }

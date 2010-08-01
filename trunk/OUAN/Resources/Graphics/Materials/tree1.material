@@ -9,7 +9,3 @@ material tree1_d : basic_texture
 material tree1_n : basic_texture
 {
 }
-
-material tree1_cw : no_changeworld
-{
-}

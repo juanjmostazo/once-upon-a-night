@@ -15,7 +15,8 @@ material cloud1_n : alpha_test_texture
 
 material cloud1_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture cloud1_d.dds
+	set_texture_alias dreams cloud1_d.dds
+	set_texture_alias nightmares cloud1_n.dds
 }
 
 //cloud2
@@ -31,7 +32,8 @@ material cloud2_n : alpha_test_texture
 
 material cloud2_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture cloud2_d.dds
+	set_texture_alias dreams cloud2_d.dds
+	set_texture_alias nightmares cloud2_n.dds
 }
 
 //cloud3
@@ -47,5 +49,6 @@ material cloud3_n : alpha_test_texture
 
 material cloud3_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture cloud3_d.dds
+	set_texture_alias dreams cloud3_d.dds
+	set_texture_alias nightmares cloud3_n.dds
 }

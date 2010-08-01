@@ -1,15 +1,22 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material tower1_island2 : basic_texture
+material tower1_island2_d : basic_texture
 {
 	set_texture_alias diffuse_texture tower1_d.dds
 }
 
-material tower1_island2n : basic_texture
+material tower1_island2_n : basic_texture
 {
 	set_texture_alias diffuse_texture tower1_n.dds
 }
+
+material tower1_island2_cw : default_changeworld 
+{
+	set_texture_alias dreams tower1_d.dds
+	set_texture_alias nightmares tower1_n.dds
+}
+
 material torre1almeda_d : basic_texture
 {
 	set_texture_alias diffuse_texture torre1almeda.dds

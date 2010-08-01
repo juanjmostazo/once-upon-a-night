@@ -14,6 +14,8 @@ material terrain1_wall01_n : basic_texture
 
 material terrain1_wall01_cw : default_changeworld
 {
+	set_texture_alias dreams terrain1_wall01_d.dds
+	set_texture_alias nightmares terrain1_wall01_n.dds
 }
 
 //WALL2
@@ -29,6 +31,8 @@ material terrain1_wall02_n : basic_texture
 
 material terrain1_wall02_cw : default_changeworld
 {
+	set_texture_alias dreams terrain1_wall02_d.dds
+	set_texture_alias nightmares terrain1_wall02_n.dds
 }
 
 //WALL3
@@ -44,4 +48,6 @@ material terrain1_wall03_n : basic_texture
 
 material terrain1_wall03_cw : default_changeworld
 {
+	set_texture_alias dreams terrain1_wall03_d.dds
+	set_texture_alias nightmares terrain1_wall03_n.dds
 }

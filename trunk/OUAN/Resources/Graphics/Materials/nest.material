@@ -11,10 +11,6 @@ material nest_n : basic_texture
 	set_texture_alias diffuse_texture nest.dds
 }
 
-material nest_cw : default_changeworld
-{
-}
-
 
 material egg1_d : basic_texture
 {
@@ -25,9 +21,7 @@ material egg1_n : basic_texture
 	set_texture_alias diffuse_texture egg.dds
 }
 
-material egg1_cw : default_changeworld
-{
-}
+
 material egg2_d : basic_texture
 {
 	set_texture_alias diffuse_texture egg2.dds
@@ -35,10 +29,6 @@ material egg2_d : basic_texture
 material egg2_n : basic_texture
 {
 	set_texture_alias diffuse_texture egg2.dds
-}
-
-material egg2_cw : default_changeworld
-{
 }
 
 material egg3_d : basic_texture
@@ -49,8 +39,4 @@ material egg3_d : basic_texture
 material egg3_n : basic_texture
 {
 	set_texture_alias diffuse_texture egg3.dds
-}
-
-material egg3_cw : default_changeworld
-{
 }

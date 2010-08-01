@@ -10,7 +10,3 @@ material flashlightcone_n : alpha_blending_scrolling_texture
 {
 	set_texture_alias diffuse_texture flashlightcone.dds
 }
-
-material flashlightcone_cw : default_changeworld_alpha_blending_scrolling
-{
-}

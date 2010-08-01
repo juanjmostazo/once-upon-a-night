@@ -48,7 +48,8 @@ material fog1_n : alpha_blending_texture
 
 material fog1_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias alpha_texture fog_mask.dds
+	set_texture_alias dreams fog1_d.dds
+	set_texture_alias nightmares fog1_n.dds
 }
 
 //FOG2
@@ -96,7 +97,8 @@ material fog2_n : alpha_blending_texture
 
 material fog2_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias alpha_texture fog_mask.dds
+	set_texture_alias dreams fog2_d.dds
+	set_texture_alias nightmares fog2_n.dds
 }
 
 //FOG3
@@ -144,5 +146,6 @@ material fog3_n
 
 material fog3_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias alpha_texture fog_mask.dds
+	set_texture_alias dreams fog3_d.dds
+	set_texture_alias nightmares fog3_n.dds
 }

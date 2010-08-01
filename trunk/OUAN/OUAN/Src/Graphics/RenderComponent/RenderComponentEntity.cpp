@@ -230,6 +230,41 @@ void RenderComponentEntity::setNightmaresMaterials()
 {
 	setMaterial(mNightmaresMaterial);
 }
+
+void RenderComponentEntity::setChangeWorldFactor(double factor)
+{
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	Ogre::GpuProgramParametersSharedPtr params;
+	unsigned int i;
+
+	for ( i = 0; i < mChangeWorldMaterial.size(); i++)
+	{
+		Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterial[i]);
+
+		if(material.get())
+		{
+			technique= material->getTechnique(0);
+			if(technique)
+			{
+				if(technique->getNumPasses()>0)
+				{
+					pass=technique->getPass(0);
+					if(pass->hasFragmentProgram())
+					{
+						params=pass->getFragmentProgramParameters();
+
+						if(params.get())
+						{
+							params->setNamedConstant("mix_factor",Ogre::Real(factor));
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 void RenderComponentEntity::applyTint(const Ogre::ColourValue& tintColour)
 {
 	Ogre::SubEntity* subEnt;

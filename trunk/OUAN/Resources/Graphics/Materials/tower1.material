@@ -13,4 +13,6 @@ material tower1_n : basic_texture
 
 material tower1_cw : default_changeworld
 {
+	set_texture_alias dreams tower1_d.dds
+	set_texture_alias nightmares tower1_n.dds
 }

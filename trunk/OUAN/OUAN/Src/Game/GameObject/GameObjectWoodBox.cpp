@@ -108,6 +108,20 @@ void GameObjectWoodBox::setNightmaresRender()
 	}	
 }
 
+void GameObjectWoodBox::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponentBreakable->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponentBreakable->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectWoodBox::setChangeWorldRender()
 {
 	if (!isEnabled()) return;
