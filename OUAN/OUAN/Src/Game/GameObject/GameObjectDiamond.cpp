@@ -96,6 +96,12 @@ void GameObjectDiamond::setNightmaresRender()
 	}
 }
 
+void GameObjectDiamond::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectDiamond::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

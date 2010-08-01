@@ -13,4 +13,6 @@ material column_n : basic_texture
 
 material column_cw : default_changeworld
 {
+	set_texture_alias dreams column_d.dds
+	set_texture_alias nightmares column_n.dds
 }

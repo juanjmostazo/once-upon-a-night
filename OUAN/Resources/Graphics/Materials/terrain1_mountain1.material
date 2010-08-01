@@ -13,4 +13,6 @@ material terrain1_mountain1_n : basic_texture
 
 material terrain1_mountain1_cw : default_changeworld
 {
+	set_texture_alias dreams terrain1_mountain1_d.dds
+	set_texture_alias nightmares terrain1_mountain1_n.dds
 }

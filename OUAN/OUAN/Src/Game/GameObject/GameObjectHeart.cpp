@@ -103,6 +103,13 @@ void GameObjectHeart::enable()
 	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 		mPhysicsComponentVolumeBox->create();
 }
+
+void GameObjectHeart::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectHeart::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

@@ -299,6 +299,12 @@ void GameObjectSignpost::setNightmaresRender()
 	}
 }
 
+void GameObjectSignpost::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectSignpost::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

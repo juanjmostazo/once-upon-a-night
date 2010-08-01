@@ -97,6 +97,12 @@ void GameObjectItemMaxHP::setNightmaresRender()
 	}
 }
 
+void GameObjectItemMaxHP::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectItemMaxHP::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

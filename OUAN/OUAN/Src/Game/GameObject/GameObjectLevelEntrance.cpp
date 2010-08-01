@@ -154,6 +154,20 @@ void GameObjectLevelEntrance::setNightmaresRender()
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
 }
 
+void GameObjectLevelEntrance::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectLevelEntrance::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

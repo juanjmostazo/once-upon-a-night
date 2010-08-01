@@ -191,6 +191,7 @@ namespace OUAN
 		virtual void setDreamsRender();
 		virtual void setNightmaresRender();
 		virtual void setChangeWorldRender();
+		virtual void setChangeWorldFactor(double factor);
 
 		void setChangeWorldDelay(double delay);
 		double getChangeWorldDelay() const;

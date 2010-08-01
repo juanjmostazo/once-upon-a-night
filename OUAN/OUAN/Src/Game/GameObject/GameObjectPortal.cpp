@@ -131,6 +131,20 @@ void GameObjectPortal::setNightmaresRender()
 	mRenderComponentGlowDreams->setVisible(false);
 }
 
+void GameObjectPortal::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectPortal::setChangeWorldRender()
 {
 	if (!isEnabled())

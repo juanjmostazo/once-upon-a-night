@@ -90,6 +90,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		/// Reset object
 		virtual void reset();

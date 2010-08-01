@@ -1,6 +1,6 @@
 import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
-import no_changeworld from ChangeWorld.material
+import default_changeworld_alpha_test from ChangeWorld.material
 
 material scared_plant_d : alpha_test_texture
 {
@@ -11,6 +11,8 @@ material scared_plant_n : basic_texture
 {
 }
 
-material scared_plant_cw : no_changeworld
+material scared_plant_cw : default_changeworld_alpha_test
 {
+	set_texture_alias dreams scared_plant_d.dds
+	set_texture_alias nightmares transparent.dds
 }

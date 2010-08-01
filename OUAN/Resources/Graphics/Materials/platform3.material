@@ -12,4 +12,6 @@ material platform3_n : basic_texture
 
 material platform3_cw : default_changeworld
 {
+	set_texture_alias dreams transparent.dds
+	set_texture_alias nightmares platform3_n.dds
 }

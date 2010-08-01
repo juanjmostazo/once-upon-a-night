@@ -278,6 +278,35 @@ void RenderComponentWater::setNightmaresMaterials()
 	setMaterial(mNightmaresMaterial);
 }
 
+void RenderComponentWater::setChangeWorldFactor(double factor)
+{
+	Ogre::Technique * technique;
+	Ogre::GpuProgramParametersSharedPtr params;
+	Ogre::Pass * pass;
+
+	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterial);
+
+	if(material.get())
+	{
+		technique= material->getTechnique(0);
+		if(technique)
+		{
+			if(technique->getNumPasses()>0)
+			{
+				pass=technique->getPass(0);
+				if(pass->hasFragmentProgram())
+				{
+					params=pass->getFragmentProgramParameters();
+
+					if(params.get())
+					{
+						params->setNamedConstant("mix_factor",Ogre::Real(factor));
+					}
+				}
+			}
+		}
+	}
+}
 
 TRenderComponentWaterParameters::TRenderComponentWaterParameters() : TRenderComponentParameters()
 {

@@ -13,5 +13,7 @@ material tower1_almena_n : basic_texture
 
 material tower1_almena_cw : no_changeworld
 {
+	set_texture_alias dreams tower1_almena_d.dds
+	set_texture_alias nightmares tower1_almena_n.dds
 }
 

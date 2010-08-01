@@ -87,7 +87,8 @@ namespace OUAN
 
 		void setDreamsRender();
 		void setNightmaresRender();
-		void setChangeWorldRender();		
+		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;

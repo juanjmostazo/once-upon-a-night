@@ -183,6 +183,20 @@ void GameObjectFog::setNightmaresRender()
 	}	
 }
 
+void GameObjectFog::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectFog::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

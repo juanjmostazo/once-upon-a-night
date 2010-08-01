@@ -11,7 +11,3 @@ material heart_n : basic_texture
 	set_texture_alias diffuse_texture heart.dds
 }
 
-material heart_cw : default_changeworld
-{
-}
-

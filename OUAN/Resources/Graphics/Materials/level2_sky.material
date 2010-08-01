@@ -1,16 +1,33 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material level2_sky_d : basic_texture
+material level2_sky_d : default_changeworld
 {
 	technique
 	{
 		pass
 		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 0
+		        }
 			depth_write off
-			texture_unit
+			texture_unit changeworld
+			{
+				scale 3 3
+			}
+			texture_unit dreams
 			{
 				texture level2_sky_d.dds
+				scroll_anim 0.03 0
+				scale 1 1
+			}
+			texture_unit nightmares
+			{
+				texture level2_sky_n.dds
 				scroll_anim 0.03 0
 				scale 1 1
 			}
@@ -18,14 +35,31 @@ material level2_sky_d : basic_texture
 	}
 }
 
-material level2_sky_n : basic_texture
+material level2_sky_n : default_changeworld
 {
 	technique
 	{
 		pass
 		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 1
+		        }
 			depth_write off
-			texture_unit
+			texture_unit changeworld
+			{
+				scale 3 3
+			}
+			texture_unit dreams
+			{
+				texture level2_sky_d.dds
+				scroll_anim 0.03 0
+				scale 1 1
+			}
+			texture_unit nightmares
 			{
 				texture level2_sky_n.dds
 				scroll_anim 0.03 0
@@ -41,9 +75,28 @@ material level2_sky_cw : default_changeworld
 	{
 		pass
 		{
-			texture_unit diffuse_texture
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+			depth_write off
+			texture_unit changeworld
 			{
 				scale 3 3
+			}
+			texture_unit dreams
+			{
+				texture level2_sky_d.dds
+				scroll_anim 0.03 0
+				scale 1 1
+			}
+			texture_unit nightmares
+			{
+				texture level2_sky_n.dds
+				scroll_anim 0.03 0
+				scale 1 1
 			}
 		}
 	}

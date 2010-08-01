@@ -18,7 +18,7 @@ fragment_program erosion_FS_CG cg
 
 	default_params	
 	{
-	  param_named mix_factor float 0.0
+	  param_named mix_factor float 0.5
 	  param_named scroll_animation float3 0.0 0.0 0.0	  
 	  param_named scroll_blending float3 0.0 0.0 0.0	
 	  param_named displacement float3 0.0 0.0 0.0  
@@ -46,7 +46,7 @@ fragment_program erosion_FS_HLSL hlsl
 	
 	default_params	
 	{
-	  param_named mix_factor float 0.0
+	  param_named mix_factor float 0.5
 	  param_named scroll_animation float3 0.0 0.0 0.0	  
 	  param_named scroll_blending float3 0.0 0.0 0.0	  
 	  param_named displacement float 0.0
@@ -65,32 +65,4 @@ fragment_program erosion_fs unified
 {
 	//delegate erosion_FS_HLSL
 	delegate erosion_FS_CG
-}
-
-material changeworld
-{
-	technique
-	{
-	        pass
-	        {
-		        vertex_program_ref erosion_vs
-		        {
-		        }
-		        fragment_program_ref erosion_fs
-		        {
-		        }
-		        texture_unit 0
-		        {
-			 	texture blending_texture
-		        }
-		        texture_unit 1
-		        {
-				texture diffuse_color_base
-		        }
-		        texture_unit 2
-		        {
-				 texture diffuse_color_blended
-	              }
-              }
-      }
 }

@@ -16,6 +16,8 @@ material portal_n : alpha_test_texture
 
 material portal_cw : default_changeworld
 {
+	set_texture_alias dreams portal_d.dds
+	set_texture_alias nightmares portal_n.dds
 }
 
 material portal_floor_d : alpha_blending_texture
@@ -30,7 +32,8 @@ material portal_floor_n : alpha_blending_texture
 
 material portal_floor_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias alpha_texture portal_floor_d.dds
+	set_texture_alias dreams portal_floor_d.dds
+	set_texture_alias nightmares portal_floor_n.dds
 }
 
 material portal_rays_d : alpha_blending_texture
@@ -45,5 +48,6 @@ material portal_rays_n : alpha_blending_texture
 
 material portal_rays_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias alpha_texture portal_rays_d.dds
+	set_texture_alias dreams portal_rays_d.dds
+	set_texture_alias nightmares portal_rays_n.dds
 }

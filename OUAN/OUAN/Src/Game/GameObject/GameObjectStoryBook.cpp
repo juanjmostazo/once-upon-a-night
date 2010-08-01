@@ -97,6 +97,12 @@ void GameObjectStoryBook::setNightmaresRender()
 	}
 }
 
+void GameObjectStoryBook::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectStoryBook::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

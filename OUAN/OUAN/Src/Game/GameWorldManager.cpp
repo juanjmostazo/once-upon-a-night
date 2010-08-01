@@ -1315,6 +1315,15 @@ void GameWorldManager::setChangeWorldRender()
 	}
 }
 
+void GameWorldManager::setChangeWorldFactor(double factor)
+{
+	TGameObjectContainerIterator it;
+	for (it = mGameObjects.begin();it!=mGameObjects.end();it++)
+	{
+		it->second->setChangeWorldFactor(factor);
+	}
+}
+
 void GameWorldManager::win()
 {
 	setGameOver(true);

@@ -69,6 +69,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		void setVisible(bool visible);
 

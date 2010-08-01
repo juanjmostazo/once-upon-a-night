@@ -9,25 +9,54 @@ material water_foam_d : alpha_blending_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 0
+		        }
+			texture_unit changeworld
 			{
-				scroll_anim 0 0.1
+			}
+			texture_unit dreams
+			{
 				texture water_foam_d.dds
+				scroll_anim 0 0.01
+			}
+			texture_unit nightmares
+			{
+				texture water_foam_n.dds
+				scroll_anim 0 0.01
 			}
 		}
 	}
 }
 
 material water_foam_n : alpha_blending_texture
-{
 	technique
 	{
 		pass
-		{	
-			texture_unit
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 1
+		        }
+			texture_unit changeworld
 			{
-				scroll_anim 0 0.1
+			}
+			texture_unit dreams
+			{
+				texture water_foam_d.dds
+				scroll_anim 0 0.01
+			}
+			texture_unit nightmares
+			{
 				texture water_foam_n.dds
+				scroll_anim 0 0.01
 			}
 		}
 	}
@@ -35,6 +64,31 @@ material water_foam_n : alpha_blending_texture
 
 material water_foam_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture water_foam_d.dds
+				scroll_anim 0 0.01
+			}
+			texture_unit nightmares
+			{
+				texture water_foam_n.dds
+				scroll_anim 0 0.01
+			}
+		}
+	}
 }
 
 //WATER SEABED
@@ -44,11 +98,27 @@ material water_lake_seabed_d : basic_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 0
+		        }
+			texture_unit changeworld
 			{
+			}
+			texture_unit dreams
+			{
+				texture water_seabed_d.dds
 				scroll_anim 0 0.1
 				scroll 0 0.2
-				texture water_seabed_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture water_seabed_n.dds
+				scroll_anim 0 0.1
+				scroll 0 0.2
 			}
 		}
 	}
@@ -60,11 +130,27 @@ material water_lake_seabed_n : basic_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 1
+		        }
+			texture_unit changeworld
 			{
+			}
+			texture_unit dreams
+			{
+				texture water_seabed_d.dds
 				scroll_anim 0 0.1
 				scroll 0 0.2
+			}
+			texture_unit nightmares
+			{
 				texture water_seabed_n.dds
+				scroll_anim 0 0.1
+				scroll 0 0.2
 			}
 		}
 	}
@@ -72,6 +158,33 @@ material water_lake_seabed_n : basic_texture
 
 material water_lake_seabed_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture water_seabed_d.dds
+				scroll_anim 0 0.1
+				scroll 0 0.2
+			}
+			texture_unit nightmares
+			{
+				texture water_seabed_n.dds
+				scroll_anim 0 0.1
+				scroll 0 0.2
+			}
+		}
+	}
 }
 
 //WATERFALL FOAM
@@ -81,13 +194,27 @@ material waterfall_foam_d : alpha_blending_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 0
+		        }
+			texture_unit changeworld
 			{
-				scroll_anim 0 0.25
+			}
+			texture_unit dreams
+			{
 				texture waterfall_foam_d.dds
+				scroll_anim 0 0.25
+			}
+			texture_unit nightmares
+			{
+				texture waterfall_foam_n.dds
+				scroll_anim 0 0.25
 			}
 		}
-
 	}
 }
 
@@ -97,18 +224,57 @@ material waterfall_foam_n : alpha_blending_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 1
+		        }
+			texture_unit changeworld
 			{
+			}
+			texture_unit dreams
+			{
+				texture waterfall_foam_d.dds
 				scroll_anim 0 0.25
+			}
+			texture_unit nightmares
+			{
 				texture waterfall_foam_n.dds
+				scroll_anim 0 0.25
 			}
 		}
-
 	}
 }
 
 material waterfall_foam_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture waterfall_foam_d.dds
+				scroll_anim 0 0.25
+			}
+			texture_unit nightmares
+			{
+				texture waterfall_foam_n.dds
+				scroll_anim 0 0.25
+			}
+		}
+	}
 }
 
 //WATERFALL BLUE WATER
@@ -117,14 +283,28 @@ material waterfall_blue_d  : basic_texture
 	technique
 	{
 		pass
-		{	
-			texture_unit
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 0
+		        }
+			texture_unit changeworld
 			{
-				scroll_anim 0 0.2
+			}
+			texture_unit dreams
+			{
 				texture waterfall_blue_d.dds
+				scroll_anim 0 0.2
+			}
+			texture_unit nightmares
+			{
+				texture waterfall_blue_n.dds
+				scroll_anim 0 0.2
 			}
 		}
-
 	}
 }
 
@@ -134,18 +314,57 @@ material waterfall_blue_n  : basic_texture
 	{
 		pass
 		{
-			texture_unit
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named mix_factor float 1
+		        }
+			texture_unit changeworld
 			{
+			}
+			texture_unit dreams
+			{
+				texture waterfall_blue_d.dds
 				scroll_anim 0 0.2
+			}
+			texture_unit nightmares
+			{
 				texture waterfall_blue_n.dds
+				scroll_anim 0 0.2
 			}
 		}
-
 	}
 }
 
 material waterfall_blue_cw : default_changeworld
 {
+	technique
+	{
+		pass
+		{
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture waterfall_blue_d.dds
+				scroll_anim 0 0.2
+			}
+			texture_unit nightmares
+			{
+				texture waterfall_blue_n.dds
+				scroll_anim 0 0.2
+			}
+		}
+	}
 }
 
 //WATER LIGHTMAPS
@@ -159,5 +378,7 @@ material lake1_lightmap_n : alpha_blending_texture
 }
 material lake1_lightmap_cw : default_changeworld
 {
+	set_texture_alias dreams lake1_lightmap_d.dds
+	set_texture_alias nightmares lake1_lightmap_n.dds
 }
 

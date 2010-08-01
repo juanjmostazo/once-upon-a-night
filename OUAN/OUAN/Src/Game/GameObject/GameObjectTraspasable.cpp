@@ -132,6 +132,20 @@ void GameObjectTraspasable::setNightmaresRender()
 	}	
 }
 
+void GameObjectTraspasable::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectTraspasable::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

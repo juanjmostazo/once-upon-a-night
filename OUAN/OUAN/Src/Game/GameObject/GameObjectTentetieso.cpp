@@ -107,6 +107,20 @@ void GameObjectTentetieso::setNightmaresRender()
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
 }
 
+void GameObjectTentetieso::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponentEnemy->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponentEnemy->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectTentetieso::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

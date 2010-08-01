@@ -13,4 +13,6 @@ material platform7_n : basic_texture
 
 material platform7_cw : default_changeworld
 {
+	set_texture_alias dreams platform7_d.dds
+	set_texture_alias nightmares platform7_n.dds
 }

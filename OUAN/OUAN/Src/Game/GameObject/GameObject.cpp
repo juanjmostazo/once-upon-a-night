@@ -379,6 +379,11 @@ void GameObject::setChangeWorldRender()
 
 }
 
+void GameObject::setChangeWorldFactor(double factor)
+{
+
+}
+
 void GameObject::setChangeWorldDelay(double delay)
 {
 	mChangeWorldDelay=delay;

@@ -11,7 +11,3 @@ material diamond_n : alpha_blending_texture
 	set_texture_alias diffuse_texture diamond.dds
 }
 
-material diamond_cw : default_changeworld
-{
-}
-

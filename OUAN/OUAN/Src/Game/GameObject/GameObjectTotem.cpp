@@ -154,6 +154,20 @@ void GameObjectTotem::setNightmaresRender()
 	mRenderComponentEntityNightmares->setNightmaresMaterials();
 }
 
+void GameObjectTotem::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectTotem::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

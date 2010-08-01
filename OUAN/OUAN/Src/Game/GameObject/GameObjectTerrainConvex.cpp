@@ -97,6 +97,20 @@ void GameObjectTerrainConvex::setNightmaresRender()
 	}	
 }
 
+void GameObjectTerrainConvex::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
 void GameObjectTerrainConvex::setChangeWorldRender()
 {
 	if (!isEnabled()) return;

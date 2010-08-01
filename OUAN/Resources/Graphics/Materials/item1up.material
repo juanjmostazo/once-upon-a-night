@@ -10,7 +10,3 @@ material item1up_n : basic_texture
 {
 	set_texture_alias diffuse_texture item1up.dds
 }
-
-material item1up_cw : default_changeworld
-{
-}

@@ -121,6 +121,7 @@ namespace OUAN
 		void setDreamsRender();
 		void setNightmaresRender();
 		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		LensFlarePtr getLensFlare() const;
 		void setLensFlare(LensFlarePtr lensFlare);

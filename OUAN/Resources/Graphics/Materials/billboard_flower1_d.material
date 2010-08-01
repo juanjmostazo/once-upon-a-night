@@ -13,5 +13,6 @@ material billboard_flower1_n : basic_texture
 
 material billboard_flower1_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture billboard_flower1_d.dds
+	set_texture_alias dreams billboard_flower1_d.dds
+	set_texture_alias nightmares transparent.dds
 }

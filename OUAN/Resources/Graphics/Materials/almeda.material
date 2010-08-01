@@ -11,3 +11,8 @@ material almena_n : basic_texture
 	set_texture_alias diffuse_texture almena2_island2n.dds
 }
 
+material almena_cw : default_changeworld
+{
+	set_texture_alias dreams almena2_island2.dds
+	set_texture_alias nightmares almena2_island2n.dds
+}

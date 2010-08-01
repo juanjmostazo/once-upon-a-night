@@ -1,13 +1,18 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material entry_island2d : basic_texture
+material entry_island2_d : basic_texture
 {
 	set_texture_alias diffuse_texture entry_little.dds
 }
 
-material entry_island2n : basic_texture
+material entry_island2_n : basic_texture
 {
 	set_texture_alias diffuse_texture entry_littlen.dds
 }
 
+material entry_island2_cw : default_changeworld 
+{
+	set_texture_alias dreams entry_little.dds
+	set_texture_alias nightmares entry_littlen.dds
+}

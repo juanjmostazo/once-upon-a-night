@@ -13,5 +13,6 @@ material billboard_rush_n : basic_texture
 
 material billboard_rush_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture billboard_rush_d.dds
+	set_texture_alias dreams billboard_rush_d.dds
+	set_texture_alias nightmares transparent.dds
 }

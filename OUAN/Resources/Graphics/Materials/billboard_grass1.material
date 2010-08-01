@@ -13,5 +13,6 @@ material billboard_grass1_n : basic_texture
 
 material billboard_grass1_cw : default_changeworld_alpha_test
 {
-	set_texture_alias alpha_texture billboard_grass1_d.dds
+	set_texture_alias dreams billboard_grass1_d.dds
+	set_texture_alias nightmares transparent.dds
 }

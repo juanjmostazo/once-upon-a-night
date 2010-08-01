@@ -67,6 +67,7 @@ namespace OUAN
 		void setDreamsMaterials();
 		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
+		void setChangeWorldFactor(double factor);
 
 	};
 

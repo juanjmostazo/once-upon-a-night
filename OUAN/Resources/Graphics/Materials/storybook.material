@@ -10,7 +10,3 @@ material storybook_n : basic_texture
 {
 	set_texture_alias diffuse_texture storybook.dds
 }
-
-material storybook_cw : default_changeworld
-{
-}

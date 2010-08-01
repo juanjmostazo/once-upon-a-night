@@ -9,7 +9,3 @@ material tree8_n : basic_texture
 {
 	set_texture_alias diffuse_texture tree8_n.dds
 }
-
-material tree8_cw : no_changeworld
-{
-}
