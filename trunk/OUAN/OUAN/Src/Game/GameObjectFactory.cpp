@@ -640,8 +640,6 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	if (!tGameObjectDiamondParameters.tParentDiamondTree.empty())
 	{
 		pGameObjectDiamond->setParentDiamondTreeName(tGameObjectDiamondParameters.tParentDiamondTree);
-		gameWorldMgr->addDiamondTreeLink(pGameObjectDiamond->getName(),
-			tGameObjectDiamondParameters.tParentDiamondTree);
 	}	
 
 	//Add reference to this

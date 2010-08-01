@@ -2,7 +2,7 @@
 <CUSTOMPROPERTIES>
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>		
         <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-        <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="12 80 9" fields="X;Y;Z;W"></PROPERTY>
+        <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="15 80 15" fields="X;Y;Z;W"></PROPERTY>
 	<!--
 	<PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="15 80 15" fields="X;Y;Z;W"></PROPERTY>
@@ -14,7 +14,7 @@
 	<PROPERTY id="LogicComponent::scriptFunction" type="7" value="diamondTreeLogic"></PROPERTY>
 	<PROPERTY id="LogicComponent::defaultState" type="2" value="0"></PROPERTY>
 	<PROPERTY id="LogicComponent::approachDistance" type="6" value="0"></PROPERTY>
-	<PROPERTY id="LogicComponent::delay" type="6" value="5"></PROPERTY>
+	<PROPERTY id="LogicComponent::delay" type="6" value="30"></PROPERTY>
 	
 	<!-- TODO: Animations! -->
 	<PROPERTY id="animation0d::name" type="7" value="static_pose"></PROPERTY>

@@ -307,6 +307,8 @@ namespace OUAN
 		void setRunParticlesMin(double runParticlesMin);
 		double getRunParticlesMax() const;
 		void setRunParticlesMax(double runParticlesMax);
+
+		void addDiamonds(int amount=1);
 		
 	};
 

@@ -281,7 +281,6 @@ void LevelLoadingState::processWalkabilityMap()
 
 void LevelLoadingState::resolveLinks()
 {
-	mApp->getGameWorldManager()->resolveDiamondTreeLinks();
 	mApp->getGameWorldManager()->resolveNestLinks();
 }
 void LevelLoadingState::initMaterials()

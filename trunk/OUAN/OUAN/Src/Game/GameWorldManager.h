@@ -8,7 +8,6 @@ namespace OUAN
 	class GameObjectSound;
 	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
 
-	typedef std::map<std::string, std::string> TDiamondTreeLinkMap;
 	typedef std::map<std::string, std::string> TNestLinkMap;
 
 	/// Manages the game scene:
@@ -311,14 +310,10 @@ namespace OUAN
 		double DEFAULT_MAX_UPDATE_RADIO;
 		double DEFAULT_MAX_RENDER_RADIO;
 
-		// Add a diamond tree-diamond link.
+		// Add an item nest link.
 		// Since the order the game objects are processed in can't be resolved, 
-		// we need to keep track of the names, so the objects can be attached when 
-		// the whole level has been loaded.
-		void addDiamondTreeLink(const std::string& diamond, const std::string& diamondTree);
-		// Append child diamonds to a diamond tree, and link the parent to its children)
-		void resolveDiamondTreeLinks();
-
+		// we need to keep track of the names, 
+		// so the objects can be attached later
 		void addNestLink(const std::string& object, const std::string& nest);
 		void resolveNestLinks();
 
@@ -327,15 +322,9 @@ namespace OUAN
 		bool isFirstMsgBox() const;
 		void setFirstMsgBox(bool firstMsgBox);
 
+		void increaseOnyDiamonds(int amount=1);
+
 	private:		
-		/// Generate a unique id string with the following format:
-		/// "baseString"_"00value"
-		/// @param baseString	reference string to make the id
-		/// @param padding		number of spaces for the value.
-		///						if the number is too small, it'll be padded
-		///						with 'padding' zeroes
-		/// @param value		the value to append to the string
-		/// @return id string
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 
 		/// Pointer to the main application object
@@ -436,9 +425,8 @@ namespace OUAN
 
 		static GameWorldManager* mInst;
 
-		//Keys contain the game object diamonds bound to a tree; 
-		//Values, the trees.
-		std::map<std::string, std::string> mDiamondTreeLinks;
+		//Keys contain the game objects bound to a nest; 
+		//Values, the nests.
 		std::map<std::string, std::string> mNestLinks;
 
 		bool mFirstMsgBox;

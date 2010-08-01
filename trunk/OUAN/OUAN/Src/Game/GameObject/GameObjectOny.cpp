@@ -674,6 +674,10 @@ void GameObjectOny::setRunParticlesMax(double runParticlesMax)
 {
 	mRunParticlesMax=runParticlesMax;
 }
+void GameObjectOny::addDiamonds(int amount)
+{
+	mLogicComponentOny->increaseCollectableItemAmount(GAME_OBJECT_TYPE_DIAMOND,amount);
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
