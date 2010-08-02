@@ -22,6 +22,10 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemBrightness;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud;
+
 		/// Physics information
 
 		// The volume box is the default physics component, that will enable
@@ -77,6 +81,14 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemBrightness(RenderComponentParticleSystemPtr mRenderComponentParticleSystemBrightness);
+		void setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemBrightness() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStarsCloud() const;
 
 		/// Set physics component
 		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);

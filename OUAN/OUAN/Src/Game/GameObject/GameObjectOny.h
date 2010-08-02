@@ -118,6 +118,8 @@ namespace OUAN
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams; // Dreams
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares; // Nightmares
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave; // Both
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops; // Both
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass; // Both
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand; // Both
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater; // Both
@@ -181,6 +183,8 @@ namespace OUAN
 		void setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams);
 		void setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares);
 		void setRenderComponentParticleSystemLandWave(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave);
+		void setRenderComponentParticleSystemLandWaterWave(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave);
+		void setRenderComponentParticleSystemLandWaterDrops(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops);
 		void setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass);
 		void setRenderComponentParticleSystemRunSand(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand);
 		void setRenderComponentParticleSystemRunWater(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater);
@@ -190,6 +194,8 @@ namespace OUAN
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandDreams() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandNightmares() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWave() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWaterWave() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWaterDrops() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunGrass() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunSand() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunWater() const;

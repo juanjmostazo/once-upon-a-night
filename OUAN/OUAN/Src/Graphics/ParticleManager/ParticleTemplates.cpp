@@ -40,13 +40,28 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("ONY_LAND_DREAMS", ONY_LAND_DREAMS); 
 		config.getOption("ONY_LAND_NIGHTMARES", ONY_LAND_NIGHTMARES); 
 		config.getOption("ONY_LAND_WAVE", ONY_LAND_WAVE); 
+		config.getOption("ONY_LAND_WATER_WAVE", ONY_LAND_WATER_WAVE);
+		config.getOption("ONY_LAND_WATER_DROPS", ONY_LAND_WATER_DROPS); 
 		config.getOption("ONY_RUN_GRASS", ONY_RUN_GRASS); 
 		config.getOption("ONY_RUN_SAND", ONY_RUN_SAND); 
 		config.getOption("ONY_RUN_WATER", ONY_RUN_WATER); 
 		config.getOption("ONY_RUN_SURPRISE", ONY_RUN_SURPRISE); 
 
 		config.getOption("PILLOW_ATTACK", PILLOW_ATTACK); 
+
 		config.getOption("FLASH_LIGHT_ATTACK", FLASH_LIGHT_ATTACK); 
+		config.getOption("FLASH_LIGHT_ATTACK_RED", FLASH_LIGHT_ATTACK_RED); 
+		config.getOption("FLASH_LIGHT_ATTACK_GREEN", FLASH_LIGHT_ATTACK_GREEN); 
+		config.getOption("FLASH_LIGHT_ATTACK_BLUE", FLASH_LIGHT_ATTACK_BLUE); 
+
+		config.getOption("DIAMOND_BRIGHTNESS", DIAMOND_BRIGHTNESS); 		
+		config.getOption("DIAMOND_STARS_CLOUD", DIAMOND_STARS_CLOUD); 
+
+		config.getOption("HEART_STARS_CLOUD", HEART_STARS_CLOUD); 
+
+		config.getOption("BAG_HEARTS_FOUNTAIN", BAG_HEARTS_FOUNTAIN); 
+		config.getOption("BAG_HEARTS_FOUNTAIN_DOUBLE", BAG_HEARTS_FOUNTAIN_DOUBLE); 
+		config.getOption("BAG_STARS_CLOUD", BAG_STARS_CLOUD); 
 
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());

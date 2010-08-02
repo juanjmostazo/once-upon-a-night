@@ -82,9 +82,39 @@ void GameObjectFlashLight::setRenderComponentParticleSystemAttack(RenderComponen
 	mRenderComponentParticleSystemAttack = pRenderComponentParticleSystemAttack;
 }
 
+void GameObjectFlashLight::setRenderComponentParticleSystemAttackRed(RenderComponentParticleSystemPtr pRenderComponentParticleSystemAttackRed)
+{
+	mRenderComponentParticleSystemAttackRed = pRenderComponentParticleSystemAttackRed;
+}
+
+void GameObjectFlashLight::setRenderComponentParticleSystemAttackGreen(RenderComponentParticleSystemPtr pRenderComponentParticleSystemAttackGreen)
+{
+	mRenderComponentParticleSystemAttackGreen = pRenderComponentParticleSystemAttackGreen;
+}
+
+void GameObjectFlashLight::setRenderComponentParticleSystemAttackBlue(RenderComponentParticleSystemPtr pRenderComponentParticleSystemAttackBlue)
+{
+	mRenderComponentParticleSystemAttackBlue = pRenderComponentParticleSystemAttackBlue;
+}
+
 RenderComponentParticleSystemPtr GameObjectFlashLight::getRenderComponentParticleSystemAttack() const
 {
 	return mRenderComponentParticleSystemAttack;
+}
+
+RenderComponentParticleSystemPtr GameObjectFlashLight::getRenderComponentParticleSystemAttackRed() const
+{
+	return mRenderComponentParticleSystemAttackRed;
+}
+
+RenderComponentParticleSystemPtr GameObjectFlashLight::getRenderComponentParticleSystemAttackGreen() const
+{
+	return mRenderComponentParticleSystemAttackGreen;
+}
+
+RenderComponentParticleSystemPtr GameObjectFlashLight::getRenderComponentParticleSystemAttackBlue() const
+{
+	return mRenderComponentParticleSystemAttackBlue;
 }
 
 void GameObjectFlashLight::setPhysicsComponentVolumeConvex(PhysicsComponentVolumeConvexPtr pPhysicsComponentVolumeConvex)

@@ -58,6 +58,26 @@ RenderComponentInitialPtr GameObjectDiamond::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectDiamond::setRenderComponentParticleSystemBrightness(RenderComponentParticleSystemPtr pRenderComponentParticleSystemBrightness)
+{
+	mRenderComponentParticleSystemBrightness = pRenderComponentParticleSystemBrightness;
+}
+
+void GameObjectDiamond::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectDiamond::getRenderComponentParticleSystemBrightness() const
+{
+	return mRenderComponentParticleSystemBrightness;
+}
+
+RenderComponentParticleSystemPtr GameObjectDiamond::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
+}
+
 void GameObjectDiamond::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;

@@ -71,6 +71,16 @@ void GameObjectOny::setRenderComponentParticleSystemLandWave(RenderComponentPart
 	mRenderComponentParticleSystemLandWave = pRenderComponentParticleSystemLandWave;
 }
 
+void GameObjectOny::setRenderComponentParticleSystemLandWaterWave(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWaterWave)
+{
+	mRenderComponentParticleSystemLandWaterWave = pRenderComponentParticleSystemLandWaterWave;
+}
+
+void GameObjectOny::setRenderComponentParticleSystemLandWaterDrops(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWaterDrops)
+{
+	mRenderComponentParticleSystemLandWaterDrops = pRenderComponentParticleSystemLandWaterDrops;
+}
+
 void GameObjectOny::setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunGrass)
 {
 	mRenderComponentParticleSystemRunGrass = pRenderComponentParticleSystemRunGrass;
