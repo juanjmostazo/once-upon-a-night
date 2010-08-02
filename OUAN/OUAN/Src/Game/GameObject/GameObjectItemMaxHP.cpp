@@ -2,6 +2,7 @@
 
 #include "GameObjectItemMaxHP.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -361,18 +362,27 @@ void GameObjectItemMaxHP::setVisible(bool visible)
 		break;
 	}
 }
+
 RenderComponentEntityPtr GameObjectItemMaxHP::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 bool GameObjectItemMaxHP::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectItemMaxHP::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
+void GameObjectItemMaxHP::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {
 

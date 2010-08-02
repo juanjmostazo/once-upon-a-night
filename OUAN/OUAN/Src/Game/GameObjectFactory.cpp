@@ -421,6 +421,18 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 			pGameObjectClockPiece->getRenderComponentPositional(),
 			pGameObjectClockPiece->getRenderComponentEntity()));
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->CLOCK_PIECE_STARS_CLOUD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectClockPiece->setRenderComponentParticleSystemStarsCloud(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectClockPiece,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectClockPiece->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectClockPiece->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
@@ -620,6 +632,29 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	pGameObjectDiamond->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectDiamondParameters.name,
 		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->DIAMOND_BRIGHTNESS;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectDiamond->setRenderComponentParticleSystemBrightness(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectDiamond,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectDiamond->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->DIAMOND_STARS_CLOUD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectDiamond->setRenderComponentParticleSystemStarsCloud(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectDiamond,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectDiamond->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectDiamond->setPhysicsComponentVolumeBox(
@@ -1211,6 +1246,18 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 	pGameObjectItem1UP->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
 		pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TOY_STARS_CLOUD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectItem1UP->setRenderComponentParticleSystemStarsCloud(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectItem1UP,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectItem1UP->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectItem1UP->setPhysicsComponentVolumeBox(
@@ -2457,6 +2504,18 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters));
 
 	//pGameObjectStoryBook->getRenderComponentEntity()->prepareForNormalMapping();
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->STORY_BOOK_STARS_CLOUD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectStoryBook->setRenderComponentParticleSystemStarsCloud(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectStoryBook,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectStoryBook->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectStoryBook->setPhysicsComponentVolumeBox(

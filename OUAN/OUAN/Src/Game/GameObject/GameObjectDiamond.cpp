@@ -3,6 +3,7 @@
 #include "GameObjectDiamond.h"
 #include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -285,11 +286,11 @@ bool GameObjectDiamond::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectDiamond::getPhysicsComponent() const
 {
 	return getPhysicsComponentVolumeBox();
 }
-
 
 void GameObjectDiamond::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
@@ -447,14 +448,22 @@ void GameObjectDiamond::setVisible(bool visible)
 		break;
 	}
 }
+
 bool GameObjectDiamond::hasLogicComponent() const
 {
 	return true;
 }
+
+void GameObjectDiamond::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 LogicComponentPtr GameObjectDiamond::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
 TGameObjectDiamondParameters::TGameObjectDiamondParameters() : TGameObjectParameters()
 {
 

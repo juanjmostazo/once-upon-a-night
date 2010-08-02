@@ -23,6 +23,7 @@ void LogicComponentItem::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0 && !mIsTaken)
 	{
 		setIsTaken(true);
+		getParent()->startCollisionParticles();
 		getParent()->disable();
 	}
 }

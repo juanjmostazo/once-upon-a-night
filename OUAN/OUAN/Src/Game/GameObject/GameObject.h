@@ -242,6 +242,8 @@ namespace OUAN
 		// Facade method to avoid adding unnecessary dependencies
 		// with the logic components
 		void getLogicScriptFile(std::string& scriptFile) const;
+
+		virtual void startCollisionParticles();
 	};
 
 	class TGameObjectParameters

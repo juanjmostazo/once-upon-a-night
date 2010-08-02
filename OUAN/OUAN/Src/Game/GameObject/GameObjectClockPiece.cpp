@@ -2,6 +2,7 @@
 
 #include "GameObjectClockPiece.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -54,6 +55,16 @@ RenderComponentPositionalPtr GameObjectClockPiece::getRenderComponentPositional(
 RenderComponentInitialPtr GameObjectClockPiece::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectClockPiece::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectClockPiece::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
 }
 
 void GameObjectClockPiece::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -316,14 +327,22 @@ void GameObjectClockPiece::setVisible(bool visible)
 		break;
 	}
 }
+
 bool GameObjectClockPiece::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectClockPiece::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
+void GameObjectClockPiece::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
 {
 

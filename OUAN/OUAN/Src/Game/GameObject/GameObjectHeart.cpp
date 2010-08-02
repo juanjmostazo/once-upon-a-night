@@ -2,6 +2,7 @@
 
 #include "GameObjectHeart.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -367,18 +368,27 @@ void GameObjectHeart::setVisible(bool visible)
 		break;
 	}
 }
+
 RenderComponentEntityPtr GameObjectHeart::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 bool GameObjectHeart::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectHeart::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
+void GameObjectHeart::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()
 {
 

@@ -23,12 +23,18 @@
 	<Option key="FLASH_LIGHT_ATTACK_BLUE">PU/run_sand</Option>
 	
 	<Option key="DIAMOND_BRIGHTNESS">PU/run_sand</Option>
-	<Option key="DIAMOND_STARS_CLOUD">PU/run_sand</Option>
+	<Option key="DIAMOND_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
-	<Option key="HEART_STARS_CLOUD">PU/run_sand</Option>
+	<Option key="HEART_STARS_CLOUD">PU/heart_stars_cloud</Option>
 	
 	<Option key="BAG_HEARTS_FOUNTAIN">PU/run_sand</Option>
 	<Option key="BAG_HEARTS_FOUNTAIN_DOUBLE">PU/run_sand</Option>
-	<Option key="BAG_STARS_CLOUD">PU/run_sand</Option>
+	<Option key="BAG_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	
+	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	
+	<Option key="TOY_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	
+	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option>
   </Options>
 </Configuration>

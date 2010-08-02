@@ -2,6 +2,7 @@
 
 #include "GameObjectStoryBook.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -57,6 +58,16 @@ RenderComponentPositionalPtr GameObjectStoryBook::getRenderComponentPositional()
 RenderComponentInitialPtr GameObjectStoryBook::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectStoryBook::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectStoryBook::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
 }
 
 void GameObjectStoryBook::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -335,14 +346,22 @@ void GameObjectStoryBook::setVisible(bool visible)
 		break;
 	}
 }
+
 bool GameObjectStoryBook::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectStoryBook::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
+void GameObjectStoryBook::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()
 {
 

@@ -159,6 +159,8 @@ namespace OUAN
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		void startCollisionParticles();
 	};
 
 	class TGameObjectDiamondParameters: public TGameObjectParameters

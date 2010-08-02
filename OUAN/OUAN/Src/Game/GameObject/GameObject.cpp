@@ -637,10 +637,12 @@ bool GameObject::hasLogicComponent() const
 {
 	return false;
 }
+
 LogicComponentPtr GameObject::getLogicComponentInstance() const
 {
 	return LogicComponentPtr();
 }
+
 void GameObject::getLogicScriptFile(std::string& scriptFile) const
 {
 	scriptFile="";
@@ -648,6 +650,11 @@ void GameObject::getLogicScriptFile(std::string& scriptFile) const
 	{
 		scriptFile = getLogicComponentInstance()->getScriptFilename();
 	}
+}
+
+void GameObject::startCollisionParticles()
+{
+
 }
 //-------------------------------------------------------
 

@@ -49,6 +49,12 @@ namespace OUAN
 		std::string BAG_HEARTS_FOUNTAIN_DOUBLE;
 		std::string BAG_STARS_CLOUD;
 
+		std::string STORY_BOOK_STARS_CLOUD;
+
+		std::string TOY_STARS_CLOUD;
+
+		std::string CLOCK_PIECE_STARS_CLOUD;
+
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 
