@@ -2,6 +2,7 @@
 
 #include "GameObjectItem1UP.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -20,7 +21,9 @@ void GameObjectItem1UP::disable()
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
 		mPhysicsComponentVolumeBox->destroy();
+	}
 	mLogicComponentItem->setIsTaken(false);
 }
 
@@ -64,6 +67,16 @@ RenderComponentPositionalPtr GameObjectItem1UP::getRenderComponentPositional() c
 RenderComponentInitialPtr GameObjectItem1UP::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectItem1UP::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectItem1UP::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
 }
 
 void GameObjectItem1UP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
@@ -349,18 +362,27 @@ void GameObjectItem1UP::setVisible(bool visible)
 		break;
 	}
 }
+
 RenderComponentEntityPtr GameObjectItem1UP::getEntityComponent() const
 {
 	return mRenderComponentEntity;
 }
+
 bool GameObjectItem1UP::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectItem1UP::getLogicComponentInstance() const
 {
 	return mLogicComponentItem;
 }
+
+void GameObjectItem1UP::startCollisionParticles()
+{
+	mRenderComponentParticleSystemStarsCloud->start();
+}
+
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()
 {
 

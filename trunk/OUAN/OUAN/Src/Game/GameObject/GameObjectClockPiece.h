@@ -23,6 +23,10 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+
+		//// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud;
+
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 
@@ -64,6 +68,12 @@ namespace OUAN
 
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStarsCloud() const;
 
 		void setVisible(bool visible);
 
@@ -117,14 +127,13 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
-
 		/// Update object
 		void update(double elapsedSeconds);
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		void startCollisionParticles();
 	};
 
 	class TGameObjectClockPieceParameters: public TGameObjectParameters

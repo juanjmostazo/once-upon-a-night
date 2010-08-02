@@ -1,6 +1,6 @@
 system PU/run_sand
 {
-    scale                                       0.07 0.07 0.07
+    scale                                       0.05 0.05 0.05
     technique Technique3
     {
         visual_particle_quota                   10
@@ -12,13 +12,13 @@ system PU/run_sand
         {
             time_to_live                        dyn_random
             {
-                min                             0.6
-                max                             0.8
+                min                             0.5
+                max                             0.7
             }
             velocity                            dyn_random
             {
-                min                             15
-                max                             25
+                min                             10
+                max                             15
             }
             duration                            0.7
             circle_em_radius                    50
