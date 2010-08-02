@@ -20,6 +20,8 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud;
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -53,6 +55,11 @@ namespace OUAN
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStarsCloud() const;
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;

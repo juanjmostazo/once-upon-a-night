@@ -21,6 +21,10 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemHeartsFountain;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemHeartsFountainDouble;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud;
 		/// Physics information
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -63,6 +67,16 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemHeartsFountain(RenderComponentParticleSystemPtr mRenderComponentParticleSystemHeartsFountain);
+		void setRenderComponentParticleSystemHeartsFountainDouble(RenderComponentParticleSystemPtr mRenderComponentParticleSystemHeartsFountainDouble);
+		void setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemHeartsFountain() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemHeartsFountainDouble() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStarsCloud() const;
 
 		/// Set physics component
 		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);

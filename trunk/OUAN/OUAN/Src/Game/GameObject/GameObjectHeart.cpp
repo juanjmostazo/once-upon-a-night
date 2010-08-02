@@ -60,6 +60,16 @@ RenderComponentInitialPtr GameObjectHeart::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectHeart::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectHeart::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
+}
+
 void GameObjectHeart::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;

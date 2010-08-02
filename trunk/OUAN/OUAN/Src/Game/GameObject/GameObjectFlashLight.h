@@ -54,6 +54,9 @@ namespace OUAN
 		//ProjectiveDecalPtr mFlashlightDecal;
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackRed;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackGreen;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackBlue;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -122,9 +125,15 @@ namespace OUAN
 
 		/// Set Particle Systems
 		void setRenderComponentParticleSystemAttack(RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttack);
+		void setRenderComponentParticleSystemAttackRed(RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackRed);
+		void setRenderComponentParticleSystemAttackGreen(RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackGreen);
+		void setRenderComponentParticleSystemAttackBlue(RenderComponentParticleSystemPtr mRenderComponentParticleSystemAttackBlue);
 
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttack() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttackRed() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttackGreen() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemAttackBlue() const;
 
 		RenderComponentEntityPtr getConeEntity() const;
 		void setConeEntity(RenderComponentEntityPtr coneEntity);

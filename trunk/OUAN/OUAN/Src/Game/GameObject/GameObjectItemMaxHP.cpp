@@ -59,6 +59,36 @@ RenderComponentInitialPtr GameObjectItemMaxHP::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectItemMaxHP::setRenderComponentParticleSystemHeartsFountain(RenderComponentParticleSystemPtr pRenderComponentParticleSystemHeartsFountain)
+{
+	mRenderComponentParticleSystemHeartsFountain = pRenderComponentParticleSystemHeartsFountain;
+}
+
+void GameObjectItemMaxHP::setRenderComponentParticleSystemHeartsFountainDouble(RenderComponentParticleSystemPtr pRenderComponentParticleSystemHeartsFountainDouble)
+{
+	mRenderComponentParticleSystemHeartsFountainDouble = pRenderComponentParticleSystemHeartsFountainDouble;
+}
+
+void GameObjectItemMaxHP::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
+{
+	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;
+}
+
+RenderComponentParticleSystemPtr GameObjectItemMaxHP::getRenderComponentParticleSystemHeartsFountain() const
+{
+	return mRenderComponentParticleSystemHeartsFountain;
+}
+
+RenderComponentParticleSystemPtr GameObjectItemMaxHP::getRenderComponentParticleSystemHeartsFountainDouble() const
+{
+	return mRenderComponentParticleSystemHeartsFountainDouble;
+}
+
+RenderComponentParticleSystemPtr GameObjectItemMaxHP::getRenderComponentParticleSystemStarsCloud() const
+{
+	return mRenderComponentParticleSystemStarsCloud;
+}
+
 void GameObjectItemMaxHP::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
 {
 	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
