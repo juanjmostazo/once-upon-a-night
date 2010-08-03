@@ -60,6 +60,16 @@ RenderComponentInitialPtr GameObjectStoryBook::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectStoryBook::setRenderComponentParticleSystemHalo(RenderComponentParticleSystemPtr pRenderComponentParticleSystemHalo)
+{
+	mRenderComponentParticleSystemHalo = pRenderComponentParticleSystemHalo;
+}
+
+RenderComponentParticleSystemPtr GameObjectStoryBook::getRenderComponentParticleSystemHalo() const
+{
+	return mRenderComponentParticleSystemHalo;
+}
+
 void GameObjectStoryBook::setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStarsCloud)
 {
 	mRenderComponentParticleSystemStarsCloud = pRenderComponentParticleSystemStarsCloud;

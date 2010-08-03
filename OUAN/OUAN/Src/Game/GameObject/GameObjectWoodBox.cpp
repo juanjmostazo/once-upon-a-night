@@ -4,6 +4,7 @@
 #include "../GameWorldManager.h"
 
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -56,6 +57,16 @@ RenderComponentPositionalPtr GameObjectWoodBox::getRenderComponentPositional() c
 RenderComponentInitialPtr GameObjectWoodBox::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectWoodBox::setRenderComponentParticleSystemDust(RenderComponentParticleSystemPtr pRenderComponentParticleSystemDust)
+{
+	mRenderComponentParticleSystemDust = pRenderComponentParticleSystemDust;
+}
+
+RenderComponentParticleSystemPtr GameObjectWoodBox::getRenderComponentParticleSystemDust() const
+{
+	return mRenderComponentParticleSystemDust;
 }
 
 void GameObjectWoodBox::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -474,10 +485,12 @@ void GameObjectWoodBox::updatePhysicsComponents(double elapsedSeconds)
 	GameObject::updatePhysicsComponents(elapsedSeconds);
 	mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
+
 RenderComponentEntityPtr GameObjectWoodBox::getRenderComponentEntityAdditional() const
 {
 	return mRenderComponentEntityAdditional;
 }
+
 void GameObjectWoodBox::setRenderComponentEntityAdditional(RenderComponentEntityPtr pRenderComponentEntityAdditional)
 {
 	mRenderComponentEntityAdditional=pRenderComponentEntityAdditional;
@@ -503,10 +516,12 @@ void GameObjectWoodBox::setVisible(bool visible)
 		break;
 	}
 }
+
 bool GameObjectWoodBox::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectWoodBox::getLogicComponentInstance() const
 {
 	return mLogicComponentBreakable;

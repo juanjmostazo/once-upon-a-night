@@ -22,6 +22,7 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 
 		//// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemHalo;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud;
 
 		/// Physics information
@@ -69,9 +70,11 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set Particle Systems
+		void setRenderComponentParticleSystemHalo(RenderComponentParticleSystemPtr mRenderComponentParticleSystemHalo);
 		void setRenderComponentParticleSystemStarsCloud(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStarsCloud);
 
 		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemHalo() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStarsCloud() const;
 
 		/// Set physics component

@@ -1958,12 +1958,26 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD;
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_IDLE;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectPortal->setRenderComponentParticleSystemChangeWorld(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectPortal,tRenderComponentParticleSystemParameters,pGameObjectPortal->getRenderComponentPositional()));
+	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldIdle(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectPortal,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectPortal->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_CHANGING;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldChanging(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectPortal,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectPortal->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
 	pGameObjectPortal->setRenderComponentEntityDreams(
@@ -2507,6 +2521,17 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->STORY_BOOK_HALO;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectStoryBook->setRenderComponentParticleSystemHalo(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectStoryBook,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectStoryBook->getRenderComponentPositional()));
+
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->STORY_BOOK_STARS_CLOUD;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
@@ -3264,6 +3289,18 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
 	}
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOX_DUST;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectWoodBox->setRenderComponentParticleSystemDust(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectWoodBox,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectWoodBox->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectWoodBox->setPhysicsComponentSimpleBox(

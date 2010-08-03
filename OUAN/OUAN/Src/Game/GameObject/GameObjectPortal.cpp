@@ -79,14 +79,24 @@ RenderComponentInitialPtr GameObjectPortal::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectPortal::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorldIdle(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldIdle)
 {
-	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
+	mRenderComponentParticleSystemChangeWorldIdle = pRenderComponentParticleSystemChangeWorldIdle;
 }
 
-RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorld() const
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorldChanging(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldChanging)
 {
-	return mRenderComponentParticleSystemChangeWorld;
+	mRenderComponentParticleSystemChangeWorldChanging = pRenderComponentParticleSystemChangeWorldChanging;
+}
+
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldIdle() const
+{
+	return mRenderComponentParticleSystemChangeWorldIdle;
+}
+
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldChanging() const
+{
+	return mRenderComponentParticleSystemChangeWorldChanging;
 }
 
 void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -331,7 +341,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 				if (mLogicComponent->isStateChanged())
 				{
 					getGameWorldManager()->changeWorld();				
-					mRenderComponentParticleSystemChangeWorld->start();
+					mRenderComponentParticleSystemChangeWorldChanging->start();
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))

@@ -21,7 +21,8 @@ namespace OUAN
 		virtual bool loadConfig();
 
 		/// Particle name values
-		std::string PORTAL_CHANGE_WORLD;
+		std::string PORTAL_CHANGE_WORLD_IDLE;
+		std::string PORTAL_CHANGE_WORLD_CHANGING;
 
 		std::string ONY_LAND_DREAMS;
 		std::string ONY_LAND_NIGHTMARES;
@@ -49,11 +50,14 @@ namespace OUAN
 		std::string BAG_HEARTS_FOUNTAIN_DOUBLE;
 		std::string BAG_STARS_CLOUD;
 
+		std::string STORY_BOOK_HALO;
 		std::string STORY_BOOK_STARS_CLOUD;
 
 		std::string TOY_STARS_CLOUD;
 
 		std::string CLOCK_PIECE_STARS_CLOUD;
+
+		std::string BOX_DUST;
 
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
