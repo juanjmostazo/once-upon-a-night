@@ -28,9 +28,9 @@
 	
 	<Option key="HEART_STARS_CLOUD">PU/heart_stars_cloud</Option>
 	
-	<Option key="BAG_HEARTS_FOUNTAIN">PU/run_sand</Option>
-	<Option key="BAG_HEARTS_FOUNTAIN_DOUBLE">PU/run_sand</Option>
-	<Option key="BAG_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	<Option key="BAG_HEARTS_FOUNTAIN">PU/bag_hearts_fountain</Option>
+	<Option key="BAG_HEARTS_FOUNTAIN_DOUBLE">PU/bag_hearts_fountain_double</Option>
+	<Option key="BAG_STARS_CLOUD">PU/bag_stars_cloud</Option>
 	
 	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option>
 	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option>

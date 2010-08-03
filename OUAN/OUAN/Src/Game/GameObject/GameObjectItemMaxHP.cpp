@@ -331,6 +331,7 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 		if (isFirstUpdate())
 		{
 			mRenderComponentEntity->changeAnimation(MAXHP_ANIM_IDLE);
+			mRenderComponentParticleSystemHeartsFountain->start();
 		}
 		else
 		{
@@ -380,7 +381,10 @@ LogicComponentPtr GameObjectItemMaxHP::getLogicComponentInstance() const
 
 void GameObjectItemMaxHP::startCollisionParticles()
 {
+	mRenderComponentParticleSystemHeartsFountain->stop();
+
 	mRenderComponentParticleSystemStarsCloud->start();
+	mRenderComponentParticleSystemHeartsFountainDouble->start();
 }
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
