@@ -1,0 +1,15 @@
+#summary Resources on animation blending.
+#labels animations,programming,blending
+
+= Introduction =
+
+Below is a list of resources dealing with animation blending. Some of them cover theoretical concepts, where others are more practical, containing code samples.
+
+
+= Bibliography =
+  * [http://www.ogre3d.org/forums/viewtopic.php?f=11&t=45260 Tecnofreak animation system], by Pau Novau. It may be a good idea to dive into the source code (hosted at sourceforge, a link is provided)
+  * [http://www.gamasutra.com/features/20030704/edsall_01.shtml Animation Blending - Achieving inverse kinematics and more]. Gamasutra's article on animation blending.
+  * [http://www.ogre3d.org/tikiwiki/AnimationBlender Animation Blender]: Link to Ogre's wiki where a snippet featuring an animation blender class has been pasted.
+
+  * Jason Gregory's Game Engine Architecture. *Chapter 11: Animation Systems*
+  
