@@ -35,7 +35,8 @@ bool ParticleTemplates::loadConfig()
 
 	if (config.loadFromFile(PARTICLES_CFG))
 	{
-		config.getOption("PORTAL_CHANGE_WORLD", PORTAL_CHANGE_WORLD); 
+		config.getOption("PORTAL_CHANGE_WORLD_IDLE", PORTAL_CHANGE_WORLD_IDLE); 
+		config.getOption("PORTAL_CHANGE_WORLD_CHANGING", PORTAL_CHANGE_WORLD_CHANGING); 
 
 		config.getOption("ONY_LAND_DREAMS", ONY_LAND_DREAMS); 
 		config.getOption("ONY_LAND_NIGHTMARES", ONY_LAND_NIGHTMARES); 
@@ -63,11 +64,14 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("BAG_HEARTS_FOUNTAIN_DOUBLE", BAG_HEARTS_FOUNTAIN_DOUBLE); 
 		config.getOption("BAG_STARS_CLOUD", BAG_STARS_CLOUD); 
 
+		config.getOption("STORY_BOOK_HALO", STORY_BOOK_HALO); 
 		config.getOption("STORY_BOOK_STARS_CLOUD", STORY_BOOK_STARS_CLOUD); 
 
 		config.getOption("TOY_STARS_CLOUD", TOY_STARS_CLOUD); 
 
 		config.getOption("CLOCK_PIECE_STARS_CLOUD", CLOCK_PIECE_STARS_CLOUD); 
+
+		config.getOption("BOX_DUST", BOX_DUST); 
 
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
@@ -76,20 +80,6 @@ bool ParticleTemplates::loadConfig()
 	}
 	else
 	{
-		PORTAL_CHANGE_WORLD="";
-
-		ONY_LAND_DREAMS="";
-		ONY_LAND_NIGHTMARES="";
-		ONY_LAND_WAVE="";
-
-		ONY_RUN_GRASS="";
-		ONY_RUN_SAND="";
-		ONY_RUN_WATER="";
-		ONY_RUN_SURPRISE="";
-
-		PILLOW_ATTACK="";
-		FLASH_LIGHT_ATTACK="";
-
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE=1;
 
 		success = false;

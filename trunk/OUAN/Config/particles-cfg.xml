@@ -3,7 +3,8 @@
   <Options>
     <Option key="DEFAULT_PARTICLE_SYSTEM_POOL_SIZE">1</Option>
   
-    <Option key="PORTAL_CHANGE_WORLD">PU/changeworld01</Option>
+	<Option key="PORTAL_CHANGE_WORLD_IDLE">PU/changeworld01</Option>
+	<Option key="PORTAL_CHANGE_WORLD_CHANGING">PU/changeworld01</Option>
 	
 	<Option key="ONY_LAND_DREAMS">PU/any_jump_d</Option>
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
@@ -31,10 +32,13 @@
 	<Option key="BAG_HEARTS_FOUNTAIN_DOUBLE">PU/run_sand</Option>
 	<Option key="BAG_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
+	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option>
 	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
 	<Option key="TOY_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
 	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	
+	<Option key="BOX_ON_HIT">PU/diamond_stars_cloud</Option>
   </Options>
 </Configuration>

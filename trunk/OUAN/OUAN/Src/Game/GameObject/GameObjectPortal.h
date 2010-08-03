@@ -39,7 +39,8 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorld;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -97,10 +98,12 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set Particle Systems
-		void setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorld);
+		void setRenderComponentParticleSystemChangeWorldIdle(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle);
+		void setRenderComponentParticleSystemChangeWorldChanging(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging);
 
 		/// Get Particle Systems
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorld() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldIdle() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldChanging() const;
 
 		/// Set physics component
 		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);

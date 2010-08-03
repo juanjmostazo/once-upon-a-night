@@ -28,6 +28,8 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDust;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
@@ -73,6 +75,12 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemDust(RenderComponentParticleSystemPtr mRenderComponentParticleSystemDust);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemDust() const;
 
 		void setVisible(bool visible);
 
