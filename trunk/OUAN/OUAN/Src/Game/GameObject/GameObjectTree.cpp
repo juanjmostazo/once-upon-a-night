@@ -280,7 +280,7 @@ bool GameObjectTree::hasRenderComponentEntity() const
 
 void GameObjectTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
 {
-	mChangeWorldTotalTime=changeWorldTotalTime*0.15f;
+	mChangeWorldTotalTime=changeWorldTotalTime*0.09f;
 }
 
 void GameObjectTree::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)

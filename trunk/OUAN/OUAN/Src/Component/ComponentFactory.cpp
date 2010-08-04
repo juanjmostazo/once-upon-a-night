@@ -78,7 +78,7 @@ RenderComponentPtr ComponentFactory::createRenderComponent(GameObjectPtr gameObj
 	return pRenderComponent;
 }
 
-RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters)
+RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters,bool existInDreams, bool existInNightmares)
 {
 	//Create void Render Component
 	RenderComponentBillboardSetPtr pRenderComponentBillboardSetPtr = RenderComponentBillboardSetPtr(new RenderComponentBillboardSet()); 
@@ -86,7 +86,9 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 	pRenderComponentBillboardSetPtr->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),name,tRenderComponentBillboardSetParameters));
+	pRenderComponentBillboardSetPtr->setBillboardSet(mApp->getRenderSubsystem()->createBillboardSet(gameObject->getName(),
+		name,tRenderComponentBillboardSetParameters),
+		existInDreams,existInNightmares);
 
 	return pRenderComponentBillboardSetPtr;
 }
@@ -101,7 +103,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 //	return pRenderComponentCameraPtr;
 //}
 
-RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters)
+RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters,bool existInDreams, bool existInNightmares)
 {
 	//Create void Render Component
 	RenderComponentEntityPtr pRenderComponentEntity = RenderComponentEntityPtr(new RenderComponentEntity()); 
@@ -109,14 +111,15 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	pRenderComponentEntity->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters));
+	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters),
+		existInDreams,existInNightmares);
 
 	pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
 
 	return pRenderComponentEntity;
 }
 
-RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string name,GameObjectPtr gameObject,TRenderComponentWaterParameters tRenderComponentWaterParameters)
+RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string name,GameObjectPtr gameObject,TRenderComponentWaterParameters tRenderComponentWaterParameters,bool existInDreams, bool existInNightmares)
 {
 	//Create void Render Component
 	RenderComponentWaterPtr pRenderComponentWater = RenderComponentWaterPtr(new RenderComponentWater()); 
@@ -124,7 +127,8 @@ RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string
 	pRenderComponentWater->setParent(gameObject);	
 
 	//init Render Component
-	pRenderComponentWater->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentWaterParameters.tRenderComponentEntityParameters));
+	pRenderComponentWater->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentWaterParameters.tRenderComponentEntityParameters),
+		existInDreams,existInNightmares);
 
 	pRenderComponentWater->initAnimations(tRenderComponentWaterParameters.tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
 	pRenderComponentWater->initFresnelReflection(mApp->getCameraManager(),mApp->getGameWorldManager());

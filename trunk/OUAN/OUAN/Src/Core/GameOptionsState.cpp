@@ -78,6 +78,7 @@ void GameOptionsState::pause()
 /// resume state
 void GameOptionsState::resume()
 {
+	GameState::resume();
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
 }

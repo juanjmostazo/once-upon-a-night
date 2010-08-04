@@ -2,6 +2,8 @@
 
 #include "GameStateManager.h"
 #include "GameState.h"
+#include "../Application.h"
+
 
 using namespace OUAN;
 
@@ -48,4 +50,3 @@ GameStatePtr GameStateManager::getCurrentState() const
 	}
 	return GameStatePtr();
 }
-

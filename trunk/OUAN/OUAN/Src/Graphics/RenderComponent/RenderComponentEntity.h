@@ -36,7 +36,7 @@ namespace OUAN
 		~RenderComponentEntity();
 
 		Ogre::Entity * getEntity() const;
-		void setEntity(Ogre::Entity *);
+		void setEntity(Ogre::Entity *,bool existInDreams,bool existInNightmares);
 
 		void setVisible(bool visible);
 		bool isVisible();

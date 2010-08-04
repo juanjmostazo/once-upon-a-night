@@ -90,9 +90,9 @@ namespace OUAN
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
-		std::string mDreamsMaterial;
-		std::string mNightmaresMaterial;
-		std::string mChangeWorldMaterial;
+		std::vector<std::string> mDreamsMaterial;
+		std::vector<std::string> mNightmaresMaterial;
+		std::vector<std::string> mChangeWorldMaterial;
 
 	public:
 
@@ -100,7 +100,7 @@ namespace OUAN
 		~RenderComponentWater();
 
 		Ogre::Entity * getEntity() const;
-		void setEntity(Ogre::Entity *);
+		void setEntity(Ogre::Entity *,bool existInDreams,bool existInNightmares);
 
 		void setVisible(bool visible);
 
@@ -114,7 +114,7 @@ namespace OUAN
 		std::string getCurrentAnimationName() const;
 		bool isAnimated() const;	
 
-		void setMaterial(std::string material);
+		void setMaterial(std::vector<std::string> & material);
 		void setDreamsMaterials();
 		void setNightmaresMaterials();
 		void setChangeWorldMaterials();

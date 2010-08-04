@@ -22,7 +22,7 @@ Ogre::BillboardSet* RenderComponentBillboardSet::getBillboardSet() const
 	return mBillboardSet;
 }
 
-void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardSet)
+void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardSet,bool existInDreams,bool existInNightmares)
 {
 	mBillboardSet=billboardSet;
 
@@ -31,6 +31,7 @@ void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardS
 		mDreamsMaterial=WorldNameConverter::getDreamsName(mBillboardSet->getMaterialName());
 		mNightmaresMaterial=WorldNameConverter::getNightmaresName(mBillboardSet->getMaterialName());
 		mChangeWorldMaterial=WorldNameConverter::getChangeWorldName(mBillboardSet->getMaterialName());
+		mChangeWorldMaterial=setChangeWorldMaterialTransparentTextures(mChangeWorldMaterial,existInDreams,existInNightmares);
 	}
 }
 

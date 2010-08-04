@@ -7,13 +7,14 @@ material level2_sky_d : default_changeworld
 	{
 		pass
 		{
-		        vertex_program_ref erosion_vs
-		        {
-		        }
-		        fragment_program_ref erosion_fs
-		        {
+		      vertex_program_ref erosion_vs
+		      {
+		      }
+		      fragment_program_ref erosion_fs
+		      {
 				param_named mix_factor float 0
-		        }
+				param_named scroll_animation float3 0.03 0 0
+		      }
 			depth_write off
 			texture_unit changeworld
 			{
@@ -47,6 +48,7 @@ material level2_sky_n : default_changeworld
 		        fragment_program_ref erosion_fs
 		        {
 				param_named mix_factor float 1
+				param_named scroll_animation float3 0.03 0 0
 		        }
 			depth_write off
 			texture_unit changeworld
@@ -80,6 +82,7 @@ material level2_sky_cw : default_changeworld
 		        }
 		        fragment_program_ref erosion_fs
 		        {
+				param_named scroll_animation float3 0.03 0 0
 		        }
 			depth_write off
 			texture_unit changeworld

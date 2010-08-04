@@ -57,6 +57,7 @@ GameRunningState::~GameRunningState()
 /// init game running state's resources
 void GameRunningState::init(ApplicationPtr app)
 {
+	Logger::getInstance()->log("GAME RUNNING INIT");
 	GameState::init(app);
 	firstRender=true;
 
@@ -163,6 +164,10 @@ void GameRunningState::pause()
 /// resume state
 void GameRunningState::resume()
 {	
+	GameState::resume();
+
+	Logger::getInstance()->log("GAME RUNNING RESUME");
+
 	mGUI = BOOST_PTR_CAST(GUIConsole,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 	mGUI->initGUI(shared_from_this());
 	mGUI->hideConsole();

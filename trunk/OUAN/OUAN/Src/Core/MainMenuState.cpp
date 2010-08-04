@@ -94,6 +94,7 @@ void MainMenuState::pause()
 /// resume state
 void MainMenuState::resume()
 {
+	GameState::resume();
 	//mApp->getGUISubsystem()->showGUI();
 	mGUI= BOOST_PTR_CAST(GUIMainMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_MAINMENU));
 	mGUI->initGUI(shared_from_this());

@@ -11,6 +11,8 @@ namespace OUAN
 		~RenderComponent();
 
 		virtual void update(long elapsedTime);
+	protected:
+		virtual std::string setChangeWorldMaterialTransparentTextures(std::string changeWorldMaterial,bool existInDreams,bool existInNightmares);
 
 		//Event handlers
 		//void onDoSomething(EventData,emitter, ...);

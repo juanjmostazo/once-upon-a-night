@@ -79,7 +79,7 @@ void ControlInputManager::updateDownKeys()
 	mLastFrameDown[mDefaultInputData.keyQuickExit]=isDownQuickExit(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyDebugPerformance]=isDownToggleDebugPerformance(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyDebugPhysics]=isDownToggleDebugPhysics(&pad,&key);
-	mLastFrameDown[mDefaultInputData.keyDebugTrajectory]=isDownToggleDebugPerformance(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyDebugTrajectory]=isDownToggleDebugTrajectory(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyChangeCamera]=isDownToggleChangeCamera(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyChangeCameraController]=isDownToggleChangeCameraController(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyChangeWorld]=isDownToggleChangeWorld(&pad,&key);
@@ -148,6 +148,11 @@ bool ControlInputManager::isPressed(int padButton, int defaultInputKey)
 	bool isKeyDown = isDown(padButton,defaultInputKey);
 
 	bool isPressed=(mLastFrameDown[defaultInputKey]==false && isKeyDown);
+
+	if(isPressed)
+	{
+		mLastFrameDown[defaultInputKey]=true;
+	}
 
 	return isPressed;
 }

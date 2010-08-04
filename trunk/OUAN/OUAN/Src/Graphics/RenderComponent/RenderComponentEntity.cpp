@@ -35,7 +35,7 @@ Ogre::Entity* RenderComponentEntity::getEntity() const
 	return mEntity;
 }
 
-void RenderComponentEntity::setEntity(Ogre::Entity* entity)
+void RenderComponentEntity::setEntity(Ogre::Entity* entity,bool existInDreams,bool existInNightmares)
 {
 	mEntity=entity;
 
@@ -58,6 +58,7 @@ void RenderComponentEntity::setEntity(Ogre::Entity* entity)
 				mDreamsMaterial.push_back(WorldNameConverter::getDreamsName(subEnt->getMaterialName().c_str()));
 				mNightmaresMaterial.push_back(WorldNameConverter::getNightmaresName(subEnt->getMaterialName().c_str()));
 				mChangeWorldMaterial.push_back(WorldNameConverter::getChangeWorldName(subEnt->getMaterialName().c_str()));
+				mChangeWorldMaterial[i]=setChangeWorldMaterialTransparentTextures(mChangeWorldMaterial[i],existInDreams,existInNightmares);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import default_changeworld_alpha_test from ChangeWorld.material
 
 material tripollo_red_d : alpha_test_texture
 {	
@@ -8,6 +8,7 @@ material tripollo_red_d : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -24,6 +25,7 @@ material tripollo_green_d : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -40,6 +42,7 @@ material tripollo_blue_d : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -55,6 +58,7 @@ material tripollo_red_n : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -69,6 +73,7 @@ material tripollo_green_n : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -84,6 +89,7 @@ material tripollo_blue_n : alpha_test_texture
 	{
 		pass
 		{
+			cull_hardware none 
 			cull_software none 
 			texture_unit diffuse_texture
 			{
@@ -93,20 +99,79 @@ material tripollo_blue_n : alpha_test_texture
 	}
 }
 
-material tripollo_red_cw : default_changeworld
+material tripollo_red_cw : default_changeworld_alpha_test
 {
-	set_texture_alias dreams tripollo_d.dds
-	set_texture_alias nightmares tripollo_red_n.dds
+	technique
+	{
+	        pass
+	        {
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+		      }
+		      texture_unit dreams
+		      {
+				texture tripollo_d.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_red_n.dds
+	            }
+		  }
+      }
 }
 
-material tripollo_green_cw : default_changeworld
+material tripollo_green_cw : default_changeworld_alpha_test
 {
-	set_texture_alias dreams tripollo_d.dds
-	set_texture_alias nightmares tripollo_green_n.dds
+	technique
+	{
+	      pass
+	      {
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+		      }
+		      texture_unit dreams
+		      {
+				texture tripollo_d.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_green_n.dds
+	            }
+	}	}
 }
 
-material tripollo_blue_cw : default_changeworld
+material tripollo_blue_cw : default_changeworld_alpha_test
 {
-	set_texture_alias dreams tripollo_d.dds
-	set_texture_alias nightmares tripollo_blue_n.dds
+	technique
+	{
+	      pass
+	      {
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+		      }
+		      texture_unit dreams
+		      {
+				texture tripollo_d.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_blue_n.dds
+	            }
+		}
+	}
 }

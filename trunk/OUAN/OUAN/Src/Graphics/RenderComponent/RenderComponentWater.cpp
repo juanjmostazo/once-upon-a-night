@@ -33,15 +33,32 @@ Ogre::Entity* RenderComponentWater::getEntity() const
 	return mEntity;
 }
 
-void RenderComponentWater::setEntity(Ogre::Entity* entity)
+void RenderComponentWater::setEntity(Ogre::Entity* entity,bool existInDreams,bool existInNightmares)
 {
 	mEntity=entity;
 
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	mDreamsMaterial.clear();
+	mNightmaresMaterial.clear();
+	mChangeWorldMaterial.clear();
+
 	if(mEntity)
 	{
-		mDreamsMaterial=WorldNameConverter::getDreamsName(mEntity->getSubEntity(0)->getMaterialName().c_str());
-		mNightmaresMaterial=WorldNameConverter::getNightmaresName(mEntity->getSubEntity(0)->getMaterialName().c_str());
-		mChangeWorldMaterial=WorldNameConverter::getChangeWorldName(mEntity->getSubEntity(0)->getMaterialName().c_str());
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Get the material of this sub entity and build the clone material name
+			subEnt = mEntity->getSubEntity(i);
+
+			if(subEnt)
+			{
+				mDreamsMaterial.push_back(WorldNameConverter::getDreamsName(subEnt->getMaterialName().c_str()));
+				mNightmaresMaterial.push_back(WorldNameConverter::getNightmaresName(subEnt->getMaterialName().c_str()));
+				mChangeWorldMaterial.push_back(WorldNameConverter::getChangeWorldName(subEnt->getMaterialName().c_str()));
+				mChangeWorldMaterial[i]=setChangeWorldMaterialTransparentTextures(mChangeWorldMaterial[i],existInDreams,existInNightmares);
+			}
+		}
 	}
 }
 
@@ -238,7 +255,7 @@ void RenderComponentWater::postUpdate()
 }
 
 
-void RenderComponentWater::setMaterial(std::string material)
+void RenderComponentWater::setMaterial(std::vector<std::string> & material)
 {
 	Ogre::SubEntity* subEnt;
 	Ogre::MaterialPtr original_material;
@@ -252,13 +269,13 @@ void RenderComponentWater::setMaterial(std::string material)
 
 		// Get/Create the clone material
 
-		if (Ogre::MaterialManager::getSingleton().resourceExists(material))
+		if (Ogre::MaterialManager::getSingleton().resourceExists(material[i]))
 		{
-			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material));
+			subEnt->setMaterial(Ogre::MaterialManager::getSingleton().getByName(material[i]));
 		}
 		else
 		{
-			Logger::getInstance()->log("[RenderComponentWater] material "+material+" does not exist.");
+			Logger::getInstance()->log("[RenderComponentWater] material "+material[i]+" does not exist.");
 		}
 	}
 }
@@ -281,26 +298,30 @@ void RenderComponentWater::setNightmaresMaterials()
 void RenderComponentWater::setChangeWorldFactor(double factor)
 {
 	Ogre::Technique * technique;
-	Ogre::GpuProgramParametersSharedPtr params;
 	Ogre::Pass * pass;
+	Ogre::GpuProgramParametersSharedPtr params;
+	unsigned int i;
 
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterial);
-
-	if(material.get())
+	for ( i = 0; i < mChangeWorldMaterial.size(); i++)
 	{
-		technique= material->getTechnique(0);
-		if(technique)
-		{
-			if(technique->getNumPasses()>0)
-			{
-				pass=technique->getPass(0);
-				if(pass->hasFragmentProgram())
-				{
-					params=pass->getFragmentProgramParameters();
+		Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().getByName(mChangeWorldMaterial[i]);
 
-					if(params.get())
+		if(material.get())
+		{
+			technique= material->getTechnique(0);
+			if(technique)
+			{
+				if(technique->getNumPasses()>0)
+				{
+					pass=technique->getPass(0);
+					if(pass->hasFragmentProgram())
 					{
-						params->setNamedConstant("mix_factor",Ogre::Real(factor));
+						params=pass->getFragmentProgramParameters();
+
+						if(params.get())
+						{
+							params->setNamedConstant("mix_factor",Ogre::Real(factor));
+						}
 					}
 				}
 			}

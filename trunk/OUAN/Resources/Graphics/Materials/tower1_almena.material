@@ -1,5 +1,5 @@
 import basic_texture from BasicTexture.material
-import no_changeworld from ChangeWorld.material
+import default_changeworld from ChangeWorld.material
 
 material tower1_almena_d : basic_texture
 {
@@ -11,7 +11,7 @@ material tower1_almena_n : basic_texture
 	set_texture_alias diffuse_texture tower1_almena_n.dds
 }
 
-material tower1_almena_cw : no_changeworld
+material tower1_almena_cw : default_changeworld
 {
 	set_texture_alias dreams tower1_almena_d.dds
 	set_texture_alias nightmares tower1_almena_n.dds

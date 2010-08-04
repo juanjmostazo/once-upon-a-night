@@ -159,7 +159,7 @@ namespace OUAN
 		void replaceConfig(TControlInputMapping& newMapping, bool saveToFile);
 
 		void updateDownKeys();
-		
+
 	protected:
 		/// In order to determine getMovement method result
 		bool isPressedGoForward(int *pad, int *key);		// Go forward

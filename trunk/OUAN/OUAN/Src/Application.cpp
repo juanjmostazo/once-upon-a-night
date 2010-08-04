@@ -184,6 +184,7 @@ void Application::go()
 
 			mGUISubsystem->injectTimePulse((currentTime-lastTick)*0.000001);
 			mStateManager->getCurrentState()->handleEvents();
+			updateDownKeys();
 			mStateManager->getCurrentState()->update(currentTime-lastTick);
 
 			//nextGameTicks+=SKIP_TICKS;
@@ -196,8 +197,6 @@ void Application::go()
 		bool renderFrameSuccess = mStateManager->getCurrentState()->render();
 		continueRunning &= renderFrameSuccess;
 		continueRunning &= ! mExitRequested;
-
-		updateDownKeys();
 	}
 }
 
@@ -276,8 +275,7 @@ void Application::loadInitialState()
 		initialState.reset(new IntroState());
 	}
 
-	ApplicationPtr this_ = shared_from_this();
-	mStateManager->changeState(initialState,this_);
+	mStateManager->changeState(initialState,shared_from_this());
 }
 
 int Application::getDebugMode() const{
