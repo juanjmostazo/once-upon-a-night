@@ -15,7 +15,7 @@ RenderComponentMessageBox::RenderComponentMessageBox()
 ,mVisible(false)
 ,mMessage("")
 ,mDuration(0.0)
-,mElapsedTime(0.0)
+,mElapsedTime(-1.0)
 {
 }
 RenderComponentMessageBox::~RenderComponentMessageBox()

@@ -576,6 +576,8 @@ void GameWorldManager::resetAll()
 
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 
+	mFirstMsgBox=true;
+
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
 

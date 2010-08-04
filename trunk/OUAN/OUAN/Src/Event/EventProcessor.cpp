@@ -429,7 +429,8 @@ void EventProcessor::processMsgBoxVisibilityChanged(MsgBoxVisibilityChangedEvent
 {
 	if (mWorldManager->isFirstMsgBox() && evt->mVisible)
 	{
-		//TODO: LAUNCH PARTICLES
+		GameObjectOnyPtr ony = mWorldManager->getGameObjectOny();
+		ony->getRenderComponentParticleSystemRunSurprise()->start();		
 		mWorldManager->setFirstMsgBox(false);
 	}
 }
