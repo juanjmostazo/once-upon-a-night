@@ -174,14 +174,14 @@ bool ControlInputManager::isDownMenu(int *pad, int* key)
 {
 	*pad = padSelect;
 	*key = mDefaultInputData.keyMenu;
-	return isPressed(padSelect,mDefaultInputData.keyMenu);
+	return isDown(padSelect,mDefaultInputData.keyMenu);
 }
 
 bool ControlInputManager::isDownPause(int *pad, int* key)
 {
 	*pad = padStart;
 	*key = mDefaultInputData.keyPause;
-	return isPressed(padStart,mDefaultInputData.keyPause);
+	return isDown(padStart,mDefaultInputData.keyPause);
 }
 
 //////////////////////////////////////////////////////////////

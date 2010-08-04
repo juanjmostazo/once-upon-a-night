@@ -229,7 +229,6 @@ void GameRunningState::handleEvents()
 		GameStatePtr nextState(new InGameMenuState());
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 	}
-	// REMOVED COPY-PASTED, SPAGHETTI CODE TWEAK
 	int world=mApp->getGameWorldManager()->getWorld();
 	bool flashlightAttack = world==NIGHTMARES && mApp->isDownUseWeapon(&pad,&key);
 	bool pillowAttack = world==DREAMS && mApp->isPressedUseWeapon(&pad,&key);
