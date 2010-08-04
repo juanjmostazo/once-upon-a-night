@@ -10,11 +10,9 @@ material fog1_d : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -35,6 +33,14 @@ material fog1_d : default_changeworld_alpha_blending
 			{
 				texture fog1_n.dds
 			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
 		}
 	}
 }
@@ -45,11 +51,9 @@ material fog1_n : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -70,6 +74,14 @@ material fog1_n : default_changeworld_alpha_blending
 			{
 				texture fog1_n.dds
 			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
 		}
 	}
 }
@@ -80,11 +92,9 @@ material fog1_cw : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -103,6 +113,14 @@ material fog1_cw : default_changeworld_alpha_blending
 			texture_unit nightmares
 			{
 				texture fog1_n.dds
+			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
 			}
 		}
 	}
@@ -115,11 +133,9 @@ material fog2_d : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -140,6 +156,14 @@ material fog2_d : default_changeworld_alpha_blending
 			{
 				texture fog2_n.dds
 			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
 		}
 	}
 }
@@ -150,11 +174,9 @@ material fog2_n : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -175,6 +197,14 @@ material fog2_n : default_changeworld_alpha_blending
 			{
 				texture fog2_n.dds
 			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
 		}
 	}
 }
@@ -185,11 +215,9 @@ material fog2_cw : default_changeworld_alpha_blending
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
 		      vertex_program_ref erosion_vs
 		      {
-				
+
 		      }
 		      fragment_program_ref erosion_fs
 		      {
@@ -209,48 +237,92 @@ material fog2_cw : default_changeworld_alpha_blending
 			{
 				texture fog2_n.dds
 			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
 		}
 	}
 }
 
 //FOG3
-material fog3_d
+material fog3_d : default_changeworld_alpha_blending
 {
 	technique
 	{
 		pass
 		{
-       		scene_blend alpha_blend
-			depth_write off
-			texture_unit diffuse_texture
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 0
+				param_named tiling float3 2 2
+0.0
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture fog3_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog3_n.dds
+			}
+			texture_unit fog_mask_dreams
 			{
 				texture fog_mask.dds
 			}
-			texture_unit alpha_texture
+			texture_unit fog_mask_nightmares
 			{
-				texture fog3_d.dds
-				colour_op replace
+				texture fog_mask.dds
 			}
 		}
 	}
 }
 
-material fog3_n
-{
+material fog3_n : default_changeworld_alpha_blending
+{	
 	technique
 	{
 		pass
 		{
-			scene_blend alpha_blend
-			depth_write off
-			texture_unit alpha_texture
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 1
+				param_named tiling float3 2 2
+0.0
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture fog3_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog3_n.dds
+			}
+			texture_unit fog_mask_dreams
 			{
 				texture fog_mask.dds
 			}
-			texture_unit diffuse_texture
+			texture_unit fog_mask_nightmares
 			{
-				texture fog3_n.dds
-				colour_op replace
+				texture fog_mask.dds
 			}
 		}
 	}
@@ -258,6 +330,38 @@ material fog3_n
 
 material fog3_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias dreams fog3_d.dds
-	set_texture_alias nightmares fog3_n.dds
+	technique
+	{
+		pass
+		{
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named tiling float3 2 2
+0.0
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture fog3_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog3_n.dds
+			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
+		}
+	}
 }

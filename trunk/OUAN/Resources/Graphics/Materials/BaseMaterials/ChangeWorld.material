@@ -29,6 +29,14 @@ material default_changeworld
 		        {
 				texture Dirt2.jpg
 	                }
+		        texture_unit lightmap_dreams
+		        {
+				texture white.dds
+	                }
+		        texture_unit lightmap_dreams
+		        {
+				texture white.dds
+	                }
               }
       }
 }
