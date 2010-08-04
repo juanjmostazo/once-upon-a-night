@@ -26,6 +26,7 @@ fragment_program erosion_FS_CG cg
 	  param_named tiling float3 1 1 1
 	  param_named blending_tiling float3 1 1 1
 	  param_named_auto time_elapsed time
+	  param_named modulate_factor float 1
    	}
 }
 

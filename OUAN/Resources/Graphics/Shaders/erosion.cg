@@ -4,6 +4,9 @@
 sampler blending_texture : register(s0);
 sampler diffuse_color_base : register(s1);
 sampler diffuse_color_blended : register(s2);
+sampler modulate_color_base : register(s3);
+sampler modulate_color_blended : register(s4);
+
 
 // General functions
 
@@ -47,27 +50,35 @@ uniform float blending,
 uniform float3 tiling,
 uniform float3 blending_tiling,
 uniform float time_elapsed,
+uniform float modulate_factor,
 out float4 oColor : COLOR)
 {
     float4 erosion_info;
+    float4 base_color;
+    float4 blended_color;
     float normalized_blending_factor;  
+    float2 original_uv;
+
+    original_uv=uv;
     
     uv=calculateUV(uv,-scroll_animation*time_elapsed,tiling);
     erosion_info=tex2D(blending_texture,calculateUV(uv,displacement-scroll_blending*time_elapsed,blending_tiling));  
-    
+
     if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
     {
-       oColor=tex2D(diffuse_color_base,uv);                                   
+       oColor=tex2D(diffuse_color_base,uv)*tex2D(modulate_color_base,original_uv);                               
 
     }
     else if(erosion_info.x<=mix_factor-blending || mix_factor==1.0f)
     {
-       oColor=tex2D(diffuse_color_blended,uv);
+       oColor=tex2D(diffuse_color_blended,uv)*tex2D(modulate_color_base,original_uv);
     }   
     else
     {
+       base_color=tex2D(diffuse_color_base,uv)*tex2D(modulate_color_base,original_uv);
+       blended_color=tex2D(diffuse_color_blended,uv)*tex2D(modulate_color_base,original_uv);
        normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
-       oColor=normalized_blending_factor*tex2D(diffuse_color_base,uv)+(1-normalized_blending_factor)*tex2D(diffuse_color_blended,uv); 
+       oColor=normalized_blending_factor* base_color+(1-normalized_blending_factor)*blended_color; 
     }
 
 }
