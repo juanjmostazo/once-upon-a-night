@@ -515,6 +515,7 @@ void GameWorldManager::init(ApplicationPtr app)
 	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL INIT FINISHED]");
 
 	mFirstMsgBox=true;
+	mFirstSignpostHit=true;
 }
 
 void GameWorldManager::cleanUp()
@@ -577,6 +578,7 @@ void GameWorldManager::resetAll()
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 
 	mFirstMsgBox=true;
+	mFirstSignpostHit=true;
 
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
@@ -1705,6 +1707,14 @@ bool GameWorldManager::isFirstMsgBox() const
 void GameWorldManager::setFirstMsgBox(bool firstMsgBox)
 {
 	mFirstMsgBox=firstMsgBox;
+}
+bool GameWorldManager::isFirstSignpostHit() const
+{
+	return mFirstSignpostHit;
+}
+void GameWorldManager::setFirstSignpostHit(bool firstSignpostHit)
+{
+	mFirstSignpostHit=firstSignpostHit;
 }
 void GameWorldManager::increaseOnyDiamonds(int amount)
 {	

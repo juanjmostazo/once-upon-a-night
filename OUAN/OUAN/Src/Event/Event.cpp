@@ -257,3 +257,9 @@ MsgBoxVisibilityChangedEvent::MsgBoxVisibilityChangedEvent(bool visible)
 ,mVisible(visible)
 {
 }
+//---
+FirstSignpostHitEvent::FirstSignpostHitEvent()
+:Event(EVT_PRIORITY_FIRST_SIGNPOST_HIT, EVENT_TYPE_FIRST_SIGNPOST_HIT)	   
+{
+
+}

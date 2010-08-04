@@ -127,8 +127,6 @@ void RenderComponentMessageBox::setVisible(bool visible)
 			mBasePanel->hide();
 		}
 	}
-	MsgBoxVisibilityChangedEventPtr evt = MsgBoxVisibilityChangedEventPtr(new MsgBoxVisibilityChangedEvent(mVisible));
-	mParent->getGameWorldManager()->addEvent(evt);
 }
 bool RenderComponentMessageBox::isVisible() const
 {

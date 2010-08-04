@@ -27,13 +27,13 @@ LogicComponentProp::~LogicComponentProp()
 void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
-	//Logger::getInstance()->log(getParent()->getName() + " LOGICCOMPONENTPROP COLLISION: " +
-	//	pGameObject->getName() + ", " + mParent->getName());
+	GameWorldManagerPtr worldMgr = mParent->getGameWorldManager();
+	ApplicationPtr app = worldMgr->getParent();
 
  	bool isParentDiamondTree = mParent->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 	bool isWeaponCollision=pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 
 		|| pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0;
-	LogicSubsystemPtr logicSS = mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
+	LogicSubsystemPtr logicSS = app->getLogicSubsystem();
 
 	if(isParentDiamondTree && isWeaponCollision && (getState()==logicSS->getGlobalInt(DT_STATE_IDLE) || getState()==logicSS->getGlobalInt(DT_STATE_MAY_HIT)))
 	{		
@@ -52,6 +52,12 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		{
 			mHasTakenHit=true;
 			mHitRecoveryTime=1;
+
+			if (worldMgr->isFirstSignpostHit())
+			{
+				FirstSignpostHitEventPtr evt = FirstSignpostHitEventPtr(new FirstSignpostHitEvent());
+				worldMgr->addEvent(evt);
+			}
 		}
 	}
 	bool isParentPortal = mParent->getType().compare(GAME_OBJECT_TYPE_PORTAL)==0;
