@@ -333,6 +333,7 @@ void GameObjectDiamond::update(double elapsedSeconds)
 		if (isFirstUpdate())
 		{
 			mRenderComponentEntity->changeAnimation(DIAMOND_ANIM_IDLE);
+			mRenderComponentParticleSystemBrightness->start();
 		}
 		else
 		{
@@ -456,6 +457,8 @@ bool GameObjectDiamond::hasLogicComponent() const
 
 void GameObjectDiamond::startCollisionParticles()
 {
+	mRenderComponentParticleSystemBrightness->stop();
+
 	mRenderComponentParticleSystemStarsCloud->start();
 }
 

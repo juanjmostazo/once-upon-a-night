@@ -1,10 +1,10 @@
-system PU/run_sand
+system PU/ony_run_sand
 {
     scale                                       0.05 0.05 0.05
     technique Technique3
     {
         visual_particle_quota                   10
-        material                                PU/run_sand
+        material                                PU/ony_run_sand
         renderer                                Billboard
         {
         }
@@ -25,7 +25,7 @@ system PU/run_sand
         }
         affector                                Colour Affector8
         {
-            colour_aff_time_colour              0    1 0.501961 0.25098 1
+            colour_aff_time_colour              0    0.8 0.3 0.15 1
             colour_aff_time_colour              3    1 1 1 1
         }
     }

@@ -9,21 +9,21 @@
 	<Option key="ONY_LAND_DREAMS">PU/any_jump_d</Option>
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
 	<Option key="ONY_LAND_WAVE">PU/wave</Option>
-	<Option key="ONY_LAND_WATER_WAVE">PU/run_sand</Option>
-	<Option key="ONY_LAND_WATER_DROPS">PU/run_sand</Option>
-	<Option key="ONY_RUN_GRASS">PU/run_sand</Option>
-	<Option key="ONY_RUN_SAND">PU/run_sand</Option>
-	<Option key="ONY_RUN_WATER">PU/run_sand</Option>
-	<Option key="ONY_RUN_SURPRISE">PU/run_sand</Option>
+	<Option key="ONY_LAND_WATER_WAVE">PU/ony_run_sand</Option>
+	<Option key="ONY_LAND_WATER_DROPS">PU/ony_run_sand</Option>
+	<Option key="ONY_RUN_GRASS">PU/ony_run_sand</Option>
+	<Option key="ONY_RUN_SAND">PU/ony_run_sand</Option>
+	<Option key="ONY_RUN_WATER">PU/ony_run_sand</Option>
+	<Option key="ONY_RUN_SURPRISE">PU/ony_run_surprise</Option>
 	
 	<Option key="PILLOW_ATTACK">PU/attack_pillow</Option>
 	
 	<Option key="FLASH_LIGHT_ATTACK">PU/attack_light</Option>
-	<Option key="FLASH_LIGHT_ATTACK_RED">PU/run_sand</Option>
-	<Option key="FLASH_LIGHT_ATTACK_GREEN">PU/run_sand</Option>
-	<Option key="FLASH_LIGHT_ATTACK_BLUE">PU/run_sand</Option>
+	<Option key="FLASH_LIGHT_ATTACK_RED">PU/ony_run_sand</Option>
+	<Option key="FLASH_LIGHT_ATTACK_GREEN">PU/ony_run_sand</Option>
+	<Option key="FLASH_LIGHT_ATTACK_BLUE">PU/ony_run_sand</Option>
 	
-	<Option key="DIAMOND_BRIGHTNESS">PU/run_sand</Option>
+	<Option key="DIAMOND_BRIGHTNESS">PU/diamond_brightness</Option>
 	<Option key="DIAMOND_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
 	<Option key="HEART_STARS_CLOUD">PU/heart_stars_cloud</Option>
@@ -35,7 +35,7 @@
 	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option>
 	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	
-	<Option key="TOY_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	<Option key="TOY_STARS_CLOUD">PU/toy_stars_cloud</Option>
 	
 	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option>
 	

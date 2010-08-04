@@ -1,0 +1,51 @@
+system PU/diamond_brightness
+{
+    scale                                       0.1 0.1 0.1
+    technique 
+    {
+        visual_particle_quota                   40
+        material                                PU/diamond_brightness
+        default_particle_width                  80
+        default_particle_height                 80
+        default_particle_depth                  80
+        renderer                                Sphere
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       dyn_oscillate
+            {
+                oscillate_frequency             0.5
+                oscillate_phase                 0
+                oscillate_base                  20
+                oscillate_amplitude             20
+                oscillate_type                  sine
+            }
+            time_to_live                        1.2
+            direction                           0 0 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    0.25 0.25 0.75 1
+            colour_aff_time_colour              0.2  0.25 0.25 0.75 1
+            colour_aff_time_colour              0.4  0.25 0.25 0.75 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+        affector                                GeometryRotator 
+        {
+            geom_rot_rotation_speed             dyn_curved_linear
+            {
+                control_point                   0 3
+                control_point                   1 0.2
+            }
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           dyn_curved_linear
+            {
+                control_point                   0.5 100
+                control_point                   1 200
+            }
+        }
+    }
+}

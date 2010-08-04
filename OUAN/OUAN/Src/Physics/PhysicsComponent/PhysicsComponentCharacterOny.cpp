@@ -27,6 +27,7 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 {
 	PhysicsComponentCharacter::update(elapsedSeconds);
 	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,mParent);
+
 	if (ony.get())		
 	{
 		//Use a facade method to prevent a dependency
@@ -49,9 +50,7 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 				ony->setLogicNewState(newState);
 			}
 		}
-
 	}
-
 }
 
 bool PhysicsComponentCharacterOny::isWorthUpdating()
