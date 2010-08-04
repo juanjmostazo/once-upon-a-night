@@ -225,5 +225,12 @@ namespace OUAN
 		bool mVisible;
 	};
 
+	class FirstSignpostHitEvent: public Event
+	{
+	public:
+		FirstSignpostHitEvent();
+
+	};
+
 }
 #endif

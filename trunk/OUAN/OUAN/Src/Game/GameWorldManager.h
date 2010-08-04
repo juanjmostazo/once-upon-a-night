@@ -322,6 +322,9 @@ namespace OUAN
 		bool isFirstMsgBox() const;
 		void setFirstMsgBox(bool firstMsgBox);
 
+		bool isFirstSignpostHit() const;
+		void setFirstSignpostHit(bool firstSignpostHit);
+
 		void increaseOnyDiamonds(int amount=1);
 
 	private:		
@@ -430,6 +433,7 @@ namespace OUAN
 		std::map<std::string, std::string> mNestLinks;
 
 		bool mFirstMsgBox;
+		bool mFirstSignpostHit;
 	};
 }
 #endif

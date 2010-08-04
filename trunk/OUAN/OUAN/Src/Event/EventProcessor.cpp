@@ -89,8 +89,8 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
 
-		registerEventHandler<EventProcessor,MsgBoxVisibilityChangedEvent,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED>
-			(this_,&EventProcessor::processMsgBoxVisibilityChanged,mWorldManager->getEventManager());
+		registerEventHandler<EventProcessor,FirstSignpostHitEvent,EVENT_TYPE_FIRST_SIGNPOST_HIT>
+			(this_,&EventProcessor::processFirstSignpostHitEvent,mWorldManager->getEventManager());
 	}
 }
 
@@ -145,8 +145,9 @@ void EventProcessor::unregisterHandlers()
 		unregisterEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
 
-		unregisterEventHandler<EventProcessor,MsgBoxVisibilityChangedEvent,EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED>
-			(this_,&EventProcessor::processMsgBoxVisibilityChanged,mWorldManager->getEventManager());
+		unregisterEventHandler<EventProcessor,FirstSignpostHitEvent,EVENT_TYPE_FIRST_SIGNPOST_HIT>
+			(this_,&EventProcessor::processFirstSignpostHitEvent,mWorldManager->getEventManager());
+
 
 	}
 }
@@ -425,12 +426,12 @@ void EventProcessor::processChangeLevel(ChangeLevelEventPtr evt)
 
 }
 
-void EventProcessor::processMsgBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr evt)
+void EventProcessor::processFirstSignpostHitEvent(FirstSignpostHitEventPtr evt)
 {
-	if (mWorldManager->isFirstMsgBox() && evt->mVisible)
+	if (mWorldManager->isFirstSignpostHit())
 	{
 		GameObjectOnyPtr ony = mWorldManager->getGameObjectOny();
 		ony->getRenderComponentParticleSystemRunSurprise()->start();		
-		mWorldManager->setFirstMsgBox(false);
+		mWorldManager->setFirstSignpostHit(false);
 	}
 }
