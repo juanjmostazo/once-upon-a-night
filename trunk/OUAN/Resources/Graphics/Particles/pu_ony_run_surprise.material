@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/run_sand
+material PU/ony_run_surprise
 {
     technique
     {
@@ -20,7 +20,7 @@ material PU/run_sand
 
             texture_unit
             {
-                texture pu_run_sand.png
+                texture pu_ony_run_surprise.png
             }
         }
     }

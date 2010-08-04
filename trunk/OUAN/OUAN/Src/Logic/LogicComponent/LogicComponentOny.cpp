@@ -57,10 +57,12 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)==0 && !getParent()->getGameWorldManager()->isGodMode())
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)==0 
+		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTripolloDreamsPtr tripollo= 
 			BOOST_PTR_CAST(GameObjectTripolloDreams,pGameObject);
+
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
 			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
@@ -81,6 +83,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		GameObjectTentetiesoPtr tentetieso= 
 			BOOST_PTR_CAST(GameObjectTentetieso,pGameObject);
+
 		if(tentetieso.get() && !tentetieso->hasBeenHit() &&!tentetieso->hasDied() 
 			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
@@ -99,6 +102,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		GameObjectTerrainConvexPtr terrain = 
 			BOOST_PTR_CAST(GameObjectTerrainConvex,pGameObject);
+
 		PhysicsComponentComplexConvexPtr physicsTerrain = terrain->getPhysicsComponentComplexConvex();
 
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
