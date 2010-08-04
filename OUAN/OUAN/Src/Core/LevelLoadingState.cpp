@@ -126,6 +126,7 @@ void LevelLoadingState::pause()
 /// resume state
 void LevelLoadingState::resume()
 {
+	GameState::resume();
 }
 
 /// process input events

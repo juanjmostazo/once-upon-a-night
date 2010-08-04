@@ -9,12 +9,12 @@ sampler diffuse_color_blended : register(s2);
 
 float2 calculateUV(in float2 uv,in float3 scroll, in float3 tiling)
 {
-    uv.x=uv.x+scroll.x;
-    uv.y=uv.y+scroll.y;
-    
     uv.x = uv.x*tiling.x; 
     uv.y = uv.y*tiling.y;  
         
+    uv.x=uv.x+scroll.x;
+    uv.y=uv.y+scroll.y;
+
     return uv;
 }
 
@@ -46,13 +46,14 @@ uniform float mix_factor,
 uniform float blending,
 uniform float3 tiling,
 uniform float3 blending_tiling,
+uniform float time_elapsed,
 out float4 oColor : COLOR)
 {
     float4 erosion_info;
     float normalized_blending_factor;  
     
-    uv=calculateUV(uv,scroll_animation,tiling);
-    erosion_info=tex2D(blending_texture,calculateUV(uv,displacement+scroll_blending,blending_tiling));  
+    uv=calculateUV(uv,-scroll_animation*time_elapsed,tiling);
+    erosion_info=tex2D(blending_texture,calculateUV(uv,displacement-scroll_blending*time_elapsed,blending_tiling));  
     
     if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
     {

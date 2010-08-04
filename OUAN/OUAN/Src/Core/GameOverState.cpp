@@ -64,7 +64,7 @@ void GameOverState::pause()
 /// resume state
 void GameOverState::resume()
 {
-
+	GameState::resume();
 }
 
 /// process input events

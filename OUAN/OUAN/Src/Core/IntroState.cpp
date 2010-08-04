@@ -94,7 +94,7 @@ void IntroState::pause()
 /// resume state
 void IntroState::resume()
 {
-
+	GameState::resume();
 }
 bool IntroState::keyPressed(const OIS::KeyEvent& e)
 {

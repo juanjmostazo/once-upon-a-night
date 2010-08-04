@@ -21,6 +21,21 @@ void GameState::init(ApplicationPtr app)
 	mApp=app;
 }
 
+void GameState::resume()
+{
+
+}
+
+void GameState::pause()
+{
+
+}
+
+void GameState::handleEvents()
+{
+
+}
+
 void GameState::cleanUp()
 {
 }

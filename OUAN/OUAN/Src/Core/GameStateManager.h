@@ -26,9 +26,14 @@ namespace OUAN
 		/// Return current state (i.e, the state at the stack's top)
 		/// @return current state
 		GameStatePtr getCurrentState() const;
+
+		bool stateChanged();
+
+		void update();
 	private: 
 		/// the stack of states
 		TGameStateStack mStates;
+		bool mStateChanged;
 	};
 }
 #endif

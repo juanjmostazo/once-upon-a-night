@@ -19,7 +19,7 @@ namespace OUAN
 		~RenderComponentBillboardSet();
 
 		Ogre::BillboardSet * getBillboardSet() const;
-		void setBillboardSet(Ogre::BillboardSet *);
+		void setBillboardSet(Ogre::BillboardSet *,bool existInDreams,bool existInNightmares);
 
 		void setVisible(bool visible);
 

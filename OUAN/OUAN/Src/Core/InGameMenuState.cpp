@@ -31,6 +31,7 @@ InGameMenuState::~InGameMenuState()
 /// init main menu's resources
 void InGameMenuState::init(ApplicationPtr app)
 {
+	Logger::getInstance()->log("IN GAME MENU INIT");
 	GameState::init(app);
 
 	mGUI=BOOST_PTR_CAST(GUIInGame,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_INGAMEMENU));

@@ -4,43 +4,71 @@ import default_changeworld from ChangeWorld.material
 import default_changeworld_alpha_blending from ChangeWorld.material
 
 //FOG1
-material fog1_d : alpha_blending_texture
+material fog1_d : default_changeworld_alpha_blending
 {
 	technique
 	{
 		pass
 		{
-			texture_unit alpha_texture
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 0
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
 			{
-				texture fog_mask.dds
 			}
-			texture_unit diffuse_texture
+			texture_unit dreams
 			{
 				texture fog1_d.dds
-				scroll_anim 0.02 0
-				scale 0.3 0.3
-				colour_op replace
+			}
+			texture_unit nightmares
+			{
+				texture fog1_n.dds
 			}
 		}
 	}
 }
 
-material fog1_n : alpha_blending_texture
+material fog1_n : default_changeworld_alpha_blending
 {
 	technique
 	{
 		pass
 		{
-			texture_unit alpha_texture
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 1
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
 			{
-				texture fog_mask.dds
 			}
-			texture_unit diffuse_texture
+			texture_unit dreams
+			{
+				texture fog1_d.dds
+			}
+			texture_unit nightmares
 			{
 				texture fog1_n.dds
-				scroll_anim 0.02 0
-				scale 0.3 0.3
-				colour_op replace
 			}
 		}
 	}
@@ -48,48 +76,104 @@ material fog1_n : alpha_blending_texture
 
 material fog1_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias dreams fog1_d.dds
-	set_texture_alias nightmares fog1_n.dds
-}
-
-//FOG2
-material fog2_d : alpha_blending_texture
-{
 	technique
 	{
 		pass
 		{
-			texture_unit alpha_texture
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
 			{
-				texture fog_mask.dds
 			}
-			texture_unit diffuse_texture
+			texture_unit dreams
 			{
-				texture fog2_d.dds
-				scroll_anim 0.01 0
-				scale 0.3 0.3
-				colour_op replace
+				texture fog1_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog1_n.dds
 			}
 		}
 	}
 }
 
-material fog2_n : alpha_blending_texture
+//FOG2
+material fog2_d : default_changeworld_alpha_blending
 {
 	technique
 	{
 		pass
 		{
-			texture_unit alpha_texture
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 0
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
 			{
-				texture fog_mask.dds
 			}
-			texture_unit diffuse_texture
+			texture_unit dreams
+			{
+				texture fog2_d.dds
+			}
+			texture_unit nightmares
 			{
 				texture fog2_n.dds
-				scroll_anim 0.01 0
-				scale 0.3 0.3
-				colour_op replace
+			}
+		}
+	}
+}
+
+material fog2_n : default_changeworld_alpha_blending
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 1
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture fog2_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog2_n.dds
 			}
 		}
 	}
@@ -97,8 +181,36 @@ material fog2_n : alpha_blending_texture
 
 material fog2_cw : default_changeworld_alpha_blending
 {
-	set_texture_alias dreams fog2_d.dds
-	set_texture_alias nightmares fog2_n.dds
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			depth_write off
+		      vertex_program_ref erosion_vs
+		      {
+				
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture fog2_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture fog2_n.dds
+			}
+		}
+	}
 }
 
 //FOG3

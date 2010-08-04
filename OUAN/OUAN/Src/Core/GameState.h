@@ -20,21 +20,21 @@ namespace OUAN
 		///Destructor
 		virtual ~GameState();
 		/// init the game's resources for the current state
-		virtual void init(ApplicationPtr app)=0;
+		virtual void init(ApplicationPtr app);
 		/// Free those game resources specific to the current state
-		virtual void cleanUp()=0;
+		virtual void cleanUp();
 
 		/// Pause current state
-		virtual void pause()=0;
+		virtual void pause();
 		/// Resume current state
-		virtual void resume()=0;
+		virtual void resume();
 
 		/// Handle input events
 		/// @param	app	the parent app
-		virtual void handleEvents()=0;
+		virtual void handleEvents();
 		/// Update game according to the current state
 		/// @param app	the parent app
-		virtual void update(long elapsedTime)=0;
+		virtual void update(long elapsedTime);
 		/// Renders game's visuals to the screen
 		/// @param app the parent app
 		virtual bool render();

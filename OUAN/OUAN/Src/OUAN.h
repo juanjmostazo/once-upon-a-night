@@ -66,6 +66,7 @@ namespace OUAN
 		const std::string SUFFIX_DREAMS="_d";
 		const std::string SUFFIX_NIGHTMARES="_n";	
 		const std::string SUFFIX_CHANGEWORLD="_cw";
+		const std::string TRANSPARENT_TEXTURE="transparent.dds";
 
 		class WorldNameConverter;
 

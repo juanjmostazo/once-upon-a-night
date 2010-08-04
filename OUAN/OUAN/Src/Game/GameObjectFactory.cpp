@@ -145,7 +145,9 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 		//Create RenderComponentEntity Dreams
 		pGameObjectBee_Butterfly->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBee_ButterflyParameters.dreamsName,
-			pGameObjectBee_Butterfly,tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectBee_Butterfly,tGameObjectBee_ButterflyParameters.tRenderComponentEntityDreamsParameters,
+			pGameObjectBee_Butterfly->getLogicComponentEnemy()->existsInDreams(),
+			pGameObjectBee_Butterfly->getLogicComponentEnemy()->existsInNightmares()));
 
 		//Create PhysicsComponent Dreams
 		pGameObjectBee_Butterfly->setPhysicsComponentCharacterDreams(
@@ -159,7 +161,9 @@ GameObjectBee_ButterflyPtr GameObjectFactory::createGameObjectBee_Butterfly(TGam
 		//Create RenderComponentEntity Nightmares
 		pGameObjectBee_Butterfly->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBee_ButterflyParameters.nightmaresName,
-			pGameObjectBee_Butterfly,tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectBee_Butterfly,tGameObjectBee_ButterflyParameters.tRenderComponentEntityNightmaresParameters,
+			pGameObjectBee_Butterfly->getLogicComponentEnemy()->existsInDreams(),
+			pGameObjectBee_Butterfly->getLogicComponentEnemy()->existsInNightmares()));
 
 		//Create PhysicsComponent Nightmares
 		pGameObjectBee_Butterfly->setPhysicsComponentCharacterNightmares(
@@ -214,25 +218,33 @@ GameObjectBillboardSetPtr GameObjectFactory::createGameObjectBillboardSet(TGameO
 		//Create RenderComponentBillboardSetDreams
 		pGameObjectBillboardSet->setRenderComponentBillboardSetDreams(
 			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.dreamsName,
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters));
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters,
+			pGameObjectBillboardSet->getLogicComponent()->existsInDreams(),
+			pGameObjectBillboardSet->getLogicComponent()->existsInNightmares()));
 		//Create RenderComponentBillboardSetNightmares
 		pGameObjectBillboardSet->setRenderComponentBillboardSetNightmares(
 			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.nightmaresName,
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters));
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters,
+			pGameObjectBillboardSet->getLogicComponent()->existsInDreams(),
+			pGameObjectBillboardSet->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectBillboardSet->getLogicComponent()->existsInDreams())
 	{
 		//Create RenderComponentBillboardSetDreams
 		pGameObjectBillboardSet->setRenderComponentBillboardSetDreams(
 			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.dreamsName,
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters));
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetDreamsParameters,
+			pGameObjectBillboardSet->getLogicComponent()->existsInDreams(),
+			pGameObjectBillboardSet->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectBillboardSet->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentBillboardSetNightmares
 		pGameObjectBillboardSet->setRenderComponentBillboardSetNightmares(
 			mComponentFactory->createRenderComponentBillboardSet(tGameObjectBillboardSetParameters.nightmaresName,
-			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters));
+			pGameObjectBillboardSet,tGameObjectBillboardSetParameters.tRenderComponentBillboardSetNightmaresParameters,
+			pGameObjectBillboardSet->getLogicComponent()->existsInDreams(),
+			pGameObjectBillboardSet->getLogicComponent()->existsInNightmares()));
 	}
 	// Add a reference to this
 	pGameObjectBillboardSet->setGameWorldManager(gameWorldMgr);
@@ -280,12 +292,16 @@ GameObjectTraspasablePtr GameObjectFactory::createGameObjectTraspasable(TGameObj
 		//Create RenderComponentEntity Dreams
 		pGameObjectTraspasable->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.dreamsName,
-			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters,
+			pGameObjectTraspasable->getLogicComponent()->existsInDreams(),
+			pGameObjectTraspasable->getLogicComponent()->existsInNightmares()));
 
 		//Create RenderComponentEntity Nightmares
 		pGameObjectTraspasable->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.nightmaresName,
-			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters,
+			pGameObjectTraspasable->getLogicComponent()->existsInDreams(),
+			pGameObjectTraspasable->getLogicComponent()->existsInNightmares()));
 
 	}
 	else if(pGameObjectTraspasable->getLogicComponent()->existsInDreams())
@@ -293,14 +309,18 @@ GameObjectTraspasablePtr GameObjectFactory::createGameObjectTraspasable(TGameObj
 		//Create RenderComponentEntity Dreams
 		pGameObjectTraspasable->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.dreamsName,
-			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityDreamsParameters,
+			pGameObjectTraspasable->getLogicComponent()->existsInDreams(),
+			pGameObjectTraspasable->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectTraspasable->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectTraspasable->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTraspasableParameters.nightmaresName,
-			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTraspasable,tGameObjectTraspasableParameters.tRenderComponentEntityNightmaresParameters,
+			pGameObjectTraspasable->getLogicComponent()->existsInDreams(),
+			pGameObjectTraspasable->getLogicComponent()->existsInNightmares()));
 	}
 
 	//Add reference to this
@@ -351,14 +371,18 @@ GameObjectCarnivorousPlantPtr GameObjectFactory::createGameObjectCarnivorousPlan
 		//Create RenderComponentEntity Dreams
 		pGameObjectCarnivorousPlant->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCarnivorousPlantParameters.dreamsName,
-			pGameObjectCarnivorousPlant,tGameObjectCarnivorousPlantParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectCarnivorousPlant,tGameObjectCarnivorousPlantParameters.tRenderComponentEntityDreamsParameters,
+			pGameObjectCarnivorousPlant->getLogicComponentEnemy()->existsInDreams(),
+			pGameObjectCarnivorousPlant->getLogicComponentEnemy()->existsInNightmares()));
 	}
 	if(pGameObjectCarnivorousPlant->getLogicComponentEnemy()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectCarnivorousPlant->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCarnivorousPlantParameters.nightmaresName,
-			pGameObjectCarnivorousPlant,tGameObjectCarnivorousPlantParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectCarnivorousPlant,tGameObjectCarnivorousPlantParameters.tRenderComponentEntityNightmaresParameters,
+			pGameObjectCarnivorousPlant->getLogicComponentEnemy()->existsInDreams(),
+			pGameObjectCarnivorousPlant->getLogicComponentEnemy()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -411,7 +435,9 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 	//Create RenderComponentEntity
 	pGameObjectClockPiece->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectClockPieceParameters.name,
-		pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentEntityParameters));
+		pGameObjectClockPiece,tGameObjectClockPieceParameters.tRenderComponentEntityParameters,
+		pGameObjectClockPiece->getLogicComponentItem()->existsInDreams(),
+		pGameObjectClockPiece->getLogicComponentItem()->existsInNightmares()));
 
 	//Create RenderComponentGlowDreams
 	pGameObjectClockPiece->setRenderComponentGlow(
@@ -572,14 +598,18 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 		//Create RenderComponentEntity Dreams
 		pGameObjectCryKing->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCryKingParameters.dreamsName,
-			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectCryKing->getLogicComponent()->existsInDreams(),
+		pGameObjectCryKing->getLogicComponent()->existsInNightmares()));
 	}
 	if(pGameObjectCryKing->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectCryKing->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCryKingParameters.nightmaresName,
-			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectCryKing->getLogicComponent()->existsInDreams(),
+		pGameObjectCryKing->getLogicComponent()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -631,7 +661,9 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	//Create RenderComponentEntity
 	pGameObjectDiamond->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectDiamondParameters.name,
-		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters));
+		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters,
+		pGameObjectDiamond->getLogicComponentItem()->existsInDreams(),
+		pGameObjectDiamond->getLogicComponentItem()->existsInNightmares()));
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -720,14 +752,18 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 		//Create RenderComponentEntity Dreams
 		pGameObjectDiamondTree->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.dreamsName,
-			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
+		pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
 	}
 	if(pGameObjectDiamondTree->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectDiamondTree->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.nightmaresName,
-			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
+		pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
 	}
 						
 	//Create PhysicsComponent
@@ -782,14 +818,18 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 		//Create RenderComponentEntity Dreams
 		pGameObjectDoor->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectDoorParameters.dreamsName,
-			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectDoor->getLogicComponent()->existsInDreams(),
+		pGameObjectDoor->getLogicComponent()->existsInNightmares()));
 	}
 	if(pGameObjectDoor->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectDoor->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectDoorParameters.nightmaresName,
-			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectDoor->getLogicComponent()->existsInDreams(),
+		pGameObjectDoor->getLogicComponent()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -841,12 +881,16 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 	//Create RenderComponentEntityDreams
 	pGameObjectBoss->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.dreamsName,
-		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectBoss->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectBoss->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectBoss->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.nightmaresName,
-		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectBoss->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectBoss->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectBoss->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -896,7 +940,9 @@ GameObjectEyePtr GameObjectFactory::createGameObjectEye(TGameObjectEyeParameters
 	//Create RenderComponentEntity
 	pGameObjectEye->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectEyeParameters.name,
-		pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectEye,tGameObjectEyeParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectEye->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectEye->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectEye->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -948,12 +994,16 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 		//Create RenderComponentEntity Dreams
 		pGameObjectFog->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectFogParameters.dreamsName,
-			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectFog->getLogicComponent()->existsInDreams(),
+		pGameObjectFog->getLogicComponent()->existsInNightmares()));
 
 		//Create RenderComponentEntity Nightmares
 		pGameObjectFog->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectFogParameters.nightmaresName,
-			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectFog->getLogicComponent()->existsInDreams(),
+		pGameObjectFog->getLogicComponent()->existsInNightmares()));
 
 	}
 	else if(pGameObjectFog->getLogicComponent()->existsInDreams())
@@ -961,14 +1011,18 @@ GameObjectFogPtr GameObjectFactory::createGameObjectFog(TGameObjectFogParameters
 		//Create RenderComponentEntity Dreams
 		pGameObjectFog->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectFogParameters.dreamsName,
-			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectFog->getLogicComponent()->existsInDreams(),
+		pGameObjectFog->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectFog->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectFog->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectFogParameters.nightmaresName,
-			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectFog,tGameObjectFogParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectFog->getLogicComponent()->existsInDreams(),
+		pGameObjectFog->getLogicComponent()->existsInNightmares()));
 	}
 
 	//Add reference to this
@@ -1061,7 +1115,9 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	//Create RenderComponentEntity
 	pGameObjectFlashLight->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectFlashLightParameters.name,
-		pGameObjectFlashLight,tGameObjectFlashLightParameters.tRenderComponentEntityParameters));
+		pGameObjectFlashLight,tGameObjectFlashLightParameters.tRenderComponentEntityParameters,
+		pGameObjectFlashLight->getLogicComponent()->existsInDreams(),
+		pGameObjectFlashLight->getLogicComponent()->existsInNightmares()));
 	pGameObjectFlashLight->getRenderComponentEntity()->setVisible(false);
 
 	////Create PhysicsComponent
@@ -1110,7 +1166,9 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 		mComponentFactory->createRenderComponentEntity(
 		tGameObjectFlashLightParameters.name+"#lightCone",
 		pGameObjectFlashLight,
-		tGameObjectFlashLightParameters.tConeParams));
+		tGameObjectFlashLightParameters.tConeParams,
+		pGameObjectFlashLight->getLogicComponent()->existsInDreams(),
+		pGameObjectFlashLight->getLogicComponent()->existsInNightmares()));
 	pGameObjectFlashLight->getConeEntity()->setVisible(false);
 
 	TRenderComponentDecalParameters decalParams;
@@ -1175,7 +1233,9 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 	//Create RenderComponentEntity
 	pGameObjectHeart->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectHeartParameters.name,
-		pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentEntityParameters));
+		pGameObjectHeart,tGameObjectHeartParameters.tRenderComponentEntityParameters,
+		pGameObjectHeart->getLogicComponentItem()->existsInDreams(),
+		pGameObjectHeart->getLogicComponentItem()->existsInNightmares()));
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -1245,7 +1305,9 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 	//Create RenderComponentEntity
 	pGameObjectItem1UP->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectItem1UPParameters.name,
-		pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters));
+		pGameObjectItem1UP,tGameObjectItem1UPParameters.tRenderComponentEntityParameters,
+		pGameObjectItem1UP->getLogicComponentItem()->existsInDreams(),
+		pGameObjectItem1UP->getLogicComponentItem()->existsInNightmares()));
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -1312,7 +1374,9 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 	//Create RenderComponentEntity
 	pGameObjectItemMaxHP->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectItemMaxHPParameters.name,
-		pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters));
+		pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters,
+		pGameObjectItemMaxHP->getLogicComponentItem()->existsInDreams(),
+		pGameObjectItemMaxHP->getLogicComponentItem()->existsInNightmares()));
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -1472,7 +1536,9 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 	//Create RenderComponentEntityDreams
 	pGameObjectNest->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(params.dreamsName,
-		pGameObjectNest,params.tRenderComponentEntityParameters));
+		pGameObjectNest,params.tRenderComponentEntityParameters,
+		pGameObjectNest->getLogicComponent()->existsInDreams(),
+		pGameObjectNest->getLogicComponent()->existsInNightmares()));
 	//Create PhysicsComponent
 	pGameObjectNest->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectNest,
@@ -1520,12 +1586,16 @@ GameObjectNightGoblinPtr GameObjectFactory::createGameObjectNightGoblin(TGameObj
 	//Create RenderComponentEntityDreams
 	pGameObjectNightGoblin->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectNightGoblinParameters.dreamsName,
-		pGameObjectNightGoblin,tGameObjectNightGoblinParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectNightGoblin,tGameObjectNightGoblinParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectNightGoblin->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectNightGoblin->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectNightGoblin->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectNightGoblinParameters.nightmaresName,
-		pGameObjectNightGoblin,tGameObjectNightGoblinParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectNightGoblin,tGameObjectNightGoblinParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectNightGoblin->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectNightGoblin->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectNightGoblin->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -1682,7 +1752,9 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 		mComponentFactory->createRenderComponentEntity(
 			tGameObjectOnyParameters.name,
 			pGameObjectOny,
-			tGameObjectOnyParameters.tRenderComponentEntityParameters));
+			tGameObjectOnyParameters.tRenderComponentEntityParameters,
+		pGameObjectOny->getLogicComponentOny()->existsInDreams(),
+		pGameObjectOny->getLogicComponentOny()->existsInNightmares()));
 
 	//Create RenderComponentQuadHalo
 	pGameObjectOny->setRenderComponentQuadHalo(
@@ -1809,7 +1881,9 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//Create RenderComponentEntity
 	pGameObjectPillow->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPillowParameters.name,
-		pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentEntityParameters));
+		pGameObjectPillow,tGameObjectPillowParameters.tRenderComponentEntityParameters,
+		pGameObjectPillow->getLogicComponent()->existsInDreams(),
+		pGameObjectPillow->getLogicComponent()->existsInNightmares()));
 	pGameObjectPillow->getRenderComponentEntity()->setVisible(false);
 
 	pGameObjectPillow->setPhysicsComponentWeapon(
@@ -1903,14 +1977,18 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 		//Create RenderComponentEntityDreams
 		pGameObjectPlataform->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectPlataformParameters.dreamsName,
-			pGameObjectPlataform,tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectPlataform,tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectPlataform->getLogicComponent()->existsInDreams(),
+		pGameObjectPlataform->getLogicComponent()->existsInNightmares()));
 	}
 	if(pGameObjectPlataform->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectPlataform->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectPlataformParameters.nightmaresName,
-			pGameObjectPlataform,tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectPlataform,tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectPlataform->getLogicComponent()->existsInDreams(),
+		pGameObjectPlataform->getLogicComponent()->existsInNightmares()));
 	}
 	//Create PhysicsComponent
 	pGameObjectPlataform->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
@@ -1982,12 +2060,16 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	//Create RenderComponentEntityDreams
 	pGameObjectPortal->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.dreamsName,
-		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectPortal->getLogicComponentProp()->existsInDreams(),
+		pGameObjectPortal->getLogicComponentProp()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectPortal->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
-		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectPortal->getLogicComponentProp()->existsInDreams(),
+		pGameObjectPortal->getLogicComponentProp()->existsInNightmares()));
 
 	//Create RenderComponentGlowDreams
 	pGameObjectPortal->setRenderComponentGlowDreams(
@@ -2062,14 +2144,18 @@ GameObjectProvisionalEntityPtr GameObjectFactory::createGameObjectProvisionalEnt
 		//Create RenderComponentEntity Dreams
 		pGameObjectProvisionalEntity->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.dreamsName,
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectProvisionalEntity->getLogicComponent()->existsInDreams(),
+		pGameObjectProvisionalEntity->getLogicComponent()->existsInNightmares()));
 	}
 	if(pGameObjectProvisionalEntity->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectProvisionalEntity->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectProvisionalEntityParameters.nightmaresName,
-			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectProvisionalEntity,tGameObjectProvisionalEntityParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectProvisionalEntity->getLogicComponent()->existsInDreams(),
+		pGameObjectProvisionalEntity->getLogicComponent()->existsInNightmares()));
 	}
 
 	// Add a reference to this
@@ -2113,7 +2199,9 @@ GameObjectScaredPlantPtr GameObjectFactory::createGameObjectScaredPlant(TGameObj
 	//Create RenderComponentEntity
 	pGameObjectScaredPlant->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectScaredPlantParameters.name,
-		pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectScaredPlant,tGameObjectScaredPlantParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectScaredPlant->getLogicComponent()->existsInDreams(),
+		pGameObjectScaredPlant->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectScaredPlant->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
@@ -2192,7 +2280,9 @@ GameObjectScepterPtr GameObjectFactory::createGameObjectScepter(TGameObjectScept
 	//Create RenderComponentEntity 
 	pGameObjectScepter->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectScepterParameters.name,
-		pGameObjectScepter,tGameObjectScepterParameters.tRenderComponentEntityParameters));
+		pGameObjectScepter,tGameObjectScepterParameters.tRenderComponentEntityParameters,
+		pGameObjectScepter->getLogicComponent()->existsInDreams(),
+		pGameObjectScepter->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectScepter->setPhysicsComponentSimpleCapsule(
@@ -2250,7 +2340,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			//Create RenderComponentEntity Dreams
 			gameObject->setRenderComponentEntityDreams(
 				mComponentFactory->createRenderComponentEntity(params.dreamsName,
-				gameObject,params.tRenderComponentEntityDreamsParameters));
+				gameObject,params.tRenderComponentEntityDreamsParameters,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 			gameObject->setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr());
 		}
 		else
@@ -2259,7 +2351,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentBillboardSetDreams(mComponentFactory->createRenderComponentBillboardSet(
 				params.dreamsName,
 				gameObject,
-				params.bbsDreamsParams));
+				params.bbsDreamsParams,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
 			params.dreamsName+"#light",
@@ -2272,7 +2366,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			//Create RenderComponentEntity Nightmares
 			gameObject->setRenderComponentEntityNightmares(
 				mComponentFactory->createRenderComponentEntity(params.nightmaresName,
-				gameObject,params.tRenderComponentEntityNightmaresParameters));
+				gameObject,params.tRenderComponentEntityNightmaresParameters,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 		else
 		{
@@ -2280,7 +2376,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentBillboardSetNightmares(mComponentFactory->createRenderComponentBillboardSet(
 				params.nightmaresName,
 				gameObject,
-				params.bbsNightmaresParams));
+				params.bbsNightmaresParams,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 
 		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
@@ -2296,7 +2394,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			//Create RenderComponentEntity Dreams
 			gameObject->setRenderComponentEntityDreams(
 				mComponentFactory->createRenderComponentEntity(params.dreamsName,
-				gameObject,params.tRenderComponentEntityDreamsParameters));
+				gameObject,params.tRenderComponentEntityDreamsParameters,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 
 			gameObject->setRenderComponentBillboardSetDreams(RenderComponentBillboardSetPtr());
 		}
@@ -2306,7 +2406,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentBillboardSetDreams(mComponentFactory->createRenderComponentBillboardSet(
 				params.dreamsName,
 				gameObject,
-				params.bbsDreamsParams));
+				params.bbsDreamsParams,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
 			params.dreamsName,
@@ -2321,7 +2423,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			//Create RenderComponentEntity Nightmares
 			gameObject->setRenderComponentEntityNightmares(
 				mComponentFactory->createRenderComponentEntity(params.nightmaresName,
-				gameObject,params.tRenderComponentEntityNightmaresParameters));
+				gameObject,params.tRenderComponentEntityNightmaresParameters,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 		else
 		{
@@ -2329,7 +2433,9 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 			gameObject->setRenderComponentBillboardSetNightmares(mComponentFactory->createRenderComponentBillboardSet(
 				params.nightmaresName,
 				gameObject,
-				params.bbsNightmaresParams));
+				params.bbsNightmaresParams,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 
 		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
@@ -2420,14 +2526,18 @@ GameObjectSnakeCreeperPtr GameObjectFactory::createGameObjectSnakeCreeper(TGameO
 		//Create RenderComponentEntity Dreams
 		pGameObjectSnakeCreeper->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectSnakeCreeperParameters.dreamsName,
-			pGameObjectSnakeCreeper,tGameObjectSnakeCreeperParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectSnakeCreeper,tGameObjectSnakeCreeperParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectSnakeCreeper->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectSnakeCreeper->getLogicComponentEnemy()->existsInNightmares()));
 	}
 	if(pGameObjectSnakeCreeper->getLogicComponentEnemy()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectSnakeCreeper->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectSnakeCreeperParameters.nightmaresName,
-			pGameObjectSnakeCreeper,tGameObjectSnakeCreeperParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectSnakeCreeper,tGameObjectSnakeCreeperParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectSnakeCreeper->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectSnakeCreeper->getLogicComponentEnemy()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -2515,7 +2625,9 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 
 	pGameObjectStoryBook->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectStoryBookParameters.name,
-		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters));
+		pGameObjectStoryBook,tGameObjectStoryBookParameters.tRenderComponentEntityParameters,
+		pGameObjectStoryBook->getLogicComponentItem()->existsInDreams(),
+		pGameObjectStoryBook->getLogicComponentItem()->existsInNightmares()));
 
 	//pGameObjectStoryBook->getRenderComponentEntity()->prepareForNormalMapping();
 
@@ -2596,12 +2708,16 @@ GameObjectTentetiesoPtr GameObjectFactory::createGameObjectTentetieso(TGameObjec
 	//Create RenderComponentEntityDreams
 	pGameObjectTentetieso->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTentetiesoParameters.dreamsName,
-		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTentetieso->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTentetieso->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTentetieso->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTentetiesoParameters.nightmaresName,
-		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTentetieso,tGameObjectTentetiesoParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTentetieso->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTentetieso->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTentetieso->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -2652,25 +2768,33 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTerrainConvex->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares()));
 		//Create RenderComponentEntityNightmares
 		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTerrainConvex->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectTerrainConvex->getLogicComponent()->existsInDreams())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectTerrainConvex->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.dreamsName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTerrainConvex->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectTerrainConvex->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainConvexParameters.nightmaresName,
-			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTerrainConvex,tGameObjectTerrainConvexParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTerrainConvex->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -2719,12 +2843,16 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 	//Create RenderComponentEntityDreams
 	pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters));
-
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
+	
 	//Create RenderComponentEntityNightmares
 	pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(mComponentFactory->createPhysicsComponentComplexTriangle(
@@ -2772,7 +2900,9 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 	//Create RenderComponentEntity
 	pGameObjectTree->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTreeParameters.name,
-		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters));
+		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,
+		pGameObjectTree->getLogicComponent()->existsInDreams(),
+		pGameObjectTree->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTree->setPhysicsComponentSimpleBox(
@@ -2822,7 +2952,9 @@ GameObjectTreeComplexPtr GameObjectFactory::createGameObjectTreeComplex(TGameObj
 	//Create RenderComponentEntity
 	pGameObjectTreeComplex->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTreeComplexParameters.name,
-		pGameObjectTreeComplex,tGameObjectTreeComplexParameters.tRenderComponentEntityParameters));
+		pGameObjectTreeComplex,tGameObjectTreeComplexParameters.tRenderComponentEntityParameters,
+		pGameObjectTreeComplex->getLogicComponent()->existsInDreams(),
+		pGameObjectTreeComplex->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTreeComplex->setPhysicsComponentComplexConvex(
@@ -2872,12 +3004,16 @@ GameObjectTowerPtr GameObjectFactory::createGameObjectTower(TGameObjectTowerPara
 	//Create RenderComponentEntityDreams
 	pGameObjectTower->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTowerParameters.dreamsName,
-		pGameObjectTower,tGameObjectTowerParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTower,tGameObjectTowerParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTower->getLogicComponent()->existsInDreams(),
+		pGameObjectTower->getLogicComponent()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTower->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTowerParameters.nightmaresName,
-		pGameObjectTower,tGameObjectTowerParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTower,tGameObjectTowerParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTower->getLogicComponent()->existsInDreams(),
+		pGameObjectTower->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTower->setPhysicsComponentComplexTriangle(
@@ -2927,7 +3063,9 @@ GameObjectTriggerBoxPtr GameObjectFactory::createGameObjectTriggerBox(TGameObjec
 	//Create RenderComponentEntity
 	pGameObjectTriggerBox->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTriggerBoxParameters.name,
-		pGameObjectTriggerBox,tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters));
+		pGameObjectTriggerBox,tGameObjectTriggerBoxParameters.tRenderComponentEntityParameters,
+		pGameObjectTriggerBox->getLogicComponent()->existsInDreams(),
+		pGameObjectTriggerBox->getLogicComponent()->existsInNightmares()));
 
 	//Make RenderComponentEntity not visible
 	pGameObjectTriggerBox->getRenderComponentEntity()->setVisible(false);
@@ -2979,7 +3117,9 @@ GameObjectTriggerCapsulePtr GameObjectFactory::createGameObjectTriggerCapsule(TG
 	//Create RenderComponentEntity
 	pGameObjectTriggerCapsule->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTriggerCapsuleParameters.name,
-		pGameObjectTriggerCapsule,tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters));
+		pGameObjectTriggerCapsule,tGameObjectTriggerCapsuleParameters.tRenderComponentEntityParameters,
+		pGameObjectTriggerCapsule->getLogicComponent()->existsInDreams(),
+		pGameObjectTriggerCapsule->getLogicComponent()->existsInNightmares()));
 
 	//Make RenderComponentEntity not visible
 	pGameObjectTriggerCapsule->getRenderComponentEntity()->setVisible(false);
@@ -3031,7 +3171,9 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 	//Create RenderComponentEntity
 	pGameObjectCameraTrigger->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectCameraTriggerParameters.name,
-		pGameObjectCameraTrigger,tGameObjectCameraTriggerParameters.tRenderComponentEntityParameters));
+		pGameObjectCameraTrigger,tGameObjectCameraTriggerParameters.tRenderComponentEntityParameters,
+		pGameObjectCameraTrigger->getLogicComponentCameraTrigger()->existsInDreams(),
+		pGameObjectCameraTrigger->getLogicComponentCameraTrigger()->existsInNightmares()));
 
 	//Make RenderComponentEntity not visible
 	pGameObjectCameraTrigger->getRenderComponentEntity()->setVisible(false);
@@ -3082,12 +3224,16 @@ GameObjectTripolloNightmaresPtr GameObjectFactory::createGameObjectTripolloNight
 	//Create RenderComponentEntityDreams
 	pGameObjectTripolloNightmares->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.dreamsName,
-		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTripolloNightmares->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.nightmaresName,
-		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTripolloNightmares->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -3141,25 +3287,33 @@ GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TG
 		//Create RenderComponentEntityDreams
 		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
 		//Create RenderComponentEntityNightmares
 		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
 	}
 	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
 	}
 	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -3264,30 +3418,39 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
 		std::string addName=tGameObjectWoodBoxParameters.name+"additional";
 		pGameObjectWoodBox->setRenderComponentEntityAdditional(
 			mComponentFactory->createRenderComponentEntity(addName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters
-			));
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters,
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
 	}
 	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters));
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
 	}
 	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
-			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters));
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
+		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
 	}
 
 	//Create RenderComponenetParticleSystem
@@ -3364,25 +3527,33 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 		//Create RenderComponentWaterDreams
 		pGameObjectWater->setRenderComponentWaterDreams(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.dreamsName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters,
+		pGameObjectWater->getLogicComponent()->existsInDreams(),
+		pGameObjectWater->getLogicComponent()->existsInNightmares()));
 		//Create RenderComponentWaterNightmares
 		pGameObjectWater->setRenderComponentWaterNightmares(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.nightmaresName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters,
+		pGameObjectWater->getLogicComponent()->existsInDreams(),
+		pGameObjectWater->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectWater->getLogicComponent()->existsInDreams())
 	{
 		//Create RenderComponentWaterDreams
 		pGameObjectWater->setRenderComponentWaterDreams(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.dreamsName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters,
+		pGameObjectWater->getLogicComponent()->existsInDreams(),
+		pGameObjectWater->getLogicComponent()->existsInNightmares()));
 	}
 	else if(pGameObjectWater->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentWaterNightmares
 		pGameObjectWater->setRenderComponentWaterNightmares(
 			mComponentFactory->createRenderComponentWater(tGameObjectWaterParameters.nightmaresName,
-			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters));
+			pGameObjectWater,tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters,
+		pGameObjectWater->getLogicComponent()->existsInDreams(),
+		pGameObjectWater->getLogicComponent()->existsInNightmares()));
 	}
 
 	// Add a reference to this
@@ -3424,7 +3595,9 @@ GameObjectSignpostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 	//Create RenderComponentEntity
 	gameObject->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(TGameObjectSignpostParameters.name,
-		gameObject,TGameObjectSignpostParameters.tRenderComponentEntityParameters));
+		gameObject,TGameObjectSignpostParameters.tRenderComponentEntityParameters,
+		gameObject->getLogicComponent()->existsInDreams(),
+		gameObject->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	gameObject->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
@@ -3482,12 +3655,16 @@ GameObjectLevelEntrancePtr GameObjectFactory::createGameObjectLevelEntrance(TGam
 	//Create RenderComponentEntityDreams
 	pGameObjectLevelEntrance->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectLevelEntranceParameters.dreamsName,
-		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectLevelEntrance->getLogicComponent()->existsInDreams(),
+		pGameObjectLevelEntrance->getLogicComponent()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectLevelEntrance->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectLevelEntranceParameters.nightmaresName,
-		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectLevelEntrance,tGameObjectLevelEntranceParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectLevelEntrance->getLogicComponent()->existsInDreams(),
+		pGameObjectLevelEntrance->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectLevelEntrance->setPhysicsComponentComplexTriangle(
@@ -3537,12 +3714,16 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 	//Create RenderComponentEntityDreams
 	pGameObjectSwitch->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.dreamsName,
-		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectSwitch->getLogicComponent()->existsInDreams(),
+		pGameObjectSwitch->getLogicComponent()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectSwitch->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.nightmaresName,
-		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectSwitch->getLogicComponent()->existsInDreams(),
+		pGameObjectSwitch->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponentSimpleBox
 	pGameObjectSwitch->setPhysicsComponentSimpleBox(
@@ -3592,12 +3773,16 @@ GameObjectTotemPtr GameObjectFactory::createGameObjectTotem(TGameObjectTotemPara
 	//Create RenderComponentEntityDreams
 	pGameObjectTotem->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.dreamsName,
-		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTotem->getLogicComponent()->existsInDreams(),
+		pGameObjectTotem->getLogicComponent()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectTotem->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.nightmaresName,
-		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTotem->getLogicComponent()->existsInDreams(),
+		pGameObjectTotem->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
 	pGameObjectTotem->setPhysicsComponentComplexTriangle(
@@ -3647,12 +3832,16 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 	//Create RenderComponentEntityDreams
 	pGameObjectBomb->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.dreamsName,
-		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityDreamsParameters));
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectBomb->getLogicComponent()->existsInDreams(),
+		pGameObjectBomb->getLogicComponent()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectBomb->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.nightmaresName,
-		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters));
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectBomb->getLogicComponent()->existsInDreams(),
+		pGameObjectBomb->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponentSimpleBox
 	pGameObjectBomb->setPhysicsComponentSimpleBox(

@@ -25,11 +25,11 @@ namespace OUAN
 		/// @return pointer to the newly created Ogre component instance
 		RenderComponentPtr createRenderComponent(GameObjectPtr gameObject,TRenderComponentParameters tRenderComponentParameters);
 		RenderComponentBillboardSetPtr createRenderComponentBillboardSet(std::string name,GameObjectPtr gameObject,
-			TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters);
+			TRenderComponentBillboardSetParameters tRenderComponentBillboardSetParameters,bool existInDreams, bool existInNightmares);
 		//RenderComponentCameraPtr createRenderComponentCamera(GameObjectPtr gameObject,
 		//	TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		RenderComponentEntityPtr createRenderComponentEntity(std::string name,GameObjectPtr gameObject,
-			TRenderComponentEntityParameters tRenderComponentEntityParameters);
+			TRenderComponentEntityParameters tRenderComponentEntityParameters,bool existInDreams, bool existInNightmares);
 		RenderComponentLightPtr createRenderComponentLight(std::string name,GameObjectPtr gameObject,
 			TRenderComponentLightParameters tRenderComponentLightParameters);
 		RenderComponentParticleSystemPtr createRenderComponentParticleSystem(GameObjectPtr gameObject,
@@ -63,7 +63,8 @@ namespace OUAN
 			GameObjectPtr gameObject, TRenderComponentMessageBoxParameters
 			params);
 		RenderComponentWaterPtr createRenderComponentWater(std::string name,GameObjectPtr gameObject,
-			TRenderComponentWaterParameters tRenderComponentWaterParameters);
+			TRenderComponentWaterParameters tRenderComponentWaterParameters,
+			bool existInDreams, bool existInNightmares);
 		RenderComponentPlanePtr createRenderComponentPlane(std::string name,GameObjectPtr gameObject,
 			TRenderComponentPlaneParameters tRenderComponentPlaneParameters);
 

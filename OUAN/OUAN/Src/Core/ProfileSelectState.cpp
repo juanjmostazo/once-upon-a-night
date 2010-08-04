@@ -42,7 +42,7 @@ void ProfileSelectState::pause()
 /// resume state
 void ProfileSelectState::resume()
 {
-
+	GameState::resume();
 }
 
 /// process input events

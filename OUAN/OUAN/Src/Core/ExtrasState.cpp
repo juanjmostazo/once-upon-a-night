@@ -66,7 +66,7 @@ void ExtrasState::pause()
 /// resume state
 void ExtrasState::resume()
 {
-
+	GameState::resume();
 }
 
 /// process input events
