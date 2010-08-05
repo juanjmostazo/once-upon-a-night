@@ -2899,9 +2899,9 @@
     <PROPERTY id="position" type="9" value="-46.5408 195.35 91.5813"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3698,9 +3698,9 @@
     <PROPERTY id="position" type="9" value="400.316 162.827 145.077"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -3755,9 +3755,9 @@
     <PROPERTY id="position" type="9" value="-1162.44 531.459 -806.988"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5022,9 +5022,9 @@
     <PROPERTY id="position" type="9" value="441.648 159.83 -179.322"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5645,9 +5645,9 @@
     <PROPERTY id="position" type="9" value="305.553 146.605 -308.325"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6319,9 +6319,9 @@
     <PROPERTY id="position" type="9" value="695.923 248.869 53.0581"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -7898,9 +7898,9 @@
     <PROPERTY id="position" type="9" value="407.085 218.195 -74.6939"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11215,9 +11215,9 @@
     <PROPERTY id="position" type="9" value="-1389.57 527.367 -692.773"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13302,9 +13302,9 @@
     <PROPERTY id="position" type="9" value="-263.926 141.564 -156.334"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -15947,9 +15947,9 @@
     <PROPERTY id="position" type="9" value="-1284.59 530.082 -643.601"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
