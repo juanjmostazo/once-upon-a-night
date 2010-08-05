@@ -136,6 +136,7 @@ void RenderComponentDecal::makeMaterialsReceiveDecal()
 
 				// set our pass to blend the decal over the model's regular texture
 				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+				pass->setDepthWriteEnabled(false);
 				pass->setDepthBias(1); //Z-fighting fix
 
 				// set the decal to be self illuminated instead of lit by scene lighting

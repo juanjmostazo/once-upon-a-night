@@ -6,7 +6,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectOny.h"
-#include "../../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../../Game/GameObject/GameObjectTripollo.h"
 #include "../../Game/GameObject/GameObjectTentetieso.h"
 #include "../../Game/GameObject/GameObjectTerrainConvex.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
@@ -57,11 +57,11 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO_DREAMS)==0 
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 
 		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
-		GameObjectTripolloDreamsPtr tripollo= 
-			BOOST_PTR_CAST(GameObjectTripolloDreams,pGameObject);
+		GameObjectTripolloPtr tripollo= 
+			BOOST_PTR_CAST(GameObjectTripollo,pGameObject);
 
 		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
 			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))

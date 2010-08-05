@@ -99,6 +99,26 @@ material water_foam_cw : default_changeworld_alpha_blending
 	}
 }
 
+//***lake1
+
+material water_foam_lake1_d : water_foam_d
+{
+	set_texture_alias lightmap_dreams lake1_lightmap_d.dds
+	set_texture_alias lightmap_nightmares lake1_lightmap_n.dds
+}
+
+material water_foam_lake1_n : water_foam_n
+{
+	set_texture_alias lightmap_dreams lake1_lightmap_d.dds
+	set_texture_alias lightmap_nightmares lake1_lightmap_n.dds
+}
+
+material water_foam_lake1_cw : water_foam_cw
+{
+	set_texture_alias lightmap_dreams lake1_lightmap_d.dds
+	set_texture_alias lightmap_nightmares lake1_lightmap_n.dds
+}
+
 
 //WATER SEABED
 material water_lake_seabed_d : default_changeworld

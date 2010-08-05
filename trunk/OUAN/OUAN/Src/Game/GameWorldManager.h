@@ -40,8 +40,7 @@ namespace OUAN
 		TGameObjectOnyContainer * getGameObjectOnyContainer();
 		TGameObjectPositionalContainer * getGameObjectPositionalContainer();
 		TGameObjectSceneContainer * getGameObjectSceneContainer();
-		TGameObjectTripolloDreamsContainer * getGameObjectTripolloDreamsContainer();
-		TGameObjectTripolloNightmaresContainer * getGameObjectTripolloNightmaresContainer();
+		TGameObjectTripolloContainer * getGameObjectTripolloContainer();
 		TGameObjectTentetiesoContainer * getGameObjectTentetiesoContainer();
 		TGameObjectEyeContainer * getGameObjectEyeContainer();
 		TGameObjectBee_ButterflyContainer * getGameObjectBeeButterflyContainer();
@@ -279,8 +278,7 @@ namespace OUAN
 		void addGameObjectTree(GameObjectTreePtr pGameObjectTree);
 		void addGameObjectTriggerBox(GameObjectTriggerBoxPtr pGameObjectTriggerBox);
 		void addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr pGameObjectTriggerCapsule);
-		void addGameObjectTripolloNightmares(GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares);
-		void addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams);
+		void addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo);
 		void addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport);
 		void addGameObjectWoodBox(GameObjectWoodBoxPtr pGameObjectWoodBox);
 		void addGameObjectWater(GameObjectWaterPtr pGameObjectWater);
@@ -349,8 +347,7 @@ namespace OUAN
 		TGameObjectOnyContainer mGameObjectOnyContainer;
 		TGameObjectPositionalContainer mGameObjectPositionalContainer;
 		TGameObjectSceneContainer mGameObjectSceneContainer;
-		TGameObjectTripolloDreamsContainer mGameObjectTripolloDreamsContainer;
-		TGameObjectTripolloNightmaresContainer mGameObjectTripolloNightmaresContainer;
+		TGameObjectTripolloContainer mGameObjectTripolloContainer;
 		TGameObjectTentetiesoContainer mGameObjectTentetiesoContainer;
 		TGameObjectEyeContainer mGameObjectEyeContainer;
 		TGameObjectTriggerBoxContainer mGameObjectTriggerBoxContainer;

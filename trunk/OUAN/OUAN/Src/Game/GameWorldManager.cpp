@@ -45,8 +45,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectTripolloNightmares.h"
-#include "GameObject/GameObjectTripolloDreams.h"
+#include "GameObject/GameObjectTripollo.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 #include "GameObject/GameObjectWater.h"
@@ -193,14 +192,9 @@ TGameObjectSceneContainer * GameWorldManager::getGameObjectSceneContainer()
 	return &mGameObjectSceneContainer;
 }
 
-TGameObjectTripolloDreamsContainer * GameWorldManager::getGameObjectTripolloDreamsContainer()
+TGameObjectTripolloContainer * GameWorldManager::getGameObjectTripolloContainer()
 {
-	return &mGameObjectTripolloDreamsContainer;
-}
-
-TGameObjectTripolloNightmaresContainer * GameWorldManager::getGameObjectTripolloNightmaresContainer()
-{
-	return &mGameObjectTripolloNightmaresContainer;
+	return &mGameObjectTripolloContainer;
 }
 
 TGameObjectTentetiesoContainer * GameWorldManager::getGameObjectTentetiesoContainer()
@@ -374,7 +368,7 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectPositionalContainer,mGameObjectPositionalContainer);
 	EMPTY_VECTOR(TGameObjectSceneContainer,mGameObjectSceneContainer);
 
-	EMPTY_VECTOR(TGameObjectTripolloDreamsContainer,mGameObjectTripolloDreamsContainer);
+	EMPTY_VECTOR(TGameObjectTripolloContainer,mGameObjectTripolloContainer);
 	EMPTY_VECTOR(TGameObjectEyeContainer,mGameObjectEyeContainer);
 	EMPTY_VECTOR(TGameObjectTriggerBoxContainer,mGameObjectTriggerBoxContainer);
 	EMPTY_VECTOR(TGameObjectTriggerCapsuleContainer,mGameObjectTriggerCapsuleContainer);
@@ -992,34 +986,19 @@ void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr p
 	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
-void GameWorldManager::addGameObjectTripolloNightmares(GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares)
+void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
 {
-	mGameObjects[pGameObjectTripolloNightmares->getName()]=pGameObjectTripolloNightmares;
+	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTripolloNightmares);
-	mGameObjectMovableContainer.push_back(pGameObjectTripolloNightmares);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectPositionalContainer.push_back(pGameObjectTripollo);
+	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripolloNightmares);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripolloNightmares);
+	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
 
-	mGameObjectTripolloNightmaresContainer.push_back(pGameObjectTripolloNightmares);
-	mGameObjectLogicContainer.push_back(pGameObjectTripolloNightmares);
-}
-
-void GameWorldManager::addGameObjectTripolloDreams(GameObjectTripolloDreamsPtr pGameObjectTripolloDreams)
-{
-	mGameObjects[pGameObjectTripolloDreams->getName()]=pGameObjectTripolloDreams;
-
-	mGameObjectPositionalContainer.push_back(pGameObjectTripolloDreams);
-	mGameObjectMovableContainer.push_back(pGameObjectTripolloDreams);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripolloDreams);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripolloDreams);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripolloDreams);
-
-	mGameObjectTripolloDreamsContainer.push_back(pGameObjectTripolloDreams);
-	mGameObjectLogicContainer.push_back(pGameObjectTripolloDreams);
+	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
+	mGameObjectLogicContainer.push_back(pGameObjectTripollo);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)

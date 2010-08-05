@@ -252,8 +252,7 @@ namespace OUAN
 		GAMEOBJECT_CLASS_DECL(BillboardSet);
 		GAMEOBJECT_CLASS_DECL(ParticleSystem);
 		GAMEOBJECT_CLASS_DECL(Ony);
-		GAMEOBJECT_CLASS_DECL(TripolloDreams);
-		GAMEOBJECT_CLASS_DECL(TripolloNightmares);
+		GAMEOBJECT_CLASS_DECL(Tripollo);
 		GAMEOBJECT_CLASS_DECL(Portal);
 		GAMEOBJECT_CLASS_DECL(Eye);
 		GAMEOBJECT_CLASS_DECL(Item1UP);
@@ -311,7 +310,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
 		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
-		const std::string GAME_OBJECT_TYPE_TRIPOLLO_DREAMS="tripollo";
+		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
 		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item1up";

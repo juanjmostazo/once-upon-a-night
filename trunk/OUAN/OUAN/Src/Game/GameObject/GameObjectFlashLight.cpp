@@ -276,7 +276,10 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 			//mPhysicsComponentWeapon->setOrientation(orient);
 		}
 
-		mLastBonePosition=pos;
+		if(mLastBonePosition!=pos)
+		{
+			mLastBonePosition=pos;
+		}
 	}
 }
 
@@ -326,6 +329,7 @@ void GameObjectFlashLight::startAttackParticles()
 }
 void GameObjectFlashLight::switchOn()
 {
+	Logger::getInstance()->log("SWITCH ON");
 	std::stringstream colourStream("");
 	colourStream<<GameObjectFlashLight::getColourName(getColour());
 	//mRenderComponentLight->getLight()->setVisible(true);
@@ -428,10 +432,10 @@ LogicComponentPtr GameObjectFlashLight::getLogicComponent()
 
 void GameObjectFlashLight::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	if(pGameObject->getName().compare("ony#0")!=0)
-	{
-		Logger::getInstance()->log("FLASHLIGHT COLLISION " + pGameObject->getName());
-	}
+	//if(pGameObject->getName().compare("ony#0")!=0)
+	//{
+	//	Logger::getInstance()->log("FLASHLIGHT COLLISION " + pGameObject->getName());
+	//}
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processCollision(pGameObject, pNormal);

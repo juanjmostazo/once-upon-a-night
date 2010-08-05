@@ -100,9 +100,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectTriggerCapsulePtr createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectTripolloNightmaresPtr createGameObjectTripolloNightmares(TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters, 
-			GameWorldManagerPtr gameWorldMgr);
-		GameObjectTripolloDreamsPtr createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters, 
+		GameObjectTripolloPtr createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectViewportPtr createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters, 
 			GameWorldManagerPtr gameWorldMgr);

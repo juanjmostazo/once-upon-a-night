@@ -46,8 +46,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectTripolloNightmares.h"
-#include "GameObject/GameObjectTripolloDreams.h"
+#include "GameObject/GameObjectTripollo.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 #include "GameObject/GameObjectWater.h"
@@ -3196,163 +3195,106 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 	return pGameObjectCameraTrigger;
 }
 
-GameObjectTripolloNightmaresPtr GameObjectFactory::createGameObjectTripolloNightmares(TGameObjectTripolloNightmaresParameters tGameObjectTripolloNightmaresParameters, 
+GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectTripolloNightmaresPtr pGameObjectTripolloNightmares;
+	GameObjectTripolloPtr pGameObjectTripollo;
 
 	//Create GameObject
-	pGameObjectTripolloNightmares = GameObjectTripolloNightmaresPtr(new GameObjectTripolloNightmares(tGameObjectTripolloNightmaresParameters.name));
-	pGameObjectTripolloNightmares->setMaxUpdateRadium(tGameObjectTripolloNightmaresParameters.mMaxUpdateRadium);
-	pGameObjectTripolloNightmares->setParentNest(tGameObjectTripolloNightmaresParameters.parentNest);
-	pGameObjectTripolloNightmares->setSpawnProbability(tGameObjectTripolloNightmaresParameters.spawnProbability);
-	pGameObjectTripolloNightmares->setMaxRenderRadium(tGameObjectTripolloNightmaresParameters.mMaxRenderRadium);
+	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
+	pGameObjectTripollo->setMaxUpdateRadium(tGameObjectTripolloParameters.mMaxUpdateRadium);
+	pGameObjectTripollo->setParentNest(tGameObjectTripolloParameters.parentNest);
+	pGameObjectTripollo->setSpawnProbability(tGameObjectTripolloParameters.spawnProbability);
+	pGameObjectTripollo->setMaxRenderRadium(tGameObjectTripolloParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectTripolloNightmares->setLogicComponentEnemy(
-		mComponentFactory->createLogicComponentEnemy(pGameObjectTripolloNightmares,
-		tGameObjectTripolloNightmaresParameters.tLogicComponentEnemyParameters));
+	pGameObjectTripollo->setLogicComponentEnemy(
+		mComponentFactory->createLogicComponentEnemy(pGameObjectTripollo,
+		tGameObjectTripolloParameters.tLogicComponentEnemyParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectTripolloNightmares->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentPositionalParameters));
-
-	//Create RenderComponentInitial
-	pGameObjectTripolloNightmares->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectTripolloNightmares->getRenderComponentPositional()));
-
-	//Create RenderComponentEntityDreams
-	pGameObjectTripolloNightmares->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.dreamsName,
-		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInNightmares()));
-
-	//Create RenderComponentEntityNightmares
-	pGameObjectTripolloNightmares->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTripolloNightmaresParameters.nightmaresName,
-		pGameObjectTripolloNightmares,tGameObjectTripolloNightmaresParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloNightmares->getLogicComponentEnemy()->existsInNightmares()));
-
-	//Create PhysicsComponent
-	pGameObjectTripolloNightmares->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectTripolloNightmares,
-		tGameObjectTripolloNightmaresParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectTripolloNightmares->getRenderComponentPositional()));
-
-	//Add reference to this
-	pGameObjectTripolloNightmares->setGameWorldManager(gameWorldMgr);
-
-	std::string scriptFile="";
-	pGameObjectTripolloNightmares->getLogicScriptFile(scriptFile);
-	if (!scriptFile.empty())
-	{
-		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
-	}
-	return pGameObjectTripolloNightmares;
-}
-
-GameObjectTripolloDreamsPtr GameObjectFactory::createGameObjectTripolloDreams(TGameObjectTripolloDreamsParameters tGameObjectTripolloDreamsParameters, 
-	GameWorldManagerPtr gameWorldMgr)
-{
-	GameObjectTripolloDreamsPtr pGameObjectTripolloDreams;
-
-	//Create GameObject
-	pGameObjectTripolloDreams = GameObjectTripolloDreamsPtr(new GameObjectTripolloDreams(tGameObjectTripolloDreamsParameters.name));
-	pGameObjectTripolloDreams->setMaxUpdateRadium(tGameObjectTripolloDreamsParameters.mMaxUpdateRadium);
-	pGameObjectTripolloDreams->setParentNest(tGameObjectTripolloDreamsParameters.parentNest);
-	pGameObjectTripolloDreams->setSpawnProbability(tGameObjectTripolloDreamsParameters.spawnProbability);
-	pGameObjectTripolloDreams->setMaxRenderRadium(tGameObjectTripolloDreamsParameters.mMaxRenderRadium);
-
-	//Create LogicComponent
-	pGameObjectTripolloDreams->setLogicComponentEnemy(
-		mComponentFactory->createLogicComponentEnemy(pGameObjectTripolloDreams,
-		tGameObjectTripolloDreamsParameters.tLogicComponentEnemyParameters));
-
-	//Create RenderComponentPositional
-	pGameObjectTripolloDreams->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentPositionalParameters));
+	pGameObjectTripollo->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
 
 	//TODO ERASE THIS WHEN TRIPOLLO IS PROPERLY SCALED
-	pGameObjectTripolloDreams->getRenderComponentPositional()->setScale(
-		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.scale_correction);
+	pGameObjectTripollo->getRenderComponentPositional()->setScale(
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters.scale_correction);
 
 	//Create RenderComponentInitial
-	pGameObjectTripolloDreams->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectTripolloDreams->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectTripollo->getRenderComponentPositional()));
 
-	if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams() && pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares())
+	if(pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams() && pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares())
 	{
 		//Create RenderComponentEntityDreams
-		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
+		pGameObjectTripollo->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares()));
 		//Create RenderComponentEntityNightmares
-		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
+		pGameObjectTripollo->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares()));
 	}
-	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams())
+	else if(pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams())
 	{
 		//Create RenderComponentEntityDreams
-		pGameObjectTripolloDreams->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.dreamsName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
+		pGameObjectTripollo->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares()));
 	}
-	else if(pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares())
+	else if(pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares())
 	{
 		//Create RenderComponentEntityNightmares
-		pGameObjectTripolloDreams->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloDreamsParameters.nightmaresName,
-			pGameObjectTripolloDreams,tGameObjectTripolloDreamsParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectTripolloDreams->getLogicComponentEnemy()->existsInNightmares()));
+		pGameObjectTripollo->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams(),
+		pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
-	pGameObjectTripolloDreams->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectTripolloDreams,
-		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectTripolloDreams->getRenderComponentPositional()));
+	pGameObjectTripollo->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
+		pGameObjectTripollo->getRenderComponentPositional()));
 
 	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripolloDreams->getPhysicsComponentCharacter()->setOffsetRenderPosition(
-		tGameObjectTripolloDreamsParameters.tPhysicsComponentCharacterParameters.position_correction);
+	pGameObjectTripollo->getPhysicsComponentCharacter()->setOffsetRenderPosition(
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters.position_correction);
 
 	//Create TrajectoryComponent
-	pGameObjectTripolloDreams->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
-		pGameObjectTripolloDreams,
-		tGameObjectTripolloDreamsParameters.tTrajectoryComponentParameters));
+	pGameObjectTripollo->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tTrajectoryComponentParameters));
 
-	pGameObjectTripolloDreams->setAttackComponent(
+	pGameObjectTripollo->setAttackComponent(
 		mComponentFactory->createAttackComponent(
-		pGameObjectTripolloDreams,
-		tGameObjectTripolloDreamsParameters.tAttackComponentParameters));
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tAttackComponentParameters));
 
 	// Create audio component
-	pGameObjectTripolloDreams->setAudioComponent(
+	pGameObjectTripollo->setAudioComponent(
 		mComponentFactory->createAudioComponent(
-		pGameObjectTripolloDreams,
-		tGameObjectTripolloDreamsParameters.tAudioComponentParameters
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tAudioComponentParameters
 		,gameWorldMgr->getParent()->getAudioSubsystem()));
 
 	// Add a reference to this
-	pGameObjectTripolloDreams->setGameWorldManager(gameWorldMgr);
+	pGameObjectTripollo->setGameWorldManager(gameWorldMgr);
 
 	std::string scriptFile="";
-	pGameObjectTripolloDreams->getLogicScriptFile(scriptFile);
+	pGameObjectTripollo->getLogicScriptFile(scriptFile);
 	if (!scriptFile.empty())
 	{
 		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
 	}
-	return pGameObjectTripolloDreams;
+	return pGameObjectTripollo;
 }
 
 GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters, 
