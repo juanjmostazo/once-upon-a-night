@@ -33,7 +33,7 @@ material default_changeworld
 		        {
 				texture white.dds
 	                }
-		        texture_unit lightmap_dreams
+		        texture_unit lightmap_nightmares
 		        {
 				texture white.dds
 	                }

@@ -9,8 +9,7 @@
 #include "../Game/GameObject/GameObjectDiamondTree.h"
 #include "../Game/GameObject/GameObjectEye.h"
 #include "../Game/GameObject/GameObjectTentetieso.h"
-#include "../Game/GameObject/GameObjectTripolloNightmares.h"
-#include "../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Game/GameObject/GameObjectScaredPlant.h"
 #include "../Game/GameObject/GameObjectSignpost.h"
 #include "../Game/GameObject/GameObjectNest.h"
@@ -80,7 +79,7 @@ void LogicSubsystem::registerModules()
 			.def("enabled",&GameObject::isEnabled),
 		class_<GameObjectPortal, GameObject>("GameObjectPortal")
 			.def("setCurrentWorldVisible", &GameObjectPortal::setCurrentWorldVisibility),
-		class_<GameObjectTripolloDreams, GameObject>("GameObjectTripolloDreams"),
+		class_<GameObjectTripollo, GameObject>("GameObjectTripollo"),
 		class_<Utils::LUATimer>("Timer")
 			.def(constructor<>())
 			.def("reset",&Utils::LUATimer::reset)

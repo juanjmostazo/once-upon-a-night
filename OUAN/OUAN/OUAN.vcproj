@@ -666,11 +666,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloNightmares.cpp"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.cpp"
 						>
 					</File>
 					<File
@@ -1731,11 +1727,7 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloDreams.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Src\Game\GameObject\GameObjectTripolloNightmares.h"
+						RelativePath=".\Src\Game\GameObject\GameObjectTripollo.h"
 						>
 					</File>
 					<File
@@ -2068,10 +2060,6 @@
 			</File>
 			<File
 				RelativePath="..\Resources\Scripts\tentetieso.lua"
-				>
-			</File>
-			<File
-				RelativePath="..\Resources\Scripts\tripollito.lua"
 				>
 			</File>
 			<File

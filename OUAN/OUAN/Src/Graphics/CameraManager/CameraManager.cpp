@@ -16,7 +16,7 @@
 #include "../TrajectoryManager/TrajectoryManager.h"
 #include "../TrajectoryManager/Trajectory.h"
 #include "../../Game/GameWorldManager.h"
-#include "../../Game/GameObject/GameObjectTripolloDreams.h"
+#include "../../Game/GameObject/GameObjectTripollo.h"
 #include "../../Game/GameObject/GameObjectOny.h"
 
 using namespace OUAN;

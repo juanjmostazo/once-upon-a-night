@@ -1,5 +1,5 @@
-#ifndef GameObjectTripolloDreamsH_H
-#define GameObjectTripolloDreamsH_H
+#ifndef GameObjectTripolloH_H
+#define GameObjectTripolloH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
@@ -35,7 +35,7 @@ namespace OUAN
 	const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
 
 	/// Class modelling a particular enemy type
-	class GameObjectTripolloDreams : public GameObject, public boost::enable_shared_from_this<GameObjectTripolloDreams>
+	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{
 	private:
 		/// Visual component
@@ -63,10 +63,10 @@ namespace OUAN
 		/// Constructor
 		/// @param name name of the game object, specific to this class
 		/// @param id unique id of the game object
-		GameObjectTripolloDreams(const std::string& name);
+		GameObjectTripollo(const std::string& name);
 
 		//Destructor
-		~GameObjectTripolloDreams();
+		~GameObjectTripollo();
 		/// Set logic component
 		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
 
@@ -174,14 +174,14 @@ namespace OUAN
 	};
 	
 	/// Information data structure to carry around data between the
-	/// level loader and the "GameObjectTripolloDreams"
-	class TGameObjectTripolloDreamsParameters: public TGameObjectParameters
+	/// level loader and the "GameObjectTripollo"
+	class TGameObjectTripolloParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectTripolloDreamsParameters();
+		TGameObjectTripolloParameters();
 		/// Default destructor
-		~TGameObjectTripolloDreamsParameters();
+		~TGameObjectTripolloParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
