@@ -414,6 +414,18 @@ void GameObjectTripollo::setChangeWorldRender()
 	}
 }
 
+void GameObjectTripollo::activateFlying(bool flying)
+{
+	mPhysicsComponentCharacter->setFlyingCharacter(flying);
+	if(flying)
+	{
+		mTrajectoryComponent->setAs3DTrajectory();
+	}
+	else
+	{
+		mTrajectoryComponent->setAs2DTrajectory();
+	}
+}
 
 void GameObjectTripollo::changeWorldFinished(int newWorld)
 {
@@ -435,6 +447,7 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 		case DREAMS:
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
+				activateFlying(false);
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
@@ -443,6 +456,7 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentCharacter->create();
 				}
+				activateFlying(false);
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
@@ -456,6 +470,7 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 		case NIGHTMARES:
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
+				activateFlying(true);
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
@@ -472,6 +487,7 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentCharacter->create();
 				}
+				activateFlying(true);
 			}	
 			break;
 		default:break;

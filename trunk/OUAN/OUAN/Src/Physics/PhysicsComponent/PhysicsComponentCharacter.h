@@ -23,6 +23,9 @@ namespace OUAN
 		virtual void setCyclicCharacter(bool pCyclicCharacter);
 		virtual bool isCyclicCharacter();
 
+		virtual void setFlyingCharacter(bool pFlyingCharacter);
+		virtual bool isFlyingCharacter();
+
 		virtual void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		virtual NxOgre::Controller* getNxOgreController();
 
@@ -124,6 +127,8 @@ namespace OUAN
 		bool mCyclicCharacter;
 		double mCyclicDirection;
 		double mCyclicOffset;
+
+		double mFlyingCharacter;
 
 		double mLastElapsedSeconds;
 	};
