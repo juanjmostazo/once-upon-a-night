@@ -4,12 +4,19 @@
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Utils/Utils.h"
+#include <numeric>
 
 using namespace OUAN;
+
+double gameObjectSum(double d1, GameObjectPtr obj)
+{
+	return d1 + obj->getSpawnProbability();
+}
 
 GameObjectNest::GameObjectNest(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_NEST)
 ,mEggHatched(false)
+,mChildrenTotalWeight(0.0)
 {
 
 }
@@ -352,30 +359,34 @@ std::vector<GameObjectPtr>* GameObjectNest::getChildren()
 void GameObjectNest::setChildren(const std::vector<GameObjectPtr>& children)
 {
 	mChildren=children;
+	mChildrenTotalWeight = std::accumulate(children.begin(),children.end(),0.0,gameObjectSum);
 }
 void GameObjectNest::addChild(GameObjectPtr child)
 {
 	mChildren.push_back(child);
+	mChildrenTotalWeight+=child->getSpawnProbability();
 }
 void GameObjectNest::spawnChild()
 {
 	//decide which child to enable
 	double dice=Utils::Random::getInstance()->getRandomDouble();
-	double accumulated=dice;
-	for (std::vector<GameObjectPtr>::iterator it=mChildren.begin();it!=mChildren.end();++it)
+	std::vector<GameObjectPtr>::iterator it;
+	for (it=mChildren.begin();it!=mChildren.end();++it)
 	{
-		if (accumulated>(*it)->getSpawnProbability())
+		if (dice<(*it)->getSpawnProbability())
 		{
 			(*it)->reset();
 			(*it)->enable();
 			break;
 		}
-		else if (it+1!=mChildren.end())
+		else 
 		{
-			accumulated+=(*(it+1))->getSpawnProbability();
+			dice-=(*it)->getSpawnProbability();
 		}
-		else
-			displayText("BETTER LUCK NEXT TIME!");
+	}
+	if (it==mChildren.end())
+	{
+		displayText("Better luck text time");
 	}
 }
 void GameObjectNest::setVisible(bool visible)

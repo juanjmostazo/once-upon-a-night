@@ -9,9 +9,16 @@ namespace OUAN
 	const std::string DECAL_FILTER_PROJECTOR_NODE_SUFFIX="DecalFilterProjNode";
 	const std::string DECAL_PASS_SUFFIX="ReceiveDecalPass";
 
+	const std::string FOG_MATERIAL_VALID_PREFIX="fog3";
+	
 	class RenderComponentDecal: public RenderComponent
 	{
 	private:
+		typedef void (RenderComponentDecal::*FP_GO_EXCEPTION_CALLBACK)(GameObjectPtr);
+
+		typedef std::map<std::string,FP_GO_EXCEPTION_CALLBACK> TGOExceptions;
+
+		TGOExceptions mExceptions;
 		Ogre::SceneManager* mSceneManager;
 
 		Ogre::SceneNode * mProjectorNode;
@@ -37,7 +44,12 @@ namespace OUAN
 		bool existsEntity(GameObjectPtr obj);
 		bool isValidSubentity(Ogre::SubEntity* subEnt);
 		void loadGOTerrainTriangleMaterials(GameObjectPtr obj);
+		void loadGOFog(GameObjectPtr obj);
+		void loadGOWater(GameObjectPtr obj);
+		void loadGOBillboardSet(GameObjectPtr obj);
 		void loadSubEnts(Ogre::Entity* ent);
+		void filterFogMaterial(Ogre::Entity* ent);
+		void filterWaterMaterial(Ogre::Entity* ent);
 
 	public:
 		void stopMaterialsFromReceivingDecal();

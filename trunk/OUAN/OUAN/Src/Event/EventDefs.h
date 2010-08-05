@@ -94,7 +94,7 @@ namespace OUAN
 
 	// Priority values for all event types: 0 is highest
 	const int EVT_PRIORITY_GAMEOVER=0;
-	const int EVT_PRIORITY_ONY_DEATH=1;	//Ony loses 1 live
+	const int EVT_PRIORITY_ONY_DEATH=1;	//Ony loses 1 life
 	const int EVT_PRIORITY_ONY_FALLS=1;
 	const int EVT_PRIORITY_CHANGEWORLD=2;
 	const int EVT_PRIORITY_CLEARQUEUE=2;

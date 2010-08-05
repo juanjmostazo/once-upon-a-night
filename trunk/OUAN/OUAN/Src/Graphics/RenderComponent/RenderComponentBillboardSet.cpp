@@ -35,7 +35,7 @@ void RenderComponentBillboardSet::setBillboardSet(Ogre::BillboardSet* billboardS
 	}
 }
 
-void RenderComponentBillboardSet::setMaterial(std::string material)
+void RenderComponentBillboardSet::setMaterial(const std::string& material)
 {
 
 	Ogre::MaterialPtr original_material;
@@ -116,7 +116,14 @@ void RenderComponentBillboardSet::setChangeWorldFactor(double factor)
 	}
 }
 
-
+const std::string&  RenderComponentBillboardSet::getDreamsMaterial() const
+{
+	return mDreamsMaterial;
+}
+const std::string& RenderComponentBillboardSet::getNightmaresMaterial() const
+{
+	return mNightmaresMaterial;
+}
 
 TRenderComponentBillboardSetParameters::TRenderComponentBillboardSetParameters() : TRenderComponentParameters()
 {

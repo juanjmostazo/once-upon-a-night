@@ -40,6 +40,8 @@ namespace OUAN
 		std::vector<GameObjectPtr> mChildren;
 
 		bool mEggHatched;
+		
+		double mChildrenTotalWeight;
 	public:
 		//Constructor
 		GameObjectNest(const std::string& name);
