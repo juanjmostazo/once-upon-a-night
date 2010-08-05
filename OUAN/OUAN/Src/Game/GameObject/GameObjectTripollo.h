@@ -157,8 +157,7 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
+		void activateFlying(bool flying);
 
 		void postUpdate();
 		void processAnimationEnded(const std::string& animationName);

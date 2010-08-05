@@ -10,6 +10,7 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 :PhysicsComponent(type)
 {
 	reset();
+	mFlyingCharacter=false;
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
@@ -232,45 +233,48 @@ void PhysicsComponentCharacter::applyFallY(double elapsedSeconds)
 	double initialTime = mFallingTime;
 	double finalTime = mFallingTime + elapsedSeconds;
 
-	if (initialTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+	if(!mFlyingCharacter)
 	{
-		finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
-		? finalTime 
-		: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+		if (initialTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+		{
+			finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
+			? finalTime 
+			: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
 
-		////////////
+			////////////
 
-		// DO NOTHING HERE
+			// DO NOTHING HERE
 
-		////////////
+			////////////
 
-		double basicValueInitial = (initialTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
-		basicValueInitial *= basicValueInitial;
+			double basicValueInitial = (initialTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+			basicValueInitial *= basicValueInitial;
 
-		double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
-			((-1 * basicValueInitial) + 1);
+			double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+				((-1 * basicValueInitial) + 1);
 
-		////////////
+			////////////
 
-		double basicValueFinal = (finalTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
-		basicValueFinal *= basicValueFinal;
+			double basicValueFinal = (finalTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+			basicValueFinal *= basicValueFinal;
 
-		double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
-			((-1 * basicValueFinal) + 1);
+			double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+				((-1 * basicValueFinal) + 1);
 
-		////////////
+			////////////
 
-		mNextMovement.y +=  finalValue - initialValue;
+			mNextMovement.y +=  finalValue - initialValue;
+		}
+		else
+		{
+			mNextMovement.y +=  
+				-3 * 
+				elapsedSeconds * 
+				Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+				Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+		}
+		mFallingTime += elapsedSeconds;
 	}
-	else
-	{
-		mNextMovement.y +=  
-			-3 * 
-			elapsedSeconds * 
-			Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
-			Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
-	}
-	mFallingTime += elapsedSeconds;
 }
 /*
 void PhysicsComponentCharacter::applyJumpY(double elapsedSeconds)
@@ -662,6 +666,16 @@ void PhysicsComponentCharacter::setOffsetRenderPosition(Vector3 offsetRenderPosi
 Vector3 PhysicsComponentCharacter::getOffsetRenderPosition() const
 {
 	return mOffsetRenderPosition;
+}
+
+void PhysicsComponentCharacter::setFlyingCharacter(bool pFlyingCharacter)
+{
+	mFlyingCharacter = pFlyingCharacter;
+}
+
+bool PhysicsComponentCharacter::isFlyingCharacter()
+{
+	return mFlyingCharacter;
 }
 
 void PhysicsComponentCharacter::setCyclicCharacter(bool pCyclicCharacter)

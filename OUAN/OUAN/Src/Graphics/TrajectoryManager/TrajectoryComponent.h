@@ -36,6 +36,9 @@ namespace OUAN
 		//checks if a predefined trajectory exists
 		bool predefinedTrajectoryExists(std::string name);
 
+		void setAs2DTrajectory();
+		void setAs3DTrajectory();
+
 		//gets next movement scaled by time
 		Vector3 getNextMovement();
 		//gets next movement without being scaled by time

@@ -98,6 +98,16 @@ Quaternion TrajectoryComponent::getCurrentOrientation()
 	return mTrajectory->getCurrentOrientation();
 }
 
+void TrajectoryComponent::setAs2DTrajectory()
+{
+	mTrajectory->setAs2DTrajectory();
+}
+
+void TrajectoryComponent::setAs3DTrajectory()
+{
+	mTrajectory->setAs3DTrajectory();
+}
+
 TTrajectoryComponentParameters::TTrajectoryComponentParameters()
 {
 }
