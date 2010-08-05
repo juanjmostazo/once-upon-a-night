@@ -23,11 +23,14 @@ namespace OUAN
 
 		void setVisible(bool visible);
 
-		void setMaterial(std::string material);
+		void setMaterial(const std::string& material);
 		void setDreamsMaterials();
 		void setNightmaresMaterials();
 		void setChangeWorldMaterials();
 		void setChangeWorldFactor(double factor);
+
+		const std::string& getDreamsMaterial() const;
+		const std::string& getNightmaresMaterial() const;
 
 	};
 

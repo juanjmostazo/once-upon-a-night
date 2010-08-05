@@ -5,6 +5,9 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectTerrainTriangle.h"
+#include "../../Game/GameObject/GameObjectFog.h"
+#include "../../Game/GameObject/GameObjectBillboardSet.h"
+#include "../../Game/GameObject/GameObjectWater.h"
 #include "../RenderComponent/RenderComponentEntity.h"
 using namespace OUAN;
 
@@ -35,6 +38,13 @@ void RenderComponentDecal::initProjector(const std::string&
 	mProjectorNode->attachObject(mFrustum);
 	mProjectorNode->setPosition(projectorOffset);
 	mTextureName=textureName;
+
+	mExceptions.clear();
+	mExceptions[GAME_OBJECT_TYPE_TERRAINTRIANGLE]=&RenderComponentDecal::loadGOTerrainTriangleMaterials;
+	mExceptions[GAME_OBJECT_TYPE_WATER]=&RenderComponentDecal::loadGOWater;
+	mExceptions[GAME_OBJECT_TYPE_BILLBOARDSET]=&RenderComponentDecal::loadGOBillboardSet;
+	mExceptions[GAME_OBJECT_TYPE_FOG]=&RenderComponentDecal::loadGOFog;
+
 }
 void RenderComponentDecal::initFilterProjector(const std::string& filterTextureName)
 {
@@ -136,7 +146,6 @@ void RenderComponentDecal::makeMaterialsReceiveDecal()
 
 				// set our pass to blend the decal over the model's regular texture
 				pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-				pass->setDepthWriteEnabled(false);
 				pass->setDepthBias(1); //Z-fighting fix
 
 				// set the decal to be self illuminated instead of lit by scene lighting
@@ -225,8 +234,11 @@ void RenderComponentDecal::loadMaterials(TGameObjectContainer& gameObjects)
 			{		
 				entity=obj->getEntityComponent()->getEntity();
 				objType=obj->getType();
-				if (objType.compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE)==0)
-					loadGOTerrainTriangleMaterials(obj);
+				if (mExceptions.find(objType)!=mExceptions.end()
+					)
+				{
+					(this->*mExceptions[objType])(obj);
+				}				
 				else loadSubEnts(entity);
 			}
 		}
@@ -265,6 +277,55 @@ void RenderComponentDecal::loadGOTerrainTriangleMaterials(GameObjectPtr obj)
 			->getEntity());
 	}
 }
+void RenderComponentDecal::loadGOFog(GameObjectPtr obj)
+{
+	//GameObjectFogPtr fog= 
+	//	BOOST_PTR_CAST(GameObjectFog,obj);
+	//if (fog.get())
+	//{
+	//	filterFogMaterial(fog->getRenderComponentEntityDreams()->getEntity());
+	//	filterFogMaterial(fog->getRenderComponentEntityNightmares()->getEntity());
+	//}
+}
+void RenderComponentDecal::filterFogMaterial(Ogre::Entity* ent)
+{
+	std::string materialName;
+	for (unsigned int i=0;ent && i<ent->getNumSubEntities();++i)
+	{
+		Ogre::SubEntity* subEnt = ent->getSubEntity(i);
+		if (isValidSubentity(subEnt))
+		{
+			materialName=subEnt->getMaterial()->getName();
+				if (materialName.find(FOG_MATERIAL_VALID_PREFIX)!=std::string::npos)
+			{
+				mTargets.insert(materialName);
+			}
+		}							
+	}
+}
+
+
+void RenderComponentDecal::loadGOWater(GameObjectPtr obj)
+{
+	//GameObjectWaterPtr water= 
+	//	BOOST_PTR_CAST(GameObjectWater,obj);
+	//if (water.get())
+	//{
+	//	loadSubEnts(water->getRenderComponentWaterDreams()->getEntity());
+	//	loadSubEnts(water->getRenderComponentWaterNightmares()->getEntity());
+	//}
+}
+void RenderComponentDecal::loadGOBillboardSet(GameObjectPtr obj)
+{
+	GameObjectBillboardSetPtr bbs= 
+		BOOST_PTR_CAST(GameObjectBillboardSet,obj);
+	if (bbs.get())
+	{
+		mTargets.insert(bbs->getRenderComponentBillboardSetDreams()->getBillboardSet()->getMaterialName());
+		mTargets.insert(bbs->getRenderComponentBillboardSetNightmares()->getBillboardSet()->getMaterialName());
+	}
+}
+
 void RenderComponentDecal::unloadMaterials()
 {
 	mTargets.clear();
