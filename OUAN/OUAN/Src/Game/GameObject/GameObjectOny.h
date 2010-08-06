@@ -148,6 +148,7 @@ namespace OUAN
 		double mRunParticlesMin;
 		double mRunParticlesMax;
 
+		TWeaponMode mCurrentWeaponMode;
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class

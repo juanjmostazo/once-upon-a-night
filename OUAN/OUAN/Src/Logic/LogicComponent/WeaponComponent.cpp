@@ -121,13 +121,17 @@ void WeaponComponent::increaseWeaponPower(int amount)
 {
 	mWeaponPower+=amount;
 	if (mWeaponPower>mMaxWeaponPower)
+	{
 		mWeaponPower=mMaxWeaponPower;
+	}
 }
 void WeaponComponent::decreaseWeaponPower(int amount)
 {
 	mWeaponPower-=amount;
 	if (mWeaponPower<0)
+	{
 		mWeaponPower=0;
+	}
 }
 int WeaponComponent::getMaxWeaponPower() const
 {

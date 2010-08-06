@@ -137,7 +137,6 @@ PhysicsComponentWeaponPtr GameObjectFlashLight::getPhysicsComponentWeapon() cons
 	return mPhysicsComponentWeapon;
 }
 
-
 void GameObjectFlashLight::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -241,20 +240,24 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 			pos=ony->getRenderComponentPositional()->getPosition();			
 		}
 		mRenderComponentPositional->setPosition(pos);			
-		mRenderComponentPositional->setOrientation(ony->getRenderComponentPositional()->getOrientation()*
+		mRenderComponentPositional->setOrientation(
+			ony->getRenderComponentPositional()->getOrientation()*
 			Ogre::Quaternion(Ogre::Degree(180),Ogre::Vector3::UNIT_Y)*
-		Ogre::Quaternion(Ogre::Radian(rollAngle),Ogre::Vector3::UNIT_Z));
+			Ogre::Quaternion(Ogre::Radian(rollAngle),Ogre::Vector3::UNIT_Z));
 
 		rollAngle+=elapsedSeconds*DEFAULT_ROLL_OMEGA;
 		//constrain the angle into the range [0..2PI)
 		if (rollAngle>=2*PI)
+		{
 			//The while addition is a safety check for situations
 			//where the angle increases above 4*PI, which
 			//might happen as a result of a dramatic drop in 
 			//the framerate
 			while(rollAngle>=2*PI)
+			{
 				rollAngle-=2*PI;
-
+			}
+		}
 
 		if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 		{
@@ -288,6 +291,7 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 	mAttackComponent->setSelectedAttack(newAttack);
 	FlashlightAttackDataPtr attackData= BOOST_PTR_CAST(FlashlightAttackData,
 		mAttackComponent->getSelectedAttack());
+
 	if (attackData.get())
 	{
 		ColourValue newColour;
@@ -310,26 +314,24 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 		}
 	}
 }
+
 void GameObjectFlashLight::startAttackParticles()
 {
-	/*
-	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,
-		mParentWeaponComponent->getParent());
-
-	if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton() &&
-		ony->getRenderComponentEntity()->getEntity()->getSkeleton()->hasBone(ATTACH_BONE_NAME))
-	{
-		Ogre::Entity* ent = ony->getRenderComponentEntity()->getEntity();
-		Ogre::Node* bone = ent->getSkeleton()->getBone(ATTACH_BONE_NAME);
-		Ogre::Vector3 pos = Utils::getNodeWorldPosition(ent,bone);
-		mRenderComponentParticleSystemAttack->start(pos);
-	}
-	*/
 	mRenderComponentParticleSystemAttack->start();
 }
+
+void GameObjectFlashLight::stopAttackParticles()
+{
+	mRenderComponentParticleSystemAttack->stop();
+	mRenderComponentParticleSystemAttackRed->stop();
+	mRenderComponentParticleSystemAttackGreen->stop();
+	mRenderComponentParticleSystemAttackBlue->stop();
+}
+
 void GameObjectFlashLight::switchOn()
 {
-	Logger::getInstance()->log("SWITCH ON");
+	//Logger::getInstance()->log("SWITCH ON");
+
 	std::stringstream colourStream("");
 	colourStream<<GameObjectFlashLight::getColourName(getColour());
 	//mRenderComponentLight->getLight()->setVisible(true);
@@ -337,34 +339,47 @@ void GameObjectFlashLight::switchOn()
 	{
 		mPhysicsComponentVolumeConvex->create();
 	}
+
 	if (mPhysicsComponentWeapon.get() && !mPhysicsComponentWeapon->isInUse())
 	{
 		mPhysicsComponentWeapon->startAttack();
 	}
+
 	if (mFlashlightDecalComponent.get())
 	{
 		mFlashlightDecalComponent->show();
 	}
+
 	mConeEntity->setVisible(true);
 }
+
 void GameObjectFlashLight::switchOff()
 {
+	//Logger::getInstance()->log("SWITCH FF");
+
 	mRenderComponentLight->getLight()->setVisible(false);
 	mConeEntity->setVisible(false);
+
 	if (mPhysicsComponentVolumeConvex.get() && mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->destroy();
 	}
+
 	if (mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
 	{
 		mPhysicsComponentWeapon->endAttack();
 	}
+
 	if (mParentWeaponComponent.get())
+	{
 		mParentWeaponComponent->setActiveWeaponInUse(false);
+	}
+
 	if (mFlashlightDecalComponent.get())
 	{
 		mFlashlightDecalComponent->hide();
 	}
+
 	if (mAttackComponent->getSelectedAttack().get())
 	{
 		FlashlightAttackDataPtr attackData = 
@@ -372,36 +387,46 @@ void GameObjectFlashLight::switchOff()
 		AttackEndedEventPtr evt = AttackEndedEventPtr(new AttackEndedEvent(attackData->attackName,shared_from_this()));
 		mGameWorldManager->addEvent(evt);
 	}
+
+	stopAttackParticles();
 }
+
 void GameObjectFlashLight::show()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(true);
 	//mConeEntity->setVisible(true);
 	Logger::getInstance()->log("LIGHT CONE NOW VISIBLE -theoretically -_-");
 }
+
 void GameObjectFlashLight::hide()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(false);
 	mConeEntity->setVisible(false);
 }
+
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
 {
 	return mAttackComponent;
 }
+
 void GameObjectFlashLight::setAttackComponent(AttackComponentPtr attackComponent)
 {
 	mAttackComponent=attackComponent;
 }
+
 std::string GameObjectFlashLight::translateWeaponMode(TWeaponMode weaponMode)
 {
 	switch (weaponMode)
 	{
 		case WEAPON_MODE_0:
 			return ATTACK_NAME_RED;
+
 		case WEAPON_MODE_1:
 			return ATTACK_NAME_BLUE;
+
 		case WEAPON_MODE_2:
 			return ATTACK_NAME_GREEN;
+
 		case WEAPON_MODE_SPECIAL:
 			return ATTACK_NAME_WHITE;
 		default:

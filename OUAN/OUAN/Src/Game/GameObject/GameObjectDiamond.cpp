@@ -155,6 +155,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
+				mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
@@ -162,6 +163,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
+				mRenderComponentParticleSystemBrightness->stop();
 			}
 		}		
 		break;
@@ -172,6 +174,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
+				mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
@@ -179,6 +182,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
+				mRenderComponentParticleSystemBrightness->stop();
 			}
 		}
 		break;
@@ -333,7 +337,6 @@ void GameObjectDiamond::update(double elapsedSeconds)
 		if (isFirstUpdate())
 		{
 			mRenderComponentEntity->changeAnimation(DIAMOND_ANIM_IDLE);
-			mRenderComponentParticleSystemBrightness->start();
 		}
 		else
 		{
@@ -349,11 +352,14 @@ void GameObjectDiamond::update(double elapsedSeconds)
 				position.x=mRenderComponentPositional->getPosition().x;
 				position.y=mRenderComponentPositional->getPosition().y;
 				position.z=mRenderComponentPositional->getPosition().z;
+
 				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				{
 					mPhysicsComponentVolumeBox->create();
+				}
+
 				mPhysicsComponentVolumeBox->setPosition(position);
 			}
-
 		}
 	}
 }
