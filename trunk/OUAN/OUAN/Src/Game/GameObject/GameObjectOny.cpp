@@ -19,6 +19,7 @@ GameObjectOny::GameObjectOny(const std::string& name)
 	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
 	mIdleTime=-1;
+	mCurrentWeaponMode=WEAPON_MODE_0;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -296,6 +297,7 @@ void GameObjectOny::changeWorldFinished(int newWorld)
 
 	mWeaponComponent->changeActiveWeapon((newWorld==DREAMS)?mDreamsWeapon:mNightmaresWeapon);
 	mWeaponComponent->updateAttackType();
+
 	mWeaponComponent->switchOff();
 }
 
@@ -387,9 +389,11 @@ WeaponComponentPtr GameObjectOny::getWeaponComponent() const
 
 void GameObjectOny::setAttack(TWeaponMode weaponMode)
 {
+	mCurrentWeaponMode = weaponMode;
+
 	if (mWeaponComponent.get() && mWeaponComponent->getActiveWeapon().get())
 	{
-		std::string attackType= mWeaponComponent->getActiveWeapon()->translateWeaponMode(weaponMode);
+		std::string attackType = mWeaponComponent->getActiveWeapon()->translateWeaponMode(weaponMode);
 		mWeaponComponent->setAttackType(attackType);
 	}
 }
@@ -544,6 +548,33 @@ void GameObjectOny::postUpdate()
 			if (flashLight.get())
 			{
 				flashLight->startAttackParticles();
+
+				switch (mCurrentWeaponMode)
+				{
+				case WEAPON_MODE_0:
+					flashLight->getRenderComponentParticleSystemAttackRed()->start();
+					flashLight->getRenderComponentParticleSystemAttackGreen()->stop();
+					flashLight->getRenderComponentParticleSystemAttackBlue()->stop();
+					break;
+
+				case WEAPON_MODE_2:
+					flashLight->getRenderComponentParticleSystemAttackRed()->stop();
+					flashLight->getRenderComponentParticleSystemAttackGreen()->start();
+					flashLight->getRenderComponentParticleSystemAttackBlue()->stop();
+					break;
+
+				case WEAPON_MODE_1:
+					flashLight->getRenderComponentParticleSystemAttackRed()->stop();
+					flashLight->getRenderComponentParticleSystemAttackGreen()->stop();
+					flashLight->getRenderComponentParticleSystemAttackBlue()->start();
+					break;
+
+				case WEAPON_MODE_SPECIAL:
+					flashLight->getRenderComponentParticleSystemAttackRed()->start();
+					flashLight->getRenderComponentParticleSystemAttackGreen()->start();
+					flashLight->getRenderComponentParticleSystemAttackBlue()->start();
+					break;
+				}
 			}
 		}
 	}

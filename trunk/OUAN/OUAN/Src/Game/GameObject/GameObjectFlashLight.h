@@ -240,8 +240,8 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
 		void startAttackParticles();
+		void stopAttackParticles();
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;

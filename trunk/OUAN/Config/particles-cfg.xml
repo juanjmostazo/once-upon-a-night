@@ -9,19 +9,19 @@
 	<Option key="ONY_LAND_DREAMS">PU/any_jump_d</Option>
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
 	<Option key="ONY_LAND_WAVE">PU/wave</Option>
-	<Option key="ONY_LAND_WATER_WAVE">PU/ony_run_sand</Option>
-	<Option key="ONY_LAND_WATER_DROPS">PU/ony_run_sand</Option>
-	<Option key="ONY_RUN_GRASS">PU/ony_run_sand</Option>
+	<Option key="ONY_LAND_WATER_WAVE">PU/ony_run_sand</Option><!--TODO-->
+	<Option key="ONY_LAND_WATER_DROPS">PU/ony_run_sand</Option><!--TODO-->
+	<Option key="ONY_RUN_GRASS">PU/ony_run_sand</Option><!--TODO-->
 	<Option key="ONY_RUN_SAND">PU/ony_run_sand</Option>
-	<Option key="ONY_RUN_WATER">PU/ony_run_sand</Option>
-	<Option key="ONY_RUN_SURPRISE">PU/ony_run_surprise</Option>
+	<Option key="ONY_RUN_WATER">PU/ony_run_sand</Option><!--TODO-->
+	<Option key="ONY_RUN_SURPRISE">PU/ony_run_surprise</Option><!--TODO: set in code-->
 	
 	<Option key="PILLOW_ATTACK">PU/attack_pillow</Option>
 	
 	<Option key="FLASH_LIGHT_ATTACK">PU/attack_light</Option>
-	<Option key="FLASH_LIGHT_ATTACK_RED">PU/ony_run_sand</Option>
-	<Option key="FLASH_LIGHT_ATTACK_GREEN">PU/ony_run_sand</Option>
-	<Option key="FLASH_LIGHT_ATTACK_BLUE">PU/ony_run_sand</Option>
+	<Option key="FLASH_LIGHT_ATTACK_RED">PU/attack_light_red</Option>
+	<Option key="FLASH_LIGHT_ATTACK_GREEN">PU/attack_light_green</Option>
+	<Option key="FLASH_LIGHT_ATTACK_BLUE">PU/attack_light_blue</Option>
 	
 	<Option key="DIAMOND_BRIGHTNESS">PU/diamond_brightness</Option>
 	<Option key="DIAMOND_STARS_CLOUD">PU/diamond_stars_cloud</Option>
@@ -32,13 +32,13 @@
 	<Option key="BAG_HEARTS_FOUNTAIN_DOUBLE">PU/bag_hearts_fountain_double</Option>
 	<Option key="BAG_STARS_CLOUD">PU/bag_stars_cloud</Option>
 	
-	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option>
-	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option><!--TODO-->
+	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option><!--TODO-->
 	
 	<Option key="TOY_STARS_CLOUD">PU/toy_stars_cloud</Option>
 	
-	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option>
+	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option><!--TODO-->
 	
-	<Option key="BOX_ON_HIT">PU/diamond_stars_cloud</Option>
+	<Option key="BOX_ON_HIT">PU/diamond_stars_cloud</Option><!--TODO-->
   </Options>
 </Configuration>

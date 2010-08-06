@@ -17,7 +17,6 @@ GameObjectItemMaxHP::~GameObjectItemMaxHP()
 
 }
 
-
 /// Set logic component
 void GameObjectItemMaxHP::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
 {
@@ -166,6 +165,7 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
+				mRenderComponentParticleSystemHeartsFountain->start();
 			}
 		}
 		else
@@ -173,6 +173,7 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
+				mRenderComponentParticleSystemHeartsFountain->stop();
 			}
 		}		
 		break;
@@ -183,6 +184,7 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
+				mRenderComponentParticleSystemHeartsFountain->start();
 			}
 		}
 		else
@@ -190,6 +192,7 @@ void GameObjectItemMaxHP::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->destroy();
+				mRenderComponentParticleSystemHeartsFountain->stop();
 			}
 		}
 		break;
@@ -331,7 +334,6 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 		if (isFirstUpdate())
 		{
 			mRenderComponentEntity->changeAnimation(MAXHP_ANIM_IDLE);
-			mRenderComponentParticleSystemHeartsFountain->start();
 		}
 		else
 		{

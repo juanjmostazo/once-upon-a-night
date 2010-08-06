@@ -1,0 +1,31 @@
+system PU/attack_light_blue
+{
+	scale 										0.06 0.06 0.06
+    technique Technique3
+    {
+        visual_particle_quota                   6
+        material                                PU/attack_light_blue
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point Emitter4
+        {
+            angle                               30
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1.2
+            }
+            velocity                            dyn_random
+            {
+                min                             15
+                max                             20
+            }
+        }
+        affector                                Colour Affector8
+        {
+            colour_aff_time_colour              0    0.2 0.2 0.8 1
+            colour_aff_time_colour              2    0 0 1 1
+        }
+    }
+}
