@@ -1,11 +1,18 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import tint_texture from Tint.material
+import rim_normal_diffuse from rim_normal_diffuse.material
 
 //any
-material any_d : basic_texture
+material any_old : basic_texture
 {
 	set_texture_alias diffuse_texture any.dds
+}
+
+material any_d: rim_normal_diffuse
+{
+	set_texture_alias diffuse_texture any.dds
+	set_texture_alias normal_texture any_nm.dds
 }
 
 material any_n : basic_texture

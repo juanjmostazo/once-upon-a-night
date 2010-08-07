@@ -1,0 +1,73 @@
+void main_vp
+(
+	in float4 position : POSITION,
+	in float3 normal : NORMAL,
+	in float2 uv : TEXCOORD0, 
+	in float3 tangent : TEXCOORD1,
+	
+	
+	out float4 oPosition : POSITION,
+	out float2 oUv : TEXCOORD0,
+	out float4 oLightPosition : TEXCOORD1,
+	out float3 oEyePosition : TEXCOORD2,
+	out float4 oPositionIn : TEXCOORD3,
+	out float4 oNormalIn : TEXCOORD4,
+	out float2 oUv1 : TEXCOORD5,
+	
+	uniform float4 lightPosition,
+	uniform float3 eyePosition,
+	
+	uniform float4x4 worldViewProj
+)
+{
+	oPosition = mul( worldViewProj , position );
+	oUv = uv;
+	oUv1 = uv;
+	oLightPosition = lightPosition;
+	oEyePosition = eyePosition;
+	oPositionIn = position;
+	oNormalIn = float4( normal, 1 );
+}
+	
+	
+
+void main_fp
+(
+	in float2 uv : TEXCOORD0,
+	in float4 lightPosition : TEXCOORD1,
+	in float3 eyePosition : TEXCOORD2,
+	in float4 positionIn : TEXCOORD3,
+	in float4 normalIn : TEXCOORD4,
+	in float2 uv1 : TEXCOORD5,
+	
+	out float4 oColor : COLOR,
+	
+	uniform sampler2D textureDiffuse : register( s0 ),
+	uniform sampler2D textureNormal : register( s1 ),
+	
+	uniform float4 lightDiffuse,
+	uniform float4 lightSpecular,
+
+	uniform float4 ambient,
+	uniform float4 rimStrength
+)
+{
+	float3 eyeDirection = normalize( eyePosition - positionIn.xyz );
+	float3 lightDirection = normalize( lightPosition.xyz - ( positionIn * lightPosition.w ).xyz );
+	float3 halfAngle = normalize( lightDirection + eyeDirection );
+	
+	float4 normal = normalize( normalIn * tex2D( textureNormal, uv ) );
+	
+	float NdotL = dot( lightDirection, normal );
+	float NdotH = dot( halfAngle, normal );
+	float4 Lit = lit( NdotL, NdotH, 0 );
+	
+	float4 dff = tex2D( textureDiffuse, uv1 );
+	
+	float rimLightValue =  saturate( 0.4 - pow( dot( eyeDirection, normal ), 0.9 ) );
+	float4 rimLightColour = rimStrength * rimLightValue;
+	
+	oColor = lightDiffuse * Lit.y * dff + ambient * dff + rimLightColour;
+	
+	//oColor = rimLightColour;
+}

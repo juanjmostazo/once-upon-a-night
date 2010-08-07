@@ -1,0 +1,145 @@
+material rim_normal_diffuse
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			texture_unit diffuse_texture
+			{
+				texture default.png
+				mipmap_bias -1
+			}
+			texture_unit normal_texture
+			{
+				texture default.png
+				mipmap_bias -2
+			}			
+		}
+	}
+}
+material rim_normal_diffuse_blending
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			
+			scene_blend alpha_blend
+			depth_write off
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			texture_unit diffuse_texture
+			{
+				texture default.png
+				mipmap_bias -1
+			}
+			texture_unit normal_texture
+			{
+				texture default.png
+				mipmap_bias -2
+			}			
+		}
+	}
+}
+
+// UNTESTED!!!
+material rim_normal_diffuse_alpha_test
+{
+	technique
+	{
+		pass
+		{		
+			alpha_rejection greater 128
+			depth_write on
+			
+			cull_hardware none
+			cull_software none
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			
+			texture_unit diffuse_texture
+			{
+				texture default.png
+				mipmap_bias -1
+			}
+			
+			texture_unit normal_texture
+			{
+				texture default.png
+				mipmap_bias -2
+			}
+		}
+	}
+}
+// UNTESTED!!!
+material rim_normal_diffuse_alpha_test_anisotropic
+{
+	technique
+	{
+		pass
+		{
+			alpha_rejection greater 128
+			depth_write on
+			
+			cull_hardware none
+			cull_software none
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			
+			texture_unit diffuse_texture
+			{
+				max_anisotropy 16
+				filtering anisotropic
+				texture default.png
+				mipmap_bias -2
+			}
+			
+			texture_unit normal_texture
+			{
+				max_anisotropy 16
+				filtering anisotropic			
+				texture default.png
+				mipmap_bias -3
+			}			
+		}
+	}
+}
+// UNTESTED!!!!
+material rim_normal_diffuse_blending_scrolling: rim_normal_diffuse_blending
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			
+			texture_unit diffuse_texture
+			{
+				scroll_anim 0 -0.2
+				texture default.png
+				mipmap_bias -1
+			}
+			
+			texture_unit normal_texture
+			{
+				scroll_anim 0 -0.2			
+				texture default.png
+				mipmap_bias -2
+			}
+		}
+	}
+}

@@ -1,7 +1,7 @@
 // Ogre overlay scripts
 OUAN/HUDOverlay
 {
-	zorder 500
+	zorder 300
 	// Stats block
 	container Panel(OUAN/HealthPanel)
 	{
