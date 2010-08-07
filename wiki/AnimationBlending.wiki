@@ -16,6 +16,7 @@ Note: the skeleton's blending mode must probably be changed to ANIMBLEND_CUMULAT
   * [http://www.ogre3d.org/forums/viewtopic.php?f=11&t=45260 Tecnofreak animation system], by Pau Novau. It may be a good idea to dive into the source code (hosted at sourceforge, a link is provided)
   * [http://www.gamasutra.com/features/20030704/edsall_01.shtml Animation Blending - Achieving inverse kinematics and more]. Gamasutra's article on animation blending.
   * [http://www.ogre3d.org/tikiwiki/AnimationBlender Animation Blender]: Link to Ogre's wiki where a snippet featuring an animation blender class has been pasted.
+  * [http://graphics.ucsd.edu/courses/cse169_w05/CSE169_11.ppt Blending and state machines]
 
   * Jason Gregory's Game Engine Architecture. *Chapter 11: Animation Systems*
   
