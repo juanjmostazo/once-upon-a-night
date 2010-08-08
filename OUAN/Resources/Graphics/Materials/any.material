@@ -4,12 +4,7 @@ import tint_texture from Tint.material
 import rim_normal_diffuse from rim_normal_diffuse.material
 
 //any
-material any_old : basic_texture
-{
-	set_texture_alias diffuse_texture any.dds
-}
-
-material any_d: rim_normal_diffuse
+material any_d: basic_texture
 {
 	set_texture_alias diffuse_texture any.dds
 	set_texture_alias normal_texture any_nm.dds

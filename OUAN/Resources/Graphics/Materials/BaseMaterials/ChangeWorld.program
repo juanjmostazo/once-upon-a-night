@@ -1,20 +1,22 @@
 //EROSION
 vertex_program erosion_VS_CG cg
 {
-	source erosion.cg
-	entry_point erosionVS
+	source erosion_normals.cg
+	entry_point erosion_normalsVS
 	profiles vs_1_1 arbvp1 vp20
 	default_params	
 	{	
-	  param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto eyePosition camera_position_object_space
       }	
 }
 
 fragment_program erosion_FS_CG cg
 {
-	source erosion.cg
-	entry_point erosionFS
-	profiles ps_2_0 arbfp1 fp20
+	source erosion_normals.cg
+	entry_point erosion_normalsFS
+	profiles ps_3_0 arbfp1 fp30
 
 	default_params	
 	{
@@ -27,13 +29,21 @@ fragment_program erosion_FS_CG cg
 	  param_named blending_tiling float3 1 1 1
 	  param_named_auto time_elapsed time
 	  param_named modulate_factor float 1
+	  param_named alpha_modulate float 1
+
+	  param_named_auto lightDiffuse_base light_diffuse_colour 0
+	  param_named ambient_base float4 0.8 0.8 0.8 1
+	  param_named rimStrength_base float4 1 1 1 1
+	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
+	  param_named ambient_blended float4 0.8 0.8 0.8 1
+	  param_named rimStrength_blended float4 1 1 1 1
    	}
 }
 
 vertex_program erosion_VS_HLSL hlsl
 {
-	source erosion.hlsl
-	entry_point erosionVS
+	source erosion_normals.hlsl
+	entry_point erosion_normalsVS
 	target vs_2_0
 	default_params	
 	{	
@@ -42,8 +52,8 @@ vertex_program erosion_VS_HLSL hlsl
 }
 fragment_program erosion_FS_HLSL hlsl
 {
-	source erosion.hlsl
-	entry_point erosionFS
+	source erosion_normals.hlsl
+	entry_point erosion_normalsFS
 	target ps_2_0
 	
 	default_params	

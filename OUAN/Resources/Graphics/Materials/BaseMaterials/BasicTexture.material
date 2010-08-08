@@ -4,10 +4,23 @@ material basic_texture
 	{
 		pass
 		{
+			
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
 			texture_unit diffuse_texture
 			{
 				texture default.png
+				mipmap_bias -1
 			}
+			texture_unit normal_texture
+			{
+				texture white.dds
+				mipmap_bias -2
+			}
+			texture_unit lightmap
+			{
+				texture white.dds
+			}				
 		}
 	}
 }
@@ -20,10 +33,24 @@ material alpha_test_texture
 		{
 			alpha_rejection greater 128
 			depth_write on
+			alpha_to_coverage on
+
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
 			texture_unit diffuse_texture
 			{
 				texture default.png
+				mipmap_bias -1
 			}
+			texture_unit normal_texture
+			{
+				texture white.dds
+				mipmap_bias -2
+			}	
+			texture_unit lightmap
+			{
+				texture white.dds
+			}		
 		}
 	}
 }
@@ -36,6 +63,9 @@ material alpha_test_anisotropic
 		{
 			alpha_rejection greater 128
 			depth_write on
+
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
 			texture_unit diffuse_texture
 			{
 				max_anisotropy 16
@@ -43,6 +73,15 @@ material alpha_test_anisotropic
 				filtering anisotropic
 				texture default.png
 			}
+			texture_unit normal_texture
+			{
+				texture white.dds
+				mipmap_bias -2
+			}
+			texture_unit lightmap
+			{
+				texture white.dds
+			}			
 		}
 	}
 }
@@ -56,12 +95,26 @@ material alpha_blending_texture
 		{
 			scene_blend alpha_blend
 			depth_write off
+
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
 			texture_unit diffuse_texture
 			{
 				texture default.png
+				mipmap_bias -1
 			}
+			texture_unit normal_texture
+			{
+				texture white.dds
+				mipmap_bias -2
+			}
+			texture_unit lightmap
+			{
+				texture white.dds
+			}			
 		}
 	}
+
 }
 
 material alpha_blending_scrolling_texture: alpha_blending_texture
@@ -74,6 +127,10 @@ material alpha_blending_scrolling_texture: alpha_blending_texture
 			{
 				scroll_anim 0 -0.2
 				texture default.png
+			}
+			texture_unit lightmap
+			{
+				texture white.dds
 			}
 		}
 	}

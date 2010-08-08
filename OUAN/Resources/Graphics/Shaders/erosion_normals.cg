@@ -1,0 +1,164 @@
+
+//Texture samplers
+
+sampler blending_texture : register(s0);
+sampler diffuse_color_base : register(s1);
+sampler diffuse_color_blended : register(s2);
+sampler modulate_color_base : register(s3);
+sampler modulate_color_blended : register(s4);
+sampler texture_normal_base : register(s5);
+sampler texture_normal_blended : register(s6);
+
+// General functions
+
+float2 calculateUV(in float2 uv,in float3 scroll, in float3 tiling)
+{
+    uv.x = uv.x*tiling.x; 
+    uv.y = uv.y*tiling.y;  
+        
+    uv.x=uv.x+scroll.x;
+    uv.y=uv.y+scroll.y;
+
+    return uv;
+}
+
+// Basic VS main
+
+void erosion_normalsVS
+(
+	in float4 position : POSITION,
+	in float3 normal : NORMAL,
+	in float2 uv : TEXCOORD0, 
+	in float3 tangent : TEXCOORD1,
+	
+	
+	out float4 oPosition : POSITION,
+	out float2 oUv : TEXCOORD0,
+	out float4 oLightPosition : TEXCOORD1,
+	out float3 oEyePosition : TEXCOORD2,
+	out float4 oPositionIn : TEXCOORD3,
+	out float4 oNormalIn : TEXCOORD4,
+	out float2 oUv1 : TEXCOORD5,
+	
+	uniform float4 lightPosition,
+	uniform float3 eyePosition,
+	
+	uniform float4x4 worldViewProj
+)
+{
+	oPosition = mul( worldViewProj , position );
+	oUv = uv;
+	oUv1 = uv;
+	oLightPosition = lightPosition;
+	oEyePosition = eyePosition;
+	oPositionIn = position;
+	oNormalIn = float4( normal, 1 );
+}
+
+float4 calculateColor(
+       in float4 diffuse_color,
+       in float4 normal_color,
+       in float4 modulate_color,
+       in float4 normalIn, 
+       in float3 eyeDirection,
+       in float3 lightDirection, 
+       in float3 halfAngle, 
+       in float4 lightDiffuse,
+       in float4 ambient,
+       in float4 rimStrength
+       )
+{
+    float4 normal;
+    float NdotL;
+    float NdotH;
+    float4 Lit;
+    float4 dff;
+    float rimLightValue;
+    float4 rimLightColour;
+    float4 oColor;
+    
+	normal = normalize( normalIn * normal_color );
+
+    NdotL = dot( lightDirection, normal );
+	NdotH = dot( halfAngle, normal );
+	Lit = lit( NdotL, NdotH, 0 );
+
+	rimLightValue =  saturate( 0.4 - pow( dot( eyeDirection, normal ), 0.9 ) );
+	rimLightColour = rimStrength * rimLightValue; 
+
+ 	oColor = lightDiffuse * Lit.y * diffuse_color + ambient * diffuse_color + rimLightColour;
+
+    oColor = oColor*modulate_color;  
+        
+    return oColor;   
+}
+
+
+// Erosion FS main
+
+void erosion_normalsFS(
+
+in float2 uv : TEXCOORD0,
+in float4 lightPosition : TEXCOORD1,
+in float3 eyePosition : TEXCOORD2,
+in float4 positionIn : TEXCOORD3,
+in float4 normalIn : TEXCOORD4,
+in float2 uv1 : TEXCOORD5,
+in float4 color : COLOR,
+uniform float3 displacement,
+uniform float3 scroll_blending,
+uniform float3 scroll_animation,
+uniform float mix_factor,
+uniform float blending,
+uniform float3 tiling,
+uniform float3 blending_tiling,
+uniform float time_elapsed,
+uniform float modulate_factor,
+uniform float alpha_modulate,
+uniform float4 lightDiffuse_base,
+uniform float4 ambient_base,
+uniform float4 rimStrength_base,
+
+uniform float4 lightDiffuse_blended,
+uniform float4 ambient_blended,
+uniform float4 rimStrength_blended,
+
+
+out float4 oColor : COLOR)
+{
+    float4 erosion_info;
+    float4 base_color;
+    float4 blended_color;
+    float normalized_blending_factor;  
+    float2 original_uv;
+
+    original_uv=uv;
+    
+    uv=calculateUV(uv,-scroll_animation*time_elapsed,tiling);
+    uv1=calculateUV(uv1,-scroll_animation*time_elapsed,tiling);
+    erosion_info=tex2D(blending_texture,calculateUV(uv,displacement-scroll_blending*time_elapsed,blending_tiling)); 
+
+    float3 eyeDirection = normalize( eyePosition - positionIn.xyz );
+    float3 lightDirection = normalize( lightPosition.xyz - ( positionIn * lightPosition.w ).xyz );
+    float3 halfAngle = normalize( lightDirection + eyeDirection );
+    
+    base_color=    calculateColor(tex2D(diffuse_color_base,uv1),   tex2D(texture_normal_base,uv),    tex2D( modulate_color_base,original_uv)*modulate_factor,   normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_base,ambient_base,rimStrength_base);
+    blended_color= calculateColor(tex2D(diffuse_color_blended,uv1),tex2D(texture_normal_blended,uv), tex2D( modulate_color_blended,original_uv)*modulate_factor,normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_blended,ambient_blended,rimStrength_blended);
+
+    normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
+	
+    if(erosion_info.x>=mix_factor+blending || mix_factor==0.0f)
+    {
+        oColor = base_color;
+    }
+    else if(erosion_info.x<=mix_factor-blending || mix_factor==1.0f)
+    {
+        oColor = blended_color;
+    }   
+    else
+    {       
+        oColor=normalized_blending_factor* base_color+(1-normalized_blending_factor)*blended_color; 
+    }
+    
+	oColor.w=oColor.w*alpha_modulate;
+}

@@ -79,13 +79,6 @@ void TransparentEntity::init(Ogre::Entity * pEntity,double minAlphaBlending,doub
 				{
 					pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);			
 					pass->setDepthWriteEnabled(false);
-					//pass->setDepthCheckEnabled(false);
-
-					if(pass->getTextureUnitStateIterator().hasMoreElements())
-					{
-						mTransparentMaterialTextures.push_back(pass->getTextureUnitState(0));
-						//pass->getTextureUnitState(0)->setColourOperationEx(Ogre::LBX);
-					}
 				}
 			}
 		}
@@ -137,13 +130,30 @@ void TransparentEntity::makeTransparent()
 
 void TransparentEntity::setTransparentMaterialsAlpha(double alpha)
 {
-	unsigned int i;
+	unsigned int i,j;
+	Ogre::Technique * technique;
+	Ogre::Pass * pass;
+	Ogre::MaterialPtr material;
 
-	for ( i = 0; i < mTransparentMaterialTextures.size(); i++)
+	for ( i = 0; i < mTransparentMaterial.size(); i++)
 	{
-		mTransparentMaterialTextures[i]->setAlphaOperation(Ogre::LBX_MODULATE, Ogre::LBS_MANUAL, Ogre::LBS_CURRENT, alpha);
+		if (Ogre::MaterialManager::getSingleton().resourceExists(mTransparentMaterial[i]))
+		{
+			material = Ogre::MaterialManager::getSingleton().getByName(mTransparentMaterial[i]);
+				//get technique
+			technique = material->getBestTechnique();
+				//set current pass attributes
+			for(j=0;j<technique->getNumPasses();j++)
+			{
+				pass = technique->getPass(j);
+				Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+				if (params->_findNamedConstantDefinition("alpha_modulate"))
+				{
+					params->setNamedConstant("alpha_modulate", Ogre::Real(alpha));
+				}	
+			}
+		}
 	}
-
 }
 
 void TransparentEntity::update(double elapsedTime)

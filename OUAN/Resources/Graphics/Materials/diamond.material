@@ -5,14 +5,10 @@ import rim_normal_diffuse_blending from rim_normal_diffuse.material
 material diamond_old : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture diamond.dds
+	set_texture_alias normal_texture diamond_nm.dds
 }
 
 material diamond_n : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture diamond.dds
-}
-
-material diamond_d: rim_normal_diffuse_blending
 {
 	set_texture_alias diffuse_texture diamond.dds
 	set_texture_alias normal_texture diamond_nm.dds

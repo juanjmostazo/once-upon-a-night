@@ -272,17 +272,15 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 		{
 			mPhysicsComponentWeapon->setPosition(pos);
 			Vector3 nextMovement;
-			nextMovement=mLastBonePosition-pos;
+			nextMovement=mLastBonePosition-pos+ony->getPhysicsComponentCharacterOny()->getOuternMovement();
 			nextMovement.normalise();
 			mPhysicsComponentWeapon->setOuternMovement(nextMovement);
+			mPhysicsComponentWeapon->setCyclicCharacter(nextMovement==Vector3::ZERO);
+
 			//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
 			//mPhysicsComponentWeapon->setOrientation(orient);
 		}
-
-		if(mLastBonePosition!=pos)
-		{
 			mLastBonePosition=pos;
-		}
 	}
 }
 
@@ -457,10 +455,10 @@ LogicComponentPtr GameObjectFlashLight::getLogicComponent()
 
 void GameObjectFlashLight::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	//if(pGameObject->getName().compare("ony#0")!=0)
-	//{
-	//	Logger::getInstance()->log("FLASHLIGHT COLLISION " + pGameObject->getName());
-	//}
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PORTAL)==0)
+	{
+		Logger::getInstance()->log("FLASHLIGHT COLLISION " + pGameObject->getName());
+	}
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processCollision(pGameObject, pNormal);
