@@ -428,13 +428,9 @@ bool AudioSubsystem::_playSound(const std::string& id,
 							soundPtr->getFMODSound(), 
 							true, 
 							&channel);
+						outChannel->getChannelObject(tmp)->setVolume(soundPtr->mSoundData.volume);
 						outChannel->setChannel(tmp,channel);
 						outChannel->getChannelObject(tmp)->setFree(false);
-						//if (soundPtr->mSoundData.m3D)
-						//{
-						//	//channel->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
-						//	soundPtr->getFMODSound()->set3DMinMaxDistance(soundPtr->mSoundData.minDistance,soundPtr->mSoundData.maxDistance);
-						//}
 
 						rc = true;
 					}
@@ -755,9 +751,9 @@ void AudioSubsystem::setFrameSkip(int frameSkip)
 }
 bool AudioSubsystem::setChannelVolume(int channelID,double volume, const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP)
 {
-	FMOD::Channel* ch=mChannelGroupMap[channelGroupID]->getChannel(channelID);
-	if (ch)
-		return (ch->setVolume(static_cast<float>(volume)))?true:false;
+	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelID);
+	if (ch.get())
+		return ch->setVolume(volume);
 	else 
 	{
 		std::stringstream msg("");
@@ -767,12 +763,10 @@ bool AudioSubsystem::setChannelVolume(int channelID,double volume, const std::st
 }
 double AudioSubsystem::getChannelVolume(int channelID,const std::string& channelGroupID=SM_CHANNEL_SFX_GROUP)
 {
-	FMOD::Channel* ch=mChannelGroupMap[channelGroupID]->getChannel(channelID);
-	if (ch)
+	ChannelPtr ch=mChannelGroupMap[channelGroupID]->getChannelObject(channelID);
+	if (ch.get())
 	{
-		float retVal;
-		ch->getVolume(&retVal);		
-		return static_cast<double>(retVal);
+		return ch->getVolume();
 	}
 	else 
 	{

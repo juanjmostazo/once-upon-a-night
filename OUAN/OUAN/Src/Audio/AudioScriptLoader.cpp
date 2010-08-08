@@ -116,6 +116,14 @@ bool parseMinMaxDistance(const Ogre::String& params, TAudioScriptContext& audioS
 	}
 	return false;
 }
+bool parseVolume(const Ogre::String& params, TAudioScriptContext& audioScriptContext, AudioSubsystemPtr audioSS)
+{
+	if (!audioScriptContext.mSound.isNull())
+	{
+		audioScriptContext.mSound->mSoundData.volume=Ogre::StringConverter::parseReal(params);
+	}
+	return false;
+}
 AudioScriptLoader::AudioScriptLoader(AudioSubsystemPtr audioSS)
 {
 	mRootParsers.insert(TAudioScriptAttribParserList::value_type("sound",(FP_AUDIOSCRIPT_ATTRIB_PARSER)parseSound));
@@ -127,6 +135,8 @@ AudioScriptLoader::AudioScriptLoader(AudioSubsystemPtr audioSS)
 	mSoundParsers.insert(TAudioScriptAttribParserList::value_type("stream",(FP_AUDIOSCRIPT_ATTRIB_PARSER)parseStream));
 	mSoundParsers.insert(TAudioScriptAttribParserList::value_type("hardware",(FP_AUDIOSCRIPT_ATTRIB_PARSER)parseHardware));
 	mSoundParsers.insert(TAudioScriptAttribParserList::value_type("min_max_distance",(FP_AUDIOSCRIPT_ATTRIB_PARSER)parseMinMaxDistance));
+	mSoundParsers.insert(TAudioScriptAttribParserList::value_type(
+		"volume",(FP_AUDIOSCRIPT_ATTRIB_PARSER)parseVolume));
 	
 	mScriptContext.mSection= ASS_NONE;
 	mScriptContext.mSound.setNull();

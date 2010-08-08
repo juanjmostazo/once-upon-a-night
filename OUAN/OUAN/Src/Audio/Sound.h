@@ -21,6 +21,7 @@ namespace OUAN
 		//them here so that this information is loaded together with the rest of sound data
 		double minDistance;
 		double maxDistance;
+		float volume;
 	};
 
 	class Sound: public Ogre::Resource

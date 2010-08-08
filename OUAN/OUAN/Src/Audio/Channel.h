@@ -36,6 +36,8 @@ namespace OUAN
 		virtual FMOD_CHANNELINDEX getIndex();
 		virtual void setChannel(FMOD::Channel* channel);
 		virtual FMOD::Channel* getChannel();
+		virtual bool setVolume(float volume);
+		virtual float getVolume() const;
 	};
 	typedef boost::shared_ptr<Channel> ChannelPtr;
 	typedef std::vector<ChannelPtr> TChannelVector;
