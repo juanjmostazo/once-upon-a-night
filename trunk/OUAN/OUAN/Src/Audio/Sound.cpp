@@ -15,7 +15,8 @@ Sound::Sound(Ogre::ResourceManager* creator, const Ogre::String& name,
 	mSoundData.mChannelGroupID.clear();
 	mSoundData.mFileName.clear();
 	mSoundData.m3D=mSoundData.mStream=mSoundData.mHardware=mSoundData.mLoop=false;
-	mSoundData.minDistance=mSoundData.maxDistance=0.0;
+	mSoundData.minDistance=mSoundData.maxDistance==0.0;
+	mSoundData.volume=1.0;
 	
 	createParamDictionary("Sound");
 }

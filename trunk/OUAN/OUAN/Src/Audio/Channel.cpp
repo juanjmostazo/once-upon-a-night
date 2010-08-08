@@ -86,6 +86,18 @@ FMOD::Channel* Channel::getChannel()
 {
 	return mChannel;
 }
+bool Channel::setVolume(float volume)
+{
+	FMOD_RESULT r = mChannel->setVolume(volume);
+	return (r==FMOD_OK);
+}
+float Channel::getVolume() const
+{
+	float retVal;
+	if (mChannel->getVolume(&retVal)==FMOD_OK)
+		return retVal;
+	return -1.0;
+}
 
 //--- CHANNEL GROUP DEFINITIONS
 
