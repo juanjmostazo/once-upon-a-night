@@ -10,10 +10,12 @@ It allows masking bones in an animationState by defining an array of weights for
 
 Note: the skeleton's blending mode must probably be changed to ANIMBLEND_CUMULATIVE (default is AVERAGE, I think)
 
+
 = Bibliography =
   * [http://www.ogre3d.org/docs/api/html/classOgre_1_1AnimationState.html Ogre API - Animation State Class]
   * [http://www.ogre3d.org/forums/viewtopic.php?f=5&t=54998 Partial blending example]
   * [http://www.ogre3d.org/forums/viewtopic.php?f=11&t=45260 Tecnofreak animation system], by Pau Novau. It may be a good idea to dive into the source code (hosted at sourceforge, a link is provided)
+  * [http://www.naughtydog.com/docs/Naughty-Dog-GDC08-Creating-a-Character-in-Drakes-Fortune.pdf About animation states (or translating states to animation sequences/blends). Some of the images seem to have been taken/used in Jason Gregory's book as well -obvious, as the ppt was written by a colleague of him at Naughty Dog]
   * [http://www.gamasutra.com/features/20030704/edsall_01.shtml Animation Blending - Achieving inverse kinematics and more]. Gamasutra's article on animation blending.
   * [http://www.ogre3d.org/tikiwiki/AnimationBlender Animation Blender]: Link to Ogre's wiki where a snippet featuring an animation blender class has been pasted.
   * [http://graphics.ucsd.edu/courses/cse169_w05/CSE169_11.ppt Blending and state machines]
