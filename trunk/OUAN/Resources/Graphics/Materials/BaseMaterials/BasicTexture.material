@@ -23,6 +23,17 @@ material basic_texture
 			}				
 		}
 	}
+	technique
+	{
+		pass
+		{
+			texture_unit diffuse_texture
+			{
+				texture default.png
+				mipmap_bias -1
+			}
+		}
+	}
 }
 
 material alpha_test_texture
