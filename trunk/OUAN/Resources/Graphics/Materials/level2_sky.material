@@ -14,6 +14,8 @@ material level2_sky_d : default_changeworld
 		      {
 				param_named mix_factor float 0
 				param_named scroll_animation float3 0.03 0 0
+				param_named rimStrength_base float4 0 0 0 0
+				param_named ambient_base float4 1 1 1 1
 		      }
 			depth_write off
 			texture_unit changeworld
@@ -49,6 +51,8 @@ material level2_sky_n : default_changeworld
 		        {
 				param_named mix_factor float 1
 				param_named scroll_animation float3 0.03 0 0
+				param_named rimStrength_blended float4 0 0 0 0
+				param_named ambient_blended float4 1 1 1 1
 		        }
 			depth_write off
 			texture_unit changeworld
@@ -83,6 +87,10 @@ material level2_sky_cw : default_changeworld
 		        fragment_program_ref erosion_fs
 		        {
 				param_named scroll_animation float3 0.03 0 0
+				param_named rimStrength_base float4 0 0 0 0
+				param_named ambient_base float4 1 1 1 1
+				param_named rimStrength_blended float4 0 0 0 0
+				param_named ambient_blended float4 1 1 1 1
 		        }
 			depth_write off
 			texture_unit changeworld

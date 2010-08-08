@@ -24,10 +24,12 @@ material default_changeworld
 		        texture_unit dreams
 		        {
 				texture Grass1.jpg
+				mipmap_bias -1
 		        }
 		        texture_unit nightmares
 		        {
 				texture Dirt2.jpg
+				mipmap_bias -1
 	                }
 		        texture_unit lightmap_dreams
 		        {
@@ -36,6 +38,16 @@ material default_changeworld
 		        texture_unit lightmap_nightmares
 		        {
 				texture white.dds
+	                }
+		        texture_unit normal_dreams
+		        {
+				texture white.dds
+				mipmap_bias -2
+	                }
+		        texture_unit normal_nightmares
+		        {
+				texture white.dds
+				mipmap_bias -2
 	                }
               }
       }

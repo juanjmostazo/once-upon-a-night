@@ -4,16 +4,14 @@ import diffuse_template from Shadows.material
 import AlphaSplatTerrain from alpha_splatting.material
 
 //TERRAIN1 01
-material terrain1_01_d : diffuse_template
+material terrain1_01_d : basic_texture
 {	
-    set_texture_alias ambient_tex terrain1_01_d.dds
-    set_texture_alias diffuse_tex terrain1_01_d.dds
+    set_texture_alias diffuse_texture terrain1_01_d.dds
 }
 
-material terrain1_01_n : diffuse_template
+material terrain1_01_n : basic_texture
 {
-    set_texture_alias ambient_tex terrain1_01_n.dds
-    set_texture_alias diffuse_tex terrain1_01_n.dds
+    set_texture_alias diffuse_texture terrain1_01_n.dds
 }
 
 material terrain1_01_cw : default_changeworld
@@ -23,7 +21,7 @@ material terrain1_01_cw : default_changeworld
 }
 
 //TERRAIN1 02
-material terrain1_02_d: diffuse_template
+material terrain1_02_d: basic_texture
 {	
     //set_texture_alias AlphaMap1     alpha_splat_0.dds
     //set_texture_alias AlphaMap2     alpha_splat_1.dds
@@ -37,14 +35,12 @@ material terrain1_02_d: diffuse_template
     //set_texture_alias Splat8        rock2.jpg
     //set_texture_alias Detail        detail.jpg
     //set_texture_alias Fallback      Grass2.jpg
-    set_texture_alias ambient_tex terrain1_02_d.dds
-    set_texture_alias diffuse_tex terrain1_02_d.dds
+    set_texture_alias diffuse_texture terrain1_02_d.dds
 }
 
-material terrain1_02_n : diffuse_template
+material terrain1_02_n : basic_texture
 {
-    set_texture_alias ambient_tex terrain1_02_n.dds
-    set_texture_alias diffuse_tex terrain1_02_n.dds
+    set_texture_alias diffuse_texture terrain1_02_n.dds
 }
 
 material terrain1_02_cw : default_changeworld
@@ -54,16 +50,14 @@ material terrain1_02_cw : default_changeworld
 }
 
 //TERRAIN1 01
-material terrain1_03_d: diffuse_template
+material terrain1_03_d: basic_texture
 {	
-    set_texture_alias ambient_tex terrain1_03_d.dds
-    set_texture_alias diffuse_tex terrain1_03_d.dds
+    set_texture_alias diffuse_texture terrain1_03_d.dds
 }
 
-material terrain1_03_n : diffuse_template
+material terrain1_03_n : basic_texture
 {
-    set_texture_alias ambient_tex terrain1_03_n.dds
-    set_texture_alias diffuse_tex terrain1_03_n.dds
+    set_texture_alias diffuse_texture terrain1_03_n.dds
 }
 
 material terrain1_03_cw : default_changeworld

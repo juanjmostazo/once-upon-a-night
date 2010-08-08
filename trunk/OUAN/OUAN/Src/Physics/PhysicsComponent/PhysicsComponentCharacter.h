@@ -48,6 +48,7 @@ namespace OUAN
 		virtual bool isMoving() const;
 
 		virtual void setOuternMovement(Ogre::Vector3 outernMovement);
+		virtual Ogre::Vector3 getOuternMovement();
 		virtual Ogre::Vector3 getLastMovement();
 
 		virtual void setPosition(Ogre::Vector3 position);
@@ -79,7 +80,6 @@ namespace OUAN
 		virtual Ogre::Vector3 getNextMovement();
 
 		virtual void setLastMovement(Ogre::Vector3 lastMovement);
-		virtual Ogre::Vector3 getOuternMovement();
 
 		virtual void updateSceneNode();
 

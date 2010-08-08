@@ -332,9 +332,10 @@ void GameObjectPillow::update(double elapsedSeconds)
 	{
 		mPhysicsComponentWeapon->setPosition(pos);
 		Vector3 nextMovement;
-		nextMovement=mLastBonePosition-pos;
+		nextMovement=mLastBonePosition-pos+ony->getPhysicsComponentCharacterOny()->getOuternMovement();
 		nextMovement.normalise();
 		mPhysicsComponentWeapon->setOuternMovement(nextMovement);
+		mPhysicsComponentWeapon->setCyclicCharacter(nextMovement==Vector3::ZERO);
 		//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
 		//mPhysicsComponentWeapon->setOrientation(orient);
 	}

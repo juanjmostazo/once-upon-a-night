@@ -39,17 +39,21 @@ void main_fp
 	in float4 positionIn : TEXCOORD3,
 	in float4 normalIn : TEXCOORD4,
 	in float2 uv1 : TEXCOORD5,
-	
+    in float4 color : COLOR,
+    
 	out float4 oColor : COLOR,
 	
 	uniform sampler2D textureDiffuse : register( s0 ),
 	uniform sampler2D textureNormal : register( s1 ),
+	uniform sampler2D textureModulate : register( s2 ),
 	
 	uniform float4 lightDiffuse,
 	uniform float4 lightSpecular,
 
 	uniform float4 ambient,
-	uniform float4 rimStrength
+	uniform float4 rimStrength,
+    uniform float modulate_factor,
+	uniform float alpha_modulate
 )
 {
 	float3 eyeDirection = normalize( eyePosition - positionIn.xyz );
@@ -68,6 +72,10 @@ void main_fp
 	float4 rimLightColour = rimStrength * rimLightValue;
 	
 	oColor = lightDiffuse * Lit.y * dff + ambient * dff + rimLightColour;
+	
+	oColor = oColor*tex2D( textureModulate, uv1)*modulate_factor;
+	
+	oColor.w=oColor.w*alpha_modulate;
 	
 	//oColor = rimLightColour;
 }
