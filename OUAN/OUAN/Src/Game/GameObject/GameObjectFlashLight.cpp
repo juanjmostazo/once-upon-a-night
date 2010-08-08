@@ -42,7 +42,6 @@ void GameObjectFlashLight::setRenderComponentPositional(RenderComponentPositiona
 
 void GameObjectFlashLight::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
-	
 	mRenderComponentInitial=pRenderComponentInitial;
 }
 
@@ -294,6 +293,7 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 	{
 		ColourValue newColour;
 		newColour.setAsRGBA(attackData->rgb);
+
 		mRenderComponentLight->setDiffuseColor(newColour);
 		mRenderComponentLight->setSpecularColor(newColour);
 		//TODO: radius, etc, should also be modified here

@@ -146,11 +146,14 @@ void TransparentEntity::setTransparentMaterialsAlpha(double alpha)
 			for(j=0;j<technique->getNumPasses();j++)
 			{
 				pass = technique->getPass(j);
-				Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
-				if (params->_findNamedConstantDefinition("alpha_modulate"))
+				if(pass->hasFragmentProgram())
 				{
-					params->setNamedConstant("alpha_modulate", Ogre::Real(alpha));
-				}	
+					Ogre::GpuProgramParametersSharedPtr params = pass->getFragmentProgramParameters();
+					if (params->_findNamedConstantDefinition("alpha_modulate"))
+					{
+						params->setNamedConstant("alpha_modulate", Ogre::Real(alpha));
+					}
+				}
 			}
 		}
 	}

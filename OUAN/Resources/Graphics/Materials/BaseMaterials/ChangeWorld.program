@@ -9,7 +9,7 @@ vertex_program erosion_VS_CG cg
 		param_named_auto worldViewProj worldviewproj_matrix
 		param_named_auto lightPosition light_position_object_space 0
 		param_named_auto eyePosition camera_position_object_space
-      }	
+        }	
 }
 
 fragment_program erosion_FS_CG cg
@@ -44,37 +44,50 @@ vertex_program erosion_VS_HLSL hlsl
 {
 	source erosion_normals.hlsl
 	entry_point erosion_normalsVS
-	target vs_2_0
+	target vs_3_0
 	default_params	
 	{	
-	  param_named_auto matViewProjection worldviewproj_matrix
-    }	
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto eyePosition camera_position_object_space
+   	}	
 }
 fragment_program erosion_FS_HLSL hlsl
 {
 	source erosion_normals.hlsl
 	entry_point erosion_normalsFS
-	target ps_2_0
+	target ps_3_0
 	
 	default_params	
 	{
 	  param_named mix_factor float 0.5
 	  param_named scroll_animation float3 0.0 0.0 0.0	  
-	  param_named scroll_blending float3 0.0 0.0 0.0	  
-	  param_named displacement float 0.0
+	  param_named scroll_blending float3 0.0 0.0 0.0	
+	  param_named displacement float3 0.0 0.0 0.0  
 	  param_named blending float 0.03
-	  param_named tiling float 1 1 1
+	  param_named tiling float3 1 1 1
+	  param_named blending_tiling float3 1 1 1
+	  param_named_auto time_elapsed time
+	  param_named modulate_factor float 1
+	  param_named alpha_modulate float 1
+
+	  param_named_auto lightDiffuse_base light_diffuse_colour 0
+	  param_named ambient_base float4 0.8 0.8 0.8 1
+	  param_named rimStrength_base float4 1 1 1 1
+	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
+	  param_named ambient_blended float4 0.8 0.8 0.8 1
+	  param_named rimStrength_blended float4 1 1 1 1
    	}	
 }
 
 // Unified definition
 vertex_program erosion_vs unified
 {
-	//delegate erosion_VS_HLSL
+	delegate erosion_VS_HLSL
 	delegate erosion_VS_CG
 }
 fragment_program erosion_fs unified
 {
-	//delegate erosion_FS_HLSL
+	delegate erosion_FS_HLSL
 	delegate erosion_FS_CG
 }
