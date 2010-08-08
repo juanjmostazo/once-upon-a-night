@@ -1,7 +1,5 @@
 //---- VERTEX PROGRAM DECLARATIONS
 
-float4x4 matViewProjection;
-
 struct VS_OUTPUT 
 {
     float4 oPosition : POSITION;

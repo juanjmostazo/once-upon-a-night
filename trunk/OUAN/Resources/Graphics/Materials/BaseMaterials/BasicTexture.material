@@ -4,7 +4,6 @@ material basic_texture
 	{
 		pass
 		{
-			
 			fragment_program_ref rim_normal_diffuse_fs{}
 			vertex_program_ref rim_normal_diffuse_vs{}
 			texture_unit diffuse_texture
@@ -21,17 +20,6 @@ material basic_texture
 			{
 				texture white.dds
 			}				
-		}
-	}
-	technique
-	{
-		pass
-		{
-			texture_unit diffuse_texture
-			{
-				texture default.png
-				mipmap_bias -1
-			}
 		}
 	}
 }
@@ -104,6 +92,9 @@ material alpha_blending_texture
 	{
 		pass
 		{
+			cull_hardware none
+			cull_software none
+
 			scene_blend alpha_blend
 			depth_write off
 

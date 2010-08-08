@@ -1,8 +1,7 @@
 import alpha_blending_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
-import rim_normal_diffuse_blending from rim_normal_diffuse.material
 
-material diamond_old : alpha_blending_texture
+
+material diamond_d : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture diamond.dds
 	set_texture_alias normal_texture diamond_nm.dds
