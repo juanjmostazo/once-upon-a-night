@@ -307,6 +307,7 @@ namespace OUAN
 		double DEFAULT_MAX_UPDATE_RADIO_UPPER_LIMIT;
 		double DEFAULT_MAX_UPDATE_RADIO;
 		double DEFAULT_MAX_RENDER_RADIO;
+		double CHANGE_FLASHLIGHT_COLOUR_SPEED;
 
 		// Add an item nest link.
 		// Since the order the game objects are processed in can't be resolved, 

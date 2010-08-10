@@ -18,6 +18,7 @@ GameObjectFlashLight::GameObjectFlashLight(const std::string& name, RenderSubsys
 {
 	mRenderSubsystem=renderSubsystem;
 	rollAngle=0.0;
+	reset();
 }
 
 GameObjectFlashLight::~GameObjectFlashLight()
@@ -187,6 +188,9 @@ void GameObjectFlashLight::changeToWorld(int newWorld, double perc)
 void GameObjectFlashLight::reset()
 {
 	GameObject::reset();
+	mCurrentColour=RED;
+	mTargetColour=RED;
+	stopAttackParticles();
 }
 void GameObjectFlashLight::enable()
 {
@@ -225,6 +229,10 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 	if (isEnabled()) //there is no point to updating the flashlight when it's not active
 	{		
 		GameObject::update(elapsedSeconds);
+
+		mCurrentColour=calculateCurrentColour(elapsedSeconds);
+		setColour(mCurrentColour);
+
 		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
 		Ogre::Vector3 pos;
 		if (ony.get() && ony->getRenderComponentEntity()->getEntity()->hasSkeleton()
@@ -279,9 +287,65 @@ void GameObjectFlashLight::update(double elapsedSeconds)
 			//Logger::getInstance()->log("setOuternMovement " + Ogre::StringConverter::toString(pos-mLastBonePosition));
 			//mPhysicsComponentWeapon->setOrientation(orient);
 		}
-			mLastBonePosition=pos;
+		mLastBonePosition=pos;
 	}
 }
+
+void GameObjectFlashLight::setColour(int colour)
+{
+		ColourValue ogreColour;
+		ogreColour.setAsRGBA(colour);
+		mRenderComponentLight->setDiffuseColor(ogreColour);
+		mRenderComponentLight->setSpecularColor(ogreColour);
+		//TODO: radius, etc, should also be modified here
+		if (mFlashlightDecalComponent.get())
+		{
+			mFlashlightDecalComponent->changeColour(colour);
+			if (mFlashlightDecalComponent->isVisible())
+			{	
+				mFlashlightDecalComponent->hide();
+				mFlashlightDecalComponent->show();
+			}
+		}
+		if (mConeEntity)
+		{
+			applyTintColour(colour);
+		}
+}
+
+int GameObjectFlashLight::calculateCurrentColour(double elapsedSeconds)
+{
+	int nextColour;
+
+
+
+	ColourValue ogreTargetColour;
+	ColourValue ogreCurrentColour;
+	ColourValue ogreNextColour;
+	double incr;
+
+	ogreTargetColour.setAsRGBA(mTargetColour);
+	ogreCurrentColour.setAsRGBA(mCurrentColour);
+	incr=mGameWorldManager->CHANGE_FLASHLIGHT_COLOUR_SPEED*elapsedSeconds;
+
+	ogreNextColour.r=ogreCurrentColour.r+(ogreTargetColour.r-ogreCurrentColour.r)*incr;
+	ogreNextColour.g=ogreCurrentColour.g+(ogreTargetColour.g-ogreCurrentColour.g)*incr;
+	ogreNextColour.b=ogreCurrentColour.b+(ogreTargetColour.b-ogreCurrentColour.b)*incr;
+	ogreNextColour.a=1;
+
+	if(Ogre::Math::Abs(ogreTargetColour.r-ogreCurrentColour.r)<incr &&
+		Ogre::Math::Abs(ogreTargetColour.g-ogreCurrentColour.g)<incr &&
+		Ogre::Math::Abs(ogreTargetColour.b-ogreCurrentColour.b)<incr)
+	{
+		nextColour=mTargetColour;
+	}
+	else
+	{
+		nextColour=ogreNextColour.getAsRGBA();
+	}
+
+	return nextColour;
+}	
 
 void GameObjectFlashLight::setAttack(const std::string& newAttack)
 {
@@ -291,25 +355,30 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 
 	if (attackData.get())
 	{
-		ColourValue newColour;
-		newColour.setAsRGBA(attackData->rgb);
+		mTargetColour=attackData->rgb;
+	}
+	getRenderComponentParticleSystemAttackRed()->stop();
+	getRenderComponentParticleSystemAttackGreen()->stop();
+	getRenderComponentParticleSystemAttackBlue()->stop();
+	switch (mTargetColour)
+	{
+	case RED:
+		getRenderComponentParticleSystemAttackRed()->start();
+		break;
 
-		mRenderComponentLight->setDiffuseColor(newColour);
-		mRenderComponentLight->setSpecularColor(newColour);
-		//TODO: radius, etc, should also be modified here
-		if (mFlashlightDecalComponent.get())
-		{
-			mFlashlightDecalComponent->changeColour(attackData->rgb);
-			if (mFlashlightDecalComponent->isVisible())
-			{	
-				mFlashlightDecalComponent->hide();
-				mFlashlightDecalComponent->show();
-			}
-		}
-		if (mConeEntity)
-		{
-			applyTintColour(attackData->rgb);
-		}
+	case GREEN:
+		getRenderComponentParticleSystemAttackGreen()->start();
+		break;
+
+	case BLUE:
+		getRenderComponentParticleSystemAttackBlue()->start();
+		break;
+
+	case WHITE:
+		getRenderComponentParticleSystemAttackRed()->start();
+		getRenderComponentParticleSystemAttackGreen()->start();
+		getRenderComponentParticleSystemAttackBlue()->start();
+		break;
 	}
 }
 
@@ -320,10 +389,22 @@ void GameObjectFlashLight::startAttackParticles()
 
 void GameObjectFlashLight::stopAttackParticles()
 {
-	mRenderComponentParticleSystemAttack->stop();
-	mRenderComponentParticleSystemAttackRed->stop();
-	mRenderComponentParticleSystemAttackGreen->stop();
-	mRenderComponentParticleSystemAttackBlue->stop();
+	if(mRenderComponentParticleSystemAttack.get())
+	{
+		mRenderComponentParticleSystemAttack->stop();
+	}
+	if(mRenderComponentParticleSystemAttackRed.get())
+	{
+		mRenderComponentParticleSystemAttackRed->stop();
+	}
+	if(mRenderComponentParticleSystemAttackGreen.get())
+	{
+		mRenderComponentParticleSystemAttackGreen->stop();
+	}
+	if(mRenderComponentParticleSystemAttackBlue.get())
+	{
+		mRenderComponentParticleSystemAttackBlue->stop();
+	}
 }
 
 void GameObjectFlashLight::switchOn()
@@ -332,7 +413,7 @@ void GameObjectFlashLight::switchOn()
 
 	std::stringstream colourStream("");
 	colourStream<<GameObjectFlashLight::getColourName(getColour());
-	//mRenderComponentLight->getLight()->setVisible(true);
+	mRenderComponentLight->getLight()->setVisible(true);
 	if (mPhysicsComponentVolumeConvex.get() && !mPhysicsComponentVolumeConvex->isInUse())
 	{
 		mPhysicsComponentVolumeConvex->create();
@@ -349,6 +430,10 @@ void GameObjectFlashLight::switchOn()
 	}
 
 	mConeEntity->setVisible(true);
+	mCurrentColour=mTargetColour;
+	setColour(mTargetColour);
+
+	startAttackParticles();
 }
 
 void GameObjectFlashLight::switchOff()
@@ -387,6 +472,8 @@ void GameObjectFlashLight::switchOff()
 	}
 
 	stopAttackParticles();
+
+	mCurrentColour=mTargetColour;
 }
 
 void GameObjectFlashLight::show()
@@ -564,11 +651,6 @@ void GameObjectFlashLight::createProjector(TGameObjectContainer* objs)
 	//decalSettings.tintColour=getColour();
 
 	//mFlashlightDecal->createProjector(decalSettings,mRenderSubsystem->getSceneManager(),objs);
-
-	if (mConeEntity)
-	{
-		applyTintColour(getColour());
-	}
 }
 RenderComponentDecalPtr GameObjectFlashLight::getDecalComponent() const
 {

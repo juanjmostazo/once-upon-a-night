@@ -1,7 +1,6 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import tint_texture from Tint.material
-import rim_normal_diffuse from rim_normal_diffuse.material
 
 //any
 material any_d: basic_texture

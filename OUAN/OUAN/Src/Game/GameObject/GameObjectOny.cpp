@@ -544,38 +544,6 @@ void GameObjectOny::postUpdate()
 
 			GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
 				mWeaponComponent->getActiveWeapon());
-
-			if (flashLight.get())
-			{
-				flashLight->startAttackParticles();
-
-				switch (mCurrentWeaponMode)
-				{
-				case WEAPON_MODE_0:
-					flashLight->getRenderComponentParticleSystemAttackRed()->start();
-					flashLight->getRenderComponentParticleSystemAttackGreen()->stop();
-					flashLight->getRenderComponentParticleSystemAttackBlue()->stop();
-					break;
-
-				case WEAPON_MODE_2:
-					flashLight->getRenderComponentParticleSystemAttackRed()->stop();
-					flashLight->getRenderComponentParticleSystemAttackGreen()->start();
-					flashLight->getRenderComponentParticleSystemAttackBlue()->stop();
-					break;
-
-				case WEAPON_MODE_1:
-					flashLight->getRenderComponentParticleSystemAttackRed()->stop();
-					flashLight->getRenderComponentParticleSystemAttackGreen()->stop();
-					flashLight->getRenderComponentParticleSystemAttackBlue()->start();
-					break;
-
-				case WEAPON_MODE_SPECIAL:
-					flashLight->getRenderComponentParticleSystemAttackRed()->start();
-					flashLight->getRenderComponentParticleSystemAttackGreen()->start();
-					flashLight->getRenderComponentParticleSystemAttackBlue()->start();
-					break;
-				}
-			}
 		}
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
