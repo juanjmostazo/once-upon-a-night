@@ -4,11 +4,13 @@ material flashlightcone_d
 	{
 		pass
 		{
+			cull_hardware none
+			cull_software none
 			scene_blend alpha_blend
 			depth_write off
 			texture_unit
 			{
-				scroll_anim 0 -0.2
+				scroll_anim 0 -0.3
 				texture flashlightcone.dds
 			}
 		}
@@ -21,11 +23,13 @@ material flashlightcone_n
 	{
 		pass
 		{
+			cull_hardware none
+			cull_software none
 			scene_blend alpha_blend
 			depth_write off
 			texture_unit
 			{
-				scroll_anim 0 -0.2
+				scroll_anim 0 -0.3
 				texture flashlightcone.dds
 			}
 		}

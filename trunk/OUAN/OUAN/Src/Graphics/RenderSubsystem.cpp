@@ -4,6 +4,7 @@
 #include "../Application.h"
 #include "../Loader/Configuration.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectFlashlight.h"
 #include "../Physics/PhysicsSubsystem.h"
 #include "../GUI/GUISubsystem.h"
 #include "CameraManager/CameraManager.h"
@@ -572,8 +573,8 @@ void RenderSubsystem::initMaterials()
 	}
 	//TODO: DO THIS PROPERLY
 	//LOAD DECAL TEXTURES
-	Ogre::TextureManager::getSingleton().load("FlashlightDecal02.png","General");
-	Ogre::TextureManager::getSingleton().load("Decal_filter.png","General");
+	Ogre::TextureManager::getSingleton().load(FLASHLIGHT_DECAL_TEX_NAME,"General");
+	Ogre::TextureManager::getSingleton().load(FLASHLIGHT_DECAL_FILTER_TEX_NAME,"General");
 }
 
 void RenderSubsystem::initTextures3D()

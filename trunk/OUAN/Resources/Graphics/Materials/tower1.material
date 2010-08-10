@@ -4,15 +4,19 @@ import default_changeworld from ChangeWorld.material
 material tower1_d : basic_texture
 {
 	set_texture_alias diffuse_texture tower1_d.dds
+	set_texture_alias normal_texture tower1_d_nm.dds
 }
 
 material tower1_n : basic_texture
 {
 	set_texture_alias diffuse_texture tower1_n.dds
+	set_texture_alias normal_texture tower1_n_nm.dds
 }
 
 material tower1_cw : default_changeworld
 {
 	set_texture_alias dreams tower1_d.dds
 	set_texture_alias nightmares tower1_n.dds
+	set_texture_alias normal_dreams tower1_d_nm.dds
+	set_texture_alias normal_nightmares tower1_n_nm.dds
 }

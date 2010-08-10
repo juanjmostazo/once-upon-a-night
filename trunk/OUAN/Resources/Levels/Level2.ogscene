@@ -1837,34 +1837,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="337473696" name="trigger-camera_d#island2_tower1_2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-333.191 660.892 -1920.05"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="336.762 181.601 297.472"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="166447952" name="woodbox#5" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2598,34 +2570,6 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="49623096" name="trigger-camera_n#tower1_4" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="818.498 212.729 -34.8298"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="115.808 57.6337 84.7529"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#tower1_4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3399,34 +3343,6 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="641743232" name="trigger-camera_n#island2_tower2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872687 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="386.174 799.539 -1937.99"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="287.591 335.494 289.066"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -4336,34 +4252,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="572588288" name="trigger-camera_n#island2_tower1_3" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.996566 0 0.0828085 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-409.061 339.046 -1976.31"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 471.835 202.106"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="775322752" name="terrain_d#terrain1_02" typename="Entity Object" parentnode="terrain1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -4548,34 +4436,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="102511672" name="trigger-camera_d#island2_tower1_1" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.996566 0 0.0828085 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-385.935 339.046 -1838.11"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 449.625 93.0797"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5409,62 +5269,6 @@
       <PROPERTY id="ChangeWorldMaterial::randomize" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_animation" type="9" value="0 0.18 0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="ChangeWorldMaterial::scroll_blending" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="895718272" name="trigger-camera_n#tower1_3" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="768.368 211.915 -114.695"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="94.3521 57.6337 103.237"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="281746880" name="trigger-camera_d#towerback2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="956.778 87.5331 62.5084"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="320.265 238.191 144.312"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#towerback2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7001,34 +6805,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="218878752" name="trigger-camera_n#island2_tower1_2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-389.708 660.892 -1911.82"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 181.601 297.472"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="754142912" name="scaredplant_d#21" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8113,33 +7889,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="987456896" name="trigger-camera_n#tower1_2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="674.429 199.924 -96.5028"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="94.3521 67.9978 94.6918"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#tower1_" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
 
   <OBJECT object_id="448255872" name="water_n#waterfall1_foam" typename="Entity Object" parentnode="WaterIsla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
@@ -10845,33 +10594,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="835718848" name="trigger-camera_n#tower1_1" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="716.817 206.809 -19.1525"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="89.6409 67.9978 87.0098"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
 
   <OBJECT object_id="536759552" name="tree8_n#12" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
@@ -13594,33 +13316,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="241096224" name="trigger-camera_d#towerback1" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="956.778 87.5331 -64.6339"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="320.265 238.191 108.903"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#towerback1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
 
   <OBJECT object_id="73274944" name="tree8_n#11" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
@@ -14534,34 +14229,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="124240856" name="trigger-camera_d#island2_tower2" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872687 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="386.174 799.539 -1937.99"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="287.591 335.494 289.066"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="534226528" name="signpost_d#7" typename="Entity Object" parentnode="Signposts">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14654,34 +14321,6 @@
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="533005760" name="trigger-camera_n#island2_tower1_1" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-389.708 339.046 -1911.82"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 438.537 297.472"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14849,34 +14488,6 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="350260928" name="trigger-camera_d#island2_tower1_3" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.996566 0 0.0828085 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-409.061 339.046 -1976.31"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="248.11 470.846 202.106"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="4" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#island2_tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -15305,34 +14916,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="811120896" name="trigger-camera_d#island2_bridge" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="10"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872687 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="36.7636 679.529 -1935.85"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="405.439 214.901 184.012"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="1" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0.5 -0.8" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="80" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 30 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -15774,34 +15357,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="90670488" name="trigger-camera_n#lensflare" typename="Entity Object" parentnode="Camera">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="11"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.977231 0 0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-135.171 222.532 76.0087"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="288.289 212.898 211.889"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="CameraTrigger::type" type="2" value="2" fields="X;Y;Z;W" options="CTT_FREE;0;CTT_TRACKING;1;CTT_AUTO_ROTATION;2;CTT_AUTO_CENTER;3;CTT_TRAJECTORY;4;"></PROPERTY>
-      <PROPERTY id="CameraTrigger::transition" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::direction" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::distance" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::target" type="7" value="ony#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::targetoffset" type="9" value="0 0 0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory" type="7" value="StaticCamera#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::trajectory-look_at_target" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::rotx" type="6" value="-50" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="CameraTrigger::roty" type="6" value="45" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponentTriggerCamera::TriggerOnce" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

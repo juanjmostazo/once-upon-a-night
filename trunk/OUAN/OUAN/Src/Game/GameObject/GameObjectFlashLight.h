@@ -41,6 +41,10 @@ namespace OUAN
 	class GameObjectFlashLight : public GameObject, public boost::enable_shared_from_this<GameObjectFlashLight>
 	{
 	private:
+
+		void setColour(int colour);
+		int calculateCurrentColour(double elapsedSeconds);
+
 		/// Logic component: it'll represent the 'brains' of the game object
 		LogicComponentPtr mLogicComponent;	
 		AttackComponentPtr mAttackComponent;
@@ -70,6 +74,9 @@ namespace OUAN
 
 		Ogre::Real rollAngle;
 		Vector3 mLastBonePosition;
+
+		int mCurrentColour;
+		int mTargetColour;
 
 	public:
 	//----------CONSTRUCTOR/DESTRUCTOR
