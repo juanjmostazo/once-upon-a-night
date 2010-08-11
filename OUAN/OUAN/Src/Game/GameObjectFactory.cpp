@@ -2478,7 +2478,7 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 	
 	////////////////////////////////////////////////////////
 	// Lens flare initialization
-	gameObject->initLensFlare(cameraManager->getCamera(), sceneManager);
+	gameObject->initLensFlare(sceneManager,params.lensFlareScale);
 
 	//Add reference to this
 	gameObject->setGameWorldManager(gameWorldMgr);

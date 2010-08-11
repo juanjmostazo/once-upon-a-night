@@ -2080,6 +2080,8 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		params.useEntityDreams = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityDreams",false);
 		params.useEntityNightmares = getPropertyBool(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::useEntityNightmares",false);
 
+		params.lensFlareScale = getPropertyReal(gameObject->XMLNodeCustomProperties, "GameObjectSkyBody::lensFlareScale",false);
+
 		//Get Logic component
 		params.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);

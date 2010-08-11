@@ -377,10 +377,10 @@ void GameObjectSkyBody::setLensFlare(LensFlarePtr lensFlare)
 	mLensFlare=lensFlare;
 }
 
-void GameObjectSkyBody::initLensFlare(Ogre::Camera* cam, Ogre::SceneManager* sceneMgr)
+void GameObjectSkyBody::initLensFlare(Ogre::SceneManager* sceneMgr,double lensFlareScale)
 {
 	Ogre::SceneNode* currentNode = mRenderComponentPositional->getSceneNode();
-	mLensFlare.reset(new LensFlare(cam,sceneMgr,currentNode));
+	mLensFlare.reset(new LensFlare(sceneMgr,currentNode,lensFlareScale));
 }
 
 void GameObjectSkyBody::update(double elapsedSeconds)

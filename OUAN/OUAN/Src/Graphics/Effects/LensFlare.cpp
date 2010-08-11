@@ -12,6 +12,7 @@
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Graphics/RenderSubSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/CameraManager/CameraManager.h"
 
  using namespace OUAN;
  /* ------------------------------------------------------------------------- */
@@ -20,21 +21,22 @@
  /// @param camera        The camera on which the lensflare effect will appear.
  /// @param SceneMgr      Pointer on the SceneManager.
  /* ------------------------------------------------------------------------- */
-LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::SceneNode* sceneNode)
+LensFlare::LensFlare(Ogre::SceneManager* SceneMgr, Ogre::SceneNode* sceneNode,double LF_scale)
 :mSceneMgr(SceneMgr)
-,mCamera(camera)
 ,mHidden(true)
-,mNode(sceneNode)
  {
  	mSceneMgr      = SceneMgr;
- 	mCamera        = camera;
  	mHidden        = true;
 
- 	createLensFlare();
+	mNode = sceneNode->createChildSceneNode("mLensFlareNode");
 
-	mDebugLineNode = sceneNode->createChildSceneNode("mDebugLineNode");
-
+	mNode->setScale(1/sceneNode->getScale());
 	mNode->setVisible(true);
+
+	mDebugLineNode = sceneNode->createChildSceneNode("mLensFlareDebugLineNode");
+	mDebugLineNode->setPosition(-mNode->_getDerivedPosition());
+
+ 	createLensFlare(LF_scale);
  }
  
  /* ------------------------------------------------------------------------- */
@@ -51,10 +53,8 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  /* ------------------------------------------------------------------------- */
  /// this function creates and shows all the LensFlare graphical elements.
  /* ------------------------------------------------------------------------- */
- void LensFlare::createLensFlare()
+ void LensFlare::createLensFlare(double LF_scale)
  {
-	 Ogre::Real LF_scale = 35;
- 
  	// -----------------------------------------------------
  	// We create 2 sets of billboards for the lensflare
  	// -----------------------------------------------------
@@ -77,6 +77,7 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	// -------------------------------
  	// Creation of the Halo billboards
  	// -------------------------------
+	mHaloSet->setRenderQueueGroup(Ogre::RENDER_QUEUE_SKIES_LATE);
 	Ogre::Billboard* LF_Halo1 = mHaloSet->createBillboard(0,0,0);
  	LF_Halo1->setDimensions(LF_scale*0.5,LF_scale*0.5);
  	Ogre::Billboard* LF_Halo2 = mHaloSet->createBillboard(0,0,0);
@@ -87,6 +88,7 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	// -------------------------------
  	// Creation of the "Burst" billboards
  	// -------------------------------
+	mBurstSet->setRenderQueueGroup(Ogre::RENDER_QUEUE_SKIES_LATE);
  	Ogre::Billboard* LF_Burst1 = mBurstSet->createBillboard(0,0,0);
  	LF_Burst1->setDimensions(LF_scale*0.25,LF_scale*0.25);
  	Ogre::Billboard* LF_Burst2 = mBurstSet->createBillboard(0,0,0);
@@ -102,24 +104,27 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  /* -------------------------------------------------------------------------- */
  void LensFlare::update()
 {
+
+	mCamera=Application::getInstance()->getCameraManager()->getCamera();
    // If the Light is out of the Camera field Of View, the lensflare is hidden.
-   if (!mCamera->isVisible(mNode->getPosition())) 
+   if (!mCamera->isVisible(mNode->_getDerivedPosition())) 
    {
       this->setVisible(false);  
    }
    else 
    {
 	   // Distance between camera position and ligt
-	   Ogre::Real LightDistance  = (mCamera->getPosition() - mNode->getPosition()).length();
+	   Ogre::Real LightDistance  = (mCamera->getPosition() - mNode->_getDerivedPosition()).length();
 
 	   // normalized vector (length 1)
 	   Ogre::Vector3 CameraVect  = mCamera->getDirection();
+	   CameraVect.normalise();
 
 	   // Apply transformations
 	   CameraVect = mCamera->getPosition() + (LightDistance * CameraVect);
 
 	   // The LensFlare effect takes place along this vector.
-	   Ogre::Vector3 LFvect = (CameraVect - mNode->getPosition());
+	   Ogre::Vector3 LFvect = (CameraVect - mNode->_getDerivedPosition());
 
 	   // sprite dimension (to be adjusted, but not necessary)
 	   LFvect += Ogre::Vector3(-64,-64,0);  
@@ -179,23 +184,19 @@ LensFlare::LensFlare(Ogre::Camera* camera, Ogre::SceneManager* SceneMgr, Ogre::S
  	mHaloSet->getBillboard(2)->setColour(color);
  }
 
-void LensFlare::changeCamera(Ogre::Camera* cam)
-{
-	mCamera=cam;
-}
-
 void LensFlare::updateDebugLines()
 {
+	mCamera=Application::getInstance()->getCameraManager()->getCamera();
+
 	mDebugLineNode->detachAllObjects();
 	mDebugLineNode->setVisible(!mHidden);
 
 	if (!mHidden)
 	{
 		mDebugLine = new Line3D();
-		mDebugLine->addPoint(Ogre::Vector3::ZERO);
-		mDebugLine->addPoint(
-			(Application::getInstance()->getGameWorldManager()->getGameObjectOny()->getRenderComponentPositional()->getPosition() 
-			- mDebugLineNode->getParentSceneNode()->getPosition()));
+
+		mDebugLine->addPoint(mCamera->getPosition());
+		mDebugLine->addPoint(mNode->_getDerivedPosition());
 
 		mDebugLine->setMaterial("red");
 		mDebugLineNode->attachObject(mDebugLine);
@@ -206,7 +207,7 @@ void LensFlare::updateDebugLines()
 		Logger::getInstance()->log("## POINTA: " + Ogre::StringConverter::toString(mDebugLine->getPoint(0)));
 		Logger::getInstance()->log("## POINTB: " + Ogre::StringConverter::toString(mDebugLine->getPoint(1)));
 		Logger::getInstance()->log("## Visible: " + Ogre::StringConverter::toString(!mHidden));
-		Logger::getInstance()->log("## NodePosition: " + Ogre::StringConverter::toString(mDebugLineNode->getPosition()));
+		Logger::getInstance()->log("## NodePosition: " + Ogre::StringConverter::toString(mDebugLineNode->_getDerivedPosition()));
 		Logger::getInstance()->log("## ParentNodePosition: " + Ogre::StringConverter::toString(mDebugLineNode->getParentSceneNode()->getPosition()));
 	}
 }

@@ -25,15 +25,13 @@ namespace OUAN
 	 class LensFlare
 	 {
 	 public:
-		 LensFlare(Ogre::Camera* camera, Ogre::SceneManager* sceneMgr,Ogre::SceneNode* node);
+		 LensFlare(Ogre::SceneManager* sceneMgr,Ogre::SceneNode* node,double LF_scale);
  		virtual ~LensFlare();
- 		void    createLensFlare();
+ 		void    createLensFlare(double LF_scale);
  		void    update();
  		void    setVisible(bool visible);
 		void    setHaloColour(Ogre::ColourValue color);
  		void    setBurstColour(Ogre::ColourValue color);
-
-		void changeCamera(Ogre::Camera* cam);
 	    
 	 protected:
  		Ogre::SceneManager* mSceneMgr;

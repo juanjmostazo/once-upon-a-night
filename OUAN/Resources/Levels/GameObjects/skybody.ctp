@@ -2,7 +2,8 @@
 <CUSTOMPROPERTIES>
 	<PROPERTY id="GameObjectSkyBody::useEntityDreams" type="12" value="true"></PROPERTY>
 	<PROPERTY id="GameObjectSkyBody::useEntityNightmares" type="12" value="true"></PROPERTY>
-	
+	<PROPERTY id="GameObjectSkyBody::lensFlareScale" type="12" value="1700"></PROPERTY>
+
 	<PROPERTY id="RenderComponentGlowDreams::material" type="7" value="cg/wrapping_glow"></PROPERTY>
 	<PROPERTY id="RenderComponentGlowDreams::time_scale" type="6" value="2.0"></PROPERTY>
 	<PROPERTY id="RenderComponentGlowDreams::size_scale" type="6" value="1.1"></PROPERTY>
