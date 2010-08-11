@@ -10,7 +10,7 @@ material moon
 			specular 0.7 0.7 0.7 1 10
 			//cull_hardware none
 			//cull_software none
-
+			depth_write off
 			texture_unit
 			{
 				texture moon.dds
@@ -27,6 +27,7 @@ material moon_billboard
 	{
 		pass
 		{
+			depth_write off
          depth_write on
          alpha_rejection   greater 128
 			texture_unit

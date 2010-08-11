@@ -125,7 +125,7 @@ namespace OUAN
 
 		LensFlarePtr getLensFlare() const;
 		void setLensFlare(LensFlarePtr lensFlare);
-		void initLensFlare(Ogre::Camera*, Ogre::SceneManager*);
+		void initLensFlare(Ogre::SceneManager*,double lensFlareScale);
 
 		/// Reset object
 		virtual void reset();
@@ -170,6 +170,8 @@ namespace OUAN
 
 		bool useDreamsGlow;
 		bool useNightmaresGlow;
+
+		double lensFlareScale;
 
 		std::string dreamsGlowMaterial;
 		std::string nightmaresGlowMaterial;

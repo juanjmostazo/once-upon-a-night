@@ -5,6 +5,7 @@ material sun
 	{
 		pass
 		{
+			depth_write off
 			vertex_program_ref rim_vs
 	        {
 	        }
@@ -33,6 +34,7 @@ material sun_billboard
 	{
 		pass
 		{
+			depth_write off
          depth_write on
          alpha_rejection   greater 128
 			texture_unit

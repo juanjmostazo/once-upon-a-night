@@ -355,7 +355,6 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 	try
 	{
 		initShadows();
-		mSceneManager->setShadowTechnique(Ogre::SHADOWDETAILTYPE_STENCIL);
 
 		//Set SceneManager parameters
 		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);

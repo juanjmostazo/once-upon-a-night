@@ -71,7 +71,7 @@ material cg/wrapping_glow
 		{
 			scene_blend alpha_blend
 			depth_check on
-			depth_write on
+			depth_write off
 			lighting off
 			
 			fragment_program_ref glow_ps_cg 

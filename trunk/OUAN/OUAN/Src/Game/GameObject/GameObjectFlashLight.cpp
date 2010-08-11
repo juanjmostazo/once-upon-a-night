@@ -487,6 +487,7 @@ void GameObjectFlashLight::hide()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(false);
 	mConeEntity->setVisible(false);
+	stopAttackParticles();
 }
 
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const
