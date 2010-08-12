@@ -11,7 +11,9 @@ It allows masking bones in an animationState by defining an array of weights for
 Note: the skeleton's blending mode must probably be changed to ANIMBLEND_CUMULATIVE (default is AVERAGE, I think)
 
 
+
 = Bibliography =
+  * [http://www.ogre3d.org/tikiwiki/Generic+Manual+Pose+Loading&highlight=pose  Ogre Wiki - Pose manual loading - for pose animations]
   * [http://www.ogre3d.org/docs/api/html/classOgre_1_1AnimationState.html Ogre API - Animation State Class]
   * [http://www.ogre3d.org/forums/viewtopic.php?f=5&t=54998 Partial blending example]
   * [http://www.ogre3d.org/forums/viewtopic.php?f=11&t=45260 Tecnofreak animation system], by Pau Novau. It may be a good idea to dive into the source code (hosted at sourceforge, a link is provided)
