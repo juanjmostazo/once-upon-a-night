@@ -168,6 +168,7 @@ material default_changeworld_alpha_test_scrolling : default_changeworld_alpha_te
 
 material default_changeworld_alpha_blending : default_changeworld
 {
+	transparency_casts_shadows true
 	technique
 	{
 		pass

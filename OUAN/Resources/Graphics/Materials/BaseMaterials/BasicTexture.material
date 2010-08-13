@@ -144,6 +144,8 @@ material alpha_test_anisotropic
 
 material alpha_blending_texture
 {
+	transparency_casts_shadows true
+
 	technique
 	{
 		pass
