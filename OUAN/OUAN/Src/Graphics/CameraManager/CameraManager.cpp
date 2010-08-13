@@ -44,6 +44,8 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	Logger::getInstance()->log("[Camera Manager] INITIALISING CAMERA MANAGER");
 
 	mCameraInput.reset(new CameraInput());
+	loadDefaultCameraParameters();
+	setToDefaultCameraParameters(mCameraInput->mCameraParameters);
 
 	mSceneManager= pRenderSubsystem->getSceneManager();
 	mTrajectoryManager=pTrajectoryManager;
@@ -72,13 +74,6 @@ void CameraManager::init(RenderSubsystemPtr pRenderSubsystem,TrajectoryManagerPt
 	mCurrentTrajectory=-1;
 
 	setCameraType(OUAN::CAMERA_THIRD_PERSON);
-
-	loadDefaultCameraParameters();
-
-	mCameraInput->mCameraParameters->setDirection(mDefaultCameraParametersDirection);
-	mCameraInput->mCameraParameters->setTarget(mDefaultCameraParametersTarget);
-	mCameraInput->mCameraParameters->setTargetOffset(mDefaultCameraParametersTargetOffset);
-	mCameraInput->mCameraParameters->setDistance(mDefaultCameraParametersDistance);
 }
 
 void CameraManager::clear()
@@ -134,6 +129,7 @@ void CameraManager::loadDefaultCameraParameters()
 		target_offsetZ = atof(value.c_str());
 
 		mDefaultCameraParametersTargetOffset=Vector3(target_offsetX, target_offsetY, target_offsetZ);
+		Logger::getInstance()->log("[Camera Manager] mDefaultCameraParametersTargetOffset "+Ogre::StringConverter::toString(mDefaultCameraParametersTargetOffset));
 
 		config.getOption("INITIAL_DIRECTION_X", value); 
 		initial_directionX = atof(value.c_str());
@@ -147,13 +143,16 @@ void CameraManager::loadDefaultCameraParameters()
 		direction.normalise();
 
 		mDefaultCameraParametersDirection=direction;
+		Logger::getInstance()->log("[Camera Manager] mDefaultCameraParametersDirection "+Ogre::StringConverter::toString(mDefaultCameraParametersDirection));
 
 		config.getOption("DISTANCE", value); 
 		double distance = atof(value.c_str());
 		mDefaultCameraParametersDistance=distance;
-
+		Logger::getInstance()->log("[Camera Manager] mDefaultCameraParametersDistance "+Ogre::StringConverter::toString(Ogre::Real(mDefaultCameraParametersDistance)));
+		
 		config.getOption("TARGET", value); 
 		mDefaultCameraParametersTarget=value;
+		Logger::getInstance()->log("[Camera Manager] mDefaultCameraParametersTarget "+mDefaultCameraParametersTarget);
 	} 
 	else 
 	{
