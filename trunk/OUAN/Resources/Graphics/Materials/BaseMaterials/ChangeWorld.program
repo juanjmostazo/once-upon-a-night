@@ -84,10 +84,10 @@ fragment_program erosion_FS_HLSL hlsl
 vertex_program erosion_vs unified
 {
 	delegate erosion_VS_HLSL
-	//delegate erosion_VS_CG
+	delegate erosion_VS_CG
 }
 fragment_program erosion_fs unified
 {
 	delegate erosion_FS_HLSL
-	//delegate erosion_FS_CG
+	delegate erosion_FS_CG
 }
