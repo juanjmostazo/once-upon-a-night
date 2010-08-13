@@ -18,7 +18,6 @@
     <Option key="GRAVITY_BODIES_FACTOR">100</Option>
 	<Option key="CYCLIC_MAX_OFFSET">1</Option>
     <Option key="CYCLIC_SPEED">0.5</Option>
-	<Option key="STABILIZE_SECONDS">1000000</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="MIN_DISTANCE">0.0001</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
@@ -42,5 +41,8 @@
     <Option key="DASH_ACCELERATION_FACTOR_MIN">2.5</Option>
     <Option key="MAX_DASH">125</Option>
     <Option key="DASH_ACCELERATION_INCREMENT">1.5</Option>
+
+    <Option key="STABILIZE_SECONDS">100</Option>
+    <Option key="STABILIZE_CHARACTER_MOVE_Y">100000</Option>
   </Options>
 </Configuration>

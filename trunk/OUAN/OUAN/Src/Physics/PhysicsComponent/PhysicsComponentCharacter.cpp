@@ -29,7 +29,6 @@ void PhysicsComponentCharacter::reset()
 	setMoving(false);
 	setOnSurface(false);
 	setLastElapsedSeconds(0);
-	mStabilize=false;
 }
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
@@ -353,14 +352,20 @@ void PhysicsComponentCharacter::scaleNextMovementXYZ(double elapsedSeconds)
 
 bool PhysicsComponentCharacter::isWorthUpdating()
 {
-	return isInUse() && (getNextMovement() != Ogre::Vector3::ZERO || mStabilize);
+	return isInUse() && (getNextMovement() != Ogre::Vector3::ZERO);
 }
 
 void PhysicsComponentCharacter::stabilize(double elapsedSeconds)
 {
-	mStabilize=true;
-	PhysicsComponent::stabilize(elapsedSeconds);
-	mStabilize=false;
+	if(isInUse() && !mFlyingCharacter)
+	{
+		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+		getNxOgreController()->move(
+			NxOgre::Vec3(0,-Application::getInstance()->getPhysicsSubsystem()->mStabilizeCharacterMoveY,0),
+			collisionFlags,
+			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			collisionFlags);
+	}
 }
 
 void PhysicsComponentCharacter::walk()

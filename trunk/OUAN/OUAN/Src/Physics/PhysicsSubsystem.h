@@ -86,11 +86,13 @@ namespace OUAN
 		double mGravityBodiesFactor;
 		double mCyclicMaxOffset;
 		double mCyclicSpeed;
-		double mStabilizeSeconds;
 		double mImpulseHeight;
 		double mImpulseTime;
 		double mFallingTimeLimit;
 		double mTurnUnitsPerSecond;
+
+		double mStabilizeSeconds;
+		double mStabilizeCharacterMoveY;
 
 		/// Load params from config file
 		virtual bool loadConfig();
