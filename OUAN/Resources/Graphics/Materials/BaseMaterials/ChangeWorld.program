@@ -44,7 +44,7 @@ vertex_program erosion_VS_HLSL hlsl
 {
 	source erosion_normals.hlsl
 	entry_point erosion_normalsVS
-	target vs_1_1
+	target vs_3_0
 	default_params	
 	{	
 		param_named_auto worldViewProj worldviewproj_matrix
