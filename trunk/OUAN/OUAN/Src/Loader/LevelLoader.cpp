@@ -2089,10 +2089,10 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		if(params.tLogicComponentParameters.existsInDreams)
 		{
 			//Init light properties
-			params.lightDreamsParams.lighttype=Ogre::Light::LT_SPOTLIGHT;
+			params.lightDreamsParams.lighttype=Ogre::Light::LT_DIRECTIONAL;
 			params.lightDreamsParams.diffuse=Ogre::ColourValue(1.0,1.0,0.9);
 			params.lightDreamsParams.specular=Ogre::ColourValue::Black;
-			params.lightDreamsParams.direction = Ogre::Vector3(0,-1,-1);
+			params.lightDreamsParams.direction = Ogre::Vector3(0,-1,0);
 			params.lightDreamsParams.castshadows = true;
 			params.lightDreamsParams.lightrange = Ogre::Vector3(45,80,1);
 			params.lightDreamsParams.attenuation = Ogre::Vector4(10000,1,0,0);
@@ -2107,10 +2107,10 @@ void LevelLoader::processGameObjectSkyBody(XMLGameObject* gameObject)
 		}
 		if(params.tLogicComponentParameters.existsInNightmares)
 		{
-			params.lightNightmaresParams.lighttype=Ogre::Light::LT_SPOTLIGHT;
+			params.lightNightmaresParams.lighttype=Ogre::Light::LT_DIRECTIONAL;
 			params.lightNightmaresParams.diffuse=Ogre::ColourValue(0.9,0.9,1.0);
 			params.lightNightmaresParams.specular=Ogre::ColourValue::Black;			
-			params.lightNightmaresParams.direction = Ogre::Vector3(0,-1,-1);
+			params.lightNightmaresParams.direction = Ogre::Vector3(0,-1,0);
 			params.lightNightmaresParams.castshadows = true;
 			params.lightNightmaresParams.lightrange = Ogre::Vector3(45,80,1);
 			params.lightNightmaresParams.attenuation = Ogre::Vector4(10000,1,0,0);

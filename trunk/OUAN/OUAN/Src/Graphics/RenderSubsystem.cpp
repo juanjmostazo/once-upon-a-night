@@ -564,7 +564,7 @@ void RenderSubsystem::initMaterials()
 				(material->getName().compare("black")!=0) &&
 				(material->getName().compare("white")!=0))
 			{
-				//material->setLightingEnabled(false);
+				material->setLightingEnabled(false);
 			}
 		}
 	}
