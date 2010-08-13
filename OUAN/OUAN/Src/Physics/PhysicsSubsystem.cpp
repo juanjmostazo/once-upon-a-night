@@ -188,7 +188,6 @@ void PhysicsSubsystem::stabilize()
 			{
 				if(container->at(i)->hasPhysicsComponent())
 				{
-					//Logger::getInstance()->log("STABILIZING "+container->at(i)->getName());
 					container->at(i)->getPhysicsComponent()->stabilize(mStabilizeSeconds);
 				}
 			}
@@ -208,7 +207,7 @@ void PhysicsSubsystem::stabilize()
 	}
 
 	mNxOgreTimeController->advance(mStabilizeSeconds);
-	//Logger::getInstance()->log("STABILIZING ENDED");
+	Logger::getInstance()->log("STABILIZING ENDED");
 }
 
 bool PhysicsSubsystem::loadConfig()
@@ -324,9 +323,6 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("CYCLIC_SPEED", value); 
 		mCyclicSpeed = atof(value.c_str());
 
-		config.getOption("STABILIZE_SECONDS", value); 
-		mStabilizeSeconds = atof(value.c_str());
-
 		config.getOption("IMPULSE_HEIGHT", value); 
 		mImpulseHeight = atof(value.c_str());
 
@@ -338,6 +334,13 @@ bool PhysicsSubsystem::loadConfig()
 
 		config.getOption("TURN_UNITS_PER_SECOND", value); 
 		mTurnUnitsPerSecond = atof(value.c_str());
+
+		config.getOption("STABILIZE_SECONDS", value); 
+		mStabilizeSeconds = atof(value.c_str());
+
+		config.getOption("STABILIZE_CHARACTER_MOVE_Y", value); 
+		mStabilizeCharacterMoveY = atof(value.c_str());
+
 
 		success = true;
 	} 

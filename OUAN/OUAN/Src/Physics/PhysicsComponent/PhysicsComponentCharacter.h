@@ -133,8 +133,6 @@ namespace OUAN
 		double mFlyingCharacter;
 
 		double mLastElapsedSeconds;
-
-		bool mStabilize;
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters
