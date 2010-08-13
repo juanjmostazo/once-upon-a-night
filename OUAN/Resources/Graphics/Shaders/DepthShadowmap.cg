@@ -221,14 +221,10 @@ void OUANreceiverFP(
  
     // shadowUV.z contains lightspace position of current object
  
-    if(shadowUV.x<1 && shadowUV.x>0 && shadowUV.y<1 && shadowUV.y>0)
-    { 
-        result = (finalCenterDepth > shadowUV.z) ? vertexColour : float4(shadowFactor,shadowFactor,shadowFactor,1);
-    }
-    else
-    {
-        result = vertexColour;
-    }
+    shadowFactor=shadowFactor+(1-shadowFactor)*(1-(shadowUV.x<1 && shadowUV.x>0 && shadowUV.y<1 && shadowUV.y>0));
+
+    result = (finalCenterDepth > shadowUV.z) ? vertexColour : float4(shadowFactor,shadowFactor,shadowFactor,1);
+
 }
  
 /*
