@@ -53,6 +53,84 @@ material default_changeworld
       }
 }
 
+material default_changeworld_shadow_reciever
+{
+	technique
+	{
+	        pass
+	        {
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+		        }
+		        texture_unit changeworld
+		        {
+			 	texture default_changeworld.jpg
+		        }
+		        texture_unit dreams
+		        {
+				texture Grass1.jpg
+				mipmap_bias -1
+		        }
+		        texture_unit nightmares
+		        {
+				texture Dirt2.jpg
+				mipmap_bias -1
+	                }
+		        texture_unit lightmap_dreams
+		        {
+				texture white.dds
+	                }
+		        texture_unit lightmap_nightmares
+		        {
+				texture white.dds
+	                }
+		        texture_unit normal_dreams
+		        {
+				texture white.dds
+				mipmap_bias -2
+	                }
+		        texture_unit normal_nightmares
+		        {
+				texture white.dds
+				mipmap_bias -2
+	                }
+              }
+        // Now do the lighting pass
+        // NB we don't do decal texture here because this is repeated per light
+        pass Lighting
+        {
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 0 0 0 
+ 
+            // do this for each light
+            //iteration once_per_light
+ 
+            scene_blend modulate
+ 
+            // Vertex program reference
+            vertex_program_ref OUAN/DepthShadowmap/ReceiverVP
+            {
+            }
+ 
+            // Fragment program
+            fragment_program_ref OUAN/DepthShadowmap/ReceiverFP
+            {
+            }
+ 
+            texture_unit 0
+            {
+                content_type shadow
+                tex_address_mode clamp
+                filtering none
+            }
+        }
+    }
+}
+
 material default_changeworld_alpha_test : default_changeworld
 {
 	technique

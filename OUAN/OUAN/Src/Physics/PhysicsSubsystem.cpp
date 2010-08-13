@@ -176,7 +176,39 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 
 void PhysicsSubsystem::stabilize()
 {
-	update(mStabilizeSeconds);
+	unsigned int i;
+
+	if (mApp)
+	{
+		TGameObjectPhysicsContainer * container = mApp->getGameWorldManager()->getGameObjectPhysicsContainer();
+		
+		if (!container->empty())
+		{
+			for (i=0;i<container->size();i++)
+			{
+				if(container->at(i)->hasPhysicsComponent())
+				{
+					//Logger::getInstance()->log("STABILIZING "+container->at(i)->getName());
+					container->at(i)->getPhysicsComponent()->stabilize(mStabilizeSeconds);
+				}
+			}
+		}
+	}
+
+	//update pillow
+	if(mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->update(mStabilizeSeconds);
+	}
+
+	//update flashlight
+	if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(mStabilizeSeconds);
+	}
+
+	mNxOgreTimeController->advance(mStabilizeSeconds);
+	//Logger::getInstance()->log("STABILIZING ENDED");
 }
 
 bool PhysicsSubsystem::loadConfig()

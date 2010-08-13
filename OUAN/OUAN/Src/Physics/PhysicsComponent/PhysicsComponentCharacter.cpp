@@ -29,19 +29,12 @@ void PhysicsComponentCharacter::reset()
 	setMoving(false);
 	setOnSurface(false);
 	setLastElapsedSeconds(0);
+	mStabilize=false;
 }
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
 {
-	if (getParent()->isFirstUpdate())
-	{
-		//DO NOTHING
-	}
-	else if(!getParent()->isEnabled())
-	{
-		resetMovementVars();
-	} 
-	else if (isCyclicCharacter())
+	if (isCyclicCharacter())
 	{
 		performCyclicMovement(elapsedSeconds);
 	}
@@ -165,6 +158,7 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 
 void PhysicsComponentCharacter::applyMove()
 {
+		//Logger::getInstance()->log("move "+getParent()->getName());
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		getNxOgreController()->move(
 			NxOgre::Vec3(getNextMovement()),
@@ -359,7 +353,14 @@ void PhysicsComponentCharacter::scaleNextMovementXYZ(double elapsedSeconds)
 
 bool PhysicsComponentCharacter::isWorthUpdating()
 {
-	return isInUse() && getNextMovement() != Ogre::Vector3::ZERO;
+	return isInUse() && (getNextMovement() != Ogre::Vector3::ZERO || mStabilize);
+}
+
+void PhysicsComponentCharacter::stabilize(double elapsedSeconds)
+{
+	mStabilize=true;
+	PhysicsComponent::stabilize(elapsedSeconds);
+	mStabilize=false;
 }
 
 void PhysicsComponentCharacter::walk()

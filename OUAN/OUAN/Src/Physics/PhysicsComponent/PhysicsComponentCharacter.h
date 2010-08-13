@@ -58,6 +58,8 @@ namespace OUAN
 
 		virtual void setDisplayYaw(double displayYaw);
 
+		virtual void stabilize(double elapsedSeconds);
+
 	protected:
 		virtual void resetJumpingVars();
 		virtual void resetFallingVars();
@@ -131,6 +133,8 @@ namespace OUAN
 		double mFlyingCharacter;
 
 		double mLastElapsedSeconds;
+
+		bool mStabilize;
 	};
 
 	class TPhysicsComponentCharacterParameters: public TPhysicsComponentParameters

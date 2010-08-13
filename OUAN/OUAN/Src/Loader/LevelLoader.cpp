@@ -224,7 +224,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_LIGHT)==0)
 		{
-			//processGameObjectLight(gameObject);
+			processGameObjectLight(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_PARTICLESYSTEM)==0)
 		{

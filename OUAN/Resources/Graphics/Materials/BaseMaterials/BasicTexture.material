@@ -24,6 +24,62 @@ material basic_texture
 	}
 }
 
+material basic_shadow_reciever
+{
+	technique
+	{
+		pass
+		{
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			texture_unit diffuse_texture
+			{
+				texture default.png
+				mipmap_bias -1
+			}
+			texture_unit normal_texture
+			{
+				texture white.dds
+				mipmap_bias -2
+			}
+			texture_unit lightmap
+			{
+				texture white.dds
+			}				
+		}
+        // Now do the lighting pass
+        // NB we don't do decal texture here because this is repeated per light
+        pass Lighting
+        {
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 0 0 0 
+ 
+            // do this for each light
+            //iteration once_per_light
+ 
+            scene_blend modulate
+ 
+            // Vertex program reference
+            vertex_program_ref OUAN/DepthShadowmap/ReceiverVP
+            {
+            }
+ 
+            // Fragment program
+            fragment_program_ref OUAN/DepthShadowmap/ReceiverFP
+            {
+            }
+ 
+            texture_unit 0
+            {
+                content_type shadow
+                tex_address_mode clamp
+                filtering none
+            }
+        }
+	}
+}
+
 material alpha_test_texture
 {
 	technique
