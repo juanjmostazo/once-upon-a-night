@@ -23,6 +23,11 @@ void PhysicsComponent::create()
 	mInUse=true;
 }
 
+void PhysicsComponent::stabilize(double elapsedSeconds)
+{
+	update(elapsedSeconds);
+}
+
 void PhysicsComponent::destroy()
 {
 	mInUse=false;

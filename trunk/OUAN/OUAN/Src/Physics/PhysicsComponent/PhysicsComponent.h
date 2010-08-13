@@ -37,6 +37,8 @@ namespace OUAN
 
 		virtual void setDisplayYaw(double displayYaw);
 
+		virtual void stabilize(double elapsedSeconds);
+
 		//virtual void setQueryFlags(QueryFlags queryFlags);
 
 	protected:

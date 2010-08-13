@@ -357,7 +357,7 @@ Ogre::SceneManager * RenderSubsystem::setSceneParameters(Ogre::String name,TRend
 		initShadows();
 
 		//Set SceneManager parameters
-		//mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
+		mSceneManager->setAmbientLight(tRenderComponentSceneParameters.ambient);
 
 		if(tRenderComponentSceneParameters.tRenderComponentSkyDomeParameters.active)
 		{
@@ -401,12 +401,8 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		// Create the light
 		pLight = mSceneManager->createLight(name);
 
-		pLight->setQueryFlags(QUERYFLAGS_NONE);
-
 		// Attach to Scene Manager
-		if (sceneNodeName.empty())
-			sceneNodeName=name;
-		lightNode=mSceneManager->getSceneNode(sceneNodeName);
+		lightNode=mSceneManager->getSceneNode(name);
 		lightNode->attachObject(pLight);
 
 		//Set Light Parameters
@@ -428,10 +424,12 @@ Ogre::Light* RenderSubsystem::createLight(Ogre::String name,TRenderComponentLigh
 		}
 
 		pLight->setPowerScale(tRenderComponentLightParameters.power);
+
+		LogManager::getSingleton().logMessage("[RenderSubsystem] Created "+name+" Light!");
 	}
 	catch(Ogre::Exception &/*e*/)
 	{
-		Logger::getInstance()->log("[LevelLoader] Error creating "+name+" Light!");
+		LogManager::getSingleton().logMessage("[LevelLoader] Error creating "+name+" Light!");
 	}
 	return pLight;
 }
@@ -566,7 +564,7 @@ void RenderSubsystem::initMaterials()
 				(material->getName().compare("black")!=0) &&
 				(material->getName().compare("white")!=0))
 			{
-				material->setLightingEnabled(false);
+				//material->setLightingEnabled(false);
 			}
 		}
 	}
@@ -1118,63 +1116,165 @@ void RenderSubsystem::showOverlayElement(const std::string& overlayName)
 
 void RenderSubsystem::initShadows()
 {
-	// enable integrated additive shadows
-	// actually, since we render the shadow map ourselves, it doesn't
-	// really matter whether they are additive or modulative
-	// as long as they are integrated v(O_o)v
-	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);	
-	// we'll be self shadowing
-	mSceneManager->setShadowTextureSelfShadow(true);
-
-	std::string shadowTextureMaterial=DEFAULT_SHADOW_TEXTURE_CASTER_MATERIAL;
-	int shadowTextureCount=DEFAULT_SHADOW_TEXTURE_COUNT;
-	int shadowTextureSize=DEFAULT_SHADOW_TEXTURE_SIZE;
-	Ogre::PixelFormat shadowTexturePixelFormat=DEFAULT_SHADOW_TEXTURE_PIXEL_FORMAT;
-	bool shadowRenderBackFaces=DEFAULT_SHADOW_CASTER_RENDER_BACK_FACES;
+	//DEPTH SHADOWMAP
 
 	Configuration config;
-	//TODO: Replace this with a more general graphics-config.
+
+	std::string shadowTextureMaterial;
+	int shadowTextureCount;
+	int shadowTextureSize;
+	Ogre::PixelFormat shadowTexturePixelFormat;
+	bool shadowRenderBackFaces;
+	double shadowFarDistance;
+
 	if (config.loadFromFile(SHADOWS_CONFIG_PATH))
 	{
-		config.getOption(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_MATERIAL,shadowTextureMaterial);
-		shadowTextureCount=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_COUNT);
-		shadowTextureSize=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_SIZE);
-		shadowTexturePixelFormat=(Ogre::PixelFormat)config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_PIXEL_FORMAT);
-		shadowRenderBackFaces=config.parseBool(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_RENDER_BACK_FACES);
-	}
-	// our caster material
-	mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
-	// note we have no "receiver".  all the "receivers" are integrated.
-
-	// get the shadow texture count from the cfg file
-	// (each light needs a shadow text.)
-	mSceneManager->setShadowTextureCount(shadowTextureCount);
-	// the size, too (1024 looks good with 3x3 or more filtering)
-	mSceneManager->setShadowTextureSize(shadowTextureSize);
-
-	// float 16 here.  we need the R and G channels.
-	// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
-	// but float 16 is good enough and supports bilinear filtering on a lot of cards
-	// (we should use _GR, but OpenGL doesn't really like it for some reason)
-	mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
-
-	// big NONO to render back faces for VSM.  it doesn't need any biasing 
-	// so it's worthless (and rather problematic) to use the back face hack that
-	// works so well for normal depth shadow mapping (you know, so you don't
-	// get surface acne)
-	mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
-
-	const unsigned numShadowRTTs = mSceneManager->getShadowTextureCount();
-	for (unsigned i = 0; i < numShadowRTTs; ++i)
-	{
-		Ogre::TexturePtr tex = mSceneManager->getShadowTexture(i);
-		Ogre::Viewport *vp = tex->getBuffer()->getRenderTarget()->getViewport(0);
-		vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1, 1));
-		vp->setClearEveryFrame(true);
+		config.getOption(CONFIG_SHADOW_TEXTURE_CASTER_MATERIAL,shadowTextureMaterial);
+		shadowTextureCount=config.parseInt(CONFIG_SHADOW_TEXTURE_COUNT);
+		shadowTextureSize=config.parseInt(CONFIG_SHADOW_TEXTURE_SIZE);
+		shadowTexturePixelFormat=(Ogre::PixelFormat)config.parseInt(CONFIG_SHADOW_TEXTURE_PIXEL_FORMAT);
+		shadowRenderBackFaces=config.parseBool(CONFIG_SHADOW_TEXTURE_CASTER_RENDER_BACK_FACES);
+		shadowFarDistance=config.parseDouble(CONFIG_SHADOW_FAR_DISTANCE);
 	}
 
-	// and add the shader listener
-	mSceneManager->addListener(&shadowListener);
+	// Allow self shadowing (note: this only works in conjunction with the shaders defined above)
+	 mSceneManager->setShadowTextureSelfShadow(true);
+	 // Set the caster material which uses the shaders defined above
+	 mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
+	 // Set the pixel format to floating point
+	 mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
+	 // You can switch this on or off, I suggest you try both and see which works best for you
+	 mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
+	 // Finally enable the shadows using texture additive integrated
+	 mSceneManager->setShadowTechnique(SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
+
+	 mSceneManager->setShadowTextureSize(shadowTextureSize);
+
+	 mSceneManager->setShadowFarDistance(shadowFarDistance);
+
+	 mSceneManager->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(new Ogre::FocusedShadowCameraSetup()));
+
+	// STENCIL SHADOWS
+	//mSceneManager->setAmbientLight(ColourValue(0, 0, 0));
+
+	//mSceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
+
+
+
+	//Entity *ent; Light *light; 
+	//Ogre::SceneNode * mSceneNode;
+	//Ogre::SceneNode * mSceneNode2;
+	//Entity *ent2; 
+
+	//mSceneNode=mSceneManager->getRootSceneNode()->createChildSceneNode();
+
+	//mSceneManager->setAmbientLight(ColourValue(0, 0, 0));
+
+	//mSceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
+
+	//ent = mSceneManager->createEntity("Ninja", "ninja.mesh");
+
+	//ent->setCastShadows(true);
+
+	//mSceneNode->attachObject(ent);
+
+	//ent2 = mSceneManager->createEntity("Ninja2", "Any2.mesh");
+	//ent2->setCastShadows(true);
+	//ent2->setMaterialName("any_d");
+	//mSceneNode2=mSceneNode->createChildSceneNode();
+	//mSceneNode2->setPosition(0,0,-50);
+	//mSceneNode2->attachObject(ent2);
+
+	//Plane plane(Vector3::UNIT_Y, 0);
+
+	//MeshManager::getSingleton().createPlane("ground",
+	//ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
+	//1500,1500,20,20,true,1,5,5,Vector3::UNIT_Z);
+
+	//ent = mSceneManager->createEntity("GroundEntity", "ground");
+	//mSceneNode->attachObject(ent);
+	//ent->setMaterialName("terrain1_d");
+	//ent->setCastShadows(false);
+
+	//light = mSceneManager->createLight("Light1");
+	//light->setType(Light::LT_POINT);
+	//light->setPosition(Vector3(0, 150, 250));
+	//light->setDiffuseColour(1.0, 0.0, 0.0);
+	//light->setSpecularColour(1.0, 0.0, 0.0);
+	//light = mSceneManager->createLight("Light3");
+	//light->setType(Light::LT_DIRECTIONAL);
+	//light->setDiffuseColour(ColourValue(.25, .25, 0));
+	//light->setSpecularColour(ColourValue(.25, .25, 0));
+	//light->setDirection(Vector3( 0, -1, 1 ));
+	//light = mSceneManager->createLight("Light2");
+	//light->setType(Light::LT_SPOTLIGHT);
+	//light->setDiffuseColour(0, 0, 1.0);
+	//light->setSpecularColour(0, 0, 1.0);
+	//light->setDirection(-1, -1, 0);
+	//light->setPosition(Vector3(300, 300, 0));
+	//light->setSpotlightRange(Degree(35), Degree(50));
+
+	//mSceneNode->setPosition(0,250,0);
+
+	// SOFT SHADOWS
+
+	//// enable integrated additive shadows
+	//// actually, since we render the shadow map ourselves, it doesn't
+	//// really matter whether they are additive or modulative
+	//// as long as they are integrated v(O_o)v
+	//mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);	
+	//// we'll be self shadowing
+	//mSceneManager->setShadowTextureSelfShadow(true);
+
+	//std::string shadowTextureMaterial=DEFAULT_SHADOW_TEXTURE_CASTER_MATERIAL;
+	//int shadowTextureCount=DEFAULT_SHADOW_TEXTURE_COUNT;
+	//int shadowTextureSize=DEFAULT_SHADOW_TEXTURE_SIZE;
+	//Ogre::PixelFormat shadowTexturePixelFormat=DEFAULT_SHADOW_TEXTURE_PIXEL_FORMAT;
+	//bool shadowRenderBackFaces=DEFAULT_SHADOW_CASTER_RENDER_BACK_FACES;
+
+	//Configuration config;
+	////TODO: Replace this with a more general graphics-config.
+	//if (config.loadFromFile(SHADOWS_CONFIG_PATH))
+	//{
+	//	config.getOption(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_MATERIAL,shadowTextureMaterial);
+	//	shadowTextureCount=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_COUNT);
+	//	shadowTextureSize=config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_SIZE);
+	//	shadowTexturePixelFormat=(Ogre::PixelFormat)config.parseInt(CONFIG_KEYS_SHADOW_TEXTURE_PIXEL_FORMAT);
+	//	shadowRenderBackFaces=config.parseBool(CONFIG_KEYS_SHADOW_TEXTURE_CASTER_RENDER_BACK_FACES);
+	//}
+	//// our caster material
+	//mSceneManager->setShadowTextureCasterMaterial(shadowTextureMaterial);
+	//// note we have no "receiver".  all the "receivers" are integrated.
+
+	//// get the shadow texture count from the cfg file
+	//// (each light needs a shadow text.)
+	//mSceneManager->setShadowTextureCount(shadowTextureCount);
+	//// the size, too (1024 looks good with 3x3 or more filtering)
+	//mSceneManager->setShadowTextureSize(shadowTextureSize);
+
+	//// float 16 here.  we need the R and G channels.
+	//// float 32 works a lot better with a low/none VSM epsilon (wait till the shaders)
+	//// but float 16 is good enough and supports bilinear filtering on a lot of cards
+	//// (we should use _GR, but OpenGL doesn't really like it for some reason)
+	//mSceneManager->setShadowTexturePixelFormat(shadowTexturePixelFormat);
+
+	//// big NONO to render back faces for VSM.  it doesn't need any biasing 
+	//// so it's worthless (and rather problematic) to use the back face hack that
+	//// works so well for normal depth shadow mapping (you know, so you don't
+	//// get surface acne)
+	//mSceneManager->setShadowCasterRenderBackFaces(shadowRenderBackFaces);
+
+	//const unsigned numShadowRTTs = mSceneManager->getShadowTextureCount();
+	//for (unsigned i = 0; i < numShadowRTTs; ++i)
+	//{
+	//	Ogre::TexturePtr tex = mSceneManager->getShadowTexture(i);
+	//	Ogre::Viewport *vp = tex->getBuffer()->getRenderTarget()->getViewport(0);
+	//	vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1, 1));
+	//	vp->setClearEveryFrame(true);
+	//}
+
+	//// and add the shader listener
+	//mSceneManager->addListener(&shadowListener);
 }
 
 //---------------------------
@@ -1250,22 +1350,7 @@ void ShadowListener::shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Ca
 // these are pure virtual but we don't need them...  so just make them empty
 // otherwise we get "cannot declare of type Mgr due to missing abstract
 // functions" and so on
-void ShadowListener::shadowTexturesUpdated(size_t)
-{
-
-}
-
-void ShadowListener::shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*)
-{
-
-}
-
-void ShadowListener::preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) 
-{
-
-}
-
-void ShadowListener::postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) 
-{
-
-}
+void ShadowListener::shadowTexturesUpdated(size_t) {}
+void ShadowListener::shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*) {}
+void ShadowListener::preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
+void ShadowListener::postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}

@@ -18,7 +18,7 @@
     <Option key="GRAVITY_BODIES_FACTOR">100</Option>
 	<Option key="CYCLIC_MAX_OFFSET">1</Option>
     <Option key="CYCLIC_SPEED">0.5</Option>
-	<Option key="STABILIZE_SECONDS">10000</Option>
+	<Option key="STABILIZE_SECONDS">1000000</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="MIN_DISTANCE">0.0001</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>

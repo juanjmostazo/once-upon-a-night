@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Options>
-	<Option key="SHADOW_TEXTURE_CASTER_MATERIAL">shadow_caster</Option>
+	<Option key="SHADOW_TEXTURE_CASTER_MATERIAL">Ogre/DepthShadowmap/Caster/Float</Option>
 	<Option key="SHADOW_TEXTURE_COUNT">2</Option>
-	<Option key="SHADOW_TEXTURE_SIZE">128</Option>
+	<Option key="SHADOW_TEXTURE_SIZE">2048</Option>
 	<!-- 35:PF_FLOAT16_GR, 36: PF_FLOAT32_GR -->
-	<Option key="SHADOW_TEXTURE_PIXEL_FORMAT">35</Option>
+	<Option key="SHADOW_TEXTURE_PIXEL_FORMAT">36</Option>
 	<Option key="SHADOW_RENDER_BACK_FACES">false</Option>
+	<Option key="SHADOW_FAR_DISTANCE">300</Option>
   </Options>
 </Configuration>
