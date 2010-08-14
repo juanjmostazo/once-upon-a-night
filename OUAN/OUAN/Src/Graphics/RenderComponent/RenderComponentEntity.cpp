@@ -185,7 +185,7 @@ void RenderComponentEntity::update(double elapsedTime)
 {
 	if(mEntity->isAttached())
 	{
-		if (!mParent->getType().compare(GAME_OBJECT_TYPE_ONY) && mAnimationBlender)
+		if (mAnimationBlender)
 		{
  			mAnimationBlender->addTime(elapsedTime);
 			if (mAnimationBlender->hasEnded())

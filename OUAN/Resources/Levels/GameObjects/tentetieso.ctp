@@ -9,7 +9,8 @@
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="20" fields="X;Y;Z;W"></PROPERTY>
-  
+    
+	<PROPERTY id="initialAnimation" type="7" value="idle_Clip"></PROPERTY>
   	<PROPERTY id="animation0d::name" type="7" value="attack01_Clip" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::name" type="7" value="attack01_Clip" fields="X;Y;Z;W"></PROPERTY>

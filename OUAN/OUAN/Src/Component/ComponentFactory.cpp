@@ -112,14 +112,13 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	
 	TKeyFrameMap keyframes;
 	keyframes.clear();
-
+	
+	Ogre::Entity* ent=mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,
+		entityParams,(entityParams.mInitManualAnimations)?&keyframes:NULL);
 	//init Render Component
-	pRenderComponentEntity->setEntity(
-		mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,
-		entityParams,(entityParams.mInitManualAnimations)?&keyframes:NULL),
-existInDreams,existInNightmares);
+	pRenderComponentEntity->setEntity(ent,existInDreams,existInNightmares);
 
-	if (!entityParams.initialAnimation.empty())
+	if (!entityParams.initialAnimation.empty() && ent->getAllAnimationStates())
 		pRenderComponentEntity->initAnimationBlender(entityParams.initialAnimation);
 
 	pRenderComponentEntity->initAnimations(entityParams.tRenderComponentEntityAnimParams);

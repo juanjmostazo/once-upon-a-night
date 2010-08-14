@@ -69,11 +69,11 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		int currentState=mLogicComponent->getState();
 		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
 		{
-			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP);
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP,AnimationBlender::BT_SWITCH,0.2,false);
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
 		{
-			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT,AnimationBlender::BT_SWITCH,0.2,false,3.5);
 			//displayText("I'M AFRAID!! >_<");
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_CAUTION))
@@ -86,10 +86,7 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		}
 		if(mRenderComponentEntityDreams.get())
 		{
-			double timeScaleFactor=1.0;
-			if (mRenderComponentEntityDreams->getCurrentAnimationName().compare(SCAREDPLANT_ANIM_ALERT)==0)
-				timeScaleFactor=3.5;
-			mRenderComponentEntityDreams->update(elapsedSeconds*timeScaleFactor);
+			mRenderComponentEntityDreams->update(elapsedSeconds);
 		}
 
 	}
@@ -288,15 +285,15 @@ void GameObjectScaredPlant::processAnimationEnded(const std::string& animationNa
 {
 	if (animationName.compare(SCAREDPLANT_ANIM_ALERT)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_DOWN);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_DOWN,AnimationBlender::BT_SWITCH,0.2,false);
 	}
 	else if (animationName.compare(SCAREDPLANT_ANIM_DOWN)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IN);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IN,AnimationBlender::BT_SWITCH,0.2);
 	}
 	else if (animationName.compare(SCAREDPLANT_ANIM_UP)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE,AnimationBlender::BT_SWITCH,0.2);
 	}
 }
 void GameObjectScaredPlant::setVisible(bool visible)

@@ -26,7 +26,7 @@ namespace OUAN
 	const std::string TRIPOLLO_ATTACK_CLAW="claw";
 
 	//Animation names
-	const std::string TRIPOLLO_ANIM_IDLE_02="idle02";
+	const std::string TRIPOLLO_ANIM_IDLE_02="idle01";
 	const std::string TRIPOLLO_ANIM_WALK="walk";
 	const std::string TRIPOLLO_ANIM_DIE="die";
 	const std::string TRIPOLLO_ANIM_HIT01="hit01";

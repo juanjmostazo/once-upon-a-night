@@ -83,7 +83,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
-			mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_IDLE_UP);
+			mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
 			
 			break;
 		case NIGHTMARES:
@@ -95,7 +95,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
-			mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_IDLE_UP);
+			mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
 
 			break;
 		default:
@@ -110,12 +110,12 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP);
-		mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN);
+		//mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+		//mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_WHILEANIMATING,0.2,false);
 		break;
 	case NIGHTMARES:
-		mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_DOWN);
-		mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_UP);
+		//mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+		//mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_WHILEANIMATING,0.2,false);
 		break;
 	default:
 		break;
@@ -182,12 +182,12 @@ void GameObjectDiamondTree::reset()
 
 	if (mLogicComponent->existsInNightmares())
 	{
-		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);		
+		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);		
 		mRenderComponentEntityNightmares->setVisible(mWorld==NIGHTMARES);
 	}
 	else if (mLogicComponent->existsInDreams())
 	{
-		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
+		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
 		mRenderComponentEntityDreams->setVisible(mWorld==DREAMS);
 	}
 }
@@ -285,12 +285,13 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
-				entityToUpdate->changeAnimation(DT_ANIM_IDLE);								mLogicComponent->setTimeSpent(-1.0);
+				entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
+				mLogicComponent->setTimeSpent(-1.0);
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{	
-			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
+			entityToUpdate->changeAnimation(DT_ANIM_HIT,AnimationBlender::BT_WHILEANIMATING,0.2,false);			
 			if (mLogicComponent->getTimeSpent()<0)
 			{
 				mLogicComponent->setTimeSpent(0.0);
@@ -300,14 +301,14 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{					
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
 			entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{
 			//TODO: Replace with depletion animation when it is done
 			//TODO: Add particles
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
 		}
 		//Last, update the entity
 		if (entityToUpdate.get())

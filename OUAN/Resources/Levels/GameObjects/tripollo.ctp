@@ -45,6 +45,7 @@
  
 
   <!-- Animations -->
+  <PROPERTY id="initialAnimation" type="7" value="idle01"></PROPERTY>
   <PROPERTY id="animation0d::name" type="7" value="alert" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation1d::name" type="7" value="attack01" fields="X;Y;Z;W"></PROPERTY>

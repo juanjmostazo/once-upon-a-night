@@ -54,26 +54,29 @@ void AnimationBlender::init(const std::string&animation, bool loop, float timesc
 void AnimationBlender::_init(const std::string &animation, bool l, float timescale)
 {
 	Ogre::AnimationStateSet *set = mEntity->getAllAnimationStates();
-	Ogre::AnimationStateIterator it = set->getAnimationStateIterator();
-	while(it.hasMoreElements())
+	if (set)
 	{
-		Ogre::AnimationState *anim = it.getNext();
-		anim->setEnabled(false);
-		anim->setWeight(0);
-		anim->setTimePosition(0);
+		Ogre::AnimationStateIterator it = set->getAnimationStateIterator();
+		while(it.hasMoreElements())
+		{
+			Ogre::AnimationState *anim = it.getNext();
+			anim->setEnabled(false);
+			anim->setWeight(0);
+			anim->setTimePosition(0);
+		}
+
+		mSource = mEntity->getAnimationState( animation );
+		mSource->setEnabled(true);
+		mSource->setWeight(1);
+		mSrcTimeScale=timescale;
+		mTimeleft = 0;
+		mDuration = 1;
+		mTarget = 0;
+		mComplete = false;
+		mLoop = l;
+
+		mManualAnimation = NULL;
 	}
-
-	mSource = mEntity->getAnimationState( animation );
-	mSource->setEnabled(true);
-	mSource->setWeight(1);
-	mSrcTimeScale=timescale;
-	mTimeleft = 0;
-	mDuration = 1;
-	mTarget = 0;
-	mComplete = false;
-	mLoop = l;
-
-	mManualAnimation = NULL;
 
 }
 

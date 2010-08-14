@@ -30,6 +30,7 @@
 	<PROPERTY id="LogicComponent::approachDistance" type="6" value="40"></PROPERTY>
 	<PROPERTY id="LogicComponent::delay" type="6" value="0"></PROPERTY>
 	
+	<PROPERTY id="initialAnimation" type="7" value="idle"></PROPERTY>
 	<PROPERTY id="animation0d::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
