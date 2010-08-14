@@ -336,7 +336,7 @@ void GameObjectHeart::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation("idle01");
+			mRenderComponentEntity->changeAnimation("idle01",AnimationBlender::BT_SWITCH,0.2);
 		}
 		else
 		{

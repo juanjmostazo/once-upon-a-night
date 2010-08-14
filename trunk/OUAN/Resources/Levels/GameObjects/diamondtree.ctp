@@ -17,6 +17,7 @@
 	<PROPERTY id="LogicComponent::delay" type="6" value="30"></PROPERTY>
 	
 	<!-- TODO: Animations! -->
+	<PROPERTY id="initialAnimation" type="7" value="static_pose"></PROPERTY>
 	<PROPERTY id="animation0d::name" type="7" value="static_pose"></PROPERTY>
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation1d::name" type="7" value="hit"></PROPERTY>

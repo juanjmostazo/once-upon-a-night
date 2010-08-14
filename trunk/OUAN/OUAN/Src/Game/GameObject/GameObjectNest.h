@@ -14,7 +14,7 @@ namespace OUAN
 	const std::string NEST_STATE_SHAKING="NEST_STATE_SHAKING";
 	const std::string NEST_STATE_HATCHING="NEST_STATE_HATCHING";
 
-	const std::string NEST_ANIM_IDLE="manual";
+	const std::string NEST_ANIM_IDLE="idle";
 	const std::string NEST_ANIM_SHAKE="shake";
 	const std::string NEST_ANIM_HATCH="jump";
 

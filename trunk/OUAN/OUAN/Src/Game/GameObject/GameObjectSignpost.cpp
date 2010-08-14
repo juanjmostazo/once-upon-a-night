@@ -161,7 +161,7 @@ void GameObjectSignpost::reset()
 	GameObject::reset();
 
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(SIGN_STATE_IDLE));
-	mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);
+	mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
 	mRenderComponentEntity->setVisible((mWorld==DREAMS && mLogicComponent->existsInDreams()) ||
 		(mWorld==NIGHTMARES && mLogicComponent->existsInNightmares()));
 }
@@ -254,12 +254,12 @@ void GameObjectSignpost::update(double elapsedSeconds)
 			{
 				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
-				mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);					
+				mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);					
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(SIGN_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{	
-			mRenderComponentEntity->changeAnimation(SIGN_ANIM_HIT);	
+			mRenderComponentEntity->changeAnimation(SIGN_ANIM_HIT,AnimationBlender::BT_WHILEANIMATING,0.2,false);	
 			//displayText(getTranslation(getSignpostMessage()));
 			mMessageBox->setMessageBoxText();
 			mMessageBox->show();

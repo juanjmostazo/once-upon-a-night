@@ -336,7 +336,7 @@ void GameObjectDiamond::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation(DIAMOND_ANIM_IDLE);
+			mRenderComponentEntity->changeAnimation(DIAMOND_ANIM_IDLE,AnimationBlender::BT_SWITCH,1.0);
 		}
 		else
 		{

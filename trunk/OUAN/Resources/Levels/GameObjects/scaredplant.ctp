@@ -12,6 +12,7 @@
 	<PROPERTY id="LogicComponent::delay" type="6" value="5"></PROPERTY>
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->
+  <PROPERTY id="initialAnimation" type="7" value="idle"></PROPERTY>	  
   <PROPERTY id="animation0d::name" type="7" value="idle"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation1d::name" type="7" value="alert" ></PROPERTY>
