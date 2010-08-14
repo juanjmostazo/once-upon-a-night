@@ -117,7 +117,7 @@ namespace OUAN
 		
 		//Object creators
 		Ogre::Entity* createPlane(Ogre::String nodeName,Ogre::String name,TRenderComponentPlaneParameters tPlaneParameters);
-		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters);
+		Ogre::Entity* createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tEntityParameters,TKeyFrameMap* keyframes=NULL);
 		Ogre::SceneNode* createSceneNode(Ogre::String name,TRenderComponentPositionalParameters tSceneNodeParameters);
 		Ogre::Light* createLight(Ogre::String name,TRenderComponentLightParameters TRenderComponentLightParameters, Ogre::String sceneNodeName="");
 		std::vector<ParticleUniverse::ParticleSystem*> createParticleSystems(Ogre::String name,TRenderComponentParticleSystemParameters TRenderComponentParticleSystemParameters, RenderComponentPositionalPtr pRenderComponentPositional);
@@ -207,7 +207,8 @@ namespace OUAN
 
 		/// Creators not used outside the render subsystem
 		void createSubEntity(Ogre::Entity *pEntity,int num,String material,bool visible);
-		void createMeshFile(String meshfile, bool prepareForNormalMapping=false);
+		void createMeshFile(const std::string& meshfile, bool initManualAnimation=false,
+			const std::string& manualAnimationName="",TKeyFrameMap* keyframes=NULL);
 		void createBillboard(Ogre::BillboardSet * pBillboardSet,ColourValue colour,Vector2 dimensions,Vector3 position,Real rotation,int texcoordindex,Vector4 texrect);
 
 		/// Ogre root object

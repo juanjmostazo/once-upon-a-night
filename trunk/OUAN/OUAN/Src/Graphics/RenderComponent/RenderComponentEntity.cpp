@@ -338,38 +338,11 @@ bool RenderComponentEntity::isTintBeingApplied() const
 	return !mOldMaterials.empty();
 }
 
-//void RenderComponentEntity::prepareForNormalMapping()
-//{
-//	//Ogre::MeshPtr mesh=mEntity->getMesh();
-//	Ogre::String entityName=mEntity->getName();
-//	Ogre::String meshName=mEntity->getMesh()->getName();
-//	
-//	//// Load the meshes with non-default HBU options
-//	Ogre::MeshPtr mesh = Ogre::MeshManager::getSingleton().load(
-//		meshName,
-//		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-//		Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY,
-//		Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
-//		true,true);
-//	
-//	// Build tangent vectors, all our meshes use only 1 texture coordset 
-//	// Note we can build into VES_TANGENT now (SM2+)
-//	unsigned short src, dest;
-//	if (!mesh->suggestTangentVectorBuildParams(Ogre::VES_TANGENT, src, dest))
-//	{
-//		mesh->buildTangentVectors(Ogre::VES_TANGENT, src, dest);
-//			// Second mode cleans mirrored / rotated UVs but requires quality models
-//			//pMesh->buildTangentVectors(VES_TANGENT, src, dest, true, true);
-//	}
-//
-//	Ogre::SceneManager* mgr=mParent->getGameWorldManager()->getParent()->getRenderSubsystem()->getSceneManager();
-//	mgr->destroyEntity(entityName);
-//	mEntity = mgr->createEntity(entityName,meshName);
-//}
-
 //--- Entity parameters
 
 TRenderComponentEntityParameters::TRenderComponentEntityParameters() : TRenderComponentParameters()
+,mInitManualAnimations(false)
+,mManualAnimationName("")
 {
 
 }
