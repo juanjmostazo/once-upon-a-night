@@ -2,6 +2,7 @@
 #define RenderComponentEntityH_H
 
 #include "RenderComponent.h"
+#include "../AnimationBlender/AnimationBlender.h"
 
 namespace OUAN
 {
@@ -11,6 +12,8 @@ namespace OUAN
 	{
 	private:
 		Ogre::Entity * mEntity;
+
+		AnimationBlender* mAnimationBlender;
 
 		/// Map with the set of animation state pointers that are available for the entity, 
 		/// so they can be easily accessed.
@@ -35,6 +38,12 @@ namespace OUAN
 		RenderComponentEntity(const std::string& type="");
 		~RenderComponentEntity();
 
+		void initAnimationBlender(const std::string& defaultAnimation);
+		void destroyAnimationBlender();
+		void changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, 
+			float duration, bool l=true, float timeScale=1.0);
+		void setAnimationBlenderVertexKeyMap(const TKeyFrameMap& keyFrameMap);
+
 		Ogre::Entity * getEntity() const;
 		void setEntity(Ogre::Entity *,bool existInDreams,bool existInNightmares);
 
@@ -47,6 +56,7 @@ namespace OUAN
 		void changeAnimation(const std::string& newAnimation /*TODO: Add options*/);
 		Ogre::AnimationState* getCurrentAnimation() const;
 		std::string getCurrentAnimationName() const;
+		std::string getCurrentAnimationName2() const;
 		bool isAnimated() const;
 
 		void attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject);
@@ -102,6 +112,7 @@ namespace OUAN
 
 		bool mInitManualAnimations;
 		std::string mManualAnimationName;
+		std::string initialAnimation;
 	};
 }
 

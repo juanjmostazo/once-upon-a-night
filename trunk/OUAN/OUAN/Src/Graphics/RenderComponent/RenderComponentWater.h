@@ -79,17 +79,6 @@ namespace OUAN
 		CameraManagerPtr mCameraManager;
 		GameWorldManagerPtr mGameWorldManager;
 
-		/// Map with the set of animation state pointers that are available for the entity, 
-		/// so they can be easily accessed.
-		TAnimationStateMap mAnimations;
-		
-		/// Current animation playing (Perhaps we might keep track of two active animations, for blending purposes)
-		std::string mCurrentAnimationName;
-		Ogre::AnimationState* mCurrentAnimation;
-		
-		/// This can be replaced with a mAnimations.empty() check
-		bool mIsAnimated;
-
 		std::vector<std::string> mDreamsMaterial;
 		std::vector<std::string> mNightmaresMaterial;
 		std::vector<std::string> mChangeWorldMaterial;
@@ -107,12 +96,7 @@ namespace OUAN
 		void update(double elapsedTime);
 		void postUpdate();
 
-		void initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams);
 		void initFresnelReflection(CameraManagerPtr pCameraManager,GameWorldManagerPtr pGameWorldManager);
-		void changeAnimation(const std::string& newAnimation /*TODO: Add options*/);
-		Ogre::AnimationState* getCurrentAnimation() const;
-		std::string getCurrentAnimationName() const;
-		bool isAnimated() const;	
 
 		void setMaterial(std::vector<std::string> & material);
 		void setDreamsMaterials();

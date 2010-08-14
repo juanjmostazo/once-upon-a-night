@@ -32,6 +32,8 @@
   <PROPERTY id="RunParticles::max" type="6" value="5.0"></PROPERTY>
   
   <!-- Animations -->
+  <PROPERTY id="initialAnimation" type="7" value="idle01"></PROPERTY>
+
   <PROPERTY id="animation0::name" type="7" value="idle01"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation1::name" type="7" value="idle02" ></PROPERTY>

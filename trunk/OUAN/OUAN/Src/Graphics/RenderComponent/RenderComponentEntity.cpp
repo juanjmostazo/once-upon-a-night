@@ -13,11 +13,13 @@ using namespace OUAN;
 
 RenderComponentEntity::RenderComponentEntity(const std::string& type)
 :RenderComponent(COMPONENT_TYPE_RENDER_ENTITY)
+,mCurrentAnimation(NULL)
+,mCurrentAnimationName("")
+,mEntity(NULL)
+,mAnimationBlender(NULL)
 {
-	mCurrentAnimation=NULL;
-	mCurrentAnimationName="";
-	mEntity=NULL;
 	mOldMaterials.clear();
+
 }
 
 RenderComponentEntity::~RenderComponentEntity()
@@ -89,7 +91,21 @@ bool RenderComponentEntity::isVisible()
 {
 	return mEntity->isAttached();
 }
-
+void RenderComponentEntity::initAnimationBlender(const std::string& defaultAnimation)
+{
+	SAFEDELETE(mAnimationBlender);
+	mAnimationBlender=new AnimationBlender(mEntity);
+	mAnimationBlender->init(defaultAnimation);
+}
+void RenderComponentEntity::destroyAnimationBlender()
+{
+	SAFEDELETE(mAnimationBlender);
+}
+void RenderComponentEntity::setAnimationBlenderVertexKeyMap(const TKeyFrameMap& keyFrameMap)
+{
+	if (mAnimationBlender)
+		mAnimationBlender->setVertexPoseKeyFrames(keyFrameMap);
+}
 void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
 {
 	mAnimations.clear();
@@ -140,6 +156,11 @@ void RenderComponentEntity::changeAnimation(const std::string& newAnimation /*TO
 		mCurrentAnimation->setTimePosition(0);
 	}
 }
+void RenderComponentEntity::changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, float duration, bool l/* =true */, float timeScale/* =1.0 */)
+{
+	if (mAnimationBlender)
+		mAnimationBlender->blend(animation,transition,duration,l,timeScale);
+}
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {
 	return mCurrentAnimation;
@@ -148,7 +169,14 @@ std::string RenderComponentEntity::getCurrentAnimationName() const
 {
 	return mCurrentAnimationName;
 }
-
+std::string RenderComponentEntity::getCurrentAnimationName2() const
+{
+	if (mAnimationBlender)
+	{
+		return mAnimationBlender->getSource()->getAnimationName();
+	}
+	return "";
+}
 bool RenderComponentEntity::isAnimated() const
 {
 	return mIsAnimated;
@@ -157,17 +185,25 @@ void RenderComponentEntity::update(double elapsedTime)
 {
 	if(mEntity->isAttached())
 	{
-		if (mCurrentAnimation && mCurrentAnimation->getEnabled())
+		if (!mParent->getType().compare(GAME_OBJECT_TYPE_ONY) && mAnimationBlender)
+		{
+ 			mAnimationBlender->addTime(elapsedTime);
+			if (mAnimationBlender->hasEnded())
+			{
+				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), getCurrentAnimationName2()));
+				getParent()->getGameWorldManager()->addEvent(evt);
+			}
+		}
+		else if (mCurrentAnimation && mCurrentAnimation->getEnabled())
 		{
 			mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
-			bool diamondTreeAnim = getParent()->getType().compare(GAME_OBJECT_TYPE_DIAMONDTREE)==0;
 			if (mCurrentAnimation->hasEnded())
 			{
 				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
 				getParent()->getGameWorldManager()->addEvent(evt);
 			}
 		}
-	}
+	}		
 }
 void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)
 {

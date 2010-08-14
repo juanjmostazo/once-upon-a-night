@@ -13,6 +13,15 @@ AnimationBlender::AnimationBlender( Ogre::Entity *entity ) : mEntity(entity)
 {
 }
 
+AnimationBlender::~AnimationBlender()
+{
+	mEntity=NULL;
+	mSource=NULL;
+	mTarget=NULL;
+	mManualAnimation=NULL;
+	mVertexPoseKeyFrames.clear();
+}
+
 //-----Initializers
 
 void AnimationBlender::init(const std::string&animation, const std::vector<std::string>& bones,
@@ -101,7 +110,7 @@ void AnimationBlender::blend(const std::string& animation, 	TBlendingTransition 
 Ogre::AnimationState* AnimationBlender::_blend( const std::string& animation, TBlendingTransition transition, float duration,bool l, float timescale)
 {
 	mLoop = l;
-	Ogre::AnimationState* retVal;//Animation to apply the bone mask if necessary
+	Ogre::AnimationState* retVal=NULL;//Animation to apply the bone mask if necessary
 	if( transition == AnimationBlender::BT_SWITCH)
 	{
 		// No blending; just disable the last animation state, and replace
@@ -271,6 +280,11 @@ Ogre::AnimationState* AnimationBlender::getTarget()
 	return mTarget;
 }
 
+bool AnimationBlender::hasEnded() const
+{
+	return mComplete;
+}
+
 //-----------Manual animation management: The manual pose loading
 // is done in the render subsystem!
 
@@ -322,4 +336,8 @@ void AnimationBlender::resetManualAnimation()
 		mManualAnimation->setLoop(false);
 		mManualAnimation=NULL;
 	}
+}
+void AnimationBlender::setVertexPoseKeyFrames(const TKeyFrameMap& keyFrames)
+{
+	mVertexPoseKeyFrames=keyFrames;
 }

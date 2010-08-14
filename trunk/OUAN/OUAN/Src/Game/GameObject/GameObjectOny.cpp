@@ -205,16 +205,7 @@ void GameObjectOny::update(double elapsedSeconds)
 
 	//double animationTime=elapsedSeconds;
 	//TODO: Move the scale factor to a configurable parameter
-	double timeScaleFactor = 1;
-	if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_STAB_PILLOW)==0)
-	{
-		timeScaleFactor=0.8;
-	}
-	else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_WALK)==0)
-	{
-		timeScaleFactor=1.5;
-	}
-	mRenderComponentEntity->update(elapsedSeconds*timeScaleFactor);
+	mRenderComponentEntity->update(elapsedSeconds);
 
 	if (mRenderComponentEntity->isTintBeingApplied())
 	{
@@ -277,7 +268,7 @@ void GameObjectOny::reset()
 	mLogicComponentOny->setState(ONY_STATE_IDLE);
 	mLogicComponentOny->setNewState(ONY_STATE_IDLE);
 	mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
-	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01,AnimationBlender::BT_SWITCH,1);
 	mRenderComponentQuadHalo->setVisible(false);
 }
 
@@ -481,7 +472,8 @@ void GameObjectOny::postUpdate()
 	{
 		if (mLogicComponentOny->isStateChanged())
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01,AnimationBlender::BT_WHILEANIMATING,
+				0.5,TRUE,1.0);
 			mIdleTime=0.0;
 
 			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
@@ -502,32 +494,35 @@ void GameObjectOny::postUpdate()
 		{
 			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
 			{
-				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
+				if (mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_IDLE02)!=0)
 				{
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02,
+						AnimationBlender::BT_WHILEANIMATING,0.5,false);
 				}
 			}
 		}
 	}		
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
+		mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_DIE01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_DIE);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01,AnimationBlender::BT_WHILEANIMATING,
+			0.5,false);
 	}
 
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
 		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
+		mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_HIT01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_HIT);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01,AnimationBlender::BT_WHILEANIMATING,
+			0.5,false);
 	}
 	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
 	{
 		if (mWorld == DREAMS)
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW,AnimationBlender::BT_WHILEANIMATING,0.5,false,0.8);
 
 			GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
 				mWeaponComponent->getActiveWeapon());
@@ -540,7 +535,7 @@ void GameObjectOny::postUpdate()
 		else if (mWorld == NIGHTMARES) 
 		{
 			//get Camera Direction and change animation accordingly:
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER,AnimationBlender::BT_WHILEANIMATING,0.5,false);
 
 			GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
 				mWeaponComponent->getActiveWeapon());
@@ -549,13 +544,19 @@ void GameObjectOny::postUpdate()
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
 		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 	{
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP,AnimationBlender::BT_WHILEANIMATING,
+			0.5,false);			
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
 	{
 		if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
 		{
-			mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
+			if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,
+				0.5,true,1.5);
+			else
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN,AnimationBlender::BT_WHILEANIMATING,
+				0.5,true);
 		}
 		else //Walk/run toggle
 		{
@@ -565,7 +566,13 @@ void GameObjectOny::postUpdate()
 
 			if (toWalk || toRun || fromJump)
 			{
-				mRenderComponentEntity->changeAnimation(CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK)?ONY_ANIM_WALK:ONY_ANIM_RUN);
+				if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK,
+					AnimationBlender::BT_WHILEANIMATING,
+					0.5,true,1.5);
+				else
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN,AnimationBlender::BT_WHILEANIMATING,
+					0.5,true);
 			}
 		}		
 	}
