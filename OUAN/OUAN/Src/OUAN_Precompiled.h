@@ -148,5 +148,6 @@ extern "C" {
 	CLASS_DECLARATIONS(GameObject##x);\
 	CONCRETE_GAMEOBJECT_CONTAINER_DECL(x)
 
+typedef std::map<int,Ogre::VertexPoseKeyFrame*> TKeyFrameMap;
 
 #define _CRT_SECURE_NO_WARNINGS

@@ -6,7 +6,6 @@ using namespace OUAN;
 
 HUDBase::HUDBase() : mOverlay(NULL)
 {
-
 }
 
 HUDBase::~HUDBase()

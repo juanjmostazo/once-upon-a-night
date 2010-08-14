@@ -99,6 +99,9 @@ namespace OUAN
 		std::vector<TRenderComponentEntityAnimParams> tRenderComponentEntityAnimParams;
 
 		Ogre::uint8 queueID;
+
+		bool mInitManualAnimations;
+		std::string mManualAnimationName;
 	};
 }
 

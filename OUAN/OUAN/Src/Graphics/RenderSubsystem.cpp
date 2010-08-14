@@ -516,7 +516,8 @@ Ogre::SceneNode * RenderSubsystem::createSceneNode(Ogre::String name,TRenderComp
 	return sceneNode;
 }
 
-void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNormalMapping)
+void RenderSubsystem::createMeshFile(const std::string& meshfile,bool initManualAnimation,
+									 const std::string& manualAnimationName, TKeyFrameMap* keyframes)
 {
 	MeshPtr mesh;
 	Ogre::Mesh::LodDistanceList distanceList;
@@ -532,13 +533,38 @@ void RenderSubsystem::createMeshFile(OUAN::String meshfile, bool prepareForNorma
 		if (!MeshManager::getSingleton().resourceExists(meshfile))
 		{
 			//Logger::getInstance()->log("[LevelLoader] creating "+meshfile+" meshfile");
-			mesh=MeshManager::getSingleton().load(meshfile,"General");
-			//if(meshfile.compare("terrain02.mesh")!=0 && meshfile.compare("terrain03.mesh")!=0 && meshfile.compare("tripollo_d.mesh")!=0)
-			//{
-			//	mesh->generateLodLevels(distanceList,Ogre::ProgressiveMesh::VRQ_PROPORTIONAL,0.5);
-			//}
-		   // mesh->createManualLodLevel(1, "node.mesh");
-			//mesh->createManualLodLevel(500, "node.mesh");
+			mesh=MeshManager::getSingleton().load(meshfile,Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+			if (initManualAnimation && !manualAnimationName.empty() && keyframes)
+			{
+				//we'll read through this list while loading
+				Ogre::PoseList poseList = mesh->getPoseList();
+				//used to loop through each submesh
+				int numSubMeshes = mesh->getNumSubMeshes();
+				int curPoseIndex = 0;
+				//create the animation on the mesh
+				Ogre::Animation* anim = mesh->createAnimation(manualAnimationName, 0);
+				//skip submesh 0 since it is the shared geometry, and we have no poses on that
+				for(int curSubMesh = 1; curSubMesh <= numSubMeshes; curSubMesh++){      
+					//create the VertexTrack on this animation
+					Ogre::VertexAnimationTrack *vt = anim->createVertexTrack(curSubMesh, Ogre::VAT_POSE);
+					//create the keyframe we will use to update this vertex track
+					//keep all our keyframes in a map for later updating
+
+					(*keyframes)[curSubMesh] = vt->createVertexPoseKeyFrame(0);
+					
+					//add the references to each pose that applies to this subMesh
+					unsigned short target = poseList[curPoseIndex]->getTarget();
+					while(target == curSubMesh){
+						//create a pose reference for each pose
+						(*keyframes)[curSubMesh]->addPoseReference(curPoseIndex, 0.0f);
+						curPoseIndex++;
+						if (curPoseIndex==poseList.size())
+							break;
+						target = poseList[curPoseIndex]->getTarget();
+					}
+				}
+			}
 		}
 	}
 	catch(Ogre::Exception &/*e*/)
@@ -787,7 +813,7 @@ Ogre::TexturePtr RenderSubsystem::getTexture3D(std::string texture3D){
 //	}
 //}
 
-Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters tRenderComponentEntityParameters)
+Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String name,TRenderComponentEntityParameters entityParams,TKeyFrameMap* keyframes)
 {
 	unsigned int i;
 	Entity *pEntity = 0;
@@ -795,26 +821,27 @@ Ogre::Entity* RenderSubsystem::createEntity(Ogre::String nodeName,Ogre::String n
 	try
 	{
 		//Create meshfile
-		createMeshFile(tRenderComponentEntityParameters.meshfile);
+		createMeshFile(entityParams.meshfile,entityParams.mInitManualAnimations,
+			entityParams.mManualAnimationName,keyframes);
 
 		//create entity and set its parameters
-		pEntity = mSceneManager->createEntity(name, tRenderComponentEntityParameters.meshfile);
-		pEntity->setCastShadows(tRenderComponentEntityParameters.castshadows);
+		pEntity = mSceneManager->createEntity(name, entityParams.meshfile);
+		pEntity->setCastShadows(entityParams.castshadows);
 
 		//set subentities parameters
-		for(i=0;i<tRenderComponentEntityParameters.tRenderComponentSubEntityParameters.size();i++)
+		for(i=0;i<entityParams.tRenderComponentSubEntityParameters.size();i++)
 		{
 			createSubEntity(pEntity,
 				i,
-				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].material,
-				tRenderComponentEntityParameters.tRenderComponentSubEntityParameters[i].visible);
+				entityParams.tRenderComponentSubEntityParameters[i].material,
+				entityParams.tRenderComponentSubEntityParameters[i].visible);
 		}
 
 		//set Query flags
-		pEntity->setQueryFlags(tRenderComponentEntityParameters.cameraCollisionType);
+		pEntity->setQueryFlags(entityParams.cameraCollisionType);
 
 		//set RenderQueue priortiy and group
-		pEntity->setRenderQueueGroup(tRenderComponentEntityParameters.queueID);
+		pEntity->setRenderQueueGroup(entityParams.queueID);
 
 		//attach to Scene Manager
 		pEntityNode=mSceneManager->getSceneNode(nodeName);

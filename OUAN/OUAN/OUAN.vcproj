@@ -1114,6 +1114,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="AnimationBlender"
+					>
+					<File
+						RelativePath=".\Src\Graphics\AnimationBlender\AnimationBlender.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -1504,6 +1512,14 @@
 					>
 					<File
 						RelativePath=".\Src\Graphics\Bar\LoadingBar.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="AnimationBlender"
+					>
+					<File
+						RelativePath=".\Src\Graphics\AnimationBlender\AnimationBlender.h"
 						>
 					</File>
 				</Filter>

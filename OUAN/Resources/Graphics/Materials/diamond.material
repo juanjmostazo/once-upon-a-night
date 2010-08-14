@@ -1,6 +1,5 @@
 import alpha_blending_texture from BasicTexture.material
 
-
 material diamond_d : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture diamond.dds
