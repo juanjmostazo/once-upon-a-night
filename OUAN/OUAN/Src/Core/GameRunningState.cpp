@@ -286,7 +286,7 @@ void GameRunningState::handleEvents()
 			? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
 			: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
 
-		if (mApp->isPressedWalk(&pad,&key) && 
+		if (mApp->isDownWalk(&pad,&key) && 
 			!mApp->getGameWorldManager()->isOnyDying())
 		{
 			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
@@ -297,7 +297,7 @@ void GameRunningState::handleEvents()
 			newState = CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
 		}
 
-		if (mApp->isPressedJump(&pad,&key) && 
+		if (mApp->isDownJump(&pad,&key) && 
 			!mApp->getGameWorldManager()->isOnyDying())
 		{
 			if(mApp->getCameraManager()->targetMovementAllowed())

@@ -55,6 +55,7 @@ namespace OUAN
 
 	public: 
 		AnimationBlender( Ogre::Entity *);
+		virtual ~AnimationBlender();
 		/**
 		*	@param	animation	name of the target animation to change to
 		*	@param	transition	type of the animation transition to make
@@ -73,13 +74,13 @@ namespace OUAN
 		float getProgress(); //{ return mTimeleft/ mDuration; }
 		Ogre::AnimationState *getSource();
 		Ogre::AnimationState *getTarget();
+		bool hasEnded() const;
 		
 		void init( const std::string &animation, const std::vector<std::string>& bones,
 			bool l=true,float timeScale=1.0);
 		void init( const std::string& animation, bool l=true, float timeScale=1.0,
 			std::map<std::string,float>* bones=NULL);
 
-		//This is to be loaded BEFORE the entity!
 		void setManualAnimation(const std::string& manualAnimationName,float timeScale, 
 			bool loop,float weight=1.0f);
 
@@ -89,8 +90,7 @@ namespace OUAN
 		//Disable manual animation
 		void resetManualAnimation();
 
-
-		~AnimationBlender() {}
+		void setVertexPoseKeyFrames(const TKeyFrameMap& keyFrames);
 	};
 
 }

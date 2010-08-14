@@ -3324,8 +3324,7 @@ TRenderComponentPositionalParameters LevelLoader::processRenderComponentPosition
 
 	return tRenderComponentPositionalParameters;
 }
-void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParams,
-														 TiXmlElement* XMLNode, int world)
+void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComponentEntityAnimParams>& renderComponentEntityAnimParams,TiXmlElement* XMLNode, int world)
 {
 	if (XMLNode)
 	{
@@ -3341,9 +3340,10 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 			{
 				currentAnimParams.name=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::name",
 					false);
+				if (currentAnimParams.name.compare("")==0) break;
+
 				currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
 					false);
-				if (currentAnimParams.name.compare("")==0) break;
 
 				Logger::getInstance()->log("Parsing animation "+currentAnimParams.name);
 
@@ -3392,6 +3392,15 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	//Process Animation states
 	tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.clear();
 	processRenderComponentEntityAnimParams(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams,XMLCustomPropertiesNode,world);
+	try
+	{
+		tRenderComponentEntityParameters.initialAnimation=getPropertyString(XMLCustomPropertiesNode,"initialAnimation");
+	}
+	catch(std::string err)
+	{
+		tRenderComponentEntityParameters.initialAnimation="";
+	}
+	
 	
 	//Process Query flags
 	tRenderComponentEntityParameters.cameraCollisionType=processCameraCollisionType(XMLNode);

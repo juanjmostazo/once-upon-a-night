@@ -103,18 +103,26 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 //	return pRenderComponentCameraPtr;
 //}
 
-RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters tRenderComponentEntityParameters,bool existInDreams, bool existInNightmares)
+RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters entityParams,bool existInDreams, bool existInNightmares)
 {
 	//Create void Render Component
 	RenderComponentEntityPtr pRenderComponentEntity = RenderComponentEntityPtr(new RenderComponentEntity()); 
 
 	pRenderComponentEntity->setParent(gameObject);	
+	
+	TKeyFrameMap keyframes;
+	keyframes.clear();
 
 	//init Render Component
-	pRenderComponentEntity->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentEntityParameters),
-		existInDreams,existInNightmares);
+	pRenderComponentEntity->setEntity(
+		mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,
+		entityParams,(entityParams.mInitManualAnimations)?&keyframes:NULL),
+existInDreams,existInNightmares);
 
-	pRenderComponentEntity->initAnimations(tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
+	if (!entityParams.initialAnimation.empty())
+		pRenderComponentEntity->initAnimationBlender(entityParams.initialAnimation);
+
+	pRenderComponentEntity->initAnimations(entityParams.tRenderComponentEntityAnimParams);
 
 	return pRenderComponentEntity;
 }
@@ -130,7 +138,6 @@ RenderComponentWaterPtr ComponentFactory::createRenderComponentWater(std::string
 	pRenderComponentWater->setEntity(mApp->getRenderSubsystem()->createEntity(gameObject->getName(),name,tRenderComponentWaterParameters.tRenderComponentEntityParameters),
 		existInDreams,existInNightmares);
 
-	pRenderComponentWater->initAnimations(tRenderComponentWaterParameters.tRenderComponentEntityParameters.tRenderComponentEntityAnimParams);
 	pRenderComponentWater->initFresnelReflection(mApp->getCameraManager(),mApp->getGameWorldManager());
 	return pRenderComponentWater;
 }
