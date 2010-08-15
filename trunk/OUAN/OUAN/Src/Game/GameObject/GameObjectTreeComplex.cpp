@@ -70,7 +70,7 @@ void GameObjectTreeComplex::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentComplexConvex->create();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP,AnimationBlender::BT_SWITCH,0.2);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
@@ -79,7 +79,7 @@ void GameObjectTreeComplex::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentComplexConvex->destroy();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN,AnimationBlender::BT_SWITCH,0.2);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}		
 			break;
 		case NIGHTMARES:
@@ -90,7 +90,7 @@ void GameObjectTreeComplex::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentComplexConvex->create();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP,AnimationBlender::BT_SWITCH,0.2);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 			}
 			else
 			{
@@ -99,7 +99,7 @@ void GameObjectTreeComplex::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentComplexConvex->destroy();
 				}
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN,AnimationBlender::BT_SWITCH,0.2);
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
 			}
 			break;
 		default:
@@ -120,21 +120,21 @@ void GameObjectTreeComplex::changeWorldStarted(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_DOWN);
 		}
 		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(TREE_ANIM_UP);
 		}
 		break;
 	default:
@@ -207,7 +207,7 @@ void GameObjectTreeComplex::changeToWorld(int newWorld, double perc)
 void GameObjectTreeComplex::reset()
 {
 	GameObject::reset();
-	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP,AnimationBlender::BT_SWITCH,0.2);
+	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
 }
 
 bool GameObjectTreeComplex::hasPositionalComponent() const

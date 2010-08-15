@@ -83,8 +83,8 @@ void GameObjectTentetieso::update(double elapsedSeconds)
 
 	if (isFirstUpdate())
 	{
-		mRenderComponentEntityDreams->changeAnimation("attack01_Clip",AnimationBlender::BT_SWITCH,0.2);
-		mRenderComponentEntityNightmares->changeAnimation("attack01_Clip",AnimationBlender::BT_SWITCH,0.2);
+		mRenderComponentEntityDreams->changeAnimation("attack01_Clip");
+		mRenderComponentEntityNightmares->changeAnimation("attack01_Clip");
 	}
 
 	mRenderComponentEntityDreams->update(elapsedSeconds/2);

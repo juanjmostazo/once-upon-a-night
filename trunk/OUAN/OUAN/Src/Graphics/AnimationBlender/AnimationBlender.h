@@ -14,7 +14,7 @@ namespace OUAN
 	public:
 		enum TBlendingTransition
 		{
-			BT_SWITCH,			// Stop source and start dest
+			BT_SWITCH=0,			// Stop source and start dest
 			BT_WHILEANIMATING,	// Cross fade, blend source animation out 
 								//	while blending destination animation in
 			//UNUSED!!
@@ -81,6 +81,10 @@ namespace OUAN
 		Ogre::AnimationState *getSource();
 		Ogre::AnimationState *getTarget();
 		bool hasEnded() const;
+
+		void resetBoneMask();
+		void setBoneMask(const std::vector<std::string>& bones);
+		void setBoneMask(std::map<std::string,float>* bones);
 		
 		void init( const std::string &animation, const std::vector<std::string>& bones,
 			bool l=true,float timeScale=1.0);

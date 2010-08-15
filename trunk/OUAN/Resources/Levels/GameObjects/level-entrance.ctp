@@ -13,13 +13,6 @@
 	<PROPERTY id="LogicComponent::defaultState" type="2" value="0"></PROPERTY>
 	<PROPERTY id="LogicComponent::approachDistance" type="6" value="50"></PROPERTY>
 	<PROPERTY id="LogicComponent::delay" type="6" value="8"></PROPERTY>
-	<!-- TODO: add animations! -->
-	  <!-- Animations -->
-  <PROPERTY id="animation0::name" type="7" value="manual"></PROPERTY>
-  <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
-  <PROPERTY id="animation1::name" type="7" value="shake" ></PROPERTY>
-  <PROPERTY id="animation1::loop" type="12" value="true" ></PROPERTY>
-  <PROPERTY id="animation2::name" type="7" value="jump" ></PROPERTY>
-  <PROPERTY id="animation2::loop" type="12" value="false" ></PROPERTY>
+
    
 </CUSTOMPROPERTIES>

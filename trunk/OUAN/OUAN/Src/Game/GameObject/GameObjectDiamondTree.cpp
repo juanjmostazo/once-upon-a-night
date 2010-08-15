@@ -83,7 +83,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
-			mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+			mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
 			
 			break;
 		case NIGHTMARES:
@@ -95,7 +95,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
-			mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+			mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);
 
 			break;
 		default:
@@ -182,12 +182,12 @@ void GameObjectDiamondTree::reset()
 
 	if (mLogicComponent->existsInNightmares())
 	{
-		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);		
+		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);		
 		mRenderComponentEntityNightmares->setVisible(mWorld==NIGHTMARES);
 	}
 	else if (mLogicComponent->existsInDreams())
 	{
-		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
+		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
 		mRenderComponentEntityDreams->setVisible(mWorld==DREAMS);
 	}
 }
@@ -285,13 +285,13 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
-				entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
+				entityToUpdate->changeAnimation(DT_ANIM_IDLE);
 				mLogicComponent->setTimeSpent(-1.0);
 			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{	
-			entityToUpdate->changeAnimation(DT_ANIM_HIT,AnimationBlender::BT_WHILEANIMATING,0.2,false);			
+			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
 			if (mLogicComponent->getTimeSpent()<0)
 			{
 				mLogicComponent->setTimeSpent(0.0);
@@ -301,14 +301,14 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{					
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
 			entityToUpdate.get() && mLogicComponent->isStateChanged())
 		{
 			//TODO: Replace with depletion animation when it is done
 			//TODO: Add particles
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE,AnimationBlender::BT_WHILEANIMATING,0.2);
+			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
 		}
 		//Last, update the entity
 		if (entityToUpdate.get())

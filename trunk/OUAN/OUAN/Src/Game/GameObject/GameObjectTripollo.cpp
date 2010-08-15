@@ -136,12 +136,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if(mRenderComponentEntityDreams.get())
 					{
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 					}
 
 					if(mRenderComponentEntityNightmares.get())
 					{
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 					}
 
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
@@ -158,24 +158,24 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						
 						if(mRenderComponentEntityDreams.get())
 						{
-							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
 						}
 
 						if(mRenderComponentEntityNightmares.get())
 						{
-							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
 						}
 					}
 					else
 					{
 						if(mRenderComponentEntityDreams.get())
 						{
-							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02,AnimationBlender::BT_WHILEANIMATING,0.2);
+							mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 						}
 
 						if(mRenderComponentEntityNightmares.get())
 						{
-							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02,AnimationBlender::BT_WHILEANIMATING,0.2);
+							mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
 						}
 					}
 				}
@@ -187,12 +187,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if(mRenderComponentEntityDreams.get())
 					{
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
 					}
 
 					if(mRenderComponentEntityNightmares.get())
 					{
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
 					}
 
 					mTrajectoryComponent->activatePathFinding(
@@ -208,12 +208,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 					if(mRenderComponentEntityDreams.get())
 					{
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_HIT01,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_HIT01);
 					}
 
 					if(mRenderComponentEntityNightmares.get())
 					{
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_HIT01,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_HIT01);
 					}
 
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
@@ -227,12 +227,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 					if(mRenderComponentEntityDreams.get())
 					{
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_DIE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_DIE);
 					}
 
 					if(mRenderComponentEntityNightmares.get())
 					{
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_DIE,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_DIE);
 					}
 
 					mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
@@ -245,12 +245,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if(mRenderComponentEntityDreams.get())
 					{
-						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_WALK);
 					}
 
 					if(mRenderComponentEntityNightmares.get())
 					{
-						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,0.2);
+						mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_WALK);
 					}
 
 					mTrajectoryComponent->activateChase(mGameWorldManager->getGameObjectOny()->getName());

@@ -333,7 +333,7 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation(MAXHP_ANIM_IDLE,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(MAXHP_ANIM_IDLE);
 		}
 		else
 		{
