@@ -13,8 +13,6 @@ using namespace OUAN;
 
 RenderComponentEntity::RenderComponentEntity(const std::string& type)
 :RenderComponent(COMPONENT_TYPE_RENDER_ENTITY)
-,mCurrentAnimation(NULL)
-,mCurrentAnimationName("")
 ,mEntity(NULL)
 ,mAnimationBlender(NULL)
 {
@@ -109,11 +107,6 @@ void RenderComponentEntity::setAnimationBlenderVertexKeyMap(const TKeyFrameMap& 
 void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams)
 {
 	mAnimations.clear();
-	mCurrentAnimationName="";
-	if (mCurrentAnimation)
-	{
-		mCurrentAnimation=NULL; //Remember it is a pointer to an instance managed by Ogre, so we shouldn't delete it here.
-	}
 	if (!entityAnimParams.empty())
 	{
 		mIsAnimated=true;
@@ -143,19 +136,6 @@ void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAni
 	else mIsAnimated=false;
 	//Initialise the animations mapping
 }
-void RenderComponentEntity::changeAnimation(const std::string& newAnimation /*TODO: Add options*/)
-{
-	if (mCurrentAnimation)
-		mCurrentAnimation->setEnabled(false);
-
-	mCurrentAnimationName=newAnimation;
-	mCurrentAnimation= mAnimations[newAnimation];
-	if (mCurrentAnimation)
-	{
-		mCurrentAnimation->setEnabled(true);		
-		mCurrentAnimation->setTimePosition(0);
-	}
-}
 void RenderComponentEntity::changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, float duration, bool l/* =true */, float timeScale/* =1.0 */)
 {
 	if (mAnimationBlender)
@@ -163,19 +143,28 @@ void RenderComponentEntity::changeAnimation(const std::string& animation,Animati
 }
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {
-	return mCurrentAnimation;
+	return mAnimationBlender->getSource();
 }
 std::string RenderComponentEntity::getCurrentAnimationName() const
-{
-	return mCurrentAnimationName;
-}
-std::string RenderComponentEntity::getCurrentAnimationName2() const
 {
 	if (mAnimationBlender)
 	{
 		return mAnimationBlender->getSource()->getAnimationName();
 	}
 	return "";
+}
+void RenderComponentEntity::setAnimationPosition(float pos)
+{
+	if (mAnimationBlender)
+	{
+		mAnimationBlender->setTimePosition(pos);
+	}
+}
+float RenderComponentEntity::getCurrentAnimationLength() const
+{
+	if (mAnimationBlender)
+		return mAnimationBlender->getSource()->getLength();
+	return -1;
 }
 bool RenderComponentEntity::isAnimated() const
 {
@@ -190,19 +179,10 @@ void RenderComponentEntity::update(double elapsedTime)
  			mAnimationBlender->addTime(elapsedTime);
 			if (mAnimationBlender->hasEnded())
 			{
-				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), getCurrentAnimationName2()));
+				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), getCurrentAnimationName()));
 				getParent()->getGameWorldManager()->addEvent(evt);
 			}
-		}
-		else if (mCurrentAnimation && mCurrentAnimation->getEnabled())
-		{
-			mCurrentAnimation->addTime(elapsedTime);//check what time unit arrives here
-			if (mCurrentAnimation->hasEnded())
-			{
-				AnimationEndedEventPtr evt = AnimationEndedEventPtr(new AnimationEndedEvent(getParent(), mCurrentAnimation->getAnimationName()));
-				getParent()->getGameWorldManager()->addEvent(evt);
-			}
-		}
+		}		
 	}		
 }
 void RenderComponentEntity::attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject)

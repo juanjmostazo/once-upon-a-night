@@ -494,7 +494,7 @@ void GameObjectOny::postUpdate()
 		{
 			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
 			{
-				if (mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_IDLE02)!=0)
+				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
 				{
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02,
 						AnimationBlender::BT_WHILEANIMATING,0.5,false);
@@ -503,7 +503,7 @@ void GameObjectOny::postUpdate()
 		}
 	}		
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
-		mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_DIE01)!=0)
+		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_DIE);
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01,AnimationBlender::BT_WHILEANIMATING,
@@ -512,7 +512,7 @@ void GameObjectOny::postUpdate()
 
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
 		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
-		mRenderComponentEntity->getCurrentAnimationName2().compare(ONY_ANIM_HIT01)!=0)
+		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_HIT);
 		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01,AnimationBlender::BT_WHILEANIMATING,

@@ -450,7 +450,7 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
 			{
 				mRenderComponentEntityAdditional->setVisible(true);
-				mRenderComponentEntityAdditional->changeAnimation("broken");
+				mRenderComponentEntityAdditional->changeAnimation("broken",AnimationBlender::BT_SWITCH,0.2,false);
 			}
 
 
