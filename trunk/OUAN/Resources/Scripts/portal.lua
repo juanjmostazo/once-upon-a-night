@@ -25,10 +25,12 @@ function portalLogic(pPortal,state)
 		newState=PORTAL_STATE_HIT
 	elseif state==PORTAL_STATE_HIT and not hit then
 		newState=PORTAL_STATE_CHANGING_WORLD
-	elseif state==PORTAL_STATE_CHANGING_WORLD and not cworld then
-		if playerDistance<=approachDistance then
+	elseif state==PORTAL_STATE_CHANGING_WORLD  then
+		if hit then
+			newState=PORTAL_STATE_HIT
+		elseif playerDistance<=approachDistance and not cworld then
 			newState=PORTAL_STATE_ONY_APPROACHING
-		else
+		elseif not cworld then
 			newState=PORTAL_STATE_IDLE
 		end
 	end

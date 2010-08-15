@@ -9,7 +9,8 @@
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectPillow.h"
 #include "../Game/GameObject/GameObjectFlashLight.h"
-#include "../Graphics/RenderSubsystem.h"
+#include "../Game/GameObject/GameObjectFlashLight.h"
+#include "../Event/EventProcessor.h"
 #include "../Event/Event.h"
 
 using namespace OUAN;
@@ -145,6 +146,7 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 
 	if (mApp)
 	{
+		mApp->getGameWorldManager()->getEventProcessor()->startNewFrame();
 		TGameObjectPhysicsContainer * container = mApp->getGameWorldManager()->getGameObjectPhysicsContainer();
 		
 		if (!container->empty())

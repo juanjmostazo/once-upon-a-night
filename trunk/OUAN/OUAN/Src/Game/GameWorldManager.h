@@ -326,6 +326,8 @@ namespace OUAN
 
 		void increaseOnyDiamonds(int amount=1);
 
+		EventProcessorPtr getEventProcessor(); 
+
 	private:		
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 

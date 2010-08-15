@@ -1421,6 +1421,11 @@ void GameWorldManager::clearEvents()
 	mEventManager->clearEvents();
 }
 
+EventProcessorPtr GameWorldManager::getEventProcessor()
+{
+	return mEventProcessor;
+}
+
 double GameWorldManager::getDistance(const std::string& obj1Name, const std::string& obj2Name)
 {
 	double distance=-1;

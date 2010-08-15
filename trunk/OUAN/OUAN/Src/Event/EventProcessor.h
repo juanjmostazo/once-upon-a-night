@@ -77,6 +77,7 @@ namespace OUAN
 evt);
 		void processFirstSignpostHitEvent(FirstSignpostHitEventPtr evt);
 
+		void startNewFrame();
 
 	private:
 		/// Register all event handling methods
@@ -109,6 +110,11 @@ evt);
 		/// Pointer to the world Manager: it provides 
 		/// indirect access to the game world's objects
 		GameWorldManagerPtr mWorldManager;	
+
+		std::map<std::pair<std::string,std::string>,bool> mCollisionsThisFrame;
+		typedef std::map<std::pair<std::string,std::string>,bool>::iterator TCollisionsThisFrameIterator;
+
+		bool filterWeaponAttack(PhysicsComponentWeaponPtr weapon,std::string gameObjectName);
 	};
 }
 #endif

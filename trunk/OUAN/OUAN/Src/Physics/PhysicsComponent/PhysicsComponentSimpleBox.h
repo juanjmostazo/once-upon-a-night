@@ -21,6 +21,9 @@ namespace OUAN
 		NxOgre::Vec3 getInitialVelocity();
 		void setInitialVelocity(NxOgre::Vec3 pInitVelocity);
 
+		NxOgre::Volume* getNxOgreVolume();
+		void setNxOgreVolume(NxOgre::Volume* pNxOgreVolume);
+
 		//void setQueryFlags(QueryFlags queryFlags);
 
 	protected:
@@ -29,7 +32,7 @@ namespace OUAN
 		NxOgre::Vec3 mInitialVelocity;
 
 		NxOgre::Box* mBox;
-
+		NxOgre::Volume* mNxOgreVolume;
 	};
 
 	class TPhysicsComponentSimpleBoxParameters: public TPhysicsComponentSimpleParameters

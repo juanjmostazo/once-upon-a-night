@@ -20,6 +20,7 @@ PhysicsComponentWeapon::~PhysicsComponentWeapon()
 void PhysicsComponentWeapon::reset()
 {
 	PhysicsComponentCharacter::reset();
+	mAttackCollisions.clear();
 }
 
 void PhysicsComponentWeapon::setNxOgreMaxSize(NxOgre::Vec2 pNxOgreSize)
@@ -34,11 +35,11 @@ NxOgre::Vec2 PhysicsComponentWeapon::getNxOgreMaxSize()
 
 void PhysicsComponentWeapon::startAttack()
 {
+	mAttackCollisions.clear();
 	if(isInUse())
 	{
 		destroy();
 	}
-
 	setNxOgreSize(NxOgre::Vec2(0.01,0.01));
 	create();
 }
@@ -49,6 +50,16 @@ void PhysicsComponentWeapon::endAttack()
 	{
 		destroy();
 	}
+}
+
+void PhysicsComponentWeapon::addCollision(std::string gameObjectName)
+{
+	mAttackCollisions.insert(gameObjectName);
+}
+
+bool PhysicsComponentWeapon::attackHasCollision(std::string gameObjectName)
+{
+	return mAttackCollisions.count(gameObjectName)>0;
 }
 
 void PhysicsComponentWeapon::update(double elapsedSeconds)
