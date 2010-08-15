@@ -227,6 +227,12 @@ void AnimationBlender::addTime( float time )
 		}
 	}
 }
+void AnimationBlender::setTimePosition(float timePos)
+{
+	if (mSource)
+		mSource->setTimePosition(timePos);
+
+}
 
 //---------Bone mask management
 

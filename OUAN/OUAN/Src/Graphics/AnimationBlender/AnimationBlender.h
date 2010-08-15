@@ -17,6 +17,7 @@ namespace OUAN
 			BT_SWITCH,			// Stop source and start dest
 			BT_WHILEANIMATING,	// Cross fade, blend source animation out 
 								//	while blending destination animation in
+			//UNUSED!!
 			BT_THENANIMATE,		// Blend source to first frame of dest, when done, start dest anim
 			BT_MIX,				// Blend several animations together. (TODO)
 		};
@@ -55,6 +56,7 @@ namespace OUAN
 
 	public: 
 		AnimationBlender( Ogre::Entity *);
+
 		virtual ~AnimationBlender();
 		/**
 		*	@param	animation	name of the target animation to change to
@@ -62,7 +64,9 @@ namespace OUAN
 		*	@param	duration	for blending transitions, the fading duration
 		*	@param	l			loop target animation
 		*	@param	bones		array containing the bones that'll take part in the blending
-		*						every other bone's weight will be set to 0
+		*						every other bone's weight will be set to 0. The method is overloaded,
+		*						so it can accept a list of names, all of which will have a weight of 1,
+		*						or a map whose entries will be <boneName, weight>
 		*/
 		void blend( const std::string& animation, TBlendingTransition transition, 
 			float duration, const std::vector<std::string>& bones,bool l=true, float timeScale=1.0);
@@ -70,6 +74,8 @@ namespace OUAN
 			float duration, bool l=true, float timeScale=1.0, std::map<std::string,float>* bones=NULL);
 
 		void addTime(float);
+
+		void setTimePosition(float);
 
 		float getProgress(); //{ return mTimeleft/ mDuration; }
 		Ogre::AnimationState *getSource();

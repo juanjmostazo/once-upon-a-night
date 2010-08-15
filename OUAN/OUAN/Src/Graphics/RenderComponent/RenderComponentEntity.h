@@ -19,10 +19,6 @@ namespace OUAN
 		/// so they can be easily accessed.
 		TAnimationStateMap mAnimations;
 		
-		/// Current animation playing (Perhaps we might keep track of two active animations, for blending purposes)
-		std::string mCurrentAnimationName;
-		Ogre::AnimationState* mCurrentAnimation;
-		
 		/// This can be replaced with a mAnimations.empty() check
 		bool mIsAnimated;
 
@@ -53,10 +49,11 @@ namespace OUAN
 		void update(double elapsedTime);
 
 		void initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams);
-		void changeAnimation(const std::string& newAnimation /*TODO: Add options*/);
+		void setAnimationPosition(float pos);
+		float getCurrentAnimationLength() const;
+		
 		Ogre::AnimationState* getCurrentAnimation() const;
 		std::string getCurrentAnimationName() const;
-		std::string getCurrentAnimationName2() const;
 		bool isAnimated() const;
 
 		void attachGameObjectToBone(const std::string& boneName,GameObjectPtr gameObject);
