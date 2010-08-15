@@ -59,12 +59,33 @@ void PhysicsComponentSimpleCapsule::create()
 		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
 		//getNxOgreKinematicBody()->setQueryFlags((int)mQueryFlags);
 	}
+
+	setNxOgreVolume(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
+			pCapsule,								
+			NxOgre::Matrix44(	
+				NxOgre::Vec3(getSceneNode()->getPosition()), 
+				NxOgre::Quat(getSceneNode()->getOrientation())),
+			Application::getInstance()->getPhysicsSubsystem().get(), 
+			NxOgre::Enums::VolumeCollisionType_All));	
 }
 
 void PhysicsComponentSimpleCapsule::destroy()
 {
 	PhysicsComponentSimple::destroy();
+	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->destroyVolume(getNxOgreVolume());
 }
+
+NxOgre::Volume* PhysicsComponentSimpleCapsule::getNxOgreVolume()
+{
+	return mNxOgreVolume;
+}
+
+void PhysicsComponentSimpleCapsule::setNxOgreVolume(NxOgre::Volume* pNxOgreVolume)
+{
+	mNxOgreVolume=pNxOgreVolume;
+}
+
 void PhysicsComponentSimpleCapsule::setPosition(NxOgre::Vec3 position)
 {
 	if (isInUse())

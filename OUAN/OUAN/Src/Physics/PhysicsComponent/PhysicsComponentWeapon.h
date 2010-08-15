@@ -28,6 +28,9 @@ namespace OUAN
 
 		virtual void setOuternMovement(Ogre::Vector3 outernMovement);
 
+		virtual void addCollision(std::string gameObjectName);
+		virtual bool attackHasCollision(std::string gameObjectName);
+
 	protected:
 		virtual void applyFallY(double elapsedSeconds);
 		virtual void applyOuternMovement(double elapsedSeconds);
@@ -37,6 +40,8 @@ namespace OUAN
 		double mInflateSpeed;
 
 		NxOgre::Vec2 mNxOgreMaxSize;
+
+		std::set<std::string> mAttackCollisions;
 	};
 
 	class TPhysicsComponentWeaponParameters: public TPhysicsComponentCharacterParameters

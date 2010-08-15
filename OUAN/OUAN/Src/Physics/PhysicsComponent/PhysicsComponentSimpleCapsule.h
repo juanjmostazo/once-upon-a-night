@@ -22,8 +22,11 @@ namespace OUAN
 		void setPosition(NxOgre::Vec3 position);
 		void setOrientation(NxOgre::Quat orientation);
 
+		NxOgre::Volume* getNxOgreVolume();
+		void setNxOgreVolume(NxOgre::Volume* pNxOgreVolume);
 
 	protected:
+		NxOgre::Volume* mNxOgreVolume;
 		NxOgre::Vec2 mNxOgreSize;
 		QueryFlags mQueryFlags;
 

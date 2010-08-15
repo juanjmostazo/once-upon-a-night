@@ -5,6 +5,7 @@
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
 #include "../Graphics/CameraManager/CameraTrigger.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../Game/GameWorldManager.h"
 #include "../Game/GameObject/GameObject.h"
 #include "../Game/GameObject/GameObjectTriggerBox.h"
@@ -16,6 +17,8 @@
 #include "../Game/GameObject/GameObjectClockPiece.h"
 #include "../Game/GameObject/GameObjectStoryBook.h"
 #include "../Game/GameObject/GameObjectOny.h"
+#include "../Game/GameObject/GameObjectPillow.h"
+#include "../Game/GameObject/GameObjectFlashlight.h"
 #include "../Core/LevelLoadingState.h"
 #include "../Core/GameStateManager.h"
 #include "../Utils/Utils.h"
@@ -31,11 +34,13 @@ void EventProcessor::init(GameWorldManagerPtr worldManager)
 {
 	mWorldManager=worldManager;
 	registerHandlers();
+	mCollisionsThisFrame.clear();
 }
 
 void EventProcessor::cleanUp()
 {
 	unregisterHandlers();
+	mCollisionsThisFrame.clear();
 }
 
 void EventProcessor::registerHandlers()
@@ -256,6 +261,22 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 	}
 }
 
+bool EventProcessor::filterWeaponAttack(PhysicsComponentWeaponPtr weapon,std::string gameObjectName)
+{
+		bool sendCollision;
+		if(!weapon->attackHasCollision(gameObjectName))
+		{
+			sendCollision=true;
+			weapon->addCollision(gameObjectName);
+		}
+		else
+		{
+			sendCollision=false;
+		}
+
+		return sendCollision;
+}
+
 void EventProcessor::processCollision(CollisionEventPtr evt)
 {
 	if (evt->getGameObject1() && evt->getGameObject2())
@@ -269,9 +290,50 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 		//msg<<"COLLISION: "<<evt->getGameObject1()->getName()<<" and "<<evt->getGameObject2()->getName();
 		//	Logger::getInstance()->log(msg.str());
 		//Logger::getInstance()->log("EventProcessor: processCollision (" + evt->getGameObject1()->getName() + "," + evt->getGameObject2()->getName() + ")");
-		
-		 evt->getGameObject1()->processCollision(evt->getGameObject2(), evt->getNormal());
-		 evt->getGameObject2()->processCollision(evt->getGameObject1(), evt->getNormal());
+		std::pair<std::string,std::string> mCollisionPair;
+		mCollisionPair.first=evt->getGameObject1()->getName();
+		mCollisionPair.second=evt->getGameObject2()->getName();
+
+		bool sendCollision=false;
+		if(!mCollisionsThisFrame[mCollisionPair])
+		{
+			if(evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+			{
+					GameObjectPillowPtr pillow=BOOST_PTR_CAST(GameObjectPillow,
+					evt->getGameObject1());
+					sendCollision=filterWeaponAttack(pillow->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
+			}
+			else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+			{
+					GameObjectPillowPtr pillow=BOOST_PTR_CAST(GameObjectPillow,
+					evt->getGameObject2());
+					sendCollision=filterWeaponAttack(pillow->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
+			}
+			else if(evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+			{
+					GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
+					evt->getGameObject1());
+					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
+			}
+
+			else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+			{
+					GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
+					evt->getGameObject2());
+					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
+			}
+			else
+			{	
+				sendCollision=true;
+			}
+		}
+
+		if(sendCollision)
+		{
+				evt->getGameObject1()->processCollision(evt->getGameObject2(), evt->getNormal());
+				evt->getGameObject2()->processCollision(evt->getGameObject1(), evt->getNormal());
+				mCollisionsThisFrame[mCollisionPair]=true;
+		}
 	}
 	else
 	{
@@ -337,6 +399,15 @@ void EventProcessor::processAnimationEnded(AnimationEndedEventPtr evt)
 void EventProcessor::processAnimationStarted(AnimationStartedEventPtr evt)
 {
 
+}
+
+void EventProcessor::startNewFrame()
+{
+	TCollisionsThisFrameIterator it;
+	for(it=mCollisionsThisFrame.begin();it!=mCollisionsThisFrame.end();it++)
+	{
+		it->second=false;
+	}
 }
 
 void EventProcessor::processActivatedItem(ActivatedItemEventPtr evt)

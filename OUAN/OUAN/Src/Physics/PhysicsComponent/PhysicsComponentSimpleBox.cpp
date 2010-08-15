@@ -28,6 +28,8 @@ void PhysicsComponentSimpleBox::create()
 
 	mBox->setName(name);
 
+	mBox->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+
 	if (getMass() > 0)
 	{
 		setNxOgreKinematicBody(NULL);
@@ -66,11 +68,31 @@ void PhysicsComponentSimpleBox::create()
 		//Logger::getInstance()->log(getParent()->getName() + " OGRE3DKINEMATICBODY: " + Ogre::StringConverter::toString(
 		//	pBox->getFlag()));
 	}
+
+	setNxOgreVolume(
+		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
+			mBox,								
+			NxOgre::Matrix44(	
+				NxOgre::Vec3(getSceneNode()->getPosition()), 
+				NxOgre::Quat(getSceneNode()->getOrientation())),
+			Application::getInstance()->getPhysicsSubsystem().get(), 
+			NxOgre::Enums::VolumeCollisionType_All));	
 }
 
 void PhysicsComponentSimpleBox::destroy()
 {
 	PhysicsComponentSimple::destroy();
+	Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->destroyVolume(getNxOgreVolume());
+}
+
+NxOgre::Volume* PhysicsComponentSimpleBox::getNxOgreVolume()
+{
+	return mNxOgreVolume;
+}
+
+void PhysicsComponentSimpleBox::setNxOgreVolume(NxOgre::Volume* pNxOgreVolume)
+{
+	mNxOgreVolume=pNxOgreVolume;
 }
 
 NxOgre::Vec3 PhysicsComponentSimpleBox::getNxOgreSize()

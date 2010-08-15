@@ -26,7 +26,7 @@ void PhysicsComponentVolumeBox::create()
 				getNxOgreSize().z);
 
 	mBox->setName(name);
-	
+
 	setNxOgreVolume(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
 			mBox,								
