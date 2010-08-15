@@ -69,7 +69,6 @@ namespace OUAN
 
 	};
 
-	typedef std::map<std::string, Ogre::AnimationState*> TAnimationStateMap;
 	class RenderComponentWater: public RenderComponent
 	{
 	private:

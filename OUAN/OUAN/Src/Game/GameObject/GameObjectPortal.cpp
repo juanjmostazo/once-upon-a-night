@@ -177,11 +177,11 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			setDreamsRender();
-			mRenderComponentEntityDreams->changeAnimation(PORTAL_ANIMATION_IDLE,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntityDreams->changeAnimation(PORTAL_ANIMATION_IDLE);
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
-			mRenderComponentEntityNightmares->changeAnimation(PORTAL_ANIMATION_IDLE,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntityNightmares->changeAnimation(PORTAL_ANIMATION_IDLE);
 			break;
 		default:
 			break;
@@ -308,7 +308,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 
 		if (isFirstUpdate())
 		{
-			entityToUpdate->changeAnimation("idle",AnimationBlender::BT_SWITCH,0.2);
+			entityToUpdate->changeAnimation("idle");
 		}
 
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	

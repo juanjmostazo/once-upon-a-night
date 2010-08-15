@@ -33,6 +33,7 @@
 	<PROPERTY id="initialAnimation" type="7" value="idle"></PROPERTY>
 	<PROPERTY id="animation0d::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+	
 	<PROPERTY id="animation0n::name" type="7" value="idle" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	

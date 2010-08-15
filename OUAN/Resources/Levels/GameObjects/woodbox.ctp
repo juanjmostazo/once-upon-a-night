@@ -12,7 +12,9 @@
     <PROPERTY id="subentity1::material" type="7" value="woodbox_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-	<PROPERTY id="initialAnimation" type="7" value="broken"></PROPERTY>
+
+	<PROPERTY id="initialAnimation" type="7" value=""></PROPERTY>
 	<PROPERTY id="animation0::name" type="7" value="broken" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+
   </CUSTOMPROPERTIES>

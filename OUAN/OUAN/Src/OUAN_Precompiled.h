@@ -49,6 +49,7 @@ extern "C" {
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/random.hpp>
 #include <boost/nondet_random.hpp>
+#include <boost/any.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/graphviz.hpp>

@@ -69,11 +69,11 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		int currentState=mLogicComponent->getState();
 		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
 		{
-			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP,AnimationBlender::BT_SWITCH,0.2,false);
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP);
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
 		{
-			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT,AnimationBlender::BT_SWITCH,0.2,false,3.5);
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_ALERT);
 			//displayText("I'M AFRAID!! >_<");
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_CAUTION))
@@ -285,15 +285,15 @@ void GameObjectScaredPlant::processAnimationEnded(const std::string& animationNa
 {
 	if (animationName.compare(SCAREDPLANT_ANIM_ALERT)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_DOWN,AnimationBlender::BT_SWITCH,0.2,false);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_DOWN);
 	}
 	else if (animationName.compare(SCAREDPLANT_ANIM_DOWN)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IN,AnimationBlender::BT_SWITCH,0.2);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IN);
 	}
 	else if (animationName.compare(SCAREDPLANT_ANIM_UP)==0)
 	{
-		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE,AnimationBlender::BT_SWITCH,0.2);
+		mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
 	}
 }
 void GameObjectScaredPlant::setVisible(bool visible)

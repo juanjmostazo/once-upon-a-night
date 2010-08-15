@@ -268,7 +268,7 @@ void GameObjectOny::reset()
 	mLogicComponentOny->setState(ONY_STATE_IDLE);
 	mLogicComponentOny->setNewState(ONY_STATE_IDLE);
 	mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
-	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01,AnimationBlender::BT_SWITCH,1);
+	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	mRenderComponentQuadHalo->setVisible(false);
 }
 
@@ -472,8 +472,7 @@ void GameObjectOny::postUpdate()
 	{
 		if (mLogicComponentOny->isStateChanged())
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01,AnimationBlender::BT_WHILEANIMATING,
-				0.5,TRUE,1.0);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 			mIdleTime=0.0;
 
 			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
@@ -496,8 +495,7 @@ void GameObjectOny::postUpdate()
 			{
 				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
 				{
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02,
-						AnimationBlender::BT_WHILEANIMATING,0.5,false);
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
 				}
 			}
 		}
@@ -506,8 +504,7 @@ void GameObjectOny::postUpdate()
 		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_DIE);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01,AnimationBlender::BT_WHILEANIMATING,
-			0.5,false);
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
 	}
 
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
@@ -515,14 +512,13 @@ void GameObjectOny::postUpdate()
 		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
 	{
 		mAudioComponent->playSound(ONY_SOUND_HIT);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01,AnimationBlender::BT_WHILEANIMATING,
-			0.5,false);
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
 	}
 	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
 	{
 		if (mWorld == DREAMS)
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW,AnimationBlender::BT_WHILEANIMATING,0.5,false,0.8);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
 
 			GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
 				mWeaponComponent->getActiveWeapon());
@@ -535,7 +531,7 @@ void GameObjectOny::postUpdate()
 		else if (mWorld == NIGHTMARES) 
 		{
 			//get Camera Direction and change animation accordingly:
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER,AnimationBlender::BT_WHILEANIMATING,0.5,false);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
 
 			GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
 				mWeaponComponent->getActiveWeapon());
@@ -544,19 +540,16 @@ void GameObjectOny::postUpdate()
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
 		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 	{
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP,AnimationBlender::BT_WHILEANIMATING,
-			0.5,false);			
+		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
 	}
 	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
 	{
 		if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
 		{
 			if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK,AnimationBlender::BT_WHILEANIMATING,
-				0.5,true,1.5);
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
 			else
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN,AnimationBlender::BT_WHILEANIMATING,
-				0.5,true);
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
 		}
 		else //Walk/run toggle
 		{
@@ -567,12 +560,9 @@ void GameObjectOny::postUpdate()
 			if (toWalk || toRun || fromJump)
 			{
 				if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK,
-					AnimationBlender::BT_WHILEANIMATING,
-					0.5,true,1.5);
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
 				else
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN,AnimationBlender::BT_WHILEANIMATING,
-					0.5,true);
+					mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
 			}
 		}		
 	}

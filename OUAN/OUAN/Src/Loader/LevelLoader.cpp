@@ -3330,7 +3330,9 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 	{
 			TRenderComponentEntityAnimParams currentAnimParams;
 
-			int i=0;
+			int i=0,j=0;
+			std::string maskFile;
+			TTransitionData tranData;
 			std::string worldSuffix=(world==DREAMS)
 				?"d"
 				:(world==NIGHTMARES)
@@ -3345,6 +3347,42 @@ void LevelLoader::processRenderComponentEntityAnimParams(std::vector<TRenderComp
 				currentAnimParams.loop=getPropertyBool(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::loop",
 					false);
 
+				currentAnimParams.timescale=getPropertyReal(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::timescale",false);
+				if (fabs(currentAnimParams.timescale-0.0)<0.0000001)
+				{
+					currentAnimParams.timescale=1.0;
+				}
+
+				currentAnimParams.transitions.clear();
+
+				j=0;
+				while(true)
+				{
+					tranData.target=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::transition"+StringConverter::toString(j)+"::target",false);
+					if (tranData.target.empty()) break;
+
+					tranData.source=currentAnimParams.name;
+					tranData.blendType=static_cast<AnimationBlender::TBlendingTransition>(getPropertyInt(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::transition"+StringConverter::toString(j)+"::blend_type",false));
+					tranData.duration=getPropertyReal(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::transition"+StringConverter::toString(j)+"::duration",false);
+
+					maskFile=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::transition"+StringConverter::toString(j)+"::sourceBlendMask",false);
+					if (!maskFile.empty())
+					{
+						//tranData.sourceBlendMask=loadBlendMask(maskFile)
+						maskFile="";
+					}
+
+					maskFile=getPropertyString(XMLNode,"animation"+StringConverter::toString(i)+worldSuffix+"::transition"+StringConverter::toString(j)+"::targetBlendMask",false);
+					if (!maskFile.empty())
+					{
+						//tranData.targetBlendMask=loadBlendMask(maskFile);
+						maskFile="";
+					}
+					
+					currentAnimParams.transitions[tranData.target]=tranData;
+					++j;
+				}
+				
 				Logger::getInstance()->log("Parsing animation "+currentAnimParams.name);
 
 				renderComponentEntityAnimParams.push_back(currentAnimParams);

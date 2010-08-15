@@ -6,8 +6,29 @@
 
 namespace OUAN
 {
+	struct TTransitionData
+	{
+		std::string source;
+		std::string target;
+		AnimationBlender::TBlendingTransition blendType;
+		float duration;
+		//TODO: Allow definition of a map as well
+		std::vector<std::string> sourceBlendMask;
+		std::vector<std::string> targetBlendMask;
+	};
+	typedef std::map<std::string,TTransitionData> TTransitionMap;
 
-	typedef std::map<std::string, Ogre::AnimationState*> TAnimationStateMap;
+	struct TAnimationData
+	{
+		std::string name;
+		bool loop;
+		float timescale;
+		TTransitionMap transitions;
+	};
+
+	typedef std::map<std::string, TAnimationData> TAnimationStateMap;
+	
+	
 	class RenderComponentEntity: public RenderComponent
 	{
 	private:
@@ -36,6 +57,9 @@ namespace OUAN
 
 		void initAnimationBlender(const std::string& defaultAnimation);
 		void destroyAnimationBlender();
+
+		void changeAnimation(const std::string& anim);
+
 		void changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, 
 			float duration, bool l=true, float timeScale=1.0);
 		void setAnimationBlenderVertexKeyMap(const TKeyFrameMap& keyFrameMap);
@@ -80,6 +104,8 @@ namespace OUAN
 			
 			std::string name;
 			bool loop;
+			float timescale;
+			TTransitionMap transitions;
 	};
 	class TRenderComponentSubEntityParameters: public TRenderComponentParameters
 	{

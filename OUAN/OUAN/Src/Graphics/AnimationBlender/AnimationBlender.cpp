@@ -65,13 +65,16 @@ void AnimationBlender::_init(const std::string &animation, bool l, float timesca
 			anim->setTimePosition(0);
 		}
 
-		mSource = mEntity->getAnimationState( animation );
-		mSource->setEnabled(true);
-		mSource->setWeight(1);
-		mSrcTimeScale=timescale;
+		if (!animation.empty())
+		{
+			mSource = mEntity->getAnimationState( animation );
+			mSource->setEnabled(true);
+			mSource->setWeight(1);
+			mSrcTimeScale=timescale;	
+		}
 		mTimeleft = 0;
 		mDuration = 1;
-		mTarget = 0;
+		mTarget = NULL;
 		mComplete = false;
 		mLoop = l;
 
@@ -118,7 +121,7 @@ Ogre::AnimationState* AnimationBlender::_blend( const std::string& animation, TB
 	{
 		// No blending; just disable the last animation state, and replace
 		// it with the target animation
-		if( mSource != 0 )
+		if( mSource != NULL )
 			mSource->setEnabled(false);
 		mSource = mEntity->getAnimationState( animation );
 		mSource->setEnabled(true);
@@ -187,7 +190,7 @@ Ogre::AnimationState* AnimationBlender::_blend( const std::string& animation, TB
 }
 void AnimationBlender::addTime( float time )
 {
-	if( mSource != 0 )
+	if( mSource != NULL )
 	{
 		if( mTimeleft > 0 )
 		{
@@ -349,4 +352,26 @@ void AnimationBlender::resetManualAnimation()
 void AnimationBlender::setVertexPoseKeyFrames(const TKeyFrameMap& keyFrames)
 {
 	mVertexPoseKeyFrames=keyFrames;
+}
+
+void AnimationBlender::resetBoneMask()
+{
+	if (mSource)
+		mSource->destroyBlendMask();
+}
+void AnimationBlender::setBoneMask(const std::vector<std::string>& bones)
+{
+	if (!bones.empty())
+	{
+		mSource->createBlendMask(mEntity->getSkeleton()->getNumBones());
+		loadBoneMask(mSource,bones);
+	}
+}
+void AnimationBlender::setBoneMask(std::map<std::string,float>* bones)
+{
+	if (bones && !bones->empty())
+	{
+		mSource->createBlendMask(mEntity->getSkeleton()->getNumBones());
+		loadBoneMask(mSource,bones);
+	}
 }

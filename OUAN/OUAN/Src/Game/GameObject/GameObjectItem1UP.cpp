@@ -330,7 +330,7 @@ void GameObjectItem1UP::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation(ITEM1UP_ANIM_IDLE,AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation(ITEM1UP_ANIM_IDLE);
 		}
 		else
 		{

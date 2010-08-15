@@ -171,7 +171,7 @@ void GameObjectNest::reset()
 
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(NEST_STATE_IDLE));
 	mEggHatched=false;
-	mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE,AnimationBlender::BT_SWITCH,1.0);
+	mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE);
 	mRenderComponentEntity->setVisible((mWorld==DREAMS && mLogicComponent->existsInDreams()) ||
 		(mWorld==NIGHTMARES && mLogicComponent->existsInNightmares()));
 }
@@ -282,7 +282,7 @@ void GameObjectNest::update(double elapsedSeconds)
 				if (mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 				{
 					mLogicComponent->setStateChanged(false);
-					mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE,AnimationBlender::BT_SWITCH,1.0);					
+					mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE);					
 					for (std::vector<GameObjectPtr>::iterator it=mChildren.begin();it!=mChildren.end();++it)
 					{
 						GameObjectPtr obj=*it;
@@ -297,13 +297,11 @@ void GameObjectNest::update(double elapsedSeconds)
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_SHAKING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
-				mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE,AnimationBlender::BT_WHILEANIMATING,
-					0.2,false);	
+				mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE);	
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_HATCHING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
-				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH,AnimationBlender::BT_WHILEANIMATING,
-					0.2,false);	
+				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
 			}
 			if (mRenderComponentEntity.get() && !mEggHatched)
 			{

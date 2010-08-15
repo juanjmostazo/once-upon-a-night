@@ -23,10 +23,10 @@ RenderComponentEntity::RenderComponentEntity(const std::string& type)
 RenderComponentEntity::~RenderComponentEntity()
 {
 	mEntity=NULL;
-	for (TAnimationStateMap::iterator it=mAnimations.begin();it!=mAnimations.end();++it)
-	{
-		it->second=NULL;
-	}
+	//for (TAnimationStateMap::iterator it=mAnimations.begin();it!=mAnimations.end();++it)
+	//{
+	//	it->second=NULL;
+	//}
 	mAnimations.clear();
 }
 
@@ -111,30 +111,50 @@ void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAni
 	{
 		mIsAnimated=true;
 		std::string animName;
+		TAnimationData animData;
+		TRenderComponentEntityAnimParams params;
 		for (std::vector<TRenderComponentEntityAnimParams>::const_iterator it= entityAnimParams.begin();
 			it!=entityAnimParams.end();++it)
 		{
 			if (mEntity)
 			{
-				animName=(*it).name;
-				try
-				{
-					mAnimations[animName]=mEntity->getAnimationState(animName);
-				}
-				catch(Ogre::ItemIdentityException)
-				{
-					Logger::getInstance()->log("ANIMATION STATE NOT FOUND: "+animName);
-				}
-				if (mAnimations[animName])
-				{
-					mAnimations[animName]->setEnabled(false);
-					mAnimations[animName]->setLoop((*it).loop);
-				}
+				params=(*it);
+				animName=params.name;
+				animData.name=animName;
+				animData.loop=params.loop;
+				animData.timescale=params.timescale;
+				animData.transitions=params.transitions;
+				
+				mAnimations[animName]=animData;
 			}
 		}
 	}
 	else mIsAnimated=false;
-	//Initialise the animations mapping
+}
+void RenderComponentEntity::changeAnimation(const std::string& anim)
+{
+	TAnimationData oldAnimData= mAnimations[getCurrentAnimationName()];
+	TAnimationData newAnimData= mAnimations[anim];
+
+	if (!oldAnimData.transitions.empty() && 
+		oldAnimData.transitions.find(anim)!=oldAnimData.transitions.end())
+	{
+		TTransitionData tranData = oldAnimData.transitions[anim];
+		//Check if there's a source blend mask.
+		if (!tranData.sourceBlendMask.empty())
+		{
+			mAnimationBlender->setBoneMask(tranData.sourceBlendMask);		
+		}
+		else mAnimationBlender->resetBoneMask();
+		//Check for a target blend mask
+		if (!tranData.targetBlendMask.empty())
+		{
+			mAnimationBlender->blend(anim,tranData.blendType,tranData.duration,tranData.targetBlendMask,newAnimData.loop,newAnimData.timescale);
+		}
+		else changeAnimation(anim,tranData.blendType,tranData.duration,newAnimData.loop,newAnimData.timescale);
+	}
+	else changeAnimation(anim,AnimationBlender::BT_SWITCH,0,newAnimData.loop,newAnimData.timescale);
+
 }
 void RenderComponentEntity::changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, float duration, bool l/* =true */, float timeScale/* =1.0 */)
 {

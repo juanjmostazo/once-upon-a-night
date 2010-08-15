@@ -306,7 +306,7 @@ void GameObjectStoryBook::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
-			mRenderComponentEntity->changeAnimation("turn",AnimationBlender::BT_SWITCH,0.2);
+			mRenderComponentEntity->changeAnimation("turn");
 		}
 		else
 		{
