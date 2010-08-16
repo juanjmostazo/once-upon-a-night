@@ -235,7 +235,7 @@ void GameRunningState::handleEvents()
 	bool onyCanAttack=!mApp->getGameWorldManager()->isOnyDying() && 
 		!mApp->getGameWorldManager()->isOnyHit();
 
-	if ( onyCanAttack && (flashlightAttack ||pillowAttack))
+	if ( onyCanAttack && (flashlightAttack || pillowAttack))
 	{
 		if(mApp->getCameraManager()->targetMovementAllowed())
 		{
