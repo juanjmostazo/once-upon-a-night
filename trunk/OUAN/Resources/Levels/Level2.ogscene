@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="1217.35 701.468 -2130.89" orientation="-0.655911 0.0866831 -0.743201 -0.0995949"></OPTION>
+    <OPTION id="2" position="-195.469 490.661 -728.995" orientation="0.9951 -0.0101705 0.0983217 0.0024327"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.655917 0.086684 -0.743209 -0.0995959"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.995626 -0.0101759 0.0983737 0.00243398"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="1217.35 701.468 -2130.89"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-195.469 490.661 -728.995"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -735,6 +735,25 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="91250344" name="terrain_d#column0_#4" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.909961 0 -0.414693 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="798.023 236.337 -37.4124"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="693533120" name="bush_n#16n" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -795,7 +814,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-306.26 451.949 -1822.29"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-571.517 218.575 -1593.13"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -840,23 +859,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="747337280" name="bush_n#800" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.990371 0.0741559 -0.0414768 0.1093"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-384.733 689.812 -2076.63"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1.5 1.5 1.5"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -1012,7 +1014,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-414.745 473.521 -1925"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-461.531 460.539 -2707.08"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -1022,6 +1024,23 @@
     <PROPERTY id="subentity2::material" type="7" value="portal_floor_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="377239296" name="scaredplant_d#46" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.313137 -0.0124312 0.949618 -0.00409919"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-683.349 244.96 -95.0525"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -1405,7 +1424,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="134.564 85.5602 -536.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -1523,6 +1542,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="storybook_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="434827712" name="scaredplant_d#54" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.939254 -0.00686964 -0.341861 -0.0297558"></PROPERTY>
+    <PROPERTY id="position" type="9" value="639.684 131.963 103.452"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -1648,8 +1684,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.212178 0 0.977231 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-266.345 224.276 458.807"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.0958454 0 0.995396 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-359.244 218.568 449.17"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -1830,6 +1866,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="266243488" name="scaredplant_d#71" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.172962 0.0182966 0.984638 0.0154258"></PROPERTY>
+    <PROPERTY id="position" type="9" value="76.3867 68.6221 -398.8"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="158299504" name="bush_d#15" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -1943,7 +1996,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.477715 0.48199 0.509895 -0.52866"></PROPERTY>
     <PROPERTY id="position" type="9" value="-836.947 448.831 -1029.98"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -2185,14 +2238,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="539201024" name="scaredplant_d#49" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.713189 -0.0129284 0.700849 0.00204767"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-782.846 251.11 -4.0476"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="736045440" name="scaredplant_d#5" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.279829 0 0.96005 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-391.474 219.923 391.455"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.5373 0 0.843391 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-392.108 219.923 390.096"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -2435,6 +2505,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="126865448" name="scaredplant_d#60" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.304722 -0.0277333 -0.951952 -0.0127853"></PROPERTY>
+    <PROPERTY id="position" type="9" value="845.277 124.45 210.278"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="289315456" name="tree2_d#2" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2471,23 +2558,6 @@
     <PROPERTY id="subentity2::material" type="7" value="platform4_n"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="521439264" name="bush_n#23n" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.940128 -0.0911178 -0.328308 -0.00837255"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-320.605 607.938 -2037.19"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -2787,6 +2857,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="454420608" name="scaredplant_d#59" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999381 0.00425019 0.017444 -0.0302413"></PROPERTY>
+    <PROPERTY id="position" type="9" value="850.347 130.824 160.79"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="190649120" name="volume-box_n#win9" typename="Entity Object" parentnode="Volumes">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -2866,7 +2953,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree4_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="520.931 454.619 -1805.51"></PROPERTY>
+    <PROPERTY id="position" type="9" value="666.898 414.634 -2260.51"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree4_d"></PROPERTY>
@@ -2875,25 +2962,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="712363072" name="woodbox_broken#0" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox_broken.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="477.598 689.104 -2026.37"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2913,6 +2981,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.6" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="982970624" name="scaredplant_d#43" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.904378 -0.0115305 0.426532 0.00619557"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-711.342 260.632 14.2552"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3147,23 +3232,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="854792960" name="bush_d#5d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.969285 -0.017134 -0.235126 0.0700615"></PROPERTY>
-    <PROPERTY id="position" type="9" value="455.201 851.437 -2066.53"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="501205504" name="bush_n#7n" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3260,7 +3328,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="terrain01.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="585.485 83.3812 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="585.555 83.382 -0.00904846"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="terrain1_01_d"></PROPERTY>
@@ -3347,8 +3415,8 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.737095 0.0209006 -0.675268 -0.0163527"></PROPERTY>
     <PROPERTY id="position" type="9" value="-383.461 238.041 400.879"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -3378,6 +3446,25 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="799493376" name="terrain_d#column0_#3" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="817.436 232.653 78.147"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="435071872" name="woodbox#2d" typename="Entity Object" parentnode="items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3385,7 +3472,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.981091 -0.0628574 -0.182296 0.0166538"></PROPERTY>
-    <PROPERTY id="position" type="9" value="359.758 428.065 -1809.52"></PROPERTY>
+    <PROPERTY id="position" type="9" value="369.03 403.927 -2509.63"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -3461,7 +3548,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-295.891 451.949 -1828.49"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-628.994 219.79 -1507.95"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -3535,7 +3622,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.537299 0 0.843392 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1162.44 531.459 -806.988"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-737.104 229.704 -1546.11"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
@@ -3691,14 +3778,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="134952848" name="scaredplant_d#45" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.507495 -0.0130179 0.861555 -0.00136823"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-721.564 252.228 -28.8582"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="525193024" name="scaredplant_d#9" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.87462 0 0.48481 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-378.115 215.218 443.816"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.267238 0 0.96363 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-357.642 221.428 433.746"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -3724,23 +3828,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="31037324" name="bush_d#14d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.0125093 0.0130039 -0.997951 -0.0613906"></PROPERTY>
-    <PROPERTY id="position" type="9" value="401.375 849.603 -1788.42"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3774,23 +3861,6 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="628681280" name="bush_d#3d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.989651 0 0.143493 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="359.646 736.639 -2059.33"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c2"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4060,7 +4130,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="piece_clock.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="427.503 1649.86 -1950.29"></PROPERTY>
+    <PROPERTY id="position" type="9" value="468.5 1205.54 -2556.5"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="8 8 8"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
@@ -4076,8 +4146,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.0479782 0 -0.998848 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="422.309 688.456 -1821.64"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.19509 0 -0.980785 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-417.296 433.329 -2217.04"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
@@ -4090,6 +4160,23 @@
       <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="RenderComponentMessageBox::message" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="87649160" name="scaredplant_d#55" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.990719 -0.00216399 -0.134772 -0.0175693"></PROPERTY>
+    <PROPERTY id="position" type="9" value="621.921 133.044 103.048"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -4316,23 +4403,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="873348160" name="bush_d#7d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.933879 -0.0768191 -0.349214 0.00441018"></PROPERTY>
-    <PROPERTY id="position" type="9" value="483.606 767.72 -2042.91"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame4"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="881069376" name="bush_n#15" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -4386,6 +4456,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="491500576" name="terrain_d#door01" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="door01.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-453.935 503.039 -2542.25"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="555131648" name="platform2#0Copy#0Copy#0" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -4407,34 +4494,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="629474752" name="terrain_d#almeda" typename="Entity Object" parentnode="Towers">
+  <OBJECT object_id="182836384" name="scaredplant_d#65" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="almeda.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-5.40311 -15.8977 4.23026"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.99502 -0.0454281 0.0884589 -0.00677485"></PROPERTY>
+    <PROPERTY id="position" type="9" value="222.268 60.5299 -442.085"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="almena_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="786156800" name="bush_d#17d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.275637 0 0.961262 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="333.092 834.527 -1814.68"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -4446,7 +4516,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.46367 -0.688778 -0.437075 -0.345775"></PROPERTY>
     <PROPERTY id="position" type="9" value="-925.027 467.704 -988.808"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -4640,7 +4710,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.882536 -0.010944 -0.469253 -0.0285102"></PROPERTY>
-    <PROPERTY id="position" type="9" value="550.129 129.595 -100.85"></PROPERTY>
+    <PROPERTY id="position" type="9" value="544.645 129.9 -97.1434"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -4657,7 +4727,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree3_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.896873 0 -0.442289 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="104.16 511.193 -2106.82"></PROPERTY>
+    <PROPERTY id="position" type="9" value="108.136 495.51 -2367.82"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree3_d"></PROPERTY>
@@ -4751,7 +4821,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond_tree.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="334.155 456.98 -1629.94"></PROPERTY>
+    <PROPERTY id="position" type="9" value="334.155 446.69 -2545.52"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamondtree_d"></PROPERTY>
@@ -4838,25 +4908,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="739432960" name="terrain_n#tower2_island2" typename="Entity Object" parentnode="Towers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tower2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-2.49756 -15.5282 3.626"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="island2_tower2_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="169225136" name="scaredplant_d#4" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -4864,7 +4915,24 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.0566927 0 0.998392 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-359.146 213.624 473.786"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-335.629 217.849 472.571"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="330088192" name="scaredplant_d#48" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.790148 0.0130688 0.612025 -0.0303307"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-758.32 237.855 -87.2423"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -4936,7 +5004,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="679.95 222.408 -13.2847"></PROPERTY>
+    <PROPERTY id="position" type="9" value="679.95 219.912 -13.2847"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -5082,10 +5150,27 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-222.183 451.949 -1765.24"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-703.628 213.823 -1765.24"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="330973248" name="scaredplant_d#63" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.237575 0.0303269 0.970889 -0.00358937"></PROPERTY>
+    <PROPERTY id="position" type="9" value="408.14 106.167 -199.645"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5192,7 +5277,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1280.7 530.138 -712.235"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-699.838 230.761 -1604.59"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -5496,6 +5581,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="4394666" name="scaredplant_d#42" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.18222 -0.0117649 0.983171 -0.0057381"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-726.805 261.973 48.2182"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="796288960" name="bush_d#40" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -5642,23 +5744,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="524674240" name="bush_d#11d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.610364 -0.0630026 -0.788375 0.0441735"></PROPERTY>
-    <PROPERTY id="position" type="9" value="527.579 784.041 -1919.24"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="317545088" name="diamond_d#45" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -5738,10 +5823,27 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="terrain02.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-303.37 119.897 -96.3865"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-303.353 119.882 -96.4181"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="terrain1_02_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="375041952" name="scaredplant_d#69" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.379545 0.0199415 0.924033 -0.0413758"></PROPERTY>
+    <PROPERTY id="position" type="9" value="110.81 64.449 -444.792"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -5789,9 +5891,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-386.376 233.41 431.185"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.848048 0 -0.529919 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-269.881 251.18 372.112"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -5917,23 +6019,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="809778176" name="bush_d#501" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.885145 -0.112677 0.451268 0.0133915"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-510.616 572.008 -2004.97"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame4"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="454512160" name="platform2#0Copy#0" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6014,23 +6099,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="653370816" name="terrain_d#column16" typename="Entity Object" parentnode="Mountains">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="216.309 80.3309 -432.858"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="14679404" name="terrain_d#platform_big_0" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6038,7 +6106,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform_big.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1250 485 -760"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-691.903 180.298 -1600.81"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="platform_d"></PROPERTY>
@@ -6047,6 +6115,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="471907712" name="scaredplant_d#50" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.959602 0.0120549 0.279698 -0.0280585"></PROPERTY>
+    <PROPERTY id="position" type="9" value="525.036 125.564 -125.799"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6139,6 +6224,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="362895616" name="scaredplant_d#44" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.173633 -0.00901029 0.984723 -0.00949486"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-736.091 260.252 23.3096"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="952269056" name="scaredplant_d#8" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6146,7 +6248,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.691513 0 0.722364 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-319.691 230.996 339.355"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-362.193 220.411 438.236"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -6433,8 +6535,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.113203 0 -0.993572 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-179.464 222.291 313.314"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.406737 0 -0.913545 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-177.69 219.903 268.032"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -6516,12 +6618,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="883907648" name="terrain_d#column02_2" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.865522 -0.0389327 0.494687 -0.0681181"></PROPERTY>
+    <PROPERTY id="position" type="9" value="165.369 75.8552 -427.821"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="633167488" name="terrain_n#column7" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-338.315 245.427 359.261"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -6592,17 +6713,17 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="232428960" name="bush_d#2d" typename="Entity Object" parentnode="Terrain">
+  <OBJECT object_id="747337280" name="terrain:d#door02" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.961262 0 0.275637 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="318.86 757.353 -2044.66"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="door02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-491.799 503.039 -2542.25"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6631,9 +6752,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-342.327 234.776 464.102"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.956469 0.0459425 -0.287864 0.0138271"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-351.996 234.496 463.208"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -6673,6 +6794,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="frame_c2"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="440778816" name="scaredplant_d#56" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.739873 -0.0176251 -0.672053 -0.0249391"></PROPERTY>
+    <PROPERTY id="position" type="9" value="627.037 132.632 116.719"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6783,7 +6921,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.904455 0 0.426569 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="400.492 130.855 150.494"></PROPERTY>
+    <PROPERTY id="position" type="9" value="398.699 130.855 149.016"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -6900,23 +7038,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="10223702" name="bush_d#15d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.0132749 0.413824 -0.908199 -0.0612296"></PROPERTY>
-    <PROPERTY id="position" type="9" value="402.653 796.688 -1796.02"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7110,6 +7231,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="555436864" name="scaredplant_d#64" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.505795 -0.0208647 0.86143 -0.0409179"></PROPERTY>
+    <PROPERTY id="position" type="9" value="380.339 102.408 -225.778"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="546006656" name="tree2_d#6" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -7151,7 +7289,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-381.122 227.452 464.086"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -7302,7 +7440,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree1_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="122.017 451.579 -1645.66"></PROPERTY>
+    <PROPERTY id="position" type="9" value="122.528 429.863 -2826.96"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
@@ -7311,23 +7449,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="466353344" name="bush_d#6d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.980785 0 -0.19509 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="426.086 725.925 -2055.18"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7345,25 +7466,6 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="196508672" name="terrain_d#tower2_island2" typename="Entity Object" parentnode="Towers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tower2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-2.49756 -15.5282 3.626"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="island2_tower2_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7393,7 +7495,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="185.66 68.2312 -431.131"></PROPERTY>
+    <PROPERTY id="position" type="9" value="185.66 68.2312 -438.444"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -7499,6 +7601,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="794030592" name="scaredplant_d#3" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.622515 0 0.782608 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-683.431 263.105 44.3511"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="557603648" name="tree6_n#island2_10" typename="Entity Object" parentnode="Island2_Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -7525,7 +7644,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99785 -0.0648803 0.00825381 0.00435403"></PROPERTY>
-    <PROPERTY id="position" type="9" value="347.045 427.968 -1809.31"></PROPERTY>
+    <PROPERTY id="position" type="9" value="385.272 400.752 -2485.09"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -7578,7 +7697,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="island2.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-27.5868 223.844 -2325.98"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-27.5868 236.937 -2657.79"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="terrain_island2_n"></PROPERTY>
@@ -7587,6 +7706,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="351298560" name="terrain_d#tower03_d" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tower03_d.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-484.171 642.588 -2696.57"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bridge_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7681,41 +7817,20 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="551988288" name="bush_d#511" typename="Entity Object" parentnode="Terrain">
+  <OBJECT object_id="424939712" name="scaredplant_d#62" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.973132 -0.0894182 -0.211288 -0.0194146"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-340.766 513.536 -2017.64"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.994505 0.000666236 -0.100141 -0.0305313"></PROPERTY>
+    <PROPERTY id="position" type="9" value="480.528 92.7563 -256.711"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="634266176" name="terrain_n#tower1_island2" typename="Entity Object" parentnode="Towers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tower1_island2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="9.74957 -8.87323 16.8662"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="island2_tower1_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="torre1almeda_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7762,9 +7877,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-298.04 237.84 471.488"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999229 0.0392598 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-298.04 237.511 475.666"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -7779,7 +7894,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-383.795 240.58 358.938"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -7893,7 +8008,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1250 485 -760"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-641.346 330.391 -1467.88"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="500 300 500"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
@@ -8081,8 +8196,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree4_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-243.659 476.757 -1792.89"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.75471 0 0.656059 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="189.906 423.369 -2477.7"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree4_d"></PROPERTY>
@@ -8105,6 +8220,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="frame_c2n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="749748224" name="scaredplant_d#41" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.313137 -0.0124312 0.949618 -0.00409919"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-686.06 261.455 32.9627"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -8268,7 +8400,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-264.074 233.253 345.157"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-212.929 225.775 321.161"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -8409,8 +8541,25 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="298.584 426.717 -1776.67"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.942641 0 -0.333807 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="457.031 393.758 -2418.85"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="370067456" name="scaredplant_d#68" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.0841166 0.00657657 0.995397 -0.0454573"></PROPERTY>
+    <PROPERTY id="position" type="9" value="171.529 66.2179 -417.29"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -8436,40 +8585,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="80111088" name="bush_d#10d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.610572 0.0473312 -0.789471 -0.0412028"></PROPERTY>
-    <PROPERTY id="position" type="9" value="527.865 828.738 -1919.05"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="136875504" name="terrain_d#column3" typename="Entity Object" parentnode="Mountains">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-368.478 231.762 456.131"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8549,52 +8664,14 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="687643072" name="bush_n#13d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.438371 0 -0.898794 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="509.808 838.084 -1874.44"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="154087968" name="terrain_d#tower1_island2" typename="Entity Object" parentnode="Towers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tower1_island2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="9.74957 -8.87323 16.8662"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="island2_tower1_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="torre1almeda_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="873043008" name="terrain_d#column17" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="231.211 79.3998 -426.124"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.962713 -0.0116568 -0.266984 0.042033"></PROPERTY>
+    <PROPERTY id="position" type="9" value="232.867 79.3998 -432.927"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -8678,6 +8755,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="214484080" name="scaredplant_d#51" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.790321 0.0214996 0.611932 -0.021688"></PROPERTY>
+    <PROPERTY id="position" type="9" value="477.763 124.071 -62.1913"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="726798272" name="tree3_d#0" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8721,7 +8815,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.382684 0 0.923879 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="309.034 151.687 267.603"></PROPERTY>
+    <PROPERTY id="position" type="9" value="423.535 130.338 133.316"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -8738,7 +8832,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="680.519 221.968 -4.47205"></PROPERTY>
+    <PROPERTY id="position" type="9" value="680.519 219.317 -4.47205"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -8877,6 +8971,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="838618112" name="scaredplant_d#72" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.246709 0.0103465 0.968794 0.0215794"></PROPERTY>
+    <PROPERTY id="position" type="9" value="91.0821 70.0654 -391.727"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="17883848" name="tree10_n#24" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8903,7 +9014,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="201.5 51.7837 -471.48"></PROPERTY>
+    <PROPERTY id="position" type="9" value="201.5 52.9381 -471.48"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -8990,7 +9101,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.782608 0 0.622515 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-89.9952 202.96 225.387"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-150.271 218.969 280.09"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -9104,8 +9215,8 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.953395 -0.112842 -0.277889 -0.0328904"></PROPERTY>
     <PROPERTY id="position" type="9" value="215.868 86.8268 -402.605"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -9121,7 +9232,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-346.252 239.964 432.224"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -9271,6 +9382,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="frame_c1n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="825312064" name="scaredplant_d#57" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.958373 -0.00504027 -0.283883 -0.0301197"></PROPERTY>
+    <PROPERTY id="position" type="9" value="911.385 126.286 105.409"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9563,11 +9691,11 @@
   <OBJECT object_id="447187712" name="bush_n#13" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush_n2.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-305.641 220.96 468.445"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-311.089 220.96 468.445"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_n"></PROPERTY>
@@ -9588,23 +9716,6 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="775872064" name="bush_d#12d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.610572 0.0473312 -0.789471 -0.0412028"></PROPERTY>
-    <PROPERTY id="position" type="9" value="520.84 724.63 -1908.95"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame3"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9714,7 +9825,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="759.575 219.393 115.331"></PROPERTY>
+    <PROPERTY id="position" type="9" value="759.575 218.041 115.331"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -9735,6 +9846,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="704733440" name="scaredplant_d#67" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.059586 -1.42688e-005 0.997166 -0.0459305"></PROPERTY>
+    <PROPERTY id="position" type="9" value="159.903 63.3084 -438.785"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9782,7 +9910,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-348.117 233.116 464"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -10025,7 +10153,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree1_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="199.214 458.5 -2032.87"></PROPERTY>
+    <PROPERTY id="position" type="9" value="199.214 419.099 -2243.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
@@ -10120,7 +10248,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="205.434 70.2366 -421.166"></PROPERTY>
+    <PROPERTY id="position" type="9" value="205.434 70.2366 -427.068"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -10156,7 +10284,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.97237 0 -0.233445 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.83147 0 -0.55557 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-472.911 240.704 63.6894"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -10183,6 +10311,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="405560448" name="scaredplant_d#2" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.803857 0 -0.594823 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-553.205 254.902 44.3511"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -10409,9 +10554,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-262.399 247.867 431.185"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.739964 0.0176005 0.672136 0.0193767"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-262.399 249.359 431.184"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -10612,7 +10757,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.833886 0 -0.551937 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1389.57 527.367 -692.773"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-861.726 220.414 -1539.93"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
@@ -10620,23 +10765,6 @@
     <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="611102656" name="bush_n#802" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.950675 0.077486 -0.300289 0.00628161"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-295.256 669.358 -2043.12"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -10757,8 +10885,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree4_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="530.34 446.451 -1514.69"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.317305 0 0.948324 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="575.953 422.518 -2382.38"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree4_d"></PROPERTY>
@@ -10794,10 +10922,27 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.95882 0 -0.284015 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="325.998 426.719 -1790.89"></PROPERTY>
+    <PROPERTY id="position" type="9" value="312.951 392.645 -2387.6"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="326914272" name="terrain_d#tower2_d" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tower2_d.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="434.541 707.125 -3005.98"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bridge_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11098,23 +11243,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="900601216" name="bush_d#8d" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.828417 0.0556904 -0.546076 0.111464"></PROPERTY>
-    <PROPERTY id="position" type="9" value="492.639 825.361 -1982.97"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c1"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="428540928" name="tree8_n#14" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -11157,8 +11285,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="314.015 426.719 -1798.28"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.887011 0 0.461749 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="314.015 394.071 -2437"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -11184,6 +11312,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="191351056" name="terrain_d#torchs" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="torchs.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 644.568 -2732.96"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11230,8 +11375,8 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.562757 -0.0108197 -0.826519 0.00736689"></PROPERTY>
     <PROPERTY id="position" type="9" value="-383.786 238.67 358.703"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -11247,7 +11392,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="138.507 111.373 -409.429"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -11294,23 +11439,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="87435528" name="bush_n#19n" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.862207 0.0584469 0.48145 0.146252"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-525.318 648.214 -2013.09"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11373,23 +11501,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="144810336" name="bush_d#503" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.967628 0.0179285 -0.0719072 -0.241257"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-363.643 620.338 -2071.52"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame4"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="444990400" name="flashlight_d#1" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -11443,6 +11554,23 @@
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="208014160" name="scaredplant_d#52" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.10448 0.0305339 0.994058 0.000533013"></PROPERTY>
+    <PROPERTY id="position" type="9" value="495.352 127.048 -64.0994"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11770,19 +11898,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="691579968" name="terrain_d#column8" typename="Entity Object" parentnode="Mountains">
+  <OBJECT object_id="396954240" name="terrain_d#column02_0" typename="Entity Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="183.443 82.0858 -416.685"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.523941 -0.0563676 0.84285 0.109143"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-371.385 230.611 431.592"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -11792,7 +11922,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-383.98 235.458 401.383"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -12285,6 +12415,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="721945856" name="scaredplant_d#66" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.376952 -0.0147774 0.925093 -0.0434884"></PROPERTY>
+    <PROPERTY id="position" type="9" value="179.019 64.915 -420.183"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="875637056" name="terrain_n#platform3_0" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -12337,7 +12484,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="cloud.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 -100 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0.0022583 -100.015 0.0198975"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="0.8 1 0.8"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="fog1_d"></PROPERTY>
@@ -12404,7 +12551,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="688.85 222.079 -8.32188"></PROPERTY>
+    <PROPERTY id="position" type="9" value="676.045 220.19 -8.32188"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -12459,7 +12606,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree1_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="199.214 458.5 -1764.82"></PROPERTY>
+    <PROPERTY id="position" type="9" value="349.997 430.153 -2325.02"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
@@ -12499,7 +12646,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.358368 0 -0.93358 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-168.313 217.337 214.12"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-144.409 215.07 235.643"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -12662,6 +12809,25 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="576250496" name="scaredplant_d#1" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.990866 0 0.134851 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-178.878 217.216 190.723"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12881,23 +13047,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="155552848" name="bush_d#517" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.982351 -0.0175635 0.13806 -0.124971"></PROPERTY>
-    <PROPERTY id="position" type="9" value="330.465 836.643 -2070.95"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame3"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="382946240" name="tree8_n#3" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -12998,12 +13147,31 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="854.743 123.72 202.606"></PROPERTY>
+    <PROPERTY id="position" type="9" value="854.743 125.674 202.606"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="168370624" name="terrain_d#column0_#5" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.902585 0 -0.430511 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="749.363 228.622 80.0791"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -13127,7 +13295,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.845728 0 -0.533615 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1350.6 529.768 -818.691"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-634.046 231.532 -1451.32"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
@@ -13187,6 +13355,23 @@
     <PROPERTY id="subentity9::material" type="7" value="any_hair_d"></PROPERTY>
     <PROPERTY id="subentity9::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="739432960" name="terrain_d#almena2_d" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="almena2_d.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="386.546 1205.98 -2799.1"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bridge_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -13314,6 +13499,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="691518912" name="scaredplant_d#47" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.942561 -0.0108518 0.333778 0.00731961"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-681.921 240.356 -142.321"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13621,7 +13823,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="153.424 97.3592 -477.971"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -13809,9 +14011,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="200.415 85.1416 -410.146"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.968484 -0.00966393 -0.245964 0.0380518"></PROPERTY>
+    <PROPERTY id="position" type="9" value="192.222 84.4079 -414.594"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
@@ -13837,6 +14039,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="375194560" name="scaredplant_d#53" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.410528 -0.0291649 -0.911337 0.00905592"></PROPERTY>
+    <PROPERTY id="position" type="9" value="470.057 121.282 -90.146"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -14005,6 +14224,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="19165624" name="scaredplant_d#70" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.635397 0.0235206 0.771815 0.00441623"></PROPERTY>
+    <PROPERTY id="position" type="9" value="63.3341 66.9483 -435.602"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="42054504" name="tree10_n#26" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14056,6 +14292,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="302285856" name="terrain_d#enter" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="enter.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-454.865 438.952 -2551.06"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14153,12 +14406,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="457472448" name="terrain_d#column02_1" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column02.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.861923 -0.087939 0.497753 -0.0399634"></PROPERTY>
+    <PROPERTY id="position" type="9" value="209.986 71.0691 -444.501"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="968504896" name="terrain_n#column4" typename="Entity Object" parentnode="Mountains">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="202.104 85.7326 -528.819"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -14378,7 +14650,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.317305 0 0.948324 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-377.011 222.734 365.387"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-379.177 222.734 368.261"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
@@ -14458,23 +14730,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="462202816" name="bush_d#512" typename="Entity Object" parentnode="Terrain">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="frame_c.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.970296 0 0.241922 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-447.104 542.659 -2032.44"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="frame_c2"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="667775488" name="bush_n#2n" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14486,6 +14741,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="frame_c1n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="955534528" name="scaredplant_d#61" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.959602 0.0120549 0.279698 -0.0280585"></PROPERTY>
+    <PROPERTY id="position" type="9" value="500.805 105.556 -208.887"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14694,7 +14966,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree1_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="523.664 458.509 -1643.83"></PROPERTY>
+    <PROPERTY id="position" type="9" value="651.581 441.857 -2591.13"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree1_d"></PROPERTY>
@@ -14713,7 +14985,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bush.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-301.83 451.949 -1828.8"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-622.34 224.182 -1587.77"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bush2_d"></PROPERTY>
@@ -14730,7 +15002,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-1284.59 530.082 -643.601"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-592.459 229.994 -1625.26"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
@@ -14738,6 +15010,23 @@
     <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="335947744" name="terrain_d#bridge_d" typename="Entity Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="bridge_d.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-4.4477 591.276 -2776.34"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="bridge_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -14789,6 +15078,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="761192704" name="scaredplant_d#58" typename="Entity Object" parentnode="Scared Plants">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="scared_plant.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.719004 -0.0183785 -0.694335 -0.0243892"></PROPERTY>
+    <PROPERTY id="position" type="9" value="899.806 129.722 183.057"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="scared_plant_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -15124,23 +15430,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="166447952" name="woodbox_d#5" typename="Entity Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="477.598 689.104 -2026.37"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="743125696" name="bush_d#514" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -15235,9 +15524,9 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="column_d.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="196.536 77.3584 -442.674"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.972786 0.0339704 -0.229061 0.00799898"></PROPERTY>
+    <PROPERTY id="position" type="9" value="183.107 74.8575 -459.793"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_d"></PROPERTY>
