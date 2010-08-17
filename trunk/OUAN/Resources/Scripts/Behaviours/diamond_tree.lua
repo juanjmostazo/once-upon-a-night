@@ -33,6 +33,6 @@ function diamondTreeLogic(pDiamondTree,state)
 		end
 	elseif state==DT_STATE_MAY_HIT and hit then
 		newState=DT_STATE_HIT
-	end	
+	end	 
 	return newState
 end

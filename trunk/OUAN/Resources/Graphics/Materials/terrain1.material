@@ -42,7 +42,6 @@ material terrain1_01_cw : alpha_splat_rim_cw_shadow_reciever
 //TERRAIN1 02
 material terrain1_02_d: basic_shadow_reciever
 {	
-
     set_texture_alias diffuse_texture terrain1_02_d.dds
 }
 
