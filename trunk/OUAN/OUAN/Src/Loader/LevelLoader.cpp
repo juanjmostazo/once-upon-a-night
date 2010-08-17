@@ -334,10 +334,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		//{
 		//	processGameObjectTree(gameObject);
 		//}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
 		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
 		//{
 		//	processGameObjectTree(gameObject);
