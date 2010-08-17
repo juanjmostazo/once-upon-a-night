@@ -1,3 +1,44 @@
+//---- VERTEX PROGRAM DECLARATIONS
+
+float4x4 matViewProjection;
+
+struct VS_OUTPUT 
+{
+    float4 oPosition : POSITION;
+	float2 oUv : TEXCOORD0;
+	float4 oLightPosition : TEXCOORD1;
+	float3 oEyePosition : TEXCOORD2;
+	float4 oPositionIn : TEXCOORD3;
+	float4 oNormalIn : TEXCOORD4;
+	float2 oUv1 : TEXCOORD5; 
+};
+
+//---- VERTEX PROGRAM
+
+float4 lightPosition;
+float3 eyePosition;
+float4x4 worldViewProj;
+
+VS_OUTPUT main_vp
+(
+	in float4 position : POSITION,
+	in float3 normal : NORMAL,
+	in float2 uv : TEXCOORD0, 
+	in float3 tangent : TEXCOORD1
+)
+{
+	VS_OUTPUT Output;
+	Output.oPosition = mul( worldViewProj , position );
+	Output.oUv = uv;
+	Output.oUv1 = uv;
+	Output.oLightPosition = lightPosition;
+	Output.oEyePosition = eyePosition;
+	Output.oPositionIn = position;
+	Output.oNormalIn = float4( normal, 1 );
+    return( Output );
+}
+
+//---- FRAGMENT PROGRAM DECLARATIONS
 
 //Texture samplers
 
@@ -42,10 +83,18 @@ sampler texture_normal_blended : register(s13);
 
 sampler modulate_color_blended : register(s14);
 
+struct PS_INPUT 
+{
+       float2 uv : TEXCOORD0;
+       float4 lightPosition : TEXCOORD1;
+       float3 eyePosition : TEXCOORD2;
+       float4 positionIn : TEXCOORD3;
+       float4 normalIn : TEXCOORD4;
+       float2 uv1 : TEXCOORD5;
+       float4 color : COLOR;
+};
 
-// General functions
-
-float2 calculateUV(in float2 uv,in float3 scroll, in float3 tiling)
+float2 calculateUV(float2 uv,float3 scroll,float3 tiling)
 {
     uv.x = uv.x*tiling.x; 
     uv.y = uv.y*tiling.y;  
@@ -56,50 +105,17 @@ float2 calculateUV(in float2 uv,in float3 scroll, in float3 tiling)
     return uv;
 }
 
-// Basic VS main
-
-void main_vp
-(
-	in float4 position : POSITION,
-	in float3 normal : NORMAL,
-	in float2 uv : TEXCOORD0, 
-	in float3 tangent : TEXCOORD1,
-	
-	
-	out float4 oPosition : POSITION,
-	out float2 oUv : TEXCOORD0,
-	out float4 oLightPosition : TEXCOORD1,
-	out float3 oEyePosition : TEXCOORD2,
-	out float4 oPositionIn : TEXCOORD3,
-	out float4 oNormalIn : TEXCOORD4,
-	out float2 oUv1 : TEXCOORD5,
-	
-	uniform float4 lightPosition,
-	uniform float3 eyePosition,
-	
-	uniform float4x4 worldViewProj
-)
-{
-	oPosition = mul( worldViewProj , position );
-	oUv = uv;
-	oUv1 = uv;
-	oLightPosition = lightPosition;
-	oEyePosition = eyePosition;
-	oPositionIn = position;
-	oNormalIn = float4( normal, 1 );
-}
-
 float4 calculateColor(
-       in float4 diffuse_color,
-       in float4 normal_color,
-       in float4 modulate_color,
-       in float4 normalIn, 
-       in float3 eyeDirection,
-       in float3 lightDirection, 
-       in float3 halfAngle, 
-       in float4 lightDiffuse,
-       in float4 ambient,
-       in float4 rimStrength
+       float4 diffuse_color,
+       float4 normal_color,
+       float4 modulate_color,
+       float4 normalIn, 
+       float3 eyeDirection,
+       float3 lightDirection, 
+       float3 halfAngle, 
+       float4 lightDiffuse,
+       float4 ambient,
+       float4 rimStrength
        )
 {
     float4 normal;
@@ -177,64 +193,55 @@ float4 calculateBlendedDiffuseColor(
     return oColor;   
 }
 
-// Erosion FS main
+//------ FRAGMENT PROGRAMS
 
-void main_fp(
+float3 displacement;
+float3 scroll_blending;
+float3 scroll_animation;
+float mix_factor;
+float blending;
+float3 tiling;
+float3 blending_tiling;
+float time_elapsed;
+float modulate_factor;
+float alpha_modulate;
+float4 lightDiffuse_base;
+float4 ambient_base;
+float4 rimStrength_base;
+float4 lightDiffuse_blended;
+float4 ambient_blended;
+float4 rimStrength_blended;
 
-in float2 uv : TEXCOORD0,
-in float4 lightPosition : TEXCOORD1,
-in float3 eyePosition : TEXCOORD2,
-in float4 positionIn : TEXCOORD3,
-in float4 normalIn : TEXCOORD4,
-in float2 uv1 : TEXCOORD5,
-in float4 color : COLOR,
-uniform float3 displacement,
-uniform float3 scroll_blending,
-uniform float3 scroll_animation,
-uniform float mix_factor,
-uniform float blending,
-uniform float3 tiling,
-uniform float3 blending_tiling,
-uniform float time_elapsed,
-uniform float modulate_factor,
-uniform float alpha_modulate,
-uniform float4 lightDiffuse_base,
-uniform float4 ambient_base,
-uniform float4 rimStrength_base,
+uniform float2 base_scale;
+uniform float4 base_alphaMask;
 
-uniform float4 lightDiffuse_blended,
-uniform float4 ambient_blended,
-uniform float4 rimStrength_blended,
+uniform float2 blended_scale;
+uniform float4 blended_alphaMask;
 
-uniform float2 base_scale,
-uniform float4 base_alphaMask,
-
-uniform float2 blended_scale,
-uniform float4 blended_alphaMask,
-
-out float4 oColor : COLOR)
+float4 main_fp(PS_INPUT Input) : COLOR0
 {
     float4 erosion_info;
     float4 base_color;
     float4 blended_color;
     float normalized_blending_factor;  
     float2 original_uv;
+    float4 oColor;
 
-    original_uv=uv;
+    original_uv=Input.uv;
     
-    uv=calculateUV(uv,-scroll_animation*time_elapsed,tiling);
-    uv1=calculateUV(uv1,-scroll_animation*time_elapsed,tiling);
-    erosion_info=tex2D(blending_texture,calculateUV(uv,displacement-scroll_blending*time_elapsed,blending_tiling)); 
+    Input.uv=calculateUV(Input.uv,-scroll_animation*time_elapsed,tiling);
+    Input.uv1=calculateUV(Input.uv1,-scroll_animation*time_elapsed,tiling);
+    erosion_info=tex2D(blending_texture,calculateUV(Input.uv,displacement-scroll_blending*time_elapsed,blending_tiling)); 
 
-    float3 eyeDirection = normalize( eyePosition - positionIn.xyz );
-    float3 lightDirection = normalize( lightPosition.xyz - ( positionIn * lightPosition.w ).xyz );
+    float3 eyeDirection = normalize( Input.eyePosition - Input.positionIn.xyz );
+    float3 lightDirection = normalize( Input.lightPosition.xyz - ( Input.positionIn * Input.lightPosition.w ).xyz );
     float3 halfAngle = normalize( lightDirection + eyeDirection );
     
-    float4 base_diffuse= calculateBaseDiffuseColor(uv1,base_scale,base_alphaMask);
-    float4 blended_diffuse= calculateBlendedDiffuseColor(uv1,blended_scale,blended_alphaMask);
+    float4 base_diffuse= calculateBaseDiffuseColor(Input.uv1,base_scale,base_alphaMask);
+    float4 blended_diffuse= calculateBlendedDiffuseColor(Input.uv1,blended_scale,blended_alphaMask);
     
-    base_color=    calculateColor(base_diffuse,   tex2D(texture_normal_base,uv),    float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_base,original_uv)*modulate_factor,   normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_base,ambient_base,rimStrength_base);
-    blended_color= calculateColor(blended_diffuse,tex2D(texture_normal_blended,uv), float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_blended,original_uv)*modulate_factor,normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_blended,ambient_blended,rimStrength_blended);
+    base_color=    calculateColor(base_diffuse,   tex2D(texture_normal_base,Input.uv),    float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_base,original_uv)*modulate_factor,   Input.normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_base,ambient_base,rimStrength_base);
+    blended_color= calculateColor(blended_diffuse,tex2D(texture_normal_blended,Input.uv), float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_blended,original_uv)*modulate_factor,Input.normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_blended,ambient_blended,rimStrength_blended);
 
     normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
 	
@@ -252,4 +259,6 @@ out float4 oColor : COLOR)
     }
     
 	oColor.w=oColor.w*alpha_modulate;
+	
+	return oColor;
 }
