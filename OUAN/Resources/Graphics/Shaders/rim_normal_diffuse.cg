@@ -72,7 +72,7 @@ void main_fp
 	
 	oColor = lightDiffuse * Lit.y * dff + ambient * dff + rimLightColour;
 	
-	oColor=oColor*tex2D( textureModulate, uv1 )*modulate_factor;
+	oColor=oColor*(1-modulate_factor)+oColor*tex2D( textureModulate, uv1 )*modulate_factor;
 	
 	oColor.w=oColor.w*alpha_modulate;
 }

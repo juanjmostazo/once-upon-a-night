@@ -1,89 +1,380 @@
-material AlphaSplatTerrain
+material alpha_splat_rim
 {
     technique
     {
         pass
         {
-            vertex_program_ref AlphaSplatTerrain/VP
+            vertex_program_ref alpha_splat_rim_vp
             {
-                param_named_auto worldViewProj      worldviewproj_matrix
             }
  
-            fragment_program_ref AlphaSplatTerrain/FP
+            fragment_program_ref alpha_splat_rim_fp
             {
-                param_named scale float2 10 10
-                //param_named detail_scale float2 90 90
-                param_named alpha0Mask float4 1 1 1 1
-                param_named alpha1Mask float4 1 1 1 1
+
             }
-            texture_unit
+            texture_unit 0
             {
-		    filtering anisotropic
-                texture_alias AlphaMap1
+		        filtering anisotropic
+                texture_alias alpha_map
             }
-            texture_unit
-            {
-		    filtering anisotropic
-                texture_alias AlphaMap2
-            }
-            texture_unit
+            texture_unit 1
             {
                 filtering anisotropic
-                texture_alias Splat1
+                texture_alias splat_0
             }
-            texture_unit
+            texture_unit 2
             {
                 filtering anisotropic
-                texture_alias Splat2
+                texture_alias splat_1
             }
-            texture_unit
+            texture_unit 3
             {    
                 filtering anisotropic
-                texture_alias Splat3
+                texture_alias splat_2
             }
-            texture_unit
+            texture_unit 4
             {   
                 filtering anisotropic 
-                texture_alias Splat4
+                texture_alias splat_3
             }
-            texture_unit
-            {    
-                filtering anisotropic
-                texture_alias Splat5
-            }
-            texture_unit
+            texture_unit 5
             {   
                 filtering anisotropic 
-                texture_alias Splat6
+                texture_alias texture_normal
+				texture white.dds
+				mipmap_bias -1
             }
-            texture_unit
+            texture_unit 6
             {    
                 filtering anisotropic
-                texture_alias Splat7
-            }
-            texture_unit
-            {    
-                filtering anisotropic
-                texture_alias Splat8
-            }
-            texture_unit
-            {
-                filtering anisotropic
-                texture_alias Detail
+                texture_alias lightmap
+				texture white.dds
+				mipmap_bias -2
             }
         }
     }
- 
-    // Fallback technique
+}
+
+material alpha_splat_rim_shadow_reciever
+{
     technique
     {
         pass
         {
-            shading gouraud
- 
-            texture_unit
+            vertex_program_ref alpha_splat_rim_vp
             {
-                texture_alias Fallback
+            }
+ 
+            fragment_program_ref alpha_splat_rim_fp
+            {
+
+            }
+            texture_unit 0
+            {
+		        filtering anisotropic
+                texture_alias alpha_map
+            }
+            texture_unit 1
+            {
+                filtering anisotropic
+                texture_alias splat_0
+            }
+            texture_unit 2
+            {
+                filtering anisotropic
+                texture_alias splat_1
+            }
+            texture_unit 3
+            {    
+                filtering anisotropic
+                texture_alias splat_2
+            }
+            texture_unit 4
+            {   
+                filtering anisotropic 
+                texture_alias splat_3
+            }
+            texture_unit 5
+            {   
+                filtering anisotropic 
+                texture_alias texture_normal
+				texture white.dds
+				mipmap_bias -1
+            }
+            texture_unit 6
+            {    
+                filtering anisotropic
+                texture_alias lightmap
+				texture white.dds
+				mipmap_bias -2
+            }
+        }
+        // Now do the lighting pass
+        // NB we don't do decal texture here because this is repeated per light
+        pass Lighting
+        {
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 0 0 0 
+ 
+            // do this for each light
+            //iteration once_per_light
+ 
+            scene_blend modulate
+ 
+            // Vertex program reference
+            vertex_program_ref OUAN/DepthShadowmap/ReceiverVP
+            {
+            }
+ 
+            // Fragment program
+            fragment_program_ref OUAN/DepthShadowmap/ReceiverFP
+            {
+            }
+ 
+            texture_unit 0
+            {
+                content_type shadow
+                tex_address_mode clamp
+                filtering none
+            }
+        }
+    }
+}
+
+//CHANGEWORLD
+
+material alpha_splat_rim_cw
+{
+    technique
+    {
+        pass
+        {
+            vertex_program_ref alpha_splat_rim_erosion_vp
+            {
+            }
+ 
+            fragment_program_ref alpha_splat_rim_erosion_fp
+            {
+
+            }
+		    texture_unit 0
+		    {
+			 	texture default_changeworld.jpg
+                texture_alias changeworld
+		    }
+            //dreams
+            texture_unit 1
+            {
+		        filtering anisotropic
+                texture_alias dreams_alpha_map
+            }
+            texture_unit 2
+            {
+                filtering anisotropic
+                texture_alias dreams_splat_0
+            }
+            texture_unit 3
+            {
+                filtering anisotropic
+                texture_alias dreams_splat_1
+            }
+            texture_unit 4
+            {    
+                filtering anisotropic
+                texture_alias dreams_splat_2
+            }
+            texture_unit 5
+            {   
+                filtering anisotropic 
+                texture_alias dreams_splat_3
+            }
+            texture_unit 6
+            {   
+                filtering anisotropic 
+                texture_alias dreams_texture_normal
+				texture white.dds
+				mipmap_bias -1
+            }
+            texture_unit 7
+            {    
+                filtering anisotropic
+                texture_alias dreams_lightmap
+				texture white.dds
+				mipmap_bias -2
+            }
+            //nightmares
+            texture_unit 8
+            {
+		        filtering anisotropic
+                texture_alias nightmares_alpha_map
+            }
+            texture_unit 9
+            {
+                filtering anisotropic
+                texture_alias nightmares_splat_0
+            }
+            texture_unit 10
+            {
+                filtering anisotropic
+                texture_alias nightmares_splat_1
+            }
+            texture_unit 11
+            {    
+                filtering anisotropic
+                texture_alias nightmares_splat_2
+            }
+            texture_unit 12
+            {   
+                filtering anisotropic 
+                texture_alias nightmares_splat_3
+            }
+            texture_unit 13
+            {   
+                filtering anisotropic 
+                texture_alias nightmares_texture_normal
+				texture white.dds
+				mipmap_bias -1
+            }
+            texture_unit 14
+            {    
+                filtering anisotropic
+                texture_alias nightmares_lightmap
+				texture white.dds
+				mipmap_bias -2
+            }
+        }
+    }
+}
+
+material alpha_splat_rim_cw_shadow_reciever
+{
+    technique
+    {
+        pass
+        {
+            vertex_program_ref alpha_splat_rim_erosion_vp
+            {
+            }
+ 
+            fragment_program_ref alpha_splat_rim_erosion_fp
+            {
+
+            }
+		    texture_unit 0
+		    {
+			 	texture default_changeworld.jpg
+                texture_alias changeworld
+		    }
+            //dreams
+            texture_unit 1
+            {
+		        filtering anisotropic
+                texture_alias dreams_alpha_map
+            }
+            texture_unit 2
+            {
+                filtering anisotropic
+                texture_alias dreams_splat_0
+            }
+            texture_unit 3
+            {
+                filtering anisotropic
+                texture_alias dreams_splat_1
+            }
+            texture_unit 4
+            {    
+                filtering anisotropic
+                texture_alias dreams_splat_2
+            }
+            texture_unit 5
+            {   
+                filtering anisotropic 
+                texture_alias dreams_splat_3
+            }
+            texture_unit 6
+            {   
+                filtering anisotropic 
+                texture_alias dreams_texture_normal
+				texture white.dds
+				mipmap_bias -1
+            }
+            texture_unit 7
+            {    
+                filtering anisotropic
+                texture_alias dreams_lightmap
+				texture white.dds
+				mipmap_bias -2
+            }
+            //nightmares
+            texture_unit 8
+            {
+		        filtering anisotropic
+                texture_alias nightmares_alpha_map
+            }
+            texture_unit 9
+            {
+                filtering anisotropic
+                texture_alias nightmares_splat_0
+            }
+            texture_unit 10
+            {
+                filtering anisotropic
+                texture_alias nightmares_splat_1
+            }
+            texture_unit 11
+            {    
+                filtering anisotropic
+                texture_alias nightmares_splat_2
+            }
+            texture_unit 12
+            {   
+                filtering anisotropic 
+                texture_alias nightmares_splat_3
+            }
+            texture_unit 13
+            {   
+                filtering anisotropic 
+                texture_alias nightmares_texture_normal
+				texture white.dds
+				mipmap_bias -1
+            }
+            texture_unit 14
+            {    
+                filtering anisotropic
+                texture_alias nightmares_lightmap
+				texture white.dds
+				mipmap_bias -2
+            }
+        }
+        // Now do the lighting pass
+        // NB we don't do decal texture here because this is repeated per light
+        pass Lighting
+        {
+            // base colours, not needed for rendering, but as information
+            // to lighting pass categorisation routine
+            ambient 0 0 0 
+ 
+            // do this for each light
+            //iteration once_per_light
+ 
+            scene_blend modulate
+ 
+            // Vertex program reference
+            vertex_program_ref OUAN/DepthShadowmap/ReceiverVP
+            {
+            }
+ 
+            // Fragment program
+            fragment_program_ref OUAN/DepthShadowmap/ReceiverFP
+            {
+            }
+ 
+            texture_unit 0
+            {
+                content_type shadow
+                tex_address_mode clamp
+                filtering none
             }
         }
     }

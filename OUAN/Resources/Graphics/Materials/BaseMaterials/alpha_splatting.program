@@ -1,15 +1,81 @@
-vertex_program AlphaSplatTerrain/VP cg
+vertex_program alpha_splat_rim_vp_cg cg
 {
-    source AlphaSplatTerrain.cg
-    entry_point AlphaSplatVS
+    source alpha_splat_rim.cg
+    entry_point main_vp
     //target vs_2_0
     profiles vs_2_0 arbvp1
+    
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto eyePosition camera_position_object_space
+	}
 }
  
-fragment_program AlphaSplatTerrain/FP cg
+fragment_program alpha_splat_rim_fp_cg cg
 {
-    source AlphaSplatTerrain.cg
-    entry_point AlphaSplatFS
+    source alpha_splat_rim.cg
+    entry_point main_fp
     //target ps_2_0
     profiles ps_2_0 arbfp1
+    
+	default_params	
+	{
+        param_named scale float2 10 10
+        param_named alphaMask float4 1 1 1 1
+        
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		
+		param_named ambient float4 0.6 0.6 0.6 1
+		param_named rimStrength float4 1 1 1 1
+	  	param_named modulate_factor float 1
+	 	param_named alpha_modulate float 1
+    }
+}
+
+vertex_program alpha_splat_rim_vp_hlsl hlsl
+{
+    source alpha_splat_rim.hlsl
+    entry_point main_vp
+    target vs_2_0
+
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto eyePosition camera_position_object_space
+	}
+}
+ 
+fragment_program alpha_splat_rim_fp_hlsl hlsl
+{
+    source alpha_splat_rim.hlsl
+    entry_point main_fp
+    target ps_2_0
+    
+	default_params	
+	{
+        param_named scale float2 10 10
+        param_named alphaMask float4 1 1 1 1
+        
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		
+		param_named ambient float4 0.6 0.6 0.6 1
+		param_named rimStrength float4 1 1 1 1
+	  	param_named modulate_factor float 1
+	 	param_named alpha_modulate float 1
+    }
+}
+
+// Unified definition
+vertex_program alpha_splat_rim_vp unified
+{
+	delegate alpha_splat_rim_vp_hlsl
+	delegate alpha_splat_rim_vp_cg
+}
+fragment_program alpha_splat_rim_fp unified
+{
+	delegate alpha_splat_rim_fp_hlsl
+	delegate alpha_splat_rim_fp_cg
 }

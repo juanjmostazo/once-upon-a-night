@@ -142,8 +142,8 @@ out float4 oColor : COLOR)
     float3 lightDirection = normalize( lightPosition.xyz - ( positionIn * lightPosition.w ).xyz );
     float3 halfAngle = normalize( lightDirection + eyeDirection );
     
-    base_color=    calculateColor(tex2D(diffuse_color_base,uv1),   tex2D(texture_normal_base,uv),    tex2D( modulate_color_base,original_uv)*modulate_factor,   normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_base,ambient_base,rimStrength_base);
-    blended_color= calculateColor(tex2D(diffuse_color_blended,uv1),tex2D(texture_normal_blended,uv), tex2D( modulate_color_blended,original_uv)*modulate_factor,normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_blended,ambient_blended,rimStrength_blended);
+    base_color=    calculateColor(tex2D(diffuse_color_base,uv1),   tex2D(texture_normal_base,uv),    float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_base,original_uv)*modulate_factor,   normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_base,ambient_base,rimStrength_base);
+    blended_color= calculateColor(tex2D(diffuse_color_blended,uv1),tex2D(texture_normal_blended,uv), float4(1,1,1,1)*(1-modulate_factor)+tex2D( modulate_color_blended,original_uv)*modulate_factor,normalIn, eyeDirection,lightDirection, halfAngle, lightDiffuse_blended,ambient_blended,rimStrength_blended);
 
     normalized_blending_factor=(erosion_info.x-(mix_factor-blending))/(2*blending);
 	
