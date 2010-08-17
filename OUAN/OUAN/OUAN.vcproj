@@ -2051,6 +2051,18 @@
 			Name="Scripts"
 			>
 			<File
+				RelativePath="..\Resources\Scripts\bee_butterfly.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\bigplatform_trigger.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\carnivorousplant.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\checkpoints.lua"
 				>
 			</File>
@@ -2059,77 +2071,53 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Resources\Scripts\cutscene_engine.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\diamond_tree.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\dragon.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\eye.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\levels.lua"
 				>
 			</File>
-			<Filter
-				Name="Behaviours"
+			<File
+				RelativePath="..\Resources\Scripts\nest.lua"
 				>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\bee_butterfly.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\carnivorousplant.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\diamond_tree.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\dragon.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\eye.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\nest.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\portal.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\scaredplant.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\signpost.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\snakecreeper.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\tentetieso.lua"
-					>
-				</File>
-				<File
-					RelativePath="..\Resources\Scripts\Behaviours\tripollo.lua"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="CutScenes"
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\portal.lua"
 				>
-				<File
-					RelativePath="..\Resources\Scripts\CutScenes\cutscene_engine.lua"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Puzzles"
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\scaredplant.lua"
 				>
-				<File
-					RelativePath="..\Resources\Scripts\Puzzles\bigplatform_trigger.lua"
-					>
-				</File>
-			</Filter>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\signpost.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\snakecreeper.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\tentetieso.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\tripollo.lua"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

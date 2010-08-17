@@ -330,47 +330,47 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectScepter(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE1)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE1)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
 		{
 			processGameObjectTree(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE5)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE6)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE7)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE5)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE6)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE7)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
 		//TODO: FIX TREE 9 and UNCOMMENT THIS
 		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE9)==0)
 		//{
 		//	processGameObjectTree(gameObject);
 		//}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE10)==0)
-		{
-			processGameObjectTree(gameObject);
-		}
+		//else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE10)==0)
+		//{
+		//	processGameObjectTree(gameObject);
+		//}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE11)==0)
 		{
 			processGameObjectTree(gameObject);
