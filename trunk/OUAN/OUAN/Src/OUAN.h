@@ -337,7 +337,6 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_SIGNPOST="signpost";
 		const std::string GAME_OBJECT_TYPE_NEST="nest";
 
-		const std::string GAME_OBJECT_TYPE_TRIPOLLO_NIGHTMARES="tripollo_nightmares";
 		const std::string GAME_OBJECT_TYPE_SNAKECREEPER="snakecreeper";
 		const std::string GAME_OBJECT_TYPE_CARNIVOROUSPLANT="carnivorousplant";
 		const std::string GAME_OBJECT_TYPE_SCEPTER="scepter";

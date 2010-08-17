@@ -72,7 +72,6 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_DIAMOND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SCAREDPLANT);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CLOCKPIECE);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLO_NIGHTMARES);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SNAKECREEPER);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_SOUND);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_CARNIVOROUSPLANT);
