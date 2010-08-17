@@ -2020,8 +2020,6 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
-		if(gameObject->XMLNodeNightmares) throw NIGHTMARES_SHOULD_NOT_EXIST;
 
 		//Get names
 		params.dreamsName = gameObject->dreamsName;

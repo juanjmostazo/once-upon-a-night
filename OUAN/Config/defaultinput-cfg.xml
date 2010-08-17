@@ -20,7 +20,7 @@
         <Option key="Pause">0x1c</Option>
         <Option key="QuickExit">0x58</Option>
         <Option key="RRotate">0x2d</Option>
-        <Option key="AutoPoint">0x13</Option>
+        <Option key="AutoTarget">0x13</Option>
         <Option key="Right">0x20</Option>
         <Option key="ToggleConsole">0x3f</Option>
         <Option key="UseWeapon">-0x01</Option>
