@@ -23,7 +23,7 @@ void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Ve
 {
 	int world=getParent()->getGameWorldManager()->getWorld();
 	bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
-	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);	
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
@@ -49,11 +49,15 @@ void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Ve
 			}
 		}
 	}
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		//Logger::getInstance()->log(getParent()->getName() +": HAS NO COLLISION SCRIPT");
+	}
 }
 void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 {
 	bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
-	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
 		if (!mLoadedScript)
@@ -83,11 +87,15 @@ void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 			}		
 		}
 	}
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		Logger::getInstance()->log(getParent()->getName() +": HAS NO ENTER SCRIPT");
+	}
 }
 void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 {
 	bool hasExitActionDefined = !mTriggerScript.empty() && (!mDreamsExitActionFunction.empty() || !mNightmaresExitActionFunction.empty());
-	if (hasExitActionDefined && pGameObject.get() && pGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	if (hasExitActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
 		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
 		if (!mLoadedScript)
@@ -115,6 +123,10 @@ void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 				logicSS->invokeActionFunction(mNightmaresExitActionFunction,ony->getLogicComponentOny().get());			
 			}		
 		}
+	}
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		Logger::getInstance()->log(getParent()->getName() +": HAS NO EXIT SCRIPT");
 	}
 }
 
