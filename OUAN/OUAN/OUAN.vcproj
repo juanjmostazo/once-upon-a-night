@@ -1536,6 +1536,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Src\Game\LevelEvents.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Src\Game\WorldNameConverter.h"
 					>
 				</File>

@@ -32,10 +32,10 @@ fragment_program erosion_FS_CG cg
 	  param_named alpha_modulate float 1
 
 	  param_named_auto lightDiffuse_base light_diffuse_colour 0
-	  param_named ambient_base float4 0.6 0.6 0.6 1
+	  param_named ambient_base float4 0.8 0.8 0.8 1
 	  param_named rimStrength_base float4 1 1 1 1
 	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
-	  param_named ambient_blended float4 0.6 0.6 0.6 1
+	  param_named ambient_blended float4 0.8 0.8 0.8 1
 	  param_named rimStrength_blended float4 1 1 1 1
    	}
 }
@@ -72,10 +72,10 @@ fragment_program erosion_FS_HLSL hlsl
 	  param_named alpha_modulate float 1
 
 	  param_named_auto lightDiffuse_base light_diffuse_colour 0
-	  param_named ambient_base float4 0.6 0.6 0.6 1
+	  param_named ambient_base float4 0.8 0.8 0.8 1
 	  param_named rimStrength_base float4 1 1 1 1
 	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
-	  param_named ambient_blended float4 0.6 0.6 0.6 1
+	  param_named ambient_blended float4 0.8 0.8 0.8 1
 	  param_named rimStrength_blended float4 1 1 1 1
    	}	
 }

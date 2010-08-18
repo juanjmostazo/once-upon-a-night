@@ -89,7 +89,7 @@ void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
-		Logger::getInstance()->log(getParent()->getName() +": HAS NO ENTER SCRIPT");
+		//Logger::getInstance()->log(getParent()->getName() +": HAS NO ENTER SCRIPT");
 	}
 }
 void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
@@ -126,7 +126,7 @@ void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
-		Logger::getInstance()->log(getParent()->getName() +": HAS NO EXIT SCRIPT");
+		//Logger::getInstance()->log(getParent()->getName() +": HAS NO EXIT SCRIPT");
 	}
 }
 

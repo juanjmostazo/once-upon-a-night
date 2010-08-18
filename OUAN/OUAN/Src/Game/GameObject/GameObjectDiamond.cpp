@@ -155,7 +155,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
-				mRenderComponentParticleSystemBrightness->start();
+				//mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
@@ -174,7 +174,7 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
-				mRenderComponentParticleSystemBrightness->start();
+				//mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
