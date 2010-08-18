@@ -74,6 +74,8 @@ void LogicSubsystem::registerModules()
 		def("setAnyTrackingCamera",&CameraManager::setAnyTrackingCamera),
 		def("getAny",&GameWorldManager::getOny),
 		def("getObject",&GameWorldManager::getGameObject),
+		def("addExecutedLevelEvent",&GameWorldManager::addExecutedLevelEventLUA),
+		def("hasExecutedLevelEvent",&GameWorldManager::hasExecutedLevelEventLUA),
 		class_<GameObject>("GameObject")
 			.def("setCurrentWorldVisible", &GameObject::setCurrentWorldVisibility)
 			.def("enabled",&GameObject::isEnabled),

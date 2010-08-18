@@ -1,14 +1,21 @@
+COROUTINE_ONGOING=0
+
 -- CLOCK CUTSCENES
 
 -- LEVEL 2 CUTSCENES
+CUTSCENE_1_LEVEL_START="LEVEL_START";
+
 -- CUTSCENE 1: LEVEL START
 function startCutScene1(pOny)
-	log ("CUTSCENE 1: LEVEL START");
+	log ("CUTSCENE 1: ");
+	log (CUTSCENE_1_LEVEL_START);
+	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
+	-- setCameraTrajectory(CUTSCENE_1_LEVEL_START);
 return
 end
 
 function conditionCutScene1(pOny)
-	return true;
+	return not hasExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 end
 
 -- CUTSCENE 2: FIRST CHANGE WORLD

@@ -577,6 +577,8 @@ void GameWorldManager::resetAll()
 	mFirstMsgBox=true;
 	mFirstSignpostHit=true;
 
+	mExecutedLevelEvents.clear();
+
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
 }
 
@@ -1708,4 +1710,24 @@ void GameWorldManager::increaseOnyDiamonds(int amount)
 	GameObjectOnyPtr ony;
 	if ((ony= getGameObjectOny()).get())
 		ony->addDiamonds(amount);
+}
+
+void GameWorldManager::addExecutedLevelEventLUA(std::string cutscene)
+{
+	mInst->addExecutedLevelEvent(cutscene);
+}
+
+void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
+{
+	mExecutedLevelEvents.insert(cutscene);
+}
+
+bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
+{
+	return mInst->hasExecutedLevelEvent(cutscene);
+}
+
+bool GameWorldManager::hasExecutedLevelEvent(std::string cutscene)
+{
+	return mExecutedLevelEvents.count(cutscene)>0;
 }

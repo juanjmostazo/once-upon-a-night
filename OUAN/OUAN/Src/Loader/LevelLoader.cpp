@@ -4574,10 +4574,10 @@ TLogicComponentTriggerParameters LevelLoader::processLogicComponentTrigger(TiXml
 			std::string script="";
 			if (XMLNodeDreams)
 				script=getPropertyString(XMLNodeDreams,
-					"LogicComponent::triggerScript");
+					"LogicComponent::triggerScriptFile");
 			if (script.empty() && XMLNodeNightmares)
 				script=getPropertyString(XMLNodeNightmares,
-				"LogicComponent::triggerScript");
+				"LogicComponent::triggerScriptFile");
 			logicComponentTriggerParameters.mTriggerScript=script;
 		}
 		catch (std::string error)
