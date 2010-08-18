@@ -2075,6 +2075,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Resources\Scripts\cutscenes.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\diamond_tree.lua"
 				>
 			</File>
