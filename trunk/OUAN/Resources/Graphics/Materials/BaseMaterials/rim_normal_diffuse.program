@@ -21,7 +21,7 @@ fragment_program rim_normal_diffuse_fs_cg cg
 	{
 		param_named_auto lightDiffuse light_diffuse_colour 0
 		
-		param_named ambient float4 0.6 0.6 0.6 1
+		param_named ambient float4 0.8 0.8 0.8 1
 		param_named rimStrength float4 1 1 1 1
 	  	param_named modulate_factor float 1
 	 	param_named alpha_modulate float 1

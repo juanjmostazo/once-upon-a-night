@@ -2,6 +2,7 @@
 #define GAMEWORLDMANAGERH_H
 #include "../OUAN.h"
 #include "../Event/Event.h"
+#include "LevelEvents.h"
 namespace OUAN
 {
 	//forward declarations
