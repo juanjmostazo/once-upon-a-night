@@ -328,6 +328,10 @@ namespace OUAN
 
 		EventProcessorPtr getEventProcessor(); 
 
+		static void addExecutedLevelEventLUA(std::string cutscene);
+		void addExecutedLevelEvent(std::string cutscene);
+		static bool hasExecutedLevelEventLUA(std::string cutscene);
+		bool hasExecutedLevelEvent(std::string cutscene);
 	private:		
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 
@@ -434,6 +438,9 @@ namespace OUAN
 
 		bool mFirstMsgBox;
 		bool mFirstSignpostHit;
+
+		//Control over executed cutscenes
+		std::set<std::string> mExecutedLevelEvents;
 	};
 }
 #endif
