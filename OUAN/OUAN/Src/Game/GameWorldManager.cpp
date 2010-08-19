@@ -567,7 +567,7 @@ void GameWorldManager::resetAll()
 
 	//Set world to dreams
 	setChangeWorldTimes();
-	setWorld(DREAMS);
+	setWorld(mCheckPointWorld);
 
 	mApp->getPhysicsSubsystem()->stabilize();
 
@@ -1570,6 +1570,8 @@ void GameWorldManager::setCheckPointLUA(std::string checkpoint,int checkpointNum
 
 		mInst->setCheckPointNumber(checkpointNumber);
 
+		mInst->setCheckPointWorld(mInst->getWorld());
+
 		mInst->checkpointLevelEvents();
 	}
 	catch( std::string error )
@@ -1614,6 +1616,15 @@ Quaternion GameWorldManager::getCheckPointOrientation() const
 	return mCheckPointOrientation;
 }
 
+void GameWorldManager::setCheckPointWorld(int world)
+{
+	mCheckPointWorld=world;
+}
+
+int GameWorldManager::getCheckPointWorld() const
+{
+	return mCheckPointWorld;
+}
 
 void GameWorldManager::setChangeWorldTimes()
 {
