@@ -1,7 +1,5 @@
 COROUTINE_ONGOING=0
 
--- CLOCK CUTSCENES
-
 -- LEVEL 2 CUTSCENES
 
 CUTSCENE_1_LEVEL_START="LEVEL_START";
@@ -29,7 +27,9 @@ FINAL_BOSS_DEFEATED="FINAL_BOSS_DEFEATED";
 -- CUTSCENE 1: LEVEL START
 function startCutScene1(pOny)
 	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
-	-- launchCutScene("cutscenes.lua","cutScene1");
+	log ("CUTSCENE 1: ");
+	log (CUTSCENE_1_LEVEL_START);
+	-- launchCutScene("cutscenes_level2.lua","cutScene1");
 	return
 end
 
@@ -47,7 +47,7 @@ end
 -- CUTSCENE 2: FIRST CHANGE WORLD
 function startCutScene2(pOny)
 	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -70,7 +70,7 @@ function startCutScene3(pOny)
 	log ("CUTSCENE 3: ");
 	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	addExecutedLevelEvent(CUTSCENE_3_BOMBS_PUZZLE_START);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -83,7 +83,7 @@ function startCutScene4(pOny)
 	log ("CUTSCENE 4: ");
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	addExecutedLevelEvent(CUTSCENE_4_BOMBS_PUZZLE_END);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -97,7 +97,7 @@ function startCutScene5(pOny)
 	log ("CUTSCENE 5: ");
 	log (CUTSCENE_5_NIGHT_GOBLIN_APPEARS);
 	addExecutedLevelEvent(CUTSCENE_5_NIGHT_GOBLIN_APPEARS);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -110,7 +110,7 @@ function startCutScene6(pOny)
 	log ("CUTSCENE 6: ");
 	log (CUTSCENE_6_NIGHT_GOBLIN_APPEARS);
 	addExecutedLevelEvent(CUTSCENE_6_NIGHT_GOBLIN_APPEARS);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -124,17 +124,17 @@ function startCutScene7(pOny)
 		log ("CUTSCENE 7 (1): ");
 		log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes.lua","cutScene2");
+		-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_2_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (2): ");
 		log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes.lua","cutScene2");
+		-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_3_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (3): ");
 		log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes.lua","cutScene2");
+		-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	end
 	return
 end
@@ -148,7 +148,7 @@ function startCutScene8(pOny)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_TENTETIESOS);
 	addExecutedLevelEvent(CUTSCENE_8_TENTETIESOS);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -161,7 +161,7 @@ function startCutScene9(pOny)
 	log ("CUTSCENE 9: ");
 	log (CUTSCENE_9_FINAL_BOSS_START);
 	addExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
@@ -174,7 +174,7 @@ function startCutScene10(pOny)
 	log ("CUTSCENE 10: ");
 	log (CUTSCENE_10_FINAL_BOSS_END);
 	addExecutedLevelEvent(CUTSCENE_10_FINAL_BOSS_END);
-	-- launchCutScene("cutscenes.lua","cutScene2");
+	-- launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 

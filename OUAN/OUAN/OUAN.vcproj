@@ -2079,7 +2079,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Resources\Scripts\cutscenes.lua"
+				RelativePath="..\Resources\Scripts\cutscenes_level2.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\Resources\Scripts\cutscenes_level_clock.lua"
 				>
 			</File>
 			<File
