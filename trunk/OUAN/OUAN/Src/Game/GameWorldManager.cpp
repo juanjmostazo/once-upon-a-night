@@ -404,6 +404,7 @@ void GameWorldManager::clearContainers()
 void GameWorldManager::initGame()
 {
 	GameWorldManager::setCheckPointLUA(LEVEL_START_CHECKPOINT,0);
+	mExecutedLevelEventsPermanent.clear();
 	resetAll();
 	Logger::getInstance()->log("[GAME WORLD MANAGER LEVEL LOAD FINISHED]");
 }
@@ -1568,6 +1569,8 @@ void GameWorldManager::setCheckPointLUA(std::string checkpoint,int checkpointNum
 		mInst->setCheckPointOrientation(pTrajectory->getCurrentNode()->getSceneNode()->getOrientation());
 
 		mInst->setCheckPointNumber(checkpointNumber);
+
+		mInst->checkpointLevelEvents();
 	}
 	catch( std::string error )
 	{
@@ -1729,5 +1732,16 @@ bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
 
 bool GameWorldManager::hasExecutedLevelEvent(std::string cutscene)
 {
-	return mExecutedLevelEvents.count(cutscene)>0;
+	return mExecutedLevelEvents.count(cutscene)>0 || mExecutedLevelEventsPermanent.count(cutscene)>0;
+}
+
+void GameWorldManager::checkpointLevelEvents()
+{
+	std::set<std::string>::iterator it;
+
+	for(it=mExecutedLevelEvents.begin();it!=mExecutedLevelEvents.end();it++)
+	{
+		mExecutedLevelEventsPermanent.insert(it->data());
+	}
+	mExecutedLevelEvents.clear();
 }

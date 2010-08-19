@@ -21,7 +21,7 @@ LogicComponentTrigger::~LogicComponentTrigger()
 
 void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	int world=getParent()->getGameWorldManager()->getWorld();
+	int world=getParent()->getWorld();
 	bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
 	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
@@ -65,7 +65,7 @@ void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)
 			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
 			mLoadedScript=true;
 		}
-		int world=getParent()->getGameWorldManager()->getWorld();
+		int world=getParent()->getWorld();
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);	
 		
 		if (world==DREAMS)
@@ -103,9 +103,9 @@ void LogicComponentTrigger::processExitTrigger(GameObjectPtr pGameObject)
 			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
 			mLoadedScript=true;
 		}
-		int world=getParent()->getGameWorldManager()->getWorld();
+		int world=getParent()->getWorld();
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);	
-		if (DREAMS)
+		if (world==DREAMS)
 		{			
 			bool conditionFulfilled = mDreamsExitConditionFunction.empty() || 
 				logicSS->invokeConditionFunction(mDreamsExitConditionFunction,ony->getLogicComponentOny().get());
