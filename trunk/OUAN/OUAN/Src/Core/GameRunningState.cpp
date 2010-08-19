@@ -652,11 +652,20 @@ TWeaponMode GameRunningState::getCurrentWeaponMode()
 
 void GameRunningState::loadMusic()
 {
-	
-	mApp->getAudioSubsystem()->load("DREAMS00",AUDIO_RESOURCES_GROUP_NAME);
-	mMusicChannels[DREAMS].id="DREAMS00";
-	mApp->getAudioSubsystem()->load("NIGHTMARES00",AUDIO_RESOURCES_GROUP_NAME);
-	mMusicChannels[NIGHTMARES].id="NIGHTMARES00";
+	if(mApp->getGameWorldManager()->getLevelname().compare(LEVEL_2)==0)
+	{
+		mApp->getAudioSubsystem()->load("DREAMS00",AUDIO_RESOURCES_GROUP_NAME);
+		mMusicChannels[DREAMS].id="DREAMS00";
+		mApp->getAudioSubsystem()->load("NIGHTMARES00",AUDIO_RESOURCES_GROUP_NAME);
+		mMusicChannels[NIGHTMARES].id="NIGHTMARES00";
+	}
+	else if(mApp->getGameWorldManager()->getLevelname().compare(LEVEL_CLOCK)==0)
+	{
+		mApp->getAudioSubsystem()->load("CLOCK_ROOM_MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+		mMusicChannels[DREAMS].id="CLOCK_ROOM_MUSIC";
+		mApp->getAudioSubsystem()->load("CLOCK_ROOM_MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+		mMusicChannels[NIGHTMARES].id="CLOCK_ROOM_MUSIC";
+	}
 
 	mApp->getAudioSubsystem()->load("SUCCESS",AUDIO_RESOURCES_GROUP_NAME);
 	mMusicChannels[-1].id="SUCCESS";

@@ -1657,6 +1657,11 @@ void GameWorldManager::setLevelname(const std::string& levelFilename)
 	level=levelFilename;
 }
 
+std::string GameWorldManager::getLevelname()
+{
+	return level;
+}
+
 bool GameWorldManager::isChangingWorldLUA()
 {
 	return mInst->isChangingWorld();

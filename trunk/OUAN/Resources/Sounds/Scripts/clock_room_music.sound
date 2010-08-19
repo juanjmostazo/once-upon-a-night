@@ -1,0 +1,12 @@
+	//Sound script to define the music scripts that'll be loaded on the level 0
+
+sound CLOCK_ROOM_MUSIC
+{
+	sound_file 	clock_room.mp3
+	sound_type	music
+	3D			false
+	hardware	true
+	stream		true
+// This will probably be changed to false if at some time we implement a track list	
+	loop		true
+}
