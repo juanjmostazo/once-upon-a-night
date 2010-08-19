@@ -6,7 +6,7 @@ sound waterfall00
 	hardware	true
 	stream		false
 	loop		true
-	min_max_distance 50 10000
+	min_max_distance 500 10000
 }
 
 sound birds_chirp

@@ -93,6 +93,7 @@ namespace OUAN
 
 		void initGame();
 		void setLevelname(const std::string& filename);
+		std::string getLevelname();
 
 		bool loadConfig();
 
