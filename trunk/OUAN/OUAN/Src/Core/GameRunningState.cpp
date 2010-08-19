@@ -407,10 +407,7 @@ void GameRunningState::checkDebuggingKeys()
 	else if (mApp->isPressedRunCutscene(&pad,&key))
 	{
 		Logger::getInstance()->log("RunCutscene pressed");
-		CutsceneStatePtr cutscenestate = CutsceneStatePtr(new CutsceneState());
-		cutscenestate->setCutsceneFile("cutscene_engine.lua");
-		cutscenestate->setCutsceneFunction("helloWorld");
-		mApp->getGameStateManager()->pushState(cutscenestate,mApp);
+		launchCutScene("cutscene_engine.lua","helloWorld");
 	}
 }
 
@@ -685,6 +682,15 @@ void GameRunningState::playSoundFromGameObject(const std::string& objectName, co
 {
 	mInst->getApp()->getGameWorldManager()->playSoundFromGameObject(objectName,soundID);
 }
+
+void GameRunningState::launchCutScene(const std::string& scriptFile,const std::string& scriptFunction)
+{
+	CutsceneStatePtr cutscenestate = CutsceneStatePtr(new CutsceneState());
+	cutscenestate->setCutsceneFile(scriptFile);
+	cutscenestate->setCutsceneFunction(scriptFunction);
+	mInst->getApp()->getGameStateManager()->pushState(cutscenestate,mInst->getApp());
+}
+
 void GameRunningState::processGameOver(GameOverEventPtr evt)
 {
 	if (evt->isWin())

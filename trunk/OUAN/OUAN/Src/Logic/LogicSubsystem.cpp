@@ -69,6 +69,7 @@ void LogicSubsystem::registerModules()
 		def("isChangingWorld",&GameWorldManager::isChangingWorldLUA),
 		def("playMusic",&GameRunningState::playMusic),
 		def("playSoundFromGameObject",&GameRunningState::playSoundFromGameObject),
+		def("launchCutScene",&GameRunningState::launchCutScene),
 		def("setCameraTrajectory",&CameraManager::setTrajectoryCamera),
 		def("isCameraTrajectoryFinished",&CameraManager::isCameraTrajectoryEnded),
 		def("setAnyTrackingCamera",&CameraManager::setAnyTrackingCamera),

@@ -13,7 +13,7 @@ SENTENCE1_TIME = 3
 SENTENCE2_TIME = 3
 
 function helloWorld(timer)
-	setCameraTrajectory("a")
+	setCameraTrajectory("LEVEL_START")
 	while not isCameraTrajectoryFinished() do		
 		coroutine.yield(COROUTINE_ONGOING)		
 	end
