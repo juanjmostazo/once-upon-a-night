@@ -333,6 +333,7 @@ namespace OUAN
 		void addExecutedLevelEvent(std::string cutscene);
 		static bool hasExecutedLevelEventLUA(std::string cutscene);
 		bool hasExecutedLevelEvent(std::string cutscene);
+		void checkpointLevelEvents();
 	private:		
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 
@@ -441,7 +442,10 @@ namespace OUAN
 		bool mFirstSignpostHit;
 
 		//Control over executed cutscenes
+			//Current checkpoint events
 		std::set<std::string> mExecutedLevelEvents;
+			//Events saved from last checkpoint
+		std::set<std::string> mExecutedLevelEventsPermanent;
 	};
 }
 #endif
