@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="179.932 437.554 -243.378" orientation="0.401973 -0.0654898 -0.902264 -0.141592"></OPTION>
+    <OPTION id="2" position="382.765 1563.01 -3515.68" orientation="0.0444084 -0.00916057 -0.986928 -0.154654"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.40203 -0.0654991 -0.902391 -0.141612"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.0444085 -0.00916061 -0.986931 -0.154654"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="179.932 437.554 -243.378"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="382.765 1563.01 -3515.68"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -3031,6 +3031,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="397686688" name="volume-box_d#cutscene10" typename="Entity Object" parentnode="CutScenes">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872655 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="442.7 1346.83 -2845.91"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="346.25 83.0287 312.934"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="338480800" name="tree9_n#2" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3531,31 +3556,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="548783808" name="volume-box_d#checkpoint3" typename="Entity Object" parentnode="CheckPoints">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="364.117 115.855 -280.559"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="281.924 178.277 393.488"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5668,31 +5668,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="433240768" name="volume-box_d#cutscene7" typename="Entity Object" parentnode="CutScenes">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.887011 0 0.461749 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-630.884 229.03 -1561.54"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="462.162 254.633 487.811"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene7" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene7" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="736930432" name="tree9_n#19" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -6732,6 +6707,31 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="548783808" name="volume-box_n#checkpoint3" typename="Entity Object" parentnode="CheckPoints">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="364.117 115.855 -280.559"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="281.924 178.277 393.488"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8062,6 +8062,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="856654592" name="volume-box_n#checkpoint8" typename="Entity Object" parentnode="CheckPoints">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="422.283 813.745 -2720.42"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="281.924 178.277 393.488"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="370067456" name="scaredplant_d#68" typename="Entity Object" parentnode="Scared Plants">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -8626,6 +8651,31 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="267098016" name="volume-box_n#checkpoint6" typename="Entity Object" parentnode="CheckPoints">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-738.161 167.456 -1687.25"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="699.927 272.72 634.876"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint6" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -9752,6 +9802,31 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="368480480" name="volume-box_n#cutscene8" typename="Entity Object" parentnode="CutScenes">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872655 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-432.867 595.484 -2392.33"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="120.062 83.0287 363.938"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene8" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene8" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11002,31 +11077,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="267098016" name="volume-box_d#checkpoint6" typename="Entity Object" parentnode="CheckPoints">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-738.161 167.456 -1687.25"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="699.927 272.72 634.876"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint6" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint6" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="700613440" name="heart_d#2" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -11168,6 +11218,31 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="802056960" name="volume-box_n#checkpoint7" typename="Entity Object" parentnode="CheckPoints">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.722364 0 -0.691513 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-460.399 547.526 -2668.15"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="281.924 288.685 393.488"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint7" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint7" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11574,6 +11649,31 @@
       <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="RenderComponentMessageBox::message" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="433240768" name="volume-box_n#cutscene7" typename="Entity Object" parentnode="CutScenes">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.887011 0 0.461749 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-630.884 229.03 -1561.54"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="462.162 254.633 487.811"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene7" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene7" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12410,31 +12510,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="515549184" name="volume-box_d#cutscene4" typename="Entity Object" parentnode="CutScenes">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="361.562 114.491 -278.183"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="278.968 179.825 378.068"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="200598160" name="tree4_d#5" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -13233,31 +13308,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="802056960" name="volume-box_d#checkpoint7" typename="Entity Object" parentnode="CheckPoints">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.722364 0 -0.691513 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-460.399 547.526 -2668.15"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="281.924 288.685 393.488"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="checkpoints.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCheckPoint7" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCheckPoint7" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="852870272" name="heart_d#3" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -13613,31 +13663,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="368480480" name="volume-box_d#cutscene8" typename="Entity Object" parentnode="CutScenes">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872655 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-432.867 595.484 -2392.33"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="120.062 83.0287 363.938"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene8" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene8" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="612750656" name="volume-box_d#win7" typename="Entity Object" parentnode="Volumes">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -13794,6 +13819,31 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="515549184" name="volume-box_n#cutscene4" typename="Entity Object" parentnode="CutScenes">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="361.562 114.491 -278.183"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="278.968 179.825 378.068"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
