@@ -28,29 +28,41 @@ FINAL_BOSS_DEFEATED="FINAL_BOSS_DEFEATED";
 
 -- CUTSCENE 1: LEVEL START
 function startCutScene1(pOny)
-	log ("CUTSCENE 1: ");
-	log (CUTSCENE_1_LEVEL_START);
 	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
-	-- setCameraTrajectory(CUTSCENE_1_LEVEL_START);
-return
+	-- launchCutScene("cutscenes.lua","cutScene1");
+	return
 end
 
 function conditionCutScene1(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 end
 
+function cutScene1(timer)
+	log ("CUTSCENE 1: ");
+	log (CUTSCENE_1_LEVEL_START);
+	-- setCameraTrajectory(CUTSCENE_1_LEVEL_START);
+	return COROUTINE_FINISHED
+end
+
 -- CUTSCENE 2: FIRST CHANGE WORLD
 function startCutScene2(pOny)
-	log ("CUTSCENE 2: ");
-	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
 	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
-	-- setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene2(pOny)
-	log ("conditionCutScene2");
 	return not hasExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD) and hasExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
+end
+
+function cutScene2(timer)
+	log ("CUTSCENE 2: ");
+	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
+	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD);
+	while not isCameraTrajectoryFinished() do		
+		coroutine.yield(COROUTINE_ONGOING)		
+	end
+	return COROUTINE_FINISHED
 end
 
 -- CUTSCENE 3: BOMBS PUZZLE START
@@ -58,7 +70,8 @@ function startCutScene3(pOny)
 	log ("CUTSCENE 3: ");
 	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	addExecutedLevelEvent(CUTSCENE_3_BOMBS_PUZZLE_START);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene3(pOny)
@@ -70,7 +83,8 @@ function startCutScene4(pOny)
 	log ("CUTSCENE 4: ");
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	addExecutedLevelEvent(CUTSCENE_4_BOMBS_PUZZLE_END);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene4(pOny)
@@ -83,7 +97,8 @@ function startCutScene5(pOny)
 	log ("CUTSCENE 5: ");
 	log (CUTSCENE_5_NIGHT_GOBLIN_APPEARS);
 	addExecutedLevelEvent(CUTSCENE_5_NIGHT_GOBLIN_APPEARS);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene5(pOny)
@@ -95,7 +110,8 @@ function startCutScene6(pOny)
 	log ("CUTSCENE 6: ");
 	log (CUTSCENE_6_NIGHT_GOBLIN_APPEARS);
 	addExecutedLevelEvent(CUTSCENE_6_NIGHT_GOBLIN_APPEARS);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene6(pOny)
@@ -108,16 +124,19 @@ function startCutScene7(pOny)
 		log ("CUTSCENE 7 (1): ");
 		log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
+		-- launchCutScene("cutscenes.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_2_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (2): ");
 		log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
+		-- launchCutScene("cutscenes.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_3_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (3): ");
 		log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+		-- launchCutScene("cutscenes.lua","cutScene2");
 	end
-return
+	return
 end
 
 function conditionCutScene7(pOny)
@@ -129,7 +148,8 @@ function startCutScene8(pOny)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_TENTETIESOS);
 	addExecutedLevelEvent(CUTSCENE_8_TENTETIESOS);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene8(pOny)
@@ -141,7 +161,8 @@ function startCutScene9(pOny)
 	log ("CUTSCENE 9: ");
 	log (CUTSCENE_9_FINAL_BOSS_START);
 	addExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene9(pOny)
@@ -153,7 +174,8 @@ function startCutScene10(pOny)
 	log ("CUTSCENE 10: ");
 	log (CUTSCENE_10_FINAL_BOSS_END);
 	addExecutedLevelEvent(CUTSCENE_10_FINAL_BOSS_END);
-return
+	-- launchCutScene("cutscenes.lua","cutScene2");
+	return
 end
 
 function conditionCutScene10(pOny)

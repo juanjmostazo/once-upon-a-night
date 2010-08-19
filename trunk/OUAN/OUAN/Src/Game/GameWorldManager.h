@@ -223,6 +223,9 @@ namespace OUAN
 		Quaternion getCheckPointOrientation() const;
 		void setCheckPointNumber(int checkpointNumber);
 		int getCheckPointNumber() const;
+		void setCheckPointWorld(int world);
+		int getCheckPointWorld() const;
+
 
 		void useWeapon();
 		void stopUsingWeapon();
@@ -427,6 +430,7 @@ namespace OUAN
 		Vector3 mCheckPointPosition;
 		Quaternion mCheckPointOrientation;
 		int mCheckPointNumber;
+		int mCheckPointWorld;
 
 		EventManagerPtr mEventManager;
 		EventProcessorPtr mEventProcessor;

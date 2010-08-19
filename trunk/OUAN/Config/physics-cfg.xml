@@ -21,8 +21,11 @@
 	<Option key="MIN_ALLOWED_Y">-150</Option>
 	<Option key="MIN_DISTANCE">0.0001</Option>
     <Option key="TURN_DEGREES_PER_SECOND">360</Option>
-	<Option key="MOVEMENT_UNITS_PER_SECOND">75</Option>
+	<Option key="MOVEMENT_UNITS_PER_SECOND">50</Option>
 	<Option key="TURN_UNITS_PER_SECOND">400</Option>
+
+    <Option key="STABILIZE_SECONDS">100</Option>
+    <Option key="STABILIZE_CHARACTER_MOVE_Y">100000</Option>
 
 	<!--DEPRECATED VARS-->
 	<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">250</Option>
@@ -42,7 +45,5 @@
     <Option key="MAX_DASH">125</Option>
     <Option key="DASH_ACCELERATION_INCREMENT">1.5</Option>
 
-    <Option key="STABILIZE_SECONDS">100</Option>
-    <Option key="STABILIZE_CHARACTER_MOVE_Y">100000</Option>
   </Options>
 </Configuration>
