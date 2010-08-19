@@ -2,6 +2,12 @@
 #define LEVEL_EVENTS_H
 namespace OUAN
 {
+
+	//CLOCK CUTSCENES
+
+	const std::string CUTSCENE_1_CLOCK_INTRO="CLOCK_INTRO";
+	const std::string CUTSCENE_2_LEVEL_ENTRANCE="LEVEL_ENTRANCE_2";
+
 	//LEVEL 2 CUTSCENES
 
 	const std::string CUTSCENE_1_LEVEL_START="LEVEL_START";

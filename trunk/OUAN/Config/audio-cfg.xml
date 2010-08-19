@@ -5,7 +5,7 @@
         <Option key="AUDIO_SUBSYSTEM_FRAME_SKIP">0</Option>
         <Option key="DISTANCE_FACTOR">1</Option>
         <Option key="DOPPLER_SCALE">0.2</Option>
-        <Option key="MASTER_ENABLED">true</Option>
+        <Option key="MASTER_ENABLED">false</Option>
         <Option key="MASTER_NUM_CHANNELS">50</Option>
         <Option key="MASTER_PITCH">1</Option>
         <Option key="MASTER_VOLUME">0.9</Option>

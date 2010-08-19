@@ -687,7 +687,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene5" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene5" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -1385,7 +1385,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene3" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene3" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -2004,7 +2004,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene9" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene9" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -3048,7 +3048,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -3365,7 +3365,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene6" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene6" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -9822,7 +9822,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene8" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene8" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -10926,7 +10926,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -11669,7 +11669,7 @@
       <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene7" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene7" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -13138,10 +13138,10 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="startCutScene2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -13836,10 +13836,10 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::scriptFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene4" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene4" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
