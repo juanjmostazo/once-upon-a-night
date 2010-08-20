@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="18"></CAMERASPEED>
+  <CAMERASPEED value="8"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-790.794 1036.51 -238.575" orientation="0.8263 -0.531284 -0.158438 -0.0993091"></OPTION>
+    <OPTION id="2" position="-367.058 413.831 345.468" orientation="-0.495119 0.302842 0.697004 0.421105"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.827431 -0.532011 -0.158655 -0.099445"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.49537 0.302996 0.697358 0.421319"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-790.794 1036.51 -238.575"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-367.058 413.831 345.468"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -15154,6 +15154,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="177892384" name="WalkabilityNode_d#96" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-493.597 258.542 67.2645"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#95" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#103" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="881496640" name="WalkabilityNode_n#14" typename="Marker Object" parentnode="WalkabilityMapNightmares">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 1 0 1"></PROPERTY>
@@ -15302,6 +15322,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="228492080" name="WalkabilityNode_d#106" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-772.397 269.082 55.8798"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#105" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#107" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="5035555" name="WalkabilityNode_d#16" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -15401,12 +15441,32 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-263.018 229.685 196.511"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-266.381 229.685 219.092"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#67" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#69" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#91" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#97" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="WalkabilityNode_d#101" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="966612736" name="WalkabilityNode_d#91" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-191.978 229.685 283.775"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#92" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#99" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#73" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -15864,6 +15924,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="542405504" name="WalkabilityNode_d#108" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-734.217 258.542 -113.961"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#104" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#107" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="893826112" name="WalkabilityNode_d#37" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -16271,7 +16351,27 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#72" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#70" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#57" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="834681216" name="WalkabilityNode_d#99" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-211.523 235.64 365.515"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#100" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#91" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#109" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -16400,6 +16500,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="789635904" name="WalkabilityNode_d#105" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-735.28 258.542 -8.01421"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#104" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#103" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#106" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#107" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="WalkabilityNode_d#108" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="821344704" name="WalkabilityNode_d#23" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -16454,6 +16574,26 @@
       <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="821680384" name="WalkabilityNode_d#94" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-402.485 244.805 76.5967"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#97" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#101" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#96" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#95" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="WalkabilityNode_d#90" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -16639,6 +16779,26 @@
       <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="35096288" name="WalkabilityNode_d#100" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-209.725 229.685 444.504"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#99" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#93" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -16950,6 +17110,26 @@
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#34" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#88" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#89" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="687643072" name="WalkabilityNode_d#57" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="67.3737 217.777 366.636"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#93" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#70" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#32" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -17341,7 +17521,7 @@
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#67" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#73" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#70" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="WalkabilityNode_d#92" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -17473,6 +17653,26 @@
       <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="817194112" name="WalkabilityNode_d#97" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-369.182 229.685 196.511"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#73" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#101" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#98" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -17611,6 +17811,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="229438160" name="WalkabilityNode_d#107" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-859.823 258.542 -72.0435"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#105" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#106" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="465407296" name="WalkabilityNode_d#17" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -17697,7 +17917,27 @@
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#64" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#32" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#65" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#93" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="WalkabilityNode_d#92" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="WalkabilityNode_d#57" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="683187392" name="WalkabilityNode_d#92" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-98.846 229.685 333.378"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#93" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#70" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#64" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#91" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -17851,6 +18091,26 @@
       <PROPERTY id="trajectory::node#0" type="7" value="CheckPoint9" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="808038592" name="WalkabilityNode_d#102" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-493.597 258.542 -89.5801"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#95" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#104" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -18045,6 +18305,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="60823388" name="WalkabilityNode_d#109" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-297.274 229.685 422.242"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#98" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#99" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="999908416" name="WalkabilityNode_d#34" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -18176,7 +18456,7 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#68" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#73" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#90" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -18401,6 +18681,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="582049024" name="WalkabilityNode_d#95" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-389.164 258.872 -3.53612"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#96" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#102" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="465407296" name="WalkabilityNode_n#17" typename="Marker Object" parentnode="WalkabilityMapNightmares">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 1 0 1"></PROPERTY>
@@ -18511,6 +18811,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="100619528" name="WalkabilityNode_d#101" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-326.399 237.03 133.163"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#97" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#90" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#73" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="70345160" name="WalkabilityNode_d#15" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -18584,6 +18904,26 @@
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#65" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#32" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="70375680" name="WalkabilityNode_d#90" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-285.498 229.685 85.8444"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#95" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#69" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#101" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -19224,27 +19564,27 @@
       <PROPERTY id="walkability map::node#74" type="7" value="WalkabilityNode_d#82" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability map::node#75" type="7" value="WalkabilityNode_d#83" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability map::node#76" type="7" value="WalkabilityNode_d#84" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#77" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#78" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#79" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#80" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#81" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#82" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#83" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#84" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#85" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#86" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#87" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#88" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#89" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#90" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#91" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#92" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#93" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#94" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#95" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#96" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="walkability map::node#97" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#77" type="7" value="WalkabilityNode_d#90" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#78" type="7" value="WalkabilityNode_d#91" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#79" type="7" value="WalkabilityNode_d#92" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#80" type="7" value="WalkabilityNode_d#93" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#81" type="7" value="WalkabilityNode_d#94" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#82" type="7" value="WalkabilityNode_d#95" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#83" type="7" value="WalkabilityNode_d#96" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#84" type="7" value="WalkabilityNode_d#97" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#85" type="7" value="WalkabilityNode_d#98" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#86" type="7" value="WalkabilityNode_d#99" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#87" type="7" value="WalkabilityNode_d#100" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#88" type="7" value="WalkabilityNode_d#101" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#89" type="7" value="WalkabilityNode_d#102" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#90" type="7" value="WalkabilityNode_d#103" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#91" type="7" value="WalkabilityNode_d#104" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#92" type="7" value="WalkabilityNode_d#105" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#93" type="7" value="WalkabilityNode_d#106" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#94" type="7" value="WalkabilityNode_d#107" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#95" type="7" value="WalkabilityNode_d#108" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#96" type="7" value="WalkabilityNode_d#109" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability map::node#97" type="7" value="WalkabilityNode_d#57" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability map::node#98" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability map::node#99" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability map::node#100" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -19324,6 +19664,26 @@
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_n#16" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_n#2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_n#20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="475264768" name="WalkabilityNode_d#98" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-373.701 229.685 314.456"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#97" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#109" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -19524,6 +19884,26 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="788110016" name="WalkabilityNode_d#104" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-626.079 258.542 -68.286"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#103" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#105" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#102" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#108" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="854304640" name="WalkabilityNode_d#20" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -19595,6 +19975,26 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="153233440" name="WalkabilityNode_d#93" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-46.4843 229.685 410.403"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#100" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#92" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#70" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="WalkabilityNode_d#57" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -19686,6 +20086,26 @@
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#52" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_n#53" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="134708704" name="WalkabilityNode_d#103" typename="Marker Object" parentnode="WalkabilityMapDreams">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="5"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-586.351 258.542 67.2645"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#96" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#2" type="7" value="WalkabilityNode_d#104" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="walkability::node#3" type="7" value="WalkabilityNode_d#105" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
