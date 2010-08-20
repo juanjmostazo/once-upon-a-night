@@ -503,6 +503,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 	pEntity=mSceneManager->createEntity(entityDebugName,"node.mesh");
 	pEntity->setMaterialName(debugColor);
 	pEntity->setVisible(mVisible);
+	pEntity->setCastShadows(false);
 	pEntity->setQueryFlags(OUAN::QUERYFLAGS_NONE);
 	pEntityDebugNode->setScale(Vector3(0.8,0.8,0.8));
 	pEntityDebugNode->attachObject(pEntity);
@@ -524,6 +525,7 @@ void Trajectory::createNodeDebugInfo(int node,std::string debugColor)
 		myLine->addPoint(mTrajectoryNodes[node]->getSceneNode()->getPosition());
 		myLine->addPoint(mTrajectoryNodes[node-1]->getSceneNode()->getPosition());
 		myLine->setMaterial(debugColor);
+		myLine->setCastShadows(false);
 		myLine->drawLines();
 		pLineDebugNode->attachObject(myLine);
 		pLineDebugNode->setVisible(mVisible);
