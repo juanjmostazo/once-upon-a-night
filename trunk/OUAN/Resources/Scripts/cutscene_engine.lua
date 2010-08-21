@@ -7,49 +7,43 @@ function helloWorldSkip()
 end
 
 TRACK_TIME=10
-COROUTINE_FINISHED=1
-COROUTINE_ONGOING=0
+
 SENTENCE1_TIME = 3
 SENTENCE2_TIME = 3
 
 function helloWorld(timer)
 	setCameraTrajectory("LEVEL_START")
-	while not isCameraTrajectoryFinished() do		
+	while not isCameraTrajectoryFinished() and not skip() do		
 		coroutine.yield(COROUTINE_ONGOING)		
 	end
 	log ("Switching to tracking camera!!")
 	setAnyTrackingCamera()
-	timer:reset()
+	
+	log ("narrative pause")
+	busyWait(timer,TRACK_TIME)
+	
+--[[	timer:reset()
 	local elapsedTime=timer:getTime()
-	log("elapsedTime: "..elapsedTime)
-	while(elapsedTime<TRACK_TIME) do
-		elapsedTime=timer:getTime()
-		log("elapsedTime: "..elapsedTime)	
-		coroutine.yield(COROUTINE_ONGOING)
-	end
-	local any=getAny()
-	if any then
-		any:say("CUTSCENE_HELLOWORLD_INTRO")
-	end
-	timer:reset()
-	elapsedTime=timer:getTime()
-	while elapsedTime<SENTENCE1_TIME do
+	while(elapsedTime<TRACK_TIME and not skip()) do
 		elapsedTime=timer:getTime()
 		coroutine.yield(COROUTINE_ONGOING)
 	end
-	if any then
-		any:say("CUTSCENE_HELLOWORLD_SECOND")
-	end
-	timer:reset()
-	elapsedTime=timer:getTime()
-	while elapsedTime<SENTENCE2_TIME do
-		elapsedTime=timer:getTime()
-		coroutine.yield(COROUTINE_ONGOING)
-	end
-	if any then
-		any:say("CUTSCENE_HELLOWORLD_LAST")
-	end
+--]]	
 
+	local any=getAny()	
+	timedSay(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME)	
+	log ("Any message 1")
+	timedSay(any,"CUTSCENE_HELLOWORLD_SECOND",1,timer,SENTENCE2_TIME)
+	log ("Any message 2")	
+	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
+	log ("Any message 3")
+	
+--[[	any:changeAnimation("die02")
+	log ("Animation changed")
+	while not skip() and not any:animLooping("die02") and not any:animFinished("die02") do
+		coroutine.yield(COROUTINE_ONGOING)
+	end
+--]]	
 	--stage 3: PC MOVEMENT:
 	-- any:walkToXYZ(), any:runToXYZ() -> make Any move to a given position
 	-- any:walkToObject("poster#0",25), any:runToObject() -> make Any move to a short distance of a given gameObject

@@ -12,13 +12,16 @@
 #include "../Physics/PhysicsSubsystem.h"
 using namespace OUAN;
 
+CutsceneState* CutsceneState::mInst=NULL;
+
 /// Default constructor
 CutsceneState::CutsceneState()
 :mCutsceneFile("")
 ,mCutsceneFunction("")
 ,mCutsceneLaunched(false)
+,mSkippingCutscene(false)
 {
-
+	mInst=this;
 }
 /// Destructor
 CutsceneState::~CutsceneState()
@@ -63,8 +66,7 @@ void CutsceneState::handleEvents()
 
 	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2))
 	{
-		skipCutscene();
-		mApp->getGameStateManager()->popState();
+		mSkippingCutscene=true;
 	}
 }
 /// Update game according to the current state
@@ -72,35 +74,30 @@ void CutsceneState::handleEvents()
 void CutsceneState::update(long elapsedTime)
 {
 	GameState::update(elapsedTime);
+	LogicSubsystemPtr logicSS = mApp->getLogicSubsystem();
 
 	double elapsedSeconds=(double)elapsedTime * 0.000001f;
 	if (!mCutsceneFile.empty() && !mCutsceneFunction.empty())
 	{
+		//Check if cutscene launched. If not, do it. Otherwise, 
+		//call the update method to resume the cutscene.
 		if (!mCutsceneLaunched)
 		{
-			mApp->getLogicSubsystem()->initCutsceneScript(mCutsceneFile);
-			mApp->getLogicSubsystem()->invokeCutsceneFunction(mCutsceneFunction);
+			logicSS->initCutsceneScript(mCutsceneFile);
+			logicSS->invokeCutsceneFunction(mCutsceneFunction);
 			mCutsceneLaunched=true;
 		}
-		else
+		else logicSS->updateCutsceneFunction(mCutsceneFunction,elapsedSeconds);
+		do 
 		{
-			mApp->getLogicSubsystem()->updateCutsceneFunction(mCutsceneFunction,elapsedSeconds);
-		}
-		
-		if (mApp->getLogicSubsystem()->isCutsceneFinished(mCutsceneFunction))
-		{
-			mApp->getCameraManager()->setDefaultThirdPersonCamera(true);
-			mApp->getGameStateManager()->popState();
-		}
-		else
-		{
+			//Game update
 			mApp->getCameraManager()->update(elapsedSeconds);
 
 			mApp->getGameWorldManager()->update(elapsedSeconds);	
 
 			mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
-			mApp->getLogicSubsystem()->update(elapsedSeconds);
+			//mApp->getLogicSubsystem()->update(elapsedSeconds);
 
 			mApp->getTrajectoryManager()->updateDebugNodes();
 
@@ -119,17 +116,27 @@ void CutsceneState::update(long elapsedTime)
 			}
 			if ((mApp->mAudioFrameCnt++)>mApp->mAudioFrameSkip)
 				mApp->mAudioFrameCnt=0;
+			
+			if (mSkippingCutscene)
+				logicSS->updateCutsceneFunction(mCutsceneFunction,elapsedSeconds);
 
+		} while (!logicSS->isCutsceneFinished(mCutsceneFunction) && mSkippingCutscene);
+		
+		if (logicSS->isCutsceneFinished(mCutsceneFunction))
+		{
+			mApp->getCameraManager()->setDefaultThirdPersonCamera(true);
+			mApp->getGameStateManager()->popState();
 		}
 	}
 }
 
-void CutsceneState::skipCutscene()
+bool CutsceneState::render()
 {
-	//Advance to final state.
-	mApp->getLogicSubsystem()->skipCutscene(mCutsceneFunction);
-	mApp->getGameStateManager()->popState();
+	if (!mSkippingCutscene)
+		GameState::render();
+	return true;
 }
+
 void CutsceneState::setCutsceneFile(const std::string& file)
 {
 	mCutsceneFile=file;
@@ -137,4 +144,9 @@ void CutsceneState::setCutsceneFile(const std::string& file)
 void CutsceneState::setCutsceneFunction (const std::string& function)
 {
 	mCutsceneFunction=function;
+}
+
+bool CutsceneState::isSkippingCutscene()
+{
+	return mInst->mSkippingCutscene;
 }

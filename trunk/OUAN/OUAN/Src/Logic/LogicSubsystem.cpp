@@ -16,6 +16,7 @@
 #include "../Game/GameObject/GameObjectPortal.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Core/GameRunningState.h"
+#include "../Core/CutsceneState.h"
 #include "LogicComponent/LogicComponent.h"
 #include "LogicComponent/LogicComponentOny.h"
 #include "LogicComponent/LogicComponentItem.h"
@@ -63,6 +64,7 @@ void LogicSubsystem::registerModules()
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getWorld",&GameWorldManager::getMyInstanceWorld),
 		def("victory",&GameWorldManager::victory),
+		def("skip",&CutsceneState::isSkippingCutscene),
 		def("changeLevel",&GameRunningState::changeLevel),
 		def("setCheckPoint",&GameWorldManager::setCheckPointLUA),
 		def("getCheckPointNumber",&GameWorldManager::getCheckPointNumberLUA),
@@ -90,7 +92,10 @@ void LogicSubsystem::registerModules()
 		class_<LogicComponent>("LogicComponent")
 		.def(constructor<const std::string&>())
 			.def("getName",&LogicComponent::getParentName)
-			.def("say",&LogicComponent::printMessage),
+			.def("say",&LogicComponent::printMessage)
+			.def("changeAnimation",&LogicComponent::changeAnimation)
+			.def("animLooping",&LogicComponent::isLoopingAnimation)
+			.def("animFinished",&LogicComponent::hasFinishedAnimation),
 		class_<LogicComponentEnemy, LogicComponent > ("LogicComponentEnemy")
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentEnemy::getNumLives)
@@ -274,6 +279,7 @@ int LogicSubsystem::getGlobalInt (const std::string& globalName)
 void LogicSubsystem::invokeCutsceneFunction(const std::string& functionName)
 {
 	mCoroutine=lua_newthread(mLuaEngine);
+	mCutsceneFinished=false;
 	int retVal=0;
 	try{
 		retVal=luabind::resume_function<int>(mCoroutine, functionName.c_str(),mTimer.get());
@@ -290,7 +296,7 @@ void LogicSubsystem::invokeCutsceneFunction(const std::string& functionName)
 }
 void LogicSubsystem::updateCutsceneFunction(const std::string& functionName, double elapsedSeconds)
 {
-	if (mCoroutine)
+	if (mCoroutine && !mCutsceneFinished)
 	{
 		mTimer->addTime(elapsedSeconds);
 		int retVal=luabind::resume<int>(mCoroutine,mTimer.get());

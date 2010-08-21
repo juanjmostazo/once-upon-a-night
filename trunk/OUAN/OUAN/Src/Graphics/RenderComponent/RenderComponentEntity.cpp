@@ -161,6 +161,19 @@ void RenderComponentEntity::changeAnimation(const std::string& animation,Animati
 	if (mAnimationBlender)
 		mAnimationBlender->blend(animation,transition,duration,l,timeScale);
 }
+
+bool RenderComponentEntity::isLoopingAnimation (const std::string& animationName)
+{
+	if (mEntity->getAnimationState(animationName))
+		return mEntity->getAnimationState(animationName)->getLoop();
+	return false;
+}
+bool RenderComponentEntity::hasFinishedAnimation(const std::string& animationName)
+{
+	if (mEntity->getAnimationState(animationName))
+		return mEntity->getAnimationState(animationName)->hasEnded();
+	return false;
+}
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {
 	return mAnimationBlender->getSource();

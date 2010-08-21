@@ -14,7 +14,9 @@ namespace OUAN
 		std::string mCutsceneFile;
 		std::string mCutsceneFunction;
 		bool mCutsceneLaunched;
+		bool mSkippingCutscene;
 		lua_State* mCoroutine;
+		static CutsceneState* mInst;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -34,14 +36,17 @@ namespace OUAN
 		/// @param app	the parent app
 		void update(long elapsedTime);
 
+		bool render();
+
 		/// Default constructor
 		CutsceneState();
 		/// Destructor
 		~CutsceneState();
 		
-		void skipCutscene();
 		void setCutsceneFile(const std::string& file);
 		void setCutsceneFunction (const std::string& function);
+
+		static bool isSkippingCutscene();
 	};
 }
 #endif

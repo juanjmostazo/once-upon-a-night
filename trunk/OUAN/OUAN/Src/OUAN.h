@@ -615,6 +615,9 @@ namespace OUAN
 		
 		const int MOUSEBUTTONS_BUFFER_SIZE=8;
 		const int KEY_BUFFER_SIZE =256 + MOUSEBUTTONS_BUFFER_SIZE;
+
+		//Message boxes/texts display time
+		const double DEFAULT_DISPLAY_LIFETIME=2.0;
 }
 
 #endif
