@@ -139,6 +139,9 @@ namespace OUAN
 			void cycleLanguage();
 			const std::string& getCurrentLanguage() const;
 
+			bool isPlayingCutscene() const;
+			void setPlayingCutscene(bool playingCutscene);
+
 		protected:
 
 			/// Singleton instance
@@ -196,6 +199,8 @@ namespace OUAN
 
 			std::string mLanguage;
 			std::vector<std::string> mSupportedLanguages;
+
+			bool mPlayingCutscene;
 		};
 }
 #endif

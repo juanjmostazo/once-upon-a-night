@@ -40,6 +40,7 @@ Application::Application(const std::string& windowName) : mWindowName(windowName
 ,mUniqueId(1000)
 ,mSkipIntro(false)
 ,mBackToMenu(false)
+,mPlayingCutscene(false)
 {
 	instance = this;
 }
@@ -457,4 +458,13 @@ const std::string& Application::getCurrentLanguage() const
 ConfigurationPtr Application::getIngameTextStrings() const
 {
 	return mIngameTextStrings;
+}
+
+bool Application::isPlayingCutscene() const
+{
+	return mPlayingCutscene;
+}
+void Application::setPlayingCutscene(bool playingCutscene)
+{
+	mPlayingCutscene=playingCutscene;
 }

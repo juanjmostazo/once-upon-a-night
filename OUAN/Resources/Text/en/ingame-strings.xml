@@ -15,5 +15,7 @@
 		<Option key="CUTSCENE_HELLOWORLD_INTRO">Hello, world!</Option>
 		<Option key="CUTSCENE_HELLOWORLD_SECOND">I am Any,</Option>
 		<Option key="CUTSCENE_HELLOWORLD_LAST">and I need to escape from this crazy world</Option>
+		
+		<Option key="CUTSCENE_HELLOWORLD_DYING">..or I'll die!!</Option>
 	</Options>
 </Configuration>

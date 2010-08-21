@@ -406,7 +406,7 @@ void GameObjectOny::switchOff()
 
 void GameObjectOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	if (mLogicComponentOny.get())
+	if (!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processCollision(pGameObject, pNormal);
 	}
@@ -414,7 +414,7 @@ void GameObjectOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pN
 
 void GameObjectOny::processEnterTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentOny.get())
+	if (!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processEnterTrigger(pGameObject);
 	}
@@ -422,7 +422,7 @@ void GameObjectOny::processEnterTrigger(GameObjectPtr pGameObject)
 
 void GameObjectOny::processExitTrigger(GameObjectPtr pGameObject)
 {
-	if (mLogicComponentOny.get())
+	if (!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processExitTrigger(pGameObject);
 	}
@@ -430,7 +430,7 @@ void GameObjectOny::processExitTrigger(GameObjectPtr pGameObject)
 
 void GameObjectOny::processAnimationEnded(const std::string& animationName)
 {
-	if(mLogicComponentOny.get())
+	if(!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processAnimationEnded(animationName);
 	}
@@ -458,157 +458,161 @@ bool GameObjectOny::isHit() const
 
 void GameObjectOny::postUpdate()
 {
-	GameObject::postUpdate();
-
-	int currentState=mLogicComponentOny->getState();
-	int lastState=mLogicComponentOny->getOldState();
-
-	//TO REALLOCATE BETTER
-	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_IDLE)){
-		mRenderComponentParticleSystemRunSand->start();
-	}
-
-	if (currentState==ONY_STATE_IDLE || currentState==(1<<ONY_STATE_BIT_FIELD_INVULNERABLE))
+	if (!Application::getInstance()->isPlayingCutscene())
 	{
-		if (mLogicComponentOny->isStateChanged())
-		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
-			mIdleTime=0.0;
+		GameObject::postUpdate();
 
-			if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
-			{
-				if (mGameWorldManager->getWorld() == DREAMS)
-				{
-					mRenderComponentParticleSystemLandDreams->start();
-					mRenderComponentParticleSystemLandWave->start();
-				}
-				else if (mGameWorldManager->getWorld() == NIGHTMARES)
-				{
-					mRenderComponentParticleSystemLandNightmares->start();
-					mRenderComponentParticleSystemLandWave->start();
-				}
-			}
+		int currentState=mLogicComponentOny->getState();
+		int lastState=mLogicComponentOny->getOldState();
+
+		//TO REALLOCATE BETTER
+		if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_IDLE)){
+			mRenderComponentParticleSystemRunSand->start();
 		}
-		else
+
+		if (currentState==ONY_STATE_IDLE || currentState==(1<<ONY_STATE_BIT_FIELD_INVULNERABLE))
 		{
-			if (mIdleTime>=IDLE_SECONDS_TO_NAP)
+			if (mLogicComponentOny->isStateChanged())
 			{
-				if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+				mIdleTime=0.0;
+
+				if (CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 				{
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
+					if (mGameWorldManager->getWorld() == DREAMS)
+					{
+						mRenderComponentParticleSystemLandDreams->start();
+						mRenderComponentParticleSystemLandWave->start();
+					}
+					else if (mGameWorldManager->getWorld() == NIGHTMARES)
+					{
+						mRenderComponentParticleSystemLandNightmares->start();
+						mRenderComponentParticleSystemLandWave->start();
+					}
 				}
 			}
-		}
-	}		
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
-	{
-		mAudioComponent->playSound(ONY_SOUND_DIE);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
-	}
-
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
-		!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
-		mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
-	{
-		mAudioComponent->playSound(ONY_SOUND_HIT);
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
-	}
-	else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
-	{
-		if (mWorld == DREAMS)
-		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
-
-			GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
-				mWeaponComponent->getActiveWeapon());
-
-			if (pillow.get())
-			{
-				pillow->startAttackParticles();
-			}
-		} 
-		else if (mWorld == NIGHTMARES) 
-		{
-			//get Camera Direction and change animation accordingly:
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
-
-			GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
-				mWeaponComponent->getActiveWeapon());
-		}
-	}
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
-		&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
-	{
-		mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
-	}
-	else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
-	{
-		if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
-		{
-			if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
 			else
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
-		}
-		else //Walk/run toggle
+			{
+				if (mIdleTime>=IDLE_SECONDS_TO_NAP)
+				{
+					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_IDLE02)!=0)
+					{
+						mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
+					}
+				}
+			}
+		}		
+		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
+			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
 		{
-			bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
-			bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
-			bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
+			mAudioComponent->playSound(ONY_SOUND_DIE);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
+		}
 
-			if (toWalk || toRun || fromJump)
+		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
+			!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
+			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
+		{
+			mAudioComponent->playSound(ONY_SOUND_HIT);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
+		}
+		else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
+		{
+			if (mWorld == DREAMS)
+			{
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
+
+				GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
+					mWeaponComponent->getActiveWeapon());
+
+				if (pillow.get())
+				{
+					pillow->startAttackParticles();
+				}
+			} 
+			else if (mWorld == NIGHTMARES) 
+			{
+				//get Camera Direction and change animation accordingly:
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+
+				GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
+					mWeaponComponent->getActiveWeapon());
+			}
+		}
+		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
+			&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
+		{
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
+		}
+		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
+		{
+			if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
 			{
 				if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
 				else
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
 			}
-		}		
-	}
-	if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
-	{
-		mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
-	}
-	else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
-	{		
-		mRenderComponentEntity->removeTint();
-	}
-	if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_FALL)
-		&& CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_FALL))
-	{
-		if (mGameWorldManager->getWorld() == DREAMS)
-		{
-			mRenderComponentParticleSystemLandDreams->start();
-			mRenderComponentParticleSystemLandWave->start();
-		}
-		else if (mGameWorldManager->getWorld() == NIGHTMARES)
-		{
-			mRenderComponentParticleSystemLandNightmares->start();
-			mRenderComponentParticleSystemLandWave->start();
-		}
-	}
-	bool wasRunning = CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
-	bool hasStoppedRunning = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) || CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
-	if (wasRunning && hasStoppedRunning)
-	{
-		mRunParticlesElapsed=-1.0;
-		mRunParticlesNextInterval=-1.0;
-	}
+			else //Walk/run toggle
+			{
+				bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
+				bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+				bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
 
-	bool hasBegunRunning = !wasRunning && !hasStoppedRunning;		
-	if (hasBegunRunning)
-	{
-		mRunParticlesElapsed=0.0;
-		mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
-		mRenderComponentParticleSystemRunSand->start();
-	}
+				if (toWalk || toRun || fromJump)
+				{
+					if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
+						mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
+					else
+						mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+				}
+			}		
+		}
+		if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
+		{
+			mRenderComponentEntity->applyTint(Ogre::ColourValue::Red);
+		}
+		else if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
+		{		
+			mRenderComponentEntity->removeTint();
+		}
+		if (!CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_FALL)
+			&& CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_FALL))
+		{
+			if (mGameWorldManager->getWorld() == DREAMS)
+			{
+				mRenderComponentParticleSystemLandDreams->start();
+				mRenderComponentParticleSystemLandWave->start();
+			}
+			else if (mGameWorldManager->getWorld() == NIGHTMARES)
+			{
+				mRenderComponentParticleSystemLandNightmares->start();
+				mRenderComponentParticleSystemLandWave->start();
+			}
+		}
+		bool wasRunning = CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
+		bool hasStoppedRunning = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) || CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+		if (wasRunning && hasStoppedRunning)
+		{
+			mRunParticlesElapsed=-1.0;
+			mRunParticlesNextInterval=-1.0;
+		}
 
-	//Apply radial blur effect when reached fall speed limit
-	mGameWorldManager->getGameObjectViewport()->
-		setRadialBlurEffectIfPossible(
+		bool hasBegunRunning = !wasRunning && !hasStoppedRunning;		
+		if (hasBegunRunning)
+		{
+			mRunParticlesElapsed=0.0;
+			mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
+			mRenderComponentParticleSystemRunSand->start();
+		}
+
+		//Apply radial blur effect when reached fall speed limit
+		mGameWorldManager->getGameObjectViewport()->
+			setRadialBlurEffectIfPossible(
 			mGameWorldManager->getWorld(),
 			mPhysicsComponentCharacterOny->isFallingLimit());
+
+	}
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
