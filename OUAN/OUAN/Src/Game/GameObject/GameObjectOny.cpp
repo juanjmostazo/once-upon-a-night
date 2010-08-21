@@ -206,7 +206,7 @@ void GameObjectOny::update(double elapsedSeconds)
 	//double animationTime=elapsedSeconds;
 	//TODO: Move the scale factor to a configurable parameter
 	mRenderComponentEntity->update(elapsedSeconds);
-
+	
 	if (mRenderComponentEntity->isTintBeingApplied())
 	{
 		double invulnerabilityTime = POST_HIT_INVULNERABILITY-mLogicComponentOny->getHitRecoveryTime();

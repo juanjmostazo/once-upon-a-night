@@ -41,7 +41,11 @@ namespace OUAN
 		virtual void processEnterTrigger(GameObjectPtr pGameObject);
 		virtual void processExitTrigger(GameObjectPtr pGameObject);
 
-		void printMessage(const std::string& msg);
+		virtual void changeAnimation(const std::string& animationName);
+		virtual bool isLoopingAnimation(const std::string& animationName) const;
+		virtual bool hasFinishedAnimation(const std::string& animationName) const;
+
+		void printMessage(const std::string& msg,double time=DEFAULT_DISPLAY_LIFETIME);
 		bool isEnabled() const;
 		void setCurrentWorldVisibility(bool visibility);
 

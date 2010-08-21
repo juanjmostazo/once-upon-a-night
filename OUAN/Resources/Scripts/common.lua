@@ -1,6 +1,11 @@
 
 STATE_NAME_VOID="Invalid"
 
+
+COROUTINE_FINISHED=1
+COROUTINE_ONGOING=0
+
+
 function getStateName(state,stateNames)
 	local retVal
 	if stateNames[state] then
@@ -11,9 +16,19 @@ function getStateName(state,stateNames)
 	return retVal
 end
 
-function wait(seconds)
-	local _start = os.time()
-	local _end = _start+seconds
-	while (_end ~= os.time()) do
+function busyWait(timer,limit)
+	timer:reset()
+	elapsedTime=timer:getTime()
+	while elapsedTime<limit and not skip() do
+		elapsedTime=timer:getTime()
+		coroutine.yield(COROUTINE_ONGOING)
 	end
 end
+
+function timedSay(obj,msg, textLimit,timer, limit)
+	if obj then
+		obj:say(msg,textLimit)
+	end
+	busyWait(timer,limit)
+end
+	

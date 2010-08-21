@@ -57,6 +57,8 @@ namespace OUAN
 
 		void initAnimationBlender(const std::string& defaultAnimation);
 		void destroyAnimationBlender();
+		bool isLoopingAnimation (const std::string& animationName);
+		bool hasFinishedAnimation(const std::string& animationName);
 
 		void changeAnimation(const std::string& anim);
 

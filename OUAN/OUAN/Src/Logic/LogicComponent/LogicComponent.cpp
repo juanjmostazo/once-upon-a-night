@@ -146,10 +146,10 @@ int LogicComponent::getLastFrameState() const
 	return mLastFrameState;
 }
 
-void LogicComponent::printMessage(const std::string& msg)
+void LogicComponent::printMessage(const std::string& msg,double time)
 {
 	//TODO: Replace with dialogue overlays
-	getParent()->displayText(getParent()->getTranslation(msg));
+	getParent()->displayText(getParent()->getTranslation(msg),time);
 }
 bool LogicComponent::isEnabled() const
 {
@@ -159,7 +159,18 @@ void LogicComponent::setCurrentWorldVisibility(bool visibility)
 {
 	mParent->setCurrentWorldVisibility(visibility);
 }
-
+void LogicComponent::changeAnimation(const std::string& animationName)
+{
+	mParent->changeAnimation(animationName);
+}
+bool LogicComponent::isLoopingAnimation(const std::string& animationName) const
+{
+	return mParent->isLoopingAnimation(animationName);
+}
+bool LogicComponent::hasFinishedAnimation(const std::string& animationName) const
+{
+	return mParent->hasFinishedAnimation(animationName);
+}
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {
 

@@ -8,7 +8,6 @@
 namespace OUAN
 {
 	class ObjectTextDisplay;
-	const double DEFAULT_DISPLAY_LIFETIME=2.0;
 
 	class AudioComponent;
 	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
@@ -177,6 +176,10 @@ namespace OUAN
 		virtual std::string translateWeaponMode(TWeaponMode weaponmode);
 		virtual std::string getDefaultAttack();
 		virtual bool canInitiateAttack();
+
+		virtual void changeAnimation(const std::string& animationName);
+		virtual bool isLoopingAnimation(const std::string& animationName) const;
+		virtual bool hasFinishedAnimation(const std::string& animationName) const;
 
 		virtual WeaponComponentPtr getParentWeaponComponent() const;
 		virtual bool hasParentWeaponComponent() const;

@@ -339,6 +339,30 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 	mDisplayLifetime=displayLifetime;
 }
 
+void GameObject::changeAnimation(const std::string& animationName)
+{
+	if (hasRenderComponentEntity() && getEntityComponent().get())
+	{
+		getEntityComponent()->changeAnimation(animationName);
+	}
+}
+bool GameObject::isLoopingAnimation(const std::string& animationName) const
+{
+	if (hasRenderComponentEntity() && getEntityComponent().get())
+	{
+		return getEntityComponent()->isLoopingAnimation(animationName);
+	}
+	return false;
+};
+bool GameObject::hasFinishedAnimation(const std::string& animationName) const
+{
+	if (hasRenderComponentEntity() && getEntityComponent().get())
+	{
+		return getEntityComponent()->hasFinishedAnimation(animationName);
+	}
+	return false;
+};
+
 void GameObject::disableDisplayMsg()
 {
 	if (mDisplayMsg)
