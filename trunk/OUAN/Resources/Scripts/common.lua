@@ -31,4 +31,16 @@ function timedSay(obj,msg, textLimit,timer, limit)
 	end
 	busyWait(timer,limit)
 end
+
+function animationWait(obj,animationName)
+	while not skip() and not obj:animFinished(animationName) do
+		coroutine.yield(COROUTINE_ONGOING)
+	end
+end
+
+function trajectoryCamWait()
+	while not isCameraTrajectoryFinished() and not skip() do		
+		coroutine.yield(COROUTINE_ONGOING)		
+	end
+end
 	

@@ -123,19 +123,20 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
-	if (animationName.compare(ONY_ANIM_HIT01)==0)
-	{
-		//if (mHitRecoveryTime<0)
-		//{								
-			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);			
-			//mInvulnerabilityCounter=POST_HIT_INVULNERABILITY;
-		//}
-	}
-	else if (animationName.compare(ONY_ANIM_DIE01)==0)
-	{
-		mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
-		mParent->getGameWorldManager()->onyDied();
-	}
+	if (!Application::getInstance()->isPlayingCutscene())
+		if (animationName.compare(ONY_ANIM_HIT01)==0)
+		{
+			//if (mHitRecoveryTime<0)
+			//{								
+				mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);			
+				//mInvulnerabilityCounter=POST_HIT_INVULNERABILITY;
+			//}
+		}
+		else if (animationName.compare(ONY_ANIM_DIE01)==0)
+		{
+			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
+			mParent->getGameWorldManager()->onyDied();
+		}
 }
 
 void LogicComponentOny::increaseHP(int amount)

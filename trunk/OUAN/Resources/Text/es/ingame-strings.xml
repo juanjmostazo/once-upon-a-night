@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>						
-		<Option key="SIGNPOST_MSG_HURRY_UP">Â¡Date prisa, Any, si quieres despertar!</Option>
-		<Option key="SIGNPOST_MSG_TRIPOLLO_INFO">Tripollo: Animal autÃ³ctono que habita los reinos\n
-		de sueÃ±os y pesadillas.</Option>
+		<Option key="SIGNPOST_MSG_HURRY_UP">¡¡Date prisa, Any, si quieres despertar!</Option>
+		<Option key="SIGNPOST_MSG_TRIPOLLO_INFO">Tripollo: Animal autóctono que habita los reinos\n
+		de sueños y pesadillas.</Option>
 		<Option key="SIGNPOST_MSG_TICKTOCK">Tick...tack, tick...tack, tick... tack,\nmis piezas debes encontrar.</Option>
-		<Option key="SIGNPOST_MSG_LOOKINGAT">Â¡Hey!Â¿QuÃ© estÃ¡s mirando?</Option>
-		<Option key="SIGNPOST_MSG_WAITINGFOR">Â¿A quÃ© estÃ¡s esperando? Â¡Es por aquÃ­!</Option>		
+		<Option key="SIGNPOST_MSG_LOOKINGAT">¡¡Hey!!¿Qué estás mirando?</Option>
+		<Option key="SIGNPOST_MSG_WAITINGFOR">¿A qué estás esperando? ¡Es por aquí!</Option>		
 		<Option key="SIGNPOST_MSG_DONOTTOUCH">No tocar.</Option>
-		<Option key="SIGNPOST_MSG_ALLTHISLAND">AlgÃºn dÃ­a, hija mÃ­a, toda esta tierra te pertenecerÃ¡</Option>		
-		<Option key="SIGNPOST_MSG_GALLERY">Bonita galerÃ­a, Â¿verdad?</Option>
-		<Option key="SIGNPOST_MSG_ADVERTISING">Â¡AnÃºnciate aquÃ­ por un par de diamantes al mes!</Option>
-		<Option key="SIGNPOST_MSG_GETTINGCLOSE">Vas por buen camino...Â¿o era al revÃ©s?</Option>
-		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Apadrina a un programador del mundo real\n...Ah, y sÃ­: vas bien</Option>
+		<Option key="SIGNPOST_MSG_ALLTHISLAND">Algún día, hija mía, toda esta tierra te pertenecerá...\n¡y una hipoteca a treinta años¡</Option>		
+		<Option key="SIGNPOST_MSG_GALLERY">Bonita galería, ¿verdad?</Option>
+		<Option key="SIGNPOST_MSG_ADVERTISING">¡Anúnciate aquí por un par de diamantes al mes!</Option>
+		<Option key="SIGNPOST_MSG_GETTINGCLOSE">Vas por buen camino...¿o era al revés?</Option>
+		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Apadrina a un programador del mundo real\n...Ah, y sí: vas bien</Option>
 		
-		<Option key="CUTSCENE_HELLOWORLD_INTRO">Â¡Hola, mundo!</Option>
+		<Option key="CUTSCENE_HELLOWORLD_INTRO">¡Hola, mundo!</Option>
 		<Option key="CUTSCENE_HELLOWORLD_SECOND">Me llamo Any</Option>
 		<Option key="CUTSCENE_HELLOWORLD_LAST">y necesito escapar de este mundo de locos</Option>
+		<Option key="CUTSCENE_HELLOWORLD_DYING">..¡¡o me moriré!!</Option>
 	</Options>
 </Configuration>

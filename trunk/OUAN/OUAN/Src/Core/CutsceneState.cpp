@@ -33,6 +33,7 @@ void CutsceneState::init(ApplicationPtr app)
 {
 	GameState::init(app);
 
+	mApp->setPlayingCutscene(true);
 	mApp->mAudioFrameCnt=0;
 	mApp->getRenderSubsystem()->resumeRendering();
 	//mApp->getAudioSubsystem()->stopAllSounds();
@@ -44,6 +45,7 @@ void CutsceneState::cleanUp()
 	GameState::cleanUp();
 
 	mApp->getLogicSubsystem()->resetCutsceneFinished();
+	mApp->setPlayingCutscene(false);
 }
 
 /// pause state
@@ -133,7 +135,10 @@ void CutsceneState::update(long elapsedTime)
 bool CutsceneState::render()
 {
 	if (!mSkippingCutscene)
+	{
+		Logger::getInstance()->log("CUTSCENE RENDER!!");
 		GameState::render();
+	}
 	return true;
 }
 
