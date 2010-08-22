@@ -34,6 +34,13 @@ function helloWorld(timer)
 	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
 	log ("Any message 3")
 
+	local currentWorld = world()
+	if currentWorld == OUAN_WORLD_DREAMS then
+		changeWorld(OUAN_WORLD_NIGHTMARES)
+	else changeWorld(OUAN_WORLD_DREAMS)
+	end
+	log("Change world called")
+	worldChangeWait()
 
 	
 	any:changeAnimation("die02")

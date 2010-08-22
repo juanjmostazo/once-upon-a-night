@@ -468,3 +468,24 @@ void Application::setPlayingCutscene(bool playingCutscene)
 {
 	mPlayingCutscene=playingCutscene;
 }
+int Application::getWorld()
+{
+	return mWorld;
+}
+void Application::setWorld(int world)
+{
+	mWorld=world;
+}
+
+int Application::getOldWorld()
+{
+	return mOldWorld;
+}
+void Application::setOldWorld(int oldWorld)
+{
+	mOldWorld=oldWorld;
+}
+int Application::world()
+{
+	return instance->mWorld;
+}
