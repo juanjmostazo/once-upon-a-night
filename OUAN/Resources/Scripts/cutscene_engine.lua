@@ -14,6 +14,8 @@ SENTENCE2_TIME = 3
 -- NOTE: Check common.lua for some frequently used functions!!
 
 function helloWorld(timer)
+	local any=getAny()	
+
 	setCameraTrajectory("LEVEL_START")	
 	trajectoryCamWait()
 	
@@ -23,7 +25,7 @@ function helloWorld(timer)
 	log ("narrative pause")
 	busyWait(timer,TRACK_TIME)
 
-	local any=getAny()	
+
 	timedSay(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME)	
 	log ("Any message 1")
 	timedSay(any,"CUTSCENE_HELLOWORLD_SECOND",1,timer,SENTENCE2_TIME)
@@ -31,15 +33,19 @@ function helloWorld(timer)
 	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
 	log ("Any message 3")
 	
+
+	
 	any:changeAnimation("die02")
 	timedSay(any,"CUTSCENE_HELLOWORLD_DYING",0.5,timer,0.5)
 	animationWait(any,"die02")
 
-	
+	any:changeAnimation("run")
+	any:beginTrajectory("HelloWorldCutscene")
+	trajectoryObjWait(any)
+	any:endTrajectory()
 	--stage 3: PC MOVEMENT:
 	-- any:walkToXYZ(), any:runToXYZ() -> make Any move to a given position
 	-- any:walkToObject("poster#0",25), any:runToObject() -> make Any move to a short distance of a given gameObject
-	-- any:walkPath("pathname"), any:runPath("pathname") -> make Any follow a predefined trajectory
 	--while not any:hasArrivedToObject("poster#0") do
 	--	coroutine.yield(0)
 	--end

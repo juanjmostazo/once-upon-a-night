@@ -502,7 +502,7 @@ void EventProcessor::processFirstSignpostHitEvent(FirstSignpostHitEventPtr evt)
 	if (mWorldManager->isFirstSignpostHit())
 	{
 		GameObjectOnyPtr ony = mWorldManager->getGameObjectOny();
-		ony->getRenderComponentParticleSystemRunSurprise()->start();		
+		ony->startParticleSystem(GameObjectOny::ONY_PS_RUN_SURPRISE);
 		mWorldManager->setFirstSignpostHit(false);
 	}
 }

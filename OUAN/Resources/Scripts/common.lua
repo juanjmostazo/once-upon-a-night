@@ -43,4 +43,10 @@ function trajectoryCamWait()
 		coroutine.yield(COROUTINE_ONGOING)		
 	end
 end
+
+function trajectoryObjWait(obj)
+	while not obj:isTrajectoryFinished() and not skip() do		
+		coroutine.yield(COROUTINE_ONGOING)		
+	end
+end
 	

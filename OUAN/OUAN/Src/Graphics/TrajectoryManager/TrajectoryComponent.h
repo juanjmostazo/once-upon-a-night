@@ -27,6 +27,11 @@ namespace OUAN
 		void activatePredefinedTrajectory(std::string trajectory,int currentWorld);
 		//same as above but without finding a path to the trajectory first, starting directly from the first trajectory node
 		void setTrajectory(Trajectory * pTrajectory);
+		//Return the trajectory pointer
+		Trajectory* getTrajectory() const;
+		//Tell if current trajectory has finished
+		bool hasEnded() const;
+	
 		//Activates chase state, which recalculates a direct vector to the target
 		void activateChase(std::string target);
 

@@ -8,6 +8,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentQuadHalo.h"
 #include "../../Graphics/RenderComponent/RenderComponentFractalVolume.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentOny.h"
@@ -104,9 +105,29 @@ namespace OUAN
 	const std::string ONY_SOUND_STEP_GRASS_00="any_step_grass_00";
 	const std::string ONY_SOUND_STEP_GRASS_01="any_step_grass_01";
 
+
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
+	public:
+		enum OnyParticleSystemID
+		{
+			ONY_PS_MIN_ID=0,
+			ONY_PS_LAND_DREAMS=ONY_PS_MIN_ID,
+			ONY_PS_LAND_NIGHTMARES,
+			ONY_PS_LAND_WAVE,
+			ONY_PS_LAND_WATER_WAVE,
+			ONY_PS_LAND_WATER_DROPS,
+			ONY_PS_RUN_GRASS,
+			ONY_PS_RUN_SAND,
+			ONY_PS_RUN_WATER,
+			ONY_PS_RUN_SURPRISE,
+			ONY_PS_MAX_ID=ONY_PS_RUN_SURPRISE
+			//TODO: Append further ids if necessary
+		};
+		static const int PARTICLE_SYSTEMS_NUM=ONY_PS_MAX_ID-ONY_PS_MIN_ID+1;
+		//PARTICLE SYSTEMS REFACTOR
+		typedef std::map<OnyParticleSystemID, RenderComponentParticleSystemPtr> TParticleSystemsMap;
 
 	private:	
 		/// Visual component data
@@ -115,15 +136,20 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams; // Dreams
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares; // Nightmares
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater; // Both
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise; // Both
+		TParticleSystemsMap mParticleSystemsComponent;
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams; // Dreams
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares; // Nightmares
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater; // Both
+		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise; // Both
+
+		/// Trajectory information
+		TrajectoryComponentPtr mTrajectoryComponent;
+		bool mUsingTrajectory;
 
 		/// Quad Halo
 		RenderComponentQuadHaloPtr mRenderComponentQuadHalo;
@@ -157,6 +183,14 @@ namespace OUAN
 		//Destructor
 		~GameObjectOny();
 
+		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
+		TrajectoryComponentPtr getTrajectoryComponent() const;
+
+		void activateTrajectory(const std::string& name);
+		void deactivateTrajectory();
+		bool isTrajectoryActive() const;
+		bool isTrajectoryFinished() const;
+
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
@@ -180,27 +214,19 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
-		/// Set Particle Systems
-		void setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams);
-		void setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares);
-		void setRenderComponentParticleSystemLandWave(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave);
-		void setRenderComponentParticleSystemLandWaterWave(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave);
-		void setRenderComponentParticleSystemLandWaterDrops(RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops);
-		void setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass);
-		void setRenderComponentParticleSystemRunSand(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand);
-		void setRenderComponentParticleSystemRunWater(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater);
-		void setRenderComponentParticleSystemRunSurprise(RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise);
+		/// Set a whole map of particle systems
+		void setParticleSystemsComponent(const TParticleSystemsMap& particleSystems);
+		/// Return particle systems container
+		TParticleSystemsMap& getParticleSystems();
 
-		/// Get Particle Systems
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandDreams() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandNightmares() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWave() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWaterWave() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemLandWaterDrops() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunGrass() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunSand() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunWater() const;
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemRunSurprise() const;
+		/// Add new particle system to the component map
+		void addParticleSystem(OnyParticleSystemID id,RenderComponentParticleSystemPtr particleSystem);
+		/// Return particle system from its ID
+		RenderComponentParticleSystemPtr getParticleSystem(OnyParticleSystemID id);
+
+		// Facade methods to start/stop a concrete particle system from outside GameObjectOny
+		void startParticleSystem(OnyParticleSystemID id);
+		void stopParticleSystem(OnyParticleSystemID id);
 
 		/// Set Quad Halo
 		void setRenderComponentQuadHalo(RenderComponentQuadHaloPtr mRenderComponentQuadHalo);
@@ -348,6 +374,9 @@ namespace OUAN
 
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
+
+		//Trajectory paramters
+		TTrajectoryComponentParameters tTrajectoryComponentParameters;
 
 		double mRunParticlesMin;
 		double mRunParticlesMax;

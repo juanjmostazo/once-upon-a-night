@@ -1653,99 +1653,16 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 		mComponentFactory->createRenderComponentInitial(
 			pGameObjectOny->getRenderComponentPositional()));
 
+	//Trajectory component for cutscenes
+	pGameObjectOny->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
+		pGameObjectOny,
+		tGameObjectOnyParameters.tTrajectoryComponentParameters));
+
 	//Create RenderComponenetParticleSystem
-	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND_DREAMS;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemLandDreams(
-		mComponentFactory->createRenderComponentParticleSystem(
-			pGameObjectOny,
-			tRenderComponentParticleSystemParameters,
-			pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND_NIGHTMARES;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemLandNightmares(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND_WAVE;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemLandWave(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND_WATER_WAVE;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemLandWaterWave(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_LAND_WATER_DROPS;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemLandWaterDrops(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_RUN_GRASS;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemRunGrass(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_RUN_SAND;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemRunSand(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_RUN_WATER;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemRunWater(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ONY_RUN_SURPRISE;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID=Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectOny->setRenderComponentParticleSystemRunSurprise(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectOny,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectOny->getRenderComponentPositional()));
-
+	//NOTE: Hundreds of lines of spaghetti code refactored out for readability
+	createOnyParticleSystems(pGameObjectOny);
+	
 	//Create RenderComponentEntity
 	pGameObjectOny->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(
@@ -1790,6 +1707,46 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	}
 
 	return pGameObjectOny;
+}
+void GameObjectFactory::createOnyParticleSystems(GameObjectOnyPtr onyPtr)
+{
+	ParticleTemplates* templates = ParticleTemplates::getInstance();
+	std::string templateNames[]={templates->ONY_LAND_DREAMS,
+		templates->ONY_LAND_NIGHTMARES,
+		templates->ONY_LAND_WAVE,
+		templates->ONY_LAND_WATER_WAVE,
+		templates->ONY_LAND_WATER_DROPS,
+		templates->ONY_RUN_GRASS,
+		templates->ONY_RUN_SAND,
+		templates->ONY_RUN_SURPRISE,
+		templates->ONY_RUN_WATER
+	};
+	
+	for (GameObjectOny::OnyParticleSystemID i = GameObjectOny::ONY_PS_MIN_ID; 
+		i<=GameObjectOny::ONY_PS_MAX_ID;
+		i=static_cast<GameObjectOny::OnyParticleSystemID>(static_cast<int>(i)+1))
+	{
+		createOnyParticleSystem(onyPtr, i,
+			templateNames[i],true,
+			templates->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE,
+			Ogre::RENDER_QUEUE_MAIN);
+	}
+
+}
+void GameObjectFactory::createOnyParticleSystem(GameObjectOnyPtr onyPtr, 
+	GameObjectOny::OnyParticleSystemID id,const std::string& templateName,
+	bool attached, int poolsize,Ogre::uint8 queueID)
+{
+	TRenderComponentParticleSystemParameters psParams;
+
+	psParams.templateName = templateName;
+	psParams.attached = attached;
+	psParams.poolSize = poolsize;
+	psParams.queueID=queueID;
+	onyPtr->addParticleSystem(id,mComponentFactory->createRenderComponentParticleSystem(
+		onyPtr,
+		psParams,
+		onyPtr->getRenderComponentPositional()));
 }
 
 GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TGameObjectParticleSystemParameters tGameObjectParticleSystemParameters, 

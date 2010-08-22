@@ -108,7 +108,10 @@ void LogicSubsystem::registerModules()
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentOny::getNumLives)
 			.def("getHP",&LogicComponentOny::getHealthPoints)
-			.def("getMaxHP",&LogicComponentOny::getInitialHealthPoints),
+			.def("getMaxHP",&LogicComponentOny::getInitialHealthPoints)
+			.def("beginTrajectory",&LogicComponentOny::activateTrajectory)
+			.def("endTrajectory", &LogicComponentOny::deactivateTrajectory)
+			.def("isTrajectoryFinished",&LogicComponentOny::isTrajectoryFinished),
 		class_<LogicComponentItem, LogicComponent > ("LogicComponentItem")
 			.def(constructor<const std::string&>()),
 		class_<LogicComponentUsable,LogicComponent>("LogicComponentUsable")
