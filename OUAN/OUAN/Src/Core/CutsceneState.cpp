@@ -19,7 +19,9 @@ CutsceneState::CutsceneState()
 :mCutsceneFile("")
 ,mCutsceneFunction("")
 ,mCutsceneLaunched(false)
+,mChangeWorldElapsedTime(0)
 ,mSkippingCutscene(false)
+,mIsChangingWorld(false)
 {
 	mInst=this;
 }
@@ -95,6 +97,22 @@ void CutsceneState::update(long elapsedTime)
 		else logicSS->updateCutsceneFunction(mCutsceneFunction,elapsedSeconds);
 		do 
 		{
+
+			if(mIsChangingWorld)
+			{
+				mChangeWorldElapsedTime+=elapsedSeconds;
+				if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
+				{
+					changeToWorld(mApp->getWorld(),1);
+					changeWorldFinished(mApp->getWorld());
+					mIsChangingWorld=false;
+				}
+				else
+				{
+					changeToWorld(mApp->getWorld(),mChangeWorldElapsedTime/mChangeWorldTotalTime);
+				}
+			}
+
 			//Game update
 			mApp->getCameraManager()->update(elapsedSeconds);
 
@@ -134,12 +152,116 @@ void CutsceneState::update(long elapsedTime)
 		}
 	}
 }
+void CutsceneState::changeWorld(int world)
+{
+	mInst->doChangeWorld(world);
+}
+void CutsceneState::doChangeWorld(int world)
+{
+	Configuration config;
+	std::string value;
+	if (config.loadFromFile(GAMEWORLDMANAGER_CFG))
+	{
+		mChangeWorldTotalTime = config.parseFloat("CHANGE_WORLD_TIME");
+		mRandomChangeWorld= config.parseBool("CHANGE_WORLD_TREES_RANDOM");
+		CHANGE_WORLD_RADIUM= config.parseFloat("CHANGE_WORLD_RADIUM");
+	}
+	mApp->setWorld(world);
+	activateChangeWorld();
+}
+void CutsceneState::activateChangeWorld()
+{
+	if(mIsChangingWorld)
+	{
+		mChangeWorldElapsedTime=mChangeWorldTotalTime-mChangeWorldElapsedTime;
+	}
+	else
+	{
+		mChangeWorldElapsedTime=0;
+		mIsChangingWorld=true;
+		changeWorldStarted(mApp->getWorld());
+	}
+}
+void CutsceneState::changeWorldStarted(int newWorld)
+{
+	mApp->getGameWorldManager()->setChangeWorldRender();
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		mApp->setOldWorld(NIGHTMARES);
+		mApp->getGameWorldManager()->setChangeWorldFactor(1);
+		break;
+	case NIGHTMARES:
+		mApp->setOldWorld(DREAMS);
+		mApp->getGameWorldManager()->setChangeWorldFactor(0);
+		break;
+	default:
+		break;
+	}
+
+	mCurrentChangeWorldFrame=0;
+}
+bool CutsceneState::isWorldChangeFinished() const
+{
+	return mIsChangingWorld;
+}
+bool CutsceneState::hasFinishedChangingWorld()
+{
+	return mInst->mIsChangingWorld;
+}
+void CutsceneState::changeToWorld(int newWorld, double percent)
+{
+	switch(newWorld)
+	{
+	case DREAMS:
+		mApp->getGameWorldManager()->setChangeWorldFactor(1-percent);
+		break;
+	case NIGHTMARES:
+		mApp->getGameWorldManager()->setChangeWorldFactor(percent);
+		break;
+	default:
+		break;
+	}
+}
+void CutsceneState::changeWorldFinished(int newWorld)
+{
+
+	mApp->setWorld(newWorld);
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		mApp->setOldWorld(NIGHTMARES);
+		mApp->getGameWorldManager()->setChangeWorldFactor(1);
+		break;
+	case NIGHTMARES:
+		mApp->setOldWorld(DREAMS);
+		mApp->getGameWorldManager()->setChangeWorldFactor(0);
+		break;
+	default:
+		break;
+	}
+	int world=mApp->getWorld();
+	switch(world)
+	{
+	case DREAMS:
+		mApp->getGameWorldManager()->setDreamsRender();
+		break;
+	case NIGHTMARES:
+		mApp->getGameWorldManager()->setNightmaresRender();
+		break;
+	default:
+		break;
+	}
+	mIsChangingWorld=false;
+	mApp->getGameWorldManager()->setWorld(world);
+}
 
 bool CutsceneState::render()
 {
 	if (!mSkippingCutscene)
 	{
-		Logger::getInstance()->log("CUTSCENE RENDER!!");
 		GameState::render();
 	}
 	return true;

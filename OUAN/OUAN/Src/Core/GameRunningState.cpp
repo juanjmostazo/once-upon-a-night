@@ -39,13 +39,12 @@ GameRunningState* GameRunningState::mInst=NULL;
 GameRunningState::GameRunningState()
 :GameState()
 ,mIsChangingWorld(false)
+,mProceedToNextLevel(false)
+,mChangeWorldElapsedTime(0)
 ,toGameOverTime(TO_GAME_OVER_DEFAULT)
 ,toGameOverElapsed(0.0)
 {
 	mInst=this;
-	mChangeWorldElapsedTime=0;
-	mIsChangingWorld=false;
-	mProceedToNextLevel=false;
 }
 
 /// Destructor
@@ -456,13 +455,13 @@ void GameRunningState::update(long elapsedTime)
 				mChangeWorldElapsedTime+=elapsedSeconds;
 				if(mChangeWorldElapsedTime>=mChangeWorldTotalTime)
 				{
-					changeToWorld(mWorld,1);
-					changeWorldFinished(mWorld);
+					changeToWorld(mApp->getWorld(),1);
+					changeWorldFinished(mApp->getWorld());
 					mIsChangingWorld=false;
 				}
 				else
 				{
-					changeToWorld(mWorld,mChangeWorldElapsedTime/mChangeWorldTotalTime);
+					changeToWorld(mApp->getWorld(),mChangeWorldElapsedTime/mChangeWorldTotalTime);
 				}
 			}
 
@@ -714,7 +713,7 @@ void GameRunningState::processGameOver(GameOverEventPtr evt)
 }
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
 {
-	mWorld=evt->getNewWorld();
+	mApp->setWorld(evt->getNewWorld());
 	mChangeWorldTotalTime=evt->time;
 	if (evt->fast)
 	{
@@ -747,7 +746,7 @@ void GameRunningState::activateChangeWorld()
 	{
 		mChangeWorldElapsedTime=0;
 		mIsChangingWorld=true;
-		changeWorldStarted(mWorld);
+		changeWorldStarted(mApp->getWorld());
 	}
 }
 
@@ -860,23 +859,23 @@ void GameRunningState::changeWorldFinished(int newWorld)
 {
 	endMusicFading(newWorld);
 
-	mWorld=newWorld;
+	mApp->setWorld(newWorld);
 	
 	switch(newWorld)
 	{
 		case DREAMS:
-			mOldWorld=NIGHTMARES;
+			mApp->setOldWorld(NIGHTMARES);
 			mApp->getGameWorldManager()->setChangeWorldFactor(1);
 			break;
 		case NIGHTMARES:
-			mOldWorld=DREAMS;
+			mApp->setOldWorld(DREAMS);
 			mApp->getGameWorldManager()->setChangeWorldFactor(0);
 			break;
 		default:
 			break;
 	}
-
-	switch(mWorld)
+	int world=mApp->getWorld();
+	switch(world)
 	{
 	case DREAMS:
 		mApp->getGameWorldManager()->setDreamsRender();
@@ -898,11 +897,11 @@ void GameRunningState::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			mOldWorld=NIGHTMARES;
+			mApp->setOldWorld(NIGHTMARES);
 			mApp->getGameWorldManager()->setChangeWorldFactor(1);
 			break;
 		case NIGHTMARES:
-			mOldWorld=DREAMS;
+			mApp->setOldWorld(DREAMS);
 			mApp->getGameWorldManager()->setChangeWorldFactor(0);
 			break;
 		default:

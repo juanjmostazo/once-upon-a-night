@@ -60,11 +60,14 @@ void LogicSubsystem::registerModules()
 
 	module(mLuaEngine) [
 		def("log", (void (*) (const std::string&)) &Utils::scriptLog),
+		def("world",&Application::world),
 		def("getDistance",&GameWorldManager::getDistance),
 		def("getPlayerDistance",&GameWorldManager::getPlayerDistance),
 		def("getWorld",&GameWorldManager::getMyInstanceWorld),
 		def("victory",&GameWorldManager::victory),
 		def("skip",&CutsceneState::isSkippingCutscene),
+		def("changeWorld",&CutsceneState::changeWorld),
+		def("hasFinishedChangingWorld",&CutsceneState::hasFinishedChangingWorld),
 		def("changeLevel",&GameRunningState::changeLevel),
 		def("setCheckPoint",&GameWorldManager::setCheckPointLUA),
 		def("getCheckPointNumber",&GameWorldManager::getCheckPointNumberLUA),

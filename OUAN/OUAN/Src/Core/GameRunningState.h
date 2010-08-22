@@ -60,9 +60,7 @@ namespace OUAN
 		double mChangeWorldTotalTime;
 		double mChangeWorldElapsedTime;
 		bool mIsChangingWorld;
-		int mWorld;
-		int mOldWorld;
-
+		
 		void initMusicFading(int newWorld);
 		void advanceMusicFading(int newWorld,double percentage);
 		void endMusicFading(int newWorld);

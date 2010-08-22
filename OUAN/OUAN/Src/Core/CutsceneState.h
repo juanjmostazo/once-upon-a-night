@@ -17,6 +17,13 @@ namespace OUAN
 		bool mSkippingCutscene;
 		lua_State* mCoroutine;
 		static CutsceneState* mInst;
+
+		float mChangeWorldTotalTime;
+		float CHANGE_WORLD_RADIUM;
+		bool mRandomChangeWorld;
+		bool mIsChangingWorld;
+		float mChangeWorldElapsedTime;
+		float mCurrentChangeWorldFrame;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -37,6 +44,16 @@ namespace OUAN
 		void update(long elapsedTime);
 
 		bool render();
+
+		void doChangeWorld(int world);
+		void activateChangeWorld();
+		void changeWorldStarted(int newWorld);
+		void changeToWorld(int newWorld, double percent);
+		void changeWorldFinished(int newWorld);
+		bool isWorldChangeFinished() const;
+
+		static void changeWorld(int world);
+		static bool hasFinishedChangingWorld();
 
 		/// Default constructor
 		CutsceneState();

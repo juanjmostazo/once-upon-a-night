@@ -142,6 +142,14 @@ namespace OUAN
 			bool isPlayingCutscene() const;
 			void setPlayingCutscene(bool playingCutscene);
 
+			int getWorld();
+			void setWorld(int world);
+
+			int getOldWorld();
+			void setOldWorld(int oldWorld);
+
+			static int world();
+
 		protected:
 
 			/// Singleton instance
@@ -201,6 +209,9 @@ namespace OUAN
 			std::vector<std::string> mSupportedLanguages;
 
 			bool mPlayingCutscene;
+
+			int mWorld;
+			int mOldWorld;
 		};
 }
 #endif

@@ -5,6 +5,9 @@ STATE_NAME_VOID="Invalid"
 COROUTINE_FINISHED=1
 COROUTINE_ONGOING=0
 
+OUAN_WORLD_DREAMS=0
+OUAN_WORLD_NIGHTMARES=1
+
 
 function getStateName(state,stateNames)
 	local retVal
@@ -47,6 +50,13 @@ end
 function trajectoryObjWait(obj,name)
 	while not obj:isTrajectoryFinished() and not skip() do				
 		coroutine.yield(COROUTINE_ONGOING)		
+	end
+end
+
+function worldChangeWait()
+	log("Entering worldChangeWait")
+	while not hasFinishedChangingWorld() and not skip() do
+		coroutine.yield(COROUTINE_ONGOING)
 	end
 end
 	
