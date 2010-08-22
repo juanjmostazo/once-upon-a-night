@@ -18,10 +18,11 @@ function helloWorld(timer)
 
 	setCameraTrajectory("LEVEL_START")	
 	trajectoryCamWait()
-	
+
 	log ("Switching to a tracking camera!!")
 	setAnyTrackingCamera()
-	
+
+
 	log ("narrative pause")
 	busyWait(timer,TRACK_TIME)
 
@@ -32,7 +33,7 @@ function helloWorld(timer)
 	log ("Any message 2")	
 	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
 	log ("Any message 3")
-	
+
 
 	
 	any:changeAnimation("die02")
@@ -40,8 +41,8 @@ function helloWorld(timer)
 	animationWait(any,"die02")
 
 	any:changeAnimation("run")
-	any:beginTrajectory("HelloWorldCutscene")
-	trajectoryObjWait(any)
+	any:beginTrajectory("HelloWorldCutscene",false)
+	trajectoryObjWait(any,"HelloWorldCutscene")
 	any:endTrajectory()
 	--stage 3: PC MOVEMENT:
 	-- any:walkToXYZ(), any:runToXYZ() -> make Any move to a given position

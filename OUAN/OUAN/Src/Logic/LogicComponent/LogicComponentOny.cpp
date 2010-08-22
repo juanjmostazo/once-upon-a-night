@@ -369,9 +369,9 @@ int LogicComponentOny::getDiamonds()
 	return getItemAmount(GAME_OBJECT_TYPE_DIAMOND);
 }
 
-void LogicComponentOny::activateTrajectory(const std::string& name)
+void LogicComponentOny::activateTrajectory(const std::string& name, bool looping)
 {
-	BOOST_PTR_CAST(GameObjectOny,mParent)->activateTrajectory(name);
+	BOOST_PTR_CAST(GameObjectOny,mParent)->activateTrajectory(name,looping);
 }
 void LogicComponentOny::deactivateTrajectory()
 {

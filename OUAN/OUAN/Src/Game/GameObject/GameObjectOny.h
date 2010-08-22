@@ -192,7 +192,7 @@ namespace OUAN
 		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
 		TrajectoryComponentPtr getTrajectoryComponent() const;
 
-		void activateTrajectory(const std::string& name);
+		void activateTrajectory(const std::string& name, bool looping=false);
 		void deactivateTrajectory();
 		bool isTrajectoryActive() const;
 		bool isTrajectoryFinished() const;

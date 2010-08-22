@@ -67,7 +67,13 @@ bool PhysicsComponentCharacterOny::canJump()
 
 void PhysicsComponentCharacterOny::applyOuternMovement(double elapsedSeconds)
 {
-	setNextMovement(Application::getInstance()->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
+	Application* app=Application::getInstance();
+	if (app->isPlayingCutscene())
+	{
+		setNextMovement(getOuternMovement());
+	}
+	else
+		setNextMovement(app->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
 }
 
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()

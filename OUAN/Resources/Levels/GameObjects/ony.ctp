@@ -32,7 +32,7 @@
   <PROPERTY id="RunParticles::max" type="6" value="5.0"></PROPERTY>
   
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.3" fields="X;Y;Z;W"></PROPERTY>
   
   <!-- Animations -->
   <PROPERTY id="initialAnimation" type="7" value="idle01"></PROPERTY>

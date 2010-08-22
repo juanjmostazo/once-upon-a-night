@@ -217,7 +217,9 @@ Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::
 
 bool Trajectory::trajectoryEnded()
 {
-	return isLastNode() && !getLoopTrajectory(); 
+	if (mState!=PATH_FINDING_TO_PREDEFINED_TRAJECTORY)
+		return isLastNode() && !getLoopTrajectory();
+	return false;
 }
 
 bool Trajectory::isLastNode()
@@ -593,7 +595,7 @@ void Trajectory::activatePredefinedTrajectory(std::string trajectory)
 {
 	mState=PREDEFINED_TRAJECTORY;
 
-	mLoopTrajectory=true;
+	//mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
 	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green",mDefaultSpeed);
 

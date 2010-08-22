@@ -176,7 +176,9 @@ bool RenderComponentEntity::hasFinishedAnimation(const std::string& animationNam
 }
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {
-	return mAnimationBlender->getSource();
+	if (mAnimationBlender)
+		return mAnimationBlender->getSource();
+	return NULL;
 }
 std::string RenderComponentEntity::getCurrentAnimationName() const
 {
