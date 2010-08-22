@@ -79,6 +79,9 @@ void CutsceneState::update(long elapsedTime)
 	LogicSubsystemPtr logicSS = mApp->getLogicSubsystem();
 
 	double elapsedSeconds=(double)elapsedTime * 0.000001f;
+	//BREAKPOINT HIT CHECK
+	if (elapsedSeconds>1)
+		elapsedSeconds=1/30.0f;
 	if (!mCutsceneFile.empty() && !mCutsceneFunction.empty())
 	{
 		//Check if cutscene launched. If not, do it. Otherwise, 

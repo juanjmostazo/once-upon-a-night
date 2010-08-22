@@ -68,7 +68,7 @@ namespace OUAN
 		int getItemAmount(const std::string& type);
 		int getDiamonds();
 
-		void activateTrajectory(const std::string& name);
+		void activateTrajectory(const std::string& name,bool looping);
 		void deactivateTrajectory();
 		bool isTrajectoryFinished() const;
 

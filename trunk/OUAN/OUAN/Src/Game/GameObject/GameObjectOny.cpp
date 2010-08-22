@@ -217,10 +217,8 @@ void GameObjectOny::update(double elapsedSeconds)
 		mTrajectoryComponent->update(elapsedSeconds);
 		if (mPhysicsComponentCharacterOny->isInUse())
 		{
-			mPhysicsComponentCharacterOny->setOuternMovement(mTrajectoryComponent->getNextMovement());
-		}
-		if (mTrajectoryComponent->hasEnded())
-			deactivateTrajectory();
+			mPhysicsComponentCharacterOny->setOuternMovement(mTrajectoryComponent->getNextMovementAbsolute());
+		}	
 	}
 }
 
@@ -664,9 +662,10 @@ void GameObjectOny::addDiamonds(int amount)
 	mLogicComponentOny->increaseCollectableItemAmount(GAME_OBJECT_TYPE_DIAMOND,amount);
 }
 
-void GameObjectOny::activateTrajectory(const std::string& name)
+void GameObjectOny::activateTrajectory(const std::string& name,bool looping)
 {
 	mTrajectoryComponent->activatePredefinedTrajectory(name,getWorld());
+	mTrajectoryComponent->setLoopingTrajectory(looping);
 	mUsingTrajectory=true;
 }
 void GameObjectOny::deactivateTrajectory()

@@ -2,11 +2,10 @@
 #define GameObjectDiamondTreeH_H
 
 #include "GameObject.h"
-#include "GameObjectTree.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN

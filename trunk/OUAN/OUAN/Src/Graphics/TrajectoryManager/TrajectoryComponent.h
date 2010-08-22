@@ -54,6 +54,9 @@ namespace OUAN
 		Quaternion getCurrentOrientation();
 		//updates nextmovment, position and orientationfor the trajectory
 		void update(double elapsedSeconds);
+
+		void setLoopingTrajectory(bool looping);
+		bool isLoopingTrajectory() const;
 	};
 
 	class TTrajectoryComponentParameters: public TComponentParameters

@@ -119,7 +119,17 @@ void TrajectoryComponent::setAs3DTrajectory()
 {
 	mTrajectory->setAs3DTrajectory();
 }
-
+void TrajectoryComponent::setLoopingTrajectory(bool looping)
+{
+	if (mTrajectory)
+		mTrajectory->setLoopTrajectory(looping);
+}
+bool TrajectoryComponent::isLoopingTrajectory() const
+{
+	if (mTrajectory)
+		return mTrajectory->getLoopTrajectory();
+	return false;
+}
 TTrajectoryComponentParameters::TTrajectoryComponentParameters()
 {
 }
