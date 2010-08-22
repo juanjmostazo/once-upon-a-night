@@ -1,6 +1,7 @@
 #ifndef GAMEOBJECTFACTORYH_H
 #define GAMEOBJECTFACTORYH_H
 #include "../OUAN.h"
+#include "GameObject/GameObjectOny.h"
 namespace OUAN
 {
 	class ComponentFactory;
@@ -10,10 +11,16 @@ namespace OUAN
 	typedef boost::shared_ptr<GameObjectSound> GameObjectSoundPtr;
 	class TGameObjectSoundParameters;
 
+	
 	class GameObjectFactory
 	{
 	private:
 		ComponentFactoryPtr mComponentFactory;
+
+		void createOnyParticleSystems(GameObjectOnyPtr onyPtr);
+		void GameObjectFactory::createOnyParticleSystem(GameObjectOnyPtr onyPtr, 
+			GameObjectOny::OnyParticleSystemID id, const std::string& templateName,
+			bool attached, int poolsize,Ogre::uint8 queueID);
 	public:
 		GameObjectFactory();
 		~GameObjectFactory();

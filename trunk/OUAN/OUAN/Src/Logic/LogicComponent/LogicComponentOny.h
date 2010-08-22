@@ -68,6 +68,10 @@ namespace OUAN
 		int getItemAmount(const std::string& type);
 		int getDiamonds();
 
+		void activateTrajectory(const std::string& name);
+		void deactivateTrajectory();
+		bool isTrajectoryFinished() const;
+
 	private:
 		/// Number of lives of the component
 		int mNumLives;

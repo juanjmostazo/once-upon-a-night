@@ -1603,6 +1603,9 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 
 		//Get AudioComponent
 		tGameObjectOnyParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
+		//Get Trajectory Component
+		tGameObjectOnyParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{

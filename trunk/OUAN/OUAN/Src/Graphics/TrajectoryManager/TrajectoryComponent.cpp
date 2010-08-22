@@ -26,7 +26,19 @@ void TrajectoryComponent::setTrajectory(Trajectory * pTrajectory)
 {
 	mTrajectory=pTrajectory;
 }
+Trajectory* TrajectoryComponent::getTrajectory() const
+{
+	return mTrajectory;
+}
+bool TrajectoryComponent::hasEnded() const
 
+{
+	if (mTrajectory)
+	{
+		return mTrajectory->trajectoryEnded();
+	}
+	return true;
+}
 void TrajectoryComponent::activateChase(std::string target)
 {
 	mTrajectory->activateChase(getParent()->getName(),target);

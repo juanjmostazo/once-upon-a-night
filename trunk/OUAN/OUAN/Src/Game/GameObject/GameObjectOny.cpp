@@ -15,10 +15,11 @@ using namespace OUAN;
 
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
+,mUsingTrajectory(false)
+,mIdleTime(-1)
 {
 	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
-	mIdleTime=-1;
 	mCurrentWeaponMode=WEAPON_MODE_0;
 }
 
@@ -57,84 +58,40 @@ RenderComponentEntityPtr GameObjectOny::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
-void GameObjectOny::setRenderComponentParticleSystemLandDreams(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandDreams)
+void GameObjectOny::setParticleSystemsComponent(const TParticleSystemsMap& particleSystems)
 {
-	mRenderComponentParticleSystemLandDreams = pRenderComponentParticleSystemLandDreams;
+	mParticleSystemsComponent=particleSystems;
+}
+GameObjectOny::TParticleSystemsMap& GameObjectOny::getParticleSystems()
+{
+	return mParticleSystemsComponent;
+}
+void GameObjectOny::addParticleSystem(OnyParticleSystemID id,RenderComponentParticleSystemPtr particleSystem)
+{
+	mParticleSystemsComponent[id]=particleSystem;
+}
+RenderComponentParticleSystemPtr GameObjectOny::getParticleSystem(OnyParticleSystemID id)
+{
+	if (mParticleSystemsComponent.find(id)!=mParticleSystemsComponent.end())
+	{
+		return mParticleSystemsComponent[id];
+	}
+	return RenderComponentParticleSystemPtr();
 }
 
-void GameObjectOny::setRenderComponentParticleSystemLandNightmares(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandNightmares)
+void GameObjectOny::startParticleSystem(OnyParticleSystemID id)
 {
-	mRenderComponentParticleSystemLandNightmares = pRenderComponentParticleSystemLandNightmares;
+	if (mParticleSystemsComponent.find(id)!=mParticleSystemsComponent.end())
+	{
+		mParticleSystemsComponent[id]->start();
+	}
 }
-
-void GameObjectOny::setRenderComponentParticleSystemLandWave(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWave)
+void GameObjectOny::stopParticleSystem(OnyParticleSystemID id)
 {
-	mRenderComponentParticleSystemLandWave = pRenderComponentParticleSystemLandWave;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemLandWaterWave(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWaterWave)
-{
-	mRenderComponentParticleSystemLandWaterWave = pRenderComponentParticleSystemLandWaterWave;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemLandWaterDrops(RenderComponentParticleSystemPtr pRenderComponentParticleSystemLandWaterDrops)
-{
-	mRenderComponentParticleSystemLandWaterDrops = pRenderComponentParticleSystemLandWaterDrops;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemRunGrass(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunGrass)
-{
-	mRenderComponentParticleSystemRunGrass = pRenderComponentParticleSystemRunGrass;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemRunSand(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunSand)
-{
-	mRenderComponentParticleSystemRunSand = pRenderComponentParticleSystemRunSand;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemRunWater(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunWater)
-{
-	mRenderComponentParticleSystemRunWater = pRenderComponentParticleSystemRunWater;
-}
-
-void GameObjectOny::setRenderComponentParticleSystemRunSurprise(RenderComponentParticleSystemPtr pRenderComponentParticleSystemRunSurprise)
-{
-	mRenderComponentParticleSystemRunSurprise = pRenderComponentParticleSystemRunSurprise;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandDreams() const
-{
-	return mRenderComponentParticleSystemLandDreams;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandNightmares() const
-{
-	return mRenderComponentParticleSystemLandNightmares;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemLandWave() const
-{
-	return mRenderComponentParticleSystemLandWave;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunGrass() const
-{
-	return mRenderComponentParticleSystemRunGrass;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunSand() const
-{
-	return mRenderComponentParticleSystemRunSand;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunWater() const
-{
-	return mRenderComponentParticleSystemRunWater;
-}
-
-RenderComponentParticleSystemPtr GameObjectOny::getRenderComponentParticleSystemRunSurprise() const
-{
-	return mRenderComponentParticleSystemRunSurprise;
+	if (mParticleSystemsComponent.find(id)!=mParticleSystemsComponent.end())
+	{
+		mParticleSystemsComponent[id]->stop();
+	}
 }
 
 void GameObjectOny::setRenderComponentQuadHalo(RenderComponentQuadHaloPtr pRenderComponentQuadHalo)
@@ -164,6 +121,14 @@ void GameObjectOny::setAudioComponent(AudioComponentPtr audioComponent)
 PhysicsComponentCharacterOnyPtr GameObjectOny::getPhysicsComponentCharacterOny() const
 {
 	return mPhysicsComponentCharacterOny;
+}
+void GameObjectOny::setTrajectoryComponent(TrajectoryComponentPtr trajectoryComponent)
+{
+	mTrajectoryComponent=trajectoryComponent;
+}
+TrajectoryComponentPtr GameObjectOny::getTrajectoryComponent() const
+{
+	return mTrajectoryComponent;
 }
 
 bool GameObjectOny::isMoving()
@@ -242,10 +207,20 @@ void GameObjectOny::update(double elapsedSeconds)
 		mRunParticlesElapsed+=elapsedSeconds;
 		if (mRunParticlesElapsed>mRunParticlesNextInterval)
 		{
-			mRenderComponentParticleSystemRunSand->start();
+			startParticleSystem(ONY_PS_RUN_SAND);
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval=Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
 		}
+	}
+	if (mUsingTrajectory)
+	{
+		mTrajectoryComponent->update(elapsedSeconds);
+		if (mPhysicsComponentCharacterOny->isInUse())
+		{
+			mPhysicsComponentCharacterOny->setOuternMovement(mTrajectoryComponent->getNextMovementAbsolute());
+		}
+		if (mTrajectoryComponent->hasEnded())
+			deactivateTrajectory();
 	}
 }
 
@@ -467,7 +442,7 @@ void GameObjectOny::postUpdate()
 
 		//TO REALLOCATE BETTER
 		if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_IDLE)){
-			mRenderComponentParticleSystemRunSand->start();
+			startParticleSystem(ONY_PS_RUN_SAND);
 		}
 
 		if (currentState==ONY_STATE_IDLE || currentState==(1<<ONY_STATE_BIT_FIELD_INVULNERABLE))
@@ -481,13 +456,13 @@ void GameObjectOny::postUpdate()
 				{
 					if (mGameWorldManager->getWorld() == DREAMS)
 					{
-						mRenderComponentParticleSystemLandDreams->start();
-						mRenderComponentParticleSystemLandWave->start();
+						startParticleSystem(ONY_PS_LAND_DREAMS);
+						startParticleSystem(ONY_PS_LAND_WAVE);
 					}
 					else if (mGameWorldManager->getWorld() == NIGHTMARES)
 					{
-						mRenderComponentParticleSystemLandNightmares->start();
-						mRenderComponentParticleSystemLandWave->start();
+						startParticleSystem(ONY_PS_LAND_NIGHTMARES);
+						startParticleSystem(ONY_PS_LAND_WAVE);
 					}
 				}
 			}
@@ -581,13 +556,13 @@ void GameObjectOny::postUpdate()
 		{
 			if (mGameWorldManager->getWorld() == DREAMS)
 			{
-				mRenderComponentParticleSystemLandDreams->start();
-				mRenderComponentParticleSystemLandWave->start();
+				startParticleSystem(ONY_PS_LAND_DREAMS);
+				startParticleSystem(ONY_PS_LAND_WAVE);
 			}
 			else if (mGameWorldManager->getWorld() == NIGHTMARES)
 			{
-				mRenderComponentParticleSystemLandNightmares->start();
-				mRenderComponentParticleSystemLandWave->start();
+				startParticleSystem(ONY_PS_LAND_NIGHTMARES);
+				startParticleSystem(ONY_PS_LAND_WAVE);
 			}
 		}
 		bool wasRunning = CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
@@ -603,7 +578,7 @@ void GameObjectOny::postUpdate()
 		{
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
-			mRenderComponentParticleSystemRunSand->start();
+			startParticleSystem(ONY_PS_RUN_SAND);			
 		}
 
 		//Apply radial blur effect when reached fall speed limit
@@ -687,6 +662,27 @@ void GameObjectOny::setRunParticlesMax(double runParticlesMax)
 void GameObjectOny::addDiamonds(int amount)
 {
 	mLogicComponentOny->increaseCollectableItemAmount(GAME_OBJECT_TYPE_DIAMOND,amount);
+}
+
+void GameObjectOny::activateTrajectory(const std::string& name)
+{
+	mTrajectoryComponent->activatePredefinedTrajectory(name,getWorld());
+	mUsingTrajectory=true;
+}
+void GameObjectOny::deactivateTrajectory()
+{
+	mTrajectoryComponent->activateIdle(getName(),getWorld());
+	mUsingTrajectory=false;
+}
+bool GameObjectOny::isTrajectoryActive() const
+{
+	return mUsingTrajectory;
+}
+bool GameObjectOny::isTrajectoryFinished() const
+{
+	if (mUsingTrajectory)
+		return mTrajectoryComponent->hasEnded();
+	return true;
 }
 //-------
 
