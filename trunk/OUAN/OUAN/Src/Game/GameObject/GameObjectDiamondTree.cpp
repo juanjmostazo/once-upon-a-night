@@ -75,28 +75,54 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
-
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
+				mRenderComponentEntityDreams->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
+
+				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+				
+				//mRenderComponentEntityDreams->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_UP:TREE_ANIM_IDLE_UP);
 			}
-			mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
-			
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
+				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+				//mRenderComponentEntityNightmares->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_DOWN:TREE_ANIM_IDLE_DOWN);
+			}		
 			break;
 		case NIGHTMARES:
-
-			mRenderComponentEntityNightmares->setVisible(true);
-			mRenderComponentEntityDreams->setVisible(false);
-
-			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mPhysicsComponentSimpleBox->create();
-			}
-			mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);
+				mRenderComponentEntityNightmares->setVisible(true);
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->create();
+				}
 
+				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+				//mRenderComponentEntityNightmares->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_UP:TREE_ANIM_IDLE_UP);	
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(false);
+				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
+				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+				//mRenderComponentEntityDreams->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_DOWN:TREE_ANIM_IDLE_DOWN);	
+			}
 			break;
 		default:
 			break;
@@ -107,15 +133,47 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	Logger::getInstance()->log("[changeWorldStarted] CHANGING "+getName());
+
+
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(true);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(true);
+	}
+
 	switch(newWorld)
 	{
 	case DREAMS:
-		//mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_WHILEANIMATING,0.2,false);
-		//mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+			//mRenderComponentEntityDreams->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_UP:TREE_ANIM_UP);
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{
+
+			std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+			//mRenderComponentEntity->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_DOWN:TREE_ANIM_DOWN);
+		}
 		break;
 	case NIGHTMARES:
-		//mRenderComponentEntityDreams->changeAnimation(TREE_ANIM_DOWN,AnimationBlender::BT_WHILEANIMATING,0.2,false);
-		//mRenderComponentEntityNightmares->changeAnimation(TREE_ANIM_UP,AnimationBlender::BT_WHILEANIMATING,0.2,false);
+		if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+		{
+			std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+
+			//mRenderComponentEntity->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_DOWN:TREE_ANIM_DOWN);
+		}
+		else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+		{	
+			std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
+			//mRenderComponentEntity->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_UP:TREE_ANIM_UP);
+		}
 		break;
 	default:
 		break;
@@ -125,16 +183,64 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 void GameObjectDiamondTree::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
+	
+	//std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+	//float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	//if(!mRenderComponentEntity->getCurrentAnimation()) return;
 
-	switch(newWorld)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
+	//switch(newWorld)
+	//{
+	//case DREAMS:
+	//	if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+	//	{
+	//		if(currentAnimName.compare(TREE_ANIM_DOWN)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+	//		}
+	//		else if(currentAnimName.compare(TREE_ANIM_UP)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+	//		}
+	//	}
+	//	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+	//	{
+	//		if(currentAnimName.compare(TREE_ANIM_DOWN)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+	//		}
+	//		else if(currentAnimName.compare(TREE_ANIM_UP)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+	//		}
+	//	}
+	//	break;
+	//case NIGHTMARES:
+	//	if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+	//	{
+	//		if(currentAnimName.compare(TREE_ANIM_DOWN)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+	//		}
+	//		else if(currentAnimName.compare(TREE_ANIM_UP)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+	//		}
+	//	}
+	//	else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+	//	{
+	//		if(currentAnimName.compare(TREE_ANIM_DOWN)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+	//		}
+	//		else if(currentAnimName.compare(TREE_ANIM_UP)==0)
+	//		{
+	//			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+	//		}
+	//	}
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void GameObjectDiamondTree::calculateChangeWorldTotalTime(double changeWorldTotalTime)
