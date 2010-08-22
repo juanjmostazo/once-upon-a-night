@@ -1660,7 +1660,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Create RenderComponenetParticleSystem
 
-	//NOTE: Hundreds of lines of spaghetti code refactored out for readability
+	//NOTE: Refactored out for readability
 	createOnyParticleSystems(pGameObjectOny);
 	
 	//Create RenderComponentEntity
@@ -1722,9 +1722,13 @@ void GameObjectFactory::createOnyParticleSystems(GameObjectOnyPtr onyPtr)
 		templates->ONY_RUN_WATER
 	};
 	
+	/*
+		Range through the enums. 
+		The last part of the for-statement just invokes a code-replacement macro that increments i;
+	*/
 	for (GameObjectOny::OnyParticleSystemID i = GameObjectOny::ONY_PS_MIN_ID; 
 		i<=GameObjectOny::ONY_PS_MAX_ID;
-		i=static_cast<GameObjectOny::OnyParticleSystemID>(static_cast<int>(i)+1))
+		INC_ENUM(GameObjectOny::OnyParticleSystemID,i))
 	{
 		createOnyParticleSystem(onyPtr, i,
 			templateNames[i],true,
