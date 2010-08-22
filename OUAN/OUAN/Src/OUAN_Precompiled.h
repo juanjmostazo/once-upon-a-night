@@ -106,6 +106,10 @@ extern "C" {
 
 #define BOOST_PTR_CAST(type, var) boost::dynamic_pointer_cast<type>(var)
 
+// Increment/decrement enumerated type variables
+#define INC_ENUM(type,var) var=static_cast<type>(static_cast<int>(var)+1)
+#define DEC_ENUM(type,var) var=static_cast<type>(static_cast<int>(var)-1)
+
 //EXAMPLE OF USE
 // GameObjectOny => CLASS_DECLARATIONS(GameObjectOny);
 // Result:

@@ -228,7 +228,7 @@ void GameObjectTree::reset()
 	GameObject::reset();
 	std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
-	mRenderComponentEntity->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_UP:TREE_ANIM_IDLE_UP);
+	//mRenderComponentEntity->changeAnimation((nodeName.find("tree8")!=std::string::npos)?TREE8_ANIM_IDLE_UP:TREE_ANIM_IDLE_UP);
 }
 
 bool GameObjectTree::hasPositionalComponent() const

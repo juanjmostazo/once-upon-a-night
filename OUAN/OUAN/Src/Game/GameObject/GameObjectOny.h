@@ -114,16 +114,22 @@ namespace OUAN
 		{
 			ONY_PS_MIN_ID=0,
 			ONY_PS_LAND_DREAMS=ONY_PS_MIN_ID,
+			/*
+				Define new ids anywhere between this comment
+			*/
 			ONY_PS_LAND_NIGHTMARES,
 			ONY_PS_LAND_WAVE,
 			ONY_PS_LAND_WATER_WAVE,
 			ONY_PS_LAND_WATER_DROPS,
 			ONY_PS_RUN_GRASS,
 			ONY_PS_RUN_SAND,
-			ONY_PS_RUN_WATER,
 			ONY_PS_RUN_SURPRISE,
-			ONY_PS_MAX_ID=ONY_PS_RUN_SURPRISE
-			//TODO: Append further ids if necessary
+			/*
+				...and this one, or replace values accordingly
+			*/
+			ONY_PS_RUN_WATER,
+			ONY_PS_MAX_ID=ONY_PS_RUN_WATER
+
 		};
 		static const int PARTICLE_SYSTEMS_NUM=ONY_PS_MAX_ID-ONY_PS_MIN_ID+1;
 		//PARTICLE SYSTEMS REFACTOR
@@ -217,7 +223,7 @@ namespace OUAN
 		/// Set a whole map of particle systems
 		void setParticleSystemsComponent(const TParticleSystemsMap& particleSystems);
 		/// Return particle systems container
-		TParticleSystemsMap& getParticleSystems();
+		TParticleSystemsMap& getParticleSystemsComponent();
 
 		/// Add new particle system to the component map
 		void addParticleSystem(OnyParticleSystemID id,RenderComponentParticleSystemPtr particleSystem);

@@ -17,12 +17,6 @@ namespace OUAN
 	const std::string TREE_ANIM_IDLE_UP2="idle02";
 	const std::string TREE_ANIM_IDLE_DOWN="idle03";
 
-	const std::string TREE8_ANIM_UP="up_Clip";
-	const std::string TREE8_ANIM_DOWN="down_Clip";
-	const std::string TREE8_ANIM_IDLE_UP="idle01_Clip";
-	const std::string TREE8_ANIM_IDLE_UP2="idle02_Clip";
-	const std::string TREE8_ANIM_IDLE_DOWN="idle03_Clip";
-
 	/// Class to hold GameObjectTree information
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
 	{

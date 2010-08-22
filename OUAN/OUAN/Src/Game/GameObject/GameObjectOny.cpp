@@ -62,7 +62,7 @@ void GameObjectOny::setParticleSystemsComponent(const TParticleSystemsMap& parti
 {
 	mParticleSystemsComponent=particleSystems;
 }
-GameObjectOny::TParticleSystemsMap& GameObjectOny::getParticleSystems()
+GameObjectOny::TParticleSystemsMap& GameObjectOny::getParticleSystemsComponent()
 {
 	return mParticleSystemsComponent;
 }
@@ -217,7 +217,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		mTrajectoryComponent->update(elapsedSeconds);
 		if (mPhysicsComponentCharacterOny->isInUse())
 		{
-			mPhysicsComponentCharacterOny->setOuternMovement(mTrajectoryComponent->getNextMovementAbsolute());
+			mPhysicsComponentCharacterOny->setOuternMovement(mTrajectoryComponent->getNextMovement());
 		}
 		if (mTrajectoryComponent->hasEnded())
 			deactivateTrajectory();
