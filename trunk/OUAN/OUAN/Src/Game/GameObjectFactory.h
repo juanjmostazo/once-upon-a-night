@@ -42,7 +42,7 @@ namespace OUAN
 		GameObjectCryKingPtr createGameObjectCryKing(TGameObjectCryKingParameters tGameObjectCryKingParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectDiamondPtr createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters, 
-			GameWorldManagerPtr gameWorldMgr);
+			GameWorldManagerPtr gameWorldMgr, bool hasGravity);
 		GameObjectDiamondTreePtr createGameObjectDiamondTree(TGameObjectDiamondTreeParameters tGameObjectDiamondTreeParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectDoorPtr createGameObjectDoor(TGameObjectDoorParameters tGameObjectDoorParameters, 
