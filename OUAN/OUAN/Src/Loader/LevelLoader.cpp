@@ -970,7 +970,7 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 
 	//Create GameObject
 	//mGameWorldManager->createGameObjectDiamond(tGameObjectDiamondParameters);
-	mGameWorldManager->addGameObjectDiamond(mGameObjectFactory->createGameObjectDiamond(tGameObjectDiamondParameters,mGameWorldManager));
+	mGameWorldManager->addGameObjectDiamond(mGameObjectFactory->createGameObjectDiamond(tGameObjectDiamondParameters,mGameWorldManager,false));
 }
 
 void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)

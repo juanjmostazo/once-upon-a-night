@@ -632,7 +632,7 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 }
 
 GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamondParameters tGameObjectDiamondParameters, 
-	GameWorldManagerPtr gameWorldMgr)
+	GameWorldManagerPtr gameWorldMgr, bool hasGravity)
 {
 	GameObjectDiamondPtr pGameObjectDiamond;
 
@@ -701,7 +701,10 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 		tGameObjectDiamondParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDiamond->getRenderComponentPositional()));
 
-	//pGameObjectDiamond->getPhysicsComponentSimpleBox()->destroy();
+	if(!hasGravity)
+	{
+		pGameObjectDiamond->getPhysicsComponentSimpleBox()->destroy();
+	}
 
 	if (!tGameObjectDiamondParameters.tParentDiamondTree.empty())
 	{
@@ -2315,10 +2318,10 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->getLogicComponent()->existsInDreams(),
 		gameObject->getLogicComponent()->existsInNightmares()));
 		}
-		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
-			params.dreamsName+"#light",
-				gameObject,
-				params.lightDreamsParams));
+		//gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
+		//	params.dreamsName+"#light",
+		//		gameObject,
+		//		params.lightDreamsParams));
 
 		if (gameObject->isUsingEntityNightmares())
 		{
@@ -2341,10 +2344,10 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 
-		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
-			params.nightmaresName+"#light",
-			gameObject,
-			params.lightNightmaresParams));
+		//gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
+		//	params.nightmaresName+"#light",
+		//	gameObject,
+		//	params.lightNightmaresParams));
 	}
 	else if(gameObject->getLogicComponent()->existsInDreams())
 	{
@@ -2370,10 +2373,10 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->getLogicComponent()->existsInDreams(),
 		gameObject->getLogicComponent()->existsInNightmares()));
 		}
-		gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
-			params.dreamsName,
-			gameObject,
-			params.lightDreamsParams));
+		//gameObject->setLightDreams(mComponentFactory->createRenderComponentLight(
+		//	params.dreamsName,
+		//	gameObject,
+		//	params.lightDreamsParams));
 	}
 	else if(gameObject->getLogicComponent()->existsInNightmares())
 	{
@@ -2398,10 +2401,10 @@ GameObjectSkyBodyPtr GameObjectFactory::createGameObjectSkyBody(TGameObjectSkyBo
 		gameObject->getLogicComponent()->existsInNightmares()));
 		}
 
-		gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
-			params.nightmaresName,
-			gameObject,
-			params.lightNightmaresParams));		
+		//gameObject->setLightNightmares(mComponentFactory->createRenderComponentLight(
+		//	params.nightmaresName,
+		//	gameObject,
+		//	params.lightNightmaresParams));	
 	}
 
 	////////////////////////////////////////////////////////

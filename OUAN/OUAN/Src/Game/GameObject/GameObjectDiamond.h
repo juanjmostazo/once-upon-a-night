@@ -33,7 +33,7 @@ namespace OUAN
 		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
 
 		// A simpleBox component will be used with diamonds that are spawned from trees.
-		//
+		// 
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 
 		/// Logic component: it'll represent the 'brains' of the game object
