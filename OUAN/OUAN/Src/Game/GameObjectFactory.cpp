@@ -14,6 +14,8 @@
 #include "GameObject/GameObjectCryKing.h"
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
+#include "GameObject/GameObjectBreakableRock.h"
+#include "GameObject/GameObjectInvisibleWall.h"
 #include "GameObject/GameObjectDoor.h"
 #include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
@@ -852,6 +854,136 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 	}
 
 	return pGameObjectDoor;
+}
+
+GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGameObjectBreakableRockParameters tGameObjectBreakableRockParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectBreakableRockPtr pGameObjectBreakableRock;
+
+	//Create GameObject
+	pGameObjectBreakableRock = GameObjectBreakableRockPtr(new GameObjectBreakableRock(tGameObjectBreakableRockParameters.name));
+	pGameObjectBreakableRock->setMaxUpdateRadium(tGameObjectBreakableRockParameters.mMaxUpdateRadium);
+	pGameObjectBreakableRock->setParentNest(tGameObjectBreakableRockParameters.parentNest);
+	pGameObjectBreakableRock->setSpawnProbability(tGameObjectBreakableRockParameters.spawnProbability);
+	pGameObjectBreakableRock->setMaxRenderRadium(tGameObjectBreakableRockParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectBreakableRock->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectBreakableRock,
+		tGameObjectBreakableRockParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectBreakableRock->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectBreakableRock->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectBreakableRock->getRenderComponentPositional()));
+
+	if(pGameObjectBreakableRock->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntity Dreams
+		pGameObjectBreakableRock->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.dreamsName,
+			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectBreakableRock->getLogicComponent()->existsInDreams(),
+		pGameObjectBreakableRock->getLogicComponent()->existsInNightmares()));
+	}
+	if(pGameObjectBreakableRock->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntity Nightmares
+		pGameObjectBreakableRock->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.nightmaresName,
+			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectBreakableRock->getLogicComponent()->existsInDreams(),
+		pGameObjectBreakableRock->getLogicComponent()->existsInNightmares()));
+	}
+
+	//Create PhysicsComponent
+	pGameObjectBreakableRock->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
+		pGameObjectBreakableRock, 
+		tGameObjectBreakableRockParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectBreakableRock->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectBreakableRock->setGameWorldManager(gameWorldMgr);
+
+	std::string scriptFile="";
+	pGameObjectBreakableRock->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+
+	return pGameObjectBreakableRock;
+}
+
+GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGameObjectInvisibleWallParameters tGameObjectInvisibleWallParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectInvisibleWallPtr pGameObjectInvisibleWall;
+
+	//Create GameObject
+	pGameObjectInvisibleWall = GameObjectInvisibleWallPtr(new GameObjectInvisibleWall(tGameObjectInvisibleWallParameters.name));
+	pGameObjectInvisibleWall->setMaxUpdateRadium(tGameObjectInvisibleWallParameters.mMaxUpdateRadium);
+	pGameObjectInvisibleWall->setParentNest(tGameObjectInvisibleWallParameters.parentNest);
+	pGameObjectInvisibleWall->setSpawnProbability(tGameObjectInvisibleWallParameters.spawnProbability);
+	pGameObjectInvisibleWall->setMaxRenderRadium(tGameObjectInvisibleWallParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectInvisibleWall->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectInvisibleWall,
+		tGameObjectInvisibleWallParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectInvisibleWall->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectInvisibleWall,tGameObjectInvisibleWallParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectInvisibleWall->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectInvisibleWall->getRenderComponentPositional()));
+
+	if(pGameObjectInvisibleWall->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntity Dreams
+		pGameObjectInvisibleWall->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectInvisibleWallParameters.dreamsName,
+			pGameObjectInvisibleWall,tGameObjectInvisibleWallParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectInvisibleWall->getLogicComponent()->existsInDreams(),
+		pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares()));
+	}
+	if(pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntity Nightmares
+		pGameObjectInvisibleWall->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectInvisibleWallParameters.nightmaresName,
+			pGameObjectInvisibleWall,tGameObjectInvisibleWallParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectInvisibleWall->getLogicComponent()->existsInDreams(),
+		pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares()));
+	}
+
+	//Create PhysicsComponent
+	pGameObjectInvisibleWall->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
+		pGameObjectInvisibleWall, 
+		tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters, 
+		pGameObjectInvisibleWall->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectInvisibleWall->setGameWorldManager(gameWorldMgr);
+
+	std::string scriptFile="";
+	pGameObjectInvisibleWall->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+
+	return pGameObjectInvisibleWall;
 }
 
 GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParameters tGameObjectBossParameters, 
@@ -1958,6 +2090,12 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 		pGameObjectPlataform,
 		tGameObjectPlataformParameters.tPhysicsComponentComplexConvexParameters,
 		pGameObjectPlataform->getRenderComponentPositional()));
+
+	//Create TrajectoryComponent
+	pGameObjectPlataform->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
+		pGameObjectPlataform,
+		tGameObjectPlataformParameters.tTrajectoryComponentParameters));
+	pGameObjectPlataform->activateTrajectory();
 
 	//Add reference to this
 	pGameObjectPlataform->setGameWorldManager(gameWorldMgr);

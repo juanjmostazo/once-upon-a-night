@@ -149,7 +149,8 @@ int LogicComponent::getLastFrameState() const
 void LogicComponent::printMessage(const std::string& msg,double time)
 {
 	//TODO: Replace with dialogue overlays
-	getParent()->displayText(getParent()->getTranslation(msg),time);
+	std::string translation = getParent()->getTranslation(msg);
+	getParent()->displayText(translation,time);
 }
 bool LogicComponent::isEnabled() const
 {

@@ -1,55 +1,48 @@
-#ifndef GameObjectPlataformH_H
-#define GameObjectPlataformH_H
+#ifndef GameObjectBreakableRockH_H
+#define GameObjectBreakableRockH_H
 
 #include "GameObject.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
-#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 namespace OUAN
 {
-	const std::string PLATFORM1_ANIM_FRONT="front_Clip";
-	const std::string PLATFORM1_ANIM_BACK="back_Clip";
-	const std::string PLATFORM2_ANIM_FRONT="front";
-	const std::string PLATFORM2_ANIM_BACK="back";
-	const std::string PLATFORM3_ANIM_FRONT="front";
-	const std::string PLATFORM3_ANIM_BACK="back";
-	/// Class to hold terrain information
-	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>
+	/// Class to hold Door information
+	class GameObjectBreakableRock : public GameObject, public boost::enable_shared_from_this<GameObjectBreakableRock>
 	{
 	private:
-		/// Visual information
+		
+		/// Visual component
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
 		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
-
-		TrajectoryComponentPtr mTrajectoryComponent;
 	public:
 		//Constructor
-		GameObjectPlataform(const std::string& name);
+		GameObjectBreakableRock(const std::string& name);
 		//Destructor
-		~GameObjectPlataform();
-		/// Return render component entity 
-		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		~GameObjectBreakableRock();
 		/// Set logic component
 		void setLogicComponent(LogicComponentPtr logicComponent);
 
 		/// return logic component
 		LogicComponentPtr getLogicComponent();
+
+		/// Return render component entity 
+		/// @return render component entity
+		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -59,13 +52,6 @@ namespace OUAN
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
-
-		/// Set trajectory component
-		/// @param pTrajectoryComponent
-		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
-		TrajectoryComponentPtr getTrajectoryComponent();
-
-		void setVisible(bool visible);
 
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
@@ -79,16 +65,17 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex() const;
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+
 
 		/// Reset object
 		virtual void reset();
@@ -114,21 +101,20 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		void activateTrajectory();
+		
+		
 
-		void update(double elapsedSeconds);
-		
-		
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
 	};
 
-	class TGameObjectPlataformParameters: public TGameObjectParameters
+	class TGameObjectBreakableRockParameters: public TGameObjectParameters
 	{
 	public:
-		TGameObjectPlataformParameters();
-		~TGameObjectPlataformParameters();
-		
+		TGameObjectBreakableRockParameters();
+		~TGameObjectBreakableRockParameters();
+
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
 		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
@@ -137,13 +123,10 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
-
-		///Trajectory parameters
-		TTrajectoryComponentParameters tTrajectoryComponentParameters;
 	};
 }
 #endif

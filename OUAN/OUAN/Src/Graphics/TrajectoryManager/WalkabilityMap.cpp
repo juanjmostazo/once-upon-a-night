@@ -350,7 +350,7 @@ std::vector<Ogre::SceneNode *> WalkabilityMap::pathFinding(Ogre::SceneNode * sou
 		return path;
   }
 
-  Logger::getInstance()->log("Path not found");
+  //Logger::getInstance()->log("Walkability Map - Path between nodes not found");
 
 	if(createdTarget)
 	{

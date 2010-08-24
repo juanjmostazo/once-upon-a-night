@@ -68,7 +68,7 @@ void TrajectoryComponent::activatePathFinding(std::string target,int currentWorl
 	}
 }
 
-void TrajectoryComponent::activatePredefinedTrajectory(std::string trajectory,int currentWorld)
+void TrajectoryComponent::activatePathfindingToPredefinedTrajectory(std::string trajectory,int currentWorld)
 {
 	if(currentWorld==DREAMS)
 	{
@@ -79,6 +79,12 @@ void TrajectoryComponent::activatePredefinedTrajectory(std::string trajectory,in
 		mTrajectory->activatePathfindingToPredefinedTrajectory(trajectory,getParent()->getName(),DEFAULT_WALKABILITY_MAP_NIGHTMARES);
 	}
 }
+
+void TrajectoryComponent::activateTrajectory(std::string trajectory)
+{
+	mTrajectory->activatePredefinedTrajectory(trajectory);
+}
+
 
 bool TrajectoryComponent::predefinedTrajectoryExists(std::string name)
 {

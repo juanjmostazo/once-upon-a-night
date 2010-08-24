@@ -664,7 +664,8 @@ void GameObjectOny::addDiamonds(int amount)
 
 void GameObjectOny::activateTrajectory(const std::string& name,bool looping)
 {
-	mTrajectoryComponent->activatePredefinedTrajectory(name,getWorld());
+	mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(name,getWorld());
+	mTrajectoryComponent->setAs2DTrajectory();
 	mTrajectoryComponent->setLoopingTrajectory(looping);
 	mUsingTrajectory=true;
 }

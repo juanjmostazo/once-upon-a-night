@@ -297,6 +297,10 @@ namespace OUAN
 		void addGameObjectTotem(GameObjectTotemPtr pGameObjectTotem);
 		void addGameObjectBomb(GameObjectBombPtr pGameObjectBomb);
 		void addGameObjectLevelEntrance(GameObjectLevelEntrancePtr pGameObjectLevelEntrance);
+
+		void addGameObjectInvisibleWall(GameObjectInvisibleWallPtr pGameObjectInvisibleWall);
+		void addGameObjectBreakableRock(GameObjectBreakableRockPtr pGameObjectBreakableRock);
+
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 

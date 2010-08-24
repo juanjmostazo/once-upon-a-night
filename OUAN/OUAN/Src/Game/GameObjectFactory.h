@@ -135,6 +135,10 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectLevelEntrancePtr createGameObjectLevelEntrance(TGameObjectLevelEntranceParameters tGameObjectLevelEntranceParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectInvisibleWallPtr createGameObjectInvisibleWall(TGameObjectInvisibleWallParameters tGameObjectInvisibleWallParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectBreakableRockPtr createGameObjectBreakableRock(TGameObjectBreakableRockParameters tGameObjectBreakableRockParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 	};
 }
 #endif
