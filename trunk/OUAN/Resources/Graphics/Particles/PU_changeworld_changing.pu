@@ -1,10 +1,10 @@
-system PU/changeworld01
+system PU/changeworld_changing
 {
     technique 
     {
         visual_particle_quota                   180
         emitted_emitter_quota                   15
-        material                                PU/changeworld01
+        material                                PU/changeworld_changing
         spatial_hashing_cell_dimension          25
         spatial_hashing_cell_overlap            15
         spatial_hashtable_size                  35
@@ -73,7 +73,7 @@ system PU/changeworld01
     {
         visual_particle_quota                   200
         emitted_emitter_quota                   30
-        material                                PU/changeworld01
+        material                                PU/changeworld_changing
         default_particle_width                  8
         default_particle_height                 8
         spatial_hashing_update_interval         10

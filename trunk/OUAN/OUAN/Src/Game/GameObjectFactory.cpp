@@ -3360,6 +3360,15 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 		pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares()));
 	}
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE;
+	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTripollo->setRenderComponentParticleSystemDie(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectTripollo->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectTripollo,

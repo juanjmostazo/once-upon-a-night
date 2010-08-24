@@ -1,0 +1,128 @@
+system PU/tripollo_die
+{
+    scale_velocity                              0.12
+    scale                                       0.12 0.12 0.12
+    technique 
+    {
+        material                                PU/ExplosionFire
+        default_particle_width                  10
+        default_particle_height                 10
+        renderer                                Billboard
+        {
+        }
+        emitter                                 SphereSurface BurstEmitter
+        {
+            emission_rate                       25
+            time_to_live                        2
+            direction                           0 0 0
+            auto_direction                      true
+            sphere_surface_em_radius            5
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 0.95 1
+            colour_aff_time_colour              0.5  0.18 0.05 0.01 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           250
+        }
+        observer                                OnTime 
+        {
+            handler                             DoEnableComponent 
+            {
+                enable_component                emitter_component BurstEmitter false
+            }
+            since_start_system                  true
+            on_time                             greater_than 0.5
+        }
+    }
+    technique 
+    {
+        material                                PU/Debris
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+        }
+        emitter                                 Point DebrisEmitter
+        {
+            emission_rate                       100
+            angle                               360
+            time_to_live                        5
+            velocity                            dyn_random
+            {
+                min                             100
+                max                             180
+            }
+            particle_width                      3
+            particle_height                     dyn_random
+            {
+                min                             2
+                max                             20
+            }
+            enabled                             false
+            direction                           0 -1 0
+            force_emission                      true
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -100 0
+        }
+        observer                                OnTime 
+        {
+            handler                             DoEnableComponent 
+            {
+                enable_component                emitter_component DebrisEmitter true
+            }
+            since_start_system                  true
+            on_time                             greater_than 0.3
+        }
+    }
+    technique NucleusTechnique
+    {
+        material                                PU/Nucleus
+        default_particle_width                  15
+        default_particle_height                 15
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       100
+            angle                               360
+            velocity                            2
+            direction                           0 -1 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    0.5 0.4 0.2 1
+            colour_aff_time_colour              0.1  0.5 0.2 0.05 1
+            colour_aff_time_colour              0.2  0.1 0.1 0.1 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+        affector                                TextureRotator 
+        {
+            tex_rot_use_own_rotation            true
+            tex_rot_rotation                    dyn_random
+            {
+                min                             1
+                max                             90
+            }
+            tex_rot_speed                       dyn_random
+            {
+                min                             0.1
+                max                             1
+            }
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           -5
+        }
+    }
+}

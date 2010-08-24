@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/changeworld01
+material PU/changeworld_idle
 {
     technique
     {
@@ -20,7 +20,7 @@ material PU/changeworld01
 
             texture_unit
             {
-                texture pu_changeworld01.png
+                texture pu_changeworld_idle.png
             }
         }
     }
