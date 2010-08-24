@@ -82,7 +82,7 @@ void GameObjectPlataform::activateTrajectory()
 {
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
-		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName(),DREAMS);
+		mTrajectoryComponent->activateTrajectory(getName());
 		mTrajectoryComponent->setLoopingTrajectory(true);
 	}
 }
@@ -278,7 +278,7 @@ void GameObjectPlataform::update(double elapsedSeconds)
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
 		Vector3 position=mTrajectoryComponent->getCurrentPosition();
-		Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+		//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 		//Logger::getInstance()->log("GameObjectPlataform::update " + getName() +" "+Ogre::StringConverter::toString(position));
 		mRenderComponentPositional->setPosition(position);
 		if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
