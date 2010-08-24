@@ -73,6 +73,8 @@ bool ParticleTemplates::loadConfig()
 
 		config.getOption("BOX_DUST", BOX_DUST); 
 
+		config.getOption("TRIPOLLO_DIE", TRIPOLLO_DIE); 
+
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
 

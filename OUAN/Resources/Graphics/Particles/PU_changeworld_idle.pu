@@ -1,0 +1,57 @@
+system PU/changeword_idle
+{
+    technique 
+    {
+        visual_particle_quota                   300
+        emitted_emitter_quota                   60
+        material                                PUMediaPack/Flare_05
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       1
+            angle                               1
+            time_to_live                        2
+            velocity                            300
+            emits                               emitter_particle CircleEmitter
+            force_emission                      true
+        }
+        emitter                                 Circle CircleEmitter
+        {
+            emission_rate                       100
+            time_to_live                        0.5
+            direction                           0 0 0
+            emits                               emitter_particle PointEmitter
+            circle_em_radius                    200
+            circle_em_step                      0.2
+            circle_em_random                    false
+        }
+        emitter                                 Point PointEmitter
+        {
+            emission_rate                       5
+            angle                               360
+            time_to_live                        1
+            velocity                            50
+            all_particle_dimensions             dyn_random
+            {
+                min                             20
+                max                             120
+            }
+            start_colour_range                  0.3 0.3 0.3 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+        observer                                OnClear 
+        {
+            handler                             DoStopSystem 
+            {
+            }
+        }
+    }
+}

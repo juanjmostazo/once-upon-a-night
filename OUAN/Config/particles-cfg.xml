@@ -3,8 +3,8 @@
   <Options>
     <Option key="DEFAULT_PARTICLE_SYSTEM_POOL_SIZE">1</Option>
   
-	<Option key="PORTAL_CHANGE_WORLD_IDLE">PU/changeworld01</Option>
-	<Option key="PORTAL_CHANGE_WORLD_CHANGING">PU/changeworld01</Option>
+	<Option key="PORTAL_CHANGE_WORLD_IDLE">PU/changeworld_idle</Option>
+	<Option key="PORTAL_CHANGE_WORLD_CHANGING">PU/changeworld_changing</Option>
 	
 	<Option key="ONY_LAND_DREAMS">PU/any_jump_d</Option>
 	<Option key="ONY_LAND_NIGHTMARES">PU/any_jump_n</Option>
@@ -39,6 +39,8 @@
 	
 	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option><!--TODO-->
 	
-	<Option key="BOX_ON_HIT">PU/diamond_stars_cloud</Option><!--TODO-->
+	<Option key="BOX_DUST">PU/diamond_stars_cloud</Option><!--TODO-->
+	
+	<Option key="TRIPOLLO_DIE">PU/tripollo_die</Option>
   </Options>
 </Configuration>
