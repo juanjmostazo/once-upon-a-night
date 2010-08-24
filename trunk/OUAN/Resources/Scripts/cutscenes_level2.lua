@@ -48,30 +48,6 @@ function cutScene1(timer)
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START)	
 	trajectoryCamWait()
 
-	log ("Switching to a tracking camera!!")
-	setAnyTrackingCamera()
-
-	log ("narrative pause")
-	busyWait(timer,TRACK_TIME)
-	
-	log ("Any message 1")
-	timedSay(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME)	
-	log ("Any message 2")	
-	timedSay(any,"CUTSCENE_HELLOWORLD_SECOND",1,timer,SENTENCE2_TIME)
-	log ("Any message 3")
-	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
-
-	any:changeAnimation("die02")
-	timedSay(any,"CUTSCENE_HELLOWORLD_DYING",0.5,timer,0.5)
-	animationWait(any,"die02")
-
-	-- any:changeAnimation("run")
-	-- any:beginTrajectory("HelloWorldCutscene",false)
-	-- trajectoryObjWait(any,"HelloWorldCutscene")
-	-- any:endTrajectory()
-
-	any:changeAnimation("idle01")
-
 	return COROUTINE_FINISHED
 end
 
