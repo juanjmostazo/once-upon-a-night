@@ -1,5 +1,3 @@
-COROUTINE_ONGOING=0
-
 -- LEVEL 2 CUTSCENES
 
 CUTSCENE_1_LEVEL_START="LEVEL_START";
@@ -29,7 +27,7 @@ function startCutScene1(pOny)
 	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 	log ("CUTSCENE 1: ");
 	log (CUTSCENE_1_LEVEL_START);
-	-- launchCutScene("cutscenes_level2.lua","cutScene1");
+	launchCutScene("cutscenes_level2.lua","cutScene1");
 	return
 end
 
@@ -37,10 +35,43 @@ function conditionCutScene1(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 end
 
+TRACK_TIME=2
+
+SENTENCE1_TIME = 3
+SENTENCE2_TIME = 3
+
 function cutScene1(timer)
 	log ("CUTSCENE 1: ");
 	log (CUTSCENE_1_LEVEL_START);
-	-- setCameraTrajectory(CUTSCENE_1_LEVEL_START);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_1_LEVEL_START)	
+	trajectoryCamWait()
+
+	log ("Switching to a tracking camera!!")
+	setAnyTrackingCamera()
+
+	log ("narrative pause")
+	busyWait(timer,TRACK_TIME)
+	
+	log ("Any message 1")
+	timedSay(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME)	
+	log ("Any message 2")	
+	timedSay(any,"CUTSCENE_HELLOWORLD_SECOND",1,timer,SENTENCE2_TIME)
+	log ("Any message 3")
+	timedSay(any,"CUTSCENE_HELLOWORLD_LAST", 0.5,timer,SENTENCE1_TIME)
+
+	any:changeAnimation("die02")
+	timedSay(any,"CUTSCENE_HELLOWORLD_DYING",0.5,timer,0.5)
+	animationWait(any,"die02")
+
+	-- any:changeAnimation("run")
+	-- any:beginTrajectory("HelloWorldCutscene",false)
+	-- trajectoryObjWait(any,"HelloWorldCutscene")
+	-- any:endTrajectory()
+
+	any:changeAnimation("idle01")
+
 	return COROUTINE_FINISHED
 end
 
@@ -52,6 +83,15 @@ function startCutScene2(pOny)
 end
 
 function conditionCutScene2(pOny)
+
+	local currentWorld = world()
+	if currentWorld == OUAN_WORLD_DREAMS then
+		changeWorld(OUAN_WORLD_NIGHTMARES)
+	else changeWorld(OUAN_WORLD_DREAMS)
+	end
+	log("Change world called")
+	worldChangeWait()
+	
 	return not hasExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD) and hasExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
 end
 

@@ -2,22 +2,8 @@
 <CUSTOMPROPERTIES>
   <PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="300" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentComplex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-  
-	<PROPERTY id="animation0d::name" type="7" value="front_Clip" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1d::name" type="7" value="back_Clip" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation2d::name" type="7" value="front" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation2d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation3d::name" type="7" value="back" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation3d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	
-	<PROPERTY id="animation0n::name" type="7" value="front_Clip" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1n::name" type="7" value="back_Clip" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation1n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation2n::name" type="7" value="front" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation2n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation3n::name" type="7" value="back" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="animation3n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+
+    <!-- Trajectory Component -->
+  <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="false" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="5" fields="X;Y;Z;W"></PROPERTY>
 </CUSTOMPROPERTIES>

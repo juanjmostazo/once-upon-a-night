@@ -326,7 +326,7 @@ void GameObject::displayText(const std::string& msg, const double& displayLifeti
 		delete mDisplayMsg;
 		mDisplayMsg=NULL;
 	}	
-
+	Logger::getInstance()->log("displayText "+ msg);
 	if (hasRenderComponentEntity())
 	{
 		RenderComponentEntityPtr entityComp = getEntityComponent();

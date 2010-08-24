@@ -14,6 +14,8 @@
 #include "GameObject/GameObjectDiamond.h"
 #include "GameObject/GameObjectDiamondTree.h"
 #include "GameObject/GameObjectDoor.h"
+#include "GameObject/GameObjectInvisibleWall.h"
+#include "GameObject/GameObjectBreakableRock.h"
 #include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
 #include "GameObject/GameObjectFlashLight.h"
@@ -673,6 +675,16 @@ void GameWorldManager::addGameObjectDoor(GameObjectDoorPtr gameObjectDoor)
 {
 	mGameObjects[gameObjectDoor->getName()]=gameObjectDoor;
 }
+void GameWorldManager::addGameObjectBreakableRock(GameObjectBreakableRockPtr gameObjectBreakableRock)
+{
+	mGameObjects[gameObjectBreakableRock->getName()]=gameObjectBreakableRock;
+}
+
+void GameWorldManager::addGameObjectInvisibleWall(GameObjectInvisibleWallPtr gameObjectInvisibleWall)
+{
+	mGameObjects[gameObjectInvisibleWall->getName()]=gameObjectInvisibleWall;
+}
+
 
 void GameWorldManager::addGameObjectBoss(GameObjectBossPtr gameObjectBoss)
 {

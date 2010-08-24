@@ -308,7 +308,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 
 		if (isFirstUpdate())
 		{
-			entityToUpdate->changeAnimation("idle");
+			entityToUpdate->changeAnimation(PORTAL_ANIMATION_IDLE);
 		}
 
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	

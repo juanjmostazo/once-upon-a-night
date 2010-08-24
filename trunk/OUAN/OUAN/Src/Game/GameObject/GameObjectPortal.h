@@ -12,7 +12,7 @@
 
 namespace OUAN
 {
-	const std::string PORTAL_ANIMATION_IDLE="idle";
+	const std::string PORTAL_ANIMATION_IDLE="idle01";
 	const std::string PORTAL_ANIMATION_ONY_APPROACHING="";
 	const std::string PORTAL_ANIMATION_CHANGING_WORLD="";
 

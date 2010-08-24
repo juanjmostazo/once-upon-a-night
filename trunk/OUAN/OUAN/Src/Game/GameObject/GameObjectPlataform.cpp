@@ -3,6 +3,8 @@
 #include "GameObjectPlataform.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
+#include "../../Graphics/TrajectoryManager/Trajectory.h"
 
 using namespace OUAN;
 
@@ -57,6 +59,16 @@ RenderComponentInitialPtr GameObjectPlataform::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectPlataform::setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent)
+{
+	mTrajectoryComponent=pTrajectoryComponent;
+}
+
+TrajectoryComponentPtr GameObjectPlataform::getTrajectoryComponent()
+{
+	return mTrajectoryComponent;
+}
+
 void GameObjectPlataform::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
 {
 	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
@@ -65,6 +77,14 @@ void GameObjectPlataform::setPhysicsComponentComplexConvex(PhysicsComponentCompl
 PhysicsComponentComplexConvexPtr GameObjectPlataform::getPhysicsComponentComplexConvex() const
 {
 	return mPhysicsComponentComplexConvex;
+}
+void GameObjectPlataform::activateTrajectory()
+{
+	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+	{
+		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName(),DREAMS);
+		mTrajectoryComponent->setLoopingTrajectory(true);
+	}
 }
 
 void GameObjectPlataform::changeWorldFinished(int newWorld)
@@ -164,6 +184,7 @@ void GameObjectPlataform::changeToWorld(int newWorld, double perc)
 void GameObjectPlataform::reset()
 {
 	GameObject::reset();
+	activateTrajectory();
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
@@ -250,6 +271,23 @@ void GameObjectPlataform::setVisible(bool visible)
 		break;
 	}
 }
+
+void GameObjectPlataform::update(double elapsedSeconds)
+{
+	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+	{
+		mTrajectoryComponent->update(elapsedSeconds);
+		Vector3 position=mTrajectoryComponent->getCurrentPosition();
+		Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
+		//Logger::getInstance()->log("GameObjectPlataform::update " + getName() +" "+Ogre::StringConverter::toString(position));
+		mRenderComponentPositional->setPosition(position);
+		if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+		{
+			mPhysicsComponentComplexConvex->setPosition(position);
+		}
+	}
+}
+
 bool GameObjectPlataform::hasLogicComponent() const
 {
 	return true;

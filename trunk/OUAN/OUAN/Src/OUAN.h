@@ -299,6 +299,9 @@ namespace OUAN
 		GAMEOBJECT_CLASS_DECL(Tree);
 		GAMEOBJECT_CLASS_DECL(SkyBody);
 
+		GAMEOBJECT_CLASS_DECL(BreakableRock);
+		GAMEOBJECT_CLASS_DECL(InvisibleWall);
+
 		//Some object have types in mayus for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="SceneManager";
@@ -373,6 +376,9 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_LEVEL_ENTRANCE="level-entrance";
 		const std::string GAME_OBJECT_TYPE_SWITCH="switch";
 		const std::string GAME_OBJECT_TYPE_BOMB="bomb";
+
+		const std::string GAME_OBJECT_TYPE_BREAKABLE_ROCK="breakable-rock";
+		const std::string GAME_OBJECT_TYPE_INVISIBLE_WALL="invisible-wall";
 
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";

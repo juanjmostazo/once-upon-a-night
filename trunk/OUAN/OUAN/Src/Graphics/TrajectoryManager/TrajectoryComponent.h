@@ -24,8 +24,10 @@ namespace OUAN
 		//Activates a predefined trajectory, first the parent will find a trajectory that leads to a node of
 		//that trajectory and once arrives to the predefined trajectory it will follow it from there on
 		//Predefined trajectories have to be defined in Ogitor, using "import in" trajectory.ctp" parameters and "trajectorynode.ctp" for its nodes, defined using Marker Objects.
-		void activatePredefinedTrajectory(std::string trajectory,int currentWorld);
+		void activatePathfindingToPredefinedTrajectory(std::string trajectory,int currentWorld);
 		//same as above but without finding a path to the trajectory first, starting directly from the first trajectory node
+		void activateTrajectory(std::string trajectory);
+		
 		void setTrajectory(Trajectory * pTrajectory);
 		//Return the trajectory pointer
 		Trajectory* getTrajectory() const;

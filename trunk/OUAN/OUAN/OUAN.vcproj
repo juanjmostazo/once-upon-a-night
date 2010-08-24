@@ -486,6 +486,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBreakableRock.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.cpp"
 						>
 					</File>
@@ -527,6 +531,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectHeart.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectInvisibleWall.cpp"
 						>
 					</File>
 					<File
@@ -1567,6 +1575,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBreakableRock.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCameraTrigger.h"
 						>
 					</File>
@@ -1612,6 +1624,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectHeart.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectInvisibleWall.h"
 						>
 					</File>
 					<File
