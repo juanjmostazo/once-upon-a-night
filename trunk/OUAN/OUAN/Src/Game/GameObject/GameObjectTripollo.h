@@ -46,6 +46,8 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDie;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemShock;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemSurprise;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 		/// Trajectory information
@@ -103,6 +105,18 @@ namespace OUAN
 
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemDie() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemShock(RenderComponentParticleSystemPtr mRenderComponentParticleSystemShock);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemShock() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemSurprise(RenderComponentParticleSystemPtr mRenderComponentParticleSystemSurprise);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemSurprise() const;
 
 		/// Return positional component 
 		/// @return positional component

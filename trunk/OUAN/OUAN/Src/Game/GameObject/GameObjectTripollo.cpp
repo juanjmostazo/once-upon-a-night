@@ -82,6 +82,26 @@ RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleS
 	return mRenderComponentParticleSystemDie;
 }
 
+void GameObjectTripollo::setRenderComponentParticleSystemShock(RenderComponentParticleSystemPtr pRenderComponentParticleSystemShock)
+{
+	mRenderComponentParticleSystemShock = pRenderComponentParticleSystemShock;
+}
+
+RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleSystemShock() const
+{
+	return mRenderComponentParticleSystemShock;
+}
+
+void GameObjectTripollo::setRenderComponentParticleSystemSurprise(RenderComponentParticleSystemPtr pRenderComponentParticleSystemSurprise)
+{
+	mRenderComponentParticleSystemSurprise = pRenderComponentParticleSystemSurprise;
+}
+
+RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleSystemSurprise() const
+{
+	return mRenderComponentParticleSystemSurprise;
+}
+
 void GameObjectTripollo::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
@@ -214,6 +234,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 			{
 				if (mLogicComponentEnemy->isStateChanged())
 				{
+					mRenderComponentParticleSystemShock->start();
 					mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
 
 					if(mRenderComponentEntityDreams.get())

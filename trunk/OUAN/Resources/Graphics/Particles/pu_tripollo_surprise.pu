@@ -1,0 +1,29 @@
+system PU/pu_tripollo_surprise
+{
+    scale                                       0.05 0.05 0.05
+    technique Technique3
+    {
+        visual_particle_quota                   1
+        material                                PU/tripollo_surprise
+        default_particle_width                  40
+        default_particle_height                 40
+        default_particle_depth                  40
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point Emitter4
+        {
+            time_to_live                        1.2
+            velocity                            dyn_random
+            {
+                min                             15
+                max                             25
+            }
+            duration                            1.2
+        }
+        affector                                Scale Affector10
+        {
+            xyz_scale                           80
+        }
+    }
+}

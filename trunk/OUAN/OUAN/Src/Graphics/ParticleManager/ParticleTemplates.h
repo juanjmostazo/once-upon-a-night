@@ -60,6 +60,8 @@ namespace OUAN
 		std::string BOX_DUST;
 
 		std::string TRIPOLLO_DIE;
+		std::string TRIPOLLO_SHOCK;
+		std::string TRIPOLLO_SURPRISE;
 
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
