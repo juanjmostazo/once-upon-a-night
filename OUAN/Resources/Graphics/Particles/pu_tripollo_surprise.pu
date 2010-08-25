@@ -1,4 +1,4 @@
-system PU/pu_tripollo_surprise
+system PU/tripollo_surprise
 {
     scale                                       0.05 0.05 0.05
     technique Technique3
