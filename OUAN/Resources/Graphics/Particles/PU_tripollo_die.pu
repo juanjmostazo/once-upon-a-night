@@ -19,6 +19,7 @@ system PU/tripollo_die
             angle                               40
             velocity                            150
             duration                            4
+			time_to_live                        4.5
             orientation                         0 0.33 0.33 0.33
             box_em_width                        40
             box_em_height                       40
