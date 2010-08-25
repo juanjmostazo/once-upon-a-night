@@ -1,0 +1,22 @@
+system PU/tripollo_shock
+{
+    scale                                       0.065 0.065 0.065
+    technique Technique3
+    {
+        position                                0 200 0
+        visual_particle_quota                   10
+        material                                PU/tripollo_shock
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter4
+        {
+            time_to_live                        0.75
+            duration                            2
+            direction                           0 0 0
+            circle_em_radius                    150
+            circle_em_step                      4
+            circle_em_random                    false
+        }
+    }
+}

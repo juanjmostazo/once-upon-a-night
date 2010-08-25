@@ -42,5 +42,7 @@
 	<Option key="BOX_DUST">PU/diamond_stars_cloud</Option><!--TODO-->
 	
 	<Option key="TRIPOLLO_DIE">PU/tripollo_die</Option>
+	<Option key="TRIPOLLO_SHOCK">PU/tripollo_shock</Option>
+	<Option key="TRIPOLLO_SURPRISE">PU/tripollo_surprise</Option>
   </Options>
 </Configuration>

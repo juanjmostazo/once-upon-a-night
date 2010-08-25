@@ -13,7 +13,6 @@ system PU/tripollo_die
         emitter                                 SphereSurface BurstEmitter
         {
             emission_rate                       25
-            time_to_live                        2
             direction                           0 0 0
             auto_direction                      true
             sphere_surface_em_radius            5
@@ -49,7 +48,7 @@ system PU/tripollo_die
         {
             emission_rate                       100
             angle                               360
-            time_to_live                        5
+            time_to_live                        6
             velocity                            dyn_random
             {
                 min                             100

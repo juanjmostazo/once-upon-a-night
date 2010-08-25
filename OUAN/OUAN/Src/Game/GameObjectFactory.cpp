@@ -3369,6 +3369,20 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	pGameObjectTripollo->setRenderComponentParticleSystemDie(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SHOCK;
+	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTripollo->setRenderComponentParticleSystemShock(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SURPRISE;
+	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTripollo->setRenderComponentParticleSystemSurprise(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectTripollo->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectTripollo,
