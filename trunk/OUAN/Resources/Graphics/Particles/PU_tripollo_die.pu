@@ -1,7 +1,37 @@
 system PU/tripollo_die
 {
-    scale_velocity                              0.12
-    scale                                       0.12 0.12 0.12
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    technique 
+    {
+        position                                0 100 0
+        visual_particle_quota                   8
+        material                                PU/attack_pillow
+        default_particle_width                  40
+        default_particle_height                 40
+        default_particle_depth                  40
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       8
+            angle                               40
+            velocity                            150
+            duration                            4
+            orientation                         0 0.33 0.33 0.33
+            box_em_width                        40
+            box_em_height                       40
+            box_em_depth                        40
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -100 0
+        }
+        affector                                Align 
+        {
+        }
+    }
     technique 
     {
         material                                PU/ExplosionFire
