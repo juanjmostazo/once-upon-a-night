@@ -1,47 +1,36 @@
 system PU/changeworld_changing
 {
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
     technique 
     {
-        visual_particle_quota                   180
-        emitted_emitter_quota                   15
+        visual_particle_quota                   250
         material                                PU/changeworld_changing
-        spatial_hashing_cell_dimension          25
-        spatial_hashing_cell_overlap            15
-        spatial_hashtable_size                  35
         renderer                                Billboard
         {
+            billboard_type                      oriented_self
         }
         emitter                                 Point 
         {
-            angle                               0
-            duration                            1
-            emits                               emitter_particle CircleEmitter
-        }
-        emitter                                 Circle CircleEmitter
-        {
-            emission_rate                       30
+            emission_rate                       200
             angle                               360
-            time_to_live                        dyn_random
+            time_to_live                        1
+            velocity                            dyn_random
             {
-                min                             0.4
-                max                             0.8
+                min                             200
+                max                             500
             }
-            velocity                            1
-            duration                            1
-            all_particle_dimensions             dyn_random
+            particle_width                      dyn_random
             {
-                min                             6
-                max                             12
+                min                             20
+                max                             90
             }
-            keep_local                          true
-            direction                           0 0 0
-            colour                              0.7 0.8 1 1
-            circle_em_radius                    18
-        }
-        affector                                Vortex 
-        {
-            vortex_aff_vector                   0 1 0
-            vortex_aff_speed                    5
+            particle_height                     dyn_random
+            {
+                min                             400
+                max                             800
+            }
+            colour                              0.84 0.24 0.24 1
         }
         affector                                Colour 
         {
@@ -49,66 +38,6 @@ system PU/changeworld_changing
             colour_aff_time_colour              0.8  1 1 1 1
             colour_aff_time_colour              1    0 0 0 0
             colour_operation                    multiply
-        }
-        observer                                OnTime 
-        {
-            observe_until_event                 true
-            handler                             DoEnableComponent 
-            {
-                enable_component                observer_component OnExpireObserver true
-            }
-            since_start_system                  true
-            on_time                             greater_than 0.5
-        }
-        observer                                OnExpire OnExpireObserver
-        {
-            enabled                             false
-            handler                             DoPlacementParticle 
-            {
-                force_emitter                   ExplodeEmitter
-            }
-        }
-    }
-    technique 
-    {
-        visual_particle_quota                   200
-        emitted_emitter_quota                   30
-        material                                PU/changeworld_changing
-        default_particle_width                  8
-        default_particle_height                 8
-        spatial_hashing_update_interval         10
-        renderer                                Billboard
-        {
-        }
-        emitter                                 Point ExplodeEmitter
-        {
-            emission_rate                       0
-            angle                               0
-            time_to_live                        dyn_random
-            {
-                min                             0.4
-                max                             0.6
-            }
-            direction                           0 0 0
-            emits                               emitter_particle ExplodeFlares
-        }
-        emitter                                 Point ExplodeFlares
-        {
-            angle                               360
-            time_to_live                        0.6
-            velocity                            50
-            all_particle_dimensions             dyn_random
-            {
-                min                             6
-                max                             12
-            }
-            colour                              0.7 0.8 1 1
-        }
-        observer                                OnClear 
-        {
-            handler                             DoStopSystem 
-            {
-            }
         }
     }
 }

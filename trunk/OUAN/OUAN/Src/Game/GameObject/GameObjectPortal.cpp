@@ -173,6 +173,9 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 		return;
 	}
 
+	mRenderComponentParticleSystemChangeWorldIdle->start();
+	mRenderComponentParticleSystemChangeWorldChanging->stop();
+
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -194,6 +197,9 @@ void GameObjectPortal::changeWorldStarted(int newWorld)
 	{
 		return;
 	}
+
+	mRenderComponentParticleSystemChangeWorldIdle->stop();
+	mRenderComponentParticleSystemChangeWorldChanging->start();
 
 	switch(newWorld)
 	{
@@ -308,6 +314,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 
 		if (isFirstUpdate())
 		{
+			mRenderComponentParticleSystemChangeWorldIdle->start();
 			entityToUpdate->changeAnimation(PORTAL_ANIMATION_IDLE);
 		}
 
@@ -341,7 +348,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 				if (mLogicComponent->isStateChanged())
 				{
 					getGameWorldManager()->changeWorld();
-					mRenderComponentParticleSystemChangeWorldChanging->start();
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
