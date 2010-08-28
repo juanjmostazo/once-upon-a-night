@@ -13,7 +13,7 @@
 	<Option key="ONY_LAND_WATER_DROPS">PU/ony_run_sand</Option><!--TODO-->
 	<Option key="ONY_RUN_GRASS">PU/ony_run_sand</Option><!--TODO-->
 	<Option key="ONY_RUN_SAND">PU/ony_run_sand</Option>
-	<Option key="ONY_RUN_WATER">PU/ony_run_sand</Option><!--TODO-->
+	<Option key="ONY_RUN_WATER">PU/ony_run_water</Option>
 	<Option key="ONY_RUN_SURPRISE">PU/ony_run_surprise</Option><!--TODO: set in code-->
 	
 	<Option key="PILLOW_ATTACK">PU/attack_pillow</Option>

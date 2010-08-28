@@ -21,6 +21,7 @@ GameObjectOny::GameObjectOny(const std::string& name)
 	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
 	mCurrentWeaponMode=WEAPON_MODE_0;
+	mOnWater=false;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -207,7 +208,7 @@ void GameObjectOny::update(double elapsedSeconds)
 		mRunParticlesElapsed+=elapsedSeconds;
 		if (mRunParticlesElapsed>mRunParticlesNextInterval)
 		{
-			startParticleSystem(ONY_PS_RUN_SAND);
+			startParticleSystem(ONY_PS_RUN_WATER);
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval=Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
 		}
@@ -576,7 +577,17 @@ void GameObjectOny::postUpdate()
 		{
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
-			startParticleSystem(ONY_PS_RUN_SAND);			
+
+			if (isOnWater())
+			{
+				//Logger::getInstance()->log("Launching ONY_PS_RUN_WATER");
+				startParticleSystem(ONY_PS_RUN_WATER);
+			}
+			else
+			{
+				//Logger::getInstance()->log("Launching ONY_PS_RUN_SAND");
+				startParticleSystem(ONY_PS_RUN_SAND);
+			}
 		}
 
 		//Apply radial blur effect when reached fall speed limit
@@ -584,8 +595,10 @@ void GameObjectOny::postUpdate()
 			setRadialBlurEffectIfPossible(
 			mGameWorldManager->getWorld(),
 			mPhysicsComponentCharacterOny->isFallingLimit());
-
 	}
+
+	// An event will set this value at the beginning of the tick if ony is on water
+	setOnWater(false);
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const
@@ -681,9 +694,23 @@ bool GameObjectOny::isTrajectoryActive() const
 bool GameObjectOny::isTrajectoryFinished() const
 {
 	if (mUsingTrajectory)
+	{
 		return mTrajectoryComponent->hasEnded();
+	}
+
 	return true;
 }
+
+bool GameObjectOny::isOnWater() const
+{
+	return mOnWater;
+}
+
+void GameObjectOny::setOnWater(bool onWater)
+{
+	mOnWater = onWater;
+}
+
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

@@ -61,8 +61,7 @@ namespace OUAN
 
 		double getHitRecoveryTime() const;
 
-		void increaseCollectableItemAmount(const std::string& type,
-			int value=1);
+		void increaseCollectableItemAmount(const std::string& type, int value=1);
 		void setCollectableItems(const TCollectedItems& collectableItems);
 
 		int getItemAmount(const std::string& type);

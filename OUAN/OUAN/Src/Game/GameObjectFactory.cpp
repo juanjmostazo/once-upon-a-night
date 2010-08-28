@@ -1846,7 +1846,8 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 void GameObjectFactory::createOnyParticleSystems(GameObjectOnyPtr onyPtr)
 {
 	ParticleTemplates* templates = ParticleTemplates::getInstance();
-	std::string templateNames[]={templates->ONY_LAND_DREAMS,
+	std::string templateNames[]={
+		templates->ONY_LAND_DREAMS,
 		templates->ONY_LAND_NIGHTMARES,
 		templates->ONY_LAND_WAVE,
 		templates->ONY_LAND_WATER_WAVE,

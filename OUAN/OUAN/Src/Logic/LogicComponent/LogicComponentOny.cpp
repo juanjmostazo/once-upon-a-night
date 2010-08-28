@@ -118,12 +118,19 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		{
 			//TODO... ¿DIE?
 		}
-	}	
+	}
+	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)==0)
+	{
+		//Logger::getInstance()->log("ONY IS ON WATER");
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+		ony->setOnWater(true);
+	}
 }
 
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
 	if (!Application::getInstance()->isPlayingCutscene())
+	{
 		if (animationName.compare(ONY_ANIM_HIT01)==0)
 		{
 			//if (mHitRecoveryTime<0)
@@ -137,6 +144,7 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
 			mParent->getGameWorldManager()->onyDied();
 		}
+	}
 }
 
 void LogicComponentOny::increaseHP(int amount)

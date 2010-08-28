@@ -7,9 +7,9 @@ system PU/tripollo_die
         position                                0 100 0
         visual_particle_quota                   8
         material                                PU/attack_pillow
-        default_particle_width                  40
-        default_particle_height                 40
-        default_particle_depth                  40
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
         renderer                                Billboard
         {
         }
