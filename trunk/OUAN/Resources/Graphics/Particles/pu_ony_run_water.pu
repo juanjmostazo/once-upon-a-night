@@ -1,0 +1,41 @@
+system PU/ony_run_water
+{
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    technique Technique3
+    {
+        visual_particle_quota                   8
+        material                                PU/ony_run_water
+        default_particle_width                  30
+        default_particle_height                 30
+        default_particle_depth                  30
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter4
+        {
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             200
+                max                             300
+            }
+            duration                            0.8
+            position                            0 100 0
+            circle_em_radius                    40
+        }
+        affector                                Colour Affector8
+        {
+            colour_aff_time_colour              0    0.1 0.1 0.9 1
+            colour_aff_time_colour              3    0.2 0.2 1 1
+        }
+        affector                                LinearForce Affector10
+        {
+            force_aff_vector                    0 -500 0
+        }
+    }
+}

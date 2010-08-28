@@ -511,10 +511,12 @@ void GameRunningState::update(long elapsedTime)
 			Ogre::Camera* activeCam = mApp->getCameraManager()->getCamera();
 			if (activeCam)
 			{
-				mApp->getAudioSubsystem()->set3DAttributes(activeCam->getPosition(),Ogre::Vector3::ZERO,
-					activeCam->getOrientation()*Ogre::Vector3::UNIT_Z,Ogre::Vector3::UNIT_Y);
+				mApp->getAudioSubsystem()->set3DAttributes(
+					activeCam->getPosition(),
+					Ogre::Vector3::ZERO,
+					activeCam->getOrientation()*Ogre::Vector3::UNIT_Z,
+					Ogre::Vector3::UNIT_Y);
 			}
-
 		}
 
 		mGUI->update(elapsedSeconds);

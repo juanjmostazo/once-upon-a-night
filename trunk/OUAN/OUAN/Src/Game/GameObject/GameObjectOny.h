@@ -143,15 +143,6 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
 		TParticleSystemsMap mParticleSystemsComponent;
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandDreams; // Dreams
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandNightmares; // Nightmares
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWave; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterWave; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemLandWaterDrops; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunGrass; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSand; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunWater; // Both
-		//RenderComponentParticleSystemPtr mRenderComponentParticleSystemRunSurprise; // Both
 
 		/// Trajectory information
 		TrajectoryComponentPtr mTrajectoryComponent;
@@ -181,6 +172,9 @@ namespace OUAN
 		double mRunParticlesMax;
 
 		TWeaponMode mCurrentWeaponMode;
+
+		bool mOnWater;
+
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class
@@ -316,9 +310,6 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
-
 		void processAnimationEnded(const std::string& animationName);
 
 		void postUpdate();
@@ -349,6 +340,8 @@ namespace OUAN
 
 		void addDiamonds(int amount=1);
 		
+		bool isOnWater() const;
+		void setOnWater(bool onWater);
 	};
 
 	/// Carries data between the level loader and the object factories

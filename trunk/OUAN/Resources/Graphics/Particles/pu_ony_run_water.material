@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/ony_run_sand
+material PU/ony_run_water
 {
     technique
     {
@@ -20,24 +20,7 @@ material PU/ony_run_sand
 
             texture_unit
             {
-                texture pu_ony_run_sand.png
-            }
-        }
-    }
-}
-material PU/ony_run_sand_2
-{
-    technique
-    {
-        pass
-        {
-            lighting off
-            scene_blend add
-            depth_write off
-
-            texture_unit
-            {
-                texture pu_ony_run_sand_2.png
+                texture pu_ony_run_water.png
             }
         }
     }
