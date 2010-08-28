@@ -213,6 +213,10 @@ void GameObjectOny::update(double elapsedSeconds)
 			mRunParticlesNextInterval=Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
 		}
 	}
+	if (mMsgBoxComponent.get() && mMsgBoxComponent->isVisible())
+	{
+		mMsgBoxComponent->update(elapsedSeconds);
+	}
 	if (mUsingTrajectory)
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
@@ -711,6 +715,53 @@ void GameObjectOny::setOnWater(bool onWater)
 	mOnWater = onWater;
 }
 
+RenderComponentMessageBoxPtr GameObjectOny::getMsgBoxComponent() const
+{
+	return mMsgBoxComponent;
+}
+void GameObjectOny::setMsgBoxComponent(RenderComponentMessageBoxPtr msgBoxComponent)
+{
+	mMsgBoxComponent=msgBoxComponent;
+}
+
+void GameObjectOny::changeMessage(const std::string& stringKey, double duration)
+{	
+	if (mMsgBoxComponent.get())
+	{
+		mMsgBoxComponent->setMessage(stringKey);
+		mMsgBoxComponent->setDuration(duration);
+		showMessage();
+	}
+}
+void GameObjectOny::changeMessage(const std::string& stringKey)
+{
+	if (mMsgBoxComponent.get())
+	{
+		mMsgBoxComponent->setMessage(stringKey);
+		showMessage();
+	}
+}
+void GameObjectOny::showMessage()
+{
+	if (mMsgBoxComponent.get())
+	{
+		mMsgBoxComponent->setMessageBoxText();
+		mMsgBoxComponent->show();
+	}
+}
+void GameObjectOny::hideMessage()
+{
+	if (mMsgBoxComponent.get())
+	{
+		mMsgBoxComponent->hide();
+	}
+}
+bool GameObjectOny::isMessageVisible() const
+{
+	if (mMsgBoxComponent.get())
+		return mMsgBoxComponent->isVisible();
+	return false;
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()

@@ -1700,6 +1700,10 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 
 		//Get Trajectory Component
 		tGameObjectOnyParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
+
+		tGameObjectOnyParameters.tMsgBoxParams = processRenderComponentMessageBox(
+			gameObject->XMLNodeCustomProperties,
+			gameObject->XMLNodeCustomProperties);
 	}
 	catch( std::string error )
 	{
@@ -3875,10 +3879,25 @@ TRenderComponentMessageBoxParameters LevelLoader::processRenderComponentMessageB
 {
 	TRenderComponentMessageBoxParameters params;
 	params.basePanelName= getPropertyString(XMLClassNode,"RenderComponentMessageBox::basePanelName");
-	params.charPanelName= getPropertyString(XMLClassNode,"RenderComponentMessageBox::charPanelName");
-	params.charPanelMaterialName= getPropertyString(XMLSpecificNode,"RenderComponentMessageBox::charPanelMaterialName");
+	try{
+		params.charPanelName= getPropertyString(XMLClassNode,"RenderComponentMessageBox::charPanelName");
+	}
+	catch(const std::string&)
+	{
+		params.charPanelName;
+	}
+	try{
+		params.charPanelMaterialName= getPropertyString(XMLSpecificNode,"RenderComponentMessageBox::charPanelMaterialName");
+	}
+	catch(const std::string&)
+	{
+		params.charPanelMaterialName;
+	}
+	
 	params.duration= getPropertyReal(XMLSpecificNode,"RenderComponentMessageBox::duration");
+	
 	params.mMessage= getPropertyString(XMLSpecificNode,"RenderComponentMessageBox::message");
+	
 	params.mVisible= getPropertyBool(XMLSpecificNode,"RenderComponentMessageBox::visible");
 	return params;
 }

@@ -8,6 +8,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentQuadHalo.h"
 #include "../../Graphics/RenderComponent/RenderComponentFractalVolume.h"
+#include "../../Graphics/RenderComponent/RenderComponentMessageBox.h"
 #include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Logic/LogicComponent/WeaponComponent.h"
@@ -175,6 +176,8 @@ namespace OUAN
 
 		bool mOnWater;
 
+		RenderComponentMessageBoxPtr mMsgBoxComponent;
+
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class
@@ -327,6 +330,14 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
+		RenderComponentMessageBoxPtr getMsgBoxComponent() const;
+		void setMsgBoxComponent(RenderComponentMessageBoxPtr msgBoxComponent);
+		void changeMessage(const std::string& stringKey);
+		void changeMessage(const std::string& stringKey, double duration);
+		void showMessage();
+		void hideMessage();
+		bool isMessageVisible() const;
+
 		double getRunParticlesElapsed() const;
 		void setRunParticlesElapsed(double runParticlesElapsed);
 		double getRunParticlesNextInterval() const;
@@ -376,6 +387,8 @@ namespace OUAN
 
 		//Trajectory paramters
 		TTrajectoryComponentParameters tTrajectoryComponentParameters;
+
+		TRenderComponentMessageBoxParameters tMsgBoxParams;
 
 		double mRunParticlesMin;
 		double mRunParticlesMax;

@@ -389,7 +389,26 @@ bool LogicComponentOny::isTrajectoryFinished() const
 {
 	return BOOST_PTR_CAST(GameObjectOny,mParent)->isTrajectoryFinished();
 }
-
+void LogicComponentOny::changeMessage(const std::string& message, double duration)
+{
+	BOOST_PTR_CAST(GameObjectOny,mParent)->changeMessage(message,duration);
+}
+void LogicComponentOny::changeMessage(const std::string& message)
+{
+	BOOST_PTR_CAST(GameObjectOny,mParent)->changeMessage(message);
+}
+void LogicComponentOny::hideMessage()
+{
+	BOOST_PTR_CAST(GameObjectOny,mParent)->hideMessage();
+}
+void LogicComponentOny::showMessage()
+{
+	BOOST_PTR_CAST(GameObjectOny,mParent)->showMessage();
+}
+bool LogicComponentOny::isMessageVisible() const
+{
+	return BOOST_PTR_CAST(GameObjectOny,mParent)->isMessageVisible();
+}
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {
