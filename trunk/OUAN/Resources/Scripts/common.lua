@@ -35,6 +35,13 @@ function timedSay(obj,msg, textLimit,timer, limit)
 	busyWait(timer,limit)
 end
 
+function timedMessage(obj,msg, textLimit,timer, limit)
+	if obj then
+		obj:changeMessage(msg,textLimit)
+	end
+	busyWait(timer,limit)
+end
+
 function animationWait(obj,animationName)
 	while not skip() and not obj:animFinished(animationName) do
 		coroutine.yield(COROUTINE_ONGOING)

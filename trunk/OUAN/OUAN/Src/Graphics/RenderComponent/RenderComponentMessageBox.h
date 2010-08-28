@@ -9,6 +9,8 @@ namespace OUAN
 	const std::string TEXTAREA_SUFFIX="/Message";
 	const double DEFAULT_MESSAGEBOX_DURATION=2.0;	
 
+	const std::string MESSAGEBOX_OVERLAY="OUAN/HUDMessages";
+
 	class RenderComponentMessageBox: public RenderComponent
 	{
 	private:
@@ -27,6 +29,8 @@ namespace OUAN
 		bool mVisible;
 
 		double mElapsedTime;
+
+		Ogre::Overlay* mOverlay;
 		
 	public:
 		

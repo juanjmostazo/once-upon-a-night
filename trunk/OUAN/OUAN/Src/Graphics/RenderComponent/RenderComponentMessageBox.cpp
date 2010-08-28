@@ -17,6 +17,7 @@ RenderComponentMessageBox::RenderComponentMessageBox()
 ,mDuration(0.0)
 ,mElapsedTime(-1.0)
 {
+	mOverlay = Ogre::OverlayManager::getSingleton().getByName(MESSAGEBOX_OVERLAY);
 }
 RenderComponentMessageBox::~RenderComponentMessageBox()
 {
@@ -66,7 +67,8 @@ void RenderComponentMessageBox::setMessageBoxText()
 		Ogre::OverlayElement* text = Ogre::OverlayManager::getSingleton().getOverlayElement(textName);
 		if (text)
 		{
-			text->setCaption(mParent->getTranslation(mMessage));
+			std::string translated=mParent->getTranslation(mMessage);
+			text->setCaption(translated);
 		}
 	}
 }
@@ -114,17 +116,17 @@ void RenderComponentMessageBox::setVisible(bool visible)
 {
 	mVisible=visible;
 	mElapsedTime=(visible)?0:-1;
-	//Quick and dirty hack. The most correct way to do this would be using
-	//a "MessageBoxVisible" event that was captured by the HUD.
 	if (mBasePanel)
 	{
 		if(visible) 
 		{
+			mOverlay->show();
 			mBasePanel->show();
 		}
 		else 
 		{
 			mBasePanel->hide();
+			mOverlay->hide();
 		}
 	}
 	MsgBoxVisibilityChangedEventPtr evt = MsgBoxVisibilityChangedEventPtr(

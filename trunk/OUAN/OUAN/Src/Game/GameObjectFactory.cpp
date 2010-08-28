@@ -1833,6 +1833,11 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 
 	//Add reference to this
 	pGameObjectOny->setGameWorldManager(gameWorldMgr);
+
+	pGameObjectOny->setMsgBoxComponent(
+		mComponentFactory->createRenderComponentMessageBox(
+			pGameObjectOny,
+			tGameObjectOnyParameters.tMsgBoxParams));
 	
 	std::string scriptFile="";
 	pGameObjectOny->getLogicScriptFile(scriptFile);

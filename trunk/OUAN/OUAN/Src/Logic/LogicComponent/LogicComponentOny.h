@@ -71,6 +71,12 @@ namespace OUAN
 		void deactivateTrajectory();
 		bool isTrajectoryFinished() const;
 
+		void changeMessage(const std::string& message, double duration);
+		void changeMessage(const std::string& message);
+		void hideMessage();
+		void showMessage();
+		bool isMessageVisible() const;
+
 	private:
 		/// Number of lives of the component
 		int mNumLives;

@@ -31,6 +31,12 @@
   <PROPERTY id="RunParticles::min" type="6" value="2.0"></PROPERTY>
   <PROPERTY id="RunParticles::max" type="6" value="5.0"></PROPERTY>
   
+  <PROPERTY id="RenderComponentMessageBox::basePanelName" type="7" value="OUAN/TextBubble"></PROPERTY>
+  <PROPERTY id="RenderComponentMessageBox::charPanelName" type="7" value=""></PROPERTY>
+  <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="0.5" ></PROPERTY>
+  <PROPERTY id="RenderComponentMessageBox::message" type="7" value="" ></PROPERTY>
+  <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" ></PROPERTY>
+  
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.3" fields="X;Y;Z;W"></PROPERTY>
   
