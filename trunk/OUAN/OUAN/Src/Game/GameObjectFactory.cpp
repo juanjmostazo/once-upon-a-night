@@ -1203,7 +1203,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->FLASH_LIGHT_ATTACK;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectFlashLight->setRenderComponentParticleSystemAttack(
@@ -1213,7 +1213,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 			pGameObjectFlashLight->getRenderComponentPositional()));
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->FLASH_LIGHT_ATTACK_RED;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectFlashLight->setRenderComponentParticleSystemAttackRed(
@@ -1223,7 +1223,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 			pGameObjectFlashLight->getRenderComponentPositional()));
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->FLASH_LIGHT_ATTACK_GREEN;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectFlashLight->setRenderComponentParticleSystemAttackGreen(
@@ -1233,7 +1233,7 @@ GameObjectFlashLightPtr GameObjectFactory::createGameObjectFlashLight(TGameObjec
 			pGameObjectFlashLight->getRenderComponentPositional()));
 	
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->FLASH_LIGHT_ATTACK_BLUE;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectFlashLight->setRenderComponentParticleSystemAttackBlue(
@@ -1973,7 +1973,7 @@ GameObjectPillowPtr GameObjectFactory::createGameObjectPillow(TGameObjectPillowP
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PILLOW_ATTACK;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectPillow->setRenderComponentParticleSystemAttack(mComponentFactory->createRenderComponentParticleSystem(
@@ -2159,6 +2159,16 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldChanging(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectPortal,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectPortal->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_SKY;
+	tRenderComponentParticleSystemParameters.attached = false; // FROM ABSOLUTE POSITION
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldSky(
 		mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectPortal,
 		tRenderComponentParticleSystemParameters,
@@ -3369,21 +3379,21 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectTripollo->setRenderComponentParticleSystemDie(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SHOCK;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectTripollo->setRenderComponentParticleSystemShock(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SURPRISE;
-	tRenderComponentParticleSystemParameters.attached = false;
+	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
 	pGameObjectTripollo->setRenderComponentParticleSystemSurprise(mComponentFactory->createRenderComponentParticleSystem(

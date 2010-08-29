@@ -903,7 +903,6 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 			pParticleSystem->setRenderQueueGroup(tRenderComponentParticleSystemParameters.queueID);
 
 			// Create Particle System scene node where required
-			/*
 			if (tRenderComponentParticleSystemParameters.attached)
 			{
 				particleSystemNode=pRenderComponentPositional->getSceneNode()->createChildSceneNode(particleName);
@@ -912,8 +911,6 @@ std::vector<ParticleUniverse::ParticleSystem*> RenderSubsystem::createParticleSy
 			{
 				particleSystemNode=mSceneManager->getRootSceneNode()->createChildSceneNode(particleName);
 			}
-			*/
-			particleSystemNode=pRenderComponentPositional->getSceneNode()->createChildSceneNode(particleName);
 
 			// Attach particle system to the created scene node
 			particleSystemNode->attachObject(pParticleSystem);

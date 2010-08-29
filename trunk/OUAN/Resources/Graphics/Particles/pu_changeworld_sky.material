@@ -1,0 +1,17 @@
+material PU/changeworld_sky
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_changeworld_sky.png
+            }
+        }
+    }
+}

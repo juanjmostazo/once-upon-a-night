@@ -37,6 +37,7 @@ bool ParticleTemplates::loadConfig()
 	{
 		config.getOption("PORTAL_CHANGE_WORLD_IDLE", PORTAL_CHANGE_WORLD_IDLE); 
 		config.getOption("PORTAL_CHANGE_WORLD_CHANGING", PORTAL_CHANGE_WORLD_CHANGING); 
+		config.getOption("PORTAL_CHANGE_WORLD_SKY", PORTAL_CHANGE_WORLD_SKY); 
 
 		config.getOption("ONY_LAND_DREAMS", ONY_LAND_DREAMS); 
 		config.getOption("ONY_LAND_NIGHTMARES", ONY_LAND_NIGHTMARES); 

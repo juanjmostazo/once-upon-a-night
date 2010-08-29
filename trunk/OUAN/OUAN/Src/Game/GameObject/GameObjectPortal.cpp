@@ -89,6 +89,11 @@ void GameObjectPortal::setRenderComponentParticleSystemChangeWorldChanging(Rende
 	mRenderComponentParticleSystemChangeWorldChanging = pRenderComponentParticleSystemChangeWorldChanging;
 }
 
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorldSky(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldSky)
+{
+	mRenderComponentParticleSystemChangeWorldSky = pRenderComponentParticleSystemChangeWorldSky;
+}
+
 RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldIdle() const
 {
 	return mRenderComponentParticleSystemChangeWorldIdle;
@@ -97,6 +102,11 @@ RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSys
 RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldChanging() const
 {
 	return mRenderComponentParticleSystemChangeWorldChanging;
+}
+
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldSky() const
+{
+	return mRenderComponentParticleSystemChangeWorldSky;
 }
 
 void GameObjectPortal::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -175,6 +185,7 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 
 	mRenderComponentParticleSystemChangeWorldIdle->start();
 	mRenderComponentParticleSystemChangeWorldChanging->stop();
+	//mRenderComponentParticleSystemChangeWorldSky->stop();
 
 	switch(newWorld)
 	{
@@ -200,6 +211,7 @@ void GameObjectPortal::changeWorldStarted(int newWorld)
 
 	mRenderComponentParticleSystemChangeWorldIdle->stop();
 	mRenderComponentParticleSystemChangeWorldChanging->start();
+	mRenderComponentParticleSystemChangeWorldSky->start();
 
 	switch(newWorld)
 	{
