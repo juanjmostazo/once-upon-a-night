@@ -4,6 +4,7 @@ system PU/static_torch
     scale                                       0.075 0.075 0.075
     technique 
     {
+        position                                0 -15 0
         visual_particle_quota                   450
         material                                PU/static_torch
         renderer                                Billboard
@@ -33,6 +34,7 @@ system PU/static_torch
                 min                             13
                 max                             40
             }
+            position                            0 -15 0
             box_em_height                       4
         }
         affector                                Gravity 
@@ -58,6 +60,7 @@ system PU/static_torch
     }
     technique 
     {
+        position                                0 -15 0
         visual_particle_quota                   450
         material                                PU/static_torch_2
         renderer                                Billboard

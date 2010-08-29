@@ -23,6 +23,7 @@ namespace OUAN
 		/// Particle name values
 		std::string PORTAL_CHANGE_WORLD_IDLE;
 		std::string PORTAL_CHANGE_WORLD_CHANGING;
+		std::string PORTAL_CHANGE_WORLD_SKY;
 
 		std::string ONY_LAND_DREAMS;
 		std::string ONY_LAND_NIGHTMARES;

@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-539.81 527.695 -2601.67" orientation="-0.992631 -0.0132342 0.120366 -0.00449301"></OPTION>
+    <OPTION id="2" position="342.237 777.495 -2718.19" orientation="-0.995993 -0.0525469 -0.0723628 0.000918886"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.992751 -0.0132358 0.12038 -0.00449356"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.996122 -0.0525537 -0.0723722 0.000919005"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-539.81 527.695 -2601.67"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="342.237 777.495 -2718.19"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -19459,98 +19459,140 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="146763520" name="particle_n#torch_5" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="98361160" name="Particle_n#torch_6" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-585.294 512 -2755.65"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-599.355 513 -2662.53"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="325510400" name="particle_n#torch_4" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="151554912" name="Particle_n#torch_1" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-510.833 512 -2810.23"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-408.862 513 -2600.7"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="339335296" name="particle_n#torch_7" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="313516640" name="Particle_n#torch_3" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-537.85 512 -2592.58"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-422.006 513 -2797.73"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="98361160" name="particle_n#torch_6" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="434858240" name="Particle_n#torch_12" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-599.355 512 -2662.53"></PROPERTY>
+    <PROPERTY id="position" type="9" value="286.849 772 -2889.77"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="151554912" name="particle_n#torch_1" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="334513408" name="Particle_n#torch_2" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-408.862 512 -2600.7"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-361.12 513 -2680.99"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="313516640" name="particle_n#torch_3" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="44099244" name="Particle_n#torch_13" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-422.006 512 -2797.73"></PROPERTY>
+    <PROPERTY id="position" type="9" value="313.038 772 -2698.38"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="334513408" name="particle_n#torch_2" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="146763520" name="Particle_n#torch_5" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-361.12 512 -2680.99"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-585.294 513 -2755.65"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="325510400" name="Particle_n#torch_4" typename="Particle Object" parentnode="Particles">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-510.833 513 -2810.23"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="964659584" name="Particle_n#torch_11" typename="Particle Object" parentnode="Particles">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="480.341 772 -2849.64"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="339335296" name="Particle_n#torch_7" typename="Particle Object" parentnode="Particles">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-537.85 513 -2592.58"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/static_torch" fields="X;Y;Z;W"></PROPERTY>

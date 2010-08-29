@@ -41,6 +41,7 @@ namespace OUAN
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldSky;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -100,10 +101,12 @@ namespace OUAN
 		/// Set Particle Systems
 		void setRenderComponentParticleSystemChangeWorldIdle(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle);
 		void setRenderComponentParticleSystemChangeWorldChanging(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging);
+		void setRenderComponentParticleSystemChangeWorldSky(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldSky);
 
 		/// Get Particle Systems
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldIdle() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldChanging() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldSky() const;
 
 		/// Set physics component
 		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
@@ -151,10 +154,6 @@ namespace OUAN
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
-
-		
-		
-
 
 		void update(double elapsedSeconds);
 		void setCurrentWorldVisibility(bool visibility);
