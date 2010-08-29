@@ -5,7 +5,29 @@ import default_changeworld_alpha_test from ChangeWorld.material
 //cloud1
 material cloud1_d : alpha_test_texture
 {
-	set_texture_alias diffuse_texture cloud1_d.dds
+	technique
+	{
+		pass
+		{
+			vertex_program_ref rim_normal_diffuse_vs
+		    {
+
+		    }
+		    fragment_program_ref rim_normal_diffuse_fs
+		    {
+				param_named tiling float3 2 2
+0.0
+				param_named ambient float4 0.8 0.8 0.8 1
+				param_named rimStrength float4 0 0 0 0
+				param_named modulate_factor float 1
+				param_named alpha_modulate float 1
+		    }
+			texture_unit diffuse_texture
+			{
+					texture cloud1_d.dds
+			}
+		}
+	}
 }
 
 material cloud1_n : alpha_test_texture
