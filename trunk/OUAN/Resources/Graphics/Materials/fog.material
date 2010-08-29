@@ -22,9 +22,9 @@ material fog1_d : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
 		      }
 			texture_unit changeworld
 			{
@@ -67,9 +67,9 @@ material fog1_n : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
 		      }
 			texture_unit changeworld
 			{
@@ -111,9 +111,9 @@ material fog1_cw : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
 		      }
 			texture_unit changeworld
 			{
@@ -157,9 +157,9 @@ material fog2_d : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.15 0.15 0.15 0.7
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.15 0.15 0.15 0.7
 		      }
 			texture_unit changeworld
 			{
@@ -202,9 +202,9 @@ material fog2_n : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.15 0.15 0.15 0.7
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.15 0.15 0.15 0.7
 		      }
 			texture_unit changeworld
 			{
@@ -246,9 +246,9 @@ material fog2_cw : default_changeworld_alpha_blending
 				param_named tiling float3 3 3
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.15 0.15 0.15 0.7
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.15 0.15 0.15 0.7
 		      }
 			texture_unit changeworld
 			{
@@ -290,9 +290,9 @@ material fog3_d : default_changeworld_alpha_blending
 				param_named tiling float3 2 2
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.5 0.5 0.5 1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.5 0.5 0.5 1	
 		      }
 			texture_unit changeworld
 			{
@@ -333,9 +333,9 @@ material fog3_n : default_changeworld_alpha_blending
 				param_named tiling float3 2 2
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.5 0.5 0.5 1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.5 0.5 0.5 1
 		      }
 			texture_unit changeworld
 			{
@@ -375,9 +375,9 @@ material fog3_cw : default_changeworld_alpha_blending
 				param_named tiling float3 2 2
 0.0
 				param_named rimStrength_base float4 0 0 0 0
-				param_named ambient_base float4 1 1 1 1
+				param_named ambient_base float4 0.5 0.5 0.5 1
 				param_named rimStrength_blended float4 0 0 0 0
-				param_named ambient_blended float4 1 1 1 1
+				param_named ambient_blended float4 0.5 0.5 0.5 1
 		      }
 			texture_unit changeworld
 			{
