@@ -1,6 +1,6 @@
 system PU/tripollo_shock
 {
-    scale                                       0.065 0.065 0.065
+    scale                                       0.07 0.07 0.07
     technique Technique3
     {
         position                                0 200 0
@@ -11,11 +11,11 @@ system PU/tripollo_shock
         }
         emitter                                 Circle Emitter4
         {
-            time_to_live                        0.75
-            duration                            2
+            time_to_live                        0.8
+            duration                            3
             direction                           0 0 0
             circle_em_radius                    150
-            circle_em_step                      4
+            circle_em_step                      6
             circle_em_random                    false
         }
     }
