@@ -388,6 +388,25 @@ void GameObjectItemMaxHP::startCollisionParticles()
 	mRenderComponentParticleSystemStarsCloud->start();
 	mRenderComponentParticleSystemHeartsFountainDouble->start();
 }
+void GameObjectItemMaxHP::disable()
+{
+	GameObject::disable();
+	mRenderComponentEntity->setVisible(false);
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
+		mPhysicsComponentVolumeBox->destroy();
+	}
+	mLogicComponentItem->setIsTaken(false);
+	mRenderComponentParticleSystemHeartsFountain->stop();
+}
+void GameObjectItemMaxHP::enable()
+{
+	GameObject::enable();
+	mRenderComponentEntity->setVisible(true);
+	mPhysicsComponentVolumeBox->create();
+	mRenderComponentParticleSystemHeartsFountain->start();
+
+}
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()
 {

@@ -910,6 +910,8 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 	OUAN::TGameObjectDiamondParameters tGameObjectDiamondParameters;
 	tGameObjectDiamondParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
 	tGameObjectDiamondParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+	tGameObjectDiamondParameters.parentNest=processCustomAttributeParentNest(gameObject);
+	tGameObjectDiamondParameters.spawnProbability=processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{
@@ -1462,6 +1464,8 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 	OUAN::TGameObjectItemMaxHPParameters tGameObjectItemMaxHPParameters;
 	tGameObjectItemMaxHPParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
 	tGameObjectItemMaxHPParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+	tGameObjectItemMaxHPParameters.parentNest  = processCustomAttributeParentNest(gameObject);
+	tGameObjectItemMaxHPParameters.spawnProbability  = processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{
@@ -2782,6 +2786,8 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
 	tGameObjectTripolloParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
 	tGameObjectTripolloParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+	tGameObjectTripolloParameters.parentNest = processCustomAttributeParentNest(gameObject);
+	tGameObjectTripolloParameters.spawnProbability= processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{

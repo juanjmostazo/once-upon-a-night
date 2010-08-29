@@ -645,6 +645,11 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 	pGameObjectDiamond->setSpawnProbability(tGameObjectDiamondParameters.spawnProbability);
 	pGameObjectDiamond->setMaxRenderRadium(tGameObjectDiamondParameters.mMaxRenderRadium);
 
+	if (!tGameObjectDiamondParameters.parentNest.empty())
+	{
+		gameWorldMgr->addNestLink(pGameObjectDiamond->getName(),tGameObjectDiamondParameters.parentNest);
+	}	
+
 	//Create LogicComponentWorldExistance
 	pGameObjectDiamond->setLogicComponentItem(
 		mComponentFactory->createLogicComponentItem(
@@ -1415,7 +1420,6 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 		.parentNest);
 	pGameObjectItem1UP->setSpawnProbability(tGameObjectItem1UPParameters.spawnProbability);
 	pGameObjectItem1UP->setMaxRenderRadium(tGameObjectItem1UPParameters.mMaxRenderRadium);
-
 
 	if (!tGameObjectItem1UPParameters.parentNest.empty())
 	{
@@ -3324,6 +3328,11 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	pGameObjectTripollo->setParentNest(tGameObjectTripolloParameters.parentNest);
 	pGameObjectTripollo->setSpawnProbability(tGameObjectTripolloParameters.spawnProbability);
 	pGameObjectTripollo->setMaxRenderRadium(tGameObjectTripolloParameters.mMaxRenderRadium);
+
+	if (!tGameObjectTripolloParameters.parentNest.empty())
+	{
+		gameWorldMgr->addNestLink(pGameObjectTripollo->getName(),tGameObjectTripolloParameters.parentNest);
+	}
 
 	//Create LogicComponent
 	pGameObjectTripollo->setLogicComponentEnemy(

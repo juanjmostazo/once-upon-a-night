@@ -386,7 +386,7 @@ void GameObjectNest::spawnChild()
 	}
 	if (it==mChildren.end())
 	{
-		displayText("Better luck text time");
+		displayText("Better luck next time");
 	}
 }
 void GameObjectNest::setVisible(bool visible)
