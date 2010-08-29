@@ -1657,7 +1657,6 @@ void LevelLoader::processGameObjectOny(XMLGameObject* gameObject)
 {
 	OUAN::TGameObjectOnyParameters tGameObjectOnyParameters;
 
-
 	try
 	{
 		//Check parsing errors
@@ -1742,6 +1741,8 @@ void LevelLoader::processGameObjectParticleSystem(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectParticleSystemParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		Logger::getInstance()->log("PS STATIC: " + tGameObjectParticleSystemParameters.name + "," + tGameObjectParticleSystemParameters.dreamsName + "," + tGameObjectParticleSystemParameters.nightmaresName);
 	}
 	catch( std::string error )
 	{

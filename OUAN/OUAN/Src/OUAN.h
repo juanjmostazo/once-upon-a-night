@@ -311,7 +311,7 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_LIGHT="Light";
 		const std::string GAME_OBJECT_TYPE_CAMERA="Camera";
 		const std::string GAME_OBJECT_TYPE_BILLBOARDSET="BillboardSet";
-		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="Particle";
+		const std::string GAME_OBJECT_TYPE_PARTICLESYSTEM="particle";
 		const std::string GAME_OBJECT_TYPE_ONY="ony";
 		const std::string GAME_OBJECT_TYPE_TRIPOLLO="tripollo";
 		const std::string GAME_OBJECT_TYPE_PORTAL="changeworld";
