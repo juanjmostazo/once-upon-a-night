@@ -99,6 +99,8 @@ namespace OUAN
 
 		/// Reset object
 		virtual void reset();
+		void disable();
+		void enable();
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
