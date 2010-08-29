@@ -11,9 +11,9 @@ system PU/changeworld_sky
         }
         emitter                                 Box 
         {
-            emission_rate                       2000
+            emission_rate                       750
             angle                               50
-            time_to_live                        15
+            time_to_live                        20
             velocity                            200
             duration                            5
             position                            0 1000 0
@@ -26,7 +26,69 @@ system PU/changeworld_sky
         {
             force_aff_vector                    0 -100 0
         }
-        affector                                Colour Affector7
+        affector                                Colour Affector_red
+        {
+            colour_aff_time_colour              0    0.9 0.1 0.1 1
+        }
+    }
+    technique 
+    {
+        visual_particle_quota                   10000
+        material                                PU/changeworld_sky
+        default_particle_width                  10
+        default_particle_height                 10
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       750
+            angle                               50
+            time_to_live                        20
+            velocity                            200
+            duration                            5
+            position                            0 1000 0
+            direction                           0 -1 0
+            box_em_width                        3000
+            box_em_height                       10
+            box_em_depth                        3000
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -100 0
+        }
+        affector                                Colour Affector_green
+        {
+            colour_aff_time_colour              0    0.1 0.9 0.1 1
+        }
+    }
+    technique 
+    {
+        visual_particle_quota                   10000
+        material                                PU/changeworld_sky
+        default_particle_width                  10
+        default_particle_height                 10
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       750
+            angle                               50
+            time_to_live                        20
+            velocity                            200
+            duration                            5
+            position                            0 1000 0
+            direction                           0 -1 0
+            box_em_width                        3000
+            box_em_height                       10
+            box_em_depth                        3000
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -100 0
+        }
+        affector                                Colour Affector_blue
         {
             colour_aff_time_colour              0    0.1 0.1 0.9 1
         }
