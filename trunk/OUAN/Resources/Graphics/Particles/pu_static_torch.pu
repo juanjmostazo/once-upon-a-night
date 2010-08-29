@@ -1,0 +1,119 @@
+system PU/static_torch
+{
+    scale_velocity                              0.075
+    scale                                       0.075 0.075 0.075
+    technique 
+    {
+        visual_particle_quota                   450
+        material                                PU/static_torch
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       200
+            angle                               10
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             100
+                max                             200
+            }
+            particle_width                      dyn_random
+            {
+                min                             30
+                max                             70
+            }
+            particle_height                     dyn_random
+            {
+                min                             13
+                max                             40
+            }
+            box_em_height                       4
+        }
+        affector                                Gravity 
+        {
+            position                            0 130 0
+            gravity                             3000
+        }
+        affector                                Scale 
+        {
+            x_scale                             -5
+            y_scale                             dyn_random
+            {
+                min                             4
+                max                             75
+            }
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    0 0 0 1
+            colour_aff_time_colour              0.1  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+    }
+    technique 
+    {
+        visual_particle_quota                   450
+        material                                PU/static_torch_2
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       200
+            angle                               10
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             100
+                max                             200
+            }
+            particle_width                      dyn_random
+            {
+                min                             30
+                max                             70
+            }
+            particle_height                     dyn_random
+            {
+                min                             13
+                max                             40
+            }
+            box_em_height                       4
+        }
+        affector                                Gravity 
+        {
+            position                            0 130 0
+            gravity                             2500
+        }
+        affector                                Scale 
+        {
+            x_scale                             -5
+            y_scale                             dyn_random
+            {
+                min                             3
+                max                             26
+            }
+        }
+        affector                                ParticleFollower 
+        {
+            follower_min_distance               4
+            follower_max_distance               35
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    0 0 0 1
+            colour_aff_time_colour              0.1  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 1
+        }
+    }
+}

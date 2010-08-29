@@ -55,24 +55,21 @@ void GameObjectParticleSystem::changeWorldFinished(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
-			mRenderComponentParticleSystem->setVisible(true);
 			mRenderComponentParticleSystem->start();
 		}
 		else
 		{
-			mRenderComponentParticleSystem->setVisible(false);
-
+			mRenderComponentParticleSystem->stop();
 		}		
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentParticleSystem->setVisible(true);
 			mRenderComponentParticleSystem->start();
 		}
 		else
 		{
-			mRenderComponentParticleSystem->setVisible(false);
+			mRenderComponentParticleSystem->stop();
 		}
 		break;
 	default:

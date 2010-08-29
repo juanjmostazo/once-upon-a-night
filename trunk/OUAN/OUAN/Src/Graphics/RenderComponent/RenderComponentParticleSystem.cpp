@@ -45,7 +45,7 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 	}
 	else
 	{
-		Logger::getInstance()->log("RCParticleSystem - setVisible(): mParticleSystems is NULL");
+		Logger::getInstance()->log("RCParticleSystem - setVisible(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
@@ -71,12 +71,12 @@ void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 		} 
 		else 
 		{
-			Logger::getInstance()->log("RCParticleSystem - start(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			Logger::getInstance()->log("RCParticleSystem - start(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 		}
 	}
 	else 
 	{
-		Logger::getInstance()->log("RCParticleSystem - start(): mParticleSystems is NULL ");
+		Logger::getInstance()->log("RCParticleSystem - start(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
@@ -90,12 +90,12 @@ void RenderComponentParticleSystem::stop()
 		} 
 		else 
 		{
-			Logger::getInstance()->log("RCParticleSystem - stop(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			Logger::getInstance()->log("RCParticleSystem - stop(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 		}
 	}
 	else 
 	{
-		Logger::getInstance()->log("RCParticleSystem - stop(): mParticleSystem is NULL ");
+		Logger::getInstance()->log("RCParticleSystem - stop(): mParticleSystem is NULL from " + getParentName());
 	}
 }
 
@@ -109,12 +109,12 @@ void RenderComponentParticleSystem::pause()
 		} 
 		else 
 		{
-			Logger::getInstance()->log("RCParticleSystem - pause(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			Logger::getInstance()->log("RCParticleSystem - pause(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 		}
 	}
 	else 
 	{
-		Logger::getInstance()->log("RCParticleSystem - pause(): mParticleSystem is NULL ");
+		Logger::getInstance()->log("RCParticleSystem - pause(): mParticleSystem is NULL from " + getParentName());
 	}
 }
 
@@ -128,12 +128,12 @@ void RenderComponentParticleSystem::resume()
 		} 
 		else 
 		{
-			Logger::getInstance()->log("RCParticleSystem - resume(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+			Logger::getInstance()->log("RCParticleSystem - resume(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 		}
 	}
 	else 
 	{
-		Logger::getInstance()->log("RCParticleSystem - resume(): mParticleSystem is NULL ");
+		Logger::getInstance()->log("RCParticleSystem - resume(): mParticleSystem is NULL from " + getParentName());
 	}
 }
 
@@ -150,13 +150,13 @@ void RenderComponentParticleSystem::startAll()
 			} 
 			else 
 			{
-				Logger::getInstance()->log("RCParticleSystem - startAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+				Logger::getInstance()->log("RCParticleSystem - startAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 			}
 		}
 	}
 	else
 	{
-		Logger::getInstance()->log("RCParticleSystem - startAll(): mParticleSystems is NULL");
+		Logger::getInstance()->log("RCParticleSystem - startAll(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
@@ -172,13 +172,13 @@ void RenderComponentParticleSystem::stopAll()
 			} 
 			else 
 			{
-				Logger::getInstance()->log("RCParticleSystem - stopAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+				Logger::getInstance()->log("RCParticleSystem - stopAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 			}
 		}
 	}
 	else
 	{
-		Logger::getInstance()->log("RCParticleSystem - stopAll(): mParticleSystems is NULL");
+		Logger::getInstance()->log("RCParticleSystem - stopAll(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
@@ -194,13 +194,13 @@ void RenderComponentParticleSystem::pauseAll()
 			} 
 			else 
 			{
-				Logger::getInstance()->log("RCParticleSystem - pauseAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+				Logger::getInstance()->log("RCParticleSystem - pauseAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 			}
 		}
 	}
 	else
 	{
-		Logger::getInstance()->log("RCParticleSystem - pauseAll(): mParticleSystems is NULL");
+		Logger::getInstance()->log("RCParticleSystem - pauseAll(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
@@ -216,13 +216,13 @@ void RenderComponentParticleSystem::resumeAll()
 			} 
 			else 
 			{
-				Logger::getInstance()->log("RCParticleSystem - resumeAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL ");
+				Logger::getInstance()->log("RCParticleSystem - resumeAll(): mParticleSystem " + Ogre::StringConverter::toString(Ogre::Real(mPoolPointer)) + " is NULL from " + getParentName());
 			}
 		}
 	}
 	else
 	{
-		Logger::getInstance()->log("RCParticleSystem - resumeAll(): mParticleSystems is NULL");
+		Logger::getInstance()->log("RCParticleSystem - resumeAll(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
