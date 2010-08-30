@@ -8,7 +8,7 @@
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectTripollo.h"
 #include "../../Game/GameObject/GameObjectTentetieso.h"
-#include "../../Game/GameObject/GameObjectTerrainConvex.h"
+#include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
 #include "../../Event/Event.h"
@@ -98,26 +98,23 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			}			
 		}
 	}
-	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0)
+	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_PLATAFORM)==0)
 	{
-		GameObjectTerrainConvexPtr terrain = 
-			BOOST_PTR_CAST(GameObjectTerrainConvex,pGameObject);
+		GameObjectPlataformPtr plataform = 
+			BOOST_PTR_CAST(GameObjectPlataform,pGameObject);
 
-		PhysicsComponentComplexConvexPtr physicsTerrain = terrain->getPhysicsComponentComplexConvex();
+		PhysicsComponentComplexConvexPtr physicsPlataform = plataform->getPhysicsComponentComplexConvex();
 
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
 		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
 		
-		if (physicsOny->getPosition().y > physicsTerrain->getPosition().y)
-		{
-			Ogre::Vector3 posOny = physicsOny->getPosition();
-			posOny += physicsTerrain->getLastPositionDifference();
-			physicsOny->setPosition(posOny);
-		}
-		else
-		{
-			//TODO... ¿DIE?
-		}
+		Logger::getInstance()->log("///////////////////////");
+		Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
+		Logger::getInstance()->log("PLATFORM: " + Ogre::StringConverter::toString(physicsPlataform->getPosition()));
+
+		Ogre::Vector3 posOny = physicsOny->getPosition();
+		posOny += physicsPlataform->getLastPositionDifference();
+		physicsOny->setPosition(posOny);
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)==0)
 	{
