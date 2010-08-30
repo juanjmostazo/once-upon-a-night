@@ -759,7 +759,10 @@ void GameObjectOny::hideMessage()
 bool GameObjectOny::isMessageVisible() const
 {
 	if (mMsgBoxComponent.get())
+	{
 		return mMsgBoxComponent->isVisible();
+	}
+
 	return false;
 }
 //-------
