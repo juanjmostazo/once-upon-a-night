@@ -54,20 +54,11 @@ end
 -- CUTSCENE 2: FIRST CHANGE WORLD
 function startCutScene2(pOny)
 	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
+	launchCutScene("cutscenes_level2.lua","cutScene2");
 	return
 end
 
 function conditionCutScene2(pOny)
-
-	local currentWorld = world()
-	if currentWorld == OUAN_WORLD_DREAMS then
-		changeWorld(OUAN_WORLD_NIGHTMARES)
-	else changeWorld(OUAN_WORLD_DREAMS)
-	end
-	log("Change world called")
-	worldChangeWait()
-	
 	return not hasExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD) and hasExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
 end
 
@@ -75,9 +66,9 @@ function cutScene2(timer)
 	log ("CUTSCENE 2: ");
 	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD);
-	while not isCameraTrajectoryFinished() do		
-		coroutine.yield(COROUTINE_ONGOING)		
-	end
+	changeWorld(OUAN_WORLD_NIGHTMARES);
+	trajectoryCamWait();
+	worldChangeWait();
 	return COROUTINE_FINISHED
 end
 
