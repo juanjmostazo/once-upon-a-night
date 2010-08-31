@@ -149,6 +149,7 @@ namespace OUAN
 		TPhysicsComponentComplexConvexParameters processPhysicsComponentComplexConvex(TiXmlElement *OgitorNode,TiXmlElement *CTPNode,std::string nxsFile,std::string suffix="");
 		TPhysicsComponentComplexTriangleParameters processPhysicsComponentComplexTriangle(TiXmlElement *XMLNode,std::string nxsFile,std::string suffix="");
 		TPhysicsComponentSimpleBoxParameters processPhysicsComponentSimpleBox(TiXmlElement *XMLNode,std::string suffix="");
+		TPhysicsComponentSimpleBoxParameters processPhysicsComponentSimpleBoxFromScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
 		TPhysicsComponentSimpleCapsuleParameters processPhysicsComponentSimpleCapsule(TiXmlElement *XMLNode,std::string suffix="");
 		TPhysicsComponentVolumeBoxParameters processPhysicsComponentVolumeBox(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsule(TiXmlElement *XMLCustomPropertiesNode,std::string suffix="");

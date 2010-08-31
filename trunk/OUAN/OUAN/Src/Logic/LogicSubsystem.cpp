@@ -67,6 +67,7 @@ void LogicSubsystem::registerModules()
 		def("victory",&GameWorldManager::victory),
 		def("skip",&CutsceneState::isSkippingCutscene),
 		def("changeWorld",&CutsceneState::changeWorld),
+		def("setMyReturningToGameTransition",&CutsceneState::setMyReturningToGameTransitionLUA),
 		def("hasFinishedChangingWorld",&CutsceneState::hasFinishedChangingWorld),
 		def("changeLevel",&GameRunningState::changeLevel),
 		def("setCheckPoint",&GameWorldManager::setCheckPointLUA),

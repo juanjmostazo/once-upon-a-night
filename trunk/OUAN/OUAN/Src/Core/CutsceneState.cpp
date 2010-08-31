@@ -39,6 +39,8 @@ void CutsceneState::init(ApplicationPtr app)
 	mApp->mAudioFrameCnt=0;
 	mApp->getRenderSubsystem()->resumeRendering();
 	//mApp->getAudioSubsystem()->stopAllSounds();
+
+	mReturningToGameTransition=false;
 }
 
 /// Clean up extras screen's resources
@@ -147,11 +149,23 @@ void CutsceneState::update(long elapsedTime)
 		
 		if (logicSS->isCutsceneFinished(mCutsceneFunction))
 		{
-			mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
+			mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
 			mApp->getGameStateManager()->popState();
 		}
 	}
 }
+
+void CutsceneState::setMyReturningToGameTransitionLUA(bool transition)
+{
+	mInst->setMyReturningToGameTransition(transition);
+}
+
+void CutsceneState::setMyReturningToGameTransition(bool transition)
+{
+	mReturningToGameTransition=transition;
+}
+
+
 void CutsceneState::changeWorld(int world)
 {
 	mInst->doChangeWorld(world);

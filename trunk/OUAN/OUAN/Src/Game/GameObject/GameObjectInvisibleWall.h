@@ -15,9 +15,6 @@ namespace OUAN
 	{
 	private:
 		
-		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -38,16 +35,6 @@ namespace OUAN
 
 		/// return logic component
 		LogicComponentPtr getLogicComponent();
-
-		/// Return render component entity 
-		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
-
-		/// Set render component
-		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -86,8 +73,6 @@ namespace OUAN
 		bool hasPhysicsComponent() const;
 		PhysicsComponentPtr getPhysicsComponent() const;
 
-		bool hasRenderComponentEntity() const;
-		RenderComponentEntityPtr getEntityComponent() const;
 
 		/// Process collision event
 		/// @param gameObject which has collision with
@@ -101,9 +86,6 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
-
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
@@ -114,10 +96,6 @@ namespace OUAN
 	public:
 		TGameObjectInvisibleWallParameters();
 		~TGameObjectInvisibleWallParameters();
-
-		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

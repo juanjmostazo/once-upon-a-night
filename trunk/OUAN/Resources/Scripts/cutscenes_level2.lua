@@ -47,7 +47,8 @@ function cutScene1(timer)
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
-
+	
+	setMyReturningToGameTransition(false);
 	return COROUTINE_FINISHED
 end
 
@@ -68,7 +69,8 @@ function cutScene2(timer)
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD,false,true);
 	changeWorld(OUAN_WORLD_NIGHTMARES);
 	trajectoryCamWait();
-	setDefaultThirdPersonCamera(false);
+	busyWait(timer,5);
+	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end
 
