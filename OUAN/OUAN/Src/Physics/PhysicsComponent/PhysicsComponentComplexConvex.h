@@ -38,21 +38,22 @@ namespace OUAN
 		OGRE3DBody* mNxOgreBody;
 		OGRE3DKinematicBody* mNxOgreKinematicBody;
 
-		double mBalanceRadiumX;
-		double mBalanceRadiumY;
-		double mBalanceRadiumZ;
-		double mBalanceRadiumTime;
+		//double mBalanceRadiumX;
+		//double mBalanceRadiumY;
+		//double mBalanceRadiumZ;
+		//double mBalanceRadiumTime;
 
-		Ogre::Vector3 mBalanceLastWasPositive;  // VALUES{1,0}
-		Ogre::Vector3 mBalanceLastWasCenter;    // VALUES{1,0}
-		Ogre::Vector3 mBalanceLastWasNegative;  // VALUES{1,0}
-		Ogre::Vector3 mBalanceDirection;        // VALUES{1,-1}
-		double mBalanceAccumulatedTime;
+		//Ogre::Vector3 mBalanceLastWasPositive;  // VALUES{1,0}
+		//Ogre::Vector3 mBalanceLastWasCenter;    // VALUES{1,0}
+		//Ogre::Vector3 mBalanceLastWasNegative;  // VALUES{1,0}
+		//Ogre::Vector3 mBalanceDirection;        // VALUES{1,-1}
+		//double mBalanceAccumulatedTime;
 
 		Ogre::Vector3 mLastPositionDifference;
+		Ogre::Vector3 mLastPosition;
 
-		virtual bool canUpdateBalancing(double elapsedSeconds);
-		virtual void updateBalancing(double elapsedSeconds);
+		//virtual bool canUpdateBalancing(double elapsedSeconds);
+		//virtual void updateBalancing(double elapsedSeconds);
 	};
 
 	class TPhysicsComponentComplexConvexParameters: public TPhysicsComponentComplexParameters

@@ -30,6 +30,8 @@ namespace OUAN
 		//Returns camera controller type
 		TCameraControllerType getCameraControllerType() const;
 
+		CameraState getCameraState() const;
+
 		void update(double elapsedTime);
 
 		void processMouseInput(const OIS::MouseEvent &e);
@@ -89,7 +91,19 @@ namespace OUAN
 		std::string getLastTrigger() const;
 
 		//LUA exports
-		static void setTrajectoryCamera(const std::string& camName);
+
+		//Sets specified trajectory, lookAtTarget=true to ignore original trajectory orientation and look at target instead
+		static void setCameraTrajectoryLUA(std::string trajectory,bool lookAtTarget,bool transition);
+		//Sets free camera, which processes input
+		static void setCameraFreeLUA(bool transition);
+		//Sets tracking camera, like free but without processing input
+		static void setCameraTrackingLUA(bool transition);
+		//Sets default camera
+		static void setDefaultThirdPersonCameraLUA(bool transition);
+		//Sets camera fixed first person
+		static void setCameraFixedFirstPersonLUA();
+
+
 		static bool isCameraTrajectoryEnded();
 		static void setAnyTrackingCamera();
 

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
+
+
+    	<PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="300" fields="X;Y;Z;W"></PROPERTY>
+
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>		
         <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
         <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="5 10 5" fields="X;Y;Z;W"></PROPERTY>

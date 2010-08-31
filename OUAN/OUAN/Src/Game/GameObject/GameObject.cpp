@@ -579,8 +579,8 @@ bool GameObject::isWorthRendering()
 		return true;
 	}
 
-	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
-	return getPositionalComponent()->getPosition().distance(positionOny) < mMaxRenderRadium;	
+	Ogre::Vector3 positionCamera = Application::getInstance()->getCameraManager()->getCamera()->getPosition();
+	return getPositionalComponent()->getPosition().distance(positionCamera) < mMaxRenderRadium;	
 }
 
 std::string GameObject::getTranslation(const std::string& baseString)
