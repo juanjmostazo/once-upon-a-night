@@ -90,7 +90,7 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 					mPhysicsComponentSimpleBox->destroy();
 				}
 			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{

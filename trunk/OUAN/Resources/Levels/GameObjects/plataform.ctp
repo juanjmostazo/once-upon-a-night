@@ -5,5 +5,5 @@
 
     <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="false" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="5" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="500" fields="X;Y;Z;W"></PROPERTY>
 </CUSTOMPROPERTIES>

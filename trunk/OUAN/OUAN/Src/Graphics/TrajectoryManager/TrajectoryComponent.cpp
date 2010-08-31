@@ -68,21 +68,21 @@ void TrajectoryComponent::activatePathFinding(std::string target,int currentWorl
 	}
 }
 
-void TrajectoryComponent::activatePathfindingToPredefinedTrajectory(std::string trajectory,int currentWorld)
+void TrajectoryComponent::activatePathfindingToPredefinedTrajectory(std::string trajectory,int currentWorld,bool useDefaultTrajectorySpeed)
 {
 	if(currentWorld==DREAMS)
 	{
-		mTrajectory->activatePathfindingToPredefinedTrajectory(trajectory,getParent()->getName(),DEFAULT_WALKABILITY_MAP_DREAMS);
+		mTrajectory->activatePathfindingToPredefinedTrajectory(trajectory,getParent()->getName(),DEFAULT_WALKABILITY_MAP_DREAMS,useDefaultTrajectorySpeed);
 	}
 	else if(currentWorld==NIGHTMARES)
 	{
-		mTrajectory->activatePathfindingToPredefinedTrajectory(trajectory,getParent()->getName(),DEFAULT_WALKABILITY_MAP_NIGHTMARES);
+		mTrajectory->activatePathfindingToPredefinedTrajectory(trajectory,getParent()->getName(),DEFAULT_WALKABILITY_MAP_NIGHTMARES,useDefaultTrajectorySpeed);
 	}
 }
 
-void TrajectoryComponent::activateTrajectory(std::string trajectory)
+void TrajectoryComponent::activateTrajectory(std::string trajectory,bool useDefaultTrajectorySpeed)
 {
-	mTrajectory->activatePredefinedTrajectory(trajectory);
+	mTrajectory->activatePredefinedTrajectory(trajectory,useDefaultTrajectorySpeed);
 }
 
 

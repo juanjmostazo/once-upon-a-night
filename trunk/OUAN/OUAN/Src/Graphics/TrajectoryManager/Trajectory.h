@@ -23,6 +23,7 @@ namespace OUAN
 		std::vector<TrajectoryNode *> mTrajectoryNodes;
 
 		bool mLoopTrajectory;
+		bool mUseDefaultSpeed;
 		bool mTrajectory2d;
 
 		enum TrajectoryState
@@ -131,8 +132,8 @@ namespace OUAN
 
 		void activatePathfinding(std::string source,std::string target,std::string walkabilityMap);
 		void activateIdle(std::string gameObject,std::string node,std::string walkabilityMap);
-		void activatePredefinedTrajectory(std::string trajectory);
-		void activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap);
+		void activatePredefinedTrajectory(std::string trajectory,bool useDefaultSpeed);
+		void activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap,bool useDefaultSpeed);
 		void activateChase(std::string source,std::string target);
 
 		std::string getNearestNode(Ogre::Vector3 position);

@@ -480,11 +480,6 @@ namespace OUAN
 		#else
 				const std::string DEFAULT_OGRE_PLUGINS_PATH="../../Config/plugins.cfg";
 		#endif	
-
-		const double DEFAULT_MOVE_SPEED = 1;
-		const double DEFAULT_ROTATE_SPEED=0.3f;
-		const double MOUSE_MOVE_ROTATION_INCREMENT=0.1f;
-
 		typedef enum
 		{
 			AXIS_POS_X,
