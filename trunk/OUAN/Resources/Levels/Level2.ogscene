@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="942.471 449.136 60.6687" orientation="0.240855 -0.117502 0.866259 0.421636"></OPTION>
+    <OPTION id="2" position="-633.092 301.294 -1570.79" orientation="0.89309 -0.292596 -0.324665 -0.106631"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.240862 -0.117506 0.866283 0.421647"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.893101 -0.292599 -0.324669 -0.106632"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="942.471 449.136 60.6687"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-633.092 301.294 -1570.79"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1019,9 +1019,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#6" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.5" fields="X;Y;Z;W"></PROPERTY>
@@ -1791,16 +1789,14 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-134.506 215.162 68.4553"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -2065,16 +2061,14 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-137.354 4.02609 -761.434"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -2339,16 +2333,14 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-843.749 222.421 -1700.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -2729,9 +2721,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -3063,7 +3053,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-494.46 487.34 -2603.45"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -3431,11 +3421,9 @@
     <PROPERTY id="position" type="9" value="-46.5408 195.35 91.5813"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -3572,9 +3560,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#3" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.6" fields="X;Y;Z;W"></PROPERTY>
@@ -3811,11 +3797,9 @@
     <PROPERTY id="position" type="9" value="-615.394 267.611 4.06877"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -3825,7 +3809,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="965.49 135.059 188.999"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -4318,11 +4302,9 @@
     <PROPERTY id="position" type="9" value="448.281 207.869 365.008"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -4544,11 +4526,9 @@
     <PROPERTY id="position" type="9" value="-737.104 229.704 -1546.11"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -4601,9 +4581,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#5" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.6" fields="X;Y;Z;W"></PROPERTY>
@@ -4740,7 +4718,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="101.848 268.564 -59.955"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -5222,11 +5200,9 @@
     <PROPERTY id="position" type="9" value="-951.724 135.059 -1251.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -5424,11 +5400,9 @@
     <PROPERTY id="position" type="9" value="-473.992 487.34 -2713.95"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -5668,7 +5642,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-688.142 242.624 -1429.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -5976,11 +5950,9 @@
     <PROPERTY id="position" type="9" value="466.68 118.547 -172.615"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -6078,7 +6050,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="71.1643 210.199 419.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -6177,9 +6149,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -6211,11 +6181,9 @@
     <PROPERTY id="position" type="9" value="-433.517 487.34 -2653.91"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -6531,7 +6499,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-433.517 487.34 -2653.91"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -6952,11 +6920,9 @@
     <PROPERTY id="position" type="9" value="849.536 169.432 177.521"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -7043,9 +7009,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.3" fields="X;Y;Z;W"></PROPERTY>
@@ -7057,7 +7021,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-233.646 267.632 442.254"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -7236,7 +7200,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.254602 0 -0.967046 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="29.5719 184.373 190.489"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -7256,7 +7220,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="936.809 135.059 147.457"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -7768,11 +7732,9 @@
     <PROPERTY id="position" type="9" value="743.566 129.901 -177.883"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -7998,7 +7960,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-341.801 250.791 115.022"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -8198,7 +8160,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-213.154 250.791 152.361"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -8254,7 +8216,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-767.249 39.1923 -1115.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -8683,7 +8645,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="922.029 135.059 224.388"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -8814,11 +8776,9 @@
     <PROPERTY id="position" type="9" value="-494.46 487.34 -2603.45"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -9501,11 +9461,9 @@
     <PROPERTY id="position" type="9" value="285.144 146.876 211.976"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -9585,7 +9543,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.254602 0 -0.967046 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="428.212 95.7911 -288.404"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -9684,11 +9642,9 @@
     <PROPERTY id="position" type="9" value="-540.072 487.34 -2638.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -9972,7 +9928,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-540.072 487.34 -2638.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -10361,11 +10317,9 @@
     <PROPERTY id="position" type="9" value="-271.03 237.279 201.268"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -10435,9 +10389,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.5" fields="X;Y;Z;W"></PROPERTY>
@@ -10449,7 +10401,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.793353 0 0.608761 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="539.391 132.628 -153.132"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -11580,7 +11532,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-446.376 250.791 135.608"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -11636,7 +11588,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-759.71 219.717 -1270.68"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -12201,11 +12153,9 @@
     <PROPERTY id="position" type="9" value="-535.506 487.34 -2706.62"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
@@ -12465,7 +12415,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-535.506 487.34 -2706.62"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -12724,7 +12674,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-141.844 210.199 543.741"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -12876,11 +12826,9 @@
     <PROPERTY id="position" type="9" value="-78.6004 209.327 208.64"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -12924,7 +12872,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-263.926 56.2923 -156.334"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -13211,9 +13159,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -13745,11 +13691,9 @@
     <PROPERTY id="position" type="9" value="-861.726 220.414 -1539.93"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -13802,9 +13746,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="ParentNest" type="7" value="nest#0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="SpawnProbability" type="6" value="0.2" fields="X;Y;Z;W"></PROPERTY>
@@ -14660,7 +14602,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-154.636 45.1268 -518.17"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -15021,7 +14963,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-738.787 141.564 -417.341"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -15060,7 +15002,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-746.286 135.059 -1175.17"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -15559,9 +15501,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -16039,7 +15979,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-46.5408 210.199 308.898"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -16178,9 +16118,7 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -16258,7 +16196,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.608761 0 0.793353 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="216.764 410.822 -2415.9"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -16929,11 +16867,9 @@
     <PROPERTY id="position" type="9" value="-634.046 231.532 -1451.32"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -18068,7 +18004,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-238.536 25.9646 -891.508"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -18124,7 +18060,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-725.429 135.059 -1026.77"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -18383,7 +18319,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-589.757 257.869 -1634.22"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -18867,7 +18803,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-473.992 487.34 -2713.95"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -19184,11 +19120,9 @@
     <PROPERTY id="position" type="9" value="-592.459 229.994 -1625.26"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -19254,11 +19188,9 @@
     <PROPERTY id="position" type="9" value="-421.523 267.611 69.4093"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -19302,7 +19234,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="351.757 136.666 -209.293"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -19475,11 +19407,9 @@
     <PROPERTY id="position" type="9" value="-812.555 267.611 -1.34939"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>

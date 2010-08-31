@@ -147,7 +147,7 @@ void CutsceneState::update(long elapsedTime)
 		
 		if (logicSS->isCutsceneFinished(mCutsceneFunction))
 		{
-			mApp->getCameraManager()->setDefaultThirdPersonCamera(true);
+			mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 			mApp->getGameStateManager()->popState();
 		}
 	}
