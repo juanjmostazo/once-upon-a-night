@@ -108,9 +108,10 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
 		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
 		
-		Logger::getInstance()->log("///////////////////////");
-		Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
-		Logger::getInstance()->log("PLATFORM: " + Ogre::StringConverter::toString(physicsPlataform->getPosition()));
+		//Logger::getInstance()->log("///////////////////////");
+		//Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
+		//Logger::getInstance()->log("PLATFORM: " + Ogre::StringConverter::toString(physicsPlataform->getPosition()));
+		//Logger::getInstance()->log("LAST_POS_DIFF: " + Ogre::StringConverter::toString(physicsPlataform->getLastPositionDifference()));
 
 		Ogre::Vector3 posOny = physicsOny->getPosition();
 		posOny += physicsPlataform->getLastPositionDifference();

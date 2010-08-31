@@ -452,12 +452,46 @@ Ogre::Vector3 CameraManager::rotateMovementVector(Ogre::Vector3 movement,double 
 	return mActiveCameraController->rotateMovementVector(movement,mCamera,mCameraInput,elapsedSeconds);
 }
 
-void CameraManager::setTrajectoryCamera(const std::string& camName)
+
+void CameraManager::setCameraTrajectoryLUA(std::string trajectory,bool lookAtTarget,bool transition)
 {
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
 	mInst->setToDefaultCameraParameters(params);
-	mInst->setCameraTrajectory(params,camName,false,false);
+	mInst->setCameraTrajectory(params,trajectory,lookAtTarget,transition);
 	mInst->mCameraControllerThirdPerson->getTrajectory()->setLoopTrajectory(false);
+}
+//TODO add parameters in order to use other camera parameters instead default ones
+void CameraManager::setCameraFreeLUA(bool transition)
+{
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	mInst->setCameraFree(params,transition);
+}
+//TODO add parameters in order to use other camera parameters instead default ones
+void CameraManager::setCameraTrackingLUA(bool transition)
+{
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	mInst->setCameraTracking(params,transition);
+}
+//TODO add parameters in order to use other camera parameters instead default ones
+void CameraManager::setDefaultThirdPersonCameraLUA(bool transition)
+{
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	mInst->setDefaultThirdPersonCamera(params);
+}
+//Sets camera fixed first person
+void CameraManager::setCameraFixedFirstPersonLUA()
+{
+	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
+	mInst->setToDefaultCameraParameters(params);
+	mInst->setCameraFixedFirstPerson(params);
+}
+
+CameraState CameraManager::getCameraState() const
+{
+	return mCameraControllerThirdPerson->getCameraState();
 }
 
 bool CameraManager::targetMovementAllowed()

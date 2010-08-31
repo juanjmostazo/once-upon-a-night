@@ -412,6 +412,19 @@ void GameObjectPortal::setAudioComponent(AudioComponentPtr audioComponent)
 void GameObjectPortal::setVisible(bool visible)
 {
 
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(visible);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(visible);
+	}
+
+	mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
 }
 void GameObjectPortal::setCurrentWorldVisibility(bool visibility)
 {	

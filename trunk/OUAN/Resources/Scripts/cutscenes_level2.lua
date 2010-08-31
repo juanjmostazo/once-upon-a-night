@@ -45,7 +45,7 @@ function cutScene1(timer)
 	log (CUTSCENE_1_LEVEL_START);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_1_LEVEL_START)	
+	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
 
 	return COROUTINE_FINISHED
@@ -65,10 +65,10 @@ end
 function cutScene2(timer)
 	log ("CUTSCENE 2: ");
 	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
-	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD);
+	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD,false,true);
 	changeWorld(OUAN_WORLD_NIGHTMARES);
 	trajectoryCamWait();
-	worldChangeWait();
+	setDefaultThirdPersonCamera(false);
 	return COROUTINE_FINISHED
 end
 
