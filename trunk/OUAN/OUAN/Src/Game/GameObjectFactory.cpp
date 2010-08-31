@@ -3486,45 +3486,61 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 	pGameObjectWoodBox->setRenderComponentInitial(
 		mComponentFactory->createRenderComponentInitial(
 			pGameObjectWoodBox->getRenderComponentPositional()));
+	bool existsInDreams = pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams();
+	bool existsInNightmares = pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares();
 
-	if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams() && pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
+	if(existsInDreams && existsInNightmares)
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
+		existsInDreams,
+		existsInNightmares));
+		
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
-		std::string addName=tGameObjectWoodBoxParameters.name+"additional";
+		existsInDreams,
+		existsInNightmares));
+		
+		std::string addName=tGameObjectWoodBoxParameters.name+"additional";		
 		pGameObjectWoodBox->setRenderComponentEntityAdditional(
 			mComponentFactory->createRenderComponentEntity(addName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters,
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
+		existsInDreams,
+		existsInNightmares));
 	}
-	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams())
+	else if(existsInDreams)
 	{
 		//Create RenderComponentEntityDreams
 		pGameObjectWoodBox->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.dreamsName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
+		existsInDreams,
+		existsInNightmares));
+		std::string addName=tGameObjectWoodBoxParameters.name+"additional";		
+		pGameObjectWoodBox->setRenderComponentEntityAdditional(
+			mComponentFactory->createRenderComponentEntity(addName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters,
+			existsInDreams,
+			existsInNightmares));
 	}
-	else if(pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares())
+	else if(existsInNightmares)
 	{
 		//Create RenderComponentEntityNightmares
 		pGameObjectWoodBox->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectWoodBoxParameters.nightmaresName,
 			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInDreams(),
-		pGameObjectWoodBox->getLogicComponentBreakable()->existsInNightmares()));
+		existsInDreams,
+		existsInNightmares));
+		std::string addName=tGameObjectWoodBoxParameters.name+"additional";		
+		pGameObjectWoodBox->setRenderComponentEntityAdditional(
+			mComponentFactory->createRenderComponentEntity(addName,
+			pGameObjectWoodBox,tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters,
+			existsInDreams,
+			existsInNightmares));
 	}
 
 	//Create RenderComponenetParticleSystem

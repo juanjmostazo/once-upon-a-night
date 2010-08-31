@@ -414,7 +414,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WOODBOX)==0)
 		{
-			//processGameObjectWoodBox(gameObject);
+			processGameObjectWoodBox(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_WATER)==0)
 		{
