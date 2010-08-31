@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="8"></CAMERASPEED>
+  <CAMERASPEED value="18"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-633.092 301.294 -1570.79" orientation="0.89309 -0.292596 -0.324665 -0.106631"></OPTION>
+    <OPTION id="2" position="444.828 649.346 -155.282" orientation="-0.443069 0.129018 -0.851952 -0.24743"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.893101 -0.292599 -0.324669 -0.106632"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.4431 0.129027 -0.852012 -0.247448"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-633.092 301.294 -1570.79"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="444.828 649.346 -155.282"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -752,23 +752,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="153782768" name="Volumes" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 311 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="560869184" name="WalkabilityMapNightmares" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="153782768" name="Invisible Walls" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 311 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
@@ -1026,7 +1026,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="662099072" name="volume-box_n#win2" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="662099072" name="volume-box_n#win2" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -1827,7 +1827,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="100955232" name="volume-box_d#win2" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="100955232" name="volume-box_d#win2" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -1912,7 +1912,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="617481024" name="volume-box_n#win4" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="617481024" name="volume-box_n#win4" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -2569,7 +2569,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="388622688" name="volume-box_d#win8" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="388622688" name="volume-box_d#win8" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -3567,7 +3567,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="190649120" name="volume-box_n#win9" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="190649120" name="volume-box_n#win9" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -4588,7 +4588,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="273628960" name="volume-box_n#win3" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="273628960" name="volume-box_n#win3" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -5006,7 +5006,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="184118160" name="volume-box_d#win11" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="184118160" name="volume-box_d#win11" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5225,7 +5225,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="992858624" name="volume-box_n#win5" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="992858624" name="volume-box_n#win5" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -5868,7 +5868,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="912320320" name="volume-box_d#win9" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="912320320" name="volume-box_d#win9" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -7811,7 +7811,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="765007488" name="volume-box_n#win0" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="765007488" name="volume-box_n#win0" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -8231,7 +8231,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="185003200" name="volume-box_d#win10" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="185003200" name="volume-box_d#win10" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8519,7 +8519,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="242316960" name="volume-box_d#win4" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="242316960" name="volume-box_d#win4" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -9720,6 +9720,23 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamond_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="94790488" name="invisible-wall_d#bridge1_2" typename="Entity Object" parentnode="Invisible Walls">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999191 -0.00342172 -0.0087198 0.0391104"></PROPERTY>
+    <PROPERTY id="position" type="9" value="196.024 -100.823 -13.0363"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="162.393 258.085 45.6374"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11131,7 +11148,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="610522816" name="volume-box_n#win1" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="610522816" name="volume-box_n#win1" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -11603,7 +11620,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="107394632" name="volume-box_d#win13" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="107394632" name="volume-box_d#win13" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -11842,7 +11859,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="785363328" name="volume-box_d#win5" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="785363328" name="volume-box_d#win5" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -14508,7 +14525,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="982421312" name="volume-box_d#win0" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="982421312" name="volume-box_d#win0" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -14525,7 +14542,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="484939136" name="volume-box_n#win0Copy#0" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="484939136" name="volume-box_n#win0Copy#0" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -14655,7 +14672,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="220374160" name="volume-box_n#win6" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="220374160" name="volume-box_n#win6" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -14691,7 +14708,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="806360064" name="volume-box_n#win11" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="806360064" name="volume-box_n#win11" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -15017,7 +15034,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="184301280" name="volume-box_d#win12" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="184301280" name="volume-box_d#win12" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -15309,7 +15326,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="125186920" name="volume-box_d#win6" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="125186920" name="volume-box_d#win6" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -17624,7 +17641,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="750816320" name="volume-box_d#win1" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="750816320" name="volume-box_d#win1" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -17728,7 +17745,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="265327936" name="volume-box_n#win7" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="265327936" name="volume-box_n#win7" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -17745,7 +17762,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="783043904" name="volume-box_n#win10" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="783043904" name="volume-box_n#win10" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -18370,7 +18387,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="612750656" name="volume-box_d#win7" typename="Entity Object" parentnode="Volumes">
+  <OBJECT object_id="612750656" name="volume-box_d#win7" typename="Entity Object" parentnode="Invisible Walls">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -18659,6 +18676,23 @@
       <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene4" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="976287104" name="invisible-wall_d#bridge1_1" typename="Entity Object" parentnode="Invisible Walls">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.7127 -0.0300748 0.700369 0.0252357"></PROPERTY>
+    <PROPERTY id="position" type="9" value="128.918 -104.467 200.76"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="479.248 258.085 45.6374"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -22345,7 +22379,7 @@
       <PROPERTY id="trajectory::node#0" type="7" value="TrajectoryNode#FIRST_CHANGE_WORLD_0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#1" type="7" value="TrajectoryNode#FIRST_CHANGE_WORLD_1" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#2" type="7" value="TrajectoryNode#FIRST_CHANGE_WORLD_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="TrajectoryNode#FIRST_CHANGE_WORLD_3" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -23123,6 +23157,20 @@
       <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="183751936" name="TrajectoryNode#FIRST_CHANGE_WORLD_3" typename="Marker Object" parentnode="NodesTrajectory#FIRST_CHANGE_WORLD">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.76877 -0.259687 -0.5231 0.260618"></PROPERTY>
+    <PROPERTY id="position" type="9" value="305.292 492.692 473.561"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -26298,7 +26346,7 @@
     <PROPERTY id="position" type="9" value="683.923 347.738 89.7104"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="200" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>

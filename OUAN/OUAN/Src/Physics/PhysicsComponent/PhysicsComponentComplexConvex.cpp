@@ -97,8 +97,11 @@ void PhysicsComponentComplexConvex::update(double elapsedSeconds)
 	//	updateBalancing(elapsedSeconds);
 	//}
 
-	mLastPositionDifference=getPosition()-mLastPosition;
-	mLastPosition=getPosition();
+	if(isInUse())
+	{
+		mLastPositionDifference=getPosition()-mLastPosition;
+		mLastPosition=getPosition();
+	}
 }
 
 //bool PhysicsComponentComplexConvex::canUpdateBalancing(double elapsedSeconds)

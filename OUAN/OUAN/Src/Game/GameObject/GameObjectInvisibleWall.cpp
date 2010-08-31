@@ -16,26 +16,6 @@ GameObjectInvisibleWall::~GameObjectInvisibleWall()
 
 }
 
-void GameObjectInvisibleWall::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
-{
-	mRenderComponentEntityDreams=pRenderComponentEntity;
-}
-
-void GameObjectInvisibleWall::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
-{
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
-RenderComponentEntityPtr GameObjectInvisibleWall::getRenderComponentEntityDreams() const
-{
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectInvisibleWall::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
-}
-
 void GameObjectInvisibleWall::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
@@ -75,8 +55,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -84,7 +62,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -92,7 +69,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -102,8 +78,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 		case NIGHTMARES:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityNightmares->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -111,7 +85,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -119,7 +92,6 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -222,14 +194,6 @@ void GameObjectInvisibleWall::processExitTrigger(GameObjectPtr pGameObject)
 	}
 }
 
-bool GameObjectInvisibleWall::hasRenderComponentEntity() const
-{
-	return true;
-}
-RenderComponentEntityPtr GameObjectInvisibleWall::getEntityComponent() const
-{
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
-}
 bool GameObjectInvisibleWall::hasLogicComponent() const
 {
 	return true;

@@ -24,6 +24,7 @@ namespace OUAN
 		bool mIsChangingWorld;
 		float mChangeWorldElapsedTime;
 		float mCurrentChangeWorldFrame;
+		bool mReturningToGameTransition;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -54,6 +55,9 @@ namespace OUAN
 
 		static void changeWorld(int world);
 		static bool hasFinishedChangingWorld();
+
+		static void setMyReturningToGameTransitionLUA(bool transition);
+		void setMyReturningToGameTransition(bool transition);
 
 		/// Default constructor
 		CutsceneState();

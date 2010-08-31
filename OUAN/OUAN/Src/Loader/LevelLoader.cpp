@@ -460,6 +460,14 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectLevelEntrance(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_INVISIBLE_WALL)==0)
+		{
+			processGameObjectInvisibleWall(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BREAKABLE_ROCK)==0)
+		{
+			processGameObjectBreakableRock(gameObject);
+		}
 		else
 		{
 			//processGameObjectProvisionalEntity(gameObject);
@@ -1087,8 +1095,6 @@ void LevelLoader::processGameObjectInvisibleWall(XMLGameObject* gameObject)
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
 		tGameObjectInvisibleWallParameters.dreamsName = gameObject->dreamsName;
@@ -1099,18 +1105,11 @@ void LevelLoader::processGameObjectInvisibleWall(XMLGameObject* gameObject)
 		tGameObjectInvisibleWallParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectInvisibleWallParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-		//Get RenderComponentEntityNightmares
-		tGameObjectInvisibleWallParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			NIGHTMARES,gameObject->XMLNodeCustomProperties);
-
 		//Get RenderComponentPositional
 		tGameObjectInvisibleWallParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentSimpleBox
-		tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBoxFromScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
@@ -4122,6 +4121,21 @@ TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleB
 	//Get Component properties
 	tPhysicsComponentSimpleBoxParameters.mass=getPropertyReal(XMLNode, "PhysicsComponentSimpleBox"+suffix+"::mass");
 	Vector3 length=getPropertyVector3(XMLNode, "PhysicsComponentSimpleBox"+suffix+"::length");
+	tPhysicsComponentSimpleBoxParameters.lengthX=length.x;
+	tPhysicsComponentSimpleBoxParameters.lengthY=length.y;
+	tPhysicsComponentSimpleBoxParameters.lengthZ=length.z;
+
+	return tPhysicsComponentSimpleBoxParameters;
+
+}
+
+TPhysicsComponentSimpleBoxParameters LevelLoader::processPhysicsComponentSimpleBoxFromScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix)
+{
+	TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+	//Get Component properties
+	tPhysicsComponentSimpleBoxParameters.mass=getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentSimpleBox"+suffix+"::mass");
+	Vector3 length=getPropertyVector3(XMLRenderInfoNode, "scale");
 	tPhysicsComponentSimpleBoxParameters.lengthX=length.x;
 	tPhysicsComponentSimpleBoxParameters.lengthY=length.y;
 	tPhysicsComponentSimpleBoxParameters.lengthZ=length.z;

@@ -952,25 +952,6 @@ GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGam
 	pGameObjectInvisibleWall->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectInvisibleWall->getRenderComponentPositional()));
 
-	if(pGameObjectInvisibleWall->getLogicComponent()->existsInDreams())
-	{
-		//Create RenderComponentEntity Dreams
-		pGameObjectInvisibleWall->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectInvisibleWallParameters.dreamsName,
-			pGameObjectInvisibleWall,tGameObjectInvisibleWallParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectInvisibleWall->getLogicComponent()->existsInDreams(),
-		pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares()));
-	}
-	if(pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares())
-	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectInvisibleWall->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectInvisibleWallParameters.nightmaresName,
-			pGameObjectInvisibleWall,tGameObjectInvisibleWallParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectInvisibleWall->getLogicComponent()->existsInDreams(),
-		pGameObjectInvisibleWall->getLogicComponent()->existsInNightmares()));
-	}
-
 	//Create PhysicsComponent
 	pGameObjectInvisibleWall->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
