@@ -135,6 +135,9 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
+		void processAnimationEnded(const std::string& animationName);
+
+
 		// update 
 		void update(double elapsedSeconds);
 

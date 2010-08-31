@@ -92,8 +92,9 @@ bool RenderComponentEntity::isVisible()
 void RenderComponentEntity::initAnimationBlender(const std::string& defaultAnimation)
 {
 	SAFEDELETE(mAnimationBlender);
-	mAnimationBlender=new AnimationBlender(mEntity);
-	mAnimationBlender->init(defaultAnimation);
+	mAnimationBlender=new AnimationBlender(mEntity);	
+	mAnimationBlender->init(defaultAnimation,mAnimations[defaultAnimation].loop,
+		mAnimations[defaultAnimation].timescale);
 }
 void RenderComponentEntity::destroyAnimationBlender()
 {
@@ -173,6 +174,10 @@ bool RenderComponentEntity::hasFinishedAnimation(const std::string& animationNam
 	if (mEntity->getAnimationState(animationName))
 		return mEntity->getAnimationState(animationName)->hasEnded();
 	return false;
+}
+bool RenderComponentEntity::hasAnimationBlender() const
+{
+	return mAnimationBlender!=NULL;//if NULL, it'll return false
 }
 Ogre::AnimationState* RenderComponentEntity::getCurrentAnimation() const
 {

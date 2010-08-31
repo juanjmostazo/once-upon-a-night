@@ -339,12 +339,14 @@ void GameObjectWoodBox::calculateChangeWorldDelay(double totalElapsedTime,double
 void GameObjectWoodBox::reset()
 {
 	GameObject::reset();
-	mLogicComponentBreakable->setState(STATE_BREAKABLE_NOT_BROKEN);
+	mLogicComponentBreakable->setIsBroken(false);
 
-	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	if (mPhysicsComponentSimpleBox.get())
 	{
+		if(!mPhysicsComponentSimpleBox->isInUse())
+			mPhysicsComponentSimpleBox->create();
 		mPhysicsComponentSimpleBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
+		mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());			
 	}
 
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
@@ -354,7 +356,6 @@ void GameObjectWoodBox::reset()
 	}
 	if (mRenderComponentEntityAdditional.get())
 		mRenderComponentEntityAdditional->setVisible(false);
-
 }
 
 bool GameObjectWoodBox::hasPositionalComponent() const
@@ -424,6 +425,10 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
+	if (mRenderComponentEntityAdditional->isVisible())
+	{
+		entityToUpdate=mRenderComponentEntityAdditional;
+	}
 	
 	if (entityToUpdate.get())
 	{
@@ -434,6 +439,7 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
+
 	if (mLogicComponentBreakable->isStateChanged())
 	{
 		if (mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
@@ -450,20 +456,24 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
 			{
 				mRenderComponentEntityAdditional->setVisible(true);
-				mRenderComponentEntityAdditional->changeAnimation("broken");
+				if (!mRenderComponentEntityAdditional->hasAnimationBlender())
+					mRenderComponentEntityAdditional->initAnimationBlender("broken");
+				else
+					mRenderComponentEntityAdditional->changeAnimation("broken");
 			}
 
 
 			if (mLogicComponentBreakable->existsInDreams())
 			{
-				mRenderComponentEntityDreams->setVisible(false);			
-				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntityDreams->setVisible(false);						if (mRenderComponentEntityNightmares.get())
+					mRenderComponentEntityNightmares->setVisible(false);
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
-				mRenderComponentEntityDreams->setVisible(false);
+				if (mRenderComponentEntityDreams.get())
+					mRenderComponentEntityDreams->setVisible(false);
 			}		
 		}
 	}	
@@ -525,6 +535,14 @@ bool GameObjectWoodBox::hasLogicComponent() const
 LogicComponentPtr GameObjectWoodBox::getLogicComponentInstance() const
 {
 	return mLogicComponentBreakable;
+}
+void GameObjectWoodBox::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare("broken")==0)
+	{
+		mRenderComponentEntityAdditional->setVisible(false);
+		disable();
+	}
 }
 //-------------------------------------------------------------------------------------------
 

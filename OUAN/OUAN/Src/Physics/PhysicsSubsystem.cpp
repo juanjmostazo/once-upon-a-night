@@ -190,7 +190,8 @@ void PhysicsSubsystem::stabilize()
 			{
 				if(container->at(i)->hasPhysicsComponent())
 				{
-					container->at(i)->getPhysicsComponent()->stabilize(mStabilizeSeconds);
+					GameObjectPtr obj=container->at(i);
+					obj->getPhysicsComponent()->stabilize(mStabilizeSeconds);
 				}
 			}
 		}
