@@ -959,6 +959,11 @@ GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGam
 		tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectInvisibleWall->getRenderComponentPositional()));
 
+	Logger::getInstance()->log("tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters " + 
+		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthX))+" "+
+		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthY))+" "+
+		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthZ))+" ");
+
 	//Add reference to this
 	pGameObjectInvisibleWall->setGameWorldManager(gameWorldMgr);
 
@@ -2060,6 +2065,7 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 
 	if(pGameObjectPlataform->getLogicComponent()->existsInDreams())
 	{
+		Logger::getInstance()->log("EXIST IN DREAMS");
 		//Create RenderComponentEntityDreams
 		pGameObjectPlataform->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectPlataformParameters.dreamsName,
@@ -2069,6 +2075,7 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 	}
 	if(pGameObjectPlataform->getLogicComponent()->existsInNightmares())
 	{
+		Logger::getInstance()->log("EXIST IN NIGHTMARES");
 		//Create RenderComponentEntityNightmares
 		pGameObjectPlataform->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectPlataformParameters.nightmaresName,

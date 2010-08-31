@@ -821,13 +821,6 @@ void GameWorldManager::addGameObjectPlane(GameObjectPlanePtr gameObjectPlane)
 void GameWorldManager::addGameObjectPlataform(GameObjectPlataformPtr pGameObjectPlataform)
 {
 	mGameObjects[pGameObjectPlataform->getName()]=pGameObjectPlataform;
-
-	mGameObjectNonMovableContainer.push_back(pGameObjectPlataform);
-	mGameObjectNonMovableEntityContainer.push_back(pGameObjectPlataform);
-
-	mGameObjectPhysicsContainer.push_back(pGameObjectPlataform);
-	mGameObjectPhysicsComplexContainer.push_back(pGameObjectPlataform);
-	mGameObjectPhysicsComplexConvexContainer.push_back(pGameObjectPlataform);
 }
 
 void GameWorldManager::addGameObjectPortal(GameObjectPortalPtr pGameObjectPortal)
@@ -1271,6 +1264,7 @@ void GameWorldManager::changeToWorld(int newWorld, double perc)
 		if(perc*mChangeWorldTotalTime>=it->second->getChangeWorldDelay() && it->second->getWorld()!=newWorld && !it->second->isChangingWorld())
 		{
 			it->second->activateChangeWorld();
+			Logger::getInstance()->log("[changeWorldStarted] CHANGING "+it->second->getName());
 		}
 	}
 

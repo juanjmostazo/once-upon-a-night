@@ -120,8 +120,6 @@ void GameObjectTree::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	Logger::getInstance()->log("[changeWorldStarted] CHANGING "+getName());
-
 	mRenderComponentEntity->setVisible(true);
 
 	switch(newWorld)

@@ -32,6 +32,7 @@ void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::
 	mNextMovementAbsolute=Vector3::ZERO;
 	mTrajectory2d=false;
 	mLoopTrajectory=true;
+	mUseDefaultSpeed=false;
 	mState=IDLE;
 	mVisible=false;
 	mRecalculateTime=0.2+Utils::Random::getInstance()->getRandomDouble();
@@ -277,7 +278,7 @@ void Trajectory::advanceToLastNode(double elapsedTime)
 	case CHASE:
 		break;
 	case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
-		activatePredefinedTrajectory(mPredefinedTrajectory);
+		activatePredefinedTrajectory(mPredefinedTrajectory,mUseDefaultSpeed);
 		break;
 	case PATH_FINDING_TO_IDLE:
 		activateIdle(mParent,currentNodeName,mWalkabilityMap);
@@ -306,7 +307,7 @@ void Trajectory::update(double elapsedTime)
 
 	currentSpeed=mTrajectoryNodes[mCurrentNode]->getSpeed();
 	
-	Logger::getInstance()->log("Updating Trajectory '" + mName + "', node '" + Ogre::StringConverter::toString(Ogre::Real(mCurrentNode)) + "', speed '" + Ogre::StringConverter::toString(Ogre::Real(currentSpeed)) + "'");
+	//Logger::getInstance()->log("Updating Trajectory '" + mName + "', node '" + Ogre::StringConverter::toString(Ogre::Real(mCurrentNode)) + "', speed '" + Ogre::StringConverter::toString(Ogre::Real(currentSpeed)) + "'");
 
 	mNextMovement=calculateNextMovement(source,target,mTrajectory2d,currentSpeed,elapsedTime);
 	mNextMovementAbsolute=calculateNextMovementAbsolute(source,target,mTrajectory2d,currentSpeed,elapsedTime);
@@ -575,7 +576,7 @@ void Trajectory::activateChase(std::string source,std::string target)
 	updateChase();
 }
 
-void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap)
+void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap,bool useDefaultSpeed)
 {
 	std::string target;
 
@@ -591,18 +592,28 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 	mParent=gameObject;
 	mWalkabilityMap=walkabilityMap;
 
+	mUseDefaultSpeed=useDefaultSpeed;
+
 	initPathfinding();
+
 
 	//Logger::getInstance()->log("Pathfinding to predefined trajectory "+trajectory);
 }
 
-void Trajectory::activatePredefinedTrajectory(std::string trajectory)
+void Trajectory::activatePredefinedTrajectory(std::string trajectory,bool useDefaultSpeed)
 {
 	mState=PREDEFINED_TRAJECTORY;
 
 	//mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
-	mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green",mDefaultSpeed);
+	if(useDefaultSpeed)
+	{
+		mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green",mDefaultSpeed);
+	}
+	else
+	{
+		mTrajectoryManager->setPredefinedTrajectory(*this,trajectory,"green");
+	}
 
 	mSceneManager->getSceneNode(mParent)->setPosition(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getPosition());
 	mSceneManager->getSceneNode(mParent)->setOrientation(mTrajectoryNodes[mCurrentNode]->getSceneNode()->getOrientation());
@@ -733,7 +744,7 @@ void Trajectory::popBackNode()
 
 void Trajectory::setPredefinedTrajectoryFromNode(std::string trajectory,std::string node)
 {
-	activatePredefinedTrajectory(trajectory);
+	activatePredefinedTrajectory(trajectory,mUseDefaultSpeed);
 	unsigned int i;
 	int current=-1;
 	//Logger::getInstance()->log("setPredefinedTrajectoryFromNode");

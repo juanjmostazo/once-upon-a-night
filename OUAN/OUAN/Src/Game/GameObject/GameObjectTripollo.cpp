@@ -118,7 +118,7 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 	{
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_DREAMS))
 		{
-			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_DREAMS,newWorld);
+			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_DREAMS,newWorld,true);
 			return true;
 		}
 		else
@@ -131,7 +131,7 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 	{
 		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_NIGHTMARES))
 		{
-			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_NIGHTMARES,newWorld);
+			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_NIGHTMARES,newWorld,true);
 			return true;
 		}
 		else
