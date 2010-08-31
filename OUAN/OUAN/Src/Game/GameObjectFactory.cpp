@@ -959,11 +959,6 @@ GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGam
 		tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectInvisibleWall->getRenderComponentPositional()));
 
-	Logger::getInstance()->log("tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters " + 
-		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthX))+" "+
-		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthY))+" "+
-		Ogre::StringConverter::toString(Ogre::Real(tGameObjectInvisibleWallParameters.tPhysicsComponentSimpleBoxParameters.lengthZ))+" ");
-
 	//Add reference to this
 	pGameObjectInvisibleWall->setGameWorldManager(gameWorldMgr);
 
@@ -973,7 +968,6 @@ GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGam
 	{
 		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
 	}
-
 	return pGameObjectInvisibleWall;
 }
 
