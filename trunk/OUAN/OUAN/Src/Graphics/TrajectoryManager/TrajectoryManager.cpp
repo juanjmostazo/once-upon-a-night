@@ -93,6 +93,8 @@ void TrajectoryManager::createTrajectory(TTrajectoryParameters tTrajectoryParame
 		pTrajectoryNode->setSceneNode(pSceneNode);
 		pTrajectoryNode->setSpeed(tTrajectoryParameters.tTrajectoryNodeParameters[i].speed);
 
+		Logger::getInstance()->log("[TrajectoryManager] Trajectory node speed: " + Ogre::StringConverter::toString(Ogre::Real(pTrajectoryNode->getSpeed())));
+
 		mTrajectoryNodes.push_back(pTrajectoryNode);
 	}
 

@@ -218,7 +218,10 @@ Ogre::Quaternion Trajectory::calculateNextOrientation(std::string lastNode,std::
 bool Trajectory::trajectoryEnded()
 {
 	if (mState!=PATH_FINDING_TO_PREDEFINED_TRAJECTORY)
+	{
 		return isLastNode() && !getLoopTrajectory();
+	}
+
 	return false;
 }
 
@@ -303,6 +306,8 @@ void Trajectory::update(double elapsedTime)
 
 	currentSpeed=mTrajectoryNodes[mCurrentNode]->getSpeed();
 	
+	Logger::getInstance()->log("Updating Trajectory '" + mName + "', node '" + Ogre::StringConverter::toString(Ogre::Real(mCurrentNode)) + "', speed '" + Ogre::StringConverter::toString(Ogre::Real(currentSpeed)) + "'");
+
 	mNextMovement=calculateNextMovement(source,target,mTrajectory2d,currentSpeed,elapsedTime);
 	mNextMovementAbsolute=calculateNextMovementAbsolute(source,target,mTrajectory2d,currentSpeed,elapsedTime);
 	mCurrentPosition=calculateNextPosition(source,target,mTrajectory2d,currentSpeed,elapsedTime);
@@ -328,7 +333,7 @@ void Trajectory::update(double elapsedTime)
 
 	//Logger::getInstance()->log("Updating position "+Ogre::StringConverter::toString(currentPosition));
 	//Logger::getInstance()->log("Updating orientation "+Ogre::StringConverter::toString(currentPosition));
-	//Logger::getInstanc	e()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
+	//Logger::getInstance()->log("Updating nextMovement "+Ogre::StringConverter::toString(nextMovement));
 }
 
 void Trajectory::updateTrajectoryNodes(double elapsedTime)
