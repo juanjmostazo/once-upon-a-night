@@ -101,6 +101,11 @@ void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 		default:
 			break;
 	}
+
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->create();
+	}
 }
 
 void GameObjectInvisibleWall::changeWorldStarted(int newWorld)
