@@ -89,36 +89,58 @@ void GameObjectPlataform::activateTrajectory()
 
 void GameObjectPlataform::changeWorldFinished(int newWorld)
 {
-	Logger::getInstance()->log(getName()+" PLATAFORM CHANGEWORLD FINISHED!!! "+Ogre::StringConverter::toString(newWorld));
 	if (!isEnabled()) return;
-		Logger::getInstance()->log(getName()+" PLATAFORM ENABLED");
+
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(true);
-			}
-			if(mLogicComponent->existsInNightmares())
-			{
 				mRenderComponentEntityNightmares->setVisible(false);
 			}
-					Logger::getInstance()->log(getName()+" DREAMS");
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
+				mRenderComponentEntityDreams->setVisible(true);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->destroy();
+				}
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams())
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
 				mRenderComponentEntityDreams->setVisible(false);
-			}
-			if(mLogicComponent->existsInNightmares())
-			{
 				mRenderComponentEntityNightmares->setVisible(true);
 			}
-					Logger::getInstance()->log(getName()+" NIGHTMARES");
+			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->destroy();
+				}
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
+			{
+				if (mPhysicsComponentComplexConvex.get() && !mPhysicsComponentComplexConvex->isInUse())
+				{
+					mPhysicsComponentComplexConvex->create();
+				}
+				mRenderComponentEntityNightmares->setVisible(true);
+			}	
 			break;
 		default:break;
 	}
-
 }
 
 void GameObjectPlataform::changeWorldStarted(int newWorld)
@@ -244,6 +266,8 @@ void GameObjectPlataform::setVisible(bool visible)
 
 void GameObjectPlataform::update(double elapsedSeconds)
 {
+	GameObject::update(elapsedSeconds);
+
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
