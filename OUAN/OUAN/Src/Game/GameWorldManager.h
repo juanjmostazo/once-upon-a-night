@@ -342,6 +342,9 @@ namespace OUAN
 		static bool hasExecutedLevelEventLUA(std::string cutscene);
 		bool hasExecutedLevelEvent(std::string cutscene);
 		void checkpointLevelEvents();
+
+		void rescaleViewport(double left, double top, double width, double height);
+
 	private:		
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 

@@ -39,6 +39,8 @@ void CutsceneState::init(ApplicationPtr app)
 	mApp->mAudioFrameCnt=0;
 	mApp->getRenderSubsystem()->resumeRendering();
 	//mApp->getAudioSubsystem()->stopAllSounds();
+	mApp->rescaleViewport(0,0.15,1,0.7);
+
 
 	mReturningToGameTransition=false;
 }
@@ -51,6 +53,7 @@ void CutsceneState::cleanUp()
 	mApp->getLogicSubsystem()->resetCutsceneFinished();
 	mApp->setPlayingCutscene(false);
 	mCutsceneLaunched=false;
+	mApp->rescaleViewport(0,0,1,1);
 }
 
 /// pause state

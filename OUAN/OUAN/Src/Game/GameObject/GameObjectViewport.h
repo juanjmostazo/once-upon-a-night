@@ -40,6 +40,8 @@ namespace OUAN
 		void setRadialBlurEffectIfPossible(int world, bool enabled);
 		void setMotionBlurEffectIfPossible(int world, bool enabled);
 
+		void rescaleViewport(double left, double top, double width, double height);
+
 		void disableAllCompositors();
 	};
 

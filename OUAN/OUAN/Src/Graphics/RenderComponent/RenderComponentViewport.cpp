@@ -162,6 +162,27 @@ void RenderComponentViewport::disableAllCompositors()
 	setEffect(mRenderSubsystem->RADIAL_BLUR,false);
 }
 
+void RenderComponentViewport::clearViewport(unsigned int buffers, const ColourValue &colour, Real depth, unsigned short stencil)
+{
+	Ogre::RenderSystem* rs = Ogre::Root::getSingleton().getRenderSystem();
+	if (rs)
+	{
+		Ogre::Viewport* currentvp = rs->_getViewport();
+		rs->_setViewport(getViewport());
+		rs->clearFrameBuffer(buffers, colour, depth, stencil);
+		if (currentvp && currentvp != getViewport())
+			rs->_setViewport(currentvp);
+	}
+}
+void RenderComponentViewport::rescaleViewport(double left, double top, double width, double height)
+{
+	if (mViewport)
+	{
+		clearViewport();	
+		mViewport->setDimensions(left,top,width,height);
+	}	
+}
+
 TRenderComponentViewportParameters::TRenderComponentViewportParameters() : TRenderComponentParameters()
 {
 }
