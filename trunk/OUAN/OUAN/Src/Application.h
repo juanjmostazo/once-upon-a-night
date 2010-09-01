@@ -150,6 +150,8 @@ namespace OUAN
 
 			static int world();
 
+			void rescaleViewport(double left, double top, double width, double height);
+
 		protected:
 
 			/// Singleton instance

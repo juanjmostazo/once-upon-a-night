@@ -29,6 +29,8 @@ namespace OUAN
 		void initEffects();
 
 		void disableAllCompositors();
+		void rescaleViewport(double left, double top, double width, double height);
+		void clearViewport(unsigned int buffers=Ogre::FBT_COLOUR|Ogre::FBT_DEPTH, const ColourValue &colour=ColourValue::Black, Real depth=1.0f, unsigned short stencil=0);
 	};
 
 	class TRenderComponentViewportParameters: public TRenderComponentParameters

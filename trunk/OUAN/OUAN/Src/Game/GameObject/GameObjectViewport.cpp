@@ -156,6 +156,14 @@ void GameObjectViewport::setMotionBlurEffectIfPossible(int world, bool enabled)
 	}
 }
 
+void GameObjectViewport::rescaleViewport(double left, double top, double width, double height)
+{
+	if (mRenderComponentViewport.get())
+	{
+		mRenderComponentViewport->rescaleViewport(left,top,width,height);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 TGameObjectViewportParameters::TGameObjectViewportParameters() : TGameObjectParameters()
 {

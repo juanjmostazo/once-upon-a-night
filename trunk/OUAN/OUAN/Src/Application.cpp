@@ -490,3 +490,11 @@ int Application::world()
 {
 	return instance->mWorld;
 }
+
+void Application::rescaleViewport(double left, double top, double width, double height)
+{
+	if (mGameWorldManager.get())
+	{
+		mGameWorldManager->rescaleViewport(left,top,width,height);
+	}
+}

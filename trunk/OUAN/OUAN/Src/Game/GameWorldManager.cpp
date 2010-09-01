@@ -1767,3 +1767,8 @@ void GameWorldManager::checkpointLevelEvents()
 	}
 	mExecutedLevelEvents.clear();
 }
+
+void GameWorldManager::rescaleViewport(double left, double top, double width, double height)
+{
+	getGameObjectViewport()->rescaleViewport(left,top,width,height);
+}
