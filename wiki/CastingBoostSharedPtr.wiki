@@ -8,3 +8,11 @@ If we want to downcast that pointer to a smart pointer to an instance of a subcl
 {{{
 mGUI = boost::dynamic_pointer_cast<GUIConsole>(mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
 }}}
+
+UPDATE: On our project, a convenience macro has been defined to improve readability. From now on, the use of BOOST_PTR_CAST(Type, variable) is advised.
+
+The previous example would, therefore, be changed to:
+
+{{{
+mGUI = BOOST_PTR_CAST(GUIConsole,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
+}}}
