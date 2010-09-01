@@ -27,14 +27,13 @@
     <Option key="STABILIZE_SECONDS">100</Option>
     <Option key="STABILIZE_CHARACTER_MOVE_Y">100000</Option>
 
+    <Option key="MIN_SLIDING_ANGLE">60</Option>
+    <Option key="SLIDING_UNITS_PER_SECOND">100</Option>
+
 	<!--DEPRECATED VARS-->
 	<Option key="MOVEMENT_LIMIT_UNITS_PER_SECOND">250</Option>
 	<Option key="DISPLACEMENT_SCALE">0.1</Option>
     <Option key="MIN_COLLISION_ANGLE">45</Option>
-    <Option key="MIN_SLIDING_ANGLE">60</Option>
-    <Option key="MIN_SLIDING_ANGLE_FALL">90</Option>
-    <Option key="SLIDING_FACTOR">5</Option>
-    <Option key="SLIDING_FACTOR_FALL">25</Option>
     <Option key="DASH_FACTOR">20</Option>
     <Option key="MAX_SAME_DIRECTION_ANGLE">60</Option>
     <Option key="ACCELERATION_INCREMENT">0.5</Option>

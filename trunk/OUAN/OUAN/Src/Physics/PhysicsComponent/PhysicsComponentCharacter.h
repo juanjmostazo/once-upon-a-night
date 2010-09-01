@@ -26,6 +26,9 @@ namespace OUAN
 		virtual void setFlyingCharacter(bool pFlyingCharacter);
 		virtual bool isFlyingCharacter();
 
+		virtual void calculateSliding(Ogre::Vector3 normal);
+
+
 		virtual void setNxOgreController(NxOgre::Controller* pNxOgreController);
 		virtual NxOgre::Controller* getNxOgreController();
 
@@ -46,6 +49,7 @@ namespace OUAN
 		virtual bool isFallingLimit() const;
 		virtual bool isWalking() const;
 		virtual bool isMoving() const;
+		virtual bool isSliding() const;
 
 		virtual void setOuternMovement(Ogre::Vector3 outernMovement);
 		virtual Ogre::Vector3 getOuternMovement();
@@ -91,6 +95,7 @@ namespace OUAN
 		virtual void applyWalkXZ(double elapsedSeconds);
 		virtual void applyJumpY(double elapsedSeconds);
 		virtual void applyFallY(double elapsedSeconds);
+		virtual void applySlideY(double elapsedSeconds);
 
 		virtual void applyMove();
 
@@ -110,6 +115,8 @@ namespace OUAN
 		bool mMoving;
 		bool mJumping;
 		bool mFalling;
+		bool mSliding;
+		bool mSlidingCalculatedThisFrame;
 
 		double mJumpingTime;
 		double mFallingTime;
@@ -123,6 +130,7 @@ namespace OUAN
 		Ogre::Vector3 mNextMovement;
 		Ogre::Vector3 mLastMovement;
 		Ogre::Vector3 mLastSurfacePosition;
+		Ogre::Vector3 mSlidingDirection;
 
 		Vector3 mOffsetRenderPosition;
 

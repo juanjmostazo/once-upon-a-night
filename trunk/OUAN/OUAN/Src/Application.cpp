@@ -175,6 +175,7 @@ void Application::go()
 
 	while ( continueRunning )
 	{
+		Logger::getInstance()->log("[FRAME START]");
 		//int loops=0;
 		//while((currentTime=loopTimer.getMicroseconds())>nextGameTicks && loops<MAX_FRAMESKIP)
 		//{

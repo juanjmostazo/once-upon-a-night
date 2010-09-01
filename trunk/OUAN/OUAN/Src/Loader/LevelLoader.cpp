@@ -252,11 +252,11 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectPortal(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGERBOX)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_BOX)==0)
 		{
 			processGameObjectTriggerBox(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGERCAPSULE)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIGGER_CAPSULE)==0)
 		{
 			processGameObjectTriggerCapsule(gameObject);
 		}
@@ -3144,6 +3144,9 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentSimpleBox
 		tGameObjectBombParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		
+		//Get PhysicsComponentWeapon
+		tGameObjectBombParameters.tPhysicsComponentWeaponParameters=processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )

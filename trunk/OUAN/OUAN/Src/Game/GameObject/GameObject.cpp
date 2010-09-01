@@ -172,7 +172,7 @@ const std::string& GameObject::getType() const
 
 void GameObject::disable()
 {
-	Logger::getInstance()->log("Disabling Game Object '" + mName + "'");
+	//Logger::getInstance()->log("Disabling Game Object '" + mName + "'");
 	mEnabled = false;
 }
 

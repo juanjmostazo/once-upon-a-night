@@ -7,7 +7,7 @@
 using namespace OUAN;
 
 GameObjectTriggerCapsule::GameObjectTriggerCapsule(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_TRIGGERCAPSULE)
+:GameObject(name,GAME_OBJECT_TYPE_TRIGGER_CAPSULE)
 {
 
 }

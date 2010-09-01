@@ -10,7 +10,7 @@
   <PROPERTY id="RenderComponentQuadHalo::offsetY" type="6" value="7" ></PROPERTY>
   <PROPERTY id="RenderComponentQuadHalo::offsetZ" type="6" value="0" ></PROPERTY>
   
-  <PROPERTY id="PhysicsComponentCharacterOny::mass" type="6" value="66" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacterOny::mass" type="6" value="0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterOny::radius" type="6" value="4" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterOny::height" type="6" value="14" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacterOny::position_correction" type="6" value="0 -12 0" ></PROPERTY>

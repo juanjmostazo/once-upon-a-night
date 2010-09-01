@@ -318,8 +318,8 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_EYE="eye";
 		const std::string GAME_OBJECT_TYPE_ITEM_1UP="item1up";
 		const std::string GAME_OBJECT_TYPE_ITEM_MAXHP="heartbag";
-		const std::string GAME_OBJECT_TYPE_TRIGGERBOX="volume-box";
-		const std::string GAME_OBJECT_TYPE_TRIGGERCAPSULE="volume-capsule";
+		const std::string GAME_OBJECT_TYPE_TRIGGER_BOX="volume-box";
+		const std::string GAME_OBJECT_TYPE_TRIGGER_CAPSULE="volume-capsule";
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
 		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="nightgoblin";
 		const std::string GAME_OBJECT_TYPE_CRYKING="cryking";

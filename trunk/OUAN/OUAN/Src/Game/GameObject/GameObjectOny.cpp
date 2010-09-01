@@ -384,9 +384,19 @@ void GameObjectOny::switchOff()
 
 void GameObjectOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+	Logger::getInstance()->log("[GameObjectOny::processCollision] "+pGameObject->getName());
 	if (!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processCollision(pGameObject, pNormal);
+	}
+
+	if(mPhysicsComponentCharacterOny.get() && mPhysicsComponentCharacterOny->isInUse() &&
+		 (pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINCONVEX)==0
+		 || pGameObject->getType().compare(GAME_OBJECT_TYPE_TERRAINTRIANGLE)==0
+		 || pGameObject->getType().compare(GAME_OBJECT_TYPE_INVISIBLE_WALL)==0
+		 ))
+	{
+		mPhysicsComponentCharacterOny->calculateSliding(pNormal);
 	}
 }
 
@@ -445,6 +455,9 @@ void GameObjectOny::postUpdate()
 
 		//TO REALLOCATE BETTER
 		if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_IDLE)){
+			startParticleSystem(ONY_PS_RUN_SAND);
+		}
+		if (mPhysicsComponentCharacterOny->isSliding()){
 			startParticleSystem(ONY_PS_RUN_SAND);
 		}
 

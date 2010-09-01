@@ -593,6 +593,11 @@ void GameObjectTripollo::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	{
 		mLogicComponentEnemy->processCollision(pGameObject, pNormal);
 	}
+
+	if(mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse() && pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)!=0)
+	{
+		mPhysicsComponentCharacter->calculateSliding(pNormal);
+	}
 }
 
 void GameObjectTripollo::processEnterTrigger(GameObjectPtr pGameObject)

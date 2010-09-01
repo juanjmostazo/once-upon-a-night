@@ -3940,6 +3940,13 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 		tGameObjectBombParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectBomb->getRenderComponentPositional()));
 
+	//Create PhysicsComponentWeapon
+	pGameObjectBomb->setPhysicsComponentWeapon(
+		mComponentFactory->createPhysicsComponentWeapon(
+		pGameObjectBomb, 
+		tGameObjectBombParameters.tPhysicsComponentWeaponParameters, 
+		pGameObjectBomb->getRenderComponentPositional()));
+
 	//Add reference to this
 	pGameObjectBomb->setGameWorldManager(gameWorldMgr);
 

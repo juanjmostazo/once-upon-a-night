@@ -36,6 +36,8 @@ namespace OUAN
 		//stabilize objects,  needs to be called at load level and change world
 		void stabilize();
 
+		virtual double angleFromNormal(Ogre::Vector3 normal);
+
 		//Getters
 		virtual NxOgre::World* getNxOgreWorld();
 		virtual NxOgre::Scene* getNxOgreScene();
@@ -66,10 +68,10 @@ namespace OUAN
 		double mTurnDegreesPerSecond;		
 		double mMinAllowedY;
 		double mMinCollisionAngle;
+
 		double mMinSlidingAngle;
-		double mMinSlidingAngleFall;
-		double mSlidingFactor;
-		double mSlidingFactorFall;	
+		double mSlidingUnitsPerSecond;
+
 		double mDashFactor;
 		double mDashMax;
 		double mDashAccelerationIncrement;
