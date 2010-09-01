@@ -2,11 +2,16 @@
 <CUSTOMPROPERTIES>
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   
-    <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="1.5" fields="X;Y;Z;W"></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="8"></PROPERTY>	
-	<PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 40 0" ></PROPERTY>
-	<PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1.5 1.5 1.5" ></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="12" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+
+    <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="6 80 6" fields="X;Y;Z;W"></PROPERTY>
+
+
 	<!-- Logic component properties  -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="nest.lua"></PROPERTY>
 	<PROPERTY id="LogicComponent::scriptFunction" type="7" value="nestLogic"></PROPERTY>

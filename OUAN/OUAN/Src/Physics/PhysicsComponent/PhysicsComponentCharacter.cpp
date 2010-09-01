@@ -29,6 +29,8 @@ void PhysicsComponentCharacter::reset()
 	setMoving(false);
 	setOnSurface(false);
 	setLastElapsedSeconds(0);
+	mSliding=false;
+	mSlidingCalculatedThisFrame=false;
 }
 
 void PhysicsComponentCharacter::update(double elapsedSeconds)
@@ -62,6 +64,8 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 		Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 		collisionFlags);
 
+	setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
+
 	getSceneNode()->setPosition(
 		getSceneNode()->getPosition().x,
 		sceneNodeLastPositionY,
@@ -69,8 +73,6 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 
 	mCyclicDirection = (collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? 1 : mCyclicDirection;
 	mCyclicDirection = (collisionFlags & NxOgre::Enums::ControllerFlag_Up) ? -1 : mCyclicDirection;
-
-	setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 
 	mCyclicOffset += getNxOgreController()->getPosition().y - cyclicLastPositionY;
 
@@ -87,6 +89,50 @@ void PhysicsComponentCharacter::performCyclicMovement(double elapsedSeconds)
 	setNextMovement(Ogre::Vector3::ZERO);
 }
 
+void PhysicsComponentCharacter::applySlideY(double elapsedSeconds)
+{
+	// If sliding is applied, nextMovement will be REPLACED by the slide movement so the character won't 
+	// move normally. This means it wo't be able to jump or move around while sliding.
+
+	if(mSliding && !mFlyingCharacter)
+	{
+		mNextMovement.y =  -Application::getInstance()->getPhysicsSubsystem()->mSlidingUnitsPerSecond*elapsedSeconds;
+		if(mSlidingCalculatedThisFrame)
+		{
+			mNextMovement.x = mSlidingDirection.x*Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond*elapsedSeconds;
+			mNextMovement.z = mSlidingDirection.z*Application::getInstance()->getPhysicsSubsystem()->mMovementUnitsPerSecond*elapsedSeconds;
+		}
+	}
+	else
+	{
+		mSliding=false;
+	}
+}
+
+void PhysicsComponentCharacter::calculateSliding(Ogre::Vector3 normal)
+{
+	double angle;
+
+	angle = Application::getInstance()->getPhysicsSubsystem()->angleFromNormal(normal);
+
+	mSliding = angle >= Application::getInstance()->getPhysicsSubsystem()->mMinSlidingAngle;
+	mSlidingCalculatedThisFrame = true;
+
+	if(mSliding)
+	{
+		mSlidingDirection=normal;
+	}
+	else
+	{
+		mSlidingDirection=Vector3::ZERO;
+	}
+}
+
+bool PhysicsComponentCharacter::isSliding() const
+{
+	return mSliding;
+}
+
 void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 {	
 	Vector3 lastPosition;
@@ -95,9 +141,6 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 
 	//logStatus("PERFORMING CLASSIC MOVEMENT - BEGINNING", elapsedSeconds);
 	applyOuternMovement(elapsedSeconds);
-
-	//logStatus("Before setNewYaw()", elapsedSeconds);
-	setNewYaw(elapsedSeconds);
 
 	//logStatus("Before scaleNextMovementXZ()", elapsedSeconds);
 	scaleNextMovementXZ(elapsedSeconds);
@@ -135,11 +178,15 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 		{
 			//logStatus("Before applying fall", elapsedSeconds);
 			applyFallY(elapsedSeconds);
+			applySlideY(elapsedSeconds);
 			//logStatus("After applying fall", elapsedSeconds);
 		}
 
 		//logStatus("Before setMoving()", elapsedSeconds);
 		setMoving((getNextMovement().x >= 0.1 && getNextMovement().z >= 0.1));
+
+		//logStatus("Before setNewYaw()", elapsedSeconds);
+		setNewYaw(elapsedSeconds);
 
 		//logStatus("Before move()", elapsedSeconds);
 		applyMove();
@@ -150,6 +197,8 @@ void PhysicsComponentCharacter::performClassicMovement(double elapsedSeconds)
 	setLastMovement(getNxOgreController()->getPosition().as<Ogre::Vector3>()-lastPosition);
 	setNextMovement(Ogre::Vector3::ZERO);
 	setOuternMovement(Ogre::Vector3::ZERO);
+
+	mSlidingCalculatedThisFrame=false;
 
 	updateSceneNode();
 	//logStatus("PERFORMING CLASSIC MOVEMENT - END", elapsedSeconds);
@@ -165,8 +214,7 @@ void PhysicsComponentCharacter::applyMove()
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
 
-		//logStatus("Before setOnSurface()", elapsedSeconds);
-		setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
+			setOnSurface((collisionFlags & NxOgre::Enums::ControllerFlag_Down) ? true : false);
 }
 
 void PhysicsComponentCharacter::setLastSurfacePosition(Ogre::Vector3 lastSurfacePosition)
@@ -384,7 +432,7 @@ void PhysicsComponentCharacter::jump()
 
 bool PhysicsComponentCharacter::canJump()
 {
-	return !isJumping() && isOnSurface();
+	return !isJumping() && isOnSurface() && !isSliding();
 }
 
 void PhysicsComponentCharacter::resetJumpingVars()

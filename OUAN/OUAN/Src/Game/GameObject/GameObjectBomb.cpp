@@ -56,6 +56,16 @@ RenderComponentInitialPtr GameObjectBomb::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectBomb::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
+{
+	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
+}
+
+PhysicsComponentWeaponPtr GameObjectBomb::getPhysicsComponentWeapon() const
+{
+	return mPhysicsComponentWeapon;
+}
+
 void GameObjectBomb::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;

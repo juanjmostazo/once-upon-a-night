@@ -155,7 +155,10 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 			{
 				if (container->at(i)->isWorthUpdatingPhysicsComponents())
 				{
-					container->at(i)->updatePhysicsComponents(elapsedSeconds);
+					if(container->at(i)->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
+					{
+						container->at(i)->updatePhysicsComponents(elapsedSeconds);
+					}
 				}
 			}
 		}
@@ -171,6 +174,11 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
 	{
 		mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(elapsedSeconds);
+	}
+
+	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
 	}
 
 	mNxOgreTimeController->advance(elapsedSeconds);
@@ -269,14 +277,8 @@ bool PhysicsSubsystem::loadConfig()
 		config.getOption("MIN_SLIDING_ANGLE", value); 
 		mMinSlidingAngle = atof(value.c_str());
 
-		config.getOption("MIN_SLIDING_ANGLE_FALL", value); 
-		mMinSlidingAngleFall = atof(value.c_str());
-
-		config.getOption("SLIDING_FACTOR", value); 
-		mSlidingFactor = atof(value.c_str());
-
-		config.getOption("SLIDING_FACTOR_FALL", value); 
-		mSlidingFactorFall = atof(value.c_str());
+		config.getOption("SLIDING_UNITS_PER_SECOND", value); 
+		mSlidingUnitsPerSecond = atof(value.c_str());
 
 		config.getOption("DASH_FACTOR", value); 
 		mDashFactor = atof(value.c_str());
@@ -437,7 +439,7 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 
 	//if( pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)!=0) 
 	//	&& pGameObjectShape->getType().compare(GAME_OBJECT_TYPE_PILLOW)!=0)
-		//&& normalAngle<=mMinSlidingAngleFall)
+		//&& normalAngle<=mSlidingUnitsPerSecond)
 	//{
 	//	if(pGameObjectController->hasPhysicsComponent())
 	//	{
@@ -609,5 +611,11 @@ int PhysicsSubsystem::raycastAllBoundings(const Vector3 &point,const Vector3 &no
 	numResults = getNxOgreScene()->raycastAllBounds( CubeRay, this, NxOgre::Enums::ShapesType_All, INT_MAX, maxDistance);
 
 	return numResults;
+}
+
+double PhysicsSubsystem::angleFromNormal(Ogre::Vector3 normal)
+{
+	double angle = normal.angleBetween(Vector3(0,1,0)).valueAngleUnits();
+	return angle;
 }
 

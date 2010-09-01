@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
 namespace OUAN
@@ -23,6 +24,7 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -70,6 +72,12 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
+		/// Set physics component
+		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
+
+		/// Get physics component
+		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
@@ -109,6 +117,7 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

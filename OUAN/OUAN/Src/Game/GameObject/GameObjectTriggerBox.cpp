@@ -7,7 +7,7 @@
 using namespace OUAN;
 
 GameObjectTriggerBox::GameObjectTriggerBox(const std::string& name)
-:GameObject(name,GAME_OBJECT_TYPE_TRIGGERBOX)
+:GameObject(name,GAME_OBJECT_TYPE_TRIGGER_BOX)
 {
 
 }
