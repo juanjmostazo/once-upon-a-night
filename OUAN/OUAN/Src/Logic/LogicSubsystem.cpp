@@ -323,6 +323,8 @@ void LogicSubsystem::updateCutsceneFunction(const std::string& functionName, dou
 }
 void LogicSubsystem::terminateCutsceneFunction(const std::string& functionName)
 {
+	int i= lua_gettop(mLuaEngine);
+	Logger::getInstance()->log("LUA::Terminate called!");
 	lua_pop(mLuaEngine,1);
 	mCoroutine=NULL;
 }

@@ -421,7 +421,7 @@ void Application::changeCurrentLanguage(const std::string& newLanguage)
 		std::stringstream ingameStringsPath("");
 		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
 		ingameStringsPath<<INGAME_STRINGS_PATH<<lang<<"/"<<INGAME_STRINGS;
-		mIngameTextStrings->loadFromFile(ingameStringsPath.str());
+		mIngameTextStrings->loadFromFile(ingameStringsPath.str(),0);
 	}
 }
 

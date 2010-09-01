@@ -50,6 +50,7 @@ void CutsceneState::cleanUp()
 
 	mApp->getLogicSubsystem()->resetCutsceneFinished();
 	mApp->setPlayingCutscene(false);
+	mCutsceneLaunched=false;
 }
 
 /// pause state
@@ -92,6 +93,7 @@ void CutsceneState::update(long elapsedTime)
 		//call the update method to resume the cutscene.
 		if (!mCutsceneLaunched)
 		{
+			logicSS->loadScript(SCRIPTS_PATH+"/"+SCRIPT_COMMON_FUNCTIONS);
 			logicSS->initCutsceneScript(mCutsceneFile);
 			logicSS->invokeCutsceneFunction(mCutsceneFunction);
 			mCutsceneLaunched=true;
@@ -151,6 +153,7 @@ void CutsceneState::update(long elapsedTime)
 		{
 			mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
 			mApp->getGameStateManager()->popState();
+			logicSS->terminateCutsceneFunction(mCutsceneFunction);
 		}
 	}
 }
