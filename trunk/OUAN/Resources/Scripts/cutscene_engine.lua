@@ -16,7 +16,7 @@ SENTENCE2_TIME = 3
 function helloWorld(timer)
 	local any=getAny()	
 
-	setCameraTrajectory("LEVEL_START")	
+	setCameraTrajectory("LEVEL_START",false,true)	
 	trajectoryCamWait()
 
 	log ("Switching to a tracking camera!!")
@@ -62,5 +62,9 @@ function helloWorld(timer)
 	--	coroutine.yield(0)
 	--end
 	any:changeAnimation("idle01")
+	
+	
+	setMyReturningToGameTransition(true);
+	
 	return COROUTINE_FINISHED
 end

@@ -48,6 +48,8 @@ function cutScene1(timer)
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
 	
+	timedMessage(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME);
+	
 	setMyReturningToGameTransition(false);
 	return COROUTINE_FINISHED
 end
@@ -76,16 +78,31 @@ end
 
 -- CUTSCENE 3: BOMBS PUZZLE START
 function startCutScene3(pOny)
-	log ("CUTSCENE 3: ");
-	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	addExecutedLevelEvent(CUTSCENE_3_BOMBS_PUZZLE_START);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
+    launchCutScene("cutscenes_level2.lua","cutScene3");
 	return
 end
 
 function conditionCutScene3(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_3_BOMBS_PUZZLE_START) and getCheckPointNumber()>=20;
 end
+
+function cutScene3(timer)
+	log ("CUTSCENE 3: ");
+	log (CUTSCENE_3_BOMBS_PUZZLE_START);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START+"#1",false,true)	
+	trajectoryCamWait()
+	busyWait(timer,5);
+	
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START+"#2",false,true)	
+	trajectoryCamWait()
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
 
 -- CUTSCENE 4: BOMBS PUZZLE END
 function startCutScene4(pOny)
