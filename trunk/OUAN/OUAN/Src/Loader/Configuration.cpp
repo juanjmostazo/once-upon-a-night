@@ -17,10 +17,10 @@ Configuration::~Configuration()
 	configMap.clear();
 }
 
-bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags)
+bool Configuration::loadFromFile(const std::string& fileName, unsigned int flags, bool isUTF8)
 {
 	TiXmlDocument doc(fileName.c_str());
-	if (!doc.LoadFile()){
+	if (!doc.LoadFile(isUTF8?TIXML_ENCODING_UTF8:TIXML_DEFAULT_ENCODING)){
 		Logger::getInstance()->log("ERROR! [Configuration] Error reading file "+fileName);
 		Logger::getInstance()->log(doc.ErrorDesc());
 		return  false; //Let the client of this class handle this

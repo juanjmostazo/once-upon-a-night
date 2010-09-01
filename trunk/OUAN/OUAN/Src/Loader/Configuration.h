@@ -44,7 +44,7 @@ namespace OUAN
 		/// @param fileName	the name of the file from which the options map will be loaded
 		/// @param flags	optional flags
 		/// @return <b>true</b> if the file was correctly loaded;
-		bool loadFromFile(const std::string& fileName, unsigned int flags=0);
+		bool loadFromFile(const std::string& fileName, unsigned int flags=0, bool isUTF8=false);
 		/// Save the contents of the options map to the given filename as an XML
 		/// @param fileName	the name of the file where the options map will be saved to
 		/// @return <b> true</b> if the file was saved correctly
