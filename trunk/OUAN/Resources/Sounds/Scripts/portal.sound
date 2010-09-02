@@ -1,6 +1,6 @@
 sound portal_changeworld
 {
-	sound_file 	Portal/changeworld_a.mp3
+	sound_file 	Changeworld/Cambio_mundos_a.mp3
 	sound_type	sfx
 	3D		true
 	hardware	true
@@ -12,7 +12,7 @@ sound portal_changeworld
 
 sound portal_close
 {
-	sound_file 	Portal/changeworld_a.mp3
+	sound_file 	Changeworld/Cambio_mundos_a.mp3
 	sound_type	sfx
 	3D		true
 	hardware	true
