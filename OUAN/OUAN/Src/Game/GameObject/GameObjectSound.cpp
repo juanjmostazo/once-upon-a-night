@@ -133,11 +133,11 @@ void GameObjectSound::reset()
 	}
 	if (mAudioComponentDreams.get())
 	{
-		mAudioComponentDreams->stopSound(mCurrentDreamsSoundID,true);
+		mAudioComponentDreams->stopSound(mCurrentDreamsSoundID);
 	}
 	if (mAudioComponentNightmares.get())
 	{
-		mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID,true);
+		mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID);
 	}
 
 	play(mGameWorldManager->getWorld()==DREAMS?mCurrentDreamsSoundID:mCurrentNightmaresSoundID);
