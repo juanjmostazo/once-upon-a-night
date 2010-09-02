@@ -339,9 +339,9 @@ void GameObjectPortal::update(double elapsedSeconds)
 			{
 				if (mLogicComponent->isStateChanged())
 				{
-					if (mAudioComponent->isPlaying("portal_close"))
+					if (mAudioComponent->isPlaying(PORTAL_SOUND_CLOSE))
 					{
-						mAudioComponent->stopSound("portal_close");
+						mAudioComponent->stopSound(PORTAL_SOUND_CLOSE);
 					}
 					//glowToUpdate->setVisible(false);
 				}
@@ -350,7 +350,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 			{				
 				if (mLogicComponent->isStateChanged())
 				{
-					mAudioComponent->playSound("portal_close");
+					//mAudioComponent->playSound(PORTAL_SOUND_CLOSE);
 					displayText("ONY IS CLOSE");
 					//glowToUpdate->setVisible(true);
 				}
@@ -370,6 +370,7 @@ void GameObjectPortal::update(double elapsedSeconds)
 					{
 						getGameWorldManager()->addExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
 					}
+					mAudioComponent->playSound(PORTAL_SOUND_CHANGEWORLD);
 				}
 			}
 			entityToUpdate->update(elapsedSeconds);

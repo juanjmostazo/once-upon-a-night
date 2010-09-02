@@ -11,6 +11,7 @@
 #include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -121,7 +122,30 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//Logger::getInstance()->log("ONY IS ON WATER");
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+
+		if(!ony->isOnWater())
+		{
+			ony->getAudioComponent()->playSound(ONY_SOUND_SPLASH_00);
+		}
+
 		ony->setOnWater(true);
+
+	}
+	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WOODBOX)==0)
+	{
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+		if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_PUSH))
+		{
+			ony->getAudioComponent()->playSound(ONY_SOUND_PUSH);
+		}
+	}
+	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_BOMB)==0)
+	{
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+		if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_PUSH))
+		{
+			ony->getAudioComponent()->playSound(ONY_SOUND_PUSH);
+		}
 	}
 }
 

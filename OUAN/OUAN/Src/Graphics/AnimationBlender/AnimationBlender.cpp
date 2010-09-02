@@ -237,6 +237,15 @@ void AnimationBlender::setTimePosition(float timePos)
 
 }
 
+float AnimationBlender::getTimePosition() const
+{
+	if (mSource)
+	{
+		return mSource->getTimePosition();
+	}
+	return -1;
+}
+
 //---------Bone mask management
 
 void AnimationBlender::loadBoneMask(Ogre::AnimationState* target, const std::vector<std::string>& bones)

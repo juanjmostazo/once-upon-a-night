@@ -13,11 +13,10 @@
 
 
 	<!-- Logic component properties  -->
-	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="nest.lua"></PROPERTY>
-	<PROPERTY id="LogicComponent::scriptFunction" type="7" value="nestLogic"></PROPERTY>
+	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="bomb.lua"></PROPERTY>
+	<PROPERTY id="LogicComponent::scriptFunction" type="7" value="bombLogic"></PROPERTY>
 	<PROPERTY id="LogicComponent::defaultState" type="2" value="0"></PROPERTY>
-	<PROPERTY id="LogicComponent::approachDistance" type="6" value="50"></PROPERTY>
-	<PROPERTY id="LogicComponent::delay" type="6" value="8"></PROPERTY>
+
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->
   <PROPERTY id="animation0::name" type="7" value="manual"></PROPERTY>

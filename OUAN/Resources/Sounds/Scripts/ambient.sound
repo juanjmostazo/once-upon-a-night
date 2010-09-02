@@ -1,32 +1,204 @@
-sound waterfall00
+sound ambient_waterfall
 {
-	sound_file waterfall00.mp3
+	sound_file Ambient/Ambiente_cascada.mp3
 	sound_type	sfx
-	3D			true
+	3D		true
 	hardware	true
 	stream		false
 	loop		true
-	min_max_distance 500 1000
+	min_max_distance 500 100000
+	volume 0.5
 }
 
-sound birds_chirp
+sound ambient_campanillas
 {
-	sound_file birds_chirping.mp3
-	sound_type sfx
-	3D false
-	hardware true
-	stream false
-	loop true
-	volume 0
+	sound_file Ambient/Ambiente_campanillas.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 0.5
 }
 
-sound scary
+sound ambient_rain
 {
-	sound_file scary02.mp3
-	sound_type sfx
-	3D false
-	hardware true
-	stream false
-	loop true	
-	volume 0
+	sound_file Ambient/Ambiente_lluvia.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
 }
+
+sound ambient_birds
+{
+	sound_file Ambient/Ambiente_pajaritos.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_scary_a
+{
+	sound_file Ambient/Ambiente_que_da_miedo.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_scary_b
+{
+	sound_file Ambient/Ambiente_que_da_miedo_2.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_scary_c
+{
+	sound_file Ambient/Ambiente_que_da_miedo_3.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_scary_d
+{
+	sound_file Ambient/Ambiente_que_da_miedo_4.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_clock_a
+{
+	sound_file Ambient/Ambiente_reloj.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_clock_b
+{
+	sound_file Ambient/Ambiente_reloj_2.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_clock_c
+{
+	sound_file Ambient/Ambiente_reloj_3.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_storm
+{
+	sound_file Ambient/Ambiente_tormenta.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_wind
+{
+	sound_file Ambient/Ambiente_viento_hojas.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_brise
+{
+	sound_file Ambient/Brisa.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_fire
+{
+	sound_file Ambient/Fuego.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_drop_a
+{
+	sound_file Ambient/Gota.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_drop_b
+{
+	sound_file Ambient/Gota_2.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+

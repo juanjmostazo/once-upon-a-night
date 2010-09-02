@@ -24,7 +24,7 @@ namespace OUAN
 	const std::string SOUND_CONFIG_FILE="../../Config/audio-cfg.xml";
 
 	//Sound vector size info
-	const int INITIAL_VECTOR_SIZE=100;
+	const int INITIAL_VECTOR_SIZE=300;
 	const int INCREASE_VECTOR_SIZE=20;
 
 	//FMOD defaut values for 3D Audio

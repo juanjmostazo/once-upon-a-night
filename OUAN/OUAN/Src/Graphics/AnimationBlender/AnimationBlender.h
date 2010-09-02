@@ -76,6 +76,7 @@ namespace OUAN
 		void addTime(float);
 
 		void setTimePosition(float);
+		float getTimePosition() const;
 
 		float getProgress(); //{ return mTimeleft/ mDuration; }
 		Ogre::AnimationState *getSource();

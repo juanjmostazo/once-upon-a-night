@@ -77,6 +77,7 @@ namespace OUAN
 
 		void initAnimations(std::vector<TRenderComponentEntityAnimParams> entityAnimParams);
 		void setAnimationPosition(float pos);
+		float getAnimationPosition() const;
 		float getCurrentAnimationLength() const;
 		
 		Ogre::AnimationState* getCurrentAnimation() const;

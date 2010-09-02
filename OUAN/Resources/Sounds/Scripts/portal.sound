@@ -1,12 +1,23 @@
-sound portal_close
+sound portal_changeworld
 {
-	sound_file fantasy.wav
-	sound_type sfx
+	sound_file 	Portal/changeworld_a.mp3
 	sound_type	sfx
-	3D			true
+	3D		true
 	hardware	true
 	stream		false
-	loop		true
-	min_max_distance 5 10000
+	loop		false
+	min_max_distance 300 5000
+	volume 1
+}
 
+sound portal_close
+{
+	sound_file 	Portal/changeworld_a.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 300 5000
+	volume 1
 }

@@ -12,6 +12,9 @@
 namespace OUAN
 {
 	const std::string DIAMOND_ANIM_IDLE="idle";
+
+	const std::string SOUND_DIAMOND="diamond";
+
 	/// Class to hold GameObjectDiamond information
 	class GameObjectDiamond : public GameObject, public boost::enable_shared_from_this<GameObjectDiamond>
 	{

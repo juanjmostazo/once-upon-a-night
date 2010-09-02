@@ -101,11 +101,54 @@ namespace OUAN
 	const std::string ONY_ANIM_SHOOT_DOWN_LEFT="shoot_down_left";
 	const std::string ONY_ANIM_SHOOT_DOWN_RIGHT="shoot_down_right";
 
+	//SOUND DEFINITIONS
 	const std::string ONY_SOUND_DIE="any_dies";
-	const std::string ONY_SOUND_HIT="any_takes_hit";
 	const std::string ONY_SOUND_STEP_GRASS_00="any_step_grass_00";
 	const std::string ONY_SOUND_STEP_GRASS_01="any_step_grass_01";
+	const std::string ONY_SOUND_STEP_WATER_00="any_step_water_00";
+	const std::string ONY_SOUND_STEP_WATER_01="any_step_water_01";
+	const std::string ONY_SOUND_STEP_HARD_SURFACE_00="any_step_hard_surface_00";
+	const std::string ONY_SOUND_STEP_HARD_SURFACE_01="any_step_hard_surface_01";
+	const std::string ONY_SOUND_STEP_WOOD_00="any_step_wood_00";
+	const std::string ONY_SOUND_STEP_WOOD_01="any_step_wood_01";
+	const std::string ONY_SOUND_SCARED="any_scared";
+	const std::string ONY_SOUND_FALLS="any_falls";
+	const std::string ONY_SOUND_LAUGHTS="any_laughts";
+	const std::string ONY_SOUND_PILLOW_ATTACK_VOICE="any_pillow_attack";
+	const std::string ONY_SOUND_PUSH="any_push";
+	const std::string ONY_SOUND_INTERESTED="any_interested";
+	const std::string ONY_SOUND_TRIUMPH_A="any_triumph_a";
+	const std::string ONY_SOUND_TRIUMPH_B="any_triumph_b";
+	const std::string ONY_SOUND_HIT_A="any_takes_hit_a";
+	const std::string ONY_SOUND_HIT_B="any_takes_hit_b";
+	const std::string ONY_SOUND_TRIUMPH_LAUGHT="any_triumph_laught";
+	const std::string ONY_SOUND_JUMP="any_jump";
+	const std::string ONY_SOUND_BURN="any_burn";
+	const std::string ONY_SOUND_EXHAUSTED="any_exhausted";
+	const std::string ONY_SOUND_SURPRISE_A="any_surprise_a";
+	const std::string ONY_SOUND_SURPRISE_B="any_surprise_b";
+	const std::string ONY_SOUND_VERY_SCARED="any_very_scared";
+	const std::string ONY_SOUND_SPLASH_00="any_splash_00";
+	const std::string ONY_SOUND_SPLASH_01="any_splash_01";
+	const std::string ONY_SOUND_SPLASH_02="any_splash_02";
+	const std::string ONY_SOUND_CRASH_00="any_crash_00";
+	const std::string ONY_SOUND_CRASH_01="any_crash_01";
+	const std::string ONY_SOUND_CRASH_02="any_crash_02";
+	const std::string ONY_SOUND_SLIDE="any_slide";
+	const std::string ONY_SOUND_JUMP_ONTO_WATER="any_jump_onto_water";
+	const std::string ONY_SOUND_JUMP_ONTO_GRASS="any_jump_onto_grass";
+	const std::string ONY_SOUND_JUMP_ONTO_HARD_SURFACE="any_jump_onto_hard_surface";
+	const std::string ONY_SOUND_JUMP_ONTO_WOOD="any_jump_onto_wood";
 
+	const std::string ONY_SOUND_PILLOW_ATTACK_START="pillow_attack_start";
+	const std::string ONY_SOUND_PILLOW_ATTACK_END="pillow_attack_end";
+	const std::string ONY_SOUND_FLASHLIGHT_ATTACK_START="flashlight_attack_start";
+	const std::string ONY_SOUND_FLASHLIGHT_ATTACK_END="flashlight_attack_end";
+	const std::string ONY_SOUND_FLASHLIGHT_OVERHEAT="flashlight_overheat";
+
+	//animation perc when foot hits the floor
+	const float ONY_SOUND_STEP_TIME_00=0;
+	const float ONY_SOUND_STEP_TIME_01=0.5;
 
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
@@ -177,6 +220,12 @@ namespace OUAN
 		bool mOnWater;
 
 		RenderComponentMessageBoxPtr mMsgBoxComponent;
+
+		bool mPlayedStep00;
+		bool mPlayedStep01;
+
+		void resetStepSounds();
+		void playStepSounds();
 
 	public:
 		//Constructor

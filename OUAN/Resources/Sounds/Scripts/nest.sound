@@ -1,0 +1,47 @@
+sound nest_nothing
+{
+	sound_file 	Nest/Cuando_no_sale_nada.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound nest_tripollo
+{
+	sound_file 	Nest/Cuando_sale_un_tripollo.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound nest_break
+{
+	sound_file 	Nest/Nido_rotura.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound nest_toc_toc
+{
+	sound_file 	Nest/Nido_toc_toc.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
