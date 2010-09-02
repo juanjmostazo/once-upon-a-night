@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
 
   <PROPERTY id="RenderComponentQuadHalo::quadMaterial" type="7" value="quad_halo" ></PROPERTY>
@@ -267,10 +267,49 @@
 
   
   <!-- Audio component -->
-  <PROPERTY id="AudioComponent::soundID#0" type="7" value="any_takes_hit"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="any_triumph_laught"></PROPERTY>
   <PROPERTY id="AudioComponent::soundID#1" type="7" value="any_dies"></PROPERTY>
   <PROPERTY id="AudioComponent::soundID#2" type="7" value="any_step_grass_00"></PROPERTY>
   <PROPERTY id="AudioComponent::soundID#3" type="7" value="any_step_grass_01"></PROPERTY>  
-  <PROPERTY id="AudioComponent::soundID#4" type="7" value="any_triumph"></PROPERTY>   
-  
+  <PROPERTY id="AudioComponent::soundID#4" type="7" value="any_step_water_00"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#5" type="7" value="any_step_water_01"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#6" type="7" value="any_step_hard_surface_00"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#7" type="7" value="any_step_hard_surface_01"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#8" type="7" value="any_step_wood_00"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#9" type="7" value="any_step_wood_01"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#10" type="7" value="any_scared"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#11" type="7" value="any_falls"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#12" type="7" value="any_laughts"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#13" type="7" value="any_pillow_attack"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#14" type="7" value="any_push"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#15" type="7" value="any_interested"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#16" type="7" value="any_triumph_a"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#17" type="7" value="any_triumph_b"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#18" type="7" value="any_takes_hit_a"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#19" type="7" value="any_takes_hit_b"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#20" type="7" value="any_jump"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#21" type="7" value="any_burn"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#22" type="7" value="any_exhausted"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#23" type="7" value="any_surprise_a"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#24" type="7" value="any_surprise_b"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#25" type="7" value="any_very_scared"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#26" type="7" value="any_splash_00"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#27" type="7" value="any_splash_01"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#28" type="7" value="any_splash_02"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#29" type="7" value="any_crash_00"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#30" type="7" value="any_crash_01"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#31" type="7" value="any_crash_02"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#32" type="7" value="any_slide"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#33" type="7" value="any_jump_onto_water"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#34" type="7" value="any_jump_onto_grass"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#35" type="7" value="any_jump_onto_hard_surface"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#36" type="7" value="any_jump_onto_wood"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#37" type="7" value="pillow_attack_start"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#38" type="7" value="pillow_attack_end"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#39" type="7" value="flashlight_attack_start"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#40" type="7" value="flashlight_attack_end"></PROPERTY>   
+  <PROPERTY id="AudioComponent::soundID#41" type="7" value="flashlight_overheat"></PROPERTY>   
+
+
+
 </CUSTOMPROPERTIES>

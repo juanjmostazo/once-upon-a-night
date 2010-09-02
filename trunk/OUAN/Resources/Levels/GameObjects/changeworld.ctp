@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
 
     <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="500" fields="X;Y;Z;W"></PROPERTY>
@@ -41,4 +41,6 @@
 	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
 	
 	<PROPERTY id="AudioComponent::soundID#0" type="7" value="portal_close"></PROPERTY>
+
+	<PROPERTY id="AudioComponent::soundID#0" type="7" value="portal_changeworld"></PROPERTY>
   </CUSTOMPROPERTIES>

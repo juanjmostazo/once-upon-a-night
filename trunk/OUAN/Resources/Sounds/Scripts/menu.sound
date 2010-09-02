@@ -13,7 +13,27 @@ sound MUSIC
 
 sound CLICK
 {
-	sound_file 	button1.wav
+	sound_file 	Interface_hud/Click_1.mp3
+	sound_type 	sfx
+	3D			false
+	hardware	true
+	stream		false
+	loop		false
+}
+
+sound CLICK_2
+{
+	sound_file 	Interface_hud/Click_2.mp3
+	sound_type 	sfx
+	3D			false
+	hardware	true
+	stream		false
+	loop		false
+}
+
+sound CLICK_3
+{
+	sound_file 	Interface_hud/Click_3.mp3
 	sound_type 	sfx
 	3D			false
 	hardware	true

@@ -69,8 +69,24 @@ void GameObjectSound::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		if (mAudioComponentDreams.get())
+		{
+			mAudioComponentDreams->playSound(mCurrentDreamsSoundID);
+		}
+		if (mAudioComponentNightmares.get())
+		{
+			mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID);
+		}
 		break;
 	case NIGHTMARES:
+		if (mAudioComponentDreams.get())
+		{
+			mAudioComponentDreams->stopSound(mCurrentDreamsSoundID);
+		}
+		if (mAudioComponentNightmares.get())
+		{
+			mAudioComponentNightmares->playSound(mCurrentDreamsSoundID);
+		}
 		break;
 	default:
 		break;
@@ -117,12 +133,14 @@ void GameObjectSound::reset()
 	}
 	if (mAudioComponentDreams.get())
 	{
-		mAudioComponentDreams->setPauseSound(mCurrentDreamsSoundID,true);
+		mAudioComponentDreams->stopSound(mCurrentDreamsSoundID,true);
 	}
 	if (mAudioComponentNightmares.get())
 	{
-		mAudioComponentNightmares->setPauseSound(mCurrentDreamsSoundID,true);
+		mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID,true);
 	}
+
+	play(mGameWorldManager->getWorld()==DREAMS?mCurrentDreamsSoundID:mCurrentNightmaresSoundID);
 }
 
 bool GameObjectSound::hasPositionalComponent() const
@@ -180,11 +198,6 @@ void GameObjectSound::stop(const std::string& soundID)
 void GameObjectSound::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
-
-	if (isFirstUpdate() && mSoundType==SOUNDTYPE_POSITIONAL)//Ambient sounds will be managed externally
-	{
-		playSound(mGameWorldManager->getWorld()==DREAMS?mCurrentDreamsSoundID:mCurrentNightmaresSoundID);
-	}
 }
 const std::string& GameObjectSound::getCurrentDreamsSoundId() const
 {

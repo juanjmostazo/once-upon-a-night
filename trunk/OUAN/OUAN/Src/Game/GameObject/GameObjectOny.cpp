@@ -384,7 +384,7 @@ void GameObjectOny::switchOff()
 
 void GameObjectOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	Logger::getInstance()->log("[GameObjectOny::processCollision] "+pGameObject->getName());
+	//Logger::getInstance()->log("[GameObjectOny::processCollision] "+pGameObject->getName());
 	if (!Application::getInstance()->isPlayingCutscene() && mLogicComponentOny.get())
 	{
 		mLogicComponentOny->processCollision(pGameObject, pNormal);
@@ -442,6 +442,39 @@ bool GameObjectOny::isDying() const
 bool GameObjectOny::isHit() const
 {
 	return CHECK_BIT(mLogicComponentOny->getState(),ONY_STATE_BIT_FIELD_HIT);
+}
+
+void GameObjectOny::resetStepSounds()
+{
+	mPlayedStep00=false;
+	mPlayedStep01=true;
+}
+
+void GameObjectOny::playStepSounds()
+{
+	if(!mRenderComponentEntity->getCurrentAnimation()) return;
+
+	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+	float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	float currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
+
+	float animPerc=currentAnimPosition/currentAnimLen;
+
+	Logger::getInstance()->log("animPerc "+Ogre::StringConverter::toString(Ogre::Real(animPerc)));
+
+	//STEP SOUNDS
+	if(animPerc>=ONY_SOUND_STEP_TIME_00 && animPerc<ONY_SOUND_STEP_TIME_01 && mPlayedStep01 )
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_00);
+		mPlayedStep00=true;
+		mPlayedStep01=false;
+	}
+	else if(animPerc>=ONY_SOUND_STEP_TIME_01 && mPlayedStep00)
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_01);
+		mPlayedStep00=false;
+		mPlayedStep01=true;
+	}
 }
 
 void GameObjectOny::postUpdate()
@@ -504,7 +537,7 @@ void GameObjectOny::postUpdate()
 			!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_HIT) && 
 			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
 		{
-			mAudioComponent->playSound(ONY_SOUND_HIT);
+			mAudioComponent->playSound(ONY_SOUND_HIT_B);
 			mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
 		}
 		else if (CHECK_BIT(currentState, ONY_STATE_BIT_FIELD_ATTACK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_ATTACK))
@@ -533,31 +566,38 @@ void GameObjectOny::postUpdate()
 		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP)
 			&& !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP))
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);			
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP);	
+			mAudioComponent->playSound(ONY_SOUND_JUMP);
 		}
-		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) && mLogicComponentOny->isStateChanged())
+		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT))
 		{
-			if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
+			if(mLogicComponentOny->isStateChanged())
 			{
-				if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
-				else
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
-			}
-			else //Walk/run toggle
-			{
-				bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
-				bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
-				bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
-
-				if (toWalk || toRun || fromJump)
+				if (!CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT)) //beginning movement
 				{
+					resetStepSounds();
+
 					if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
 						mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
 					else
 						mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
 				}
-			}		
+				else //Walk/run toggle
+				{
+					bool toWalk=CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
+					bool toRun=CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK) && !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
+					bool fromJump = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_JUMP) && CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_JUMP);
+
+					if (toWalk || toRun || fromJump)
+					{
+						if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK))
+							mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
+						else
+							mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+					}
+				}
+			}
+			playStepSounds();
 		}
 		if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_INVULNERABLE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_INVULNERABLE))
 		{
@@ -580,6 +620,7 @@ void GameObjectOny::postUpdate()
 				startParticleSystem(ONY_PS_LAND_NIGHTMARES);
 				startParticleSystem(ONY_PS_LAND_WAVE);
 			}
+			mAudioComponent->playSound(ONY_SOUND_JUMP_ONTO_HARD_SURFACE);
 		}
 		bool wasRunning = CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_MOVEMENT) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_WALK);
 		bool hasStoppedRunning = !CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_MOVEMENT) || CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_WALK);
@@ -609,9 +650,18 @@ void GameObjectOny::postUpdate()
 
 		//Apply radial blur effect when reached fall speed limit
 		mGameWorldManager->getGameObjectViewport()->
-			setRadialBlurEffectIfPossible(
-			mGameWorldManager->getWorld(),
-			mPhysicsComponentCharacterOny->isFallingLimit());
+		setRadialBlurEffectIfPossible(
+		mGameWorldManager->getWorld(),
+		mPhysicsComponentCharacterOny->isFallingLimit());
+		if(mPhysicsComponentCharacterOny->isFallingLimit() && !mAudioComponent->isPlaying(ONY_SOUND_FALLS))
+		{
+			mAudioComponent->playSound(ONY_SOUND_FALLS);
+		}
+
+		if(mPhysicsComponentCharacterOny->isSliding() && !mAudioComponent->isPlaying(ONY_SOUND_SLIDE))
+		{
+			mAudioComponent->playSound(ONY_SOUND_SLIDE);
+		}
 	}
 
 	// An event will set this value at the beginning of the tick if ony is on water

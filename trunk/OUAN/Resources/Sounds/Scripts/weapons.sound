@@ -1,0 +1,64 @@
+sound pillow_attack_start
+{
+	sound_file 	Weapons/pillow/Sacudida.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 0.6
+}
+
+sound pillow_attack_end
+{
+	sound_file 	Weapons/pillow/Enfundar_2.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound flashlight_attack_start
+{
+	sound_file 	Weapons/flashlight/Loop_linterna_dos_sonidos.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 0.01
+}
+
+sound flashlight_attack_end
+{
+	sound_file 	Weapons/flashlight/Guardar.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound flashlight_overheat
+{
+	sound_file 	Weapons/flashlight/Sobrecalentamiento.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+
+
+
+

@@ -200,6 +200,14 @@ void RenderComponentEntity::setAnimationPosition(float pos)
 		mAnimationBlender->setTimePosition(pos);
 	}
 }
+float RenderComponentEntity::getAnimationPosition() const
+{
+	if (mAnimationBlender)
+	{
+		return mAnimationBlender->getTimePosition();
+	}
+	return -1;
+}
 float RenderComponentEntity::getCurrentAnimationLength() const
 {
 	if (mAnimationBlender)

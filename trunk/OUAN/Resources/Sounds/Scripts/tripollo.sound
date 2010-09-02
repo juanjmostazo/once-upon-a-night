@@ -2,19 +2,20 @@ sound tripollo_dies
 {
 	sound_file 	Tripollo/Tripollo_3.mp3
 	sound_type	sfx
-	3D			true
+	3D		true
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 50 500
+	min_max_distance 200 5000
 }
+
 sound tripollo_is_hit
 {
 	sound_file 	Tripollo/Tripollo_2.mp3
 	sound_type 	sfx
-	3D			true
+	3D		true
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 50 500
+	min_max_distance 200 5000
 }

@@ -5,6 +5,8 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectPillow.h"
+#include "../../Game/GameObject/GameObjectOny.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 #include <algorithm>
 using namespace OUAN;
 
@@ -100,6 +102,26 @@ void WeaponComponent::switchOn()
 	{
 		mActiveWeaponInUse=true;
 		mActiveWeapon->beginAttack();
+
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+		if(getActiveWeapon()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+		{
+			if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_PILLOW_ATTACK_VOICE))
+			{
+				ony->getAudioComponent()->playSound(ONY_SOUND_PILLOW_ATTACK_VOICE);
+			}
+			if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_PILLOW_ATTACK_START))
+			{
+				ony->getAudioComponent()->playSound(ONY_SOUND_PILLOW_ATTACK_START);
+			}
+		}
+		else if(getActiveWeapon()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+		{
+			if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_FLASHLIGHT_ATTACK_START))
+			{
+				ony->getAudioComponent()->playSound(ONY_SOUND_FLASHLIGHT_ATTACK_START);
+			}
+		}
 	}
 }
 void WeaponComponent::switchOff()
@@ -107,6 +129,23 @@ void WeaponComponent::switchOff()
 	if (mActiveWeapon.get() && mActiveWeaponInUse)
 	{
 		mActiveWeapon->switchOff();
+
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+
+		if(getActiveWeapon()->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+		{
+			if(!ony->getAudioComponent()->isPlaying(ONY_SOUND_PILLOW_ATTACK_END))
+			{
+				//ony->getAudioComponent()->playSound(ONY_SOUND_PILLOW_ATTACK_END);
+			}
+		}
+		else if(getActiveWeapon()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+		{
+			if(ony->getAudioComponent()->isPlaying(ONY_SOUND_FLASHLIGHT_ATTACK_START))
+			{
+				ony->getAudioComponent()->stopSound(ONY_SOUND_FLASHLIGHT_ATTACK_START);
+			}
+		}
 	}
 }
 int WeaponComponent::getWeaponPower() const

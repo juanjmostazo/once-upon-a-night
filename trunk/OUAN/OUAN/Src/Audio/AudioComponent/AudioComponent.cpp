@@ -44,8 +44,10 @@ void AudioComponent::update(long elapsedTime)
 }
 void AudioComponent::playSound(const std::string& soundID)
 {
+	Logger::getInstance()->log(getParent()->getName()+" GameObject::playSound "+ soundID);
 	if (mParent->isEnabled() && mSounds.find(soundID)!=mSounds.end())
 	{
+		Logger::getInstance()->log(getParent()->getName()+" EXISTS "+ soundID);
 		if (mAudioSS->is3DSound(soundID) && mParent->hasPositionalComponent())
 		{
 			RenderComponentPositionalPtr position=mParent->getPositionalComponent();

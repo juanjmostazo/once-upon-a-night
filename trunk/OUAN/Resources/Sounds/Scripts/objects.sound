@@ -1,42 +1,6 @@
-sound any_dies
+sound tree
 {
-	sound_file 	Any/any_dies.mp3
-	sound_type	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_step_grass_00
-{
-	sound_file 	Any/any_step_grass_00.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_step_grass_01
-{
-	sound_file 	Any/any_step_grass_01.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_step_water_00
-{
-	sound_file 	Any/any_step_water_00.mp3
+	sound_file 	Objects/Arbol_follaje.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -46,9 +10,9 @@ sound any_step_water_00
 	volume 1
 }
 
-sound any_step_water_01
+sound fart
 {
-	sound_file 	Any/any_step_water_01.mp3
+	sound_file 	Objects/Bomba_pedo.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -58,57 +22,9 @@ sound any_step_water_01
 	volume 1
 }
 
-sound any_step_hard_surface_00
+sound box_break
 {
-	sound_file 	Any/any_step_hard_surface_00.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_step_hard_surface_01
-{
-	sound_file 	Any/any_step_hard_surface_01.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_step_wood_00
-{
-	sound_file 	Any/any_step_wood_00.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_step_wood_01
-{
-	sound_file 	Any/any_step_wood_01.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.2
-}
-
-sound any_scared
-{
-	sound_file 	Any/any_scared.mp3
+	sound_file 	Objects/Caja_madera_mezcla.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -118,21 +34,9 @@ sound any_scared
 	volume 1
 }
 
-sound any_falls
+sound switch
 {
-	sound_file 	Any/any_falls.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 0.8
-}
-
-sound any_laughts
-{
-	sound_file 	Any/any_laughts.mp3
+	sound_file 	Objects/Click_interruptor.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -142,9 +46,9 @@ sound any_laughts
 	volume 1
 }
 
-sound any_pillow_attack
+sound diamond
 {
-	sound_file 	Any/any_pillow_attack.mp3
+	sound_file 	Objects/Destellos_diamantes_solo_final.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -154,9 +58,9 @@ sound any_pillow_attack
 	volume 1
 }
 
-sound any_push
+sound explosion
 {
-	sound_file 	Any/any_push.mp3
+	sound_file 	Objects/Explosion_1.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -166,9 +70,9 @@ sound any_push
 	volume 1
 }
 
-sound any_interested
+sound hit00
 {
-	sound_file 	Any/any_interested.mp3
+	sound_file 	Objects/Golpe_1.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -178,33 +82,9 @@ sound any_interested
 	volume 1
 }
 
-sound any_triumph_a
+sound hit01
 {
-	sound_file 	Any/any_triumph_a.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false	
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_triumph_b
-{
-	sound_file 	Any/any_triumph_b.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false	
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_takes_hit_a
-{
-	sound_file 	Any/any_takes_hit_a.mp3
+	sound_file 	Objects/Golpe_2.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -214,9 +94,9 @@ sound any_takes_hit_a
 	volume 1
 }
 
-sound any_takes_hit_b
+sound hit02
 {
-	sound_file 	Any/any_takes_hit_b.mp3
+	sound_file 	Objects/Golpe_3.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -226,9 +106,9 @@ sound any_takes_hit_b
 	volume 1
 }
 
-sound any_triumph_laught
+sound hit03
 {
-	sound_file 	Any/any_triumph_laught.mp3
+	sound_file 	Objects/Golpe_4.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -238,9 +118,9 @@ sound any_triumph_laught
 	volume 1
 }
 
-sound any_jump
+sound hit04
 {
-	sound_file 	Any/any_jump.mp3
+	sound_file 	Objects/Golpe_5.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -250,9 +130,9 @@ sound any_jump
 	volume 1
 }
 
-sound any_burn
+sound hit05
 {
-	sound_file 	Any/any_burn.mp3
+	sound_file 	Objects/Golpe_6.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -262,9 +142,9 @@ sound any_burn
 	volume 1
 }
 
-sound any_exhausted
+sound hit06
 {
-	sound_file 	Any/any_exhausted.mp3
+	sound_file 	Objects/Golpe_7.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -274,9 +154,9 @@ sound any_exhausted
 	volume 1
 }
 
-sound any_surprise_a
+sound items00
 {
-	sound_file 	Any/any_surprise_a.mp3
+	sound_file 	Objects/Items_1.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -286,9 +166,9 @@ sound any_surprise_a
 	volume 1
 }
 
-sound any_surprise_b
+sound items01
 {
-	sound_file 	Any/any_surprise_b.mp3
+	sound_file 	Objects/Items_2.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -298,9 +178,9 @@ sound any_surprise_b
 	volume 1
 }
 
-sound any_very_scared
+sound items02
 {
-	sound_file 	Any/any_very_scared.mp3
+	sound_file 	Objects/Items_3.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -310,9 +190,9 @@ sound any_very_scared
 	volume 1
 }
 
-sound any_splash_00
+sound items03
 {
-	sound_file 	Any/any_splash_00.mp3
+	sound_file 	Objects/Items_4.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -322,9 +202,9 @@ sound any_splash_00
 	volume 1
 }
 
-sound any_splash_01
+sound peana
 {
-	sound_file 	Any/any_splash_01.mp3
+	sound_file 	Objects/Loop_peana_rozamiento.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -334,9 +214,9 @@ sound any_splash_01
 	volume 1
 }
 
-sound any_splash_02
+sound door_open
 {
-	sound_file 	Any/any_splash_02.mp3
+	sound_file 	Objects/Puerta.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -346,9 +226,9 @@ sound any_splash_02
 	volume 1
 }
 
-sound any_crash_00
+sound door_close
 {
-	sound_file 	Any/any_crash_00.mp3
+	sound_file 	Objects/Puerta_cierre.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -358,9 +238,9 @@ sound any_crash_00
 	volume 1
 }
 
-sound any_crash_01
+sound book
 {
-	sound_file 	Any/any_crash_01.mp3
+	sound_file 	Objects/Susurros_libro.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -370,69 +250,9 @@ sound any_crash_01
 	volume 1
 }
 
-sound any_crash_02
+sound bomb_2
 {
-	sound_file 	Any/any_crash_02.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_slide
-{
-	sound_file 	Any/any_slide.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_jump_onto_water
-{
-	sound_file 	Any/any_jump_onto_water.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_jump_onto_grass
-{
-	sound_file 	Any/any_jump_onto_grass.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_jump_onto_hard_surface
-{
-	sound_file 	Any/any_jump_onto_hard_surface.mp3
-	sound_type 	sfx
-	3D		true
-	hardware	true
-	stream		false
-	loop		false
-	min_max_distance 200 5000
-	volume 1
-}
-
-sound any_jump_onto_wood
-{
-	sound_file 	Any/any_jump_onto_wood.mp3
+	sound_file 	Objects/Anothers/Bomba.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -443,13 +263,112 @@ sound any_jump_onto_wood
 }
 
 
+sound box_2
+{
+	sound_file 	Objects/Anothers/Caja_de_madera.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound diamond_2
+{
+	sound_file 	Objects/Anothers/Destellos_diamantes.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound explosion_2
+{
+	sound_file 	Objects/Anothers/Explosion_1.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound explosion_3
+{
+	sound_file 	Objects/Anothers/Explosion_2.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound switch_2
+{
+	sound_file 	Objects/Anothers/Palanca.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound break
+{
+	sound_file 	Objects/Anothers/Rotura.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound crystal_break
+{
+	sound_file 	Objects/Anothers/Rotura_cristal.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound wood_break
+{
+	sound_file 	Objects/Anothers/Rotura_madera.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
+sound roulette
+{
+	sound_file 	Objects/Anothers/Ruleta.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
 
 

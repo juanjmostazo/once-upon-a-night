@@ -21,6 +21,9 @@ namespace OUAN
 	const std::string PORTAL_STATE_HIT="PORTAL_STATE_HIT";
 	const std::string PORTAL_STATE_CHANGING_WORLD="PORTAL_STATE_CHANGING_WORLD";
 
+	const std::string PORTAL_SOUND_CHANGEWORLD="portal_changeworld";
+	const std::string PORTAL_SOUND_CLOSE="portal_close";
+
 	class AudioComponent;
 	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
 	typedef std::map<std::string, int> TAudioComponentMap;
