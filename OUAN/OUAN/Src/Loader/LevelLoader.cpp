@@ -884,7 +884,7 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 		tGameObjectCryKingParameters.name = gameObject->name;
 
 		//Get logic component
-		tGameObjectCryKingParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectCryKingParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
@@ -895,7 +895,7 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
-		tGameObjectCryKingParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectCryKingParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 	
 	}
 	catch( std::string error )
@@ -2890,9 +2890,6 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
-		//Get PhysicsComponentVolumeBox
-		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
-		
 		tGameObjectWoodBoxParameters.tLogicComponentBreakableParameters=processLogicComponentBreakable(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
@@ -3123,7 +3120,7 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 		tGameObjectBombParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectBombParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectBombParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
@@ -3141,7 +3138,7 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectBombParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 		
-		//Get PhysicsComponentWeapon
+		////Get PhysicsComponentWeapon
 		tGameObjectBombParameters.tPhysicsComponentWeaponParameters=processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
 	}

@@ -71,6 +71,7 @@ void PhysicsComponentVolumeBox::setOrientation(NxOgre::Quat orientation)
 		getNxOgreVolume()->setGlobalOrientationQuat(orientation);
 	}
 }
+
 TPhysicsComponentVolumeBoxParameters::TPhysicsComponentVolumeBoxParameters() : TPhysicsComponentVolumeParameters()
 {
 

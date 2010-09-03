@@ -28,6 +28,7 @@ void LogicComponentBreakable::processCollision(GameObjectPtr pGameObject, Ogre::
 		setIsBroken(true);
 		if (mDisableTime>=0.0)
 			mElapsedTimeSinceBreakup=0;
+		Logger::getInstance()->log("BREAK");
 	}
 }
 

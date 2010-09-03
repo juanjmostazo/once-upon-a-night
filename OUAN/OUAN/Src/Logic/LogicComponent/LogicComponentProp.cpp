@@ -7,7 +7,7 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectDiamondTree.h"
 #include "../../Game/GameObject/GameObjectOny.h"
-
+#include "../../Game/GameObject/GameObjectFlashLight.h"
 using namespace OUAN;
 
 LogicComponentProp::LogicComponentProp(const std::string& type)
@@ -26,6 +26,8 @@ LogicComponentProp::~LogicComponentProp()
 
 void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+
+	Logger::getInstance()->log(" LogicComponentProp::processCollision "+getParent()->getName()+" "+pGameObject->getName());
 
 	GameWorldManagerPtr worldMgr = mParent->getGameWorldManager();
 	ApplicationPtr app = worldMgr->getParent();
@@ -69,7 +71,21 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 			mHitRecoveryTime=0;
 		}
 	}
+	bool isParentBomb = mParent->getType().compare(GAME_OBJECT_TYPE_BOMB)==0;
+	if (isParentBomb && pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+	{
+		GameObjectFlashLightPtr flashlight= 
+			BOOST_PTR_CAST(GameObjectFlashLight,pGameObject);
+	Logger::getInstance()->log("FLASHLIGHT HIT");
 
+		getParent()->setVisible(false);
+	}
+
+	bool isParentCryKing = mParent->getType().compare(GAME_OBJECT_TYPE_CRYKING)==0;
+	if (isParentCryKing && pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
+	{
+		getParent()->getGameWorldManager()->restartBombPosition();
+	}
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);

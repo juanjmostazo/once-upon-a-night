@@ -192,8 +192,6 @@ namespace OUAN
 			WEAPON_MODE_SPECIAL
 		} TWeaponMode;
 
-		
-
 		const std::string COMPONENT_TYPE_LOGIC="LogicComponent";
 		const std::string COMPONENT_TYPE_LOGIC_ONY="LogicComponentOny";
 		const std::string COMPONENT_TYPE_LOGIC_ENEMY="LogicComponentEnemy";

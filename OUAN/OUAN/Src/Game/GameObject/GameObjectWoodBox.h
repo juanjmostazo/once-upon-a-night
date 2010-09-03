@@ -32,7 +32,7 @@ namespace OUAN
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDust;
 		/// Physics information
 		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
-		PhysicsComponentVolumeBoxPtr mPhysicsComponentVolumeBox;
+
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -89,12 +89,6 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
-
-		/// Set physics component
-		void setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox);
-
-		/// Get physics component
-		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 
 		void updatePhysicsComponents(double elapsedSeconds);
 
@@ -164,7 +158,6 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
-		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		///Logic parameters
 		TLogicComponentBreakableParameters tLogicComponentBreakableParameters;

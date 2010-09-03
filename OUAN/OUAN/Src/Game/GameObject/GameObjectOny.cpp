@@ -460,8 +460,6 @@ void GameObjectOny::playStepSounds()
 
 	float animPerc=currentAnimPosition/currentAnimLen;
 
-	Logger::getInstance()->log("animPerc "+Ogre::StringConverter::toString(Ogre::Real(animPerc)));
-
 	//STEP SOUNDS
 	if(animPerc>=ONY_SOUND_STEP_TIME_00 && animPerc<ONY_SOUND_STEP_TIME_01 && mPlayedStep01 )
 	{
