@@ -16,7 +16,7 @@ namespace OUAN
 	private:
 		/// Visual component
 		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+
 		/// Positional component
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -43,12 +43,12 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+
 
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
