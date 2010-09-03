@@ -603,16 +603,6 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 		pGameObjectCryKing->getLogicComponent()->existsInDreams(),
 		pGameObjectCryKing->getLogicComponent()->existsInNightmares()));
 	}
-	if(pGameObjectCryKing->getLogicComponent()->existsInNightmares())
-	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectCryKing->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectCryKingParameters.nightmaresName,
-			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectCryKing->getLogicComponent()->existsInDreams(),
-		pGameObjectCryKing->getLogicComponent()->existsInNightmares()));
-	}
-
 	//Create PhysicsComponent
 	pGameObjectCryKing->setPhysicsComponentCharacter(
 		mComponentFactory->createPhysicsComponentCharacter(

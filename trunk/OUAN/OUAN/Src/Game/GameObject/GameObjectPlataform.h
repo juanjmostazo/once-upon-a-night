@@ -36,6 +36,9 @@ namespace OUAN
 		//TODO: think what happens when world changes with the rendercomponent
 
 		TrajectoryComponentPtr mTrajectoryComponent;
+
+		Ogre::Vector3 mLastPosition;
+		Ogre::Vector3 mLastPositionDifference;
 	public:
 		//Constructor
 		GameObjectPlataform(const std::string& name);
@@ -66,6 +69,8 @@ namespace OUAN
 		TrajectoryComponentPtr getTrajectoryComponent();
 
 		void setVisible(bool visible);
+
+		Ogre::Vector3 getLastPositionDifference();
 
 		/// Set initial component
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);

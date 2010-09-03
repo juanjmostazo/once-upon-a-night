@@ -177,6 +177,8 @@ void GameObjectPlataform::reset()
 {
 	GameObject::reset();
 	activateTrajectory();
+	mLastPosition=getRenderComponentPositional()->getPosition();
+	mLastPositionDifference=Vector3::ZERO;
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
@@ -264,6 +266,11 @@ void GameObjectPlataform::setVisible(bool visible)
 	}
 }
 
+Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()
+{
+	return mLastPositionDifference;
+}
+
 void GameObjectPlataform::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -275,6 +282,8 @@ void GameObjectPlataform::update(double elapsedSeconds)
 		//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 		//Logger::getInstance()->log("GameObjectPlataform::update " + getName() +" "+Ogre::StringConverter::toString(position));
 		mRenderComponentPositional->setPosition(position);
+		mLastPositionDifference=position-mLastPosition;
+		mLastPosition=position;
 		if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
 		{
 			mPhysicsComponentComplexConvex->setPosition(position);

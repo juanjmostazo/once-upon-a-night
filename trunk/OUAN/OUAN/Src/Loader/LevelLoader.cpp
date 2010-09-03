@@ -876,7 +876,6 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
-		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
@@ -891,9 +890,6 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 		//Get RenderComponentEntityDreams
 		tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
 			DREAMS, gameObject->XMLNodeCustomProperties);
-		//Get RenderComponentEntityNightmares
-		tGameObjectCryKingParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			NIGHTMARES, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());

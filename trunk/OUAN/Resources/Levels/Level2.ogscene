@@ -34,10 +34,10 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-590.953 621.265 -2695.55" orientation="-0.742571 0.194721 0.619843 0.162685"></OPTION>
+    <OPTION id="2" position="528.088 279.824 -170.405" orientation="0.862259 -0.244417 0.426775 0.120968"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
       <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="false"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.742643 0.194739 0.619902 0.162701"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.8623 -0.244429 0.426795 0.120974"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-590.953 621.265 -2695.55"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="528.088 279.824 -170.405"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1882,11 +1882,11 @@
     <PROPERTY id="position" type="9" value="-134.506 215.162 68.4553"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2154,11 +2154,11 @@
     <PROPERTY id="position" type="9" value="18.3136 4.02609 -924.998"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2443,11 +2443,11 @@
     <PROPERTY id="position" type="9" value="-843.749 222.421 -1700.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3129,13 +3129,13 @@
     <PROPERTY id="position" type="9" value="-494.46 487.34 -2603.45"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -3885,13 +3885,13 @@
     <PROPERTY id="position" type="9" value="965.49 135.059 188.999"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -4783,7 +4783,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5237,11 +5237,11 @@
     <PROPERTY id="position" type="9" value="-951.724 135.059 -1251.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -5667,13 +5667,13 @@
     <PROPERTY id="position" type="9" value="-688.142 242.624 -1429.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -6541,13 +6541,13 @@
     <PROPERTY id="position" type="9" value="-433.517 487.34 -2653.91"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7282,7 +7282,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7296,13 +7296,13 @@
     <PROPERTY id="position" type="9" value="936.809 135.059 147.457"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8019,13 +8019,13 @@
     <PROPERTY id="position" type="9" value="-341.801 250.791 115.022"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8225,7 +8225,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -8275,13 +8275,13 @@
     <PROPERTY id="position" type="9" value="-767.249 39.1923 -1115.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -10021,13 +10021,13 @@
     <PROPERTY id="position" type="9" value="-540.072 487.34 -2638.94"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -10518,23 +10518,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="72267832" name="tripollo_n#4" typename="Entity Object" parentnode="Tripollos">
+  <OBJECT object_id="995727424" name="tripollo_n#4" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tripollo_n.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.793353 0 0.608761 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="539.391 132.628 -153.132"></PROPERTY>
+    <PROPERTY id="position" type="9" value="466.68 118.547 -172.615"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11665,7 +11663,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11721,7 +11719,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12499,7 +12497,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="king_crying.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.126199 0 0.992005 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-296.247 232.531 425.793"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-361.494 240.203 408.919"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
@@ -12582,7 +12580,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12852,13 +12850,13 @@
     <PROPERTY id="position" type="9" value="-141.844 210.199 543.741"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -15198,7 +15196,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -15231,13 +15229,13 @@
     <PROPERTY id="position" type="9" value="-746.286 135.059 -1175.17"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -16299,7 +16297,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -18358,7 +18356,7 @@
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -18408,13 +18406,13 @@
     <PROPERTY id="position" type="9" value="-725.429 135.059 -1026.77"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -19168,13 +19166,13 @@
     <PROPERTY id="position" type="9" value="-473.992 487.34 -2713.95"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -21030,8 +21028,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-413.943 334.948 322.087"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.733397 -0.208284 -0.607596 -0.222652"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-345.186 281.475 358.665"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
@@ -22208,6 +22206,20 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="220923488" name="TrajectoryNode#BOMBS_PUZZLE_START#2_3" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.737277 0 0 -0.67559"></PROPERTY>
+    <PROPERTY id="position" type="9" value="476.686 1000 70.1938"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="857387008" name="Patrol#tripollo#5_n" typename="Marker Object" parentnode="Patrols">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
@@ -22595,7 +22607,7 @@
     <PROPERTY id="position" type="9" value="913.757 305.717 157.51"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -23101,9 +23113,9 @@
     <PROPERTY id="position" type="9" value="-596.433 217.449 333.133"></PROPERTY>
     <PROPERTY id="scale" type="9" value="5 5 5"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="AudioComponent::soundID#0" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="AudioComponent::soundID#0" type="7" value="ambient_waterfall" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="gameObjectSound::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="gameObjectSound::currentSoundID" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="gameObjectSound::currentSoundID" type="7" value="ambient_waterfall" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -23459,6 +23471,20 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="818323328" name="TrajectoryNode#BOMBS_PUZZLE_START#2_2" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.507538 0 0 -0.861629"></PROPERTY>
+    <PROPERTY id="position" type="9" value="175.294 1000 182.934"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="880581056" name="TrajectoryNode#LEVEL_START_2" typename="Marker Object" parentnode="NodesTrajectory#LEVEL_START">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
@@ -23670,7 +23696,7 @@
     <PROPERTY id="position" type="9" value="943.625 141.972 177.775"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -23990,7 +24016,7 @@
     <PROPERTY id="position" type="9" value="823.791 305.717 96.858"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -24860,6 +24886,20 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="655476544" name="TrajectoryNode#BOMBS_PUZZLE_START#2_1" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.678801 0 0 -0.734323"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-473.563 1000 364.382"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="849360640" name="WalkabilityNode_d#11" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -25168,7 +25208,7 @@
     <PROPERTY id="position" type="9" value="941.016 305.717 175.158"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -25313,11 +25353,11 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="BOMBS_PUZZLE_START#2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#0" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#1" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#2" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_2" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#4" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_4" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_5" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -26244,8 +26284,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-413.943 334.948 322.087"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.733397 -0.208284 -0.607596 -0.222652"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-345.186 281.475 358.665"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
@@ -27020,6 +27060,20 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="763573120" name="TrajectoryNode#BOMBS_PUZZLE_START#2_5" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.906223 -0.0895817 -0.334323 0.242822"></PROPERTY>
+    <PROPERTY id="position" type="9" value="511.911 267.282 -182.744"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -28445,6 +28499,20 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="856776640" name="TrajectoryNode#BOMBS_PUZZLE_START#2_4" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.821647 0 -0.569997 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="512.918 331.448 -51.3567"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="71413312" name="sound_d#birds2" typename="Marker Object" parentnode="Positional">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0.666667 0.333333 1 1"></PROPERTY>
@@ -28454,9 +28522,9 @@
     <PROPERTY id="position" type="9" value="-597.968 121.663 -674.154"></PROPERTY>
     <PROPERTY id="scale" type="9" value="5 5 5"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="AudioComponent::soundID#0" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="AudioComponent::soundID#0" type="7" value="ambient_birds" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="gameObjectSound::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="gameObjectSound::currentSoundID" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="gameObjectSound::currentSoundID" type="7" value="ambient_birds" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

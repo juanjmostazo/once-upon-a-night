@@ -42,19 +42,9 @@ void GameObjectCryKing::setRenderComponentEntityDreams(RenderComponentEntityPtr 
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
 
-void GameObjectCryKing::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
-{
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
 RenderComponentEntityPtr GameObjectCryKing::getRenderComponentEntityDreams() const
 {
 	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectCryKing::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
 }
 
 void GameObjectCryKing::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
@@ -96,8 +86,18 @@ void GameObjectCryKing::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntityDreams->setVisible(true);
+		if(mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->create();
+		}
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntityDreams->setVisible(false);
+		if(mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->destroy();
+		}
 		break;
 	default:
 		break;
@@ -197,7 +197,7 @@ bool GameObjectCryKing::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntityDreams;
 }
 bool GameObjectCryKing::hasLogicComponent() const
 {

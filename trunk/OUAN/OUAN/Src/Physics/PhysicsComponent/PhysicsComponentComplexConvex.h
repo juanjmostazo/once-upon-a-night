@@ -14,8 +14,6 @@ namespace OUAN
 		virtual void create();
 		virtual void destroy();
 
-		virtual void update(double elapsedSeconds);
-
 		NxOgre::Convex* getNxOgreConvex();
 		void setNxOgreConvex(NxOgre::Convex* pNxOgreConvex);
 
@@ -26,7 +24,6 @@ namespace OUAN
 		void setNxOgreKinematicBody(OGRE3DKinematicBody* pNxOgreKinematicBody);
 
 		void setBalancingParams(double balanceRadiumX, double balanceRadiumY, double balanceRadiumZ, double balanceRadiumTime);
-		virtual Ogre::Vector3 getLastPositionDifference();
 
 		virtual Ogre::Vector3 getPosition();
 		virtual void setPosition(Ogre::Vector3 position);
@@ -48,9 +45,6 @@ namespace OUAN
 		//Ogre::Vector3 mBalanceLastWasNegative;  // VALUES{1,0}
 		//Ogre::Vector3 mBalanceDirection;        // VALUES{1,-1}
 		//double mBalanceAccumulatedTime;
-
-		Ogre::Vector3 mLastPositionDifference;
-		Ogre::Vector3 mLastPosition;
 
 		//virtual bool canUpdateBalancing(double elapsedSeconds);
 		//virtual void updateBalancing(double elapsedSeconds);

@@ -144,6 +144,11 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	//Logger::getInstance()->log("[PHYSICS UPDATE]");
 	unsigned int i;
 
+	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
+	}
+
 	if (mApp)
 	{
 		mApp->getGameWorldManager()->getEventProcessor()->startNewFrame();
@@ -174,11 +179,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
 	{
 		mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(elapsedSeconds);
-	}
-
-	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
-	{
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
 	}
 
 	mNxOgreTimeController->advance(elapsedSeconds);
