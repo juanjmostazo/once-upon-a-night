@@ -581,10 +581,10 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 	pGameObjectCryKing->setMaxRenderRadium(tGameObjectCryKingParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectCryKing->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+	pGameObjectCryKing->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectCryKing,
-		tGameObjectCryKingParameters.tLogicComponentParameters));
+		tGameObjectCryKingParameters.tLogicComponentPropParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectCryKing->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
@@ -594,20 +594,20 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 	pGameObjectCryKing->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectCryKing->getRenderComponentPositional()));
 
-	if(pGameObjectCryKing->getLogicComponent()->existsInDreams())
+	if(pGameObjectCryKing->getLogicComponentProp()->existsInDreams())
 	{
 		//Create RenderComponentEntity Dreams
 		pGameObjectCryKing->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCryKingParameters.dreamsName,
 			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectCryKing->getLogicComponent()->existsInDreams(),
-		pGameObjectCryKing->getLogicComponent()->existsInNightmares()));
+		pGameObjectCryKing->getLogicComponentProp()->existsInDreams(),
+		pGameObjectCryKing->getLogicComponentProp()->existsInNightmares()));
 	}
 	//Create PhysicsComponent
-	pGameObjectCryKing->setPhysicsComponentCharacter(
-		mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectCryKing->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectCryKing, 
-		tGameObjectCryKingParameters.tPhysicsComponentCharacterParameters, 
+		tGameObjectCryKingParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectCryKing->getRenderComponentPositional()));
 
 	//Add reference to this
@@ -3552,12 +3552,6 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 			tGameObjectWoodBoxParameters.tPhysicsComponentSimpleBoxParameters, 
 			pGameObjectWoodBox->getRenderComponentPositional()));
 
-	pGameObjectWoodBox->setPhysicsComponentVolumeBox(
-		mComponentFactory->createPhysicsComponentVolumeBox(
-		pGameObjectWoodBox, 
-		tGameObjectWoodBoxParameters.tPhysicsComponentVolumeBoxParameters, 
-		pGameObjectWoodBox->getRenderComponentPositional()));
-
 	//Add reference to this
 	pGameObjectWoodBox->setGameWorldManager(gameWorldMgr);
 
@@ -3896,10 +3890,10 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 	pGameObjectBomb->setMaxRenderRadium(tGameObjectBombParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectBomb->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+	pGameObjectBomb->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectBomb,
-		tGameObjectBombParameters.tLogicComponentParameters));
+		tGameObjectBombParameters.tLogicComponentPropParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectBomb->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
@@ -3913,15 +3907,15 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 	pGameObjectBomb->setRenderComponentEntityDreams(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.dreamsName,
 		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectBomb->getLogicComponent()->existsInDreams(),
-		pGameObjectBomb->getLogicComponent()->existsInNightmares()));
+		pGameObjectBomb->getLogicComponentProp()->existsInDreams(),
+		pGameObjectBomb->getLogicComponentProp()->existsInNightmares()));
 
 	//Create RenderComponentEntityNightmares
 	pGameObjectBomb->setRenderComponentEntityNightmares(
 		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.nightmaresName,
 		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectBomb->getLogicComponent()->existsInDreams(),
-		pGameObjectBomb->getLogicComponent()->existsInNightmares()));
+		pGameObjectBomb->getLogicComponentProp()->existsInDreams(),
+		pGameObjectBomb->getLogicComponentProp()->existsInNightmares()));
 
 	//Create PhysicsComponentSimpleBox
 	pGameObjectBomb->setPhysicsComponentSimpleBox(

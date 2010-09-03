@@ -5,8 +5,8 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
@@ -21,11 +21,11 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -35,10 +35,10 @@ namespace OUAN
 		//Destructor
 		~GameObjectCryKing();
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentProp(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponentProp();
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -66,10 +66,10 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -132,10 +132,10 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentPropParameters;
 	};
 
 }

@@ -9,8 +9,8 @@
 	<Option key="FALLING_TIME_LIMIT">1</Option>
 	<Option key="WALK_SPEED_FACTOR">0.5</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
-	<Option key="STATIC_FRICTION">0.5</Option>
-    <Option key="DYNAMIC_FRICTION">0.5</Option>
+	<Option key="STATIC_FRICTION">0.8</Option>
+    <Option key="DYNAMIC_FRICTION">0.8</Option>
     <Option key="RESTITUTION">0.1</Option>
 	<Option key="SLOPE_LIMIT">60</Option>
     <Option key="STEP_OFFSET">5</Option>

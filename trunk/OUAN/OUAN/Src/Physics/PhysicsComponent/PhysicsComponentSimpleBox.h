@@ -24,7 +24,12 @@ namespace OUAN
 		NxOgre::Volume* getNxOgreVolume();
 		void setNxOgreVolume(NxOgre::Volume* pNxOgreVolume);
 
+		void setPosition(NxOgre::Vec3 position);
+		void setOrientation(NxOgre::Quat orientation);
+
 		//void setQueryFlags(QueryFlags queryFlags);
+
+		virtual void update(double elapsedSeconds);
 
 	protected:
 		NxOgre::Vec3 mNxOgreSize;
@@ -32,6 +37,7 @@ namespace OUAN
 		NxOgre::Vec3 mInitialVelocity;
 
 		NxOgre::Box* mBox;
+		NxOgre::Box* mVolumeBox;
 		NxOgre::Volume* mNxOgreVolume;
 	};
 

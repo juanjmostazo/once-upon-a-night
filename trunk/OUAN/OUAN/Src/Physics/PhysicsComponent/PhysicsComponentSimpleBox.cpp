@@ -15,6 +15,32 @@ PhysicsComponentSimpleBox::~PhysicsComponentSimpleBox()
 
 }
 
+void PhysicsComponentSimpleBox::setPosition(NxOgre::Vec3 position)
+{
+	if (getMass() > 0)
+	{
+		mNxOgreBody->setGlobalPosition(position);
+
+	}
+	else
+	{
+		mNxOgreKinematicBody->setGlobalPosition(position);
+	}
+}
+
+void PhysicsComponentSimpleBox::setOrientation(NxOgre::Quat orientation)
+{
+	if (getMass() > 0)
+	{
+		mNxOgreBody->setGlobalOrientationQuat(orientation);
+	}
+	else
+	{
+		mNxOgreKinematicBody->setGlobalOrientationQuat(orientation);
+	}
+}
+
+
 void PhysicsComponentSimpleBox::create()
 {
 	PhysicsComponentSimple::create();
@@ -28,10 +54,9 @@ void PhysicsComponentSimpleBox::create()
 
 	mBox->setName(name);
 
-	mBox->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
-
 	if (getMass() > 0)
 	{
+
 		setNxOgreKinematicBody(NULL);
 
 		NxOgre::RigidBodyDescription pDesc = NxOgre::RigidBodyDescription();
@@ -69,14 +94,34 @@ void PhysicsComponentSimpleBox::create()
 		//	pBox->getFlag()));
 	}
 
+	mVolumeBox = new NxOgre::Box(	getNxOgreSize().x,
+							getNxOgreSize().y,
+							getNxOgreSize().z);
+
+	mVolumeBox->setName(name);
+
 	setNxOgreVolume(
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
-			mBox,								
+			mVolumeBox,								
 			NxOgre::Matrix44(	
 				NxOgre::Vec3(getSceneNode()->getPosition()), 
 				NxOgre::Quat(getSceneNode()->getOrientation())),
 			Application::getInstance()->getPhysicsSubsystem().get(), 
-			NxOgre::Enums::VolumeCollisionType_All));	
+			NxOgre::Enums::VolumeCollisionType_All));
+}
+
+void PhysicsComponentSimpleBox::update(double elapsedSeconds)
+{
+	if (getMass() > 0)
+	{
+		getNxOgreVolume()->setGlobalPosition(mNxOgreBody->getGlobalPosition());
+		getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreBody->getGlobalOrientationQuat());
+	}
+	else
+	{
+		getNxOgreVolume()->setGlobalPosition(mNxOgreKinematicBody->getGlobalPosition());
+		getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreKinematicBody->getGlobalOrientationQuat());
+	}
 }
 
 void PhysicsComponentSimpleBox::destroy()

@@ -1067,22 +1067,22 @@ void GameWorldManager::addGameObjectCameraTrigger(GameObjectCameraTriggerPtr pGa
 
 void GameWorldManager::addGameObjectSwitch(GameObjectSwitchPtr pGameObjectSwitch)
 {
-
+	mGameObjects[pGameObjectSwitch->getName()]=pGameObjectSwitch;
 }
 
 void GameWorldManager::addGameObjectTotem(GameObjectTotemPtr pGameObjectTotem)
 {
-
+	mGameObjects[pGameObjectTotem->getName()]=pGameObjectTotem;
 }
 
 void GameWorldManager::addGameObjectBomb(GameObjectBombPtr pGameObjectBomb)
 {
-
+	mGameObjects[pGameObjectBomb->getName()]=pGameObjectBomb;
 }
 
 void GameWorldManager::addGameObjectLevelEntrance(GameObjectLevelEntrancePtr pGameObjectLevelEntrance)
 {
-
+	mGameObjects[pGameObjectLevelEntrance->getName()]=pGameObjectLevelEntrance;
 }
 
 void GameWorldManager::createTrajectory(TTrajectoryParameters tTrajectoryParameters)
@@ -1755,6 +1755,18 @@ bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
 bool GameWorldManager::hasExecutedLevelEvent(std::string cutscene)
 {
 	return mExecutedLevelEvents.count(cutscene)>0 || mExecutedLevelEventsPermanent.count(cutscene)>0;
+}
+
+void GameWorldManager::restartBombPositionLUA()
+{
+	mInst->restartBombPosition();
+}
+
+void GameWorldManager::restartBombPosition()
+{
+	GameObjectBombPtr bomb= 
+		BOOST_PTR_CAST(GameObjectBomb,getObject("bomb#0"));
+	bomb->restartToInitialPoint();
 }
 
 void GameWorldManager::checkpointLevelEvents()

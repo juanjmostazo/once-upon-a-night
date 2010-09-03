@@ -79,16 +79,6 @@ PhysicsComponentSimpleBoxPtr GameObjectWoodBox::getPhysicsComponentSimpleBox() c
 	return mPhysicsComponentSimpleBox;
 }
 
-void GameObjectWoodBox::setPhysicsComponentVolumeBox(PhysicsComponentVolumeBoxPtr pPhysicsComponentVolumeBox)
-{
-	mPhysicsComponentVolumeBox=pPhysicsComponentVolumeBox;
-}
-
-PhysicsComponentVolumeBoxPtr GameObjectWoodBox::getPhysicsComponentVolumeBox() const
-{
-	return mPhysicsComponentVolumeBox;
-}
-
 void GameObjectWoodBox::setDreamsRender()
 {
 	if (!isEnabled()) return;
@@ -202,10 +192,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
-				}
 			}
 			else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
 			{
@@ -213,10 +199,6 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->create();
-				}
 			}
 			else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 			{
@@ -224,18 +206,14 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
-				}
 			}		
 			break;
 		case NIGHTMARES:
 			if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
 			{
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentVolumeBox->create();
+					mPhysicsComponentSimpleBox->create();
 				}
 			}
 			else if(mLogicComponentBreakable->existsInDreams()&& !mLogicComponentBreakable->existsInNightmares())
@@ -244,16 +222,12 @@ void GameObjectWoodBox::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->destroy();
 				}
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-				{
-					mPhysicsComponentVolumeBox->destroy();
-				}
 			}
 			else if(!mLogicComponentBreakable->existsInDreams()&& mLogicComponentBreakable->existsInNightmares())
 			{
-				if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
-					mPhysicsComponentVolumeBox->create();
+					mPhysicsComponentSimpleBox->create();
 				}
 			}	
 			break;
@@ -345,15 +319,12 @@ void GameObjectWoodBox::reset()
 	{
 		if(!mPhysicsComponentSimpleBox->isInUse())
 			mPhysicsComponentSimpleBox->create();
-		mPhysicsComponentSimpleBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());			
+		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
+		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
+		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());			
 	}
 
-	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-	{
-		mPhysicsComponentVolumeBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentVolumeBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());	
-	}
 	if (mRenderComponentEntityAdditional.get())
 		mRenderComponentEntityAdditional->setVisible(false);
 }
@@ -418,10 +389,6 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	if (mPhysicsComponentVolumeBox->isInUse() && mPhysicsComponentSimpleBox->isInUse())
-	{
-		mPhysicsComponentVolumeBox->setPosition(mPhysicsComponentSimpleBox->getNxOgrePosition());
-	}
 	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
@@ -444,11 +411,6 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 	{
 		if (mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
 		{	
-			if (mPhysicsComponentVolumeBox->isInUse())
-			{
-				mPhysicsComponentVolumeBox->destroy();
-			}
-			
 			if (mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
@@ -493,7 +455,6 @@ RenderComponentEntityPtr GameObjectWoodBox::getEntityComponent() const
 void GameObjectWoodBox::updatePhysicsComponents(double elapsedSeconds)
 {
 	GameObject::updatePhysicsComponents(elapsedSeconds);
-	mPhysicsComponentVolumeBox->update(elapsedSeconds);
 }
 
 RenderComponentEntityPtr GameObjectWoodBox::getRenderComponentEntityAdditional() const

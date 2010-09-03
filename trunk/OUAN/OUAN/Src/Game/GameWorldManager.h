@@ -240,6 +240,9 @@ namespace OUAN
 		double getChangeWorldElapsedTime() const;
 		double getChangeWorldTotalTime() const;
 
+		static void restartBombPositionLUA();
+		void restartBombPosition();
+
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
 		void addGameObject(GameObjectPtr gameObject);

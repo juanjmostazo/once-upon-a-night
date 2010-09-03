@@ -47,14 +47,14 @@ RenderComponentEntityPtr GameObjectCryKing::getRenderComponentEntityDreams() con
 	return mRenderComponentEntityDreams;
 }
 
-void GameObjectCryKing::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
+void GameObjectCryKing::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectCryKing::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectCryKing::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectCryKing::update(double elapsedSeconds)
@@ -66,17 +66,8 @@ void GameObjectCryKing::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-	{
-		mPhysicsComponentCharacter->reset();
-		mPhysicsComponentCharacter->getNxOgreController()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueDegrees());
-	}
-	else
-	{
-		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
-	}
+	mPhysicsComponentSimpleBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
+	mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 }
 
 void GameObjectCryKing::changeWorldFinished(int newWorld)
@@ -87,16 +78,16 @@ void GameObjectCryKing::changeWorldFinished(int newWorld)
 	{
 	case DREAMS:
 		mRenderComponentEntityDreams->setVisible(true);
-		if(mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 		{
-			mPhysicsComponentCharacter->create();
+			mPhysicsComponentSimpleBox->create();
 		}
 		break;
 	case NIGHTMARES:
 		mRenderComponentEntityDreams->setVisible(false);
-		if(mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		{
-			mPhysicsComponentCharacter->destroy();
+			mPhysicsComponentSimpleBox->destroy();
 		}
 		break;
 	default:
@@ -150,18 +141,18 @@ bool GameObjectCryKing::hasPhysicsComponent() const
 }
 PhysicsComponentPtr GameObjectCryKing::getPhysicsComponent() const
 {
-	return getPhysicsComponentCharacter();
+	return getPhysicsComponentSimpleBox();
 }
 
 
 /// Set logic component
-void GameObjectCryKing::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectCryKing::setLogicComponentProp(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectCryKing::getLogicComponent()
+LogicComponentPropPtr GameObjectCryKing::getLogicComponentProp()
 {
 	return mLogicComponent;
 }

@@ -2079,6 +2079,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Resources\Scripts\bomb.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\carnivorousplant.lua"
 				>
 			</File>

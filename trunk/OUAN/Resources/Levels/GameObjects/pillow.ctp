@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
-  <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
