@@ -232,5 +232,12 @@ namespace OUAN
 
 	};
 
+	class LevelEvent: public Event
+	{
+	public:
+		LevelEvent();
+		std::string level_event_name;
+	};
+
 }
 #endif

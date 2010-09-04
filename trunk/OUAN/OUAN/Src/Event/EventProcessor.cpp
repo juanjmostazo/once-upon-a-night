@@ -19,6 +19,7 @@
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectPillow.h"
 #include "../Game/GameObject/GameObjectFlashlight.h"
+#include "../Game/GameObject/GameObjectInvisibleWall.h"
 #include "../Core/LevelLoadingState.h"
 #include "../Core/GameStateManager.h"
 #include "../Utils/Utils.h"
@@ -94,6 +95,9 @@ void EventProcessor::registerHandlers()
 		registerEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
 
+		registerEventHandler<EventProcessor,LevelEvent,EVENT_TYPE_LEVEL>
+			(this_,&EventProcessor::processLevelEvent,mWorldManager->getEventManager());
+
 		registerEventHandler<EventProcessor,FirstSignpostHitEvent,EVENT_TYPE_FIRST_SIGNPOST_HIT>
 			(this_,&EventProcessor::processFirstSignpostHitEvent,mWorldManager->getEventManager());
 	}
@@ -146,6 +150,9 @@ void EventProcessor::unregisterHandlers()
 
 		unregisterEventHandler<EventProcessor,CameraTriggerEvent,EVENT_TYPE_CAMERA_TRIGGER_PARAMETERS>
 			(this_,&EventProcessor::processCameraTrigger,mWorldManager->getEventManager());
+
+		unregisterEventHandler<EventProcessor,LevelEvent,EVENT_TYPE_LEVEL>
+			(this_,&EventProcessor::processLevelEvent,mWorldManager->getEventManager());
 
 		unregisterEventHandler<EventProcessor,ChangeLevelEvent,EVENT_TYPE_CHANGE_LEVEL>
 			(this_,&EventProcessor::processChangeLevel,mWorldManager->getEventManager());
@@ -494,6 +501,23 @@ void EventProcessor::processCameraTrigger(CameraTriggerEventPtr evt)
 
 void EventProcessor::processChangeLevel(ChangeLevelEventPtr evt)
 {
+
+}
+
+void EventProcessor::processLevelEvent(LevelEventPtr evt)
+{
+
+	if(evt->level_event_name.compare(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK)==0)
+	{
+		mWorldManager->addExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
+
+		GameObjectPtr obj=mWorldManager->getObject("invisible-wall#BOMBS_PUZZLE");
+
+		GameObjectInvisibleWallPtr wall= 
+			BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
+
+		wall->desactivateWall();
+	}
 
 }
 
