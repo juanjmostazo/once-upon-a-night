@@ -1,31 +1,27 @@
 system PU/bag_hearts_fountain_double
 {
-    scale                                       0.05 0.05 0.05
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
     technique 
     {
         visual_particle_quota                   30
         material                                PU/bag_hearts_fountain
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
         renderer                                Billboard
         {
         }
         emitter                                 Point myPointEmitter
         {
-            emission_rate                       20
-            angle                               10
-            time_to_live                        1
-            velocity                            25
+            angle                               30
+            time_to_live                        2.5
+            velocity                            250
             duration                            1
         }
         affector                                LinearForce 
         {
-            force_aff_vector                    0 -20 0
-        }
-        observer                                OnQuota 
-        {
-            handler                             DoEnableComponent 
-            {
-                enable_component                emitter_component myPointEmitter false
-            }
+            force_aff_vector                    0 -300 0
         }
     }
 }
