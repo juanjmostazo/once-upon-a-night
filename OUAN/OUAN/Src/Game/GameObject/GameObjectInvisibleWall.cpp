@@ -46,6 +46,15 @@ PhysicsComponentSimpleBoxPtr GameObjectInvisibleWall::getPhysicsComponentSimpleB
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectInvisibleWall::desactivateWall()
+{
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->destroy();
+	}
+	disable();
+}
+
 void GameObjectInvisibleWall::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -136,6 +145,11 @@ void GameObjectInvisibleWall::changeToWorld(int newWorld, double perc)
 void GameObjectInvisibleWall::reset()
 {
 	GameObject::reset();
+
+	if(getName().compare("invisible-wall#BOMBS_PUZZLE")==0 && getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
+	{
+		desactivateWall();
+	}
 }
 
 bool GameObjectInvisibleWall::hasPositionalComponent() const

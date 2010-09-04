@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameObjectBreakableRock.h"
+#include "GameObjectInvisibleWall.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -73,6 +74,14 @@ void GameObjectBreakableRock::breakRock()
 		if(getName().compare("breakable-rock#rock_big")==0)
 		{
 			getGameWorldManager()->addExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
+
+			GameObjectPtr obj=getGameWorldManager()->getObject("invisible-wall#BOMBS_PUZZLE");
+
+			GameObjectInvisibleWallPtr wall= 
+				BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
+
+			wall->desactivateWall();
+			
 		}
 		mBroken=true;
 		mRenderComponentEntityDreams->setVisible(false);

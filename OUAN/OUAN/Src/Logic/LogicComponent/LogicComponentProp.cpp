@@ -10,6 +10,7 @@
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectBomb.h"
 #include "../../Game/GameObject/GameObjectBreakableRock.h"
+
 using namespace OUAN;
 
 LogicComponentProp::LogicComponentProp(const std::string& type)

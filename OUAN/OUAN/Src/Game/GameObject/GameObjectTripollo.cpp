@@ -143,6 +143,50 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 	return false;
 }
 
+void GameObjectTripollo::activateFlying(bool flying)
+{
+	mPhysicsComponentCharacter->setFlyingCharacter(flying);
+	if(flying)
+	{
+		mTrajectoryComponent->setAs3DTrajectory();
+	}
+	else
+	{
+		mTrajectoryComponent->setAs2DTrajectory();
+	}
+}
+
+void GameObjectTripollo::activateStatue(bool statue)
+{
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	int currentState=mLogicComponentEnemy->getState();
+	if(statue)
+	{
+		//Logger::getInstance()->log("STATUE ON "+Ogre::StringConverter::toString(logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE)));
+		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE));	
+		mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
+	}
+	else
+	{
+		if(currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE))
+		{
+			mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
+			if(mRenderComponentEntityDreams.get())
+			{
+				mRenderComponentEntityDreams->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+			}
+
+			if(mRenderComponentEntityNightmares.get())
+			{
+				mRenderComponentEntityNightmares->changeAnimation(TRIPOLLO_ANIM_IDLE_02);
+			}
+
+			mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
+		}
+	}
+}
+
+
 void GameObjectTripollo::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
@@ -152,11 +196,14 @@ void GameObjectTripollo::update(double elapsedSeconds)
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-		//debug code, erase when it works
-		//if(getName().compare("tripollo#12")!=0)
-		//	return;
 
 		int currentState=mLogicComponentEnemy->getState();
+
+
+		if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE))
+		{
+			return;
+		}
 
 		if (mPhysicsComponentCharacter.get())
 		{
@@ -293,14 +340,17 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				//DO NOTHING
 			}
 
-			if(mRenderComponentEntityDreams.get())
+			if(!currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE))
 			{
-				mRenderComponentEntityDreams->update(elapsedSeconds);
-			}
+				if(mRenderComponentEntityDreams.get())
+				{
+					mRenderComponentEntityDreams->update(elapsedSeconds);
+				}
 
-			if(mRenderComponentEntityNightmares.get())
-			{
-				mRenderComponentEntityNightmares->update(elapsedSeconds);
+				if(mRenderComponentEntityNightmares.get())
+				{
+					mRenderComponentEntityNightmares->update(elapsedSeconds);
+				}
 			}
 
 			mTrajectoryComponent->update(elapsedSeconds);
@@ -358,7 +408,6 @@ void GameObjectTripollo::reset()
 		mLogicComponentEnemy->setHasDied(false);
 		mLogicComponentEnemy->setHasBeenHit(false);
 
-		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
 	}		
 	else
 	{
@@ -366,8 +415,20 @@ void GameObjectTripollo::reset()
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 		mLogicComponentEnemy->setHasDied(false);
 		mLogicComponentEnemy->setHasBeenHit(false);
-		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
+
 	}
+
+	switch(mWorld)
+	{
+		case DREAMS:
+			activateStatue(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
+			break;
+		case NIGHTMARES:
+			activateStatue(false);
+			break;
+		default:break;
+	}
+
 }
 
 void GameObjectTripollo::setDreamsRender()
@@ -446,19 +507,6 @@ void GameObjectTripollo::setChangeWorldRender()
 	}
 }
 
-void GameObjectTripollo::activateFlying(bool flying)
-{
-	mPhysicsComponentCharacter->setFlyingCharacter(flying);
-	if(flying)
-	{
-		mTrajectoryComponent->setAs3DTrajectory();
-	}
-	else
-	{
-		mTrajectoryComponent->setAs2DTrajectory();
-	}
-}
-
 void GameObjectTripollo::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -467,9 +515,11 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 	{
 		case DREAMS:
 			setDreamsRender();
+			activateStatue(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
+			activateStatue(false);
 			break;
 		default:break;
 	}
@@ -479,7 +529,7 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 		case DREAMS:
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
-				//activateFlying(false);
+
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
@@ -488,7 +538,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentCharacter->create();
 				}
-				//activateFlying(false);
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
@@ -502,7 +551,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 		case NIGHTMARES:
 			if(mLogicComponentEnemy->existsInDreams() && mLogicComponentEnemy->existsInNightmares())
 			{
-				//activateFlying(true);
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
@@ -519,7 +567,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentCharacter->create();
 				}
-				//activateFlying(true);
 			}	
 			break;
 		default:break;
@@ -532,13 +579,15 @@ void GameObjectTripollo::changeWorldStarted(int newWorld)
 
 	switch(newWorld)
 	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}	
+		case DREAMS:
+			activateStatue(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
+			break;
+		case NIGHTMARES:
+			activateStatue(false);
+			break;
+		default:break;
+	}
+
 }
 
 void GameObjectTripollo::changeToWorld(int newWorld, double perc)

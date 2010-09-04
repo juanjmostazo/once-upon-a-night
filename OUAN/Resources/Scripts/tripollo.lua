@@ -6,7 +6,7 @@ TRIPOLLO_STATE_ATTACK = 4
 TRIPOLLO_STATE_FLEE = 5
 TRIPOLLO_STATE_DEAD = 6
 TRIPOLLO_STATE_HIT = 7
-
+TRIPOLLO_STATE_STATUE = 8
 
 TRIPOLLO_STATE_NAMES= {}
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_IDLE]="IDLE"
@@ -17,7 +17,7 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_ATTACK]="ATTACK"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_FLEE]="FLEE"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_DEAD]="DEAD"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_HIT]="HIT"
-
+TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_STATUE]="STATUE"
 
 function tripolloLogic(pTripollo,state)
 	local myName=pTripollo:getName()	
@@ -28,9 +28,11 @@ function tripolloLogic(pTripollo,state)
 		
 	if pTripollo:hasDied() then
 		newState=TRIPOLLO_STATE_DEAD
+	elseif state==TRIPOLLO_STATE_STATUE then
+		log (pTripollo:getName() .. " IS STATUE ");
 	elseif pTripollo:hasBeenHit() then
 		newState=TRIPOLLO_STATE_HIT
-	elseif newState==TRIPOLLO_STATE_HIT then
+	elseif state==TRIPOLLO_STATE_HIT then
 		newState=TRIPOLLO_STATE_IDLE				
 	elseif state==TRIPOLLO_STATE_IDLE and playerDistance<=myLOS*10 then
 		newState=TRIPOLLO_STATE_PATROL
