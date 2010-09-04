@@ -17,6 +17,9 @@ namespace OUAN
 	const std::string PLATFORM2_ANIM_BACK="back";
 	const std::string PLATFORM3_ANIM_FRONT="front";
 	const std::string PLATFORM3_ANIM_BACK="back";
+
+	const double PLATAFORM_COLLISION_TIME_MARGIN = 0.5;
+
 	/// Class to hold terrain information
 	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>
 	{
@@ -39,6 +42,7 @@ namespace OUAN
 
 		Ogre::Vector3 mLastPosition;
 		Ogre::Vector3 mLastPositionDifference;
+		double mElapsedTimeSinceLastCollision;
 	public:
 		//Constructor
 		GameObjectPlataform(const std::string& name);
@@ -67,6 +71,9 @@ namespace OUAN
 		/// @param pTrajectoryComponent
 		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
 		TrajectoryComponentPtr getTrajectoryComponent();
+
+		void resetElapsedTimeSinceLastCollision();
+		void resetLastPositionDifference();
 
 		void setVisible(bool visible);
 

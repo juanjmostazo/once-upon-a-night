@@ -1745,6 +1745,11 @@ void GameWorldManager::addExecutedLevelEventLUA(std::string cutscene)
 void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 {
 	mExecutedLevelEvents.insert(cutscene);
+
+	//LevelEventPtr evt = LevelEventPtr(new LevelEvent());
+	//evt->level_event_name=cutscene;
+
+	//addEvent(evt);
 }
 
 bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)

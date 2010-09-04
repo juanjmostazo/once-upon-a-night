@@ -179,6 +179,7 @@ void GameObjectPlataform::reset()
 	activateTrajectory();
 	mLastPosition=getRenderComponentPositional()->getPosition();
 	mLastPositionDifference=Vector3::ZERO;
+	mElapsedTimeSinceLastCollision=0;
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
@@ -271,9 +272,20 @@ Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()
 	return mLastPositionDifference;
 }
 
+void GameObjectPlataform::resetElapsedTimeSinceLastCollision()
+{
+	mElapsedTimeSinceLastCollision=0;
+}
+
+void GameObjectPlataform::resetLastPositionDifference()
+{
+	mLastPositionDifference=Vector3::ZERO;
+}
+
 void GameObjectPlataform::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
 
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
@@ -282,7 +294,15 @@ void GameObjectPlataform::update(double elapsedSeconds)
 		//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 		//Logger::getInstance()->log("GameObjectPlataform::update " + getName() +" "+Ogre::StringConverter::toString(position));
 		mRenderComponentPositional->setPosition(position);
-		mLastPositionDifference=position-mLastPosition;
+		if(mElapsedTimeSinceLastCollision<PLATAFORM_COLLISION_TIME_MARGIN)
+		{
+			mElapsedTimeSinceLastCollision+=elapsedSeconds;
+			mLastPositionDifference+=(position-mLastPosition);
+		}
+		else
+		{
+			mLastPositionDifference=position-mLastPosition;
+		}
 		mLastPosition=position;
 		if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
 		{

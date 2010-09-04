@@ -107,6 +107,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
 		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
+
+		plataform->resetElapsedTimeSinceLastCollision();
 		
 		//Logger::getInstance()->log("///////////////////////");
 		//Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
@@ -114,7 +116,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		//Logger::getInstance()->log("LAST_POS_DIFF: " + Ogre::StringConverter::toString(physicsPlataform->getLastPositionDifference()));
 
 		Ogre::Vector3 posOny = physicsOny->getPosition();
-		if(plataform->getLastPositionDifference().y>=0)
+
+		if(plataform->getLastPositionDifference().y>0)
 		{
 			posOny += plataform->getLastPositionDifference();
 		}
@@ -123,7 +126,10 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			posOny.x += plataform->getLastPositionDifference().x;
 			posOny.z += plataform->getLastPositionDifference().z;
 		}
+
 		physicsOny->setPosition(posOny);
+
+		plataform->resetLastPositionDifference();
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)==0)
 	{

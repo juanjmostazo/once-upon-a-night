@@ -73,6 +73,9 @@ namespace OUAN
 		/// Process the 'change level' event
 		void processChangeLevel(ChangeLevelEventPtr evt);
 
+		/// Process the 'level' event
+		void processLevelEvent(LevelEventPtr evt);
+
 		void processMsgBoxVisibilityChanged(MsgBoxVisibilityChangedEventPtr 
 evt);
 		void processFirstSignpostHitEvent(FirstSignpostHitEventPtr evt);
