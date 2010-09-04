@@ -2,7 +2,7 @@
 <Configuration>
   <Options>
 	<Option key="GRAVITY_X">0</Option>
-    <Option key="GRAVITY_Y">-10</Option>
+    <Option key="GRAVITY_Y">-80</Option>
     <Option key="GRAVITY_Z">0</Option>
 	<Option key="IMPULSE_HEIGHT">36</Option>
 	<Option key="IMPULSE_TIME">0.5</Option>

@@ -188,6 +188,8 @@ namespace OUAN
 		//
 		TAudioComponentMap processAudioComponent(TiXmlElement* XMLNode);
 
+		EnemyType processEnemyType(TiXmlElement *XMLNode);
+
 		//
 		double processCustomAttributeMaxUpdateRadium(XMLGameObject* gameObject);
 		double processCustomAttributeMaxRenderRadium(XMLGameObject* gameObject);

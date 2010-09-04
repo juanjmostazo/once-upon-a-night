@@ -142,7 +142,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	Logger::getInstance()->log("Advancing " + elapsedTime + " seconds");
 	*/
 	//Logger::getInstance()->log("[PHYSICS UPDATE]");
-	unsigned int i;
 
 	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
 	{
@@ -152,17 +151,18 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	if (mApp)
 	{
 		mApp->getGameWorldManager()->getEventProcessor()->startNewFrame();
-		TGameObjectPhysicsContainer * container = mApp->getGameWorldManager()->getGameObjectPhysicsContainer();
+		TGameObjectContainer * container = mApp->getGameWorldManager()->getAllGameObjects();
 		
 		if (!container->empty())
 		{
-			for (i=0;i<container->size();i++)
+			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
 			{
-				if (container->at(i)->isWorthUpdatingPhysicsComponents())
+				//Logger::getInstance()->log("UPDATE PHYSICS "+it->second->getName());
+				if (it->second->hasPhysicsComponent() && it->second->isWorthUpdatingPhysicsComponents())
 				{
-					if(container->at(i)->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
+					if(it->second->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
 					{
-						container->at(i)->updatePhysicsComponents(elapsedSeconds);
+						it->second->updatePhysicsComponents(elapsedSeconds);
 					}
 				}
 			}

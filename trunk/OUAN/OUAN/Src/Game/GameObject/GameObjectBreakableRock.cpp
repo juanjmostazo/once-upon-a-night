@@ -66,9 +66,27 @@ PhysicsComponentSimpleBoxPtr GameObjectBreakableRock::getPhysicsComponentSimpleB
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectBreakableRock::breakRock()
+{
+	if(!mBroken)
+	{
+		if(getName().compare("breakable-rock#rock_big")==0)
+		{
+			getGameWorldManager()->addExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
+		}
+		mBroken=true;
+		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntityNightmares->setVisible(false);
+		if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->destroy();
+		}
+	}
+}
+
 void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 {
-	if (!isEnabled()) return;
+	if (!isEnabled() || mBroken) return;
 
 	switch(newWorld)
 	{
@@ -131,6 +149,30 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 	}
 }
 
+void GameObjectBreakableRock::setVisible(bool visible)
+{
+	if(!mBroken)
+	{
+		switch(mWorld)
+		{
+		case DREAMS:
+			if(mLogicComponent->existsInDreams())
+			{
+				mRenderComponentEntityDreams->setVisible(visible);
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(visible);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void GameObjectBreakableRock::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -164,6 +206,10 @@ void GameObjectBreakableRock::changeToWorld(int newWorld, double perc)
 void GameObjectBreakableRock::reset()
 {
 	GameObject::reset();
+	if(getName().compare("breakable-rock#rock_big")==0 && !getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
+	{
+		mBroken=false;
+	}
 }
 
 bool GameObjectBreakableRock::hasPositionalComponent() const
@@ -187,13 +233,13 @@ PhysicsComponentPtr GameObjectBreakableRock::getPhysicsComponent() const
 
 
 /// Set logic component
-void GameObjectBreakableRock::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectBreakableRock::setLogicComponentProp(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectBreakableRock::getLogicComponent()
+LogicComponentPropPtr GameObjectBreakableRock::getLogicComponentProp()
 {
 	return mLogicComponent;
 }

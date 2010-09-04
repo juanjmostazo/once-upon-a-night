@@ -34,6 +34,7 @@ namespace OUAN
 	const std::string TRIPOLLO_SOUND_HIT="tripollo_is_hit";
 	const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
 
+
 	/// Class modelling a particular enemy type
 	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{
@@ -63,6 +64,7 @@ namespace OUAN
 		LogicComponentEnemyPtr mLogicComponentEnemy;
 
 		bool activateTrajectory(int newWorld);
+
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class

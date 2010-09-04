@@ -1137,7 +1137,7 @@ void LevelLoader::processGameObjectBreakableRock(XMLGameObject* gameObject)
 		tGameObjectBreakableRockParameters.name = gameObject->name;
 
 		//Get logic component
-		tGameObjectBreakableRockParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectBreakableRockParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
@@ -2821,6 +2821,7 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 
 		//Get Trajectory Component
 		tGameObjectTripolloParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{
@@ -4437,18 +4438,21 @@ TLogicComponentEnemyParameters LevelLoader::processLogicComponentEnemy(TiXmlElem
 	{
 		logicComponentEnemyParameters.existsInDreams=true;
 		logicComponentEnemyParameters.existsInNightmares=true;
+		logicComponentEnemyParameters.enemyType=processEnemyType(XMLNodeDreams);
 	}
 	//Object exists only in dreams
 	else if(XMLNodeDreams && !XMLNodeNightmares)
 	{
 		logicComponentEnemyParameters.existsInDreams=true;
 		logicComponentEnemyParameters.existsInNightmares=false;
+		logicComponentEnemyParameters.enemyType=processEnemyType(XMLNodeDreams);
 	}
 	//Object exists only in nightmares
 	else if(!XMLNodeDreams && XMLNodeNightmares)
 	{
 		logicComponentEnemyParameters.existsInDreams=false;
 		logicComponentEnemyParameters.existsInNightmares=true;
+		logicComponentEnemyParameters.enemyType=processEnemyType(XMLNodeNightmares);
 	}
 	if (XMLNodeCustomProperties)
 	{
@@ -5633,6 +5637,22 @@ double LevelLoader::processCustomAttributeMaxRenderRadium(XMLGameObject* gameObj
 		}
 	}
 	return mMaxRenderRadium;
+}
+
+EnemyType LevelLoader::processEnemyType(TiXmlElement *XMLNode)
+{
+	EnemyType type;
+
+	try
+	{
+		type = EnemyType(getPropertyInt(XMLNode, "EnemyType::type"));
+	}
+	catch(std::string error)
+	{
+		type = ENEMY_TYPE_NORMAL;
+	}
+
+	return type;
 }
 
 double LevelLoader::processCustomAttributeMaxUpdateRadium(XMLGameObject* gameObject)

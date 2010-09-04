@@ -864,10 +864,10 @@ GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGam
 	pGameObjectBreakableRock->setMaxRenderRadium(tGameObjectBreakableRockParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectBreakableRock->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+	pGameObjectBreakableRock->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectBreakableRock,
-		tGameObjectBreakableRockParameters.tLogicComponentParameters));
+		tGameObjectBreakableRockParameters.tLogicComponentPropParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectBreakableRock->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
@@ -877,23 +877,23 @@ GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGam
 	pGameObjectBreakableRock->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectBreakableRock->getRenderComponentPositional()));
 
-	if(pGameObjectBreakableRock->getLogicComponent()->existsInDreams())
+	if(pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams())
 	{
 		//Create RenderComponentEntity Dreams
 		pGameObjectBreakableRock->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.dreamsName,
 			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectBreakableRock->getLogicComponent()->existsInDreams(),
-		pGameObjectBreakableRock->getLogicComponent()->existsInNightmares()));
+		pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
+		pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
 	}
-	if(pGameObjectBreakableRock->getLogicComponent()->existsInNightmares())
+	if(pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares())
 	{
 		//Create RenderComponentEntity Nightmares
 		pGameObjectBreakableRock->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.nightmaresName,
 			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectBreakableRock->getLogicComponent()->existsInDreams(),
-		pGameObjectBreakableRock->getLogicComponent()->existsInNightmares()));
+		pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
+		pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
 	}
 
 	//Create PhysicsComponent
@@ -3410,6 +3410,8 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	// Add a reference to this
 	pGameObjectTripollo->setGameWorldManager(gameWorldMgr);
 
+	pGameObjectTripollo->activateFlying(pGameObjectTripollo->getLogicComponentEnemy()->getEnemyType()==ENEMY_TYPE_FLYING);
+
 	std::string scriptFile="";
 	pGameObjectTripollo->getLogicScriptFile(scriptFile);
 	if (!scriptFile.empty())
@@ -3930,6 +3932,7 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 		pGameObjectBomb, 
 		tGameObjectBombParameters.tPhysicsComponentWeaponParameters, 
 		pGameObjectBomb->getRenderComponentPositional()));
+	pGameObjectBomb->getPhysicsComponentWeapon()->setCyclicCharacter(true);
 
 	//Add reference to this
 	pGameObjectBomb->setGameWorldManager(gameWorldMgr);

@@ -79,7 +79,7 @@ void PhysicsComponentSimpleBox::create()
 	else
 	{
 		mBox->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
-		setStatic(true);
+		setStatic(false);
 		setNxOgreBody(NULL);
 
 		setNxOgreKinematicBody(
@@ -94,9 +94,9 @@ void PhysicsComponentSimpleBox::create()
 		//	pBox->getFlag()));
 	}
 
-	mVolumeBox = new NxOgre::Box(	getNxOgreSize().x,
-							getNxOgreSize().y,
-							getNxOgreSize().z);
+	mVolumeBox = new NxOgre::Box(	getNxOgreSize().x*1.05,
+							getNxOgreSize().y*1.05,
+							getNxOgreSize().z*1.05);
 
 	mVolumeBox->setName(name);
 
@@ -112,15 +112,18 @@ void PhysicsComponentSimpleBox::create()
 
 void PhysicsComponentSimpleBox::update(double elapsedSeconds)
 {
-	if (getMass() > 0)
+	if(isInUse())
 	{
-		getNxOgreVolume()->setGlobalPosition(mNxOgreBody->getGlobalPosition());
-		getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreBody->getGlobalOrientationQuat());
-	}
-	else
-	{
-		getNxOgreVolume()->setGlobalPosition(mNxOgreKinematicBody->getGlobalPosition());
-		getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreKinematicBody->getGlobalOrientationQuat());
+		if (getMass() > 0)
+		{
+			getNxOgreVolume()->setGlobalPosition(mNxOgreBody->getGlobalPosition());
+			getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreBody->getGlobalOrientationQuat());
+		}
+		else
+		{
+			getNxOgreVolume()->setGlobalPosition(mNxOgreKinematicBody->getGlobalPosition());
+			getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreKinematicBody->getGlobalOrientationQuat());
+		}
 	}
 }
 

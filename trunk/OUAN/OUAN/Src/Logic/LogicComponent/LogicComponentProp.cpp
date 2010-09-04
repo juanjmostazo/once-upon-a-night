@@ -8,6 +8,8 @@
 #include "../../Game/GameObject/GameObjectDiamondTree.h"
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectFlashLight.h"
+#include "../../Game/GameObject/GameObjectBomb.h"
+#include "../../Game/GameObject/GameObjectBreakableRock.h"
 using namespace OUAN;
 
 LogicComponentProp::LogicComponentProp(const std::string& type)
@@ -76,15 +78,27 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	{
 		GameObjectFlashLightPtr flashlight= 
 			BOOST_PTR_CAST(GameObjectFlashLight,pGameObject);
-	Logger::getInstance()->log("FLASHLIGHT HIT");
-
-		getParent()->setVisible(false);
+		GameObjectBombPtr bomb= 
+			BOOST_PTR_CAST(GameObjectBomb,getParent());
+		if(flashlight->getColour()==RED)
+		{
+			mHasTakenHit=true;
+			mTimeSpent=0;
+		}
 	}
 
 	bool isParentCryKing = mParent->getType().compare(GAME_OBJECT_TYPE_CRYKING)==0;
 	if (isParentCryKing && pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
 	{
 		getParent()->getGameWorldManager()->restartBombPosition();
+	}
+
+	bool isParentBreakableRock = mParent->getType().compare(GAME_OBJECT_TYPE_BREAKABLE_ROCK)==0;
+	if (isParentBreakableRock && pGameObject->getType().compare(GAME_OBJECT_TYPE_BOMB)==0)
+	{
+		GameObjectBreakableRockPtr rock= 
+			BOOST_PTR_CAST(GameObjectBreakableRock,getParent());
+		rock->breakRock();
 	}
 }
 //void processActivate(ActivateEventPtr evt);

@@ -6,7 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 namespace OUAN
 {
@@ -26,18 +26,20 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
+		bool mBroken;
 	public:
 		//Constructor
 		GameObjectBreakableRock(const std::string& name);
 		//Destructor
 		~GameObjectBreakableRock();
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentProp(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponentProp();
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -76,6 +78,9 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void breakRock();
+
+		void setVisible(bool visible);
 
 		/// Reset object
 		virtual void reset();
@@ -126,7 +131,7 @@ namespace OUAN
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentPropParameters;
 	};
 }
 #endif

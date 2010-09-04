@@ -111,16 +111,27 @@ end
 
 -- CUTSCENE 4: BOMBS PUZZLE END
 function startCutScene4(pOny)
-	log ("CUTSCENE 4: ");
-	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	addExecutedLevelEvent(CUTSCENE_4_BOMBS_PUZZLE_END);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
+	launchCutScene("cutscenes_level2.lua","cutScene4");
 	return
 end
 
 function conditionCutScene4(pOny)
 	--when bombs are implemented shold check if a bomb has exploded the rock
 	return not hasExecutedLevelEvent(CUTSCENE_4_BOMBS_PUZZLE_END) and hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
+end
+
+function cutScene4(timer)
+	log ("CUTSCENE 4: ");
+	log (CUTSCENE_4_BOMBS_PUZZLE_END);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false);
+	trajectoryCamWait();
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
 end
 
 -- CUTSCENE 5: NIGHT GOBLIN APPEARS

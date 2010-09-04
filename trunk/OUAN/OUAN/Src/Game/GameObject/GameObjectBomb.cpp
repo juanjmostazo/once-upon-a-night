@@ -324,15 +324,45 @@ void GameObjectBomb::reset()
 {
 	GameObject::reset();
 
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->create();
+	}
+
 	if (mPhysicsComponentSimpleBox.get())
 	{
-		if(!mPhysicsComponentSimpleBox->isInUse())
-			mPhysicsComponentSimpleBox->create();
+		if(mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->destroy();
+		}
+
+		mPhysicsComponentSimpleBox->create();
 		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
 		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
 		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
 	}
+
+	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
+	{
+		mPhysicsComponentWeapon->endAttack();
+	}
+
+
+	switch(mWorld)
+	{
+		case DREAMS:
+			mRenderComponentEntityDreams->setVisible(true);
+			setDreamsRender();
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityNightmares->setVisible(true);
+			setNightmaresRender();
+			break;
+		default:break;
+	}
+
+	mLogicComponentProp->setDelay(100);
 }
 
 bool GameObjectBomb::hasPositionalComponent() const
@@ -395,6 +425,36 @@ void GameObjectBomb::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	int currentState=mLogicComponentProp->getState();
+
+	Logger::getInstance()->log("BOMB STATE "+Ogre::StringConverter::toString(currentState));
+
+	if (mLogicComponentProp->isStateChanged())
+	{
+		if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
+		{
+			reset();
+		}
+		if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
+		{
+			mLogicComponentProp->setTimeSpent(0);
+
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(false);
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
+			mPhysicsComponentWeapon->startAttack();
+		}
+		if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
+		{
+			mLogicComponentProp->setTimeSpent(0);
+		}
+	}
+
 	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
 		?mRenderComponentEntityDreams
 		:mRenderComponentEntityNightmares;
@@ -408,42 +468,25 @@ void GameObjectBomb::update(double elapsedSeconds)
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
 void GameObjectBomb::updateLogic(double elapsedSeconds)
 {
+	mElapsedTime+=elapsedSeconds;
 
-	if (mLogicComponentProp->isStateChanged())
-	{
-		//if (mLogicComponentProp->getState()==STATE_Prop_BROKEN)
-		//{	
-		//	if (mPhysicsComponentSimpleBox->isInUse())
-		//	{
-		//		mPhysicsComponentSimpleBox->destroy();
-		//	}
-
-		//	if (mLogicComponentProp->existsInDreams())
-		//	{
-		//		mRenderComponentEntityDreams->setVisible(false);						if (mRenderComponentEntityNightmares.get())
-		//			mRenderComponentEntityNightmares->setVisible(false);
-		//	}
-		//	
-		//	if (mLogicComponentProp->existsInNightmares())
-		//	{
-		//		mRenderComponentEntityNightmares->setVisible(false);
-		//		if (mRenderComponentEntityDreams.get())
-		//			mRenderComponentEntityDreams->setVisible(false);
-		//	}		
-		//}
-	}	
 	GameObject::updateLogic(elapsedSeconds);
 }
 
 void GameObjectBomb::restartToInitialPoint()
 {
-	Logger::getInstance()->log("RESET BOMB");
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-	reset();
+	mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION));
+	mLogicComponentProp->setTimeSpent(0);
 }
 
 void GameObjectBomb::activateExplosion()
 {
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_ACTIVATE));
+	mLogicComponentProp->setTimeSpent(0);
 }
 
 bool GameObjectBomb::hasRenderComponentEntity() const
@@ -459,26 +502,37 @@ RenderComponentEntityPtr GameObjectBomb::getEntityComponent() const
 void GameObjectBomb::updatePhysicsComponents(double elapsedSeconds)
 {
 	GameObject::updatePhysicsComponents(elapsedSeconds);
+	//Logger::getInstance()->log("UPDATE BOMB");
+	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
+	{
+		mPhysicsComponentWeapon->update(elapsedSeconds);
+	}
 }
 
 void GameObjectBomb::setVisible(bool visible)
 {
-	switch(mWorld)
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	int currentState=mLogicComponentProp->getState();
+
+	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
 	{
-	case DREAMS:
-		if(mLogicComponentProp->existsInDreams())
+		switch(mWorld)
 		{
-			mRenderComponentEntityDreams->setVisible(visible);
+		case DREAMS:
+			if(mLogicComponentProp->existsInDreams())
+			{
+				mRenderComponentEntityDreams->setVisible(visible);
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentProp->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(visible);
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentProp->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(visible);
-		}
-		break;
-	default:
-		break;
 	}
 }
 

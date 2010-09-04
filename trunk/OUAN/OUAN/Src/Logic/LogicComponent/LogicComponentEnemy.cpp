@@ -127,6 +127,21 @@ void LogicComponentEnemy::decreaseHP(int amount)
 	}
 }
 
+EnemyType LogicComponentEnemy::getEnemyType() const
+{
+	return mEnemyType;
+}
+
+int LogicComponentEnemy::getEnemyTypeLUA() const
+{
+	return int(mEnemyType);
+}
+
+void LogicComponentEnemy::setEnemyType(EnemyType enemyType)
+{
+	mEnemyType=enemyType;
+}
+
 int LogicComponentEnemy::getNumLives() const
 {
 	return 1;
