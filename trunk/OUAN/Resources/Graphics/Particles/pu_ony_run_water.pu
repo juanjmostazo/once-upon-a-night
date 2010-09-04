@@ -6,9 +6,9 @@ system PU/ony_run_water
     {
         visual_particle_quota                   8
         material                                PU/ony_run_water
-        default_particle_width                  30
-        default_particle_height                 30
-        default_particle_depth                  30
+        default_particle_width                  24
+        default_particle_height                 24
+        default_particle_depth                  24
         renderer                                Billboard
         {
         }
