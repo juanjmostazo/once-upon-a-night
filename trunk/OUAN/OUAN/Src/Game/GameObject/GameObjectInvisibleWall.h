@@ -63,6 +63,7 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void desactivateWall();
 
 		/// Reset object
 		virtual void reset();

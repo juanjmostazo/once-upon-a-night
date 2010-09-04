@@ -21,6 +21,7 @@ namespace OUAN
 	const std::string TRIPOLLO_STATE_FLEE="TRIPOLLO_STATE_FLEE";
 	const std::string TRIPOLLO_STATE_DEAD="TRIPOLLO_STATE_DEAD";
 	const std::string TRIPOLLO_STATE_HIT="TRIPOLLO_STATE_HIT";
+	const std::string TRIPOLLO_STATE_STATUE="TRIPOLLO_STATE_STATUE";
 
 	const std::string TRIPOLLO_ATTACK_PECK="peck";
 	const std::string TRIPOLLO_ATTACK_CLAW="claw";
@@ -182,6 +183,7 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 		void activateFlying(bool flying);
+		void activateStatue(bool flying);
 
 		void postUpdate();
 		void processAnimationEnded(const std::string& animationName);
