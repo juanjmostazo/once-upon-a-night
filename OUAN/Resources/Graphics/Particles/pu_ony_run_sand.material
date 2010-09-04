@@ -42,4 +42,40 @@ material PU/ony_run_sand_2
         }
     }
 }
+
+material PU/ony_run_sand_3
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_ony_run_sand_3.png
+            }
+        }
+    }
+}
+
+material PU/ony_run_sand_4
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_ony_run_sand_4.png
+            }
+        }
+    }
+}
 //-----------------------------------------------------------------------------------------------------------------------------------------------

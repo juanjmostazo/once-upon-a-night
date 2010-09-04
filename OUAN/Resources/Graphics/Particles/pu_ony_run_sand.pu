@@ -1,11 +1,14 @@
 system PU/ony_run_sand
 {
-    scale 0.05 0.05 0.05
-    scale_velocity 0.05
+    scale_velocity                              0.09
+    scale                                       0.09 0.09 0.09
     technique Technique3
     {
         visual_particle_quota                   10
         material                                PU/ony_run_sand
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
         renderer                                Billboard
         {
         }
@@ -13,8 +16,8 @@ system PU/ony_run_sand
         {
             time_to_live                        dyn_random
             {
-                min                             0.5
-                max                             0.7
+                min                             0.8
+                max                             1
             }
             velocity                            dyn_random
             {
@@ -26,8 +29,7 @@ system PU/ony_run_sand
         }
         affector                                Colour Affector8
         {
-            colour_aff_time_colour              0    0.8 0.3 0.15 1
-            colour_aff_time_colour              3    1 1 1 1
+            colour_aff_time_colour              0    0.3 0.05 0.15 1
         }
     }
     technique 
@@ -41,11 +43,15 @@ system PU/ony_run_sand
         }
         emitter                                 Point 
         {
-            emission_rate                       5
+            emission_rate                       dyn_random
+            {
+                min                             2
+                max                             4
+            }
             time_to_live                        dyn_random
             {
-                min                             0.8
-                max                             1.2
+                min                             0.6
+                max                             0.8
             }
             velocity                            dyn_random
             {
@@ -56,12 +62,88 @@ system PU/ony_run_sand
         }
         affector                                LinearForce 
         {
-            force_aff_vector                    0 -600 0
+            force_aff_vector                    0 -800 0
         }
         affector                                Colour Affector9
         {
-            colour_aff_time_colour              0    0.1 0.9 0.1 1
-            colour_aff_time_colour              3    0.2 1 0.2 1
+            colour_aff_time_colour              0    0.1 0.5 0.1 1
+            colour_aff_time_colour              3    0.2 0.6 0.2 1
+        }
+    }
+    technique 
+    {
+        material                                PU/ony_run_sand_3
+        default_particle_width                  70
+        default_particle_height                 70
+        default_particle_depth                  70
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       dyn_random
+            {
+                min                             2
+                max                             4
+            }
+            time_to_live                        dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            velocity                            dyn_random
+            {
+                min                             400
+                max                             500
+            }
+            duration                            1
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -800 0
+        }
+        affector                                Colour Affector9
+        {
+            colour_aff_time_colour              0    0.1 0.5 0.1 1
+            colour_aff_time_colour              3    0.2 0.6 0.2 1
+        }
+    }
+    technique 
+    {
+        material                                PU/ony_run_sand_4
+        default_particle_width                  70
+        default_particle_height                 70
+        default_particle_depth                  70
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       dyn_random
+            {
+                min                             2
+                max                             4
+            }
+            time_to_live                        dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            velocity                            dyn_random
+            {
+                min                             400
+                max                             500
+            }
+            duration                            1
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -800 0
+        }
+        affector                                Colour Affector9
+        {
+            colour_aff_time_colour              0    0.1 0.5 0.1 1
+            colour_aff_time_colour              3    0.2 0.6 0.2 1
         }
     }
 }
