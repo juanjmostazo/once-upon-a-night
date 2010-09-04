@@ -380,6 +380,14 @@ namespace OUAN
 
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";
+
+		enum EnemyType
+		{
+			ENEMY_TYPE_NORMAL,
+			ENEMY_TYPE_FLYING,
+			ENEMY_TYPE_STATUE
+		};
+
 		
 		///////////////////////////////////////////////////////////////////
 

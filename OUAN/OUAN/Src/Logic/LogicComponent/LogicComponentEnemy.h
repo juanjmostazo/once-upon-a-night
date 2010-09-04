@@ -26,6 +26,10 @@ namespace OUAN
 		int getLineOfSight() const;
 		void setLineOfSight(int lineOfSight);
 
+		int getEnemyTypeLUA() const;
+		EnemyType getEnemyType() const;
+		void setEnemyType(EnemyType enemyType);
+
 		int getColourSensitivityMask() const;
 		void setColourSensitivityMask(int colourSensitivityMask);
 		int getMaskValueFromColour(int colour);
@@ -74,6 +78,8 @@ namespace OUAN
 		bool mHasBeenHit;
 		bool mHasDied;
 
+		EnemyType mEnemyType;
+
 	};
 	
 	class TLogicComponentEnemyParameters: public TLogicComponentParameters
@@ -86,7 +92,8 @@ namespace OUAN
 
 		int healthPoints;
 		int lineOfSight;
-		int colourSensitivityMask;	
+		int colourSensitivityMask;
+		EnemyType enemyType;
 	};
 }
 

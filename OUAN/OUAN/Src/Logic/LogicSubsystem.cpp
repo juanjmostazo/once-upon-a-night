@@ -111,6 +111,7 @@ void LogicSubsystem::registerModules()
 			.def("getLineOfSight",&LogicComponentEnemy::getLineOfSight)
 			.def("getHP",&LogicComponentEnemy::getHealthPoints)
 			.def("getMaxHP",&LogicComponentEnemy::getInitialHealthPoints)
+			.def("getEnemyType",&LogicComponentEnemy::getEnemyTypeLUA)
 			.def("hasBeenHit",&LogicComponentEnemy::hasBeenHit)
 			.def("hasDied",&LogicComponentEnemy::hasDied),
 		class_<LogicComponentOny, LogicComponent > ("LogicComponentOny")

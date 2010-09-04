@@ -9,6 +9,11 @@
 #include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
+	//State names
+	const std::string BOMB_STATE_IDLE="BOMB_STATE_IDLE";
+	const std::string BOMB_STATE_ACTIVATE="BOMB_STATE_ACTIVATE";
+	const std::string BOMB_STATE_EXPLOSION="BOMB_STATE_EXPLOSION";
+
 namespace OUAN
 {
 	//Animation states
@@ -40,7 +45,7 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponentProp;
 
-		bool mActivateExplosion;
+		double mElapsedTime;
 
 	public:
 		//Constructor
@@ -93,6 +98,8 @@ namespace OUAN
 		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		void updatePhysicsComponents(double elapsedSeconds);
+		bool hasPhysicsComponent() const;
+		PhysicsComponentPtr getPhysicsComponent() const;
 
 		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
 		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
@@ -115,9 +122,6 @@ namespace OUAN
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;
-
-		bool hasPhysicsComponent() const;
-		PhysicsComponentPtr getPhysicsComponent() const;
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;

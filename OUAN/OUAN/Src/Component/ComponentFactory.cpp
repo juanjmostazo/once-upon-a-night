@@ -740,7 +740,9 @@ LogicComponentEnemyPtr ComponentFactory::createLogicComponentEnemy(GameObjectPtr
 	pLogicComponentEnemy->setScriptFilename(LogicComponentEnemyParameters.scriptFilename);
 	pLogicComponentEnemy->setScriptFunction(LogicComponentEnemyParameters.scriptFunction);
 	pLogicComponentEnemy->setState(LogicComponentEnemyParameters.defaultState);
+	pLogicComponentEnemy->setEnemyType(LogicComponentEnemyParameters.enemyType);
 	pLogicComponentEnemy->setParent(gameObject);
+
 	return pLogicComponentEnemy;
 }
 LogicComponentUsablePtr ComponentFactory::createLogicComponentUsable(GameObjectPtr gameObject, 
