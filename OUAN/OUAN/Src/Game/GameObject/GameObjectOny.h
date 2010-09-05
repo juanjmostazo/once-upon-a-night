@@ -260,6 +260,8 @@ namespace OUAN
 		void resetStepSounds();
 		void playStepSounds();
 
+		std::string mAttackAnimationName;
+
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class
@@ -435,6 +437,8 @@ namespace OUAN
 		
 		bool isOnWater() const;
 		void setOnWater(bool onWater);
+
+		void setCurrentAttackAnimation(const std::string& animationName);
 	};
 
 	/// Carries data between the level loader and the object factories

@@ -211,6 +211,9 @@ void GameObjectPillow::beginAttack()
 		setAttack(attackData->nextComboAttack);
 		attackData=BOOST_PTR_CAST(PillowAttackData,mAttackComponent->getSelectedAttack());
 		textMsg<<"It's a COMBO! ";
+		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
+		//ony->setCurrentAttackAnimation(attackData->animationName);
+
 	}
 
 	//Logger::getInstance()->log("AttackName: "+attackData->attackName);

@@ -291,7 +291,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					if (mLogicComponentEnemy->isStateChanged())
 					{
 						entity->changeAnimation(TRIPOLLO_ANIM_RUN);
-						mTrajectoryComponent->activateFlee(onyName);
+						mTrajectoryComponent->activateFlee(onyName, mLogicComponentEnemy->getLineOfSight()*0.3);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_HIT))

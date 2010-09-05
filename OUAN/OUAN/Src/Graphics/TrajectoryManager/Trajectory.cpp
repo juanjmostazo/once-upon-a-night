@@ -161,10 +161,17 @@ void Trajectory::cleanFlee()
 	{
 		if (mFleeTarget)
 		{
+
+			while(mTrajectoryNodes.size()>0)
+			{
+				popBackNode();
+			}
+
 			mSceneManager->destroySceneNode(mFleeTarget);
 			mFleeTarget=NULL;
 			mFleeDistance=0;
 			mFleeNode="";
+
 		}
 	}
 }
@@ -618,7 +625,7 @@ void Trajectory::activateChase(const std::string& source,const std::string& targ
 	updateChase();
 }
 
-void Trajectory::activateFlee(const std::string& source,const std::string& target)
+void Trajectory::activateFlee(const std::string& source,const std::string& target, double safeDistance)
 {
 	//TrajectoryNode * pTrajectoryNode;
 	cleanFlee();
@@ -634,6 +641,12 @@ void Trajectory::activateFlee(const std::string& source,const std::string& targe
 	Ogre::SceneNode* currentPosition = mSceneManager->getSceneNode(mParent);
 
 	Ogre::Vector3 pos = currentPosition->getPosition()-tgtPosition->getPosition();
+	if (safeDistance>=0)
+	{
+		pos.normalise();
+		pos*= safeDistance;
+	}
+
 	mFleeTarget->setPosition(currentPosition->getPosition()+pos);
 
 	//Vector3 src = mFleeTarget->getOrientation() * Vector3::UNIT_X;     

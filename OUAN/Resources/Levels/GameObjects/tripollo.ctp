@@ -28,7 +28,7 @@
   <PROPERTY id="AttackComponent::attack0#animationName" type="7" value="attack01" fields="X;Y;Z;W">
   </PROPERTY>  
   <PROPERTY id="AttackComponent::attack0#damage" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="AttackComponent::attack0#attackRange" type="2" value="40" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#attackRange" type="2" value="25" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>

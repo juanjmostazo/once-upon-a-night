@@ -55,22 +55,161 @@
   <PROPERTY id="animation0::name" type="7" value="idle01"></PROPERTY>
   <PROPERTY id="animation0::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation0::timescale" type="6" value="1.0"></PROPERTY> <!-- BY DEFAULT -->
+  <PROPERTY id="animation0::transition0::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation0::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation0::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation0::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation0::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation0::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation0::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation0::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation0::transition3::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation0::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation0::transition4::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation0::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation0::transition5::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation0::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation0::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation0::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation0::transition7::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation0::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation0::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation0::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation0::transition8::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation0::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation0::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
+  
   <PROPERTY id="animation1::name" type="7" value="attack01"></PROPERTY>
   <PROPERTY id="animation1::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation1::transition0::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation1::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation1::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation1::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation1::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation1::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation1::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation1::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation1::transition3::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation1::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation1::transition4::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation1::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation1::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation1::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation1::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation1::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation1::transition7::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation1::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation1::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation1::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation1::transition8::blend_type" type="2" value="1"></PROPERTY> 
+          <PROPERTY id="animation1::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation1::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation1::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
+  
   <PROPERTY id="animation2::name" type="7" value="attack02"></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="false"></PROPERTY>
+    <PROPERTY id="animation2::transition0::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation2::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation2::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation2::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation2::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation2::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation2::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation2::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation2::transition3::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation2::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation2::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation2::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation2::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation2::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation2::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation2::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation2::transition7::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation2::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation2::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation2::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation2::transition8::blend_type" type="2" value="1"></PROPERTY> 
+        <PROPERTY id="animation2::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation2::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation2::transition9::blend_type" type="2" value="1"></PROPERTY>    
+  
+  
   <PROPERTY id="animation3::name" type="7" value="attack03"></PROPERTY>
-  <PROPERTY id="animation3::loop" type="12" value="false"></PROPERTY>  
+  <PROPERTY id="animation3::loop" type="12" value="false"></PROPERTY>
+    <PROPERTY id="animation3::transition0::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation3::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation3::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation3::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation3::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation3::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation3::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation3::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation3::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation3::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation3::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation3::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation3::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation3::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation3::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation3::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation3::transition7::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation3::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation3::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation3::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation3::transition8::blend_type" type="2" value="1"></PROPERTY> 
+        <PROPERTY id="animation3::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation3::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation3::transition9::blend_type" type="2" value="1"></PROPERTY>   
+  
+  
+  
   <PROPERTY id="animation4::name" type="7" value="crouch_loop"></PROPERTY>
   <PROPERTY id="animation4::loop" type="12" value="true"></PROPERTY>
+  
+  
   <PROPERTY id="animation5::name" type="7" value="crouch_post"></PROPERTY>
   <PROPERTY id="animation5::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation6::name" type="7" value="crouch_pre"></PROPERTY>
   <PROPERTY id="animation6::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation7::name" type="7" value="die"></PROPERTY>
   <PROPERTY id="animation7::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation8::name" type="7" value="draw_pillow"></PROPERTY>
   <PROPERTY id="animation8::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation9::name" type="7" value="face_afraid"></PROPERTY>
   <PROPERTY id="animation9::loop" type="12" value="false"></PROPERTY>  
   <PROPERTY id="animation10::name" type="7" value="face_close"></PROPERTY>
@@ -91,6 +230,8 @@
   <PROPERTY id="animation17::loop" type="12" value="false"></PROPERTY>  
   <PROPERTY id="animation18::name" type="7" value="face_speak02"></PROPERTY>
   <PROPERTY id="animation18::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation19::name" type="7" value="fall_loop"></PROPERTY>
   <PROPERTY id="animation19::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation20::name" type="7" value="fall_post"></PROPERTY>
@@ -105,10 +246,76 @@
   <PROPERTY id="animation24::loop" type="12" value="false"></PROPERTY>
   <PROPERTY id="animation25::name" type="7" value="hide_pillow03"></PROPERTY>
   <PROPERTY id="animation25::loop" type="12" value="false"></PROPERTY>
+  
   <PROPERTY id="animation26::name" type="7" value="hit01"></PROPERTY>
-  <PROPERTY id="animation26::loop" type="12" value="false"></PROPERTY>  
+  <PROPERTY id="animation26::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation26::transition0::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation26::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation26::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation26::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation26::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation26::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation26::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation26::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation26::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation26::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation26::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation26::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation26::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation26::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation26::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation26::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation26::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation26::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation26::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation26::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation26::transition8::blend_type" type="2" value="1"></PROPERTY>
+      <PROPERTY id="animation26::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation26::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation26::transition9::blend_type" type="2" value="1"></PROPERTY>   
+  
+  
+  
   <PROPERTY id="animation27::name" type="7" value="idle02"></PROPERTY>
-  <PROPERTY id="animation27::loop" type="12" value="false"></PROPERTY>  
+  <PROPERTY id="animation27::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation27::transition0::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation27::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation27::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation27::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation27::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation27::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation27::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation27::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation27::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation27::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation27::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation27::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation27::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation27::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation27::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation27::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation27::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation27::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation27::transition8::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation27::transition8::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation27::transition8::blend_type" type="2" value="1"></PROPERTY>
+      <PROPERTY id="animation27::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation27::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation27::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
+  
   <PROPERTY id="animation28::name" type="7" value="jump01_loop"></PROPERTY>
   <PROPERTY id="animation28::loop" type="12" value="true"></PROPERTY>  
   <PROPERTY id="animation29::name" type="7" value="jump01_post"></PROPERTY>
@@ -119,8 +326,42 @@
   <PROPERTY id="animation31::loop" type="12" value="true"></PROPERTY>  
   <PROPERTY id="animation32::name" type="7" value="jump02_post"></PROPERTY>
   <PROPERTY id="animation32::loop" type="12" value="false"></PROPERTY>
+  
   <PROPERTY id="animation33::name" type="7" value="jump02_pre"></PROPERTY>
   <PROPERTY id="animation33::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation33::transition0::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation33::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation33::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation33::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation33::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation33::transition2::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation33::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation33::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation33::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation33::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation33::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation33::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation33::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation33::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation33::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation33::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation33::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation33::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation33::transition8::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation33::transition8::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition8::blend_type" type="2" value="1"></PROPERTY> 
+    <PROPERTY id="animation33::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation33::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation33::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
+  
+  
   <PROPERTY id="animation34::name" type="7" value="look_back"></PROPERTY>
   <PROPERTY id="animation34::loop" type="12" value="false"></PROPERTY>  
   <PROPERTY id="animation35::name" type="7" value="look_down"></PROPERTY>
@@ -139,10 +380,75 @@
   <PROPERTY id="animation41::loop" type="12" value="false"></PROPERTY>   
   <PROPERTY id="animation42::name" type="7" value="nap_pre"></PROPERTY>
   <PROPERTY id="animation42::loop" type="12" value="false"></PROPERTY>     
+  
+  
   <PROPERTY id="animation43::name" type="7" value="run"></PROPERTY>
-  <PROPERTY id="animation43::loop" type="12" value="true"></PROPERTY>     
+  <PROPERTY id="animation43::loop" type="12" value="true"></PROPERTY>
+   <PROPERTY id="animation43::transition0::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation43::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation43::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation43::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation43::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation43::transition2::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation43::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation43::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation43::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation43::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition3::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation43::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation43::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition4::blend_type" type="2" value="1"></PROPERTY>    
+  <PROPERTY id="animation43::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation43::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation43::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation43::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation43::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation43::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition7::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation43::transition8::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation43::transition8::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition8::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation43::transition9::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation43::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation43::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
   <PROPERTY id="animation44::name" type="7" value="shoot_center"></PROPERTY>
-  <PROPERTY id="animation44::loop" type="12" value="true"></PROPERTY>     
+  <PROPERTY id="animation44::loop" type="12" value="true"></PROPERTY>
+   <PROPERTY id="animation44::transition0::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation44::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation44::transition1::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation44::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation44::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation44::transition2::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation44::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation44::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation44::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation44::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition3::blend_type" type="2" value="0"></PROPERTY>  
+  <PROPERTY id="animation44::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation44::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition4::blend_type" type="2" value="0"></PROPERTY>    
+  <PROPERTY id="animation44::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation44::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation44::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation44::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation44::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation44::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition7::blend_type" type="2" value="0"></PROPERTY>  
+  <PROPERTY id="animation44::transition8::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation44::transition8::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition8::blend_type" type="2" value="1"></PROPERTY>
+	<PROPERTY id="animation44::transition9::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation44::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition9::blend_type" type="2" value="1"></PROPERTY>  
+  
+  
   <PROPERTY id="animation45::name" type="7" value="tickling_loop"></PROPERTY>
   <PROPERTY id="animation45::loop" type="12" value="true"></PROPERTY>     
   <PROPERTY id="animation46::name" type="7" value="tickling_pre"></PROPERTY>
@@ -153,8 +459,40 @@
   <PROPERTY id="animation48::loop" type="12" value="true"></PROPERTY>   
   <PROPERTY id="animation49::name" type="7" value="victory_pre"></PROPERTY>
   <PROPERTY id="animation49::loop" type="12" value="false"></PROPERTY>  
+  
+  
   <PROPERTY id="animation50::name" type="7" value="walk"></PROPERTY>
-  <PROPERTY id="animation50::loop" type="12" value="true"></PROPERTY>   
+  <PROPERTY id="animation50::loop" type="12" value="true"></PROPERTY> 
+  <PROPERTY id="animation50::transition0::target" type="7" value="hit01"></PROPERTY>
+  <PROPERTY id="animation50::transition0::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation50::transition1::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation50::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation50::transition1::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation50::transition2::target" type="7" value="jump02_pre"></PROPERTY>
+  <PROPERTY id="animation50::transition2::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation50::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation50::transition3::target" type="7" value="attack02"></PROPERTY>
+  <PROPERTY id="animation50::transition3::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition3::blend_type" type="2" value="0"></PROPERTY>  
+  <PROPERTY id="animation50::transition4::target" type="7" value="attack01"></PROPERTY>
+  <PROPERTY id="animation50::transition4::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition4::blend_type" type="2" value="0"></PROPERTY>    
+  <PROPERTY id="animation50::transition5::target" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation50::transition5::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition5::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation50::transition6::target" type="7" value="die"></PROPERTY>
+  <PROPERTY id="animation50::transition6::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition6::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation50::transition7::target" type="7" value="attack03"></PROPERTY>
+  <PROPERTY id="animation50::transition7::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition7::blend_type" type="2" value="0"></PROPERTY>  
+  <PROPERTY id="animation50::transition8::target" type="7" value="idle02"></PROPERTY>
+  <PROPERTY id="animation50::transition8::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition8::blend_type" type="2" value="1"></PROPERTY>
+	<PROPERTY id="animation50::transition9::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation50::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition9::blend_type" type="2" value="1"></PROPERTY> 
 
   <!-- Audio component -->
   <PROPERTY id="AudioComponent::soundID#0" type="7" value="any_triumph_laught"></PROPERTY>

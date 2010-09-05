@@ -43,9 +43,9 @@ void TrajectoryComponent::activateChase(const std::string& target)
 {
 	mTrajectory->activateChase(getParent()->getName(),target);
 }
-void TrajectoryComponent::activateFlee(const std::string& target)
+void TrajectoryComponent::activateFlee(const std::string& target, double safeDistance)
 {
-	mTrajectory->activateFlee(getParent()->getName(),target);
+	mTrajectory->activateFlee(getParent()->getName(),target, safeDistance);
 }
 
 void TrajectoryComponent::activateIdle(std::string idleNode,int currentWorld)

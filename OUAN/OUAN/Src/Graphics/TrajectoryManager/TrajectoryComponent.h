@@ -37,7 +37,7 @@ namespace OUAN
 		//Activates chase state, which recalculates a direct vector to the target
 		void activateChase(const std::string& target);
 
-		void activateFlee(const std::string& target);
+		void activateFlee(const std::string& target, double safeDistance=-1);
 
 		//sets speed for non-predefined trajectories
 		void setDefaultSpeed(double defaultSpeed);

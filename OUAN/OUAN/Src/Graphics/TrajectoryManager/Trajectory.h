@@ -145,7 +145,7 @@ namespace OUAN
 		void activateChase(const std::string& source, 
 			const std::string& target);
 		void activateFlee(const std::string& source, 
-			const std::string& target);
+			const std::string& target, double safeDistance=-1);
 
 		std::string getNearestNode(Ogre::Vector3 position);
 
