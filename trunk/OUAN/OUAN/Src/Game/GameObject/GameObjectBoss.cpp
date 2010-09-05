@@ -3,6 +3,7 @@
 #include "GameObjectBoss.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -21,6 +22,17 @@ void GameObjectBoss::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponen
 {
 	mLogicComponentEnemy=logicComponentEnemy;
 }
+
+AudioComponentPtr GameObjectBoss::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectBoss::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 /// return logic component
 LogicComponentEnemyPtr GameObjectBoss::getLogicComponentEnemy()

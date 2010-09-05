@@ -3,6 +3,7 @@
 #include "GameObjectHeart.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -35,6 +36,17 @@ RenderComponentEntityPtr GameObjectHeart::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
+
+AudioComponentPtr GameObjectHeart::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectHeart::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectHeart::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
@@ -384,9 +396,12 @@ LogicComponentPtr GameObjectHeart::getLogicComponentInstance() const
 	return mLogicComponentItem;
 }
 
-void GameObjectHeart::startCollisionParticles()
+void GameObjectHeart::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
+
+	mAudioComponent->playSound("heart");
+
 }
 
 TGameObjectHeartParameters::TGameObjectHeartParameters() : TGameObjectParameters()

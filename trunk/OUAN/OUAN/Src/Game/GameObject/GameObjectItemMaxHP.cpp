@@ -3,6 +3,7 @@
 #include "GameObjectItemMaxHP.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -38,6 +39,17 @@ void GameObjectItemMaxHP::setRenderComponentEntity(RenderComponentEntityPtr pRen
 {
 	mRenderComponentEntity=pRenderComponentEntity;
 }
+
+AudioComponentPtr GameObjectItemMaxHP::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectItemMaxHP::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectItemMaxHP::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
@@ -381,12 +393,14 @@ LogicComponentPtr GameObjectItemMaxHP::getLogicComponentInstance() const
 	return mLogicComponentItem;
 }
 
-void GameObjectItemMaxHP::startCollisionParticles()
+void GameObjectItemMaxHP::startCollisionEffects()
 {
 	mRenderComponentParticleSystemHeartsFountain->stop();
 
 	mRenderComponentParticleSystemStarsCloud->start();
 	mRenderComponentParticleSystemHeartsFountainDouble->start();
+
+	mAudioComponent->playSound("maxHP");
 }
 void GameObjectItemMaxHP::disable()
 {

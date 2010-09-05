@@ -28,7 +28,8 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
-
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 		bool mBroken;
 	public:
 		//Constructor
@@ -37,7 +38,10 @@ namespace OUAN
 		~GameObjectBreakableRock();
 		/// Set logic component
 		void setLogicComponentProp(LogicComponentPropPtr logicComponent);
-
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 		/// return logic component
 		LogicComponentPropPtr getLogicComponentProp();
 
@@ -129,6 +133,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentPropParameters;

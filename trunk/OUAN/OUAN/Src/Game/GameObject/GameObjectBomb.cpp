@@ -5,6 +5,7 @@
 
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -17,6 +18,16 @@ GameObjectBomb::GameObjectBomb(const std::string& name)
 GameObjectBomb::~GameObjectBomb()
 {
 
+}
+
+AudioComponentPtr GameObjectBomb::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectBomb::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
 }
 
 RenderComponentEntityPtr GameObjectBomb::getRenderComponentEntityDreams() const
@@ -458,6 +469,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
 		{
 			mLogicComponentProp->setTimeSpent(0);
+			mAudioComponent->playSound("fart");
 		}
 	}
 

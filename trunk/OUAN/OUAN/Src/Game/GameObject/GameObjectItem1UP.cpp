@@ -3,6 +3,7 @@
 #include "GameObjectItem1UP.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -38,6 +39,17 @@ LogicComponentItemPtr GameObjectItem1UP::getLogicComponentItem()
 {
 	return mLogicComponentItem;
 }
+
+AudioComponentPtr GameObjectItem1UP::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectItem1UP::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 RenderComponentEntityPtr GameObjectItem1UP::getRenderComponentEntity() const
 {
@@ -378,9 +390,11 @@ LogicComponentPtr GameObjectItem1UP::getLogicComponentInstance() const
 	return mLogicComponentItem;
 }
 
-void GameObjectItem1UP::startCollisionParticles()
+void GameObjectItem1UP::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
+
+	mAudioComponent->playSound("1up");
 }
 
 TGameObjectItem1UPParameters::TGameObjectItem1UPParameters() : TGameObjectParameters()

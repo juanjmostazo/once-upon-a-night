@@ -3,6 +3,7 @@
 #include "GameObjectClockPiece.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -21,6 +22,17 @@ RenderComponentEntityPtr GameObjectClockPiece::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
 }
+
+AudioComponentPtr GameObjectClockPiece::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectClockPiece::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectClockPiece::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
@@ -338,7 +350,7 @@ LogicComponentPtr GameObjectClockPiece::getLogicComponentInstance() const
 	return mLogicComponentItem;
 }
 
-void GameObjectClockPiece::startCollisionParticles()
+void GameObjectClockPiece::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
 }

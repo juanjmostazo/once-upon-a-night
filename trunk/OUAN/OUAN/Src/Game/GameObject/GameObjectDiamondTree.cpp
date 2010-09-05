@@ -4,6 +4,7 @@
 #include "GameObjectDiamond.h"
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -27,6 +28,17 @@ void GameObjectDiamondTree::setRenderComponentEntityNightmares(RenderComponentEn
 {
 	mRenderComponentEntityNightmares=pRenderComponentEntity;
 }
+
+AudioComponentPtr GameObjectDiamondTree::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectDiamondTree::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 RenderComponentEntityPtr GameObjectDiamondTree::getRenderComponentEntityDreams() const
 {
@@ -403,6 +415,8 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 				mLogicComponent->setTimeSpent(0.0);
 			}
 			mGameWorldManager->increaseOnyDiamonds(1);
+
+			mAudioComponent->playSound("tree");
 			//play sound and particles
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())

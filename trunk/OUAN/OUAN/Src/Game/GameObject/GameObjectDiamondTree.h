@@ -48,7 +48,8 @@ namespace OUAN
 		/// Timer to control the amount of total elapsed seconds since
 		/// the first hit
 		double mElapsedTotalHitTime;
-		
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectDiamondTree(const std::string& name);
@@ -59,6 +60,12 @@ namespace OUAN
 
 		/// return logic component
 		LogicComponentPropPtr getLogicComponent();
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// Return render component entity 
 		/// @return render component entity
@@ -154,6 +161,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;

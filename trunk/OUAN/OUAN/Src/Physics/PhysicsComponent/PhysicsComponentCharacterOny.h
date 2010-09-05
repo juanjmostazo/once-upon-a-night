@@ -14,10 +14,15 @@ namespace OUAN
 		virtual void reset();
 		virtual void update(double elapsedSeconds);
 
+		void disactivateGravityNextFrame();
+
 	protected:
 		virtual bool isWorthUpdating();
 		virtual bool canJump();
 		virtual void applyOuternMovement(double elapsedSeconds);
+		virtual void applyFallY(double elapsedSeconds);
+
+		bool mApplyGravityNextFrame;
 	};
 
 	class TPhysicsComponentCharacterOnyParameters: public TPhysicsComponentCharacterParameters

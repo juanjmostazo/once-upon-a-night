@@ -28,6 +28,8 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectDoor(const std::string& name);
@@ -35,7 +37,10 @@ namespace OUAN
 		~GameObjectDoor();
 		/// Set logic component
 		void setLogicComponent(LogicComponentPtr logicComponent);
-
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 		/// return logic component
 		LogicComponentPtr getLogicComponent();
 
@@ -124,6 +129,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

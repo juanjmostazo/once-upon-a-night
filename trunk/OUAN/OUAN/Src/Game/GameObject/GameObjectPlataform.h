@@ -18,7 +18,7 @@ namespace OUAN
 	const std::string PLATFORM3_ANIM_FRONT="front";
 	const std::string PLATFORM3_ANIM_BACK="back";
 
-	const double PLATAFORM_COLLISION_TIME_MARGIN = 0.5;
+	const double PLATAFORM_COLLISION_TIME_MARGIN = 1;
 
 	/// Class to hold terrain information
 	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>

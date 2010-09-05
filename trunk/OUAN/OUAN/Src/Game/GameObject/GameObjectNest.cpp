@@ -5,6 +5,7 @@
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Utils/Utils.h"
 #include <numeric>
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -65,6 +66,17 @@ PhysicsComponentCharacterPtr GameObjectNest::getPhysicsComponentCharacter() cons
 {
 	return mPhysicsComponentCharacter;
 }
+
+AudioComponentPtr GameObjectNest::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectNest::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectNest::changeWorldFinished(int newWorld)
 {
@@ -298,10 +310,12 @@ void GameObjectNest::update(double elapsedSeconds)
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_SHAKING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE);	
+				mAudioComponent->playSound(NEST_SOUND_TOC_TOC);
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_HATCHING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
+				mAudioComponent->playSound(NEST_SOUND_BREAK);
 			}
 			if (mRenderComponentEntity.get() && !mEggHatched)
 			{
@@ -377,6 +391,11 @@ void GameObjectNest::spawnChild()
 		{
 			(*it)->reset();
 			(*it)->enable();
+
+			if((*it)->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+			{
+				mAudioComponent->playSound(NEST_SOUND_TRIPOLLO);
+			}
 			break;
 		}
 		else 
@@ -386,7 +405,8 @@ void GameObjectNest::spawnChild()
 	}
 	if (it==mChildren.end())
 	{
-		displayText("Better luck next time");
+		mAudioComponent->playSound(NEST_SOUND_NOTHING);
+		//displayText("Better luck next time");
 	}
 }
 void GameObjectNest::setVisible(bool visible)

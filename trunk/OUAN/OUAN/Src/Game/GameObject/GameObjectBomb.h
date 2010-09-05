@@ -46,6 +46,9 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponentProp;
 
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
+
 		double mElapsedTime;
 
 	public:
@@ -57,6 +60,11 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -178,6 +186,10 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentPropParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 	};
 }
 #endif

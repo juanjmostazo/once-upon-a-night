@@ -31,6 +31,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentItemPtr mLogicComponentItem;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectItemMaxHP(const std::string& name);
@@ -41,6 +43,12 @@ namespace OUAN
 		void setLogicComponentItem(LogicComponentItemPtr logicComponentItem);
 
 		void setVisible(bool visible);
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// return logic component
 		LogicComponentItemPtr getLogicComponentItem();
@@ -129,7 +137,7 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
-		void startCollisionParticles();
+		void startCollisionEffects();
 	};
 
 	class TGameObjectItemMaxHPParameters: public TGameObjectParameters
@@ -146,6 +154,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;

@@ -3,6 +3,7 @@
 #include "GameObjectBreakableRock.h"
 #include "GameObjectInvisibleWall.h"
 #include "../GameWorldManager.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -21,6 +22,17 @@ void GameObjectBreakableRock::setRenderComponentEntityDreams(RenderComponentEnti
 {
 	mRenderComponentEntityDreams=pRenderComponentEntity;
 }
+
+AudioComponentPtr GameObjectBreakableRock::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectBreakableRock::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectBreakableRock::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
 {
@@ -82,6 +94,7 @@ void GameObjectBreakableRock::breakRock()
 		{
 			mPhysicsComponentSimpleBox->destroy();
 		}
+		mAudioComponent->playSound("explosion");
 	}
 }
 

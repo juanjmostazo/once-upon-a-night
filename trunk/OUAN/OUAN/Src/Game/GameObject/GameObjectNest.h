@@ -18,6 +18,12 @@ namespace OUAN
 	const std::string NEST_ANIM_SHAKE="shake";
 	const std::string NEST_ANIM_HATCH="jump";
 
+	const std::string NEST_SOUND_NOTHING="nest_nothing";
+	const std::string NEST_SOUND_TRIPOLLO="nest_tripollo";
+	const std::string NEST_SOUND_BREAK="nest_break";
+	const std::string NEST_SOUND_TOC_TOC="nest_toc_toc";
+
+
 	/// Class to hold ScaredPlant information
 	class GameObjectNest: public GameObject, public boost::enable_shared_from_this<GameObjectNest>
 	{
@@ -42,6 +48,8 @@ namespace OUAN
 		bool mEggHatched;
 		
 		double mChildrenTotalWeight;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectNest(const std::string& name);
@@ -53,6 +61,12 @@ namespace OUAN
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 		/// Set logic component
 		void setLogicComponent(LogicComponentPropPtr logicComponent);
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// return logic component
 		LogicComponentPropPtr getLogicComponent();
@@ -156,6 +170,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;

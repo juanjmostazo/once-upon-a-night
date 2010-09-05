@@ -17,4 +17,7 @@
 	<PROPERTY id="animation0::name" type="7" value="broken" fields="X;Y;Z;W"></PROPERTY>
 	<PROPERTY id="animation0::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
 
+  <!-- Sounds -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="box_break"></PROPERTY>
+
   </CUSTOMPROPERTIES>

@@ -32,6 +32,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentItemPtr mLogicComponentItem;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectStoryBook(const std::string& name);
@@ -47,6 +49,12 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		void setVisible(bool visible);
 
@@ -126,7 +134,7 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
-		void startCollisionParticles();
+		void startCollisionEffects();
 	};
 
 	class TGameObjectStoryBookParameters: public TGameObjectParameters
@@ -143,6 +151,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;

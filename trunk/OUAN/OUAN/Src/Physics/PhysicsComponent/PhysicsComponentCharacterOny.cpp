@@ -21,6 +21,7 @@ PhysicsComponentCharacterOny::~PhysicsComponentCharacterOny()
 void PhysicsComponentCharacterOny::reset()
 {
 	PhysicsComponentCharacter::reset();
+	mApplyGravityNextFrame=true;
 }
 
 void PhysicsComponentCharacterOny::update(double elapsedSeconds)
@@ -51,6 +52,7 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 			}
 		}
 	}
+	mApplyGravityNextFrame=true;
 }
 
 bool PhysicsComponentCharacterOny::isWorthUpdating()
@@ -63,6 +65,60 @@ bool PhysicsComponentCharacterOny::canJump()
 	return 
 		PhysicsComponentCharacter::canJump() ||
 		Application::getInstance()->getGameWorldManager()->isGodMode();
+}
+
+void PhysicsComponentCharacterOny::applyFallY(double elapsedSeconds)
+{
+	double initialTime = mFallingTime;
+	double finalTime = mFallingTime + elapsedSeconds;
+
+	if(!mFlyingCharacter && mApplyGravityNextFrame)
+	{
+		if (initialTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime)
+		{
+			finalTime = finalTime <= Application::getInstance()->getPhysicsSubsystem()->mImpulseTime 
+			? finalTime 
+			: Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+
+			////////////
+
+			// DO NOTHING HERE
+
+			////////////
+
+			double basicValueInitial = (initialTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+			basicValueInitial *= basicValueInitial;
+
+			double initialValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+				((-1 * basicValueInitial) + 1);
+
+			////////////
+
+			double basicValueFinal = (finalTime / Application::getInstance()->getPhysicsSubsystem()->mImpulseTime);
+			basicValueFinal *= basicValueFinal;
+
+			double finalValue = Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight *
+				((-1 * basicValueFinal) + 1);
+
+			////////////
+
+			mNextMovement.y +=  finalValue - initialValue;
+		}
+		else
+		{
+			mNextMovement.y +=  
+				-3 * 
+				elapsedSeconds * 
+				Application::getInstance()->getPhysicsSubsystem()->mImpulseHeight / 
+				Application::getInstance()->getPhysicsSubsystem()->mImpulseTime;
+		}
+		mFallingTime += elapsedSeconds;
+	}
+}
+
+void PhysicsComponentCharacterOny::disactivateGravityNextFrame()
+{
+	mApplyGravityNextFrame=false;
 }
 
 void PhysicsComponentCharacterOny::applyOuternMovement(double elapsedSeconds)

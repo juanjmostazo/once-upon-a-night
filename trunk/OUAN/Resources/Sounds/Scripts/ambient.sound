@@ -42,8 +42,8 @@ sound ambient_birds
 	hardware	true
 	stream		false
 	loop		true
-	min_max_distance 500 100000
-	volume 1
+	min_max_distance 50 100000
+	volume 0.5
 }
 
 sound ambient_scary_a
@@ -72,7 +72,7 @@ sound ambient_scary_b
 
 sound ambient_scary_c
 {
-	sound_file Ambient/Ambiente_que_da_miedo_3.mp3
+	sound_file Objects/Susurros_libro.mp3
 	sound_type	sfx
 	3D		true
 	hardware	true
@@ -85,6 +85,18 @@ sound ambient_scary_c
 sound ambient_scary_d
 {
 	sound_file Ambient/Ambiente_que_da_miedo_4.mp3
+	sound_type	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 500 100000
+	volume 1
+}
+
+sound ambient_scary_e
+{
+	sound_file Ambient/Ambiente_que_da_miedo_3.mp3
 	sound_type	sfx
 	3D		true
 	hardware	true

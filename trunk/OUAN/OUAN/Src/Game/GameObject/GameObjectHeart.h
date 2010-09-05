@@ -28,6 +28,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentItemPtr mLogicComponentItem;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectHeart(const std::string& name);
@@ -76,6 +78,12 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentVolumeBoxPtr getPhysicsComponentVolumeBox() const;
 
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
@@ -121,7 +129,7 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
-		void startCollisionParticles();
+		void startCollisionEffects();
 	};
 
 	class TGameObjectHeartParameters: public TGameObjectParameters
@@ -138,6 +146,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;

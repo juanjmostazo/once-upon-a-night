@@ -26,5 +26,12 @@
   <PROPERTY id="animation1::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation2::name" type="7" value="jump" ></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="false" ></PROPERTY>
+
+  <!-- Sounds -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="nest_nothing">
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="nest_tripollo">
+  <PROPERTY id="AudioComponent::soundID#2" type="7" value="nest_break">
+  <PROPERTY id="AudioComponent::soundID#3" type="7" value="nest_toc_toc">
+</PROPERTY>
    
 </CUSTOMPROPERTIES>

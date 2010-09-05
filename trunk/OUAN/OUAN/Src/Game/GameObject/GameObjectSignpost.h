@@ -36,6 +36,8 @@ namespace OUAN
 
 		//std::string mSignpostMessage;
 		RenderComponentMessageBoxPtr mMessageBox;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectSignpost(const std::string& name);
@@ -54,6 +56,12 @@ namespace OUAN
 
 		/// return logic component
 		LogicComponentPropPtr getLogicComponent();
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -154,6 +162,10 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		//std::string signpostMessage;
 		TRenderComponentMessageBoxParameters tMsgBoxParams;

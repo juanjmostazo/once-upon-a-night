@@ -448,6 +448,13 @@ GameObjectClockPiecePtr GameObjectFactory::createGameObjectClockPiece(TGameObjec
 			pGameObjectClockPiece->getRenderComponentPositional(),
 			pGameObjectClockPiece->getRenderComponentEntity()));
 
+	//Create audio component
+	pGameObjectClockPiece->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectClockPiece,
+			tGameObjectClockPieceParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->CLOCK_PIECE_STARS_CLOUD;
@@ -610,6 +617,14 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 		tGameObjectCryKingParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectCryKing->getRenderComponentPositional()));
 
+	//Create audio component
+	pGameObjectCryKing->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectCryKing,
+			tGameObjectCryKingParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Add reference to this
 	pGameObjectCryKing->setGameWorldManager(gameWorldMgr);
 
@@ -660,6 +675,14 @@ GameObjectDiamondPtr GameObjectFactory::createGameObjectDiamond(TGameObjectDiamo
 		pGameObjectDiamond,tGameObjectDiamondParameters.tRenderComponentEntityParameters,
 		pGameObjectDiamond->getLogicComponentItem()->existsInDreams(),
 		pGameObjectDiamond->getLogicComponentItem()->existsInNightmares()));
+
+	//Create audio component
+	pGameObjectDiamond->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectDiamond,
+			tGameObjectDiamondParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -764,7 +787,15 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 		pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
 		pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
 	}
-						
+
+	//Create audio component
+	pGameObjectDiamondTree->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectDiamondTree,
+			tGameObjectDiamondTreeParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+		
 	//Create PhysicsComponent
 	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
@@ -831,6 +862,14 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 		pGameObjectDoor->getLogicComponent()->existsInNightmares()));
 	}
 
+	//Create audio component
+	pGameObjectDoor->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectDoor,
+			tGameObjectDoorParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Create PhysicsComponent
 	pGameObjectDoor->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
@@ -895,6 +934,14 @@ GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGam
 		pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
 		pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
 	}
+
+	//Create audio component
+	pGameObjectBreakableRock->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectBreakableRock,
+			tGameObjectBreakableRockParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Create PhysicsComponent
 	pGameObjectBreakableRock->setPhysicsComponentSimpleBox(
@@ -1000,6 +1047,14 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters,
 		pGameObjectBoss->getLogicComponentEnemy()->existsInDreams(),
 		pGameObjectBoss->getLogicComponentEnemy()->existsInNightmares()));
+
+	//Create audio component
+	pGameObjectBoss->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectBoss,
+			tGameObjectBossParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Create PhysicsComponent
 	pGameObjectBoss->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
@@ -1346,6 +1401,14 @@ GameObjectHeartPtr GameObjectFactory::createGameObjectHeart(TGameObjectHeartPara
 		pGameObjectHeart->getLogicComponentItem()->existsInDreams(),
 		pGameObjectHeart->getLogicComponentItem()->existsInNightmares()));
 
+	//Create audio component
+	pGameObjectHeart->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectHeart,
+			tGameObjectHeartParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->HEART_STARS_CLOUD;
@@ -1429,6 +1492,14 @@ GameObjectItem1UPPtr GameObjectFactory::createGameObjectItem1UP(TGameObjectItem1
 		tRenderComponentParticleSystemParameters,
 		pGameObjectItem1UP->getRenderComponentPositional()));
 
+	//Create audio component
+	pGameObjectItem1UP->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectItem1UP,
+			tGameObjectItem1UPParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Create PhysicsComponent
 	pGameObjectItem1UP->setPhysicsComponentVolumeBox(
 		mComponentFactory->createPhysicsComponentVolumeBox(
@@ -1485,6 +1556,14 @@ GameObjectItemMaxHPPtr GameObjectFactory::createGameObjectItemMaxHP(TGameObjectI
 		pGameObjectItemMaxHP,tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters,
 		pGameObjectItemMaxHP->getLogicComponentItem()->existsInDreams(),
 		pGameObjectItemMaxHP->getLogicComponentItem()->existsInNightmares()));
+
+	//Create audio component
+	pGameObjectItemMaxHP->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectItemMaxHP,
+			tGameObjectItemMaxHPParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
@@ -1653,6 +1732,14 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 		params.tPhysicsComponentCharacterParameters,
 		pGameObjectNest->getRenderComponentPositional()));
 
+	//Create audio component
+	pGameObjectNest->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectNest,
+			params.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Add reference to this
 	pGameObjectNest->setGameWorldManager(gameWorldMgr);
 	
@@ -1799,6 +1886,7 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 	pGameObjectOny->getPhysicsComponentCharacterOny()->setOffsetRenderPosition(
 		tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters.position_correction);
 
+	//Create audio component
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
 			pGameObjectOny,
@@ -2760,6 +2848,14 @@ GameObjectStoryBookPtr GameObjectFactory::createGameObjectStoryBook(TGameObjectS
 		pGameObjectStoryBook,
 		tGameObjectStoryBookParameters.tLogicComponentItemParameters));
 
+	//Create audio component
+	pGameObjectStoryBook->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectStoryBook,
+			tGameObjectStoryBookParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Add reference to this
 	pGameObjectStoryBook->setGameWorldManager(gameWorldMgr);
 
@@ -3463,6 +3559,14 @@ GameObjectWoodBoxPtr GameObjectFactory::createGameObjectWoodBox(TGameObjectWoodB
 			pGameObjectWoodBox,
 			tGameObjectWoodBoxParameters.tRenderComponentPositionalParameters));
 
+	//Create audio component
+	pGameObjectWoodBox->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectWoodBox,
+			tGameObjectWoodBoxParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	//Create RenderComponentInitial
 	pGameObjectWoodBox->setRenderComponentInitial(
 		mComponentFactory->createRenderComponentInitial(
@@ -3587,6 +3691,14 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 		tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters,
 		pGameObjectWater->getRenderComponentPositional()));
 
+	//Create audio component
+	pGameObjectWater->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectWater,
+			tGameObjectWaterParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+
 	if(pGameObjectWater->getLogicComponent()->existsInDreams() && pGameObjectWater->getLogicComponent()->existsInNightmares())
 	{
 		//Create RenderComponentWaterDreams
@@ -3669,6 +3781,14 @@ GameObjectSignpostPtr GameObjectFactory::createGameObjectSignPost(TGameObjectSig
 		gameObject,
 		TGameObjectSignpostParameters.tPhysicsComponentSimpleBoxParameters,
 		gameObject->getRenderComponentPositional()));
+
+	//Create audio component
+	gameObject->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			gameObject,
+			TGameObjectSignpostParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 
 	//gameObject->setSignpostMessage(TGameObjectSignpostParameters.signpostMessage);
@@ -3907,6 +4027,14 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters,
 		pGameObjectBomb->getLogicComponentProp()->existsInDreams(),
 		pGameObjectBomb->getLogicComponentProp()->existsInNightmares()));
+
+	//Create audio component
+	pGameObjectBomb->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectBomb,
+			tGameObjectBombParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Create PhysicsComponentSimpleBox
 	pGameObjectBomb->setPhysicsComponentSimpleBox(
