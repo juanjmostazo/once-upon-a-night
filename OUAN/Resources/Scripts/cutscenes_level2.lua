@@ -188,7 +188,6 @@ end
 
 -- CUTSCENE 8: TRIPOLLO_STATUES
 function startCutScene8(pOny)
-
 	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
 	launchCutScene("cutscenes_level2.lua","cutScene8");
 	return
@@ -198,7 +197,7 @@ function conditionCutScene8(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES) and getCheckPointNumber()>=70;
 end
 
-function cutScene4(timer)
+function cutScene8(timer)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_TRIPOLLO_STATUES);
 	local any=getAny()	

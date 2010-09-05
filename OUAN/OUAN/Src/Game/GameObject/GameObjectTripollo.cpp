@@ -591,12 +591,8 @@ void GameObjectTripollo::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			mLogicComponentEnemy->setStatueEnabled(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
-			//activateStatue(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
 			break;
 		case NIGHTMARES:
-			//activateStatue(false);
-			mLogicComponentEnemy->setStatueEnabled(false);
 			break;
 		default:break;
 	}
